@@ -1,0 +1,5 @@
+# Build results
+.gradle
+generated/build
+generated/java/build
+generated/java/*/build
