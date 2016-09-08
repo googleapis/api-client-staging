@@ -1,1 +1,1 @@
-include 'generated:java', 'generated:java:google-logging-v2', 'generated:java:google-pubsub-v1'
+include 'generated:java:google-logging-v2', 'generated:java:google-pubsub-v1'
