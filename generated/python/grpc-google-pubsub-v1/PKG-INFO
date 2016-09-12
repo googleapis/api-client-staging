@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: grpc-google-pubsub-v1
+Version: 0.8.1
+Summary: GRPC library for the google-pubsub-v1 service
+Home-page: https://github.com/googleapis/googleapis
+Author: Google Inc
+Author-email: googleapis-packages@google.com
+License: Apache-2.0
+Description: gRPC library for google-pubsub-v1
+        
+        grpc-google-pubsub-v1 is the IDL-derived library for the google-pubsub (v1) service in the googleapis_ repository.
+        
+        .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/pubsub/v1
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
