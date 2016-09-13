@@ -63,14 +63,14 @@ class MetricsServiceV2Api(object):
                    'https://www.googleapis.com/auth/logging.read',
                    'https://www.googleapis.com/auth/logging.write', )
 
-    _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
+    _PARENT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _METRIC_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/metrics/{metric}')
 
     @classmethod
-    def project_path(cls, project):
-        """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+    def parent_path(cls, project):
+        """Returns a fully-qualified parent resource name string."""
+        return cls._PARENT_PATH_TEMPLATE.render({'project': project, })
 
     @classmethod
     def metric_path(cls, project, metric):
@@ -81,17 +81,17 @@ class MetricsServiceV2Api(object):
         })
 
     @classmethod
-    def match_project_from_project_name(cls, project_name):
-        """Parses the project from a project resource.
+    def match_project_from_parent_name(cls, parent_name):
+        """Parses the project from a parent resource.
 
         Args:
-          project_name (string): A fully-qualified path representing a project
+          parent_name (string): A fully-qualified path representing a parent
             resource.
 
         Returns:
           A string representing the project.
         """
-        return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
+        return cls._PARENT_PATH_TEMPLATE.match(parent_name).get('project')
 
     @classmethod
     def match_project_from_metric_name(cls, metric_name):
@@ -194,10 +194,10 @@ class MetricsServiceV2Api(object):
         Lists logs-based metrics.
 
         Example:
-          >>> from google.cloud.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = MetricsServiceV2Api()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> parent = api.parent_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
           >>> for element in api.list_log_metrics(parent):
@@ -212,7 +212,7 @@ class MetricsServiceV2Api(object):
 
         Args:
           parent (string): Required. The resource name containing the metrics.
-            Example: ``"projects/my-project-id"``.
+            Example: ``\"projects/my-project-id\"``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -239,14 +239,14 @@ class MetricsServiceV2Api(object):
         Gets a logs-based metric.
 
         Example:
-          >>> from google.cloud.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> response = api.get_log_metric(metric_name)
 
         Args:
           metric_name (string): The resource name of the desired metric.
-            Example: ``"projects/my-project-id/metrics/my-metric-id"``.
+            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -265,16 +265,16 @@ class MetricsServiceV2Api(object):
         Creates a logs-based metric.
 
         Example:
-          >>> from google.cloud.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.logging.v2 import logging_metrics_pb2
           >>> api = MetricsServiceV2Api()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> parent = api.parent_path('[PROJECT]')
           >>> metric = logging_metrics_pb2.LogMetric()
           >>> response = api.create_log_metric(parent, metric)
 
         Args:
           parent (string): The resource name of the project in which to create the metric.
-            Example: ``"projects/my-project-id"``.
+            Example: ``\"projects/my-project-id\"``.
 
             The new metric must be provided in the request.
           metric (:class:`google.logging.v2.logging_metrics_pb2.LogMetric`): The new logs-based metric, which must not have an identifier that
@@ -297,7 +297,7 @@ class MetricsServiceV2Api(object):
         Creates or updates a logs-based metric.
 
         Example:
-          >>> from google.cloud.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.logging.v2 import logging_metrics_pb2
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
@@ -306,7 +306,7 @@ class MetricsServiceV2Api(object):
 
         Args:
           metric_name (string): The resource name of the metric to update.
-            Example: ``"projects/my-project-id/metrics/my-metric-id"``.
+            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
 
             The updated metric must be provided in the request and have the
             same identifier that is specified in ``metricName``.
@@ -332,14 +332,14 @@ class MetricsServiceV2Api(object):
         Deletes a logs-based metric.
 
         Example:
-          >>> from google.cloud.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> api.delete_log_metric(metric_name)
 
         Args:
           metric_name (string): The resource name of the metric to delete.
-            Example: ``"projects/my-project-id/metrics/my-metric-id"``.
+            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 

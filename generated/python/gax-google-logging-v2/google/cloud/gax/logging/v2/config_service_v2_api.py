@@ -65,14 +65,14 @@ class ConfigServiceV2Api(object):
                    'https://www.googleapis.com/auth/logging.read',
                    'https://www.googleapis.com/auth/logging.write', )
 
-    _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
+    _PARENT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _SINK_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/sinks/{sink}')
 
     @classmethod
-    def project_path(cls, project):
-        """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+    def parent_path(cls, project):
+        """Returns a fully-qualified parent resource name string."""
+        return cls._PARENT_PATH_TEMPLATE.render({'project': project, })
 
     @classmethod
     def sink_path(cls, project, sink):
@@ -83,17 +83,17 @@ class ConfigServiceV2Api(object):
         })
 
     @classmethod
-    def match_project_from_project_name(cls, project_name):
-        """Parses the project from a project resource.
+    def match_project_from_parent_name(cls, parent_name):
+        """Parses the project from a parent resource.
 
         Args:
-          project_name (string): A fully-qualified path representing a project
+          parent_name (string): A fully-qualified path representing a parent
             resource.
 
         Returns:
           A string representing the project.
         """
-        return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
+        return cls._PARENT_PATH_TEMPLATE.match(parent_name).get('project')
 
     @classmethod
     def match_project_from_sink_name(cls, sink_name):
@@ -196,10 +196,10 @@ class ConfigServiceV2Api(object):
         Lists sinks.
 
         Example:
-          >>> from google.cloud.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = ConfigServiceV2Api()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> parent = api.parent_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
           >>> for element in api.list_sinks(parent):
@@ -214,7 +214,7 @@ class ConfigServiceV2Api(object):
 
         Args:
           parent (string): Required. The resource name containing the sinks.
-            Example: ``"projects/my-logging-project"``.
+            Example: ``\"projects/my-logging-project\"``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -241,14 +241,14 @@ class ConfigServiceV2Api(object):
         Gets a sink.
 
         Example:
-          >>> from google.cloud.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> response = api.get_sink(sink_name)
 
         Args:
           sink_name (string): The resource name of the sink to return.
-            Example: ``"projects/my-project-id/sinks/my-sink-id"``.
+            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -266,16 +266,16 @@ class ConfigServiceV2Api(object):
         Creates a sink.
 
         Example:
-          >>> from google.cloud.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.logging.v2 import logging_config_pb2
           >>> api = ConfigServiceV2Api()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> parent = api.parent_path('[PROJECT]')
           >>> sink = logging_config_pb2.LogSink()
           >>> response = api.create_sink(parent, sink)
 
         Args:
           parent (string): The resource in which to create the sink.
-            Example: ``"projects/my-project-id"``.
+            Example: ``\"projects/my-project-id\"``.
 
             The new sink must be provided in the request.
           sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): The new sink, which must not have an identifier that already
@@ -298,7 +298,7 @@ class ConfigServiceV2Api(object):
         Creates or updates a sink.
 
         Example:
-          >>> from google.cloud.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.logging.v2 import logging_config_pb2
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
@@ -307,7 +307,7 @@ class ConfigServiceV2Api(object):
 
         Args:
           sink_name (string): The resource name of the sink to update.
-            Example: ``"projects/my-project-id/sinks/my-sink-id"``.
+            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
 
             The updated sink must be provided in the request and have the
             same name that is specified in ``sinkName``.  If the sink does not
@@ -333,14 +333,14 @@ class ConfigServiceV2Api(object):
         Deletes a sink.
 
         Example:
-          >>> from google.cloud.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> api.delete_sink(sink_name)
 
         Args:
           sink_name (string): The resource name of the sink to delete.
-            Example: ``"projects/my-project-id/sinks/my-sink-id"``.
+            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 

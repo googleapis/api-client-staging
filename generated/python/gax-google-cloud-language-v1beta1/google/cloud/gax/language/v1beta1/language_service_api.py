@@ -125,7 +125,7 @@ class LanguageServiceApi(object):
         Analyzes the sentiment of the provided text.
 
         Example:
-          >>> from google.cloud.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
@@ -133,7 +133,7 @@ class LanguageServiceApi(object):
 
         Args:
           document (:class:`google.cloud.language.v1beta1.language_service_pb2.Document`): Input document. Currently, ``analyzeSentiment`` only supports English text
-            (``Document.language``="EN").
+            (``Document.language``=\"EN\").
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -153,7 +153,7 @@ class LanguageServiceApi(object):
         entity types, salience, mentions for each entity, and other properties.
 
         Example:
-          >>> from google.cloud.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
@@ -184,7 +184,7 @@ class LanguageServiceApi(object):
         in-depth text features to build upon.
 
         Example:
-          >>> from google.cloud.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()

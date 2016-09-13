@@ -123,7 +123,7 @@ class ImageAnnotatorApi(object):
         Run image detection and annotation for a batch of images.
 
         Example:
-          >>> from google.cloud.vision.v1.image_annotator_api import ImageAnnotatorApi
+          >>> from google.cloud.gax.vision.v1.image_annotator_api import ImageAnnotatorApi
           >>> from google.cloud.vision.v1 import image_annotator_pb2
           >>> api = ImageAnnotatorApi()
           >>> requests = []

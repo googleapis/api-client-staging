@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.1.0',
-    'google-gax>=0.12.5, <0.13.0',
-    'grpc-google-pubsub-v1>=0.8.1',
+    'googleapis-common-protos>=1.3.4',
+    'google-gax>=0.13.0, <0.14.0',
+    'grpc-google-pubsub-v1>=0.9.0',
     'oauth2client>=1.4.11',
 ]
 
 setup(
     name='gax-google-pubsub-v1',
-    version='0.8.1',
+    version='0.9.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
@@ -35,6 +35,6 @@ setup(
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.pubsub', ],
+    namespace_packages=['google', 'google.cloud', 'google.cloud.gax', 'google.cloud.gax.pubsub', ],
     url='https://github.com/googleapis/googleapis'
 )

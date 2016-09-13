@@ -67,14 +67,14 @@ class LoggingServiceV2Api(object):
                    'https://www.googleapis.com/auth/logging.read',
                    'https://www.googleapis.com/auth/logging.write', )
 
-    _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
+    _PARENT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _LOG_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/logs/{log}')
 
     @classmethod
-    def project_path(cls, project):
-        """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+    def parent_path(cls, project):
+        """Returns a fully-qualified parent resource name string."""
+        return cls._PARENT_PATH_TEMPLATE.render({'project': project, })
 
     @classmethod
     def log_path(cls, project, log):
@@ -85,17 +85,17 @@ class LoggingServiceV2Api(object):
         })
 
     @classmethod
-    def match_project_from_project_name(cls, project_name):
-        """Parses the project from a project resource.
+    def match_project_from_parent_name(cls, parent_name):
+        """Parses the project from a parent resource.
 
         Args:
-          project_name (string): A fully-qualified path representing a project
+          parent_name (string): A fully-qualified path representing a parent
             resource.
 
         Returns:
           A string representing the project.
         """
-        return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
+        return cls._PARENT_PATH_TEMPLATE.match(parent_name).get('project')
 
     @classmethod
     def match_project_from_log_name(cls, log_name):
@@ -198,14 +198,14 @@ class LoggingServiceV2Api(object):
         The log will reappear if it receives new entries.
 
         Example:
-          >>> from google.cloud.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> api = LoggingServiceV2Api()
           >>> log_name = api.log_path('[PROJECT]', '[LOG]')
           >>> api.delete_log(log_name)
 
         Args:
           log_name (string): Required. The resource name of the log to delete.  Example:
-            ``"projects/my-project/logs/syslog"``.
+            ``\"projects/my-project/logs/syslog\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -227,7 +227,7 @@ class LoggingServiceV2Api(object):
         written by this method.
 
         Example:
-          >>> from google.cloud.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> from google.logging.v2 import logging_pb2
           >>> api = LoggingServiceV2Api()
           >>> entries = []
@@ -236,14 +236,14 @@ class LoggingServiceV2Api(object):
         Args:
           log_name (string): Optional. A default log resource name for those log entries in ``entries``
             that do not specify their own ``logName``.  Example:
-            ``"projects/my-project/logs/syslog"``.  See
+            ``\"projects/my-project/logs/syslog\"``.  See
             ``LogEntry``.
           resource (:class:`google.api.monitored_resource_pb2.MonitoredResource`): Optional. A default monitored resource for those log entries in ``entries``
             that do not specify their own ``resource``.
           labels (dict[string -> :class:`google.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. User-defined ``key:value`` items that are added to
             the ``labels`` field of each log entry in ``entries``, except when a log
             entry specifies its own ``key:value`` item with the same key.
-            Example: ``{ "size": "large", "color":"red" }``
+            Example: ``{ \"size\": \"large\", \"color\":\"red\" }``
           entries (list[:class:`google.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. The log entries must have values for
             all required fields.
 
@@ -285,7 +285,7 @@ class LoggingServiceV2Api(object):
         `Exporting Logs <https://cloud.google.com/logging/docs/export>`_.
 
         Example:
-          >>> from google.cloud.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = LoggingServiceV2Api()
           >>> project_ids = []
@@ -303,13 +303,13 @@ class LoggingServiceV2Api(object):
 
         Args:
           project_ids (list[string]): Required. One or more project IDs or project numbers from which to retrieve
-            log entries.  Examples of a project ID: ``"my-project-1A"``, ``"1234567890"``.
+            log entries.  Examples of a project ID: ``\"my-project-1A\"``, ``\"1234567890\"``.
           filter_ (string): Optional. An `advanced logs filter <https://cloud.google.com/logging/docs/view/advanced_filters>`_.
             The filter is compared against all log entries in the projects specified by
             ``projectIds``.  Only entries that match the filter are retrieved.  An empty
             filter matches all log entries.
           order_by (string): Optional. How the results should be sorted.  Presently, the only permitted
-            values are ``"timestamp asc"`` (default) and ``"timestamp desc"``. The first
+            values are ``\"timestamp asc\"`` (default) and ``\"timestamp desc\"``. The first
             option returns entries in order of increasing values of
             ``LogEntry.timestamp`` (oldest first), and the second option returns entries
             in order of decreasing timestamps (newest first).  Entries with equal
@@ -343,7 +343,7 @@ class LoggingServiceV2Api(object):
         Lists the monitored resource descriptors used by Stackdriver Logging.
 
         Example:
-          >>> from google.cloud.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = LoggingServiceV2Api()
           >>>
