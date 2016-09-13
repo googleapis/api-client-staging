@@ -455,35 +455,35 @@ _FACEANNOTATION = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='roll_angle', full_name='google.cloud.vision.v1.FaceAnnotation.roll_angle', index=3,
       number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='pan_angle', full_name='google.cloud.vision.v1.FaceAnnotation.pan_angle', index=4,
       number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='tilt_angle', full_name='google.cloud.vision.v1.FaceAnnotation.tilt_angle', index=5,
       number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='detection_confidence', full_name='google.cloud.vision.v1.FaceAnnotation.detection_confidence', index=6,
       number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='landmarking_confidence', full_name='google.cloud.vision.v1.FaceAnnotation.landmarking_confidence', index=7,
       number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -653,21 +653,21 @@ _ENTITYANNOTATION = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='score', full_name='google.cloud.vision.v1.EntityAnnotation.score', index=3,
       number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='confidence', full_name='google.cloud.vision.v1.EntityAnnotation.confidence', index=4,
       number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='topicality', full_name='google.cloud.vision.v1.EntityAnnotation.topicality', index=5,
       number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -816,14 +816,14 @@ _COLORINFO = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='score', full_name='google.cloud.vision.v1.ColorInfo.score', index=1,
       number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='pixel_fraction', full_name='google.cloud.vision.v1.ColorInfo.pixel_fraction', index=2,
       number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -1323,12 +1323,58 @@ _sym_db.RegisterMessage(BatchAnnotateImagesResponse)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032com.google.cloud.vision.v1B\023ImageAnnotatorProtoP\001Z5google.golang.org/genproto/googleapis/cloud/vision/v1\370\001\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class ImageAnnotatorStub(object):
+  """Service that performs Google Cloud Vision API detection tasks, such as face,
+  landmark, logo, label, and text detection, over client images, and returns
+  detected entities from the images.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.BatchAnnotateImages = channel.unary_unary(
+        '/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages',
+        request_serializer=BatchAnnotateImagesRequest.SerializeToString,
+        response_deserializer=BatchAnnotateImagesResponse.FromString,
+        )
+
+
+class ImageAnnotatorServicer(object):
+  """Service that performs Google Cloud Vision API detection tasks, such as face,
+  landmark, logo, label, and text detection, over client images, and returns
+  detected entities from the images.
+  """
+
+  def BatchAnnotateImages(self, request, context):
+    """Run image detection and annotation for a batch of images.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_ImageAnnotatorServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'BatchAnnotateImages': grpc.unary_unary_rpc_method_handler(
+          servicer.BatchAnnotateImages,
+          request_deserializer=BatchAnnotateImagesRequest.FromString,
+          response_serializer=BatchAnnotateImagesResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.cloud.vision.v1.ImageAnnotator', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaImageAnnotatorServicer(object):
   """Service that performs Google Cloud Vision API detection tasks, such as face,
@@ -1340,25 +1386,25 @@ class BetaImageAnnotatorServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaImageAnnotatorStub(object):
   """Service that performs Google Cloud Vision API detection tasks, such as face,
   landmark, logo, label, and text detection, over client images, and returns
   detected entities from the images.
   """
-  def BatchAnnotateImages(self, request, timeout):
+  def BatchAnnotateImages(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Run image detection and annotation for a batch of images.
     """
     raise NotImplementedError()
   BatchAnnotateImages.future = None
 
+
 def beta_create_ImageAnnotator_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.cloud.vision.v1.image_annotator_pb2
-  import google.cloud.vision.v1.image_annotator_pb2
   request_deserializers = {
-    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): google.cloud.vision.v1.image_annotator_pb2.BatchAnnotateImagesRequest.FromString,
+    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): BatchAnnotateImagesRequest.FromString,
   }
   response_serializers = {
-    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): google.cloud.vision.v1.image_annotator_pb2.BatchAnnotateImagesResponse.SerializeToString,
+    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): BatchAnnotateImagesResponse.SerializeToString,
   }
   method_implementations = {
     ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): face_utilities.unary_unary_inline(servicer.BatchAnnotateImages),
@@ -1366,14 +1412,13 @@ def beta_create_ImageAnnotator_server(servicer, pool=None, pool_size=None, defau
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_ImageAnnotator_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.cloud.vision.v1.image_annotator_pb2
-  import google.cloud.vision.v1.image_annotator_pb2
   request_serializers = {
-    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): google.cloud.vision.v1.image_annotator_pb2.BatchAnnotateImagesRequest.SerializeToString,
+    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): BatchAnnotateImagesRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): google.cloud.vision.v1.image_annotator_pb2.BatchAnnotateImagesResponse.FromString,
+    ('google.cloud.vision.v1.ImageAnnotator', 'BatchAnnotateImages'): BatchAnnotateImagesResponse.FromString,
   }
   cardinalities = {
     'BatchAnnotateImages': cardinality.Cardinality.UNARY_UNARY,

@@ -11,13 +11,13 @@ from setuptools import setup, find_packages
 
 install_requires = [
   'oauth2client>=1.4.11',
-  'grpcio>=1.0rc1',
-  'googleapis-common-protos>=1.1.0'
+  'grpcio>=1.0.0',
+  'googleapis-common-protos[grpc]>=1.3.4'
 ]
 
 setuptools.setup(
   name='grpc-google-logging-v2',
-  version='0.8.1',
+  version='0.9.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[

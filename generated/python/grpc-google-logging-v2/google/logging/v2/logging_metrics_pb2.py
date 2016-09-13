@@ -357,12 +357,122 @@ _sym_db.RegisterMessage(DeleteLogMetricRequest)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.logging.v2P\001Z0google.golang.org/genproto/googleapis/logging/v2'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class MetricsServiceV2Stub(object):
+  """Service for configuring logs-based metrics.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.ListLogMetrics = channel.unary_unary(
+        '/google.logging.v2.MetricsServiceV2/ListLogMetrics',
+        request_serializer=ListLogMetricsRequest.SerializeToString,
+        response_deserializer=ListLogMetricsResponse.FromString,
+        )
+    self.GetLogMetric = channel.unary_unary(
+        '/google.logging.v2.MetricsServiceV2/GetLogMetric',
+        request_serializer=GetLogMetricRequest.SerializeToString,
+        response_deserializer=LogMetric.FromString,
+        )
+    self.CreateLogMetric = channel.unary_unary(
+        '/google.logging.v2.MetricsServiceV2/CreateLogMetric',
+        request_serializer=CreateLogMetricRequest.SerializeToString,
+        response_deserializer=LogMetric.FromString,
+        )
+    self.UpdateLogMetric = channel.unary_unary(
+        '/google.logging.v2.MetricsServiceV2/UpdateLogMetric',
+        request_serializer=UpdateLogMetricRequest.SerializeToString,
+        response_deserializer=LogMetric.FromString,
+        )
+    self.DeleteLogMetric = channel.unary_unary(
+        '/google.logging.v2.MetricsServiceV2/DeleteLogMetric',
+        request_serializer=DeleteLogMetricRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+
+
+class MetricsServiceV2Servicer(object):
+  """Service for configuring logs-based metrics.
+  """
+
+  def ListLogMetrics(self, request, context):
+    """Lists logs-based metrics.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetLogMetric(self, request, context):
+    """Gets a logs-based metric.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CreateLogMetric(self, request, context):
+    """Creates a logs-based metric.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateLogMetric(self, request, context):
+    """Creates or updates a logs-based metric.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteLogMetric(self, request, context):
+    """Deletes a logs-based metric.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_MetricsServiceV2Servicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'ListLogMetrics': grpc.unary_unary_rpc_method_handler(
+          servicer.ListLogMetrics,
+          request_deserializer=ListLogMetricsRequest.FromString,
+          response_serializer=ListLogMetricsResponse.SerializeToString,
+      ),
+      'GetLogMetric': grpc.unary_unary_rpc_method_handler(
+          servicer.GetLogMetric,
+          request_deserializer=GetLogMetricRequest.FromString,
+          response_serializer=LogMetric.SerializeToString,
+      ),
+      'CreateLogMetric': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateLogMetric,
+          request_deserializer=CreateLogMetricRequest.FromString,
+          response_serializer=LogMetric.SerializeToString,
+      ),
+      'UpdateLogMetric': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateLogMetric,
+          request_deserializer=UpdateLogMetricRequest.FromString,
+          response_serializer=LogMetric.SerializeToString,
+      ),
+      'DeleteLogMetric': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteLogMetric,
+          request_deserializer=DeleteLogMetricRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.logging.v2.MetricsServiceV2', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaMetricsServiceV2Servicer(object):
   """Service for configuring logs-based metrics.
@@ -388,59 +498,51 @@ class BetaMetricsServiceV2Servicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaMetricsServiceV2Stub(object):
   """Service for configuring logs-based metrics.
   """
-  def ListLogMetrics(self, request, timeout):
+  def ListLogMetrics(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists logs-based metrics.
     """
     raise NotImplementedError()
   ListLogMetrics.future = None
-  def GetLogMetric(self, request, timeout):
+  def GetLogMetric(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a logs-based metric.
     """
     raise NotImplementedError()
   GetLogMetric.future = None
-  def CreateLogMetric(self, request, timeout):
+  def CreateLogMetric(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates a logs-based metric.
     """
     raise NotImplementedError()
   CreateLogMetric.future = None
-  def UpdateLogMetric(self, request, timeout):
+  def UpdateLogMetric(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates or updates a logs-based metric.
     """
     raise NotImplementedError()
   UpdateLogMetric.future = None
-  def DeleteLogMetric(self, request, timeout):
+  def DeleteLogMetric(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes a logs-based metric.
     """
     raise NotImplementedError()
   DeleteLogMetric.future = None
 
+
 def beta_create_MetricsServiceV2_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.protobuf.empty_pb2
   request_deserializers = {
-    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): google.logging.v2.logging_metrics_pb2.CreateLogMetricRequest.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google.logging.v2.logging_metrics_pb2.DeleteLogMetricRequest.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): google.logging.v2.logging_metrics_pb2.GetLogMetricRequest.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): google.logging.v2.logging_metrics_pb2.ListLogMetricsRequest.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): google.logging.v2.logging_metrics_pb2.UpdateLogMetricRequest.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): CreateLogMetricRequest.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): DeleteLogMetricRequest.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): GetLogMetricRequest.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): ListLogMetricsRequest.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): UpdateLogMetricRequest.FromString,
   }
   response_serializers = {
-    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): google.logging.v2.logging_metrics_pb2.ListLogMetricsResponse.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): LogMetric.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): LogMetric.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): ListLogMetricsResponse.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): LogMetric.SerializeToString,
   }
   method_implementations = {
     ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): face_utilities.unary_unary_inline(servicer.CreateLogMetric),
@@ -452,30 +554,21 @@ def beta_create_MetricsServiceV2_server(servicer, pool=None, pool_size=None, def
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_MetricsServiceV2_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.logging.v2.logging_metrics_pb2
-  import google.protobuf.empty_pb2
   request_serializers = {
-    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): google.logging.v2.logging_metrics_pb2.CreateLogMetricRequest.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google.logging.v2.logging_metrics_pb2.DeleteLogMetricRequest.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): google.logging.v2.logging_metrics_pb2.GetLogMetricRequest.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): google.logging.v2.logging_metrics_pb2.ListLogMetricsRequest.SerializeToString,
-    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): google.logging.v2.logging_metrics_pb2.UpdateLogMetricRequest.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): CreateLogMetricRequest.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): DeleteLogMetricRequest.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): GetLogMetricRequest.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): ListLogMetricsRequest.SerializeToString,
+    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): UpdateLogMetricRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): google.logging.v2.logging_metrics_pb2.ListLogMetricsResponse.FromString,
-    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): google.logging.v2.logging_metrics_pb2.LogMetric.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'CreateLogMetric'): LogMetric.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'DeleteLogMetric'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'GetLogMetric'): LogMetric.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'ListLogMetrics'): ListLogMetricsResponse.FromString,
+    ('google.logging.v2.MetricsServiceV2', 'UpdateLogMetric'): LogMetric.FromString,
   }
   cardinalities = {
     'CreateLogMetric': cardinality.Cardinality.UNARY_UNARY,
