@@ -1,0 +1,43 @@
+.. gax-google-logging-v2 sphinx documentation master file
+
+
+GAX library for the Google Logging API
+=============================================================================================================
+
+This is the API documentation for ``gax-google-logging-v2``.
+
+gax-google-logging-v2 uses google-gax_ (Google API extensions) to provide an
+easy-to-use client library for the `Google Logging API`_ (v2) defined in the googleapis_ git repository
+
+
+.. _`google-gax`: https://github.com/googleapis/gax-python
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google&#x2F;logging/v2
+.. _`Google Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
+
+
+APIs
+----
+
+.. autosummary::
+
+   google.cloud.gapic.logging.v2.config_service_v2_api
+   google.cloud.gapic.logging.v2.logging_service_v2_api
+   google.cloud.gapic.logging.v2.metrics_service_v2_api
+
+
+Contents
+--------
+
+.. toctree::
+
+   self
+   starting
+   apis
+
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

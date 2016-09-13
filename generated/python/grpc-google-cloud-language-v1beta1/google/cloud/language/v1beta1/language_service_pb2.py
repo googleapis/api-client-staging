@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/language/v1beta1/language_service.proto',
   package='google.cloud.language.v1beta1',
   syntax='proto3',
-  serialized_pb=_b('\n4google/cloud/language/v1beta1/language_service.proto\x12\x1dgoogle.cloud.language.v1beta1\x1a\x1cgoogle/api/annotations.proto\"\xc8\x01\n\x08\x44ocument\x12:\n\x04type\x18\x01 \x01(\x0e\x32,.google.cloud.language.v1beta1.Document.Type\x12\x11\n\x07\x63ontent\x18\x02 \x01(\tH\x00\x12\x19\n\x0fgcs_content_uri\x18\x03 \x01(\tH\x00\x12\x10\n\x08language\x18\x04 \x01(\t\"6\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0e\n\nPLAIN_TEXT\x10\x01\x12\x08\n\x04HTML\x10\x02\x42\x08\n\x06source\"A\n\x08Sentence\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\"\x95\x03\n\x06\x45ntity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x38\n\x04type\x18\x02 \x01(\x0e\x32*.google.cloud.language.v1beta1.Entity.Type\x12\x45\n\x08metadata\x18\x03 \x03(\x0b\x32\x33.google.cloud.language.v1beta1.Entity.MetadataEntry\x12\x10\n\x08salience\x18\x04 \x01(\x02\x12>\n\x08mentions\x18\x05 \x03(\x0b\x32,.google.cloud.language.v1beta1.EntityMention\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"y\n\x04Type\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06PERSON\x10\x01\x12\x0c\n\x08LOCATION\x10\x02\x12\x10\n\x0cORGANIZATION\x10\x03\x12\t\n\x05\x45VENT\x10\x04\x12\x0f\n\x0bWORK_OF_ART\x10\x05\x12\x11\n\rCONSUMER_GOOD\x10\x06\x12\t\n\x05OTHER\x10\x07\"\xda\x01\n\x05Token\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\x12\x43\n\x0epart_of_speech\x18\x02 \x01(\x0b\x32+.google.cloud.language.v1beta1.PartOfSpeech\x12\x46\n\x0f\x64\x65pendency_edge\x18\x03 \x01(\x0b\x32-.google.cloud.language.v1beta1.DependencyEdge\x12\r\n\x05lemma\x18\x04 \x01(\t\"0\n\tSentiment\x12\x10\n\x08polarity\x18\x01 \x01(\x02\x12\x11\n\tmagnitude\x18\x02 \x01(\x02\"\xdc\x01\n\x0cPartOfSpeech\x12<\n\x03tag\x18\x01 \x01(\x0e\x32/.google.cloud.language.v1beta1.PartOfSpeech.Tag\"\x8d\x01\n\x03Tag\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x07\n\x03\x41\x44J\x10\x01\x12\x07\n\x03\x41\x44P\x10\x02\x12\x07\n\x03\x41\x44V\x10\x03\x12\x08\n\x04\x43ONJ\x10\x04\x12\x07\n\x03\x44\x45T\x10\x05\x12\x08\n\x04NOUN\x10\x06\x12\x07\n\x03NUM\x10\x07\x12\x08\n\x04PRON\x10\x08\x12\x07\n\x03PRT\x10\t\x12\t\n\x05PUNCT\x10\n\x12\x08\n\x04VERB\x10\x0b\x12\x05\n\x01X\x10\x0c\x12\t\n\x05\x41\x46\x46IX\x10\r\"\xdd\x07\n\x0e\x44\x65pendencyEdge\x12\x18\n\x10head_token_index\x18\x01 \x01(\x05\x12\x42\n\x05label\x18\x02 \x01(\x0e\x32\x33.google.cloud.language.v1beta1.DependencyEdge.Label\"\xec\x06\n\x05Label\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06\x41\x42\x42REV\x10\x01\x12\t\n\x05\x41\x43OMP\x10\x02\x12\t\n\x05\x41\x44VCL\x10\x03\x12\n\n\x06\x41\x44VMOD\x10\x04\x12\x08\n\x04\x41MOD\x10\x05\x12\t\n\x05\x41PPOS\x10\x06\x12\x08\n\x04\x41TTR\x10\x07\x12\x07\n\x03\x41UX\x10\x08\x12\x0b\n\x07\x41UXPASS\x10\t\x12\x06\n\x02\x43\x43\x10\n\x12\t\n\x05\x43\x43OMP\x10\x0b\x12\x08\n\x04\x43ONJ\x10\x0c\x12\t\n\x05\x43SUBJ\x10\r\x12\r\n\tCSUBJPASS\x10\x0e\x12\x07\n\x03\x44\x45P\x10\x0f\x12\x07\n\x03\x44\x45T\x10\x10\x12\r\n\tDISCOURSE\x10\x11\x12\x08\n\x04\x44OBJ\x10\x12\x12\x08\n\x04\x45XPL\x10\x13\x12\x0c\n\x08GOESWITH\x10\x14\x12\x08\n\x04IOBJ\x10\x15\x12\x08\n\x04MARK\x10\x16\x12\x07\n\x03MWE\x10\x17\x12\x07\n\x03MWV\x10\x18\x12\x07\n\x03NEG\x10\x19\x12\x06\n\x02NN\x10\x1a\x12\x0c\n\x08NPADVMOD\x10\x1b\x12\t\n\x05NSUBJ\x10\x1c\x12\r\n\tNSUBJPASS\x10\x1d\x12\x07\n\x03NUM\x10\x1e\x12\n\n\x06NUMBER\x10\x1f\x12\x05\n\x01P\x10 \x12\r\n\tPARATAXIS\x10!\x12\x0b\n\x07PARTMOD\x10\"\x12\t\n\x05PCOMP\x10#\x12\x08\n\x04POBJ\x10$\x12\x08\n\x04POSS\x10%\x12\x0b\n\x07POSTNEG\x10&\x12\x0b\n\x07PRECOMP\x10\'\x12\x0b\n\x07PRECONJ\x10(\x12\n\n\x06PREDET\x10)\x12\x08\n\x04PREF\x10*\x12\x08\n\x04PREP\x10+\x12\t\n\x05PRONL\x10,\x12\x07\n\x03PRT\x10-\x12\x06\n\x02PS\x10.\x12\x0c\n\x08QUANTMOD\x10/\x12\t\n\x05RCMOD\x10\x30\x12\x0c\n\x08RCMODREL\x10\x31\x12\t\n\x05RDROP\x10\x32\x12\x07\n\x03REF\x10\x33\x12\x0b\n\x07REMNANT\x10\x34\x12\x0e\n\nREPARANDUM\x10\x35\x12\x08\n\x04ROOT\x10\x36\x12\x08\n\x04SNUM\x10\x37\x12\x08\n\x04SUFF\x10\x38\x12\x08\n\x04TMOD\x10\x39\x12\t\n\x05TOPIC\x10:\x12\x08\n\x04VMOD\x10;\x12\x0c\n\x08VOCATIVE\x10<\x12\t\n\x05XCOMP\x10=\x12\n\n\x06SUFFIX\x10>\x12\t\n\x05TITLE\x10?\x12\x0c\n\x08\x41\x44VPHMOD\x10@\x12\x0b\n\x07\x41UXCAUS\x10\x41\x12\t\n\x05\x41UXVV\x10\x42\x12\t\n\x05\x44TMOD\x10\x43\x12\x0b\n\x07\x46OREIGN\x10\x44\x12\x06\n\x02KW\x10\x45\x12\x08\n\x04LIST\x10\x46\x12\x08\n\x04NOMC\x10G\x12\x0c\n\x08NOMCSUBJ\x10H\x12\x10\n\x0cNOMCSUBJPASS\x10I\x12\x08\n\x04NUMC\x10J\x12\x07\n\x03\x43OP\x10K\x12\x0e\n\nDISLOCATED\x10L\"F\n\rEntityMention\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\"1\n\x08TextSpan\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\x12\x14\n\x0c\x62\x65gin_offset\x18\x02 \x01(\x05\"T\n\x17\x41nalyzeSentimentRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\"r\n\x18\x41nalyzeSentimentResponse\x12\x44\n\x12\x64ocument_sentiment\x18\x01 \x01(\x0b\x32(.google.cloud.language.v1beta1.Sentiment\x12\x10\n\x08language\x18\x02 \x01(\t\"\x97\x01\n\x16\x41nalyzeEntitiesRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\x12\x42\n\rencoding_type\x18\x02 \x01(\x0e\x32+.google.cloud.language.v1beta1.EncodingType\"d\n\x17\x41nalyzeEntitiesResponse\x12\x37\n\x08\x65ntities\x18\x01 \x03(\x0b\x32%.google.cloud.language.v1beta1.Entity\x12\x10\n\x08language\x18\x02 \x01(\t\"\xc5\x02\n\x13\x41nnotateTextRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\x12M\n\x08\x66\x65\x61tures\x18\x02 \x01(\x0b\x32;.google.cloud.language.v1beta1.AnnotateTextRequest.Features\x12\x42\n\rencoding_type\x18\x03 \x01(\x0e\x32+.google.cloud.language.v1beta1.EncodingType\x1a`\n\x08\x46\x65\x61tures\x12\x16\n\x0e\x65xtract_syntax\x18\x01 \x01(\x08\x12\x18\n\x10\x65xtract_entities\x18\x02 \x01(\x08\x12\"\n\x1a\x65xtract_document_sentiment\x18\x03 \x01(\x08\"\x99\x02\n\x14\x41nnotateTextResponse\x12:\n\tsentences\x18\x01 \x03(\x0b\x32\'.google.cloud.language.v1beta1.Sentence\x12\x34\n\x06tokens\x18\x02 \x03(\x0b\x32$.google.cloud.language.v1beta1.Token\x12\x37\n\x08\x65ntities\x18\x03 \x03(\x0b\x32%.google.cloud.language.v1beta1.Entity\x12\x44\n\x12\x64ocument_sentiment\x18\x04 \x01(\x0b\x32(.google.cloud.language.v1beta1.Sentiment\x12\x10\n\x08language\x18\x05 \x01(\t*8\n\x0c\x45ncodingType\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04UTF8\x10\x01\x12\t\n\x05UTF16\x10\x02\x12\t\n\x05UTF32\x10\x03\x32\x9f\x04\n\x0fLanguageService\x12\xb3\x01\n\x10\x41nalyzeSentiment\x12\x36.google.cloud.language.v1beta1.AnalyzeSentimentRequest\x1a\x37.google.cloud.language.v1beta1.AnalyzeSentimentResponse\".\x82\xd3\xe4\x93\x02(\"#/v1beta1/documents:analyzeSentiment:\x01*\x12\xaf\x01\n\x0f\x41nalyzeEntities\x12\x35.google.cloud.language.v1beta1.AnalyzeEntitiesRequest\x1a\x36.google.cloud.language.v1beta1.AnalyzeEntitiesResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1beta1/documents:analyzeEntities:\x01*\x12\xa3\x01\n\x0c\x41nnotateText\x12\x32.google.cloud.language.v1beta1.AnnotateTextRequest\x1a\x33.google.cloud.language.v1beta1.AnnotateTextResponse\"*\x82\xd3\xe4\x93\x02$\"\x1f/v1beta1/documents:annotateText:\x01*B;\n!com.google.cloud.language.v1beta1B\x14LanguageServiceProtoP\x01\x62\x06proto3')
+  serialized_pb=_b('\n4google/cloud/language/v1beta1/language_service.proto\x12\x1dgoogle.cloud.language.v1beta1\x1a\x1cgoogle/api/annotations.proto\"\xc8\x01\n\x08\x44ocument\x12:\n\x04type\x18\x01 \x01(\x0e\x32,.google.cloud.language.v1beta1.Document.Type\x12\x11\n\x07\x63ontent\x18\x02 \x01(\tH\x00\x12\x19\n\x0fgcs_content_uri\x18\x03 \x01(\tH\x00\x12\x10\n\x08language\x18\x04 \x01(\t\"6\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0e\n\nPLAIN_TEXT\x10\x01\x12\x08\n\x04HTML\x10\x02\x42\x08\n\x06source\"A\n\x08Sentence\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\"\x95\x03\n\x06\x45ntity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x38\n\x04type\x18\x02 \x01(\x0e\x32*.google.cloud.language.v1beta1.Entity.Type\x12\x45\n\x08metadata\x18\x03 \x03(\x0b\x32\x33.google.cloud.language.v1beta1.Entity.MetadataEntry\x12\x10\n\x08salience\x18\x04 \x01(\x02\x12>\n\x08mentions\x18\x05 \x03(\x0b\x32,.google.cloud.language.v1beta1.EntityMention\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"y\n\x04Type\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06PERSON\x10\x01\x12\x0c\n\x08LOCATION\x10\x02\x12\x10\n\x0cORGANIZATION\x10\x03\x12\t\n\x05\x45VENT\x10\x04\x12\x0f\n\x0bWORK_OF_ART\x10\x05\x12\x11\n\rCONSUMER_GOOD\x10\x06\x12\t\n\x05OTHER\x10\x07\"\xda\x01\n\x05Token\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\x12\x43\n\x0epart_of_speech\x18\x02 \x01(\x0b\x32+.google.cloud.language.v1beta1.PartOfSpeech\x12\x46\n\x0f\x64\x65pendency_edge\x18\x03 \x01(\x0b\x32-.google.cloud.language.v1beta1.DependencyEdge\x12\r\n\x05lemma\x18\x04 \x01(\t\"0\n\tSentiment\x12\x10\n\x08polarity\x18\x01 \x01(\x02\x12\x11\n\tmagnitude\x18\x02 \x01(\x02\"\xdc\x01\n\x0cPartOfSpeech\x12<\n\x03tag\x18\x01 \x01(\x0e\x32/.google.cloud.language.v1beta1.PartOfSpeech.Tag\"\x8d\x01\n\x03Tag\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x07\n\x03\x41\x44J\x10\x01\x12\x07\n\x03\x41\x44P\x10\x02\x12\x07\n\x03\x41\x44V\x10\x03\x12\x08\n\x04\x43ONJ\x10\x04\x12\x07\n\x03\x44\x45T\x10\x05\x12\x08\n\x04NOUN\x10\x06\x12\x07\n\x03NUM\x10\x07\x12\x08\n\x04PRON\x10\x08\x12\x07\n\x03PRT\x10\t\x12\t\n\x05PUNCT\x10\n\x12\x08\n\x04VERB\x10\x0b\x12\x05\n\x01X\x10\x0c\x12\t\n\x05\x41\x46\x46IX\x10\r\"\xdd\x07\n\x0e\x44\x65pendencyEdge\x12\x18\n\x10head_token_index\x18\x01 \x01(\x05\x12\x42\n\x05label\x18\x02 \x01(\x0e\x32\x33.google.cloud.language.v1beta1.DependencyEdge.Label\"\xec\x06\n\x05Label\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06\x41\x42\x42REV\x10\x01\x12\t\n\x05\x41\x43OMP\x10\x02\x12\t\n\x05\x41\x44VCL\x10\x03\x12\n\n\x06\x41\x44VMOD\x10\x04\x12\x08\n\x04\x41MOD\x10\x05\x12\t\n\x05\x41PPOS\x10\x06\x12\x08\n\x04\x41TTR\x10\x07\x12\x07\n\x03\x41UX\x10\x08\x12\x0b\n\x07\x41UXPASS\x10\t\x12\x06\n\x02\x43\x43\x10\n\x12\t\n\x05\x43\x43OMP\x10\x0b\x12\x08\n\x04\x43ONJ\x10\x0c\x12\t\n\x05\x43SUBJ\x10\r\x12\r\n\tCSUBJPASS\x10\x0e\x12\x07\n\x03\x44\x45P\x10\x0f\x12\x07\n\x03\x44\x45T\x10\x10\x12\r\n\tDISCOURSE\x10\x11\x12\x08\n\x04\x44OBJ\x10\x12\x12\x08\n\x04\x45XPL\x10\x13\x12\x0c\n\x08GOESWITH\x10\x14\x12\x08\n\x04IOBJ\x10\x15\x12\x08\n\x04MARK\x10\x16\x12\x07\n\x03MWE\x10\x17\x12\x07\n\x03MWV\x10\x18\x12\x07\n\x03NEG\x10\x19\x12\x06\n\x02NN\x10\x1a\x12\x0c\n\x08NPADVMOD\x10\x1b\x12\t\n\x05NSUBJ\x10\x1c\x12\r\n\tNSUBJPASS\x10\x1d\x12\x07\n\x03NUM\x10\x1e\x12\n\n\x06NUMBER\x10\x1f\x12\x05\n\x01P\x10 \x12\r\n\tPARATAXIS\x10!\x12\x0b\n\x07PARTMOD\x10\"\x12\t\n\x05PCOMP\x10#\x12\x08\n\x04POBJ\x10$\x12\x08\n\x04POSS\x10%\x12\x0b\n\x07POSTNEG\x10&\x12\x0b\n\x07PRECOMP\x10\'\x12\x0b\n\x07PRECONJ\x10(\x12\n\n\x06PREDET\x10)\x12\x08\n\x04PREF\x10*\x12\x08\n\x04PREP\x10+\x12\t\n\x05PRONL\x10,\x12\x07\n\x03PRT\x10-\x12\x06\n\x02PS\x10.\x12\x0c\n\x08QUANTMOD\x10/\x12\t\n\x05RCMOD\x10\x30\x12\x0c\n\x08RCMODREL\x10\x31\x12\t\n\x05RDROP\x10\x32\x12\x07\n\x03REF\x10\x33\x12\x0b\n\x07REMNANT\x10\x34\x12\x0e\n\nREPARANDUM\x10\x35\x12\x08\n\x04ROOT\x10\x36\x12\x08\n\x04SNUM\x10\x37\x12\x08\n\x04SUFF\x10\x38\x12\x08\n\x04TMOD\x10\x39\x12\t\n\x05TOPIC\x10:\x12\x08\n\x04VMOD\x10;\x12\x0c\n\x08VOCATIVE\x10<\x12\t\n\x05XCOMP\x10=\x12\n\n\x06SUFFIX\x10>\x12\t\n\x05TITLE\x10?\x12\x0c\n\x08\x41\x44VPHMOD\x10@\x12\x0b\n\x07\x41UXCAUS\x10\x41\x12\t\n\x05\x41UXVV\x10\x42\x12\t\n\x05\x44TMOD\x10\x43\x12\x0b\n\x07\x46OREIGN\x10\x44\x12\x06\n\x02KW\x10\x45\x12\x08\n\x04LIST\x10\x46\x12\x08\n\x04NOMC\x10G\x12\x0c\n\x08NOMCSUBJ\x10H\x12\x10\n\x0cNOMCSUBJPASS\x10I\x12\x08\n\x04NUMC\x10J\x12\x07\n\x03\x43OP\x10K\x12\x0e\n\nDISLOCATED\x10L\"F\n\rEntityMention\x12\x35\n\x04text\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.TextSpan\"1\n\x08TextSpan\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\x12\x14\n\x0c\x62\x65gin_offset\x18\x02 \x01(\x05\"T\n\x17\x41nalyzeSentimentRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\"r\n\x18\x41nalyzeSentimentResponse\x12\x44\n\x12\x64ocument_sentiment\x18\x01 \x01(\x0b\x32(.google.cloud.language.v1beta1.Sentiment\x12\x10\n\x08language\x18\x02 \x01(\t\"\x97\x01\n\x16\x41nalyzeEntitiesRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\x12\x42\n\rencoding_type\x18\x02 \x01(\x0e\x32+.google.cloud.language.v1beta1.EncodingType\"d\n\x17\x41nalyzeEntitiesResponse\x12\x37\n\x08\x65ntities\x18\x01 \x03(\x0b\x32%.google.cloud.language.v1beta1.Entity\x12\x10\n\x08language\x18\x02 \x01(\t\"\xc5\x02\n\x13\x41nnotateTextRequest\x12\x39\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\'.google.cloud.language.v1beta1.Document\x12M\n\x08\x66\x65\x61tures\x18\x02 \x01(\x0b\x32;.google.cloud.language.v1beta1.AnnotateTextRequest.Features\x12\x42\n\rencoding_type\x18\x03 \x01(\x0e\x32+.google.cloud.language.v1beta1.EncodingType\x1a`\n\x08\x46\x65\x61tures\x12\x16\n\x0e\x65xtract_syntax\x18\x01 \x01(\x08\x12\x18\n\x10\x65xtract_entities\x18\x02 \x01(\x08\x12\"\n\x1a\x65xtract_document_sentiment\x18\x03 \x01(\x08\"\x99\x02\n\x14\x41nnotateTextResponse\x12:\n\tsentences\x18\x01 \x03(\x0b\x32\'.google.cloud.language.v1beta1.Sentence\x12\x34\n\x06tokens\x18\x02 \x03(\x0b\x32$.google.cloud.language.v1beta1.Token\x12\x37\n\x08\x65ntities\x18\x03 \x03(\x0b\x32%.google.cloud.language.v1beta1.Entity\x12\x44\n\x12\x64ocument_sentiment\x18\x04 \x01(\x0b\x32(.google.cloud.language.v1beta1.Sentiment\x12\x10\n\x08language\x18\x05 \x01(\t*8\n\x0c\x45ncodingType\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04UTF8\x10\x01\x12\t\n\x05UTF16\x10\x02\x12\t\n\x05UTF32\x10\x03\x32\x9f\x04\n\x0fLanguageService\x12\xb3\x01\n\x10\x41nalyzeSentiment\x12\x36.google.cloud.language.v1beta1.AnalyzeSentimentRequest\x1a\x37.google.cloud.language.v1beta1.AnalyzeSentimentResponse\".\x82\xd3\xe4\x93\x02(\"#/v1beta1/documents:analyzeSentiment:\x01*\x12\xaf\x01\n\x0f\x41nalyzeEntities\x12\x35.google.cloud.language.v1beta1.AnalyzeEntitiesRequest\x1a\x36.google.cloud.language.v1beta1.AnalyzeEntitiesResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1beta1/documents:analyzeEntities:\x01*\x12\xa3\x01\n\x0c\x41nnotateText\x12\x32.google.cloud.language.v1beta1.AnnotateTextRequest\x1a\x33.google.cloud.language.v1beta1.AnnotateTextResponse\"*\x82\xd3\xe4\x93\x02$\"\x1f/v1beta1/documents:annotateText:\x01*By\n!com.google.cloud.language.v1beta1B\x14LanguageServiceProtoP\x01Z<google.golang.org/genproto/googleapis/cloud/language/v1beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -683,7 +683,7 @@ _ENTITY = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='salience', full_name='google.cloud.language.v1beta1.Entity.salience', index=3,
       number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -774,14 +774,14 @@ _SENTIMENT = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='polarity', full_name='google.cloud.language.v1beta1.Sentiment.polarity', index=0,
       number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='magnitude', full_name='google.cloud.language.v1beta1.Sentiment.magnitude', index=1,
       number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=0,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -1409,15 +1409,97 @@ _sym_db.RegisterMessage(AnnotateTextResponse)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n!com.google.cloud.language.v1beta1B\024LanguageServiceProtoP\001'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n!com.google.cloud.language.v1beta1B\024LanguageServiceProtoP\001Z<google.golang.org/genproto/googleapis/cloud/language/v1beta1'))
 _ENTITY_METADATAENTRY.has_options = True
 _ENTITY_METADATAENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class LanguageServiceStub(object):
+  """Provides text analysis operations such as sentiment analysis and entity
+  recognition.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.AnalyzeSentiment = channel.unary_unary(
+        '/google.cloud.language.v1beta1.LanguageService/AnalyzeSentiment',
+        request_serializer=AnalyzeSentimentRequest.SerializeToString,
+        response_deserializer=AnalyzeSentimentResponse.FromString,
+        )
+    self.AnalyzeEntities = channel.unary_unary(
+        '/google.cloud.language.v1beta1.LanguageService/AnalyzeEntities',
+        request_serializer=AnalyzeEntitiesRequest.SerializeToString,
+        response_deserializer=AnalyzeEntitiesResponse.FromString,
+        )
+    self.AnnotateText = channel.unary_unary(
+        '/google.cloud.language.v1beta1.LanguageService/AnnotateText',
+        request_serializer=AnnotateTextRequest.SerializeToString,
+        response_deserializer=AnnotateTextResponse.FromString,
+        )
+
+
+class LanguageServiceServicer(object):
+  """Provides text analysis operations such as sentiment analysis and entity
+  recognition.
+  """
+
+  def AnalyzeSentiment(self, request, context):
+    """Analyzes the sentiment of the provided text.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AnalyzeEntities(self, request, context):
+    """Finds named entities (currently finds proper names) in the text,
+    entity types, salience, mentions for each entity, and other properties.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AnnotateText(self, request, context):
+    """Advanced API that analyzes the document and provides a full set of text
+    annotations, including semantic, syntactic, and sentiment information. This
+    API is intended for users who are familiar with machine learning and need
+    in-depth text features to build upon.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_LanguageServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'AnalyzeSentiment': grpc.unary_unary_rpc_method_handler(
+          servicer.AnalyzeSentiment,
+          request_deserializer=AnalyzeSentimentRequest.FromString,
+          response_serializer=AnalyzeSentimentResponse.SerializeToString,
+      ),
+      'AnalyzeEntities': grpc.unary_unary_rpc_method_handler(
+          servicer.AnalyzeEntities,
+          request_deserializer=AnalyzeEntitiesRequest.FromString,
+          response_serializer=AnalyzeEntitiesResponse.SerializeToString,
+      ),
+      'AnnotateText': grpc.unary_unary_rpc_method_handler(
+          servicer.AnnotateText,
+          request_deserializer=AnnotateTextRequest.FromString,
+          response_serializer=AnnotateTextResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.cloud.language.v1beta1.LanguageService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaLanguageServiceServicer(object):
   """Provides text analysis operations such as sentiment analysis and entity
@@ -1440,22 +1522,23 @@ class BetaLanguageServiceServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaLanguageServiceStub(object):
   """Provides text analysis operations such as sentiment analysis and entity
   recognition.
   """
-  def AnalyzeSentiment(self, request, timeout):
+  def AnalyzeSentiment(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Analyzes the sentiment of the provided text.
     """
     raise NotImplementedError()
   AnalyzeSentiment.future = None
-  def AnalyzeEntities(self, request, timeout):
+  def AnalyzeEntities(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Finds named entities (currently finds proper names) in the text,
     entity types, salience, mentions for each entity, and other properties.
     """
     raise NotImplementedError()
   AnalyzeEntities.future = None
-  def AnnotateText(self, request, timeout):
+  def AnnotateText(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Advanced API that analyzes the document and provides a full set of text
     annotations, including semantic, syntactic, and sentiment information. This
     API is intended for users who are familiar with machine learning and need
@@ -1464,22 +1547,17 @@ class BetaLanguageServiceStub(object):
     raise NotImplementedError()
   AnnotateText.future = None
 
+
 def beta_create_LanguageService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
   request_deserializers = {
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeEntitiesRequest.FromString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeSentimentRequest.FromString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): google.cloud.language.v1beta1.language_service_pb2.AnnotateTextRequest.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): AnalyzeEntitiesRequest.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): AnalyzeSentimentRequest.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): AnnotateTextRequest.FromString,
   }
   response_serializers = {
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeEntitiesResponse.SerializeToString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeSentimentResponse.SerializeToString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): google.cloud.language.v1beta1.language_service_pb2.AnnotateTextResponse.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): AnalyzeEntitiesResponse.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): AnalyzeSentimentResponse.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): AnnotateTextResponse.SerializeToString,
   }
   method_implementations = {
     ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): face_utilities.unary_unary_inline(servicer.AnalyzeEntities),
@@ -1489,22 +1567,17 @@ def beta_create_LanguageService_server(servicer, pool=None, pool_size=None, defa
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_LanguageService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
-  import google.cloud.language.v1beta1.language_service_pb2
   request_serializers = {
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeEntitiesRequest.SerializeToString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeSentimentRequest.SerializeToString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): google.cloud.language.v1beta1.language_service_pb2.AnnotateTextRequest.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): AnalyzeEntitiesRequest.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): AnalyzeSentimentRequest.SerializeToString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): AnnotateTextRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeEntitiesResponse.FromString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): google.cloud.language.v1beta1.language_service_pb2.AnalyzeSentimentResponse.FromString,
-    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): google.cloud.language.v1beta1.language_service_pb2.AnnotateTextResponse.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeEntities'): AnalyzeEntitiesResponse.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnalyzeSentiment'): AnalyzeSentimentResponse.FromString,
+    ('google.cloud.language.v1beta1.LanguageService', 'AnnotateText'): AnnotateTextResponse.FromString,
   }
   cardinalities = {
     'AnalyzeEntities': cardinality.Cardinality.UNARY_UNARY,

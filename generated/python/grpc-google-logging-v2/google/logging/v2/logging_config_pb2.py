@@ -394,12 +394,124 @@ _sym_db.RegisterMessage(DeleteSinkRequest)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.logging.v2B\rLoggingConfigP\001Z0google.golang.org/genproto/googleapis/logging/v2'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class ConfigServiceV2Stub(object):
+  """Service for configuring sinks used to export log entries outside Stackdriver
+  Logging.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.ListSinks = channel.unary_unary(
+        '/google.logging.v2.ConfigServiceV2/ListSinks',
+        request_serializer=ListSinksRequest.SerializeToString,
+        response_deserializer=ListSinksResponse.FromString,
+        )
+    self.GetSink = channel.unary_unary(
+        '/google.logging.v2.ConfigServiceV2/GetSink',
+        request_serializer=GetSinkRequest.SerializeToString,
+        response_deserializer=LogSink.FromString,
+        )
+    self.CreateSink = channel.unary_unary(
+        '/google.logging.v2.ConfigServiceV2/CreateSink',
+        request_serializer=CreateSinkRequest.SerializeToString,
+        response_deserializer=LogSink.FromString,
+        )
+    self.UpdateSink = channel.unary_unary(
+        '/google.logging.v2.ConfigServiceV2/UpdateSink',
+        request_serializer=UpdateSinkRequest.SerializeToString,
+        response_deserializer=LogSink.FromString,
+        )
+    self.DeleteSink = channel.unary_unary(
+        '/google.logging.v2.ConfigServiceV2/DeleteSink',
+        request_serializer=DeleteSinkRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+
+
+class ConfigServiceV2Servicer(object):
+  """Service for configuring sinks used to export log entries outside Stackdriver
+  Logging.
+  """
+
+  def ListSinks(self, request, context):
+    """Lists sinks.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetSink(self, request, context):
+    """Gets a sink.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CreateSink(self, request, context):
+    """Creates a sink.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateSink(self, request, context):
+    """Creates or updates a sink.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteSink(self, request, context):
+    """Deletes a sink.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_ConfigServiceV2Servicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'ListSinks': grpc.unary_unary_rpc_method_handler(
+          servicer.ListSinks,
+          request_deserializer=ListSinksRequest.FromString,
+          response_serializer=ListSinksResponse.SerializeToString,
+      ),
+      'GetSink': grpc.unary_unary_rpc_method_handler(
+          servicer.GetSink,
+          request_deserializer=GetSinkRequest.FromString,
+          response_serializer=LogSink.SerializeToString,
+      ),
+      'CreateSink': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateSink,
+          request_deserializer=CreateSinkRequest.FromString,
+          response_serializer=LogSink.SerializeToString,
+      ),
+      'UpdateSink': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateSink,
+          request_deserializer=UpdateSinkRequest.FromString,
+          response_serializer=LogSink.SerializeToString,
+      ),
+      'DeleteSink': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteSink,
+          request_deserializer=DeleteSinkRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.logging.v2.ConfigServiceV2', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaConfigServiceV2Servicer(object):
   """Service for configuring sinks used to export log entries outside Stackdriver
@@ -426,60 +538,52 @@ class BetaConfigServiceV2Servicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaConfigServiceV2Stub(object):
   """Service for configuring sinks used to export log entries outside Stackdriver
   Logging.
   """
-  def ListSinks(self, request, timeout):
+  def ListSinks(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists sinks.
     """
     raise NotImplementedError()
   ListSinks.future = None
-  def GetSink(self, request, timeout):
+  def GetSink(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets a sink.
     """
     raise NotImplementedError()
   GetSink.future = None
-  def CreateSink(self, request, timeout):
+  def CreateSink(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates a sink.
     """
     raise NotImplementedError()
   CreateSink.future = None
-  def UpdateSink(self, request, timeout):
+  def UpdateSink(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates or updates a sink.
     """
     raise NotImplementedError()
   UpdateSink.future = None
-  def DeleteSink(self, request, timeout):
+  def DeleteSink(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes a sink.
     """
     raise NotImplementedError()
   DeleteSink.future = None
 
+
 def beta_create_ConfigServiceV2_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.protobuf.empty_pb2
   request_deserializers = {
-    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): google.logging.v2.logging_config_pb2.CreateSinkRequest.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google.logging.v2.logging_config_pb2.DeleteSinkRequest.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'GetSink'): google.logging.v2.logging_config_pb2.GetSinkRequest.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): google.logging.v2.logging_config_pb2.ListSinksRequest.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): google.logging.v2.logging_config_pb2.UpdateSinkRequest.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): CreateSinkRequest.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): DeleteSinkRequest.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'GetSink'): GetSinkRequest.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): ListSinksRequest.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): UpdateSinkRequest.FromString,
   }
   response_serializers = {
-    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): google.logging.v2.logging_config_pb2.LogSink.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'GetSink'): google.logging.v2.logging_config_pb2.LogSink.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): google.logging.v2.logging_config_pb2.ListSinksResponse.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): google.logging.v2.logging_config_pb2.LogSink.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): LogSink.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'GetSink'): LogSink.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): ListSinksResponse.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): LogSink.SerializeToString,
   }
   method_implementations = {
     ('google.logging.v2.ConfigServiceV2', 'CreateSink'): face_utilities.unary_unary_inline(servicer.CreateSink),
@@ -491,30 +595,21 @@ def beta_create_ConfigServiceV2_server(servicer, pool=None, pool_size=None, defa
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_ConfigServiceV2_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.logging.v2.logging_config_pb2
-  import google.protobuf.empty_pb2
   request_serializers = {
-    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): google.logging.v2.logging_config_pb2.CreateSinkRequest.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google.logging.v2.logging_config_pb2.DeleteSinkRequest.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'GetSink'): google.logging.v2.logging_config_pb2.GetSinkRequest.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): google.logging.v2.logging_config_pb2.ListSinksRequest.SerializeToString,
-    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): google.logging.v2.logging_config_pb2.UpdateSinkRequest.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): CreateSinkRequest.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): DeleteSinkRequest.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'GetSink'): GetSinkRequest.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): ListSinksRequest.SerializeToString,
+    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): UpdateSinkRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): google.logging.v2.logging_config_pb2.LogSink.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'GetSink'): google.logging.v2.logging_config_pb2.LogSink.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): google.logging.v2.logging_config_pb2.ListSinksResponse.FromString,
-    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): google.logging.v2.logging_config_pb2.LogSink.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'CreateSink'): LogSink.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'DeleteSink'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'GetSink'): LogSink.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'ListSinks'): ListSinksResponse.FromString,
+    ('google.logging.v2.ConfigServiceV2', 'UpdateSink'): LogSink.FromString,
   }
   cardinalities = {
     'CreateSink': cardinality.Cardinality.UNARY_UNARY,

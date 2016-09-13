@@ -1165,12 +1165,201 @@ _PUBSUBMESSAGE_ATTRIBUTESENTRY.has_options = True
 _PUBSUBMESSAGE_ATTRIBUTESENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 _PUSHCONFIG_ATTRIBUTESENTRY.has_options = True
 _PUSHCONFIG_ATTRIBUTESENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class SubscriberStub(object):
+  """The service that an application uses to manipulate subscriptions and to
+  consume messages from a subscription via the `Pull` method.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.CreateSubscription = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/CreateSubscription',
+        request_serializer=Subscription.SerializeToString,
+        response_deserializer=Subscription.FromString,
+        )
+    self.GetSubscription = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/GetSubscription',
+        request_serializer=GetSubscriptionRequest.SerializeToString,
+        response_deserializer=Subscription.FromString,
+        )
+    self.ListSubscriptions = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/ListSubscriptions',
+        request_serializer=ListSubscriptionsRequest.SerializeToString,
+        response_deserializer=ListSubscriptionsResponse.FromString,
+        )
+    self.DeleteSubscription = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/DeleteSubscription',
+        request_serializer=DeleteSubscriptionRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+    self.ModifyAckDeadline = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/ModifyAckDeadline',
+        request_serializer=ModifyAckDeadlineRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+    self.Acknowledge = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/Acknowledge',
+        request_serializer=AcknowledgeRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+    self.Pull = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/Pull',
+        request_serializer=PullRequest.SerializeToString,
+        response_deserializer=PullResponse.FromString,
+        )
+    self.ModifyPushConfig = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/ModifyPushConfig',
+        request_serializer=ModifyPushConfigRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+
+
+class SubscriberServicer(object):
+  """The service that an application uses to manipulate subscriptions and to
+  consume messages from a subscription via the `Pull` method.
+  """
+
+  def CreateSubscription(self, request, context):
+    """Creates a subscription to a given topic for a given subscriber.
+    If the subscription already exists, returns `ALREADY_EXISTS`.
+    If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+
+    If the name is not provided in the request, the server will assign a random
+    name for this subscription on the same project as the topic.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetSubscription(self, request, context):
+    """Gets the configuration details of a subscription.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListSubscriptions(self, request, context):
+    """Lists matching subscriptions.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteSubscription(self, request, context):
+    """Deletes an existing subscription. All pending messages in the subscription
+    are immediately dropped. Calls to `Pull` after deletion will return
+    `NOT_FOUND`. After a subscription is deleted, a new one may be created with
+    the same name, but the new one has no association with the old
+    subscription, or its topic unless the same topic is specified.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ModifyAckDeadline(self, request, context):
+    """Modifies the ack deadline for a specific message. This method is useful
+    to indicate that more time is needed to process a message by the
+    subscriber, or to make the message available for redelivery if the
+    processing was interrupted.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Acknowledge(self, request, context):
+    """Acknowledges the messages associated with the `ack_ids` in the
+    `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages
+    from the subscription.
+
+    Acknowledging a message whose ack deadline has expired may succeed,
+    but such a message may be redelivered later. Acknowledging a message more
+    than once will not result in an error.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Pull(self, request, context):
+    """Pulls messages from the server. Returns an empty list if there are no
+    messages available in the backlog. The server may return `UNAVAILABLE` if
+    there are too many concurrent pull requests pending for the given
+    subscription.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ModifyPushConfig(self, request, context):
+    """Modifies the `PushConfig` for a specified subscription.
+
+    This may be used to change a push subscription to a pull one (signified by
+    an empty `PushConfig`) or vice versa, or change the endpoint URL and other
+    attributes of a push subscription. Messages will accumulate for delivery
+    continuously through the call regardless of changes to the `PushConfig`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_SubscriberServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'CreateSubscription': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateSubscription,
+          request_deserializer=Subscription.FromString,
+          response_serializer=Subscription.SerializeToString,
+      ),
+      'GetSubscription': grpc.unary_unary_rpc_method_handler(
+          servicer.GetSubscription,
+          request_deserializer=GetSubscriptionRequest.FromString,
+          response_serializer=Subscription.SerializeToString,
+      ),
+      'ListSubscriptions': grpc.unary_unary_rpc_method_handler(
+          servicer.ListSubscriptions,
+          request_deserializer=ListSubscriptionsRequest.FromString,
+          response_serializer=ListSubscriptionsResponse.SerializeToString,
+      ),
+      'DeleteSubscription': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteSubscription,
+          request_deserializer=DeleteSubscriptionRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'ModifyAckDeadline': grpc.unary_unary_rpc_method_handler(
+          servicer.ModifyAckDeadline,
+          request_deserializer=ModifyAckDeadlineRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'Acknowledge': grpc.unary_unary_rpc_method_handler(
+          servicer.Acknowledge,
+          request_deserializer=AcknowledgeRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'Pull': grpc.unary_unary_rpc_method_handler(
+          servicer.Pull,
+          request_deserializer=PullRequest.FromString,
+          response_serializer=PullResponse.SerializeToString,
+      ),
+      'ModifyPushConfig': grpc.unary_unary_rpc_method_handler(
+          servicer.ModifyPushConfig,
+          request_deserializer=ModifyPushConfigRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.pubsub.v1.Subscriber', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaSubscriberServicer(object):
   """The service that an application uses to manipulate subscriptions and to
@@ -1235,11 +1424,12 @@ class BetaSubscriberServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaSubscriberStub(object):
   """The service that an application uses to manipulate subscriptions and to
   consume messages from a subscription via the `Pull` method.
   """
-  def CreateSubscription(self, request, timeout):
+  def CreateSubscription(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates a subscription to a given topic for a given subscriber.
     If the subscription already exists, returns `ALREADY_EXISTS`.
     If the corresponding topic doesn't exist, returns `NOT_FOUND`.
@@ -1249,17 +1439,17 @@ class BetaSubscriberStub(object):
     """
     raise NotImplementedError()
   CreateSubscription.future = None
-  def GetSubscription(self, request, timeout):
+  def GetSubscription(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets the configuration details of a subscription.
     """
     raise NotImplementedError()
   GetSubscription.future = None
-  def ListSubscriptions(self, request, timeout):
+  def ListSubscriptions(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists matching subscriptions.
     """
     raise NotImplementedError()
   ListSubscriptions.future = None
-  def DeleteSubscription(self, request, timeout):
+  def DeleteSubscription(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes an existing subscription. All pending messages in the subscription
     are immediately dropped. Calls to `Pull` after deletion will return
     `NOT_FOUND`. After a subscription is deleted, a new one may be created with
@@ -1268,7 +1458,7 @@ class BetaSubscriberStub(object):
     """
     raise NotImplementedError()
   DeleteSubscription.future = None
-  def ModifyAckDeadline(self, request, timeout):
+  def ModifyAckDeadline(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Modifies the ack deadline for a specific message. This method is useful
     to indicate that more time is needed to process a message by the
     subscriber, or to make the message available for redelivery if the
@@ -1276,7 +1466,7 @@ class BetaSubscriberStub(object):
     """
     raise NotImplementedError()
   ModifyAckDeadline.future = None
-  def Acknowledge(self, request, timeout):
+  def Acknowledge(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Acknowledges the messages associated with the `ack_ids` in the
     `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages
     from the subscription.
@@ -1287,7 +1477,7 @@ class BetaSubscriberStub(object):
     """
     raise NotImplementedError()
   Acknowledge.future = None
-  def Pull(self, request, timeout):
+  def Pull(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Pulls messages from the server. Returns an empty list if there are no
     messages available in the backlog. The server may return `UNAVAILABLE` if
     there are too many concurrent pull requests pending for the given
@@ -1295,7 +1485,7 @@ class BetaSubscriberStub(object):
     """
     raise NotImplementedError()
   Pull.future = None
-  def ModifyPushConfig(self, request, timeout):
+  def ModifyPushConfig(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Modifies the `PushConfig` for a specified subscription.
 
     This may be used to change a push subscription to a pull one (signified by
@@ -1306,42 +1496,27 @@ class BetaSubscriberStub(object):
     raise NotImplementedError()
   ModifyPushConfig.future = None
 
+
 def beta_create_Subscriber_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
   request_deserializers = {
-    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google.pubsub.v1.pubsub_pb2.AcknowledgeRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.FromString,
-    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google.pubsub.v1.pubsub_pb2.DeleteSubscriptionRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'GetSubscription'): google.pubsub.v1.pubsub_pb2.GetSubscriptionRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): google.pubsub.v1.pubsub_pb2.ListSubscriptionsRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google.pubsub.v1.pubsub_pb2.ModifyAckDeadlineRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google.pubsub.v1.pubsub_pb2.ModifyPushConfigRequest.FromString,
-    ('google.pubsub.v1.Subscriber', 'Pull'): google.pubsub.v1.pubsub_pb2.PullRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'Acknowledge'): AcknowledgeRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): Subscription.FromString,
+    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): DeleteSubscriptionRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'GetSubscription'): GetSubscriptionRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): ListSubscriptionsRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): ModifyAckDeadlineRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): ModifyPushConfigRequest.FromString,
+    ('google.pubsub.v1.Subscriber', 'Pull'): PullRequest.FromString,
   }
   response_serializers = {
-    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'GetSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): google.pubsub.v1.pubsub_pb2.ListSubscriptionsResponse.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'Pull'): google.pubsub.v1.pubsub_pb2.PullResponse.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): Subscription.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'GetSubscription'): Subscription.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): ListSubscriptionsResponse.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'Pull'): PullResponse.SerializeToString,
   }
   method_implementations = {
     ('google.pubsub.v1.Subscriber', 'Acknowledge'): face_utilities.unary_unary_inline(servicer.Acknowledge),
@@ -1356,42 +1531,27 @@ def beta_create_Subscriber_server(servicer, pool=None, pool_size=None, default_t
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_Subscriber_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
   request_serializers = {
-    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google.pubsub.v1.pubsub_pb2.AcknowledgeRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google.pubsub.v1.pubsub_pb2.DeleteSubscriptionRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'GetSubscription'): google.pubsub.v1.pubsub_pb2.GetSubscriptionRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): google.pubsub.v1.pubsub_pb2.ListSubscriptionsRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google.pubsub.v1.pubsub_pb2.ModifyAckDeadlineRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google.pubsub.v1.pubsub_pb2.ModifyPushConfigRequest.SerializeToString,
-    ('google.pubsub.v1.Subscriber', 'Pull'): google.pubsub.v1.pubsub_pb2.PullRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'Acknowledge'): AcknowledgeRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): Subscription.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): DeleteSubscriptionRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'GetSubscription'): GetSubscriptionRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): ListSubscriptionsRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): ModifyAckDeadlineRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): ModifyPushConfigRequest.SerializeToString,
+    ('google.pubsub.v1.Subscriber', 'Pull'): PullRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.FromString,
-    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.pubsub.v1.Subscriber', 'GetSubscription'): google.pubsub.v1.pubsub_pb2.Subscription.FromString,
-    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): google.pubsub.v1.pubsub_pb2.ListSubscriptionsResponse.FromString,
-    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.pubsub.v1.Subscriber', 'Pull'): google.pubsub.v1.pubsub_pb2.PullResponse.FromString,
+    ('google.pubsub.v1.Subscriber', 'Acknowledge'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.pubsub.v1.Subscriber', 'CreateSubscription'): Subscription.FromString,
+    ('google.pubsub.v1.Subscriber', 'DeleteSubscription'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.pubsub.v1.Subscriber', 'GetSubscription'): Subscription.FromString,
+    ('google.pubsub.v1.Subscriber', 'ListSubscriptions'): ListSubscriptionsResponse.FromString,
+    ('google.pubsub.v1.Subscriber', 'ModifyAckDeadline'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.pubsub.v1.Subscriber', 'ModifyPushConfig'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.pubsub.v1.Subscriber', 'Pull'): PullResponse.FromString,
   }
   cardinalities = {
     'Acknowledge': cardinality.Cardinality.UNARY_UNARY,
@@ -1405,6 +1565,142 @@ def beta_create_Subscriber_stub(channel, host=None, metadata_transformer=None, p
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
   return beta_implementations.dynamic_stub(channel, 'google.pubsub.v1.Subscriber', cardinalities, options=stub_options)
+
+
+class PublisherStub(object):
+  """The service that an application uses to manipulate topics, and to send
+  messages to a topic.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.CreateTopic = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/CreateTopic',
+        request_serializer=Topic.SerializeToString,
+        response_deserializer=Topic.FromString,
+        )
+    self.Publish = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/Publish',
+        request_serializer=PublishRequest.SerializeToString,
+        response_deserializer=PublishResponse.FromString,
+        )
+    self.GetTopic = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/GetTopic',
+        request_serializer=GetTopicRequest.SerializeToString,
+        response_deserializer=Topic.FromString,
+        )
+    self.ListTopics = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/ListTopics',
+        request_serializer=ListTopicsRequest.SerializeToString,
+        response_deserializer=ListTopicsResponse.FromString,
+        )
+    self.ListTopicSubscriptions = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/ListTopicSubscriptions',
+        request_serializer=ListTopicSubscriptionsRequest.SerializeToString,
+        response_deserializer=ListTopicSubscriptionsResponse.FromString,
+        )
+    self.DeleteTopic = channel.unary_unary(
+        '/google.pubsub.v1.Publisher/DeleteTopic',
+        request_serializer=DeleteTopicRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+
+
+class PublisherServicer(object):
+  """The service that an application uses to manipulate topics, and to send
+  messages to a topic.
+  """
+
+  def CreateTopic(self, request, context):
+    """Creates the given topic with the given name.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Publish(self, request, context):
+    """Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
+    does not exist. The message payload must not be empty; it must contain
+    either a non-empty data field, or at least one attribute.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetTopic(self, request, context):
+    """Gets the configuration of a topic.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListTopics(self, request, context):
+    """Lists matching topics.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListTopicSubscriptions(self, request, context):
+    """Lists the name of the subscriptions for this topic.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteTopic(self, request, context):
+    """Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
+    does not exist. After a topic is deleted, a new topic may be created with
+    the same name; this is an entirely new topic with none of the old
+    configuration or subscriptions. Existing subscriptions to this topic are
+    not deleted, but their `topic` field is set to `_deleted-topic_`.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_PublisherServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'CreateTopic': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateTopic,
+          request_deserializer=Topic.FromString,
+          response_serializer=Topic.SerializeToString,
+      ),
+      'Publish': grpc.unary_unary_rpc_method_handler(
+          servicer.Publish,
+          request_deserializer=PublishRequest.FromString,
+          response_serializer=PublishResponse.SerializeToString,
+      ),
+      'GetTopic': grpc.unary_unary_rpc_method_handler(
+          servicer.GetTopic,
+          request_deserializer=GetTopicRequest.FromString,
+          response_serializer=Topic.SerializeToString,
+      ),
+      'ListTopics': grpc.unary_unary_rpc_method_handler(
+          servicer.ListTopics,
+          request_deserializer=ListTopicsRequest.FromString,
+          response_serializer=ListTopicsResponse.SerializeToString,
+      ),
+      'ListTopicSubscriptions': grpc.unary_unary_rpc_method_handler(
+          servicer.ListTopicSubscriptions,
+          request_deserializer=ListTopicSubscriptionsRequest.FromString,
+          response_serializer=ListTopicSubscriptionsResponse.SerializeToString,
+      ),
+      'DeleteTopic': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteTopic,
+          request_deserializer=DeleteTopicRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.pubsub.v1.Publisher', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaPublisherServicer(object):
   """The service that an application uses to manipulate topics, and to send
@@ -1441,38 +1737,39 @@ class BetaPublisherServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaPublisherStub(object):
   """The service that an application uses to manipulate topics, and to send
   messages to a topic.
   """
-  def CreateTopic(self, request, timeout):
+  def CreateTopic(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Creates the given topic with the given name.
     """
     raise NotImplementedError()
   CreateTopic.future = None
-  def Publish(self, request, timeout):
+  def Publish(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
     does not exist. The message payload must not be empty; it must contain
     either a non-empty data field, or at least one attribute.
     """
     raise NotImplementedError()
   Publish.future = None
-  def GetTopic(self, request, timeout):
+  def GetTopic(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Gets the configuration of a topic.
     """
     raise NotImplementedError()
   GetTopic.future = None
-  def ListTopics(self, request, timeout):
+  def ListTopics(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists matching topics.
     """
     raise NotImplementedError()
   ListTopics.future = None
-  def ListTopicSubscriptions(self, request, timeout):
+  def ListTopicSubscriptions(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists the name of the subscriptions for this topic.
     """
     raise NotImplementedError()
   ListTopicSubscriptions.future = None
-  def DeleteTopic(self, request, timeout):
+  def DeleteTopic(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
     does not exist. After a topic is deleted, a new topic may be created with
     the same name; this is an entirely new topic with none of the old
@@ -1482,34 +1779,23 @@ class BetaPublisherStub(object):
     raise NotImplementedError()
   DeleteTopic.future = None
 
+
 def beta_create_Publisher_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
   request_deserializers = {
-    ('google.pubsub.v1.Publisher', 'CreateTopic'): google.pubsub.v1.pubsub_pb2.Topic.FromString,
-    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google.pubsub.v1.pubsub_pb2.DeleteTopicRequest.FromString,
-    ('google.pubsub.v1.Publisher', 'GetTopic'): google.pubsub.v1.pubsub_pb2.GetTopicRequest.FromString,
-    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): google.pubsub.v1.pubsub_pb2.ListTopicSubscriptionsRequest.FromString,
-    ('google.pubsub.v1.Publisher', 'ListTopics'): google.pubsub.v1.pubsub_pb2.ListTopicsRequest.FromString,
-    ('google.pubsub.v1.Publisher', 'Publish'): google.pubsub.v1.pubsub_pb2.PublishRequest.FromString,
+    ('google.pubsub.v1.Publisher', 'CreateTopic'): Topic.FromString,
+    ('google.pubsub.v1.Publisher', 'DeleteTopic'): DeleteTopicRequest.FromString,
+    ('google.pubsub.v1.Publisher', 'GetTopic'): GetTopicRequest.FromString,
+    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): ListTopicSubscriptionsRequest.FromString,
+    ('google.pubsub.v1.Publisher', 'ListTopics'): ListTopicsRequest.FromString,
+    ('google.pubsub.v1.Publisher', 'Publish'): PublishRequest.FromString,
   }
   response_serializers = {
-    ('google.pubsub.v1.Publisher', 'CreateTopic'): google.pubsub.v1.pubsub_pb2.Topic.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'GetTopic'): google.pubsub.v1.pubsub_pb2.Topic.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): google.pubsub.v1.pubsub_pb2.ListTopicSubscriptionsResponse.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'ListTopics'): google.pubsub.v1.pubsub_pb2.ListTopicsResponse.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'Publish'): google.pubsub.v1.pubsub_pb2.PublishResponse.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'CreateTopic'): Topic.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'GetTopic'): Topic.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): ListTopicSubscriptionsResponse.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'ListTopics'): ListTopicsResponse.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'Publish'): PublishResponse.SerializeToString,
   }
   method_implementations = {
     ('google.pubsub.v1.Publisher', 'CreateTopic'): face_utilities.unary_unary_inline(servicer.CreateTopic),
@@ -1522,34 +1808,23 @@ def beta_create_Publisher_server(servicer, pool=None, pool_size=None, default_ti
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_Publisher_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.pubsub.v1.pubsub_pb2
-  import google.protobuf.empty_pb2
   request_serializers = {
-    ('google.pubsub.v1.Publisher', 'CreateTopic'): google.pubsub.v1.pubsub_pb2.Topic.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google.pubsub.v1.pubsub_pb2.DeleteTopicRequest.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'GetTopic'): google.pubsub.v1.pubsub_pb2.GetTopicRequest.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): google.pubsub.v1.pubsub_pb2.ListTopicSubscriptionsRequest.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'ListTopics'): google.pubsub.v1.pubsub_pb2.ListTopicsRequest.SerializeToString,
-    ('google.pubsub.v1.Publisher', 'Publish'): google.pubsub.v1.pubsub_pb2.PublishRequest.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'CreateTopic'): Topic.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'DeleteTopic'): DeleteTopicRequest.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'GetTopic'): GetTopicRequest.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): ListTopicSubscriptionsRequest.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'ListTopics'): ListTopicsRequest.SerializeToString,
+    ('google.pubsub.v1.Publisher', 'Publish'): PublishRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.pubsub.v1.Publisher', 'CreateTopic'): google.pubsub.v1.pubsub_pb2.Topic.FromString,
-    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.pubsub.v1.Publisher', 'GetTopic'): google.pubsub.v1.pubsub_pb2.Topic.FromString,
-    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): google.pubsub.v1.pubsub_pb2.ListTopicSubscriptionsResponse.FromString,
-    ('google.pubsub.v1.Publisher', 'ListTopics'): google.pubsub.v1.pubsub_pb2.ListTopicsResponse.FromString,
-    ('google.pubsub.v1.Publisher', 'Publish'): google.pubsub.v1.pubsub_pb2.PublishResponse.FromString,
+    ('google.pubsub.v1.Publisher', 'CreateTopic'): Topic.FromString,
+    ('google.pubsub.v1.Publisher', 'DeleteTopic'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.pubsub.v1.Publisher', 'GetTopic'): Topic.FromString,
+    ('google.pubsub.v1.Publisher', 'ListTopicSubscriptions'): ListTopicSubscriptionsResponse.FromString,
+    ('google.pubsub.v1.Publisher', 'ListTopics'): ListTopicsResponse.FromString,
+    ('google.pubsub.v1.Publisher', 'Publish'): PublishResponse.FromString,
   }
   cardinalities = {
     'CreateTopic': cardinality.Cardinality.UNARY_UNARY,
