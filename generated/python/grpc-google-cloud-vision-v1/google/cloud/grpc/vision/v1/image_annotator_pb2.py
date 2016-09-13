@@ -15,7 +15,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
-from google.cloud.vision.v1 import geometry_pb2 as google_dot_cloud_dot_vision_dot_v1_dot_geometry__pb2
+from google.cloud.grpc.vision.v1 import geometry_pb2 as google_dot_cloud_dot_vision_dot_v1_dot_geometry__pb2
 from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
 from google.type import color_pb2 as google_dot_type_dot_color__pb2
 from google.type import latlng_pb2 as google_dot_type_dot_latlng__pb2
