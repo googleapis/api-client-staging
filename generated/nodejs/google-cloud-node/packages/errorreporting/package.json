@@ -1,0 +1,15 @@
+{
+  "url": "https://github.com/googleapis/googleapis",
+  "name": "@google-cloud/errorreporting",
+  "version": "0.7.1",
+  "author": "Google Inc.",
+  "description": "Google Cloud Client Library for Stackdriver Error Reporting API",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "arguejs": "^0.2.3",
+    "extend": "^3.0.0",
+    "google-gax": "^0.6.0",
+    "google-proto-files": "^0.7.0"
+  },
+  "main": "src/index.js"
+}
