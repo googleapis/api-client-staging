@@ -138,10 +138,11 @@ class LoggingServiceV2Api(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -174,7 +175,7 @@ class LoggingServiceV2Api(object):
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.stub = config.create_stub(
-            logging_pb2.beta_create_LoggingServiceV2_stub,
+            logging_pb2.LoggingServiceV2Stub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -198,7 +199,7 @@ class LoggingServiceV2Api(object):
         The log will reappear if it receives new entries.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> api = LoggingServiceV2Api()
           >>> log_name = api.log_path('[PROJECT]', '[LOG]')
           >>> api.delete_log(log_name)
@@ -227,8 +228,8 @@ class LoggingServiceV2Api(object):
         written by this method.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
-          >>> from google.logging.v2 import logging_pb2
+          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.logging.v2 import log_entry_pb2
           >>> api = LoggingServiceV2Api()
           >>> entries = []
           >>> response = api.write_log_entries(entries)
@@ -285,7 +286,7 @@ class LoggingServiceV2Api(object):
         `Exporting Logs <https://cloud.google.com/logging/docs/export>`_.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = LoggingServiceV2Api()
           >>> project_ids = []
@@ -343,7 +344,7 @@ class LoggingServiceV2Api(object):
         Lists the monitored resource descriptors used by Stackdriver Logging.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = LoggingServiceV2Api()
           >>>

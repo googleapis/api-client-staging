@@ -146,10 +146,11 @@ class PublisherApi(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -183,7 +184,7 @@ class PublisherApi(object):
             bundle_descriptors=self._BUNDLE_DESCRIPTORS,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.stub = config.create_stub(
-            pubsub_pb2.beta_create_Publisher_stub,
+            pubsub_pb2.PublisherStub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -210,7 +211,7 @@ class PublisherApi(object):
         Creates the given topic with the given name.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> api = PublisherApi()
           >>> name = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.create_topic(name)
@@ -241,7 +242,7 @@ class PublisherApi(object):
         either a non-empty data field, or at least one attribute.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> from google.pubsub.v1 import pubsub_pb2
           >>> api = PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
@@ -270,7 +271,7 @@ class PublisherApi(object):
         Gets the configuration of a topic.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> api = PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.get_topic(topic)
@@ -294,7 +295,7 @@ class PublisherApi(object):
         Lists matching topics.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = PublisherApi()
           >>> project = api.project_path('[PROJECT]')
@@ -338,7 +339,7 @@ class PublisherApi(object):
         Lists the name of the subscriptions for this topic.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
@@ -386,7 +387,7 @@ class PublisherApi(object):
         not deleted, but their ``topic`` field is set to ``_deleted-topic_``.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
           >>> api = PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> api.delete_topic(topic)

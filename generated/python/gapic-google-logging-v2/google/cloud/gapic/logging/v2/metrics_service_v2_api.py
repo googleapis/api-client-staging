@@ -134,10 +134,11 @@ class MetricsServiceV2Api(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -170,7 +171,7 @@ class MetricsServiceV2Api(object):
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.stub = config.create_stub(
-            logging_metrics_pb2.beta_create_MetricsServiceV2_stub,
+            logging_metrics_pb2.MetricsServiceV2Stub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -194,7 +195,7 @@ class MetricsServiceV2Api(object):
         Lists logs-based metrics.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = MetricsServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
@@ -239,7 +240,7 @@ class MetricsServiceV2Api(object):
         Gets a logs-based metric.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> response = api.get_log_metric(metric_name)
@@ -265,7 +266,7 @@ class MetricsServiceV2Api(object):
         Creates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.logging.v2 import logging_metrics_pb2
           >>> api = MetricsServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
@@ -297,7 +298,7 @@ class MetricsServiceV2Api(object):
         Creates or updates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> from google.logging.v2 import logging_metrics_pb2
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
@@ -332,7 +333,7 @@ class MetricsServiceV2Api(object):
         Deletes a logs-based metric.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
           >>> api = MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> api.delete_log_metric(metric_name)

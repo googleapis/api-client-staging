@@ -172,10 +172,11 @@ class SubscriberApi(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -208,7 +209,7 @@ class SubscriberApi(object):
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.stub = config.create_stub(
-            pubsub_pb2.beta_create_Subscriber_stub,
+            pubsub_pb2.SubscriberStub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -252,7 +253,7 @@ class SubscriberApi(object):
         name for this subscription on the same project as the topic.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> name = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
@@ -312,7 +313,7 @@ class SubscriberApi(object):
         Gets the configuration details of a subscription.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> response = api.get_subscription(subscription)
@@ -336,7 +337,7 @@ class SubscriberApi(object):
         Lists matching subscriptions.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = SubscriberApi()
           >>> project = api.project_path('[PROJECT]')
@@ -384,7 +385,7 @@ class SubscriberApi(object):
         subscription, or its topic unless the same topic is specified.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> api.delete_subscription(subscription)
@@ -413,7 +414,7 @@ class SubscriberApi(object):
         processing was interrupted.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
@@ -450,7 +451,7 @@ class SubscriberApi(object):
         than once will not result in an error.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
@@ -482,7 +483,7 @@ class SubscriberApi(object):
         subscription.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> max_messages = 0
@@ -521,7 +522,7 @@ class SubscriberApi(object):
         continuously through the call regardless of changes to the ``PushConfig``.
 
         Example:
-          >>> from google.cloud.gax.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
           >>> from google.pubsub.v1 import pubsub_pb2
           >>> api = SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')

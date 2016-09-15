@@ -70,10 +70,11 @@ class LanguageServiceApi(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -105,7 +106,7 @@ class LanguageServiceApi(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata})
         self.stub = config.create_stub(
-            language_service_pb2.beta_create_LanguageService_stub,
+            language_service_pb2.LanguageServiceStub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -125,7 +126,7 @@ class LanguageServiceApi(object):
         Analyzes the sentiment of the provided text.
 
         Example:
-          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
@@ -153,7 +154,7 @@ class LanguageServiceApi(object):
         entity types, salience, mentions for each entity, and other properties.
 
         Example:
-          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
@@ -184,7 +185,7 @@ class LanguageServiceApi(object):
         in-depth text features to build upon.
 
         Example:
-          >>> from google.cloud.gax.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()

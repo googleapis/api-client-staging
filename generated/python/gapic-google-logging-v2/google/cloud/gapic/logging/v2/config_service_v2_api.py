@@ -136,10 +136,11 @@ class ConfigServiceV2Api(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -172,7 +173,7 @@ class ConfigServiceV2Api(object):
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.stub = config.create_stub(
-            logging_config_pb2.beta_create_ConfigServiceV2_stub,
+            logging_config_pb2.ConfigServiceV2Stub,
             service_path,
             port,
             ssl_creds=ssl_creds,
@@ -196,7 +197,7 @@ class ConfigServiceV2Api(object):
         Lists sinks.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = ConfigServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
@@ -241,7 +242,7 @@ class ConfigServiceV2Api(object):
         Gets a sink.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> response = api.get_sink(sink_name)
@@ -266,7 +267,7 @@ class ConfigServiceV2Api(object):
         Creates a sink.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.logging.v2 import logging_config_pb2
           >>> api = ConfigServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
@@ -298,7 +299,7 @@ class ConfigServiceV2Api(object):
         Creates or updates a sink.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> from google.logging.v2 import logging_config_pb2
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
@@ -333,7 +334,7 @@ class ConfigServiceV2Api(object):
         Deletes a sink.
 
         Example:
-          >>> from google.cloud.gax.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
           >>> api = ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> api.delete_sink(sink_name)
