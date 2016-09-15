@@ -18,7 +18,7 @@ install_requires = [
 
 setup(
     name='gapic-google-cloud-language-v1beta1',
-    version='0.9.0',
+    version='0.9.1',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
