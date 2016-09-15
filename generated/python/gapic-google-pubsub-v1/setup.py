@@ -17,7 +17,7 @@ install_requires = [
 ]
 
 setup(
-    name='gax-google-pubsub-v1',
+    name='gapic-google-pubsub-v1',
     version='0.9.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',

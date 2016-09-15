@@ -17,7 +17,7 @@ install_requires = [
 ]
 
 setup(
-    name='gax-google-logging-v2',
+    name='gapic-google-logging-v2',
     version='0.9.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',

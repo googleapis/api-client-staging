@@ -17,7 +17,7 @@ install_requires = [
 ]
 
 setup(
-    name='gax-google-cloud-language-v1beta1',
+    name='gapic-google-cloud-language-v1beta1',
     version='0.9.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',

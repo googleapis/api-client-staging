@@ -1,7 +1,7 @@
 GAX library for the Google Logging API
 ================================================================================
 
-gax-google-logging-v2 uses google-gax_ (Google API extensions) to provide an
+gapic-google-logging-v2 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Logging API`_ (v2) defined in the googleapis_ git repository
 
 
@@ -12,7 +12,7 @@ easy-to-use client library for the `Google Logging API`_ (v2) defined in the goo
 Getting started
 ---------------
 
-gax-google-logging-v2 will allow you to connect to the Google
+gapic-google-logging-v2 will allow you to connect to the Google
 Logging API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
@@ -61,7 +61,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gax-google-logging-v2
+    <your-env>/bin/pip install gapic-google-logging-v2
 
 
 Windows
@@ -72,7 +72,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gax-google-logging-v2
+    <your-env>\Scripts\pip.exe install gapic-google-logging-v2
 
 
 At this point you are all set to continue.
