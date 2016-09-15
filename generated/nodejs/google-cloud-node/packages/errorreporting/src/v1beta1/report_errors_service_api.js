@@ -63,7 +63,7 @@ var ALL_SCOPES = [
  *
  * @class
  */
-function ReportErrorsServiceApi(gaxGrpc, grpcClient, opts) {
+function ReportErrorsServiceApi(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -88,18 +88,20 @@ function ReportErrorsServiceApi(gaxGrpc, grpcClient, opts) {
       null,
       {'x-goog-api-client': googleApiClient});
 
-  var stub = gaxGrpc.createStub(
+  var reportErrorsServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClient.google.devtools.clouderrorreporting.v1beta1.ReportErrorsService,
+      grpcClients.reportErrorsServiceClient.google.devtools.clouderrorreporting.v1beta1.ReportErrorsService,
       {sslCreds: sslCreds});
-  var methods = [
+  var reportErrorsServiceStubMethods = [
     'reportErrorEvent'
   ];
-  methods.forEach(function(methodName) {
+  reportErrorsServiceStubMethods.forEach(function(methodName) {
     this['_' + methodName] = gax.createApiCall(
-        stub.then(function(stub) { return stub[methodName].bind(stub); }),
-        defaults[methodName]);
+      reportErrorsServiceStub.then(function(reportErrorsServiceStub) {
+        return reportErrorsServiceStub[methodName].bind(reportErrorsServiceStub);
+      }),
+      defaults[methodName]);
   }.bind(this));
 }
 
@@ -193,11 +195,15 @@ function ReportErrorsServiceApiBuilder(gaxGrpc) {
     return new ReportErrorsServiceApiBuilder(gaxGrpc);
   }
 
-  var grpcClient = gaxGrpc.load([{
+  var reportErrorsServiceClient = gaxGrpc.load([{
     root: require('google-proto-files')('..'),
     file: 'google/devtools/clouderrorreporting/v1beta1/report_errors_service.proto'
   }]);
-  extend(this, grpcClient.google.devtools.clouderrorreporting.v1beta1);
+  extend(this, reportErrorsServiceClient.google.devtools.clouderrorreporting.v1beta1);
+
+  var grpcClients = {
+    reportErrorsServiceClient: reportErrorsServiceClient
+  };
 
   /**
    * Build a new instance of {@link ReportErrorsServiceApi}.
@@ -220,7 +226,7 @@ function ReportErrorsServiceApiBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.reportErrorsServiceApi = function(opts) {
-    return new ReportErrorsServiceApi(gaxGrpc, grpcClient, opts);
+    return new ReportErrorsServiceApi(gaxGrpc, grpcClients, opts);
   };
   extend(this.reportErrorsServiceApi, ReportErrorsServiceApi);
 }

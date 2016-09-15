@@ -63,7 +63,7 @@ var ALL_SCOPES = [
  *
  * @class
  */
-function ErrorGroupServiceApi(gaxGrpc, grpcClient, opts) {
+function ErrorGroupServiceApi(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -88,19 +88,21 @@ function ErrorGroupServiceApi(gaxGrpc, grpcClient, opts) {
       null,
       {'x-goog-api-client': googleApiClient});
 
-  var stub = gaxGrpc.createStub(
+  var errorGroupServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClient.google.devtools.clouderrorreporting.v1beta1.ErrorGroupService,
+      grpcClients.errorGroupServiceClient.google.devtools.clouderrorreporting.v1beta1.ErrorGroupService,
       {sslCreds: sslCreds});
-  var methods = [
+  var errorGroupServiceStubMethods = [
     'getGroup',
     'updateGroup'
   ];
-  methods.forEach(function(methodName) {
+  errorGroupServiceStubMethods.forEach(function(methodName) {
     this['_' + methodName] = gax.createApiCall(
-        stub.then(function(stub) { return stub[methodName].bind(stub); }),
-        defaults[methodName]);
+      errorGroupServiceStub.then(function(errorGroupServiceStub) {
+        return errorGroupServiceStub[methodName].bind(errorGroupServiceStub);
+      }),
+      defaults[methodName]);
   }.bind(this));
 }
 
@@ -239,11 +241,15 @@ function ErrorGroupServiceApiBuilder(gaxGrpc) {
     return new ErrorGroupServiceApiBuilder(gaxGrpc);
   }
 
-  var grpcClient = gaxGrpc.load([{
+  var errorGroupServiceClient = gaxGrpc.load([{
     root: require('google-proto-files')('..'),
     file: 'google/devtools/clouderrorreporting/v1beta1/error_group_service.proto'
   }]);
-  extend(this, grpcClient.google.devtools.clouderrorreporting.v1beta1);
+  extend(this, errorGroupServiceClient.google.devtools.clouderrorreporting.v1beta1);
+
+  var grpcClients = {
+    errorGroupServiceClient: errorGroupServiceClient
+  };
 
   /**
    * Build a new instance of {@link ErrorGroupServiceApi}.
@@ -266,7 +272,7 @@ function ErrorGroupServiceApiBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.errorGroupServiceApi = function(opts) {
-    return new ErrorGroupServiceApi(gaxGrpc, grpcClient, opts);
+    return new ErrorGroupServiceApi(gaxGrpc, grpcClients, opts);
   };
   extend(this.errorGroupServiceApi, ErrorGroupServiceApi);
 }
