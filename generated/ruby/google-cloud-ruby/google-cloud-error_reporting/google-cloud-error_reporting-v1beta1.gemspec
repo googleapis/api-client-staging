@@ -16,8 +16,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.0.0'
-  s.requirements << 'libgrpc ~> 0.9.0 needs to be installed'
-  s.summary       = 'google-cloud-error_reporting-v1beta1 is the official library for Stackdriver Error Reporting API'
+  s.summary       = 'Google client library for the Clouderrorreporting service'
 
   s.add_dependency 'google-gax', '~> 0.4.4'
   s.add_dependency 'grpc', '~> 1.0'
