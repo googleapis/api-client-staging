@@ -9,10 +9,11 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.4',
+    'googleapis-common-protos>=1.3.4, <2.0.0',
     'google-gax>=0.13.0, <0.14.0',
+    # TODO: need upper bound logic
     'grpc-google-cloud-vision-v1>=0.9.0',
-    'oauth2client>=1.4.11',
+    'oauth2client>=1.4.11, <2.0.0',
 ]
 
 setup(
@@ -35,6 +36,6 @@ setup(
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.gax', 'google.cloud.gax.vision', ],
+    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.vision', ],
     url='https://github.com/googleapis/googleapis'
 )
