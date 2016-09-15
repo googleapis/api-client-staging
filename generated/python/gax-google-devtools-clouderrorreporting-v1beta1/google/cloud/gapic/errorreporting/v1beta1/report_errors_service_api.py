@@ -87,10 +87,11 @@ class ReportErrorsServiceApi(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -122,7 +123,7 @@ class ReportErrorsServiceApi(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata})
         self.stub = config.create_stub(
-            report_errors_service_pb2.beta_create_ReportErrorsService_stub,
+            report_errors_service_pb2.ReportErrorsServiceStub,
             service_path,
             port,
             ssl_creds=ssl_creds,
