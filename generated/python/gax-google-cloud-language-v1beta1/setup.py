@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.1.0',
+    'googleapis-common-protos>=1.1.0, <1.2.0',
     'google-gax>=0.12.5, <0.13.0',
-    'grpc-google-cloud-language-v1beta1>=0.8.1',
+    'grpc-google-cloud-language-v1beta1>=0.8.1, <0.9.0',
     'oauth2client>=1.4.11',
 ]
 
 setup(
     name='gax-google-cloud-language-v1beta1',
-    version='0.8.1',
+    version='0.8.2',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
