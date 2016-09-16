@@ -14,7 +14,7 @@
 
 package com.google.cloud.logging.spi.v2;
 
-import com.google.api.gax.core.PageAccessor;
+import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -82,22 +82,21 @@ public class ConfigServiceV2Test {
   @Test
   @SuppressWarnings("all")
   public void listSinksTest() {
+    String nextPageToken = "";
     LogSink sinksElement = LogSink.newBuilder().build();
     List<LogSink> sinks = Arrays.asList(sinksElement);
-    String nextPageToken = "nextPageToken-1530815211";
     ListSinksResponse expectedResponse =
-        ListSinksResponse.newBuilder().addAllSinks(sinks).setNextPageToken(nextPageToken).build();
+        ListSinksResponse.newBuilder().setNextPageToken(nextPageToken).addAllSinks(sinks).build();
     List<GeneratedMessage> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
     String formattedParent = ConfigServiceV2Api.formatParentName("[PROJECT]");
 
-    PageAccessor<LogSink> pageAccessor = api.listSinks(formattedParent);
+    PagedListResponse<ListSinksRequest, ListSinksResponse, LogSink> pagedListResponse =
+        api.listSinks(formattedParent);
 
-    // PageAccessor will not make actual request until it is being used.
-    // Add all the pages here in order to make grpc requests.
-    List<LogSink> resources = Lists.newArrayList(pageAccessor.getPageValues());
+    List<LogSink> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSinksList().get(0), resources.get(0));
 

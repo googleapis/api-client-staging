@@ -15,7 +15,7 @@
 package com.google.cloud.logging.spi.v2;
 
 import com.google.api.MonitoredResource;
-import com.google.api.gax.core.PageAccessor;
+import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -108,20 +108,20 @@ public class LoggingServiceV2Test {
     expectedResponses.add(expectedResponse);
     mockLoggingServiceV2.setResponses(expectedResponses);
 
-    String logName = "logName2013526694";
+    String formattedLogName = LoggingServiceV2Api.formatLogName("[PROJECT]", "[LOG]");
     MonitoredResource resource = MonitoredResource.newBuilder().build();
     Map<String, String> labels = new HashMap<>();
     List<LogEntry> entries = new ArrayList<>();
 
     WriteLogEntriesResponse actualResponse =
-        api.writeLogEntries(logName, resource, labels, entries);
+        api.writeLogEntries(formattedLogName, resource, labels, entries);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessage> actualRequests = mockLoggingServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     WriteLogEntriesRequest actualRequest = (WriteLogEntriesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(logName, actualRequest.getLogName());
+    Assert.assertEquals(formattedLogName, actualRequest.getLogName());
     Assert.assertEquals(resource, actualRequest.getResource());
     Assert.assertEquals(labels, actualRequest.getLabels());
     Assert.assertEquals(entries, actualRequest.getEntriesList());
@@ -130,13 +130,13 @@ public class LoggingServiceV2Test {
   @Test
   @SuppressWarnings("all")
   public void listLogEntriesTest() {
+    String nextPageToken = "";
     LogEntry entriesElement = LogEntry.newBuilder().build();
     List<LogEntry> entries = Arrays.asList(entriesElement);
-    String nextPageToken = "nextPageToken-1530815211";
     ListLogEntriesResponse expectedResponse =
         ListLogEntriesResponse.newBuilder()
-            .addAllEntries(entries)
             .setNextPageToken(nextPageToken)
+            .addAllEntries(entries)
             .build();
     List<GeneratedMessage> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
@@ -146,11 +146,10 @@ public class LoggingServiceV2Test {
     String filter = "filter-1274492040";
     String orderBy = "orderBy1234304744";
 
-    PageAccessor<LogEntry> pageAccessor = api.listLogEntries(projectIds, filter, orderBy);
+    PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry> pagedListResponse =
+        api.listLogEntries(projectIds, filter, orderBy);
 
-    // PageAccessor will not make actual request until it is being used.
-    // Add all the pages here in order to make grpc requests.
-    List<LogEntry> resources = Lists.newArrayList(pageAccessor.getPageValues());
+    List<LogEntry> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getEntriesList().get(0), resources.get(0));
 
