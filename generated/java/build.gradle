@@ -29,7 +29,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.0.16',
+        gax: 'com.google.api:gax:0.0.17',
 
         // Testing
         junit: 'junit:junit:4.11',

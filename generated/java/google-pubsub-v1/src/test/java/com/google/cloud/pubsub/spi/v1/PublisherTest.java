@@ -14,7 +14,7 @@
 
 package com.google.cloud.pubsub.spi.v1;
 
-import com.google.api.gax.core.PageAccessor;
+import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -159,13 +159,13 @@ public class PublisherTest {
   @Test
   @SuppressWarnings("all")
   public void listTopicsTest() {
+    String nextPageToken = "";
     Topic topicsElement = Topic.newBuilder().build();
     List<Topic> topics = Arrays.asList(topicsElement);
-    String nextPageToken = "nextPageToken-1530815211";
     ListTopicsResponse expectedResponse =
         ListTopicsResponse.newBuilder()
-            .addAllTopics(topics)
             .setNextPageToken(nextPageToken)
+            .addAllTopics(topics)
             .build();
     List<GeneratedMessage> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
@@ -173,11 +173,10 @@ public class PublisherTest {
 
     String formattedProject = PublisherApi.formatProjectName("[PROJECT]");
 
-    PageAccessor<Topic> pageAccessor = api.listTopics(formattedProject);
+    PagedListResponse<ListTopicsRequest, ListTopicsResponse, Topic> pagedListResponse =
+        api.listTopics(formattedProject);
 
-    // PageAccessor will not make actual request until it is being used.
-    // Add all the pages here in order to make grpc requests.
-    List<Topic> resources = Lists.newArrayList(pageAccessor.getPageValues());
+    List<Topic> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getTopicsList().get(0), resources.get(0));
 
@@ -191,13 +190,13 @@ public class PublisherTest {
   @Test
   @SuppressWarnings("all")
   public void listTopicSubscriptionsTest() {
+    String nextPageToken = "";
     String subscriptionsElement = "subscriptionsElement1698708147";
     List<String> subscriptions = Arrays.asList(subscriptionsElement);
-    String nextPageToken = "nextPageToken-1530815211";
     ListTopicSubscriptionsResponse expectedResponse =
         ListTopicSubscriptionsResponse.newBuilder()
-            .addAllSubscriptions(subscriptions)
             .setNextPageToken(nextPageToken)
+            .addAllSubscriptions(subscriptions)
             .build();
     List<GeneratedMessage> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
@@ -205,11 +204,10 @@ public class PublisherTest {
 
     String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
 
-    PageAccessor<String> pageAccessor = api.listTopicSubscriptions(formattedTopic);
+    PagedListResponse<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>
+        pagedListResponse = api.listTopicSubscriptions(formattedTopic);
 
-    // PageAccessor will not make actual request until it is being used.
-    // Add all the pages here in order to make grpc requests.
-    List<String> resources = Lists.newArrayList(pageAccessor.getPageValues());
+    List<String> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
 
@@ -289,9 +287,7 @@ public class PublisherTest {
   @Test
   @SuppressWarnings("all")
   public void testIamPermissionsTest() {
-    List<String> permissions2 = new ArrayList<>();
-    TestIamPermissionsResponse expectedResponse =
-        TestIamPermissionsResponse.newBuilder().addAllPermissions(permissions2).build();
+    TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     List<GeneratedMessage> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
