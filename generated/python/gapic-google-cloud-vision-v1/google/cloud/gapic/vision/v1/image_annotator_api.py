@@ -32,7 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.vision.v1 import image_annotator_pb2
+from google.cloud.grpc.vision.v1 import image_annotator_pb2
 
 
 class ImageAnnotatorApi(object):
@@ -125,18 +125,18 @@ class ImageAnnotatorApi(object):
 
         Example:
           >>> from google.cloud.gapic.vision.v1.image_annotator_api import ImageAnnotatorApi
-          >>> from google.cloud.vision.v1 import image_annotator_pb2
+          >>> from google.cloud.grpc.vision.v1 import image_annotator_pb2
           >>> api = ImageAnnotatorApi()
           >>> requests = []
           >>> response = api.batch_annotate_images(requests)
 
         Args:
-          requests (list[:class:`google.cloud.vision.v1.image_annotator_pb2.AnnotateImageRequest`]): Individual image annotation requests for this batch.
+          requests (list[:class:`google.cloud.grpc.vision.v1.image_annotator_pb2.AnnotateImageRequest`]): Individual image annotation requests for this batch.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.vision.v1.image_annotator_pb2.BatchAnnotateImagesResponse` instance.
+          A :class:`google.cloud.grpc.vision.v1.image_annotator_pb2.BatchAnnotateImagesResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.

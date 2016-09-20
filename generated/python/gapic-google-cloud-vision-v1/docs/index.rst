@@ -1,12 +1,12 @@
-.. gax-google-cloud-vision-v1 sphinx documentation master file
+.. gapic-google-cloud-vision-v1 sphinx documentation master file
 
 
-GAX library for the Google Vision API
+GAPIC library for the Google Vision API
 =============================================================================================================
 
-This is the API documentation for ``gax-google-cloud-vision-v1``.
+This is the API documentation for ``gapic-google-cloud-vision-v1``.
 
-gax-google-cloud-vision-v1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-vision-v1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Vision API`_ (v1) defined in the googleapis_ git repository
 
 

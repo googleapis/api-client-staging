@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gax-google-logging-v2 will allow you to connect to the `Google Logging API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-logging-v2 will allow you to connect to the `Stackdriver Logging API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
+.. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
 
 
 Installation
@@ -29,7 +29,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gax-google-logging-v2
+    <your-env>/bin/pip install gapic-google-logging-v2
 
 Windows
 ~~~~~~~
@@ -39,7 +39,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gax-google-logging-v2
+    <your-env>\Scripts\pip.exe install gapic-google-logging-v2
 
 
 Using the API

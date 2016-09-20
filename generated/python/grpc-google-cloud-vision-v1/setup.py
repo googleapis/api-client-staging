@@ -34,6 +34,6 @@ setuptools.setup(
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.cloud', 'google.cloud.vision', ],
+  namespace_packages=['google', 'google.cloud', 'google.cloud.grpc', 'google.cloud.grpc.vision', ],
   url='https://github.com/googleapis/googleapis'
 )

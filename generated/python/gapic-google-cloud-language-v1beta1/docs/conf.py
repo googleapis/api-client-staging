@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# gax-google-cloud-language-v1beta1 documentation build configuration file
+# gapic-google-cloud-language-v1beta1 documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -60,7 +60,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'gax-google-cloud-language-v1beta1'
+project = u'gapic-google-cloud-language-v1beta1'
 copyright = u'2016, Google'
 author = u'Google APIs'
 
@@ -214,7 +214,7 @@ html_theme = 'sphinx_rtd_theme'
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'gax-google-cloud-language-v1beta1-doc'
+htmlhelp_basename = 'gapic-google-cloud-language-v1beta1-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -236,7 +236,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'gax-google-cloud-language-v1beta1.tex', u'gax-google-cloud-language-v1beta1 Documentation',
+  (master_doc, 'gapic-google-cloud-language-v1beta1.tex', u'gapic-google-cloud-language-v1beta1 Documentation',
    author, 'manual'),
 ]
 
@@ -266,7 +266,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'gax-google-cloud-language-v1beta1', u'gax-google-cloud-language-v1beta1 Documentation',
+    (master_doc, 'gapic-google-cloud-language-v1beta1', u'gapic-google-cloud-language-v1beta1 Documentation',
      [author], 1)
 ]
 
@@ -280,8 +280,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'gax-google-cloud-language-v1beta1', u'gax-google-cloud-language-v1beta1 Documentation',
-   author, 'gax-google-cloud-language-v1beta1', 'GAX library for the google-cloud-language (api.version) service',
+  (master_doc, 'gapic-google-cloud-language-v1beta1', u'gapic-google-cloud-language-v1beta1 Documentation',
+   author, 'gapic-google-cloud-language-v1beta1', 'GAPIC library for the google-cloud-language (api.version) service',
    'APIs'),
 ]
 

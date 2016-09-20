@@ -32,7 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.language.v1beta1 import language_service_pb2
+from google.cloud.grpc.language.v1beta1 import language_service_pb2
 
 
 class LanguageServiceApi(object):
@@ -127,19 +127,19 @@ class LanguageServiceApi(object):
 
         Example:
           >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
-          >>> from google.cloud.language.v1beta1 import language_service_pb2
+          >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
           >>> response = api.analyze_sentiment(document)
 
         Args:
-          document (:class:`google.cloud.language.v1beta1.language_service_pb2.Document`): Input document. Currently, ``analyzeSentiment`` only supports English text
+          document (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.Document`): Input document. Currently, ``analyzeSentiment`` only supports English text
             (``Document.language``=\"EN\").
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.language.v1beta1.language_service_pb2.AnalyzeSentimentResponse` instance.
+          A :class:`google.cloud.grpc.language.v1beta1.language_service_pb2.AnalyzeSentimentResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -155,20 +155,20 @@ class LanguageServiceApi(object):
 
         Example:
           >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
-          >>> from google.cloud.language.v1beta1 import language_service_pb2
+          >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
           >>> encoding_type = language_service_pb2.EncodingType.NONE
           >>> response = api.analyze_entities(document, encoding_type)
 
         Args:
-          document (:class:`google.cloud.language.v1beta1.language_service_pb2.Document`): Input document.
-          encoding_type (:class:`google.cloud.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
+          document (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.Document`): Input document.
+          encoding_type (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.language.v1beta1.language_service_pb2.AnalyzeEntitiesResponse` instance.
+          A :class:`google.cloud.grpc.language.v1beta1.language_service_pb2.AnalyzeEntitiesResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -186,7 +186,7 @@ class LanguageServiceApi(object):
 
         Example:
           >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
-          >>> from google.cloud.language.v1beta1 import language_service_pb2
+          >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
           >>> api = LanguageServiceApi()
           >>> document = language_service_pb2.Document()
           >>> features = language_service_pb2.AnnotateTextRequest.Features()
@@ -194,14 +194,14 @@ class LanguageServiceApi(object):
           >>> response = api.annotate_text(document, features, encoding_type)
 
         Args:
-          document (:class:`google.cloud.language.v1beta1.language_service_pb2.Document`): Input document.
-          features (:class:`google.cloud.language.v1beta1.language_service_pb2.AnnotateTextRequest.Features`): The enabled features.
-          encoding_type (:class:`google.cloud.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
+          document (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.Document`): Input document.
+          features (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.AnnotateTextRequest.Features`): The enabled features.
+          encoding_type (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.language.v1beta1.language_service_pb2.AnnotateTextResponse` instance.
+          A :class:`google.cloud.grpc.language.v1beta1.language_service_pb2.AnnotateTextResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.

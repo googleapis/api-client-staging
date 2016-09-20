@@ -1,12 +1,12 @@
-.. gax-google-cloud-language-v1beta1 sphinx documentation master file
+.. gapic-google-cloud-language-v1beta1 sphinx documentation master file
 
 
-GAX library for the Google Language API
+GAPIC library for the Google Language API
 =============================================================================================================
 
-This is the API documentation for ``gax-google-cloud-language-v1beta1``.
+This is the API documentation for ``gapic-google-cloud-language-v1beta1``.
 
-gax-google-cloud-language-v1beta1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-language-v1beta1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Language API`_ (v1beta1) defined in the googleapis_ git repository
 
 

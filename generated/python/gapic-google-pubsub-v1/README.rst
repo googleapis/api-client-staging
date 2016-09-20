@@ -1,7 +1,7 @@
-GAX library for the Google Pubsub API
+GAPIC library for the Google Pubsub API
 ================================================================================
 
-gax-google-pubsub-v1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-pubsub-v1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Pubsub API`_ (v1) defined in the googleapis_ git repository
 
 
@@ -12,7 +12,7 @@ easy-to-use client library for the `Google Pubsub API`_ (v1) defined in the goog
 Getting started
 ---------------
 
-gax-google-pubsub-v1 will allow you to connect to the Google
+gapic-google-pubsub-v1 will allow you to connect to the Google
 Pubsub API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
@@ -61,7 +61,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gax-google-pubsub-v1
+    <your-env>/bin/pip install gapic-google-pubsub-v1
 
 
 Windows
@@ -72,7 +72,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gax-google-pubsub-v1
+    <your-env>\Scripts\pip.exe install gapic-google-pubsub-v1
 
 
 At this point you are all set to continue.
