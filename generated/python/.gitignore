@@ -1,0 +1,4 @@
+# Packaging build products
+*.pyc
+*.egg-info
+dist
