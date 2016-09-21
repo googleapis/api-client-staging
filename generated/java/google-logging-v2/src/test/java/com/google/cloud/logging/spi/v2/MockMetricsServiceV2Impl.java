@@ -21,10 +21,10 @@ import com.google.logging.v2.GetLogMetricRequest;
 import com.google.logging.v2.ListLogMetricsRequest;
 import com.google.logging.v2.ListLogMetricsResponse;
 import com.google.logging.v2.LogMetric;
-import com.google.logging.v2.MetricsServiceV2Grpc.MetricsServiceV2;
+import com.google.logging.v2.MetricsServiceV2Grpc.MetricsServiceV2ImplBase;
 import com.google.logging.v2.UpdateLogMetricRequest;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,20 +32,20 @@ import java.util.List;
 import java.util.Queue;
 
 @javax.annotation.Generated("by GAPIC")
-public class MockMetricsServiceV2Impl implements MetricsServiceV2 {
-  private ArrayList<GeneratedMessage> requests;
-  private Queue<GeneratedMessage> responses;
+public class MockMetricsServiceV2Impl extends MetricsServiceV2ImplBase {
+  private ArrayList<GeneratedMessageV3> requests;
+  private Queue<GeneratedMessageV3> responses;
 
   public MockMetricsServiceV2Impl() {
     requests = new ArrayList<>();
     responses = new LinkedList<>();
   }
 
-  public List<GeneratedMessage> getRequests() {
+  public List<GeneratedMessageV3> getRequests() {
     return requests;
   }
 
-  public void setResponses(List<GeneratedMessage> responses) {
+  public void setResponses(List<GeneratedMessageV3> responses) {
     this.responses = Lists.newLinkedList(responses);
   }
 

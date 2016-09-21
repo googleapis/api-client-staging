@@ -27,7 +27,7 @@ import com.google.devtools.clouderrorreporting.v1beta1.ListEventsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,7 +91,7 @@ public class ErrorStatsServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllErrorGroupStats(errorGroupStats)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockErrorStatsService.setResponses(expectedResponses);
 
@@ -105,7 +105,7 @@ public class ErrorStatsServiceTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getErrorGroupStatsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockErrorStatsService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockErrorStatsService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListGroupStatsRequest actualRequest = (ListGroupStatsRequest) actualRequests.get(0);
 
@@ -124,7 +124,7 @@ public class ErrorStatsServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllErrorEvents(errorEvents)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockErrorStatsService.setResponses(expectedResponses);
 
@@ -138,7 +138,7 @@ public class ErrorStatsServiceTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getErrorEventsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockErrorStatsService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockErrorStatsService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListEventsRequest actualRequest = (ListEventsRequest) actualRequests.get(0);
 
@@ -150,7 +150,7 @@ public class ErrorStatsServiceTest {
   @SuppressWarnings("all")
   public void deleteEventsTest() {
     DeleteEventsResponse expectedResponse = DeleteEventsResponse.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockErrorStatsService.setResponses(expectedResponses);
 
@@ -159,7 +159,7 @@ public class ErrorStatsServiceTest {
     DeleteEventsResponse actualResponse = api.deleteEvents(formattedProjectName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockErrorStatsService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockErrorStatsService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteEventsRequest actualRequest = (DeleteEventsRequest) actualRequests.get(0);
 

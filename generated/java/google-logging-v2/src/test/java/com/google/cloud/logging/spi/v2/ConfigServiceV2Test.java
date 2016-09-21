@@ -26,7 +26,7 @@ import com.google.logging.v2.ListSinksResponse;
 import com.google.logging.v2.LogSink;
 import com.google.logging.v2.UpdateSinkRequest;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +87,7 @@ public class ConfigServiceV2Test {
     List<LogSink> sinks = Arrays.asList(sinksElement);
     ListSinksResponse expectedResponse =
         ListSinksResponse.newBuilder().setNextPageToken(nextPageToken).addAllSinks(sinks).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
@@ -100,7 +100,7 @@ public class ConfigServiceV2Test {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSinksList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockConfigServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockConfigServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListSinksRequest actualRequest = (ListSinksRequest) actualRequests.get(0);
 
@@ -115,7 +115,7 @@ public class ConfigServiceV2Test {
     String filter = "filter-1274492040";
     LogSink expectedResponse =
         LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
@@ -124,7 +124,7 @@ public class ConfigServiceV2Test {
     LogSink actualResponse = api.getSink(formattedSinkName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockConfigServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockConfigServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetSinkRequest actualRequest = (GetSinkRequest) actualRequests.get(0);
 
@@ -139,7 +139,7 @@ public class ConfigServiceV2Test {
     String filter = "filter-1274492040";
     LogSink expectedResponse =
         LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
@@ -149,7 +149,7 @@ public class ConfigServiceV2Test {
     LogSink actualResponse = api.createSink(formattedParent, sink);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockConfigServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockConfigServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CreateSinkRequest actualRequest = (CreateSinkRequest) actualRequests.get(0);
 
@@ -165,7 +165,7 @@ public class ConfigServiceV2Test {
     String filter = "filter-1274492040";
     LogSink expectedResponse =
         LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
@@ -175,7 +175,7 @@ public class ConfigServiceV2Test {
     LogSink actualResponse = api.updateSink(formattedSinkName, sink);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockConfigServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockConfigServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     UpdateSinkRequest actualRequest = (UpdateSinkRequest) actualRequests.get(0);
 
@@ -187,7 +187,7 @@ public class ConfigServiceV2Test {
   @SuppressWarnings("all")
   public void deleteSinkTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
 
@@ -195,7 +195,7 @@ public class ConfigServiceV2Test {
 
     api.deleteSink(formattedSinkName);
 
-    List<GeneratedMessage> actualRequests = mockConfigServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockConfigServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteSinkRequest actualRequest = (DeleteSinkRequest) actualRequests.get(0);
 

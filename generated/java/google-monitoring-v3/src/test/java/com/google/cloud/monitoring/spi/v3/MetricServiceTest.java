@@ -31,7 +31,7 @@ import com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest;
 import com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse;
 import com.google.monitoring.v3.TimeSeries;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -97,7 +97,7 @@ public class MetricServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllResourceDescriptors(resourceDescriptors)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -114,7 +114,7 @@ public class MetricServiceTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getResourceDescriptorsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListMonitoredResourceDescriptorsRequest actualRequest =
         (ListMonitoredResourceDescriptorsRequest) actualRequests.get(0);
@@ -139,7 +139,7 @@ public class MetricServiceTest {
             .setDisplayName(displayName)
             .setDescription(description)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -150,7 +150,7 @@ public class MetricServiceTest {
     MonitoredResourceDescriptor actualResponse = api.getMonitoredResourceDescriptor(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetMonitoredResourceDescriptorRequest actualRequest =
         (GetMonitoredResourceDescriptorRequest) actualRequests.get(0);
@@ -169,7 +169,7 @@ public class MetricServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllMetricDescriptors(metricDescriptors)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -183,7 +183,7 @@ public class MetricServiceTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getMetricDescriptorsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListMetricDescriptorsRequest actualRequest =
         (ListMetricDescriptorsRequest) actualRequests.get(0);
@@ -209,7 +209,7 @@ public class MetricServiceTest {
             .setDescription(description)
             .setDisplayName(displayName)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -219,7 +219,7 @@ public class MetricServiceTest {
     MetricDescriptor actualResponse = api.getMetricDescriptor(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetMetricDescriptorRequest actualRequest = (GetMetricDescriptorRequest) actualRequests.get(0);
 
@@ -242,7 +242,7 @@ public class MetricServiceTest {
             .setDescription(description)
             .setDisplayName(displayName)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -252,7 +252,7 @@ public class MetricServiceTest {
     MetricDescriptor actualResponse = api.createMetricDescriptor(formattedName, metricDescriptor);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CreateMetricDescriptorRequest actualRequest =
         (CreateMetricDescriptorRequest) actualRequests.get(0);
@@ -265,7 +265,7 @@ public class MetricServiceTest {
   @SuppressWarnings("all")
   public void deleteMetricDescriptorTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -274,7 +274,7 @@ public class MetricServiceTest {
 
     api.deleteMetricDescriptor(formattedName);
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteMetricDescriptorRequest actualRequest =
         (DeleteMetricDescriptorRequest) actualRequests.get(0);
@@ -286,7 +286,7 @@ public class MetricServiceTest {
   @SuppressWarnings("all")
   public void createTimeSeriesTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricService.setResponses(expectedResponses);
 
@@ -295,7 +295,7 @@ public class MetricServiceTest {
 
     api.createTimeSeries(formattedName, timeSeries);
 
-    List<GeneratedMessage> actualRequests = mockMetricService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CreateTimeSeriesRequest actualRequest = (CreateTimeSeriesRequest) actualRequests.get(0);
 
