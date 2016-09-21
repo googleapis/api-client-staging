@@ -25,7 +25,7 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import com.google.pubsub.v1.AcknowledgeRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
 import com.google.pubsub.v1.GetSubscriptionRequest;
@@ -100,7 +100,7 @@ public class SubscriberTest {
             .setTopic(formattedTopic2)
             .setAckDeadlineSeconds(ackDeadlineSeconds2)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -113,7 +113,7 @@ public class SubscriberTest {
         api.createSubscription(formattedName, formattedTopic, pushConfig, ackDeadlineSeconds);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     Subscription actualRequest = (Subscription) actualRequests.get(0);
 
@@ -135,7 +135,7 @@ public class SubscriberTest {
             .setTopic(topic)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -145,7 +145,7 @@ public class SubscriberTest {
     Subscription actualResponse = api.getSubscription(formattedSubscription);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetSubscriptionRequest actualRequest = (GetSubscriptionRequest) actualRequests.get(0);
 
@@ -163,7 +163,7 @@ public class SubscriberTest {
             .setNextPageToken(nextPageToken)
             .addAllSubscriptions(subscriptions)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -176,7 +176,7 @@ public class SubscriberTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListSubscriptionsRequest actualRequest = (ListSubscriptionsRequest) actualRequests.get(0);
 
@@ -187,7 +187,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void deleteSubscriptionTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -196,7 +196,7 @@ public class SubscriberTest {
 
     api.deleteSubscription(formattedSubscription);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteSubscriptionRequest actualRequest = (DeleteSubscriptionRequest) actualRequests.get(0);
 
@@ -207,7 +207,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void modifyAckDeadlineTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -218,7 +218,7 @@ public class SubscriberTest {
 
     api.modifyAckDeadline(formattedSubscription, ackIds, ackDeadlineSeconds);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ModifyAckDeadlineRequest actualRequest = (ModifyAckDeadlineRequest) actualRequests.get(0);
 
@@ -231,7 +231,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void acknowledgeTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -241,7 +241,7 @@ public class SubscriberTest {
 
     api.acknowledge(formattedSubscription, ackIds);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     AcknowledgeRequest actualRequest = (AcknowledgeRequest) actualRequests.get(0);
 
@@ -253,7 +253,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void pullTest() {
     PullResponse expectedResponse = PullResponse.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -265,7 +265,7 @@ public class SubscriberTest {
     PullResponse actualResponse = api.pull(formattedSubscription, returnImmediately, maxMessages);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     PullRequest actualRequest = (PullRequest) actualRequests.get(0);
 
@@ -278,7 +278,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void modifyPushConfigTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
@@ -288,7 +288,7 @@ public class SubscriberTest {
 
     api.modifyPushConfig(formattedSubscription, pushConfig);
 
-    List<GeneratedMessage> actualRequests = mockSubscriber.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ModifyPushConfigRequest actualRequest = (ModifyPushConfigRequest) actualRequests.get(0);
 
@@ -302,7 +302,7 @@ public class SubscriberTest {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -312,7 +312,7 @@ public class SubscriberTest {
     Policy actualResponse = api.setIamPolicy(formattedResource, policy);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     SetIamPolicyRequest actualRequest = (SetIamPolicyRequest) actualRequests.get(0);
 
@@ -326,7 +326,7 @@ public class SubscriberTest {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -335,7 +335,7 @@ public class SubscriberTest {
     Policy actualResponse = api.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetIamPolicyRequest actualRequest = (GetIamPolicyRequest) actualRequests.get(0);
 
@@ -346,7 +346,7 @@ public class SubscriberTest {
   @SuppressWarnings("all")
   public void testIamPermissionsTest() {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -357,7 +357,7 @@ public class SubscriberTest {
         api.testIamPermissions(formattedResource, permissions);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     TestIamPermissionsRequest actualRequest = (TestIamPermissionsRequest) actualRequests.get(0);
 

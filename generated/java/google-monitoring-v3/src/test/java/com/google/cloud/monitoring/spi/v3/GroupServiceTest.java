@@ -25,12 +25,10 @@ import com.google.monitoring.v3.GetGroupRequest;
 import com.google.monitoring.v3.Group;
 import com.google.monitoring.v3.ListGroupMembersRequest;
 import com.google.monitoring.v3.ListGroupMembersResponse;
-import com.google.monitoring.v3.ListGroupsRequest;
-import com.google.monitoring.v3.ListGroupsResponse;
 import com.google.monitoring.v3.TimeInterval;
 import com.google.monitoring.v3.UpdateGroupRequest;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,40 +83,6 @@ public class GroupServiceTest {
 
   @Test
   @SuppressWarnings("all")
-  public void listGroupsTest() {
-    String nextPageToken = "";
-    Group groupElement = Group.newBuilder().build();
-    List<Group> group = Arrays.asList(groupElement);
-    ListGroupsResponse expectedResponse =
-        ListGroupsResponse.newBuilder().setNextPageToken(nextPageToken).addAllGroup(group).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
-
-    String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
-    String childrenOfGroup = "childrenOfGroup324439127";
-    String ancestorsOfGroup = "ancestorsOfGroup-1982133642";
-    String descendantsOfGroup = "descendantsOfGroup-1569021664";
-
-    PagedListResponse<ListGroupsRequest, ListGroupsResponse, Group> pagedListResponse =
-        api.listGroups(formattedName, childrenOfGroup, ancestorsOfGroup, descendantsOfGroup);
-
-    List<Group> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
-    Assert.assertEquals(1, resources.size());
-    Assert.assertEquals(expectedResponse.getGroupList().get(0), resources.get(0));
-
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
-    Assert.assertEquals(1, actualRequests.size());
-    ListGroupsRequest actualRequest = (ListGroupsRequest) actualRequests.get(0);
-
-    Assert.assertEquals(formattedName, actualRequest.getName());
-    Assert.assertEquals(childrenOfGroup, actualRequest.getChildrenOfGroup());
-    Assert.assertEquals(ancestorsOfGroup, actualRequest.getAncestorsOfGroup());
-    Assert.assertEquals(descendantsOfGroup, actualRequest.getDescendantsOfGroup());
-  }
-
-  @Test
-  @SuppressWarnings("all")
   public void getGroupTest() {
     String formattedName2 = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
     String displayName = "displayName1615086568";
@@ -133,7 +97,7 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockGroupService.setResponses(expectedResponses);
 
@@ -142,7 +106,7 @@ public class GroupServiceTest {
     Group actualResponse = api.getGroup(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetGroupRequest actualRequest = (GetGroupRequest) actualRequests.get(0);
 
@@ -165,7 +129,7 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockGroupService.setResponses(expectedResponses);
 
@@ -176,7 +140,7 @@ public class GroupServiceTest {
     Group actualResponse = api.createGroup(formattedName, group, validateOnly);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CreateGroupRequest actualRequest = (CreateGroupRequest) actualRequests.get(0);
 
@@ -201,7 +165,7 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockGroupService.setResponses(expectedResponses);
 
@@ -211,7 +175,7 @@ public class GroupServiceTest {
     Group actualResponse = api.updateGroup(group, validateOnly);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     UpdateGroupRequest actualRequest = (UpdateGroupRequest) actualRequests.get(0);
 
@@ -223,7 +187,7 @@ public class GroupServiceTest {
   @SuppressWarnings("all")
   public void deleteGroupTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockGroupService.setResponses(expectedResponses);
 
@@ -231,7 +195,7 @@ public class GroupServiceTest {
 
     api.deleteGroup(formattedName);
 
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteGroupRequest actualRequest = (DeleteGroupRequest) actualRequests.get(0);
 
@@ -251,7 +215,7 @@ public class GroupServiceTest {
             .setTotalSize(totalSize)
             .addAllMembers(members)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockGroupService.setResponses(expectedResponses);
 
@@ -266,7 +230,7 @@ public class GroupServiceTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getMembersList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockGroupService.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListGroupMembersRequest actualRequest = (ListGroupMembersRequest) actualRequests.get(0);
 

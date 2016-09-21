@@ -26,7 +26,7 @@ import com.google.logging.v2.ListLogMetricsResponse;
 import com.google.logging.v2.LogMetric;
 import com.google.logging.v2.UpdateLogMetricRequest;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,7 +90,7 @@ public class MetricsServiceV2Test {
             .setNextPageToken(nextPageToken)
             .addAllMetrics(metrics)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricsServiceV2.setResponses(expectedResponses);
 
@@ -103,7 +103,7 @@ public class MetricsServiceV2Test {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getMetricsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockMetricsServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricsServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListLogMetricsRequest actualRequest = (ListLogMetricsRequest) actualRequests.get(0);
 
@@ -118,7 +118,7 @@ public class MetricsServiceV2Test {
     String filter = "filter-1274492040";
     LogMetric expectedResponse =
         LogMetric.newBuilder().setName(name).setDescription(description).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricsServiceV2.setResponses(expectedResponses);
 
@@ -127,7 +127,7 @@ public class MetricsServiceV2Test {
     LogMetric actualResponse = api.getLogMetric(formattedMetricName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricsServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricsServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetLogMetricRequest actualRequest = (GetLogMetricRequest) actualRequests.get(0);
 
@@ -142,7 +142,7 @@ public class MetricsServiceV2Test {
     String filter = "filter-1274492040";
     LogMetric expectedResponse =
         LogMetric.newBuilder().setName(name).setDescription(description).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricsServiceV2.setResponses(expectedResponses);
 
@@ -152,7 +152,7 @@ public class MetricsServiceV2Test {
     LogMetric actualResponse = api.createLogMetric(formattedParent, metric);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricsServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricsServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     CreateLogMetricRequest actualRequest = (CreateLogMetricRequest) actualRequests.get(0);
 
@@ -168,7 +168,7 @@ public class MetricsServiceV2Test {
     String filter = "filter-1274492040";
     LogMetric expectedResponse =
         LogMetric.newBuilder().setName(name).setDescription(description).setFilter(filter).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricsServiceV2.setResponses(expectedResponses);
 
@@ -178,7 +178,7 @@ public class MetricsServiceV2Test {
     LogMetric actualResponse = api.updateLogMetric(formattedMetricName, metric);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockMetricsServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricsServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     UpdateLogMetricRequest actualRequest = (UpdateLogMetricRequest) actualRequests.get(0);
 
@@ -190,7 +190,7 @@ public class MetricsServiceV2Test {
   @SuppressWarnings("all")
   public void deleteLogMetricTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockMetricsServiceV2.setResponses(expectedResponses);
 
@@ -198,7 +198,7 @@ public class MetricsServiceV2Test {
 
     api.deleteLogMetric(formattedMetricName);
 
-    List<GeneratedMessage> actualRequests = mockMetricsServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockMetricsServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteLogMetricRequest actualRequest = (DeleteLogMetricRequest) actualRequests.get(0);
 

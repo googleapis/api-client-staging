@@ -245,61 +245,8 @@ public class GroupServiceApi implements AutoCloseable {
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
-   *   String childrenOfGroup = "";
-   *   String ancestorsOfGroup = "";
-   *   String descendantsOfGroup = "";
-   *   for (Group element : groupServiceApi.listGroups(formattedName, childrenOfGroup, ancestorsOfGroup, descendantsOfGroup).iterateAllElements()) {
-   *     // doThingsWith(element);
-   *   }
-   * }
-   * </code></pre>
-   *
-   * @param name The project whose groups are to be listed. The format is
-   * `"projects/{project_id_or_number}"`.
-   * @param childrenOfGroup A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-   * Returns groups whose `parentName` field contains the group
-   * name.  If no groups have this parent, the results are empty.
-   * @param ancestorsOfGroup A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-   * Returns groups that are ancestors of the specified group.
-   * The groups are returned in order, starting with the immediate parent and
-   * ending with the most distant ancestor.  If the specified group has no
-   * immediate parent, the results are empty.
-   * @param descendantsOfGroup A group name: `"projects/{project_id_or_number}/groups/{group_id}"`.
-   * Returns the descendants of the specified group.  This is a superset of
-   * the results returned by the `childrenOfGroup` filter, and includes
-   * children-of-children, and so forth.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
-   */
-  public final PagedListResponse<ListGroupsRequest, ListGroupsResponse, Group> listGroups(
-      String name, String childrenOfGroup, String ancestorsOfGroup, String descendantsOfGroup) {
-    PROJECT_PATH_TEMPLATE.validate(name, "listGroups");
-    ListGroupsRequest request =
-        ListGroupsRequest.newBuilder()
-            .setName(name)
-            .setChildrenOfGroup(childrenOfGroup)
-            .setAncestorsOfGroup(ancestorsOfGroup)
-            .setDescendantsOfGroup(descendantsOfGroup)
-            .build();
-    return listGroups(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Lists the existing groups. The project ID in the URL path must refer
-   * to a Stackdriver account.
-   *
-   * Sample code:
-   * <pre><code>
-   * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
-   *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
-   *   String childrenOfGroup = "";
-   *   String ancestorsOfGroup = "";
-   *   String descendantsOfGroup = "";
    *   ListGroupsRequest request = ListGroupsRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setChildrenOfGroup(childrenOfGroup)
-   *     .setAncestorsOfGroup(ancestorsOfGroup)
-   *     .setDescendantsOfGroup(descendantsOfGroup)
    *     .build();
    *   for (Group element : groupServiceApi.listGroups(request).iterateAllElements()) {
    *     // doThingsWith(element);
@@ -324,14 +271,8 @@ public class GroupServiceApi implements AutoCloseable {
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
-   *   String childrenOfGroup = "";
-   *   String ancestorsOfGroup = "";
-   *   String descendantsOfGroup = "";
    *   ListGroupsRequest request = ListGroupsRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setChildrenOfGroup(childrenOfGroup)
-   *     .setAncestorsOfGroup(ancestorsOfGroup)
-   *     .setDescendantsOfGroup(descendantsOfGroup)
    *     .build();
    *   ListenableFuture&lt;PagedListResponse&lt;ListGroupsRequest,ListGroupsResponse,Group&gt;&gt; future = groupServiceApi.listGroupsPagedCallable().futureCall(request);
    *   // Do something
@@ -356,14 +297,8 @@ public class GroupServiceApi implements AutoCloseable {
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
-   *   String childrenOfGroup = "";
-   *   String ancestorsOfGroup = "";
-   *   String descendantsOfGroup = "";
    *   ListGroupsRequest request = ListGroupsRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setChildrenOfGroup(childrenOfGroup)
-   *     .setAncestorsOfGroup(ancestorsOfGroup)
-   *     .setDescendantsOfGroup(descendantsOfGroup)
    *     .build();
    *   while (true) {
    *     ListGroupsResponse response = groupServiceApi.listGroupsCallable().call(request);
