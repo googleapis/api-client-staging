@@ -10,14 +10,14 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'oauth2client>=1.4.11, <2.0.0',
+  'oauth2client>=1.4.11',
   'grpcio>=1.0.0, <2.0.0',
   'googleapis-common-protos[grpc]>=1.3.4, <2.0.0'
 ]
 
 setuptools.setup(
   name='grpc-google-cloud-language-v1beta1',
-  version='0.9.2',
+  version='0.9.3',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
