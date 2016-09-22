@@ -24,7 +24,7 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return (gaxGrpc);
+  return iamApi(gaxGrpc);
 }
 v1.SERVICE_ADDRESS = iamApi.SERVICE_ADDRESS;
 v1.ALL_SCOPES = iamApi.ALL_SCOPES;
