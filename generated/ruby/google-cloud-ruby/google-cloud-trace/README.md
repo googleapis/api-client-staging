@@ -2,17 +2,17 @@ Google Cloudtrace API for Ruby
 =================================================
 
 google-cloud-trace-v1 uses [Google API extensions][google-gax] to provide an
-easy-to-use client library for the [Google Cloudtrace API][] (v1) defined in the [googleapis][] git repository
+easy-to-use client library for the [Google Stackdriver Trace API][] (v1) defined in the [googleapis][] git repository
 
 
 [googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/devtools/cloudtrace/v1
 [google-gax]: https://github.com/googleapis/gax-ruby
-[Google Cloudtrace API]: https://developers.google.com/apis-explorer/#p/cloudtrace/v1/
+[Google Stackdriver Trace API]: https://developers.google.com/apis-explorer/#p/cloudtrace/v1/
 
 Getting started
 ---------------
 
-google-cloud-trace-v1 will allow you to connect to the [Google Cloudtrace API][] and access all its methods.
+google-cloud-trace-v1 will allow you to connect to the [Google Stackdriver Trace API][] and access all its methods.
 
 In order to achieve so you need to set up authentication as well as install the library locally.
 

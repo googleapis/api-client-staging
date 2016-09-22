@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 Gem::Specification.new do |s|
-  s.name          = 'google-cloud-trace-v1'
+  s.name          = 'stackdriver-trace-v1'
   s.version       = '0.6.8'
 
   s.authors       = ['Google Inc']
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.0.0'
-  s.summary       = 'Google client library for the Cloudtrace service'
+  s.summary       = 'Google client library for the Stackdriver Trace service'
 
   s.add_dependency 'google-gax', '~> 0.5.1'
   s.add_dependency 'grpc', '~> 1.0'
