@@ -1,0 +1,21 @@
+{
+  "url": "https://github.com/googleapis/googleapis",
+  "name": "@google-cloud/iam",
+  "version": "0.7.1",
+  "author": "Google Inc.",
+  "description": "Admin library for Node.js",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "arguejs": "^0.2.3",
+    "google-proto-files": "^0.7.0",
+    "google-gax": "^0.6.0",
+    "extend": "^3.0.0"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=0.12.0"
+  }
+}
