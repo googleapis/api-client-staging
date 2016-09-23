@@ -1,4 +1,4 @@
-GAX library for the Google Cloudtrace API
+GAPIC library for the Google Cloudtrace API
 ================================================================================
 
 gax-google-devtools-cloudtrace-v1 uses google-gax_ (Google API extensions) to provide an

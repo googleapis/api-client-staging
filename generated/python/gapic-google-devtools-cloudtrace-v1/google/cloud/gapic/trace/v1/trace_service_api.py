@@ -32,6 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.gapic.trace.v1 import enums
 from google.devtools.cloudtrace.v1 import trace_pb2
 from google.protobuf import timestamp_pb2
 
@@ -82,10 +83,11 @@ class TraceServiceApi(object):
         Args:
           service_path (string): The domain name of the API remote host.
           port (int): The port on which to connect to the remote host.
-          channel (:class:`grpc.beta.implementations.Channel`): A ``Channel``
-            object through which to make calls.
-          ssl_creds (:class:`grpc.beta.implementations.ClientCredentials`):
-            A `ClientCredentials` for use with an SSL-enabled channel.
+          channel (:class:`grpc.Channel`): A ``Channel`` instance through
+            which to make calls.
+          ssl_creds (:class:`grpc.ChannelCredentials`): A
+            ``ChannelCredentials`` instance for use with an SSL-enabled
+            channel.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
@@ -117,22 +119,83 @@ class TraceServiceApi(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
-            trace_pb2.beta_create_TraceService_stub,
+        self.trace_service_stub = config.create_stub(
+            trace_pb2.TraceServiceStub,
             service_path,
             port,
             ssl_creds=ssl_creds,
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
-        self._list_traces = api_callable.create_api_call(
-            self.stub.ListTraces, settings=defaults['list_traces'])
-        self._get_trace = api_callable.create_api_call(
-            self.stub.GetTrace, settings=defaults['get_trace'])
+
         self._patch_traces = api_callable.create_api_call(
-            self.stub.PatchTraces, settings=defaults['patch_traces'])
+            self.trace_service_stub.PatchTraces,
+            settings=defaults['patch_traces'])
+        self._get_trace = api_callable.create_api_call(
+            self.trace_service_stub.GetTrace, settings=defaults['get_trace'])
+        self._list_traces = api_callable.create_api_call(
+            self.trace_service_stub.ListTraces,
+            settings=defaults['list_traces'])
 
     # Service calls
+    def patch_traces(self, project_id, traces, options=None):
+        """
+        Sends new traces to Cloud Trace or updates existing traces. If the ID of
+        a trace that you send matches that of an existing trace, any fields
+        in the existing trace and its spans are overwritten by the provided values,
+        and any new fields provided are merged with the existing trace data. If the
+        ID does not match, a new trace is created.
+
+        Example:
+          >>> from google.cloud.gapic.trace.v1 import trace_service_api
+          >>> from google.devtools.cloudtrace.v1 import trace_pb2
+          >>> api = trace_service_api.TraceServiceApi()
+          >>> project_id = ''
+          >>> traces = trace_pb2.Traces()
+          >>> api.patch_traces(project_id, traces)
+
+        Args:
+          project_id (string): ID of the Cloud project where the trace data is stored.
+          traces (:class:`google.devtools.cloudtrace.v1.trace_pb2.Traces`): The body of the message.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = trace_pb2.PatchTracesRequest(
+            project_id=project_id, traces=traces)
+        self._patch_traces(request, options)
+
+    def get_trace(self, project_id, trace_id, options=None):
+        """
+        Gets a single trace by its ID.
+
+        Example:
+          >>> from google.cloud.gapic.trace.v1 import trace_service_api
+          >>> api = trace_service_api.TraceServiceApi()
+          >>> project_id = ''
+          >>> trace_id = ''
+          >>> response = api.get_trace(project_id, trace_id)
+
+        Args:
+          project_id (string): ID of the Cloud project where the trace data is stored.
+          trace_id (string): ID of the trace to return.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.devtools.cloudtrace.v1.trace_pb2.Trace` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = trace_pb2.GetTraceRequest(
+            project_id=project_id, trace_id=trace_id)
+        return self._get_trace(request, options)
+
     def list_traces(self,
                     project_id,
                     view=None,
@@ -146,9 +209,9 @@ class TraceServiceApi(object):
         Returns of a list of traces that match the specified filter conditions.
 
         Example:
-          >>> from google.cloud.trace.v1.trace_service_api import TraceServiceApi
+          >>> from google.cloud.gapic.trace.v1 import trace_service_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = TraceServiceApi()
+          >>> api = trace_service_api.TraceServiceApi()
           >>> project_id = ''
           >>>
           >>> # Iterate over all results
@@ -164,7 +227,7 @@ class TraceServiceApi(object):
 
         Args:
           project_id (string): ID of the Cloud project where the trace data is stored.
-          view (:class:`google.devtools.cloudtrace.v1.trace_pb2.ListTracesRequest.ViewType`): Type of data returned for traces in the list. Optional. Default is
+          view (enum :class:`google.cloud.gapic.trace.v1.enums.ViewType`): Type of data returned for traces in the list. Optional. Default is
             ``MINIMAL``.
           page_size (int): Maximum number of traces to return. If not specified or <= 0, the
             implementation selects a reasonable value.  The implementation may
@@ -198,9 +261,10 @@ class TraceServiceApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         if view is None:
-            view = trace_pb2.ListTracesRequest.ViewType.VIEW_TYPE_UNSPECIFIED
+            view = enums.ViewType.VIEW_TYPE_UNSPECIFIED
         if start_time is None:
             start_time = timestamp_pb2.Timestamp()
         if end_time is None:
@@ -214,59 +278,3 @@ class TraceServiceApi(object):
             filter=filter_,
             order_by=order_by)
         return self._list_traces(request, options)
-
-    def get_trace(self, project_id, trace_id, options=None):
-        """
-        Gets a single trace by its ID.
-
-        Example:
-          >>> from google.cloud.trace.v1.trace_service_api import TraceServiceApi
-          >>> api = TraceServiceApi()
-          >>> project_id = ''
-          >>> trace_id = ''
-          >>> response = api.get_trace(project_id, trace_id)
-
-        Args:
-          project_id (string): ID of the Cloud project where the trace data is stored.
-          trace_id (string): ID of the trace to return.
-          options (:class:`google.gax.CallOptions`): Overrides the default
-            settings for this call, e.g, timeout, retries etc.
-
-        Returns:
-          A :class:`google.devtools.cloudtrace.v1.trace_pb2.Trace` instance.
-
-        Raises:
-          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
-        """
-        request = trace_pb2.GetTraceRequest(
-            project_id=project_id, trace_id=trace_id)
-        return self._get_trace(request, options)
-
-    def patch_traces(self, project_id, traces, options=None):
-        """
-        Sends new traces to Cloud Trace or updates existing traces. If the ID of
-        a trace that you send matches that of an existing trace, any fields
-        in the existing trace and its spans are overwritten by the provided values,
-        and any new fields provided are merged with the existing trace data. If the
-        ID does not match, a new trace is created.
-
-        Example:
-          >>> from google.cloud.trace.v1.trace_service_api import TraceServiceApi
-          >>> from google.devtools.cloudtrace.v1 import trace_pb2
-          >>> api = TraceServiceApi()
-          >>> project_id = ''
-          >>> traces = trace_pb2.Traces()
-          >>> api.patch_traces(project_id, traces)
-
-        Args:
-          project_id (string): ID of the Cloud project where the trace data is stored.
-          traces (:class:`google.devtools.cloudtrace.v1.trace_pb2.Traces`): The body of the message.
-          options (:class:`google.gax.CallOptions`): Overrides the default
-            settings for this call, e.g, timeout, retries etc.
-
-        Raises:
-          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
-        """
-        request = trace_pb2.PatchTracesRequest(
-            project_id=project_id, traces=traces)
-        self._patch_traces(request, options)
