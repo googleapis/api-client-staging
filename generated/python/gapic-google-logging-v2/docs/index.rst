@@ -21,6 +21,7 @@ APIs
 .. autosummary::
 
    google.cloud.gapic.logging.v2.config_service_v2_api
+   google.cloud.gapic.logging.v2.enums
    google.cloud.gapic.logging.v2.logging_service_v2_api
    google.cloud.gapic.logging.v2.metrics_service_v2_api
 

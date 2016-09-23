@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.4, <2.0.0',
-    'google-gax>=0.13.0, <0.14.0',
-    'grpc-google-pubsub-v1>=0.9.2, <0.10.0',
-    'oauth2client>=1.4.11',
+    'googleapis-common-protos>=1.3.4, <2.0.0dev',
+    'google-gax>=0.14.1, <0.15.0dev',
+    'grpc-google-pubsub-v1>=0.10.0, <0.11.0dev',
+    'oauth2client>=3.0.0, <4.0.0dev',
 ]
 
 setup(
     name='gapic-google-pubsub-v1',
-    version='0.9.3',
+    version='0.10.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
@@ -26,7 +26,11 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
     description='GAPIC library for the Google Pubsub API',

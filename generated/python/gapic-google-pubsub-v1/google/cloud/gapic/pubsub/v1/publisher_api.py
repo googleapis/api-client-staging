@@ -32,6 +32,8 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.iam.v1 import iam_policy_pb2
+from google.iam.v1 import policy_pb2
 from google.pubsub.v1 import pubsub_pb2
 
 _BundleDesc = google.gax.BundleDescriptor
@@ -183,7 +185,15 @@ class PublisherApi(object):
             kwargs={'metadata': metadata},
             bundle_descriptors=self._BUNDLE_DESCRIPTORS,
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
+        self.iam_policy_stub = config.create_stub(
+            iam_policy_pb2.IAMPolicyStub,
+            service_path,
+            port,
+            ssl_creds=ssl_creds,
+            channel=channel,
+            metadata_transformer=metadata_transformer,
+            scopes=scopes)
+        self.publisher_stub = config.create_stub(
             pubsub_pb2.PublisherStub,
             service_path,
             port,
@@ -191,19 +201,29 @@ class PublisherApi(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._create_topic = api_callable.create_api_call(
-            self.stub.CreateTopic, settings=defaults['create_topic'])
+            self.publisher_stub.CreateTopic, settings=defaults['create_topic'])
         self._publish = api_callable.create_api_call(
-            self.stub.Publish, settings=defaults['publish'])
+            self.publisher_stub.Publish, settings=defaults['publish'])
         self._get_topic = api_callable.create_api_call(
-            self.stub.GetTopic, settings=defaults['get_topic'])
+            self.publisher_stub.GetTopic, settings=defaults['get_topic'])
         self._list_topics = api_callable.create_api_call(
-            self.stub.ListTopics, settings=defaults['list_topics'])
+            self.publisher_stub.ListTopics, settings=defaults['list_topics'])
         self._list_topic_subscriptions = api_callable.create_api_call(
-            self.stub.ListTopicSubscriptions,
+            self.publisher_stub.ListTopicSubscriptions,
             settings=defaults['list_topic_subscriptions'])
         self._delete_topic = api_callable.create_api_call(
-            self.stub.DeleteTopic, settings=defaults['delete_topic'])
+            self.publisher_stub.DeleteTopic, settings=defaults['delete_topic'])
+        self._set_iam_policy = api_callable.create_api_call(
+            self.iam_policy_stub.SetIamPolicy,
+            settings=defaults['set_iam_policy'])
+        self._get_iam_policy = api_callable.create_api_call(
+            self.iam_policy_stub.GetIamPolicy,
+            settings=defaults['get_iam_policy'])
+        self._test_iam_permissions = api_callable.create_api_call(
+            self.iam_policy_stub.TestIamPermissions,
+            settings=defaults['test_iam_permissions'])
 
     # Service calls
     def create_topic(self, name, options=None):
@@ -211,8 +231,8 @@ class PublisherApi(object):
         Creates the given topic with the given name.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
-          >>> api = PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> api = publisher_api.PublisherApi()
           >>> name = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.create_topic(name)
 
@@ -231,6 +251,7 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.Topic(name=name)
         return self._create_topic(request, options)
@@ -242,9 +263,9 @@ class PublisherApi(object):
         either a non-empty data field, or at least one attribute.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
           >>> from google.pubsub.v1 import pubsub_pb2
-          >>> api = PublisherApi()
+          >>> api = publisher_api.PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> data = ''
           >>> messages_element = pubsub_pb2.PubsubMessage(data)
@@ -262,6 +283,7 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.PublishRequest(topic=topic, messages=messages)
         return self._publish(request, options)
@@ -271,8 +293,8 @@ class PublisherApi(object):
         Gets the configuration of a topic.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
-          >>> api = PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> api = publisher_api.PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.get_topic(topic)
 
@@ -286,6 +308,7 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.GetTopicRequest(topic=topic)
         return self._get_topic(request, options)
@@ -295,9 +318,9 @@ class PublisherApi(object):
         Lists matching topics.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = PublisherApi()
+          >>> api = publisher_api.PublisherApi()
           >>> project = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -329,6 +352,7 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.ListTopicsRequest(
             project=project, page_size=page_size)
@@ -339,9 +363,9 @@ class PublisherApi(object):
         Lists the name of the subscriptions for this topic.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = PublisherApi()
+          >>> api = publisher_api.PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>>
           >>> # Iterate over all results
@@ -373,6 +397,7 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.ListTopicSubscriptionsRequest(
             topic=topic, page_size=page_size)
@@ -387,8 +412,8 @@ class PublisherApi(object):
         not deleted, but their ``topic`` field is set to ``_deleted-topic_``.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.publisher_api import PublisherApi
-          >>> api = PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> api = publisher_api.PublisherApi()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> api.delete_topic(topic)
 
@@ -399,6 +424,98 @@ class PublisherApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.DeleteTopicRequest(topic=topic)
         self._delete_topic(request, options)
+
+    def set_iam_policy(self, resource, policy, options=None):
+        """
+        Sets the access control policy on the specified resource. Replaces any
+        existing policy.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> from google.iam.v1 import policy_pb2
+          >>> api = publisher_api.PublisherApi()
+          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> policy = policy_pb2.Policy()
+          >>> response = api.set_iam_policy(resource, policy)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy is being specified.
+            Resource is usually specified as a path, such as,
+            projects/{project}/zones/{zone}/disks/{disk}.
+          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the 'resource'. The size of
+            the policy is limited to a few 10s of KB. An empty policy is in general a
+            valid policy but certain services (like Projects) might reject them.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.policy_pb2.Policy` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.SetIamPolicyRequest(
+            resource=resource, policy=policy)
+        return self._set_iam_policy(request, options)
+
+    def get_iam_policy(self, resource, options=None):
+        """
+        Gets the access control policy for a resource. Is empty if the
+        policy or the resource does not exist.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> api = publisher_api.PublisherApi()
+          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> response = api.get_iam_policy(resource)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy is being requested. Resource
+            is usually specified as a path, such as, projects/{project}.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.policy_pb2.Policy` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
+        return self._get_iam_policy(request, options)
+
+    def test_iam_permissions(self, resource, permissions, options=None):
+        """
+        Returns permissions that a caller has on the specified resource.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> api = publisher_api.PublisherApi()
+          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> permissions = []
+          >>> response = api.test_iam_permissions(resource, permissions)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy detail is being requested.
+            Resource is usually specified as a path, such as, projects/{project}.
+          permissions (list[string]): The set of permissions to check for the 'resource'. Permissions with
+            wildcards (such as '*' or 'storage.*') are not allowed.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.TestIamPermissionsRequest(
+            resource=resource, permissions=permissions)
+        return self._test_iam_permissions(request, options)

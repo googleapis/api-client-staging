@@ -32,6 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.gapic.language.v1beta1 import enums
 from google.cloud.grpc.language.v1beta1 import language_service_pb2
 
 
@@ -105,7 +106,7 @@ class LanguageServiceApi(object):
             client_config,
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata})
-        self.stub = config.create_stub(
+        self.language_service_stub = config.create_stub(
             language_service_pb2.LanguageServiceStub,
             service_path,
             port,
@@ -113,12 +114,16 @@ class LanguageServiceApi(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._analyze_sentiment = api_callable.create_api_call(
-            self.stub.AnalyzeSentiment, settings=defaults['analyze_sentiment'])
+            self.language_service_stub.AnalyzeSentiment,
+            settings=defaults['analyze_sentiment'])
         self._analyze_entities = api_callable.create_api_call(
-            self.stub.AnalyzeEntities, settings=defaults['analyze_entities'])
+            self.language_service_stub.AnalyzeEntities,
+            settings=defaults['analyze_entities'])
         self._annotate_text = api_callable.create_api_call(
-            self.stub.AnnotateText, settings=defaults['annotate_text'])
+            self.language_service_stub.AnnotateText,
+            settings=defaults['annotate_text'])
 
     # Service calls
     def analyze_sentiment(self, document, options=None):
@@ -126,9 +131,9 @@ class LanguageServiceApi(object):
         Analyzes the sentiment of the provided text.
 
         Example:
-          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1 import language_service_api
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
-          >>> api = LanguageServiceApi()
+          >>> api = language_service_api.LanguageServiceApi()
           >>> document = language_service_pb2.Document()
           >>> response = api.analyze_sentiment(document)
 
@@ -143,6 +148,7 @@ class LanguageServiceApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = language_service_pb2.AnalyzeSentimentRequest(
             document=document)
@@ -154,16 +160,17 @@ class LanguageServiceApi(object):
         entity types, salience, mentions for each entity, and other properties.
 
         Example:
-          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1 import language_service_api
+          >>> from google.cloud.gapic.language.v1beta1 import enums
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
-          >>> api = LanguageServiceApi()
+          >>> api = language_service_api.LanguageServiceApi()
           >>> document = language_service_pb2.Document()
-          >>> encoding_type = language_service_pb2.EncodingType.NONE
+          >>> encoding_type = enums.EncodingType.NONE
           >>> response = api.analyze_entities(document, encoding_type)
 
         Args:
           document (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.Document`): Input document.
-          encoding_type (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
+          encoding_type (enum :class:`google.cloud.gapic.language.v1beta1.enums.EncodingType`): The encoding type used by the API to calculate offsets.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -172,6 +179,7 @@ class LanguageServiceApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = language_service_pb2.AnalyzeEntitiesRequest(
             document=document, encoding_type=encoding_type)
@@ -185,18 +193,19 @@ class LanguageServiceApi(object):
         in-depth text features to build upon.
 
         Example:
-          >>> from google.cloud.gapic.language.v1beta1.language_service_api import LanguageServiceApi
+          >>> from google.cloud.gapic.language.v1beta1 import language_service_api
+          >>> from google.cloud.gapic.language.v1beta1 import enums
           >>> from google.cloud.grpc.language.v1beta1 import language_service_pb2
-          >>> api = LanguageServiceApi()
+          >>> api = language_service_api.LanguageServiceApi()
           >>> document = language_service_pb2.Document()
           >>> features = language_service_pb2.AnnotateTextRequest.Features()
-          >>> encoding_type = language_service_pb2.EncodingType.NONE
+          >>> encoding_type = enums.EncodingType.NONE
           >>> response = api.annotate_text(document, features, encoding_type)
 
         Args:
           document (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.Document`): Input document.
           features (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.AnnotateTextRequest.Features`): The enabled features.
-          encoding_type (:class:`google.cloud.grpc.language.v1beta1.language_service_pb2.EncodingType`): The encoding type used by the API to calculate offsets.
+          encoding_type (enum :class:`google.cloud.gapic.language.v1beta1.enums.EncodingType`): The encoding type used by the API to calculate offsets.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -205,6 +214,7 @@ class LanguageServiceApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = language_service_pb2.AnnotateTextRequest(
             document=document, features=features, encoding_type=encoding_type)

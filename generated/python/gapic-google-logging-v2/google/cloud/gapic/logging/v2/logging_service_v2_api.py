@@ -33,6 +33,7 @@ from google.gax import path_template
 import google.gax
 
 from google.api import monitored_resource_pb2
+from google.cloud.gapic.logging.v2 import enums
 from google.logging.v2 import log_entry_pb2
 from google.logging.v2 import logging_pb2
 
@@ -174,7 +175,7 @@ class LoggingServiceV2Api(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
+        self.logging_service_v2_stub = config.create_stub(
             logging_pb2.LoggingServiceV2Stub,
             service_path,
             port,
@@ -182,14 +183,18 @@ class LoggingServiceV2Api(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._delete_log = api_callable.create_api_call(
-            self.stub.DeleteLog, settings=defaults['delete_log'])
+            self.logging_service_v2_stub.DeleteLog,
+            settings=defaults['delete_log'])
         self._write_log_entries = api_callable.create_api_call(
-            self.stub.WriteLogEntries, settings=defaults['write_log_entries'])
+            self.logging_service_v2_stub.WriteLogEntries,
+            settings=defaults['write_log_entries'])
         self._list_log_entries = api_callable.create_api_call(
-            self.stub.ListLogEntries, settings=defaults['list_log_entries'])
+            self.logging_service_v2_stub.ListLogEntries,
+            settings=defaults['list_log_entries'])
         self._list_monitored_resource_descriptors = api_callable.create_api_call(
-            self.stub.ListMonitoredResourceDescriptors,
+            self.logging_service_v2_stub.ListMonitoredResourceDescriptors,
             settings=defaults['list_monitored_resource_descriptors'])
 
     # Service calls
@@ -199,8 +204,8 @@ class LoggingServiceV2Api(object):
         The log will reappear if it receives new entries.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
-          >>> api = LoggingServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_api
+          >>> api = logging_service_v2_api.LoggingServiceV2Api()
           >>> log_name = api.log_path('[PROJECT]', '[LOG]')
           >>> api.delete_log(log_name)
 
@@ -212,6 +217,7 @@ class LoggingServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_pb2.DeleteLogRequest(log_name=log_name)
         self._delete_log(request, options)
@@ -228,9 +234,9 @@ class LoggingServiceV2Api(object):
         written by this method.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_api
           >>> from google.logging.v2 import log_entry_pb2
-          >>> api = LoggingServiceV2Api()
+          >>> api = logging_service_v2_api.LoggingServiceV2Api()
           >>> entries = []
           >>> response = api.write_log_entries(entries)
 
@@ -261,6 +267,7 @@ class LoggingServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         if resource is None:
             resource = monitored_resource_pb2.MonitoredResource()
@@ -286,9 +293,9 @@ class LoggingServiceV2Api(object):
         `Exporting Logs <https://cloud.google.com/logging/docs/export>`_.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = LoggingServiceV2Api()
+          >>> api = logging_service_v2_api.LoggingServiceV2Api()
           >>> project_ids = []
           >>>
           >>> # Iterate over all results
@@ -331,6 +338,7 @@ class LoggingServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_pb2.ListLogEntriesRequest(
             project_ids=project_ids,
@@ -344,9 +352,9 @@ class LoggingServiceV2Api(object):
         Lists the monitored resource descriptors used by Stackdriver Logging.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.logging_service_v2_api import LoggingServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = LoggingServiceV2Api()
+          >>> api = logging_service_v2_api.LoggingServiceV2Api()
           >>>
           >>> # Iterate over all results
           >>> for element in api.list_monitored_resource_descriptors():
@@ -376,6 +384,7 @@ class LoggingServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_pb2.ListMonitoredResourceDescriptorsRequest(
             page_size=page_size)
