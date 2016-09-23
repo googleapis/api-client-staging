@@ -9,14 +9,14 @@ contents since it was created.
 PREREQUISITES
 -------------
 
-- Python must be installed
+- Python must be installed.
 
 
 TO PUBLISH
 ----------
 
 - Make sure you have `an account`_ on pypi_.
-- Publish your package as described in `Packaging and Distributing Projects`_
+- Publish your package as described in `Packaging and Distributing Projects`_.
 
 E.g,
 
