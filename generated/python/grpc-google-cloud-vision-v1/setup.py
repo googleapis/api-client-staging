@@ -11,13 +11,13 @@ from setuptools import setup, find_packages
 
 install_requires = [
   'oauth2client>=1.4.11',
-  'grpcio>=1.0rc1',
-  'googleapis-common-protos>=1.1.0'
+  'grpcio>=1.0.0, <2.0.0',
+  'googleapis-common-protos[grpc]>=1.3.4, <2.0.0'
 ]
 
 setuptools.setup(
   name='grpc-google-cloud-vision-v1',
-  version='0.8.1',
+  version='0.9.3',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
@@ -34,6 +34,6 @@ setuptools.setup(
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.cloud', 'google.cloud.vision', ],
+  namespace_packages=['google', 'google.cloud', 'google.cloud.grpc', 'google.cloud.grpc.vision', ],
   url='https://github.com/googleapis/googleapis'
 )

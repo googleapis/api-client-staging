@@ -433,12 +433,112 @@ DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.logging.v2B\014LoggingProtoP\001Z0google.golang.org/genproto/googleapis/logging/v2\370\001\001'))
 _WRITELOGENTRIESREQUEST_LABELSENTRY.has_options = True
 _WRITELOGENTRIESREQUEST_LABELSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
+
+
+class LoggingServiceV2Stub(object):
+  """Service for ingesting and querying logs.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.DeleteLog = channel.unary_unary(
+        '/google.logging.v2.LoggingServiceV2/DeleteLog',
+        request_serializer=DeleteLogRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+    self.WriteLogEntries = channel.unary_unary(
+        '/google.logging.v2.LoggingServiceV2/WriteLogEntries',
+        request_serializer=WriteLogEntriesRequest.SerializeToString,
+        response_deserializer=WriteLogEntriesResponse.FromString,
+        )
+    self.ListLogEntries = channel.unary_unary(
+        '/google.logging.v2.LoggingServiceV2/ListLogEntries',
+        request_serializer=ListLogEntriesRequest.SerializeToString,
+        response_deserializer=ListLogEntriesResponse.FromString,
+        )
+    self.ListMonitoredResourceDescriptors = channel.unary_unary(
+        '/google.logging.v2.LoggingServiceV2/ListMonitoredResourceDescriptors',
+        request_serializer=ListMonitoredResourceDescriptorsRequest.SerializeToString,
+        response_deserializer=ListMonitoredResourceDescriptorsResponse.FromString,
+        )
+
+
+class LoggingServiceV2Servicer(object):
+  """Service for ingesting and querying logs.
+  """
+
+  def DeleteLog(self, request, context):
+    """Deletes a log and all its log entries.
+    The log will reappear if it receives new entries.
+
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def WriteLogEntries(self, request, context):
+    """Writes log entries to Stackdriver Logging.  All log entries are
+    written by this method.
+
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListLogEntries(self, request, context):
+    """Lists log entries.  Use this method to retrieve log entries from Cloud
+    Logging.  For ways to export log entries, see
+    [Exporting Logs](/logging/docs/export).
+
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListMonitoredResourceDescriptors(self, request, context):
+    """Lists the monitored resource descriptors used by Stackdriver Logging.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_LoggingServiceV2Servicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'DeleteLog': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteLog,
+          request_deserializer=DeleteLogRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'WriteLogEntries': grpc.unary_unary_rpc_method_handler(
+          servicer.WriteLogEntries,
+          request_deserializer=WriteLogEntriesRequest.FromString,
+          response_serializer=WriteLogEntriesResponse.SerializeToString,
+      ),
+      'ListLogEntries': grpc.unary_unary_rpc_method_handler(
+          servicer.ListLogEntries,
+          request_deserializer=ListLogEntriesRequest.FromString,
+          response_serializer=ListLogEntriesResponse.SerializeToString,
+      ),
+      'ListMonitoredResourceDescriptors': grpc.unary_unary_rpc_method_handler(
+          servicer.ListMonitoredResourceDescriptors,
+          request_deserializer=ListMonitoredResourceDescriptorsRequest.FromString,
+          response_serializer=ListMonitoredResourceDescriptorsResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'google.logging.v2.LoggingServiceV2', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
 
 class BetaLoggingServiceV2Servicer(object):
   """Service for ingesting and querying logs.
@@ -467,24 +567,25 @@ class BetaLoggingServiceV2Servicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
+
 class BetaLoggingServiceV2Stub(object):
   """Service for ingesting and querying logs.
   """
-  def DeleteLog(self, request, timeout):
+  def DeleteLog(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes a log and all its log entries.
     The log will reappear if it receives new entries.
 
     """
     raise NotImplementedError()
   DeleteLog.future = None
-  def WriteLogEntries(self, request, timeout):
+  def WriteLogEntries(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Writes log entries to Stackdriver Logging.  All log entries are
     written by this method.
 
     """
     raise NotImplementedError()
   WriteLogEntries.future = None
-  def ListLogEntries(self, request, timeout):
+  def ListLogEntries(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists log entries.  Use this method to retrieve log entries from Cloud
     Logging.  For ways to export log entries, see
     [Exporting Logs](/logging/docs/export).
@@ -492,32 +593,25 @@ class BetaLoggingServiceV2Stub(object):
     """
     raise NotImplementedError()
   ListLogEntries.future = None
-  def ListMonitoredResourceDescriptors(self, request, timeout):
+  def ListMonitoredResourceDescriptors(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists the monitored resource descriptors used by Stackdriver Logging.
     """
     raise NotImplementedError()
   ListMonitoredResourceDescriptors.future = None
 
+
 def beta_create_LoggingServiceV2_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  import google.logging.v2.logging_pb2
-  import google.protobuf.empty_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
   request_deserializers = {
-    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google.logging.v2.logging_pb2.DeleteLogRequest.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): google.logging.v2.logging_pb2.ListLogEntriesRequest.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): google.logging.v2.logging_pb2.ListMonitoredResourceDescriptorsRequest.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): google.logging.v2.logging_pb2.WriteLogEntriesRequest.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): DeleteLogRequest.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): ListLogEntriesRequest.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): ListMonitoredResourceDescriptorsRequest.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): WriteLogEntriesRequest.FromString,
   }
   response_serializers = {
-    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google.protobuf.empty_pb2.Empty.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): google.logging.v2.logging_pb2.ListLogEntriesResponse.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): google.logging.v2.logging_pb2.ListMonitoredResourceDescriptorsResponse.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): google.logging.v2.logging_pb2.WriteLogEntriesResponse.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): ListLogEntriesResponse.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): ListMonitoredResourceDescriptorsResponse.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): WriteLogEntriesResponse.SerializeToString,
   }
   method_implementations = {
     ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): face_utilities.unary_unary_inline(servicer.DeleteLog),
@@ -528,26 +622,19 @@ def beta_create_LoggingServiceV2_server(servicer, pool=None, pool_size=None, def
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
+
 def beta_create_LoggingServiceV2_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  import google.logging.v2.logging_pb2
-  import google.protobuf.empty_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
-  import google.logging.v2.logging_pb2
   request_serializers = {
-    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google.logging.v2.logging_pb2.DeleteLogRequest.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): google.logging.v2.logging_pb2.ListLogEntriesRequest.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): google.logging.v2.logging_pb2.ListMonitoredResourceDescriptorsRequest.SerializeToString,
-    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): google.logging.v2.logging_pb2.WriteLogEntriesRequest.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): DeleteLogRequest.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): ListLogEntriesRequest.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): ListMonitoredResourceDescriptorsRequest.SerializeToString,
+    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): WriteLogEntriesRequest.SerializeToString,
   }
   response_deserializers = {
-    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google.protobuf.empty_pb2.Empty.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): google.logging.v2.logging_pb2.ListLogEntriesResponse.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): google.logging.v2.logging_pb2.ListMonitoredResourceDescriptorsResponse.FromString,
-    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): google.logging.v2.logging_pb2.WriteLogEntriesResponse.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'DeleteLog'): google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'ListLogEntries'): ListLogEntriesResponse.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'ListMonitoredResourceDescriptors'): ListMonitoredResourceDescriptorsResponse.FromString,
+    ('google.logging.v2.LoggingServiceV2', 'WriteLogEntries'): WriteLogEntriesResponse.FromString,
   }
   cardinalities = {
     'DeleteLog': cardinality.Cardinality.UNARY_UNARY,

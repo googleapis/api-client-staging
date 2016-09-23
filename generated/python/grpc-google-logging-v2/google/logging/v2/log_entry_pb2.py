@@ -274,8 +274,7 @@ DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.logging.v2B\rLogEntryProtoP\001Z0google.golang.org/genproto/googleapis/logging/v2\370\001\001'))
 _LOGENTRY_LABELSENTRY.has_options = True
 _LOGENTRY_LABELSENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import abc
-import six
+import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
 from grpc.framework.common import cardinality
