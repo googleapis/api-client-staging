@@ -26,7 +26,7 @@ import com.google.logging.v2.LogEntry;
 import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,7 +85,7 @@ public class LoggingServiceV2Test {
   @SuppressWarnings("all")
   public void deleteLogTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockLoggingServiceV2.setResponses(expectedResponses);
 
@@ -93,7 +93,7 @@ public class LoggingServiceV2Test {
 
     api.deleteLog(formattedLogName);
 
-    List<GeneratedMessage> actualRequests = mockLoggingServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockLoggingServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteLogRequest actualRequest = (DeleteLogRequest) actualRequests.get(0);
 
@@ -104,7 +104,7 @@ public class LoggingServiceV2Test {
   @SuppressWarnings("all")
   public void writeLogEntriesTest() {
     WriteLogEntriesResponse expectedResponse = WriteLogEntriesResponse.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockLoggingServiceV2.setResponses(expectedResponses);
 
@@ -117,7 +117,7 @@ public class LoggingServiceV2Test {
         api.writeLogEntries(formattedLogName, resource, labels, entries);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockLoggingServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockLoggingServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     WriteLogEntriesRequest actualRequest = (WriteLogEntriesRequest) actualRequests.get(0);
 
@@ -138,7 +138,7 @@ public class LoggingServiceV2Test {
             .setNextPageToken(nextPageToken)
             .addAllEntries(entries)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockLoggingServiceV2.setResponses(expectedResponses);
 
@@ -153,7 +153,7 @@ public class LoggingServiceV2Test {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getEntriesList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockLoggingServiceV2.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockLoggingServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListLogEntriesRequest actualRequest = (ListLogEntriesRequest) actualRequests.get(0);
 

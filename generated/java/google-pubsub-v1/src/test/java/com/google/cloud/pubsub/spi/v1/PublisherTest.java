@@ -25,7 +25,7 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.GeneratedMessageV3;
 import com.google.pubsub.v1.DeleteTopicRequest;
 import com.google.pubsub.v1.GetTopicRequest;
 import com.google.pubsub.v1.ListTopicSubscriptionsRequest;
@@ -92,7 +92,7 @@ public class PublisherTest {
   public void createTopicTest() {
     String formattedName2 = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
     Topic expectedResponse = Topic.newBuilder().setName(formattedName2).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -101,7 +101,7 @@ public class PublisherTest {
     Topic actualResponse = api.createTopic(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     Topic actualRequest = (Topic) actualRequests.get(0);
 
@@ -115,7 +115,7 @@ public class PublisherTest {
     List<String> messageIds = Arrays.asList(messageIdsElement);
     PublishResponse expectedResponse =
         PublishResponse.newBuilder().addAllMessageIds(messageIds).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -127,7 +127,7 @@ public class PublisherTest {
     PublishResponse actualResponse = api.publish(formattedTopic, messages);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     PublishRequest actualRequest = (PublishRequest) actualRequests.get(0);
 
@@ -140,7 +140,7 @@ public class PublisherTest {
   public void getTopicTest() {
     String name = "name3373707";
     Topic expectedResponse = Topic.newBuilder().setName(name).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -149,7 +149,7 @@ public class PublisherTest {
     Topic actualResponse = api.getTopic(formattedTopic);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetTopicRequest actualRequest = (GetTopicRequest) actualRequests.get(0);
 
@@ -167,7 +167,7 @@ public class PublisherTest {
             .setNextPageToken(nextPageToken)
             .addAllTopics(topics)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -180,7 +180,7 @@ public class PublisherTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getTopicsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListTopicsRequest actualRequest = (ListTopicsRequest) actualRequests.get(0);
 
@@ -198,7 +198,7 @@ public class PublisherTest {
             .setNextPageToken(nextPageToken)
             .addAllSubscriptions(subscriptions)
             .build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -211,7 +211,7 @@ public class PublisherTest {
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListTopicSubscriptionsRequest actualRequest =
         (ListTopicSubscriptionsRequest) actualRequests.get(0);
@@ -223,7 +223,7 @@ public class PublisherTest {
   @SuppressWarnings("all")
   public void deleteTopicTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
@@ -231,7 +231,7 @@ public class PublisherTest {
 
     api.deleteTopic(formattedTopic);
 
-    List<GeneratedMessage> actualRequests = mockPublisher.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteTopicRequest actualRequest = (DeleteTopicRequest) actualRequests.get(0);
 
@@ -244,7 +244,7 @@ public class PublisherTest {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -254,7 +254,7 @@ public class PublisherTest {
     Policy actualResponse = api.setIamPolicy(formattedResource, policy);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     SetIamPolicyRequest actualRequest = (SetIamPolicyRequest) actualRequests.get(0);
 
@@ -268,7 +268,7 @@ public class PublisherTest {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -277,7 +277,7 @@ public class PublisherTest {
     Policy actualResponse = api.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetIamPolicyRequest actualRequest = (GetIamPolicyRequest) actualRequests.get(0);
 
@@ -288,7 +288,7 @@ public class PublisherTest {
   @SuppressWarnings("all")
   public void testIamPermissionsTest() {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
-    List<GeneratedMessage> expectedResponses = new ArrayList<>();
+    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockIAMPolicy.setResponses(expectedResponses);
 
@@ -299,7 +299,7 @@ public class PublisherTest {
         api.testIamPermissions(formattedResource, permissions);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessage> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     TestIamPermissionsRequest actualRequest = (TestIamPermissionsRequest) actualRequests.get(0);
 
