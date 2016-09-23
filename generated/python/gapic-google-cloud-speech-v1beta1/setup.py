@@ -13,7 +13,7 @@ install_requires = [
     'google-gax>=0.14.1, <0.15.0',
     # TODO (https://github.com/googleapis/packman/issues/119): need upper bound logic
     'grpc-google-cloud-speech-v1beta1>=0.10.0',
-    'oauth2client>=1.4.11, <2.0.0',
+    'oauth2client>=1.4.11,
 ]
 
 setup(
