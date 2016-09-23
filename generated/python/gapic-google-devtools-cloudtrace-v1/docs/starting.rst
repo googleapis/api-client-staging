@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gax-google-devtools-cloudtrace-v1 will allow you to connect to the `Google Cloudtrace API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-devtools-cloudtrace-v1 will allow you to connect to the `Stackdriver Trace API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Cloudtrace API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudtrace/v1/
+.. _`Stackdriver Trace API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudtrace/v1/
 
 
 Installation
@@ -29,7 +29,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gax-google-devtools-cloudtrace-v1
+    <your-env>/bin/pip install gapic-google-devtools-cloudtrace-v1
 
 Windows
 ~~~~~~~
@@ -39,7 +39,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gax-google-devtools-cloudtrace-v1
+    <your-env>\Scripts\pip.exe install gapic-google-devtools-cloudtrace-v1
 
 
 Using the API

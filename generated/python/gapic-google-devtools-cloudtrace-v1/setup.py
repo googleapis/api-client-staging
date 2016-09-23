@@ -1,4 +1,4 @@
-"""A setup module for the GAPIC Cloudtrace library.
+"""A setup module for the GAPIC Stackdriver Trace library.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -11,13 +11,12 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.3.4, <2.0.0dev',
     'google-gax>=0.14.1, <0.15.0dev',
-    # TODO (https://github.com/googleapis/packman/issues/119): need upper bound logic
-    'grpc-google-devtools-cloudtrace-v1>=0.10.0',
+    'grpc-google-devtools-cloudtrace-v1>=0.10.0, <0.11.0dev',
     'oauth2client>=3.0.0, <4.0.0dev',
 ]
 
 setup(
-    name='gax-google-devtools-cloudtrace-v1',
+    name='gapic-google-devtools-cloudtrace-v1',
     version='0.10.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
@@ -34,7 +33,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Google Cloudtrace API',
+    description='GAPIC library for the Stackdriver Trace API',
     include_package_data=True,
     long_description=open('README.rst').read(),
     install_requires=install_requires,
