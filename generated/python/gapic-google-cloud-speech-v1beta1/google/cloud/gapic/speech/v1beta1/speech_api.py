@@ -130,21 +130,21 @@ class SpeechApi(object):
 
         Example:
           >>> from google.cloud.gapic.speech.v1beta1 import speech_api
-          >>> from google.cloud.speech.v1beta1 import cloud_speech_pb2
+          >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
           >>> api = speech_api.SpeechApi()
           >>> config = cloud_speech_pb2.RecognitionConfig()
           >>> audio = cloud_speech_pb2.RecognitionAudio()
           >>> response = api.sync_recognize(config, audio)
 
         Args:
-          config (:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.RecognitionConfig`): [Required] The ``config`` message provides information to the recognizer
+          config (:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.RecognitionConfig`): [Required] The ``config`` message provides information to the recognizer
             that specifies how to process the request.
-          audio (:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.RecognitionAudio`): [Required] The audio data to be recognized.
+          audio (:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.RecognitionAudio`): [Required] The audio data to be recognized.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.speech.v1beta1.cloud_speech_pb2.SyncRecognizeResponse` instance.
+          A :class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.SyncRecognizeResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -162,16 +162,16 @@ class SpeechApi(object):
 
         Example:
           >>> from google.cloud.gapic.speech.v1beta1 import speech_api
-          >>> from google.cloud.speech.v1beta1 import cloud_speech_pb2
+          >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
           >>> api = speech_api.SpeechApi()
           >>> config = cloud_speech_pb2.RecognitionConfig()
           >>> audio = cloud_speech_pb2.RecognitionAudio()
           >>> response = api.async_recognize(config, audio)
 
         Args:
-          config (:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.RecognitionConfig`): [Required] The ``config`` message provides information to the recognizer
+          config (:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.RecognitionConfig`): [Required] The ``config`` message provides information to the recognizer
             that specifies how to process the request.
-          audio (:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.RecognitionAudio`): [Required] The audio data to be recognized.
+          audio (:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.RecognitionAudio`): [Required] The audio data to be recognized.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -195,7 +195,7 @@ class SpeechApi(object):
 
         Example:
           >>> from google.cloud.gapic.speech.v1beta1 import speech_api
-          >>> from google.cloud.speech.v1beta1 import cloud_speech_pb2
+          >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
           >>> api = speech_api.SpeechApi()
           >>> request = cloud_speech_pb2.StreamingRecognizeRequest()
           >>> requests = [request]
@@ -204,12 +204,12 @@ class SpeechApi(object):
           >>>   pass
 
         Args:
-          requests (iterator[:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.StreamingRecognizeRequest`]): The input objects.
+          requests (iterator[:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.StreamingRecognizeRequest`]): The input objects.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          iterator[:class:`google.cloud.speech.v1beta1.cloud_speech_pb2.StreamingRecognizeResponse`].
+          iterator[:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.StreamingRecognizeResponse`].
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
