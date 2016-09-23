@@ -1,13 +1,13 @@
-GAPIC library for the Google Admin API
+GAPIC library for the Google IAM Admin API
 ================================================================================
 
 gapic-google-iam-admin-v1 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Google Admin API`_ (v1) defined in the googleapis_ git repository
+easy-to-use client library for the `Google IAM Admin API`_ (v1) defined in the googleapis_ git repository
 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/iam/admin/v1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/admin/v1/
+.. _`Google IAM Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/admin/v1/
 
 Getting started
 ---------------

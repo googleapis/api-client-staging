@@ -1,4 +1,4 @@
-"""A setup module for the GAPIC Admin library.
+"""A setup module for the GAPIC IAM Admin library.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -34,12 +34,12 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Google Admin API',
+    description='GAPIC library for the Google IAM Admin API',
     include_package_data=True,
     long_description=open('README.rst').read(),
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.iam', 'google.cloud.gapic.iam.admin', ],
+    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.iam_admin', ],
     url='https://github.com/googleapis/googleapis'
 )

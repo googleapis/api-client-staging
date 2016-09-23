@@ -32,7 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.gapic.iam.admin.v1 import enums
+from google.cloud.gapic.iam_admin.v1 import enums
 from google.iam.admin.v1 import iam_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
@@ -295,7 +295,7 @@ class IAMApi(object):
         Lists ``ServiceAccounts`` for a project.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = iam_api.IAMApi()
           >>> name = api.project_path('[PROJECT]')
@@ -341,7 +341,7 @@ class IAMApi(object):
         Gets a ``ServiceAccount``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> response = api.get_service_account(name)
@@ -375,7 +375,7 @@ class IAMApi(object):
         and returns it.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.project_path('[PROJECT]')
           >>> account_id = ''
@@ -423,7 +423,7 @@ class IAMApi(object):
         The ``etag`` is mandatory.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> etag = ''
           >>> response = api.update_service_account(etag)
@@ -472,7 +472,7 @@ class IAMApi(object):
         Deletes a ``ServiceAccount``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> api.delete_service_account(name)
@@ -498,7 +498,7 @@ class IAMApi(object):
         Lists ``ServiceAccountKeys``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> response = api.list_service_account_keys(name)
@@ -510,7 +510,7 @@ class IAMApi(object):
             Using ``-`` as a wildcard for the project, will infer the project from
             the account. The ``account`` value can be the ``email`` address or the
             ``unique_id`` of the service account.
-          key_types (list[enum :class:`google.cloud.gapic.iam.admin.v1.enums.KeyType`]): Filters the types of keys the user wants to include in the list
+          key_types (list[enum :class:`google.cloud.gapic.iam_admin.v1.enums.KeyType`]): Filters the types of keys the user wants to include in the list
             response. Duplicate key types are not allowed. If no key type
             is provided, all keys are returned.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -536,7 +536,7 @@ class IAMApi(object):
         by key id.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.key_path('[PROJECT]', '[SERVICE_ACCOUNT]', '[KEY]')
           >>> response = api.get_service_account_key(name)
@@ -548,7 +548,7 @@ class IAMApi(object):
             Using ``-`` as a wildcard for the project will infer the project from
             the account. The ``account`` value can be the ``email`` address or the
             ``unique_id`` of the service account.
-          public_key_type (enum :class:`google.cloud.gapic.iam.admin.v1.enums.ServiceAccountPublicKeyType`): The output format of the public key requested.
+          public_key_type (enum :class:`google.cloud.gapic.iam_admin.v1.enums.ServiceAccountPublicKeyType`): The output format of the public key requested.
             X509_PEM is the default output format.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -576,7 +576,7 @@ class IAMApi(object):
         and returns it.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> response = api.create_service_account_key(name)
@@ -587,9 +587,9 @@ class IAMApi(object):
             Using ``-`` as a wildcard for the project will infer the project from
             the account. The ``account`` value can be the ``email`` address or the
             ``unique_id`` of the service account.
-          private_key_type (enum :class:`google.cloud.gapic.iam.admin.v1.enums.ServiceAccountPrivateKeyType`): The output format of the private key. ``GOOGLE_CREDENTIALS_FILE`` is the
+          private_key_type (enum :class:`google.cloud.gapic.iam_admin.v1.enums.ServiceAccountPrivateKeyType`): The output format of the private key. ``GOOGLE_CREDENTIALS_FILE`` is the
             default output format.
-          key_algorithm (enum :class:`google.cloud.gapic.iam.admin.v1.enums.ServiceAccountKeyAlgorithm`): Which type of key and algorithm to use for the key.
+          key_algorithm (enum :class:`google.cloud.gapic.iam_admin.v1.enums.ServiceAccountKeyAlgorithm`): Which type of key and algorithm to use for the key.
             The default is currently a 4K RSA key.  However this may change in the
             future.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -617,7 +617,7 @@ class IAMApi(object):
         Deletes a ``ServiceAccountKey``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.key_path('[PROJECT]', '[SERVICE_ACCOUNT]', '[KEY]')
           >>> api.delete_service_account_key(name)
@@ -643,7 +643,7 @@ class IAMApi(object):
         Signs a blob using a service account's system-managed private key.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> name = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> bytes_to_sign = ''
@@ -676,7 +676,7 @@ class IAMApi(object):
         ``ServiceAccount``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> resource = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> response = api.get_iam_policy(resource)
@@ -703,7 +703,7 @@ class IAMApi(object):
         ``ServiceAccount``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> from google.iam.v1 import policy_pb2
           >>> api = iam_api.IAMApi()
           >>> resource = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
@@ -737,7 +737,7 @@ class IAMApi(object):
         for a ``ServiceAccount``.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> resource = api.service_account_path('[PROJECT]', '[SERVICE_ACCOUNT]')
           >>> permissions = []
@@ -769,7 +769,7 @@ class IAMApi(object):
         for that resource.
 
         Example:
-          >>> from google.cloud.gapic.iam.admin.v1 import iam_api
+          >>> from google.cloud.gapic.iam_admin.v1 import iam_api
           >>> api = iam_api.IAMApi()
           >>> full_resource_name = ''
           >>> response = api.query_grantable_roles(full_resource_name)
