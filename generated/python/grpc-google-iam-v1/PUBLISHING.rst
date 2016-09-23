@@ -9,7 +9,7 @@ contents since it was created.
 PREREQUISITES
 -------------
 
-- Python must installed
+- Python must be installed
 
 
 TO PUBLISH
