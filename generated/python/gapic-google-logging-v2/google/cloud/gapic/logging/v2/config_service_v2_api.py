@@ -32,6 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.gapic.logging.v2 import enums
 from google.logging.v2 import logging_config_pb2
 
 _PageDesc = google.gax.PageDescriptor
@@ -172,7 +173,7 @@ class ConfigServiceV2Api(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
+        self.config_service_v2_stub = config.create_stub(
             logging_config_pb2.ConfigServiceV2Stub,
             service_path,
             port,
@@ -180,16 +181,21 @@ class ConfigServiceV2Api(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._list_sinks = api_callable.create_api_call(
-            self.stub.ListSinks, settings=defaults['list_sinks'])
+            self.config_service_v2_stub.ListSinks,
+            settings=defaults['list_sinks'])
         self._get_sink = api_callable.create_api_call(
-            self.stub.GetSink, settings=defaults['get_sink'])
+            self.config_service_v2_stub.GetSink, settings=defaults['get_sink'])
         self._create_sink = api_callable.create_api_call(
-            self.stub.CreateSink, settings=defaults['create_sink'])
+            self.config_service_v2_stub.CreateSink,
+            settings=defaults['create_sink'])
         self._update_sink = api_callable.create_api_call(
-            self.stub.UpdateSink, settings=defaults['update_sink'])
+            self.config_service_v2_stub.UpdateSink,
+            settings=defaults['update_sink'])
         self._delete_sink = api_callable.create_api_call(
-            self.stub.DeleteSink, settings=defaults['delete_sink'])
+            self.config_service_v2_stub.DeleteSink,
+            settings=defaults['delete_sink'])
 
     # Service calls
     def list_sinks(self, parent, page_size=0, options=None):
@@ -197,9 +203,9 @@ class ConfigServiceV2Api(object):
         Lists sinks.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = ConfigServiceV2Api()
+          >>> api = config_service_v2_api.ConfigServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -214,7 +220,7 @@ class ConfigServiceV2Api(object):
           >>>     pass
 
         Args:
-          parent (string): Required. The resource name containing the sinks.
+          parent (string): Required. The cloud resource containing the sinks.
             Example: ``\"projects/my-logging-project\"``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
@@ -232,6 +238,7 @@ class ConfigServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_config_pb2.ListSinksRequest(
             parent=parent, page_size=page_size)
@@ -242,13 +249,13 @@ class ConfigServiceV2Api(object):
         Gets a sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
-          >>> api = ConfigServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
+          >>> api = config_service_v2_api.ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> response = api.get_sink(sink_name)
 
         Args:
-          sink_name (string): The resource name of the sink to return.
+          sink_name (string): Required. The resource name of the sink to return.
             Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -258,6 +265,7 @@ class ConfigServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_config_pb2.GetSinkRequest(sink_name=sink_name)
         return self._get_sink(request, options)
@@ -267,20 +275,19 @@ class ConfigServiceV2Api(object):
         Creates a sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
           >>> from google.logging.v2 import logging_config_pb2
-          >>> api = ConfigServiceV2Api()
+          >>> api = config_service_v2_api.ConfigServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
           >>> sink = logging_config_pb2.LogSink()
           >>> response = api.create_sink(parent, sink)
 
         Args:
-          parent (string): The resource in which to create the sink.
+          parent (string): Required. The resource in which to create the sink.
             Example: ``\"projects/my-project-id\"``.
-
             The new sink must be provided in the request.
-          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): The new sink, which must not have an identifier that already
-            exists.
+          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): Required. The new sink, whose ``name`` parameter is a sink identifier that
+            is not already in use.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -289,6 +296,7 @@ class ConfigServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_config_pb2.CreateSinkRequest(
             parent=parent, sink=sink)
@@ -296,25 +304,22 @@ class ConfigServiceV2Api(object):
 
     def update_sink(self, sink_name, sink, options=None):
         """
-        Creates or updates a sink.
+        Updates or creates a sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
           >>> from google.logging.v2 import logging_config_pb2
-          >>> api = ConfigServiceV2Api()
+          >>> api = config_service_v2_api.ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> sink = logging_config_pb2.LogSink()
           >>> response = api.update_sink(sink_name, sink)
 
         Args:
-          sink_name (string): The resource name of the sink to update.
-            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
-
-            The updated sink must be provided in the request and have the
-            same name that is specified in ``sinkName``.  If the sink does not
-            exist, it is created.
-          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): The updated sink, whose name must be the same as the sink
-            identifier in ``sinkName``.  If ``sinkName`` does not exist, then
+          sink_name (string): Required. The resource name of the sink to update, including the parent
+            resource and the sink identifier.  If the sink does not exist, this method
+            creates the sink.  Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
+          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): Required. The updated sink, whose name is the same identifier that appears
+            as part of ``sinkName``.  If ``sinkName`` does not exist, then
             this method creates a new sink.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -324,6 +329,7 @@ class ConfigServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_config_pb2.UpdateSinkRequest(
             sink_name=sink_name, sink=sink)
@@ -334,19 +340,22 @@ class ConfigServiceV2Api(object):
         Deletes a sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.config_service_v2_api import ConfigServiceV2Api
-          >>> api = ConfigServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
+          >>> api = config_service_v2_api.ConfigServiceV2Api()
           >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
           >>> api.delete_sink(sink_name)
 
         Args:
-          sink_name (string): The resource name of the sink to delete.
-            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
+          sink_name (string): Required. The resource name of the sink to delete, including the parent
+            resource and the sink identifier.  Example:
+            ``\"projects/my-project-id/sinks/my-sink-id\"``.  It is an error if the sink
+            does not exist.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_config_pb2.DeleteSinkRequest(sink_name=sink_name)
         self._delete_sink(request, options)

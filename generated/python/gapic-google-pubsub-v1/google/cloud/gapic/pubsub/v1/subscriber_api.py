@@ -32,6 +32,8 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.iam.v1 import iam_policy_pb2
+from google.iam.v1 import policy_pb2
 from google.pubsub.v1 import pubsub_pb2
 
 _PageDesc = google.gax.PageDescriptor
@@ -208,7 +210,15 @@ class SubscriberApi(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
+        self.iam_policy_stub = config.create_stub(
+            iam_policy_pb2.IAMPolicyStub,
+            service_path,
+            port,
+            ssl_creds=ssl_creds,
+            channel=channel,
+            metadata_transformer=metadata_transformer,
+            scopes=scopes)
+        self.subscriber_stub = config.create_stub(
             pubsub_pb2.SubscriberStub,
             service_path,
             port,
@@ -216,27 +226,38 @@ class SubscriberApi(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._create_subscription = api_callable.create_api_call(
-            self.stub.CreateSubscription,
+            self.subscriber_stub.CreateSubscription,
             settings=defaults['create_subscription'])
         self._get_subscription = api_callable.create_api_call(
-            self.stub.GetSubscription, settings=defaults['get_subscription'])
+            self.subscriber_stub.GetSubscription,
+            settings=defaults['get_subscription'])
         self._list_subscriptions = api_callable.create_api_call(
-            self.stub.ListSubscriptions,
+            self.subscriber_stub.ListSubscriptions,
             settings=defaults['list_subscriptions'])
         self._delete_subscription = api_callable.create_api_call(
-            self.stub.DeleteSubscription,
+            self.subscriber_stub.DeleteSubscription,
             settings=defaults['delete_subscription'])
         self._modify_ack_deadline = api_callable.create_api_call(
-            self.stub.ModifyAckDeadline,
+            self.subscriber_stub.ModifyAckDeadline,
             settings=defaults['modify_ack_deadline'])
         self._acknowledge = api_callable.create_api_call(
-            self.stub.Acknowledge, settings=defaults['acknowledge'])
+            self.subscriber_stub.Acknowledge, settings=defaults['acknowledge'])
         self._pull = api_callable.create_api_call(
-            self.stub.Pull, settings=defaults['pull'])
+            self.subscriber_stub.Pull, settings=defaults['pull'])
         self._modify_push_config = api_callable.create_api_call(
-            self.stub.ModifyPushConfig,
+            self.subscriber_stub.ModifyPushConfig,
             settings=defaults['modify_push_config'])
+        self._set_iam_policy = api_callable.create_api_call(
+            self.iam_policy_stub.SetIamPolicy,
+            settings=defaults['set_iam_policy'])
+        self._get_iam_policy = api_callable.create_api_call(
+            self.iam_policy_stub.GetIamPolicy,
+            settings=defaults['get_iam_policy'])
+        self._test_iam_permissions = api_callable.create_api_call(
+            self.iam_policy_stub.TestIamPermissions,
+            settings=defaults['test_iam_permissions'])
 
     # Service calls
     def create_subscription(self,
@@ -246,15 +267,16 @@ class SubscriberApi(object):
                             ack_deadline_seconds=0,
                             options=None):
         """
-        Creates a subscription to a given topic for a given subscriber.
+        Creates a subscription to a given topic.
         If the subscription already exists, returns ``ALREADY_EXISTS``.
         If the corresponding topic doesn't exist, returns ``NOT_FOUND``.
         If the name is not provided in the request, the server will assign a random
-        name for this subscription on the same project as the topic.
+        name for this subscription on the same project as the topic. Note that
+        for REST API requests, you must specify a name.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> name = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.create_subscription(name, topic)
@@ -282,6 +304,7 @@ class SubscriberApi(object):
             deadline. To override this value for a given message, call
             ``ModifyAckDeadline`` with the corresponding ``ack_id`` if using
             pull.
+            The maximum custom deadline you can specify is 600 seconds (10 minutes).
 
             For push delivery, this value is also used to set the request timeout for
             the call to the push endpoint.
@@ -289,7 +312,7 @@ class SubscriberApi(object):
             If the subscriber never acknowledges the message, the Pub/Sub
             system will eventually redeliver the message.
 
-            If this parameter is not set, the default value of 10 seconds is used.
+            If this parameter is 0, a default value of 10 seconds is used.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -298,6 +321,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         if push_config is None:
             push_config = pubsub_pb2.PushConfig()
@@ -313,8 +337,8 @@ class SubscriberApi(object):
         Gets the configuration details of a subscription.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> response = api.get_subscription(subscription)
 
@@ -328,6 +352,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.GetSubscriptionRequest(subscription=subscription)
         return self._get_subscription(request, options)
@@ -337,9 +362,9 @@ class SubscriberApi(object):
         Lists matching subscriptions.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = SubscriberApi()
+          >>> api = subscriber_api.SubscriberApi()
           >>> project = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -371,6 +396,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.ListSubscriptionsRequest(
             project=project, page_size=page_size)
@@ -385,8 +411,8 @@ class SubscriberApi(object):
         subscription, or its topic unless the same topic is specified.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> api.delete_subscription(subscription)
 
@@ -397,6 +423,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.DeleteSubscriptionRequest(
             subscription=subscription)
@@ -411,11 +438,12 @@ class SubscriberApi(object):
         Modifies the ack deadline for a specific message. This method is useful
         to indicate that more time is needed to process a message by the
         subscriber, or to make the message available for redelivery if the
-        processing was interrupted.
+        processing was interrupted. Note that this does not modify the
+        subscription-level ``ackDeadlineSeconds`` used for subsequent messages.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
           >>> ack_deadline_seconds = 0
@@ -434,6 +462,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.ModifyAckDeadlineRequest(
             subscription=subscription,
@@ -451,8 +480,8 @@ class SubscriberApi(object):
         than once will not result in an error.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
           >>> api.acknowledge(subscription, ack_ids)
@@ -466,6 +495,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.AcknowledgeRequest(
             subscription=subscription, ack_ids=ack_ids)
@@ -483,8 +513,8 @@ class SubscriberApi(object):
         subscription.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
-          >>> api = SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> max_messages = 0
           >>> response = api.pull(subscription, max_messages)
@@ -506,6 +536,7 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.PullRequest(
             subscription=subscription,
@@ -522,9 +553,9 @@ class SubscriberApi(object):
         continuously through the call regardless of changes to the ``PushConfig``.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1.subscriber_api import SubscriberApi
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
           >>> from google.pubsub.v1 import pubsub_pb2
-          >>> api = SubscriberApi()
+          >>> api = subscriber_api.SubscriberApi()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> push_config = pubsub_pb2.PushConfig()
           >>> api.modify_push_config(subscription, push_config)
@@ -542,7 +573,99 @@ class SubscriberApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = pubsub_pb2.ModifyPushConfigRequest(
             subscription=subscription, push_config=push_config)
         self._modify_push_config(request, options)
+
+    def set_iam_policy(self, resource, policy, options=None):
+        """
+        Sets the access control policy on the specified resource. Replaces any
+        existing policy.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> from google.iam.v1 import policy_pb2
+          >>> api = subscriber_api.SubscriberApi()
+          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> policy = policy_pb2.Policy()
+          >>> response = api.set_iam_policy(resource, policy)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy is being specified.
+            Resource is usually specified as a path, such as,
+            projects/{project}/zones/{zone}/disks/{disk}.
+          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the 'resource'. The size of
+            the policy is limited to a few 10s of KB. An empty policy is in general a
+            valid policy but certain services (like Projects) might reject them.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.policy_pb2.Policy` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.SetIamPolicyRequest(
+            resource=resource, policy=policy)
+        return self._set_iam_policy(request, options)
+
+    def get_iam_policy(self, resource, options=None):
+        """
+        Gets the access control policy for a resource. Is empty if the
+        policy or the resource does not exist.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
+          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = api.get_iam_policy(resource)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy is being requested. Resource
+            is usually specified as a path, such as, projects/{project}.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.policy_pb2.Policy` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
+        return self._get_iam_policy(request, options)
+
+    def test_iam_permissions(self, resource, permissions, options=None):
+        """
+        Returns permissions that a caller has on the specified resource.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> api = subscriber_api.SubscriberApi()
+          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> permissions = []
+          >>> response = api.test_iam_permissions(resource, permissions)
+
+        Args:
+          resource (string): REQUIRED: The resource for which policy detail is being requested.
+            Resource is usually specified as a path, such as, projects/{project}.
+          permissions (list[string]): The set of permissions to check for the 'resource'. Permissions with
+            wildcards (such as '*' or 'storage.*') are not allowed.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = iam_policy_pb2.TestIamPermissionsRequest(
+            resource=resource, permissions=permissions)
+        return self._test_iam_permissions(request, options)

@@ -32,6 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.gapic.logging.v2 import enums
 from google.logging.v2 import logging_metrics_pb2
 
 _PageDesc = google.gax.PageDescriptor
@@ -170,7 +171,7 @@ class MetricsServiceV2Api(object):
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata},
             page_descriptors=self._PAGE_DESCRIPTORS)
-        self.stub = config.create_stub(
+        self.metrics_service_v2_stub = config.create_stub(
             logging_metrics_pb2.MetricsServiceV2Stub,
             service_path,
             port,
@@ -178,16 +179,22 @@ class MetricsServiceV2Api(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._list_log_metrics = api_callable.create_api_call(
-            self.stub.ListLogMetrics, settings=defaults['list_log_metrics'])
+            self.metrics_service_v2_stub.ListLogMetrics,
+            settings=defaults['list_log_metrics'])
         self._get_log_metric = api_callable.create_api_call(
-            self.stub.GetLogMetric, settings=defaults['get_log_metric'])
+            self.metrics_service_v2_stub.GetLogMetric,
+            settings=defaults['get_log_metric'])
         self._create_log_metric = api_callable.create_api_call(
-            self.stub.CreateLogMetric, settings=defaults['create_log_metric'])
+            self.metrics_service_v2_stub.CreateLogMetric,
+            settings=defaults['create_log_metric'])
         self._update_log_metric = api_callable.create_api_call(
-            self.stub.UpdateLogMetric, settings=defaults['update_log_metric'])
+            self.metrics_service_v2_stub.UpdateLogMetric,
+            settings=defaults['update_log_metric'])
         self._delete_log_metric = api_callable.create_api_call(
-            self.stub.DeleteLogMetric, settings=defaults['delete_log_metric'])
+            self.metrics_service_v2_stub.DeleteLogMetric,
+            settings=defaults['delete_log_metric'])
 
     # Service calls
     def list_log_metrics(self, parent, page_size=0, options=None):
@@ -195,9 +202,9 @@ class MetricsServiceV2Api(object):
         Lists logs-based metrics.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = MetricsServiceV2Api()
+          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -230,6 +237,7 @@ class MetricsServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_metrics_pb2.ListLogMetricsRequest(
             parent=parent, page_size=page_size)
@@ -240,8 +248,8 @@ class MetricsServiceV2Api(object):
         Gets a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
-          >>> api = MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
+          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> response = api.get_log_metric(metric_name)
 
@@ -256,6 +264,7 @@ class MetricsServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_metrics_pb2.GetLogMetricRequest(
             metric_name=metric_name)
@@ -266,9 +275,9 @@ class MetricsServiceV2Api(object):
         Creates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
           >>> from google.logging.v2 import logging_metrics_pb2
-          >>> api = MetricsServiceV2Api()
+          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
           >>> parent = api.parent_path('[PROJECT]')
           >>> metric = logging_metrics_pb2.LogMetric()
           >>> response = api.create_log_metric(parent, metric)
@@ -288,6 +297,7 @@ class MetricsServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_metrics_pb2.CreateLogMetricRequest(
             parent=parent, metric=metric)
@@ -298,9 +308,9 @@ class MetricsServiceV2Api(object):
         Creates or updates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
           >>> from google.logging.v2 import logging_metrics_pb2
-          >>> api = MetricsServiceV2Api()
+          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> metric = logging_metrics_pb2.LogMetric()
           >>> response = api.update_log_metric(metric_name, metric)
@@ -323,6 +333,7 @@ class MetricsServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_metrics_pb2.UpdateLogMetricRequest(
             metric_name=metric_name, metric=metric)
@@ -333,8 +344,8 @@ class MetricsServiceV2Api(object):
         Deletes a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2.metrics_service_v2_api import MetricsServiceV2Api
-          >>> api = MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
+          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> api.delete_log_metric(metric_name)
 
@@ -346,6 +357,7 @@ class MetricsServiceV2Api(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = logging_metrics_pb2.DeleteLogMetricRequest(
             metric_name=metric_name)

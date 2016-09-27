@@ -32,6 +32,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.gapic.vision.v1 import enums
 from google.cloud.grpc.vision.v1 import image_annotator_pb2
 
 
@@ -106,7 +107,7 @@ class ImageAnnotatorApi(object):
             client_config,
             config.STATUS_CODE_NAMES,
             kwargs={'metadata': metadata})
-        self.stub = config.create_stub(
+        self.image_annotator_stub = config.create_stub(
             image_annotator_pb2.ImageAnnotatorStub,
             service_path,
             port,
@@ -114,8 +115,9 @@ class ImageAnnotatorApi(object):
             channel=channel,
             metadata_transformer=metadata_transformer,
             scopes=scopes)
+
         self._batch_annotate_images = api_callable.create_api_call(
-            self.stub.BatchAnnotateImages,
+            self.image_annotator_stub.BatchAnnotateImages,
             settings=defaults['batch_annotate_images'])
 
     # Service calls
@@ -124,9 +126,9 @@ class ImageAnnotatorApi(object):
         Run image detection and annotation for a batch of images.
 
         Example:
-          >>> from google.cloud.gapic.vision.v1.image_annotator_api import ImageAnnotatorApi
+          >>> from google.cloud.gapic.vision.v1 import image_annotator_api
           >>> from google.cloud.grpc.vision.v1 import image_annotator_pb2
-          >>> api = ImageAnnotatorApi()
+          >>> api = image_annotator_api.ImageAnnotatorApi()
           >>> requests = []
           >>> response = api.batch_annotate_images(requests)
 
@@ -140,6 +142,7 @@ class ImageAnnotatorApi(object):
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
         """
         request = image_annotator_pb2.BatchAnnotateImagesRequest(
             requests=requests)

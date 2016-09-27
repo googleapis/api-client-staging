@@ -9,21 +9,19 @@ contents since it was created.
 PREREQUISITES
 -------------
 
-- Python must installed
+- Python must be installed.
 
 
 TO PUBLISH
 ----------
 
 - Make sure you have `an account`_ on pypi_.
-- Publish your package as described in `Packaging and Distributing Projects`_
+- Publish your package as described in `Packaging and Distributing Projects`_.
 
 E.g,
 
-##
-
   $ python setup.py sdist register upload
 
-_`Packaging and Distributing projects`: https://packaging.python.org/en/latest/distributing.html#uploading-your-project-to-pypi
-_`an account`: https://pypi.python.org/pypi?%3Aaction=register_form
-_pypi: http://pypi.python.org
+.. _`Packaging and Distributing projects`: https://packaging.python.org/en/latest/distributing.html#uploading-your-project-to-pypi
+.. _`an account`: https://pypi.python.org/pypi?%3Aaction=register_form
+.. _pypi: http://pypi.python.org
