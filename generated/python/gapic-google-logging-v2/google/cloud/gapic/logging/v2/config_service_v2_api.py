@@ -220,7 +220,7 @@ class ConfigServiceV2Api(object):
           >>>     pass
 
         Args:
-          parent (string): Required. The resource name containing the sinks.
+          parent (string): Required. The cloud resource containing the sinks.
             Example: ``\"projects/my-logging-project\"``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
@@ -255,7 +255,7 @@ class ConfigServiceV2Api(object):
           >>> response = api.get_sink(sink_name)
 
         Args:
-          sink_name (string): The resource name of the sink to return.
+          sink_name (string): Required. The resource name of the sink to return.
             Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -283,12 +283,11 @@ class ConfigServiceV2Api(object):
           >>> response = api.create_sink(parent, sink)
 
         Args:
-          parent (string): The resource in which to create the sink.
+          parent (string): Required. The resource in which to create the sink.
             Example: ``\"projects/my-project-id\"``.
-
             The new sink must be provided in the request.
-          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): The new sink, which must not have an identifier that already
-            exists.
+          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): Required. The new sink, whose ``name`` parameter is a sink identifier that
+            is not already in use.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -305,7 +304,7 @@ class ConfigServiceV2Api(object):
 
     def update_sink(self, sink_name, sink, options=None):
         """
-        Creates or updates a sink.
+        Updates or creates a sink.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_api
@@ -316,14 +315,11 @@ class ConfigServiceV2Api(object):
           >>> response = api.update_sink(sink_name, sink)
 
         Args:
-          sink_name (string): The resource name of the sink to update.
-            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
-
-            The updated sink must be provided in the request and have the
-            same name that is specified in ``sinkName``.  If the sink does not
-            exist, it is created.
-          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): The updated sink, whose name must be the same as the sink
-            identifier in ``sinkName``.  If ``sinkName`` does not exist, then
+          sink_name (string): Required. The resource name of the sink to update, including the parent
+            resource and the sink identifier.  If the sink does not exist, this method
+            creates the sink.  Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
+          sink (:class:`google.logging.v2.logging_config_pb2.LogSink`): Required. The updated sink, whose name is the same identifier that appears
+            as part of ``sinkName``.  If ``sinkName`` does not exist, then
             this method creates a new sink.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -350,8 +346,10 @@ class ConfigServiceV2Api(object):
           >>> api.delete_sink(sink_name)
 
         Args:
-          sink_name (string): The resource name of the sink to delete.
-            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
+          sink_name (string): Required. The resource name of the sink to delete, including the parent
+            resource and the sink identifier.  Example:
+            ``\"projects/my-project-id/sinks/my-sink-id\"``.  It is an error if the sink
+            does not exist.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 

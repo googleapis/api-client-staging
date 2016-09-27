@@ -11,7 +11,7 @@ easy-to-use client library for the `Google Language API`_ (v1beta1) defined in t
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google&#x2F;cloud&#x2F;language/v1beta1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/cloud/language/v1beta1
 .. _`Google Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1beta1/
 
 

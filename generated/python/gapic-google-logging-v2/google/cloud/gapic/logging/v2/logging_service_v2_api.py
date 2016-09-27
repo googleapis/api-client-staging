@@ -241,22 +241,31 @@ class LoggingServiceV2Api(object):
           >>> response = api.write_log_entries(entries)
 
         Args:
-          log_name (string): Optional. A default log resource name for those log entries in ``entries``
-            that do not specify their own ``logName``.  Example:
+          log_name (string): Optional. A default log resource name that is assigned to all log entries
+            in ``entries`` that do not specify a value for ``log_name``.  Example:
             ``\"projects/my-project/logs/syslog\"``.  See
             ``LogEntry``.
-          resource (:class:`google.api.monitored_resource_pb2.MonitoredResource`): Optional. A default monitored resource for those log entries in ``entries``
-            that do not specify their own ``resource``.
-          labels (dict[string -> :class:`google.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. User-defined ``key:value`` items that are added to
-            the ``labels`` field of each log entry in ``entries``, except when a log
-            entry specifies its own ``key:value`` item with the same key.
-            Example: ``{ \"size\": \"large\", \"color\":\"red\" }``
-          entries (list[:class:`google.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. The log entries must have values for
-            all required fields.
+          resource (:class:`google.api.monitored_resource_pb2.MonitoredResource`): Optional. A default monitored resource object that is assigned to all log
+            entries in ``entries`` that do not specify a value for ``resource``. Example:
 
-            To improve throughput and to avoid exceeding the quota limit for calls
-            to ``entries.write``, use this field to write multiple log entries at once
-            rather than  // calling this method for each log entry.
+                { \"type\": \"gce_instance\",
+                  \"labels\": {
+                    \"zone\": \"us-central1-a\", \"instance_id\": \"00000000000000000000\" }}
+
+            See ``LogEntry``.
+          labels (dict[string -> :class:`google.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. Default labels that are added to the ``labels`` field of all log
+            entries in ``entries``. If a log entry already has a label with the same key
+            as a label in this parameter, then the log entry's label is not changed.
+            See ``LogEntry``.
+          entries (list[:class:`google.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. Values supplied for the fields
+            ``log_name``, ``resource``, and ``labels`` in this ``entries.write`` request are
+            added to those log entries that do not provide their own values for the
+            fields.
+
+            To improve throughput and to avoid exceeding the
+            `quota limit <https://cloud.google.com/logging/quota-policy>`_ for calls to ``entries.write``,
+            you should write multiple log entries at once rather than
+            calling this method for each individual log entry.
           partial_success (bool): Optional. Whether valid entries should be written even if some other
             entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
             entry is not written, the response status will be the error associated
@@ -283,6 +292,7 @@ class LoggingServiceV2Api(object):
 
     def list_log_entries(self,
                          project_ids,
+                         resource_names=None,
                          filter_='',
                          order_by='',
                          page_size=0,
@@ -310,12 +320,17 @@ class LoggingServiceV2Api(object):
           >>>     pass
 
         Args:
-          project_ids (list[string]): Required. One or more project IDs or project numbers from which to retrieve
-            log entries.  Examples of a project ID: ``\"my-project-1A\"``, ``\"1234567890\"``.
-          filter_ (string): Optional. An `advanced logs filter <https://cloud.google.com/logging/docs/view/advanced_filters>`_.
-            The filter is compared against all log entries in the projects specified by
-            ``projectIds``.  Only entries that match the filter are retrieved.  An empty
-            filter matches all log entries.
+          project_ids (list[string]): Deprecated. One or more project identifiers or project numbers from which
+            to retrieve log entries.  Examples: ``\"my-project-1A\"``, ``\"1234567890\"``. If
+            present, these project identifiers are converted to resource format and
+            added to the list of resources in ``resourceNames``. Callers should use
+            ``resourceNames`` rather than this parameter.
+          resource_names (list[string]): Optional. One or more cloud resources from which to retrieve log entries.
+            Example: ``\"projects/my-project-1A\"``, ``\"projects/1234567890\"``.  Projects
+            listed in ``projectIds`` are added to this list.
+          filter_ (string): Optional. A filter that chooses which log entries to return.  See `Advanced
+            Logs Filters <https://cloud.google.com/logging/docs/view/advanced_filters>`_.  Only log entries that
+            match the filter are returned.  An empty filter matches all log entries.
           order_by (string): Optional. How the results should be sorted.  Presently, the only permitted
             values are ``\"timestamp asc\"`` (default) and ``\"timestamp desc\"``. The first
             option returns entries in order of increasing values of
@@ -340,8 +355,11 @@ class LoggingServiceV2Api(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        if resource_names is None:
+            resource_names = []
         request = logging_pb2.ListLogEntriesRequest(
             project_ids=project_ids,
+            resource_names=resource_names,
             filter=filter_,
             order_by=order_by,
             page_size=page_size)

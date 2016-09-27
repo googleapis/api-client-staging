@@ -14,6 +14,18 @@
 """Wrappers for protocol buffer enum types."""
 
 
+class ApiVersion(object):
+    """
+    Stackdriver Logging API version.
+
+    Attributes:
+      V2 (int): Stackdriver Logging API v2.
+      V1 (int): Stackdriver Logging API v1.
+    """
+    V2 = 0
+    V1 = 1
+
+
 class VersionFormat(object):
     """
     Available log entry formats. Log entries can be written to Cloud
@@ -46,25 +58,33 @@ class ValueType(object):
 
 class LogSeverity(object):
     """
-    The severity of the event described in a log entry.  These guideline severity
-    levels are ordered, with numerically smaller levels treated as less severe
-    than numerically larger levels. If the source of the log entries uses a
-    different set of severity levels, the client should select the closest
-    corresponding ``LogSeverity`` value. For example, Java's FINE, FINER, and
-    FINEST levels might all map to ``LogSeverity.DEBUG``. If the original severity
-    code must be preserved, it can be stored in the payload.
+    The severity of the event described in a log entry, expressed as one of the
+    standard severity levels listed below.  For your reference, the levels are
+    assigned the listed numeric values. The effect of using numeric values other
+    than those listed is undefined.
+
+    You can filter for log entries by severity.  For example, the following
+    filter expression will match log entries with severities ``INFO``, ``NOTICE``,
+    and ``WARNING``:
+
+        severity > DEBUG AND severity <= WARNING
+
+    If you are writing log entries, you should map other severity encodings to
+    one of these standard levels. For example, you might map all of Java's FINE,
+    FINER, and FINEST levels to ``LogSeverity.DEBUG``. You can preserve the
+    original severity level in the log entry payload if you wish.
 
     Attributes:
-      DEFAULT (int): The log entry has no assigned severity level.
-      DEBUG (int): Debug or trace information.
-      INFO (int): Routine information, such as ongoing status or performance.
-      NOTICE (int): Normal but significant events, such as start up, shut down, or
-        configuration.
-      WARNING (int): Warning events might cause problems.
-      ERROR (int): Error events are likely to cause problems.
-      CRITICAL (int): Critical events cause more severe problems or brief outages.
-      ALERT (int): A person must take an action immediately.
-      EMERGENCY (int): One or more systems are unusable.
+      DEFAULT (int): (0) The log entry has no assigned severity level.
+      DEBUG (int): (100) Debug or trace information.
+      INFO (int): (200) Routine information, such as ongoing status or performance.
+      NOTICE (int): (300) Normal but significant events, such as start up, shut down, or
+        a configuration change.
+      WARNING (int): (400) Warning events might cause problems.
+      ERROR (int): (500) Error events are likely to cause problems.
+      CRITICAL (int): (600) Critical events cause more severe problems or outages.
+      ALERT (int): (700) A person must take an action immediately.
+      EMERGENCY (int): (800) One or more systems are unusable.
     """
     DEFAULT = 0
     DEBUG = 100

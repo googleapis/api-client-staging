@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/logging/v2/logging_config.proto',
   package='google.logging.v2',
   syntax='proto3',
-  serialized_pb=_b('\n&google/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x01\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"M\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\"P\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\x99\x05\n\x0f\x43onfigServiceV2\x12\x82\x01\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"*\x82\xd3\xe4\x93\x02$\x12\"/v2beta1/{parent=projects/*}/sinks\x12y\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"/\x82\xd3\xe4\x93\x02)\x12\'/v2beta1/{sink_name=projects/*/sinks/*}\x12\x80\x01\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\"\"/v2beta1/{parent=projects/*}/sinks:\x04sink\x12\x85\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"5\x82\xd3\xe4\x93\x02/\x1a\'/v2beta1/{sink_name=projects/*/sinks/*}:\x04sink\x12{\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"/\x82\xd3\xe4\x93\x02)*\'/v2beta1/{sink_name=projects/*/sinks/*}BZ\n\x15\x63om.google.logging.v2B\rLoggingConfigP\x01Z0google.golang.org/genproto/googleapis/logging/v2b\x06proto3')
+  serialized_pb=_b('\n&google/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdf\x01\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\x12\x17\n\x0fwriter_identity\x18\x08 \x01(\t\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"M\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\"P\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\xfe\x04\n\x0f\x43onfigServiceV2\x12}\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v2/{parent=projects/*}/sinks\x12t\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"*\x82\xd3\xe4\x93\x02$\x12\"/v2/{sink_name=projects/*/sinks/*}\x12{\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"+\x82\xd3\xe4\x93\x02%\"\x1d/v2/{parent=projects/*}/sinks:\x04sink\x12\x80\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\x1a\"/v2/{sink_name=projects/*/sinks/*}:\x04sink\x12v\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$*\"/v2/{sink_name=projects/*/sinks/*}BZ\n\x15\x63om.google.logging.v2B\rLoggingConfigP\x01Z0google.golang.org/genproto/googleapis/logging/v2b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -50,8 +50,8 @@ _LOGSINK_VERSIONFORMAT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=289,
-  serialized_end=352,
+  serialized_start=314,
+  serialized_end=377,
 )
 _sym_db.RegisterEnumDescriptor(_LOGSINK_VERSIONFORMAT)
 
@@ -91,6 +91,13 @@ _LOGSINK = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='writer_identity', full_name='google.logging.v2.LogSink.writer_identity', index=4,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -105,7 +112,7 @@ _LOGSINK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=154,
-  serialized_end=352,
+  serialized_end=377,
 )
 
 
@@ -149,8 +156,8 @@ _LISTSINKSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=354,
-  serialized_end=427,
+  serialized_start=379,
+  serialized_end=452,
 )
 
 
@@ -187,8 +194,8 @@ _LISTSINKSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=429,
-  serialized_end=516,
+  serialized_start=454,
+  serialized_end=541,
 )
 
 
@@ -218,8 +225,8 @@ _GETSINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=518,
-  serialized_end=553,
+  serialized_start=543,
+  serialized_end=578,
 )
 
 
@@ -256,8 +263,8 @@ _CREATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=555,
-  serialized_end=632,
+  serialized_start=580,
+  serialized_end=657,
 )
 
 
@@ -294,8 +301,8 @@ _UPDATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=634,
-  serialized_end=714,
+  serialized_start=659,
+  serialized_end=739,
 )
 
 
@@ -325,8 +332,8 @@ _DELETESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=716,
-  serialized_end=754,
+  serialized_start=741,
+  serialized_end=779,
 )
 
 _LOGSINK.fields_by_name['output_version_format'].enum_type = _LOGSINK_VERSIONFORMAT
@@ -466,7 +473,7 @@ class ConfigServiceV2Servicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def UpdateSink(self, request, context):
-    """Creates or updates a sink.
+    """Updates or creates a sink.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -530,7 +537,7 @@ class BetaConfigServiceV2Servicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def UpdateSink(self, request, context):
-    """Creates or updates a sink.
+    """Updates or creates a sink.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def DeleteSink(self, request, context):
@@ -559,7 +566,7 @@ class BetaConfigServiceV2Stub(object):
     raise NotImplementedError()
   CreateSink.future = None
   def UpdateSink(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Creates or updates a sink.
+    """Updates or creates a sink.
     """
     raise NotImplementedError()
   UpdateSink.future = None

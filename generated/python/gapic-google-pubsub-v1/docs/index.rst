@@ -11,7 +11,7 @@ easy-to-use client library for the `Google Pubsub API`_ (v1) defined in the goog
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google&#x2F;pubsub/v1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/pubsub/v1
 .. _`Google Pubsub API`: https://developers.google.com/apis-explorer/?hl=en_US#p/pubsub/v1/
 
 

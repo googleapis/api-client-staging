@@ -26,7 +26,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/logging/v2/logging.proto',
   package='google.logging.v2',
   syntax='proto3',
-  serialized_pb=_b('\n\x1fgoogle/logging/v2/logging.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a!google/logging/v2/log_entry.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"$\n\x10\x44\x65leteLogRequest\x12\x10\n\x08log_name\x18\x01 \x01(\t\"\x98\x02\n\x16WriteLogEntriesRequest\x12\x10\n\x08log_name\x18\x01 \x01(\t\x12/\n\x08resource\x18\x02 \x01(\x0b\x32\x1d.google.api.MonitoredResource\x12\x45\n\x06labels\x18\x03 \x03(\x0b\x32\x35.google.logging.v2.WriteLogEntriesRequest.LabelsEntry\x12,\n\x07\x65ntries\x18\x04 \x03(\x0b\x32\x1b.google.logging.v2.LogEntry\x12\x17\n\x0fpartial_success\x18\x05 \x01(\x08\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17WriteLogEntriesResponse\"u\n\x15ListLogEntriesRequest\x12\x13\n\x0bproject_ids\x18\x01 \x03(\t\x12\x0e\n\x06\x66ilter\x18\x02 \x01(\t\x12\x10\n\x08order_by\x18\x03 \x01(\t\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"_\n\x16ListLogEntriesResponse\x12,\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1b.google.logging.v2.LogEntry\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"P\n\'ListMonitoredResourceDescriptorsRequest\x12\x11\n\tpage_size\x18\x01 \x01(\x05\x12\x12\n\npage_token\x18\x02 \x01(\t\"\x8a\x01\n(ListMonitoredResourceDescriptorsResponse\x12\x45\n\x14resource_descriptors\x18\x01 \x03(\x0b\x32\'.google.api.MonitoredResourceDescriptor\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t2\xf0\x04\n\x10LoggingServiceV2\x12w\n\tDeleteLog\x12#.google.logging.v2.DeleteLogRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/v2beta1/{log_name=projects/*/logs/*}\x12\x8b\x01\n\x0fWriteLogEntries\x12).google.logging.v2.WriteLogEntriesRequest\x1a*.google.logging.v2.WriteLogEntriesResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v2beta1/entries:write:\x01*\x12\x87\x01\n\x0eListLogEntries\x12(.google.logging.v2.ListLogEntriesRequest\x1a).google.logging.v2.ListLogEntriesResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x15/v2beta1/entries:list:\x01*\x12\xca\x01\n ListMonitoredResourceDescriptors\x12:.google.logging.v2.ListMonitoredResourceDescriptorsRequest\x1a;.google.logging.v2.ListMonitoredResourceDescriptorsResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/v2beta1/monitoredResourceDescriptorsB\\\n\x15\x63om.google.logging.v2B\x0cLoggingProtoP\x01Z0google.golang.org/genproto/googleapis/logging/v2\xf8\x01\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x1fgoogle/logging/v2/logging.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a!google/logging/v2/log_entry.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"$\n\x10\x44\x65leteLogRequest\x12\x10\n\x08log_name\x18\x01 \x01(\t\"\x98\x02\n\x16WriteLogEntriesRequest\x12\x10\n\x08log_name\x18\x01 \x01(\t\x12/\n\x08resource\x18\x02 \x01(\x0b\x32\x1d.google.api.MonitoredResource\x12\x45\n\x06labels\x18\x03 \x03(\x0b\x32\x35.google.logging.v2.WriteLogEntriesRequest.LabelsEntry\x12,\n\x07\x65ntries\x18\x04 \x03(\x0b\x32\x1b.google.logging.v2.LogEntry\x12\x17\n\x0fpartial_success\x18\x05 \x01(\x08\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17WriteLogEntriesResponse\"\x8d\x01\n\x15ListLogEntriesRequest\x12\x13\n\x0bproject_ids\x18\x01 \x03(\t\x12\x16\n\x0eresource_names\x18\x08 \x03(\t\x12\x0e\n\x06\x66ilter\x18\x02 \x01(\t\x12\x10\n\x08order_by\x18\x03 \x01(\t\x12\x11\n\tpage_size\x18\x04 \x01(\x05\x12\x12\n\npage_token\x18\x05 \x01(\t\"_\n\x16ListLogEntriesResponse\x12,\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1b.google.logging.v2.LogEntry\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"P\n\'ListMonitoredResourceDescriptorsRequest\x12\x11\n\tpage_size\x18\x01 \x01(\x05\x12\x12\n\npage_token\x18\x02 \x01(\t\"\x8a\x01\n(ListMonitoredResourceDescriptorsResponse\x12\x45\n\x14resource_descriptors\x18\x01 \x03(\x0b\x32\'.google.api.MonitoredResourceDescriptor\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t2\xe1\x04\n\x10LoggingServiceV2\x12w\n\tDeleteLog\x12#.google.logging.v2.DeleteLogRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'*%/v2beta1/{log_name=projects/*/logs/*}\x12\x86\x01\n\x0fWriteLogEntries\x12).google.logging.v2.WriteLogEntriesRequest\x1a*.google.logging.v2.WriteLogEntriesResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/v2/entries:write:\x01*\x12\x82\x01\n\x0eListLogEntries\x12(.google.logging.v2.ListLogEntriesRequest\x1a).google.logging.v2.ListLogEntriesResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v2/entries:list:\x01*\x12\xc5\x01\n ListMonitoredResourceDescriptors\x12:.google.logging.v2.ListMonitoredResourceDescriptorsRequest\x1a;.google.logging.v2.ListMonitoredResourceDescriptorsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v2/monitoredResourceDescriptorsB\\\n\x15\x63om.google.logging.v2B\x0cLoggingProtoP\x01Z0google.golang.org/genproto/googleapis/logging/v2\xf8\x01\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_monitored__resource__pb2.DESCRIPTOR,google_dot_logging_dot_v2_dot_log__entry__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -200,28 +200,35 @@ _LISTLOGENTRIESREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='filter', full_name='google.logging.v2.ListLogEntriesRequest.filter', index=1,
+      name='resource_names', full_name='google.logging.v2.ListLogEntriesRequest.resource_names', index=1,
+      number=8, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='filter', full_name='google.logging.v2.ListLogEntriesRequest.filter', index=2,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='order_by', full_name='google.logging.v2.ListLogEntriesRequest.order_by', index=2,
+      name='order_by', full_name='google.logging.v2.ListLogEntriesRequest.order_by', index=3,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='page_size', full_name='google.logging.v2.ListLogEntriesRequest.page_size', index=3,
+      name='page_size', full_name='google.logging.v2.ListLogEntriesRequest.page_size', index=4,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='page_token', full_name='google.logging.v2.ListLogEntriesRequest.page_token', index=4,
+      name='page_token', full_name='google.logging.v2.ListLogEntriesRequest.page_token', index=5,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -239,8 +246,8 @@ _LISTLOGENTRIESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=623,
-  serialized_end=740,
+  serialized_start=624,
+  serialized_end=765,
 )
 
 
@@ -277,8 +284,8 @@ _LISTLOGENTRIESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=742,
-  serialized_end=837,
+  serialized_start=767,
+  serialized_end=862,
 )
 
 
@@ -315,8 +322,8 @@ _LISTMONITOREDRESOURCEDESCRIPTORSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=839,
-  serialized_end=919,
+  serialized_start=864,
+  serialized_end=944,
 )
 
 
@@ -353,8 +360,8 @@ _LISTMONITOREDRESOURCEDESCRIPTORSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=922,
-  serialized_end=1060,
+  serialized_start=947,
+  serialized_end=1085,
 )
 
 _WRITELOGENTRIESREQUEST_LABELSENTRY.containing_type = _WRITELOGENTRIESREQUEST
@@ -479,7 +486,6 @@ class LoggingServiceV2Servicer(object):
   def DeleteLog(self, request, context):
     """Deletes a log and all its log entries.
     The log will reappear if it receives new entries.
-
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -488,7 +494,6 @@ class LoggingServiceV2Servicer(object):
   def WriteLogEntries(self, request, context):
     """Writes log entries to Stackdriver Logging.  All log entries are
     written by this method.
-
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -498,7 +503,6 @@ class LoggingServiceV2Servicer(object):
     """Lists log entries.  Use this method to retrieve log entries from Cloud
     Logging.  For ways to export log entries, see
     [Exporting Logs](/logging/docs/export).
-
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -546,20 +550,17 @@ class BetaLoggingServiceV2Servicer(object):
   def DeleteLog(self, request, context):
     """Deletes a log and all its log entries.
     The log will reappear if it receives new entries.
-
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def WriteLogEntries(self, request, context):
     """Writes log entries to Stackdriver Logging.  All log entries are
     written by this method.
-
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def ListLogEntries(self, request, context):
     """Lists log entries.  Use this method to retrieve log entries from Cloud
     Logging.  For ways to export log entries, see
     [Exporting Logs](/logging/docs/export).
-
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def ListMonitoredResourceDescriptors(self, request, context):
@@ -574,14 +575,12 @@ class BetaLoggingServiceV2Stub(object):
   def DeleteLog(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Deletes a log and all its log entries.
     The log will reappear if it receives new entries.
-
     """
     raise NotImplementedError()
   DeleteLog.future = None
   def WriteLogEntries(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Writes log entries to Stackdriver Logging.  All log entries are
     written by this method.
-
     """
     raise NotImplementedError()
   WriteLogEntries.future = None
@@ -589,7 +588,6 @@ class BetaLoggingServiceV2Stub(object):
     """Lists log entries.  Use this method to retrieve log entries from Cloud
     Logging.  For ways to export log entries, see
     [Exporting Logs](/logging/docs/export).
-
     """
     raise NotImplementedError()
   ListLogEntries.future = None

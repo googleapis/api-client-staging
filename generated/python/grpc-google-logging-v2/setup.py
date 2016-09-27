@@ -17,7 +17,7 @@ install_requires = [
 
 setuptools.setup(
   name='grpc-google-logging-v2',
-  version='0.10.0',
+  version='0.10.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[

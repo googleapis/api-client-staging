@@ -11,13 +11,13 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.3.4, <2.0.0dev',
     'google-gax>=0.14.1, <0.15.0dev',
-    'grpc-google-logging-v2>=0.10.0, <0.11.0dev',
+    'grpc-google-logging-v2>=0.10.1, <0.11.0dev',
     'oauth2client>=3.0.0, <4.0.0dev',
 ]
 
 setup(
     name='gapic-google-logging-v2',
-    version='0.10.0',
+    version='0.10.1',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[

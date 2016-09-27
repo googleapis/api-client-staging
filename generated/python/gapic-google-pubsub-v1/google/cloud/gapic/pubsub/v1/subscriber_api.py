@@ -267,11 +267,12 @@ class SubscriberApi(object):
                             ack_deadline_seconds=0,
                             options=None):
         """
-        Creates a subscription to a given topic for a given subscriber.
+        Creates a subscription to a given topic.
         If the subscription already exists, returns ``ALREADY_EXISTS``.
         If the corresponding topic doesn't exist, returns ``NOT_FOUND``.
         If the name is not provided in the request, the server will assign a random
-        name for this subscription on the same project as the topic.
+        name for this subscription on the same project as the topic. Note that
+        for REST API requests, you must specify a name.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
@@ -303,6 +304,7 @@ class SubscriberApi(object):
             deadline. To override this value for a given message, call
             ``ModifyAckDeadline`` with the corresponding ``ack_id`` if using
             pull.
+            The maximum custom deadline you can specify is 600 seconds (10 minutes).
 
             For push delivery, this value is also used to set the request timeout for
             the call to the push endpoint.
@@ -310,7 +312,7 @@ class SubscriberApi(object):
             If the subscriber never acknowledges the message, the Pub/Sub
             system will eventually redeliver the message.
 
-            If this parameter is not set, the default value of 10 seconds is used.
+            If this parameter is 0, a default value of 10 seconds is used.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -436,7 +438,8 @@ class SubscriberApi(object):
         Modifies the ack deadline for a specific message. This method is useful
         to indicate that more time is needed to process a message by the
         subscriber, or to make the message available for redelivery if the
-        processing was interrupted.
+        processing was interrupted. Note that this does not modify the
+        subscription-level ``ackDeadlineSeconds`` used for subsequent messages.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
