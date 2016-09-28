@@ -10,14 +10,14 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'oauth2client>=1.4.11, <2.0.0',
-  'grpcio>=1.0.0, <2.0.0',
-  'googleapis-common-protos[grpc]>=1.3.4, <2.0.0'
+  'oauth2client>=3.0.0, <4.0.0dev',
+  'grpcio>=1.0.0, <2.0.0dev',
+  'googleapis-common-protos[grpc]>=1.3.4, <2.0.0dev'
 ]
 
 setuptools.setup(
   name='grpc-google-iam-v1',
-  version='0.10.0',
+  version='0.10.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
