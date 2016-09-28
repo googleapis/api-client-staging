@@ -15,6 +15,7 @@ package com.google.cloud.logging.spi.v2;
 
 import com.google.api.MonitoredResourceDescriptor;
 import com.google.api.gax.core.ConnectionSettings;
+import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.ApiCallSettings;
 import com.google.api.gax.grpc.PageStreamingCallSettings;
@@ -40,6 +41,7 @@ import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;
@@ -206,7 +208,8 @@ public class LoggingServiceV2Settings extends ServiceApiSettings {
         settingsBuilder.listMonitoredResourceDescriptorsSettings().build();
   }
 
-  private static PageStreamingDescriptor<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
+  private static final PageStreamingDescriptor<
+          ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
       LIST_LOG_ENTRIES_PAGE_STR_DESC =
           new PageStreamingDescriptor<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>() {
             @Override
@@ -241,7 +244,7 @@ public class LoggingServiceV2Settings extends ServiceApiSettings {
             }
           };
 
-  private static PageStreamingDescriptor<
+  private static final PageStreamingDescriptor<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
           MonitoredResourceDescriptor>
       LIST_MONITORED_RESOURCE_DESCRIPTORS_PAGE_STR_DESC =
@@ -292,13 +295,13 @@ public class LoggingServiceV2Settings extends ServiceApiSettings {
   public static class Builder extends ServiceApiSettings.Builder {
     private final ImmutableList<ApiCallSettings.Builder> methodSettingsBuilders;
 
-    private SimpleCallSettings.Builder<DeleteLogRequest, Empty> deleteLogSettings;
-    private SimpleCallSettings.Builder<WriteLogEntriesRequest, WriteLogEntriesResponse>
+    private final SimpleCallSettings.Builder<DeleteLogRequest, Empty> deleteLogSettings;
+    private final SimpleCallSettings.Builder<WriteLogEntriesRequest, WriteLogEntriesResponse>
         writeLogEntriesSettings;
-    private PageStreamingCallSettings.Builder<
+    private final PageStreamingCallSettings.Builder<
             ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
         listLogEntriesSettings;
-    private PageStreamingCallSettings.Builder<
+    private final PageStreamingCallSettings.Builder<
             ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
             MonitoredResourceDescriptor>
         listMonitoredResourceDescriptorsSettings;
