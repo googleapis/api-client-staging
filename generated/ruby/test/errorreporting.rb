@@ -17,9 +17,14 @@
 #
 require "google/cloud/error_reporting/v1beta1"
 
-PROJECT_NAME = "gapic-test".freeze
-SERVICE = "default".freeze
-VERSION = "20160920t135819".freeze
+if ARGV.length != 3
+  puts "Usage: #{$0} <project_id> <service> <version>"
+  exit
+end
+
+PROJECT_NAME = ARGV[0].freeze
+SERVICE = ARGV[1].freeze
+VERSION = ARGV[2].freeze
 USER_NAME = "testuser".freeze
 
 #
@@ -40,7 +45,7 @@ SourceLocation = Grpc::SourceLocation
 formatted_project_name = ReportErrorsServiceApi.project_path(PROJECT_NAME)
 http_request_context = HttpRequestContext.new(
   method: "GET",
-  url: "https://20160920t135819-dot-gapic-test.appspot.com")
+  url: "https://example.com")
 source_location1 = SourceLocation.new(
   file_path: "foo/bar",
   line_number: 20,
