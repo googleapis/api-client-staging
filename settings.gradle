@@ -1,1 +1,9 @@
-include 'generated:java:google-logging-v2', 'generated:java:google-pubsub-v1'
+include 'generated:java:google-logging-v2',
+  'generated:java:google-pubsub-v1',
+  'generated:java:google-cloud-language-v1beta1',
+  'generated:java:google-cloud-speech-v1beta1',
+  'generated:java:google-cloud-vision-v1',
+  'generated:java:google-devtools-clouderrorreporting-v1beta1',
+  'generated:java:google-devtools-cloudtrace-v1',
+  'generated:java:google-monitoring-v3'
+

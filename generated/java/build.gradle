@@ -1,5 +1,7 @@
 import groovy.io.FileType
 
+def generated_grpc_version = "0.1.0"
+
 buildscript {
   repositories {
     mavenLocal()
@@ -29,7 +31,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.0.17',
+        gax: 'com.google.api:gax:0.0.18',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -118,11 +120,48 @@ subprojects {
 
 project(':generated:java:google-logging-v2') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-logging-v2:0.0.7'
+    compile 'com.google.api.grpc:grpc-google-logging-v2:' + generated_grpc_version
   }
 }
+
 project(':generated:java:google-pubsub-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-pubsub-v1:0.0.9'
+    compile 'com.google.api.grpc:grpc-google-pubsub-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-language-v1beta1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-speech-v1beta1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-speech-v1beta1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-vision-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-vision-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-devtools-clouderrorreporting-v1beta1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-devtools-clouderrorreporting-v1beta1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-devtools-cloudtrace-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-devtools-cloudtrace-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-monitoring-v3') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-monitoring-v3:' + generated_grpc_version
   }
 }

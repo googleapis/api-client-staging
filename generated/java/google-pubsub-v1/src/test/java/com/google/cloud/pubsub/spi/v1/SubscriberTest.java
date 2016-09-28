@@ -51,7 +51,7 @@ import org.junit.Test;
 @javax.annotation.Generated("by GAPIC")
 public class SubscriberTest {
   private static MockPublisher mockPublisher;
-  private static MockIAMPolicy mockIAMPolicy;
+  private static MockIamPolicy mockIamPolicy;
   private static MockSubscriber mockSubscriber;
   private static MockServiceHelper serviceHelper;
   private SubscriberApi api;
@@ -59,12 +59,12 @@ public class SubscriberTest {
   @BeforeClass
   public static void startStaticServer() {
     mockPublisher = new MockPublisher();
-    mockIAMPolicy = new MockIAMPolicy();
+    mockIamPolicy = new MockIamPolicy();
     mockSubscriber = new MockSubscriber();
     serviceHelper =
         new MockServiceHelper(
             "in-process-1",
-            Arrays.<MockGrpcService>asList(mockPublisher, mockIAMPolicy, mockSubscriber));
+            Arrays.<MockGrpcService>asList(mockPublisher, mockIamPolicy, mockSubscriber));
     serviceHelper.start();
   }
 
@@ -304,7 +304,7 @@ public class SubscriberTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIamPolicy.setResponses(expectedResponses);
 
     String formattedResource = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
     Policy policy = Policy.newBuilder().build();
@@ -312,7 +312,7 @@ public class SubscriberTest {
     Policy actualResponse = api.setIamPolicy(formattedResource, policy);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIamPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     SetIamPolicyRequest actualRequest = (SetIamPolicyRequest) actualRequests.get(0);
 
@@ -328,14 +328,14 @@ public class SubscriberTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIamPolicy.setResponses(expectedResponses);
 
     String formattedResource = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
 
     Policy actualResponse = api.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIamPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetIamPolicyRequest actualRequest = (GetIamPolicyRequest) actualRequests.get(0);
 
@@ -348,7 +348,7 @@ public class SubscriberTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIamPolicy.setResponses(expectedResponses);
 
     String formattedResource = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
     List<String> permissions = new ArrayList<>();
@@ -357,7 +357,7 @@ public class SubscriberTest {
         api.testIamPermissions(formattedResource, permissions);
     Assert.assertEquals(expectedResponse, actualResponse);
 
-    List<GeneratedMessageV3> actualRequests = mockIAMPolicy.getRequests();
+    List<GeneratedMessageV3> actualRequests = mockIamPolicy.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     TestIamPermissionsRequest actualRequest = (TestIamPermissionsRequest) actualRequests.get(0);
 

@@ -16,6 +16,7 @@ package com.google.cloud.monitoring.spi.v3;
 import com.google.api.MetricDescriptor;
 import com.google.api.MonitoredResourceDescriptor;
 import com.google.api.gax.core.ConnectionSettings;
+import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.ApiCallSettings;
 import com.google.api.gax.grpc.PageStreamingCallSettings;
@@ -45,6 +46,7 @@ import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;
@@ -252,7 +254,7 @@ public class MetricServiceSettings extends ServiceApiSettings {
     createTimeSeriesSettings = settingsBuilder.createTimeSeriesSettings().build();
   }
 
-  private static PageStreamingDescriptor<
+  private static final PageStreamingDescriptor<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
           MonitoredResourceDescriptor>
       LIST_MONITORED_RESOURCE_DESCRIPTORS_PAGE_STR_DESC =
@@ -297,7 +299,7 @@ public class MetricServiceSettings extends ServiceApiSettings {
             }
           };
 
-  private static PageStreamingDescriptor<
+  private static final PageStreamingDescriptor<
           ListMetricDescriptorsRequest, ListMetricDescriptorsResponse, MetricDescriptor>
       LIST_METRIC_DESCRIPTORS_PAGE_STR_DESC =
           new PageStreamingDescriptor<
@@ -338,7 +340,8 @@ public class MetricServiceSettings extends ServiceApiSettings {
             }
           };
 
-  private static PageStreamingDescriptor<ListTimeSeriesRequest, ListTimeSeriesResponse, TimeSeries>
+  private static final PageStreamingDescriptor<
+          ListTimeSeriesRequest, ListTimeSeriesResponse, TimeSeries>
       LIST_TIME_SERIES_PAGE_STR_DESC =
           new PageStreamingDescriptor<ListTimeSeriesRequest, ListTimeSeriesResponse, TimeSeries>() {
             @Override
@@ -379,26 +382,27 @@ public class MetricServiceSettings extends ServiceApiSettings {
   public static class Builder extends ServiceApiSettings.Builder {
     private final ImmutableList<ApiCallSettings.Builder> methodSettingsBuilders;
 
-    private PageStreamingCallSettings.Builder<
+    private final PageStreamingCallSettings.Builder<
             ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
             MonitoredResourceDescriptor>
         listMonitoredResourceDescriptorsSettings;
-    private SimpleCallSettings.Builder<
+    private final SimpleCallSettings.Builder<
             GetMonitoredResourceDescriptorRequest, MonitoredResourceDescriptor>
         getMonitoredResourceDescriptorSettings;
-    private PageStreamingCallSettings.Builder<
+    private final PageStreamingCallSettings.Builder<
             ListMetricDescriptorsRequest, ListMetricDescriptorsResponse, MetricDescriptor>
         listMetricDescriptorsSettings;
-    private SimpleCallSettings.Builder<GetMetricDescriptorRequest, MetricDescriptor>
+    private final SimpleCallSettings.Builder<GetMetricDescriptorRequest, MetricDescriptor>
         getMetricDescriptorSettings;
-    private SimpleCallSettings.Builder<CreateMetricDescriptorRequest, MetricDescriptor>
+    private final SimpleCallSettings.Builder<CreateMetricDescriptorRequest, MetricDescriptor>
         createMetricDescriptorSettings;
-    private SimpleCallSettings.Builder<DeleteMetricDescriptorRequest, Empty>
+    private final SimpleCallSettings.Builder<DeleteMetricDescriptorRequest, Empty>
         deleteMetricDescriptorSettings;
-    private PageStreamingCallSettings.Builder<
+    private final PageStreamingCallSettings.Builder<
             ListTimeSeriesRequest, ListTimeSeriesResponse, TimeSeries>
         listTimeSeriesSettings;
-    private SimpleCallSettings.Builder<CreateTimeSeriesRequest, Empty> createTimeSeriesSettings;
+    private final SimpleCallSettings.Builder<CreateTimeSeriesRequest, Empty>
+        createTimeSeriesSettings;
 
     private static final ImmutableMap<String, ImmutableSet<Status.Code>> RETRYABLE_CODE_DEFINITIONS;
 
