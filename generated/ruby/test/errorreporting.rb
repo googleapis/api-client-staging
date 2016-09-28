@@ -15,6 +15,7 @@
 # Integration tests for vkit generated client library for
 # Stackdriver ErrorReporting APIs.
 #
+require "google/cloud/error_reporting/v1beta1"
 
 PROJECT_NAME = "gapic-test".freeze
 SERVICE = "default".freeze
@@ -25,16 +26,17 @@ USER_NAME = "testuser".freeze
 # Integration test for ReportErrorsServiceApi.report_error_event
 #
 # Report first two error events (to be one group) and third event (to be another group)
-require "google/cloud/error_reporting/v1beta1/report_errors_service_api"
-require "google/devtools/clouderrorreporting/v1beta1/report_errors_service_pb"
-ReportErrorsServiceApi = Google::Cloud::ErrorReporting::V1beta1::ReportErrorsServiceApi
-ReportedErrorEvent = Google::Devtools::Clouderrorreporting::V1beta1::ReportedErrorEvent
-ServiceContext = Google::Devtools::Clouderrorreporting::V1beta1::ServiceContext
-ErrorContext = Google::Devtools::Clouderrorreporting::V1beta1::ErrorContext
-HttpRequestContext = Google::Devtools::Clouderrorreporting::V1beta1::HttpRequestContext
-SourceLocation = Google::Devtools::Clouderrorreporting::V1beta1::SourceLocation
-
+ReportErrorsServiceApi =
+  Google::Cloud::ErrorReporting::V1beta1::ReportErrorsServiceApi
 report_errors_service_api = ReportErrorsServiceApi.new
+Grpc = Google::Devtools::Clouderrorreporting::V1beta1
+ReportedErrorEvent = Grpc::ReportedErrorEvent
+ServiceContext = Grpc::ServiceContext
+ErrorContext = Grpc::ErrorContext
+HttpRequestContext = Grpc::HttpRequestContext
+SourceLocation = Grpc::SourceLocation
+
+
 formatted_project_name = ReportErrorsServiceApi.project_path(PROJECT_NAME)
 http_request_context = HttpRequestContext.new(
   method: "GET",
@@ -85,13 +87,13 @@ report_errors_service_api.report_error_event(formatted_project_name, event3)
 # Integration test for ErrorStatsServiceApi.list_group_stats and
 #                      ErrorStatsServiceApi.list_events
 #
-require "google/cloud/error_reporting/v1beta1/error_stats_service_api"
-require "google/devtools/clouderrorreporting/v1beta1/error_stats_service_pb"
-ErrorStatsServiceApi = Google::Cloud::ErrorReporting::V1beta1::ErrorStatsServiceApi
-QueryTimeRange = Google::Devtools::Clouderrorreporting::V1beta1::QueryTimeRange
+ErrorStatsServiceApi =
+  Google::Cloud::ErrorReporting::V1beta1::ErrorStatsServiceApi
+error_stats_service_api = ErrorStatsServiceApi.new
+Grpc = Google::Devtools::Clouderrorreporting::V1beta1
+QueryTimeRange = Grpc::QueryTimeRange
 
 puts "Listing all the error groups"
-error_stats_service_api = ErrorStatsServiceApi.new
 formatted_project_name = ErrorStatsServiceApi.project_path(PROJECT_NAME)
 time_range = QueryTimeRange.new(period: :PERIOD_1_DAY)
 error_group_id = 0
@@ -123,12 +125,13 @@ end
 # Integration test for ErrorGroupServiceApi.get_group and
 #                      ErrorGroupServiceApi.update_group
 #
-require "google/cloud/error_reporting/v1beta1/error_group_service_api"
-require "google/devtools/clouderrorreporting/v1beta1/error_group_service_pb"
-ErrorGroupServiceApi = Google::Cloud::ErrorReporting::V1beta1::ErrorGroupServiceApi
-ErrorGroup = Google::Devtools::Clouderrorreporting::V1beta1::ErrorGroup
-TrackingIssue = Google::Devtools::Clouderrorreporting::V1beta1::TrackingIssue
+ErrorGroupServiceApi =
+  Google::Cloud::ErrorReporting::V1beta1::ErrorGroupServiceApi
 error_group_service_api = ErrorGroupServiceApi.new
+Grpc = Google::Devtools::Clouderrorreporting::V1beta1
+ErrorGroup = Grpc::ErrorGroup
+TrackingIssue = Grpc::TrackingIssue
+
 formatted_group_name = ErrorGroupServiceApi.group_path(
   PROJECT_NAME,
   error_group_id)
