@@ -234,7 +234,12 @@ MetricServiceApi.prototype.matchMonitoredResourceDescriptorFromMonitoredResource
  * @param {string} name
  *   The project on which to execute the request. The format is
  *   `"projects/{project_id_or_number}"`.
- * @param {string} filter
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {string=} options.filter
  *   An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
  *   the descriptors to be returned.  The filter can reference
  *   the descriptor's type and labels. For example, the
@@ -242,11 +247,6 @@ MetricServiceApi.prototype.matchMonitoredResourceDescriptorFromMonitoredResource
  *   that have an `id` label:
  *
  *       resource.type = starts_with("gce_") AND resource.label:id
- * @param {Object=} options
- *   Optional parameters. You can override the default settings for this call, e.g, timeout,
- *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
- *
- *   In addition, options may contain the following optional parameters.
  * @param {number=} options.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
@@ -270,9 +270,8 @@ MetricServiceApi.prototype.matchMonitoredResourceDescriptorFromMonitoredResource
  *
  * var api = monitoringV3.metricServiceApi();
  * var formattedName = api.projectPath("[PROJECT]");
- * var filter = '';
  * // Iterate over all elements.
- * api.listMonitoredResourceDescriptors(formattedName, filter).on('data', function(element) {
+ * api.listMonitoredResourceDescriptors(formattedName).on('data', function(element) {
  *     // doThingsWith(element)
  * });
  *
@@ -285,14 +284,13 @@ MetricServiceApi.prototype.matchMonitoredResourceDescriptorFromMonitoredResource
  *     // doThingsWith(response)
  *     if (nextPageToken) {
  *         // fetch the next page.
- *         api.listMonitoredResourceDescriptors(formattedName, filter, {pageToken: nextPageToken}, callback);
+ *         api.listMonitoredResourceDescriptors(formattedName, {pageToken: nextPageToken}, callback);
  *     }
  * }
- * api.listMonitoredResourceDescriptors(formattedName, filter, {flattenPages: false}, callback);
+ * api.listMonitoredResourceDescriptors(formattedName, {flattenPages: false}, callback);
  */
 MetricServiceApi.prototype.listMonitoredResourceDescriptors = function listMonitoredResourceDescriptors(
     name,
-    filter,
     options,
     callback) {
   if (options instanceof Function && callback === undefined) {
@@ -303,9 +301,11 @@ MetricServiceApi.prototype.listMonitoredResourceDescriptors = function listMonit
     options = {};
   }
   var req = {
-    name: name,
-    filter: filter
+    name: name
   };
+  if ('filter' in options) {
+    req.filter = options.filter;
+  }
   if ('pageSize' in options) {
     req.pageSize = options.pageSize;
   }
@@ -365,7 +365,12 @@ MetricServiceApi.prototype.getMonitoredResourceDescriptor = function getMonitore
  * @param {string} name
  *   The project on which to execute the request. The format is
  *   `"projects/{project_id_or_number}"`.
- * @param {string} filter
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {string=} options.filter
  *   If this field is empty, all custom and
  *   system-defined metric descriptors are returned.
  *   Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
@@ -374,11 +379,6 @@ MetricServiceApi.prototype.getMonitoredResourceDescriptor = function getMonitore
  *   [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
  *
  *       metric.type = starts_with("custom.googleapis.com/")
- * @param {Object=} options
- *   Optional parameters. You can override the default settings for this call, e.g, timeout,
- *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
- *
- *   In addition, options may contain the following optional parameters.
  * @param {number=} options.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
@@ -402,9 +402,8 @@ MetricServiceApi.prototype.getMonitoredResourceDescriptor = function getMonitore
  *
  * var api = monitoringV3.metricServiceApi();
  * var formattedName = api.projectPath("[PROJECT]");
- * var filter = '';
  * // Iterate over all elements.
- * api.listMetricDescriptors(formattedName, filter).on('data', function(element) {
+ * api.listMetricDescriptors(formattedName).on('data', function(element) {
  *     // doThingsWith(element)
  * });
  *
@@ -417,14 +416,13 @@ MetricServiceApi.prototype.getMonitoredResourceDescriptor = function getMonitore
  *     // doThingsWith(response)
  *     if (nextPageToken) {
  *         // fetch the next page.
- *         api.listMetricDescriptors(formattedName, filter, {pageToken: nextPageToken}, callback);
+ *         api.listMetricDescriptors(formattedName, {pageToken: nextPageToken}, callback);
  *     }
  * }
- * api.listMetricDescriptors(formattedName, filter, {flattenPages: false}, callback);
+ * api.listMetricDescriptors(formattedName, {flattenPages: false}, callback);
  */
 MetricServiceApi.prototype.listMetricDescriptors = function listMetricDescriptors(
     name,
-    filter,
     options,
     callback) {
   if (options instanceof Function && callback === undefined) {
@@ -435,9 +433,11 @@ MetricServiceApi.prototype.listMetricDescriptors = function listMetricDescriptor
     options = {};
   }
   var req = {
-    name: name,
-    filter: filter
+    name: name
   };
+  if ('filter' in options) {
+    req.filter = options.filter;
+  }
   if ('pageSize' in options) {
     req.pageSize = options.pageSize;
   }
@@ -610,16 +610,6 @@ MetricServiceApi.prototype.deleteMetricDescriptor = function deleteMetricDescrip
  *   in the response.
  *
  *   This object should have the same structure as [TimeInterval]{@link TimeInterval}
- * @param {Object} aggregation
- *   By default, the raw time series data is returned.
- *   Use this field to combine multiple time series for different
- *   views of the data.
- *
- *   This object should have the same structure as [Aggregation]{@link Aggregation}
- * @param {string} orderBy
- *   Specifies the order in which the points of the time series should
- *   be returned.  By default, results are not ordered.  Currently,
- *   this field must be left blank.
  * @param {number} view
  *   Specifies which information is returned about the time series.
  *
@@ -629,6 +619,16 @@ MetricServiceApi.prototype.deleteMetricDescriptor = function deleteMetricDescrip
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  *
  *   In addition, options may contain the following optional parameters.
+ * @param {Object=} options.aggregation
+ *   By default, the raw time series data is returned.
+ *   Use this field to combine multiple time series for different
+ *   views of the data.
+ *
+ *   This object should have the same structure as [Aggregation]{@link Aggregation}
+ * @param {string=} options.orderBy
+ *   Specifies the order in which the points of the time series should
+ *   be returned.  By default, results are not ordered.  Currently,
+ *   this field must be left blank.
  * @param {number=} options.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
@@ -654,11 +654,9 @@ MetricServiceApi.prototype.deleteMetricDescriptor = function deleteMetricDescrip
  * var formattedName = api.projectPath("[PROJECT]");
  * var filter = '';
  * var interval = {};
- * var aggregation = {};
- * var orderBy = '';
  * var view = TimeSeriesView.FULL;
  * // Iterate over all elements.
- * api.listTimeSeries(formattedName, filter, interval, aggregation, orderBy, view).on('data', function(element) {
+ * api.listTimeSeries(formattedName, filter, interval, view).on('data', function(element) {
  *     // doThingsWith(element)
  * });
  *
@@ -671,17 +669,15 @@ MetricServiceApi.prototype.deleteMetricDescriptor = function deleteMetricDescrip
  *     // doThingsWith(response)
  *     if (nextPageToken) {
  *         // fetch the next page.
- *         api.listTimeSeries(formattedName, filter, interval, aggregation, orderBy, view, {pageToken: nextPageToken}, callback);
+ *         api.listTimeSeries(formattedName, filter, interval, view, {pageToken: nextPageToken}, callback);
  *     }
  * }
- * api.listTimeSeries(formattedName, filter, interval, aggregation, orderBy, view, {flattenPages: false}, callback);
+ * api.listTimeSeries(formattedName, filter, interval, view, {flattenPages: false}, callback);
  */
 MetricServiceApi.prototype.listTimeSeries = function listTimeSeries(
     name,
     filter,
     interval,
-    aggregation,
-    orderBy,
     view,
     options,
     callback) {
@@ -696,10 +692,14 @@ MetricServiceApi.prototype.listTimeSeries = function listTimeSeries(
     name: name,
     filter: filter,
     interval: interval,
-    aggregation: aggregation,
-    orderBy: orderBy,
     view: view
   };
+  if ('aggregation' in options) {
+    req.aggregation = options.aggregation;
+  }
+  if ('orderBy' in options) {
+    req.orderBy = options.orderBy;
+  }
   if ('pageSize' in options) {
     req.pageSize = options.pageSize;
   }

@@ -347,11 +347,14 @@ GroupServiceApi.prototype.getGroup = function getGroup(
  *   the system assigns the name.
  *
  *   This object should have the same structure as [Group]{@link Group}
- * @param {boolean} validateOnly
- *   If true, validate this request but do not create the group.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {boolean=} options.validateOnly
+ *   If true, validate this request but do not create the group.
+ *
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
@@ -364,8 +367,7 @@ GroupServiceApi.prototype.getGroup = function getGroup(
  * var api = monitoringV3.groupServiceApi();
  * var formattedName = api.projectPath("[PROJECT]");
  * var group = {};
- * var validateOnly = false;
- * api.createGroup(formattedName, group, validateOnly, function(err, response) {
+ * api.createGroup(formattedName, group, function(err, response) {
  *     if (err) {
  *         console.error(err);
  *         return;
@@ -376,7 +378,6 @@ GroupServiceApi.prototype.getGroup = function getGroup(
 GroupServiceApi.prototype.createGroup = function createGroup(
     name,
     group,
-    validateOnly,
     options,
     callback) {
   if (options instanceof Function && callback === undefined) {
@@ -388,9 +389,11 @@ GroupServiceApi.prototype.createGroup = function createGroup(
   }
   var req = {
     name: name,
-    group: group,
-    validateOnly: validateOnly
+    group: group
   };
+  if ('validateOnly' in options) {
+    req.validateOnly = options.validateOnly;
+  }
   return this._createGroup(req, options, callback);
 };
 
@@ -403,11 +406,14 @@ GroupServiceApi.prototype.createGroup = function createGroup(
  *   excepting `name`, are replaced with the corresponding fields of this group.
  *
  *   This object should have the same structure as [Group]{@link Group}
- * @param {boolean} validateOnly
- *   If true, validate this request but do not update the existing group.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {boolean=} options.validateOnly
+ *   If true, validate this request but do not update the existing group.
+ *
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
@@ -419,8 +425,7 @@ GroupServiceApi.prototype.createGroup = function createGroup(
  *
  * var api = monitoringV3.groupServiceApi();
  * var group = {};
- * var validateOnly = false;
- * api.updateGroup(group, validateOnly, function(err, response) {
+ * api.updateGroup(group, function(err, response) {
  *     if (err) {
  *         console.error(err);
  *         return;
@@ -430,7 +435,6 @@ GroupServiceApi.prototype.createGroup = function createGroup(
  */
 GroupServiceApi.prototype.updateGroup = function updateGroup(
     group,
-    validateOnly,
     options,
     callback) {
   if (options instanceof Function && callback === undefined) {
@@ -441,9 +445,11 @@ GroupServiceApi.prototype.updateGroup = function updateGroup(
     options = {};
   }
   var req = {
-    group: group,
-    validateOnly: validateOnly
+    group: group
   };
+  if ('validateOnly' in options) {
+    req.validateOnly = options.validateOnly;
+  }
   return this._updateGroup(req, options, callback);
 };
 
@@ -494,21 +500,6 @@ GroupServiceApi.prototype.deleteGroup = function deleteGroup(
  * @param {string} name
  *   The group whose members are listed. The format is
  *   `"projects/{project_id_or_number}/groups/{group_id}"`.
- * @param {string} filter
- *   An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
- *   the members to be returned.  The filter may reference the type, labels, and
- *   metadata of monitored resources that comprise the group.
- *   For example, to return only resources representing Compute Engine VM
- *   instances, use this filter:
- *
- *       resource.type = "gce_instance"
- * @param {Object} interval
- *   An optional time interval for which results should be returned. Only
- *   members that were part of the group during the specified interval are
- *   included in the response.  If no interval is provided then the group
- *   membership over the last minute is returned.
- *
- *   This object should have the same structure as [TimeInterval]{@link TimeInterval}
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -520,6 +511,21 @@ GroupServiceApi.prototype.deleteGroup = function deleteGroup(
  *   parameter does not affect the return value. If page streaming is
  *   performed per-page, this determines the maximum number of
  *   resources in a page.
+ * @param {string=} options.filter
+ *   An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
+ *   the members to be returned.  The filter may reference the type, labels, and
+ *   metadata of monitored resources that comprise the group.
+ *   For example, to return only resources representing Compute Engine VM
+ *   instances, use this filter:
+ *
+ *       resource.type = "gce_instance"
+ * @param {Object=} options.interval
+ *   An optional time interval for which results should be returned. Only
+ *   members that were part of the group during the specified interval are
+ *   included in the response.  If no interval is provided then the group
+ *   membership over the last minute is returned.
+ *
+ *   This object should have the same structure as [TimeInterval]{@link TimeInterval}
  *
  * @param {function(?Error, ?Object, ?string)=} callback
  *   When specified, the results are not streamed but this callback
@@ -537,10 +543,8 @@ GroupServiceApi.prototype.deleteGroup = function deleteGroup(
  *
  * var api = monitoringV3.groupServiceApi();
  * var formattedName = api.groupPath("[PROJECT]", "[GROUP]");
- * var filter = '';
- * var interval = {};
  * // Iterate over all elements.
- * api.listGroupMembers(formattedName, filter, interval).on('data', function(element) {
+ * api.listGroupMembers(formattedName).on('data', function(element) {
  *     // doThingsWith(element)
  * });
  *
@@ -553,15 +557,13 @@ GroupServiceApi.prototype.deleteGroup = function deleteGroup(
  *     // doThingsWith(response)
  *     if (nextPageToken) {
  *         // fetch the next page.
- *         api.listGroupMembers(formattedName, filter, interval, {pageToken: nextPageToken}, callback);
+ *         api.listGroupMembers(formattedName, {pageToken: nextPageToken}, callback);
  *     }
  * }
- * api.listGroupMembers(formattedName, filter, interval, {flattenPages: false}, callback);
+ * api.listGroupMembers(formattedName, {flattenPages: false}, callback);
  */
 GroupServiceApi.prototype.listGroupMembers = function listGroupMembers(
     name,
-    filter,
-    interval,
     options,
     callback) {
   if (options instanceof Function && callback === undefined) {
@@ -572,12 +574,16 @@ GroupServiceApi.prototype.listGroupMembers = function listGroupMembers(
     options = {};
   }
   var req = {
-    name: name,
-    filter: filter,
-    interval: interval
+    name: name
   };
   if ('pageSize' in options) {
     req.pageSize = options.pageSize;
+  }
+  if ('filter' in options) {
+    req.filter = options.filter;
+  }
+  if ('interval' in options) {
+    req.interval = options.interval;
   }
   return this._listGroupMembers(req, options, callback);
 };
