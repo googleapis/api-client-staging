@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.4, <2.0.0dev',
+    'googleapis-common-protos>=1.3.5, <2.0.0dev',
     'google-gax>=0.14.1, <0.15.0dev',
     'grpc-google-logging-v2>=0.10.1, <0.11.0dev',
     'oauth2client>=3.0.0, <4.0.0dev',
