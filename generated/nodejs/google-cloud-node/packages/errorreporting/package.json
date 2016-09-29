@@ -3,15 +3,14 @@
   "name": "@google-cloud/errorreporting",
   "version": "0.7.1",
   "author": "Google Inc.",
-  "description": "Clouderrorreporting library for Node.js",
+  "description": "Stackdriver Clouderrorreporting library for Node.js",
   "main": "src/index.js",
   "files": [
     "src"
   ],
   "dependencies": {
-    "arguejs": "^0.2.3",
     "google-proto-files": "^0.7.0",
-    "google-gax": "^0.6.0",
+    "google-gax": "^0.7.0",
     "extend": "^3.0.0",
     "lodash.union": "^4.6.0"
   },
