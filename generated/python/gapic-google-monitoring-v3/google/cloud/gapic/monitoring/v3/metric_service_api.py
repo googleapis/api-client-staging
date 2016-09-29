@@ -260,7 +260,7 @@ class MetricServiceApi(object):
     # Service calls
     def list_monitored_resource_descriptors(self,
                                             name,
-                                            filter_,
+                                            filter_='',
                                             page_size=0,
                                             options=None):
         """
@@ -271,15 +271,14 @@ class MetricServiceApi(object):
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = metric_service_api.MetricServiceApi()
           >>> name = api.project_path('[PROJECT]')
-          >>> filter_ = ''
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_monitored_resource_descriptors(name, filter_):
+          >>> for element in api.list_monitored_resource_descriptors(name):
           >>>   # process element
           >>>   pass
           >>>
           >>> # Or iterate over results one page at a time
-          >>> for page in api.list_monitored_resource_descriptors(name, filter_, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>> for page in api.list_monitored_resource_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
           >>>   for element in page:
           >>>     # process element
           >>>     pass
@@ -345,7 +344,10 @@ class MetricServiceApi(object):
             name=name)
         return self._get_monitored_resource_descriptor(request, options)
 
-    def list_metric_descriptors(self, name, filter_, page_size=0,
+    def list_metric_descriptors(self,
+                                name,
+                                filter_='',
+                                page_size=0,
                                 options=None):
         """
         Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
@@ -355,15 +357,14 @@ class MetricServiceApi(object):
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = metric_service_api.MetricServiceApi()
           >>> name = api.project_path('[PROJECT]')
-          >>> filter_ = ''
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_metric_descriptors(name, filter_):
+          >>> for element in api.list_metric_descriptors(name):
           >>>   # process element
           >>>   pass
           >>>
           >>> # Or iterate over results one page at a time
-          >>> for page in api.list_metric_descriptors(name, filter_, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>> for page in api.list_metric_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
           >>>   for element in page:
           >>>     # process element
           >>>     pass
@@ -492,9 +493,9 @@ class MetricServiceApi(object):
                          name,
                          filter_,
                          interval,
-                         aggregation,
-                         order_by,
                          view,
+                         aggregation=None,
+                         order_by='',
                          page_size=0,
                          options=None):
         """
@@ -509,17 +510,15 @@ class MetricServiceApi(object):
           >>> name = api.project_path('[PROJECT]')
           >>> filter_ = ''
           >>> interval = common_pb2.TimeInterval()
-          >>> aggregation = common_pb2.Aggregation()
-          >>> order_by = ''
           >>> view = enums.ListTimeSeriesRequest.TimeSeriesView.FULL
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_time_series(name, filter_, interval, aggregation, order_by, view):
+          >>> for element in api.list_time_series(name, filter_, interval, view):
           >>>   # process element
           >>>   pass
           >>>
           >>> # Or iterate over results one page at a time
-          >>> for page in api.list_time_series(name, filter_, interval, aggregation, order_by, view, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>> for page in api.list_time_series(name, filter_, interval, view, options=CallOptions(page_token=INITIAL_PAGE)):
           >>>   for element in page:
           >>>     # process element
           >>>     pass
@@ -562,13 +561,15 @@ class MetricServiceApi(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        if aggregation is None:
+            aggregation = common_pb2.Aggregation()
         request = metric_service_pb2.ListTimeSeriesRequest(
             name=name,
             filter=filter_,
             interval=interval,
+            view=view,
             aggregation=aggregation,
             order_by=order_by,
-            view=view,
             page_size=page_size)
         return self._list_time_series(request, options)
 

@@ -305,7 +305,7 @@ class GroupServiceApi(object):
         request = group_service_pb2.GetGroupRequest(name=name)
         return self._get_group(request, options)
 
-    def create_group(self, name, group, validate_only, options=None):
+    def create_group(self, name, group, validate_only=False, options=None):
         """
         Creates a new group.
 
@@ -315,8 +315,7 @@ class GroupServiceApi(object):
           >>> api = group_service_api.GroupServiceApi()
           >>> name = api.project_path('[PROJECT]')
           >>> group = group_pb2.Group()
-          >>> validate_only = False
-          >>> response = api.create_group(name, group, validate_only)
+          >>> response = api.create_group(name, group)
 
         Args:
           name (string): The project in which to create the group. The format is
@@ -338,7 +337,7 @@ class GroupServiceApi(object):
             name=name, group=group, validate_only=validate_only)
         return self._create_group(request, options)
 
-    def update_group(self, group, validate_only, options=None):
+    def update_group(self, group, validate_only=False, options=None):
         """
         Updates an existing group.
         You can change any group attributes except ``name``.
@@ -348,8 +347,7 @@ class GroupServiceApi(object):
           >>> from google.monitoring.v3 import group_pb2
           >>> api = group_service_api.GroupServiceApi()
           >>> group = group_pb2.Group()
-          >>> validate_only = False
-          >>> response = api.update_group(group, validate_only)
+          >>> response = api.update_group(group)
 
         Args:
           group (:class:`google.monitoring.v3.group_pb2.Group`): The new definition of the group.  All fields of the existing group,
@@ -394,29 +392,26 @@ class GroupServiceApi(object):
 
     def list_group_members(self,
                            name,
-                           filter_,
-                           interval,
                            page_size=0,
+                           filter_='',
+                           interval=None,
                            options=None):
         """
         Lists the monitored resources that are members of a group.
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_api
-          >>> from google.monitoring.v3 import common_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = group_service_api.GroupServiceApi()
           >>> name = api.group_path('[PROJECT]', '[GROUP]')
-          >>> filter_ = ''
-          >>> interval = common_pb2.TimeInterval()
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_group_members(name, filter_, interval):
+          >>> for element in api.list_group_members(name):
           >>>   # process element
           >>>   pass
           >>>
           >>> # Or iterate over results one page at a time
-          >>> for page in api.list_group_members(name, filter_, interval, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>> for page in api.list_group_members(name, options=CallOptions(page_token=INITIAL_PAGE)):
           >>>   for element in page:
           >>>     # process element
           >>>     pass
@@ -453,6 +448,8 @@ class GroupServiceApi(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        if interval is None:
+            interval = common_pb2.TimeInterval()
         request = group_service_pb2.ListGroupMembersRequest(
-            name=name, filter=filter_, interval=interval, page_size=page_size)
+            name=name, page_size=page_size, filter=filter_, interval=interval)
         return self._list_group_members(request, options)
