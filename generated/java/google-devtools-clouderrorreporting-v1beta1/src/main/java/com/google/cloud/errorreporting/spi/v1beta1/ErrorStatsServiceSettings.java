@@ -39,7 +39,6 @@ import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;

@@ -29,11 +29,11 @@ import java.util.List;
 import java.util.Queue;
 
 @javax.annotation.Generated("by GAPIC")
-public class MockIamPolicyImpl extends IAMPolicyImplBase {
+public class MockIAMPolicyImpl extends IAMPolicyImplBase {
   private ArrayList<GeneratedMessageV3> requests;
   private Queue<GeneratedMessageV3> responses;
 
-  public MockIamPolicyImpl() {
+  public MockIAMPolicyImpl() {
     requests = new ArrayList<>();
     responses = new LinkedList<>();
   }
