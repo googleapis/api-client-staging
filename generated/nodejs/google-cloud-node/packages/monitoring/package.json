@@ -3,7 +3,7 @@
   "name": "@google-cloud/monitoring",
   "version": "0.7.1",
   "author": "Google Inc.",
-  "description": "Monitoring library for Node.js",
+  "description": "Stackdriver Monitoring library for Node.js",
   "main": "src/index.js",
   "files": [
     "src"

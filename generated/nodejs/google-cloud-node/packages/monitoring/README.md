@@ -1,18 +1,18 @@
-Google Monitoring API for Node.js
+Stackdriver Monitoring API for Node.js
 =================================================
 
 @google-cloud/monitoring uses [Google API extensions][google-gax] to provide an
-easy-to-use client library for the [Google Monitoring API][] (v3) defined in the [googleapis][] git repository
+easy-to-use client library for the [Stackdriver Monitoring API][] (v3) defined in the [googleapis][] git repository
 
 
 [googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/monitoring/v3
 [google-gax]: https://github.com/googleapis/gax-nodejs
-[Google Monitoring API]: https://developers.google.com/apis-explorer/#p/monitoring/v3/
+[Stackdriver Monitoring API]: https://developers.google.com/apis-explorer/#p/monitoring/v3/
 
 Getting started
 ---------------
 
-@google-cloud/monitoring will allow you to connect to the [Google Monitoring API][] and access all its methods.
+@google-cloud/monitoring will allow you to connect to the [Stackdriver Monitoring API][] and access all its methods.
 
 In order to do so, you need to set up authentication as well as install the library locally.
 
