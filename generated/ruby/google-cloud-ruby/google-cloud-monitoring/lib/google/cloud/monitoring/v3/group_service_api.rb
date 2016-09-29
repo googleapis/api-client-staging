@@ -346,19 +346,18 @@ module Google
           #   group_service_api = GroupServiceApi.new
           #   formatted_name = GroupServiceApi.project_path("[PROJECT]")
           #   group = Group.new
-          #   validate_only = false
-          #   response = group_service_api.create_group(formatted_name, group, validate_only)
+          #   response = group_service_api.create_group(formatted_name, group)
 
           def create_group \
               name,
               group,
-              validate_only,
+              validate_only: nil,
               options: nil
             req = Google::Monitoring::V3::CreateGroupRequest.new(
               name: name,
-              group: group,
-              validate_only: validate_only
+              group: group
             )
+            req.validate_only = validate_only unless validate_only.nil?
             @create_group.call(req, options)
           end
 
@@ -383,17 +382,16 @@ module Google
           #
           #   group_service_api = GroupServiceApi.new
           #   group = Group.new
-          #   validate_only = false
-          #   response = group_service_api.update_group(group, validate_only)
+          #   response = group_service_api.update_group(group)
 
           def update_group \
               group,
-              validate_only,
+              validate_only: nil,
               options: nil
             req = Google::Monitoring::V3::UpdateGroupRequest.new(
-              group: group,
-              validate_only: validate_only
+              group: group
             )
+            req.validate_only = validate_only unless validate_only.nil?
             @update_group.call(req, options)
           end
 
@@ -461,20 +459,17 @@ module Google
           #   require "google/cloud/monitoring/v3/group_service_api"
           #
           #   GroupServiceApi = Google::Cloud::Monitoring::V3::GroupServiceApi
-          #   TimeInterval = Google::Monitoring::V3::TimeInterval
           #
           #   group_service_api = GroupServiceApi.new
           #   formatted_name = GroupServiceApi.group_path("[PROJECT]", "[GROUP]")
-          #   filter = ''
-          #   interval = TimeInterval.new
           #
           #   # Iterate over all results.
-          #   group_service_api.list_group_members(formatted_name, filter, interval).each do |element|
+          #   group_service_api.list_group_members(formatted_name).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   group_service_api.list_group_members(formatted_name, filter, interval).each_page do |page|
+          #   group_service_api.list_group_members(formatted_name).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -483,16 +478,16 @@ module Google
 
           def list_group_members \
               name,
-              filter,
-              interval,
               page_size: nil,
+              filter: nil,
+              interval: nil,
               options: nil
             req = Google::Monitoring::V3::ListGroupMembersRequest.new(
-              name: name,
-              filter: filter,
-              interval: interval
+              name: name
             )
             req.page_size = page_size unless page_size.nil?
+            req.filter = filter unless filter.nil?
+            req.interval = interval unless interval.nil?
             @list_group_members.call(req, options)
           end
         end

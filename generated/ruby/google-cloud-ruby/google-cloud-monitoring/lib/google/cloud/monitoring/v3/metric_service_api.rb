@@ -289,15 +289,14 @@ module Google
           #
           #   metric_service_api = MetricServiceApi.new
           #   formatted_name = MetricServiceApi.project_path("[PROJECT]")
-          #   filter = ''
           #
           #   # Iterate over all results.
-          #   metric_service_api.list_monitored_resource_descriptors(formatted_name, filter).each do |element|
+          #   metric_service_api.list_monitored_resource_descriptors(formatted_name).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   metric_service_api.list_monitored_resource_descriptors(formatted_name, filter).each_page do |page|
+          #   metric_service_api.list_monitored_resource_descriptors(formatted_name).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -306,13 +305,13 @@ module Google
 
           def list_monitored_resource_descriptors \
               name,
-              filter,
+              filter: nil,
               page_size: nil,
               options: nil
             req = Google::Monitoring::V3::ListMonitoredResourceDescriptorsRequest.new(
-              name: name,
-              filter: filter
+              name: name
             )
+            req.filter = filter unless filter.nil?
             req.page_size = page_size unless page_size.nil?
             @list_monitored_resource_descriptors.call(req, options)
           end
@@ -383,15 +382,14 @@ module Google
           #
           #   metric_service_api = MetricServiceApi.new
           #   formatted_name = MetricServiceApi.project_path("[PROJECT]")
-          #   filter = ''
           #
           #   # Iterate over all results.
-          #   metric_service_api.list_metric_descriptors(formatted_name, filter).each do |element|
+          #   metric_service_api.list_metric_descriptors(formatted_name).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   metric_service_api.list_metric_descriptors(formatted_name, filter).each_page do |page|
+          #   metric_service_api.list_metric_descriptors(formatted_name).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -400,13 +398,13 @@ module Google
 
           def list_metric_descriptors \
               name,
-              filter,
+              filter: nil,
               page_size: nil,
               options: nil
             req = Google::Monitoring::V3::ListMetricDescriptorsRequest.new(
-              name: name,
-              filter: filter
+              name: name
             )
+            req.filter = filter unless filter.nil?
             req.page_size = page_size unless page_size.nil?
             @list_metric_descriptors.call(req, options)
           end
@@ -553,7 +551,6 @@ module Google
           # @example
           #   require "google/cloud/monitoring/v3/metric_service_api"
           #
-          #   Aggregation = Google::Monitoring::V3::Aggregation
           #   MetricServiceApi = Google::Cloud::Monitoring::V3::MetricServiceApi
           #   TimeInterval = Google::Monitoring::V3::TimeInterval
           #   TimeSeriesView = Google::Monitoring::V3::ListTimeSeriesRequest::TimeSeriesView
@@ -562,17 +559,15 @@ module Google
           #   formatted_name = MetricServiceApi.project_path("[PROJECT]")
           #   filter = ''
           #   interval = TimeInterval.new
-          #   aggregation = Aggregation.new
-          #   order_by = ''
           #   view = TimeSeriesView::FULL
           #
           #   # Iterate over all results.
-          #   metric_service_api.list_time_series(formatted_name, filter, interval, aggregation, order_by, view).each do |element|
+          #   metric_service_api.list_time_series(formatted_name, filter, interval, view).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   metric_service_api.list_time_series(formatted_name, filter, interval, aggregation, order_by, view).each_page do |page|
+          #   metric_service_api.list_time_series(formatted_name, filter, interval, view).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -583,19 +578,19 @@ module Google
               name,
               filter,
               interval,
-              aggregation,
-              order_by,
               view,
+              aggregation: nil,
+              order_by: nil,
               page_size: nil,
               options: nil
             req = Google::Monitoring::V3::ListTimeSeriesRequest.new(
               name: name,
               filter: filter,
               interval: interval,
-              aggregation: aggregation,
-              order_by: order_by,
               view: view
             )
+            req.aggregation = aggregation unless aggregation.nil?
+            req.order_by = order_by unless order_by.nil?
             req.page_size = page_size unless page_size.nil?
             @list_time_series.call(req, options)
           end
