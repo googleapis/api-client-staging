@@ -1,4 +1,4 @@
-"""A setup module for the GRPC google-monitoring service.
+"""A setup module for the GRPC google-bigtable service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -16,7 +16,7 @@ install_requires = [
 ]
 
 setuptools.setup(
-  name='grpc-google-monitoring-v3',
+  name='grpc-google-bigtable-v2',
   version='0.11.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
@@ -33,11 +33,11 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the google-monitoring-v3 service',
+  description='GRPC library for the google-bigtable-v2 service',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.monitoring', ],
+  namespace_packages=['google', 'google.bigtable', ],
   url='https://github.com/googleapis/googleapis'
 )
