@@ -350,11 +350,10 @@ class OperationsStub(object):
   When an API method normally takes long time to complete, it can be designed
   to return [Operation][google.longrunning.Operation] to the client, and the client can use this
   interface to receive the real response asynchronously by polling the
-  operation resource, or using `google.watcher.v1.Watcher` interface to watch
-  the response, or pass the operation resource to another API (such as Google
-  Cloud Pub/Sub API) to receive the response.  Any API service that returns
-  long-running operations should implement the `Operations` interface so
-  developers can have a consistent client experience.
+  operation resource, or pass the operation resource to another API (such as
+  Google Cloud Pub/Sub API) to receive the response.  Any API service that
+  returns long-running operations should implement the `Operations` interface
+  so developers can have a consistent client experience.
   """
 
   def __init__(self, channel):
@@ -391,15 +390,14 @@ class OperationsServicer(object):
   When an API method normally takes long time to complete, it can be designed
   to return [Operation][google.longrunning.Operation] to the client, and the client can use this
   interface to receive the real response asynchronously by polling the
-  operation resource, or using `google.watcher.v1.Watcher` interface to watch
-  the response, or pass the operation resource to another API (such as Google
-  Cloud Pub/Sub API) to receive the response.  Any API service that returns
-  long-running operations should implement the `Operations` interface so
-  developers can have a consistent client experience.
+  operation resource, or pass the operation resource to another API (such as
+  Google Cloud Pub/Sub API) to receive the response.  Any API service that
+  returns long-running operations should implement the `Operations` interface
+  so developers can have a consistent client experience.
   """
 
   def GetOperation(self, request, context):
-    """Gets the latest state of a long-running operation.  Clients may use this
+    """Gets the latest state of a long-running operation.  Clients can use this
     method to poll the operation result at intervals as recommended by the API
     service.
     """
@@ -409,8 +407,10 @@ class OperationsServicer(object):
 
   def ListOperations(self, request, context):
     """Lists operations that match the specified filter in the request. If the
-    server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.
+    server doesn't support this method, it returns `UNIMPLEMENTED`.
+
+    NOTE: the `name` binding below allows API services to override the binding
+    to use different resource name schemes, such as `users/*/operations`.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -420,17 +420,20 @@ class OperationsServicer(object):
     """Starts asynchronous cancellation on a long-running operation.  The server
     makes a best effort to cancel the operation, but success is not
     guaranteed.  If the server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.  Clients may use
-    [Operations.GetOperation] or other methods to check whether the
-    cancellation succeeded or the operation completed despite cancellation.
+    `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+    [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
+    other methods to check whether the cancellation succeeded or whether the
+    operation completed despite cancellation.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def DeleteOperation(self, request, context):
-    """Deletes a long-running operation.  It indicates the client is no longer
-    interested in the operation result. It does not cancel the operation.
+    """Deletes a long-running operation. This method indicates that the client is
+    no longer interested in the operation result. It does not cancel the
+    operation. If the server doesn't support this method, it returns
+    `google.rpc.Code.UNIMPLEMENTED`.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -471,36 +474,40 @@ class BetaOperationsServicer(object):
   When an API method normally takes long time to complete, it can be designed
   to return [Operation][google.longrunning.Operation] to the client, and the client can use this
   interface to receive the real response asynchronously by polling the
-  operation resource, or using `google.watcher.v1.Watcher` interface to watch
-  the response, or pass the operation resource to another API (such as Google
-  Cloud Pub/Sub API) to receive the response.  Any API service that returns
-  long-running operations should implement the `Operations` interface so
-  developers can have a consistent client experience.
+  operation resource, or pass the operation resource to another API (such as
+  Google Cloud Pub/Sub API) to receive the response.  Any API service that
+  returns long-running operations should implement the `Operations` interface
+  so developers can have a consistent client experience.
   """
   def GetOperation(self, request, context):
-    """Gets the latest state of a long-running operation.  Clients may use this
+    """Gets the latest state of a long-running operation.  Clients can use this
     method to poll the operation result at intervals as recommended by the API
     service.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def ListOperations(self, request, context):
     """Lists operations that match the specified filter in the request. If the
-    server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.
+    server doesn't support this method, it returns `UNIMPLEMENTED`.
+
+    NOTE: the `name` binding below allows API services to override the binding
+    to use different resource name schemes, such as `users/*/operations`.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def CancelOperation(self, request, context):
     """Starts asynchronous cancellation on a long-running operation.  The server
     makes a best effort to cancel the operation, but success is not
     guaranteed.  If the server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.  Clients may use
-    [Operations.GetOperation] or other methods to check whether the
-    cancellation succeeded or the operation completed despite cancellation.
+    `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+    [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
+    other methods to check whether the cancellation succeeded or whether the
+    operation completed despite cancellation.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def DeleteOperation(self, request, context):
-    """Deletes a long-running operation.  It indicates the client is no longer
-    interested in the operation result. It does not cancel the operation.
+    """Deletes a long-running operation. This method indicates that the client is
+    no longer interested in the operation result. It does not cancel the
+    operation. If the server doesn't support this method, it returns
+    `google.rpc.Code.UNIMPLEMENTED`.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
@@ -511,14 +518,13 @@ class BetaOperationsStub(object):
   When an API method normally takes long time to complete, it can be designed
   to return [Operation][google.longrunning.Operation] to the client, and the client can use this
   interface to receive the real response asynchronously by polling the
-  operation resource, or using `google.watcher.v1.Watcher` interface to watch
-  the response, or pass the operation resource to another API (such as Google
-  Cloud Pub/Sub API) to receive the response.  Any API service that returns
-  long-running operations should implement the `Operations` interface so
-  developers can have a consistent client experience.
+  operation resource, or pass the operation resource to another API (such as
+  Google Cloud Pub/Sub API) to receive the response.  Any API service that
+  returns long-running operations should implement the `Operations` interface
+  so developers can have a consistent client experience.
   """
   def GetOperation(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Gets the latest state of a long-running operation.  Clients may use this
+    """Gets the latest state of a long-running operation.  Clients can use this
     method to poll the operation result at intervals as recommended by the API
     service.
     """
@@ -526,8 +532,10 @@ class BetaOperationsStub(object):
   GetOperation.future = None
   def ListOperations(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """Lists operations that match the specified filter in the request. If the
-    server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.
+    server doesn't support this method, it returns `UNIMPLEMENTED`.
+
+    NOTE: the `name` binding below allows API services to override the binding
+    to use different resource name schemes, such as `users/*/operations`.
     """
     raise NotImplementedError()
   ListOperations.future = None
@@ -535,15 +543,18 @@ class BetaOperationsStub(object):
     """Starts asynchronous cancellation on a long-running operation.  The server
     makes a best effort to cancel the operation, but success is not
     guaranteed.  If the server doesn't support this method, it returns
-    `google.rpc.Code.UNIMPLEMENTED`.  Clients may use
-    [Operations.GetOperation] or other methods to check whether the
-    cancellation succeeded or the operation completed despite cancellation.
+    `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+    [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
+    other methods to check whether the cancellation succeeded or whether the
+    operation completed despite cancellation.
     """
     raise NotImplementedError()
   CancelOperation.future = None
   def DeleteOperation(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Deletes a long-running operation.  It indicates the client is no longer
-    interested in the operation result. It does not cancel the operation.
+    """Deletes a long-running operation. This method indicates that the client is
+    no longer interested in the operation result. It does not cancel the
+    operation. If the server doesn't support this method, it returns
+    `google.rpc.Code.UNIMPLEMENTED`.
     """
     raise NotImplementedError()
   DeleteOperation.future = None

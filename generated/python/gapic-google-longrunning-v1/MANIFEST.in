@@ -1,0 +1,4 @@
+include README.rst LICENSE
+global-include *.json
+graft google
+prune .tox
