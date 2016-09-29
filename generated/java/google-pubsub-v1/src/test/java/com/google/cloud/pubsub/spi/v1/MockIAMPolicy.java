@@ -20,11 +20,11 @@ import io.grpc.ServerServiceDefinition;
 import java.util.List;
 
 @javax.annotation.Generated("by GAPIC")
-public class MockIamPolicy implements MockGrpcService {
-  private final MockIamPolicyImpl serviceImpl;
+public class MockIAMPolicy implements MockGrpcService {
+  private final MockIAMPolicyImpl serviceImpl;
 
-  public MockIamPolicy() {
-    serviceImpl = new MockIamPolicyImpl();
+  public MockIAMPolicy() {
+    serviceImpl = new MockIAMPolicyImpl();
   }
 
   @Override
