@@ -252,9 +252,6 @@ function deleteErrorEvents(deleteErrorEventsCallback) {
     console.log('deleteErrorEventsDone');
     deleteErrorEventsCallback(null, 'deleteErrorEventsDone');
   });
-
-  console.log('deleteErrorEventsDone');
-  deleteErrorEventsCallback(null, 'deleteErrorEventsDone');
 }
 
 async.series([createErrorEvents, listErrorInfo, deleteErrorEvents]);
