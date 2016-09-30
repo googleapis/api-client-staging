@@ -1,17 +1,17 @@
-.. gax-google-devtools-cloudtrace-v1 sphinx documentation master file
+.. gapic-google-devtools-cloudtrace-v1 sphinx documentation master file
 
 
 GAPIC library for the Stackdriver Trace API
 =============================================================================================================
 
-This is the API documentation for ``gax-google-devtools-cloudtrace-v1``.
+This is the API documentation for ``gapic-google-devtools-cloudtrace-v1``.
 
-gax-google-devtools-cloudtrace-v1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-devtools-cloudtrace-v1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Stackdriver Trace API`_ (v1) defined in the googleapis_ git repository
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google&#x2F;devtools&#x2F;cloudtrace/v1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/devtools/cloudtrace/v1
 .. _`Stackdriver Trace API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudtrace/v1/
 
 

@@ -140,8 +140,8 @@ class TraceServiceApi(object):
     # Service calls
     def patch_traces(self, project_id, traces, options=None):
         """
-        Sends new traces to Cloud Trace or updates existing traces. If the ID of
-        a trace that you send matches that of an existing trace, any fields
+        Sends new traces to Stackdriver Trace or updates existing traces. If the ID
+        of a trace that you send matches that of an existing trace, any fields
         in the existing trace and its spans are overwritten by the provided values,
         and any new fields provided are merged with the existing trace data. If the
         ID does not match, a new trace is created.
@@ -227,7 +227,7 @@ class TraceServiceApi(object):
 
         Args:
           project_id (string): ID of the Cloud project where the trace data is stored.
-          view (enum :class:`google.cloud.gapic.trace.v1.enums.ViewType`): Type of data returned for traces in the list. Optional. Default is
+          view (enum :class:`google.cloud.gapic.trace.v1.enums.ListTracesRequest.ViewType`): Type of data returned for traces in the list. Optional. Default is
             ``MINIMAL``.
           page_size (int): Maximum number of traces to return. If not specified or <= 0, the
             implementation selects a reasonable value.  The implementation may
@@ -264,7 +264,7 @@ class TraceServiceApi(object):
           :exc:`ValueError` if the parameters are invalid.
         """
         if view is None:
-            view = enums.ViewType.VIEW_TYPE_UNSPECIFIED
+            view = enums.ListTracesRequest.ViewType.VIEW_TYPE_UNSPECIFIED
         if start_time is None:
             start_time = timestamp_pb2.Timestamp()
         if end_time is None:
