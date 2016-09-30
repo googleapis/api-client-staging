@@ -51,7 +51,7 @@ var clouderrorreportingV1beta1 =
  * Report first two error events (to be one group) and third event
  * (to be another group)
  */
-function createErrorEvents(createErrorEventsDoneCallback) {
+function createErrorEvents(done) {
   var api = clouderrorreportingV1beta1.reportErrorsServiceApi();
   var formattedProjectName = api.projectPath(PROJECT_NAME);
 
@@ -109,32 +109,30 @@ function createErrorEvents(createErrorEventsDoneCallback) {
   // report the three events in parallel
   async.eachOf([event1, event2, event3], function(event, index, callback) {
     api.reportErrorEvent(formattedProjectName, event, function(err, response) {
+      console.log('Reporting error event %d', index + 1);
       if (err) {
         console.error(err);
-        return;
       }
-      console.log('Reporting error event %d' ,index + 1);
-      callback();
+      callback(err);
     });
   }, function(err) {
     if (err) {
       console.error(err);
-      return;
     }
-    console.log('createErrorEventsDone');
-    createErrorEventsDoneCallback(null, 'createErrorEventsDone');
+    console.log('createErrorEvents Done');
+    done(err);
   });
 }
 
-function listErrorInfo(listErrorInfoDoneCallback) {
+function listErrorInfo(done) {
   async.waterfall([
     listErrorGroupStats,
     listErrorGroupEvents,
     updateErrorGroup,
     getErrorGroup
   ], function(err, result) {
-    console.log('listErrorInfo' + result);
-    listErrorInfoDoneCallback(null, 'listErrorInfo' + result);
+    console.log('listErrorInfo', result);
+    done(err);
   });
 }
 
@@ -162,7 +160,7 @@ function listErrorGroupStats(callback) {
         var firstErrorGroupId = groups[0].group.group_id;
         console.log('firstErrorGroupId = ' + firstErrorGroupId);
         callback(null, firstErrorGroupId);
-      });
+      }).on('error', callback);
 }
 
 function listErrorGroupEvents(errorGroupId, callback) {
@@ -186,7 +184,7 @@ function listErrorGroupEvents(errorGroupId, callback) {
             errorEvent.context.report_location.function_name);
       }).on('end', function() {
         callback(null, errorGroupId);
-      });
+      }).on('error', callback);
 }
 
 function updateErrorGroup(errorGroupId, callback) {
@@ -206,9 +204,8 @@ function updateErrorGroup(errorGroupId, callback) {
   api.updateGroup(errorGroup, function(err, response) {
     if (err) {
       console.error(err);
-      return;
     }
-    callback(null, response.group_id);
+    callback(err, response.group_id);
   });
 }
 
@@ -225,6 +222,7 @@ function getErrorGroup(errorGroupId, callback) {
   api.getGroup(formattedGroupName, function(err, response) {
     if (err) {
       console.error(err);
+      callback(err);
       return;
     }
     console.log(response.name + ' ' + response.group_id);
@@ -239,7 +237,7 @@ function getErrorGroup(errorGroupId, callback) {
 /**
  * Integration test for ErrorStatsServiceApi.deleteEvents
  */
-function deleteErrorEvents(deleteErrorEventsCallback) {
+function deleteErrorEvents(done) {
   var api = clouderrorreportingV1beta1.errorStatsServiceApi();
   var formattedProjectName = api.projectPath(PROJECT_NAME);
 
@@ -247,10 +245,9 @@ function deleteErrorEvents(deleteErrorEventsCallback) {
   api.deleteEvents(formattedProjectName, function(err, response) {
     if (err) {
       console.error(err);
-      return;
     }
-    console.log('deleteErrorEventsDone');
-    deleteErrorEventsCallback(null, 'deleteErrorEventsDone');
+    console.log('deleteErrorEvents Done');
+    done(err);
   });
 }
 
