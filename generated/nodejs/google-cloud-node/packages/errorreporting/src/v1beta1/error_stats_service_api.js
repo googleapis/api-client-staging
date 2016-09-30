@@ -27,7 +27,6 @@
 /* jscs: disable maximumLineLength */
 'use strict';
 
-var arguejs = require('arguejs');
 var configData = require('./error_stats_service_client_config');
 var extend = require('extend');
 var gax = require('google-gax');
@@ -38,17 +37,16 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-var DEFAULT_TIMEOUT = 30;
 
 var PAGE_DESCRIPTORS = {
   listGroupStats: new gax.PageDescriptor(
-      'page_token',
-      'next_page_token',
-      'error_group_stats'),
+      'pageToken',
+      'nextPageToken',
+      'errorGroupStats'),
   listEvents: new gax.PageDescriptor(
-      'page_token',
-      'next_page_token',
-      'error_events')
+      'pageToken',
+      'nextPageToken',
+      'errorEvents')
 };
 
 /**
@@ -81,7 +79,6 @@ function ErrorStatsServiceApi(gaxGrpc, grpcClients, opts) {
   var port = opts.port || DEFAULT_SERVICE_PORT;
   var sslCreds = opts.sslCreds || null;
   var clientConfig = opts.clientConfig || {};
-  var timeout = opts.timeout || DEFAULT_TIMEOUT;
   var appName = opts.appName || 'gax';
   var appVersion = opts.appVersion || gax.version;
 
@@ -95,7 +92,6 @@ function ErrorStatsServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.clouderrorreporting.v1beta1.ErrorStatsService',
       configData,
       clientConfig,
-      timeout,
       PAGE_DESCRIPTORS,
       null,
       {'x-goog-api-client': googleApiClient});
@@ -160,100 +156,126 @@ ErrorStatsServiceApi.prototype.matchProjectFromProjectName =
  *   Example: <code>projects/my-project-123</code>.
  * @param {Object} timeRange
  *   [Required] List data for the given time range.
- *   The service is tuned for retrieving data up to (approximately) 'now'.
- *   Retrieving data for arbitrary time periods in the past can result in
- *   higher response times or in returning incomplete results.
+ *   Only <code>ErrorGroupStats</code> with a non-zero count in the given time
+ *   range are returned, unless the request contains an explicit group_id list.
+ *   If a group_id list is given, also <code>ErrorGroupStats</code> with zero
+ *   occurrences are returned.
  *
  *   This object should have the same structure as [QueryTimeRange]{@link QueryTimeRange}
- * @param {Object=} otherArgs
- * @param {string[]=} otherArgs.groupId
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {string[]=} options.groupId
  *   [Optional] List all <code>ErrorGroupStats</code> with these IDs.
- *   If not specified, all error group stats with a non-zero error count
- *   for the given selection criteria are returned.
- * @param {Object=} otherArgs.serviceFilter
+ * @param {Object=} options.serviceFilter
  *   [Optional] List only <code>ErrorGroupStats</code> which belong to a service
  *   context that matches the filter.
  *   Data for all service contexts is returned if this field is not specified.
  *
  *   This object should have the same structure as [ServiceContextFilter]{@link ServiceContextFilter}
- * @param {Object=} otherArgs.timedCountDuration
+ * @param {Object=} options.timedCountDuration
  *   [Optional] The preferred duration for a single returned `TimedCount`.
  *   If not set, no timed counts are returned.
  *
  *   This object should have the same structure as [google.protobuf.Duration]{@link external:"google.protobuf.Duration"}
- * @param {number=} otherArgs.alignment
+ * @param {number=} options.alignment
  *   [Optional] The alignment of the timed counts to be returned.
  *   Default is `ALIGNMENT_EQUAL_AT_END`.
  *
  *   The number should be among the values of [TimedCountAlignment]{@link TimedCountAlignment}
- * @param {Object=} otherArgs.alignmentTime
+ * @param {Object=} options.alignmentTime
  *   [Optional] Time where the timed counts shall be aligned if rounded
  *   alignment is chosen. Default is 00:00 UTC.
  *
  *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
- * @param {number=} otherArgs.order
+ * @param {number=} options.order
  *   [Optional] The sort order in which the results are returned.
  *   Default is `COUNT_DESC`.
  *
  *   The number should be among the values of [ErrorGroupOrder]{@link ErrorGroupOrder}
- * @param {number=} otherArgs.pageSize
+ * @param {number=} options.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
  *   parameter does not affect the return value. If page streaming is
  *   performed per-page, this determines the maximum number of
  *   resources in a page.
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
- * @returns {Stream}
- *   An object stream. By default, this emits an object representing
+ *
+ * @param {function(?Error, ?Object, ?string)=} callback
+ *   When specified, the results are not streamed but this callback
+ *   will be called with the response object representing [ListGroupStatsResponse]{@link ListGroupStatsResponse}.
+ *   The third item will be set if the response contains the token for the further results
+ *   and can be reused to `pageToken` field in the options in the next request.
+ * @returns {Stream|gax.EventEmitter}
+ *   An object stream which emits an object representing
  *   [ErrorGroupStats]{@link ErrorGroupStats} on 'data' event.
- *   This object can also be configured to emit
- *   pages of the responses through the options parameter.
+ *   When the callback is specified or streaming is suppressed through options,
+ *   it will return an event emitter to handle the call status and the callback
+ *   will be called with the response object.
  *
  * @example
  *
  * var api = clouderrorreportingV1beta1.errorStatsServiceApi();
  * var formattedProjectName = api.projectPath("[PROJECT]");
  * var timeRange = {};
+ * // Iterate over all elements.
  * api.listGroupStats(formattedProjectName, timeRange).on('data', function(element) {
  *     // doThingsWith(element)
  * });
+ *
+ * // Or obtain the paged response through the callback.
+ * function callback(err, response, nextPageToken) {
+ *     if (err) {
+ *         console.error(err);
+ *         return;
+ *     }
+ *     // doThingsWith(response)
+ *     if (nextPageToken) {
+ *         // fetch the next page.
+ *         api.listGroupStats(formattedProjectName, timeRange, {pageToken: nextPageToken}, callback);
+ *     }
+ * }
+ * api.listGroupStats(formattedProjectName, timeRange, {flattenPages: false}, callback);
  */
-ErrorStatsServiceApi.prototype.listGroupStats = function listGroupStats() {
-  var args = arguejs({
-    projectName: String,
-    timeRange: Object,
-    otherArgs: [Object, {}],
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+ErrorStatsServiceApi.prototype.listGroupStats = function listGroupStats(
+    projectName,
+    timeRange,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_name: args.projectName,
-    time_range: args.timeRange
+    projectName: projectName,
+    timeRange: timeRange
   };
-  if ('groupId' in args.otherArgs) {
-    req.group_id = args.otherArgs.groupId;
+  if ('groupId' in options) {
+    req.groupId = options.groupId;
   }
-  if ('serviceFilter' in args.otherArgs) {
-    req.service_filter = args.otherArgs.serviceFilter;
+  if ('serviceFilter' in options) {
+    req.serviceFilter = options.serviceFilter;
   }
-  if ('timedCountDuration' in args.otherArgs) {
-    req.timed_count_duration = args.otherArgs.timedCountDuration;
+  if ('timedCountDuration' in options) {
+    req.timedCountDuration = options.timedCountDuration;
   }
-  if ('alignment' in args.otherArgs) {
-    req.alignment = args.otherArgs.alignment;
+  if ('alignment' in options) {
+    req.alignment = options.alignment;
   }
-  if ('alignmentTime' in args.otherArgs) {
-    req.alignment_time = args.otherArgs.alignmentTime;
+  if ('alignmentTime' in options) {
+    req.alignmentTime = options.alignmentTime;
   }
-  if ('order' in args.otherArgs) {
-    req.order = args.otherArgs.order;
+  if ('order' in options) {
+    req.order = options.order;
   }
-  if ('pageSize' in args.otherArgs) {
-    req.page_size = args.otherArgs.pageSize;
+  if ('pageSize' in options) {
+    req.pageSize = options.pageSize;
   }
-  return this._listGroupStats(req, args.options, args.callback);
+  return this._listGroupStats(req, options, callback);
 };
 
 /**
@@ -266,67 +288,90 @@ ErrorStatsServiceApi.prototype.listGroupStats = function listGroupStats() {
  *   Example: `projects/my-project-123`.
  * @param {string} groupId
  *   [Required] The group for which events shall be returned.
- * @param {Object=} otherArgs
- * @param {Object=} otherArgs.serviceFilter
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {Object=} options.serviceFilter
  *   [Optional] List only ErrorGroups which belong to a service context that
  *   matches the filter.
  *   Data for all service contexts is returned if this field is not specified.
  *
  *   This object should have the same structure as [ServiceContextFilter]{@link ServiceContextFilter}
- * @param {Object=} otherArgs.timeRange
+ * @param {Object=} options.timeRange
  *   [Optional] List only data for the given time range.
- *   The service is tuned for retrieving data up to (approximately) 'now'.
- *   Retrieving data for arbitrary time periods in the past can result in
- *   higher response times or in returning incomplete results.
- *   Data for the last hour until now is returned if not specified.
  *
  *   This object should have the same structure as [QueryTimeRange]{@link QueryTimeRange}
- * @param {number=} otherArgs.pageSize
+ * @param {number=} options.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
  *   parameter does not affect the return value. If page streaming is
  *   performed per-page, this determines the maximum number of
  *   resources in a page.
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
- * @returns {Stream}
- *   An object stream. By default, this emits an object representing
+ *
+ * @param {function(?Error, ?Object, ?string)=} callback
+ *   When specified, the results are not streamed but this callback
+ *   will be called with the response object representing [ListEventsResponse]{@link ListEventsResponse}.
+ *   The third item will be set if the response contains the token for the further results
+ *   and can be reused to `pageToken` field in the options in the next request.
+ * @returns {Stream|gax.EventEmitter}
+ *   An object stream which emits an object representing
  *   [ErrorEvent]{@link ErrorEvent} on 'data' event.
- *   This object can also be configured to emit
- *   pages of the responses through the options parameter.
+ *   When the callback is specified or streaming is suppressed through options,
+ *   it will return an event emitter to handle the call status and the callback
+ *   will be called with the response object.
  *
  * @example
  *
  * var api = clouderrorreportingV1beta1.errorStatsServiceApi();
  * var formattedProjectName = api.projectPath("[PROJECT]");
  * var groupId = '';
+ * // Iterate over all elements.
  * api.listEvents(formattedProjectName, groupId).on('data', function(element) {
  *     // doThingsWith(element)
  * });
+ *
+ * // Or obtain the paged response through the callback.
+ * function callback(err, response, nextPageToken) {
+ *     if (err) {
+ *         console.error(err);
+ *         return;
+ *     }
+ *     // doThingsWith(response)
+ *     if (nextPageToken) {
+ *         // fetch the next page.
+ *         api.listEvents(formattedProjectName, groupId, {pageToken: nextPageToken}, callback);
+ *     }
+ * }
+ * api.listEvents(formattedProjectName, groupId, {flattenPages: false}, callback);
  */
-ErrorStatsServiceApi.prototype.listEvents = function listEvents() {
-  var args = arguejs({
-    projectName: String,
-    groupId: String,
-    otherArgs: [Object, {}],
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+ErrorStatsServiceApi.prototype.listEvents = function listEvents(
+    projectName,
+    groupId,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_name: args.projectName,
-    group_id: args.groupId
+    projectName: projectName,
+    groupId: groupId
   };
-  if ('serviceFilter' in args.otherArgs) {
-    req.service_filter = args.otherArgs.serviceFilter;
+  if ('serviceFilter' in options) {
+    req.serviceFilter = options.serviceFilter;
   }
-  if ('timeRange' in args.otherArgs) {
-    req.time_range = args.otherArgs.timeRange;
+  if ('timeRange' in options) {
+    req.timeRange = options.timeRange;
   }
-  if ('pageSize' in args.otherArgs) {
-    req.page_size = args.otherArgs.pageSize;
+  if ('pageSize' in options) {
+    req.pageSize = options.pageSize;
   }
-  return this._listEvents(req, args.options, args.callback);
+  return this._listEvents(req, options, callback);
 };
 
 /**
@@ -337,9 +382,9 @@ ErrorStatsServiceApi.prototype.listEvents = function listEvents() {
  *   as `projects/` plus the
  *   [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
  *   Example: `projects/my-project-123`.
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
@@ -359,16 +404,21 @@ ErrorStatsServiceApi.prototype.listEvents = function listEvents() {
  *     // doThingsWith(response)
  * });
  */
-ErrorStatsServiceApi.prototype.deleteEvents = function deleteEvents() {
-  var args = arguejs({
-    projectName: String,
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+ErrorStatsServiceApi.prototype.deleteEvents = function deleteEvents(
+    projectName,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_name: args.projectName
+    projectName: projectName
   };
-  return this._deleteEvents(req, args.options, args.callback);
+  return this._deleteEvents(req, options, callback);
 };
 
 function ErrorStatsServiceApiBuilder(gaxGrpc) {
@@ -399,8 +449,6 @@ function ErrorStatsServiceApiBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.timeout
-   *   The default timeout, in seconds, for calls made through this client.
    * @param {number=} opts.appName
    *   The codename of the calling service.
    * @param {String=} opts.appVersion

@@ -27,7 +27,6 @@
 /* jscs: disable maximumLineLength */
 'use strict';
 
-var arguejs = require('arguejs');
 var configData = require('./report_errors_service_client_config');
 var extend = require('extend');
 var gax = require('google-gax');
@@ -38,7 +37,6 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-var DEFAULT_TIMEOUT = 30;
 
 /**
  * The scopes needed to make gRPC calls to all of the methods defined in
@@ -69,7 +67,6 @@ function ReportErrorsServiceApi(gaxGrpc, grpcClients, opts) {
   var port = opts.port || DEFAULT_SERVICE_PORT;
   var sslCreds = opts.sslCreds || null;
   var clientConfig = opts.clientConfig || {};
-  var timeout = opts.timeout || DEFAULT_TIMEOUT;
   var appName = opts.appName || 'gax';
   var appVersion = opts.appVersion || gax.version;
 
@@ -83,7 +80,6 @@ function ReportErrorsServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.clouderrorreporting.v1beta1.ReportErrorsService',
       configData,
       clientConfig,
-      timeout,
       null,
       null,
       {'x-goog-api-client': googleApiClient});
@@ -153,9 +149,9 @@ ReportErrorsServiceApi.prototype.matchProjectFromProjectName =
  *   [Required] The error event to be reported.
  *
  *   This object should have the same structure as [ReportedErrorEvent]{@link ReportedErrorEvent}
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
@@ -176,18 +172,23 @@ ReportErrorsServiceApi.prototype.matchProjectFromProjectName =
  *     // doThingsWith(response)
  * });
  */
-ReportErrorsServiceApi.prototype.reportErrorEvent = function reportErrorEvent() {
-  var args = arguejs({
-    projectName: String,
-    event: Object,
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+ReportErrorsServiceApi.prototype.reportErrorEvent = function reportErrorEvent(
+    projectName,
+    event,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_name: args.projectName,
-    event: args.event
+    projectName: projectName,
+    event: event
   };
-  return this._reportErrorEvent(req, args.options, args.callback);
+  return this._reportErrorEvent(req, options, callback);
 };
 
 function ReportErrorsServiceApiBuilder(gaxGrpc) {
@@ -218,8 +219,6 @@ function ReportErrorsServiceApiBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.timeout
-   *   The default timeout, in seconds, for calls made through this client.
    * @param {number=} opts.appName
    *   The codename of the calling service.
    * @param {String=} opts.appVersion
