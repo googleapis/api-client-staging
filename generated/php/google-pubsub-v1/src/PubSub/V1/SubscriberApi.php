@@ -96,7 +96,7 @@ class SubscriberApi
     private static $topicNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $iAMPolicyStub;
+    private $iamPolicyStub;
     private $subscriberStub;
     private $scopes;
     private $defaultCallSettings;
@@ -327,11 +327,11 @@ class SubscriberApi
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
-        $createIAMPolicyStubFunction = function ($hostname, $opts) {
+        $createIamPolicyStubFunction = function ($hostname, $opts) {
             return new IAMPolicyClient($hostname, $opts);
         };
-        $this->iAMPolicyStub = $this->grpcCredentialsHelper->createStub(
-            $createIAMPolicyStubFunction,
+        $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
+            $createIamPolicyStubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -348,12 +348,13 @@ class SubscriberApi
     }
 
     /**
-     * Creates a subscription to a given topic for a given subscriber.
+     * Creates a subscription to a given topic.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
      * If the name is not provided in the request, the server will assign a random
-     * name for this subscription on the same project as the topic.
+     * name for this subscription on the same project as the topic. Note that
+     * for REST API requests, you must specify a name.
      *
      * Sample code:
      * ```
@@ -396,6 +397,7 @@ class SubscriberApi
      *          deadline. To override this value for a given message, call
      *          `ModifyAckDeadline` with the corresponding `ack_id` if using
      *          pull.
+     *          The maximum custom deadline you can specify is 600 seconds (10 minutes).
      *
      *          For push delivery, this value is also used to set the request timeout for
      *          the call to the push endpoint.
@@ -403,7 +405,7 @@ class SubscriberApi
      *          If the subscriber never acknowledges the message, the Pub/Sub
      *          system will eventually redeliver the message.
      *
-     *          If this parameter is not set, the default value of 10 seconds is used.
+     *          If this parameter is 0, a default value of 10 seconds is used.
      *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -626,7 +628,8 @@ class SubscriberApi
      * Modifies the ack deadline for a specific message. This method is useful
      * to indicate that more time is needed to process a message by the
      * subscriber, or to make the message available for redelivery if the
-     * processing was interrupted.
+     * processing was interrupted. Note that this does not modify the
+     * subscription-level `ackDeadlineSeconds` used for subsequent messages.
      *
      * Sample code:
      * ```
@@ -902,12 +905,13 @@ class SubscriberApi
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being specified.
-     *                             Resource is usually specified as a path, such as,
-     *                             projects/{project}/zones/{zone}/disks/{disk}.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the 'resource'. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is in general a
-     *                             valid policy but certain services (like Projects) might reject them.
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -933,7 +937,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'SetIamPolicy',
             $mergedSettings,
             $this->descriptors['setIamPolicy']
@@ -946,8 +950,9 @@ class SubscriberApi
     }
 
     /**
-     * Gets the access control policy for a resource. Is empty if the
-     * policy or the resource does not exist.
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists and does not have a policy
+     * set.
      *
      * Sample code:
      * ```
@@ -962,8 +967,9 @@ class SubscriberApi
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being requested. Resource
-     *                             is usually specified as a path, such as, projects/{project}.
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -988,7 +994,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'GetIamPolicy',
             $mergedSettings,
             $this->descriptors['getIamPolicy']
@@ -1017,10 +1023,13 @@ class SubscriberApi
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which policy detail is being requested.
-     *                               Resource is usually specified as a path, such as, projects/{project}.
-     * @param string[] $permissions  The set of permissions to check for the 'resource'. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed.
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               `resource` is usually specified as a path. For example, a Project
+     *                               resource is specified as `projects/{project}`.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -1048,7 +1057,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'TestIamPermissions',
             $mergedSettings,
             $this->descriptors['testIamPermissions']
@@ -1066,7 +1075,7 @@ class SubscriberApi
      */
     public function close()
     {
-        $this->iAMPolicyStub->close();
+        $this->iamPolicyStub->close();
         $this->subscriberStub->close();
     }
 
