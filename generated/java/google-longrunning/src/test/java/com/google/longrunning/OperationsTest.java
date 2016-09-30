@@ -12,18 +12,12 @@
  * the License.
  */
 
-package com.google.cloud.longrunning;
+package com.google.longrunning;
 
 import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
-import com.google.longrunning.CancelOperationRequest;
-import com.google.longrunning.DeleteOperationRequest;
-import com.google.longrunning.GetOperationRequest;
-import com.google.longrunning.ListOperationsRequest;
-import com.google.longrunning.ListOperationsResponse;
-import com.google.longrunning.Operation;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
 import java.io.IOException;

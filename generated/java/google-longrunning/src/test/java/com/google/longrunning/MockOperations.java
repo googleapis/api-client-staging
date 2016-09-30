@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.google.cloud.longrunning;
+package com.google.longrunning;
 
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.protobuf.GeneratedMessageV3;

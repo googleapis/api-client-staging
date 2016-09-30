@@ -42,4 +42,4 @@
  * </pre>
  *
  */
-package com.google.cloud.longrunning;
+package com.google.longrunning;

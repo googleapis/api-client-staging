@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.cloud.longrunning;
+package com.google.longrunning;
 
 import com.google.api.gax.core.ConnectionSettings;
 import com.google.api.gax.core.PagedListResponse;
@@ -27,13 +27,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.google.longrunning.CancelOperationRequest;
-import com.google.longrunning.DeleteOperationRequest;
-import com.google.longrunning.GetOperationRequest;
-import com.google.longrunning.ListOperationsRequest;
-import com.google.longrunning.ListOperationsResponse;
-import com.google.longrunning.Operation;
-import com.google.longrunning.OperationsGrpc;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
