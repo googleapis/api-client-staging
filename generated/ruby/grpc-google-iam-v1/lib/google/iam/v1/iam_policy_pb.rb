@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'google/api/annotations_pb'
 require 'google/iam/v1/policy_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "google.iam.v1.SetIamPolicyRequest" do
