@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 Gem::Specification.new do |s|
-  s.name          = 'google-cloud-monitoring-v3'
+  s.name          = 'google-cloud-monitoring'
   s.version       = '0.6.8'
 
   s.authors       = ['Google Inc']

@@ -7,7 +7,7 @@ easy-to-use client library for the [Stackdriver Monitoring API][] (v3) defined i
 
 [googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/monitoring/v3
 [google-gax]: https://github.com/googleapis/gax-ruby
-[Google Monitoring API]: https://developers.google.com/apis-explorer/#p/monitoring/v3/
+[Stackdriver Monitoring API]: https://developers.google.com/apis-explorer/#p/monitoring/v3/
 
 Getting started
 ---------------
