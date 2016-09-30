@@ -1,4 +1,4 @@
-"""A setup module for the google apis common protos
+"""A setup module for the GRPC google-cloud-speech service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -10,21 +10,19 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'protobuf>=3.0.0'
+  'oauth2client>=2.0.0, <4.0.0dev',
+  'grpcio>=1.0.0, <2.0.0dev',
+  'googleapis-common-protos[grpc]>=1.3.5, <2.0.0dev'
 ]
 
-extras_require = {
-  'grpc': ['grpcio>=1.0.0']
-}
-
 setuptools.setup(
-  name='googleapis-common-protos',
-  version='1.3.5',
-
+  name='grpc-google-cloud-speech-v1beta1',
+  version='0.11.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
-    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
@@ -35,12 +33,11 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='Common protobufs used in Google APIs',
+  description='GRPC library for the google-cloud-speech-v1beta1 service',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
-  extras_require=extras_require,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.logging', ],
+  namespace_packages=['google', 'google.cloud', 'google.cloud.grpc', 'google.cloud.grpc.speech', ],
   url='https://github.com/googleapis/googleapis'
 )

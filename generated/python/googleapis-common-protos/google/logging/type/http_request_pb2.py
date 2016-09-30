@@ -14,15 +14,16 @@ _sym_db = _symbol_database.Default()
 
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/logging/type/http_request.proto',
   package='google.logging.type',
   syntax='proto3',
-  serialized_pb=_b('\n&google/logging/type/http_request.proto\x12\x13google.logging.type\x1a\x1cgoogle/api/annotations.proto\"\xb1\x02\n\x0bHttpRequest\x12\x16\n\x0erequest_method\x18\x01 \x01(\t\x12\x13\n\x0brequest_url\x18\x02 \x01(\t\x12\x14\n\x0crequest_size\x18\x03 \x01(\x03\x12\x0e\n\x06status\x18\x04 \x01(\x05\x12\x15\n\rresponse_size\x18\x05 \x01(\x03\x12\x12\n\nuser_agent\x18\x06 \x01(\t\x12\x11\n\tremote_ip\x18\x07 \x01(\t\x12\x11\n\tserver_ip\x18\r \x01(\t\x12\x0f\n\x07referer\x18\x08 \x01(\t\x12\x14\n\x0c\x63\x61\x63he_lookup\x18\x0b \x01(\x08\x12\x11\n\tcache_hit\x18\t \x01(\x08\x12*\n\"cache_validated_with_origin_server\x18\n \x01(\x08\x12\x18\n\x10\x63\x61\x63he_fill_bytes\x18\x0c \x01(\x03\x42-\n\x17\x63om.google.logging.typeB\x10HttpRequestProtoP\x01\x62\x06proto3')
+  serialized_pb=_b('\n&google/logging/type/http_request.proto\x12\x13google.logging.type\x1a\x1cgoogle/api/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\"\xdd\x02\n\x0bHttpRequest\x12\x16\n\x0erequest_method\x18\x01 \x01(\t\x12\x13\n\x0brequest_url\x18\x02 \x01(\t\x12\x14\n\x0crequest_size\x18\x03 \x01(\x03\x12\x0e\n\x06status\x18\x04 \x01(\x05\x12\x15\n\rresponse_size\x18\x05 \x01(\x03\x12\x12\n\nuser_agent\x18\x06 \x01(\t\x12\x11\n\tremote_ip\x18\x07 \x01(\t\x12\x11\n\tserver_ip\x18\r \x01(\t\x12\x0f\n\x07referer\x18\x08 \x01(\t\x12*\n\x07latency\x18\x0e \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x14\n\x0c\x63\x61\x63he_lookup\x18\x0b \x01(\x08\x12\x11\n\tcache_hit\x18\t \x01(\x08\x12*\n\"cache_validated_with_origin_server\x18\n \x01(\x08\x12\x18\n\x10\x63\x61\x63he_fill_bytes\x18\x0c \x01(\x03\x42-\n\x17\x63om.google.logging.typeB\x10HttpRequestProtoP\x01\x62\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -99,28 +100,35 @@ _HTTPREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cache_lookup', full_name='google.logging.type.HttpRequest.cache_lookup', index=9,
+      name='latency', full_name='google.logging.type.HttpRequest.latency', index=9,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='cache_lookup', full_name='google.logging.type.HttpRequest.cache_lookup', index=10,
       number=11, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cache_hit', full_name='google.logging.type.HttpRequest.cache_hit', index=10,
+      name='cache_hit', full_name='google.logging.type.HttpRequest.cache_hit', index=11,
       number=9, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cache_validated_with_origin_server', full_name='google.logging.type.HttpRequest.cache_validated_with_origin_server', index=11,
+      name='cache_validated_with_origin_server', full_name='google.logging.type.HttpRequest.cache_validated_with_origin_server', index=12,
       number=10, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cache_fill_bytes', full_name='google.logging.type.HttpRequest.cache_fill_bytes', index=12,
+      name='cache_fill_bytes', full_name='google.logging.type.HttpRequest.cache_fill_bytes', index=13,
       number=12, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -138,10 +146,11 @@ _HTTPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=94,
-  serialized_end=399,
+  serialized_start=126,
+  serialized_end=475,
 )
 
+_HTTPREQUEST.fields_by_name['latency'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
 DESCRIPTOR.message_types_by_name['HttpRequest'] = _HTTPREQUEST
 
 HttpRequest = _reflection.GeneratedProtocolMessageType('HttpRequest', (_message.Message,), dict(

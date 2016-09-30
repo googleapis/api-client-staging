@@ -1,4 +1,25 @@
-# Packaging build products
+# Temporary files
+*~
+
+# Python packaging
+.Python
+env/
+build/
+develop-eggs/
+docs/generated
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Python build
 *.pyc
-*.egg-info
-dist
+*.pyo
