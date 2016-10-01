@@ -16,7 +16,7 @@ install_requires = [
 
 setup(
     name='gapic-google-longrunning',
-    version='0.11.1',
+    version='0.11.2',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
