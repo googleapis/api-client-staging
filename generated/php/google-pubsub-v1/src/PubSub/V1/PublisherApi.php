@@ -92,7 +92,7 @@ class PublisherApi
     private static $topicNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $iAMPolicyStub;
+    private $iamPolicyStub;
     private $publisherStub;
     private $scopes;
     private $defaultCallSettings;
@@ -290,11 +290,11 @@ class PublisherApi
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
-        $createIAMPolicyStubFunction = function ($hostname, $opts) {
+        $createIamPolicyStubFunction = function ($hostname, $opts) {
             return new IAMPolicyClient($hostname, $opts);
         };
-        $this->iAMPolicyStub = $this->grpcCredentialsHelper->createStub(
-            $createIAMPolicyStubFunction,
+        $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
+            $createIamPolicyStubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -697,12 +697,13 @@ class PublisherApi
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being specified.
-     *                             Resource is usually specified as a path, such as,
-     *                             projects/{project}/zones/{zone}/disks/{disk}.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the 'resource'. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is in general a
-     *                             valid policy but certain services (like Projects) might reject them.
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -728,7 +729,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'SetIamPolicy',
             $mergedSettings,
             $this->descriptors['setIamPolicy']
@@ -741,8 +742,9 @@ class PublisherApi
     }
 
     /**
-     * Gets the access control policy for a resource. Is empty if the
-     * policy or the resource does not exist.
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists and does not have a policy
+     * set.
      *
      * Sample code:
      * ```
@@ -757,8 +759,9 @@ class PublisherApi
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being requested. Resource
-     *                             is usually specified as a path, such as, projects/{project}.
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -783,7 +786,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'GetIamPolicy',
             $mergedSettings,
             $this->descriptors['getIamPolicy']
@@ -812,10 +815,13 @@ class PublisherApi
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which policy detail is being requested.
-     *                               Resource is usually specified as a path, such as, projects/{project}.
-     * @param string[] $permissions  The set of permissions to check for the 'resource'. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed.
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               `resource` is usually specified as a path. For example, a Project
+     *                               resource is specified as `projects/{project}`.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -843,7 +849,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'TestIamPermissions',
             $mergedSettings,
             $this->descriptors['testIamPermissions']
@@ -861,7 +867,7 @@ class PublisherApi
      */
     public function close()
     {
-        $this->iAMPolicyStub->close();
+        $this->iamPolicyStub->close();
         $this->publisherStub->close();
     }
 
