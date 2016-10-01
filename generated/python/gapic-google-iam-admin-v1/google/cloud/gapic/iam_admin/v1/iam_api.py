@@ -510,7 +510,7 @@ class IAMApi(object):
             Using ``-`` as a wildcard for the project, will infer the project from
             the account. The ``account`` value can be the ``email`` address or the
             ``unique_id`` of the service account.
-          key_types (list[enum :class:`google.cloud.gapic.iam_admin.v1.enums.KeyType`]): Filters the types of keys the user wants to include in the list
+          key_types (list[enum :class:`google.cloud.gapic.iam_admin.v1.enums.ListServiceAccountKeysRequest.KeyType`]): Filters the types of keys the user wants to include in the list
             response. Duplicate key types are not allowed. If no key type
             is provided, all keys are returned.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -682,8 +682,9 @@ class IAMApi(object):
           >>> response = api.get_iam_policy(resource)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being requested. Resource
-            is usually specified as a path, such as, projects/{project}.
+          resource (string): REQUIRED: The resource for which the policy is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -711,12 +712,13 @@ class IAMApi(object):
           >>> response = api.set_iam_policy(resource, policy)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being specified.
-            Resource is usually specified as a path, such as,
-            projects/{project}/zones/{zone}/disks/{disk}.
-          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the 'resource'. The size of
-            the policy is limited to a few 10s of KB. An empty policy is in general a
-            valid policy but certain services (like Projects) might reject them.
+          resource (string): REQUIRED: The resource for which the policy is being specified.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the ``resource``. The size of
+            the policy is limited to a few 10s of KB. An empty policy is a
+            valid policy but certain Cloud Platform services (such as Projects)
+            might reject them.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -744,10 +746,13 @@ class IAMApi(object):
           >>> response = api.test_iam_permissions(resource, permissions)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy detail is being requested.
-            Resource is usually specified as a path, such as, projects/{project}.
-          permissions (list[string]): The set of permissions to check for the 'resource'. Permissions with
-            wildcards (such as '*' or 'storage.*') are not allowed.
+          resource (string): REQUIRED: The resource for which the policy detail is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          permissions (list[string]): The set of permissions to check for the ``resource``. Permissions with
+            wildcards (such as '*' or 'storage.*') are not allowed. For more
+            information see
+            `IAM Overview <https://cloud.google.com/iam/docs/overview#permissions>`_.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
