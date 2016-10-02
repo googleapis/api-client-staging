@@ -1,12 +1,14 @@
 """Functional test for Google Cloud Vision API."""
 
-from google.cloud.gapic.vision.v1.image_annotator_api import ImageAnnotatorApi
+from google.cloud.gapic.vision.v1.image_annotator_client import ImageAnnotatorClient
 from google.cloud.grpc.vision.v1 import image_annotator_pb2
 
-# point this at an image for your project
+
+# upload demo-image.jpg from this directory to Google Storage for your project
 image_url = 'gs://gapic-vision-v1/demo-image.jpg'
 
-api = ImageAnnotatorApi()
+
+api = ImageAnnotatorClient()
 image_source = image_annotator_pb2.ImageSource(gcs_image_uri = image_url)
 image = image_annotator_pb2.Image(source = image_source)
 
