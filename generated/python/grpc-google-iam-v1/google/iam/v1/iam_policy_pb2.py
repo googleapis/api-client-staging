@@ -13,6 +13,7 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.iam.v1 import policy_pb2 as google_dot_iam_dot_v1_dot_policy__pb2
 
 
@@ -20,9 +21,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/iam/v1/iam_policy.proto',
   package='google.iam.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x1egoogle/iam/v1/iam_policy.proto\x12\rgoogle.iam.v1\x1a\x1agoogle/iam/v1/policy.proto\"N\n\x13SetIamPolicyRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\x12%\n\x06policy\x18\x02 \x01(\x0b\x32\x15.google.iam.v1.Policy\"\'\n\x13GetIamPolicyRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\"B\n\x19TestIamPermissionsRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\x12\x13\n\x0bpermissions\x18\x02 \x03(\t\"1\n\x1aTestIamPermissionsResponse\x12\x13\n\x0bpermissions\x18\x01 \x03(\t2\x8c\x02\n\tIAMPolicy\x12I\n\x0cSetIamPolicy\x12\".google.iam.v1.SetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\x12I\n\x0cGetIamPolicy\x12\".google.iam.v1.GetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\x12i\n\x12TestIamPermissions\x12(.google.iam.v1.TestIamPermissionsRequest\x1a).google.iam.v1.TestIamPermissionsResponseB%\n\x11\x63om.google.iam.v1B\x0eIamPolicyProtoP\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x1egoogle/iam/v1/iam_policy.proto\x12\rgoogle.iam.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1agoogle/iam/v1/policy.proto\"N\n\x13SetIamPolicyRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\x12%\n\x06policy\x18\x02 \x01(\x0b\x32\x15.google.iam.v1.Policy\"\'\n\x13GetIamPolicyRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\"B\n\x19TestIamPermissionsRequest\x12\x10\n\x08resource\x18\x01 \x01(\t\x12\x13\n\x0bpermissions\x18\x02 \x03(\t\"1\n\x1aTestIamPermissionsResponse\x12\x13\n\x0bpermissions\x18\x01 \x03(\t2\x94\x03\n\tIAMPolicy\x12t\n\x0cSetIamPolicy\x12\".google.iam.v1.SetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\")\x82\xd3\xe4\x93\x02#\"\x1e/v1/{resource=**}:setIamPolicy:\x01*\x12t\n\x0cGetIamPolicy\x12\".google.iam.v1.GetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\")\x82\xd3\xe4\x93\x02#\"\x1e/v1/{resource=**}:getIamPolicy:\x01*\x12\x9a\x01\n\x12TestIamPermissions\x12(.google.iam.v1.TestIamPermissionsRequest\x1a).google.iam.v1.TestIamPermissionsResponse\"/\x82\xd3\xe4\x93\x02)\"$/v1/{resource=**}:testIamPermissions:\x01*B(\n\x11\x63om.google.iam.v1B\x0eIamPolicyProtoP\x01\xf8\x01\x01\x62\x06proto3')
   ,
-  dependencies=[google_dot_iam_dot_v1_dot_policy__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_iam_dot_v1_dot_policy__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -61,8 +62,8 @@ _SETIAMPOLICYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=77,
-  serialized_end=155,
+  serialized_start=107,
+  serialized_end=185,
 )
 
 
@@ -92,8 +93,8 @@ _GETIAMPOLICYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=157,
-  serialized_end=196,
+  serialized_start=187,
+  serialized_end=226,
 )
 
 
@@ -130,8 +131,8 @@ _TESTIAMPERMISSIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=198,
-  serialized_end=264,
+  serialized_start=228,
+  serialized_end=294,
 )
 
 
@@ -161,8 +162,8 @@ _TESTIAMPERMISSIONSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=266,
-  serialized_end=315,
+  serialized_start=296,
+  serialized_end=345,
 )
 
 _SETIAMPOLICYREQUEST.fields_by_name['policy'].message_type = google_dot_iam_dot_v1_dot_policy__pb2._POLICY
@@ -201,7 +202,7 @@ _sym_db.RegisterMessage(TestIamPermissionsResponse)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\021com.google.iam.v1B\016IamPolicyProtoP\001'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\021com.google.iam.v1B\016IamPolicyProtoP\001\370\001\001'))
 import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
@@ -211,6 +212,8 @@ from grpc.framework.interfaces.face import utilities as face_utilities
 
 class IAMPolicyStub(object):
   """## API Overview
+
+  Manages Identity and Access Management (IAM) policies.
 
   Any implementation of an API that offers access control features
   implements the google.iam.v1.IAMPolicy interface.
@@ -261,6 +264,8 @@ class IAMPolicyStub(object):
 class IAMPolicyServicer(object):
   """## API Overview
 
+  Manages Identity and Access Management (IAM) policies.
+
   Any implementation of an API that offers access control features
   implements the google.iam.v1.IAMPolicy interface.
 
@@ -293,8 +298,9 @@ class IAMPolicyServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def GetIamPolicy(self, request, context):
-    """Gets the access control policy for a resource. Is empty if the
-    policy or the resource does not exist.
+    """Gets the access control policy for a resource.
+    Returns an empty policy if the resource exists and does not have a policy
+    set.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -334,6 +340,8 @@ def add_IAMPolicyServicer_to_server(servicer, server):
 class BetaIAMPolicyServicer(object):
   """## API Overview
 
+  Manages Identity and Access Management (IAM) policies.
+
   Any implementation of an API that offers access control features
   implements the google.iam.v1.IAMPolicy interface.
 
@@ -362,8 +370,9 @@ class BetaIAMPolicyServicer(object):
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def GetIamPolicy(self, request, context):
-    """Gets the access control policy for a resource. Is empty if the
-    policy or the resource does not exist.
+    """Gets the access control policy for a resource.
+    Returns an empty policy if the resource exists and does not have a policy
+    set.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def TestIamPermissions(self, request, context):
@@ -374,6 +383,8 @@ class BetaIAMPolicyServicer(object):
 
 class BetaIAMPolicyStub(object):
   """## API Overview
+
+  Manages Identity and Access Management (IAM) policies.
 
   Any implementation of an API that offers access control features
   implements the google.iam.v1.IAMPolicy interface.
@@ -404,8 +415,9 @@ class BetaIAMPolicyStub(object):
     raise NotImplementedError()
   SetIamPolicy.future = None
   def GetIamPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Gets the access control policy for a resource. Is empty if the
-    policy or the resource does not exist.
+    """Gets the access control policy for a resource.
+    Returns an empty policy if the resource exists and does not have a policy
+    set.
     """
     raise NotImplementedError()
   GetIamPolicy.future = None
