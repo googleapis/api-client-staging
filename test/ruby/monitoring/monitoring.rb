@@ -17,7 +17,7 @@
 #
 require "google/cloud/monitoring/v3"
 
-if ARGV.length != 1
+if ARGV.empty?
   puts "Usage: #{$0} <project_id>"
   exit
 end
@@ -52,7 +52,7 @@ puts "Group updated: #{updated_group.display_name}"
 #
 # Integration test for GroupServiceApi.get_group
 #
-group_id = created_group.name.split('/')[-1]
+group_id = GroupServiceApi.match_group_from_group_name(created_group.name)
 formatted_group_name = GroupServiceApi.group_path(PROJECT_NAME, group_id)
 fetched_group = group_service_api.get_group(formatted_group_name)
 puts "Group fetched: #{fetched_group.name}"
@@ -80,7 +80,7 @@ puts "Group deleted: #{formatted_group_name}"
 #
 # Integration test for MetricServiceApi.create_metric_descriptor
 #
-METRIC_ID = "custom.googleapis.com/cbao/instance/cpu/utilization".freeze
+METRIC_ID = "custom.googleapis.com/instance/cpu/utilization".freeze
 MetricServiceApi = Google::Cloud::Monitoring::V3::MetricServiceApi
 metric_service_api = MetricServiceApi.new
 MetricDescriptor = Google::Api::MetricDescriptor
@@ -126,10 +126,10 @@ puts "Metric descriptor deleted: #{formatted_metric_descriptor_name}"
 #
 formatted_project_name = MetricServiceApi.project_path(PROJECT_NAME)
 Metric = Google::Api::Metric
-metric = Metric.new(type: "custom.googleapis.com/cbao/instance/cpu/usage_time")
+metric = Metric.new(type: "custom.googleapis.com/instance/cpu/usage_time")
 Common = Google::Monitoring::V3
 time_interval = Common::TimeInterval.new(
-  end_time: Google::Protobuf::Timestamp.new(seconds: 1475262206)
+  end_time: Google::Protobuf::Timestamp.new(seconds: Time.now.to_i - 1000)
 )
 typed_value = Common::TypedValue.new(bool_value: true)
 point = Common::Point.new(
@@ -145,9 +145,9 @@ metric_service_api.create_time_series(formatted_project_name, time_series)
 puts "TimeSeries created"
 
 #
-# Integration test for MetricServiceApi.create_time_series
+# Integration test for MetricServiceApi.list_time_series
 #
-FILTER = 'metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.label.instance_name = "endpoints11-load-test"'
+FILTER = 'metric.type = "custom.googleapis.com/instance/cpu/usage_time"'
 view = Common::ListTimeSeriesRequest::TimeSeriesView::FULL
 metric_service_api.list_time_series(
   formatted_project_name, FILTER, time_interval, view).each do |time_series|
