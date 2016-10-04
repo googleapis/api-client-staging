@@ -80,7 +80,7 @@ puts "Group deleted: #{formatted_group_name}"
 #
 # Integration test for MetricServiceApi.create_metric_descriptor
 #
-METRIC_ID = "custom.googleapis.com/instance/cpu/utilization".freeze
+METRIC_ID = "custom.googleapis.com/instance/cpu/usage_time".freeze
 MetricServiceApi = Google::Cloud::Monitoring::V3::MetricServiceApi
 metric_service_api = MetricServiceApi.new
 MetricDescriptor = Google::Api::MetricDescriptor
@@ -126,7 +126,7 @@ puts "Metric descriptor deleted: #{formatted_metric_descriptor_name}"
 #
 formatted_project_name = MetricServiceApi.project_path(PROJECT_NAME)
 Metric = Google::Api::Metric
-metric = Metric.new(type: "custom.googleapis.com/instance/cpu/usage_time")
+metric = Metric.new(type: METRIC_ID)
 Common = Google::Monitoring::V3
 time_interval = Common::TimeInterval.new(
   end_time: Google::Protobuf::Timestamp.new(seconds: Time.now.to_i - 1000)
@@ -159,7 +159,7 @@ end
 #
 metric_service_api.list_monitored_resource_descriptors(
   formatted_project_name).each do |monitored_resource_descriptor|
-  puts "Listed monitored_resource_descriptor: #{monitored_resource_descriptor.name}"
+    puts "Listed monitored_resource_descriptor: #{monitored_resource_descriptor.name}"
 end
 
 #
