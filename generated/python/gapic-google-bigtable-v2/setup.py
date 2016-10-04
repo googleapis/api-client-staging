@@ -1,4 +1,4 @@
-"""A setup module for the GAPIC Google library.
+"""A setup module for the GAPIC Bigtable library.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -11,11 +11,12 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.3.5, <2.0.0dev',
     'google-gax>=0.14.1, <0.15.0dev',
+    'grpc-google-bigtable-v2>=0.11.1, <0.12.0dev',
     'oauth2client>=2.0.0, <4.0.0dev',
 ]
 
 setup(
-    name='gapic-google-longrunning',
+    name='gapic-google-bigtable-v2',
     version='0.11.1',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
@@ -32,12 +33,12 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Google Google API',
+    description='GAPIC library for the Google Bigtable API',
     include_package_data=True,
     long_description=open('README.rst').read(),
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', ],
+    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.bigtable', ],
     url='https://github.com/googleapis/googleapis'
 )

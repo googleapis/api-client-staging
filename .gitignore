@@ -3,3 +3,6 @@
 generated/build
 generated/java/build
 generated/java/*/build
+
+# Node
+node_modules/

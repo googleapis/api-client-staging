@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/iam/v1/policy.proto',
   package='google.iam.v1',
   syntax='proto3',
-  serialized_pb=_b('\n\x1agoogle/iam/v1/policy.proto\x12\rgoogle.iam.v1\"Q\n\x06Policy\x12\x0f\n\x07version\x18\x01 \x01(\x05\x12(\n\x08\x62indings\x18\x04 \x03(\x0b\x32\x16.google.iam.v1.Binding\x12\x0c\n\x04\x65tag\x18\x03 \x01(\x0c\"(\n\x07\x42inding\x12\x0c\n\x04role\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\tB\"\n\x11\x63om.google.iam.v1B\x0bPolicyProtoP\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x1agoogle/iam/v1/policy.proto\x12\rgoogle.iam.v1\"Q\n\x06Policy\x12\x0f\n\x07version\x18\x01 \x01(\x05\x12(\n\x08\x62indings\x18\x04 \x03(\x0b\x32\x16.google.iam.v1.Binding\x12\x0c\n\x04\x65tag\x18\x03 \x01(\x0c\"(\n\x07\x42inding\x12\x0c\n\x04role\x18\x01 \x01(\t\x12\x0f\n\x07members\x18\x02 \x03(\tB%\n\x11\x63om.google.iam.v1B\x0bPolicyProtoP\x01\xf8\x01\x01\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -128,7 +128,7 @@ _sym_db.RegisterMessage(Binding)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\021com.google.iam.v1B\013PolicyProtoP\001'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\021com.google.iam.v1B\013PolicyProtoP\001\370\001\001'))
 import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
