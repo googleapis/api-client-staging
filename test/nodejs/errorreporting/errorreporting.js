@@ -109,7 +109,7 @@ function createErrorEvents(done) {
   // report the three events in parallel
   async.eachOf([event1, event2, event3], function(event, index, callback) {
     api.reportErrorEvent(formattedProjectName, event, function(err, response) {
-      console.log('Reporting error event %d', index + 1);
+      console.log('Reporting error event', index + 1);
       if (err) {
         console.error(err);
       }
@@ -131,7 +131,7 @@ function listErrorInfo(done) {
     updateErrorGroup,
     getErrorGroup
   ], function(err, result) {
-    console.log('listErrorInfo', result);
+    console.log('listErrorInfo Done');
     done(err);
   });
 }
@@ -149,16 +149,21 @@ function listErrorGroupStats(callback) {
   };
 
   console.log('Listing all the error groups');
-  var groups = [];
+  var firstErrorGroupId;
   api.listGroupStats(formattedProjectName, timeRange).on('data',
       function(errorGroupStat) {
         console.log(errorGroupStat.group.name + ' ' +
             errorGroupStat.group.group_id + ' ' +
             errorGroupStat.count);
-        groups.push(errorGroupStat);
+        if (firstErrorGroupId === undefined) {
+          firstErrorGroupId = errorGroupStat.group.group_id;
+        }
       }).on('end', function() {
-        var firstErrorGroupId = groups[0].group.group_id;
-        console.log('firstErrorGroupId = ' + firstErrorGroupId);
+        if (firstErrorGroupId === undefined) {
+          console.log('No error groups available!');
+        } else {
+          console.log('firstErrorGroupId =', firstErrorGroupId);
+        }
         callback(null, firstErrorGroupId);
       }).on('error', callback);
 }
@@ -170,18 +175,10 @@ function listErrorGroupEvents(errorGroupId, callback) {
     period: clouderrorreportingV1beta1.QueryTimeRange.Period.PERIOD_1_HOUR
   };
 
-  console.log('Listing all the error events for error group ' + errorGroupId);
+  console.log('Listing all the error events for error group', errorGroupId);
   api.listEvents(formattedProjectName, errorGroupId,
       {timeRange: timeRange}).on('data', function(errorEvent) {
-        console.log(errorEvent.message + ' ' +
-            errorEvent.service_context.service + ' ' +
-            errorEvent.service_context.version);
-        console.log(errorEvent.context.user);
-        console.log(errorEvent.context.http_request.method + ' ' +
-            errorEvent.context.http_request.url);
-        console.log(errorEvent.context.report_location.file_path + ' ' +
-            errorEvent.context.report_location.line_number + ' ' +
-            errorEvent.context.report_location.function_name);
+        console.log(errorEvent);
       }).on('end', function() {
         callback(null, errorGroupId);
       }).on('error', callback);
@@ -191,7 +188,7 @@ function updateErrorGroup(errorGroupId, callback) {
   var api = clouderrorreportingV1beta1.errorGroupServiceApi();
   var formattedGroupName = api.groupPath(PROJECT_NAME, errorGroupId);
 
-  console.log('Updating error group ' + formattedGroupName);
+  console.log('Updating error group', formattedGroupName);
   var issues = [
     {
       url: "https://github.com/testuser/project/issues/update1"
@@ -218,38 +215,44 @@ function getErrorGroup(errorGroupId, callback) {
   var api = clouderrorreportingV1beta1.errorGroupServiceApi();
   var formattedGroupName = api.groupPath(PROJECT_NAME, errorGroupId);
 
-  console.log('Getting error group ' + formattedGroupName);
+  console.log('Getting error group', formattedGroupName);
   api.getGroup(formattedGroupName, function(err, response) {
     if (err) {
       console.error(err);
       callback(err);
       return;
     }
-    console.log(response.name + ' ' + response.group_id);
+    console.log(response.name, response.group_id);
     console.log('Associated issues');
     for (var i = 0; i < response.tracking_issues.length; i++) {
       console.log(response.tracking_issues[i].url);
     }
-    callback(null, 'Done');
+    callback(null);
   });
 }
 
 /**
  * Integration test for ErrorStatsServiceApi.deleteEvents
  */
-function deleteErrorEvents(done) {
+function deleteErrorEvents() {
   var api = clouderrorreportingV1beta1.errorStatsServiceApi();
   var formattedProjectName = api.projectPath(PROJECT_NAME);
 
-  console.log('Deleting all the events in project ' + PROJECT_NAME);
+  console.log('Deleting all the events in project', PROJECT_NAME);
   api.deleteEvents(formattedProjectName, function(err, response) {
     if (err) {
       console.error(err);
     }
     console.log('deleteErrorEvents Done');
-    done(err);
   });
 }
 
-async.series([createErrorEvents, listErrorInfo, deleteErrorEvents]);
+async.series([createErrorEvents, listErrorInfo],
+    function(err) {
+      if (err) {
+        console.error(err);
+      }
+      // Always call deleteErrorEvents
+      deleteErrorEvents();
+    });
 
