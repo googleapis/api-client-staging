@@ -1,4 +1,4 @@
-Google Cloudtrace API for Node.js
+Stackdriver Trace API for Node.js
 =================================================
 
 @google-cloud/trace uses [Google API extensions][google-gax] to provide an
