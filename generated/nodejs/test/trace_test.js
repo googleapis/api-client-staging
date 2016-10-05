@@ -17,7 +17,7 @@ var endTime = {seconds: currentTime, nanos: 9876543}
 
 var api = traceV1.traceServiceApi();
 
-function test_patch(done) {
+function testPatch(done) {
   var span = {spanId: SPAN_ID,
               kind: SPAN_KIND,
               name: SPAN_NAME,
@@ -38,7 +38,7 @@ function test_patch(done) {
   });
 }
 
-function test_get(done) {
+function testGet(done) {
   console.log('test get trace');
   api.getTrace(PROJECT_ID, id, function(err, trace) {
     if (err) {
@@ -50,11 +50,14 @@ function test_get(done) {
   });
 }
 
-function test_list(done) {
+function testList(done) {
   console.log('test list traces');
   var stream = api.listTraces(PROJECT_ID);
+  var i = 0;
   stream.on('data', function(trace) {
-    console.log('listed trace:', trace);
+    if (i++ < 10) {
+      console.log('listed trace:', trace);
+    }
   });
   stream.on('error', function(err) {
     console.error(err);
@@ -64,9 +67,9 @@ function test_list(done) {
 
 function run() {
   async.waterfall([
-      test_patch,
-      test_get,
-      test_list
+      testPatch,
+      testGet,
+      testList
   ]);
 }
 
