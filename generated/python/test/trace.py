@@ -28,10 +28,19 @@ span = trace_pb2.TraceSpan(span_id=span_id,kind=span_kind,name=SPAN_NAME,
 trace = trace_pb2.Trace(project_id=PROJECT_ID, trace_id=id, spans=[span])
 traces = trace_pb2.Traces(traces=[trace])
 
+print 'testing patch'
 api.patch_traces(PROJECT_ID, traces)
+print 'patched'
 
+# wait for patch to propagate
 time.sleep(1)
 
-response = api.get_trace(PROJECT_ID, id)
+print 'testing get'
+get_response = api.get_trace(PROJECT_ID, id)
+print 'got trace: {}'.format(get_response)
 
-print response
+print 'testing list'
+list_response = api.list_traces(PROJECT_ID)
+print 'listed traces:'
+for trace in list_response:
+    print '> {}'.format(trace)
