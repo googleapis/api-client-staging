@@ -24,7 +24,7 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return (gaxGrpc);
+  return traceServiceApi(gaxGrpc);
 }
 v1.SERVICE_ADDRESS = traceServiceApi.SERVICE_ADDRESS;
 v1.ALL_SCOPES = traceServiceApi.ALL_SCOPES;

@@ -27,7 +27,6 @@
 /* jscs: disable maximumLineLength */
 'use strict';
 
-var arguejs = require('arguejs');
 var configData = require('./trace_service_client_config');
 var extend = require('extend');
 var gax = require('google-gax');
@@ -38,12 +37,11 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-var DEFAULT_TIMEOUT = 30;
 
 var PAGE_DESCRIPTORS = {
   listTraces: new gax.PageDescriptor(
-      'page_token',
-      'next_page_token',
+      'pageToken',
+      'nextPageToken',
       'traces')
 };
 
@@ -82,7 +80,6 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
   var port = opts.port || DEFAULT_SERVICE_PORT;
   var sslCreds = opts.sslCreds || null;
   var clientConfig = opts.clientConfig || {};
-  var timeout = opts.timeout || DEFAULT_TIMEOUT;
   var appName = opts.appName || 'gax';
   var appVersion = opts.appVersion || gax.version;
 
@@ -96,7 +93,6 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.cloudtrace.v1.TraceService',
       configData,
       clientConfig,
-      timeout,
       PAGE_DESCRIPTORS,
       null,
       {'x-goog-api-client': googleApiClient});
@@ -123,8 +119,8 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
 // Service calls
 
 /**
- * Sends new traces to Cloud Trace or updates existing traces. If the ID of
- * a trace that you send matches that of an existing trace, any fields
+ * Sends new traces to Stackdriver Trace or updates existing traces. If the ID
+ * of a trace that you send matches that of an existing trace, any fields
  * in the existing trace and its spans are overwritten by the provided values,
  * and any new fields provided are merged with the existing trace data. If the
  * ID does not match, a new trace is created.
@@ -135,9 +131,9 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
  *   The body of the message.
  *
  *   This object should have the same structure as [Traces]{@link Traces}
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  * @param {function(?Error)=} callback
  *   The function which will be called with the result of the API call.
  * @returns {gax.EventEmitter} - the event emitter to handle the call
@@ -154,18 +150,23 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
  *     }
  * });
  */
-TraceServiceApi.prototype.patchTraces = function patchTraces() {
-  var args = arguejs({
-    projectId: String,
-    traces: Object,
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+TraceServiceApi.prototype.patchTraces = function(
+    projectId,
+    traces,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_id: args.projectId,
-    traces: args.traces
+    projectId: projectId,
+    traces: traces
   };
-  return this._patchTraces(req, args.options, args.callback);
+  return this._patchTraces(req, options, callback);
 };
 
 /**
@@ -175,9 +176,9 @@ TraceServiceApi.prototype.patchTraces = function patchTraces() {
  *   ID of the Cloud project where the trace data is stored.
  * @param {string} traceId
  *   ID of the trace to return.
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
@@ -198,18 +199,23 @@ TraceServiceApi.prototype.patchTraces = function patchTraces() {
  *     // doThingsWith(response)
  * });
  */
-TraceServiceApi.prototype.getTrace = function getTrace() {
-  var args = arguejs({
-    projectId: String,
-    traceId: String,
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+TraceServiceApi.prototype.getTrace = function(
+    projectId,
+    traceId,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_id: args.projectId,
-    trace_id: args.traceId
+    projectId: projectId,
+    traceId: traceId
   };
-  return this._getTrace(req, args.options, args.callback);
+  return this._getTrace(req, options, callback);
 };
 
 /**
@@ -217,29 +223,33 @@ TraceServiceApi.prototype.getTrace = function getTrace() {
  *
  * @param {string} projectId
  *   ID of the Cloud project where the trace data is stored.
- * @param {Object=} otherArgs
- * @param {number=} otherArgs.view
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ *
+ *   In addition, options may contain the following optional parameters.
+ * @param {number=} options.view
  *   Type of data returned for traces in the list. Optional. Default is
  *   `MINIMAL`.
  *
  *   The number should be among the values of [ViewType]{@link ViewType}
- * @param {number=} otherArgs.pageSize
+ * @param {number=} options.pageSize
  *   Maximum number of traces to return. If not specified or <= 0, the
  *   implementation selects a reasonable value.  The implementation may
  *   return fewer traces than the requested page size. Optional.
- * @param {Object=} otherArgs.startTime
+ * @param {Object=} options.startTime
  *   End of the time interval (inclusive) during which the trace data was
  *   collected from the application.
  *
  *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
- * @param {Object=} otherArgs.endTime
+ * @param {Object=} options.endTime
  *   Start of the time interval (inclusive) during which the trace data was
  *   collected from the application.
  *
  *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
- * @param {string=} otherArgs.filter
+ * @param {string=} options.filter
  *   An optional filter for the request.
- * @param {string=} otherArgs.orderBy
+ * @param {string=} options.orderBy
  *   Field used to sort the returned traces. Optional.
  *   Can be one of the following:
  *
@@ -253,52 +263,75 @@ TraceServiceApi.prototype.getTrace = function getTrace() {
  *   (for example, `name desc`).
  *
  *   Only one sort field is permitted.
- * @param {gax.CallOptions=} options
- *   Overrides the default settings for this call, e.g, timeout,
- *   retries, etc.
- * @returns {Stream}
- *   An object stream. By default, this emits an object representing
+ *
+ * @param {function(?Error, ?Object, ?string)=} callback
+ *   When specified, the results are not streamed but this callback
+ *   will be called with the response object representing [ListTracesResponse]{@link ListTracesResponse}.
+ *   The third item will be set if the response contains the token for the further results
+ *   and can be reused to `pageToken` field in the options in the next request.
+ * @returns {Stream|gax.EventEmitter}
+ *   An object stream which emits an object representing
  *   [Trace]{@link Trace} on 'data' event.
- *   This object can also be configured to emit
- *   pages of the responses through the options parameter.
+ *   When the callback is specified or streaming is suppressed through options,
+ *   it will return an event emitter to handle the call status and the callback
+ *   will be called with the response object.
  *
  * @example
  *
  * var api = cloudtraceV1.traceServiceApi();
  * var projectId = '';
+ * // Iterate over all elements.
  * api.listTraces(projectId).on('data', function(element) {
  *     // doThingsWith(element)
  * });
+ *
+ * // Or obtain the paged response through the callback.
+ * function callback(err, response, nextPageToken) {
+ *     if (err) {
+ *         console.error(err);
+ *         return;
+ *     }
+ *     // doThingsWith(response)
+ *     if (nextPageToken) {
+ *         // fetch the next page.
+ *         api.listTraces(projectId, {pageToken: nextPageToken}, callback);
+ *     }
+ * }
+ * api.listTraces(projectId, {flattenPages: false}, callback);
  */
-TraceServiceApi.prototype.listTraces = function listTraces() {
-  var args = arguejs({
-    projectId: String,
-    otherArgs: [Object, {}],
-    options: [gax.CallOptions],
-    callback: [Function]
-  }, arguments);
+TraceServiceApi.prototype.listTraces = function(
+    projectId,
+    options,
+    callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
   var req = {
-    project_id: args.projectId
+    projectId: projectId
   };
-  if ('view' in args.otherArgs) {
-    req.view = args.otherArgs.view;
+  if ('view' in options) {
+    req.view = options.view;
   }
-  if ('pageSize' in args.otherArgs) {
-    req.page_size = args.otherArgs.pageSize;
+  if ('pageSize' in options) {
+    req.pageSize = options.pageSize;
   }
-  if ('startTime' in args.otherArgs) {
-    req.start_time = args.otherArgs.startTime;
+  if ('startTime' in options) {
+    req.startTime = options.startTime;
   }
-  if ('endTime' in args.otherArgs) {
-    req.end_time = args.otherArgs.endTime;
+  if ('endTime' in options) {
+    req.endTime = options.endTime;
   }
-  if ('filter' in args.otherArgs) {
-    req.filter = args.otherArgs.filter;
+  if ('filter' in options) {
+    req.filter = options.filter;
   }
-  if ('orderBy' in args.otherArgs) {
-    req.order_by = args.otherArgs.orderBy;
+  if ('orderBy' in options) {
+    req.orderBy = options.orderBy;
   }
-  return this._listTraces(req, args.options, args.callback);
+  return this._listTraces(req, options, callback);
 };
 
 function TraceServiceApiBuilder(gaxGrpc) {
@@ -329,8 +362,6 @@ function TraceServiceApiBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.timeout
-   *   The default timeout, in seconds, for calls made through this client.
    * @param {number=} opts.appName
    *   The codename of the calling service.
    * @param {String=} opts.appVersion
