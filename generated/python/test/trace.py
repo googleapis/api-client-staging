@@ -42,5 +42,9 @@ print 'got trace: {}'.format(get_response)
 print 'testing list'
 list_response = api.list_traces(PROJECT_ID)
 print 'listed traces:'
+i = 0
 for trace in list_response:
+    if i > 10:
+        break
+    i += 1
     print '> {}'.format(trace)
