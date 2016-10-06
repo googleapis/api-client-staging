@@ -16,7 +16,7 @@ package com.google.cloud.logging.spi.v2;
 import com.google.api.MonitoredResource;
 import com.google.api.MonitoredResourceDescriptor;
 import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.logging.v2.DeleteLogRequest;
 import com.google.logging.v2.ListLogEntriesRequest;
@@ -64,8 +64,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -93,18 +93,19 @@ public class LoggingServiceV2Api implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<DeleteLogRequest, Empty> deleteLogCallable;
-  private final ApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
+  private final UnaryApiCallable<DeleteLogRequest, Empty> deleteLogCallable;
+  private final UnaryApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
       writeLogEntriesCallable;
-  private final ApiCallable<ListLogEntriesRequest, ListLogEntriesResponse> listLogEntriesCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesResponse>
+      listLogEntriesCallable;
+  private final UnaryApiCallable<
           ListLogEntriesRequest,
           PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>>
       listLogEntriesPagedCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse>
       listMonitoredResourceDescriptorsCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest,
           PagedListResponse<
               ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
@@ -168,19 +169,19 @@ public class LoggingServiceV2Api implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.deleteLogCallable =
-        ApiCallable.create(settings.deleteLogSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteLogSettings(), this.channel, this.executor);
     this.writeLogEntriesCallable =
-        ApiCallable.create(settings.writeLogEntriesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.writeLogEntriesSettings(), this.channel, this.executor);
     this.listLogEntriesCallable =
-        ApiCallable.create(settings.listLogEntriesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listLogEntriesSettings(), this.channel, this.executor);
     this.listLogEntriesPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listLogEntriesSettings(), this.channel, this.executor);
     this.listMonitoredResourceDescriptorsCallable =
-        ApiCallable.create(
+        UnaryApiCallable.create(
             settings.listMonitoredResourceDescriptorsSettings(), this.channel, this.executor);
     this.listMonitoredResourceDescriptorsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listMonitoredResourceDescriptorsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
@@ -271,7 +272,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteLogRequest, Empty> deleteLogCallable() {
+  public final UnaryApiCallable<DeleteLogRequest, Empty> deleteLogCallable() {
     return deleteLogCallable;
   }
 
@@ -291,19 +292,24 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param logName Optional. A default log resource name for those log entries in `entries` that do
-   *     not specify their own `logName`. Example: `"projects/my-project/logs/syslog"`. See
+   * @param logName Optional. A default log resource name that is assigned to all log entries in
+   *     `entries` that do not specify a value for `log_name`. Example:
+   *     `"projects/my-project/logs/syslog"`. See [LogEntry][google.logging.v2.LogEntry].
+   * @param resource Optional. A default monitored resource object that is assigned to all log
+   *     entries in `entries` that do not specify a value for `resource`. Example:
+   *     <p>{ "type": "gce_instance", "labels": { "zone": "us-central1-a", "instance_id":
+   *     "00000000000000000000" }}
+   *     <p>See [LogEntry][google.logging.v2.LogEntry].
+   * @param labels Optional. Default labels that are added to the `labels` field of all log entries
+   *     in `entries`. If a log entry already has a label with the same key as a label in this
+   *     parameter, then the log entry's label is not changed. See
    *     [LogEntry][google.logging.v2.LogEntry].
-   * @param resource Optional. A default monitored resource for those log entries in `entries` that
-   *     do not specify their own `resource`.
-   * @param labels Optional. User-defined `key:value` items that are added to the `labels` field of
-   *     each log entry in `entries`, except when a log entry specifies its own `key:value` item
-   *     with the same key. Example: `{ "size": "large", "color":"red" }`
-   * @param entries Required. The log entries to write. The log entries must have values for all
-   *     required fields.
-   *     <p>To improve throughput and to avoid exceeding the quota limit for calls to
-   *     `entries.write`, use this field to write multiple log entries at once rather than //
-   *     calling this method for each log entry.
+   * @param entries Required. The log entries to write. Values supplied for the fields `log_name`,
+   *     `resource`, and `labels` in this `entries.write` request are added to those log entries
+   *     that do not provide their own values for the fields.
+   *     <p>To improve throughput and to avoid exceeding the [quota limit](/logging/quota-policy)
+   *     for calls to `entries.write`, you should write multiple log entries at once rather than
+   *     calling this method for each individual log entry.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final WriteLogEntriesResponse writeLogEntries(
@@ -365,7 +371,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
+  public final UnaryApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
       writeLogEntriesCallable() {
     return writeLogEntriesCallable;
   }
@@ -388,11 +394,13 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param projectIds Required. One or more project IDs or project numbers from which to retrieve
-   *     log entries. Examples of a project ID: `"my-project-1A"`, `"1234567890"`.
-   * @param filter Optional. An [advanced logs filter](/logging/docs/view/advanced_filters). The
-   *     filter is compared against all log entries in the projects specified by `projectIds`. Only
-   *     entries that match the filter are retrieved. An empty filter matches all log entries.
+   * @param projectIds Deprecated. One or more project identifiers or project numbers from which to
+   *     retrieve log entries. Examples: `"my-project-1A"`, `"1234567890"`. If present, these
+   *     project identifiers are converted to resource format and added to the list of resources in
+   *     `resourceNames`. Callers should use `resourceNames` rather than this parameter.
+   * @param filter Optional. A filter that chooses which log entries to return. See [Advanced Logs
+   *     Filters](/logging/docs/view/advanced_filters). Only log entries that match the filter are
+   *     returned. An empty filter matches all log entries.
    * @param orderBy Optional. How the results should be sorted. Presently, the only permitted values
    *     are `"timestamp asc"` (default) and `"timestamp desc"`. The first option returns entries in
    *     order of increasing values of `LogEntry.timestamp` (oldest first), and the second option
@@ -459,7 +467,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListLogEntriesRequest,
           PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>>
       listLogEntriesPagedCallable() {
@@ -494,7 +502,8 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListLogEntriesRequest, ListLogEntriesResponse> listLogEntriesCallable() {
+  public final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesResponse>
+      listLogEntriesCallable() {
     return listLogEntriesCallable;
   }
 
@@ -540,7 +549,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest,
           PagedListResponse<
               ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
@@ -573,7 +582,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse>
       listMonitoredResourceDescriptorsCallable() {
     return listMonitoredResourceDescriptorsCallable;

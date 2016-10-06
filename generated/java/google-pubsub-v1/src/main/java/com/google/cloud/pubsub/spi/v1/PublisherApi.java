@@ -14,7 +14,7 @@
 package com.google.cloud.pubsub.spi.v1;
 
 import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -69,8 +69,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -98,23 +98,23 @@ public class PublisherApi implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<Topic, Topic> createTopicCallable;
-  private final ApiCallable<PublishRequest, PublishResponse> publishCallable;
-  private final ApiCallable<GetTopicRequest, Topic> getTopicCallable;
-  private final ApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<Topic, Topic> createTopicCallable;
+  private final UnaryApiCallable<PublishRequest, PublishResponse> publishCallable;
+  private final UnaryApiCallable<GetTopicRequest, Topic> getTopicCallable;
+  private final UnaryApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable;
+  private final UnaryApiCallable<
           ListTopicsRequest, PagedListResponse<ListTopicsRequest, ListTopicsResponse, Topic>>
       listTopicsPagedCallable;
-  private final ApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
+  private final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
       listTopicSubscriptionsCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<
           ListTopicSubscriptionsRequest,
           PagedListResponse<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>>
       listTopicSubscriptionsPagedCallable;
-  private final ApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable;
-  private final ApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final ApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final ApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable;
+  private final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
+  private final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
+  private final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
@@ -173,31 +173,33 @@ public class PublisherApi implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.createTopicCallable =
-        ApiCallable.create(settings.createTopicSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.createTopicSettings(), this.channel, this.executor);
     this.publishCallable =
-        ApiCallable.create(settings.publishSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.publishSettings(), this.channel, this.executor);
     if (settings.publishSettings().getBundlerFactory() != null) {
       closeables.add(settings.publishSettings().getBundlerFactory());
     }
     this.getTopicCallable =
-        ApiCallable.create(settings.getTopicSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getTopicSettings(), this.channel, this.executor);
     this.listTopicsCallable =
-        ApiCallable.create(settings.listTopicsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listTopicsSettings(), this.channel, this.executor);
     this.listTopicsPagedCallable =
-        ApiCallable.createPagedVariant(settings.listTopicsSettings(), this.channel, this.executor);
+        UnaryApiCallable.createPagedVariant(
+            settings.listTopicsSettings(), this.channel, this.executor);
     this.listTopicSubscriptionsCallable =
-        ApiCallable.create(settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(
+            settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
     this.listTopicSubscriptionsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
     this.deleteTopicCallable =
-        ApiCallable.create(settings.deleteTopicSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteTopicSettings(), this.channel, this.executor);
     this.setIamPolicyCallable =
-        ApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
     this.getIamPolicyCallable =
-        ApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
     this.testIamPermissionsCallable =
-        ApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -290,7 +292,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<Topic, Topic> createTopicCallable() {
+  public final UnaryApiCallable<Topic, Topic> createTopicCallable() {
     return createTopicCallable;
   }
 
@@ -382,7 +384,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<PublishRequest, PublishResponse> publishCallable() {
+  public final UnaryApiCallable<PublishRequest, PublishResponse> publishCallable() {
     return publishCallable;
   }
 
@@ -449,7 +451,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetTopicRequest, Topic> getTopicCallable() {
+  public final UnaryApiCallable<GetTopicRequest, Topic> getTopicCallable() {
     return getTopicCallable;
   }
 
@@ -524,7 +526,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListTopicsRequest, PagedListResponse<ListTopicsRequest, ListTopicsResponse, Topic>>
       listTopicsPagedCallable() {
     return listTopicsPagedCallable;
@@ -557,7 +559,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable() {
+  public final UnaryApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable() {
     return listTopicsCallable;
   }
 
@@ -635,7 +637,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListTopicSubscriptionsRequest,
           PagedListResponse<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>>
       listTopicSubscriptionsPagedCallable() {
@@ -669,7 +671,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
+  public final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
       listTopicSubscriptionsCallable() {
     return listTopicSubscriptionsCallable;
   }
@@ -746,7 +748,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable() {
+  public final UnaryApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable() {
     return deleteTopicCallable;
   }
 
@@ -764,11 +766,12 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param resource REQUIRED: The resource for which policy is being specified. Resource is usually
-   *     specified as a path, such as, projects/{project}/zones/{zone}/disks/{disk}.
-   * @param policy REQUIRED: The complete policy to be applied to the 'resource'. The size of the
-   *     policy is limited to a few 10s of KB. An empty policy is in general a valid policy but
-   *     certain services (like Projects) might reject them.
+   * @param resource REQUIRED: The resource for which the policy is being specified. `resource` is
+   *     usually specified as a path. For example, a Project resource is specified as
+   *     `projects/{project}`.
+   * @param policy REQUIRED: The complete policy to be applied to the `resource`. The size of the
+   *     policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud
+   *     Platform services (such as Projects) might reject them.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
@@ -823,14 +826,14 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
+  public final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
     return setIamPolicyCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the access control policy for a resource. Is empty if the policy or the resource does not
-   * exist.
+   * Gets the access control policy for a resource. Returns an empty policy if the resource exists
+   * and does not have a policy set.
    *
    * <p>Sample code:
    *
@@ -841,8 +844,9 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param resource REQUIRED: The resource for which policy is being requested. Resource is usually
-   *     specified as a path, such as, projects/{project}.
+   * @param resource REQUIRED: The resource for which the policy is being requested. `resource` is
+   *     usually specified as a path. For example, a Project resource is specified as
+   *     `projects/{project}`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
@@ -853,8 +857,8 @@ public class PublisherApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the access control policy for a resource. Is empty if the policy or the resource does not
-   * exist.
+   * Gets the access control policy for a resource. Returns an empty policy if the resource exists
+   * and does not have a policy set.
    *
    * <p>Sample code:
    *
@@ -877,8 +881,8 @@ public class PublisherApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the access control policy for a resource. Is empty if the policy or the resource does not
-   * exist.
+   * Gets the access control policy for a resource. Returns an empty policy if the resource exists
+   * and does not have a policy set.
    *
    * <p>Sample code:
    *
@@ -894,7 +898,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
+  public final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
     return getIamPolicyCallable;
   }
 
@@ -912,10 +916,12 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param resource REQUIRED: The resource for which policy detail is being requested. Resource is
-   *     usually specified as a path, such as, projects/{project}.
-   * @param permissions The set of permissions to check for the 'resource'. Permissions with
-   *     wildcards (such as '&ast;' or 'storage.&ast;') are not allowed.
+   * @param resource REQUIRED: The resource for which the policy detail is being requested.
+   *     `resource` is usually specified as a path. For example, a Project resource is specified as
+   *     `projects/{project}`.
+   * @param permissions The set of permissions to check for the `resource`. Permissions with
+   *     wildcards (such as '&ast;' or 'storage.&ast;') are not allowed. For more information see
+   *     [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final TestIamPermissionsResponse testIamPermissions(
@@ -974,7 +980,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
     return testIamPermissionsCallable;
   }
