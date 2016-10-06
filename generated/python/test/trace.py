@@ -32,7 +32,7 @@ print 'testing patch'
 api.patch_traces(PROJECT_ID, traces)
 print 'patched'
 
-# wait for patch to propagate
+# 1 second seems to be sufficient to avoid race condition
 time.sleep(1)
 
 print 'testing get'
