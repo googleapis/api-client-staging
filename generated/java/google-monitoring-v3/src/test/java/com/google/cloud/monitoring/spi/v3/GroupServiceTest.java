@@ -25,7 +25,6 @@ import com.google.monitoring.v3.GetGroupRequest;
 import com.google.monitoring.v3.Group;
 import com.google.monitoring.v3.ListGroupMembersRequest;
 import com.google.monitoring.v3.ListGroupMembersResponse;
-import com.google.monitoring.v3.TimeInterval;
 import com.google.monitoring.v3.UpdateGroupRequest;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
@@ -44,7 +43,6 @@ import org.junit.Test;
 public class GroupServiceTest {
   private static MockGroupService mockGroupService;
   private static MockMetricService mockMetricService;
-  private static MockAgentTranslationService mockAgentTranslationService;
   private static MockServiceHelper serviceHelper;
   private GroupServiceApi api;
 
@@ -52,12 +50,9 @@ public class GroupServiceTest {
   public static void startStaticServer() {
     mockGroupService = new MockGroupService();
     mockMetricService = new MockMetricService();
-    mockAgentTranslationService = new MockAgentTranslationService();
     serviceHelper =
         new MockServiceHelper(
-            "in-process-1",
-            Arrays.<MockGrpcService>asList(
-                mockGroupService, mockMetricService, mockAgentTranslationService));
+            "in-process-1", Arrays.<MockGrpcService>asList(mockGroupService, mockMetricService));
     serviceHelper.start();
   }
 
@@ -135,9 +130,8 @@ public class GroupServiceTest {
 
     String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
     Group group = Group.newBuilder().build();
-    boolean validateOnly = false;
 
-    Group actualResponse = api.createGroup(formattedName, group, validateOnly);
+    Group actualResponse = api.createGroup(formattedName, group);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
@@ -146,7 +140,6 @@ public class GroupServiceTest {
 
     Assert.assertEquals(formattedName, actualRequest.getName());
     Assert.assertEquals(group, actualRequest.getGroup());
-    Assert.assertEquals(validateOnly, actualRequest.getValidateOnly());
   }
 
   @Test
@@ -170,9 +163,8 @@ public class GroupServiceTest {
     mockGroupService.setResponses(expectedResponses);
 
     Group group = Group.newBuilder().build();
-    boolean validateOnly = false;
 
-    Group actualResponse = api.updateGroup(group, validateOnly);
+    Group actualResponse = api.updateGroup(group);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
@@ -180,7 +172,6 @@ public class GroupServiceTest {
     UpdateGroupRequest actualRequest = (UpdateGroupRequest) actualRequests.get(0);
 
     Assert.assertEquals(group, actualRequest.getGroup());
-    Assert.assertEquals(validateOnly, actualRequest.getValidateOnly());
   }
 
   @Test
@@ -220,11 +211,9 @@ public class GroupServiceTest {
     mockGroupService.setResponses(expectedResponses);
 
     String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
-    String filter = "filter-1274492040";
-    TimeInterval interval = TimeInterval.newBuilder().build();
 
     PagedListResponse<ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>
-        pagedListResponse = api.listGroupMembers(formattedName, filter, interval);
+        pagedListResponse = api.listGroupMembers(formattedName);
 
     List<MonitoredResource> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -235,7 +224,5 @@ public class GroupServiceTest {
     ListGroupMembersRequest actualRequest = (ListGroupMembersRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedName, actualRequest.getName());
-    Assert.assertEquals(filter, actualRequest.getFilter());
-    Assert.assertEquals(interval, actualRequest.getInterval());
   }
 }

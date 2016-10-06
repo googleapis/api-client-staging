@@ -195,9 +195,10 @@ public class ErrorStatsServiceApi implements AutoCloseable {
    *     href="https://support.google.com/cloud/answer/6158840"&gt;Google Cloud Platform project
    *     ID&lt;/a&gt;.
    *     <p>Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
-   * @param timeRange [Required] List data for the given time range. The service is tuned for
-   *     retrieving data up to (approximately) 'now'. Retrieving data for arbitrary time periods in
-   *     the past can result in higher response times or in returning incomplete results.
+   * @param timeRange [Required] List data for the given time range. Only
+   *     &lt;code&gt;ErrorGroupStats&lt;/code&gt; with a non-zero count in the given time range are
+   *     returned, unless the request contains an explicit group_id list. If a group_id list is
+   *     given, also &lt;code&gt;ErrorGroupStats&lt;/code&gt; with zero occurrences are returned.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PagedListResponse<ListGroupStatsRequest, ListGroupStatsResponse, ErrorGroupStats>

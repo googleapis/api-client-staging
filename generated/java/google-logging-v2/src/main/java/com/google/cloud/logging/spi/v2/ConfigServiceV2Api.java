@@ -207,7 +207,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param parent Required. The resource name containing the sinks. Example:
+   * @param parent Required. The cloud resource containing the sinks. Example:
    *     `"projects/my-logging-project"`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
@@ -314,7 +314,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param sinkName The resource name of the sink to return. Example:
+   * @param sinkName Required. The resource name of the sink to return. Example:
    *     `"projects/my-project-id/sinks/my-sink-id"`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
@@ -383,9 +383,10 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param parent The resource in which to create the sink. Example: `"projects/my-project-id"`.
-   *     <p>The new sink must be provided in the request.
-   * @param sink The new sink, which must not have an identifier that already exists.
+   * @param parent Required. The resource in which to create the sink. Example:
+   *     `"projects/my-project-id"`. The new sink must be provided in the request.
+   * @param sink Required. The new sink, whose `name` parameter is a sink identifier that is not
+   *     already in use.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink createSink(String parent, LogSink sink) {
@@ -446,7 +447,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates or updates a sink.
+   * Updates or creates a sink.
    *
    * <p>Sample code:
    *
@@ -458,12 +459,11 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param sinkName The resource name of the sink to update. Example:
-   *     `"projects/my-project-id/sinks/my-sink-id"`.
-   *     <p>The updated sink must be provided in the request and have the same name that is
-   *     specified in `sinkName`. If the sink does not exist, it is created.
-   * @param sink The updated sink, whose name must be the same as the sink identifier in `sinkName`.
-   *     If `sinkName` does not exist, then this method creates a new sink.
+   * @param sinkName Required. The resource name of the sink to update, including the parent
+   *     resource and the sink identifier. If the sink does not exist, this method creates the sink.
+   *     Example: `"projects/my-project-id/sinks/my-sink-id"`.
+   * @param sink Required. The updated sink, whose name is the same identifier that appears as part
+   *     of `sinkName`. If `sinkName` does not exist, then this method creates a new sink.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink updateSink(String sinkName, LogSink sink) {
@@ -475,7 +475,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates or updates a sink.
+   * Updates or creates a sink.
    *
    * <p>Sample code:
    *
@@ -500,7 +500,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates or updates a sink.
+   * Updates or creates a sink.
    *
    * <p>Sample code:
    *
@@ -535,8 +535,9 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param sinkName The resource name of the sink to delete. Example:
-   *     `"projects/my-project-id/sinks/my-sink-id"`.
+   * @param sinkName Required. The resource name of the sink to delete, including the parent
+   *     resource and the sink identifier. Example: `"projects/my-project-id/sinks/my-sink-id"`. It
+   *     is an error if the sink does not exist.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteSink(String sinkName) {
