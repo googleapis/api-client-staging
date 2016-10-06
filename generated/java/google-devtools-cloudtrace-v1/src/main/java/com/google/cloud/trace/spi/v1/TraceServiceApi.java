@@ -14,7 +14,7 @@
 package com.google.cloud.trace.spi.v1;
 
 import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.devtools.cloudtrace.v1.GetTraceRequest;
 import com.google.devtools.cloudtrace.v1.ListTracesRequest;
 import com.google.devtools.cloudtrace.v1.ListTracesResponse;
@@ -62,8 +62,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -91,10 +91,10 @@ public class TraceServiceApi implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<PatchTracesRequest, Empty> patchTracesCallable;
-  private final ApiCallable<GetTraceRequest, Trace> getTraceCallable;
-  private final ApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<PatchTracesRequest, Empty> patchTracesCallable;
+  private final UnaryApiCallable<GetTraceRequest, Trace> getTraceCallable;
+  private final UnaryApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable;
+  private final UnaryApiCallable<
           ListTracesRequest, PagedListResponse<ListTracesRequest, ListTracesResponse, Trace>>
       listTracesPagedCallable;
 
@@ -121,13 +121,14 @@ public class TraceServiceApi implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.patchTracesCallable =
-        ApiCallable.create(settings.patchTracesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.patchTracesSettings(), this.channel, this.executor);
     this.getTraceCallable =
-        ApiCallable.create(settings.getTraceSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getTraceSettings(), this.channel, this.executor);
     this.listTracesCallable =
-        ApiCallable.create(settings.listTracesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listTracesSettings(), this.channel, this.executor);
     this.listTracesPagedCallable =
-        ApiCallable.createPagedVariant(settings.listTracesSettings(), this.channel, this.executor);
+        UnaryApiCallable.createPagedVariant(
+            settings.listTracesSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -155,8 +156,8 @@ public class TraceServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send
-   * matches that of an existing trace, any fields in the existing trace and its spans are
+   * Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you
+   * send matches that of an existing trace, any fields in the existing trace and its spans are
    * overwritten by the provided values, and any new fields provided are merged with the existing
    * trace data. If the ID does not match, a new trace is created.
    *
@@ -182,8 +183,8 @@ public class TraceServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send
-   * matches that of an existing trace, any fields in the existing trace and its spans are
+   * Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you
+   * send matches that of an existing trace, any fields in the existing trace and its spans are
    * overwritten by the provided values, and any new fields provided are merged with the existing
    * trace data. If the ID does not match, a new trace is created.
    *
@@ -210,8 +211,8 @@ public class TraceServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send
-   * matches that of an existing trace, any fields in the existing trace and its spans are
+   * Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you
+   * send matches that of an existing trace, any fields in the existing trace and its spans are
    * overwritten by the provided values, and any new fields provided are merged with the existing
    * trace data. If the ID does not match, a new trace is created.
    *
@@ -231,7 +232,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<PatchTracesRequest, Empty> patchTracesCallable() {
+  public final UnaryApiCallable<PatchTracesRequest, Empty> patchTracesCallable() {
     return patchTracesCallable;
   }
 
@@ -304,7 +305,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetTraceRequest, Trace> getTraceCallable() {
+  public final UnaryApiCallable<GetTraceRequest, Trace> getTraceCallable() {
     return getTraceCallable;
   }
 
@@ -378,7 +379,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListTracesRequest, PagedListResponse<ListTracesRequest, ListTracesResponse, Trace>>
       listTracesPagedCallable() {
     return listTracesPagedCallable;
@@ -411,7 +412,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable() {
+  public final UnaryApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable() {
     return listTracesCallable;
   }
 

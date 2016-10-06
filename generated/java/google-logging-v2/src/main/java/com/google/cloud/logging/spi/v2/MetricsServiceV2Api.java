@@ -14,7 +14,7 @@
 package com.google.cloud.logging.spi.v2;
 
 import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.logging.v2.CreateLogMetricRequest;
 import com.google.logging.v2.DeleteLogMetricRequest;
@@ -60,8 +60,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -89,15 +89,16 @@ public class MetricsServiceV2Api implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<ListLogMetricsRequest, ListLogMetricsResponse> listLogMetricsCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<ListLogMetricsRequest, ListLogMetricsResponse>
+      listLogMetricsCallable;
+  private final UnaryApiCallable<
           ListLogMetricsRequest,
           PagedListResponse<ListLogMetricsRequest, ListLogMetricsResponse, LogMetric>>
       listLogMetricsPagedCallable;
-  private final ApiCallable<GetLogMetricRequest, LogMetric> getLogMetricCallable;
-  private final ApiCallable<CreateLogMetricRequest, LogMetric> createLogMetricCallable;
-  private final ApiCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable;
-  private final ApiCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable;
+  private final UnaryApiCallable<GetLogMetricRequest, LogMetric> getLogMetricCallable;
+  private final UnaryApiCallable<CreateLogMetricRequest, LogMetric> createLogMetricCallable;
+  private final UnaryApiCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable;
+  private final UnaryApiCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable;
 
   private static final PathTemplate PARENT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
@@ -156,18 +157,18 @@ public class MetricsServiceV2Api implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.listLogMetricsCallable =
-        ApiCallable.create(settings.listLogMetricsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listLogMetricsSettings(), this.channel, this.executor);
     this.listLogMetricsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listLogMetricsSettings(), this.channel, this.executor);
     this.getLogMetricCallable =
-        ApiCallable.create(settings.getLogMetricSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getLogMetricSettings(), this.channel, this.executor);
     this.createLogMetricCallable =
-        ApiCallable.create(settings.createLogMetricSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.createLogMetricSettings(), this.channel, this.executor);
     this.updateLogMetricCallable =
-        ApiCallable.create(settings.updateLogMetricSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.updateLogMetricSettings(), this.channel, this.executor);
     this.deleteLogMetricCallable =
-        ApiCallable.create(settings.deleteLogMetricSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteLogMetricSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -265,7 +266,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListLogMetricsRequest,
           PagedListResponse<ListLogMetricsRequest, ListLogMetricsResponse, LogMetric>>
       listLogMetricsPagedCallable() {
@@ -299,7 +300,8 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListLogMetricsRequest, ListLogMetricsResponse> listLogMetricsCallable() {
+  public final UnaryApiCallable<ListLogMetricsRequest, ListLogMetricsResponse>
+      listLogMetricsCallable() {
     return listLogMetricsCallable;
   }
 
@@ -368,7 +370,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetLogMetricRequest, LogMetric> getLogMetricCallable() {
+  public final UnaryApiCallable<GetLogMetricRequest, LogMetric> getLogMetricCallable() {
     return getLogMetricCallable;
   }
 
@@ -444,7 +446,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<CreateLogMetricRequest, LogMetric> createLogMetricCallable() {
+  public final UnaryApiCallable<CreateLogMetricRequest, LogMetric> createLogMetricCallable() {
     return createLogMetricCallable;
   }
 
@@ -522,7 +524,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable() {
+  public final UnaryApiCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable() {
     return updateLogMetricCallable;
   }
 
@@ -591,7 +593,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable() {
+  public final UnaryApiCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable() {
     return deleteLogMetricCallable;
   }
 
