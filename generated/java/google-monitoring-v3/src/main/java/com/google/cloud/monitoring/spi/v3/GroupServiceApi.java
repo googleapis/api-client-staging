@@ -25,7 +25,6 @@ import com.google.monitoring.v3.ListGroupMembersRequest;
 import com.google.monitoring.v3.ListGroupMembersResponse;
 import com.google.monitoring.v3.ListGroupsRequest;
 import com.google.monitoring.v3.ListGroupsResponse;
-import com.google.monitoring.v3.TimeInterval;
 import com.google.monitoring.v3.UpdateGroupRequest;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
@@ -215,7 +214,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the existing groups. The project ID in the URL path must refer to a Stackdriver account.
+   * Lists the existing groups.
    *
    * <p>Sample code:
    *
@@ -241,7 +240,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the existing groups. The project ID in the URL path must refer to a Stackdriver account.
+   * Lists the existing groups.
    *
    * <p>Sample code:
    *
@@ -267,7 +266,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the existing groups. The project ID in the URL path must refer to a Stackdriver account.
+   * Lists the existing groups.
    *
    * <p>Sample code:
    *
@@ -298,7 +297,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets a single group. The project ID in the URL path must refer to a Stackdriver account.
+   * Gets a single group.
    *
    * <p>Sample code:
    *
@@ -321,7 +320,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets a single group. The project ID in the URL path must refer to a Stackdriver account.
+   * Gets a single group.
    *
    * <p>Sample code:
    *
@@ -344,7 +343,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets a single group. The project ID in the URL path must refer to a Stackdriver account.
+   * Gets a single group.
    *
    * <p>Sample code:
    *
@@ -366,7 +365,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates a new group. The project ID in the URL path must refer to a Stackdriver account.
+   * Creates a new group.
    *
    * <p>Sample code:
    *
@@ -374,8 +373,7 @@ public class GroupServiceApi implements AutoCloseable {
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
-   *   Group response = groupServiceApi.createGroup(formattedName, group, validateOnly);
+   *   Group response = groupServiceApi.createGroup(formattedName, group);
    * }
    * </code></pre>
    *
@@ -383,23 +381,18 @@ public class GroupServiceApi implements AutoCloseable {
    *     `"projects/{project_id_or_number}"`.
    * @param group A group definition. It is an error to define the `name` field because the system
    *     assigns the name.
-   * @param validateOnly If true, validate this request but do not create the group.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final Group createGroup(String name, Group group, boolean validateOnly) {
+  public final Group createGroup(String name, Group group) {
     PROJECT_PATH_TEMPLATE.validate(name, "createGroup");
     CreateGroupRequest request =
-        CreateGroupRequest.newBuilder()
-            .setName(name)
-            .setGroup(group)
-            .setValidateOnly(validateOnly)
-            .build();
+        CreateGroupRequest.newBuilder().setName(name).setGroup(group).build();
     return createGroup(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates a new group. The project ID in the URL path must refer to a Stackdriver account.
+   * Creates a new group.
    *
    * <p>Sample code:
    *
@@ -407,11 +400,9 @@ public class GroupServiceApi implements AutoCloseable {
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
    *   CreateGroupRequest request = CreateGroupRequest.newBuilder()
    *     .setName(formattedName)
    *     .setGroup(group)
-   *     .setValidateOnly(validateOnly)
    *     .build();
    *   Group response = groupServiceApi.createGroup(request);
    * }
@@ -426,7 +417,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Creates a new group. The project ID in the URL path must refer to a Stackdriver account.
+   * Creates a new group.
    *
    * <p>Sample code:
    *
@@ -434,11 +425,9 @@ public class GroupServiceApi implements AutoCloseable {
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
    *   CreateGroupRequest request = CreateGroupRequest.newBuilder()
    *     .setName(formattedName)
    *     .setGroup(group)
-   *     .setValidateOnly(validateOnly)
    *     .build();
    *   ListenableFuture&lt;Group&gt; future = groupServiceApi.createGroupCallable().futureCall(request);
    *   // Do something
@@ -452,44 +441,37 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Updates an existing group. You can change any group attributes except `name`. The project ID in
-   * the URL path must refer to a Stackdriver account.
+   * Updates an existing group. You can change any group attributes except `name`.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
-   *   Group response = groupServiceApi.updateGroup(group, validateOnly);
+   *   Group response = groupServiceApi.updateGroup(group);
    * }
    * </code></pre>
    *
    * @param group The new definition of the group. All fields of the existing group, excepting
    *     `name`, are replaced with the corresponding fields of this group.
-   * @param validateOnly If true, validate this request but do not update the existing group.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final Group updateGroup(Group group, boolean validateOnly) {
-    UpdateGroupRequest request =
-        UpdateGroupRequest.newBuilder().setGroup(group).setValidateOnly(validateOnly).build();
+  public final Group updateGroup(Group group) {
+    UpdateGroupRequest request = UpdateGroupRequest.newBuilder().setGroup(group).build();
     return updateGroup(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Updates an existing group. You can change any group attributes except `name`. The project ID in
-   * the URL path must refer to a Stackdriver account.
+   * Updates an existing group. You can change any group attributes except `name`.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
    *   UpdateGroupRequest request = UpdateGroupRequest.newBuilder()
    *     .setGroup(group)
-   *     .setValidateOnly(validateOnly)
    *     .build();
    *   Group response = groupServiceApi.updateGroup(request);
    * }
@@ -504,18 +486,15 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Updates an existing group. You can change any group attributes except `name`. The project ID in
-   * the URL path must refer to a Stackdriver account.
+   * Updates an existing group. You can change any group attributes except `name`.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   Group group = Group.newBuilder().build();
-   *   boolean validateOnly = false;
    *   UpdateGroupRequest request = UpdateGroupRequest.newBuilder()
    *     .setGroup(group)
-   *     .setValidateOnly(validateOnly)
    *     .build();
    *   ListenableFuture&lt;Group&gt; future = groupServiceApi.updateGroupCallable().futureCall(request);
    *   // Do something
@@ -529,7 +508,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes an existing group. The project ID in the URL path must refer to a Stackdriver account.
+   * Deletes an existing group.
    *
    * <p>Sample code:
    *
@@ -552,7 +531,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes an existing group. The project ID in the URL path must refer to a Stackdriver account.
+   * Deletes an existing group.
    *
    * <p>Sample code:
    *
@@ -575,7 +554,7 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes an existing group. The project ID in the URL path must refer to a Stackdriver account.
+   * Deletes an existing group.
    *
    * <p>Sample code:
    *
@@ -597,17 +576,14 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the monitored resources that are members of a group. The project ID in the URL path must
-   * refer to a Stackdriver account.
+   * Lists the monitored resources that are members of a group.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
-   *   String filter = "";
-   *   TimeInterval interval = TimeInterval.newBuilder().build();
-   *   for (MonitoredResource element : groupServiceApi.listGroupMembers(formattedName, filter, interval).iterateAllElements()) {
+   *   for (MonitoredResource element : groupServiceApi.listGroupMembers(formattedName).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -615,45 +591,27 @@ public class GroupServiceApi implements AutoCloseable {
    *
    * @param name The group whose members are listed. The format is
    *     `"projects/{project_id_or_number}/groups/{group_id}"`.
-   * @param filter An optional [list filter](/monitoring/api/learn_more#filtering) describing the
-   *     members to be returned. The filter may reference the type, labels, and metadata of
-   *     monitored resources that comprise the group. For example, to return only resources
-   *     representing Compute Engine VM instances, use this filter:
-   *     <p>resource.type = "gce_instance"
-   * @param interval An optional time interval for which results should be returned. Only members
-   *     that were part of the group during the specified interval are included in the response. If
-   *     no interval is provided then the group membership over the last minute is returned.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PagedListResponse<
           ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>
-      listGroupMembers(String name, String filter, TimeInterval interval) {
+      listGroupMembers(String name) {
     GROUP_PATH_TEMPLATE.validate(name, "listGroupMembers");
-    ListGroupMembersRequest request =
-        ListGroupMembersRequest.newBuilder()
-            .setName(name)
-            .setFilter(filter)
-            .setInterval(interval)
-            .build();
+    ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder().setName(name).build();
     return listGroupMembers(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the monitored resources that are members of a group. The project ID in the URL path must
-   * refer to a Stackdriver account.
+   * Lists the monitored resources that are members of a group.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
-   *   String filter = "";
-   *   TimeInterval interval = TimeInterval.newBuilder().build();
    *   ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setFilter(filter)
-   *     .setInterval(interval)
    *     .build();
    *   for (MonitoredResource element : groupServiceApi.listGroupMembers(request).iterateAllElements()) {
    *     // doThingsWith(element);
@@ -672,20 +630,15 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the monitored resources that are members of a group. The project ID in the URL path must
-   * refer to a Stackdriver account.
+   * Lists the monitored resources that are members of a group.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
-   *   String filter = "";
-   *   TimeInterval interval = TimeInterval.newBuilder().build();
    *   ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setFilter(filter)
-   *     .setInterval(interval)
    *     .build();
    *   ListenableFuture&lt;PagedListResponse&lt;ListGroupMembersRequest,ListGroupMembersResponse,MonitoredResource&gt;&gt; future = groupServiceApi.listGroupMembersPagedCallable().futureCall(request);
    *   // Do something
@@ -704,20 +657,15 @@ public class GroupServiceApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists the monitored resources that are members of a group. The project ID in the URL path must
-   * refer to a Stackdriver account.
+   * Lists the monitored resources that are members of a group.
    *
    * <p>Sample code:
    *
    * <pre><code>
    * try (GroupServiceApi groupServiceApi = GroupServiceApi.create()) {
    *   String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
-   *   String filter = "";
-   *   TimeInterval interval = TimeInterval.newBuilder().build();
    *   ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setFilter(filter)
-   *     .setInterval(interval)
    *     .build();
    *   while (true) {
    *     ListGroupMembersResponse response = groupServiceApi.listGroupMembersCallable().call(request);

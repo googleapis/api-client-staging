@@ -113,8 +113,14 @@ public class ConfigServiceV2Test {
     String name = "name3373707";
     String destination = "destination-1429847026";
     String filter = "filter-1274492040";
+    String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
-        LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
+        LogSink.newBuilder()
+            .setName(name)
+            .setDestination(destination)
+            .setFilter(filter)
+            .setWriterIdentity(writerIdentity)
+            .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
@@ -137,8 +143,14 @@ public class ConfigServiceV2Test {
     String name = "name3373707";
     String destination = "destination-1429847026";
     String filter = "filter-1274492040";
+    String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
-        LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
+        LogSink.newBuilder()
+            .setName(name)
+            .setDestination(destination)
+            .setFilter(filter)
+            .setWriterIdentity(writerIdentity)
+            .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);
@@ -163,8 +175,14 @@ public class ConfigServiceV2Test {
     String name = "name3373707";
     String destination = "destination-1429847026";
     String filter = "filter-1274492040";
+    String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
-        LogSink.newBuilder().setName(name).setDestination(destination).setFilter(filter).build();
+        LogSink.newBuilder()
+            .setName(name)
+            .setDestination(destination)
+            .setFilter(filter)
+            .setWriterIdentity(writerIdentity)
+            .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockConfigServiceV2.setResponses(expectedResponses);

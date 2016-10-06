@@ -291,19 +291,24 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param logName Optional. A default log resource name for those log entries in `entries` that do
-   *     not specify their own `logName`. Example: `"projects/my-project/logs/syslog"`. See
+   * @param logName Optional. A default log resource name that is assigned to all log entries in
+   *     `entries` that do not specify a value for `log_name`. Example:
+   *     `"projects/my-project/logs/syslog"`. See [LogEntry][google.logging.v2.LogEntry].
+   * @param resource Optional. A default monitored resource object that is assigned to all log
+   *     entries in `entries` that do not specify a value for `resource`. Example:
+   *     <p>{ "type": "gce_instance", "labels": { "zone": "us-central1-a", "instance_id":
+   *     "00000000000000000000" }}
+   *     <p>See [LogEntry][google.logging.v2.LogEntry].
+   * @param labels Optional. Default labels that are added to the `labels` field of all log entries
+   *     in `entries`. If a log entry already has a label with the same key as a label in this
+   *     parameter, then the log entry's label is not changed. See
    *     [LogEntry][google.logging.v2.LogEntry].
-   * @param resource Optional. A default monitored resource for those log entries in `entries` that
-   *     do not specify their own `resource`.
-   * @param labels Optional. User-defined `key:value` items that are added to the `labels` field of
-   *     each log entry in `entries`, except when a log entry specifies its own `key:value` item
-   *     with the same key. Example: `{ "size": "large", "color":"red" }`
-   * @param entries Required. The log entries to write. The log entries must have values for all
-   *     required fields.
-   *     <p>To improve throughput and to avoid exceeding the quota limit for calls to
-   *     `entries.write`, use this field to write multiple log entries at once rather than //
-   *     calling this method for each log entry.
+   * @param entries Required. The log entries to write. Values supplied for the fields `log_name`,
+   *     `resource`, and `labels` in this `entries.write` request are added to those log entries
+   *     that do not provide their own values for the fields.
+   *     <p>To improve throughput and to avoid exceeding the [quota limit](/logging/quota-policy)
+   *     for calls to `entries.write`, you should write multiple log entries at once rather than
+   *     calling this method for each individual log entry.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final WriteLogEntriesResponse writeLogEntries(
@@ -388,11 +393,13 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param projectIds Required. One or more project IDs or project numbers from which to retrieve
-   *     log entries. Examples of a project ID: `"my-project-1A"`, `"1234567890"`.
-   * @param filter Optional. An [advanced logs filter](/logging/docs/view/advanced_filters). The
-   *     filter is compared against all log entries in the projects specified by `projectIds`. Only
-   *     entries that match the filter are retrieved. An empty filter matches all log entries.
+   * @param projectIds Deprecated. One or more project identifiers or project numbers from which to
+   *     retrieve log entries. Examples: `"my-project-1A"`, `"1234567890"`. If present, these
+   *     project identifiers are converted to resource format and added to the list of resources in
+   *     `resourceNames`. Callers should use `resourceNames` rather than this parameter.
+   * @param filter Optional. A filter that chooses which log entries to return. See [Advanced Logs
+   *     Filters](/logging/docs/view/advanced_filters). Only log entries that match the filter are
+   *     returned. An empty filter matches all log entries.
    * @param orderBy Optional. How the results should be sorted. Presently, the only permitted values
    *     are `"timestamp asc"` (default) and `"timestamp desc"`. The first option returns entries in
    *     order of increasing values of `LogEntry.timestamp` (oldest first), and the second option
