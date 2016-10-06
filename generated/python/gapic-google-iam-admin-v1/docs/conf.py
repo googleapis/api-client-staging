@@ -20,7 +20,7 @@ import shlex
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('..'))
 
-__version__ = '0.10.0'
+__version__ = '0.11.1'
 
 # -- General configuration ------------------------------------------------
 

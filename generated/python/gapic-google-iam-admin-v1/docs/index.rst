@@ -11,7 +11,7 @@ easy-to-use client library for the `Google IAM Admin API`_ (v1) defined in the g
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google&#x2F;iam&#x2F;admin/v1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/iam/admin/v1
 .. _`Google IAM Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/admin/v1/
 
 

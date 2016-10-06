@@ -14,22 +14,6 @@
 """Wrappers for protocol buffer enum types."""
 
 
-class KeyType(object):
-    """
-    ``KeyType`` filters to selectively retrieve certain varieties
-    of keys.
-
-    Attributes:
-      KEY_TYPE_UNSPECIFIED (int): Unspecified key type. The presence of this in the
-        message will immediately result in an error.
-      USER_MANAGED (int): User-managed keys (managed and rotated by the user).
-      SYSTEM_MANAGED (int): System-managed keys (managed and rotated by Google).
-    """
-    KEY_TYPE_UNSPECIFIED = 0
-    USER_MANAGED = 1
-    SYSTEM_MANAGED = 2
-
-
 class ServiceAccountKeyAlgorithm(object):
     """
     Supported key algorithms.
@@ -72,3 +56,20 @@ class ServiceAccountPublicKeyType(object):
     TYPE_NONE = 0
     TYPE_X509_PEM_FILE = 1
     TYPE_RAW_PUBLIC_KEY = 2
+
+
+class ListServiceAccountKeysRequest(object):
+    class KeyType(object):
+        """
+        ``KeyType`` filters to selectively retrieve certain varieties
+        of keys.
+
+        Attributes:
+          KEY_TYPE_UNSPECIFIED (int): Unspecified key type. The presence of this in the
+            message will immediately result in an error.
+          USER_MANAGED (int): User-managed keys (managed and rotated by the user).
+          SYSTEM_MANAGED (int): System-managed keys (managed and rotated by Google).
+        """
+        KEY_TYPE_UNSPECIFIED = 0
+        USER_MANAGED = 1
+        SYSTEM_MANAGED = 2
