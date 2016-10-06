@@ -33,7 +33,7 @@ function testPatch(done) {
       console.error(err);
     }
     console.log('patched trace');
-    // Wait a little for patched trace to propagate
+    // 1 second seems to be sufficient to avoid race condition
     setTimeout(done, 1000);
   });
 }
