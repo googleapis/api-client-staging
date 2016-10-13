@@ -13,8 +13,9 @@
  */
 package com.google.longrunning;
 
-import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
+
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
@@ -28,13 +29,12 @@ import java.util.concurrent.ScheduledExecutorService;
 /**
  * Service Description: Manages long-running operations with an API service.
  *
- * When an API method normally takes long time to complete, it can be designed
- * to return [Operation][google.longrunning.Operation] to the client, and the client can use this
- * interface to receive the real response asynchronously by polling the
- * operation resource, or pass the operation resource to another API (such as
- * Google Cloud Pub/Sub API) to receive the response.  Any API service that
- * returns long-running operations should implement the `Operations` interface
- * so developers can have a consistent client experience.
+ * <p>When an API method normally takes long time to complete, it can be designed to return
+ * [Operation][google.longrunning.Operation] to the client, and the client can use this interface to
+ * receive the real response asynchronously by polling the operation resource, or pass the operation
+ * resource to another API (such as Google Cloud Pub/Sub API) to receive the response. Any API
+ * service that returns long-running operations should implement the `Operations` interface so
+ * developers can have a consistent client experience.
  *
  * <p>This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -48,29 +48,28 @@ import java.util.concurrent.ScheduledExecutorService;
  * </code>
  * </pre>
  *
- * <p>Note: close() needs to be called on the operationsApi object to clean up resources such
- * as threads. In the example above, try-with-resources is used, which automatically calls
- * close().
+ * <p>Note: close() needs to be called on the operationsApi object to clean up resources such as
+ * threads. In the example above, try-with-resources is used, which automatically calls close().
  *
- * <p>The surface of this class includes several types of Java methods for each of the API's methods:
+ * <p>The surface of this class includes several types of Java methods for each of the API's
+ * methods:
  *
  * <ol>
- * <li> A "flattened" method. With this type of method, the fields of the request type have been
- * converted into function parameters. It may be the case that not all fields are available
- * as parameters, and not every API method will have a flattened method entry point.
- * <li> A "request object" method. This type of method only takes one parameter, a request
- * object, which must be constructed before the call. Not every API method will have a request
- * object method.
- * <li> A "callable" method. This type of method takes no parameters and returns an immutable
- * ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "flattened" method. With this type of method, the fields of the request type have been
+ *       converted into function parameters. It may be the case that not all fields are available as
+ *       parameters, and not every API method will have a flattened method entry point.
+ *   <li> A "request object" method. This type of method only takes one parameter, a request object,
+ *       which must be constructed before the call. Not every API method will have a request object
+ *       method.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
  *
- * <p>Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * <p>Many parameters require resource names to be formatted in a particular way. To assist with
+ * these names, this class includes a format method for each type of name, and additionally a parse
+ * method to extract the individual identifiers contained within names that are returned.
  *
  * <p>This class can be customized by passing in a custom instance of OperationsSettings to
  * create(). For example:
@@ -91,54 +90,48 @@ public class OperationsApi implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<GetOperationRequest, Operation> getOperationCallable;
-  private final ApiCallable<ListOperationsRequest, ListOperationsResponse> listOperationsCallable;
-  private final ApiCallable<
-          ListOperationsRequest,
-          PagedListResponse<ListOperationsRequest, ListOperationsResponse, Operation>>
+  private final UnaryApiCallable<GetOperationRequest, Operation> getOperationCallable;
+  private final UnaryApiCallable<ListOperationsRequest, ListOperationsResponse>
+      listOperationsCallable;
+  private final UnaryApiCallable<ListOperationsRequest, ListOperationsPagedResponse>
       listOperationsPagedCallable;
-  private final ApiCallable<CancelOperationRequest, Empty> cancelOperationCallable;
-  private final ApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable;
+  private final UnaryApiCallable<CancelOperationRequest, Empty> cancelOperationCallable;
+  private final UnaryApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable;
 
   private static final PathTemplate OPERATION_PATH_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("operations/{operation_path=**}");
 
   /**
-   * Formats a string containing the fully-qualified path to represent
-   * a operation_path resource.
+   * Formats a string containing the fully-qualified path to represent a operation_path resource.
    */
   public static final String formatOperationPathName(String operationPath) {
     return OPERATION_PATH_PATH_TEMPLATE.instantiate("operation_path", operationPath);
   }
 
   /**
-   * Parses the operation_path from the given fully-qualified path which
-   * represents a operationPath resource.
+   * Parses the operation_path from the given fully-qualified path which represents a operationPath
+   * resource.
    */
   public static final String parseOperationPathFromOperationPathName(String operationPathName) {
     return OPERATION_PATH_PATH_TEMPLATE.parse(operationPathName).get("operation_path");
   }
 
-  /**
-   * Constructs an instance of OperationsApi with default settings.
-   */
+  /** Constructs an instance of OperationsApi with default settings. */
   public static final OperationsApi create() throws IOException {
     return create(OperationsSettings.defaultBuilder().build());
   }
 
   /**
-   * Constructs an instance of OperationsApi, using the given settings.
-   * The channels are created based on the settings passed in, or defaults for any
-   * settings that are not set.
+   * Constructs an instance of OperationsApi, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
    */
   public static final OperationsApi create(OperationsSettings settings) throws IOException {
     return new OperationsApi(settings);
   }
 
   /**
-   * Constructs an instance of OperationsApi, using the given settings.
-   * This is protected so that it easy to make a subclass, but otherwise, the static
-   * factory methods should be preferred.
+   * Constructs an instance of OperationsApi, using the given settings. This is protected so that it
+   * easy to make a subclass, but otherwise, the static factory methods should be preferred.
    */
   protected OperationsApi(OperationsSettings settings) throws IOException {
     this.settings = settings;
@@ -146,16 +139,16 @@ public class OperationsApi implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.getOperationCallable =
-        ApiCallable.create(settings.getOperationSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getOperationSettings(), this.channel, this.executor);
     this.listOperationsCallable =
-        ApiCallable.create(settings.listOperationsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listOperationsSettings(), this.channel, this.executor);
     this.listOperationsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listOperationsSettings(), this.channel, this.executor);
     this.cancelOperationCallable =
-        ApiCallable.create(settings.cancelOperationSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.cancelOperationSettings(), this.channel, this.executor);
     this.deleteOperationCallable =
-        ApiCallable.create(settings.deleteOperationSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteOperationSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -183,11 +176,11 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the latest state of a long-running operation.  Clients can use this
-   * method to poll the operation result at intervals as recommended by the API
-   * service.
+   * Gets the latest state of a long-running operation. Clients can use this method to poll the
+   * operation result at intervals as recommended by the API service.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -206,11 +199,11 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the latest state of a long-running operation.  Clients can use this
-   * method to poll the operation result at intervals as recommended by the API
-   * service.
+   * Gets the latest state of a long-running operation. Clients can use this method to poll the
+   * operation result at intervals as recommended by the API service.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -230,11 +223,11 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Gets the latest state of a long-running operation.  Clients can use this
-   * method to poll the operation result at intervals as recommended by the API
-   * service.
+   * Gets the latest state of a long-running operation. Clients can use this method to poll the
+   * operation result at intervals as recommended by the API service.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -247,19 +240,20 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetOperationRequest, Operation> getOperationCallable() {
+  public final UnaryApiCallable<GetOperationRequest, Operation> getOperationCallable() {
     return getOperationCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists operations that match the specified filter in the request. If the
-   * server doesn't support this method, it returns `UNIMPLEMENTED`.
+   * Lists operations that match the specified filter in the request. If the server doesn't support
+   * this method, it returns `UNIMPLEMENTED`.
    *
-   * NOTE: the `name` binding below allows API services to override the binding
-   * to use different resource name schemes, such as `users/&ast;/operations`.
+   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
+   * resource name schemes, such as `users/&ast;/operations`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String name = "";
@@ -274,8 +268,7 @@ public class OperationsApi implements AutoCloseable {
    * @param filter The standard list filter.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListOperationsRequest, ListOperationsResponse, Operation>
-      listOperations(String name, String filter) {
+  public final ListOperationsPagedResponse listOperations(String name, String filter) {
     ListOperationsRequest request =
         ListOperationsRequest.newBuilder().setName(name).setFilter(filter).build();
     return listOperations(request);
@@ -283,13 +276,14 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists operations that match the specified filter in the request. If the
-   * server doesn't support this method, it returns `UNIMPLEMENTED`.
+   * Lists operations that match the specified filter in the request. If the server doesn't support
+   * this method, it returns `UNIMPLEMENTED`.
    *
-   * NOTE: the `name` binding below allows API services to override the binding
-   * to use different resource name schemes, such as `users/&ast;/operations`.
+   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
+   * resource name schemes, such as `users/&ast;/operations`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String name = "";
@@ -307,20 +301,20 @@ public class OperationsApi implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListOperationsRequest, ListOperationsResponse, Operation>
-      listOperations(ListOperationsRequest request) {
+  public final ListOperationsPagedResponse listOperations(ListOperationsRequest request) {
     return listOperationsPagedCallable().call(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists operations that match the specified filter in the request. If the
-   * server doesn't support this method, it returns `UNIMPLEMENTED`.
+   * Lists operations that match the specified filter in the request. If the server doesn't support
+   * this method, it returns `UNIMPLEMENTED`.
    *
-   * NOTE: the `name` binding below allows API services to override the binding
-   * to use different resource name schemes, such as `users/&ast;/operations`.
+   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
+   * resource name schemes, such as `users/&ast;/operations`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String name = "";
@@ -329,7 +323,7 @@ public class OperationsApi implements AutoCloseable {
    *     .setName(name)
    *     .setFilter(filter)
    *     .build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListOperationsRequest,ListOperationsResponse,Operation&gt;&gt; future = operationsApi.listOperationsPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListOperationsPagedResponse&gt; future = operationsApi.listOperationsPagedCallable().futureCall(request);
    *   // Do something
    *   for (Operation element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -337,22 +331,21 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListOperationsRequest,
-          PagedListResponse<ListOperationsRequest, ListOperationsResponse, Operation>>
+  public final UnaryApiCallable<ListOperationsRequest, ListOperationsPagedResponse>
       listOperationsPagedCallable() {
     return listOperationsPagedCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Lists operations that match the specified filter in the request. If the
-   * server doesn't support this method, it returns `UNIMPLEMENTED`.
+   * Lists operations that match the specified filter in the request. If the server doesn't support
+   * this method, it returns `UNIMPLEMENTED`.
    *
-   * NOTE: the `name` binding below allows API services to override the binding
-   * to use different resource name schemes, such as `users/&ast;/operations`.
+   * <p>NOTE: the `name` binding below allows API services to override the binding to use different
+   * resource name schemes, such as `users/&ast;/operations`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String name = "";
@@ -376,21 +369,24 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListOperationsRequest, ListOperationsResponse> listOperationsCallable() {
+  public final UnaryApiCallable<ListOperationsRequest, ListOperationsResponse>
+      listOperationsCallable() {
     return listOperationsCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Starts asynchronous cancellation on a long-running operation.  The server
-   * makes a best effort to cancel the operation, but success is not
-   * guaranteed.  If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
-   * other methods to check whether the cancellation succeeded or whether the
-   * operation completed despite cancellation.
+   * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to
+   * cancel the operation, but success is not guaranteed. If the server doesn't support this method,
+   * it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use
+   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or other methods to check
+   * whether the cancellation succeeded or whether the operation completed despite cancellation. On
+   * successful cancellation, the operation is not deleted; instead, it becomes an operation with an
+   * [Operation.error][google.longrunning.Operation.error] value with a
+   * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -409,15 +405,17 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Starts asynchronous cancellation on a long-running operation.  The server
-   * makes a best effort to cancel the operation, but success is not
-   * guaranteed.  If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
-   * other methods to check whether the cancellation succeeded or whether the
-   * operation completed despite cancellation.
+   * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to
+   * cancel the operation, but success is not guaranteed. If the server doesn't support this method,
+   * it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use
+   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or other methods to check
+   * whether the cancellation succeeded or whether the operation completed despite cancellation. On
+   * successful cancellation, the operation is not deleted; instead, it becomes an operation with an
+   * [Operation.error][google.longrunning.Operation.error] value with a
+   * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -437,15 +435,17 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Starts asynchronous cancellation on a long-running operation.  The server
-   * makes a best effort to cancel the operation, but success is not
-   * guaranteed.  If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
-   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
-   * other methods to check whether the cancellation succeeded or whether the
-   * operation completed despite cancellation.
+   * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to
+   * cancel the operation, but success is not guaranteed. If the server doesn't support this method,
+   * it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use
+   * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or other methods to check
+   * whether the cancellation succeeded or whether the operation completed despite cancellation. On
+   * successful cancellation, the operation is not deleted; instead, it becomes an operation with an
+   * [Operation.error][google.longrunning.Operation.error] value with a
+   * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -458,18 +458,18 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<CancelOperationRequest, Empty> cancelOperationCallable() {
+  public final UnaryApiCallable<CancelOperationRequest, Empty> cancelOperationCallable() {
     return cancelOperationCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes a long-running operation. This method indicates that the client is
-   * no longer interested in the operation result. It does not cancel the
-   * operation. If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.
+   * Deletes a long-running operation. This method indicates that the client is no longer interested
+   * in the operation result. It does not cancel the operation. If the server doesn't support this
+   * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -488,12 +488,12 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes a long-running operation. This method indicates that the client is
-   * no longer interested in the operation result. It does not cancel the
-   * operation. If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.
+   * Deletes a long-running operation. This method indicates that the client is no longer interested
+   * in the operation result. It does not cancel the operation. If the server doesn't support this
+   * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -513,12 +513,12 @@ public class OperationsApi implements AutoCloseable {
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
-   * Deletes a long-running operation. This method indicates that the client is
-   * no longer interested in the operation result. It does not cancel the
-   * operation. If the server doesn't support this method, it returns
-   * `google.rpc.Code.UNIMPLEMENTED`.
+   * Deletes a long-running operation. This method indicates that the client is no longer interested
+   * in the operation result. It does not cancel the operation. If the server doesn't support this
+   * method, it returns `google.rpc.Code.UNIMPLEMENTED`.
    *
-   * Sample code:
+   * <p>Sample code:
+   *
    * <pre><code>
    * try (OperationsApi operationsApi = OperationsApi.create()) {
    *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
@@ -531,7 +531,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable() {
+  public final UnaryApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable() {
     return deleteOperationCallable;
   }
 

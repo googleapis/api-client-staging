@@ -13,9 +13,10 @@
  */
 package com.google.cloud.monitoring.spi.v3;
 
-import com.google.api.MonitoredResource;
-import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListGroupMembersPagedResponse;
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListGroupsPagedResponse;
+
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.monitoring.v3.CreateGroupRequest;
 import com.google.monitoring.v3.DeleteGroupRequest;
@@ -71,8 +72,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -100,19 +101,16 @@ public class GroupServiceApi implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<ListGroupsRequest, ListGroupsResponse> listGroupsCallable;
-  private final ApiCallable<
-          ListGroupsRequest, PagedListResponse<ListGroupsRequest, ListGroupsResponse, Group>>
+  private final UnaryApiCallable<ListGroupsRequest, ListGroupsResponse> listGroupsCallable;
+  private final UnaryApiCallable<ListGroupsRequest, ListGroupsPagedResponse>
       listGroupsPagedCallable;
-  private final ApiCallable<GetGroupRequest, Group> getGroupCallable;
-  private final ApiCallable<CreateGroupRequest, Group> createGroupCallable;
-  private final ApiCallable<UpdateGroupRequest, Group> updateGroupCallable;
-  private final ApiCallable<DeleteGroupRequest, Empty> deleteGroupCallable;
-  private final ApiCallable<ListGroupMembersRequest, ListGroupMembersResponse>
+  private final UnaryApiCallable<GetGroupRequest, Group> getGroupCallable;
+  private final UnaryApiCallable<CreateGroupRequest, Group> createGroupCallable;
+  private final UnaryApiCallable<UpdateGroupRequest, Group> updateGroupCallable;
+  private final UnaryApiCallable<DeleteGroupRequest, Empty> deleteGroupCallable;
+  private final UnaryApiCallable<ListGroupMembersRequest, ListGroupMembersResponse>
       listGroupMembersCallable;
-  private final ApiCallable<
-          ListGroupMembersRequest,
-          PagedListResponse<ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>>
+  private final UnaryApiCallable<ListGroupMembersRequest, ListGroupMembersPagedResponse>
       listGroupMembersPagedCallable;
 
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
@@ -171,21 +169,22 @@ public class GroupServiceApi implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.listGroupsCallable =
-        ApiCallable.create(settings.listGroupsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listGroupsSettings(), this.channel, this.executor);
     this.listGroupsPagedCallable =
-        ApiCallable.createPagedVariant(settings.listGroupsSettings(), this.channel, this.executor);
+        UnaryApiCallable.createPagedVariant(
+            settings.listGroupsSettings(), this.channel, this.executor);
     this.getGroupCallable =
-        ApiCallable.create(settings.getGroupSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getGroupSettings(), this.channel, this.executor);
     this.createGroupCallable =
-        ApiCallable.create(settings.createGroupSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.createGroupSettings(), this.channel, this.executor);
     this.updateGroupCallable =
-        ApiCallable.create(settings.updateGroupSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.updateGroupSettings(), this.channel, this.executor);
     this.deleteGroupCallable =
-        ApiCallable.create(settings.deleteGroupSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteGroupSettings(), this.channel, this.executor);
     this.listGroupMembersCallable =
-        ApiCallable.create(settings.listGroupMembersSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listGroupMembersSettings(), this.channel, this.executor);
     this.listGroupMembersPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listGroupMembersSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
@@ -233,8 +232,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListGroupsRequest, ListGroupsResponse, Group> listGroups(
-      ListGroupsRequest request) {
+  public final ListGroupsPagedResponse listGroups(ListGroupsRequest request) {
     return listGroupsPagedCallable().call(request);
   }
 
@@ -250,7 +248,7 @@ public class GroupServiceApi implements AutoCloseable {
    *   ListGroupsRequest request = ListGroupsRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListGroupsRequest,ListGroupsResponse,Group&gt;&gt; future = groupServiceApi.listGroupsPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListGroupsPagedResponse&gt; future = groupServiceApi.listGroupsPagedCallable().futureCall(request);
    *   // Do something
    *   for (Group element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -258,8 +256,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListGroupsRequest, PagedListResponse<ListGroupsRequest, ListGroupsResponse, Group>>
+  public final UnaryApiCallable<ListGroupsRequest, ListGroupsPagedResponse>
       listGroupsPagedCallable() {
     return listGroupsPagedCallable;
   }
@@ -291,7 +288,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListGroupsRequest, ListGroupsResponse> listGroupsCallable() {
+  public final UnaryApiCallable<ListGroupsRequest, ListGroupsResponse> listGroupsCallable() {
     return listGroupsCallable;
   }
 
@@ -359,7 +356,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetGroupRequest, Group> getGroupCallable() {
+  public final UnaryApiCallable<GetGroupRequest, Group> getGroupCallable() {
     return getGroupCallable;
   }
 
@@ -435,7 +432,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<CreateGroupRequest, Group> createGroupCallable() {
+  public final UnaryApiCallable<CreateGroupRequest, Group> createGroupCallable() {
     return createGroupCallable;
   }
 
@@ -502,7 +499,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<UpdateGroupRequest, Group> updateGroupCallable() {
+  public final UnaryApiCallable<UpdateGroupRequest, Group> updateGroupCallable() {
     return updateGroupCallable;
   }
 
@@ -570,7 +567,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteGroupRequest, Empty> deleteGroupCallable() {
+  public final UnaryApiCallable<DeleteGroupRequest, Empty> deleteGroupCallable() {
     return deleteGroupCallable;
   }
 
@@ -593,9 +590,7 @@ public class GroupServiceApi implements AutoCloseable {
    *     `"projects/{project_id_or_number}/groups/{group_id}"`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<
-          ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>
-      listGroupMembers(String name) {
+  public final ListGroupMembersPagedResponse listGroupMembers(String name) {
     GROUP_PATH_TEMPLATE.validate(name, "listGroupMembers");
     ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder().setName(name).build();
     return listGroupMembers(request);
@@ -622,9 +617,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<
-          ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>
-      listGroupMembers(ListGroupMembersRequest request) {
+  public final ListGroupMembersPagedResponse listGroupMembers(ListGroupMembersRequest request) {
     return listGroupMembersPagedCallable().call(request);
   }
 
@@ -640,7 +633,7 @@ public class GroupServiceApi implements AutoCloseable {
    *   ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListGroupMembersRequest,ListGroupMembersResponse,MonitoredResource&gt;&gt; future = groupServiceApi.listGroupMembersPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListGroupMembersPagedResponse&gt; future = groupServiceApi.listGroupMembersPagedCallable().futureCall(request);
    *   // Do something
    *   for (MonitoredResource element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -648,9 +641,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListGroupMembersRequest,
-          PagedListResponse<ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>>
+  public final UnaryApiCallable<ListGroupMembersRequest, ListGroupMembersPagedResponse>
       listGroupMembersPagedCallable() {
     return listGroupMembersPagedCallable;
   }
@@ -682,7 +673,7 @@ public class GroupServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListGroupMembersRequest, ListGroupMembersResponse>
+  public final UnaryApiCallable<ListGroupMembersRequest, ListGroupMembersResponse>
       listGroupMembersCallable() {
     return listGroupMembersCallable;
   }

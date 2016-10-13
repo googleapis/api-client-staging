@@ -15,23 +15,21 @@
 /**
  * A client to Google Long Running Operations API.
  *
- * The interfaces provided are listed below, along with a usage sample
+ * <p>The interfaces provided are listed below, along with a usage sample
  *
- * =============
- * OperationsApi
- * =============
+ * <p>============= OperationsApi =============
  *
- * Service Description: Manages long-running operations with an API service.
+ * <p>Service Description: Manages long-running operations with an API service.
  *
- * When an API method normally takes long time to complete, it can be designed
- * to return [Operation][google.longrunning.Operation] to the client, and the client can use this
- * interface to receive the real response asynchronously by polling the
- * operation resource, or pass the operation resource to another API (such as
- * Google Cloud Pub/Sub API) to receive the response.  Any API service that
- * returns long-running operations should implement the `Operations` interface
- * so developers can have a consistent client experience.
+ * <p>When an API method normally takes long time to complete, it can be designed to return
+ * [Operation][google.longrunning.Operation] to the client, and the client can use this interface to
+ * receive the real response asynchronously by polling the operation resource, or pass the operation
+ * resource to another API (such as Google Cloud Pub/Sub API) to receive the response. Any API
+ * service that returns long-running operations should implement the `Operations` interface so
+ * developers can have a consistent client experience.
  *
- * Sample for OperationsApi:
+ * <p>Sample for OperationsApi:
+ *
  * <pre>
  * <code>
  * try (OperationsApi operationsApi = OperationsApi.create()) {
@@ -40,6 +38,5 @@
  * }
  * </code>
  * </pre>
- *
  */
 package com.google.longrunning;

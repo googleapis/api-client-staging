@@ -14,8 +14,9 @@
 
 package com.google.cloud.monitoring.spi.v3;
 
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListGroupMembersPagedResponse;
+
 import com.google.api.MonitoredResource;
-import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -212,8 +213,7 @@ public class GroupServiceTest {
 
     String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
 
-    PagedListResponse<ListGroupMembersRequest, ListGroupMembersResponse, MonitoredResource>
-        pagedListResponse = api.listGroupMembers(formattedName);
+    ListGroupMembersPagedResponse pagedListResponse = api.listGroupMembers(formattedName);
 
     List<MonitoredResource> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());

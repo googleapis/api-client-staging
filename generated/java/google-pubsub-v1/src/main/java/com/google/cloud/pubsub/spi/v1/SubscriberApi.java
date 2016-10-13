@@ -13,8 +13,9 @@
  */
 package com.google.cloud.pubsub.spi.v1;
 
-import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
+
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -73,8 +74,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -102,22 +103,20 @@ public class SubscriberApi implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<Subscription, Subscription> createSubscriptionCallable;
-  private final ApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
-  private final ApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
+  private final UnaryApiCallable<Subscription, Subscription> createSubscriptionCallable;
+  private final UnaryApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
+  private final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable;
-  private final ApiCallable<
-          ListSubscriptionsRequest,
-          PagedListResponse<ListSubscriptionsRequest, ListSubscriptionsResponse, Subscription>>
+  private final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
       listSubscriptionsPagedCallable;
-  private final ApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable;
-  private final ApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
-  private final ApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
-  private final ApiCallable<PullRequest, PullResponse> pullCallable;
-  private final ApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
-  private final ApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final ApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final ApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable;
+  private final UnaryApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
+  private final UnaryApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
+  private final UnaryApiCallable<PullRequest, PullResponse> pullCallable;
+  private final UnaryApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
+  private final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
+  private final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
+  private final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
@@ -202,29 +201,30 @@ public class SubscriberApi implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.createSubscriptionCallable =
-        ApiCallable.create(settings.createSubscriptionSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.createSubscriptionSettings(), this.channel, this.executor);
     this.getSubscriptionCallable =
-        ApiCallable.create(settings.getSubscriptionSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getSubscriptionSettings(), this.channel, this.executor);
     this.listSubscriptionsCallable =
-        ApiCallable.create(settings.listSubscriptionsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listSubscriptionsSettings(), this.channel, this.executor);
     this.listSubscriptionsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listSubscriptionsSettings(), this.channel, this.executor);
     this.deleteSubscriptionCallable =
-        ApiCallable.create(settings.deleteSubscriptionSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteSubscriptionSettings(), this.channel, this.executor);
     this.modifyAckDeadlineCallable =
-        ApiCallable.create(settings.modifyAckDeadlineSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.modifyAckDeadlineSettings(), this.channel, this.executor);
     this.acknowledgeCallable =
-        ApiCallable.create(settings.acknowledgeSettings(), this.channel, this.executor);
-    this.pullCallable = ApiCallable.create(settings.pullSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.acknowledgeSettings(), this.channel, this.executor);
+    this.pullCallable =
+        UnaryApiCallable.create(settings.pullSettings(), this.channel, this.executor);
     this.modifyPushConfigCallable =
-        ApiCallable.create(settings.modifyPushConfigSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.modifyPushConfigSettings(), this.channel, this.executor);
     this.setIamPolicyCallable =
-        ApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
     this.getIamPolicyCallable =
-        ApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
     this.testIamPermissionsCallable =
-        ApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -365,7 +365,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<Subscription, Subscription> createSubscriptionCallable() {
+  public final UnaryApiCallable<Subscription, Subscription> createSubscriptionCallable() {
     return createSubscriptionCallable;
   }
 
@@ -433,7 +433,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
+  public final UnaryApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
     return getSubscriptionCallable;
   }
 
@@ -455,8 +455,7 @@ public class SubscriberApi implements AutoCloseable {
    * @param project The name of the cloud project that subscriptions belong to.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListSubscriptionsRequest, ListSubscriptionsResponse, Subscription>
-      listSubscriptions(String project) {
+  public final ListSubscriptionsPagedResponse listSubscriptions(String project) {
     PROJECT_PATH_TEMPLATE.validate(project, "listSubscriptions");
     ListSubscriptionsRequest request =
         ListSubscriptionsRequest.newBuilder().setProject(project).build();
@@ -484,8 +483,7 @@ public class SubscriberApi implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListSubscriptionsRequest, ListSubscriptionsResponse, Subscription>
-      listSubscriptions(ListSubscriptionsRequest request) {
+  public final ListSubscriptionsPagedResponse listSubscriptions(ListSubscriptionsRequest request) {
     return listSubscriptionsPagedCallable().call(request);
   }
 
@@ -501,7 +499,7 @@ public class SubscriberApi implements AutoCloseable {
    *   ListSubscriptionsRequest request = ListSubscriptionsRequest.newBuilder()
    *     .setProject(formattedProject)
    *     .build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListSubscriptionsRequest,ListSubscriptionsResponse,Subscription&gt;&gt; future = subscriberApi.listSubscriptionsPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListSubscriptionsPagedResponse&gt; future = subscriberApi.listSubscriptionsPagedCallable().futureCall(request);
    *   // Do something
    *   for (Subscription element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -509,9 +507,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListSubscriptionsRequest,
-          PagedListResponse<ListSubscriptionsRequest, ListSubscriptionsResponse, Subscription>>
+  public final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
       listSubscriptionsPagedCallable() {
     return listSubscriptionsPagedCallable;
   }
@@ -543,7 +539,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
+  public final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable() {
     return listSubscriptionsCallable;
   }
@@ -621,7 +617,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable() {
+  public final UnaryApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable() {
     return deleteSubscriptionCallable;
   }
 
@@ -718,7 +714,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable() {
+  public final UnaryApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable() {
     return modifyAckDeadlineCallable;
   }
 
@@ -805,7 +801,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable() {
+  public final UnaryApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable() {
     return acknowledgeCallable;
   }
 
@@ -895,7 +891,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<PullRequest, PullResponse> pullCallable() {
+  public final UnaryApiCallable<PullRequest, PullResponse> pullCallable() {
     return pullCallable;
   }
 
@@ -990,7 +986,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
+  public final UnaryApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
     return modifyPushConfigCallable;
   }
 
@@ -1068,7 +1064,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
+  public final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
     return setIamPolicyCallable;
   }
 
@@ -1140,7 +1136,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
+  public final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
     return getIamPolicyCallable;
   }
 
@@ -1222,7 +1218,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
     return testIamPermissionsCallable;
   }
