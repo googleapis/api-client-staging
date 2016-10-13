@@ -13,14 +13,18 @@
  */
 package com.google.longrunning;
 
+import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
+
 import com.google.api.gax.core.ConnectionSettings;
-import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.core.RetrySettings;
-import com.google.api.gax.grpc.ApiCallSettings;
+import com.google.api.gax.grpc.CallContext;
 import com.google.api.gax.grpc.PageStreamingCallSettings;
 import com.google.api.gax.grpc.PageStreamingDescriptor;
+import com.google.api.gax.grpc.PagedListResponseFactory;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
+import com.google.api.gax.grpc.UnaryApiCallSettings;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.auth.Credentials;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -42,15 +46,14 @@ import org.joda.time.Duration;
  * <p>The default instance has everything set to sensible defaults:
  *
  * <ul>
- * <li>The default service address (longrunning.googleapis.com) and default port (443)
- * are used.
- * <li>Credentials are acquired automatically through Application Default Credentials.
- * <li>Retries are configured for idempotent methods but not for non-idempotent methods.
+ *   <li>The default service address (longrunning.googleapis.com) and default port (443) are used.
+ *   <li>Credentials are acquired automatically through Application Default Credentials.
+ *   <li>Retries are configured for idempotent methods but not for non-idempotent methods.
  * </ul>
  *
- * <p>The builder of this class is recursive, so contained classes are themselves builders.
- * When build() is called, the tree of builders is called to create the complete settings
- * object. For example, to set the total timeout of getOperation to 30 seconds:
+ * <p>The builder of this class is recursive, so contained classes are themselves builders. When
+ * build() is called, the tree of builders is called to create the complete settings object. For
+ * example, to set the total timeout of getOperation to 30 seconds:
  *
  * <pre>
  * <code>
@@ -64,25 +67,17 @@ import org.joda.time.Duration;
  */
 @javax.annotation.Generated("by GAPIC")
 public class OperationsSettings extends ServiceApiSettings {
-  /**
-   * The default address of the service.
-   */
+  /** The default address of the service. */
   private static final String DEFAULT_SERVICE_ADDRESS = "longrunning.googleapis.com";
 
-  /**
-   * The default port of the service.
-   */
+  /** The default port of the service. */
   private static final int DEFAULT_SERVICE_PORT = 443;
 
-  /**
-   * The default scopes of the service.
-   */
+  /** The default scopes of the service. */
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
       ImmutableList.<String>builder().build();
 
-  /**
-   * The default connection settings of the service.
-   */
+  /** The default connection settings of the service. */
   public static final ConnectionSettings DEFAULT_CONNECTION_SETTINGS =
       ConnectionSettings.newBuilder()
           .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
@@ -91,78 +86,60 @@ public class OperationsSettings extends ServiceApiSettings {
           .build();
 
   private final SimpleCallSettings<GetOperationRequest, Operation> getOperationSettings;
-  private final PageStreamingCallSettings<ListOperationsRequest, ListOperationsResponse, Operation>
+  private final PageStreamingCallSettings<
+          ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
       listOperationsSettings;
   private final SimpleCallSettings<CancelOperationRequest, Empty> cancelOperationSettings;
   private final SimpleCallSettings<DeleteOperationRequest, Empty> deleteOperationSettings;
 
-  /**
-   * Returns the object with the settings used for calls to getOperation.
-   */
+  /** Returns the object with the settings used for calls to getOperation. */
   public SimpleCallSettings<GetOperationRequest, Operation> getOperationSettings() {
     return getOperationSettings;
   }
 
-  /**
-   * Returns the object with the settings used for calls to listOperations.
-   */
-  public PageStreamingCallSettings<ListOperationsRequest, ListOperationsResponse, Operation>
+  /** Returns the object with the settings used for calls to listOperations. */
+  public PageStreamingCallSettings<
+          ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
       listOperationsSettings() {
     return listOperationsSettings;
   }
 
-  /**
-   * Returns the object with the settings used for calls to cancelOperation.
-   */
+  /** Returns the object with the settings used for calls to cancelOperation. */
   public SimpleCallSettings<CancelOperationRequest, Empty> cancelOperationSettings() {
     return cancelOperationSettings;
   }
 
-  /**
-   * Returns the object with the settings used for calls to deleteOperation.
-   */
+  /** Returns the object with the settings used for calls to deleteOperation. */
   public SimpleCallSettings<DeleteOperationRequest, Empty> deleteOperationSettings() {
     return deleteOperationSettings;
   }
 
-  /**
-   * Returns the default service address.
-   */
+  /** Returns the default service address. */
   public static String getDefaultServiceAddress() {
     return DEFAULT_SERVICE_ADDRESS;
   }
 
-  /**
-   * Returns the default service port.
-   */
+  /** Returns the default service port. */
   public static int getDefaultServicePort() {
     return DEFAULT_SERVICE_PORT;
   }
 
-  /**
-   * Returns the default service scopes.
-   */
+  /** Returns the default service scopes. */
   public static ImmutableList<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
   }
 
-  /**
-   * Returns a builder for this class with recommended defaults.
-   */
+  /** Returns a builder for this class with recommended defaults. */
   public static Builder defaultBuilder() {
     return Builder.createDefault();
   }
 
-  /**
-   * Returns a new builder for this class.
-   */
+  /** Returns a new builder for this class. */
   public static Builder newBuilder() {
     return new Builder();
   }
 
-  /**
-   * Returns a builder containing all the values of this settings class.
-   */
+  /** Returns a builder containing all the values of this settings class. */
   public Builder toBuilder() {
     return new Builder(this);
   }
@@ -218,15 +195,28 @@ public class OperationsSettings extends ServiceApiSettings {
             }
           };
 
-  /**
-   * Builder for OperationsSettings.
-   */
+  private static final PagedListResponseFactory<
+          ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
+      LIST_OPERATIONS_PAGE_STR_FACT =
+          new PagedListResponseFactory<
+              ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>() {
+            @Override
+            public ListOperationsPagedResponse createPagedListResponse(
+                UnaryApiCallable<ListOperationsRequest, ListOperationsResponse> callable,
+                ListOperationsRequest request,
+                CallContext context) {
+              return new ListOperationsPagedResponse(
+                  callable, LIST_OPERATIONS_PAGE_STR_DESC, request, context);
+            }
+          };
+
+  /** Builder for OperationsSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
-    private final ImmutableList<ApiCallSettings.Builder> methodSettingsBuilders;
+    private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<GetOperationRequest, Operation> getOperationSettings;
     private final PageStreamingCallSettings.Builder<
-            ListOperationsRequest, ListOperationsResponse, Operation>
+            ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
         listOperationsSettings;
     private final SimpleCallSettings.Builder<CancelOperationRequest, Empty> cancelOperationSettings;
     private final SimpleCallSettings.Builder<DeleteOperationRequest, Empty> deleteOperationSettings;
@@ -269,7 +259,7 @@ public class OperationsSettings extends ServiceApiSettings {
 
       listOperationsSettings =
           PageStreamingCallSettings.newBuilder(
-              OperationsGrpc.METHOD_LIST_OPERATIONS, LIST_OPERATIONS_PAGE_STR_DESC);
+              OperationsGrpc.METHOD_LIST_OPERATIONS, LIST_OPERATIONS_PAGE_STR_FACT);
 
       cancelOperationSettings =
           SimpleCallSettings.newBuilder(OperationsGrpc.METHOD_CANCEL_OPERATION);
@@ -277,8 +267,8 @@ public class OperationsSettings extends ServiceApiSettings {
       deleteOperationSettings =
           SimpleCallSettings.newBuilder(OperationsGrpc.METHOD_DELETE_OPERATION);
 
-      methodSettingsBuilders =
-          ImmutableList.<ApiCallSettings.Builder>of(
+      unaryMethodSettingsBuilders =
+          ImmutableList.<UnaryApiCallSettings.Builder>of(
               getOperationSettings,
               listOperationsSettings,
               cancelOperationSettings,
@@ -319,8 +309,8 @@ public class OperationsSettings extends ServiceApiSettings {
       cancelOperationSettings = settings.cancelOperationSettings.toBuilder();
       deleteOperationSettings = settings.deleteOperationSettings.toBuilder();
 
-      methodSettingsBuilders =
-          ImmutableList.<ApiCallSettings.Builder>of(
+      unaryMethodSettingsBuilders =
+          ImmutableList.<UnaryApiCallSettings.Builder>of(
               getOperationSettings,
               listOperationsSettings,
               cancelOperationSettings,
@@ -375,41 +365,35 @@ public class OperationsSettings extends ServiceApiSettings {
     }
 
     /**
-     * Applies the given settings to all of the API methods in this service. Only
-     * values that are non-null will be applied, so this method is not capable
-     * of un-setting any values.
+     * Applies the given settings to all of the unary API methods in this service. Only values that
+     * are non-null will be applied, so this method is not capable of un-setting any values.
+     *
+     * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllApiMethods(ApiCallSettings.Builder apiCallSettings) throws Exception {
-      super.applyToAllApiMethods(methodSettingsBuilders, apiCallSettings);
+    public Builder applyToAllApiMethods(UnaryApiCallSettings.Builder apiCallSettings)
+        throws Exception {
+      super.applyToAllApiMethods(unaryMethodSettingsBuilders, apiCallSettings);
       return this;
     }
 
-    /**
-     * Returns the builder for the settings used for calls to getOperation.
-     */
+    /** Returns the builder for the settings used for calls to getOperation. */
     public SimpleCallSettings.Builder<GetOperationRequest, Operation> getOperationSettings() {
       return getOperationSettings;
     }
 
-    /**
-     * Returns the builder for the settings used for calls to listOperations.
-     */
+    /** Returns the builder for the settings used for calls to listOperations. */
     public PageStreamingCallSettings.Builder<
-            ListOperationsRequest, ListOperationsResponse, Operation>
+            ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
         listOperationsSettings() {
       return listOperationsSettings;
     }
 
-    /**
-     * Returns the builder for the settings used for calls to cancelOperation.
-     */
+    /** Returns the builder for the settings used for calls to cancelOperation. */
     public SimpleCallSettings.Builder<CancelOperationRequest, Empty> cancelOperationSettings() {
       return cancelOperationSettings;
     }
 
-    /**
-     * Returns the builder for the settings used for calls to deleteOperation.
-     */
+    /** Returns the builder for the settings used for calls to deleteOperation. */
     public SimpleCallSettings.Builder<DeleteOperationRequest, Empty> deleteOperationSettings() {
       return deleteOperationSettings;
     }

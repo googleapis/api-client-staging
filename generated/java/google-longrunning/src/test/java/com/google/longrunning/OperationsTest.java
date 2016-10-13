@@ -14,7 +14,8 @@
 
 package com.google.longrunning;
 
-import com.google.api.gax.core.PagedListResponse;
+import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
+
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -106,8 +107,7 @@ public class OperationsTest {
     String name = "name3373707";
     String filter = "filter-1274492040";
 
-    PagedListResponse<ListOperationsRequest, ListOperationsResponse, Operation> pagedListResponse =
-        api.listOperations(name, filter);
+    ListOperationsPagedResponse pagedListResponse = api.listOperations(name, filter);
 
     List<Operation> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());

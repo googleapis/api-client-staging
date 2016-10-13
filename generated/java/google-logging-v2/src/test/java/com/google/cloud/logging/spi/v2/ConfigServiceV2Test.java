@@ -14,7 +14,8 @@
 
 package com.google.cloud.logging.spi.v2;
 
-import com.google.api.gax.core.PagedListResponse;
+import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListSinksPagedResponse;
+
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -93,8 +94,7 @@ public class ConfigServiceV2Test {
 
     String formattedParent = ConfigServiceV2Api.formatParentName("[PROJECT]");
 
-    PagedListResponse<ListSinksRequest, ListSinksResponse, LogSink> pagedListResponse =
-        api.listSinks(formattedParent);
+    ListSinksPagedResponse pagedListResponse = api.listSinks(formattedParent);
 
     List<LogSink> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());

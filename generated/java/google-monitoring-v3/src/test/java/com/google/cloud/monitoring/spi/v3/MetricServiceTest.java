@@ -14,9 +14,12 @@
 
 package com.google.cloud.monitoring.spi.v3;
 
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListMetricDescriptorsPagedResponse;
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListMonitoredResourceDescriptorsPagedResponse;
+import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListTimeSeriesPagedResponse;
+
 import com.google.api.MetricDescriptor;
 import com.google.api.MonitoredResourceDescriptor;
-import com.google.api.gax.core.PagedListResponse;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -103,10 +106,8 @@ public class MetricServiceTest {
 
     String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
 
-    PagedListResponse<
-            ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
-            MonitoredResourceDescriptor>
-        pagedListResponse = api.listMonitoredResourceDescriptors(formattedName);
+    ListMonitoredResourceDescriptorsPagedResponse pagedListResponse =
+        api.listMonitoredResourceDescriptors(formattedName);
 
     List<MonitoredResourceDescriptor> resources =
         Lists.newArrayList(pagedListResponse.iterateAllElements());
@@ -173,8 +174,7 @@ public class MetricServiceTest {
 
     String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
 
-    PagedListResponse<ListMetricDescriptorsRequest, ListMetricDescriptorsResponse, MetricDescriptor>
-        pagedListResponse = api.listMetricDescriptors(formattedName);
+    ListMetricDescriptorsPagedResponse pagedListResponse = api.listMetricDescriptors(formattedName);
 
     List<MetricDescriptor> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -298,7 +298,7 @@ public class MetricServiceTest {
     TimeInterval interval = TimeInterval.newBuilder().build();
     ListTimeSeriesRequest.TimeSeriesView view = ListTimeSeriesRequest.TimeSeriesView.FULL;
 
-    PagedListResponse<ListTimeSeriesRequest, ListTimeSeriesResponse, TimeSeries> pagedListResponse =
+    ListTimeSeriesPagedResponse pagedListResponse =
         api.listTimeSeries(formattedName, filter, interval, view);
 
     List<TimeSeries> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());

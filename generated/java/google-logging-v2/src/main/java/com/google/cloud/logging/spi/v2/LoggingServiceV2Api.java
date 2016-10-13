@@ -13,10 +13,11 @@
  */
 package com.google.cloud.logging.spi.v2;
 
+import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListLogEntriesPagedResponse;
+import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListMonitoredResourceDescriptorsPagedResponse;
+
 import com.google.api.MonitoredResource;
-import com.google.api.MonitoredResourceDescriptor;
-import com.google.api.gax.core.PagedListResponse;
-import com.google.api.gax.grpc.ApiCallable;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.logging.v2.DeleteLogRequest;
 import com.google.logging.v2.ListLogEntriesRequest;
@@ -64,8 +65,8 @@ import java.util.concurrent.ScheduledExecutorService;
  *   <li> A "request object" method. This type of method only takes one parameter, a request object,
  *       which must be constructed before the call. Not every API method will have a request object
  *       method.
- *   <li> A "callable" method. This type of method takes no parameters and returns an immutable
- *       ApiCallable object, which can be used to initiate calls to the service.
+ *   <li> A "callable" method. This type of method takes no parameters and returns an immutable API
+ *       callable object, which can be used to initiate calls to the service.
  * </ol>
  *
  * <p>See the individual methods for example code.
@@ -93,22 +94,18 @@ public class LoggingServiceV2Api implements AutoCloseable {
   private final ScheduledExecutorService executor;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final ApiCallable<DeleteLogRequest, Empty> deleteLogCallable;
-  private final ApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
+  private final UnaryApiCallable<DeleteLogRequest, Empty> deleteLogCallable;
+  private final UnaryApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
       writeLogEntriesCallable;
-  private final ApiCallable<ListLogEntriesRequest, ListLogEntriesResponse> listLogEntriesCallable;
-  private final ApiCallable<
-          ListLogEntriesRequest,
-          PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>>
+  private final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesResponse>
+      listLogEntriesCallable;
+  private final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesPagedResponse>
       listLogEntriesPagedCallable;
-  private final ApiCallable<
+  private final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse>
       listMonitoredResourceDescriptorsCallable;
-  private final ApiCallable<
-          ListMonitoredResourceDescriptorsRequest,
-          PagedListResponse<
-              ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
-              MonitoredResourceDescriptor>>
+  private final UnaryApiCallable<
+          ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsPagedResponse>
       listMonitoredResourceDescriptorsPagedCallable;
 
   private static final PathTemplate PARENT_PATH_TEMPLATE =
@@ -168,19 +165,19 @@ public class LoggingServiceV2Api implements AutoCloseable {
     this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
 
     this.deleteLogCallable =
-        ApiCallable.create(settings.deleteLogSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.deleteLogSettings(), this.channel, this.executor);
     this.writeLogEntriesCallable =
-        ApiCallable.create(settings.writeLogEntriesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.writeLogEntriesSettings(), this.channel, this.executor);
     this.listLogEntriesCallable =
-        ApiCallable.create(settings.listLogEntriesSettings(), this.channel, this.executor);
+        UnaryApiCallable.create(settings.listLogEntriesSettings(), this.channel, this.executor);
     this.listLogEntriesPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listLogEntriesSettings(), this.channel, this.executor);
     this.listMonitoredResourceDescriptorsCallable =
-        ApiCallable.create(
+        UnaryApiCallable.create(
             settings.listMonitoredResourceDescriptorsSettings(), this.channel, this.executor);
     this.listMonitoredResourceDescriptorsPagedCallable =
-        ApiCallable.createPagedVariant(
+        UnaryApiCallable.createPagedVariant(
             settings.listMonitoredResourceDescriptorsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
@@ -271,7 +268,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<DeleteLogRequest, Empty> deleteLogCallable() {
+  public final UnaryApiCallable<DeleteLogRequest, Empty> deleteLogCallable() {
     return deleteLogCallable;
   }
 
@@ -370,7 +367,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
+  public final UnaryApiCallable<WriteLogEntriesRequest, WriteLogEntriesResponse>
       writeLogEntriesCallable() {
     return writeLogEntriesCallable;
   }
@@ -407,8 +404,8 @@ public class LoggingServiceV2Api implements AutoCloseable {
    *     timestamps are returned in order of `LogEntry.insertId`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
-      listLogEntries(List<String> projectIds, String filter, String orderBy) {
+  public final ListLogEntriesPagedResponse listLogEntries(
+      List<String> projectIds, String filter, String orderBy) {
     ListLogEntriesRequest request =
         ListLogEntriesRequest.newBuilder()
             .addAllProjectIds(projectIds)
@@ -440,8 +437,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
-      listLogEntries(ListLogEntriesRequest request) {
+  public final ListLogEntriesPagedResponse listLogEntries(ListLogEntriesRequest request) {
     return listLogEntriesPagedCallable().call(request);
   }
 
@@ -458,7 +454,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    *   ListLogEntriesRequest request = ListLogEntriesRequest.newBuilder()
    *     .addAllProjectIds(projectIds)
    *     .build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListLogEntriesRequest,ListLogEntriesResponse,LogEntry&gt;&gt; future = loggingServiceV2Api.listLogEntriesPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListLogEntriesPagedResponse&gt; future = loggingServiceV2Api.listLogEntriesPagedCallable().futureCall(request);
    *   // Do something
    *   for (LogEntry element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -466,9 +462,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListLogEntriesRequest,
-          PagedListResponse<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>>
+  public final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesPagedResponse>
       listLogEntriesPagedCallable() {
     return listLogEntriesPagedCallable;
   }
@@ -501,7 +495,8 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<ListLogEntriesRequest, ListLogEntriesResponse> listLogEntriesCallable() {
+  public final UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesResponse>
+      listLogEntriesCallable() {
     return listLogEntriesCallable;
   }
 
@@ -523,10 +518,8 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PagedListResponse<
-          ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
-          MonitoredResourceDescriptor>
-      listMonitoredResourceDescriptors(ListMonitoredResourceDescriptorsRequest request) {
+  public final ListMonitoredResourceDescriptorsPagedResponse listMonitoredResourceDescriptors(
+      ListMonitoredResourceDescriptorsRequest request) {
     return listMonitoredResourceDescriptorsPagedCallable().call(request);
   }
 
@@ -539,7 +532,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * <pre><code>
    * try (LoggingServiceV2Api loggingServiceV2Api = LoggingServiceV2Api.create()) {
    *   ListMonitoredResourceDescriptorsRequest request = ListMonitoredResourceDescriptorsRequest.newBuilder().build();
-   *   ListenableFuture&lt;PagedListResponse&lt;ListMonitoredResourceDescriptorsRequest,ListMonitoredResourceDescriptorsResponse,MonitoredResourceDescriptor&gt;&gt; future = loggingServiceV2Api.listMonitoredResourceDescriptorsPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListMonitoredResourceDescriptorsPagedResponse&gt; future = loggingServiceV2Api.listMonitoredResourceDescriptorsPagedCallable().futureCall(request);
    *   // Do something
    *   for (MonitoredResourceDescriptor element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -547,11 +540,8 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
-          ListMonitoredResourceDescriptorsRequest,
-          PagedListResponse<
-              ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
-              MonitoredResourceDescriptor>>
+  public final UnaryApiCallable<
+          ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsPagedResponse>
       listMonitoredResourceDescriptorsPagedCallable() {
     return listMonitoredResourceDescriptorsPagedCallable;
   }
@@ -580,7 +570,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final ApiCallable<
+  public final UnaryApiCallable<
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse>
       listMonitoredResourceDescriptorsCallable() {
     return listMonitoredResourceDescriptorsCallable;
