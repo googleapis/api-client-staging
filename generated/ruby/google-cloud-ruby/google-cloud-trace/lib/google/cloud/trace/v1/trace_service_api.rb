@@ -26,6 +26,7 @@ require "json"
 require "pathname"
 
 require "google/gax"
+require "google/devtools/cloudtrace/v1/trace_pb"
 
 module Google
   module Cloud
