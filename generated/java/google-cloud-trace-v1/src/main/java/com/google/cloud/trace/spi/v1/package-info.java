@@ -13,24 +13,27 @@
  */
 
 /**
- * A client to Google Cloud Natural Language API.
+ * A client to Stackdriver Trace API.
  *
  * <p>The interfaces provided are listed below, along with usage samples.
  *
- * <p>================== LanguageServiceApi ==================
+ * <p>=============== TraceServiceApi ===============
  *
- * <p>Service Description: Provides text analysis operations such as sentiment analysis and entity
- * recognition.
+ * <p>Service Description: This file describes an API for collecting and viewing traces and spans
+ * within a trace. A Trace is a collection of spans corresponding to a single operation or set of
+ * operations for an application. A span is an individual timed event which forms a node of the
+ * trace tree. Spans for a single trace may span multiple services.
  *
- * <p>Sample for LanguageServiceApi:
+ * <p>Sample for TraceServiceApi:
  *
  * <pre>
  * <code>
- * try (LanguageServiceApi languageServiceApi = LanguageServiceApi.create()) {
- *   Document document = Document.newBuilder().build();
- *   AnalyzeSentimentResponse response = languageServiceApi.analyzeSentiment(document);
+ * try (TraceServiceApi traceServiceApi = TraceServiceApi.create()) {
+ *   String projectId = "";
+ *   Traces traces = Traces.newBuilder().build();
+ *   traceServiceApi.patchTraces(projectId, traces);
  * }
  * </code>
  * </pre>
  */
-package com.google.cloud.language.spi.v1beta1;
+package com.google.cloud.trace.spi.v1;

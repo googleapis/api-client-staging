@@ -77,14 +77,6 @@ public class SpeechSettings extends ServiceApiSettings {
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
       ImmutableList.<String>builder().add("https://www.googleapis.com/auth/cloud-platform").build();
 
-  /** The default connection settings of the service. */
-  public static final ConnectionSettings DEFAULT_CONNECTION_SETTINGS =
-      ConnectionSettings.newBuilder()
-          .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
-          .setPort(DEFAULT_SERVICE_PORT)
-          .provideCredentialsWith(DEFAULT_SERVICE_SCOPES)
-          .build();
-
   private final SimpleCallSettings<SyncRecognizeRequest, SyncRecognizeResponse>
       syncRecognizeSettings;
   private final SimpleCallSettings<AsyncRecognizeRequest, Operation> asyncRecognizeSettings;
@@ -195,7 +187,7 @@ public class SpeechSettings extends ServiceApiSettings {
     }
 
     private Builder() {
-      super(DEFAULT_CONNECTION_SETTINGS);
+      super(s_getDefaultConnectionSettingsBuilder().build());
 
       syncRecognizeSettings = SimpleCallSettings.newBuilder(SpeechGrpc.METHOD_SYNC_RECOGNIZE);
 
@@ -237,9 +229,16 @@ public class SpeechSettings extends ServiceApiSettings {
               syncRecognizeSettings, asyncRecognizeSettings);
     }
 
+    private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
+      return ConnectionSettings.newBuilder()
+          .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
+          .setPort(DEFAULT_SERVICE_PORT)
+          .provideCredentialsWith(DEFAULT_SERVICE_SCOPES);
+    }
+
     @Override
-    protected ConnectionSettings getDefaultConnectionSettings() {
-      return DEFAULT_CONNECTION_SETTINGS;
+    protected ConnectionSettings.Builder getDefaultConnectionSettingsBuilder() {
+      return s_getDefaultConnectionSettingsBuilder();
     }
 
     @Override

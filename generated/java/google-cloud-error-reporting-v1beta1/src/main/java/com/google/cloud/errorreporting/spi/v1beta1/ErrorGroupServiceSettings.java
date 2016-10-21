@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.cloud.vision.spi.v1;
+package com.google.cloud.errorreporting.spi.v1beta1;
 
 import com.google.api.gax.core.ConnectionSettings;
 import com.google.api.gax.core.RetrySettings;
@@ -19,14 +19,15 @@ import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.UnaryApiCallSettings;
 import com.google.auth.Credentials;
-import com.google.cloud.vision.v1.BatchAnnotateImagesRequest;
-import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.ImageAnnotatorGrpc;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup;
+import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupServiceGrpc;
+import com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest;
+import com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
@@ -36,34 +37,35 @@ import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
- * Settings class to configure an instance of {@link ImageAnnotatorApi}.
+ * Settings class to configure an instance of {@link ErrorGroupServiceApi}.
  *
  * <p>The default instance has everything set to sensible defaults:
  *
  * <ul>
- *   <li>The default service address (vision.googleapis.com) and default port (443) are used.
+ *   <li>The default service address (clouderrorreporting.googleapis.com) and default port (443) are
+ *       used.
  *   <li>Credentials are acquired automatically through Application Default Credentials.
  *   <li>Retries are configured for idempotent methods but not for non-idempotent methods.
  * </ul>
  *
  * <p>The builder of this class is recursive, so contained classes are themselves builders. When
  * build() is called, the tree of builders is called to create the complete settings object. For
- * example, to set the total timeout of batchAnnotateImages to 30 seconds:
+ * example, to set the total timeout of getGroup to 30 seconds:
  *
  * <pre>
  * <code>
- * ImageAnnotatorSettings.Builder imageAnnotatorSettingsBuilder =
- *     ImageAnnotatorSettings.defaultBuilder();
- * imageAnnotatorSettingsBuilder.batchAnnotateImagesSettings().getRetrySettingsBuilder()
+ * ErrorGroupServiceSettings.Builder errorGroupServiceSettingsBuilder =
+ *     ErrorGroupServiceSettings.defaultBuilder();
+ * errorGroupServiceSettingsBuilder.getGroupSettings().getRetrySettingsBuilder()
  *     .setTotalTimeout(Duration.standardSeconds(30));
- * ImageAnnotatorSettings imageAnnotatorSettings = imageAnnotatorSettingsBuilder.build();
+ * ErrorGroupServiceSettings errorGroupServiceSettings = errorGroupServiceSettingsBuilder.build();
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
-public class ImageAnnotatorSettings extends ServiceApiSettings {
+public class ErrorGroupServiceSettings extends ServiceApiSettings {
   /** The default address of the service. */
-  private static final String DEFAULT_SERVICE_ADDRESS = "vision.googleapis.com";
+  private static final String DEFAULT_SERVICE_ADDRESS = "clouderrorreporting.googleapis.com";
 
   /** The default port of the service. */
   private static final int DEFAULT_SERVICE_PORT = 443;
@@ -72,13 +74,17 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
       ImmutableList.<String>builder().add("https://www.googleapis.com/auth/cloud-platform").build();
 
-  private final SimpleCallSettings<BatchAnnotateImagesRequest, BatchAnnotateImagesResponse>
-      batchAnnotateImagesSettings;
+  private final SimpleCallSettings<GetGroupRequest, ErrorGroup> getGroupSettings;
+  private final SimpleCallSettings<UpdateGroupRequest, ErrorGroup> updateGroupSettings;
 
-  /** Returns the object with the settings used for calls to batchAnnotateImages. */
-  public SimpleCallSettings<BatchAnnotateImagesRequest, BatchAnnotateImagesResponse>
-      batchAnnotateImagesSettings() {
-    return batchAnnotateImagesSettings;
+  /** Returns the object with the settings used for calls to getGroup. */
+  public SimpleCallSettings<GetGroupRequest, ErrorGroup> getGroupSettings() {
+    return getGroupSettings;
+  }
+
+  /** Returns the object with the settings used for calls to updateGroup. */
+  public SimpleCallSettings<UpdateGroupRequest, ErrorGroup> updateGroupSettings() {
+    return updateGroupSettings;
   }
 
   /** Returns the default service address. */
@@ -111,7 +117,7 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
     return new Builder(this);
   }
 
-  private ImageAnnotatorSettings(Builder settingsBuilder) throws IOException {
+  private ErrorGroupServiceSettings(Builder settingsBuilder) throws IOException {
     super(
         settingsBuilder.getChannelProvider(),
         settingsBuilder.getExecutorProvider(),
@@ -120,16 +126,16 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
         settingsBuilder.getClientLibName(),
         settingsBuilder.getClientLibVersion());
 
-    batchAnnotateImagesSettings = settingsBuilder.batchAnnotateImagesSettings().build();
+    getGroupSettings = settingsBuilder.getGroupSettings().build();
+    updateGroupSettings = settingsBuilder.updateGroupSettings().build();
   }
 
-  /** Builder for ImageAnnotatorSettings. */
+  /** Builder for ErrorGroupServiceSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
     private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
 
-    private final SimpleCallSettings.Builder<
-            BatchAnnotateImagesRequest, BatchAnnotateImagesResponse>
-        batchAnnotateImagesSettings;
+    private final SimpleCallSettings.Builder<GetGroupRequest, ErrorGroup> getGroupSettings;
+    private final SimpleCallSettings.Builder<UpdateGroupRequest, ErrorGroup> updateGroupSettings;
 
     private static final ImmutableMap<String, ImmutableSet<Status.Code>> RETRYABLE_CODE_DEFINITIONS;
 
@@ -154,9 +160,9 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
               .setInitialRetryDelay(Duration.millis(100L))
               .setRetryDelayMultiplier(1.3)
               .setMaxRetryDelay(Duration.millis(60000L))
-              .setInitialRpcTimeout(Duration.millis(60000L))
+              .setInitialRpcTimeout(Duration.millis(20000L))
               .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.millis(60000L))
+              .setMaxRpcTimeout(Duration.millis(20000L))
               .setTotalTimeout(Duration.millis(600000L));
       definitions.put("default", settingsBuilder);
       RETRY_PARAM_DEFINITIONS = definitions.build();
@@ -165,31 +171,39 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
     private Builder() {
       super(s_getDefaultConnectionSettingsBuilder().build());
 
-      batchAnnotateImagesSettings =
-          SimpleCallSettings.newBuilder(ImageAnnotatorGrpc.METHOD_BATCH_ANNOTATE_IMAGES);
+      getGroupSettings = SimpleCallSettings.newBuilder(ErrorGroupServiceGrpc.METHOD_GET_GROUP);
+
+      updateGroupSettings =
+          SimpleCallSettings.newBuilder(ErrorGroupServiceGrpc.METHOD_UPDATE_GROUP);
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(batchAnnotateImagesSettings);
+          ImmutableList.<UnaryApiCallSettings.Builder>of(getGroupSettings, updateGroupSettings);
     }
 
     private static Builder createDefault() {
       Builder builder = new Builder();
 
       builder
-          .batchAnnotateImagesSettings()
+          .getGroupSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .updateGroupSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       return builder;
     }
 
-    private Builder(ImageAnnotatorSettings settings) {
+    private Builder(ErrorGroupServiceSettings settings) {
       super(settings);
 
-      batchAnnotateImagesSettings = settings.batchAnnotateImagesSettings.toBuilder();
+      getGroupSettings = settings.getGroupSettings.toBuilder();
+      updateGroupSettings = settings.updateGroupSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(batchAnnotateImagesSettings);
+          ImmutableList.<UnaryApiCallSettings.Builder>of(getGroupSettings, updateGroupSettings);
     }
 
     private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
@@ -258,15 +272,19 @@ public class ImageAnnotatorSettings extends ServiceApiSettings {
       return this;
     }
 
-    /** Returns the builder for the settings used for calls to batchAnnotateImages. */
-    public SimpleCallSettings.Builder<BatchAnnotateImagesRequest, BatchAnnotateImagesResponse>
-        batchAnnotateImagesSettings() {
-      return batchAnnotateImagesSettings;
+    /** Returns the builder for the settings used for calls to getGroup. */
+    public SimpleCallSettings.Builder<GetGroupRequest, ErrorGroup> getGroupSettings() {
+      return getGroupSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to updateGroup. */
+    public SimpleCallSettings.Builder<UpdateGroupRequest, ErrorGroup> updateGroupSettings() {
+      return updateGroupSettings;
     }
 
     @Override
-    public ImageAnnotatorSettings build() throws IOException {
-      return new ImageAnnotatorSettings(this);
+    public ErrorGroupServiceSettings build() throws IOException {
+      return new ErrorGroupServiceSettings(this);
     }
   }
 }
