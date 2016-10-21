@@ -31,7 +31,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.0.19',
+        gax: 'com.google.api:gax:0.0.20',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -110,12 +110,6 @@ subprojects {
     exclude 'bin/**'
     exclude 'build/**'
   }
-  tasks.verifyGoogleJavaFormat {
-    exclude '.apt_generated/**'
-    exclude 'bin/**'
-    exclude 'build/**'
-  }
-  test.dependsOn verifyGoogleJavaFormat
 }
 
 project(':generated:java:google-logging-v2') {

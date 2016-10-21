@@ -11,26 +11,33 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.cloud.language.spi.v1beta1;
+package com.google.cloud.trace.spi.v1;
+
+import static com.google.cloud.trace.spi.v1.PagedResponseWrappers.ListTracesPagedResponse;
 
 import com.google.api.gax.core.ConnectionSettings;
 import com.google.api.gax.core.RetrySettings;
+import com.google.api.gax.grpc.CallContext;
+import com.google.api.gax.grpc.PageStreamingCallSettings;
+import com.google.api.gax.grpc.PageStreamingDescriptor;
+import com.google.api.gax.grpc.PagedListResponseFactory;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.UnaryApiCallSettings;
+import com.google.api.gax.grpc.UnaryApiCallable;
 import com.google.auth.Credentials;
-import com.google.cloud.language.v1beta1.AnalyzeEntitiesRequest;
-import com.google.cloud.language.v1beta1.AnalyzeEntitiesResponse;
-import com.google.cloud.language.v1beta1.AnalyzeSentimentRequest;
-import com.google.cloud.language.v1beta1.AnalyzeSentimentResponse;
-import com.google.cloud.language.v1beta1.AnnotateTextRequest;
-import com.google.cloud.language.v1beta1.AnnotateTextResponse;
-import com.google.cloud.language.v1beta1.LanguageServiceGrpc;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.devtools.cloudtrace.v1.GetTraceRequest;
+import com.google.devtools.cloudtrace.v1.ListTracesRequest;
+import com.google.devtools.cloudtrace.v1.ListTracesResponse;
+import com.google.devtools.cloudtrace.v1.PatchTracesRequest;
+import com.google.devtools.cloudtrace.v1.Trace;
+import com.google.devtools.cloudtrace.v1.TraceServiceGrpc;
+import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
@@ -40,63 +47,66 @@ import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
- * Settings class to configure an instance of {@link LanguageServiceApi}.
+ * Settings class to configure an instance of {@link TraceServiceApi}.
  *
  * <p>The default instance has everything set to sensible defaults:
  *
  * <ul>
- *   <li>The default service address (language.googleapis.com) and default port (443) are used.
+ *   <li>The default service address (cloudtrace.googleapis.com) and default port (443) are used.
  *   <li>Credentials are acquired automatically through Application Default Credentials.
  *   <li>Retries are configured for idempotent methods but not for non-idempotent methods.
  * </ul>
  *
  * <p>The builder of this class is recursive, so contained classes are themselves builders. When
  * build() is called, the tree of builders is called to create the complete settings object. For
- * example, to set the total timeout of analyzeSentiment to 30 seconds:
+ * example, to set the total timeout of patchTraces to 30 seconds:
  *
  * <pre>
  * <code>
- * LanguageServiceSettings.Builder languageServiceSettingsBuilder =
- *     LanguageServiceSettings.defaultBuilder();
- * languageServiceSettingsBuilder.analyzeSentimentSettings().getRetrySettingsBuilder()
+ * TraceServiceSettings.Builder traceServiceSettingsBuilder =
+ *     TraceServiceSettings.defaultBuilder();
+ * traceServiceSettingsBuilder.patchTracesSettings().getRetrySettingsBuilder()
  *     .setTotalTimeout(Duration.standardSeconds(30));
- * LanguageServiceSettings languageServiceSettings = languageServiceSettingsBuilder.build();
+ * TraceServiceSettings traceServiceSettings = traceServiceSettingsBuilder.build();
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
-public class LanguageServiceSettings extends ServiceApiSettings {
+public class TraceServiceSettings extends ServiceApiSettings {
   /** The default address of the service. */
-  private static final String DEFAULT_SERVICE_ADDRESS = "language.googleapis.com";
+  private static final String DEFAULT_SERVICE_ADDRESS = "cloudtrace.googleapis.com";
 
   /** The default port of the service. */
   private static final int DEFAULT_SERVICE_PORT = 443;
 
   /** The default scopes of the service. */
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
-      ImmutableList.<String>builder().add("https://www.googleapis.com/auth/cloud-platform").build();
+      ImmutableList.<String>builder()
+          .add("https://www.googleapis.com/auth/cloud-platform")
+          .add("https://www.googleapis.com/auth/trace.append")
+          .add("https://www.googleapis.com/auth/trace.readonly")
+          .build();
 
-  private final SimpleCallSettings<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
-      analyzeSentimentSettings;
-  private final SimpleCallSettings<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
-      analyzeEntitiesSettings;
-  private final SimpleCallSettings<AnnotateTextRequest, AnnotateTextResponse> annotateTextSettings;
+  private final SimpleCallSettings<PatchTracesRequest, Empty> patchTracesSettings;
+  private final SimpleCallSettings<GetTraceRequest, Trace> getTraceSettings;
+  private final PageStreamingCallSettings<
+          ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>
+      listTracesSettings;
 
-  /** Returns the object with the settings used for calls to analyzeSentiment. */
-  public SimpleCallSettings<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
-      analyzeSentimentSettings() {
-    return analyzeSentimentSettings;
+  /** Returns the object with the settings used for calls to patchTraces. */
+  public SimpleCallSettings<PatchTracesRequest, Empty> patchTracesSettings() {
+    return patchTracesSettings;
   }
 
-  /** Returns the object with the settings used for calls to analyzeEntities. */
-  public SimpleCallSettings<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
-      analyzeEntitiesSettings() {
-    return analyzeEntitiesSettings;
+  /** Returns the object with the settings used for calls to getTrace. */
+  public SimpleCallSettings<GetTraceRequest, Trace> getTraceSettings() {
+    return getTraceSettings;
   }
 
-  /** Returns the object with the settings used for calls to annotateText. */
-  public SimpleCallSettings<AnnotateTextRequest, AnnotateTextResponse> annotateTextSettings() {
-    return annotateTextSettings;
+  /** Returns the object with the settings used for calls to listTraces. */
+  public PageStreamingCallSettings<ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>
+      listTracesSettings() {
+    return listTracesSettings;
   }
 
   /** Returns the default service address. */
@@ -129,7 +139,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
     return new Builder(this);
   }
 
-  private LanguageServiceSettings(Builder settingsBuilder) throws IOException {
+  private TraceServiceSettings(Builder settingsBuilder) throws IOException {
     super(
         settingsBuilder.getChannelProvider(),
         settingsBuilder.getExecutorProvider(),
@@ -138,21 +148,71 @@ public class LanguageServiceSettings extends ServiceApiSettings {
         settingsBuilder.getClientLibName(),
         settingsBuilder.getClientLibVersion());
 
-    analyzeSentimentSettings = settingsBuilder.analyzeSentimentSettings().build();
-    analyzeEntitiesSettings = settingsBuilder.analyzeEntitiesSettings().build();
-    annotateTextSettings = settingsBuilder.annotateTextSettings().build();
+    patchTracesSettings = settingsBuilder.patchTracesSettings().build();
+    getTraceSettings = settingsBuilder.getTraceSettings().build();
+    listTracesSettings = settingsBuilder.listTracesSettings().build();
   }
 
-  /** Builder for LanguageServiceSettings. */
+  private static final PageStreamingDescriptor<ListTracesRequest, ListTracesResponse, Trace>
+      LIST_TRACES_PAGE_STR_DESC =
+          new PageStreamingDescriptor<ListTracesRequest, ListTracesResponse, Trace>() {
+            @Override
+            public Object emptyToken() {
+              return "";
+            }
+
+            @Override
+            public ListTracesRequest injectToken(ListTracesRequest payload, Object token) {
+              return ListTracesRequest.newBuilder(payload).setPageToken((String) token).build();
+            }
+
+            @Override
+            public ListTracesRequest injectPageSize(ListTracesRequest payload, int pageSize) {
+              throw new UnsupportedOperationException(
+                  "page size is not supported by this API method");
+            }
+
+            @Override
+            public Integer extractPageSize(ListTracesRequest payload) {
+              throw new UnsupportedOperationException(
+                  "page size is not supported by this API method");
+            }
+
+            @Override
+            public Object extractNextToken(ListTracesResponse payload) {
+              return payload.getNextPageToken();
+            }
+
+            @Override
+            public Iterable<Trace> extractResources(ListTracesResponse payload) {
+              return payload.getTracesList();
+            }
+          };
+
+  private static final PagedListResponseFactory<
+          ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>
+      LIST_TRACES_PAGE_STR_FACT =
+          new PagedListResponseFactory<
+              ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>() {
+            @Override
+            public ListTracesPagedResponse createPagedListResponse(
+                UnaryApiCallable<ListTracesRequest, ListTracesResponse> callable,
+                ListTracesRequest request,
+                CallContext context) {
+              return new ListTracesPagedResponse(
+                  callable, LIST_TRACES_PAGE_STR_DESC, request, context);
+            }
+          };
+
+  /** Builder for TraceServiceSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
     private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
 
-    private final SimpleCallSettings.Builder<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
-        analyzeSentimentSettings;
-    private final SimpleCallSettings.Builder<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
-        analyzeEntitiesSettings;
-    private final SimpleCallSettings.Builder<AnnotateTextRequest, AnnotateTextResponse>
-        annotateTextSettings;
+    private final SimpleCallSettings.Builder<PatchTracesRequest, Empty> patchTracesSettings;
+    private final SimpleCallSettings.Builder<GetTraceRequest, Trace> getTraceSettings;
+    private final PageStreamingCallSettings.Builder<
+            ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>
+        listTracesSettings;
 
     private static final ImmutableMap<String, ImmutableSet<Status.Code>> RETRYABLE_CODE_DEFINITIONS;
 
@@ -175,12 +235,12 @@ public class LanguageServiceSettings extends ServiceApiSettings {
       settingsBuilder =
           RetrySettings.newBuilder()
               .setInitialRetryDelay(Duration.millis(100L))
-              .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.millis(60000L))
-              .setInitialRpcTimeout(Duration.millis(60000L))
-              .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.millis(60000L))
-              .setTotalTimeout(Duration.millis(600000L));
+              .setRetryDelayMultiplier(1.2)
+              .setMaxRetryDelay(Duration.millis(1000L))
+              .setInitialRpcTimeout(Duration.millis(20000L))
+              .setRpcTimeoutMultiplier(1.5)
+              .setMaxRpcTimeout(Duration.millis(30000L))
+              .setTotalTimeout(Duration.millis(45000L));
       definitions.put("default", settingsBuilder);
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }
@@ -188,51 +248,50 @@ public class LanguageServiceSettings extends ServiceApiSettings {
     private Builder() {
       super(s_getDefaultConnectionSettingsBuilder().build());
 
-      analyzeSentimentSettings =
-          SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANALYZE_SENTIMENT);
+      patchTracesSettings = SimpleCallSettings.newBuilder(TraceServiceGrpc.METHOD_PATCH_TRACES);
 
-      analyzeEntitiesSettings =
-          SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANALYZE_ENTITIES);
+      getTraceSettings = SimpleCallSettings.newBuilder(TraceServiceGrpc.METHOD_GET_TRACE);
 
-      annotateTextSettings =
-          SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANNOTATE_TEXT);
+      listTracesSettings =
+          PageStreamingCallSettings.newBuilder(
+              TraceServiceGrpc.METHOD_LIST_TRACES, LIST_TRACES_PAGE_STR_FACT);
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryApiCallSettings.Builder>of(
-              analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
+              patchTracesSettings, getTraceSettings, listTracesSettings);
     }
 
     private static Builder createDefault() {
       Builder builder = new Builder();
 
       builder
-          .analyzeSentimentSettings()
+          .patchTracesSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .getTraceSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
-          .analyzeEntitiesSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
-
-      builder
-          .annotateTextSettings()
+          .listTracesSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       return builder;
     }
 
-    private Builder(LanguageServiceSettings settings) {
+    private Builder(TraceServiceSettings settings) {
       super(settings);
 
-      analyzeSentimentSettings = settings.analyzeSentimentSettings.toBuilder();
-      analyzeEntitiesSettings = settings.analyzeEntitiesSettings.toBuilder();
-      annotateTextSettings = settings.annotateTextSettings.toBuilder();
+      patchTracesSettings = settings.patchTracesSettings.toBuilder();
+      getTraceSettings = settings.getTraceSettings.toBuilder();
+      listTracesSettings = settings.listTracesSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryApiCallSettings.Builder>of(
-              analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
+              patchTracesSettings, getTraceSettings, listTracesSettings);
     }
 
     private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
@@ -301,27 +360,26 @@ public class LanguageServiceSettings extends ServiceApiSettings {
       return this;
     }
 
-    /** Returns the builder for the settings used for calls to analyzeSentiment. */
-    public SimpleCallSettings.Builder<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
-        analyzeSentimentSettings() {
-      return analyzeSentimentSettings;
+    /** Returns the builder for the settings used for calls to patchTraces. */
+    public SimpleCallSettings.Builder<PatchTracesRequest, Empty> patchTracesSettings() {
+      return patchTracesSettings;
     }
 
-    /** Returns the builder for the settings used for calls to analyzeEntities. */
-    public SimpleCallSettings.Builder<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
-        analyzeEntitiesSettings() {
-      return analyzeEntitiesSettings;
+    /** Returns the builder for the settings used for calls to getTrace. */
+    public SimpleCallSettings.Builder<GetTraceRequest, Trace> getTraceSettings() {
+      return getTraceSettings;
     }
 
-    /** Returns the builder for the settings used for calls to annotateText. */
-    public SimpleCallSettings.Builder<AnnotateTextRequest, AnnotateTextResponse>
-        annotateTextSettings() {
-      return annotateTextSettings;
+    /** Returns the builder for the settings used for calls to listTraces. */
+    public PageStreamingCallSettings.Builder<
+            ListTracesRequest, ListTracesResponse, ListTracesPagedResponse>
+        listTracesSettings() {
+      return listTracesSettings;
     }
 
     @Override
-    public LanguageServiceSettings build() throws IOException {
-      return new LanguageServiceSettings(this);
+    public TraceServiceSettings build() throws IOException {
+      return new TraceServiceSettings(this);
     }
   }
 }
