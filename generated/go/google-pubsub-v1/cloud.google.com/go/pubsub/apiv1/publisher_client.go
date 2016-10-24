@@ -175,6 +175,7 @@ func PublisherTopicPath(project, topic string) string {
 func (c *PublisherClient) SubscriptionIAM(subscription *pubsubpb.Subscription) *iam.Handle {
 	return iam.InternalNewHandle(c.Connection(), subscription.Name)
 }
+
 func (c *PublisherClient) TopicIAM(topic *pubsubpb.Topic) *iam.Handle {
 	return iam.InternalNewHandle(c.Connection(), topic.Name)
 }

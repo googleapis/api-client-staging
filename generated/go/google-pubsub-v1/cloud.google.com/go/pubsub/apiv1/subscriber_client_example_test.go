@@ -48,6 +48,7 @@ func ExampleSubscriberClient_SubscriptionIAM() {
 	//TODO: Use the IAM policy
 	_ = policy
 }
+
 func ExampleSubscriberClient_TopicIAM() {
 	ctx := context.Background()
 	c, err := pubsub.NewSubscriberClient(ctx)
