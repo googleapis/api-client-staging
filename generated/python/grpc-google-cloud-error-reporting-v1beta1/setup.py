@@ -16,8 +16,8 @@ install_requires = [
 ]
 
 setuptools.setup(
-  name='grpc-google-devtools-clouderrorreporting-v1beta1',
-  version='0.11.1',
+  name='grpc-google-cloud-error-reporting-v1beta1',
+  version='0.13.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[

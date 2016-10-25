@@ -11,13 +11,13 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.3.5, <2.0.0dev',
     'google-gax>=0.14.1, <0.15.0dev',
-    'grpc-google-devtools-clouderrorreporting-v1beta1>=0.11.1, <0.12.0dev',
+    'grpc-google-cloud-error-reporting-v1beta1>=0.13.0, <0.14.0dev',
     'oauth2client>=2.0.0, <4.0.0dev',
 ]
 
 setup(
-    name='gapic-google-devtools-clouderrorreporting-v1beta1',
-    version='0.11.1',
+    name='gapic-google-cloud-error-reporting-v1beta1',
+    version='0.13.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
