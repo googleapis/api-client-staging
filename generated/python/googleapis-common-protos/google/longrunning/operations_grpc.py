@@ -423,7 +423,10 @@ class OperationsServicer(object):
     `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
     [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
     other methods to check whether the cancellation succeeded or whether the
-    operation completed despite cancellation.
+    operation completed despite cancellation. On successful cancellation,
+    the operation is not deleted; instead, it becomes an operation with
+    an [Operation.error][google.longrunning.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    corresponding to `Code.CANCELLED`.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -500,7 +503,10 @@ class BetaOperationsServicer(object):
     `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
     [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
     other methods to check whether the cancellation succeeded or whether the
-    operation completed despite cancellation.
+    operation completed despite cancellation. On successful cancellation,
+    the operation is not deleted; instead, it becomes an operation with
+    an [Operation.error][google.longrunning.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    corresponding to `Code.CANCELLED`.
     """
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def DeleteOperation(self, request, context):
@@ -546,7 +552,10 @@ class BetaOperationsStub(object):
     `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
     [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
     other methods to check whether the cancellation succeeded or whether the
-    operation completed despite cancellation.
+    operation completed despite cancellation. On successful cancellation,
+    the operation is not deleted; instead, it becomes an operation with
+    an [Operation.error][google.longrunning.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    corresponding to `Code.CANCELLED`.
     """
     raise NotImplementedError()
   CancelOperation.future = None
