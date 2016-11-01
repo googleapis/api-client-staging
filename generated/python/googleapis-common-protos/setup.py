@@ -19,7 +19,7 @@ extras_require = {
 
 setuptools.setup(
   name='googleapis-common-protos',
-  version='1.3.5',
+  version='1.4.0',
 
   author='Google Inc',
   author_email='googleapis-packages@google.com',
