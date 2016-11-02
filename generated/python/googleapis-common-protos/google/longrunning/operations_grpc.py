@@ -472,6 +472,11 @@ def add_OperationsServicer_to_server(servicer, server):
 
 
 class BetaOperationsServicer(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Manages long-running operations with an API service.
 
   When an API method normally takes long time to complete, it can be designed
@@ -519,6 +524,11 @@ class BetaOperationsServicer(object):
 
 
 class BetaOperationsStub(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Manages long-running operations with an API service.
 
   When an API method normally takes long time to complete, it can be designed
@@ -570,6 +580,11 @@ class BetaOperationsStub(object):
 
 
 def beta_create_Operations_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_deserializers = {
     ('google.longrunning.Operations', 'CancelOperation'): CancelOperationRequest.FromString,
     ('google.longrunning.Operations', 'DeleteOperation'): DeleteOperationRequest.FromString,
@@ -593,6 +608,11 @@ def beta_create_Operations_server(servicer, pool=None, pool_size=None, default_t
 
 
 def beta_create_Operations_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_serializers = {
     ('google.longrunning.Operations', 'CancelOperation'): CancelOperationRequest.SerializeToString,
     ('google.longrunning.Operations', 'DeleteOperation'): DeleteOperationRequest.SerializeToString,
