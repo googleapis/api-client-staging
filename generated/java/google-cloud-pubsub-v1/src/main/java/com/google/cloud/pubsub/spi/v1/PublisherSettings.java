@@ -1,36 +1,41 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.pubsub.spi.v1;
 
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubscriptionsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
-import com.google.api.gax.core.ConnectionSettings;
+import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.BundlingCallSettings;
 import com.google.api.gax.grpc.BundlingDescriptor;
 import com.google.api.gax.grpc.BundlingSettings;
 import com.google.api.gax.grpc.CallContext;
-import com.google.api.gax.grpc.PageStreamingCallSettings;
-import com.google.api.gax.grpc.PageStreamingDescriptor;
+import com.google.api.gax.grpc.ChannelProvider;
+import com.google.api.gax.grpc.ExecutorProvider;
+import com.google.api.gax.grpc.InstantiatingChannelProvider;
+import com.google.api.gax.grpc.InstantiatingExecutorProvider;
+import com.google.api.gax.grpc.PagedCallSettings;
+import com.google.api.gax.grpc.PagedListDescriptor;
 import com.google.api.gax.grpc.PagedListResponseFactory;
 import com.google.api.gax.grpc.RequestIssuer;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
-import com.google.api.gax.grpc.UnaryApiCallSettings;
-import com.google.api.gax.grpc.UnaryApiCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.grpc.UnaryCallSettings;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -54,13 +59,11 @@ import com.google.pubsub.v1.PublishResponse;
 import com.google.pubsub.v1.PublisherGrpc;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.Topic;
-import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
@@ -107,10 +110,9 @@ public class PublisherSettings extends ServiceApiSettings {
   private final SimpleCallSettings<Topic, Topic> createTopicSettings;
   private final BundlingCallSettings<PublishRequest, PublishResponse> publishSettings;
   private final SimpleCallSettings<GetTopicRequest, Topic> getTopicSettings;
-  private final PageStreamingCallSettings<
-          ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
+  private final PagedCallSettings<ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
       listTopicsSettings;
-  private final PageStreamingCallSettings<
+  private final PagedCallSettings<
           ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse,
           ListTopicSubscriptionsPagedResponse>
       listTopicSubscriptionsSettings;
@@ -136,13 +138,13 @@ public class PublisherSettings extends ServiceApiSettings {
   }
 
   /** Returns the object with the settings used for calls to listTopics. */
-  public PageStreamingCallSettings<ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
+  public PagedCallSettings<ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
       listTopicsSettings() {
     return listTopicsSettings;
   }
 
   /** Returns the object with the settings used for calls to listTopicSubscriptions. */
-  public PageStreamingCallSettings<
+  public PagedCallSettings<
           ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse,
           ListTopicSubscriptionsPagedResponse>
       listTopicSubscriptionsSettings() {
@@ -170,6 +172,11 @@ public class PublisherSettings extends ServiceApiSettings {
     return testIamPermissionsSettings;
   }
 
+  /** Returns a builder for the default ExecutorProvider for this service. */
+  public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
+    return InstantiatingExecutorProvider.newBuilder();
+  }
+
   /** Returns the default service address. */
   public static String getDefaultServiceAddress() {
     return DEFAULT_SERVICE_ADDRESS;
@@ -183,6 +190,19 @@ public class PublisherSettings extends ServiceApiSettings {
   /** Returns the default service scopes. */
   public static ImmutableList<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
+  }
+
+  /** Returns a builder for the default credentials for this service. */
+  public static GoogleCredentialsProvider.Builder defaultCredentialsProviderBuilder() {
+    return GoogleCredentialsProvider.newBuilder().setScopesToApply(DEFAULT_SERVICE_SCOPES);
+  }
+
+  /** Returns a builder for the default ChannelProvider for this service. */
+  public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
+    return InstantiatingChannelProvider.newBuilder()
+        .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
+        .setPort(DEFAULT_SERVICE_PORT)
+        .setCredentialsProvider(defaultCredentialsProviderBuilder().build());
   }
 
   /** Returns a builder for this class with recommended defaults. */
@@ -201,13 +221,7 @@ public class PublisherSettings extends ServiceApiSettings {
   }
 
   private PublisherSettings(Builder settingsBuilder) throws IOException {
-    super(
-        settingsBuilder.getChannelProvider(),
-        settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getGeneratorName(),
-        settingsBuilder.getGeneratorVersion(),
-        settingsBuilder.getClientLibName(),
-        settingsBuilder.getClientLibVersion());
+    super(settingsBuilder.getExecutorProvider(), settingsBuilder.getChannelProvider());
 
     createTopicSettings = settingsBuilder.createTopicSettings().build();
     publishSettings = settingsBuilder.publishSettings().build();
@@ -220,9 +234,9 @@ public class PublisherSettings extends ServiceApiSettings {
     testIamPermissionsSettings = settingsBuilder.testIamPermissionsSettings().build();
   }
 
-  private static final PageStreamingDescriptor<ListTopicsRequest, ListTopicsResponse, Topic>
+  private static final PagedListDescriptor<ListTopicsRequest, ListTopicsResponse, Topic>
       LIST_TOPICS_PAGE_STR_DESC =
-          new PageStreamingDescriptor<ListTopicsRequest, ListTopicsResponse, Topic>() {
+          new PagedListDescriptor<ListTopicsRequest, ListTopicsResponse, Topic>() {
             @Override
             public Object emptyToken() {
               return "";
@@ -254,10 +268,10 @@ public class PublisherSettings extends ServiceApiSettings {
             }
           };
 
-  private static final PageStreamingDescriptor<
+  private static final PagedListDescriptor<
           ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>
       LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_DESC =
-          new PageStreamingDescriptor<
+          new PagedListDescriptor<
               ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>() {
             @Override
             public Object emptyToken() {
@@ -303,7 +317,7 @@ public class PublisherSettings extends ServiceApiSettings {
               ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>() {
             @Override
             public ListTopicsPagedResponse createPagedListResponse(
-                UnaryApiCallable<ListTopicsRequest, ListTopicsResponse> callable,
+                UnaryCallable<ListTopicsRequest, ListTopicsResponse> callable,
                 ListTopicsRequest request,
                 CallContext context) {
               return new ListTopicsPagedResponse(
@@ -320,7 +334,7 @@ public class PublisherSettings extends ServiceApiSettings {
               ListTopicSubscriptionsPagedResponse>() {
             @Override
             public ListTopicSubscriptionsPagedResponse createPagedListResponse(
-                UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
+                UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
                     callable,
                 ListTopicSubscriptionsRequest request,
                 CallContext context) {
@@ -393,15 +407,15 @@ public class PublisherSettings extends ServiceApiSettings {
 
   /** Builder for PublisherSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
-    private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
+    private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<Topic, Topic> createTopicSettings;
     private final BundlingCallSettings.Builder<PublishRequest, PublishResponse> publishSettings;
     private final SimpleCallSettings.Builder<GetTopicRequest, Topic> getTopicSettings;
-    private final PageStreamingCallSettings.Builder<
+    private final PagedCallSettings.Builder<
             ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
         listTopicsSettings;
-    private final PageStreamingCallSettings.Builder<
+    private final PagedCallSettings.Builder<
             ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse,
             ListTopicSubscriptionsPagedResponse>
         listTopicSubscriptionsSettings;
@@ -458,7 +472,7 @@ public class PublisherSettings extends ServiceApiSettings {
     }
 
     private Builder() {
-      super(s_getDefaultConnectionSettingsBuilder().build());
+      super(defaultChannelProviderBuilder().build());
 
       createTopicSettings = SimpleCallSettings.newBuilder(PublisherGrpc.METHOD_CREATE_TOPIC);
 
@@ -469,11 +483,10 @@ public class PublisherSettings extends ServiceApiSettings {
       getTopicSettings = SimpleCallSettings.newBuilder(PublisherGrpc.METHOD_GET_TOPIC);
 
       listTopicsSettings =
-          PageStreamingCallSettings.newBuilder(
-              PublisherGrpc.METHOD_LIST_TOPICS, LIST_TOPICS_PAGE_STR_FACT);
+          PagedCallSettings.newBuilder(PublisherGrpc.METHOD_LIST_TOPICS, LIST_TOPICS_PAGE_STR_FACT);
 
       listTopicSubscriptionsSettings =
-          PageStreamingCallSettings.newBuilder(
+          PagedCallSettings.newBuilder(
               PublisherGrpc.METHOD_LIST_TOPIC_SUBSCRIPTIONS,
               LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_FACT);
 
@@ -487,7 +500,7 @@ public class PublisherSettings extends ServiceApiSettings {
           SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_TEST_IAM_PERMISSIONS);
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               createTopicSettings,
               publishSettings,
               getTopicSettings,
@@ -573,7 +586,7 @@ public class PublisherSettings extends ServiceApiSettings {
       testIamPermissionsSettings = settings.testIamPermissionsSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               createTopicSettings,
               publishSettings,
               getTopicSettings,
@@ -585,57 +598,15 @@ public class PublisherSettings extends ServiceApiSettings {
               testIamPermissionsSettings);
     }
 
-    private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
-      return ConnectionSettings.newBuilder()
-          .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
-          .setPort(DEFAULT_SERVICE_PORT)
-          .provideCredentialsWith(DEFAULT_SERVICE_SCOPES);
-    }
-
     @Override
-    protected ConnectionSettings.Builder getDefaultConnectionSettingsBuilder() {
-      return s_getDefaultConnectionSettingsBuilder();
-    }
-
-    @Override
-    public Builder provideExecutorWith(ScheduledExecutorService executor, boolean shouldAutoClose) {
-      super.provideExecutorWith(executor, shouldAutoClose);
+    public Builder setExecutorProvider(ExecutorProvider executorProvider) {
+      super.setExecutorProvider(executorProvider);
       return this;
     }
 
     @Override
-    public Builder provideChannelWith(ManagedChannel channel, boolean shouldAutoClose) {
-      super.provideChannelWith(channel, shouldAutoClose);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(ConnectionSettings settings) {
-      super.provideChannelWith(settings);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(Credentials credentials) {
-      super.provideChannelWith(credentials);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(List<String> scopes) {
-      super.provideChannelWith(scopes);
-      return this;
-    }
-
-    @Override
-    public Builder setGeneratorHeader(String name, String version) {
-      super.setGeneratorHeader(name, version);
-      return this;
-    }
-
-    @Override
-    public Builder setClientLibHeader(String name, String version) {
-      super.setClientLibHeader(name, version);
+    public Builder setChannelProvider(ChannelProvider channelProvider) {
+      super.setChannelProvider(channelProvider);
       return this;
     }
 
@@ -645,7 +616,7 @@ public class PublisherSettings extends ServiceApiSettings {
      *
      * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllApiMethods(UnaryApiCallSettings.Builder apiCallSettings)
+    public Builder applyToAllApiMethods(UnaryCallSettings.Builder apiCallSettings)
         throws Exception {
       super.applyToAllApiMethods(unaryMethodSettingsBuilders, apiCallSettings);
       return this;
@@ -667,14 +638,13 @@ public class PublisherSettings extends ServiceApiSettings {
     }
 
     /** Returns the builder for the settings used for calls to listTopics. */
-    public PageStreamingCallSettings.Builder<
-            ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
+    public PagedCallSettings.Builder<ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>
         listTopicsSettings() {
       return listTopicsSettings;
     }
 
     /** Returns the builder for the settings used for calls to listTopicSubscriptions. */
-    public PageStreamingCallSettings.Builder<
+    public PagedCallSettings.Builder<
             ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse,
             ListTopicSubscriptionsPagedResponse>
         listTopicSubscriptionsSettings() {

@@ -1,21 +1,24 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.logging.spi.v2;
 
 import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListSinksPagedResponse;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.logging.v2.CreateSinkRequest;
 import com.google.logging.v2.DeleteSinkRequest;
@@ -77,32 +80,42 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * ConfigServiceV2Settings configServiceV2Settings = ConfigServiceV2Settings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * ConfigServiceV2Api configServiceV2Api = ConfigServiceV2Api.create(configServiceV2Settings);
+ * InstantiatingChannelProvider channelProvider =
+ *     ConfigServiceV2Settings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * ConfigServiceV2Settings configServiceV2Settings =
+ *     ConfigServiceV2Settings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * ConfigServiceV2Api configServiceV2Api =
+ *     ConfigServiceV2Api.create(configServiceV2Settings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class ConfigServiceV2Api implements AutoCloseable {
   private final ConfigServiceV2Settings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<ListSinksRequest, ListSinksResponse> listSinksCallable;
-  private final UnaryApiCallable<ListSinksRequest, ListSinksPagedResponse> listSinksPagedCallable;
-  private final UnaryApiCallable<GetSinkRequest, LogSink> getSinkCallable;
-  private final UnaryApiCallable<CreateSinkRequest, LogSink> createSinkCallable;
-  private final UnaryApiCallable<UpdateSinkRequest, LogSink> updateSinkCallable;
-  private final UnaryApiCallable<DeleteSinkRequest, Empty> deleteSinkCallable;
+  private final UnaryCallable<ListSinksRequest, ListSinksResponse> listSinksCallable;
+  private final UnaryCallable<ListSinksRequest, ListSinksPagedResponse> listSinksPagedCallable;
+  private final UnaryCallable<GetSinkRequest, LogSink> getSinkCallable;
+  private final UnaryCallable<CreateSinkRequest, LogSink> createSinkCallable;
+  private final UnaryCallable<UpdateSinkRequest, LogSink> updateSinkCallable;
+  private final UnaryCallable<DeleteSinkRequest, Empty> deleteSinkCallable;
 
   private static final PathTemplate PARENT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
   private static final PathTemplate SINK_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/sinks/{sink}");
+
+  private static final PathTemplate METRIC_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/metrics/{metric}");
+
+  private static final PathTemplate LOG_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/logs/{log}");
 
   /** Formats a string containing the fully-qualified path to represent a parent resource. */
   public static final String formatParentName(String project) {
@@ -114,6 +127,20 @@ public class ConfigServiceV2Api implements AutoCloseable {
     return SINK_PATH_TEMPLATE.instantiate(
         "project", project,
         "sink", sink);
+  }
+
+  /** Formats a string containing the fully-qualified path to represent a metric resource. */
+  public static final String formatMetricName(String project, String metric) {
+    return METRIC_PATH_TEMPLATE.instantiate(
+        "project", project,
+        "metric", metric);
+  }
+
+  /** Formats a string containing the fully-qualified path to represent a log resource. */
+  public static final String formatLogName(String project, String log) {
+    return LOG_PATH_TEMPLATE.instantiate(
+        "project", project,
+        "log", log);
   }
 
   /** Parses the project from the given fully-qualified path which represents a parent resource. */
@@ -129,6 +156,26 @@ public class ConfigServiceV2Api implements AutoCloseable {
   /** Parses the sink from the given fully-qualified path which represents a sink resource. */
   public static final String parseSinkFromSinkName(String sinkName) {
     return SINK_PATH_TEMPLATE.parse(sinkName).get("sink");
+  }
+
+  /** Parses the project from the given fully-qualified path which represents a metric resource. */
+  public static final String parseProjectFromMetricName(String metricName) {
+    return METRIC_PATH_TEMPLATE.parse(metricName).get("project");
+  }
+
+  /** Parses the metric from the given fully-qualified path which represents a metric resource. */
+  public static final String parseMetricFromMetricName(String metricName) {
+    return METRIC_PATH_TEMPLATE.parse(metricName).get("metric");
+  }
+
+  /** Parses the project from the given fully-qualified path which represents a log resource. */
+  public static final String parseProjectFromLogName(String logName) {
+    return LOG_PATH_TEMPLATE.parse(logName).get("project");
+  }
+
+  /** Parses the log from the given fully-qualified path which represents a log resource. */
+  public static final String parseLogFromLogName(String logName) {
+    return LOG_PATH_TEMPLATE.parse(logName).get("log");
   }
 
   /** Constructs an instance of ConfigServiceV2Api with default settings. */
@@ -151,22 +198,22 @@ public class ConfigServiceV2Api implements AutoCloseable {
    */
   protected ConfigServiceV2Api(ConfigServiceV2Settings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.listSinksCallable =
-        UnaryApiCallable.create(settings.listSinksSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listSinksSettings(), this.channel, this.executor);
     this.listSinksPagedCallable =
-        UnaryApiCallable.createPagedVariant(
-            settings.listSinksSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listSinksSettings(), this.channel, this.executor);
     this.getSinkCallable =
-        UnaryApiCallable.create(settings.getSinkSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getSinkSettings(), this.channel, this.executor);
     this.createSinkCallable =
-        UnaryApiCallable.create(settings.createSinkSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.createSinkSettings(), this.channel, this.executor);
     this.updateSinkCallable =
-        UnaryApiCallable.create(settings.updateSinkSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.updateSinkSettings(), this.channel, this.executor);
     this.deleteSinkCallable =
-        UnaryApiCallable.create(settings.deleteSinkSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteSinkSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -212,7 +259,6 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListSinksPagedResponse listSinks(String parent) {
-    PARENT_PATH_TEMPLATE.validate(parent, "listSinks");
     ListSinksRequest request = ListSinksRequest.newBuilder().setParent(parent).build();
     return listSinks(request);
   }
@@ -262,7 +308,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListSinksRequest, ListSinksPagedResponse> listSinksPagedCallable() {
+  public final UnaryCallable<ListSinksRequest, ListSinksPagedResponse> listSinksPagedCallable() {
     return listSinksPagedCallable;
   }
 
@@ -293,7 +339,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListSinksRequest, ListSinksResponse> listSinksCallable() {
+  public final UnaryCallable<ListSinksRequest, ListSinksResponse> listSinksCallable() {
     return listSinksCallable;
   }
 
@@ -315,7 +361,6 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink getSink(String sinkName) {
-    SINK_PATH_TEMPLATE.validate(sinkName, "getSink");
     GetSinkRequest request = GetSinkRequest.newBuilder().setSinkName(sinkName).build();
     return getSink(request);
   }
@@ -361,7 +406,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetSinkRequest, LogSink> getSinkCallable() {
+  public final UnaryCallable<GetSinkRequest, LogSink> getSinkCallable() {
     return getSinkCallable;
   }
 
@@ -386,7 +431,6 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink createSink(String parent, LogSink sink) {
-    PARENT_PATH_TEMPLATE.validate(parent, "createSink");
     CreateSinkRequest request =
         CreateSinkRequest.newBuilder().setParent(parent).setSink(sink).build();
     return createSink(request);
@@ -437,7 +481,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<CreateSinkRequest, LogSink> createSinkCallable() {
+  public final UnaryCallable<CreateSinkRequest, LogSink> createSinkCallable() {
     return createSinkCallable;
   }
 
@@ -463,7 +507,6 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink updateSink(String sinkName, LogSink sink) {
-    SINK_PATH_TEMPLATE.validate(sinkName, "updateSink");
     UpdateSinkRequest request =
         UpdateSinkRequest.newBuilder().setSinkName(sinkName).setSink(sink).build();
     return updateSink(request);
@@ -514,7 +557,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<UpdateSinkRequest, LogSink> updateSinkCallable() {
+  public final UnaryCallable<UpdateSinkRequest, LogSink> updateSinkCallable() {
     return updateSinkCallable;
   }
 
@@ -537,7 +580,6 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteSink(String sinkName) {
-    SINK_PATH_TEMPLATE.validate(sinkName, "deleteSink");
     DeleteSinkRequest request = DeleteSinkRequest.newBuilder().setSinkName(sinkName).build();
     deleteSink(request);
   }
@@ -583,7 +625,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<DeleteSinkRequest, Empty> deleteSinkCallable() {
+  public final UnaryCallable<DeleteSinkRequest, Empty> deleteSinkCallable() {
     return deleteSinkCallable;
   }
 

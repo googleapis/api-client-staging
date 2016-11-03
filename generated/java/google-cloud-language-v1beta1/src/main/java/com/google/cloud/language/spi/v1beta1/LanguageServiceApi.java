@@ -1,19 +1,22 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.language.spi.v1beta1;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.cloud.language.v1beta1.AnalyzeEntitiesRequest;
 import com.google.cloud.language.v1beta1.AnalyzeEntitiesResponse;
 import com.google.cloud.language.v1beta1.AnalyzeSentimentRequest;
@@ -75,25 +78,29 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * LanguageServiceSettings languageServiceSettings = LanguageServiceSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * LanguageServiceApi languageServiceApi = LanguageServiceApi.create(languageServiceSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     LanguageServiceSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * LanguageServiceSettings languageServiceSettings =
+ *     LanguageServiceSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * LanguageServiceApi languageServiceApi =
+ *     LanguageServiceApi.create(languageServiceSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class LanguageServiceApi implements AutoCloseable {
   private final LanguageServiceSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
+  private final UnaryCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
       analyzeSentimentCallable;
-  private final UnaryApiCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
+  private final UnaryCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
       analyzeEntitiesCallable;
-  private final UnaryApiCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable;
+  private final UnaryCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable;
 
   /** Constructs an instance of LanguageServiceApi with default settings. */
   public static final LanguageServiceApi create() throws IOException {
@@ -115,15 +122,16 @@ public class LanguageServiceApi implements AutoCloseable {
    */
   protected LanguageServiceApi(LanguageServiceSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.analyzeSentimentCallable =
-        UnaryApiCallable.create(settings.analyzeSentimentSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeSentimentSettings(), this.channel, this.executor);
     this.analyzeEntitiesCallable =
-        UnaryApiCallable.create(settings.analyzeEntitiesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeEntitiesSettings(), this.channel, this.executor);
     this.annotateTextCallable =
-        UnaryApiCallable.create(settings.annotateTextSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.annotateTextSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -213,7 +221,7 @@ public class LanguageServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
+  public final UnaryCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
       analyzeSentimentCallable() {
     return analyzeSentimentCallable;
   }
@@ -294,7 +302,7 @@ public class LanguageServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
+  public final UnaryCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
       analyzeEntitiesCallable() {
     return analyzeEntitiesCallable;
   }
@@ -385,7 +393,7 @@ public class LanguageServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable() {
+  public final UnaryCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable() {
     return annotateTextCallable;
   }
 

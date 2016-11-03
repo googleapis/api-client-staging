@@ -1,24 +1,29 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.language.spi.v1beta1;
 
-import com.google.api.gax.core.ConnectionSettings;
+import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.RetrySettings;
+import com.google.api.gax.grpc.ChannelProvider;
+import com.google.api.gax.grpc.ExecutorProvider;
+import com.google.api.gax.grpc.InstantiatingChannelProvider;
+import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
-import com.google.api.gax.grpc.UnaryApiCallSettings;
-import com.google.auth.Credentials;
+import com.google.api.gax.grpc.UnaryCallSettings;
 import com.google.cloud.language.v1beta1.AnalyzeEntitiesRequest;
 import com.google.cloud.language.v1beta1.AnalyzeEntitiesResponse;
 import com.google.cloud.language.v1beta1.AnalyzeSentimentRequest;
@@ -31,11 +36,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
@@ -99,6 +101,11 @@ public class LanguageServiceSettings extends ServiceApiSettings {
     return annotateTextSettings;
   }
 
+  /** Returns a builder for the default ExecutorProvider for this service. */
+  public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
+    return InstantiatingExecutorProvider.newBuilder();
+  }
+
   /** Returns the default service address. */
   public static String getDefaultServiceAddress() {
     return DEFAULT_SERVICE_ADDRESS;
@@ -112,6 +119,19 @@ public class LanguageServiceSettings extends ServiceApiSettings {
   /** Returns the default service scopes. */
   public static ImmutableList<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
+  }
+
+  /** Returns a builder for the default credentials for this service. */
+  public static GoogleCredentialsProvider.Builder defaultCredentialsProviderBuilder() {
+    return GoogleCredentialsProvider.newBuilder().setScopesToApply(DEFAULT_SERVICE_SCOPES);
+  }
+
+  /** Returns a builder for the default ChannelProvider for this service. */
+  public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
+    return InstantiatingChannelProvider.newBuilder()
+        .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
+        .setPort(DEFAULT_SERVICE_PORT)
+        .setCredentialsProvider(defaultCredentialsProviderBuilder().build());
   }
 
   /** Returns a builder for this class with recommended defaults. */
@@ -130,13 +150,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
   }
 
   private LanguageServiceSettings(Builder settingsBuilder) throws IOException {
-    super(
-        settingsBuilder.getChannelProvider(),
-        settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getGeneratorName(),
-        settingsBuilder.getGeneratorVersion(),
-        settingsBuilder.getClientLibName(),
-        settingsBuilder.getClientLibVersion());
+    super(settingsBuilder.getExecutorProvider(), settingsBuilder.getChannelProvider());
 
     analyzeSentimentSettings = settingsBuilder.analyzeSentimentSettings().build();
     analyzeEntitiesSettings = settingsBuilder.analyzeEntitiesSettings().build();
@@ -145,7 +159,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
 
   /** Builder for LanguageServiceSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
-    private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
+    private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
         analyzeSentimentSettings;
@@ -186,7 +200,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
     }
 
     private Builder() {
-      super(s_getDefaultConnectionSettingsBuilder().build());
+      super(defaultChannelProviderBuilder().build());
 
       analyzeSentimentSettings =
           SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANALYZE_SENTIMENT);
@@ -198,7 +212,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
           SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANNOTATE_TEXT);
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
     }
 
@@ -231,61 +245,19 @@ public class LanguageServiceSettings extends ServiceApiSettings {
       annotateTextSettings = settings.annotateTextSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
     }
 
-    private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
-      return ConnectionSettings.newBuilder()
-          .setServiceAddress(DEFAULT_SERVICE_ADDRESS)
-          .setPort(DEFAULT_SERVICE_PORT)
-          .provideCredentialsWith(DEFAULT_SERVICE_SCOPES);
-    }
-
     @Override
-    protected ConnectionSettings.Builder getDefaultConnectionSettingsBuilder() {
-      return s_getDefaultConnectionSettingsBuilder();
-    }
-
-    @Override
-    public Builder provideExecutorWith(ScheduledExecutorService executor, boolean shouldAutoClose) {
-      super.provideExecutorWith(executor, shouldAutoClose);
+    public Builder setExecutorProvider(ExecutorProvider executorProvider) {
+      super.setExecutorProvider(executorProvider);
       return this;
     }
 
     @Override
-    public Builder provideChannelWith(ManagedChannel channel, boolean shouldAutoClose) {
-      super.provideChannelWith(channel, shouldAutoClose);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(ConnectionSettings settings) {
-      super.provideChannelWith(settings);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(Credentials credentials) {
-      super.provideChannelWith(credentials);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(List<String> scopes) {
-      super.provideChannelWith(scopes);
-      return this;
-    }
-
-    @Override
-    public Builder setGeneratorHeader(String name, String version) {
-      super.setGeneratorHeader(name, version);
-      return this;
-    }
-
-    @Override
-    public Builder setClientLibHeader(String name, String version) {
-      super.setClientLibHeader(name, version);
+    public Builder setChannelProvider(ChannelProvider channelProvider) {
+      super.setChannelProvider(channelProvider);
       return this;
     }
 
@@ -295,7 +267,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
      *
      * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllApiMethods(UnaryApiCallSettings.Builder apiCallSettings)
+    public Builder applyToAllApiMethods(UnaryCallSettings.Builder apiCallSettings)
         throws Exception {
       super.applyToAllApiMethods(unaryMethodSettingsBuilders, apiCallSettings);
       return this;

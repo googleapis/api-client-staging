@@ -1,20 +1,23 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.speech.spi.v1beta1;
 
-import com.google.api.gax.grpc.StreamingApiCallable;
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.StreamingCallable;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.cloud.speech.v1beta1.AsyncRecognizeRequest;
 import com.google.cloud.speech.v1beta1.RecognitionAudio;
 import com.google.cloud.speech.v1beta1.RecognitionConfig;
@@ -75,23 +78,27 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * SpeechSettings speechSettings = SpeechSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * SpeechApi speechApi = SpeechApi.create(speechSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     SpeechSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * SpeechSettings speechSettings =
+ *     SpeechSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * SpeechApi speechApi =
+ *     SpeechApi.create(speechSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class SpeechApi implements AutoCloseable {
   private final SpeechSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<SyncRecognizeRequest, SyncRecognizeResponse> syncRecognizeCallable;
-  private final UnaryApiCallable<AsyncRecognizeRequest, Operation> asyncRecognizeCallable;
-  private final StreamingApiCallable<StreamingRecognizeRequest, StreamingRecognizeResponse>
+  private final UnaryCallable<SyncRecognizeRequest, SyncRecognizeResponse> syncRecognizeCallable;
+  private final UnaryCallable<AsyncRecognizeRequest, Operation> asyncRecognizeCallable;
+  private final StreamingCallable<StreamingRecognizeRequest, StreamingRecognizeResponse>
       streamingRecognizeCallable;
 
   /** Constructs an instance of SpeechApi with default settings. */
@@ -113,15 +120,16 @@ public class SpeechApi implements AutoCloseable {
    */
   protected SpeechApi(SpeechSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.syncRecognizeCallable =
-        UnaryApiCallable.create(settings.syncRecognizeSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.syncRecognizeSettings(), this.channel, this.executor);
     this.asyncRecognizeCallable =
-        UnaryApiCallable.create(settings.asyncRecognizeSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.asyncRecognizeSettings(), this.channel, this.executor);
     this.streamingRecognizeCallable =
-        StreamingApiCallable.create(settings.streamingRecognizeSettings(), this.channel);
+        StreamingCallable.create(settings.streamingRecognizeSettings(), this.channel);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -221,8 +229,7 @@ public class SpeechApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<SyncRecognizeRequest, SyncRecognizeResponse>
-      syncRecognizeCallable() {
+  public final UnaryCallable<SyncRecognizeRequest, SyncRecognizeResponse> syncRecognizeCallable() {
     return syncRecognizeCallable;
   }
 
@@ -302,7 +309,7 @@ public class SpeechApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<AsyncRecognizeRequest, Operation> asyncRecognizeCallable() {
+  public final UnaryCallable<AsyncRecognizeRequest, Operation> asyncRecognizeCallable() {
     return asyncRecognizeCallable;
   }
 
@@ -340,7 +347,7 @@ public class SpeechApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final StreamingApiCallable<StreamingRecognizeRequest, StreamingRecognizeResponse>
+  public final StreamingCallable<StreamingRecognizeRequest, StreamingRecognizeResponse>
       streamingRecognizeCallable() {
     return streamingRecognizeCallable;
   }

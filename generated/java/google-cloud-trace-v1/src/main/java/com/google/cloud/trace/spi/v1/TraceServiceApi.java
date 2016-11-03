@@ -1,21 +1,24 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.trace.spi.v1;
 
 import static com.google.cloud.trace.spi.v1.PagedResponseWrappers.ListTracesPagedResponse;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.devtools.cloudtrace.v1.GetTraceRequest;
 import com.google.devtools.cloudtrace.v1.ListTracesRequest;
 import com.google.devtools.cloudtrace.v1.ListTracesResponse;
@@ -78,25 +81,28 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * TraceServiceSettings traceServiceSettings = TraceServiceSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * TraceServiceApi traceServiceApi = TraceServiceApi.create(traceServiceSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     TraceServiceSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * TraceServiceSettings traceServiceSettings =
+ *     TraceServiceSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * TraceServiceApi traceServiceApi =
+ *     TraceServiceApi.create(traceServiceSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class TraceServiceApi implements AutoCloseable {
   private final TraceServiceSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<PatchTracesRequest, Empty> patchTracesCallable;
-  private final UnaryApiCallable<GetTraceRequest, Trace> getTraceCallable;
-  private final UnaryApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable;
-  private final UnaryApiCallable<ListTracesRequest, ListTracesPagedResponse>
-      listTracesPagedCallable;
+  private final UnaryCallable<PatchTracesRequest, Empty> patchTracesCallable;
+  private final UnaryCallable<GetTraceRequest, Trace> getTraceCallable;
+  private final UnaryCallable<ListTracesRequest, ListTracesResponse> listTracesCallable;
+  private final UnaryCallable<ListTracesRequest, ListTracesPagedResponse> listTracesPagedCallable;
 
   /** Constructs an instance of TraceServiceApi with default settings. */
   public static final TraceServiceApi create() throws IOException {
@@ -117,17 +123,18 @@ public class TraceServiceApi implements AutoCloseable {
    */
   protected TraceServiceApi(TraceServiceSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.patchTracesCallable =
-        UnaryApiCallable.create(settings.patchTracesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.patchTracesSettings(), this.channel, this.executor);
     this.getTraceCallable =
-        UnaryApiCallable.create(settings.getTraceSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getTraceSettings(), this.channel, this.executor);
     this.listTracesCallable =
-        UnaryApiCallable.create(settings.listTracesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listTracesSettings(), this.channel, this.executor);
     this.listTracesPagedCallable =
-        UnaryApiCallable.createPagedVariant(
+        UnaryCallable.createPagedVariant(
             settings.listTracesSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
@@ -232,7 +239,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<PatchTracesRequest, Empty> patchTracesCallable() {
+  public final UnaryCallable<PatchTracesRequest, Empty> patchTracesCallable() {
     return patchTracesCallable;
   }
 
@@ -305,7 +312,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetTraceRequest, Trace> getTraceCallable() {
+  public final UnaryCallable<GetTraceRequest, Trace> getTraceCallable() {
     return getTraceCallable;
   }
 
@@ -377,8 +384,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTracesRequest, ListTracesPagedResponse>
-      listTracesPagedCallable() {
+  public final UnaryCallable<ListTracesRequest, ListTracesPagedResponse> listTracesPagedCallable() {
     return listTracesPagedCallable;
   }
 
@@ -409,7 +415,7 @@ public class TraceServiceApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTracesRequest, ListTracesResponse> listTracesCallable() {
+  public final UnaryCallable<ListTracesRequest, ListTracesResponse> listTracesCallable() {
     return listTracesCallable;
   }
 

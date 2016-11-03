@@ -1,23 +1,25 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.logging.spi.v2;
 
 import com.google.api.MonitoredResourceDescriptor;
 import com.google.api.gax.grpc.CallContext;
-import com.google.api.gax.grpc.PageStreamingDescriptor;
+import com.google.api.gax.grpc.PagedListDescriptor;
 import com.google.api.gax.grpc.PagedListResponseImpl;
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.logging.v2.ListLogEntriesRequest;
 import com.google.logging.v2.ListLogEntriesResponse;
 import com.google.logging.v2.ListLogMetricsRequest;
@@ -43,9 +45,8 @@ public class PagedResponseWrappers {
       extends PagedListResponseImpl<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry> {
 
     public ListLogEntriesPagedResponse(
-        UnaryApiCallable<ListLogEntriesRequest, ListLogEntriesResponse> callable,
-        PageStreamingDescriptor<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry>
-            pageDescriptor,
+        UnaryCallable<ListLogEntriesRequest, ListLogEntriesResponse> callable,
+        PagedListDescriptor<ListLogEntriesRequest, ListLogEntriesResponse, LogEntry> pageDescriptor,
         ListLogEntriesRequest request,
         CallContext context) {
       super(callable, pageDescriptor, request, context);
@@ -58,10 +59,10 @@ public class PagedResponseWrappers {
           MonitoredResourceDescriptor> {
 
     public ListMonitoredResourceDescriptorsPagedResponse(
-        UnaryApiCallable<
+        UnaryCallable<
                 ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse>
             callable,
-        PageStreamingDescriptor<
+        PagedListDescriptor<
                 ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse,
                 MonitoredResourceDescriptor>
             pageDescriptor,
@@ -75,8 +76,8 @@ public class PagedResponseWrappers {
       extends PagedListResponseImpl<ListSinksRequest, ListSinksResponse, LogSink> {
 
     public ListSinksPagedResponse(
-        UnaryApiCallable<ListSinksRequest, ListSinksResponse> callable,
-        PageStreamingDescriptor<ListSinksRequest, ListSinksResponse, LogSink> pageDescriptor,
+        UnaryCallable<ListSinksRequest, ListSinksResponse> callable,
+        PagedListDescriptor<ListSinksRequest, ListSinksResponse, LogSink> pageDescriptor,
         ListSinksRequest request,
         CallContext context) {
       super(callable, pageDescriptor, request, context);
@@ -87,8 +88,8 @@ public class PagedResponseWrappers {
       extends PagedListResponseImpl<ListLogMetricsRequest, ListLogMetricsResponse, LogMetric> {
 
     public ListLogMetricsPagedResponse(
-        UnaryApiCallable<ListLogMetricsRequest, ListLogMetricsResponse> callable,
-        PageStreamingDescriptor<ListLogMetricsRequest, ListLogMetricsResponse, LogMetric>
+        UnaryCallable<ListLogMetricsRequest, ListLogMetricsResponse> callable,
+        PagedListDescriptor<ListLogMetricsRequest, ListLogMetricsResponse, LogMetric>
             pageDescriptor,
         ListLogMetricsRequest request,
         CallContext context) {

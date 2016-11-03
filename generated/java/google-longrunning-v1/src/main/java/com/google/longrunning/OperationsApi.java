@@ -1,21 +1,38 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.google.longrunning;
 
 import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
@@ -76,27 +93,30 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * OperationsSettings operationsSettings = OperationsSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * OperationsApi operationsApi = OperationsApi.create(operationsSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     OperationsSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * OperationsSettings operationsSettings =
+ *     OperationsSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * OperationsApi operationsApi =
+ *     OperationsApi.create(operationsSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class OperationsApi implements AutoCloseable {
   private final OperationsSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<GetOperationRequest, Operation> getOperationCallable;
-  private final UnaryApiCallable<ListOperationsRequest, ListOperationsResponse>
-      listOperationsCallable;
-  private final UnaryApiCallable<ListOperationsRequest, ListOperationsPagedResponse>
+  private final UnaryCallable<GetOperationRequest, Operation> getOperationCallable;
+  private final UnaryCallable<ListOperationsRequest, ListOperationsResponse> listOperationsCallable;
+  private final UnaryCallable<ListOperationsRequest, ListOperationsPagedResponse>
       listOperationsPagedCallable;
-  private final UnaryApiCallable<CancelOperationRequest, Empty> cancelOperationCallable;
-  private final UnaryApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable;
+  private final UnaryCallable<CancelOperationRequest, Empty> cancelOperationCallable;
+  private final UnaryCallable<DeleteOperationRequest, Empty> deleteOperationCallable;
 
   private static final PathTemplate OPERATION_PATH_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("operations/{operation_path=**}");
@@ -109,7 +129,7 @@ public class OperationsApi implements AutoCloseable {
   }
 
   /**
-   * Parses the operation_path from the given fully-qualified path which represents a operationPath
+   * Parses the operation_path from the given fully-qualified path which represents a operation_path
    * resource.
    */
   public static final String parseOperationPathFromOperationPathName(String operationPathName) {
@@ -130,20 +150,21 @@ public class OperationsApi implements AutoCloseable {
    */
   protected OperationsApi(OperationsSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.getOperationCallable =
-        UnaryApiCallable.create(settings.getOperationSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getOperationSettings(), this.channel, this.executor);
     this.listOperationsCallable =
-        UnaryApiCallable.create(settings.listOperationsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listOperationsSettings(), this.channel, this.executor);
     this.listOperationsPagedCallable =
-        UnaryApiCallable.createPagedVariant(
+        UnaryCallable.createPagedVariant(
             settings.listOperationsSettings(), this.channel, this.executor);
     this.cancelOperationCallable =
-        UnaryApiCallable.create(settings.cancelOperationSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.cancelOperationSettings(), this.channel, this.executor);
     this.deleteOperationCallable =
-        UnaryApiCallable.create(settings.deleteOperationSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteOperationSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -187,7 +208,6 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Operation getOperation(String name) {
-    OPERATION_PATH_PATH_TEMPLATE.validate(name, "getOperation");
     GetOperationRequest request = GetOperationRequest.newBuilder().setName(name).build();
     return getOperation(request);
   }
@@ -235,7 +255,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetOperationRequest, Operation> getOperationCallable() {
+  public final UnaryCallable<GetOperationRequest, Operation> getOperationCallable() {
     return getOperationCallable;
   }
 
@@ -326,7 +346,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListOperationsRequest, ListOperationsPagedResponse>
+  public final UnaryCallable<ListOperationsRequest, ListOperationsPagedResponse>
       listOperationsPagedCallable() {
     return listOperationsPagedCallable;
   }
@@ -364,7 +384,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListOperationsRequest, ListOperationsResponse>
+  public final UnaryCallable<ListOperationsRequest, ListOperationsResponse>
       listOperationsCallable() {
     return listOperationsCallable;
   }
@@ -393,7 +413,6 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void cancelOperation(String name) {
-    OPERATION_PATH_PATH_TEMPLATE.validate(name, "cancelOperation");
     CancelOperationRequest request = CancelOperationRequest.newBuilder().setName(name).build();
     cancelOperation(request);
   }
@@ -453,7 +472,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<CancelOperationRequest, Empty> cancelOperationCallable() {
+  public final UnaryCallable<CancelOperationRequest, Empty> cancelOperationCallable() {
     return cancelOperationCallable;
   }
 
@@ -476,7 +495,6 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteOperation(String name) {
-    OPERATION_PATH_PATH_TEMPLATE.validate(name, "deleteOperation");
     DeleteOperationRequest request = DeleteOperationRequest.newBuilder().setName(name).build();
     deleteOperation(request);
   }
@@ -526,7 +544,7 @@ public class OperationsApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<DeleteOperationRequest, Empty> deleteOperationCallable() {
+  public final UnaryCallable<DeleteOperationRequest, Empty> deleteOperationCallable() {
     return deleteOperationCallable;
   }
 

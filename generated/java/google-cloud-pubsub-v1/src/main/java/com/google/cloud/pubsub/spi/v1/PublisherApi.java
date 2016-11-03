@@ -1,22 +1,25 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.pubsub.spi.v1;
 
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubscriptionsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -86,38 +89,44 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * PublisherSettings publisherSettings = PublisherSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * PublisherApi publisherApi = PublisherApi.create(publisherSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     PublisherSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * PublisherSettings publisherSettings =
+ *     PublisherSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * PublisherApi publisherApi =
+ *     PublisherApi.create(publisherSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class PublisherApi implements AutoCloseable {
   private final PublisherSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<Topic, Topic> createTopicCallable;
-  private final UnaryApiCallable<PublishRequest, PublishResponse> publishCallable;
-  private final UnaryApiCallable<GetTopicRequest, Topic> getTopicCallable;
-  private final UnaryApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable;
-  private final UnaryApiCallable<ListTopicsRequest, ListTopicsPagedResponse>
-      listTopicsPagedCallable;
-  private final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
+  private final UnaryCallable<Topic, Topic> createTopicCallable;
+  private final UnaryCallable<PublishRequest, PublishResponse> publishCallable;
+  private final UnaryCallable<GetTopicRequest, Topic> getTopicCallable;
+  private final UnaryCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable;
+  private final UnaryCallable<ListTopicsRequest, ListTopicsPagedResponse> listTopicsPagedCallable;
+  private final UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
       listTopicSubscriptionsCallable;
-  private final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsPagedResponse>
+  private final UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsPagedResponse>
       listTopicSubscriptionsPagedCallable;
-  private final UnaryApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable;
-  private final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryCallable<DeleteTopicRequest, Empty> deleteTopicCallable;
+  private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
+  private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
+  private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
+
+  private static final PathTemplate SUBSCRIPTION_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("projects/{project}/subscriptions/{subscription}");
 
   private static final PathTemplate TOPIC_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/topics/{topic}");
@@ -125,6 +134,13 @@ public class PublisherApi implements AutoCloseable {
   /** Formats a string containing the fully-qualified path to represent a project resource. */
   public static final String formatProjectName(String project) {
     return PROJECT_PATH_TEMPLATE.instantiate("project", project);
+  }
+
+  /** Formats a string containing the fully-qualified path to represent a subscription resource. */
+  public static final String formatSubscriptionName(String project, String subscription) {
+    return SUBSCRIPTION_PATH_TEMPLATE.instantiate(
+        "project", project,
+        "subscription", subscription);
   }
 
   /** Formats a string containing the fully-qualified path to represent a topic resource. */
@@ -137,6 +153,22 @@ public class PublisherApi implements AutoCloseable {
   /** Parses the project from the given fully-qualified path which represents a project resource. */
   public static final String parseProjectFromProjectName(String projectName) {
     return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
+  }
+
+  /**
+   * Parses the project from the given fully-qualified path which represents a subscription
+   * resource.
+   */
+  public static final String parseProjectFromSubscriptionName(String subscriptionName) {
+    return SUBSCRIPTION_PATH_TEMPLATE.parse(subscriptionName).get("project");
+  }
+
+  /**
+   * Parses the subscription from the given fully-qualified path which represents a subscription
+   * resource.
+   */
+  public static final String parseSubscriptionFromSubscriptionName(String subscriptionName) {
+    return SUBSCRIPTION_PATH_TEMPLATE.parse(subscriptionName).get("subscription");
   }
 
   /** Parses the project from the given fully-qualified path which represents a topic resource. */
@@ -168,37 +200,38 @@ public class PublisherApi implements AutoCloseable {
    */
   protected PublisherApi(PublisherSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.createTopicCallable =
-        UnaryApiCallable.create(settings.createTopicSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.createTopicSettings(), this.channel, this.executor);
     this.publishCallable =
-        UnaryApiCallable.create(settings.publishSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.publishSettings(), this.channel, this.executor);
     if (settings.publishSettings().getBundlerFactory() != null) {
       closeables.add(settings.publishSettings().getBundlerFactory());
     }
     this.getTopicCallable =
-        UnaryApiCallable.create(settings.getTopicSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getTopicSettings(), this.channel, this.executor);
     this.listTopicsCallable =
-        UnaryApiCallable.create(settings.listTopicsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listTopicsSettings(), this.channel, this.executor);
     this.listTopicsPagedCallable =
-        UnaryApiCallable.createPagedVariant(
+        UnaryCallable.createPagedVariant(
             settings.listTopicsSettings(), this.channel, this.executor);
     this.listTopicSubscriptionsCallable =
-        UnaryApiCallable.create(
+        UnaryCallable.create(
             settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
     this.listTopicSubscriptionsPagedCallable =
-        UnaryApiCallable.createPagedVariant(
+        UnaryCallable.createPagedVariant(
             settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
     this.deleteTopicCallable =
-        UnaryApiCallable.create(settings.deleteTopicSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteTopicSettings(), this.channel, this.executor);
     this.setIamPolicyCallable =
-        UnaryApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
     this.getIamPolicyCallable =
-        UnaryApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
     this.testIamPermissionsCallable =
-        UnaryApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -245,7 +278,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic createTopic(String name) {
-    TOPIC_PATH_TEMPLATE.validate(name, "createTopic");
     Topic request = Topic.newBuilder().setName(name).build();
     return createTopic(request);
   }
@@ -291,7 +323,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<Topic, Topic> createTopicCallable() {
+  public final UnaryCallable<Topic, Topic> createTopicCallable() {
     return createTopicCallable;
   }
 
@@ -320,7 +352,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PublishResponse publish(String topic, List<PubsubMessage> messages) {
-    TOPIC_PATH_TEMPLATE.validate(topic, "publish");
     PublishRequest request =
         PublishRequest.newBuilder().setTopic(topic).addAllMessages(messages).build();
     return publish(request);
@@ -383,7 +414,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<PublishRequest, PublishResponse> publishCallable() {
+  public final UnaryCallable<PublishRequest, PublishResponse> publishCallable() {
     return publishCallable;
   }
 
@@ -404,7 +435,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic getTopic(String topic) {
-    TOPIC_PATH_TEMPLATE.validate(topic, "getTopic");
     GetTopicRequest request = GetTopicRequest.newBuilder().setTopic(topic).build();
     return getTopic(request);
   }
@@ -450,7 +480,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetTopicRequest, Topic> getTopicCallable() {
+  public final UnaryCallable<GetTopicRequest, Topic> getTopicCallable() {
     return getTopicCallable;
   }
 
@@ -473,7 +503,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListTopicsPagedResponse listTopics(String project) {
-    PROJECT_PATH_TEMPLATE.validate(project, "listTopics");
     ListTopicsRequest request = ListTopicsRequest.newBuilder().setProject(project).build();
     return listTopics(request);
   }
@@ -523,8 +552,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTopicsRequest, ListTopicsPagedResponse>
-      listTopicsPagedCallable() {
+  public final UnaryCallable<ListTopicsRequest, ListTopicsPagedResponse> listTopicsPagedCallable() {
     return listTopicsPagedCallable;
   }
 
@@ -555,7 +583,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable() {
+  public final UnaryCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable() {
     return listTopicsCallable;
   }
 
@@ -578,7 +606,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListTopicSubscriptionsPagedResponse listTopicSubscriptions(String topic) {
-    TOPIC_PATH_TEMPLATE.validate(topic, "listTopicSubscriptions");
     ListTopicSubscriptionsRequest request =
         ListTopicSubscriptionsRequest.newBuilder().setTopic(topic).build();
     return listTopicSubscriptions(request);
@@ -630,7 +657,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsPagedResponse>
+  public final UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsPagedResponse>
       listTopicSubscriptionsPagedCallable() {
     return listTopicSubscriptionsPagedCallable;
   }
@@ -662,7 +689,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
+  public final UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
       listTopicSubscriptionsCallable() {
     return listTopicSubscriptionsCallable;
   }
@@ -687,7 +714,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteTopic(String topic) {
-    TOPIC_PATH_TEMPLATE.validate(topic, "deleteTopic");
     DeleteTopicRequest request = DeleteTopicRequest.newBuilder().setTopic(topic).build();
     deleteTopic(request);
   }
@@ -739,7 +765,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<DeleteTopicRequest, Empty> deleteTopicCallable() {
+  public final UnaryCallable<DeleteTopicRequest, Empty> deleteTopicCallable() {
     return deleteTopicCallable;
   }
 
@@ -766,7 +792,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
-    TOPIC_PATH_TEMPLATE.validate(resource, "setIamPolicy");
     SetIamPolicyRequest request =
         SetIamPolicyRequest.newBuilder().setResource(resource).setPolicy(policy).build();
     return setIamPolicy(request);
@@ -817,7 +842,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
+  public final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
     return setIamPolicyCallable;
   }
 
@@ -841,7 +866,6 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
-    TOPIC_PATH_TEMPLATE.validate(resource, "getIamPolicy");
     GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder().setResource(resource).build();
     return getIamPolicy(request);
   }
@@ -889,7 +913,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
+  public final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
     return getIamPolicyCallable;
   }
 
@@ -917,7 +941,6 @@ public class PublisherApi implements AutoCloseable {
    */
   public final TestIamPermissionsResponse testIamPermissions(
       String resource, List<String> permissions) {
-    TOPIC_PATH_TEMPLATE.validate(resource, "testIamPermissions");
     TestIamPermissionsRequest request =
         TestIamPermissionsRequest.newBuilder()
             .setResource(resource)
@@ -971,7 +994,7 @@ public class PublisherApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
     return testIamPermissionsCallable;
   }

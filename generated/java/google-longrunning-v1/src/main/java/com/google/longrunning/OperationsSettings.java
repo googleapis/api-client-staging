@@ -1,42 +1,58 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.google.longrunning;
 
 import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
 
-import com.google.api.gax.core.ConnectionSettings;
+import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.CallContext;
-import com.google.api.gax.grpc.PageStreamingCallSettings;
-import com.google.api.gax.grpc.PageStreamingDescriptor;
+import com.google.api.gax.grpc.ChannelProvider;
+import com.google.api.gax.grpc.ExecutorProvider;
+import com.google.api.gax.grpc.InstantiatingChannelProvider;
+import com.google.api.gax.grpc.InstantiatingExecutorProvider;
+import com.google.api.gax.grpc.PagedCallSettings;
+import com.google.api.gax.grpc.PagedListDescriptor;
 import com.google.api.gax.grpc.PagedListResponseFactory;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
-import com.google.api.gax.grpc.UnaryApiCallSettings;
-import com.google.api.gax.grpc.UnaryApiCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.grpc.UnaryCallSettings;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.protobuf.Empty;
-import io.grpc.ManagedChannel;
 import io.grpc.Status;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
 import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
@@ -48,7 +64,7 @@ public class OperationsSettings extends ServiceApiSettings {
   private static final int DEFAULT_SERVICE_PORT = 443;
 
   private final SimpleCallSettings<GetOperationRequest, Operation> getOperationSettings;
-  private final PageStreamingCallSettings<
+  private final PagedCallSettings<
           ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
       listOperationsSettings;
   private final SimpleCallSettings<CancelOperationRequest, Empty> cancelOperationSettings;
@@ -60,7 +76,7 @@ public class OperationsSettings extends ServiceApiSettings {
   }
 
   /** Returns the object with the settings used for calls to listOperations. */
-  public PageStreamingCallSettings<
+  public PagedCallSettings<
           ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
       listOperationsSettings() {
     return listOperationsSettings;
@@ -76,9 +92,26 @@ public class OperationsSettings extends ServiceApiSettings {
     return deleteOperationSettings;
   }
 
+  /** Returns a builder for the default ExecutorProvider for this service. */
+  public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
+    return InstantiatingExecutorProvider.newBuilder();
+  }
+
   /** Returns the default service port. */
   public static int getDefaultServicePort() {
     return DEFAULT_SERVICE_PORT;
+  }
+
+  /** Returns a builder for the default credentials for this service. */
+  public static GoogleCredentialsProvider.Builder defaultCredentialsProviderBuilder() {
+    return GoogleCredentialsProvider.newBuilder();
+  }
+
+  /** Returns a builder for the default ChannelProvider for this service. */
+  public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
+    return InstantiatingChannelProvider.newBuilder()
+        .setPort(DEFAULT_SERVICE_PORT)
+        .setCredentialsProvider(defaultCredentialsProviderBuilder().build());
   }
 
   /** Returns a builder for this class with recommended defaults. */
@@ -97,13 +130,7 @@ public class OperationsSettings extends ServiceApiSettings {
   }
 
   private OperationsSettings(Builder settingsBuilder) throws IOException {
-    super(
-        settingsBuilder.getChannelProvider(),
-        settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getGeneratorName(),
-        settingsBuilder.getGeneratorVersion(),
-        settingsBuilder.getClientLibName(),
-        settingsBuilder.getClientLibVersion());
+    super(settingsBuilder.getExecutorProvider(), settingsBuilder.getChannelProvider());
 
     getOperationSettings = settingsBuilder.getOperationSettings().build();
     listOperationsSettings = settingsBuilder.listOperationsSettings().build();
@@ -111,10 +138,9 @@ public class OperationsSettings extends ServiceApiSettings {
     deleteOperationSettings = settingsBuilder.deleteOperationSettings().build();
   }
 
-  private static final PageStreamingDescriptor<
-          ListOperationsRequest, ListOperationsResponse, Operation>
+  private static final PagedListDescriptor<ListOperationsRequest, ListOperationsResponse, Operation>
       LIST_OPERATIONS_PAGE_STR_DESC =
-          new PageStreamingDescriptor<ListOperationsRequest, ListOperationsResponse, Operation>() {
+          new PagedListDescriptor<ListOperationsRequest, ListOperationsResponse, Operation>() {
             @Override
             public Object emptyToken() {
               return "";
@@ -154,7 +180,7 @@ public class OperationsSettings extends ServiceApiSettings {
               ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>() {
             @Override
             public ListOperationsPagedResponse createPagedListResponse(
-                UnaryApiCallable<ListOperationsRequest, ListOperationsResponse> callable,
+                UnaryCallable<ListOperationsRequest, ListOperationsResponse> callable,
                 ListOperationsRequest request,
                 CallContext context) {
               return new ListOperationsPagedResponse(
@@ -164,10 +190,10 @@ public class OperationsSettings extends ServiceApiSettings {
 
   /** Builder for OperationsSettings. */
   public static class Builder extends ServiceApiSettings.Builder {
-    private final ImmutableList<UnaryApiCallSettings.Builder> unaryMethodSettingsBuilders;
+    private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<GetOperationRequest, Operation> getOperationSettings;
-    private final PageStreamingCallSettings.Builder<
+    private final PagedCallSettings.Builder<
             ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
         listOperationsSettings;
     private final SimpleCallSettings.Builder<CancelOperationRequest, Empty> cancelOperationSettings;
@@ -209,7 +235,7 @@ public class OperationsSettings extends ServiceApiSettings {
       getOperationSettings = SimpleCallSettings.newBuilder(OperationsGrpc.METHOD_GET_OPERATION);
 
       listOperationsSettings =
-          PageStreamingCallSettings.newBuilder(
+          PagedCallSettings.newBuilder(
               OperationsGrpc.METHOD_LIST_OPERATIONS, LIST_OPERATIONS_PAGE_STR_FACT);
 
       cancelOperationSettings =
@@ -219,7 +245,7 @@ public class OperationsSettings extends ServiceApiSettings {
           SimpleCallSettings.newBuilder(OperationsGrpc.METHOD_DELETE_OPERATION);
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               getOperationSettings,
               listOperationsSettings,
               cancelOperationSettings,
@@ -261,61 +287,22 @@ public class OperationsSettings extends ServiceApiSettings {
       deleteOperationSettings = settings.deleteOperationSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryApiCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder>of(
               getOperationSettings,
               listOperationsSettings,
               cancelOperationSettings,
               deleteOperationSettings);
     }
 
-    private static ConnectionSettings.Builder s_getDefaultConnectionSettingsBuilder() {
-      return ConnectionSettings.newBuilder().setPort(DEFAULT_SERVICE_PORT);
-    }
-
     @Override
-    protected ConnectionSettings.Builder getDefaultConnectionSettingsBuilder() {
-      return s_getDefaultConnectionSettingsBuilder();
-    }
-
-    @Override
-    public Builder provideExecutorWith(ScheduledExecutorService executor, boolean shouldAutoClose) {
-      super.provideExecutorWith(executor, shouldAutoClose);
+    public Builder setExecutorProvider(ExecutorProvider executorProvider) {
+      super.setExecutorProvider(executorProvider);
       return this;
     }
 
     @Override
-    public Builder provideChannelWith(ManagedChannel channel, boolean shouldAutoClose) {
-      super.provideChannelWith(channel, shouldAutoClose);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(ConnectionSettings settings) {
-      super.provideChannelWith(settings);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(Credentials credentials) {
-      super.provideChannelWith(credentials);
-      return this;
-    }
-
-    @Override
-    public Builder provideChannelWith(List<String> scopes) {
-      super.provideChannelWith(scopes);
-      return this;
-    }
-
-    @Override
-    public Builder setGeneratorHeader(String name, String version) {
-      super.setGeneratorHeader(name, version);
-      return this;
-    }
-
-    @Override
-    public Builder setClientLibHeader(String name, String version) {
-      super.setClientLibHeader(name, version);
+    public Builder setChannelProvider(ChannelProvider channelProvider) {
+      super.setChannelProvider(channelProvider);
       return this;
     }
 
@@ -325,7 +312,7 @@ public class OperationsSettings extends ServiceApiSettings {
      *
      * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllApiMethods(UnaryApiCallSettings.Builder apiCallSettings)
+    public Builder applyToAllApiMethods(UnaryCallSettings.Builder apiCallSettings)
         throws Exception {
       super.applyToAllApiMethods(unaryMethodSettingsBuilders, apiCallSettings);
       return this;
@@ -337,7 +324,7 @@ public class OperationsSettings extends ServiceApiSettings {
     }
 
     /** Returns the builder for the settings used for calls to listOperations. */
-    public PageStreamingCallSettings.Builder<
+    public PagedCallSettings.Builder<
             ListOperationsRequest, ListOperationsResponse, ListOperationsPagedResponse>
         listOperationsSettings() {
       return listOperationsSettings;
