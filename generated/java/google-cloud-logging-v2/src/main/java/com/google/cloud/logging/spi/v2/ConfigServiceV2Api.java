@@ -259,6 +259,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListSinksPagedResponse listSinks(String parent) {
+    PARENT_PATH_TEMPLATE.validate(parent, "listSinks");
     ListSinksRequest request = ListSinksRequest.newBuilder().setParent(parent).build();
     return listSinks(request);
   }
@@ -361,6 +362,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink getSink(String sinkName) {
+    SINK_PATH_TEMPLATE.validate(sinkName, "getSink");
     GetSinkRequest request = GetSinkRequest.newBuilder().setSinkName(sinkName).build();
     return getSink(request);
   }
@@ -431,6 +433,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink createSink(String parent, LogSink sink) {
+    PARENT_PATH_TEMPLATE.validate(parent, "createSink");
     CreateSinkRequest request =
         CreateSinkRequest.newBuilder().setParent(parent).setSink(sink).build();
     return createSink(request);
@@ -507,6 +510,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogSink updateSink(String sinkName, LogSink sink) {
+    SINK_PATH_TEMPLATE.validate(sinkName, "updateSink");
     UpdateSinkRequest request =
         UpdateSinkRequest.newBuilder().setSinkName(sinkName).setSink(sink).build();
     return updateSink(request);
@@ -580,6 +584,7 @@ public class ConfigServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteSink(String sinkName) {
+    SINK_PATH_TEMPLATE.validate(sinkName, "deleteSink");
     DeleteSinkRequest request = DeleteSinkRequest.newBuilder().setSinkName(sinkName).build();
     deleteSink(request);
   }

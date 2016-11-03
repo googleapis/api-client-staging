@@ -260,6 +260,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListLogMetricsPagedResponse listLogMetrics(String parent) {
+    PARENT_PATH_TEMPLATE.validate(parent, "listLogMetrics");
     ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder().setParent(parent).build();
     return listLogMetrics(request);
   }
@@ -364,6 +365,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogMetric getLogMetric(String metricName) {
+    METRIC_PATH_TEMPLATE.validate(metricName, "getLogMetric");
     GetLogMetricRequest request =
         GetLogMetricRequest.newBuilder().setMetricName(metricName).build();
     return getLogMetric(request);
@@ -435,6 +437,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogMetric createLogMetric(String parent, LogMetric metric) {
+    PARENT_PATH_TEMPLATE.validate(parent, "createLogMetric");
     CreateLogMetricRequest request =
         CreateLogMetricRequest.newBuilder().setParent(parent).setMetric(metric).build();
     return createLogMetric(request);
@@ -512,6 +515,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final LogMetric updateLogMetric(String metricName, LogMetric metric) {
+    METRIC_PATH_TEMPLATE.validate(metricName, "updateLogMetric");
     UpdateLogMetricRequest request =
         UpdateLogMetricRequest.newBuilder().setMetricName(metricName).setMetric(metric).build();
     return updateLogMetric(request);
@@ -584,6 +588,7 @@ public class MetricsServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteLogMetric(String metricName) {
+    METRIC_PATH_TEMPLATE.validate(metricName, "deleteLogMetric");
     DeleteLogMetricRequest request =
         DeleteLogMetricRequest.newBuilder().setMetricName(metricName).build();
     deleteLogMetric(request);

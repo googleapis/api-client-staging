@@ -383,6 +383,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Group getGroup(String name) {
+    GROUP_PATH_TEMPLATE.validate(name, "getGroup");
     GetGroupRequest request = GetGroupRequest.newBuilder().setName(name).build();
     return getGroup(request);
   }
@@ -453,6 +454,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Group createGroup(String name, Group group) {
+    PROJECT_PATH_TEMPLATE.validate(name, "createGroup");
     CreateGroupRequest request =
         CreateGroupRequest.newBuilder().setName(name).setGroup(group).build();
     return createGroup(request);
@@ -592,6 +594,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteGroup(String name) {
+    GROUP_PATH_TEMPLATE.validate(name, "deleteGroup");
     DeleteGroupRequest request = DeleteGroupRequest.newBuilder().setName(name).build();
     deleteGroup(request);
   }
@@ -661,6 +664,7 @@ public class GroupServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListGroupMembersPagedResponse listGroupMembers(String name) {
+    GROUP_PATH_TEMPLATE.validate(name, "listGroupMembers");
     ListGroupMembersRequest request = ListGroupMembersRequest.newBuilder().setName(name).build();
     return listGroupMembers(request);
   }

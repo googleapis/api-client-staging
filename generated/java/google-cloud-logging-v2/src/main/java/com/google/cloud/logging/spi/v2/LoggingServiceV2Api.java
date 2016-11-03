@@ -269,6 +269,7 @@ public class LoggingServiceV2Api implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteLog(String logName) {
+    LOG_PATH_TEMPLATE.validate(logName, "deleteLog");
     DeleteLogRequest request = DeleteLogRequest.newBuilder().setLogName(logName).build();
     deleteLog(request);
   }
@@ -359,6 +360,9 @@ public class LoggingServiceV2Api implements AutoCloseable {
       MonitoredResource resource,
       Map<String, String> labels,
       List<LogEntry> entries) {
+    if (!logName.isEmpty()) {
+      LOG_PATH_TEMPLATE.validate(logName, "writeLogEntries");
+    }
     WriteLogEntriesRequest request =
         WriteLogEntriesRequest.newBuilder()
             .setLogName(logName)

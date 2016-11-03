@@ -305,6 +305,8 @@ public class SubscriberApi implements AutoCloseable {
    */
   public final Subscription createSubscription(
       String name, String topic, PushConfig pushConfig, int ackDeadlineSeconds) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(name, "createSubscription");
+    TOPIC_PATH_TEMPLATE.validate(topic, "createSubscription");
     Subscription request =
         Subscription.newBuilder()
             .setName(name)
@@ -391,6 +393,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Subscription getSubscription(String subscription) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "getSubscription");
     GetSubscriptionRequest request =
         GetSubscriptionRequest.newBuilder().setSubscription(subscription).build();
     return getSubscription(request);
@@ -460,6 +463,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListSubscriptionsPagedResponse listSubscriptions(String project) {
+    PROJECT_PATH_TEMPLATE.validate(project, "listSubscriptions");
     ListSubscriptionsRequest request =
         ListSubscriptionsRequest.newBuilder().setProject(project).build();
     return listSubscriptions(request);
@@ -567,6 +571,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteSubscription(String subscription) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "deleteSubscription");
     DeleteSubscriptionRequest request =
         DeleteSubscriptionRequest.newBuilder().setSubscription(subscription).build();
     deleteSubscription(request);
@@ -651,6 +656,7 @@ public class SubscriberApi implements AutoCloseable {
    */
   public final void modifyAckDeadline(
       String subscription, List<String> ackIds, int ackDeadlineSeconds) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "modifyAckDeadline");
     ModifyAckDeadlineRequest request =
         ModifyAckDeadlineRequest.newBuilder()
             .setSubscription(subscription)
@@ -743,6 +749,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void acknowledge(String subscription, List<String> ackIds) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "acknowledge");
     AcknowledgeRequest request =
         AcknowledgeRequest.newBuilder().setSubscription(subscription).addAllAckIds(ackIds).build();
     acknowledge(request);
@@ -832,6 +839,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PullResponse pull(String subscription, boolean returnImmediately, int maxMessages) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "pull");
     PullRequest request =
         PullRequest.newBuilder()
             .setSubscription(subscription)
@@ -921,6 +929,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void modifyPushConfig(String subscription, PushConfig pushConfig) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "modifyPushConfig");
     ModifyPushConfigRequest request =
         ModifyPushConfigRequest.newBuilder()
             .setSubscription(subscription)
@@ -1011,6 +1020,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(resource, "setIamPolicy");
     SetIamPolicyRequest request =
         SetIamPolicyRequest.newBuilder().setResource(resource).setPolicy(policy).build();
     return setIamPolicy(request);
@@ -1085,6 +1095,7 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(resource, "getIamPolicy");
     GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder().setResource(resource).build();
     return getIamPolicy(request);
   }
@@ -1160,6 +1171,7 @@ public class SubscriberApi implements AutoCloseable {
    */
   public final TestIamPermissionsResponse testIamPermissions(
       String resource, List<String> permissions) {
+    SUBSCRIPTION_PATH_TEMPLATE.validate(resource, "testIamPermissions");
     TestIamPermissionsRequest request =
         TestIamPermissionsRequest.newBuilder()
             .setResource(resource)

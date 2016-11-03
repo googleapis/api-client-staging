@@ -228,6 +228,7 @@ public class ErrorStatsServiceApi implements AutoCloseable {
    */
   public final ListGroupStatsPagedResponse listGroupStats(
       String projectName, QueryTimeRange timeRange) {
+    PROJECT_PATH_TEMPLATE.validate(projectName, "listGroupStats");
     ListGroupStatsRequest request =
         ListGroupStatsRequest.newBuilder()
             .setProjectName(projectName)
@@ -347,6 +348,7 @@ public class ErrorStatsServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListEventsPagedResponse listEvents(String projectName, String groupId) {
+    PROJECT_PATH_TEMPLATE.validate(projectName, "listEvents");
     ListEventsRequest request =
         ListEventsRequest.newBuilder().setProjectName(projectName).setGroupId(groupId).build();
     return listEvents(request);
@@ -457,6 +459,7 @@ public class ErrorStatsServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final DeleteEventsResponse deleteEvents(String projectName) {
+    PROJECT_PATH_TEMPLATE.validate(projectName, "deleteEvents");
     DeleteEventsRequest request =
         DeleteEventsRequest.newBuilder().setProjectName(projectName).build();
     return deleteEvents(request);

@@ -201,6 +201,7 @@ public class ErrorGroupServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ErrorGroup getGroup(String groupName) {
+    GROUP_PATH_TEMPLATE.validate(groupName, "getGroup");
     GetGroupRequest request = GetGroupRequest.newBuilder().setGroupName(groupName).build();
     return getGroup(request);
   }

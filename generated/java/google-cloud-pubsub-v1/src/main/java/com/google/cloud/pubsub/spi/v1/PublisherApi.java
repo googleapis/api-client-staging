@@ -278,6 +278,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic createTopic(String name) {
+    TOPIC_PATH_TEMPLATE.validate(name, "createTopic");
     Topic request = Topic.newBuilder().setName(name).build();
     return createTopic(request);
   }
@@ -352,6 +353,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PublishResponse publish(String topic, List<PubsubMessage> messages) {
+    TOPIC_PATH_TEMPLATE.validate(topic, "publish");
     PublishRequest request =
         PublishRequest.newBuilder().setTopic(topic).addAllMessages(messages).build();
     return publish(request);
@@ -435,6 +437,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic getTopic(String topic) {
+    TOPIC_PATH_TEMPLATE.validate(topic, "getTopic");
     GetTopicRequest request = GetTopicRequest.newBuilder().setTopic(topic).build();
     return getTopic(request);
   }
@@ -503,6 +506,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListTopicsPagedResponse listTopics(String project) {
+    PROJECT_PATH_TEMPLATE.validate(project, "listTopics");
     ListTopicsRequest request = ListTopicsRequest.newBuilder().setProject(project).build();
     return listTopics(request);
   }
@@ -606,6 +610,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListTopicSubscriptionsPagedResponse listTopicSubscriptions(String topic) {
+    TOPIC_PATH_TEMPLATE.validate(topic, "listTopicSubscriptions");
     ListTopicSubscriptionsRequest request =
         ListTopicSubscriptionsRequest.newBuilder().setTopic(topic).build();
     return listTopicSubscriptions(request);
@@ -714,6 +719,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteTopic(String topic) {
+    TOPIC_PATH_TEMPLATE.validate(topic, "deleteTopic");
     DeleteTopicRequest request = DeleteTopicRequest.newBuilder().setTopic(topic).build();
     deleteTopic(request);
   }
@@ -792,6 +798,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
+    TOPIC_PATH_TEMPLATE.validate(resource, "setIamPolicy");
     SetIamPolicyRequest request =
         SetIamPolicyRequest.newBuilder().setResource(resource).setPolicy(policy).build();
     return setIamPolicy(request);
@@ -866,6 +873,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
+    TOPIC_PATH_TEMPLATE.validate(resource, "getIamPolicy");
     GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder().setResource(resource).build();
     return getIamPolicy(request);
   }
@@ -941,6 +949,7 @@ public class PublisherApi implements AutoCloseable {
    */
   public final TestIamPermissionsResponse testIamPermissions(
       String resource, List<String> permissions) {
+    TOPIC_PATH_TEMPLATE.validate(resource, "testIamPermissions");
     TestIamPermissionsRequest request =
         TestIamPermissionsRequest.newBuilder()
             .setResource(resource)

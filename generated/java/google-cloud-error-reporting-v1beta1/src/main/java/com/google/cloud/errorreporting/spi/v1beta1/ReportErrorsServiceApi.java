@@ -209,6 +209,7 @@ public class ReportErrorsServiceApi implements AutoCloseable {
    */
   public final ReportErrorEventResponse reportErrorEvent(
       String projectName, ReportedErrorEvent event) {
+    PROJECT_PATH_TEMPLATE.validate(projectName, "reportErrorEvent");
     ReportErrorEventRequest request =
         ReportErrorEventRequest.newBuilder().setProjectName(projectName).setEvent(event).build();
     return reportErrorEvent(request);

@@ -330,6 +330,7 @@ public class MetricServiceApi implements AutoCloseable {
    */
   public final ListMonitoredResourceDescriptorsPagedResponse listMonitoredResourceDescriptors(
       String name) {
+    PROJECT_PATH_TEMPLATE.validate(name, "listMonitoredResourceDescriptors");
     ListMonitoredResourceDescriptorsRequest request =
         ListMonitoredResourceDescriptorsRequest.newBuilder().setName(name).build();
     return listMonitoredResourceDescriptors(request);
@@ -443,6 +444,7 @@ public class MetricServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final MonitoredResourceDescriptor getMonitoredResourceDescriptor(String name) {
+    MONITORED_RESOURCE_DESCRIPTOR_PATH_TEMPLATE.validate(name, "getMonitoredResourceDescriptor");
     GetMonitoredResourceDescriptorRequest request =
         GetMonitoredResourceDescriptorRequest.newBuilder().setName(name).build();
     return getMonitoredResourceDescriptor(request);
@@ -518,6 +520,7 @@ public class MetricServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final ListMetricDescriptorsPagedResponse listMetricDescriptors(String name) {
+    PROJECT_PATH_TEMPLATE.validate(name, "listMetricDescriptors");
     ListMetricDescriptorsRequest request =
         ListMetricDescriptorsRequest.newBuilder().setName(name).build();
     return listMetricDescriptors(request);
@@ -628,6 +631,7 @@ public class MetricServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final MetricDescriptor getMetricDescriptor(String name) {
+    METRIC_DESCRIPTOR_PATH_TEMPLATE.validate(name, "getMetricDescriptor");
     GetMetricDescriptorRequest request =
         GetMetricDescriptorRequest.newBuilder().setName(name).build();
     return getMetricDescriptor(request);
@@ -701,6 +705,7 @@ public class MetricServiceApi implements AutoCloseable {
    */
   public final MetricDescriptor createMetricDescriptor(
       String name, MetricDescriptor metricDescriptor) {
+    PROJECT_PATH_TEMPLATE.validate(name, "createMetricDescriptor");
     CreateMetricDescriptorRequest request =
         CreateMetricDescriptorRequest.newBuilder()
             .setName(name)
@@ -781,6 +786,7 @@ public class MetricServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteMetricDescriptor(String name) {
+    METRIC_DESCRIPTOR_PATH_TEMPLATE.validate(name, "deleteMetricDescriptor");
     DeleteMetricDescriptorRequest request =
         DeleteMetricDescriptorRequest.newBuilder().setName(name).build();
     deleteMetricDescriptor(request);
@@ -869,6 +875,7 @@ public class MetricServiceApi implements AutoCloseable {
       String filter,
       TimeInterval interval,
       ListTimeSeriesRequest.TimeSeriesView view) {
+    PROJECT_PATH_TEMPLATE.validate(name, "listTimeSeries");
     ListTimeSeriesRequest request =
         ListTimeSeriesRequest.newBuilder()
             .setName(name)
@@ -1004,6 +1011,7 @@ public class MetricServiceApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void createTimeSeries(String name, List<TimeSeries> timeSeries) {
+    PROJECT_PATH_TEMPLATE.validate(name, "createTimeSeries");
     CreateTimeSeriesRequest request =
         CreateTimeSeriesRequest.newBuilder().setName(name).addAllTimeSeries(timeSeries).build();
     createTimeSeries(request);
