@@ -112,13 +112,13 @@ subprojects {
   }
 }
 
-project(':generated:java:google-logging-v2') {
+project(':generated:java:google-cloud-logging-v2') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-logging-v2:' + generated_grpc_version
   }
 }
 
-project(':generated:java:google-pubsub-v1') {
+project(':generated:java:google-cloud-pubsub-v1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-pubsub-v1:' + generated_grpc_version
   }
@@ -142,19 +142,19 @@ project(':generated:java:google-cloud-vision-v1') {
   }
 }
 
-project(':generated:java:google-devtools-clouderrorreporting-v1beta1') {
+project(':generated:java:google-cloud-error-reporting-v1beta1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-devtools-clouderrorreporting-v1beta1:' + generated_grpc_version
   }
 }
 
-project(':generated:java:google-devtools-cloudtrace-v1') {
+project(':generated:java:google-cloud-trace-v1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-devtools-cloudtrace-v1:' + generated_grpc_version
   }
 }
 
-project(':generated:java:google-monitoring-v3') {
+project(':generated:java:google-cloud-monitoring-v3') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-monitoring-v3:' + generated_grpc_version
   }
