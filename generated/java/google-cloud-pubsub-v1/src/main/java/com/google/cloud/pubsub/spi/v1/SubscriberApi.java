@@ -1,21 +1,24 @@
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.google.cloud.pubsub.spi.v1;
 
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
-import com.google.api.gax.grpc.UnaryApiCallable;
+import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -89,34 +92,38 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * SubscriberSettings subscriberSettings = SubscriberSettings.defaultBuilder()
- *     .provideChannelWith(myCredentials)
- *     .build();
- * SubscriberApi subscriberApi = SubscriberApi.create(subscriberSettings);
+ * InstantiatingChannelProvider channelProvider =
+ *     SubscriberSettings.defaultChannelProviderBuilder()
+ *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * SubscriberSettings subscriberSettings =
+ *     SubscriberSettings.defaultBuilder().setChannelProvider(channelProvider).build();
+ * SubscriberApi subscriberApi =
+ *     SubscriberApi.create(subscriberSettings);
  * </code>
  * </pre>
  */
 @javax.annotation.Generated("by GAPIC")
 public class SubscriberApi implements AutoCloseable {
   private final SubscriberSettings settings;
-  private final ManagedChannel channel;
   private final ScheduledExecutorService executor;
+  private final ManagedChannel channel;
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
-  private final UnaryApiCallable<Subscription, Subscription> createSubscriptionCallable;
-  private final UnaryApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
-  private final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
+  private final UnaryCallable<Subscription, Subscription> createSubscriptionCallable;
+  private final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
+  private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable;
-  private final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
+  private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
       listSubscriptionsPagedCallable;
-  private final UnaryApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable;
-  private final UnaryApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
-  private final UnaryApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
-  private final UnaryApiCallable<PullRequest, PullResponse> pullCallable;
-  private final UnaryApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
-  private final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable;
+  private final UnaryCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
+  private final UnaryCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
+  private final UnaryCallable<PullRequest, PullResponse> pullCallable;
+  private final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
+  private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
+  private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
+  private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
@@ -197,34 +204,34 @@ public class SubscriberApi implements AutoCloseable {
    */
   protected SubscriberApi(SubscriberSettings settings) throws IOException {
     this.settings = settings;
-    this.executor = settings.getExecutorProvider().getOrBuildExecutor();
-    this.channel = settings.getChannelProvider().getOrBuildChannel(this.executor);
+    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
+    this.executor = channelAndExecutor.getExecutor();
+    this.channel = channelAndExecutor.getChannel();
 
     this.createSubscriptionCallable =
-        UnaryApiCallable.create(settings.createSubscriptionSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.createSubscriptionSettings(), this.channel, this.executor);
     this.getSubscriptionCallable =
-        UnaryApiCallable.create(settings.getSubscriptionSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getSubscriptionSettings(), this.channel, this.executor);
     this.listSubscriptionsCallable =
-        UnaryApiCallable.create(settings.listSubscriptionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listSubscriptionsSettings(), this.channel, this.executor);
     this.listSubscriptionsPagedCallable =
-        UnaryApiCallable.createPagedVariant(
+        UnaryCallable.createPagedVariant(
             settings.listSubscriptionsSettings(), this.channel, this.executor);
     this.deleteSubscriptionCallable =
-        UnaryApiCallable.create(settings.deleteSubscriptionSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteSubscriptionSettings(), this.channel, this.executor);
     this.modifyAckDeadlineCallable =
-        UnaryApiCallable.create(settings.modifyAckDeadlineSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.modifyAckDeadlineSettings(), this.channel, this.executor);
     this.acknowledgeCallable =
-        UnaryApiCallable.create(settings.acknowledgeSettings(), this.channel, this.executor);
-    this.pullCallable =
-        UnaryApiCallable.create(settings.pullSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.acknowledgeSettings(), this.channel, this.executor);
+    this.pullCallable = UnaryCallable.create(settings.pullSettings(), this.channel, this.executor);
     this.modifyPushConfigCallable =
-        UnaryApiCallable.create(settings.modifyPushConfigSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.modifyPushConfigSettings(), this.channel, this.executor);
     this.setIamPolicyCallable =
-        UnaryApiCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
     this.getIamPolicyCallable =
-        UnaryApiCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
     this.testIamPermissionsCallable =
-        UnaryApiCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -365,7 +372,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<Subscription, Subscription> createSubscriptionCallable() {
+  public final UnaryCallable<Subscription, Subscription> createSubscriptionCallable() {
     return createSubscriptionCallable;
   }
 
@@ -433,7 +440,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
+  public final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
     return getSubscriptionCallable;
   }
 
@@ -507,7 +514,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
+  public final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
       listSubscriptionsPagedCallable() {
     return listSubscriptionsPagedCallable;
   }
@@ -539,7 +546,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
+  public final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable() {
     return listSubscriptionsCallable;
   }
@@ -617,7 +624,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable() {
+  public final UnaryCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable() {
     return deleteSubscriptionCallable;
   }
 
@@ -714,7 +721,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable() {
+  public final UnaryCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable() {
     return modifyAckDeadlineCallable;
   }
 
@@ -801,7 +808,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<AcknowledgeRequest, Empty> acknowledgeCallable() {
+  public final UnaryCallable<AcknowledgeRequest, Empty> acknowledgeCallable() {
     return acknowledgeCallable;
   }
 
@@ -891,7 +898,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<PullRequest, PullResponse> pullCallable() {
+  public final UnaryCallable<PullRequest, PullResponse> pullCallable() {
     return pullCallable;
   }
 
@@ -986,7 +993,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
+  public final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
     return modifyPushConfigCallable;
   }
 
@@ -1064,7 +1071,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
+  public final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
     return setIamPolicyCallable;
   }
 
@@ -1136,7 +1143,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
+  public final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
     return getIamPolicyCallable;
   }
 
@@ -1218,7 +1225,7 @@ public class SubscriberApi implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final UnaryApiCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
     return testIamPermissionsCallable;
   }
