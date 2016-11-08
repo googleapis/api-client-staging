@@ -1,6 +1,6 @@
 import groovy.io.FileType
 
-def generated_grpc_version = "0.1.1"
+def generated_grpc_version = "0.1.2"
 
 buildscript {
   repositories {
@@ -114,13 +114,13 @@ subprojects {
 
 project(':generated:java:google-cloud-logging-v2') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-logging-v2:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-logging-v2:' + generated_grpc_version
   }
 }
 
 project(':generated:java:google-cloud-pubsub-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-pubsub-v1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + generated_grpc_version
   }
 }
 
@@ -144,19 +144,19 @@ project(':generated:java:google-cloud-vision-v1') {
 
 project(':generated:java:google-cloud-error-reporting-v1beta1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-devtools-clouderrorreporting-v1beta1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-error-reporting-v1beta1:' + generated_grpc_version
   }
 }
 
 project(':generated:java:google-cloud-trace-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-devtools-cloudtrace-v1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-trace-v1:' + generated_grpc_version
   }
 }
 
 project(':generated:java:google-cloud-monitoring-v3') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-monitoring-v3:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-monitoring-v3:' + generated_grpc_version
   }
 }
 
