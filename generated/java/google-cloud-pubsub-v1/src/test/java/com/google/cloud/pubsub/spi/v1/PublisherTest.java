@@ -20,6 +20,9 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPag
 
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.resourcenames.types.ProjectName;
+import com.google.api.resourcenames.types.SubscriptionName;
+import com.google.api.resourcenames.types.TopicName;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -93,22 +96,22 @@ public class PublisherTest {
   @Test
   @SuppressWarnings("all")
   public void createTopicTest() {
-    String formattedName2 = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
-    Topic expectedResponse = Topic.newBuilder().setName(formattedName2).build();
+    TopicName name2 = TopicName.create("[PROJECT]", "[TOPIC]");
+    Topic expectedResponse = Topic.newBuilder().setNameWithTopicName(name2).build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedName = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
 
-    Topic actualResponse = api.createTopic(formattedName);
+    Topic actualResponse = api.createTopic(name);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     Topic actualRequest = (Topic) actualRequests.get(0);
 
-    Assert.assertEquals(formattedName, actualRequest.getName());
+    Assert.assertEquals(name, actualRequest.getNameAsTopicName());
   }
 
   @Test
@@ -122,41 +125,41 @@ public class PublisherTest {
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
     ByteString data = ByteString.copyFromUtf8("-86");
     PubsubMessage messagesElement = PubsubMessage.newBuilder().setData(data).build();
     List<PubsubMessage> messages = Arrays.asList(messagesElement);
 
-    PublishResponse actualResponse = api.publish(formattedTopic, messages);
+    PublishResponse actualResponse = api.publish(topic, messages);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     PublishRequest actualRequest = (PublishRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedTopic, actualRequest.getTopic());
+    Assert.assertEquals(topic, actualRequest.getTopicAsTopicName());
     Assert.assertEquals(messages, actualRequest.getMessagesList());
   }
 
   @Test
   @SuppressWarnings("all")
   public void getTopicTest() {
-    String name = "name3373707";
-    Topic expectedResponse = Topic.newBuilder().setName(name).build();
+    TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
+    Topic expectedResponse = Topic.newBuilder().setNameWithTopicName(name).build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-    Topic actualResponse = api.getTopic(formattedTopic);
+    Topic actualResponse = api.getTopic(topic);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetTopicRequest actualRequest = (GetTopicRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedTopic, actualRequest.getTopic());
+    Assert.assertEquals(topic, actualRequest.getTopicAsTopicName());
   }
 
   @Test
@@ -174,9 +177,9 @@ public class PublisherTest {
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedProject = PublisherApi.formatProjectName("[PROJECT]");
+    ProjectName project = ProjectName.create("[PROJECT]");
 
-    ListTopicsPagedResponse pagedListResponse = api.listTopics(formattedProject);
+    ListTopicsPagedResponse pagedListResponse = api.listTopics(project);
 
     List<Topic> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -186,39 +189,43 @@ public class PublisherTest {
     Assert.assertEquals(1, actualRequests.size());
     ListTopicsRequest actualRequest = (ListTopicsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedProject, actualRequest.getProject());
+    Assert.assertEquals(project, actualRequest.getProjectAsProjectName());
   }
 
   @Test
   @SuppressWarnings("all")
   public void listTopicSubscriptionsTest() {
     String nextPageToken = "";
-    String subscriptionsElement = "subscriptionsElement1698708147";
-    List<String> subscriptions = Arrays.asList(subscriptionsElement);
+    SubscriptionName subscriptionsElement = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    List<SubscriptionName> subscriptions = Arrays.asList(subscriptionsElement);
     ListTopicSubscriptionsResponse expectedResponse =
         ListTopicSubscriptionsResponse.newBuilder()
             .setNextPageToken(nextPageToken)
-            .addAllSubscriptions(subscriptions)
+            .addAllSubscriptionsWithSubscriptionNameList(subscriptions)
             .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-    ListTopicSubscriptionsPagedResponse pagedListResponse =
-        api.listTopicSubscriptions(formattedTopic);
+    ListTopicSubscriptionsPagedResponse pagedListResponse = api.listTopicSubscriptions(topic);
 
     List<String> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
+    List<SubscriptionName> resourceNames =
+        Lists.newArrayList(pagedListResponse.iterateAllAsSubscriptionName());
+    Assert.assertEquals(1, resourceNames.size());
+    Assert.assertEquals(
+        expectedResponse.getSubscriptionsListAsSubscriptionNameList().get(0), resourceNames.get(0));
 
     List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListTopicSubscriptionsRequest actualRequest =
         (ListTopicSubscriptionsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedTopic, actualRequest.getTopic());
+    Assert.assertEquals(topic, actualRequest.getTopicAsTopicName());
   }
 
   @Test
@@ -229,15 +236,15 @@ public class PublisherTest {
     expectedResponses.add(expectedResponse);
     mockPublisher.setResponses(expectedResponses);
 
-    String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-    api.deleteTopic(formattedTopic);
+    api.deleteTopic(topic);
 
     List<GeneratedMessageV3> actualRequests = mockPublisher.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteTopicRequest actualRequest = (DeleteTopicRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedTopic, actualRequest.getTopic());
+    Assert.assertEquals(topic, actualRequest.getTopicAsTopicName());
   }
 
   @Test

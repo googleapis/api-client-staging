@@ -20,6 +20,8 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscript
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
+import com.google.api.resourcenames.types.ProjectName;
+import com.google.api.resourcenames.types.SubscriptionName;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -37,6 +39,7 @@ import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
 import com.google.pubsub.v1.Subscription;
+import com.google.pubsub.v1.TopicNameOneof;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -55,11 +58,11 @@ import java.util.concurrent.ScheduledExecutorService;
  * <pre>
  * <code>
  * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
- *   String formattedName = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
- *   String formattedTopic = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+ *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+ *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
  *   PushConfig pushConfig = PushConfig.newBuilder().build();
  *   int ackDeadlineSeconds = 0;
- *   Subscription response = subscriberApi.createSubscription(formattedName, formattedTopic, pushConfig, ackDeadlineSeconds);
+ *   Subscription response = subscriberApi.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
  * }
  * </code>
  * </pre>
@@ -270,11 +273,11 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedName = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-   *   String formattedTopic = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+   *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   int ackDeadlineSeconds = 0;
-   *   Subscription response = subscriberApi.createSubscription(formattedName, formattedTopic, pushConfig, ackDeadlineSeconds);
+   *   Subscription response = subscriberApi.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
    * }
    * </code></pre>
    *
@@ -304,13 +307,11 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(
-      String name, String topic, PushConfig pushConfig, int ackDeadlineSeconds) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(name, "createSubscription");
-    TOPIC_PATH_TEMPLATE.validate(topic, "createSubscription");
+      SubscriptionName name, TopicNameOneof topic, PushConfig pushConfig, int ackDeadlineSeconds) {
     Subscription request =
         Subscription.newBuilder()
-            .setName(name)
-            .setTopic(topic)
+            .setNameWithSubscriptionName(name)
+            .setTopicWithTopicNameOneof(topic)
             .setPushConfig(pushConfig)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
@@ -330,11 +331,11 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedName = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-   *   String formattedTopic = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+   *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
-   *     .setName(formattedName)
-   *     .setTopic(formattedTopic)
+   *     .setNameWithSubscriptionName(name)
+   *     .setTopicWithTopicNameOneof(topic)
    *     .build();
    *   Subscription response = subscriberApi.createSubscription(request);
    * }
@@ -360,11 +361,11 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedName = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-   *   String formattedTopic = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+   *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
-   *     .setName(formattedName)
-   *     .setTopic(formattedTopic)
+   *     .setNameWithSubscriptionName(name)
+   *     .setTopicWithTopicNameOneof(topic)
    *     .build();
    *   ListenableFuture&lt;Subscription&gt; future = subscriberApi.createSubscriptionCallable().futureCall(request);
    *   // Do something
@@ -384,18 +385,19 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-   *   Subscription response = subscriberApi.getSubscription(formattedSubscription);
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+   *   Subscription response = subscriberApi.getSubscription(subscription);
    * }
    * </code></pre>
    *
    * @param subscription The name of the subscription to get.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final Subscription getSubscription(String subscription) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "getSubscription");
+  public final Subscription getSubscription(SubscriptionName subscription) {
     GetSubscriptionRequest request =
-        GetSubscriptionRequest.newBuilder().setSubscription(subscription).build();
+        GetSubscriptionRequest.newBuilder()
+            .setSubscriptionWithSubscriptionName(subscription)
+            .build();
     return getSubscription(request);
   }
 
@@ -407,9 +409,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   GetSubscriptionRequest request = GetSubscriptionRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .build();
    *   Subscription response = subscriberApi.getSubscription(request);
    * }
@@ -430,9 +432,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   GetSubscriptionRequest request = GetSubscriptionRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .build();
    *   ListenableFuture&lt;Subscription&gt; future = subscriberApi.getSubscriptionCallable().futureCall(request);
    *   // Do something
@@ -452,8 +454,8 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedProject = SubscriberApi.formatProjectName("[PROJECT]");
-   *   for (Subscription element : subscriberApi.listSubscriptions(formattedProject).iterateAllElements()) {
+   *   ProjectName project = ProjectName.create("[PROJECT]");
+   *   for (Subscription element : subscriberApi.listSubscriptions(project).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -462,10 +464,9 @@ public class SubscriberApi implements AutoCloseable {
    * @param project The name of the cloud project that subscriptions belong to.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final ListSubscriptionsPagedResponse listSubscriptions(String project) {
-    PROJECT_PATH_TEMPLATE.validate(project, "listSubscriptions");
+  public final ListSubscriptionsPagedResponse listSubscriptions(ProjectName project) {
     ListSubscriptionsRequest request =
-        ListSubscriptionsRequest.newBuilder().setProject(project).build();
+        ListSubscriptionsRequest.newBuilder().setProjectWithProjectName(project).build();
     return listSubscriptions(request);
   }
 
@@ -477,9 +478,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedProject = SubscriberApi.formatProjectName("[PROJECT]");
+   *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListSubscriptionsRequest request = ListSubscriptionsRequest.newBuilder()
-   *     .setProject(formattedProject)
+   *     .setProjectWithProjectName(project)
    *     .build();
    *   for (Subscription element : subscriberApi.listSubscriptions(request).iterateAllElements()) {
    *     // doThingsWith(element);
@@ -502,9 +503,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedProject = SubscriberApi.formatProjectName("[PROJECT]");
+   *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListSubscriptionsRequest request = ListSubscriptionsRequest.newBuilder()
-   *     .setProject(formattedProject)
+   *     .setProjectWithProjectName(project)
    *     .build();
    *   ListenableFuture&lt;ListSubscriptionsPagedResponse&gt; future = subscriberApi.listSubscriptionsPagedCallable().futureCall(request);
    *   // Do something
@@ -527,9 +528,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedProject = SubscriberApi.formatProjectName("[PROJECT]");
+   *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListSubscriptionsRequest request = ListSubscriptionsRequest.newBuilder()
-   *     .setProject(formattedProject)
+   *     .setProjectWithProjectName(project)
    *     .build();
    *   while (true) {
    *     ListSubscriptionsResponse response = subscriberApi.listSubscriptionsCallable().call(request);
@@ -562,18 +563,19 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-   *   subscriberApi.deleteSubscription(formattedSubscription);
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+   *   subscriberApi.deleteSubscription(subscription);
    * }
    * </code></pre>
    *
    * @param subscription The subscription to delete.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final void deleteSubscription(String subscription) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "deleteSubscription");
+  public final void deleteSubscription(SubscriptionName subscription) {
     DeleteSubscriptionRequest request =
-        DeleteSubscriptionRequest.newBuilder().setSubscription(subscription).build();
+        DeleteSubscriptionRequest.newBuilder()
+            .setSubscriptionWithSubscriptionName(subscription)
+            .build();
     deleteSubscription(request);
   }
 
@@ -588,9 +590,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   DeleteSubscriptionRequest request = DeleteSubscriptionRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .build();
    *   subscriberApi.deleteSubscription(request);
    * }
@@ -614,9 +616,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   DeleteSubscriptionRequest request = DeleteSubscriptionRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .build();
    *   ListenableFuture&lt;Void&gt; future = subscriberApi.deleteSubscriptionCallable().futureCall(request);
    *   // Do something
@@ -639,10 +641,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
    *   int ackDeadlineSeconds = 0;
-   *   subscriberApi.modifyAckDeadline(formattedSubscription, ackIds, ackDeadlineSeconds);
+   *   subscriberApi.modifyAckDeadline(subscription, ackIds, ackDeadlineSeconds);
    * }
    * </code></pre>
    *
@@ -655,11 +657,10 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void modifyAckDeadline(
-      String subscription, List<String> ackIds, int ackDeadlineSeconds) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "modifyAckDeadline");
+      SubscriptionName subscription, List<String> ackIds, int ackDeadlineSeconds) {
     ModifyAckDeadlineRequest request =
         ModifyAckDeadlineRequest.newBuilder()
-            .setSubscription(subscription)
+            .setSubscriptionWithSubscriptionName(subscription)
             .addAllAckIds(ackIds)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
@@ -677,11 +678,11 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
    *   int ackDeadlineSeconds = 0;
    *   ModifyAckDeadlineRequest request = ModifyAckDeadlineRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .addAllAckIds(ackIds)
    *     .setAckDeadlineSeconds(ackDeadlineSeconds)
    *     .build();
@@ -707,11 +708,11 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
    *   int ackDeadlineSeconds = 0;
    *   ModifyAckDeadlineRequest request = ModifyAckDeadlineRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .addAllAckIds(ackIds)
    *     .setAckDeadlineSeconds(ackDeadlineSeconds)
    *     .build();
@@ -737,9 +738,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
-   *   subscriberApi.acknowledge(formattedSubscription, ackIds);
+   *   subscriberApi.acknowledge(subscription, ackIds);
    * }
    * </code></pre>
    *
@@ -748,10 +749,12 @@ public class SubscriberApi implements AutoCloseable {
    *     the Pub/Sub system in the `Pull` response. Must not be empty.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final void acknowledge(String subscription, List<String> ackIds) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "acknowledge");
+  public final void acknowledge(SubscriptionName subscription, List<String> ackIds) {
     AcknowledgeRequest request =
-        AcknowledgeRequest.newBuilder().setSubscription(subscription).addAllAckIds(ackIds).build();
+        AcknowledgeRequest.newBuilder()
+            .setSubscriptionWithSubscriptionName(subscription)
+            .addAllAckIds(ackIds)
+            .build();
     acknowledge(request);
   }
 
@@ -767,10 +770,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
    *   AcknowledgeRequest request = AcknowledgeRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .addAllAckIds(ackIds)
    *     .build();
    *   subscriberApi.acknowledge(request);
@@ -796,10 +799,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   List&lt;String&gt; ackIds = new ArrayList&lt;&gt;();
    *   AcknowledgeRequest request = AcknowledgeRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .addAllAckIds(ackIds)
    *     .build();
    *   ListenableFuture&lt;Void&gt; future = subscriberApi.acknowledgeCallable().futureCall(request);
@@ -822,10 +825,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   boolean returnImmediately = false;
    *   int maxMessages = 0;
-   *   PullResponse response = subscriberApi.pull(formattedSubscription, returnImmediately, maxMessages);
+   *   PullResponse response = subscriberApi.pull(subscription, returnImmediately, maxMessages);
    * }
    * </code></pre>
    *
@@ -838,11 +841,11 @@ public class SubscriberApi implements AutoCloseable {
    *     may return fewer than the number specified.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PullResponse pull(String subscription, boolean returnImmediately, int maxMessages) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "pull");
+  public final PullResponse pull(
+      SubscriptionName subscription, boolean returnImmediately, int maxMessages) {
     PullRequest request =
         PullRequest.newBuilder()
-            .setSubscription(subscription)
+            .setSubscriptionWithSubscriptionName(subscription)
             .setReturnImmediately(returnImmediately)
             .setMaxMessages(maxMessages)
             .build();
@@ -859,10 +862,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   int maxMessages = 0;
    *   PullRequest request = PullRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .setMaxMessages(maxMessages)
    *     .build();
    *   PullResponse response = subscriberApi.pull(request);
@@ -886,10 +889,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   int maxMessages = 0;
    *   PullRequest request = PullRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .setMaxMessages(maxMessages)
    *     .build();
    *   ListenableFuture&lt;PullResponse&gt; future = subscriberApi.pullCallable().futureCall(request);
@@ -915,9 +918,9 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
-   *   subscriberApi.modifyPushConfig(formattedSubscription, pushConfig);
+   *   subscriberApi.modifyPushConfig(subscription, pushConfig);
    * }
    * </code></pre>
    *
@@ -928,11 +931,10 @@ public class SubscriberApi implements AutoCloseable {
    *     pausing the subscription if `Pull` is not called.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final void modifyPushConfig(String subscription, PushConfig pushConfig) {
-    SUBSCRIPTION_PATH_TEMPLATE.validate(subscription, "modifyPushConfig");
+  public final void modifyPushConfig(SubscriptionName subscription, PushConfig pushConfig) {
     ModifyPushConfigRequest request =
         ModifyPushConfigRequest.newBuilder()
-            .setSubscription(subscription)
+            .setSubscriptionWithSubscriptionName(subscription)
             .setPushConfig(pushConfig)
             .build();
     modifyPushConfig(request);
@@ -951,10 +953,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   ModifyPushConfigRequest request = ModifyPushConfigRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .setPushConfig(pushConfig)
    *     .build();
    *   subscriberApi.modifyPushConfig(request);
@@ -981,10 +983,10 @@ public class SubscriberApi implements AutoCloseable {
    *
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
-   *   String formattedSubscription = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+   *   SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   ModifyPushConfigRequest request = ModifyPushConfigRequest.newBuilder()
-   *     .setSubscription(formattedSubscription)
+   *     .setSubscriptionWithSubscriptionName(subscription)
    *     .setPushConfig(pushConfig)
    *     .build();
    *   ListenableFuture&lt;Void&gt; future = subscriberApi.modifyPushConfigCallable().futureCall(request);

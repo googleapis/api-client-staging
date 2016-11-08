@@ -19,6 +19,9 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscript
 
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.resourcenames.types.ProjectName;
+import com.google.api.resourcenames.types.SubscriptionName;
+import com.google.api.resourcenames.types.TopicName;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -39,6 +42,7 @@ import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
 import com.google.pubsub.v1.Subscription;
+import com.google.pubsub.v1.TopicNameOneof;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,34 +97,34 @@ public class SubscriberTest {
   @Test
   @SuppressWarnings("all")
   public void createSubscriptionTest() {
-    String formattedName2 = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-    String formattedTopic2 = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    SubscriptionName name2 = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    TopicNameOneof topic2 = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
     int ackDeadlineSeconds2 = -921632575;
     Subscription expectedResponse =
         Subscription.newBuilder()
-            .setName(formattedName2)
-            .setTopic(formattedTopic2)
+            .setNameWithSubscriptionName(name2)
+            .setTopicWithTopicNameOneof(topic2)
             .setAckDeadlineSeconds(ackDeadlineSeconds2)
             .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedName = SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-    String formattedTopic = SubscriberApi.formatTopicName("[PROJECT]", "[TOPIC]");
+    SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
     PushConfig pushConfig = PushConfig.newBuilder().build();
     int ackDeadlineSeconds = 2135351438;
 
     Subscription actualResponse =
-        api.createSubscription(formattedName, formattedTopic, pushConfig, ackDeadlineSeconds);
+        api.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     Subscription actualRequest = (Subscription) actualRequests.get(0);
 
-    Assert.assertEquals(formattedName, actualRequest.getName());
-    Assert.assertEquals(formattedTopic, actualRequest.getTopic());
+    Assert.assertEquals(name, actualRequest.getNameAsSubscriptionName());
+    Assert.assertEquals(topic, actualRequest.getTopicAsTopicNameOneof());
     Assert.assertEquals(pushConfig, actualRequest.getPushConfig());
     Assert.assertEquals(ackDeadlineSeconds, actualRequest.getAckDeadlineSeconds());
   }
@@ -128,30 +132,29 @@ public class SubscriberTest {
   @Test
   @SuppressWarnings("all")
   public void getSubscriptionTest() {
-    String name = "name3373707";
-    String topic = "topic110546223";
+    SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
     int ackDeadlineSeconds = 2135351438;
     Subscription expectedResponse =
         Subscription.newBuilder()
-            .setName(name)
-            .setTopic(topic)
+            .setNameWithSubscriptionName(name)
+            .setTopicWithTopicNameOneof(topic)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
     List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
 
-    Subscription actualResponse = api.getSubscription(formattedSubscription);
+    Subscription actualResponse = api.getSubscription(subscription);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     GetSubscriptionRequest actualRequest = (GetSubscriptionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
   }
 
   @Test
@@ -169,9 +172,9 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedProject = SubscriberApi.formatProjectName("[PROJECT]");
+    ProjectName project = ProjectName.create("[PROJECT]");
 
-    ListSubscriptionsPagedResponse pagedListResponse = api.listSubscriptions(formattedProject);
+    ListSubscriptionsPagedResponse pagedListResponse = api.listSubscriptions(project);
 
     List<Subscription> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -181,7 +184,7 @@ public class SubscriberTest {
     Assert.assertEquals(1, actualRequests.size());
     ListSubscriptionsRequest actualRequest = (ListSubscriptionsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedProject, actualRequest.getProject());
+    Assert.assertEquals(project, actualRequest.getProjectAsProjectName());
   }
 
   @Test
@@ -192,16 +195,15 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
 
-    api.deleteSubscription(formattedSubscription);
+    api.deleteSubscription(subscription);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteSubscriptionRequest actualRequest = (DeleteSubscriptionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
   }
 
   @Test
@@ -212,18 +214,17 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     List<String> ackIds = new ArrayList<>();
     int ackDeadlineSeconds = 2135351438;
 
-    api.modifyAckDeadline(formattedSubscription, ackIds, ackDeadlineSeconds);
+    api.modifyAckDeadline(subscription, ackIds, ackDeadlineSeconds);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ModifyAckDeadlineRequest actualRequest = (ModifyAckDeadlineRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
     Assert.assertEquals(ackIds, actualRequest.getAckIdsList());
     Assert.assertEquals(ackDeadlineSeconds, actualRequest.getAckDeadlineSeconds());
   }
@@ -236,17 +237,16 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     List<String> ackIds = new ArrayList<>();
 
-    api.acknowledge(formattedSubscription, ackIds);
+    api.acknowledge(subscription, ackIds);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     AcknowledgeRequest actualRequest = (AcknowledgeRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
     Assert.assertEquals(ackIds, actualRequest.getAckIdsList());
   }
 
@@ -258,19 +258,18 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     boolean returnImmediately = false;
     int maxMessages = 496131527;
 
-    PullResponse actualResponse = api.pull(formattedSubscription, returnImmediately, maxMessages);
+    PullResponse actualResponse = api.pull(subscription, returnImmediately, maxMessages);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     PullRequest actualRequest = (PullRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
     Assert.assertEquals(returnImmediately, actualRequest.getReturnImmediately());
     Assert.assertEquals(maxMessages, actualRequest.getMaxMessages());
   }
@@ -283,17 +282,16 @@ public class SubscriberTest {
     expectedResponses.add(expectedResponse);
     mockSubscriber.setResponses(expectedResponses);
 
-    String formattedSubscription =
-        SubscriberApi.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     PushConfig pushConfig = PushConfig.newBuilder().build();
 
-    api.modifyPushConfig(formattedSubscription, pushConfig);
+    api.modifyPushConfig(subscription, pushConfig);
 
     List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ModifyPushConfigRequest actualRequest = (ModifyPushConfigRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(subscription, actualRequest.getSubscriptionAsSubscriptionName());
     Assert.assertEquals(pushConfig, actualRequest.getPushConfig());
   }
 

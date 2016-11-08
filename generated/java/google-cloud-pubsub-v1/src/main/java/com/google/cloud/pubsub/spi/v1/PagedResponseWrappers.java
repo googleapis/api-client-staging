@@ -19,6 +19,9 @@ import com.google.api.gax.grpc.CallContext;
 import com.google.api.gax.grpc.PagedListDescriptor;
 import com.google.api.gax.grpc.PagedListResponseImpl;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.api.resourcenames.types.SubscriptionName;
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import com.google.pubsub.v1.ListSubscriptionsRequest;
 import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ListTopicSubscriptionsRequest;
@@ -60,6 +63,17 @@ public class PagedResponseWrappers {
         ListTopicSubscriptionsRequest request,
         CallContext context) {
       super(callable, pageDescriptor, request, context);
+    }
+
+    public Iterable<SubscriptionName> iterateAllAsSubscriptionName() {
+      return Iterables.transform(
+          iterateAllElements(),
+          new Function<String, SubscriptionName>() {
+            @Override
+            public SubscriptionName apply(String arg0) {
+              return SubscriptionName.parse(arg0);
+            }
+          });
     }
   }
 
