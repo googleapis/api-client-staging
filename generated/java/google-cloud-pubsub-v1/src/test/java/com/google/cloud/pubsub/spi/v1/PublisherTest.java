@@ -21,9 +21,6 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPag
 import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
-import com.google.api.resourcenames.types.ProjectName;
-import com.google.api.resourcenames.types.SubscriptionName;
-import com.google.api.resourcenames.types.TopicName;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -39,10 +36,13 @@ import com.google.pubsub.v1.ListTopicSubscriptionsRequest;
 import com.google.pubsub.v1.ListTopicSubscriptionsResponse;
 import com.google.pubsub.v1.ListTopicsRequest;
 import com.google.pubsub.v1.ListTopicsResponse;
+import com.google.pubsub.v1.ProjectName;
 import com.google.pubsub.v1.PublishRequest;
 import com.google.pubsub.v1.PublishResponse;
 import com.google.pubsub.v1.PubsubMessage;
+import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.Topic;
+import com.google.pubsub.v1.TopicName;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import java.io.IOException;
@@ -122,9 +122,9 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedName = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
 
-      api.createTopic(formattedName);
+      api.createTopic(name);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -163,12 +163,12 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
       ByteString data = ByteString.copyFromUtf8("-86");
       PubsubMessage messagesElement = PubsubMessage.newBuilder().setData(data).build();
       List<PubsubMessage> messages = Arrays.asList(messagesElement);
 
-      api.publish(formattedTopic, messages);
+      api.publish(topic, messages);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -201,9 +201,9 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-      api.getTopic(formattedTopic);
+      api.getTopic(topic);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -245,9 +245,9 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedProject = PublisherApi.formatProjectName("[PROJECT]");
+      ProjectName project = ProjectName.create("[PROJECT]");
 
-      api.listTopics(formattedProject);
+      api.listTopics(project);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -295,9 +295,9 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-      api.listTopicSubscriptions(formattedTopic);
+      api.listTopicSubscriptions(topic);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -328,9 +328,9 @@ public class PublisherTest {
     mockPublisher.addException(exception);
 
     try {
-      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
-      api.deleteTopic(formattedTopic);
+      api.deleteTopic(topic);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());

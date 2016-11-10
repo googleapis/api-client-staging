@@ -20,8 +20,6 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscript
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
-import com.google.api.resourcenames.types.ProjectName;
-import com.google.api.resourcenames.types.SubscriptionName;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -35,10 +33,13 @@ import com.google.pubsub.v1.ListSubscriptionsRequest;
 import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
 import com.google.pubsub.v1.ModifyPushConfigRequest;
+import com.google.pubsub.v1.ProjectName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
 import com.google.pubsub.v1.Subscription;
+import com.google.pubsub.v1.SubscriptionName;
+import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
@@ -59,7 +60,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * <code>
  * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
  *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
- *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
+ *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
  *   PushConfig pushConfig = PushConfig.newBuilder().build();
  *   int ackDeadlineSeconds = 0;
  *   Subscription response = subscriberApi.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -274,7 +275,7 @@ public class SubscriberApi implements AutoCloseable {
    * <pre><code>
    * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
    *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
-   *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
+   *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   PushConfig pushConfig = PushConfig.newBuilder().build();
    *   int ackDeadlineSeconds = 0;
    *   Subscription response = subscriberApi.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
@@ -307,11 +308,11 @@ public class SubscriberApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(
-      SubscriptionName name, TopicNameOneof topic, PushConfig pushConfig, int ackDeadlineSeconds) {
+      SubscriptionName name, TopicName topic, PushConfig pushConfig, int ackDeadlineSeconds) {
     Subscription request =
         Subscription.newBuilder()
             .setNameWithSubscriptionName(name)
-            .setTopicWithTopicNameOneof(topic)
+            .setTopicWithTopicNameOneof(TopicNameOneof.from(topic))
             .setPushConfig(pushConfig)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
             .build();
@@ -335,7 +336,7 @@ public class SubscriberApi implements AutoCloseable {
    *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
    *     .setNameWithSubscriptionName(name)
-   *     .setTopicWithTopicNameOneof(topic)
+   *     .setTopicWithTopicName(topic)
    *     .build();
    *   Subscription response = subscriberApi.createSubscription(request);
    * }
@@ -365,7 +366,7 @@ public class SubscriberApi implements AutoCloseable {
    *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
    *     .setNameWithSubscriptionName(name)
-   *     .setTopicWithTopicNameOneof(topic)
+   *     .setTopicWithTopicName(topic)
    *     .build();
    *   ListenableFuture&lt;Subscription&gt; future = subscriberApi.createSubscriptionCallable().futureCall(request);
    *   // Do something

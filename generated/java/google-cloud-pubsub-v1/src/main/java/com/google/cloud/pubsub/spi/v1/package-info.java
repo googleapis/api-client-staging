@@ -46,7 +46,7 @@
  * <code>
  * try (SubscriberApi subscriberApi = SubscriberApi.create()) {
  *   SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
- *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
+ *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
  *   PushConfig pushConfig = PushConfig.newBuilder().build();
  *   int ackDeadlineSeconds = 0;
  *   Subscription response = subscriberApi.createSubscription(name, topic, pushConfig, ackDeadlineSeconds);
