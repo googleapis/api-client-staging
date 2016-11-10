@@ -18,6 +18,7 @@ package com.google.cloud.pubsub.spi.v1;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubscriptionsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.api.resourcenames.types.ProjectName;
@@ -42,6 +43,8 @@ import com.google.pubsub.v1.PublishRequest;
 import com.google.pubsub.v1.PublishResponse;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.Topic;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,9 +101,7 @@ public class PublisherTest {
   public void createTopicTest() {
     TopicName name2 = TopicName.create("[PROJECT]", "[TOPIC]");
     Topic expectedResponse = Topic.newBuilder().setNameWithTopicName(name2).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
 
@@ -116,14 +117,28 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void createTopicExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedName = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+
+      api.createTopic(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void publishTest() {
     String messageIdsElement = "messageIdsElement-744837059";
     List<String> messageIds = Arrays.asList(messageIdsElement);
     PublishResponse expectedResponse =
         PublishResponse.newBuilder().addAllMessageIds(messageIds).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
     ByteString data = ByteString.copyFromUtf8("-86");
@@ -143,12 +158,29 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void publishExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      ByteString data = ByteString.copyFromUtf8("-86");
+      PubsubMessage messagesElement = PubsubMessage.newBuilder().setData(data).build();
+      List<PubsubMessage> messages = Arrays.asList(messagesElement);
+
+      api.publish(formattedTopic, messages);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void getTopicTest() {
     TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
     Topic expectedResponse = Topic.newBuilder().setNameWithTopicName(name).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
@@ -164,6 +196,22 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void getTopicExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+
+      api.getTopic(formattedTopic);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void listTopicsTest() {
     String nextPageToken = "";
     Topic topicsElement = Topic.newBuilder().build();
@@ -173,9 +221,7 @@ public class PublisherTest {
             .setNextPageToken(nextPageToken)
             .addAllTopics(topics)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     ProjectName project = ProjectName.create("[PROJECT]");
 
@@ -194,6 +240,22 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listTopicsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedProject = PublisherApi.formatProjectName("[PROJECT]");
+
+      api.listTopics(formattedProject);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void listTopicSubscriptionsTest() {
     String nextPageToken = "";
     SubscriptionName subscriptionsElement = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
@@ -203,9 +265,7 @@ public class PublisherTest {
             .setNextPageToken(nextPageToken)
             .addAllSubscriptionsWithSubscriptionNameList(subscriptions)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
@@ -230,11 +290,25 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listTopicSubscriptionsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+
+      api.listTopicSubscriptions(formattedTopic);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void deleteTopicTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockPublisher.setResponses(expectedResponses);
+    mockPublisher.addResponse(expectedResponse);
 
     TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
 
@@ -249,13 +323,27 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void deleteTopicExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockPublisher.addException(exception);
+
+    try {
+      String formattedTopic = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+
+      api.deleteTopic(formattedTopic);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void setIamPolicyTest() {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
     Policy policy = Policy.newBuilder().build();
@@ -273,13 +361,28 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void setIamPolicyExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockIAMPolicy.addException(exception);
+
+    try {
+      String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      Policy policy = Policy.newBuilder().build();
+
+      api.setIamPolicy(formattedResource, policy);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void getIamPolicyTest() {
     int version = 351608024;
     ByteString etag = ByteString.copyFromUtf8("21");
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
 
@@ -295,11 +398,25 @@ public class PublisherTest {
 
   @Test
   @SuppressWarnings("all")
+  public void getIamPolicyExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockIAMPolicy.addException(exception);
+
+    try {
+      String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+
+      api.getIamPolicy(formattedResource);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void testIamPermissionsTest() {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockIAMPolicy.setResponses(expectedResponses);
+    mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
     List<String> permissions = new ArrayList<>();
@@ -314,5 +431,22 @@ public class PublisherTest {
 
     Assert.assertEquals(formattedResource, actualRequest.getResource());
     Assert.assertEquals(permissions, actualRequest.getPermissionsList());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void testIamPermissionsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockIAMPolicy.addException(exception);
+
+    try {
+      String formattedResource = PublisherApi.formatTopicName("[PROJECT]", "[TOPIC]");
+      List<String> permissions = new ArrayList<>();
+
+      api.testIamPermissions(formattedResource, permissions);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }
