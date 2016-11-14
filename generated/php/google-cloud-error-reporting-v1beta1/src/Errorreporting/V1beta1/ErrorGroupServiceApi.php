@@ -78,7 +78,6 @@ class ErrorGroupServiceApi
     const _CODEGEN_VERSION = '0.0.0';
 
     private static $groupNameTemplate;
-    private static $projectNameTemplate;
 
     private $grpcCredentialsHelper;
     private $errorGroupServiceStub;
@@ -95,17 +94,6 @@ class ErrorGroupServiceApi
         return self::getGroupNameTemplate()->render([
             'project' => $project,
             'group' => $group,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
         ]);
     }
 
@@ -127,15 +115,6 @@ class ErrorGroupServiceApi
         return self::getGroupNameTemplate()->match($groupName)['group'];
     }
 
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
     private static function getGroupNameTemplate()
     {
         if (self::$groupNameTemplate == null) {
@@ -143,15 +122,6 @@ class ErrorGroupServiceApi
         }
 
         return self::$groupNameTemplate;
-    }
-
-    private static function getProjectNameTemplate()
-    {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
     }
 
     private static function getPageStreamingDescriptors()

@@ -88,7 +88,6 @@ class ErrorStatsServiceApi
     const _CODEGEN_NAME = 'GAPIC';
     const _CODEGEN_VERSION = '0.0.0';
 
-    private static $groupNameTemplate;
     private static $projectNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -96,18 +95,6 @@ class ErrorStatsServiceApi
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a group resource.
-     */
-    public static function formatGroupName($project, $group)
-    {
-        return self::getGroupNameTemplate()->render([
-            'project' => $project,
-            'group' => $group,
-        ]);
-    }
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -122,38 +109,11 @@ class ErrorStatsServiceApi
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a group resource.
-     */
-    public static function parseProjectFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['project'];
-    }
-
-    /**
-     * Parses the group from the given fully-qualified path which
-     * represents a group resource.
-     */
-    public static function parseGroupFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['group'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
      * represents a project resource.
      */
     public static function parseProjectFromProjectName($projectName)
     {
         return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    private static function getGroupNameTemplate()
-    {
-        if (self::$groupNameTemplate == null) {
-            self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
-        }
-
-        return self::$groupNameTemplate;
     }
 
     private static function getProjectNameTemplate()
