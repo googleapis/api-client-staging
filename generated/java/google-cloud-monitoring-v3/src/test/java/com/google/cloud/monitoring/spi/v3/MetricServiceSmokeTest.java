@@ -19,6 +19,11 @@ import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListMonit
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 @javax.annotation.Generated("by GAPIC")
@@ -26,7 +31,22 @@ public class MetricServiceSmokeTest {
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
-      executeNoCatch();
+      Options options = new Options();
+      options.addOption("h", "help", false, "show usage");
+      options.addOption(
+          Option.builder()
+              .longOpt("project_id")
+              .desc("Project id")
+              .hasArg()
+              .argName("PROJECT-ID")
+              .required(true)
+              .build());
+      CommandLine cl = (new DefaultParser()).parse(options, args);
+      if (cl.hasOption("help")) {
+        HelpFormatter formater = new HelpFormatter();
+        formater.printHelp("MetricServiceSmokeTest", options);
+      }
+      executeNoCatch(cl.getOptionValue("project_id"));
       System.out.println("OK");
     } catch (Exception e) {
       System.err.println("Failed with exception:");
@@ -35,9 +55,9 @@ public class MetricServiceSmokeTest {
     }
   }
 
-  public static void executeNoCatch() throws Exception {
+  public static void executeNoCatch(String projectId) throws Exception {
     try (MetricServiceApi api = MetricServiceApi.create()) {
-      String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+      String formattedName = MetricServiceApi.formatProjectName(projectId);
 
       ListMonitoredResourceDescriptorsPagedResponse pagedResponse =
           api.listMonitoredResourceDescriptors(formattedName);
