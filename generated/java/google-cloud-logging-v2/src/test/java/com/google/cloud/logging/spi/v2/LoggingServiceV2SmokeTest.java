@@ -24,6 +24,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -32,7 +37,22 @@ public class LoggingServiceV2SmokeTest {
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
-      executeNoCatch();
+      Options options = new Options();
+      options.addOption("h", "help", false, "show usage");
+      options.addOption(
+          Option.builder()
+              .longOpt("project_id")
+              .desc("Project id")
+              .hasArg()
+              .argName("PROJECT-ID")
+              .required(true)
+              .build());
+      CommandLine cl = (new DefaultParser()).parse(options, args);
+      if (cl.hasOption("help")) {
+        HelpFormatter formater = new HelpFormatter();
+        formater.printHelp("LoggingServiceV2SmokeTest", options);
+      }
+      executeNoCatch(cl.getOptionValue("project_id"));
       System.out.println("OK");
     } catch (Exception e) {
       System.err.println("Failed with exception:");
@@ -41,9 +61,9 @@ public class LoggingServiceV2SmokeTest {
     }
   }
 
-  public static void executeNoCatch() throws Exception {
+  public static void executeNoCatch(String projectId) throws Exception {
     try (LoggingServiceV2Api api = LoggingServiceV2Api.create()) {
-      String formattedLogName = LoggingServiceV2Api.formatLogName("[PROJECT]", "[LOG]");
+      String formattedLogName = LoggingServiceV2Api.formatLogName(projectId, "test-1968395099");
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();
