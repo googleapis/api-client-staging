@@ -92,7 +92,7 @@ class MetricServiceApi
     const _CODEGEN_VERSION = '0.0.0';
 
     private static $projectNameTemplate;
-    private static $metricDescriptorPathNameTemplate;
+    private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -114,13 +114,13 @@ class MetricServiceApi
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a metric_descriptor_path resource.
+     * a metric_descriptor resource.
      */
-    public static function formatMetricDescriptorPathName($project, $metricDescriptorPath)
+    public static function formatMetricDescriptorName($project, $metricDescriptor)
     {
-        return self::getMetricDescriptorPathNameTemplate()->render([
+        return self::getMetricDescriptorNameTemplate()->render([
             'project' => $project,
-            'metric_descriptor_path' => $metricDescriptorPath,
+            'metric_descriptor' => $metricDescriptor,
         ]);
     }
 
@@ -147,25 +147,25 @@ class MetricServiceApi
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a metricDescriptorPath resource.
+     * represents a metric_descriptor resource.
      */
-    public static function parseProjectFromMetricDescriptorPathName($metricDescriptorPathName)
+    public static function parseProjectFromMetricDescriptorName($metricDescriptorName)
     {
-        return self::getMetricDescriptorPathNameTemplate()->match($metricDescriptorPathName)['project'];
+        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['project'];
     }
 
     /**
-     * Parses the metric_descriptor_path from the given fully-qualified path which
-     * represents a metricDescriptorPath resource.
+     * Parses the metric_descriptor from the given fully-qualified path which
+     * represents a metric_descriptor resource.
      */
-    public static function parseMetricDescriptorPathFromMetricDescriptorPathName($metricDescriptorPathName)
+    public static function parseMetricDescriptorFromMetricDescriptorName($metricDescriptorName)
     {
-        return self::getMetricDescriptorPathNameTemplate()->match($metricDescriptorPathName)['metric_descriptor_path'];
+        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['metric_descriptor'];
     }
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a monitoredResourceDescriptor resource.
+     * represents a monitored_resource_descriptor resource.
      */
     public static function parseProjectFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
     {
@@ -174,7 +174,7 @@ class MetricServiceApi
 
     /**
      * Parses the monitored_resource_descriptor from the given fully-qualified path which
-     * represents a monitoredResourceDescriptor resource.
+     * represents a monitored_resource_descriptor resource.
      */
     public static function parseMonitoredResourceDescriptorFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
     {
@@ -190,13 +190,13 @@ class MetricServiceApi
         return self::$projectNameTemplate;
     }
 
-    private static function getMetricDescriptorPathNameTemplate()
+    private static function getMetricDescriptorNameTemplate()
     {
-        if (self::$metricDescriptorPathNameTemplate == null) {
-            self::$metricDescriptorPathNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor_path=**}');
+        if (self::$metricDescriptorNameTemplate == null) {
+            self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
-        return self::$metricDescriptorPathNameTemplate;
+        return self::$metricDescriptorNameTemplate;
     }
 
     private static function getMonitoredResourceDescriptorNameTemplate()
@@ -277,6 +277,10 @@ class MetricServiceApi
     public function __construct($options = [])
     {
         $defaultScopes = [
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/monitoring',
+            'https://www.googleapis.com/auth/monitoring.read',
+            'https://www.googleapis.com/auth/monitoring.write',
         ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
@@ -315,8 +319,6 @@ class MetricServiceApi
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/metric_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -576,7 +578,7 @@ class MetricServiceApi
      * ```
      * try {
      *     $metricServiceApi = new MetricServiceApi();
-     *     $formattedName = MetricServiceApi::formatMetricDescriptorPathName("[PROJECT]", "[METRIC_DESCRIPTOR_PATH]");
+     *     $formattedName = MetricServiceApi::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $response = $metricServiceApi->getMetricDescriptor($formattedName);
      * } finally {
      *     if (isset($metricServiceApi)) {
@@ -693,7 +695,7 @@ class MetricServiceApi
      * ```
      * try {
      *     $metricServiceApi = new MetricServiceApi();
-     *     $formattedName = MetricServiceApi::formatMetricDescriptorPathName("[PROJECT]", "[METRIC_DESCRIPTOR_PATH]");
+     *     $formattedName = MetricServiceApi::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $metricServiceApi->deleteMetricDescriptor($formattedName);
      * } finally {
      *     if (isset($metricServiceApi)) {

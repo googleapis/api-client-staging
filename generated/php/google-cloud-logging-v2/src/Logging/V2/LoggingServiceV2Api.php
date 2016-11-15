@@ -259,8 +259,6 @@ class LoggingServiceV2Api
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/logging_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -457,8 +455,8 @@ class LoggingServiceV2Api
      * ```
      * try {
      *     $loggingServiceV2Api = new LoggingServiceV2Api();
-     *     $projectIds = [];
-     *     foreach ($loggingServiceV2Api->listLogEntries($projectIds) as $element) {
+     *     $resourceNames = [];
+     *     foreach ($loggingServiceV2Api->listLogEntries($resourceNames) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
@@ -468,18 +466,18 @@ class LoggingServiceV2Api
      * }
      * ```
      *
-     * @param string[] $projectIds   Deprecated. One or more project identifiers or project numbers from which
-     *                               to retrieve log entries.  Examples: `"my-project-1A"`, `"1234567890"`. If
-     *                               present, these project identifiers are converted to resource format and
-     *                               added to the list of resources in `resourceNames`. Callers should use
-     *                               `resourceNames` rather than this parameter.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param string[] $resourceNames Optional. One or more cloud resources from which to retrieve log entries.
+     *                                Example: `"projects/my-project-1A"`, `"projects/1234567890"`.  Projects
+     *                                listed in `projectIds` are added to this list.
+     * @param array    $optionalArgs  {
+     *                                Optional.
      *
-     *     @type string[] $resourceNames
-     *          Optional. One or more cloud resources from which to retrieve log entries.
-     *          Example: `"projects/my-project-1A"`, `"projects/1234567890"`.  Projects
-     *          listed in `projectIds` are added to this list.
+     *     @type string[] $projectIds
+     *          Deprecated. One or more project identifiers or project numbers from which
+     *          to retrieve log entries.  Examples: `"my-project-1A"`, `"1234567890"`. If
+     *          present, these project identifiers are converted to resource format and
+     *          added to the list of resources in `resourceNames`. Callers should use
+     *          `resourceNames` rather than this parameter.
      *     @type string $filter
      *          Optional. A filter that chooses which log entries to return.  See [Advanced
      *          Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
@@ -512,15 +510,15 @@ class LoggingServiceV2Api
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function listLogEntries($projectIds, $optionalArgs = [])
+    public function listLogEntries($resourceNames, $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
-        foreach ($projectIds as $elem) {
-            $request->addProjectIds($elem);
+        foreach ($resourceNames as $elem) {
+            $request->addResourceNames($elem);
         }
-        if (isset($optionalArgs['resourceNames'])) {
-            foreach ($optionalArgs['resourceNames'] as $elem) {
-                $request->addResourceNames($elem);
+        if (isset($optionalArgs['projectIds'])) {
+            foreach ($optionalArgs['projectIds'] as $elem) {
+                $request->addProjectIds($elem);
             }
         }
         if (isset($optionalArgs['filter'])) {

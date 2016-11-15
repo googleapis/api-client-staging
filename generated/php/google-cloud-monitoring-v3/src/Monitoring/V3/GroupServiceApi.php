@@ -234,6 +234,10 @@ class GroupServiceApi
     public function __construct($options = [])
     {
         $defaultScopes = [
+            'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/monitoring',
+            'https://www.googleapis.com/auth/monitoring.read',
+            'https://www.googleapis.com/auth/monitoring.write',
         ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
@@ -270,8 +274,6 @@ class GroupServiceApi
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/group_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
