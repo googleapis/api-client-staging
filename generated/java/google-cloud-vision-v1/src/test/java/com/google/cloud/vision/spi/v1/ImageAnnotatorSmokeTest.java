@@ -17,7 +17,6 @@ package com.google.cloud.vision.spi.v1;
 
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.cloud.vision.v1.Feature;
 import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageSource;
 import java.util.List;
@@ -45,10 +44,8 @@ public class ImageAnnotatorSmokeTest {
       String gcsImageUri = "gs://gapic-toolkit/President_Barack_Obama.jpg";
       ImageSource source = ImageSource.newBuilder().setGcsImageUri(gcsImageUri).build();
       Image image = Image.newBuilder().setSource(source).build();
-      Feature featuresElement = Feature.newBuilder().build();
-      List<Feature> features = Arrays.asList(featuresElement);
       AnnotateImageRequest requestsElement =
-          AnnotateImageRequest.newBuilder().setImage(image).addAllFeatures(features).build();
+          AnnotateImageRequest.newBuilder().setImage(image).build();
       List<AnnotateImageRequest> requests = Arrays.asList(requestsElement);
 
       BatchAnnotateImagesResponse response = api.batchAnnotateImages(requests);

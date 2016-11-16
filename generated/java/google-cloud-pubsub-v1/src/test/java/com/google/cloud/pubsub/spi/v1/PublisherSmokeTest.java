@@ -58,7 +58,7 @@ public class PublisherSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (PublisherApi api = PublisherApi.create()) {
-      TopicName name = TopicName.create(projectId, "smoketesttopic-2064891275");
+      TopicName name = TopicName.create(projectId, "smoketesttopic-" + System.currentTimeMillis());
 
       Topic response = api.createTopic(name);
       System.out.println(

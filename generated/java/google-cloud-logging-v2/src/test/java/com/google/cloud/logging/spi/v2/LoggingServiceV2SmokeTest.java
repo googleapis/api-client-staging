@@ -63,7 +63,8 @@ public class LoggingServiceV2SmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (LoggingServiceV2Api api = LoggingServiceV2Api.create()) {
-      String formattedLogName = LoggingServiceV2Api.formatLogName(projectId, "test-1968395099");
+      String formattedLogName =
+          LoggingServiceV2Api.formatLogName(projectId, "test-" + System.currentTimeMillis());
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();
