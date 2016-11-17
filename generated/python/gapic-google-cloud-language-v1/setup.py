@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.5, <2.0.0dev',
-    'google-gax>=0.14.1, <0.15.0dev',
-    'grpc-google-cloud-language-v1beta1>=0.11.1, <0.12.0dev',
-    'oauth2client>=2.0.0, <4.0.0dev',
+    'googleapis-common-protos>=1.5.0, <2.0dev',
+    'google-gax>=0.14.1, <0.15dev',
+    'grpc-google-cloud-language-v1>=0.13.1, <0.14dev',
+    'oauth2client>=2.0.0, <4.0dev',
 ]
 
 setup(
-    name='gapic-google-cloud-language-v1beta1',
-    version='0.11.1',
+    name='gapic-google-cloud-language-v1',
+    version='0.13.1',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
