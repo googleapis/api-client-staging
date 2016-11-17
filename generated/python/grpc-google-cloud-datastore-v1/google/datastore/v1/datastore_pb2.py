@@ -1037,6 +1037,11 @@ def add_DatastoreServicer_to_server(servicer, server):
 
 
 class BetaDatastoreServicer(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Each RPC normalizes the partition IDs of the keys in its input entities,
   and always returns entities with keys with normalized partition IDs.
   This applies to all keys and entities, including those in values, except keys
@@ -1074,6 +1079,11 @@ class BetaDatastoreServicer(object):
 
 
 class BetaDatastoreStub(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Each RPC normalizes the partition IDs of the keys in its input entities,
   and always returns entities with keys with normalized partition IDs.
   This applies to all keys and entities, including those in values, except keys
@@ -1117,6 +1127,11 @@ class BetaDatastoreStub(object):
 
 
 def beta_create_Datastore_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_deserializers = {
     ('google.datastore.v1.Datastore', 'AllocateIds'): AllocateIdsRequest.FromString,
     ('google.datastore.v1.Datastore', 'BeginTransaction'): BeginTransactionRequest.FromString,
@@ -1146,6 +1161,11 @@ def beta_create_Datastore_server(servicer, pool=None, pool_size=None, default_ti
 
 
 def beta_create_Datastore_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_serializers = {
     ('google.datastore.v1.Datastore', 'AllocateIds'): AllocateIdsRequest.SerializeToString,
     ('google.datastore.v1.Datastore', 'BeginTransaction'): BeginTransactionRequest.SerializeToString,
