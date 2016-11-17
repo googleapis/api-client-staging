@@ -60,8 +60,9 @@ class DatastoreApi(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
-                   'https://www.googleapis.com/auth/datastore', )
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/datastore', )
 
     def __init__(self,
                  service_path=SERVICE_ADDRESS,
@@ -208,10 +209,6 @@ class DatastoreApi(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if query is None:
-            query = query_pb2.Query()
-        if gql_query is None:
-            gql_query = query_pb2.GqlQuery()
         request = datastore_pb2.RunQueryRequest(
             project_id=project_id,
             partition_id=partition_id,
@@ -245,7 +242,11 @@ class DatastoreApi(object):
         request = datastore_pb2.BeginTransactionRequest(project_id=project_id)
         return self._begin_transaction(request, options)
 
-    def commit(self, project_id, mode, mutations, transaction='',
+    def commit(self,
+               project_id,
+               mode,
+               mutations,
+               transaction=None,
                options=None):
         """
         Commits a transaction, optionally creating, deleting or modifying some
@@ -305,7 +306,7 @@ class DatastoreApi(object):
           >>> from google.cloud.gapic.datastore.v1 import datastore_api
           >>> api = datastore_api.DatastoreApi()
           >>> project_id = ''
-          >>> transaction = ''
+          >>> transaction = b''
           >>> response = api.rollback(project_id, transaction)
 
         Args:
