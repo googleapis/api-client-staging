@@ -39,7 +39,7 @@ public class LanguageServiceSmokeTest {
 
   public static void executeNoCatch() throws Exception {
     try (LanguageServiceApi api = LanguageServiceApi.create()) {
-      Document.Type type = Document.Type.TYPE_UNSPECIFIED;
+      Document.Type type = Document.Type.PLAIN_TEXT;
       Document document = Document.newBuilder().setType(type).build();
 
       AnalyzeSentimentResponse response = api.analyzeSentiment(document);
