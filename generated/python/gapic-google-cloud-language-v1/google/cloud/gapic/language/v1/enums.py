@@ -117,6 +117,226 @@ class PartOfSpeech(object):
         X = 12
         AFFIX = 13
 
+    class Aspect(object):
+        """
+        The characteristic of a verb that expresses time flow during an event.
+
+        Attributes:
+          ASPECT_UNKNOWN (int): Aspect is not applicable in the analyzed language or is not predicted.
+          PERFECTIVE (int): Perfective
+          IMPERFECTIVE (int): Imperfective
+          PROGRESSIVE (int): Progressive
+        """
+        ASPECT_UNKNOWN = 0
+        PERFECTIVE = 1
+        IMPERFECTIVE = 2
+        PROGRESSIVE = 3
+
+    class Case(object):
+        """
+        The grammatical function performed by a noun or pronoun in a phrase,
+        clause, or sentence. In some languages, other parts of speech, such as
+        adjective and determiner, take case inflection in agreement with the noun.
+
+        Attributes:
+          CASE_UNKNOWN (int): Case is not applicable in the analyzed language or is not predicted.
+          ACCUSATIVE (int): Accusative
+          ADVERBIAL (int): Adverbial
+          COMPLEMENTIVE (int): Complementive
+          DATIVE (int): Dative
+          GENITIVE (int): Genitive
+          INSTRUMENTAL (int): Instrumental
+          LOCATIVE (int): Locative
+          NOMINATIVE (int): Nominative
+          OBLIQUE (int): Oblique
+          PARTITIVE (int): Partitive
+          PREPOSITIONAL (int): Prepositional
+          REFLEXIVE_CASE (int): Reflexive
+          RELATIVE_CASE (int): Relative
+          VOCATIVE (int): Vocative
+        """
+        CASE_UNKNOWN = 0
+        ACCUSATIVE = 1
+        ADVERBIAL = 2
+        COMPLEMENTIVE = 3
+        DATIVE = 4
+        GENITIVE = 5
+        INSTRUMENTAL = 6
+        LOCATIVE = 7
+        NOMINATIVE = 8
+        OBLIQUE = 9
+        PARTITIVE = 10
+        PREPOSITIONAL = 11
+        REFLEXIVE_CASE = 12
+        RELATIVE_CASE = 13
+        VOCATIVE = 14
+
+    class Form(object):
+        """
+        Depending on the language, Form can be categorizing different forms of
+        verbs, adjectives, adverbs, etc. For example, categorizing inflected
+        endings of verbs and adjectives or distinguishing between short and long
+        forms of adjectives and participles
+
+        Attributes:
+          FORM_UNKNOWN (int): Form is not applicable in the analyzed language or is not predicted.
+          ADNOMIAL (int): Adnomial
+          AUXILIARY (int): Auxiliary
+          COMPLEMENTIZER (int): Complementizer
+          FINAL_ENDING (int): Final ending
+          GERUND (int): Gerund
+          REALIS (int): Realis
+          IRREALIS (int): Irrealis
+          SHORT (int): Short form
+          LONG (int): Long form
+          ORDER (int): Order form
+          SPECIFIC (int): Specific form
+        """
+        FORM_UNKNOWN = 0
+        ADNOMIAL = 1
+        AUXILIARY = 2
+        COMPLEMENTIZER = 3
+        FINAL_ENDING = 4
+        GERUND = 5
+        REALIS = 6
+        IRREALIS = 7
+        SHORT = 8
+        LONG = 9
+        ORDER = 10
+        SPECIFIC = 11
+
+    class Gender(object):
+        """
+        Gender classes of nouns reflected in the behaviour of associated words.
+
+        Attributes:
+          GENDER_UNKNOWN (int): Gender is not applicable in the analyzed language or is not predicted.
+          FEMININE (int): Feminine
+          MASCULINE (int): Masculine
+          NEUTER (int): Neuter
+        """
+        GENDER_UNKNOWN = 0
+        FEMININE = 1
+        MASCULINE = 2
+        NEUTER = 3
+
+    class Mood(object):
+        """
+        The grammatical feature of verbs, used for showing modality and attitude.
+
+        Attributes:
+          MOOD_UNKNOWN (int): Mood is not applicable in the analyzed language or is not predicted.
+          CONDITIONAL_MOOD (int): Conditional
+          IMPERATIVE (int): Imperative
+          INDICATIVE (int): Indicative
+          INTERROGATIVE (int): Interrogative
+          JUSSIVE (int): Jussive
+          SUBJUNCTIVE (int): Subjunctive
+        """
+        MOOD_UNKNOWN = 0
+        CONDITIONAL_MOOD = 1
+        IMPERATIVE = 2
+        INDICATIVE = 3
+        INTERROGATIVE = 4
+        JUSSIVE = 5
+        SUBJUNCTIVE = 6
+
+    class Number(object):
+        """
+        Count distinctions.
+
+        Attributes:
+          NUMBER_UNKNOWN (int): Number is not applicable in the analyzed language or is not predicted.
+          SINGULAR (int): Singular
+          PLURAL (int): Plural
+          DUAL (int): Dual
+        """
+        NUMBER_UNKNOWN = 0
+        SINGULAR = 1
+        PLURAL = 2
+        DUAL = 3
+
+    class Person(object):
+        """
+        The distinction between the speaker, second person, third person, etc.
+
+        Attributes:
+          PERSON_UNKNOWN (int): Person is not applicable in the analyzed language or is not predicted.
+          FIRST (int): First
+          SECOND (int): Second
+          THIRD (int): Third
+          REFLEXIVE_PERSON (int): Reflexive
+        """
+        PERSON_UNKNOWN = 0
+        FIRST = 1
+        SECOND = 2
+        THIRD = 3
+        REFLEXIVE_PERSON = 4
+
+    class Proper(object):
+        """
+        This category shows if the token is part of a proper name.
+
+        Attributes:
+          PROPER_UNKNOWN (int): Proper is not applicable in the analyzed language or is not predicted.
+          PROPER (int): Proper
+          NOT_PROPER (int): Not proper
+        """
+        PROPER_UNKNOWN = 0
+        PROPER = 1
+        NOT_PROPER = 2
+
+    class Reciprocity(object):
+        """
+        Reciprocal features of a pronoun.
+
+        Attributes:
+          RECIPROCITY_UNKNOWN (int): Reciprocity is not applicable in the analyzed language or is not
+            predicted.
+          RECIPROCAL (int): Reciprocal
+          NON_RECIPROCAL (int): Non-reciprocal
+        """
+        RECIPROCITY_UNKNOWN = 0
+        RECIPROCAL = 1
+        NON_RECIPROCAL = 2
+
+    class Tense(object):
+        """
+        Time reference.
+
+        Attributes:
+          TENSE_UNKNOWN (int): Tense is not applicable in the analyzed language or is not predicted.
+          CONDITIONAL_TENSE (int): Conditional
+          FUTURE (int): Future
+          PAST (int): Past
+          PRESENT (int): Present
+          IMPERFECT (int): Imperfect
+          PLUPERFECT (int): Pluperfect
+        """
+        TENSE_UNKNOWN = 0
+        CONDITIONAL_TENSE = 1
+        FUTURE = 2
+        PAST = 3
+        PRESENT = 4
+        IMPERFECT = 5
+        PLUPERFECT = 6
+
+    class Voice(object):
+        """
+        The relationship between the action that a verb expresses and the
+        participants identified by its arguments.
+
+        Attributes:
+          VOICE_UNKNOWN (int): Voice is not applicable in the analyzed language or is not predicted.
+          ACTIVE (int): Active
+          CAUSATIVE (int): Causative
+          PASSIVE (int): Passive
+        """
+        VOICE_UNKNOWN = 0
+        ACTIVE = 1
+        CAUSATIVE = 2
+        PASSIVE = 3
+
 
 class DependencyEdge(object):
     class Label(object):
@@ -279,3 +499,18 @@ class DependencyEdge(object):
         NUMC = 74
         COP = 75
         DISLOCATED = 76
+
+
+class EntityMention(object):
+    class Type(object):
+        """
+        The supported types of mentions.
+
+        Attributes:
+          TYPE_UNKNOWN (int): Unknown
+          PROPER (int): Proper name
+          COMMON (int): Common noun (or noun compound)
+        """
+        TYPE_UNKNOWN = 0
+        PROPER = 1
+        COMMON = 2
