@@ -68,8 +68,8 @@ class DatastoreApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -81,16 +81,18 @@ class DatastoreApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
@@ -116,12 +118,12 @@ class DatastoreApi(object):
             kwargs={'metadata': metadata})
         self.datastore_stub = config.create_stub(
             datastore_pb2.DatastoreStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._lookup = api_callable.create_api_call(
             self.datastore_stub.Lookup, settings=defaults['lookup'])
