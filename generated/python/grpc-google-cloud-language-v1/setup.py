@@ -17,7 +17,7 @@ install_requires = [
 
 setuptools.setup(
   name='grpc-google-cloud-language-v1',
-  version='0.13.1',
+  version='0.14.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
