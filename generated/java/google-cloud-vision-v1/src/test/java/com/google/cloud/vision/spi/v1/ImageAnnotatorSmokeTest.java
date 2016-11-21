@@ -18,7 +18,6 @@ package com.google.cloud.vision.spi.v1;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import com.google.cloud.vision.v1.Feature;
-import com.google.cloud.vision.v1.Feature.Type;
 import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageSource;
 import java.util.Arrays;
@@ -43,18 +42,17 @@ public class ImageAnnotatorSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (ImageAnnotatorApi api = ImageAnnotatorApi.create()) {
+    try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
       String gcsImageUri = "gs://gapic-toolkit/President_Barack_Obama.jpg";
       ImageSource source = ImageSource.newBuilder().setGcsImageUri(gcsImageUri).build();
       Image image = Image.newBuilder().setSource(source).build();
-      Feature.Type type = Feature.Type.FACE_DETECTION;
-      Feature featuresElement = Feature.newBuilder().setType(type).build();
+      Feature featuresElement = Feature.newBuilder().build();
       List<Feature> features = Arrays.asList(featuresElement);
       AnnotateImageRequest requestsElement =
           AnnotateImageRequest.newBuilder().setImage(image).addAllFeatures(features).build();
       List<AnnotateImageRequest> requests = Arrays.asList(requestsElement);
 
-      BatchAnnotateImagesResponse response = api.batchAnnotateImages(requests);
+      BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
       System.out.println(
           ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }

@@ -56,10 +56,10 @@ public class TraceServiceSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (TraceServiceApi api = TraceServiceApi.create()) {
+    try (TraceServiceClient client = TraceServiceClient.create()) {
       String projectId2 = projectId;
 
-      ListTracesPagedResponse pagedResponse = api.listTraces(projectId2);
+      ListTracesPagedResponse pagedResponse = client.listTraces(projectId2);
       System.out.println(ReflectionToStringBuilder.toString(pagedResponse));
     }
   }

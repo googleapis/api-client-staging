@@ -46,7 +46,7 @@ import org.junit.Test;
 public class LanguageServiceTest {
   private static MockLanguageService mockLanguageService;
   private static MockServiceHelper serviceHelper;
-  private LanguageServiceApi api;
+  private LanguageServiceClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -68,12 +68,12 @@ public class LanguageServiceTest {
         LanguageServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = LanguageServiceApi.create(settings);
+    client = LanguageServiceClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
@@ -86,7 +86,7 @@ public class LanguageServiceTest {
 
     Document document = Document.newBuilder().build();
 
-    AnalyzeSentimentResponse actualResponse = api.analyzeSentiment(document);
+    AnalyzeSentimentResponse actualResponse = client.analyzeSentiment(document);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockLanguageService.getRequests();
@@ -105,7 +105,7 @@ public class LanguageServiceTest {
     try {
       Document document = Document.newBuilder().build();
 
-      api.analyzeSentiment(document);
+      client.analyzeSentiment(document);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -123,7 +123,7 @@ public class LanguageServiceTest {
     Document document = Document.newBuilder().build();
     EncodingType encodingType = EncodingType.NONE;
 
-    AnalyzeEntitiesResponse actualResponse = api.analyzeEntities(document, encodingType);
+    AnalyzeEntitiesResponse actualResponse = client.analyzeEntities(document, encodingType);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockLanguageService.getRequests();
@@ -144,7 +144,7 @@ public class LanguageServiceTest {
       Document document = Document.newBuilder().build();
       EncodingType encodingType = EncodingType.NONE;
 
-      api.analyzeEntities(document, encodingType);
+      client.analyzeEntities(document, encodingType);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -162,7 +162,7 @@ public class LanguageServiceTest {
     Document document = Document.newBuilder().build();
     EncodingType encodingType = EncodingType.NONE;
 
-    AnalyzeSyntaxResponse actualResponse = api.analyzeSyntax(document, encodingType);
+    AnalyzeSyntaxResponse actualResponse = client.analyzeSyntax(document, encodingType);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockLanguageService.getRequests();
@@ -183,7 +183,7 @@ public class LanguageServiceTest {
       Document document = Document.newBuilder().build();
       EncodingType encodingType = EncodingType.NONE;
 
-      api.analyzeSyntax(document, encodingType);
+      client.analyzeSyntax(document, encodingType);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -202,7 +202,7 @@ public class LanguageServiceTest {
     AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
     EncodingType encodingType = EncodingType.NONE;
 
-    AnnotateTextResponse actualResponse = api.annotateText(document, features, encodingType);
+    AnnotateTextResponse actualResponse = client.annotateText(document, features, encodingType);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockLanguageService.getRequests();
@@ -225,7 +225,7 @@ public class LanguageServiceTest {
       AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
       EncodingType encodingType = EncodingType.NONE;
 
-      api.annotateText(document, features, encodingType);
+      client.annotateText(document, features, encodingType);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());

@@ -57,10 +57,10 @@ public class PublisherSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (PublisherApi api = PublisherApi.create()) {
+    try (PublisherClient client = PublisherClient.create()) {
       TopicName name = TopicName.create(projectId, "smoketesttopic-" + System.currentTimeMillis());
 
-      Topic response = api.createTopic(name);
+      Topic response = client.createTopic(name);
       System.out.println(
           ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }

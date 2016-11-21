@@ -57,12 +57,12 @@ public class ReportErrorsServiceSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (ReportErrorsServiceApi api = ReportErrorsServiceApi.create()) {
-      String formattedProjectName = ReportErrorsServiceApi.formatProjectName(projectId);
+    try (ReportErrorsServiceClient client = ReportErrorsServiceClient.create()) {
+      String formattedProjectName = ReportErrorsServiceClient.formatProjectName(projectId);
       String message = "[MESSAGE]";
       ReportedErrorEvent event = ReportedErrorEvent.newBuilder().setMessage(message).build();
 
-      ReportErrorEventResponse response = api.reportErrorEvent(formattedProjectName, event);
+      ReportErrorEventResponse response = client.reportErrorEvent(formattedProjectName, event);
       System.out.println(
           ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }

@@ -39,10 +39,11 @@ public class SpeechSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (SpeechApi api = SpeechApi.create()) {
+    try (SpeechClient client = SpeechClient.create()) {
       String languageCode = "en-US";
       int sampleRate = 44100;
-      RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+      RecognitionConfig.AudioEncoding encoding =
+          RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED;
       RecognitionConfig config =
           RecognitionConfig.newBuilder()
               .setLanguageCode(languageCode)
@@ -52,7 +53,7 @@ public class SpeechSmokeTest {
       String uri = "gs://gapic-toolkit/hello.flac";
       RecognitionAudio audio = RecognitionAudio.newBuilder().setUri(uri).build();
 
-      SyncRecognizeResponse response = api.syncRecognize(config, audio);
+      SyncRecognizeResponse response = client.syncRecognize(config, audio);
       System.out.println(
           ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
