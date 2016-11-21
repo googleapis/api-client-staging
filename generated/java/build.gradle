@@ -128,9 +128,9 @@ project(':generated:java:google-cloud-pubsub-v1') {
   }
 }
 
-project(':generated:java:google-cloud-language-v1beta1') {
+project(':generated:java:google-cloud-language-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_grpc_version
   }
 }
 

@@ -35,4 +35,4 @@
  * </code>
  * </pre>
  */
-package com.google.cloud.language.spi.v1beta1;
+package com.google.cloud.language.spi.v1;

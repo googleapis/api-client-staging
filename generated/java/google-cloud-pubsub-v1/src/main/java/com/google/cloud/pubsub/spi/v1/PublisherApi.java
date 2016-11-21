@@ -127,22 +127,12 @@ public class PublisherApi implements AutoCloseable {
   private static final PathTemplate PROJECT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
-  private static final PathTemplate SUBSCRIPTION_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}/subscriptions/{subscription}");
-
   private static final PathTemplate TOPIC_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/topics/{topic}");
 
   /** Formats a string containing the fully-qualified path to represent a project resource. */
   public static final String formatProjectName(String project) {
     return PROJECT_PATH_TEMPLATE.instantiate("project", project);
-  }
-
-  /** Formats a string containing the fully-qualified path to represent a subscription resource. */
-  public static final String formatSubscriptionName(String project, String subscription) {
-    return SUBSCRIPTION_PATH_TEMPLATE.instantiate(
-        "project", project,
-        "subscription", subscription);
   }
 
   /** Formats a string containing the fully-qualified path to represent a topic resource. */
@@ -155,22 +145,6 @@ public class PublisherApi implements AutoCloseable {
   /** Parses the project from the given fully-qualified path which represents a project resource. */
   public static final String parseProjectFromProjectName(String projectName) {
     return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
-  }
-
-  /**
-   * Parses the project from the given fully-qualified path which represents a subscription
-   * resource.
-   */
-  public static final String parseProjectFromSubscriptionName(String subscriptionName) {
-    return SUBSCRIPTION_PATH_TEMPLATE.parse(subscriptionName).get("project");
-  }
-
-  /**
-   * Parses the subscription from the given fully-qualified path which represents a subscription
-   * resource.
-   */
-  public static final String parseSubscriptionFromSubscriptionName(String subscriptionName) {
-    return SUBSCRIPTION_PATH_TEMPLATE.parse(subscriptionName).get("subscription");
   }
 
   /** Parses the project from the given fully-qualified path which represents a topic resource. */
@@ -280,6 +254,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic createTopic(TopicName name) {
+
     Topic request = Topic.newBuilder().setNameWithTopicName(name).build();
     return createTopic(request);
   }
@@ -354,6 +329,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final PublishResponse publish(TopicName topic, List<PubsubMessage> messages) {
+
     PublishRequest request =
         PublishRequest.newBuilder().setTopicWithTopicName(topic).addAllMessages(messages).build();
     return publish(request);
@@ -437,6 +413,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Topic getTopic(TopicName topic) {
+
     GetTopicRequest request = GetTopicRequest.newBuilder().setTopicWithTopicName(topic).build();
     return getTopic(request);
   }
@@ -717,6 +694,7 @@ public class PublisherApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteTopic(TopicName topic) {
+
     DeleteTopicRequest request =
         DeleteTopicRequest.newBuilder().setTopicWithTopicName(topic).build();
     deleteTopic(request);
