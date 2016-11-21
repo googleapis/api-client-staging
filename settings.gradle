@@ -1,6 +1,6 @@
 include 'generated:java:google-cloud-logging-v2',
   'generated:java:google-cloud-pubsub-v1',
-  'generated:java:google-cloud-language-v1beta1',
+  'generated:java:google-cloud-language-v1',
   'generated:java:google-cloud-speech-v1beta1',
   'generated:java:google-cloud-vision-v1',
   'generated:java:google-cloud-error-reporting-v1beta1',

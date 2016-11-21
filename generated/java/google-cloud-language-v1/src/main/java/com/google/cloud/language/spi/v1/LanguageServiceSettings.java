@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.cloud.language.spi.v1beta1;
+package com.google.cloud.language.spi.v1;
 
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.RetrySettings;
@@ -24,13 +24,15 @@ import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.ServiceApiSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.UnaryCallSettings;
-import com.google.cloud.language.v1beta1.AnalyzeEntitiesRequest;
-import com.google.cloud.language.v1beta1.AnalyzeEntitiesResponse;
-import com.google.cloud.language.v1beta1.AnalyzeSentimentRequest;
-import com.google.cloud.language.v1beta1.AnalyzeSentimentResponse;
-import com.google.cloud.language.v1beta1.AnnotateTextRequest;
-import com.google.cloud.language.v1beta1.AnnotateTextResponse;
-import com.google.cloud.language.v1beta1.LanguageServiceGrpc;
+import com.google.cloud.language.v1.AnalyzeEntitiesRequest;
+import com.google.cloud.language.v1.AnalyzeEntitiesResponse;
+import com.google.cloud.language.v1.AnalyzeSentimentRequest;
+import com.google.cloud.language.v1.AnalyzeSentimentResponse;
+import com.google.cloud.language.v1.AnalyzeSyntaxRequest;
+import com.google.cloud.language.v1.AnalyzeSyntaxResponse;
+import com.google.cloud.language.v1.AnnotateTextRequest;
+import com.google.cloud.language.v1.AnnotateTextResponse;
+import com.google.cloud.language.v1.LanguageServiceGrpc;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -82,6 +84,8 @@ public class LanguageServiceSettings extends ServiceApiSettings {
       analyzeSentimentSettings;
   private final SimpleCallSettings<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
       analyzeEntitiesSettings;
+  private final SimpleCallSettings<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
+      analyzeSyntaxSettings;
   private final SimpleCallSettings<AnnotateTextRequest, AnnotateTextResponse> annotateTextSettings;
 
   /** Returns the object with the settings used for calls to analyzeSentiment. */
@@ -94,6 +98,11 @@ public class LanguageServiceSettings extends ServiceApiSettings {
   public SimpleCallSettings<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
       analyzeEntitiesSettings() {
     return analyzeEntitiesSettings;
+  }
+
+  /** Returns the object with the settings used for calls to analyzeSyntax. */
+  public SimpleCallSettings<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse> analyzeSyntaxSettings() {
+    return analyzeSyntaxSettings;
   }
 
   /** Returns the object with the settings used for calls to annotateText. */
@@ -154,6 +163,7 @@ public class LanguageServiceSettings extends ServiceApiSettings {
 
     analyzeSentimentSettings = settingsBuilder.analyzeSentimentSettings().build();
     analyzeEntitiesSettings = settingsBuilder.analyzeEntitiesSettings().build();
+    analyzeSyntaxSettings = settingsBuilder.analyzeSyntaxSettings().build();
     annotateTextSettings = settingsBuilder.annotateTextSettings().build();
   }
 
@@ -165,6 +175,8 @@ public class LanguageServiceSettings extends ServiceApiSettings {
         analyzeSentimentSettings;
     private final SimpleCallSettings.Builder<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
         analyzeEntitiesSettings;
+    private final SimpleCallSettings.Builder<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
+        analyzeSyntaxSettings;
     private final SimpleCallSettings.Builder<AnnotateTextRequest, AnnotateTextResponse>
         annotateTextSettings;
 
@@ -208,12 +220,18 @@ public class LanguageServiceSettings extends ServiceApiSettings {
       analyzeEntitiesSettings =
           SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANALYZE_ENTITIES);
 
+      analyzeSyntaxSettings =
+          SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANALYZE_SYNTAX);
+
       annotateTextSettings =
           SimpleCallSettings.newBuilder(LanguageServiceGrpc.METHOD_ANNOTATE_TEXT);
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder>of(
-              analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
+              analyzeSentimentSettings,
+              analyzeEntitiesSettings,
+              analyzeSyntaxSettings,
+              annotateTextSettings);
     }
 
     private static Builder createDefault() {
@@ -230,6 +248,11 @@ public class LanguageServiceSettings extends ServiceApiSettings {
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .analyzeSyntaxSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .annotateTextSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
@@ -242,11 +265,15 @@ public class LanguageServiceSettings extends ServiceApiSettings {
 
       analyzeSentimentSettings = settings.analyzeSentimentSettings.toBuilder();
       analyzeEntitiesSettings = settings.analyzeEntitiesSettings.toBuilder();
+      analyzeSyntaxSettings = settings.analyzeSyntaxSettings.toBuilder();
       annotateTextSettings = settings.annotateTextSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder>of(
-              analyzeSentimentSettings, analyzeEntitiesSettings, annotateTextSettings);
+              analyzeSentimentSettings,
+              analyzeEntitiesSettings,
+              analyzeSyntaxSettings,
+              annotateTextSettings);
     }
 
     @Override
@@ -283,6 +310,12 @@ public class LanguageServiceSettings extends ServiceApiSettings {
     public SimpleCallSettings.Builder<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
         analyzeEntitiesSettings() {
       return analyzeEntitiesSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to analyzeSyntax. */
+    public SimpleCallSettings.Builder<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
+        analyzeSyntaxSettings() {
+      return analyzeSyntaxSettings;
     }
 
     /** Returns the builder for the settings used for calls to annotateText. */
