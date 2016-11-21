@@ -56,11 +56,11 @@ public class MetricServiceSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (MetricServiceApi api = MetricServiceApi.create()) {
-      String formattedName = MetricServiceApi.formatProjectName(projectId);
+    try (MetricServiceClient client = MetricServiceClient.create()) {
+      String formattedName = MetricServiceClient.formatProjectName(projectId);
 
       ListMonitoredResourceDescriptorsPagedResponse pagedResponse =
-          api.listMonitoredResourceDescriptors(formattedName);
+          client.listMonitoredResourceDescriptors(formattedName);
       System.out.println(ReflectionToStringBuilder.toString(pagedResponse));
     }
   }
