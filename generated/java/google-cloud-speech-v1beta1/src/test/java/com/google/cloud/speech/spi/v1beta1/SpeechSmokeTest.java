@@ -42,8 +42,7 @@ public class SpeechSmokeTest {
     try (SpeechClient client = SpeechClient.create()) {
       String languageCode = "en-US";
       int sampleRate = 44100;
-      RecognitionConfig.AudioEncoding encoding =
-          RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED;
+      RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
       RecognitionConfig config =
           RecognitionConfig.newBuilder()
               .setLanguageCode(languageCode)
