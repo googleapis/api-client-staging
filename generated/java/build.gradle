@@ -164,7 +164,7 @@ project(':generated:java:google-cloud-monitoring-v3') {
   }
 }
 
-project(':generated:java:google-longrunning') {
+project(':generated:java:google-longrunning-v1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-common-protos:' + generated_grpc_version
   }

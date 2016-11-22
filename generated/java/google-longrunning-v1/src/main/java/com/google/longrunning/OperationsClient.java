@@ -35,12 +35,14 @@ import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.api.gax.protobuf.PathTemplate;
 import com.google.protobuf.Empty;
+import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
+import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
 /**
@@ -58,14 +60,14 @@ import java.util.concurrent.ScheduledExecutorService;
  *
  * <pre>
  * <code>
- * try (OperationsApi operationsApi = OperationsApi.create()) {
- *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
- *   Operation response = operationsApi.getOperation(formattedName);
+ * try (OperationsClient operationsClient = OperationsClient.create()) {
+ *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
+ *   Operation response = operationsClient.getOperation(formattedName);
  * }
  * </code>
  * </pre>
  *
- * <p>Note: close() needs to be called on the operationsApi object to clean up resources such as
+ * <p>Note: close() needs to be called on the operationsClient object to clean up resources such as
  * threads. In the example above, try-with-resources is used, which automatically calls close().
  *
  * <p>The surface of this class includes several types of Java methods for each of the API's
@@ -99,13 +101,14 @@ import java.util.concurrent.ScheduledExecutorService;
  *         .build();
  * OperationsSettings operationsSettings =
  *     OperationsSettings.defaultBuilder().setChannelProvider(channelProvider).build();
- * OperationsApi operationsApi =
- *     OperationsApi.create(operationsSettings);
+ * OperationsClient operationsClient =
+ *     OperationsClient.create(operationsSettings);
  * </code>
  * </pre>
  */
-@javax.annotation.Generated("by GAPIC")
-public class OperationsApi implements AutoCloseable {
+@Generated("by GAPIC")
+@ExperimentalApi
+public class OperationsClient implements AutoCloseable {
   private final OperationsSettings settings;
   private final ScheduledExecutorService executor;
   private final ManagedChannel channel;
@@ -137,18 +140,18 @@ public class OperationsApi implements AutoCloseable {
   }
 
   /**
-   * Constructs an instance of OperationsApi, using the given settings. The channels are created
+   * Constructs an instance of OperationsClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
    */
-  public static final OperationsApi create(OperationsSettings settings) throws IOException {
-    return new OperationsApi(settings);
+  public static final OperationsClient create(OperationsSettings settings) throws IOException {
+    return new OperationsClient(settings);
   }
 
   /**
-   * Constructs an instance of OperationsApi, using the given settings. This is protected so that it
-   * easy to make a subclass, but otherwise, the static factory methods should be preferred.
+   * Constructs an instance of OperationsClient, using the given settings. This is protected so that
+   * it easy to make a subclass, but otherwise, the static factory methods should be preferred.
    */
-  protected OperationsApi(OperationsSettings settings) throws IOException {
+  protected OperationsClient(OperationsSettings settings) throws IOException {
     this.settings = settings;
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
@@ -198,9 +201,9 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
-   *   Operation response = operationsApi.getOperation(formattedName);
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
+   *   Operation response = operationsClient.getOperation(formattedName);
    * }
    * </code></pre>
    *
@@ -208,6 +211,7 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final Operation getOperation(String name) {
+    OPERATION_PATH_PATH_TEMPLATE.validate(name, "getOperation");
     GetOperationRequest request = GetOperationRequest.newBuilder().setName(name).build();
     return getOperation(request);
   }
@@ -220,12 +224,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   GetOperationRequest request = GetOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   Operation response = operationsApi.getOperation(request);
+   *   Operation response = operationsClient.getOperation(request);
    * }
    * </code></pre>
    *
@@ -244,12 +248,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   GetOperationRequest request = GetOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   ListenableFuture&lt;Operation&gt; future = operationsApi.getOperationCallable().futureCall(request);
+   *   ListenableFuture&lt;Operation&gt; future = operationsClient.getOperationCallable().futureCall(request);
    *   // Do something
    *   Operation response = future.get();
    * }
@@ -265,15 +269,15 @@ public class OperationsApi implements AutoCloseable {
    * this method, it returns `UNIMPLEMENTED`.
    *
    * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&ast;/operations`.
+   * resource name schemes, such as `users/&#42;/operations`.
    *
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
    *   String name = "";
    *   String filter = "";
-   *   for (Operation element : operationsApi.listOperations(name, filter).iterateAllElements()) {
+   *   for (Operation element : operationsClient.listOperations(name, filter).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -295,19 +299,19 @@ public class OperationsApi implements AutoCloseable {
    * this method, it returns `UNIMPLEMENTED`.
    *
    * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&ast;/operations`.
+   * resource name schemes, such as `users/&#42;/operations`.
    *
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
    *   String name = "";
    *   String filter = "";
    *   ListOperationsRequest request = ListOperationsRequest.newBuilder()
    *     .setName(name)
    *     .setFilter(filter)
    *     .build();
-   *   for (Operation element : operationsApi.listOperations(request).iterateAllElements()) {
+   *   for (Operation element : operationsClient.listOperations(request).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -326,19 +330,19 @@ public class OperationsApi implements AutoCloseable {
    * this method, it returns `UNIMPLEMENTED`.
    *
    * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&ast;/operations`.
+   * resource name schemes, such as `users/&#42;/operations`.
    *
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
    *   String name = "";
    *   String filter = "";
    *   ListOperationsRequest request = ListOperationsRequest.newBuilder()
    *     .setName(name)
    *     .setFilter(filter)
    *     .build();
-   *   ListenableFuture&lt;ListOperationsPagedResponse&gt; future = operationsApi.listOperationsPagedCallable().futureCall(request);
+   *   ListenableFuture&lt;ListOperationsPagedResponse&gt; future = operationsClient.listOperationsPagedCallable().futureCall(request);
    *   // Do something
    *   for (Operation element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -357,12 +361,12 @@ public class OperationsApi implements AutoCloseable {
    * this method, it returns `UNIMPLEMENTED`.
    *
    * <p>NOTE: the `name` binding below allows API services to override the binding to use different
-   * resource name schemes, such as `users/&ast;/operations`.
+   * resource name schemes, such as `users/&#42;/operations`.
    *
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
    *   String name = "";
    *   String filter = "";
    *   ListOperationsRequest request = ListOperationsRequest.newBuilder()
@@ -370,7 +374,7 @@ public class OperationsApi implements AutoCloseable {
    *     .setFilter(filter)
    *     .build();
    *   while (true) {
-   *     ListOperationsResponse response = operationsApi.listOperationsCallable().call(request);
+   *     ListOperationsResponse response = operationsClient.listOperationsCallable().call(request);
    *     for (Operation element : response.getOperationsList()) {
    *       // doThingsWith(element);
    *     }
@@ -403,9 +407,9 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
-   *   operationsApi.cancelOperation(formattedName);
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
+   *   operationsClient.cancelOperation(formattedName);
    * }
    * </code></pre>
    *
@@ -413,6 +417,7 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void cancelOperation(String name) {
+    OPERATION_PATH_PATH_TEMPLATE.validate(name, "cancelOperation");
     CancelOperationRequest request = CancelOperationRequest.newBuilder().setName(name).build();
     cancelOperation(request);
   }
@@ -431,12 +436,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   CancelOperationRequest request = CancelOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   operationsApi.cancelOperation(request);
+   *   operationsClient.cancelOperation(request);
    * }
    * </code></pre>
    *
@@ -461,12 +466,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   CancelOperationRequest request = CancelOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   ListenableFuture&lt;Void&gt; future = operationsApi.cancelOperationCallable().futureCall(request);
+   *   ListenableFuture&lt;Void&gt; future = operationsClient.cancelOperationCallable().futureCall(request);
    *   // Do something
    *   future.get();
    * }
@@ -485,9 +490,9 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
-   *   operationsApi.deleteOperation(formattedName);
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
+   *   operationsClient.deleteOperation(formattedName);
    * }
    * </code></pre>
    *
@@ -495,6 +500,7 @@ public class OperationsApi implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final void deleteOperation(String name) {
+    OPERATION_PATH_PATH_TEMPLATE.validate(name, "deleteOperation");
     DeleteOperationRequest request = DeleteOperationRequest.newBuilder().setName(name).build();
     deleteOperation(request);
   }
@@ -508,12 +514,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   DeleteOperationRequest request = DeleteOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   operationsApi.deleteOperation(request);
+   *   operationsClient.deleteOperation(request);
    * }
    * </code></pre>
    *
@@ -533,12 +539,12 @@ public class OperationsApi implements AutoCloseable {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (OperationsApi operationsApi = OperationsApi.create()) {
-   *   String formattedName = OperationsApi.formatOperationPathName("[OPERATION_PATH]");
+   * try (OperationsClient operationsClient = OperationsClient.create()) {
+   *   String formattedName = OperationsClient.formatOperationPathName("[OPERATION_PATH]");
    *   DeleteOperationRequest request = DeleteOperationRequest.newBuilder()
    *     .setName(formattedName)
    *     .build();
-   *   ListenableFuture&lt;Void&gt; future = operationsApi.deleteOperationCallable().futureCall(request);
+   *   ListenableFuture&lt;Void&gt; future = operationsClient.deleteOperationCallable().futureCall(request);
    *   // Do something
    *   future.get();
    * }
