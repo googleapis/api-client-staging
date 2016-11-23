@@ -34,7 +34,6 @@ use google\cloud\language\v1\AnnotateTextRequest;
 use google\cloud\language\v1\AnnotateTextRequest\Features;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
-use google\cloud\language\v1\LanguageServiceClient;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -45,12 +44,12 @@ use google\cloud\language\v1\LanguageServiceClient;
  *
  * ```
  * try {
- *     $languageServiceApi = new LanguageServiceApi();
+ *     $languageServiceClient = new LanguageServiceClient();
  *     $document = new Document();
- *     $response = $languageServiceApi->analyzeSentiment($document);
+ *     $response = $languageServiceClient->analyzeSentiment($document);
  * } finally {
- *     if (isset($languageServiceApi)) {
- *         $languageServiceApi->close();
+ *     if (isset($languageServiceClient)) {
+ *         $languageServiceClient->close();
  *     }
  * }
  * ```
@@ -60,7 +59,7 @@ use google\cloud\language\v1\LanguageServiceClient;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class LanguageServiceApi
+class LanguageServiceClient
 {
     /**
      * The default address of the service.
@@ -141,7 +140,6 @@ class LanguageServiceApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -180,14 +178,14 @@ class LanguageServiceApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createLanguageServiceStubFunction = function ($hostname, $opts) {
-            return new LanguageServiceClient($hostname, $opts);
+            return new \google\cloud\language\v1\LanguageServiceClient($hostname, $opts);
         };
         $this->languageServiceStub = $this->grpcCredentialsHelper->createStub(
             $createLanguageServiceStubFunction,
@@ -203,12 +201,12 @@ class LanguageServiceApi
      * Sample code:
      * ```
      * try {
-     *     $languageServiceApi = new LanguageServiceApi();
+     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
-     *     $response = $languageServiceApi->analyzeSentiment($document);
+     *     $response = $languageServiceClient->analyzeSentiment($document);
      * } finally {
-     *     if (isset($languageServiceApi)) {
-     *         $languageServiceApi->close();
+     *     if (isset($languageServiceClient)) {
+     *         $languageServiceClient->close();
      *     }
      * }
      * ```
@@ -220,7 +218,7 @@ class LanguageServiceApi
      *
      *     @type EncodingType $encodingType
      *          The encoding type used by the API to calculate sentence offsets.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -228,9 +226,9 @@ class LanguageServiceApi
      *          is not set.
      * }
      *
-     * @return google\cloud\language\v1\AnalyzeSentimentResponse
+     * @return \google\cloud\language\v1\AnalyzeSentimentResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function analyzeSentiment($document, $optionalArgs = [])
     {
@@ -263,13 +261,13 @@ class LanguageServiceApi
      * Sample code:
      * ```
      * try {
-     *     $languageServiceApi = new LanguageServiceApi();
+     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceApi->analyzeEntities($document, $encodingType);
+     *     $response = $languageServiceClient->analyzeEntities($document, $encodingType);
      * } finally {
-     *     if (isset($languageServiceApi)) {
-     *         $languageServiceApi->close();
+     *     if (isset($languageServiceClient)) {
+     *         $languageServiceClient->close();
      *     }
      * }
      * ```
@@ -279,7 +277,7 @@ class LanguageServiceApi
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -287,9 +285,9 @@ class LanguageServiceApi
      *          is not set.
      * }
      *
-     * @return google\cloud\language\v1\AnalyzeEntitiesResponse
+     * @return \google\cloud\language\v1\AnalyzeEntitiesResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function analyzeEntities($document, $encodingType, $optionalArgs = [])
     {
@@ -321,13 +319,13 @@ class LanguageServiceApi
      * Sample code:
      * ```
      * try {
-     *     $languageServiceApi = new LanguageServiceApi();
+     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceApi->analyzeSyntax($document, $encodingType);
+     *     $response = $languageServiceClient->analyzeSyntax($document, $encodingType);
      * } finally {
-     *     if (isset($languageServiceApi)) {
-     *         $languageServiceApi->close();
+     *     if (isset($languageServiceClient)) {
+     *         $languageServiceClient->close();
      *     }
      * }
      * ```
@@ -337,7 +335,7 @@ class LanguageServiceApi
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -345,9 +343,9 @@ class LanguageServiceApi
      *          is not set.
      * }
      *
-     * @return google\cloud\language\v1\AnalyzeSyntaxResponse
+     * @return \google\cloud\language\v1\AnalyzeSyntaxResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function analyzeSyntax($document, $encodingType, $optionalArgs = [])
     {
@@ -378,14 +376,14 @@ class LanguageServiceApi
      * Sample code:
      * ```
      * try {
-     *     $languageServiceApi = new LanguageServiceApi();
+     *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $features = new Features();
      *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceApi->annotateText($document, $features, $encodingType);
+     *     $response = $languageServiceClient->annotateText($document, $features, $encodingType);
      * } finally {
-     *     if (isset($languageServiceApi)) {
-     *         $languageServiceApi->close();
+     *     if (isset($languageServiceClient)) {
+     *         $languageServiceClient->close();
      *     }
      * }
      * ```
@@ -396,7 +394,7 @@ class LanguageServiceApi
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -404,9 +402,9 @@ class LanguageServiceApi
      *          is not set.
      * }
      *
-     * @return google\cloud\language\v1\AnnotateTextResponse
+     * @return \google\cloud\language\v1\AnnotateTextResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function annotateText($document, $features, $encodingType, $optionalArgs = [])
     {

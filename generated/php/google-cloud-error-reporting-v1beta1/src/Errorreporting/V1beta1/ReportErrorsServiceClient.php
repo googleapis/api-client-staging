@@ -29,7 +29,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventRequest;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceClient;
 use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 
 /**
@@ -40,13 +39,13 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  *
  * ```
  * try {
- *     $reportErrorsServiceApi = new ReportErrorsServiceApi();
- *     $formattedProjectName = ReportErrorsServiceApi::formatProjectName("[PROJECT]");
+ *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
+ *     $formattedProjectName = ReportErrorsServiceClient::formatProjectName("[PROJECT]");
  *     $event = new ReportedErrorEvent();
- *     $response = $reportErrorsServiceApi->reportErrorEvent($formattedProjectName, $event);
+ *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
  * } finally {
- *     if (isset($reportErrorsServiceApi)) {
- *         $reportErrorsServiceApi->close();
+ *     if (isset($reportErrorsServiceClient)) {
+ *         $reportErrorsServiceClient->close();
  *     }
  * }
  * ```
@@ -56,7 +55,7 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class ReportErrorsServiceApi
+class ReportErrorsServiceClient
 {
     /**
      * The default address of the service.
@@ -168,7 +167,6 @@ class ReportErrorsServiceApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -204,14 +202,14 @@ class ReportErrorsServiceApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createReportErrorsServiceStubFunction = function ($hostname, $opts) {
-            return new ReportErrorsServiceClient($hostname, $opts);
+            return new \google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceClient($hostname, $opts);
         };
         $this->reportErrorsServiceStub = $this->grpcCredentialsHelper->createStub(
             $createReportErrorsServiceStubFunction,
@@ -234,13 +232,13 @@ class ReportErrorsServiceApi
      * Sample code:
      * ```
      * try {
-     *     $reportErrorsServiceApi = new ReportErrorsServiceApi();
-     *     $formattedProjectName = ReportErrorsServiceApi::formatProjectName("[PROJECT]");
+     *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
+     *     $formattedProjectName = ReportErrorsServiceClient::formatProjectName("[PROJECT]");
      *     $event = new ReportedErrorEvent();
-     *     $response = $reportErrorsServiceApi->reportErrorEvent($formattedProjectName, $event);
+     *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
      * } finally {
-     *     if (isset($reportErrorsServiceApi)) {
-     *         $reportErrorsServiceApi->close();
+     *     if (isset($reportErrorsServiceClient)) {
+     *         $reportErrorsServiceClient->close();
      *     }
      * }
      * ```
@@ -253,7 +251,7 @@ class ReportErrorsServiceApi
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -261,9 +259,9 @@ class ReportErrorsServiceApi
      *          is not set.
      * }
      *
-     * @return google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse
+     * @return \google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function reportErrorEvent($projectName, $event, $optionalArgs = [])
     {
