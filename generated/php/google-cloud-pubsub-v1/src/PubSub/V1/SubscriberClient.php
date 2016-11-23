@@ -30,7 +30,6 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -42,7 +41,6 @@ use google\pubsub\v1\ModifyAckDeadlineRequest;
 use google\pubsub\v1\ModifyPushConfigRequest;
 use google\pubsub\v1\PullRequest;
 use google\pubsub\v1\PushConfig;
-use google\pubsub\v1\SubscriberClient;
 use google\pubsub\v1\Subscription;
 
 /**
@@ -54,13 +52,13 @@ use google\pubsub\v1\Subscription;
  *
  * ```
  * try {
- *     $subscriberApi = new SubscriberApi();
- *     $formattedName = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
- *     $formattedTopic = SubscriberApi::formatTopicName("[PROJECT]", "[TOPIC]");
- *     $response = $subscriberApi->createSubscription($formattedName, $formattedTopic);
+ *     $subscriberClient = new SubscriberClient();
+ *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+ *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
- *     if (isset($subscriberApi)) {
- *         $subscriberApi->close();
+ *     if (isset($subscriberClient)) {
+ *         $subscriberClient->close();
  *     }
  * }
  * ```
@@ -70,7 +68,7 @@ use google\pubsub\v1\Subscription;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class SubscriberApi
+class SubscriberClient
 {
     /**
      * The default address of the service.
@@ -273,7 +271,6 @@ class SubscriberApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -319,14 +316,14 @@ class SubscriberApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createIamPolicyStubFunction = function ($hostname, $opts) {
-            return new IAMPolicyClient($hostname, $opts);
+            return new \google\iam\v1\IAMPolicyClient($hostname, $opts);
         };
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
@@ -335,7 +332,7 @@ class SubscriberApi
             $createStubOptions
         );
         $createSubscriberStubFunction = function ($hostname, $opts) {
-            return new SubscriberClient($hostname, $opts);
+            return new \google\pubsub\v1\SubscriberClient($hostname, $opts);
         };
         $this->subscriberStub = $this->grpcCredentialsHelper->createStub(
             $createSubscriberStubFunction,
@@ -357,13 +354,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedName = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $formattedTopic = SubscriberApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $subscriberApi->createSubscription($formattedName, $formattedTopic);
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -404,7 +401,7 @@ class SubscriberApi
      *          system will eventually redeliver the message.
      *
      *          If this parameter is 0, a default value of 10 seconds is used.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -412,9 +409,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\Subscription
+     * @return \google\pubsub\v1\Subscription
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function createSubscription($name, $topic, $optionalArgs = [])
     {
@@ -450,12 +447,12 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $response = $subscriberApi->getSubscription($formattedSubscription);
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -464,7 +461,7 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -472,9 +469,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\Subscription
+     * @return \google\pubsub\v1\Subscription
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getSubscription($subscription, $optionalArgs = [])
     {
@@ -503,14 +500,14 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedProject = SubscriberApi::formatProjectName("[PROJECT]");
-     *     foreach ($subscriberApi->listSubscriptions($formattedProject) as $element) {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     foreach ($subscriberClient->listSubscriptions($formattedProject) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -528,7 +525,7 @@ class SubscriberApi
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -536,9 +533,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listSubscriptions($project, $optionalArgs = [])
     {
@@ -577,12 +574,12 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $subscriberApi->deleteSubscription($formattedSubscription);
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -591,7 +588,7 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -599,7 +596,7 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function deleteSubscription($subscription, $optionalArgs = [])
     {
@@ -632,14 +629,14 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
-     *     $subscriberApi->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+     *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -654,7 +651,7 @@ class SubscriberApi
      * @param array    $optionalArgs       {
      *                                     Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -662,7 +659,7 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
     {
@@ -701,13 +698,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $ackIds = [];
-     *     $subscriberApi->acknowledge($formattedSubscription, $ackIds);
+     *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -718,7 +715,7 @@ class SubscriberApi
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -726,7 +723,7 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function acknowledge($subscription, $ackIds, $optionalArgs = [])
     {
@@ -761,13 +758,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $maxMessages = 0;
-     *     $response = $subscriberApi->pull($formattedSubscription, $maxMessages);
+     *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -784,7 +781,7 @@ class SubscriberApi
      *          system is allowed to wait until at least one message is available rather
      *          than returning no messages. The client may cancel the request if it does
      *          not wish to wait any longer for the response.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -792,9 +789,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\PullResponse
+     * @return \google\pubsub\v1\PullResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function pull($subscription, $maxMessages, $optionalArgs = [])
     {
@@ -832,13 +829,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $pushConfig = new PushConfig();
-     *     $subscriberApi->modifyPushConfig($formattedSubscription, $pushConfig);
+     *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -853,7 +850,7 @@ class SubscriberApi
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -861,7 +858,7 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
     {
@@ -892,13 +889,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $policy = new Policy();
-     *     $response = $subscriberApi->setIamPolicy($formattedResource, $policy);
+     *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -913,7 +910,7 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -921,9 +918,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -955,12 +952,12 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $response = $subscriberApi->getIamPolicy($formattedResource);
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -971,7 +968,7 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -979,9 +976,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -1010,13 +1007,13 @@ class SubscriberApi
      * Sample code:
      * ```
      * try {
-     *     $subscriberApi = new SubscriberApi();
-     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $permissions = [];
-     *     $response = $subscriberApi->testIamPermissions($formattedResource, $permissions);
+     *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($subscriberApi)) {
-     *         $subscriberApi->close();
+     *     if (isset($subscriberClient)) {
+     *         $subscriberClient->close();
      *     }
      * }
      * ```
@@ -1025,13 +1022,13 @@ class SubscriberApi
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               wildcards (such as '{@*}' or 'storage.{@*}') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -1039,9 +1036,9 @@ class SubscriberApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\TestIamPermissionsResponse
+     * @return \google\iam\v1\TestIamPermissionsResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {

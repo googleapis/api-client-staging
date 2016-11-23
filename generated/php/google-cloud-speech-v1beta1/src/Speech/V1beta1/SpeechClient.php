@@ -30,7 +30,6 @@ use Google\GAX\GrpcCredentialsHelper;
 use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
 use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
-use google\cloud\speech\v1beta1\SpeechClient;
 use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
@@ -41,13 +40,13 @@ use google\cloud\speech\v1beta1\SyncRecognizeRequest;
  *
  * ```
  * try {
- *     $speechApi = new SpeechApi();
+ *     $speechClient = new SpeechClient();
  *     $config = new RecognitionConfig();
  *     $audio = new RecognitionAudio();
- *     $response = $speechApi->syncRecognize($config, $audio);
+ *     $response = $speechClient->syncRecognize($config, $audio);
  * } finally {
- *     if (isset($speechApi)) {
- *         $speechApi->close();
+ *     if (isset($speechClient)) {
+ *         $speechClient->close();
  *     }
  * }
  * ```
@@ -57,7 +56,7 @@ use google\cloud\speech\v1beta1\SyncRecognizeRequest;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class SpeechApi
+class SpeechClient
 {
     /**
      * The default address of the service.
@@ -138,7 +137,6 @@ class SpeechApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -175,14 +173,14 @@ class SpeechApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createSpeechStubFunction = function ($hostname, $opts) {
-            return new SpeechClient($hostname, $opts);
+            return new \google\cloud\speech\v1beta1\SpeechClient($hostname, $opts);
         };
         $this->speechStub = $this->grpcCredentialsHelper->createStub(
             $createSpeechStubFunction,
@@ -199,13 +197,13 @@ class SpeechApi
      * Sample code:
      * ```
      * try {
-     *     $speechApi = new SpeechApi();
+     *     $speechClient = new SpeechClient();
      *     $config = new RecognitionConfig();
      *     $audio = new RecognitionAudio();
-     *     $response = $speechApi->syncRecognize($config, $audio);
+     *     $response = $speechClient->syncRecognize($config, $audio);
      * } finally {
-     *     if (isset($speechApi)) {
-     *         $speechApi->close();
+     *     if (isset($speechClient)) {
+     *         $speechClient->close();
      *     }
      * }
      * ```
@@ -216,7 +214,7 @@ class SpeechApi
      * @param array             $optionalArgs {
      *                                        Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -224,9 +222,9 @@ class SpeechApi
      *          is not set.
      * }
      *
-     * @return google\cloud\speech\v1beta1\SyncRecognizeResponse
+     * @return \google\cloud\speech\v1beta1\SyncRecognizeResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function syncRecognize($config, $audio, $optionalArgs = [])
     {
@@ -259,13 +257,13 @@ class SpeechApi
      * Sample code:
      * ```
      * try {
-     *     $speechApi = new SpeechApi();
+     *     $speechClient = new SpeechClient();
      *     $config = new RecognitionConfig();
      *     $audio = new RecognitionAudio();
-     *     $response = $speechApi->asyncRecognize($config, $audio);
+     *     $response = $speechClient->asyncRecognize($config, $audio);
      * } finally {
-     *     if (isset($speechApi)) {
-     *         $speechApi->close();
+     *     if (isset($speechClient)) {
+     *         $speechClient->close();
      *     }
      * }
      * ```
@@ -276,7 +274,7 @@ class SpeechApi
      * @param array             $optionalArgs {
      *                                        Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -284,9 +282,9 @@ class SpeechApi
      *          is not set.
      * }
      *
-     * @return google\longrunning\Operation
+     * @return \google\longrunning\Operation
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function asyncRecognize($config, $audio, $optionalArgs = [])
     {

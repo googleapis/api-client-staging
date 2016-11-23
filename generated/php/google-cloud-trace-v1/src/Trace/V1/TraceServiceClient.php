@@ -32,7 +32,6 @@ use google\devtools\cloudtrace\v1\GetTraceRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest\ViewType;
 use google\devtools\cloudtrace\v1\PatchTracesRequest;
-use google\devtools\cloudtrace\v1\TraceServiceClient;
 use google\devtools\cloudtrace\v1\Traces;
 use google\protobuf\Timestamp;
 
@@ -48,13 +47,13 @@ use google\protobuf\Timestamp;
  *
  * ```
  * try {
- *     $traceServiceApi = new TraceServiceApi();
+ *     $traceServiceClient = new TraceServiceClient();
  *     $projectId = "";
  *     $traces = new Traces();
- *     $traceServiceApi->patchTraces($projectId, $traces);
+ *     $traceServiceClient->patchTraces($projectId, $traces);
  * } finally {
- *     if (isset($traceServiceApi)) {
- *         $traceServiceApi->close();
+ *     if (isset($traceServiceClient)) {
+ *         $traceServiceClient->close();
  *     }
  * }
  * ```
@@ -64,7 +63,7 @@ use google\protobuf\Timestamp;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class TraceServiceApi
+class TraceServiceClient
 {
     /**
      * The default address of the service.
@@ -155,7 +154,6 @@ class TraceServiceApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -193,14 +191,14 @@ class TraceServiceApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createTraceServiceStubFunction = function ($hostname, $opts) {
-            return new TraceServiceClient($hostname, $opts);
+            return new \google\devtools\cloudtrace\v1\TraceServiceClient($hostname, $opts);
         };
         $this->traceServiceStub = $this->grpcCredentialsHelper->createStub(
             $createTraceServiceStubFunction,
@@ -220,13 +218,13 @@ class TraceServiceApi
      * Sample code:
      * ```
      * try {
-     *     $traceServiceApi = new TraceServiceApi();
+     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = "";
      *     $traces = new Traces();
-     *     $traceServiceApi->patchTraces($projectId, $traces);
+     *     $traceServiceClient->patchTraces($projectId, $traces);
      * } finally {
-     *     if (isset($traceServiceApi)) {
-     *         $traceServiceApi->close();
+     *     if (isset($traceServiceClient)) {
+     *         $traceServiceClient->close();
      *     }
      * }
      * ```
@@ -236,7 +234,7 @@ class TraceServiceApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -244,7 +242,7 @@ class TraceServiceApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function patchTraces($projectId, $traces, $optionalArgs = [])
     {
@@ -274,13 +272,13 @@ class TraceServiceApi
      * Sample code:
      * ```
      * try {
-     *     $traceServiceApi = new TraceServiceApi();
+     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = "";
      *     $traceId = "";
-     *     $response = $traceServiceApi->getTrace($projectId, $traceId);
+     *     $response = $traceServiceClient->getTrace($projectId, $traceId);
      * } finally {
-     *     if (isset($traceServiceApi)) {
-     *         $traceServiceApi->close();
+     *     if (isset($traceServiceClient)) {
+     *         $traceServiceClient->close();
      *     }
      * }
      * ```
@@ -290,7 +288,7 @@ class TraceServiceApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -298,9 +296,9 @@ class TraceServiceApi
      *          is not set.
      * }
      *
-     * @return google\devtools\cloudtrace\v1\Trace
+     * @return \google\devtools\cloudtrace\v1\Trace
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getTrace($projectId, $traceId, $optionalArgs = [])
     {
@@ -330,14 +328,14 @@ class TraceServiceApi
      * Sample code:
      * ```
      * try {
-     *     $traceServiceApi = new TraceServiceApi();
+     *     $traceServiceClient = new TraceServiceClient();
      *     $projectId = "";
-     *     foreach ($traceServiceApi->listTraces($projectId) as $element) {
+     *     foreach ($traceServiceClient->listTraces($projectId) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($traceServiceApi)) {
-     *         $traceServiceApi->close();
+     *     if (isset($traceServiceClient)) {
+     *         $traceServiceClient->close();
      *     }
      * }
      * ```
@@ -370,17 +368,17 @@ class TraceServiceApi
      *          Field used to sort the returned traces. Optional.
      *          Can be one of the following:
      *
-     *          *   `trace_id`
-     *          *   `name` (`name` field of root span in the trace)
-     *          *   `duration` (difference between `end_time` and `start_time` fields of
+     *          {@*}   `trace_id`
+     *          {@*}   `name` (`name` field of root span in the trace)
+     *          {@*}   `duration` (difference between `end_time` and `start_time` fields of
      *               the root span)
-     *          *   `start` (`start_time` field of the root span)
+     *          {@*}   `start` (`start_time` field of the root span)
      *
      *          Descending order can be specified by appending `desc` to the sort field
      *          (for example, `name desc`).
      *
      *          Only one sort field is permitted.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -388,9 +386,9 @@ class TraceServiceApi
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listTraces($projectId, $optionalArgs = [])
     {
