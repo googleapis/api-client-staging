@@ -1,18 +1,18 @@
-Stackdriver Trace API for Node.js
+Google Trace API for Node.js
 =================================================
 
 @google-cloud/trace uses [Google API extensions][google-gax] to provide an
-easy-to-use client library for the [Stackdriver Trace API][] (v1) defined in the [googleapis][] git repository
+easy-to-use client library for the [Google Trace API][] (v1) defined in the [googleapis][] git repository
 
 
-[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/devtools/cloudtrace/v1
+[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/cloud/trace/v1
 [google-gax]: https://github.com/googleapis/gax-nodejs
-[Stackdriver Trace API]: https://developers.google.com/apis-explorer/#p/cloudtrace/v1/
+[Google Trace API]: https://developers.google.com/apis-explorer/#p/trace/v1/
 
 Getting started
 ---------------
 
-@google-cloud/trace will allow you to connect to the [Stackdriver Trace API][] and access all its methods.
+@google-cloud/trace will allow you to connect to the [Google Trace API][] and access all its methods.
 
 In order to do so, you need to set up authentication as well as install the library locally.
 

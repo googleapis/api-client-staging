@@ -37,7 +37,6 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-
 var PAGE_DESCRIPTORS = {
   listTraces: new gax.PageDescriptor(
       'pageToken',
@@ -64,17 +63,17 @@ var ALL_SCOPES = [
  *
  * This will be created through a builder function which can be obtained by the module.
  * See the following example of how to initialize the module and how to access to the builder.
- * @see {@link traceServiceApi}
+ * @see {@link traceServiceClient}
  *
  * @example
- * var cloudtraceV1 = require('@google-cloud/trace').v1({
+ * var traceV1 = require('@google-cloud/trace').v1({
  *   // optional auth parameters.
  * });
- * var api = cloudtraceV1.traceServiceApi();
+ * var client = traceV1.traceServiceClient();
  *
  * @class
  */
-function TraceServiceApi(gaxGrpc, grpcClients, opts) {
+function TraceServiceClient(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -93,8 +92,6 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.cloudtrace.v1.TraceService',
       configData,
       clientConfig,
-      PAGE_DESCRIPTORS,
-      null,
       {'x-goog-api-client': googleApiClient});
 
   var traceServiceStub = gaxGrpc.createStub(
@@ -112,7 +109,8 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
       traceServiceStub.then(function(traceServiceStub) {
         return traceServiceStub[methodName].bind(traceServiceStub);
       }),
-      defaults[methodName]);
+      defaults[methodName],
+      PAGE_DESCRIPTORS[methodName]);
   }.bind(this));
 }
 
@@ -125,9 +123,11 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
  * and any new fields provided are merged with the existing trace data. If the
  * ID does not match, a new trace is created.
  *
- * @param {string} projectId
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.projectId
  *   ID of the Cloud project where the trace data is stored.
- * @param {Object} traces
+ * @param {Object} request.traces
  *   The body of the message.
  *
  *   This object should have the same structure as [Traces]{@link Traces}
@@ -136,25 +136,23 @@ function TraceServiceApi(gaxGrpc, grpcClients, opts) {
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
  * @param {function(?Error)=} callback
  *   The function which will be called with the result of the API call.
- * @returns {gax.EventEmitter} - the event emitter to handle the call
- *   status.
+ * @return {Promise} - The promise which resolves when API call finishes.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = cloudtraceV1.traceServiceApi();
+ * var client = traceV1.traceServiceClient();
  * var projectId = '';
  * var traces = {};
- * api.patchTraces(projectId, traces, function(err) {
- *     if (err) {
- *         console.error(err);
- *     }
+ * var request = {
+ *     projectId: projectId,
+ *     traces: traces
+ * };
+ * client.patchTraces(request).catch(function(err) {
+ *     console.error(err);
  * });
  */
-TraceServiceApi.prototype.patchTraces = function(
-    projectId,
-    traces,
-    options,
-    callback) {
+TraceServiceClient.prototype.patchTraces = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -162,19 +160,18 @@ TraceServiceApi.prototype.patchTraces = function(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    projectId: projectId,
-    traces: traces
-  };
-  return this._patchTraces(req, options, callback);
+
+  return this._patchTraces(request, options, callback);
 };
 
 /**
  * Gets a single trace by its ID.
  *
- * @param {string} projectId
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.projectId
  *   ID of the Cloud project where the trace data is stored.
- * @param {string} traceId
+ * @param {string} request.traceId
  *   ID of the trace to return.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
@@ -182,28 +179,28 @@ TraceServiceApi.prototype.patchTraces = function(
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [Trace]{@link Trace}
- * @returns {gax.EventEmitter} - the event emitter to handle the call
- *   status.
+ *   The second parameter to the callback is an object representing [Trace]{@link Trace}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Trace]{@link Trace}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = cloudtraceV1.traceServiceApi();
+ * var client = traceV1.traceServiceClient();
  * var projectId = '';
  * var traceId = '';
- * api.getTrace(projectId, traceId, function(err, response) {
- *     if (err) {
- *         console.error(err);
- *         return;
- *     }
+ * var request = {
+ *     projectId: projectId,
+ *     traceId: traceId
+ * };
+ * client.getTrace(request).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
  * });
  */
-TraceServiceApi.prototype.getTrace = function(
-    projectId,
-    traceId,
-    options,
-    callback) {
+TraceServiceClient.prototype.getTrace = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -211,45 +208,39 @@ TraceServiceApi.prototype.getTrace = function(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    projectId: projectId,
-    traceId: traceId
-  };
-  return this._getTrace(req, options, callback);
+
+  return this._getTrace(request, options, callback);
 };
 
 /**
  * Returns of a list of traces that match the specified filter conditions.
  *
- * @param {string} projectId
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.projectId
  *   ID of the Cloud project where the trace data is stored.
- * @param {Object=} options
- *   Optional parameters. You can override the default settings for this call, e.g, timeout,
- *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
- *
- *   In addition, options may contain the following optional parameters.
- * @param {number=} options.view
+ * @param {number=} request.view
  *   Type of data returned for traces in the list. Optional. Default is
  *   `MINIMAL`.
  *
  *   The number should be among the values of [ViewType]{@link ViewType}
- * @param {number=} options.pageSize
+ * @param {number=} request.pageSize
  *   Maximum number of traces to return. If not specified or <= 0, the
  *   implementation selects a reasonable value.  The implementation may
  *   return fewer traces than the requested page size. Optional.
- * @param {Object=} options.startTime
+ * @param {Object=} request.startTime
  *   End of the time interval (inclusive) during which the trace data was
  *   collected from the application.
  *
  *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
- * @param {Object=} options.endTime
+ * @param {Object=} request.endTime
  *   Start of the time interval (inclusive) during which the trace data was
  *   collected from the application.
  *
  *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
- * @param {string=} options.filter
+ * @param {string=} request.filter
  *   An optional filter for the request.
- * @param {string=} options.orderBy
+ * @param {string=} request.orderBy
  *   Field used to sort the returned traces. Optional.
  *   Can be one of the following:
  *
@@ -263,46 +254,67 @@ TraceServiceApi.prototype.getTrace = function(
  *   (for example, `name desc`).
  *
  *   Only one sort field is permitted.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error, ?Array, ?Object, ?Object)=} callback
+ *   The function which will be called with the result of the API call.
  *
- * @param {function(?Error, ?Object, ?string)=} callback
- *   When specified, the results are not streamed but this callback
- *   will be called with the response object representing [ListTracesResponse]{@link ListTracesResponse}.
- *   The third item will be set if the response contains the token for the further results
- *   and can be reused to `pageToken` field in the options in the next request.
- * @returns {Stream|gax.EventEmitter}
- *   An object stream which emits an object representing
- *   [Trace]{@link Trace} on 'data' event.
- *   When the callback is specified or streaming is suppressed through options,
- *   it will return an event emitter to handle the call status and the callback
- *   will be called with the response object.
+ *   The second parameter to the callback is Array of [Trace]{@link Trace}.
+ *
+ *   When autoPaginate: false is specified through options, it contains the result
+ *   in a single response. If the response indicates the next page exists, the third
+ *   parameter is set to be used for the next request object. The fourth parameter keeps
+ *   the raw response object of an object representing [ListTracesResponse]{@link ListTracesResponse}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Trace]{@link Trace}.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Trace]{@link Trace} in a single response.
+ *   The second element is the next request object if the response
+ *   indicates the next page exists, or null. The third element is
+ *   an object representing [ListTracesResponse]{@link ListTracesResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = cloudtraceV1.traceServiceApi();
+ * var client = traceV1.traceServiceClient();
  * var projectId = '';
  * // Iterate over all elements.
- * api.listTraces(projectId).on('data', function(element) {
- *     // doThingsWith(element)
+ * client.listTraces({projectId: projectId}).then(function(responses) {
+ *     var resources = responses[0];
+ *     for (var i = 0; i < resources.length; ++i) {
+ *         // doThingsWith(resources[i])
+ *     }
+ * }).catch(function(err) {
+ *     console.error(err);
  * });
  *
- * // Or obtain the paged response through the callback.
- * function callback(err, response, nextPageToken) {
- *     if (err) {
- *         console.error(err);
- *         return;
+ * // Or obtain the paged response.
+ * var options = {autoPaginate: false};
+ * function callback(responses) {
+ *     // The actual resources in a response.
+ *     var resources = responses[0];
+ *     // The next request if the response shows there's more responses.
+ *     var nextRequest = responses[1];
+ *     // The actual response object, if necessary.
+ *     // var rawResponse = responses[2];
+ *     for (var i = 0; i < resources.length; ++i) {
+ *         // doThingsWith(resources[i]);
  *     }
- *     // doThingsWith(response)
- *     if (nextPageToken) {
- *         // fetch the next page.
- *         api.listTraces(projectId, {pageToken: nextPageToken}, callback);
+ *     if (nextRequest) {
+ *         // Fetch the next page.
+ *         return client.listTraces(nextRequest, options).then(callback);
  *     }
  * }
- * api.listTraces(projectId, {flattenPages: false}, callback);
+ * client.listTraces({projectId: projectId}, options)
+ *     .then(callback)
+ *     .catch(function(err) {
+ *         console.error(err);
+ *     });
  */
-TraceServiceApi.prototype.listTraces = function(
-    projectId,
-    options,
-    callback) {
+TraceServiceClient.prototype.listTraces = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -310,33 +322,89 @@ TraceServiceApi.prototype.listTraces = function(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    projectId: projectId
-  };
-  if ('view' in options) {
-    req.view = options.view;
-  }
-  if ('pageSize' in options) {
-    req.pageSize = options.pageSize;
-  }
-  if ('startTime' in options) {
-    req.startTime = options.startTime;
-  }
-  if ('endTime' in options) {
-    req.endTime = options.endTime;
-  }
-  if ('filter' in options) {
-    req.filter = options.filter;
-  }
-  if ('orderBy' in options) {
-    req.orderBy = options.orderBy;
-  }
-  return this._listTraces(req, options, callback);
+
+  return this._listTraces(request, options, callback);
 };
 
-function TraceServiceApiBuilder(gaxGrpc) {
-  if (!(this instanceof TraceServiceApiBuilder)) {
-    return new TraceServiceApiBuilder(gaxGrpc);
+/**
+ * Equivalent to {@link listTraces}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listTraces} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.projectId
+ *   ID of the Cloud project where the trace data is stored.
+ * @param {number=} request.view
+ *   Type of data returned for traces in the list. Optional. Default is
+ *   `MINIMAL`.
+ *
+ *   The number should be among the values of [ViewType]{@link ViewType}
+ * @param {number=} request.pageSize
+ *   Maximum number of traces to return. If not specified or <= 0, the
+ *   implementation selects a reasonable value.  The implementation may
+ *   return fewer traces than the requested page size. Optional.
+ * @param {Object=} request.startTime
+ *   End of the time interval (inclusive) during which the trace data was
+ *   collected from the application.
+ *
+ *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
+ * @param {Object=} request.endTime
+ *   Start of the time interval (inclusive) during which the trace data was
+ *   collected from the application.
+ *
+ *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
+ * @param {string=} request.filter
+ *   An optional filter for the request.
+ * @param {string=} request.orderBy
+ *   Field used to sort the returned traces. Optional.
+ *   Can be one of the following:
+ *
+ *   *   `trace_id`
+ *   *   `name` (`name` field of root span in the trace)
+ *   *   `duration` (difference between `end_time` and `start_time` fields of
+ *        the root span)
+ *   *   `start` (`start_time` field of the root span)
+ *
+ *   Descending order can be specified by appending `desc` to the sort field
+ *   (for example, `name desc`).
+ *
+ *   Only one sort field is permitted.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @return {Stream}
+ *   An object stream which emits an object representing [Trace]{@link Trace} on 'data' event.
+ *
+ * @example
+ *
+ * var client = traceV1.traceServiceClient();
+ * var projectId = '';
+ * client.listTracesStream({projectId: projectId}).on('data', function(element) {
+ *     // doThingsWith(element)
+ * }).on('error', function(err) {
+ *     console.error(err);
+ * });
+ */
+TraceServiceClient.prototype.listTracesStream = function(request, options) {
+  if (options === undefined) {
+    options = {};
+  }
+
+  return PAGE_DESCRIPTORS.listTraces.createStream(this._listTraces, request, options);
+};
+
+function TraceServiceClientBuilder(gaxGrpc) {
+  if (!(this instanceof TraceServiceClientBuilder)) {
+    return new TraceServiceClientBuilder(gaxGrpc);
   }
 
   var traceServiceClient = gaxGrpc.load([{
@@ -350,7 +418,7 @@ function TraceServiceApiBuilder(gaxGrpc) {
   };
 
   /**
-   * Build a new instance of {@link TraceServiceApi}.
+   * Build a new instance of {@link TraceServiceClient}.
    *
    * @param {Object=} opts - The optional parameters.
    * @param {String=} opts.servicePath
@@ -367,11 +435,11 @@ function TraceServiceApiBuilder(gaxGrpc) {
    * @param {String=} opts.appVersion
    *   The version of the calling service.
    */
-  this.traceServiceApi = function(opts) {
-    return new TraceServiceApi(gaxGrpc, grpcClients, opts);
+  this.traceServiceClient = function(opts) {
+    return new TraceServiceClient(gaxGrpc, grpcClients, opts);
   };
-  extend(this.traceServiceApi, TraceServiceApi);
+  extend(this.traceServiceClient, TraceServiceClient);
 }
-module.exports = TraceServiceApiBuilder;
+module.exports = TraceServiceClientBuilder;
 module.exports.SERVICE_ADDRESS = SERVICE_ADDRESS;
 module.exports.ALL_SCOPES = ALL_SCOPES;
