@@ -31,6 +31,7 @@ use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\devtools\clouderrorreporting\v1beta1\DeleteEventsRequest;
 use google\devtools\clouderrorreporting\v1beta1\ErrorGroupOrder;
+use google\devtools\clouderrorreporting\v1beta1\ErrorStatsServiceClient as ErrorStatsServiceGrpcClient;
 use google\devtools\clouderrorreporting\v1beta1\ListEventsRequest;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsRequest;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
@@ -239,7 +240,7 @@ class ErrorStatsServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createErrorStatsServiceStubFunction = function ($hostname, $opts) {
-            return new \google\devtools\clouderrorreporting\v1beta1\ErrorStatsServiceClient($hostname, $opts);
+            return new ErrorStatsServiceGrpcClient($hostname, $opts);
         };
         $this->errorStatsServiceStub = $this->grpcCredentialsHelper->createStub(
             $createErrorStatsServiceStubFunction,

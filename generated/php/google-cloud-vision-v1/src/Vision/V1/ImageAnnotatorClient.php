@@ -29,6 +29,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use google\cloud\vision\v1\AnnotateImageRequest;
 use google\cloud\vision\v1\BatchAnnotateImagesRequest;
+use google\cloud\vision\v1\ImageAnnotatorClient as ImageAnnotatorGrpcClient;
 
 /**
  * Service Description: Service that performs Google Cloud Vision API detection tasks, such as face,
@@ -178,7 +179,7 @@ class ImageAnnotatorClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createImageAnnotatorStubFunction = function ($hostname, $opts) {
-            return new \google\cloud\vision\v1\ImageAnnotatorClient($hostname, $opts);
+            return new ImageAnnotatorGrpcClient($hostname, $opts);
         };
         $this->imageAnnotatorStub = $this->grpcCredentialsHelper->createStub(
             $createImageAnnotatorStubFunction,

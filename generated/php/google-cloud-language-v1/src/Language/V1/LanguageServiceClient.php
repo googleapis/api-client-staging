@@ -34,6 +34,7 @@ use google\cloud\language\v1\AnnotateTextRequest;
 use google\cloud\language\v1\AnnotateTextRequest\Features;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
+use google\cloud\language\v1\LanguageServiceClient as LanguageServiceGrpcClient;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -185,7 +186,7 @@ class LanguageServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createLanguageServiceStubFunction = function ($hostname, $opts) {
-            return new \google\cloud\language\v1\LanguageServiceClient($hostname, $opts);
+            return new LanguageServiceGrpcClient($hostname, $opts);
         };
         $this->languageServiceStub = $this->grpcCredentialsHelper->createStub(
             $createLanguageServiceStubFunction,

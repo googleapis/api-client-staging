@@ -29,6 +29,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
+use google\devtools\clouderrorreporting\v1beta1\ErrorGroupServiceClient as ErrorGroupServiceGrpcClient;
 use google\devtools\clouderrorreporting\v1beta1\GetGroupRequest;
 use google\devtools\clouderrorreporting\v1beta1\UpdateGroupRequest;
 
@@ -220,7 +221,7 @@ class ErrorGroupServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createErrorGroupServiceStubFunction = function ($hostname, $opts) {
-            return new \google\devtools\clouderrorreporting\v1beta1\ErrorGroupServiceClient($hostname, $opts);
+            return new ErrorGroupServiceGrpcClient($hostname, $opts);
         };
         $this->errorGroupServiceStub = $this->grpcCredentialsHelper->createStub(
             $createErrorGroupServiceStubFunction,

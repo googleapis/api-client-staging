@@ -40,6 +40,7 @@ use google\monitoring\v3\ListMetricDescriptorsRequest;
 use google\monitoring\v3\ListMonitoredResourceDescriptorsRequest;
 use google\monitoring\v3\ListTimeSeriesRequest;
 use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
+use google\monitoring\v3\MetricServiceClient as MetricServiceGrpcClient;
 use google\monitoring\v3\TimeInterval;
 use google\monitoring\v3\TimeSeries;
 
@@ -338,7 +339,7 @@ class MetricServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createMetricServiceStubFunction = function ($hostname, $opts) {
-            return new \google\monitoring\v3\MetricServiceClient($hostname, $opts);
+            return new MetricServiceGrpcClient($hostname, $opts);
         };
         $this->metricServiceStub = $this->grpcCredentialsHelper->createStub(
             $createMetricServiceStubFunction,
