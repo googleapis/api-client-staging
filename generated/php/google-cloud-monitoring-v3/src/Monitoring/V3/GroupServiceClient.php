@@ -33,6 +33,7 @@ use google\monitoring\v3\CreateGroupRequest;
 use google\monitoring\v3\DeleteGroupRequest;
 use google\monitoring\v3\GetGroupRequest;
 use google\monitoring\v3\Group;
+use google\monitoring\v3\GroupServiceClient as GroupServiceGrpcClient;
 use google\monitoring\v3\ListGroupMembersRequest;
 use google\monitoring\v3\ListGroupsRequest;
 use google\monitoring\v3\TimeInterval;
@@ -293,7 +294,7 @@ class GroupServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createGroupServiceStubFunction = function ($hostname, $opts) {
-            return new \google\monitoring\v3\GroupServiceClient($hostname, $opts);
+            return new GroupServiceGrpcClient($hostname, $opts);
         };
         $this->groupServiceStub = $this->grpcCredentialsHelper->createStub(
             $createGroupServiceStubFunction,

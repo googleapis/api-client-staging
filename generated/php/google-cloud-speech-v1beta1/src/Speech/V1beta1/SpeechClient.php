@@ -30,6 +30,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
 use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
+use google\cloud\speech\v1beta1\SpeechClient as SpeechGrpcClient;
 use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
@@ -180,7 +181,7 @@ class SpeechClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createSpeechStubFunction = function ($hostname, $opts) {
-            return new \google\cloud\speech\v1beta1\SpeechClient($hostname, $opts);
+            return new SpeechGrpcClient($hostname, $opts);
         };
         $this->speechStub = $this->grpcCredentialsHelper->createStub(
             $createSpeechStubFunction,

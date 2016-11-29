@@ -32,6 +32,7 @@ use google\devtools\cloudtrace\v1\GetTraceRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest\ViewType;
 use google\devtools\cloudtrace\v1\PatchTracesRequest;
+use google\devtools\cloudtrace\v1\TraceServiceClient as TraceServiceGrpcClient;
 use google\devtools\cloudtrace\v1\Traces;
 use google\protobuf\Timestamp;
 
@@ -198,7 +199,7 @@ class TraceServiceClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createTraceServiceStubFunction = function ($hostname, $opts) {
-            return new \google\devtools\cloudtrace\v1\TraceServiceClient($hostname, $opts);
+            return new TraceServiceGrpcClient($hostname, $opts);
         };
         $this->traceServiceStub = $this->grpcCredentialsHelper->createStub(
             $createTraceServiceStubFunction,
@@ -368,11 +369,11 @@ class TraceServiceClient
      *          Field used to sort the returned traces. Optional.
      *          Can be one of the following:
      *
-     *          {@*}   `trace_id`
-     *          {@*}   `name` (`name` field of root span in the trace)
-     *          {@*}   `duration` (difference between `end_time` and `start_time` fields of
+     *          &#42;   `trace_id`
+     *          &#42;   `name` (`name` field of root span in the trace)
+     *          &#42;   `duration` (difference between `end_time` and `start_time` fields of
      *               the root span)
-     *          {@*}   `start` (`start_time` field of the root span)
+     *          &#42;   `start` (`start_time` field of the root span)
      *
      *          Descending order can be specified by appending `desc` to the sort field
      *          (for example, `name desc`).

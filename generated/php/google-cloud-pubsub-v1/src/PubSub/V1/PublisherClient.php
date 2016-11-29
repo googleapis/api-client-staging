@@ -30,6 +30,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
+use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -38,6 +39,7 @@ use google\pubsub\v1\GetTopicRequest;
 use google\pubsub\v1\ListTopicSubscriptionsRequest;
 use google\pubsub\v1\ListTopicsRequest;
 use google\pubsub\v1\PublishRequest;
+use google\pubsub\v1\PublisherClient as PublisherGrpcClient;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
 
@@ -286,7 +288,7 @@ class PublisherClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createIamPolicyStubFunction = function ($hostname, $opts) {
-            return new \google\iam\v1\IAMPolicyClient($hostname, $opts);
+            return new IAMPolicyGrpcClient($hostname, $opts);
         };
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
@@ -295,7 +297,7 @@ class PublisherClient
             $createStubOptions
         );
         $createPublisherStubFunction = function ($hostname, $opts) {
-            return new \google\pubsub\v1\PublisherClient($hostname, $opts);
+            return new PublisherGrpcClient($hostname, $opts);
         };
         $this->publisherStub = $this->grpcCredentialsHelper->createStub(
             $createPublisherStubFunction,
@@ -814,7 +816,7 @@ class PublisherClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '{@*}' or 'storage.{@*}') are not allowed. For more
+     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
