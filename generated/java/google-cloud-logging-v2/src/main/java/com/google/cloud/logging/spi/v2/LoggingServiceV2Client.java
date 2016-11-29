@@ -28,6 +28,7 @@ import com.google.logging.v2.ListLogEntriesResponse;
 import com.google.logging.v2.ListMonitoredResourceDescriptorsRequest;
 import com.google.logging.v2.ListMonitoredResourceDescriptorsResponse;
 import com.google.logging.v2.LogEntry;
+import com.google.logging.v2.LogNameOneof;
 import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import com.google.protobuf.Empty;
@@ -51,8 +52,8 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
- *   String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
- *   loggingServiceV2Client.deleteLog(formattedLogName);
+ *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+ *   loggingServiceV2Client.deleteLog(logName);
  * }
  * </code>
  * </pre>
@@ -121,12 +122,23 @@ public class LoggingServiceV2Client implements AutoCloseable {
   private static final PathTemplate PARENT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
+  private static final PathTemplate ORGANIZATION_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}");
+
   private static final PathTemplate LOG_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/logs/{log}");
+
+  private static final PathTemplate ORGANIZATION_LOG_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/logs/{log}");
 
   /** Formats a string containing the fully-qualified path to represent a parent resource. */
   public static final String formatParentName(String project) {
     return PARENT_PATH_TEMPLATE.instantiate("project", project);
+  }
+
+  /** Formats a string containing the fully-qualified path to represent a organization resource. */
+  public static final String formatOrganizationName(String organization) {
+    return ORGANIZATION_PATH_TEMPLATE.instantiate("organization", organization);
   }
 
   /** Formats a string containing the fully-qualified path to represent a log resource. */
@@ -136,9 +148,26 @@ public class LoggingServiceV2Client implements AutoCloseable {
         "log", log);
   }
 
+  /**
+   * Formats a string containing the fully-qualified path to represent a organization_log resource.
+   */
+  public static final String formatOrganizationLogName(String organization, String log) {
+    return ORGANIZATION_LOG_PATH_TEMPLATE.instantiate(
+        "organization", organization,
+        "log", log);
+  }
+
   /** Parses the project from the given fully-qualified path which represents a parent resource. */
   public static final String parseProjectFromParentName(String parentName) {
     return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
+  }
+
+  /**
+   * Parses the organization from the given fully-qualified path which represents a organization
+   * resource.
+   */
+  public static final String parseOrganizationFromOrganizationName(String organizationName) {
+    return ORGANIZATION_PATH_TEMPLATE.parse(organizationName).get("organization");
   }
 
   /** Parses the project from the given fully-qualified path which represents a log resource. */
@@ -149,6 +178,22 @@ public class LoggingServiceV2Client implements AutoCloseable {
   /** Parses the log from the given fully-qualified path which represents a log resource. */
   public static final String parseLogFromLogName(String logName) {
     return LOG_PATH_TEMPLATE.parse(logName).get("log");
+  }
+
+  /**
+   * Parses the organization from the given fully-qualified path which represents a organization_log
+   * resource.
+   */
+  public static final String parseOrganizationFromOrganizationLogName(String organizationLogName) {
+    return ORGANIZATION_LOG_PATH_TEMPLATE.parse(organizationLogName).get("organization");
+  }
+
+  /**
+   * Parses the log from the given fully-qualified path which represents a organization_log
+   * resource.
+   */
+  public static final String parseLogFromOrganizationLogName(String organizationLogName) {
+    return ORGANIZATION_LOG_PATH_TEMPLATE.parse(organizationLogName).get("log");
   }
 
   /** Constructs an instance of LoggingServiceV2Client with default settings. */
@@ -224,8 +269,8 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
-   *   loggingServiceV2Client.deleteLog(formattedLogName);
+   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+   *   loggingServiceV2Client.deleteLog(logName);
    * }
    * </code></pre>
    *
@@ -236,9 +281,10 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *     information about log names, see [LogEntry][google.logging.v2.LogEntry].
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final void deleteLog(String logName) {
+  public final void deleteLog(LogNameOneof logName) {
 
-    DeleteLogRequest request = DeleteLogRequest.newBuilder().setLogName(logName).build();
+    DeleteLogRequest request =
+        DeleteLogRequest.newBuilder().setLogNameWithLogNameOneof(logName).build();
     deleteLog(request);
   }
 
@@ -250,9 +296,9 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
+   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
    *   DeleteLogRequest request = DeleteLogRequest.newBuilder()
-   *     .setLogName(formattedLogName)
+   *     .setLogNameWithLogNameOneof(logName)
    *     .build();
    *   loggingServiceV2Client.deleteLog(request);
    * }
@@ -273,9 +319,9 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
+   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
    *   DeleteLogRequest request = DeleteLogRequest.newBuilder()
-   *     .setLogName(formattedLogName)
+   *     .setLogNameWithLogNameOneof(logName)
    *     .build();
    *   ListenableFuture&lt;Void&gt; future = loggingServiceV2Client.deleteLogCallable().futureCall(request);
    *   // Do something
@@ -295,11 +341,11 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
+   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
    *   MonitoredResource resource = MonitoredResource.newBuilder().build();
    *   Map&lt;String, String&gt; labels = new HashMap&lt;&gt;();
    *   List&lt;LogEntry&gt; entries = new ArrayList&lt;&gt;();
-   *   WriteLogEntriesResponse response = loggingServiceV2Client.writeLogEntries(formattedLogName, resource, labels, entries);
+   *   WriteLogEntriesResponse response = loggingServiceV2Client.writeLogEntries(logName, resource, labels, entries);
    * }
    * </code></pre>
    *
@@ -327,14 +373,14 @@ public class LoggingServiceV2Client implements AutoCloseable {
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final WriteLogEntriesResponse writeLogEntries(
-      String logName,
+      LogNameOneof logName,
       MonitoredResource resource,
       Map<String, String> labels,
       List<LogEntry> entries) {
 
     WriteLogEntriesRequest request =
         WriteLogEntriesRequest.newBuilder()
-            .setLogName(logName)
+            .setLogNameWithLogNameOneof(logName)
             .setResource(resource)
             .putAllLabels(labels)
             .addAllEntries(entries)

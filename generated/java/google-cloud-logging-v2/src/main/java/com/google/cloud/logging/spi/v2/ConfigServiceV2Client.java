@@ -26,6 +26,8 @@ import com.google.logging.v2.GetSinkRequest;
 import com.google.logging.v2.ListSinksRequest;
 import com.google.logging.v2.ListSinksResponse;
 import com.google.logging.v2.LogSink;
+import com.google.logging.v2.ParentNameOneof;
+import com.google.logging.v2.SinkNameOneof;
 import com.google.logging.v2.UpdateSinkRequest;
 import com.google.protobuf.Empty;
 import com.google.protobuf.ExperimentalApi;
@@ -48,8 +50,8 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
- *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
- *   LogSink response = configServiceV2Client.getSink(formattedSinkName);
+ *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+ *   LogSink response = configServiceV2Client.getSink(sinkName);
  * }
  * </code>
  * </pre>
@@ -112,12 +114,23 @@ public class ConfigServiceV2Client implements AutoCloseable {
   private static final PathTemplate PARENT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
+  private static final PathTemplate ORGANIZATION_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}");
+
   private static final PathTemplate SINK_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/sinks/{sink}");
+
+  private static final PathTemplate ORGANIZATION_SINK_PATH_TEMPLATE =
+      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/sinks/{sink}");
 
   /** Formats a string containing the fully-qualified path to represent a parent resource. */
   public static final String formatParentName(String project) {
     return PARENT_PATH_TEMPLATE.instantiate("project", project);
+  }
+
+  /** Formats a string containing the fully-qualified path to represent a organization resource. */
+  public static final String formatOrganizationName(String organization) {
+    return ORGANIZATION_PATH_TEMPLATE.instantiate("organization", organization);
   }
 
   /** Formats a string containing the fully-qualified path to represent a sink resource. */
@@ -127,9 +140,26 @@ public class ConfigServiceV2Client implements AutoCloseable {
         "sink", sink);
   }
 
+  /**
+   * Formats a string containing the fully-qualified path to represent a organization_sink resource.
+   */
+  public static final String formatOrganizationSinkName(String organization, String sink) {
+    return ORGANIZATION_SINK_PATH_TEMPLATE.instantiate(
+        "organization", organization,
+        "sink", sink);
+  }
+
   /** Parses the project from the given fully-qualified path which represents a parent resource. */
   public static final String parseProjectFromParentName(String parentName) {
     return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
+  }
+
+  /**
+   * Parses the organization from the given fully-qualified path which represents a organization
+   * resource.
+   */
+  public static final String parseOrganizationFromOrganizationName(String organizationName) {
+    return ORGANIZATION_PATH_TEMPLATE.parse(organizationName).get("organization");
   }
 
   /** Parses the project from the given fully-qualified path which represents a sink resource. */
@@ -140,6 +170,23 @@ public class ConfigServiceV2Client implements AutoCloseable {
   /** Parses the sink from the given fully-qualified path which represents a sink resource. */
   public static final String parseSinkFromSinkName(String sinkName) {
     return SINK_PATH_TEMPLATE.parse(sinkName).get("sink");
+  }
+
+  /**
+   * Parses the organization from the given fully-qualified path which represents a
+   * organization_sink resource.
+   */
+  public static final String parseOrganizationFromOrganizationSinkName(
+      String organizationSinkName) {
+    return ORGANIZATION_SINK_PATH_TEMPLATE.parse(organizationSinkName).get("organization");
+  }
+
+  /**
+   * Parses the sink from the given fully-qualified path which represents a organization_sink
+   * resource.
+   */
+  public static final String parseSinkFromOrganizationSinkName(String organizationSinkName) {
+    return ORGANIZATION_SINK_PATH_TEMPLATE.parse(organizationSinkName).get("sink");
   }
 
   /** Constructs an instance of ConfigServiceV2Client with default settings. */
@@ -211,8 +258,8 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
-   *   for (LogSink element : configServiceV2Client.listSinks(formattedParent).iterateAllElements()) {
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   for (LogSink element : configServiceV2Client.listSinks(parent).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -222,8 +269,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *     <p>"projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final ListSinksPagedResponse listSinks(String parent) {
-    ListSinksRequest request = ListSinksRequest.newBuilder().setParent(parent).build();
+  public final ListSinksPagedResponse listSinks(ParentNameOneof parent) {
+    ListSinksRequest request =
+        ListSinksRequest.newBuilder().setParentWithParentNameOneof(parent).build();
     return listSinks(request);
   }
 
@@ -235,9 +283,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
-   *     .setParent(formattedParent)
+   *     .setParentWithParentNameOneof(parent)
    *     .build();
    *   for (LogSink element : configServiceV2Client.listSinks(request).iterateAllElements()) {
    *     // doThingsWith(element);
@@ -260,9 +308,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
-   *     .setParent(formattedParent)
+   *     .setParentWithParentNameOneof(parent)
    *     .build();
    *   ListenableFuture&lt;ListSinksPagedResponse&gt; future = configServiceV2Client.listSinksPagedCallable().futureCall(request);
    *   // Do something
@@ -284,9 +332,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
-   *     .setParent(formattedParent)
+   *     .setParentWithParentNameOneof(parent)
    *     .build();
    *   while (true) {
    *     ListSinksResponse response = configServiceV2Client.listSinksCallable().call(request);
@@ -315,8 +363,8 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
-   *   LogSink response = configServiceV2Client.getSink(formattedSinkName);
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   LogSink response = configServiceV2Client.getSink(sinkName);
    * }
    * </code></pre>
    *
@@ -325,9 +373,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final LogSink getSink(String sinkName) {
+  public final LogSink getSink(SinkNameOneof sinkName) {
 
-    GetSinkRequest request = GetSinkRequest.newBuilder().setSinkName(sinkName).build();
+    GetSinkRequest request =
+        GetSinkRequest.newBuilder().setSinkNameWithSinkNameOneof(sinkName).build();
     return getSink(request);
   }
 
@@ -339,9 +388,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
    *   LogSink response = configServiceV2Client.getSink(request);
    * }
@@ -362,9 +411,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
    *   ListenableFuture&lt;LogSink&gt; future = configServiceV2Client.getSinkCallable().futureCall(request);
    *   // Do something
@@ -384,9 +433,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
-   *   LogSink response = configServiceV2Client.createSink(formattedParent, sink);
+   *   LogSink response = configServiceV2Client.createSink(parent, sink);
    * }
    * </code></pre>
    *
@@ -396,10 +445,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *     already in use.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final LogSink createSink(String parent, LogSink sink) {
+  public final LogSink createSink(ParentNameOneof parent, LogSink sink) {
 
     CreateSinkRequest request =
-        CreateSinkRequest.newBuilder().setParent(parent).setSink(sink).build();
+        CreateSinkRequest.newBuilder().setParentWithParentNameOneof(parent).setSink(sink).build();
     return createSink(request);
   }
 
@@ -411,10 +460,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
-   *     .setParent(formattedParent)
+   *     .setParentWithParentNameOneof(parent)
    *     .setSink(sink)
    *     .build();
    *   LogSink response = configServiceV2Client.createSink(request);
@@ -436,10 +485,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedParent = ConfigServiceV2Client.formatParentName("[PROJECT]");
+   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
-   *     .setParent(formattedParent)
+   *     .setParentWithParentNameOneof(parent)
    *     .setSink(sink)
    *     .build();
    *   ListenableFuture&lt;LogSink&gt; future = configServiceV2Client.createSinkCallable().futureCall(request);
@@ -460,9 +509,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
-   *   LogSink response = configServiceV2Client.updateSink(formattedSinkName, sink);
+   *   LogSink response = configServiceV2Client.updateSink(sinkName, sink);
    * }
    * </code></pre>
    *
@@ -475,10 +524,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *     of `sinkName`. If `sinkName` does not exist, then this method creates a new sink.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final LogSink updateSink(String sinkName, LogSink sink) {
+  public final LogSink updateSink(SinkNameOneof sinkName, LogSink sink) {
 
     UpdateSinkRequest request =
-        UpdateSinkRequest.newBuilder().setSinkName(sinkName).setSink(sink).build();
+        UpdateSinkRequest.newBuilder().setSinkNameWithSinkNameOneof(sinkName).setSink(sink).build();
     return updateSink(request);
   }
 
@@ -490,10 +539,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .setSink(sink)
    *     .build();
    *   LogSink response = configServiceV2Client.updateSink(request);
@@ -515,10 +564,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .setSink(sink)
    *     .build();
    *   ListenableFuture&lt;LogSink&gt; future = configServiceV2Client.updateSinkCallable().futureCall(request);
@@ -539,8 +588,8 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
-   *   configServiceV2Client.deleteSink(formattedSinkName);
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   configServiceV2Client.deleteSink(sinkName);
    * }
    * </code></pre>
    *
@@ -551,9 +600,10 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *     <p>It is an error if the sink does not exist.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final void deleteSink(String sinkName) {
+  public final void deleteSink(SinkNameOneof sinkName) {
 
-    DeleteSinkRequest request = DeleteSinkRequest.newBuilder().setSinkName(sinkName).build();
+    DeleteSinkRequest request =
+        DeleteSinkRequest.newBuilder().setSinkNameWithSinkNameOneof(sinkName).build();
     deleteSink(request);
   }
 
@@ -565,9 +615,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
    *   configServiceV2Client.deleteSink(request);
    * }
@@ -588,9 +638,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   String formattedSinkName = ConfigServiceV2Client.formatSinkName("[PROJECT]", "[SINK]");
+   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
-   *     .setSinkName(formattedSinkName)
+   *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
    *   ListenableFuture&lt;Void&gt; future = configServiceV2Client.deleteSinkCallable().futureCall(request);
    *   // Do something
