@@ -37,6 +37,9 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
+var STREAM_DESCRIPTORS = {
+  streamingRecognize: new gax.StreamDescriptor(gax.StreamType.BIDI_STREAMING)
+};
 
 /**
  * The scopes needed to make gRPC calls to all of the methods defined in
@@ -51,17 +54,17 @@ var ALL_SCOPES = [
  *
  * This will be created through a builder function which can be obtained by the module.
  * See the following example of how to initialize the module and how to access to the builder.
- * @see {@link speechApi}
+ * @see {@link speechClient}
  *
  * @example
  * var speechV1beta1 = require('@google-cloud/speech').v1beta1({
  *   // optional auth parameters.
  * });
- * var api = speechV1beta1.speechApi();
+ * var client = speechV1beta1.speechClient();
  *
  * @class
  */
-function SpeechApi(gaxGrpc, grpcClients, opts) {
+function SpeechClient(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -80,8 +83,6 @@ function SpeechApi(gaxGrpc, grpcClients, opts) {
       'google.cloud.speech.v1beta1.Speech',
       configData,
       clientConfig,
-      null,
-      null,
       {'x-goog-api-client': googleApiClient});
 
   var speechStub = gaxGrpc.createStub(
@@ -91,14 +92,16 @@ function SpeechApi(gaxGrpc, grpcClients, opts) {
       {sslCreds: sslCreds});
   var speechStubMethods = [
     'syncRecognize',
-    'asyncRecognize'
+    'asyncRecognize',
+    'streamingRecognize'
   ];
   speechStubMethods.forEach(function(methodName) {
     this['_' + methodName] = gax.createApiCall(
       speechStub.then(function(speechStub) {
         return speechStub[methodName].bind(speechStub);
       }),
-      defaults[methodName]);
+      defaults[methodName],
+      STREAM_DESCRIPTORS[methodName]);
   }.bind(this));
 }
 
@@ -125,26 +128,28 @@ function SpeechApi(gaxGrpc, grpcClients, opts) {
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [SyncRecognizeResponse]{@link SyncRecognizeResponse}
- * @returns {Promise} - The promise which resolves to the response object.
+ *   The second parameter to the callback is an object representing [SyncRecognizeResponse]{@link SyncRecognizeResponse}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [SyncRecognizeResponse]{@link SyncRecognizeResponse}.
  *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = speechV1beta1.speechApi();
+ * var client = speechV1beta1.speechClient();
  * var config = {};
  * var audio = {};
  * var request = {
  *     config: config,
  *     audio: audio
  * };
- * api.syncRecognize(request).then(function(response) {
+ * client.syncRecognize(request).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
  * }).catch(function(err) {
  *     console.error(err);
  * });
  */
-SpeechApi.prototype.syncRecognize = function(request, options, callback) {
+SpeechClient.prototype.syncRecognize = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -152,6 +157,7 @@ SpeechApi.prototype.syncRecognize = function(request, options, callback) {
   if (options === undefined) {
     options = {};
   }
+
   return this._syncRecognize(request, options, callback);
 };
 
@@ -178,26 +184,28 @@ SpeechApi.prototype.syncRecognize = function(request, options, callback) {
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [google.longrunning.Operation]{@link external:"google.longrunning.Operation"}
- * @returns {Promise} - The promise which resolves to the response object.
+ *   The second parameter to the callback is an object representing [google.longrunning.Operation]{@link external:"google.longrunning.Operation"}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [google.longrunning.Operation]{@link external:"google.longrunning.Operation"}.
  *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = speechV1beta1.speechApi();
+ * var client = speechV1beta1.speechClient();
  * var config = {};
  * var audio = {};
  * var request = {
  *     config: config,
  *     audio: audio
  * };
- * api.asyncRecognize(request).then(function(response) {
+ * client.asyncRecognize(request).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
  * }).catch(function(err) {
  *     console.error(err);
  * });
  */
-SpeechApi.prototype.asyncRecognize = function(request, options, callback) {
+SpeechClient.prototype.asyncRecognize = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -205,12 +213,43 @@ SpeechApi.prototype.asyncRecognize = function(request, options, callback) {
   if (options === undefined) {
     options = {};
   }
+
   return this._asyncRecognize(request, options, callback);
 };
 
-function SpeechApiBuilder(gaxGrpc) {
-  if (!(this instanceof SpeechApiBuilder)) {
-    return new SpeechApiBuilder(gaxGrpc);
+/**
+ * Perform bidirectional streaming speech-recognition: receive results while
+ * sending audio. This method is only available via the gRPC API (not REST).
+ *
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @returns {Stream}
+ *   An object stream which is both readable and writable. It accepts objects
+ *   representing [StreamingRecognizeRequest]{@link StreamingRecognizeRequest} for write() method, and
+ *   will emit objects representing [StreamingRecognizeResponse]{@link StreamingRecognizeResponse} on 'data' event asynchronously.
+ *
+ * @example
+ *
+ * var client = speechV1beta1.speechClient();
+ * var stream = client.streamingRecognize().on('data', function(response) {
+ *     // doThingsWith(response);
+ * });
+ * var request = {};
+ * // Write request objects.
+ * stream.write(request);
+ */
+SpeechClient.prototype.streamingRecognize = function(options) {
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._streamingRecognize(options);
+};
+
+function SpeechClientBuilder(gaxGrpc) {
+  if (!(this instanceof SpeechClientBuilder)) {
+    return new SpeechClientBuilder(gaxGrpc);
   }
 
   var speechClient = gaxGrpc.load([{
@@ -224,7 +263,7 @@ function SpeechApiBuilder(gaxGrpc) {
   };
 
   /**
-   * Build a new instance of {@link SpeechApi}.
+   * Build a new instance of {@link SpeechClient}.
    *
    * @param {Object=} opts - The optional parameters.
    * @param {String=} opts.servicePath
@@ -241,11 +280,11 @@ function SpeechApiBuilder(gaxGrpc) {
    * @param {String=} opts.appVersion
    *   The version of the calling service.
    */
-  this.speechApi = function(opts) {
-    return new SpeechApi(gaxGrpc, grpcClients, opts);
+  this.speechClient = function(opts) {
+    return new SpeechClient(gaxGrpc, grpcClients, opts);
   };
-  extend(this.speechApi, SpeechApi);
+  extend(this.speechClient, SpeechClient);
 }
-module.exports = SpeechApiBuilder;
+module.exports = SpeechClientBuilder;
 module.exports.SERVICE_ADDRESS = SERVICE_ADDRESS;
 module.exports.ALL_SCOPES = ALL_SCOPES;
