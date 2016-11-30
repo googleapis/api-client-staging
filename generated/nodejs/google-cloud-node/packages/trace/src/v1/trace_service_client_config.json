@@ -24,7 +24,7 @@
       "methods": {
         "PatchTraces": {
           "timeout_millis": 30000,
-          "retry_codes_name": "non_idempotent",
+          "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "GetTrace": {
