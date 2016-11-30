@@ -18,6 +18,7 @@ package com.google.cloud.monitoring.spi.v3;
 import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListGroupMembersPagedResponse;
 
 import com.google.api.MonitoredResource;
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -30,8 +31,9 @@ import com.google.monitoring.v3.ListGroupMembersResponse;
 import com.google.monitoring.v3.UpdateGroupRequest;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -46,7 +48,7 @@ public class GroupServiceTest {
   private static MockGroupService mockGroupService;
   private static MockMetricService mockMetricService;
   private static MockServiceHelper serviceHelper;
-  private GroupServiceApi api;
+  private GroupServiceClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -70,18 +72,18 @@ public class GroupServiceTest {
         GroupServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = GroupServiceApi.create(settings);
+    client = GroupServiceClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
   @SuppressWarnings("all")
   public void getGroupTest() {
-    String formattedName2 = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
+    String formattedName2 = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
     String displayName = "displayName1615086568";
     String parentName = "parentName1015022848";
     String filter = "filter-1274492040";
@@ -94,13 +96,11 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
+    mockGroupService.addResponse(expectedResponse);
 
-    String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
+    String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
 
-    Group actualResponse = api.getGroup(formattedName);
+    Group actualResponse = client.getGroup(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
@@ -112,8 +112,24 @@ public class GroupServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void getGroupExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockGroupService.addException(exception);
+
+    try {
+      String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
+
+      client.getGroup(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void createGroupTest() {
-    String formattedName2 = GroupServiceApi.formatProjectName("[PROJECT]");
+    String formattedName2 = GroupServiceClient.formatProjectName("[PROJECT]");
     String displayName = "displayName1615086568";
     String parentName = "parentName1015022848";
     String filter = "filter-1274492040";
@@ -126,14 +142,12 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
+    mockGroupService.addResponse(expectedResponse);
 
-    String formattedName = GroupServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = GroupServiceClient.formatProjectName("[PROJECT]");
     Group group = Group.newBuilder().build();
 
-    Group actualResponse = api.createGroup(formattedName, group);
+    Group actualResponse = client.createGroup(formattedName, group);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
@@ -142,6 +156,23 @@ public class GroupServiceTest {
 
     Assert.assertEquals(formattedName, actualRequest.getName());
     Assert.assertEquals(group, actualRequest.getGroup());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void createGroupExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockGroupService.addException(exception);
+
+    try {
+      String formattedName = GroupServiceClient.formatProjectName("[PROJECT]");
+      Group group = Group.newBuilder().build();
+
+      client.createGroup(formattedName, group);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 
   @Test
@@ -160,13 +191,11 @@ public class GroupServiceTest {
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
+    mockGroupService.addResponse(expectedResponse);
 
     Group group = Group.newBuilder().build();
 
-    Group actualResponse = api.updateGroup(group);
+    Group actualResponse = client.updateGroup(group);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
@@ -178,21 +207,51 @@ public class GroupServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void updateGroupExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockGroupService.addException(exception);
+
+    try {
+      Group group = Group.newBuilder().build();
+
+      client.updateGroup(group);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void deleteGroupTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
+    mockGroupService.addResponse(expectedResponse);
 
-    String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
+    String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
 
-    api.deleteGroup(formattedName);
+    client.deleteGroup(formattedName);
 
     List<GeneratedMessageV3> actualRequests = mockGroupService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     DeleteGroupRequest actualRequest = (DeleteGroupRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedName, actualRequest.getName());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void deleteGroupExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockGroupService.addException(exception);
+
+    try {
+      String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
+
+      client.deleteGroup(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 
   @Test
@@ -208,13 +267,11 @@ public class GroupServiceTest {
             .setTotalSize(totalSize)
             .addAllMembers(members)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockGroupService.setResponses(expectedResponses);
+    mockGroupService.addResponse(expectedResponse);
 
-    String formattedName = GroupServiceApi.formatGroupName("[PROJECT]", "[GROUP]");
+    String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
 
-    ListGroupMembersPagedResponse pagedListResponse = api.listGroupMembers(formattedName);
+    ListGroupMembersPagedResponse pagedListResponse = client.listGroupMembers(formattedName);
 
     List<MonitoredResource> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -225,5 +282,21 @@ public class GroupServiceTest {
     ListGroupMembersRequest actualRequest = (ListGroupMembersRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedName, actualRequest.getName());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listGroupMembersExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockGroupService.addException(exception);
+
+    try {
+      String formattedName = GroupServiceClient.formatGroupName("[PROJECT]", "[GROUP]");
+
+      client.listGroupMembers(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

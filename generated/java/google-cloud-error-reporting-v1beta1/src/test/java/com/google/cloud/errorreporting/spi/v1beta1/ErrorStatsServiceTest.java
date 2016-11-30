@@ -18,6 +18,7 @@ package com.google.cloud.errorreporting.spi.v1beta1;
 import static com.google.cloud.errorreporting.spi.v1beta1.PagedResponseWrappers.ListEventsPagedResponse;
 import static com.google.cloud.errorreporting.spi.v1beta1.PagedResponseWrappers.ListGroupStatsPagedResponse;
 
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -31,8 +32,9 @@ import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -48,7 +50,7 @@ public class ErrorStatsServiceTest {
   private static MockErrorStatsService mockErrorStatsService;
   private static MockReportErrorsService mockReportErrorsService;
   private static MockServiceHelper serviceHelper;
-  private ErrorStatsServiceApi api;
+  private ErrorStatsServiceClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -75,12 +77,12 @@ public class ErrorStatsServiceTest {
         ErrorStatsServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = ErrorStatsServiceApi.create(settings);
+    client = ErrorStatsServiceClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
@@ -94,15 +96,13 @@ public class ErrorStatsServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllErrorGroupStats(errorGroupStats)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockErrorStatsService.setResponses(expectedResponses);
+    mockErrorStatsService.addResponse(expectedResponse);
 
-    String formattedProjectName = ErrorStatsServiceApi.formatProjectName("[PROJECT]");
+    String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
     QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
 
     ListGroupStatsPagedResponse pagedListResponse =
-        api.listGroupStats(formattedProjectName, timeRange);
+        client.listGroupStats(formattedProjectName, timeRange);
 
     List<ErrorGroupStats> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -118,6 +118,23 @@ public class ErrorStatsServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listGroupStatsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockErrorStatsService.addException(exception);
+
+    try {
+      String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
+      QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
+
+      client.listGroupStats(formattedProjectName, timeRange);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void listEventsTest() {
     String nextPageToken = "";
     ErrorEvent errorEventsElement = ErrorEvent.newBuilder().build();
@@ -127,14 +144,12 @@ public class ErrorStatsServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllErrorEvents(errorEvents)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockErrorStatsService.setResponses(expectedResponses);
+    mockErrorStatsService.addResponse(expectedResponse);
 
-    String formattedProjectName = ErrorStatsServiceApi.formatProjectName("[PROJECT]");
+    String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
     String groupId = "groupId506361563";
 
-    ListEventsPagedResponse pagedListResponse = api.listEvents(formattedProjectName, groupId);
+    ListEventsPagedResponse pagedListResponse = client.listEvents(formattedProjectName, groupId);
 
     List<ErrorEvent> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -150,15 +165,30 @@ public class ErrorStatsServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listEventsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockErrorStatsService.addException(exception);
+
+    try {
+      String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
+      String groupId = "groupId506361563";
+
+      client.listEvents(formattedProjectName, groupId);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void deleteEventsTest() {
     DeleteEventsResponse expectedResponse = DeleteEventsResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockErrorStatsService.setResponses(expectedResponses);
+    mockErrorStatsService.addResponse(expectedResponse);
 
-    String formattedProjectName = ErrorStatsServiceApi.formatProjectName("[PROJECT]");
+    String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
 
-    DeleteEventsResponse actualResponse = api.deleteEvents(formattedProjectName);
+    DeleteEventsResponse actualResponse = client.deleteEvents(formattedProjectName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockErrorStatsService.getRequests();
@@ -166,5 +196,21 @@ public class ErrorStatsServiceTest {
     DeleteEventsRequest actualRequest = (DeleteEventsRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedProjectName, actualRequest.getProjectName());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void deleteEventsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockErrorStatsService.addException(exception);
+
+    try {
+      String formattedProjectName = ErrorStatsServiceClient.formatProjectName("[PROJECT]");
+
+      client.deleteEvents(formattedProjectName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

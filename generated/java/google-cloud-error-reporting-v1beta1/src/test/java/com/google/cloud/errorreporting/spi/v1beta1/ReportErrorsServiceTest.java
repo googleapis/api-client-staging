@@ -15,14 +15,16 @@
  */
 package com.google.cloud.errorreporting.spi.v1beta1;
 
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -38,7 +40,7 @@ public class ReportErrorsServiceTest {
   private static MockErrorStatsService mockErrorStatsService;
   private static MockReportErrorsService mockReportErrorsService;
   private static MockServiceHelper serviceHelper;
-  private ReportErrorsServiceApi api;
+  private ReportErrorsServiceClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -65,26 +67,24 @@ public class ReportErrorsServiceTest {
         ReportErrorsServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = ReportErrorsServiceApi.create(settings);
+    client = ReportErrorsServiceClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
   @SuppressWarnings("all")
   public void reportErrorEventTest() {
     ReportErrorEventResponse expectedResponse = ReportErrorEventResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockReportErrorsService.setResponses(expectedResponses);
+    mockReportErrorsService.addResponse(expectedResponse);
 
-    String formattedProjectName = ReportErrorsServiceApi.formatProjectName("[PROJECT]");
+    String formattedProjectName = ReportErrorsServiceClient.formatProjectName("[PROJECT]");
     ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
 
-    ReportErrorEventResponse actualResponse = api.reportErrorEvent(formattedProjectName, event);
+    ReportErrorEventResponse actualResponse = client.reportErrorEvent(formattedProjectName, event);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockReportErrorsService.getRequests();
@@ -93,5 +93,22 @@ public class ReportErrorsServiceTest {
 
     Assert.assertEquals(formattedProjectName, actualRequest.getProjectName());
     Assert.assertEquals(event, actualRequest.getEvent());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void reportErrorEventExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockReportErrorsService.addException(exception);
+
+    try {
+      String formattedProjectName = ReportErrorsServiceClient.formatProjectName("[PROJECT]");
+      ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
+
+      client.reportErrorEvent(formattedProjectName, event);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

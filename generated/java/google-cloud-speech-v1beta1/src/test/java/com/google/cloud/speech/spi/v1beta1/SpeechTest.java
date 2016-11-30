@@ -15,11 +15,13 @@
  */
 package com.google.cloud.speech.spi.v1beta1;
 
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.grpc.StreamingCallable;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.api.gax.testing.MockStreamObserver;
 import com.google.cloud.speech.v1beta1.AsyncRecognizeRequest;
+import com.google.cloud.speech.v1beta1.AsyncRecognizeResponse;
 import com.google.cloud.speech.v1beta1.RecognitionAudio;
 import com.google.cloud.speech.v1beta1.RecognitionConfig;
 import com.google.cloud.speech.v1beta1.StreamingRecognizeRequest;
@@ -27,12 +29,15 @@ import com.google.cloud.speech.v1beta1.StreamingRecognizeResponse;
 import com.google.cloud.speech.v1beta1.SyncRecognizeRequest;
 import com.google.cloud.speech.v1beta1.SyncRecognizeResponse;
 import com.google.longrunning.Operation;
+import com.google.protobuf.Any;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -44,7 +49,7 @@ import org.junit.Test;
 public class SpeechTest {
   private static MockSpeech mockSpeech;
   private static MockServiceHelper serviceHelper;
-  private SpeechApi api;
+  private SpeechClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -66,26 +71,24 @@ public class SpeechTest {
         SpeechSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = SpeechApi.create(settings);
+    client = SpeechClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
   @SuppressWarnings("all")
   public void syncRecognizeTest() {
     SyncRecognizeResponse expectedResponse = SyncRecognizeResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockSpeech.setResponses(expectedResponses);
+    mockSpeech.addResponse(expectedResponse);
 
     RecognitionConfig config = RecognitionConfig.newBuilder().build();
     RecognitionAudio audio = RecognitionAudio.newBuilder().build();
 
-    SyncRecognizeResponse actualResponse = api.syncRecognize(config, audio);
+    SyncRecognizeResponse actualResponse = client.syncRecognize(config, audio);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockSpeech.getRequests();
@@ -98,18 +101,37 @@ public class SpeechTest {
 
   @Test
   @SuppressWarnings("all")
-  public void asyncRecognizeTest() {
-    String name = "name3373707";
-    boolean done = true;
-    Operation expectedResponse = Operation.newBuilder().setName(name).setDone(done).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockSpeech.setResponses(expectedResponses);
+  public void syncRecognizeExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSpeech.addException(exception);
+
+    try {
+      RecognitionConfig config = RecognitionConfig.newBuilder().build();
+      RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+
+      client.syncRecognize(config, audio);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void asyncRecognizeTest() throws Exception {
+    AsyncRecognizeResponse expectedResponse = AsyncRecognizeResponse.newBuilder().build();
+    Operation resultOperation =
+        Operation.newBuilder()
+            .setName("asyncRecognizeTest")
+            .setDone(true)
+            .setResponse(Any.pack(expectedResponse))
+            .build();
+    mockSpeech.addResponse(resultOperation);
 
     RecognitionConfig config = RecognitionConfig.newBuilder().build();
     RecognitionAudio audio = RecognitionAudio.newBuilder().build();
 
-    Operation actualResponse = api.asyncRecognize(config, audio);
+    AsyncRecognizeResponse actualResponse = client.asyncRecognizeAsync(config, audio).get();
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockSpeech.getRequests();
@@ -122,19 +144,36 @@ public class SpeechTest {
 
   @Test
   @SuppressWarnings("all")
+  public void asyncRecognizeExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSpeech.addException(exception);
+
+    try {
+      RecognitionConfig config = RecognitionConfig.newBuilder().build();
+      RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+
+      client.asyncRecognizeAsync(config, audio).get();
+      Assert.fail("No exception raised");
+    } catch (ExecutionException e) {
+      Assert.assertEquals(ApiException.class, e.getCause().getClass());
+      ApiException apiException = (ApiException) e.getCause();
+      Assert.assertEquals(Status.INTERNAL.getCode(), apiException.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void streamingRecognizeTest() throws Exception {
     int resultIndex = 520358448;
     StreamingRecognizeResponse expectedResponse =
         StreamingRecognizeResponse.newBuilder().setResultIndex(resultIndex).build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockSpeech.setResponses(expectedResponses);
+    mockSpeech.addResponse(expectedResponse);
     StreamingRecognizeRequest request = StreamingRecognizeRequest.newBuilder().build();
 
     MockStreamObserver<StreamingRecognizeResponse> responseObserver = new MockStreamObserver<>();
 
     StreamingCallable<StreamingRecognizeRequest, StreamingRecognizeResponse> callable =
-        api.streamingRecognizeCallable();
+        client.streamingRecognizeCallable();
     StreamObserver<StreamingRecognizeRequest> requestObserver =
         callable.bidiStreamingCall(responseObserver);
 
@@ -144,6 +183,31 @@ public class SpeechTest {
     List<StreamingRecognizeResponse> actualResponses = responseObserver.future().get();
     Assert.assertEquals(1, actualResponses.size());
     Assert.assertEquals(expectedResponse, actualResponses.get(0));
-    Assert.assertEquals(0, responseObserver.errors().size());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void streamingRecognizeExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSpeech.addException(exception);
+    StreamingRecognizeRequest request = StreamingRecognizeRequest.newBuilder().build();
+
+    MockStreamObserver<StreamingRecognizeResponse> responseObserver = new MockStreamObserver<>();
+
+    StreamingCallable<StreamingRecognizeRequest, StreamingRecognizeResponse> callable =
+        client.streamingRecognizeCallable();
+    StreamObserver<StreamingRecognizeRequest> requestObserver =
+        callable.bidiStreamingCall(responseObserver);
+
+    requestObserver.onNext(request);
+
+    try {
+      List<StreamingRecognizeResponse> actualResponses = responseObserver.future().get();
+      Assert.fail("No exception thrown");
+    } catch (ExecutionException e) {
+      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
+      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
+      Assert.assertEquals(Status.INTERNAL, statusException.getStatus());
+    }
   }
 }

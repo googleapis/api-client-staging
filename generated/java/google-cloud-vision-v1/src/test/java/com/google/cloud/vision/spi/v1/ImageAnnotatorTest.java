@@ -15,12 +15,15 @@
  */
 package com.google.cloud.vision.spi.v1;
 
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +39,7 @@ import org.junit.Test;
 public class ImageAnnotatorTest {
   private static MockImageAnnotator mockImageAnnotator;
   private static MockServiceHelper serviceHelper;
-  private ImageAnnotatorApi api;
+  private ImageAnnotatorClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -58,25 +61,23 @@ public class ImageAnnotatorTest {
         ImageAnnotatorSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = ImageAnnotatorApi.create(settings);
+    client = ImageAnnotatorClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
   @SuppressWarnings("all")
   public void batchAnnotateImagesTest() {
     BatchAnnotateImagesResponse expectedResponse = BatchAnnotateImagesResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockImageAnnotator.setResponses(expectedResponses);
+    mockImageAnnotator.addResponse(expectedResponse);
 
     List<AnnotateImageRequest> requests = new ArrayList<>();
 
-    BatchAnnotateImagesResponse actualResponse = api.batchAnnotateImages(requests);
+    BatchAnnotateImagesResponse actualResponse = client.batchAnnotateImages(requests);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockImageAnnotator.getRequests();
@@ -84,5 +85,21 @@ public class ImageAnnotatorTest {
     BatchAnnotateImagesRequest actualRequest = (BatchAnnotateImagesRequest) actualRequests.get(0);
 
     Assert.assertEquals(requests, actualRequest.getRequestsList());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void batchAnnotateImagesExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockImageAnnotator.addException(exception);
+
+    try {
+      List<AnnotateImageRequest> requests = new ArrayList<>();
+
+      client.batchAnnotateImages(requests);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

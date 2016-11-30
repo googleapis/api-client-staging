@@ -18,14 +18,16 @@ package com.google.cloud.speech.spi.v1beta1;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.ChannelProvider;
+import com.google.api.gax.grpc.ClientSettings;
 import com.google.api.gax.grpc.ExecutorProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.grpc.InstantiatingExecutorProvider;
-import com.google.api.gax.grpc.ServiceApiSettings;
+import com.google.api.gax.grpc.OperationCallSettings;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.StreamingCallSettings;
 import com.google.api.gax.grpc.UnaryCallSettings;
 import com.google.cloud.speech.v1beta1.AsyncRecognizeRequest;
+import com.google.cloud.speech.v1beta1.AsyncRecognizeResponse;
 import com.google.cloud.speech.v1beta1.SpeechGrpc;
 import com.google.cloud.speech.v1beta1.StreamingRecognizeRequest;
 import com.google.cloud.speech.v1beta1.StreamingRecognizeResponse;
@@ -36,14 +38,15 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.google.longrunning.Operation;
+import com.google.protobuf.ExperimentalApi;
 import io.grpc.Status;
 import java.io.IOException;
+import javax.annotation.Generated;
 import org.joda.time.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
- * Settings class to configure an instance of {@link SpeechApi}.
+ * Settings class to configure an instance of {@link SpeechClient}.
  *
  * <p>The default instance has everything set to sensible defaults:
  *
@@ -67,8 +70,9 @@ import org.joda.time.Duration;
  * </code>
  * </pre>
  */
-@javax.annotation.Generated("by GAPIC")
-public class SpeechSettings extends ServiceApiSettings {
+@Generated("by GAPIC")
+@ExperimentalApi
+public class SpeechSettings extends ClientSettings {
   /** The default address of the service. */
   private static final String DEFAULT_SERVICE_ADDRESS = "speech.googleapis.com";
 
@@ -81,7 +85,8 @@ public class SpeechSettings extends ServiceApiSettings {
 
   private final SimpleCallSettings<SyncRecognizeRequest, SyncRecognizeResponse>
       syncRecognizeSettings;
-  private final SimpleCallSettings<AsyncRecognizeRequest, Operation> asyncRecognizeSettings;
+  private final OperationCallSettings<AsyncRecognizeRequest, AsyncRecognizeResponse>
+      asyncRecognizeSettings;
   private final StreamingCallSettings<StreamingRecognizeRequest, StreamingRecognizeResponse>
       streamingRecognizeSettings;
 
@@ -91,7 +96,8 @@ public class SpeechSettings extends ServiceApiSettings {
   }
 
   /** Returns the object with the settings used for calls to asyncRecognize. */
-  public SimpleCallSettings<AsyncRecognizeRequest, Operation> asyncRecognizeSettings() {
+  public OperationCallSettings<AsyncRecognizeRequest, AsyncRecognizeResponse>
+      asyncRecognizeSettings() {
     return asyncRecognizeSettings;
   }
 
@@ -158,12 +164,12 @@ public class SpeechSettings extends ServiceApiSettings {
   }
 
   /** Builder for SpeechSettings. */
-  public static class Builder extends ServiceApiSettings.Builder {
+  public static class Builder extends ClientSettings.Builder {
     private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<SyncRecognizeRequest, SyncRecognizeResponse>
         syncRecognizeSettings;
-    private final SimpleCallSettings.Builder<AsyncRecognizeRequest, Operation>
+    private final OperationCallSettings.Builder<AsyncRecognizeRequest, AsyncRecognizeResponse>
         asyncRecognizeSettings;
     private final StreamingCallSettings.Builder<
             StreamingRecognizeRequest, StreamingRecognizeResponse>
@@ -205,14 +211,15 @@ public class SpeechSettings extends ServiceApiSettings {
 
       syncRecognizeSettings = SimpleCallSettings.newBuilder(SpeechGrpc.METHOD_SYNC_RECOGNIZE);
 
-      asyncRecognizeSettings = SimpleCallSettings.newBuilder(SpeechGrpc.METHOD_ASYNC_RECOGNIZE);
+      asyncRecognizeSettings =
+          OperationCallSettings.newBuilder(
+              SpeechGrpc.METHOD_ASYNC_RECOGNIZE, AsyncRecognizeResponse.class);
 
       streamingRecognizeSettings =
           StreamingCallSettings.newBuilder(SpeechGrpc.METHOD_STREAMING_RECOGNIZE);
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
-              syncRecognizeSettings, asyncRecognizeSettings);
+          ImmutableList.<UnaryCallSettings.Builder>of(syncRecognizeSettings);
     }
 
     private static Builder createDefault() {
@@ -222,9 +229,9 @@ public class SpeechSettings extends ServiceApiSettings {
           .syncRecognizeSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
-
       builder
           .asyncRecognizeSettings()
+          .getInitialCallSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
@@ -239,8 +246,7 @@ public class SpeechSettings extends ServiceApiSettings {
       streamingRecognizeSettings = settings.streamingRecognizeSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
-              syncRecognizeSettings, asyncRecognizeSettings);
+          ImmutableList.<UnaryCallSettings.Builder>of(syncRecognizeSettings);
     }
 
     @Override
@@ -261,9 +267,9 @@ public class SpeechSettings extends ServiceApiSettings {
      *
      * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllApiMethods(UnaryCallSettings.Builder apiCallSettings)
+    public Builder applyToAllUnaryMethods(UnaryCallSettings.Builder unaryCallSettings)
         throws Exception {
-      super.applyToAllApiMethods(unaryMethodSettingsBuilders, apiCallSettings);
+      super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, unaryCallSettings);
       return this;
     }
 
@@ -274,7 +280,8 @@ public class SpeechSettings extends ServiceApiSettings {
     }
 
     /** Returns the builder for the settings used for calls to asyncRecognize. */
-    public SimpleCallSettings.Builder<AsyncRecognizeRequest, Operation> asyncRecognizeSettings() {
+    public OperationCallSettings.Builder<AsyncRecognizeRequest, AsyncRecognizeResponse>
+        asyncRecognizeSettings() {
       return asyncRecognizeSettings;
     }
 

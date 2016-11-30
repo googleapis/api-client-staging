@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,11 +15,10 @@
  */
 'use strict';
 
-var publisherApi = require('./publisher_api');
-var subscriberApi = require('./subscriber_api');
-var gax = require('google-gax');
+var publisherClient = require('./publisher_client');
+var subscriberClient = require('./subscriber_client');
 var extend = require('extend');
-var union = require('lodash.union');
+var gax = require('google-gax');
 
 function v1(options) {
   options = extend({
@@ -27,13 +26,11 @@ function v1(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, publisherApi(gaxGrpc));
-  extend(result, subscriberApi(gaxGrpc));
+  extend(result, publisherClient(gaxGrpc));
+  extend(result, subscriberClient(gaxGrpc));
   return result;
 }
-v1.SERVICE_ADDRESS = publisherApi.SERVICE_ADDRESS;
-v1.ALL_SCOPES = union(
-  publisherApi.ALL_SCOPES,
-  subscriberApi.ALL_SCOPES
-);
+
+v1.SERVICE_ADDRESS = publisherClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = publisherClient.ALL_SCOPES;
 module.exports = v1;

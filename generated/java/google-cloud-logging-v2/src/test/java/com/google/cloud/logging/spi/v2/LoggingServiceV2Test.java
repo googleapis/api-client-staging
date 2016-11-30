@@ -18,6 +18,7 @@ package com.google.cloud.logging.spi.v2;
 import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListLogEntriesPagedResponse;
 
 import com.google.api.MonitoredResource;
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -29,6 +30,8 @@ import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +51,7 @@ public class LoggingServiceV2Test {
   private static MockConfigServiceV2 mockConfigServiceV2;
   private static MockMetricsServiceV2 mockMetricsServiceV2;
   private static MockServiceHelper serviceHelper;
-  private LoggingServiceV2Api api;
+  private LoggingServiceV2Client client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -75,25 +78,23 @@ public class LoggingServiceV2Test {
         LoggingServiceV2Settings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = LoggingServiceV2Api.create(settings);
+    client = LoggingServiceV2Client.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
   @SuppressWarnings("all")
   public void deleteLogTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockLoggingServiceV2.setResponses(expectedResponses);
+    mockLoggingServiceV2.addResponse(expectedResponse);
 
-    String formattedLogName = LoggingServiceV2Api.formatLogName("[PROJECT]", "[LOG]");
+    String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
 
-    api.deleteLog(formattedLogName);
+    client.deleteLog(formattedLogName);
 
     List<GeneratedMessageV3> actualRequests = mockLoggingServiceV2.getRequests();
     Assert.assertEquals(1, actualRequests.size());
@@ -104,19 +105,33 @@ public class LoggingServiceV2Test {
 
   @Test
   @SuppressWarnings("all")
+  public void deleteLogExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockLoggingServiceV2.addException(exception);
+
+    try {
+      String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
+
+      client.deleteLog(formattedLogName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void writeLogEntriesTest() {
     WriteLogEntriesResponse expectedResponse = WriteLogEntriesResponse.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockLoggingServiceV2.setResponses(expectedResponses);
+    mockLoggingServiceV2.addResponse(expectedResponse);
 
-    String formattedLogName = LoggingServiceV2Api.formatLogName("[PROJECT]", "[LOG]");
+    String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
     MonitoredResource resource = MonitoredResource.newBuilder().build();
     Map<String, String> labels = new HashMap<>();
     List<LogEntry> entries = new ArrayList<>();
 
     WriteLogEntriesResponse actualResponse =
-        api.writeLogEntries(formattedLogName, resource, labels, entries);
+        client.writeLogEntries(formattedLogName, resource, labels, entries);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockLoggingServiceV2.getRequests();
@@ -131,6 +146,25 @@ public class LoggingServiceV2Test {
 
   @Test
   @SuppressWarnings("all")
+  public void writeLogEntriesExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockLoggingServiceV2.addException(exception);
+
+    try {
+      String formattedLogName = LoggingServiceV2Client.formatLogName("[PROJECT]", "[LOG]");
+      MonitoredResource resource = MonitoredResource.newBuilder().build();
+      Map<String, String> labels = new HashMap<>();
+      List<LogEntry> entries = new ArrayList<>();
+
+      client.writeLogEntries(formattedLogName, resource, labels, entries);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void listLogEntriesTest() {
     String nextPageToken = "";
     LogEntry entriesElement = LogEntry.newBuilder().build();
@@ -140,15 +174,14 @@ public class LoggingServiceV2Test {
             .setNextPageToken(nextPageToken)
             .addAllEntries(entries)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockLoggingServiceV2.setResponses(expectedResponses);
+    mockLoggingServiceV2.addResponse(expectedResponse);
 
-    List<String> projectIds = new ArrayList<>();
+    List<String> resourceNames = new ArrayList<>();
     String filter = "filter-1274492040";
     String orderBy = "orderBy1234304744";
 
-    ListLogEntriesPagedResponse pagedListResponse = api.listLogEntries(projectIds, filter, orderBy);
+    ListLogEntriesPagedResponse pagedListResponse =
+        client.listLogEntries(resourceNames, filter, orderBy);
 
     List<LogEntry> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -158,8 +191,26 @@ public class LoggingServiceV2Test {
     Assert.assertEquals(1, actualRequests.size());
     ListLogEntriesRequest actualRequest = (ListLogEntriesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(projectIds, actualRequest.getProjectIdsList());
+    Assert.assertEquals(resourceNames, actualRequest.getResourceNamesList());
     Assert.assertEquals(filter, actualRequest.getFilter());
     Assert.assertEquals(orderBy, actualRequest.getOrderBy());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listLogEntriesExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockLoggingServiceV2.addException(exception);
+
+    try {
+      List<String> resourceNames = new ArrayList<>();
+      String filter = "filter-1274492040";
+      String orderBy = "orderBy1234304744";
+
+      client.listLogEntries(resourceNames, filter, orderBy);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

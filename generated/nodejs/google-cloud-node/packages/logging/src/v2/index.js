@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,12 +15,11 @@
  */
 'use strict';
 
-var configServiceV2Api = require('./config_service_v2_api');
-var loggingServiceV2Api = require('./logging_service_v2_api');
-var metricsServiceV2Api = require('./metrics_service_v2_api');
-var gax = require('google-gax');
+var configServiceV2Client = require('./config_service_v2_client');
+var loggingServiceV2Client = require('./logging_service_v2_client');
+var metricsServiceV2Client = require('./metrics_service_v2_client');
 var extend = require('extend');
-var union = require('lodash.union');
+var gax = require('google-gax');
 
 function v2(options) {
   options = extend({
@@ -28,15 +27,12 @@ function v2(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, configServiceV2Api(gaxGrpc));
-  extend(result, loggingServiceV2Api(gaxGrpc));
-  extend(result, metricsServiceV2Api(gaxGrpc));
+  extend(result, configServiceV2Client(gaxGrpc));
+  extend(result, loggingServiceV2Client(gaxGrpc));
+  extend(result, metricsServiceV2Client(gaxGrpc));
   return result;
 }
-v2.SERVICE_ADDRESS = configServiceV2Api.SERVICE_ADDRESS;
-v2.ALL_SCOPES = union(
-  configServiceV2Api.ALL_SCOPES,
-  loggingServiceV2Api.ALL_SCOPES,
-  metricsServiceV2Api.ALL_SCOPES
-);
+
+v2.SERVICE_ADDRESS = loggingServiceV2Client.SERVICE_ADDRESS;
+v2.ALL_SCOPES = loggingServiceV2Client.ALL_SCOPES;
 module.exports = v2;

@@ -21,6 +21,7 @@ import static com.google.cloud.monitoring.spi.v3.PagedResponseWrappers.ListTimeS
 
 import com.google.api.MetricDescriptor;
 import com.google.api.MonitoredResourceDescriptor;
+import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -40,6 +41,8 @@ import com.google.monitoring.v3.TimeInterval;
 import com.google.monitoring.v3.TimeSeries;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,7 +59,7 @@ public class MetricServiceTest {
   private static MockGroupService mockGroupService;
   private static MockMetricService mockMetricService;
   private static MockServiceHelper serviceHelper;
-  private MetricServiceApi api;
+  private MetricServiceClient client;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -80,12 +83,12 @@ public class MetricServiceTest {
         MetricServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
             .build();
-    api = MetricServiceApi.create(settings);
+    client = MetricServiceClient.create(settings);
   }
 
   @After
   public void tearDown() throws Exception {
-    api.close();
+    client.close();
   }
 
   @Test
@@ -101,14 +104,12 @@ public class MetricServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllResourceDescriptors(resourceDescriptors)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
-    String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
 
     ListMonitoredResourceDescriptorsPagedResponse pagedListResponse =
-        api.listMonitoredResourceDescriptors(formattedName);
+        client.listMonitoredResourceDescriptors(formattedName);
 
     List<MonitoredResourceDescriptor> resources =
         Lists.newArrayList(pagedListResponse.iterateAllElements());
@@ -125,9 +126,25 @@ public class MetricServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listMonitoredResourceDescriptorsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
+
+      client.listMonitoredResourceDescriptors(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void getMonitoredResourceDescriptorTest() {
     String formattedName2 =
-        MetricServiceApi.formatMonitoredResourceDescriptorName(
+        MetricServiceClient.formatMonitoredResourceDescriptorName(
             "[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
     String type = "type3575610";
     String displayName = "displayName1615086568";
@@ -139,15 +156,14 @@ public class MetricServiceTest {
             .setDisplayName(displayName)
             .setDescription(description)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
     String formattedName =
-        MetricServiceApi.formatMonitoredResourceDescriptorName(
+        MetricServiceClient.formatMonitoredResourceDescriptorName(
             "[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
 
-    MonitoredResourceDescriptor actualResponse = api.getMonitoredResourceDescriptor(formattedName);
+    MonitoredResourceDescriptor actualResponse =
+        client.getMonitoredResourceDescriptor(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
@@ -156,6 +172,24 @@ public class MetricServiceTest {
         (GetMonitoredResourceDescriptorRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedName, actualRequest.getName());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void getMonitoredResourceDescriptorExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName =
+          MetricServiceClient.formatMonitoredResourceDescriptorName(
+              "[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+
+      client.getMonitoredResourceDescriptor(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 
   @Test
@@ -169,13 +203,12 @@ public class MetricServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllMetricDescriptors(metricDescriptors)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
-    String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
 
-    ListMetricDescriptorsPagedResponse pagedListResponse = api.listMetricDescriptors(formattedName);
+    ListMetricDescriptorsPagedResponse pagedListResponse =
+        client.listMetricDescriptors(formattedName);
 
     List<MetricDescriptor> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -191,9 +224,25 @@ public class MetricServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listMetricDescriptorsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
+
+      client.listMetricDescriptors(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void getMetricDescriptorTest() {
     String formattedName2 =
-        MetricServiceApi.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+        MetricServiceClient.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
     String type = "type3575610";
     String unit = "unit3594628";
     String description = "description-1724546052";
@@ -206,14 +255,12 @@ public class MetricServiceTest {
             .setDescription(description)
             .setDisplayName(displayName)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
     String formattedName =
-        MetricServiceApi.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+        MetricServiceClient.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
 
-    MetricDescriptor actualResponse = api.getMetricDescriptor(formattedName);
+    MetricDescriptor actualResponse = client.getMetricDescriptor(formattedName);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
@@ -225,8 +272,25 @@ public class MetricServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void getMetricDescriptorExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName =
+          MetricServiceClient.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+
+      client.getMetricDescriptor(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void createMetricDescriptorTest() {
-    String formattedName2 = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName2 = MetricServiceClient.formatProjectName("[PROJECT]");
     String type = "type3575610";
     String unit = "unit3594628";
     String description = "description-1724546052";
@@ -239,14 +303,13 @@ public class MetricServiceTest {
             .setDescription(description)
             .setDisplayName(displayName)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
-    String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
     MetricDescriptor metricDescriptor = MetricDescriptor.newBuilder().build();
 
-    MetricDescriptor actualResponse = api.createMetricDescriptor(formattedName, metricDescriptor);
+    MetricDescriptor actualResponse =
+        client.createMetricDescriptor(formattedName, metricDescriptor);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
@@ -260,16 +323,31 @@ public class MetricServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void createMetricDescriptorExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
+      MetricDescriptor metricDescriptor = MetricDescriptor.newBuilder().build();
+
+      client.createMetricDescriptor(formattedName, metricDescriptor);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void deleteMetricDescriptorTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
     String formattedName =
-        MetricServiceApi.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+        MetricServiceClient.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
 
-    api.deleteMetricDescriptor(formattedName);
+    client.deleteMetricDescriptor(formattedName);
 
     List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
@@ -277,6 +355,23 @@ public class MetricServiceTest {
         (DeleteMetricDescriptorRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedName, actualRequest.getName());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void deleteMetricDescriptorExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName =
+          MetricServiceClient.formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+
+      client.deleteMetricDescriptor(formattedName);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 
   @Test
@@ -290,17 +385,15 @@ public class MetricServiceTest {
             .setNextPageToken(nextPageToken)
             .addAllTimeSeries(timeSeries)
             .build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
-    String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
     String filter = "filter-1274492040";
     TimeInterval interval = TimeInterval.newBuilder().build();
     ListTimeSeriesRequest.TimeSeriesView view = ListTimeSeriesRequest.TimeSeriesView.FULL;
 
     ListTimeSeriesPagedResponse pagedListResponse =
-        api.listTimeSeries(formattedName, filter, interval, view);
+        client.listTimeSeries(formattedName, filter, interval, view);
 
     List<TimeSeries> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
@@ -318,16 +411,33 @@ public class MetricServiceTest {
 
   @Test
   @SuppressWarnings("all")
+  public void listTimeSeriesExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
+      String filter = "filter-1274492040";
+      TimeInterval interval = TimeInterval.newBuilder().build();
+      ListTimeSeriesRequest.TimeSeriesView view = ListTimeSeriesRequest.TimeSeriesView.FULL;
+
+      client.listTimeSeries(formattedName, filter, interval, view);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void createTimeSeriesTest() {
     Empty expectedResponse = Empty.newBuilder().build();
-    List<GeneratedMessageV3> expectedResponses = new ArrayList<>();
-    expectedResponses.add(expectedResponse);
-    mockMetricService.setResponses(expectedResponses);
+    mockMetricService.addResponse(expectedResponse);
 
-    String formattedName = MetricServiceApi.formatProjectName("[PROJECT]");
+    String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
     List<TimeSeries> timeSeries = new ArrayList<>();
 
-    api.createTimeSeries(formattedName, timeSeries);
+    client.createTimeSeries(formattedName, timeSeries);
 
     List<GeneratedMessageV3> actualRequests = mockMetricService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
@@ -335,5 +445,22 @@ public class MetricServiceTest {
 
     Assert.assertEquals(formattedName, actualRequest.getName());
     Assert.assertEquals(timeSeries, actualRequest.getTimeSeriesList());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void createTimeSeriesExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockMetricService.addException(exception);
+
+    try {
+      String formattedName = MetricServiceClient.formatProjectName("[PROJECT]");
+      List<TimeSeries> timeSeries = new ArrayList<>();
+
+      client.createTimeSeries(formattedName, timeSeries);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
   }
 }

@@ -34,6 +34,15 @@ public class MockLoggingServiceV2 implements MockGrpcService {
   }
 
   @Override
+  public void addResponse(GeneratedMessageV3 response) {
+    serviceImpl.addResponse(response);
+  }
+
+  @Override
+  public void addException(Exception exception) {
+    serviceImpl.addException(exception);
+  }
+
   public void setResponses(List<GeneratedMessageV3> responses) {
     serviceImpl.setResponses(responses);
   }
