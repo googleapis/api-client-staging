@@ -1,17 +1,17 @@
-.. gax-google-cloud-speech-v1beta1 sphinx documentation master file
+.. gapic-google-cloud-speech-v1beta1 sphinx documentation master file
 
 
 GAPIC library for the Google Speech API
 =============================================================================================================
 
-This is the API documentation for ``gax-google-cloud-speech-v1beta1``.
+This is the API documentation for ``gapic-google-cloud-speech-v1beta1``.
 
-gax-google-cloud-speech-v1beta1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-speech-v1beta1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Speech API`_ (v1beta1) defined in the googleapis_ git repository
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/cloud/speech/v1beta1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/speech/v1beta1
 .. _`Google Speech API`: https://developers.google.com/apis-explorer/?hl=en_US#p/speech/v1beta1/
 
 
