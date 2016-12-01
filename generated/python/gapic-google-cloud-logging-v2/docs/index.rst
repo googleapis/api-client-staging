@@ -1,18 +1,18 @@
-.. gax-google-cloud-logging-v2 sphinx documentation master file
+.. gapic-google-cloud-logging-v2 sphinx documentation master file
 
 
-GAPIC library for the Google Logging API
+GAPIC library for the Stackdriver Logging API
 =============================================================================================================
 
-This is the API documentation for ``gax-google-cloud-logging-v2``.
+This is the API documentation for ``gapic-google-cloud-logging-v2``.
 
-gax-google-cloud-logging-v2 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Google Logging API`_ (v2) defined in the googleapis_ git repository
+gapic-google-cloud-logging-v2 uses google-gax_ (Google API extensions) to provide an
+easy-to-use client library for the `Stackdriver Logging API`_ (v2) defined in the googleapis_ git repository
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/cloud/logging/v2
-.. _`Google Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
+.. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
 
 
 APIs

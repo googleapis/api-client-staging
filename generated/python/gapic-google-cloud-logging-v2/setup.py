@@ -17,7 +17,7 @@ install_requires = [
 ]
 
 setup(
-    name='gax-google-cloud-logging-v2',
+    name='gapic-google-cloud-logging-v2',
     version='0.14.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
@@ -34,7 +34,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Google Logging API',
+    description='GAPIC library for the Stackdriver Logging API',
     include_package_data=True,
     long_description=open('README.rst').read(),
     install_requires=install_requires,
