@@ -1,7 +1,7 @@
 Getting started
 ===============
 
-gapic-google-cloud-speech-v1beta1 will allow you to connect to the `Google Speech API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gax-google-cloud-speech-v1beta1 will allow you to connect to the `Google Speech API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
 .. _`Google Speech API`: https://developers.google.com/apis-explorer/?hl=en_US#p/speech/v1beta1/
 
@@ -29,7 +29,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gapic-google-cloud-speech-v1beta1
+    <your-env>/bin/pip install gax-google-cloud-speech-v1beta1
 
 Windows
 ~~~~~~~
@@ -39,7 +39,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gapic-google-cloud-speech-v1beta1
+    <your-env>\Scripts\pip.exe install gax-google-cloud-speech-v1beta1
 
 
 Using the API
