@@ -9,15 +9,16 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.5, <2.0.0dev',
-    'google-gax>=0.14.1, <0.15.0dev',
-    'grpc-google-logging-v2>=0.11.1, <0.12.0dev',
-    'oauth2client>=2.0.0, <4.0.0dev',
+    'googleapis-common-protos>=1.5.0, <2.0dev',
+    'google-gax>=0.15.0, <0.16dev',
+    # TODO (https://github.com/googleapis/packman/issues/119): need upper bound logic
+    'grpc-google-cloud-logging-v2>=0.14.0',
+    'oauth2client>=2.0.0, <4.0dev',
 ]
 
 setup(
-    name='gapic-google-logging-v2',
-    version='0.11.1',
+    name='gax-google-cloud-logging-v2',
+    version='0.14.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
@@ -33,7 +34,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    description='GAPIC library for the Stackdriver Logging API',
+    description='GAPIC library for the Google Logging API',
     include_package_data=True,
     long_description=open('README.rst').read(),
     install_requires=install_requires,

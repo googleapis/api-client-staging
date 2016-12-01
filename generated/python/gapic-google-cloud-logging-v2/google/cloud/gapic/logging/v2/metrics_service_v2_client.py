@@ -33,12 +33,12 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.logging.v2 import enums
-from google.logging.v2 import logging_metrics_pb2
+from google.cloud.grpc.logging.v2 import logging_metrics_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
 
-class MetricsServiceV2Api(object):
+class MetricsServiceV2Client(object):
     """Service for configuring logs-based metrics."""
 
     SERVICE_ADDRESS = 'logging.googleapis.com'
@@ -58,11 +58,12 @@ class MetricsServiceV2Api(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
-                   'https://www.googleapis.com/auth/cloud-platform.read-only',
-                   'https://www.googleapis.com/auth/logging.admin',
-                   'https://www.googleapis.com/auth/logging.read',
-                   'https://www.googleapis.com/auth/logging.write', )
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+        'https://www.googleapis.com/auth/logging.admin',
+        'https://www.googleapis.com/auth/logging.read',
+        'https://www.googleapis.com/auth/logging.write', )
 
     _PARENT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _METRIC_PATH_TEMPLATE = path_template.PathTemplate(
@@ -124,8 +125,8 @@ class MetricsServiceV2Api(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -137,21 +138,23 @@ class MetricsServiceV2Api(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A MetricsServiceV2Api object.
+          A MetricsServiceV2Client object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -173,12 +176,12 @@ class MetricsServiceV2Api(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.metrics_service_v2_stub = config.create_stub(
             logging_metrics_pb2.MetricsServiceV2Stub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._list_log_metrics = api_callable.create_api_call(
             self.metrics_service_v2_stub.ListLogMetrics,
@@ -202,9 +205,9 @@ class MetricsServiceV2Api(object):
         Lists logs-based metrics.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
+          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> parent = api.parent_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -219,8 +222,11 @@ class MetricsServiceV2Api(object):
           >>>     pass
 
         Args:
-          parent (string): Required. The resource name containing the metrics.
-            Example: ``\"projects/my-project-id\"``.
+          parent (string): Required. The name of the project containing the metrics:
+
+            ::
+
+                \"projects/[PROJECT_ID]\"
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -231,7 +237,7 @@ class MetricsServiceV2Api(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.logging.v2.logging_metrics_pb2.LogMetric` instances.
+          is an iterable of :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -248,19 +254,22 @@ class MetricsServiceV2Api(object):
         Gets a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
-          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
+          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> response = api.get_log_metric(metric_name)
 
         Args:
-          metric_name (string): The resource name of the desired metric.
-            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
+          metric_name (string): The resource name of the desired metric:
+
+            ::
+
+                \"projects/[PROJECT_ID]/metrics/[METRIC_ID]\"
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -275,25 +284,28 @@ class MetricsServiceV2Api(object):
         Creates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
-          >>> from google.logging.v2 import logging_metrics_pb2
-          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
+          >>> from google.cloud.grpc.logging.v2 import logging_metrics_pb2
+          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> parent = api.parent_path('[PROJECT]')
           >>> metric = logging_metrics_pb2.LogMetric()
           >>> response = api.create_log_metric(parent, metric)
 
         Args:
-          parent (string): The resource name of the project in which to create the metric.
-            Example: ``\"projects/my-project-id\"``.
+          parent (string): The resource name of the project in which to create the metric:
+
+            ::
+
+                \"projects/[PROJECT_ID]\"
 
             The new metric must be provided in the request.
-          metric (:class:`google.logging.v2.logging_metrics_pb2.LogMetric`): The new logs-based metric, which must not have an identifier that
+          metric (:class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric`): The new logs-based metric, which must not have an identifier that
             already exists.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -308,28 +320,29 @@ class MetricsServiceV2Api(object):
         Creates or updates a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
-          >>> from google.logging.v2 import logging_metrics_pb2
-          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
+          >>> from google.cloud.grpc.logging.v2 import logging_metrics_pb2
+          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> metric = logging_metrics_pb2.LogMetric()
           >>> response = api.update_log_metric(metric_name, metric)
 
         Args:
-          metric_name (string): The resource name of the metric to update.
-            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
+          metric_name (string): The resource name of the metric to update:
 
-            The updated metric must be provided in the request and have the
-            same identifier that is specified in ``metricName``.
-            If the metric does not exist, it is created.
-          metric (:class:`google.logging.v2.logging_metrics_pb2.LogMetric`): The updated metric, whose name must be the same as the
-            metric identifier in ``metricName``. If ``metricName`` does not
-            exist, then a new metric is created.
+            ::
+
+                \"projects/[PROJECT_ID]/metrics/[METRIC_ID]\"
+
+            The updated metric must be provided in the request and it's
+            ``name`` field must be the same as ``[METRIC_ID]`` If the metric
+            does not exist in ``[PROJECT_ID]``, then a new metric is created.
+          metric (:class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric`): The updated metric.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -344,14 +357,17 @@ class MetricsServiceV2Api(object):
         Deletes a logs-based metric.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_api
-          >>> api = metrics_service_v2_api.MetricsServiceV2Api()
+          >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
+          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> api.delete_log_metric(metric_name)
 
         Args:
-          metric_name (string): The resource name of the metric to delete.
-            Example: ``\"projects/my-project-id/metrics/my-metric-id\"``.
+          metric_name (string): The resource name of the metric to delete:
+
+            ::
+
+                \"projects/[PROJECT_ID]/metrics/[METRIC_ID]\"
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 

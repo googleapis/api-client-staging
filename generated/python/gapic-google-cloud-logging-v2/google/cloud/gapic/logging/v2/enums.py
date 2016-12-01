@@ -30,7 +30,7 @@ class LogMetric(object):
 class LogSink(object):
     class VersionFormat(object):
         """
-        Available log entry formats. Log entries can be written to Cloud
+        Available log entry formats. Log entries can be written to Stackdriver
         Logging in either format and can be exported in either format.
         Version 2 is the preferred format.
 
@@ -69,6 +69,8 @@ class LogSeverity(object):
     You can filter for log entries by severity.  For example, the following
     filter expression will match log entries with severities ``INFO``, ``NOTICE``,
     and ``WARNING``:
+
+    ::
 
         severity > DEBUG AND severity <= WARNING
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# gapic-google-logging-v2 documentation build configuration file
+# gax-google-cloud-logging-v2 documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -20,7 +20,7 @@ import shlex
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('..'))
 
-__version__ = '0.11.1'
+__version__ = '0.14.0'
 
 # -- General configuration ------------------------------------------------
 
@@ -60,7 +60,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'gapic-google-logging-v2'
+project = u'gax-google-cloud-logging-v2'
 copyright = u'2016, Google'
 author = u'Google APIs'
 
@@ -214,7 +214,7 @@ html_theme = 'sphinx_rtd_theme'
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'gapic-google-logging-v2-doc'
+htmlhelp_basename = 'gax-google-cloud-logging-v2-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -236,7 +236,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'gapic-google-logging-v2.tex', u'gapic-google-logging-v2 Documentation',
+  (master_doc, 'gax-google-cloud-logging-v2.tex', u'gax-google-cloud-logging-v2 Documentation',
    author, 'manual'),
 ]
 
@@ -266,7 +266,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'gapic-google-logging-v2', u'gapic-google-logging-v2 Documentation',
+    (master_doc, 'gax-google-cloud-logging-v2', u'gax-google-cloud-logging-v2 Documentation',
      [author], 1)
 ]
 
@@ -280,8 +280,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'gapic-google-logging-v2', u'gapic-google-logging-v2 Documentation',
-   author, 'gapic-google-logging-v2', 'GAPIC library for the google-logging (api.version) service',
+  (master_doc, 'gax-google-cloud-logging-v2', u'gax-google-cloud-logging-v2 Documentation',
+   author, 'gax-google-cloud-logging-v2', 'GAPIC library for the google-cloud-logging (api.version) service',
    'APIs'),
 ]
 
