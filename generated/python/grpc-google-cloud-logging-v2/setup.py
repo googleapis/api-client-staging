@@ -33,7 +33,7 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the Google Logging service',
+  description='GRPC library for the Stackdriver Logging service',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',
