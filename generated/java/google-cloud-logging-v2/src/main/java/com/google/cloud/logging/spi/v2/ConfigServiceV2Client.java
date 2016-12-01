@@ -114,23 +114,12 @@ public class ConfigServiceV2Client implements AutoCloseable {
   private static final PathTemplate PARENT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
-  private static final PathTemplate ORGANIZATION_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("organizations/{organization}");
-
   private static final PathTemplate SINK_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/sinks/{sink}");
-
-  private static final PathTemplate ORGANIZATION_SINK_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("organizations/{organization}/sinks/{sink}");
 
   /** Formats a string containing the fully-qualified path to represent a parent resource. */
   public static final String formatParentName(String project) {
     return PARENT_PATH_TEMPLATE.instantiate("project", project);
-  }
-
-  /** Formats a string containing the fully-qualified path to represent a organization resource. */
-  public static final String formatOrganizationName(String organization) {
-    return ORGANIZATION_PATH_TEMPLATE.instantiate("organization", organization);
   }
 
   /** Formats a string containing the fully-qualified path to represent a sink resource. */
@@ -140,26 +129,9 @@ public class ConfigServiceV2Client implements AutoCloseable {
         "sink", sink);
   }
 
-  /**
-   * Formats a string containing the fully-qualified path to represent a organization_sink resource.
-   */
-  public static final String formatOrganizationSinkName(String organization, String sink) {
-    return ORGANIZATION_SINK_PATH_TEMPLATE.instantiate(
-        "organization", organization,
-        "sink", sink);
-  }
-
   /** Parses the project from the given fully-qualified path which represents a parent resource. */
   public static final String parseProjectFromParentName(String parentName) {
     return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
-  }
-
-  /**
-   * Parses the organization from the given fully-qualified path which represents a organization
-   * resource.
-   */
-  public static final String parseOrganizationFromOrganizationName(String organizationName) {
-    return ORGANIZATION_PATH_TEMPLATE.parse(organizationName).get("organization");
   }
 
   /** Parses the project from the given fully-qualified path which represents a sink resource. */
@@ -170,23 +142,6 @@ public class ConfigServiceV2Client implements AutoCloseable {
   /** Parses the sink from the given fully-qualified path which represents a sink resource. */
   public static final String parseSinkFromSinkName(String sinkName) {
     return SINK_PATH_TEMPLATE.parse(sinkName).get("sink");
-  }
-
-  /**
-   * Parses the organization from the given fully-qualified path which represents a
-   * organization_sink resource.
-   */
-  public static final String parseOrganizationFromOrganizationSinkName(
-      String organizationSinkName) {
-    return ORGANIZATION_SINK_PATH_TEMPLATE.parse(organizationSinkName).get("organization");
-  }
-
-  /**
-   * Parses the sink from the given fully-qualified path which represents a organization_sink
-   * resource.
-   */
-  public static final String parseSinkFromOrganizationSinkName(String organizationSinkName) {
-    return ORGANIZATION_SINK_PATH_TEMPLATE.parse(organizationSinkName).get("sink");
   }
 
   /** Constructs an instance of ConfigServiceV2Client with default settings. */
