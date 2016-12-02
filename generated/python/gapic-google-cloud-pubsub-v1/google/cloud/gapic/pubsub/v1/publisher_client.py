@@ -32,16 +32,16 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.grpc.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
-from google.pubsub.v1 import pubsub_pb2
 
 _BundleDesc = google.gax.BundleDescriptor
 
 _PageDesc = google.gax.PageDescriptor
 
 
-class PublisherApi(object):
+class PublisherClient(object):
     """
     The service that an application uses to manipulate topics, and to send
     messages to a topic.
@@ -66,16 +66,15 @@ class PublisherApi(object):
     _BUNDLE_DESCRIPTORS = {
         'publish': _BundleDesc(
             'messages',
-            [
-                'topic'
-            ],
+            ['topic'],
             subresponse_field='message_ids', )
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
-                   'https://www.googleapis.com/auth/pubsub', )
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/pubsub', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _TOPIC_PATH_TEMPLATE = path_template.PathTemplate(
@@ -137,8 +136,8 @@ class PublisherApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -150,21 +149,23 @@ class PublisherApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A PublisherApi object.
+          A PublisherClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -187,20 +188,20 @@ class PublisherApi(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.iam_policy_stub = config.create_stub(
             iam_policy_pb2.IAMPolicyStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
         self.publisher_stub = config.create_stub(
             pubsub_pb2.PublisherStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._create_topic = api_callable.create_api_call(
             self.publisher_stub.CreateTopic, settings=defaults['create_topic'])
@@ -231,8 +232,8 @@ class PublisherApi(object):
         Creates the given topic with the given name.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> api = publisher_client.PublisherClient()
           >>> name = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.create_topic(name)
 
@@ -247,7 +248,7 @@ class PublisherApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.Topic` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -263,23 +264,23 @@ class PublisherApi(object):
         either a non-empty data field, or at least one attribute.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> from google.pubsub.v1 import pubsub_pb2
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+          >>> api = publisher_client.PublisherClient()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> data = ''
+          >>> data = b''
           >>> messages_element = pubsub_pb2.PubsubMessage(data)
           >>> messages = [messages_element]
           >>> response = api.publish(topic, messages)
 
         Args:
           topic (string): The messages in the request will be published on this topic.
-          messages (list[:class:`google.pubsub.v1.pubsub_pb2.PubsubMessage`]): The messages to publish.
+          messages (list[:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PubsubMessage`]): The messages to publish.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.PublishResponse` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PublishResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -293,8 +294,8 @@ class PublisherApi(object):
         Gets the configuration of a topic.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> api = publisher_client.PublisherClient()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.get_topic(topic)
 
@@ -304,7 +305,7 @@ class PublisherApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.Topic` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -318,9 +319,9 @@ class PublisherApi(object):
         Lists matching topics.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = publisher_api.PublisherApi()
+          >>> api = publisher_client.PublisherClient()
           >>> project = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -346,7 +347,7 @@ class PublisherApi(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.pubsub.v1.pubsub_pb2.Topic` instances.
+          is an iterable of :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -363,9 +364,9 @@ class PublisherApi(object):
         Lists the name of the subscriptions for this topic.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = publisher_api.PublisherApi()
+          >>> api = publisher_client.PublisherClient()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>>
           >>> # Iterate over all results
@@ -412,8 +413,8 @@ class PublisherApi(object):
         not deleted, but their ``topic`` field is set to ``_deleted-topic_``.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> api = publisher_client.PublisherClient()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> api.delete_topic(topic)
 
@@ -435,20 +436,21 @@ class PublisherApi(object):
         existing policy.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = publisher_api.PublisherApi()
+          >>> api = publisher_client.PublisherClient()
           >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> policy = policy_pb2.Policy()
           >>> response = api.set_iam_policy(resource, policy)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being specified.
-            Resource is usually specified as a path, such as,
-            projects/{project}/zones/{zone}/disks/{disk}.
-          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the 'resource'. The size of
-            the policy is limited to a few 10s of KB. An empty policy is in general a
-            valid policy but certain services (like Projects) might reject them.
+          resource (string): REQUIRED: The resource for which the policy is being specified.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the ``resource``. The size of
+            the policy is limited to a few 10s of KB. An empty policy is a
+            valid policy but certain Cloud Platform services (such as Projects)
+            might reject them.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -465,18 +467,20 @@ class PublisherApi(object):
 
     def get_iam_policy(self, resource, options=None):
         """
-        Gets the access control policy for a resource. Is empty if the
-        policy or the resource does not exist.
+        Gets the access control policy for a resource.
+        Returns an empty policy if the resource exists and does not have a policy
+        set.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> api = publisher_client.PublisherClient()
           >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.get_iam_policy(resource)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being requested. Resource
-            is usually specified as a path, such as, projects/{project}.
+          resource (string): REQUIRED: The resource for which the policy is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -495,17 +499,20 @@ class PublisherApi(object):
         Returns permissions that a caller has on the specified resource.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import publisher_api
-          >>> api = publisher_api.PublisherApi()
+          >>> from google.cloud.gapic.pubsub.v1 import publisher_client
+          >>> api = publisher_client.PublisherClient()
           >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> permissions = []
           >>> response = api.test_iam_permissions(resource, permissions)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy detail is being requested.
-            Resource is usually specified as a path, such as, projects/{project}.
-          permissions (list[string]): The set of permissions to check for the 'resource'. Permissions with
-            wildcards (such as '*' or 'storage.*') are not allowed.
+          resource (string): REQUIRED: The resource for which the policy detail is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          permissions (list[string]): The set of permissions to check for the ``resource``. Permissions with
+            wildcards (such as '*' or 'storage.*') are not allowed. For more
+            information see
+            `IAM Overview <https://cloud.google.com/iam/docs/overview#permissions>`_.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 

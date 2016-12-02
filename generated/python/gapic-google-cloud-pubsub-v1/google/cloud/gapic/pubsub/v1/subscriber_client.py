@@ -32,14 +32,14 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
+from google.cloud.grpc.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
-from google.pubsub.v1 import pubsub_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
 
-class SubscriberApi(object):
+class SubscriberClient(object):
     """
     The service that an application uses to manipulate subscriptions and to
     consume messages from a subscription via the ``Pull`` method.
@@ -62,8 +62,9 @@ class SubscriberApi(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
-                   'https://www.googleapis.com/auth/pubsub', )
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/pubsub', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _SUBSCRIPTION_PATH_TEMPLATE = path_template.PathTemplate(
@@ -163,8 +164,8 @@ class SubscriberApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -176,21 +177,23 @@ class SubscriberApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A SubscriberApi object.
+          A SubscriberClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -212,20 +215,20 @@ class SubscriberApi(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.iam_policy_stub = config.create_stub(
             iam_policy_pb2.IAMPolicyStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
         self.subscriber_stub = config.create_stub(
             pubsub_pb2.SubscriberStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._create_subscription = api_callable.create_api_call(
             self.subscriber_stub.CreateSubscription,
@@ -275,8 +278,8 @@ class SubscriberApi(object):
         for REST API requests, you must specify a name.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> name = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> response = api.create_subscription(name, topic)
@@ -291,7 +294,7 @@ class SubscriberApi(object):
           topic (string): The name of the topic from which this subscription is receiving messages.
             The value of this field will be ``_deleted-topic_`` if the topic has been
             deleted.
-          push_config (:class:`google.pubsub.v1.pubsub_pb2.PushConfig`): If push delivery is used with this subscription, this field is
+          push_config (:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PushConfig`): If push delivery is used with this subscription, this field is
             used to configure it. An empty ``pushConfig`` signifies that the subscriber
             will pull and ack messages using API methods.
           ack_deadline_seconds (int): This value is the maximum time after a subscriber receives a message
@@ -317,7 +320,7 @@ class SubscriberApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.Subscription` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -337,8 +340,8 @@ class SubscriberApi(object):
         Gets the configuration details of a subscription.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> response = api.get_subscription(subscription)
 
@@ -348,7 +351,7 @@ class SubscriberApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.Subscription` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -362,9 +365,9 @@ class SubscriberApi(object):
         Lists matching subscriptions.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = subscriber_api.SubscriberApi()
+          >>> api = subscriber_client.SubscriberClient()
           >>> project = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -390,7 +393,7 @@ class SubscriberApi(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.pubsub.v1.pubsub_pb2.Subscription` instances.
+          is an iterable of :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -411,8 +414,8 @@ class SubscriberApi(object):
         subscription, or its topic unless the same topic is specified.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> api.delete_subscription(subscription)
 
@@ -442,8 +445,8 @@ class SubscriberApi(object):
         subscription-level ``ackDeadlineSeconds`` used for subsequent messages.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
           >>> ack_deadline_seconds = 0
@@ -480,8 +483,8 @@ class SubscriberApi(object):
         than once will not result in an error.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
           >>> api.acknowledge(subscription, ack_ids)
@@ -513,8 +516,8 @@ class SubscriberApi(object):
         subscription.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> max_messages = 0
           >>> response = api.pull(subscription, max_messages)
@@ -532,7 +535,7 @@ class SubscriberApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.pubsub.v1.pubsub_pb2.PullResponse` instance.
+          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PullResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -553,16 +556,16 @@ class SubscriberApi(object):
         continuously through the call regardless of changes to the ``PushConfig``.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> from google.pubsub.v1 import pubsub_pb2
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+          >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> push_config = pubsub_pb2.PushConfig()
           >>> api.modify_push_config(subscription, push_config)
 
         Args:
           subscription (string): The name of the subscription.
-          push_config (:class:`google.pubsub.v1.pubsub_pb2.PushConfig`): The push configuration for future deliveries.
+          push_config (:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PushConfig`): The push configuration for future deliveries.
 
             An empty ``pushConfig`` indicates that the Pub/Sub system should
             stop pushing messages from the given subscription and allow
@@ -585,20 +588,21 @@ class SubscriberApi(object):
         existing policy.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = subscriber_api.SubscriberApi()
+          >>> api = subscriber_client.SubscriberClient()
           >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> policy = policy_pb2.Policy()
           >>> response = api.set_iam_policy(resource, policy)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being specified.
-            Resource is usually specified as a path, such as,
-            projects/{project}/zones/{zone}/disks/{disk}.
-          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the 'resource'. The size of
-            the policy is limited to a few 10s of KB. An empty policy is in general a
-            valid policy but certain services (like Projects) might reject them.
+          resource (string): REQUIRED: The resource for which the policy is being specified.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          policy (:class:`google.iam.v1.policy_pb2.Policy`): REQUIRED: The complete policy to be applied to the ``resource``. The size of
+            the policy is limited to a few 10s of KB. An empty policy is a
+            valid policy but certain Cloud Platform services (such as Projects)
+            might reject them.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -615,18 +619,20 @@ class SubscriberApi(object):
 
     def get_iam_policy(self, resource, options=None):
         """
-        Gets the access control policy for a resource. Is empty if the
-        policy or the resource does not exist.
+        Gets the access control policy for a resource.
+        Returns an empty policy if the resource exists and does not have a policy
+        set.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> response = api.get_iam_policy(resource)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy is being requested. Resource
-            is usually specified as a path, such as, projects/{project}.
+          resource (string): REQUIRED: The resource for which the policy is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -645,17 +651,20 @@ class SubscriberApi(object):
         Returns permissions that a caller has on the specified resource.
 
         Example:
-          >>> from google.cloud.gapic.pubsub.v1 import subscriber_api
-          >>> api = subscriber_api.SubscriberApi()
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
           >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> permissions = []
           >>> response = api.test_iam_permissions(resource, permissions)
 
         Args:
-          resource (string): REQUIRED: The resource for which policy detail is being requested.
-            Resource is usually specified as a path, such as, projects/{project}.
-          permissions (list[string]): The set of permissions to check for the 'resource'. Permissions with
-            wildcards (such as '*' or 'storage.*') are not allowed.
+          resource (string): REQUIRED: The resource for which the policy detail is being requested.
+            ``resource`` is usually specified as a path. For example, a Project
+            resource is specified as ``projects/{project}``.
+          permissions (list[string]): The set of permissions to check for the ``resource``. Permissions with
+            wildcards (such as '*' or 'storage.*') are not allowed. For more
+            information see
+            `IAM Overview <https://cloud.google.com/iam/docs/overview#permissions>`_.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
