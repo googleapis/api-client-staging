@@ -11,13 +11,12 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.5.0, <2.0dev',
     'google-gax>=0.15.0, <0.16dev',
-    # TODO (https://github.com/googleapis/packman/issues/119): need upper bound logic
-    'grpc-google-cloud-pubsub-v1>=0.14.0',
+    'grpc-google-cloud-pubsub-v1>=0.14.0, <0.15.0dev',
     'oauth2client>=2.0.0, <4.0dev',
 ]
 
 setup(
-    name='gax-google-cloud-pubsub-v1',
+    name='gapic-google-cloud-pubsub-v1',
     version='0.14.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
