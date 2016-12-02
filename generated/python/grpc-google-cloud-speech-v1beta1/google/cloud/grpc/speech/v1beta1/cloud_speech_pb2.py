@@ -913,6 +913,11 @@ def add_SpeechServicer_to_server(servicer, server):
 
 
 class BetaSpeechServicer(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Service that implements Google Cloud Speech API.
   """
   def SyncRecognize(self, request, context):
@@ -935,6 +940,11 @@ class BetaSpeechServicer(object):
 
 
 class BetaSpeechStub(object):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This class was generated
+  only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
   """Service that implements Google Cloud Speech API.
   """
   def SyncRecognize(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
@@ -959,6 +969,11 @@ class BetaSpeechStub(object):
 
 
 def beta_create_Speech_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_deserializers = {
     ('google.cloud.speech.v1beta1.Speech', 'AsyncRecognize'): AsyncRecognizeRequest.FromString,
     ('google.cloud.speech.v1beta1.Speech', 'StreamingRecognize'): StreamingRecognizeRequest.FromString,
@@ -979,6 +994,11 @@ def beta_create_Speech_server(servicer, pool=None, pool_size=None, default_timeo
 
 
 def beta_create_Speech_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+  """The Beta API is deprecated for 0.15.0 and later.
+
+  It is recommended to use the GA API (classes and functions in this
+  file not marked beta) for all further purposes. This function was
+  generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
   request_serializers = {
     ('google.cloud.speech.v1beta1.Speech', 'AsyncRecognize'): AsyncRecognizeRequest.SerializeToString,
     ('google.cloud.speech.v1beta1.Speech', 'StreamingRecognize'): StreamingRecognizeRequest.SerializeToString,

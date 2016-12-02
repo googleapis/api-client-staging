@@ -36,7 +36,7 @@ from google.cloud.gapic.speech.v1beta1 import enums
 from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
 
 
-class SpeechApi(object):
+class SpeechClient(object):
     """Service that implements Google Cloud Speech API."""
 
     SERVICE_ADDRESS = 'speech.googleapis.com'
@@ -57,8 +57,8 @@ class SpeechApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -70,21 +70,23 @@ class SpeechApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A SpeechApi object.
+          A SpeechClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -105,12 +107,12 @@ class SpeechApi(object):
             kwargs={'metadata': metadata})
         self.speech_stub = config.create_stub(
             cloud_speech_pb2.SpeechStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._sync_recognize = api_callable.create_api_call(
             self.speech_stub.SyncRecognize,
@@ -129,9 +131,9 @@ class SpeechApi(object):
         has been sent and processed.
 
         Example:
-          >>> from google.cloud.gapic.speech.v1beta1 import speech_api
+          >>> from google.cloud.gapic.speech.v1beta1 import speech_client
           >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
-          >>> api = speech_api.SpeechApi()
+          >>> api = speech_client.SpeechClient()
           >>> config = cloud_speech_pb2.RecognitionConfig()
           >>> audio = cloud_speech_pb2.RecognitionAudio()
           >>> response = api.sync_recognize(config, audio)
@@ -162,9 +164,9 @@ class SpeechApi(object):
         an ``AsyncRecognizeResponse`` message.
 
         Example:
-          >>> from google.cloud.gapic.speech.v1beta1 import speech_api
+          >>> from google.cloud.gapic.speech.v1beta1 import speech_client
           >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
-          >>> api = speech_api.SpeechApi()
+          >>> api = speech_client.SpeechClient()
           >>> config = cloud_speech_pb2.RecognitionConfig()
           >>> audio = cloud_speech_pb2.RecognitionAudio()
           >>> response = api.async_recognize(config, audio)
@@ -195,9 +197,9 @@ class SpeechApi(object):
         EXPERIMENTAL: This method interface might change in the future.
 
         Example:
-          >>> from google.cloud.gapic.speech.v1beta1 import speech_api
+          >>> from google.cloud.gapic.speech.v1beta1 import speech_client
           >>> from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2
-          >>> api = speech_api.SpeechApi()
+          >>> api = speech_client.SpeechClient()
           >>> request = cloud_speech_pb2.StreamingRecognizeRequest()
           >>> requests = [request]
           >>> for element in api.streaming_recognize(requests):
