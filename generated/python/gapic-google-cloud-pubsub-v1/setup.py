@@ -11,6 +11,7 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.5.0, <2.0dev',
     'google-gax>=0.15.0, <0.16dev',
+    'grpc-google-iam-v1>=0.11.1, <0.12.0dev',
     'grpc-google-cloud-pubsub-v1>=0.14.0, <0.15.0dev',
     'oauth2client>=2.0.0, <4.0dev',
 ]
