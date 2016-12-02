@@ -1,5 +1,5 @@
 /*!
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,7 @@ describe('loggingV2', function() {
       var resource = {'type': 'global'};
       var entries = [{textPayload: myLogMessage, logName: logName}];
       var start = new Date();
+      var filter = 'logName="' + logName + '"';
       client.writeLogEntries({
         entries: entries,
         resource: resource,
@@ -64,7 +65,7 @@ describe('loggingV2', function() {
       }).then(wait).then(function() {
         return client.listLogEntries({
           resourceNames: [resourceName],
-          filter: 'logName="' + logName + '"',
+          filter: filter,
           orderBy: 'timestamp desc'
         });
       }).then(function(resp) {
@@ -80,14 +81,24 @@ describe('loggingV2', function() {
         expect(found).to.be.true;
 
         return client.deleteLog({logName: logName});
-      }).then(function() {
+      }).then(wait).then(function() {
+        return client.listLogEntries({
+          resourceNames: [resourceName],
+          filter: filter
+        });
+      }).then(function(resp) {
+        var entries = resp[0];
+        expect(entries).to.be.an('array');
+        expect(entries).to.be.empty;
         done();
       }).catch(done);
     });
 
     it('lists resource descriptors', function(done) {
       client.listMonitoredResourceDescriptors().then(function(resp) {
-        expect(resp).not.to.be.empty;
+        var resources = resp[0];
+        expect(resources).to.be.an('array');
+        expect(resources).not.to.be.empty;
         done();
       }).catch(done);
     });
@@ -141,9 +152,15 @@ describe('loggingV2', function() {
         }
         expect(found).to.be.true;
         return client.deleteSink({sinkName: sinkName});
+        // catch(done) should be here to catch all failures until this line.
+        // The next API call is expected to fail.
+      }).catch(done).then(function() {
+        return client.getSink({sinkName: sinkName});
       }).then(function() {
+        done(new Error('should not success getSink after delete'));
+      }).catch(function(err) {
         done();
-      }).catch(done);
+      });
     });
   });
 
@@ -181,9 +198,17 @@ describe('loggingV2', function() {
         }
         expect(found).to.be.true;
         return client.deleteLogMetric({metricName: metricName});
+        // catch(done) should be here to catch all failures until this line.
+        // The next API call is expected to fail.
+      }).catch(done).then(function() {
+        return client.getLogMetric({metricName: metricName});
       }).then(function() {
+        done(new Error(
+          'The last getLogMetric should not succeed because it is already deleted'));
+      }).catch(function(err) {
+        // Successfully failed to getLogMetric.
         done();
-      }).catch(done);
+      });
     });
   });
 });
