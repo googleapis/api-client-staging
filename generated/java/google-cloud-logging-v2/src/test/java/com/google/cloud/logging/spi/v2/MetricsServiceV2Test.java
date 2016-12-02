@@ -29,8 +29,8 @@ import com.google.logging.v2.ListLogMetricsResponse;
 import com.google.logging.v2.LogMetric;
 import com.google.logging.v2.MetricName;
 import com.google.logging.v2.MetricNameOneof;
-import com.google.logging.v2.ParentName;
 import com.google.logging.v2.ParentNameOneof;
+import com.google.logging.v2.ProjectName;
 import com.google.logging.v2.UpdateLogMetricRequest;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
@@ -100,7 +100,7 @@ public class MetricsServiceV2Test {
             .build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
 
     ListLogMetricsPagedResponse pagedListResponse = client.listLogMetrics(parent);
 
@@ -122,7 +122,7 @@ public class MetricsServiceV2Test {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
 
       client.listLogMetrics(parent);
       Assert.fail("No exception raised");
@@ -179,7 +179,7 @@ public class MetricsServiceV2Test {
         LogMetric.newBuilder().setName(name).setDescription(description).setFilter(filter).build();
     mockMetricsServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
     LogMetric metric = LogMetric.newBuilder().build();
 
     LogMetric actualResponse = client.createLogMetric(parent, metric);
@@ -200,7 +200,7 @@ public class MetricsServiceV2Test {
     mockMetricsServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
       LogMetric metric = LogMetric.newBuilder().build();
 
       client.createLogMetric(parent, metric);

@@ -28,9 +28,9 @@ import com.google.logging.v2.GetSinkRequest;
 import com.google.logging.v2.ListSinksRequest;
 import com.google.logging.v2.ListSinksResponse;
 import com.google.logging.v2.LogSink;
-import com.google.logging.v2.ParentName;
 import com.google.logging.v2.ParentNameOneof;
-import com.google.logging.v2.SinkName;
+import com.google.logging.v2.ProjectName;
+import com.google.logging.v2.ProjectSinkName;
 import com.google.logging.v2.SinkNameOneof;
 import com.google.logging.v2.UpdateSinkRequest;
 import com.google.protobuf.Empty;
@@ -98,7 +98,7 @@ public class ConfigServiceV2Test {
         ListSinksResponse.newBuilder().setNextPageToken(nextPageToken).addAllSinks(sinks).build();
     mockConfigServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
 
     ListSinksPagedResponse pagedListResponse = client.listSinks(parent);
 
@@ -120,7 +120,7 @@ public class ConfigServiceV2Test {
     mockConfigServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
 
       client.listSinks(parent);
       Assert.fail("No exception raised");
@@ -133,7 +133,7 @@ public class ConfigServiceV2Test {
   @SuppressWarnings("all")
   public void getSinkTest() {
     String name = "name3373707";
-    ResourceName destination = ParentName.create("[PROJECT]");
+    ResourceName destination = ProjectName.create("[PROJECT]");
     String filter = "filter-1274492040";
     String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
@@ -145,7 +145,7 @@ public class ConfigServiceV2Test {
             .build();
     mockConfigServiceV2.addResponse(expectedResponse);
 
-    SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+    SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
 
     LogSink actualResponse = client.getSink(sinkName);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -164,7 +164,7 @@ public class ConfigServiceV2Test {
     mockConfigServiceV2.addException(exception);
 
     try {
-      SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+      SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
 
       client.getSink(sinkName);
       Assert.fail("No exception raised");
@@ -177,7 +177,7 @@ public class ConfigServiceV2Test {
   @SuppressWarnings("all")
   public void createSinkTest() {
     String name = "name3373707";
-    ResourceName destination = ParentName.create("[PROJECT]");
+    ResourceName destination = ProjectName.create("[PROJECT]");
     String filter = "filter-1274492040";
     String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
@@ -189,7 +189,7 @@ public class ConfigServiceV2Test {
             .build();
     mockConfigServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
     LogSink sink = LogSink.newBuilder().build();
 
     LogSink actualResponse = client.createSink(parent, sink);
@@ -210,7 +210,7 @@ public class ConfigServiceV2Test {
     mockConfigServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
       LogSink sink = LogSink.newBuilder().build();
 
       client.createSink(parent, sink);
@@ -224,7 +224,7 @@ public class ConfigServiceV2Test {
   @SuppressWarnings("all")
   public void updateSinkTest() {
     String name = "name3373707";
-    ResourceName destination = ParentName.create("[PROJECT]");
+    ResourceName destination = ProjectName.create("[PROJECT]");
     String filter = "filter-1274492040";
     String writerIdentity = "writerIdentity775638794";
     LogSink expectedResponse =
@@ -236,7 +236,7 @@ public class ConfigServiceV2Test {
             .build();
     mockConfigServiceV2.addResponse(expectedResponse);
 
-    SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+    SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
     LogSink sink = LogSink.newBuilder().build();
 
     LogSink actualResponse = client.updateSink(sinkName, sink);
@@ -257,7 +257,7 @@ public class ConfigServiceV2Test {
     mockConfigServiceV2.addException(exception);
 
     try {
-      SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+      SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
       LogSink sink = LogSink.newBuilder().build();
 
       client.updateSink(sinkName, sink);
@@ -273,7 +273,7 @@ public class ConfigServiceV2Test {
     Empty expectedResponse = Empty.newBuilder().build();
     mockConfigServiceV2.addResponse(expectedResponse);
 
-    SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+    SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
 
     client.deleteSink(sinkName);
 
@@ -291,7 +291,7 @@ public class ConfigServiceV2Test {
     mockConfigServiceV2.addException(exception);
 
     try {
-      SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+      SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
 
       client.deleteSink(sinkName);
       Assert.fail("No exception raised");

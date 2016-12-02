@@ -111,15 +111,15 @@ public class MetricsServiceV2Client implements AutoCloseable {
   private final UnaryCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable;
   private final UnaryCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable;
 
-  private static final PathTemplate PARENT_PATH_TEMPLATE =
+  private static final PathTemplate PROJECT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
   private static final PathTemplate METRIC_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/metrics/{metric}");
 
-  /** Formats a string containing the fully-qualified path to represent a parent resource. */
-  public static final String formatParentName(String project) {
-    return PARENT_PATH_TEMPLATE.instantiate("project", project);
+  /** Formats a string containing the fully-qualified path to represent a project resource. */
+  public static final String formatProjectName(String project) {
+    return PROJECT_PATH_TEMPLATE.instantiate("project", project);
   }
 
   /** Formats a string containing the fully-qualified path to represent a metric resource. */
@@ -129,9 +129,9 @@ public class MetricsServiceV2Client implements AutoCloseable {
         "metric", metric);
   }
 
-  /** Parses the project from the given fully-qualified path which represents a parent resource. */
-  public static final String parseProjectFromParentName(String parentName) {
-    return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
+  /** Parses the project from the given fully-qualified path which represents a project resource. */
+  public static final String parseProjectFromProjectName(String projectName) {
+    return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
   }
 
   /** Parses the project from the given fully-qualified path which represents a metric resource. */
@@ -215,7 +215,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   for (LogMetric element : metricsServiceV2Client.listLogMetrics(parent).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
@@ -240,7 +240,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -265,7 +265,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -290,7 +290,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListLogMetricsRequest request = ListLogMetricsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -391,7 +391,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   LogMetric response = metricsServiceV2Client.createLogMetric(parent, metric);
    * }
@@ -421,7 +421,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   CreateLogMetricRequest request = CreateLogMetricRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -446,7 +446,7 @@ public class MetricsServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (MetricsServiceV2Client metricsServiceV2Client = MetricsServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogMetric metric = LogMetric.newBuilder().build();
    *   CreateLogMetricRequest request = CreateLogMetricRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)

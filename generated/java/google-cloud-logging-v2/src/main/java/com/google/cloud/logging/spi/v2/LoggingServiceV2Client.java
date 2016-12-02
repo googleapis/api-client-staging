@@ -52,7 +52,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
- *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+ *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
  *   loggingServiceV2Client.deleteLog(logName);
  * }
  * </code>
@@ -119,37 +119,39 @@ public class LoggingServiceV2Client implements AutoCloseable {
           ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsPagedResponse>
       listMonitoredResourceDescriptorsPagedCallable;
 
-  private static final PathTemplate PARENT_PATH_TEMPLATE =
+  private static final PathTemplate PROJECT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
-  private static final PathTemplate LOG_PATH_TEMPLATE =
+  private static final PathTemplate PROJECT_LOG_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/logs/{log}");
 
-  /** Formats a string containing the fully-qualified path to represent a parent resource. */
-  public static final String formatParentName(String project) {
-    return PARENT_PATH_TEMPLATE.instantiate("project", project);
+  /** Formats a string containing the fully-qualified path to represent a project resource. */
+  public static final String formatProjectName(String project) {
+    return PROJECT_PATH_TEMPLATE.instantiate("project", project);
   }
 
-  /** Formats a string containing the fully-qualified path to represent a log resource. */
-  public static final String formatLogName(String project, String log) {
-    return LOG_PATH_TEMPLATE.instantiate(
+  /** Formats a string containing the fully-qualified path to represent a project_log resource. */
+  public static final String formatProjectLogName(String project, String log) {
+    return PROJECT_LOG_PATH_TEMPLATE.instantiate(
         "project", project,
         "log", log);
   }
 
-  /** Parses the project from the given fully-qualified path which represents a parent resource. */
-  public static final String parseProjectFromParentName(String parentName) {
-    return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
+  /** Parses the project from the given fully-qualified path which represents a project resource. */
+  public static final String parseProjectFromProjectName(String projectName) {
+    return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
   }
 
-  /** Parses the project from the given fully-qualified path which represents a log resource. */
-  public static final String parseProjectFromLogName(String logName) {
-    return LOG_PATH_TEMPLATE.parse(logName).get("project");
+  /**
+   * Parses the project from the given fully-qualified path which represents a project_log resource.
+   */
+  public static final String parseProjectFromProjectLogName(String projectLogName) {
+    return PROJECT_LOG_PATH_TEMPLATE.parse(projectLogName).get("project");
   }
 
-  /** Parses the log from the given fully-qualified path which represents a log resource. */
-  public static final String parseLogFromLogName(String logName) {
-    return LOG_PATH_TEMPLATE.parse(logName).get("log");
+  /** Parses the log from the given fully-qualified path which represents a project_log resource. */
+  public static final String parseLogFromProjectLogName(String projectLogName) {
+    return PROJECT_LOG_PATH_TEMPLATE.parse(projectLogName).get("log");
   }
 
   /** Constructs an instance of LoggingServiceV2Client with default settings. */
@@ -225,7 +227,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+   *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
    *   loggingServiceV2Client.deleteLog(logName);
    * }
    * </code></pre>
@@ -252,7 +254,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+   *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
    *   DeleteLogRequest request = DeleteLogRequest.newBuilder()
    *     .setLogNameWithLogNameOneof(logName)
    *     .build();
@@ -275,7 +277,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+   *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
    *   DeleteLogRequest request = DeleteLogRequest.newBuilder()
    *     .setLogNameWithLogNameOneof(logName)
    *     .build();
@@ -297,7 +299,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
-   *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+   *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
    *   MonitoredResource resource = MonitoredResource.newBuilder().build();
    *   Map&lt;String, String&gt; labels = new HashMap&lt;&gt;();
    *   List&lt;LogEntry&gt; entries = new ArrayList&lt;&gt;();

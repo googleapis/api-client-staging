@@ -50,7 +50,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
- *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+ *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
  *   LogSink response = configServiceV2Client.getSink(sinkName);
  * }
  * </code>
@@ -111,37 +111,42 @@ public class ConfigServiceV2Client implements AutoCloseable {
   private final UnaryCallable<UpdateSinkRequest, LogSink> updateSinkCallable;
   private final UnaryCallable<DeleteSinkRequest, Empty> deleteSinkCallable;
 
-  private static final PathTemplate PARENT_PATH_TEMPLATE =
+  private static final PathTemplate PROJECT_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}");
 
-  private static final PathTemplate SINK_PATH_TEMPLATE =
+  private static final PathTemplate PROJECT_SINK_PATH_TEMPLATE =
       PathTemplate.createWithoutUrlEncoding("projects/{project}/sinks/{sink}");
 
-  /** Formats a string containing the fully-qualified path to represent a parent resource. */
-  public static final String formatParentName(String project) {
-    return PARENT_PATH_TEMPLATE.instantiate("project", project);
+  /** Formats a string containing the fully-qualified path to represent a project resource. */
+  public static final String formatProjectName(String project) {
+    return PROJECT_PATH_TEMPLATE.instantiate("project", project);
   }
 
-  /** Formats a string containing the fully-qualified path to represent a sink resource. */
-  public static final String formatSinkName(String project, String sink) {
-    return SINK_PATH_TEMPLATE.instantiate(
+  /** Formats a string containing the fully-qualified path to represent a project_sink resource. */
+  public static final String formatProjectSinkName(String project, String sink) {
+    return PROJECT_SINK_PATH_TEMPLATE.instantiate(
         "project", project,
         "sink", sink);
   }
 
-  /** Parses the project from the given fully-qualified path which represents a parent resource. */
-  public static final String parseProjectFromParentName(String parentName) {
-    return PARENT_PATH_TEMPLATE.parse(parentName).get("project");
+  /** Parses the project from the given fully-qualified path which represents a project resource. */
+  public static final String parseProjectFromProjectName(String projectName) {
+    return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
   }
 
-  /** Parses the project from the given fully-qualified path which represents a sink resource. */
-  public static final String parseProjectFromSinkName(String sinkName) {
-    return SINK_PATH_TEMPLATE.parse(sinkName).get("project");
+  /**
+   * Parses the project from the given fully-qualified path which represents a project_sink
+   * resource.
+   */
+  public static final String parseProjectFromProjectSinkName(String projectSinkName) {
+    return PROJECT_SINK_PATH_TEMPLATE.parse(projectSinkName).get("project");
   }
 
-  /** Parses the sink from the given fully-qualified path which represents a sink resource. */
-  public static final String parseSinkFromSinkName(String sinkName) {
-    return SINK_PATH_TEMPLATE.parse(sinkName).get("sink");
+  /**
+   * Parses the sink from the given fully-qualified path which represents a project_sink resource.
+   */
+  public static final String parseSinkFromProjectSinkName(String projectSinkName) {
+    return PROJECT_SINK_PATH_TEMPLATE.parse(projectSinkName).get("sink");
   }
 
   /** Constructs an instance of ConfigServiceV2Client with default settings. */
@@ -213,7 +218,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   for (LogSink element : configServiceV2Client.listSinks(parent).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
@@ -238,7 +243,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -263,7 +268,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -287,7 +292,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
@@ -318,7 +323,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink response = configServiceV2Client.getSink(sinkName);
    * }
    * </code></pre>
@@ -343,7 +348,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
@@ -366,7 +371,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
@@ -388,7 +393,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configServiceV2Client.createSink(parent, sink);
    * }
@@ -415,7 +420,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -440,7 +445,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   ParentNameOneof parent = ParentNameOneof.from(ParentName.create("[PROJECT]"));
+   *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -464,7 +469,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configServiceV2Client.updateSink(sinkName, sink);
    * }
@@ -494,7 +499,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -519,7 +524,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -543,7 +548,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   configServiceV2Client.deleteSink(sinkName);
    * }
    * </code></pre>
@@ -570,7 +575,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
@@ -593,7 +598,7 @@ public class ConfigServiceV2Client implements AutoCloseable {
    *
    * <pre><code>
    * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
-   *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
+   *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
    *     .build();
