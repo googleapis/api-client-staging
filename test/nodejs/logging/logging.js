@@ -20,6 +20,7 @@
 // replaced by auto-generated ones.
 
 var expect = require('chai').expect;
+var grpc = require('grpc');
 var loggingV2 = require('@google-cloud/logging').v2;
 var storage = require('@google-cloud/storage');
 
@@ -159,8 +160,10 @@ describe('loggingV2', function() {
       }).then(function() {
         done(new Error('should not success getSink after delete'));
       }).catch(function(err) {
+        expect(err).to.be.an('error');
+        expect(err.code).to.eq(grpc.status.NOT_FOUND);
         done();
-      });
+      }).catch(done);
     });
   });
 
@@ -207,8 +210,10 @@ describe('loggingV2', function() {
           'The last getLogMetric should not succeed because it is already deleted'));
       }).catch(function(err) {
         // Successfully failed to getLogMetric.
+        expect(err).to.be.an('error');
+        expect(err.code).to.eq(grpc.status.NOT_FOUND);
         done();
-      });
+      }).catch(done);
     });
   });
 });
