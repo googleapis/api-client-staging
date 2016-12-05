@@ -192,8 +192,11 @@ func (c *SubscriberClient) TopicIAM(topic *pubsubpb.Topic) *iam.Handle {
 // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
 //
 // If the name is not provided in the request, the server will assign a random
-// name for this subscription on the same project as the topic. Note that
-// for REST API requests, you must specify a name.
+// name for this subscription on the same project as the topic, conforming
+// to the
+// [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+// The generated name is populated in the returned Subscription object.
+// Note that for REST API requests, you must specify a name in the request.
 func (c *SubscriberClient) CreateSubscription(ctx context.Context, req *pubsubpb.Subscription) (*pubsubpb.Subscription, error) {
 	md, _ := metadata.FromContext(ctx)
 	ctx = metadata.NewContext(ctx, metadata.Join(md, c.metadata))
@@ -260,11 +263,11 @@ func (c *SubscriberClient) ListSubscriptions(ctx context.Context, req *pubsubpb.
 	return it
 }
 
-// DeleteSubscription deletes an existing subscription. All pending messages in the subscription
+// DeleteSubscription deletes an existing subscription. All messages retained in the subscription
 // are immediately dropped. Calls to `Pull` after deletion will return
 // `NOT_FOUND`. After a subscription is deleted, a new one may be created with
 // the same name, but the new one has no association with the old
-// subscription, or its topic unless the same topic is specified.
+// subscription or its topic unless the same topic is specified.
 func (c *SubscriberClient) DeleteSubscription(ctx context.Context, req *pubsubpb.DeleteSubscriptionRequest) error {
 	md, _ := metadata.FromContext(ctx)
 	ctx = metadata.NewContext(ctx, metadata.Join(md, c.metadata))
