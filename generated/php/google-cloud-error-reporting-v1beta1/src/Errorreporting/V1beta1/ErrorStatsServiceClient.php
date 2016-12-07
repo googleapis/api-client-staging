@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/devtools/clouderrorreporting/v1beta1/error_stats_service.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  */
 
 namespace Google\Cloud\Errorreporting\V1beta1;
@@ -43,6 +47,10 @@ use google\protobuf\Timestamp;
 /**
  * Service Description: An API for retrieving and managing error statistics as well as data for
  * individual events.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -84,9 +92,8 @@ class ErrorStatsServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
 
@@ -195,7 +202,7 @@ class ErrorStatsServiceClient
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -204,7 +211,7 @@ class ErrorStatsServiceClient
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -275,7 +282,9 @@ class ErrorStatsServiceClient
      *                            Platform project ID</a>.
      *
      * Example: <code>projects/my-project-123</code>.
-     * @param QueryTimeRange $timeRange    [Required] List data for the given time range.
+     * @param QueryTimeRange $timeRange    [Optional] List data for the given time range.
+     *                                     If not set a default time range is used. The field time_range_begin
+     *                                     in the response will specify the beginning of this time range.
      *                                     Only <code>ErrorGroupStats</code> with a non-zero count in the given time
      *                                     range are returned, unless the request contains an explicit group_id list.
      *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
@@ -391,7 +400,8 @@ class ErrorStatsServiceClient
      *
      * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
      *                             as `projects/` plus the
-     *                             [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
+     *                             [Google Cloud Platform project
+     *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
      * @param string $groupId      [Required] The group for which events shall be returned.
      * @param array  $optionalArgs {
@@ -403,6 +413,8 @@ class ErrorStatsServiceClient
      *          Data for all service contexts is returned if this field is not specified.
      *     @type QueryTimeRange $timeRange
      *          [Optional] List only data for the given time range.
+     *          If not set a default time range is used. The field time_range_begin
+     *          in the response will specify the beginning of this time range.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -476,7 +488,8 @@ class ErrorStatsServiceClient
      *
      * @param string $projectName  [Required] The resource name of the Google Cloud Platform project. Written
      *                             as `projects/` plus the
-     *                             [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
+     *                             [Google Cloud Platform project
+     *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
      * @param array  $optionalArgs {
      *                             Optional.

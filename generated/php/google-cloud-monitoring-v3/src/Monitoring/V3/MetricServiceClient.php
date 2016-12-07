@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/monitoring/v3/metric_service.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  */
 
 namespace Google\Cloud\Monitoring\V3;
@@ -47,6 +51,10 @@ use google\monitoring\v3\TimeSeries;
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
  * time series data.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -87,9 +95,8 @@ class MetricServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
@@ -289,7 +296,7 @@ class MetricServiceClient
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -298,7 +305,7 @@ class MetricServiceClient
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
