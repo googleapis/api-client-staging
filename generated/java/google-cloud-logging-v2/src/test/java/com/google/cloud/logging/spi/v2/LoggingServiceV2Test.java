@@ -26,8 +26,8 @@ import com.google.logging.v2.DeleteLogRequest;
 import com.google.logging.v2.ListLogEntriesRequest;
 import com.google.logging.v2.ListLogEntriesResponse;
 import com.google.logging.v2.LogEntry;
+import com.google.logging.v2.LogName;
 import com.google.logging.v2.LogNameOneof;
-import com.google.logging.v2.ProjectLogName;
 import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import com.google.protobuf.Empty;
@@ -94,7 +94,7 @@ public class LoggingServiceV2Test {
     Empty expectedResponse = Empty.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
+    LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
 
     client.deleteLog(logName);
 
@@ -112,7 +112,7 @@ public class LoggingServiceV2Test {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
+      LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
 
       client.deleteLog(logName);
       Assert.fail("No exception raised");
@@ -127,7 +127,7 @@ public class LoggingServiceV2Test {
     WriteLogEntriesResponse expectedResponse = WriteLogEntriesResponse.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
+    LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
     MonitoredResource resource = MonitoredResource.newBuilder().build();
     Map<String, String> labels = new HashMap<>();
     List<LogEntry> entries = new ArrayList<>();
@@ -153,7 +153,7 @@ public class LoggingServiceV2Test {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
+      LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();

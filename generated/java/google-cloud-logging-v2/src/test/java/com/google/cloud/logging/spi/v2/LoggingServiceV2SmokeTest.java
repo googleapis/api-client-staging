@@ -17,8 +17,8 @@ package com.google.cloud.logging.spi.v2;
 
 import com.google.api.MonitoredResource;
 import com.google.logging.v2.LogEntry;
+import com.google.logging.v2.LogName;
 import com.google.logging.v2.LogNameOneof;
-import com.google.logging.v2.ProjectLogName;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +66,7 @@ public class LoggingServiceV2SmokeTest {
   public static void executeNoCatch(String projectId) throws Exception {
     try (LoggingServiceV2Client client = LoggingServiceV2Client.create()) {
       LogNameOneof logName =
-          LogNameOneof.from(ProjectLogName.create(projectId, "test-" + System.currentTimeMillis()));
+          LogNameOneof.from(LogName.create(projectId, "test-" + System.currentTimeMillis()));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();

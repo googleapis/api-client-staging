@@ -19,7 +19,6 @@ import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListLogMetri
 
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
-import com.google.api.gax.protobuf.PathTemplate;
 import com.google.logging.v2.CreateLogMetricRequest;
 import com.google.logging.v2.DeleteLogMetricRequest;
 import com.google.logging.v2.GetLogMetricRequest;
@@ -110,39 +109,6 @@ public class MetricsServiceV2Client implements AutoCloseable {
   private final UnaryCallable<CreateLogMetricRequest, LogMetric> createLogMetricCallable;
   private final UnaryCallable<UpdateLogMetricRequest, LogMetric> updateLogMetricCallable;
   private final UnaryCallable<DeleteLogMetricRequest, Empty> deleteLogMetricCallable;
-
-  private static final PathTemplate PROJECT_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}");
-
-  private static final PathTemplate METRIC_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("projects/{project}/metrics/{metric}");
-
-  /** Formats a string containing the fully-qualified path to represent a project resource. */
-  public static final String formatProjectName(String project) {
-    return PROJECT_PATH_TEMPLATE.instantiate("project", project);
-  }
-
-  /** Formats a string containing the fully-qualified path to represent a metric resource. */
-  public static final String formatMetricName(String project, String metric) {
-    return METRIC_PATH_TEMPLATE.instantiate(
-        "project", project,
-        "metric", metric);
-  }
-
-  /** Parses the project from the given fully-qualified path which represents a project resource. */
-  public static final String parseProjectFromProjectName(String projectName) {
-    return PROJECT_PATH_TEMPLATE.parse(projectName).get("project");
-  }
-
-  /** Parses the project from the given fully-qualified path which represents a metric resource. */
-  public static final String parseProjectFromMetricName(String metricName) {
-    return METRIC_PATH_TEMPLATE.parse(metricName).get("project");
-  }
-
-  /** Parses the metric from the given fully-qualified path which represents a metric resource. */
-  public static final String parseMetricFromMetricName(String metricName) {
-    return METRIC_PATH_TEMPLATE.parse(metricName).get("metric");
-  }
 
   /** Constructs an instance of MetricsServiceV2Client with default settings. */
   public static final MetricsServiceV2Client create() throws IOException {

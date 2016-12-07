@@ -28,7 +28,7 @@
  * <pre>
  * <code>
  * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
- *   LogNameOneof logName = LogNameOneof.from(ProjectLogName.create("[PROJECT]", "[LOG]"));
+ *   LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
  *   loggingServiceV2Client.deleteLog(logName);
  * }
  * </code>
@@ -44,7 +44,7 @@
  * <pre>
  * <code>
  * try (ConfigServiceV2Client configServiceV2Client = ConfigServiceV2Client.create()) {
- *   SinkNameOneof sinkName = SinkNameOneof.from(ProjectSinkName.create("[PROJECT]", "[SINK]"));
+ *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
  *   LogSink response = configServiceV2Client.getSink(sinkName);
  * }
  * </code>
