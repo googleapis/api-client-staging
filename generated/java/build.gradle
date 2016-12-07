@@ -1,6 +1,6 @@
 import groovy.io.FileType
 
-def generated_grpc_version = "0.1.3"
+def generated_grpc_version = "0.1.4"
 
 buildscript {
   repositories {
