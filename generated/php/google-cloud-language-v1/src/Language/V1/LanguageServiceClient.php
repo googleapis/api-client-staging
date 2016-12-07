@@ -19,9 +19,9 @@
  * https://github.com/google/googleapis/blob/master/google/cloud/language/v1/language_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
- * beta. This class may change more frequently than those which have been declared beta or 1.0,
- * including changes which break backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Language\V1;
@@ -44,9 +44,9 @@ use google\cloud\language\v1\LanguageServiceClient as LanguageServiceGrpcClient;
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
  * recognition.
  *
- * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
- * beta. This class may change more frequently than those which have been declared beta or 1.0,
- * including changes which break backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
