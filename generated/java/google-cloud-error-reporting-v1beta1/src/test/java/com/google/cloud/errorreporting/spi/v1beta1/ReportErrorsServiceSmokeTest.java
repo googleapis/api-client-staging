@@ -15,6 +15,7 @@
  */
 package com.google.cloud.errorreporting.spi.v1beta1;
 
+import com.google.devtools.clouderrorreporting.v1beta1.ProjectName;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent;
 import java.util.logging.Level;
@@ -58,11 +59,11 @@ public class ReportErrorsServiceSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (ReportErrorsServiceClient client = ReportErrorsServiceClient.create()) {
-      String formattedProjectName = ReportErrorsServiceClient.formatProjectName(projectId);
+      ProjectName projectName = ProjectName.create(projectId);
       String message = "[MESSAGE]";
       ReportedErrorEvent event = ReportedErrorEvent.newBuilder().setMessage(message).build();
 
-      ReportErrorEventResponse response = client.reportErrorEvent(formattedProjectName, event);
+      ReportErrorEventResponse response = client.reportErrorEvent(projectName, event);
       System.out.println(
           ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
     }
