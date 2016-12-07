@@ -1,0 +1,1 @@
+generated/python/gapic-google-cloud-logging-v2-docs/
