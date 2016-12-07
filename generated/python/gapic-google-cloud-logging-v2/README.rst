@@ -9,6 +9,10 @@ easy-to-use client library for the `Stackdriver Logging API`_ (v2) defined in th
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
 
+Documentation for this library is available on `Read the Docs`_.
+
+.. _`Read the Docs`: http://gapic-google-cloud-logging-v2.readthedocs.io/en/latest/
+
 Getting started
 ---------------
 
