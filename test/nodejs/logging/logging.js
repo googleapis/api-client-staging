@@ -21,7 +21,7 @@
 
 var expect = require('chai').expect;
 var grpc = require('grpc');
-var loggingV2 = require('@google-cloud/logging').v2;
+var loggingV2 = require('../../../generated/nodejs/google-cloud-node/packages/logging/src/v2');
 var storage = require('@google-cloud/storage');
 
 describe('loggingV2', function() {
@@ -52,7 +52,7 @@ describe('loggingV2', function() {
 
     it('creates, lists, and deletes log entries', function(done) {
       var logName = client.logPath(projectId, 'test');
-      var resourceName = client.parentPath(projectId);
+      var resourceName = client.projectPath(projectId);
 
       var myLogMessage = 'My new test message';
       var resource = {'type': 'global'};
@@ -122,7 +122,7 @@ describe('loggingV2', function() {
     })
 
     it('creates, gets, lists, and deletes sink', function(done) {
-      var parent = client.parentPath(projectId);
+      var parent = client.projectPath(projectId);
       var name = 'test-' + (new Date()).getTime();
       var sinkName = client.sinkPath(projectId, name);
       var sink = {
@@ -175,7 +175,7 @@ describe('loggingV2', function() {
     });
 
     it('creates, gets, lists, and deletes metrics', function(done) {
-      var parent = client.parentPath(projectId);
+      var parent = client.projectPath(projectId);
       var name = 'test';
       var metricName = client.metricPath(projectId, name);
       var filter = 'resource.type=global';
