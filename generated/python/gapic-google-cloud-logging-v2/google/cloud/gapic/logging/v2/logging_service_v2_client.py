@@ -69,14 +69,14 @@ class LoggingServiceV2Client(object):
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write', )
 
-    _PARENT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
+    _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _LOG_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/logs/{log}')
 
     @classmethod
-    def parent_path(cls, project):
-        """Returns a fully-qualified parent resource name string."""
-        return cls._PARENT_PATH_TEMPLATE.render({'project': project, })
+    def project_path(cls, project):
+        """Returns a fully-qualified project resource name string."""
+        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
 
     @classmethod
     def log_path(cls, project, log):
@@ -87,17 +87,17 @@ class LoggingServiceV2Client(object):
         })
 
     @classmethod
-    def match_project_from_parent_name(cls, parent_name):
-        """Parses the project from a parent resource.
+    def match_project_from_project_name(cls, project_name):
+        """Parses the project from a project resource.
 
         Args:
-          parent_name (string): A fully-qualified path representing a parent
+          project_name (string): A fully-qualified path representing a project
             resource.
 
         Returns:
           A string representing the project.
         """
-        return cls._PARENT_PATH_TEMPLATE.match(parent_name).get('project')
+        return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
 
     @classmethod
     def match_project_from_log_name(cls, log_name):

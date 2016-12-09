@@ -1,4 +1,4 @@
-gRPC library for google-logging-v2
+gRPC library for Stackdriver Logging
 
 grpc-google-cloud-logging-v2 is the IDL-derived library for the logging (v2) service in the googleapis_ repository.
 
