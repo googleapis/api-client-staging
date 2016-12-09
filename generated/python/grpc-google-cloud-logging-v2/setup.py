@@ -1,4 +1,4 @@
-"""A setup module for the GRPC google-logging service.
+"""A setup module for the GRPC Stackdriver Logging service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -11,18 +11,18 @@ from setuptools import setup, find_packages
 
 install_requires = [
   'oauth2client>=2.0.0, <4.0dev',
-  'grpcio>=1.0.0, <2.0dev',
+  'grpcio>=1.0.2rc0, <2.0dev',
   'googleapis-common-protos[grpc]>=1.5.0, <2.0dev'
 ]
 
 setuptools.setup(
   name='grpc-google-cloud-logging-v2',
-  version='0.14.0',
+  version='0.90.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Intended Audience :: Developers',
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
