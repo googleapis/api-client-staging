@@ -36,7 +36,7 @@ from google.cloud.gapic.language.v1 import enums
 from google.cloud.grpc.language.v1 import language_service_pb2
 
 
-class LanguageServiceApi(object):
+class LanguageServiceClient(object):
     """
     Provides text analysis operations such as sentiment analysis and entity
     recognition.
@@ -89,7 +89,7 @@ class LanguageServiceApi(object):
           app_version (string): The version of the calling service.
 
         Returns:
-          A LanguageServiceApi object.
+          A LanguageServiceClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -136,9 +136,9 @@ class LanguageServiceApi(object):
         Analyzes the sentiment of the provided text.
 
         Example:
-          >>> from google.cloud.gapic.language.v1 import language_service_api
+          >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.grpc.language.v1 import language_service_pb2
-          >>> api = language_service_api.LanguageServiceApi()
+          >>> api = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> response = api.analyze_sentiment(document)
 
@@ -168,10 +168,10 @@ class LanguageServiceApi(object):
         entity types, salience, mentions for each entity, and other properties.
 
         Example:
-          >>> from google.cloud.gapic.language.v1 import language_service_api
+          >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.grpc.language.v1 import language_service_pb2
-          >>> api = language_service_api.LanguageServiceApi()
+          >>> api = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> encoding_type = enums.EncodingType.NONE
           >>> response = api.analyze_entities(document, encoding_type)
@@ -200,10 +200,10 @@ class LanguageServiceApi(object):
         properties.
 
         Example:
-          >>> from google.cloud.gapic.language.v1 import language_service_api
+          >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.grpc.language.v1 import language_service_pb2
-          >>> api = language_service_api.LanguageServiceApi()
+          >>> api = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> encoding_type = enums.EncodingType.NONE
           >>> response = api.analyze_syntax(document, encoding_type)
@@ -231,10 +231,10 @@ class LanguageServiceApi(object):
         analyzeEntities, and analyzeSyntax provide in one call.
 
         Example:
-          >>> from google.cloud.gapic.language.v1 import language_service_api
+          >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.grpc.language.v1 import language_service_pb2
-          >>> api = language_service_api.LanguageServiceApi()
+          >>> api = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> features = language_service_pb2.AnnotateTextRequest.Features()
           >>> encoding_type = enums.EncodingType.NONE

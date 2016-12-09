@@ -21,7 +21,7 @@ APIs
 .. autosummary::
 
    google.cloud.gapic.language.v1.enums
-   google.cloud.gapic.language.v1.language_service_api
+   google.cloud.gapic.language.v1.language_service_client
 
 
 Contents
