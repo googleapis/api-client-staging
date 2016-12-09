@@ -18,8 +18,10 @@ package com.google.cloud.pubsub.spi.v1;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
 import com.google.api.gax.grpc.ApiException;
+import com.google.api.gax.grpc.StreamingCallable;
 import com.google.api.gax.testing.MockGrpcService;
 import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.gax.testing.MockStreamObserver;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -40,16 +42,20 @@ import com.google.pubsub.v1.ProjectName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
+import com.google.pubsub.v1.StreamingPullRequest;
+import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -385,6 +391,66 @@ public class SubscriberTest {
 
   @Test
   @SuppressWarnings("all")
+  public void streamingPullTest() throws Exception {
+    StreamingPullResponse expectedResponse = StreamingPullResponse.newBuilder().build();
+    mockSubscriber.addResponse(expectedResponse);
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    int streamAckDeadlineSeconds = 1875467245;
+    StreamingPullRequest request =
+        StreamingPullRequest.newBuilder()
+            .setSubscriptionWithSubscriptionName(subscription)
+            .setStreamAckDeadlineSeconds(streamAckDeadlineSeconds)
+            .build();
+
+    MockStreamObserver<StreamingPullResponse> responseObserver = new MockStreamObserver<>();
+
+    StreamingCallable<StreamingPullRequest, StreamingPullResponse> callable =
+        client.streamingPullCallable();
+    StreamObserver<StreamingPullRequest> requestObserver =
+        callable.bidiStreamingCall(responseObserver);
+
+    requestObserver.onNext(request);
+    requestObserver.onCompleted();
+
+    List<StreamingPullResponse> actualResponses = responseObserver.future().get();
+    Assert.assertEquals(1, actualResponses.size());
+    Assert.assertEquals(expectedResponse, actualResponses.get(0));
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void streamingPullExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+    SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    int streamAckDeadlineSeconds = 1875467245;
+    StreamingPullRequest request =
+        StreamingPullRequest.newBuilder()
+            .setSubscriptionWithSubscriptionName(subscription)
+            .setStreamAckDeadlineSeconds(streamAckDeadlineSeconds)
+            .build();
+
+    MockStreamObserver<StreamingPullResponse> responseObserver = new MockStreamObserver<>();
+
+    StreamingCallable<StreamingPullRequest, StreamingPullResponse> callable =
+        client.streamingPullCallable();
+    StreamObserver<StreamingPullRequest> requestObserver =
+        callable.bidiStreamingCall(responseObserver);
+
+    requestObserver.onNext(request);
+
+    try {
+      List<StreamingPullResponse> actualResponses = responseObserver.future().get();
+      Assert.fail("No exception thrown");
+    } catch (ExecutionException e) {
+      Assert.assertTrue(e.getCause() instanceof StatusRuntimeException);
+      StatusRuntimeException statusException = (StatusRuntimeException) e.getCause();
+      Assert.assertEquals(Status.INTERNAL, statusException.getStatus());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void modifyPushConfigTest() {
     Empty expectedResponse = Empty.newBuilder().build();
     mockSubscriber.addResponse(expectedResponse);
@@ -428,7 +494,7 @@ public class SubscriberTest {
     mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource =
-        SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -450,7 +516,7 @@ public class SubscriberTest {
 
     try {
       String formattedResource =
-          SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -469,7 +535,7 @@ public class SubscriberTest {
     mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource =
-        SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -489,7 +555,7 @@ public class SubscriberTest {
 
     try {
       String formattedResource =
-          SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -505,7 +571,7 @@ public class SubscriberTest {
     mockIAMPolicy.addResponse(expectedResponse);
 
     String formattedResource =
-        SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -528,7 +594,7 @@ public class SubscriberTest {
 
     try {
       String formattedResource =
-          SubscriberClient.formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);
