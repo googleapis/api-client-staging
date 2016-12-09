@@ -1,4 +1,4 @@
-"""A setup module for the GRPC google-cloud-language service.
+"""A setup module for the GRPC Google Language service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -33,11 +33,11 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the google-cloud-language-v1 service',
+  description='GRPC library for the Google Language service',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.cloud', 'google.cloud.grpc', 'google.cloud.grpc.language', ],
+  namespace_packages=['google.cloud.grpc.language', 'google.cloud.grpc', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )
