@@ -345,8 +345,7 @@ public class PublisherTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+    String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -367,8 +366,7 @@ public class PublisherTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+      String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -386,8 +384,7 @@ public class PublisherTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+    String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -406,8 +403,7 @@ public class PublisherTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+      String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -422,8 +418,7 @@ public class PublisherTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+    String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -445,8 +440,7 @@ public class PublisherTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.TopicName.create("[PROJECT]", "[TOPIC]").toString();
+      String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);

@@ -493,8 +493,7 @@ public class SubscriberTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+    String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -515,8 +514,7 @@ public class SubscriberTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+      String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -534,8 +532,7 @@ public class SubscriberTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+    String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -554,8 +551,7 @@ public class SubscriberTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+      String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -570,8 +566,7 @@ public class SubscriberTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockIAMPolicy.addResponse(expectedResponse);
 
-    String formattedResource =
-        com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+    String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -593,8 +588,7 @@ public class SubscriberTest {
     mockIAMPolicy.addException(exception);
 
     try {
-      String formattedResource =
-          com.google.iam.v1.SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+      String formattedResource = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);
