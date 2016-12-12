@@ -85,16 +85,16 @@ public class GroupServiceTest {
   @Test
   @SuppressWarnings("all")
   public void getGroupTest() {
-    GroupName name2 = GroupName.create("[PROJECT]", "[GROUP]");
+    String name2 = "name2-1052831874";
     String displayName = "displayName1615086568";
-    GroupName parentName = GroupName.create("[PROJECT]", "[GROUP]");
+    String parentName = "parentName1015022848";
     String filter = "filter-1274492040";
     boolean isCluster = false;
     Group expectedResponse =
         Group.newBuilder()
-            .setNameWithGroupName(name2)
+            .setName(name2)
             .setDisplayName(displayName)
-            .setParentNameWithGroupName(parentName)
+            .setParentName(parentName)
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
@@ -131,16 +131,16 @@ public class GroupServiceTest {
   @Test
   @SuppressWarnings("all")
   public void createGroupTest() {
-    GroupName name2 = GroupName.create("[PROJECT]", "[GROUP]");
+    String name2 = "name2-1052831874";
     String displayName = "displayName1615086568";
-    GroupName parentName = GroupName.create("[PROJECT]", "[GROUP]");
+    String parentName = "parentName1015022848";
     String filter = "filter-1274492040";
     boolean isCluster = false;
     Group expectedResponse =
         Group.newBuilder()
-            .setNameWithGroupName(name2)
+            .setName(name2)
             .setDisplayName(displayName)
-            .setParentNameWithGroupName(parentName)
+            .setParentName(parentName)
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();
@@ -180,16 +180,16 @@ public class GroupServiceTest {
   @Test
   @SuppressWarnings("all")
   public void updateGroupTest() {
-    GroupName name = GroupName.create("[PROJECT]", "[GROUP]");
+    String name = "name3373707";
     String displayName = "displayName1615086568";
-    GroupName parentName = GroupName.create("[PROJECT]", "[GROUP]");
+    String parentName = "parentName1015022848";
     String filter = "filter-1274492040";
     boolean isCluster = false;
     Group expectedResponse =
         Group.newBuilder()
-            .setNameWithGroupName(name)
+            .setName(name)
             .setDisplayName(displayName)
-            .setParentNameWithGroupName(parentName)
+            .setParentName(parentName)
             .setFilter(filter)
             .setIsCluster(isCluster)
             .build();

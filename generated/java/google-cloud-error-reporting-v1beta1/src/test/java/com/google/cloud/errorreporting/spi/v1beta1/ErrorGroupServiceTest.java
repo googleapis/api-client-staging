@@ -79,10 +79,9 @@ public class ErrorGroupServiceTest {
   @Test
   @SuppressWarnings("all")
   public void getGroupTest() {
-    GroupName name = GroupName.create("[PROJECT]", "[GROUP]");
+    String name = "name3373707";
     String groupId = "groupId506361563";
-    ErrorGroup expectedResponse =
-        ErrorGroup.newBuilder().setNameWithGroupName(name).setGroupId(groupId).build();
+    ErrorGroup expectedResponse = ErrorGroup.newBuilder().setName(name).setGroupId(groupId).build();
     mockErrorGroupService.addResponse(expectedResponse);
 
     GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
@@ -116,10 +115,9 @@ public class ErrorGroupServiceTest {
   @Test
   @SuppressWarnings("all")
   public void updateGroupTest() {
-    GroupName name = GroupName.create("[PROJECT]", "[GROUP]");
+    String name = "name3373707";
     String groupId = "groupId506361563";
-    ErrorGroup expectedResponse =
-        ErrorGroup.newBuilder().setNameWithGroupName(name).setGroupId(groupId).build();
+    ErrorGroup expectedResponse = ErrorGroup.newBuilder().setName(name).setGroupId(groupId).build();
     mockErrorGroupService.addResponse(expectedResponse);
 
     ErrorGroup group = ErrorGroup.newBuilder().build();
