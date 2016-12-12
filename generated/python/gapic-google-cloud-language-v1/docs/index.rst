@@ -11,7 +11,7 @@ easy-to-use client library for the `Google Language API`_ (v1) defined in the go
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/cloud/language/v1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/language/v1
 .. _`Google Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1/
 
 
@@ -21,7 +21,7 @@ APIs
 .. autosummary::
 
    google.cloud.gapic.language.v1.enums
-   google.cloud.gapic.language.v1.language_service_api
+   google.cloud.gapic.language.v1.language_service_client
 
 
 Contents

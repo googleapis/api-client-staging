@@ -33,12 +33,12 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.datastore.v1 import enums
-from google.datastore.v1 import datastore_pb2
-from google.datastore.v1 import entity_pb2
-from google.datastore.v1 import query_pb2
+from google.cloud.grpc.datastore.v1 import datastore_pb2
+from google.cloud.grpc.datastore.v1 import entity_pb2
+from google.cloud.grpc.datastore.v1 import query_pb2
 
 
-class DatastoreApi(object):
+class DatastoreClient(object):
     """
     Each RPC normalizes the partition IDs of the keys in its input entities,
     and always returns entities with keys with normalized partition IDs.
@@ -68,8 +68,8 @@ class DatastoreApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -81,21 +81,23 @@ class DatastoreApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A DatastoreApi object.
+          A DatastoreClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -116,12 +118,12 @@ class DatastoreApi(object):
             kwargs={'metadata': metadata})
         self.datastore_stub = config.create_stub(
             datastore_pb2.DatastoreStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._lookup = api_callable.create_api_call(
             self.datastore_stub.Lookup, settings=defaults['lookup'])
@@ -143,10 +145,10 @@ class DatastoreApi(object):
         Looks up entities by key.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
-          >>> from google.datastore.v1 import datastore_pb2
-          >>> from google.datastore.v1 import entity_pb2
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
+          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
+          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> read_options = datastore_pb2.ReadOptions()
           >>> keys = []
@@ -154,13 +156,13 @@ class DatastoreApi(object):
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          read_options (:class:`google.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
-          keys (list[:class:`google.datastore.v1.entity_pb2.Key`]): Keys of entities to look up.
+          read_options (:class:`google.cloud.grpc.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
+          keys (list[:class:`google.cloud.grpc.datastore.v1.entity_pb2.Key`]): Keys of entities to look up.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.datastore.v1.datastore_pb2.LookupResponse` instance.
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.LookupResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -181,10 +183,10 @@ class DatastoreApi(object):
         Queries for entities.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
-          >>> from google.datastore.v1 import datastore_pb2
-          >>> from google.datastore.v1 import entity_pb2
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
+          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
+          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> partition_id = entity_pb2.PartitionId()
           >>> read_options = datastore_pb2.ReadOptions()
@@ -192,18 +194,18 @@ class DatastoreApi(object):
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          partition_id (:class:`google.datastore.v1.entity_pb2.PartitionId`): Entities are partitioned into subsets, identified by a partition ID.
+          partition_id (:class:`google.cloud.grpc.datastore.v1.entity_pb2.PartitionId`): Entities are partitioned into subsets, identified by a partition ID.
             Queries are scoped to a single partition.
             This partition ID is normalized with the standard default context
             partition ID.
-          read_options (:class:`google.datastore.v1.datastore_pb2.ReadOptions`): The options for this query.
-          query (:class:`google.datastore.v1.query_pb2.Query`): The query to run.
-          gql_query (:class:`google.datastore.v1.query_pb2.GqlQuery`): The GQL query to run.
+          read_options (:class:`google.cloud.grpc.datastore.v1.datastore_pb2.ReadOptions`): The options for this query.
+          query (:class:`google.cloud.grpc.datastore.v1.query_pb2.Query`): The query to run.
+          gql_query (:class:`google.cloud.grpc.datastore.v1.query_pb2.GqlQuery`): The GQL query to run.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.datastore.v1.datastore_pb2.RunQueryResponse` instance.
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.RunQueryResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -222,8 +224,8 @@ class DatastoreApi(object):
         Begins a new transaction.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> response = api.begin_transaction(project_id)
 
@@ -233,7 +235,7 @@ class DatastoreApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.datastore.v1.datastore_pb2.BeginTransactionResponse` instance.
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.BeginTransactionResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -253,10 +255,10 @@ class DatastoreApi(object):
         entities.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
           >>> from google.cloud.gapic.datastore.v1 import enums
-          >>> from google.datastore.v1 import datastore_pb2
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> mode = enums.CommitRequest.Mode.MODE_UNSPECIFIED
           >>> mutations = []
@@ -268,7 +270,7 @@ class DatastoreApi(object):
           transaction (bytes): The identifier of the transaction associated with the commit. A
             transaction identifier is returned by a call to
             ``Datastore.BeginTransaction``.
-          mutations (list[:class:`google.datastore.v1.datastore_pb2.Mutation`]): The mutations to perform.
+          mutations (list[:class:`google.cloud.grpc.datastore.v1.datastore_pb2.Mutation`]): The mutations to perform.
 
             When mode is ``TRANSACTIONAL``, mutations affecting a single entity are
             applied in order. The following sequences of mutations affecting a single
@@ -285,7 +287,7 @@ class DatastoreApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.datastore.v1.datastore_pb2.CommitResponse` instance.
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.CommitResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -303,8 +305,8 @@ class DatastoreApi(object):
         Rolls back a transaction.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> transaction = b''
           >>> response = api.rollback(project_id, transaction)
@@ -316,13 +318,16 @@ class DatastoreApi(object):
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
+        Returns:
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.RollbackResponse` instance.
+
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
         request = datastore_pb2.RollbackRequest(
             project_id=project_id, transaction=transaction)
-        self._rollback(request, options)
+        return self._rollback(request, options)
 
     def allocate_ids(self, project_id, keys, options=None):
         """
@@ -330,22 +335,22 @@ class DatastoreApi(object):
         before it is inserted.
 
         Example:
-          >>> from google.cloud.gapic.datastore.v1 import datastore_api
-          >>> from google.datastore.v1 import entity_pb2
-          >>> api = datastore_api.DatastoreApi()
+          >>> from google.cloud.gapic.datastore.v1 import datastore_client
+          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> keys = []
           >>> response = api.allocate_ids(project_id, keys)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          keys (list[:class:`google.datastore.v1.entity_pb2.Key`]): A list of keys with incomplete key paths for which to allocate IDs.
+          keys (list[:class:`google.cloud.grpc.datastore.v1.entity_pb2.Key`]): A list of keys with incomplete key paths for which to allocate IDs.
             No key may be reserved/read-only.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.datastore.v1.datastore_pb2.AllocateIdsResponse` instance.
+          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.AllocateIdsResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.

@@ -1,4 +1,4 @@
-"""A setup module for the GRPC google-cloud-datastore service.
+"""A setup module for the GRPC Google Datastore service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -11,13 +11,13 @@ from setuptools import setup, find_packages
 
 install_requires = [
   'oauth2client>=2.0.0, <4.0dev',
-  'grpcio>=1.0.0, <2.0dev',
+  'grpcio>=1.0.2rc0, <2.0dev',
   'googleapis-common-protos[grpc]>=1.5.0, <2.0dev'
 ]
 
 setuptools.setup(
   name='grpc-google-cloud-datastore-v1',
-  version='0.13.1',
+  version='0.14.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
@@ -33,11 +33,11 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the google-cloud-datastore-v1 service',
+  description='GRPC library for the Google Datastore service',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google', 'google.datastore', ],
+  namespace_packages=['google.cloud.grpc.datastore', 'google.cloud.grpc', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )
