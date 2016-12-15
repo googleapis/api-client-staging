@@ -146,7 +146,7 @@ public class MetricServiceTest {
   @Test
   @SuppressWarnings("all")
   public void getMonitoredResourceDescriptorTest() {
-    String name2 = "";
+    String name2 = "name2-1052831874";
     String type = "type3575610";
     String displayName = "displayName1615086568";
     String description = "description-1724546052";
@@ -238,7 +238,7 @@ public class MetricServiceTest {
   @Test
   @SuppressWarnings("all")
   public void getMetricDescriptorTest() {
-    String name2 = "";
+    String name2 = "name2-1052831874";
     String type = "type3575610";
     String unit = "unit3594628";
     String description = "description-1724546052";
@@ -284,7 +284,7 @@ public class MetricServiceTest {
   @Test
   @SuppressWarnings("all")
   public void createMetricDescriptorTest() {
-    String name2 = "";
+    String name2 = "name2-1052831874";
     String type = "type3575610";
     String unit = "unit3594628";
     String description = "description-1724546052";
