@@ -1,5 +1,5 @@
-/*!
- * Copyright 2016 Google Inc. All Rights Reserved.
+/*
+ * Copyright 2016 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 'use strict';
 
-var groupServiceClient = require('./group_service_client');
-var metricServiceClient = require('./metric_service_client');
+var GroupServiceClient = require('./group_service_client');
+var MetricServiceClient = require('./metric_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 var union = require('lodash.union');
@@ -27,13 +27,15 @@ function v3(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, groupServiceClient(gaxGrpc));
-  extend(result, metricServiceClient(gaxGrpc));
+  extend(result, GroupServiceClient(gaxGrpc));
+  extend(result, MetricServiceClient(gaxGrpc));
   return result;
 }
-v3.SERVICE_ADDRESS = groupServiceClient.SERVICE_ADDRESS;
+
+v3.SERVICE_ADDRESS = GroupServiceClient.SERVICE_ADDRESS;
 v3.ALL_SCOPES = union(
-  groupServiceClient.ALL_SCOPES,
-  metricServiceClient.ALL_SCOPES
+  GroupServiceClient.ALL_SCOPES,
+  MetricServiceClient.ALL_SCOPES
 );
+
 module.exports = v3;

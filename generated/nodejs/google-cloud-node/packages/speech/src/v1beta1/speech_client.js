@@ -105,6 +105,8 @@ function SpeechClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var speechStub = gaxGrpc.createStub(
       servicePath,
       port,
@@ -116,13 +118,16 @@ function SpeechClient(gaxGrpc, grpcClients, opts) {
     'streamingRecognize'
   ];
   speechStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       speechStub.then(function(speechStub) {
-        return speechStub[methodName].bind(speechStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return speechStub[methodName].apply(speechStub, args);
+        }
       }),
       defaults[methodName],
       STREAM_DESCRIPTORS[methodName] || longrunningDescriptors[methodName]);
-  }.bind(this));
+  });
 }
 
 // Service calls
