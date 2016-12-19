@@ -1,5 +1,5 @@
-/*!
- * Copyright 2016 Google Inc. All Rights Reserved.
+/*
+ * Copyright 2016 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
  */
 'use strict';
 
-var errorGroupServiceApi = require('./error_group_service_api');
-var errorStatsServiceApi = require('./error_stats_service_api');
-var reportErrorsServiceApi = require('./report_errors_service_api');
+var ErrorGroupServiceClient = require('./error_group_service_client');
+var ErrorStatsServiceClient = require('./error_stats_service_client');
+var ReportErrorsServiceClient = require('./report_errors_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 var union = require('lodash.union');
@@ -28,15 +28,17 @@ function v1beta1(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, errorGroupServiceApi(gaxGrpc));
-  extend(result, errorStatsServiceApi(gaxGrpc));
-  extend(result, reportErrorsServiceApi(gaxGrpc));
+  extend(result, ErrorGroupServiceClient(gaxGrpc));
+  extend(result, ErrorStatsServiceClient(gaxGrpc));
+  extend(result, ReportErrorsServiceClient(gaxGrpc));
   return result;
 }
-v1beta1.SERVICE_ADDRESS = errorGroupServiceApi.SERVICE_ADDRESS;
+
+v1beta1.SERVICE_ADDRESS = ErrorGroupServiceClient.SERVICE_ADDRESS;
 v1beta1.ALL_SCOPES = union(
-  errorGroupServiceApi.ALL_SCOPES,
-  errorStatsServiceApi.ALL_SCOPES,
-  reportErrorsServiceApi.ALL_SCOPES
+  ErrorGroupServiceClient.ALL_SCOPES,
+  ErrorStatsServiceClient.ALL_SCOPES,
+  ReportErrorsServiceClient.ALL_SCOPES
 );
+
 module.exports = v1beta1;
