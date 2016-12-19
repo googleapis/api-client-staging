@@ -30,6 +30,7 @@
 var configData = require('./subscriber_client_config');
 var extend = require('extend');
 var gax = require('google-gax');
+var merge = require('lodash.merge');
 
 var SERVICE_ADDRESS = 'pubsub.googleapis.com';
 
@@ -42,6 +43,10 @@ var PAGE_DESCRIPTORS = {
       'pageToken',
       'nextPageToken',
       'subscriptions')
+};
+
+var STREAM_DESCRIPTORS = {
+  streamingPull: new gax.StreamDescriptor(gax.StreamType.BIDI_STREAMING)
 };
 
 /**
@@ -90,10 +95,12 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var iamPolicyStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.iamPolicyClient.google.iam.v1.IAMPolicy,
+      grpcClients.google.iam.v1.IAMPolicy,
       {sslCreds: sslCreds});
   var iamPolicyStubMethods = [
     'setIamPolicy',
@@ -101,18 +108,21 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
     'testIamPermissions'
   ];
   iamPolicyStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       iamPolicyStub.then(function(iamPolicyStub) {
-        return iamPolicyStub[methodName].bind(iamPolicyStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return iamPolicyStub[methodName].apply(iamPolicyStub, args);
+        }
       }),
       defaults[methodName],
-      PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+      PAGE_DESCRIPTORS[methodName] || STREAM_DESCRIPTORS[methodName]);
+  });
 
   var subscriberStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.subscriberClient.google.pubsub.v1.Subscriber,
+      grpcClients.google.pubsub.v1.Subscriber,
       {sslCreds: sslCreds});
   var subscriberStubMethods = [
     'createSubscription',
@@ -122,16 +132,20 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
     'modifyAckDeadline',
     'acknowledge',
     'pull',
+    'streamingPull',
     'modifyPushConfig'
   ];
   subscriberStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       subscriberStub.then(function(subscriberStub) {
-        return subscriberStub[methodName].bind(subscriberStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return subscriberStub[methodName].apply(subscriberStub, args);
+        }
       }),
       defaults[methodName],
-      PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+      PAGE_DESCRIPTORS[methodName] || STREAM_DESCRIPTORS[methodName]);
+  });
 }
 
 // Path templates
@@ -240,8 +254,11 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
  * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
  *
  * If the name is not provided in the request, the server will assign a random
- * name for this subscription on the same project as the topic. Note that
- * for REST API requests, you must specify a name.
+ * name for this subscription on the same project as the topic, conforming
+ * to the
+ * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+ * The generated name is populated in the returned Subscription object.
+ * Note that for REST API requests, you must specify a name in the request.
  *
  * @param {Object} request
  *   The request object that will be sent.
@@ -254,6 +271,7 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
  *   in length, and it must not start with `"goog"`.
  * @param {string} request.topic
  *   The name of the topic from which this subscription is receiving messages.
+ *   Format is `projects/{project}/topics/{topic}`.
  *   The value of this field will be `_deleted-topic_` if the topic has been
  *   deleted.
  * @param {Object=} request.pushConfig
@@ -273,15 +291,15 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
  *   deadline. To override this value for a given message, call
  *   `ModifyAckDeadline` with the corresponding `ack_id` if using
  *   pull.
+ *   The minimum custom deadline you can specify is 10 seconds.
  *   The maximum custom deadline you can specify is 600 seconds (10 minutes).
+ *   If this parameter is 0, a default value of 10 seconds is used.
  *
  *   For push delivery, this value is also used to set the request timeout for
  *   the call to the push endpoint.
  *
  *   If the subscriber never acknowledges the message, the Pub/Sub
  *   system will eventually redeliver the message.
- *
- *   If this parameter is 0, a default value of 10 seconds is used.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -328,6 +346,7 @@ SubscriberClient.prototype.createSubscription = function(request, options, callb
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The name of the subscription to get.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -369,6 +388,7 @@ SubscriberClient.prototype.getSubscription = function(request, options, callback
  *   The request object that will be sent.
  * @param {string} request.project
  *   The name of the cloud project that subscriptions belong to.
+ *   Format is `projects/{project}`.
  * @param {number=} request.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
@@ -464,6 +484,7 @@ SubscriberClient.prototype.listSubscriptions = function(request, options, callba
  *   The request object that will be sent.
  * @param {string} request.project
  *   The name of the cloud project that subscriptions belong to.
+ *   Format is `projects/{project}`.
  * @param {number=} request.pageSize
  *   The maximum number of resources contained in the underlying API
  *   response. If page streaming is performed per-resource, this
@@ -495,16 +516,17 @@ SubscriberClient.prototype.listSubscriptionsStream = function(request, options) 
 };
 
 /**
- * Deletes an existing subscription. All pending messages in the subscription
+ * Deletes an existing subscription. All messages retained in the subscription
  * are immediately dropped. Calls to `Pull` after deletion will return
  * `NOT_FOUND`. After a subscription is deleted, a new one may be created with
  * the same name, but the new one has no association with the old
- * subscription, or its topic unless the same topic is specified.
+ * subscription or its topic unless the same topic is specified.
  *
  * @param {Object} request
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The subscription to delete.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -544,14 +566,17 @@ SubscriberClient.prototype.deleteSubscription = function(request, options, callb
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The name of the subscription.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {string[]} request.ackIds
  *   List of acknowledgment IDs.
  * @param {number} request.ackDeadlineSeconds
  *   The new ack deadline with respect to the time this request was sent to
- *   the Pub/Sub system. Must be >= 0. For example, if the value is 10, the new
+ *   the Pub/Sub system. For example, if the value is 10, the new
  *   ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
  *   was made. Specifying zero may immediately make the message available for
  *   another pull request.
+ *   The minimum deadline you can specify is 0 seconds.
+ *   The maximum deadline you can specify is 600 seconds (10 minutes).
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -600,6 +625,7 @@ SubscriberClient.prototype.modifyAckDeadline = function(request, options, callba
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The subscription whose message is being acknowledged.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {string[]} request.ackIds
  *   The acknowledgment ID for the messages being acknowledged that was returned
  *   by the Pub/Sub system in the `Pull` response. Must not be empty.
@@ -646,15 +672,17 @@ SubscriberClient.prototype.acknowledge = function(request, options, callback) {
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The subscription from which messages should be pulled.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {number} request.maxMessages
  *   The maximum number of messages returned for this request. The Pub/Sub
  *   system may return fewer than the number specified.
  * @param {boolean=} request.returnImmediately
- *   If this is specified as true the system will respond immediately even if
- *   it is not able to return a message in the `Pull` response. Otherwise the
- *   system is allowed to wait until at least one message is available rather
- *   than returning no messages. The client may cancel the request if it does
- *   not wish to wait any longer for the response.
+ *   If this field set to true, the system will respond immediately even if
+ *   it there are no messages available to return in the `Pull` response.
+ *   Otherwise, the system may wait (for a bounded amount of time) until at
+ *   least one message is available, rather than returning no messages. The
+ *   client may cancel the request if it does not wish to wait any longer for
+ *   the response.
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -695,6 +723,54 @@ SubscriberClient.prototype.pull = function(request, options, callback) {
 };
 
 /**
+ * (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
+ * respond with UNIMPLEMENTED errors unless you have been invited to test
+ * this feature. Contact cloud-pubsub@google.com with any questions.
+ *
+ * Establishes a stream with the server, which sends messages down to the
+ * client. The client streams acknowledgements and ack deadline modifications
+ * back to the server. The server will close the stream and return the status
+ * on any error. The server may close the stream with status `OK` to reassign
+ * server-side resources, in which case, the client should re-establish the
+ * stream. `UNAVAILABLE` may also be returned in the case of a transient error
+ * (e.g., a server restart). These should also be retried by the client. Flow
+ * control can be achieved by configuring the underlying RPC channel.
+ *
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @returns {Stream}
+ *   An object stream which is both readable and writable. It accepts objects
+ *   representing [StreamingPullRequest]{@link StreamingPullRequest} for write() method, and
+ *   will emit objects representing [StreamingPullResponse]{@link StreamingPullResponse} on 'data' event asynchronously.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var stream = client.streamingPull().on('data', function(response) {
+ *     // doThingsWith(response);
+ * });
+ * var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+ * var streamAckDeadlineSeconds = 0;
+ * var request = {
+ *     subscription : formattedSubscription,
+ *     streamAckDeadlineSeconds : streamAckDeadlineSeconds
+ * };
+ * var request = {
+ *     root: request
+ * };
+ * // Write request objects.
+ * stream.write(request);
+ */
+SubscriberClient.prototype.streamingPull = function(options) {
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._streamingPull(options);
+};
+
+/**
  * Modifies the `PushConfig` for a specified subscription.
  *
  * This may be used to change a push subscription to a pull one (signified by
@@ -706,6 +782,7 @@ SubscriberClient.prototype.pull = function(request, options, callback) {
  *   The request object that will be sent.
  * @param {string} request.subscription
  *   The name of the subscription.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
  * @param {Object} request.pushConfig
  *   The push configuration for future deliveries.
  *
@@ -851,6 +928,8 @@ SubscriberClient.prototype.getIamPolicy = function(request, options, callback) {
 
 /**
  * Returns permissions that a caller has on the specified resource.
+ * If the resource does not exist, this will return an empty set of
+ * permissions, not a NOT_FOUND error.
  *
  * @param {Object} request
  *   The request object that will be sent.
@@ -919,10 +998,11 @@ function SubscriberClientBuilder(gaxGrpc) {
   }]);
   extend(this, subscriberClient.google.pubsub.v1);
 
-  var grpcClients = {
-    iamPolicyClient: iamPolicyClient,
-    subscriberClient: subscriberClient
-  };
+  var grpcClients = merge(
+    {},
+    iamPolicyClient,
+    subscriberClient
+  );
 
   /**
    * Build a new instance of {@link SubscriberClient}.

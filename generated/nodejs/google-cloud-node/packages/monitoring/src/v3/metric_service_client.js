@@ -100,10 +100,12 @@ function MetricServiceClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var metricServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.metricServiceClient.google.monitoring.v3.MetricService,
+      grpcClients.google.monitoring.v3.MetricService,
       {sslCreds: sslCreds});
   var metricServiceStubMethods = [
     'listMonitoredResourceDescriptors',
@@ -116,13 +118,16 @@ function MetricServiceClient(gaxGrpc, grpcClients, opts) {
     'createTimeSeries'
   ];
   metricServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       metricServiceStub.then(function(metricServiceStub) {
-        return metricServiceStub[methodName].bind(metricServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return metricServiceStub[methodName].apply(metricServiceStub, args);
+        }
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+  });
 }
 
 // Path templates
@@ -979,9 +984,6 @@ function MetricServiceClientBuilder(gaxGrpc) {
   }]);
   extend(this, metricServiceClient.google.monitoring.v3);
 
-  var grpcClients = {
-    metricServiceClient: metricServiceClient
-  };
 
   /**
    * Build a new instance of {@link MetricServiceClient}.
@@ -1002,7 +1004,7 @@ function MetricServiceClientBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.metricServiceClient = function(opts) {
-    return new MetricServiceClient(gaxGrpc, grpcClients, opts);
+    return new MetricServiceClient(gaxGrpc, metricServiceClient, opts);
   };
   extend(this.metricServiceClient, MetricServiceClient);
 }

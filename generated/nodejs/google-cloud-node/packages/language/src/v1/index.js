@@ -15,30 +15,19 @@
  */
 'use strict';
 
-var LoggingServiceV2Client = require('./logging_service_v2_client');
-var ConfigServiceV2Client = require('./config_service_v2_client');
-var MetricsServiceV2Client = require('./metrics_service_v2_client');
+var LanguageServiceClient = require('./language_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
-var union = require('lodash.union');
 
-function v2(options) {
+function v1(options) {
   options = extend({
-    scopes: v2.ALL_SCOPES
+    scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  var result = {};
-  extend(result, LoggingServiceV2Client(gaxGrpc));
-  extend(result, ConfigServiceV2Client(gaxGrpc));
-  extend(result, MetricsServiceV2Client(gaxGrpc));
-  return result;
+  return LanguageServiceClient(gaxGrpc);
 }
 
-v2.SERVICE_ADDRESS = LoggingServiceV2Client.SERVICE_ADDRESS;
-v2.ALL_SCOPES = union(
-  LoggingServiceV2Client.ALL_SCOPES,
-  ConfigServiceV2Client.ALL_SCOPES,
-  MetricsServiceV2Client.ALL_SCOPES
-);
+v1.SERVICE_ADDRESS = LanguageServiceClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = LanguageServiceClient.ALL_SCOPES;
 
-module.exports = v2;
+module.exports = v1;

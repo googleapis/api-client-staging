@@ -3,19 +3,25 @@
   "name": "@google-cloud/monitoring",
   "version": "0.7.1",
   "author": "Google Inc.",
-  "description": "Stackdriver Monitoring library for Node.js",
+  "description": "Monitoring client for Node.js",
   "main": "src/index.js",
   "files": [
     "src"
   ],
   "dependencies": {
-    "google-proto-files": "^0.8.2",
+    "google-proto-files": "^0.8.3",
     "google-gax": "^0.7.0",
-    "extend": "^3.0.0",
-    "lodash.union": "^4.6.0"
+    "lodash.union": "^4.6.0",
+    "extend": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "3.2.0"
   },
   "license": "Apache-2.0",
   "engines": {
     "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }

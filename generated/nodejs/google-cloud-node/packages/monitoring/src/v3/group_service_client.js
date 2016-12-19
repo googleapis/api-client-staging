@@ -106,10 +106,12 @@ function GroupServiceClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var groupServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.groupServiceClient.google.monitoring.v3.GroupService,
+      grpcClients.google.monitoring.v3.GroupService,
       {sslCreds: sslCreds});
   var groupServiceStubMethods = [
     'listGroups',
@@ -120,13 +122,16 @@ function GroupServiceClient(gaxGrpc, grpcClients, opts) {
     'listGroupMembers'
   ];
   groupServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       groupServiceStub.then(function(groupServiceStub) {
-        return groupServiceStub[methodName].bind(groupServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return groupServiceStub[methodName].apply(groupServiceStub, args);
+        }
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+  });
 }
 
 // Path templates
@@ -711,9 +716,6 @@ function GroupServiceClientBuilder(gaxGrpc) {
   }]);
   extend(this, groupServiceClient.google.monitoring.v3);
 
-  var grpcClients = {
-    groupServiceClient: groupServiceClient
-  };
 
   /**
    * Build a new instance of {@link GroupServiceClient}.
@@ -734,7 +736,7 @@ function GroupServiceClientBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.groupServiceClient = function(opts) {
-    return new GroupServiceClient(gaxGrpc, grpcClients, opts);
+    return new GroupServiceClient(gaxGrpc, groupServiceClient, opts);
   };
   extend(this.groupServiceClient, GroupServiceClient);
 }

@@ -1,5 +1,5 @@
-/*!
- * Copyright 2016 Google Inc. All Rights Reserved.
+/*
+ * Copyright 2016 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 'use strict';
 
-var traceServiceApi = require('./trace_service_api');
+var TraceServiceClient = require('./trace_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 
@@ -24,8 +24,10 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return traceServiceApi(gaxGrpc);
+  return TraceServiceClient(gaxGrpc);
 }
-v1.SERVICE_ADDRESS = traceServiceApi.SERVICE_ADDRESS;
-v1.ALL_SCOPES = traceServiceApi.ALL_SCOPES;
+
+v1.SERVICE_ADDRESS = TraceServiceClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = TraceServiceClient.ALL_SCOPES;
+
 module.exports = v1;

@@ -37,7 +37,6 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-
 /**
  * The scopes needed to make gRPC calls to all of the methods defined in
  * this service.
@@ -51,17 +50,17 @@ var ALL_SCOPES = [
  *
  * This will be created through a builder function which can be obtained by the module.
  * See the following example of how to initialize the module and how to access to the builder.
- * @see {@link reportErrorsServiceApi}
+ * @see {@link reportErrorsServiceClient}
  *
  * @example
- * var clouderrorreportingV1beta1 = require('@google-cloud/errorreporting').v1beta1({
+ * var errorreportingV1beta1 = require('@google-cloud/errorreporting').v1beta1({
  *   // optional auth parameters.
  * });
- * var api = clouderrorreportingV1beta1.reportErrorsServiceApi();
+ * var client = errorreportingV1beta1.reportErrorsServiceClient();
  *
  * @class
  */
-function ReportErrorsServiceApi(gaxGrpc, grpcClients, opts) {
+function ReportErrorsServiceClient(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -80,25 +79,29 @@ function ReportErrorsServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.clouderrorreporting.v1beta1.ReportErrorsService',
       configData,
       clientConfig,
-      null,
-      null,
       {'x-goog-api-client': googleApiClient});
+
+  var self = this;
 
   var reportErrorsServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.reportErrorsServiceClient.google.devtools.clouderrorreporting.v1beta1.ReportErrorsService,
+      grpcClients.google.devtools.clouderrorreporting.v1beta1.ReportErrorsService,
       {sslCreds: sslCreds});
   var reportErrorsServiceStubMethods = [
     'reportErrorEvent'
   ];
   reportErrorsServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       reportErrorsServiceStub.then(function(reportErrorsServiceStub) {
-        return reportErrorsServiceStub[methodName].bind(reportErrorsServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return reportErrorsServiceStub[methodName].apply(reportErrorsServiceStub, args);
+        }
       }),
-      defaults[methodName]);
-  }.bind(this));
+      defaults[methodName],
+      null);
+  });
 }
 
 // Path templates
@@ -111,7 +114,7 @@ var PROJECT_PATH_TEMPLATE = new gax.PathTemplate(
  * @param {String} project
  * @returns {String}
  */
-ReportErrorsServiceApi.prototype.projectPath = function projectPath(project) {
+ReportErrorsServiceClient.prototype.projectPath = function(project) {
   return PROJECT_PATH_TEMPLATE.render({
     project: project
   });
@@ -123,8 +126,7 @@ ReportErrorsServiceApi.prototype.projectPath = function projectPath(project) {
  *   A fully-qualified path representing a project resources.
  * @returns {String} - A string representing the project.
  */
-ReportErrorsServiceApi.prototype.matchProjectFromProjectName =
-    function matchProjectFromProjectName(projectName) {
+ReportErrorsServiceClient.prototype.matchProjectFromProjectName = function(projectName) {
   return PROJECT_PATH_TEMPLATE.match(projectName).project;
 };
 
@@ -140,12 +142,14 @@ ReportErrorsServiceApi.prototype.matchProjectFromProjectName =
  * a `key` parameter. For example:
  * <pre>POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
  *
- * @param {string} projectName
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.projectName
  *   [Required] The resource name of the Google Cloud Platform project. Written
  *   as `projects/` plus the
  *   [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
  *   Example: `projects/my-project-123`.
- * @param {Object} event
+ * @param {Object} request.event
  *   [Required] The error event to be reported.
  *
  *   This object should have the same structure as [ReportedErrorEvent]{@link ReportedErrorEvent}
@@ -155,28 +159,28 @@ ReportErrorsServiceApi.prototype.matchProjectFromProjectName =
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [ReportErrorEventResponse]{@link ReportErrorEventResponse}
- * @returns {gax.EventEmitter} - the event emitter to handle the call
- *   status.
+ *   The second parameter to the callback is an object representing [ReportErrorEventResponse]{@link ReportErrorEventResponse}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [ReportErrorEventResponse]{@link ReportErrorEventResponse}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = clouderrorreportingV1beta1.reportErrorsServiceApi();
- * var formattedProjectName = api.projectPath("[PROJECT]");
+ * var client = errorreportingV1beta1.reportErrorsServiceClient();
+ * var formattedProjectName = client.projectPath("[PROJECT]");
  * var event = {};
- * api.reportErrorEvent(formattedProjectName, event, function(err, response) {
- *     if (err) {
- *         console.error(err);
- *         return;
- *     }
+ * var request = {
+ *     projectName: formattedProjectName,
+ *     event: event
+ * };
+ * client.reportErrorEvent(request).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
  * });
  */
-ReportErrorsServiceApi.prototype.reportErrorEvent = function reportErrorEvent(
-    projectName,
-    event,
-    options,
-    callback) {
+ReportErrorsServiceClient.prototype.reportErrorEvent = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -184,16 +188,13 @@ ReportErrorsServiceApi.prototype.reportErrorEvent = function reportErrorEvent(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    projectName: projectName,
-    event: event
-  };
-  return this._reportErrorEvent(req, options, callback);
+
+  return this._reportErrorEvent(request, options, callback);
 };
 
-function ReportErrorsServiceApiBuilder(gaxGrpc) {
-  if (!(this instanceof ReportErrorsServiceApiBuilder)) {
-    return new ReportErrorsServiceApiBuilder(gaxGrpc);
+function ReportErrorsServiceClientBuilder(gaxGrpc) {
+  if (!(this instanceof ReportErrorsServiceClientBuilder)) {
+    return new ReportErrorsServiceClientBuilder(gaxGrpc);
   }
 
   var reportErrorsServiceClient = gaxGrpc.load([{
@@ -202,12 +203,9 @@ function ReportErrorsServiceApiBuilder(gaxGrpc) {
   }]);
   extend(this, reportErrorsServiceClient.google.devtools.clouderrorreporting.v1beta1);
 
-  var grpcClients = {
-    reportErrorsServiceClient: reportErrorsServiceClient
-  };
 
   /**
-   * Build a new instance of {@link ReportErrorsServiceApi}.
+   * Build a new instance of {@link ReportErrorsServiceClient}.
    *
    * @param {Object=} opts - The optional parameters.
    * @param {String=} opts.servicePath
@@ -224,11 +222,11 @@ function ReportErrorsServiceApiBuilder(gaxGrpc) {
    * @param {String=} opts.appVersion
    *   The version of the calling service.
    */
-  this.reportErrorsServiceApi = function(opts) {
-    return new ReportErrorsServiceApi(gaxGrpc, grpcClients, opts);
+  this.reportErrorsServiceClient = function(opts) {
+    return new ReportErrorsServiceClient(gaxGrpc, reportErrorsServiceClient, opts);
   };
-  extend(this.reportErrorsServiceApi, ReportErrorsServiceApi);
+  extend(this.reportErrorsServiceClient, ReportErrorsServiceClient);
 }
-module.exports = ReportErrorsServiceApiBuilder;
+module.exports = ReportErrorsServiceClientBuilder;
 module.exports.SERVICE_ADDRESS = SERVICE_ADDRESS;
 module.exports.ALL_SCOPES = ALL_SCOPES;
