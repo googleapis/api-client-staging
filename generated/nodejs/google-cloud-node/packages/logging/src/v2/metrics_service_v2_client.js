@@ -92,6 +92,8 @@ function MetricsServiceV2Client(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var metricsServiceV2Stub = gaxGrpc.createStub(
       servicePath,
       port,
@@ -105,13 +107,16 @@ function MetricsServiceV2Client(gaxGrpc, grpcClients, opts) {
     'deleteLogMetric'
   ];
   metricsServiceV2StubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       metricsServiceV2Stub.then(function(metricsServiceV2Stub) {
-        return metricsServiceV2Stub[methodName].bind(metricsServiceV2Stub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return metricsServiceV2Stub[methodName].apply(metricsServiceV2Stub, args);
+        }
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+  });
 }
 
 // Path templates

@@ -83,22 +83,27 @@ function ImageAnnotatorClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var imageAnnotatorStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.imageAnnotatorClient.google.cloud.vision.v1.ImageAnnotator,
+      grpcClients.google.cloud.vision.v1.ImageAnnotator,
       {sslCreds: sslCreds});
   var imageAnnotatorStubMethods = [
     'batchAnnotateImages'
   ];
   imageAnnotatorStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       imageAnnotatorStub.then(function(imageAnnotatorStub) {
-        return imageAnnotatorStub[methodName].bind(imageAnnotatorStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return imageAnnotatorStub[methodName].apply(imageAnnotatorStub, args);
+        }
       }),
       defaults[methodName],
       null);
-  }.bind(this));
+  });
 }
 
 // Service calls
@@ -157,9 +162,6 @@ function ImageAnnotatorClientBuilder(gaxGrpc) {
   }]);
   extend(this, imageAnnotatorClient.google.cloud.vision.v1);
 
-  var grpcClients = {
-    imageAnnotatorClient: imageAnnotatorClient
-  };
 
   /**
    * Build a new instance of {@link ImageAnnotatorClient}.
@@ -180,7 +182,7 @@ function ImageAnnotatorClientBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.imageAnnotatorClient = function(opts) {
-    return new ImageAnnotatorClient(gaxGrpc, grpcClients, opts);
+    return new ImageAnnotatorClient(gaxGrpc, imageAnnotatorClient, opts);
   };
   extend(this.imageAnnotatorClient, ImageAnnotatorClient);
 }

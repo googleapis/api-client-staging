@@ -37,7 +37,6 @@ var DEFAULT_SERVICE_PORT = 443;
 
 var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
 
-
 /**
  * The scopes needed to make gRPC calls to all of the methods defined in
  * this service.
@@ -51,17 +50,17 @@ var ALL_SCOPES = [
  *
  * This will be created through a builder function which can be obtained by the module.
  * See the following example of how to initialize the module and how to access to the builder.
- * @see {@link errorGroupServiceApi}
+ * @see {@link errorGroupServiceClient}
  *
  * @example
- * var clouderrorreportingV1beta1 = require('@google-cloud/errorreporting').v1beta1({
+ * var errorreportingV1beta1 = require('@google-cloud/errorreporting').v1beta1({
  *   // optional auth parameters.
  * });
- * var api = clouderrorreportingV1beta1.errorGroupServiceApi();
+ * var client = errorreportingV1beta1.errorGroupServiceClient();
  *
  * @class
  */
-function ErrorGroupServiceApi(gaxGrpc, grpcClients, opts) {
+function ErrorGroupServiceClient(gaxGrpc, grpcClients, opts) {
   opts = opts || {};
   var servicePath = opts.servicePath || SERVICE_ADDRESS;
   var port = opts.port || DEFAULT_SERVICE_PORT;
@@ -80,26 +79,30 @@ function ErrorGroupServiceApi(gaxGrpc, grpcClients, opts) {
       'google.devtools.clouderrorreporting.v1beta1.ErrorGroupService',
       configData,
       clientConfig,
-      null,
-      null,
       {'x-goog-api-client': googleApiClient});
+
+  var self = this;
 
   var errorGroupServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.errorGroupServiceClient.google.devtools.clouderrorreporting.v1beta1.ErrorGroupService,
+      grpcClients.google.devtools.clouderrorreporting.v1beta1.ErrorGroupService,
       {sslCreds: sslCreds});
   var errorGroupServiceStubMethods = [
     'getGroup',
     'updateGroup'
   ];
   errorGroupServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       errorGroupServiceStub.then(function(errorGroupServiceStub) {
-        return errorGroupServiceStub[methodName].bind(errorGroupServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return errorGroupServiceStub[methodName].apply(errorGroupServiceStub, args);
+        }
       }),
-      defaults[methodName]);
-  }.bind(this));
+      defaults[methodName],
+      null);
+  });
 }
 
 // Path templates
@@ -113,7 +116,7 @@ var GROUP_PATH_TEMPLATE = new gax.PathTemplate(
  * @param {String} group
  * @returns {String}
  */
-ErrorGroupServiceApi.prototype.groupPath = function groupPath(project, group) {
+ErrorGroupServiceClient.prototype.groupPath = function(project, group) {
   return GROUP_PATH_TEMPLATE.render({
     project: project,
     group: group
@@ -126,8 +129,7 @@ ErrorGroupServiceApi.prototype.groupPath = function groupPath(project, group) {
  *   A fully-qualified path representing a group resources.
  * @returns {String} - A string representing the project.
  */
-ErrorGroupServiceApi.prototype.matchProjectFromGroupName =
-    function matchProjectFromGroupName(groupName) {
+ErrorGroupServiceClient.prototype.matchProjectFromGroupName = function(groupName) {
   return GROUP_PATH_TEMPLATE.match(groupName).project;
 };
 
@@ -137,8 +139,7 @@ ErrorGroupServiceApi.prototype.matchProjectFromGroupName =
  *   A fully-qualified path representing a group resources.
  * @returns {String} - A string representing the group.
  */
-ErrorGroupServiceApi.prototype.matchGroupFromGroupName =
-    function matchGroupFromGroupName(groupName) {
+ErrorGroupServiceClient.prototype.matchGroupFromGroupName = function(groupName) {
   return GROUP_PATH_TEMPLATE.match(groupName).group;
 };
 
@@ -147,7 +148,9 @@ ErrorGroupServiceApi.prototype.matchGroupFromGroupName =
 /**
  * Get the specified group.
  *
- * @param {string} groupName
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.groupName
  *   [Required] The group resource name. Written as
  *   <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
  *   Call
@@ -162,26 +165,23 @@ ErrorGroupServiceApi.prototype.matchGroupFromGroupName =
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [ErrorGroup]{@link ErrorGroup}
- * @returns {gax.EventEmitter} - the event emitter to handle the call
- *   status.
+ *   The second parameter to the callback is an object representing [ErrorGroup]{@link ErrorGroup}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [ErrorGroup]{@link ErrorGroup}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = clouderrorreportingV1beta1.errorGroupServiceApi();
- * var formattedGroupName = api.groupPath("[PROJECT]", "[GROUP]");
- * api.getGroup(formattedGroupName, function(err, response) {
- *     if (err) {
- *         console.error(err);
- *         return;
- *     }
+ * var client = errorreportingV1beta1.errorGroupServiceClient();
+ * var formattedGroupName = client.groupPath("[PROJECT]", "[GROUP]");
+ * client.getGroup({groupName: formattedGroupName}).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
  * });
  */
-ErrorGroupServiceApi.prototype.getGroup = function getGroup(
-    groupName,
-    options,
-    callback) {
+ErrorGroupServiceClient.prototype.getGroup = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -189,17 +189,17 @@ ErrorGroupServiceApi.prototype.getGroup = function getGroup(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    groupName: groupName
-  };
-  return this._getGroup(req, options, callback);
+
+  return this._getGroup(request, options, callback);
 };
 
 /**
  * Replace the data for the specified group.
  * Fails if the group does not exist.
  *
- * @param {Object} group
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {Object} request.group
  *   [Required] The group which replaces the resource on the server.
  *
  *   This object should have the same structure as [ErrorGroup]{@link ErrorGroup}
@@ -209,26 +209,23 @@ ErrorGroupServiceApi.prototype.getGroup = function getGroup(
  * @param {function(?Error, ?Object)=} callback
  *   The function which will be called with the result of the API call.
  *
- *   The second parameter to the callback is an object representing [ErrorGroup]{@link ErrorGroup}
- * @returns {gax.EventEmitter} - the event emitter to handle the call
- *   status.
+ *   The second parameter to the callback is an object representing [ErrorGroup]{@link ErrorGroup}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [ErrorGroup]{@link ErrorGroup}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
  *
  * @example
  *
- * var api = clouderrorreportingV1beta1.errorGroupServiceApi();
+ * var client = errorreportingV1beta1.errorGroupServiceClient();
  * var group = {};
- * api.updateGroup(group, function(err, response) {
- *     if (err) {
- *         console.error(err);
- *         return;
- *     }
+ * client.updateGroup({group: group}).then(function(responses) {
+ *     var response = responses[0];
  *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
  * });
  */
-ErrorGroupServiceApi.prototype.updateGroup = function updateGroup(
-    group,
-    options,
-    callback) {
+ErrorGroupServiceClient.prototype.updateGroup = function(request, options, callback) {
   if (options instanceof Function && callback === undefined) {
     callback = options;
     options = {};
@@ -236,15 +233,13 @@ ErrorGroupServiceApi.prototype.updateGroup = function updateGroup(
   if (options === undefined) {
     options = {};
   }
-  var req = {
-    group: group
-  };
-  return this._updateGroup(req, options, callback);
+
+  return this._updateGroup(request, options, callback);
 };
 
-function ErrorGroupServiceApiBuilder(gaxGrpc) {
-  if (!(this instanceof ErrorGroupServiceApiBuilder)) {
-    return new ErrorGroupServiceApiBuilder(gaxGrpc);
+function ErrorGroupServiceClientBuilder(gaxGrpc) {
+  if (!(this instanceof ErrorGroupServiceClientBuilder)) {
+    return new ErrorGroupServiceClientBuilder(gaxGrpc);
   }
 
   var errorGroupServiceClient = gaxGrpc.load([{
@@ -253,12 +248,9 @@ function ErrorGroupServiceApiBuilder(gaxGrpc) {
   }]);
   extend(this, errorGroupServiceClient.google.devtools.clouderrorreporting.v1beta1);
 
-  var grpcClients = {
-    errorGroupServiceClient: errorGroupServiceClient
-  };
 
   /**
-   * Build a new instance of {@link ErrorGroupServiceApi}.
+   * Build a new instance of {@link ErrorGroupServiceClient}.
    *
    * @param {Object=} opts - The optional parameters.
    * @param {String=} opts.servicePath
@@ -275,11 +267,11 @@ function ErrorGroupServiceApiBuilder(gaxGrpc) {
    * @param {String=} opts.appVersion
    *   The version of the calling service.
    */
-  this.errorGroupServiceApi = function(opts) {
-    return new ErrorGroupServiceApi(gaxGrpc, grpcClients, opts);
+  this.errorGroupServiceClient = function(opts) {
+    return new ErrorGroupServiceClient(gaxGrpc, errorGroupServiceClient, opts);
   };
-  extend(this.errorGroupServiceApi, ErrorGroupServiceApi);
+  extend(this.errorGroupServiceClient, ErrorGroupServiceClient);
 }
-module.exports = ErrorGroupServiceApiBuilder;
+module.exports = ErrorGroupServiceClientBuilder;
 module.exports.SERVICE_ADDRESS = SERVICE_ADDRESS;
 module.exports.ALL_SCOPES = ALL_SCOPES;

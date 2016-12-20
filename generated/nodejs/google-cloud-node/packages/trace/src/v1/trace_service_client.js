@@ -94,10 +94,12 @@ function TraceServiceClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var traceServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.traceServiceClient.google.devtools.cloudtrace.v1.TraceService,
+      grpcClients.google.devtools.cloudtrace.v1.TraceService,
       {sslCreds: sslCreds});
   var traceServiceStubMethods = [
     'patchTraces',
@@ -105,13 +107,16 @@ function TraceServiceClient(gaxGrpc, grpcClients, opts) {
     'listTraces'
   ];
   traceServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       traceServiceStub.then(function(traceServiceStub) {
-        return traceServiceStub[methodName].bind(traceServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return traceServiceStub[methodName].apply(traceServiceStub, args);
+        }
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);
-  }.bind(this));
+  });
 }
 
 // Service calls
@@ -413,9 +418,6 @@ function TraceServiceClientBuilder(gaxGrpc) {
   }]);
   extend(this, traceServiceClient.google.devtools.cloudtrace.v1);
 
-  var grpcClients = {
-    traceServiceClient: traceServiceClient
-  };
 
   /**
    * Build a new instance of {@link TraceServiceClient}.
@@ -436,7 +438,7 @@ function TraceServiceClientBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.traceServiceClient = function(opts) {
-    return new TraceServiceClient(gaxGrpc, grpcClients, opts);
+    return new TraceServiceClient(gaxGrpc, traceServiceClient, opts);
   };
   extend(this.traceServiceClient, TraceServiceClient);
 }

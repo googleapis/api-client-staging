@@ -82,10 +82,12 @@ function LanguageServiceClient(gaxGrpc, grpcClients, opts) {
       clientConfig,
       {'x-goog-api-client': googleApiClient});
 
+  var self = this;
+
   var languageServiceStub = gaxGrpc.createStub(
       servicePath,
       port,
-      grpcClients.languageServiceClient.google.cloud.language.v1.LanguageService,
+      grpcClients.google.cloud.language.v1.LanguageService,
       {sslCreds: sslCreds});
   var languageServiceStubMethods = [
     'analyzeSentiment',
@@ -94,13 +96,16 @@ function LanguageServiceClient(gaxGrpc, grpcClients, opts) {
     'annotateText'
   ];
   languageServiceStubMethods.forEach(function(methodName) {
-    this['_' + methodName] = gax.createApiCall(
+    self['_' + methodName] = gax.createApiCall(
       languageServiceStub.then(function(languageServiceStub) {
-        return languageServiceStub[methodName].bind(languageServiceStub);
+        return function() {
+          var args = Array.prototype.slice.call(arguments, 0);
+          return languageServiceStub[methodName].apply(languageServiceStub, args);
+        }
       }),
       defaults[methodName],
       null);
-  }.bind(this));
+  });
 }
 
 // Service calls
@@ -330,9 +335,6 @@ function LanguageServiceClientBuilder(gaxGrpc) {
   }]);
   extend(this, languageServiceClient.google.cloud.language.v1);
 
-  var grpcClients = {
-    languageServiceClient: languageServiceClient
-  };
 
   /**
    * Build a new instance of {@link LanguageServiceClient}.
@@ -353,7 +355,7 @@ function LanguageServiceClientBuilder(gaxGrpc) {
    *   The version of the calling service.
    */
   this.languageServiceClient = function(opts) {
-    return new LanguageServiceClient(gaxGrpc, grpcClients, opts);
+    return new LanguageServiceClient(gaxGrpc, languageServiceClient, opts);
   };
   extend(this.languageServiceClient, LanguageServiceClient);
 }

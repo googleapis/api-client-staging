@@ -15,7 +15,7 @@
  */
 'use strict';
 
-var ImageAnnotatorClient = require('./image_annotator_client');
+var LanguageServiceClient = require('./language_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 
@@ -24,10 +24,10 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return ImageAnnotatorClient(gaxGrpc);
+  return LanguageServiceClient(gaxGrpc);
 }
 
-v1.SERVICE_ADDRESS = ImageAnnotatorClient.SERVICE_ADDRESS;
-v1.ALL_SCOPES = ImageAnnotatorClient.ALL_SCOPES;
+v1.SERVICE_ADDRESS = LanguageServiceClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = LanguageServiceClient.ALL_SCOPES;
 
 module.exports = v1;
