@@ -44,7 +44,7 @@ use google\monitoring\v3\ListMetricDescriptorsRequest;
 use google\monitoring\v3\ListMonitoredResourceDescriptorsRequest;
 use google\monitoring\v3\ListTimeSeriesRequest;
 use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
-use google\monitoring\v3\MetricServiceClient as MetricServiceGrpcClient;
+use google\monitoring\v3\MetricServiceGrpcClient;
 use google\monitoring\v3\TimeInterval;
 use google\monitoring\v3\TimeSeries;
 
@@ -84,7 +84,6 @@ class MetricServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -258,10 +257,10 @@ class MetricServiceClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Monitoring API.
      *     @type array $retryingOverride
@@ -276,23 +275,22 @@ class MetricServiceClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/monitoring',
-            'https://www.googleapis.com/auth/monitoring.read',
-            'https://www.googleapis.com/auth/monitoring.write',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/monitoring',
+                'https://www.googleapis.com/auth/monitoring.read',
+                'https://www.googleapis.com/auth/monitoring.write',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -348,6 +346,9 @@ class MetricServiceClient
         $createMetricServiceStubFunction = function ($hostname, $opts) {
             return new MetricServiceGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createMetricServiceStubFunction', $options)) {
+            $createMetricServiceStubFunction = $options['createMetricServiceStubFunction'];
+        }
         $this->metricServiceStub = $this->grpcCredentialsHelper->createStub(
             $createMetricServiceStubFunction,
             $options['serviceAddress'],

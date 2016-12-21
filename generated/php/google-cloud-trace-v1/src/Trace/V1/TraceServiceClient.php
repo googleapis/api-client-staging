@@ -36,7 +36,7 @@ use google\devtools\cloudtrace\v1\GetTraceRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest\ViewType;
 use google\devtools\cloudtrace\v1\PatchTracesRequest;
-use google\devtools\cloudtrace\v1\TraceServiceClient as TraceServiceGrpcClient;
+use google\devtools\cloudtrace\v1\TraceServiceGrpcClient;
 use google\devtools\cloudtrace\v1\Traces;
 use google\protobuf\Timestamp;
 
@@ -78,7 +78,6 @@ class TraceServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'cloudtrace.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -124,10 +123,10 @@ class TraceServiceClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'cloudtrace.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Trace API.
      *     @type array $retryingOverride
@@ -142,22 +141,21 @@ class TraceServiceClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/trace.append',
-            'https://www.googleapis.com/auth/trace.readonly',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/trace.append',
+                'https://www.googleapis.com/auth/trace.readonly',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -208,6 +206,9 @@ class TraceServiceClient
         $createTraceServiceStubFunction = function ($hostname, $opts) {
             return new TraceServiceGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createTraceServiceStubFunction', $options)) {
+            $createTraceServiceStubFunction = $options['createTraceServiceStubFunction'];
+        }
         $this->traceServiceStub = $this->grpcCredentialsHelper->createStub(
             $createTraceServiceStubFunction,
             $options['serviceAddress'],

@@ -33,7 +33,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use google\cloud\vision\v1\AnnotateImageRequest;
 use google\cloud\vision\v1\BatchAnnotateImagesRequest;
-use google\cloud\vision\v1\ImageAnnotatorClient as ImageAnnotatorGrpcClient;
+use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
 
 /**
  * Service Description: Service that performs Google Cloud Vision API detection tasks, such as face,
@@ -70,7 +70,6 @@ class ImageAnnotatorClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'vision.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -108,10 +107,10 @@ class ImageAnnotatorClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'vision.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Vision API.
      *     @type array $retryingOverride
@@ -126,20 +125,19 @@ class ImageAnnotatorClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -188,6 +186,9 @@ class ImageAnnotatorClient
         $createImageAnnotatorStubFunction = function ($hostname, $opts) {
             return new ImageAnnotatorGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createImageAnnotatorStubFunction', $options)) {
+            $createImageAnnotatorStubFunction = $options['createImageAnnotatorStubFunction'];
+        }
         $this->imageAnnotatorStub = $this->grpcCredentialsHelper->createStub(
             $createImageAnnotatorStubFunction,
             $options['serviceAddress'],

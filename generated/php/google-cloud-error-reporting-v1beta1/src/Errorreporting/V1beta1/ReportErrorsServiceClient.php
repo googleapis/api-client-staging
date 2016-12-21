@@ -33,7 +33,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventRequest;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceClient as ReportErrorsServiceGrpcClient;
+use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceGrpcClient;
 use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 
 /**
@@ -70,7 +70,6 @@ class ReportErrorsServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -139,10 +138,10 @@ class ReportErrorsServiceClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Error Reporting API.
      *     @type array $retryingOverride
@@ -157,20 +156,19 @@ class ReportErrorsServiceClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -219,6 +217,9 @@ class ReportErrorsServiceClient
         $createReportErrorsServiceStubFunction = function ($hostname, $opts) {
             return new ReportErrorsServiceGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createReportErrorsServiceStubFunction', $options)) {
+            $createReportErrorsServiceStubFunction = $options['createReportErrorsServiceStubFunction'];
+        }
         $this->reportErrorsServiceStub = $this->grpcCredentialsHelper->createStub(
             $createReportErrorsServiceStubFunction,
             $options['serviceAddress'],

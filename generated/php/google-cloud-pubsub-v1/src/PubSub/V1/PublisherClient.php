@@ -34,7 +34,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
+use google\iam\v1\IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -43,7 +43,7 @@ use google\pubsub\v1\GetTopicRequest;
 use google\pubsub\v1\ListTopicSubscriptionsRequest;
 use google\pubsub\v1\ListTopicsRequest;
 use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherClient as PublisherGrpcClient;
+use google\pubsub\v1\PublisherGrpcClient;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
 
@@ -81,7 +81,6 @@ class PublisherClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -208,10 +207,10 @@ class PublisherClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Pub/Sub API.
      *     @type array $retryingOverride
@@ -226,21 +225,20 @@ class PublisherClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/pubsub',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/pubsub',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -297,6 +295,9 @@ class PublisherClient
         $createIamPolicyStubFunction = function ($hostname, $opts) {
             return new IAMPolicyGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createIamPolicyStubFunction', $options)) {
+            $createIamPolicyStubFunction = $options['createIamPolicyStubFunction'];
+        }
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
             $options['serviceAddress'],
@@ -306,6 +307,9 @@ class PublisherClient
         $createPublisherStubFunction = function ($hostname, $opts) {
             return new PublisherGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createPublisherStubFunction', $options)) {
+            $createPublisherStubFunction = $options['createPublisherStubFunction'];
+        }
         $this->publisherStub = $this->grpcCredentialsHelper->createStub(
             $createPublisherStubFunction,
             $options['serviceAddress'],
