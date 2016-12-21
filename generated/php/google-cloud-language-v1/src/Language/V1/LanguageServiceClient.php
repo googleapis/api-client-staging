@@ -38,7 +38,7 @@ use google\cloud\language\v1\AnnotateTextRequest;
 use google\cloud\language\v1\AnnotateTextRequest\Features;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
-use google\cloud\language\v1\LanguageServiceClient as LanguageServiceGrpcClient;
+use google\cloud\language\v1\LanguageServiceGrpcClient;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -74,7 +74,6 @@ class LanguageServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'language.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -112,10 +111,10 @@ class LanguageServiceClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'language.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Natural Language API.
      *     @type array $retryingOverride
@@ -130,20 +129,19 @@ class LanguageServiceClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -195,6 +193,9 @@ class LanguageServiceClient
         $createLanguageServiceStubFunction = function ($hostname, $opts) {
             return new LanguageServiceGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createLanguageServiceStubFunction', $options)) {
+            $createLanguageServiceStubFunction = $options['createLanguageServiceStubFunction'];
+        }
         $this->languageServiceStub = $this->grpcCredentialsHelper->createStub(
             $createLanguageServiceStubFunction,
             $options['serviceAddress'],

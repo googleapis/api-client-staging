@@ -26,6 +26,7 @@
 
 namespace Google\Cloud\Speech\V1beta1;
 
+use Google\Longrunning\OperationsClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -34,7 +35,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
 use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
-use google\cloud\speech\v1beta1\SpeechClient as SpeechGrpcClient;
+use google\cloud\speech\v1beta1\SpeechGrpcClient;
 use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
@@ -71,7 +72,6 @@ class SpeechClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'speech.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -90,6 +90,7 @@ class SpeechClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+    private $operationsClient;
 
     private static function getPageStreamingDescriptors()
     {
@@ -99,6 +100,20 @@ class SpeechClient
         return $pageStreamingDescriptors;
     }
 
+    private static function getLongRunningDescriptors()
+    {
+        return [
+            'asyncRecognize' => [
+                'operationReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeResponse',
+                'metadataReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeMetadata',
+            ],
+        ];
+    }
+
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -109,10 +124,10 @@ class SpeechClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'speech.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Speech API.
      *     @type array $retryingOverride
@@ -127,26 +142,30 @@ class SpeechClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
+
+        $this->operationsClient = new OperationsClient([
+            'serviceAddress' => $options['serviceAddress'],
+            'scopes' => $options['scopes'],
+        ]);
 
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
@@ -165,6 +184,10 @@ class SpeechClient
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
+        $longRunningDescriptors = self::getLongRunningDescriptors();
+        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
+            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/speech_client_config.json');
@@ -190,6 +213,9 @@ class SpeechClient
         $createSpeechStubFunction = function ($hostname, $opts) {
             return new SpeechGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createSpeechStubFunction', $options)) {
+            $createSpeechStubFunction = $options['createSpeechStubFunction'];
+        }
         $this->speechStub = $this->grpcCredentialsHelper->createStub(
             $createSpeechStubFunction,
             $options['serviceAddress'],
