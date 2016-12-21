@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/grpc/vision/v1/geometry.proto',
   package='google.cloud.vision.v1',
   syntax='proto3',
-  serialized_pb=_b('\n*google/cloud/grpc/vision/v1/geometry.proto\x12\x16google.cloud.vision.v1\"\x1e\n\x06Vertex\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"@\n\x0c\x42oundingPoly\x12\x30\n\x08vertices\x18\x01 \x03(\x0b\x32\x1e.google.cloud.vision.v1.Vertex\"+\n\x08Position\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x42\x30\n\x1a\x63om.google.cloud.vision.v1B\rGeometryProtoP\x01\xf8\x01\x01\x62\x06proto3')
+  serialized_pb=_b('\n*google/cloud/grpc/vision/v1/geometry.proto\x12\x16google.cloud.vision.v1\"\x1e\n\x06Vertex\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"@\n\x0c\x42oundingPoly\x12\x30\n\x08vertices\x18\x01 \x03(\x0b\x32\x1e.google.cloud.vision.v1.Vertex\"+\n\x08Position\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x42n\n\x1a\x63om.google.cloud.vision.v1B\rGeometryProtoP\x01Z<google.golang.org/genproto/googleapis/cloud/vision/v1;vision\xf8\x01\x01\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -167,10 +167,15 @@ _sym_db.RegisterMessage(Position)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032com.google.cloud.vision.v1B\rGeometryProtoP\001\370\001\001'))
-import grpc
-from grpc.beta import implementations as beta_implementations
-from grpc.beta import interfaces as beta_interfaces
-from grpc.framework.common import cardinality
-from grpc.framework.interfaces.face import utilities as face_utilities
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032com.google.cloud.vision.v1B\rGeometryProtoP\001Z<google.golang.org/genproto/googleapis/cloud/vision/v1;vision\370\001\001'))
+try:
+  # THESE ELEMENTS WILL BE DEPRECATED.
+  # Please use the generated *_pb2_grpc.py files instead.
+  import grpc
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
+  from grpc.beta import implementations as beta_implementations
+  from grpc.beta import interfaces as beta_interfaces
+except ImportError:
+  pass
 # @@protoc_insertion_point(module_scope)
