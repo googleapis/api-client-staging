@@ -21,7 +21,7 @@ APIs
 .. autosummary::
 
    google.cloud.gapic.vision.v1.enums
-   google.cloud.gapic.vision.v1.image_annotator_api
+   google.cloud.gapic.vision.v1.image_annotator_client
 
 
 Contents

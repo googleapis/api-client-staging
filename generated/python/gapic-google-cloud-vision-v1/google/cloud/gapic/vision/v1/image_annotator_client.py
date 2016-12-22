@@ -36,7 +36,7 @@ from google.cloud.gapic.vision.v1 import enums
 from google.cloud.grpc.vision.v1 import image_annotator_pb2
 
 
-class ImageAnnotatorApi(object):
+class ImageAnnotatorClient(object):
     """
     Service that performs Google Cloud Vision API detection tasks, such as face,
     landmark, logo, label, and text detection, over client images, and returns
@@ -61,8 +61,8 @@ class ImageAnnotatorApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -74,21 +74,23 @@ class ImageAnnotatorApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A ImageAnnotatorApi object.
+          A ImageAnnotatorClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -109,12 +111,12 @@ class ImageAnnotatorApi(object):
             kwargs={'metadata': metadata})
         self.image_annotator_stub = config.create_stub(
             image_annotator_pb2.ImageAnnotatorStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._batch_annotate_images = api_callable.create_api_call(
             self.image_annotator_stub.BatchAnnotateImages,
@@ -126,9 +128,9 @@ class ImageAnnotatorApi(object):
         Run image detection and annotation for a batch of images.
 
         Example:
-          >>> from google.cloud.gapic.vision.v1 import image_annotator_api
+          >>> from google.cloud.gapic.vision.v1 import image_annotator_client
           >>> from google.cloud.grpc.vision.v1 import image_annotator_pb2
-          >>> api = image_annotator_api.ImageAnnotatorApi()
+          >>> api = image_annotator_client.ImageAnnotatorClient()
           >>> requests = []
           >>> response = api.batch_annotate_images(requests)
 
