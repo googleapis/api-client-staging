@@ -8,8 +8,8 @@ APIs
    :toctree:
 
    google.cloud.gapic.monitoring.v3.enums
-   google.cloud.gapic.monitoring.v3.group_service_api
-   google.cloud.gapic.monitoring.v3.metric_service_api
+   google.cloud.gapic.monitoring.v3.group_service_client
+   google.cloud.gapic.monitoring.v3.metric_service_client
 
 
 API types

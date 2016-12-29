@@ -33,14 +33,14 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.monitoring.v3 import enums
-from google.monitoring.v3 import common_pb2
-from google.monitoring.v3 import group_pb2
-from google.monitoring.v3 import group_service_pb2
+from google.cloud.grpc.monitoring.v3 import common_pb2
+from google.cloud.grpc.monitoring.v3 import group_pb2
+from google.cloud.grpc.monitoring.v3 import group_service_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
 
-class GroupServiceApi(object):
+class GroupServiceClient(object):
     """
     The Group API lets you inspect and manage your
     `groups <https://cloud.google.comgoogle.monitoring.v3.Group>`_.
@@ -74,7 +74,11 @@ class GroupServiceApi(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ()
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/monitoring',
+        'https://www.googleapis.com/auth/monitoring.read',
+        'https://www.googleapis.com/auth/monitoring.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _GROUP_PATH_TEMPLATE = path_template.PathTemplate(
@@ -136,8 +140,8 @@ class GroupServiceApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -149,21 +153,23 @@ class GroupServiceApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A GroupServiceApi object.
+          A GroupServiceClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -185,12 +191,12 @@ class GroupServiceApi(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.group_service_stub = config.create_stub(
             group_service_pb2.GroupServiceStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._list_groups = api_callable.create_api_call(
             self.group_service_stub.ListGroups,
@@ -213,18 +219,18 @@ class GroupServiceApi(object):
     # Service calls
     def list_groups(self,
                     name,
-                    children_of_group='',
-                    ancestors_of_group='',
-                    descendants_of_group='',
+                    children_of_group=None,
+                    ancestors_of_group=None,
+                    descendants_of_group=None,
                     page_size=0,
                     options=None):
         """
         Lists the existing groups.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = group_service_api.GroupServiceApi()
+          >>> api = group_service_client.GroupServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -263,7 +269,7 @@ class GroupServiceApi(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.monitoring.v3.group_pb2.Group` instances.
+          is an iterable of :class:`google.cloud.grpc.monitoring.v3.group_pb2.Group` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -284,8 +290,8 @@ class GroupServiceApi(object):
         Gets a single group.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
-          >>> api = group_service_api.GroupServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
+          >>> api = group_service_client.GroupServiceClient()
           >>> name = api.group_path('[PROJECT]', '[GROUP]')
           >>> response = api.get_group(name)
 
@@ -296,7 +302,7 @@ class GroupServiceApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.monitoring.v3.group_pb2.Group` instance.
+          A :class:`google.cloud.grpc.monitoring.v3.group_pb2.Group` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -310,9 +316,9 @@ class GroupServiceApi(object):
         Creates a new group.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
-          >>> from google.monitoring.v3 import group_pb2
-          >>> api = group_service_api.GroupServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
+          >>> from google.cloud.grpc.monitoring.v3 import group_pb2
+          >>> api = group_service_client.GroupServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>> group = group_pb2.Group()
           >>> response = api.create_group(name, group)
@@ -320,14 +326,14 @@ class GroupServiceApi(object):
         Args:
           name (string): The project in which to create the group. The format is
             ``\"projects/{project_id_or_number}\"``.
-          group (:class:`google.monitoring.v3.group_pb2.Group`): A group definition. It is an error to define the ``name`` field because
+          group (:class:`google.cloud.grpc.monitoring.v3.group_pb2.Group`): A group definition. It is an error to define the ``name`` field because
             the system assigns the name.
           validate_only (bool): If true, validate this request but do not create the group.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.monitoring.v3.group_pb2.Group` instance.
+          A :class:`google.cloud.grpc.monitoring.v3.group_pb2.Group` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -343,21 +349,21 @@ class GroupServiceApi(object):
         You can change any group attributes except ``name``.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
-          >>> from google.monitoring.v3 import group_pb2
-          >>> api = group_service_api.GroupServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
+          >>> from google.cloud.grpc.monitoring.v3 import group_pb2
+          >>> api = group_service_client.GroupServiceClient()
           >>> group = group_pb2.Group()
           >>> response = api.update_group(group)
 
         Args:
-          group (:class:`google.monitoring.v3.group_pb2.Group`): The new definition of the group.  All fields of the existing group,
+          group (:class:`google.cloud.grpc.monitoring.v3.group_pb2.Group`): The new definition of the group.  All fields of the existing group,
             excepting ``name``, are replaced with the corresponding fields of this group.
           validate_only (bool): If true, validate this request but do not update the existing group.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.monitoring.v3.group_pb2.Group` instance.
+          A :class:`google.cloud.grpc.monitoring.v3.group_pb2.Group` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -372,8 +378,8 @@ class GroupServiceApi(object):
         Deletes an existing group.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
-          >>> api = group_service_api.GroupServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
+          >>> api = group_service_client.GroupServiceClient()
           >>> name = api.group_path('[PROJECT]', '[GROUP]')
           >>> api.delete_group(name)
 
@@ -400,9 +406,9 @@ class GroupServiceApi(object):
         Lists the monitored resources that are members of a group.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import group_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = group_service_api.GroupServiceApi()
+          >>> api = group_service_client.GroupServiceClient()
           >>> name = api.group_path('[PROJECT]', '[GROUP]')
           >>>
           >>> # Iterate over all results
@@ -430,8 +436,10 @@ class GroupServiceApi(object):
             For example, to return only resources representing Compute Engine VM
             instances, use this filter:
 
+            ::
+
                 resource.type = \"gce_instance\"
-          interval (:class:`google.monitoring.v3.common_pb2.TimeInterval`): An optional time interval for which results should be returned. Only
+          interval (:class:`google.cloud.grpc.monitoring.v3.common_pb2.TimeInterval`): An optional time interval for which results should be returned. Only
             members that were part of the group during the specified interval are
             included in the response.  If no interval is provided then the group
             membership over the last minute is returned.

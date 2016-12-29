@@ -49,7 +49,7 @@ class Aggregation(object):
             gauge metric with value type
             ``DOUBLE``.
           ALIGN_INTERPOLATE (int): Align by interpolating between adjacent points around the
-            period boundary. This alignment is valid for gauge and delta
+            period boundary. This alignment is valid for gauge
             metrics with numeric values. The value type of the result is the same
             as the value type of the input.
           ALIGN_NEXT_OLDER (int): Align by shifting the oldest data point before the period

@@ -34,14 +34,14 @@ import google.gax
 
 from google.api import metric_pb2 as api_metric_pb2
 from google.cloud.gapic.monitoring.v3 import enums
-from google.monitoring.v3 import common_pb2
-from google.monitoring.v3 import metric_pb2 as v3_metric_pb2
-from google.monitoring.v3 import metric_service_pb2
+from google.cloud.grpc.monitoring.v3 import common_pb2
+from google.cloud.grpc.monitoring.v3 import metric_pb2 as v3_metric_pb2
+from google.cloud.grpc.monitoring.v3 import metric_service_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
 
-class MetricServiceApi(object):
+class MetricServiceClient(object):
     """
     Manages metric descriptors, monitored resource descriptors, and
     time series data.
@@ -68,13 +68,18 @@ class MetricServiceApi(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ()
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/monitoring',
+        'https://www.googleapis.com/auth/monitoring.read',
+        'https://www.googleapis.com/auth/monitoring.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
-    _METRIC_DESCRIPTOR_PATH_PATH_TEMPLATE = path_template.PathTemplate(
-        'projects/{project}/metricDescriptors/{metric_descriptor_path=**}')
+    _METRIC_DESCRIPTOR_PATH_TEMPLATE = path_template.PathTemplate(
+        'projects/{project}/metricDescriptors/{metric_descriptor=**}')
     _MONITORED_RESOURCE_DESCRIPTOR_PATH_TEMPLATE = path_template.PathTemplate(
-        'projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}')
+        'projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}'
+    )
 
     @classmethod
     def project_path(cls, project):
@@ -82,11 +87,11 @@ class MetricServiceApi(object):
         return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
 
     @classmethod
-    def metric_descriptor_path_path(cls, project, metric_descriptor_path):
-        """Returns a fully-qualified metric_descriptor_path resource name string."""
-        return cls._METRIC_DESCRIPTOR_PATH_PATH_TEMPLATE.render({
+    def metric_descriptor_path(cls, project, metric_descriptor):
+        """Returns a fully-qualified metric_descriptor resource name string."""
+        return cls._METRIC_DESCRIPTOR_PATH_TEMPLATE.render({
             'project': project,
-            'metric_descriptor_path': metric_descriptor_path,
+            'metric_descriptor': metric_descriptor,
         })
 
     @classmethod
@@ -112,34 +117,33 @@ class MetricServiceApi(object):
         return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
 
     @classmethod
-    def match_project_from_metric_descriptor_path_name(
-            cls, metric_descriptor_path_name):
-        """Parses the project from a metric_descriptor_path resource.
+    def match_project_from_metric_descriptor_name(cls, metric_descriptor_name):
+        """Parses the project from a metric_descriptor resource.
 
         Args:
-          metric_descriptor_path_name (string): A fully-qualified path representing a metric_descriptor_path
+          metric_descriptor_name (string): A fully-qualified path representing a metric_descriptor
             resource.
 
         Returns:
           A string representing the project.
         """
-        return cls._METRIC_DESCRIPTOR_PATH_PATH_TEMPLATE.match(
-            metric_descriptor_path_name).get('project')
+        return cls._METRIC_DESCRIPTOR_PATH_TEMPLATE.match(
+            metric_descriptor_name).get('project')
 
     @classmethod
-    def match_metric_descriptor_path_from_metric_descriptor_path_name(
-            cls, metric_descriptor_path_name):
-        """Parses the metric_descriptor_path from a metric_descriptor_path resource.
+    def match_metric_descriptor_from_metric_descriptor_name(
+            cls, metric_descriptor_name):
+        """Parses the metric_descriptor from a metric_descriptor resource.
 
         Args:
-          metric_descriptor_path_name (string): A fully-qualified path representing a metric_descriptor_path
+          metric_descriptor_name (string): A fully-qualified path representing a metric_descriptor
             resource.
 
         Returns:
-          A string representing the metric_descriptor_path.
+          A string representing the metric_descriptor.
         """
-        return cls._METRIC_DESCRIPTOR_PATH_PATH_TEMPLATE.match(
-            metric_descriptor_path_name).get('metric_descriptor_path')
+        return cls._METRIC_DESCRIPTOR_PATH_TEMPLATE.match(
+            metric_descriptor_name).get('metric_descriptor')
 
     @classmethod
     def match_project_from_monitored_resource_descriptor_name(
@@ -176,8 +180,8 @@ class MetricServiceApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -189,21 +193,23 @@ class MetricServiceApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A MetricServiceApi object.
+          A MetricServiceClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -225,12 +231,12 @@ class MetricServiceApi(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.metric_service_stub = config.create_stub(
             metric_service_pb2.MetricServiceStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._list_monitored_resource_descriptors = api_callable.create_api_call(
             self.metric_service_stub.ListMonitoredResourceDescriptors,
@@ -267,9 +273,9 @@ class MetricServiceApi(object):
         Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -291,6 +297,8 @@ class MetricServiceApi(object):
             the descriptor's type and labels. For example, the
             following filter returns only Google Compute Engine descriptors
             that have an ``id`` label:
+
+            ::
 
                 resource.type = starts_with(\"gce_\") AND resource.label:id
           page_size (int): The maximum number of resources contained in the
@@ -320,8 +328,8 @@ class MetricServiceApi(object):
         Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.monitored_resource_descriptor_path('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]')
           >>> response = api.get_monitored_resource_descriptor(name)
 
@@ -353,9 +361,9 @@ class MetricServiceApi(object):
         Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
@@ -378,6 +386,8 @@ class MetricServiceApi(object):
             specifies which metric descriptors are to be
             returned. For example, the following filter matches all
             `custom metrics <https://cloud.google.com/monitoring/custom-metrics>`_:
+
+            ::
 
                 metric.type = starts_with(\"custom.googleapis.com/\")
           page_size (int): The maximum number of resources contained in the
@@ -407,9 +417,9 @@ class MetricServiceApi(object):
         Gets a single metric descriptor. This method does not require a Stackdriver account.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
-          >>> api = metric_service_api.MetricServiceApi()
-          >>> name = api.metric_descriptor_path_path('[PROJECT]', '[METRIC_DESCRIPTOR_PATH]')
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
+          >>> api = metric_service_client.MetricServiceClient()
+          >>> name = api.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
           >>> response = api.get_metric_descriptor(name)
 
         Args:
@@ -437,9 +447,9 @@ class MetricServiceApi(object):
         `custom metrics <https://cloud.google.com/monitoring/custom-metrics>`_.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.api import metric_pb2 as api_metric_pb2
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>> metric_descriptor = api_metric_pb2.MetricDescriptor()
           >>> response = api.create_metric_descriptor(name, metric_descriptor)
@@ -469,9 +479,9 @@ class MetricServiceApi(object):
         `custom metrics <https://cloud.google.com/monitoring/custom-metrics>`_ can be deleted.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
-          >>> api = metric_service_api.MetricServiceApi()
-          >>> name = api.metric_descriptor_path_path('[PROJECT]', '[METRIC_DESCRIPTOR_PATH]')
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
+          >>> api = metric_service_client.MetricServiceClient()
+          >>> name = api.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
           >>> api.delete_metric_descriptor(name)
 
         Args:
@@ -502,11 +512,11 @@ class MetricServiceApi(object):
         Lists time series that match a filter. This method does not require a Stackdriver account.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.cloud.gapic.monitoring.v3 import enums
-          >>> from google.monitoring.v3 import common_pb2
+          >>> from google.cloud.grpc.monitoring.v3 import common_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>> filter_ = ''
           >>> interval = common_pb2.TimeInterval()
@@ -531,12 +541,14 @@ class MetricServiceApi(object):
             and can additionally specify metric labels and other information. For
             example:
 
+            ::
+
                 metric.type = \"compute.googleapis.com/instance/cpu/usage_time\" AND
                     metric.label.instance_name = \"my-instance-name\"
-          interval (:class:`google.monitoring.v3.common_pb2.TimeInterval`): The time interval for which results should be returned. Only time series
+          interval (:class:`google.cloud.grpc.monitoring.v3.common_pb2.TimeInterval`): The time interval for which results should be returned. Only time series
             that contain data points in the specified interval are included
             in the response.
-          aggregation (:class:`google.monitoring.v3.common_pb2.Aggregation`): By default, the raw time series data is returned.
+          aggregation (:class:`google.cloud.grpc.monitoring.v3.common_pb2.Aggregation`): By default, the raw time series data is returned.
             Use this field to combine multiple time series for different
             views of the data.
           order_by (string): Specifies the order in which the points of the time series should
@@ -553,7 +565,7 @@ class MetricServiceApi(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.monitoring.v3.metric_pb2.TimeSeries` instances.
+          is an iterable of :class:`google.cloud.grpc.monitoring.v3.metric_pb2.TimeSeries` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -581,9 +593,9 @@ class MetricServiceApi(object):
         included in the error response.
 
         Example:
-          >>> from google.cloud.gapic.monitoring.v3 import metric_service_api
-          >>> from google.monitoring.v3 import metric_pb2 as v3_metric_pb2
-          >>> api = metric_service_api.MetricServiceApi()
+          >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
+          >>> from google.cloud.grpc.monitoring.v3 import metric_pb2 as v3_metric_pb2
+          >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>> time_series = []
           >>> api.create_time_series(name, time_series)
@@ -591,7 +603,7 @@ class MetricServiceApi(object):
         Args:
           name (string): The project on which to execute the request. The format is
             ``\"projects/{project_id_or_number}\"``.
-          time_series (list[:class:`google.monitoring.v3.metric_pb2.TimeSeries`]): The new data to be added to a list of time series.
+          time_series (list[:class:`google.cloud.grpc.monitoring.v3.metric_pb2.TimeSeries`]): The new data to be added to a list of time series.
             Adds at most one data point to each of several time series.  The new data
             point must be more recent than any other point in its time series.  Each
             ``TimeSeries`` value must fully specify a unique time series by supplying

@@ -1,7 +1,7 @@
 GAPIC library for the Stackdriver Monitoring API
 ================================================================================
 
-gapic-google-monitoring-v3 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-monitoring-v3 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Stackdriver Monitoring API`_ (v3) defined in the googleapis_ git repository
 
 
@@ -12,7 +12,7 @@ easy-to-use client library for the `Stackdriver Monitoring API`_ (v3) defined in
 Getting started
 ---------------
 
-gapic-google-monitoring-v3 will allow you to connect to the Google
+gapic-google-cloud-monitoring-v3 will allow you to connect to the Stackdriver
 Monitoring API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
@@ -61,7 +61,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install gapic-google-monitoring-v3
+    <your-env>/bin/pip install gapic-google-cloud-monitoring-v3
 
 
 Windows
@@ -72,7 +72,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install gapic-google-monitoring-v3
+    <your-env>\Scripts\pip.exe install gapic-google-cloud-monitoring-v3
 
 
 At this point you are all set to continue.
