@@ -1,0 +1,25 @@
+{
+    "name": "google/api-client-staging",
+    "require": {
+        "google/gax": "dev-master",
+        "google/proto-client-php": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+          "Google\\Cloud\\Bigtable\\": "generated/php/google-cloud-bigtable-admin-v2/src/Bigtable",
+          "Google\\Cloud\\PubSub\\": "generated/php/google-cloud-pubsub-v1/src/PubSub",
+          "Google\\Cloud\\Errorreporting\\": "generated/php/google-cloud-error-reporting-v1beta1/src/Errorreporting",
+          "Google\\Cloud\\Language\\": "generated/php/google-cloud-language-v1/src/Language",
+          "Google\\Cloud\\Logging\\": "generated/php/google-cloud-logging-v2/src/Logging",
+          "Google\\Cloud\\Monitoring\\": "generated/php/google-cloud-monitoring-v3/src/Monitoring",
+          "Google\\Cloud\\Speech\\": "generated/php/google-cloud-speech-v1beta1/src/Speech",
+          "Google\\Cloud\\Trace\\": "generated/php/google-cloud-trace-v1/src/Trace",
+          "Google\\Cloud\\Vision\\": "generated/php/google-cloud-vision-v1/src/Vision"
+        }
+    }
+}
