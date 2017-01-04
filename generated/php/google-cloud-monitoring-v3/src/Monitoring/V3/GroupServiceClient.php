@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -68,8 +70,18 @@ use google\monitoring\v3\UpdateGroupRequest;
  * try {
  *     $groupServiceClient = new GroupServiceClient();
  *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
- *     foreach ($groupServiceClient->listGroups($formattedName) as $element) {
+ *     // Iterate through all elements
+ *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doThingsWith(element);
+ *     }
+ *
+ *     // OR iterate over pages of elements, with the maximum page size set to 5
+ *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doThingsWith(element);
+ *         }
  *     }
  * } finally {
  *     if (isset($groupServiceClient)) {
@@ -320,8 +332,18 @@ class GroupServiceClient
      * try {
      *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
-     *     foreach ($groupServiceClient->listGroups($formattedName) as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($groupServiceClient)) {
@@ -644,8 +666,18 @@ class GroupServiceClient
      * try {
      *     $groupServiceClient = new GroupServiceClient();
      *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
-     *     foreach ($groupServiceClient->listGroupMembers($formattedName) as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($groupServiceClient)) {

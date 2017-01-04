@@ -6,3 +6,7 @@ generated/java/*/build
 
 # Node
 node_modules/
+
+# PHP
+vendor/
+composer.lock
