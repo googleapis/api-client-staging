@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -488,8 +490,18 @@ class LoggingServiceV2Client
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $resourceNames = [];
-     *     foreach ($loggingServiceV2Client->listLogEntries($resourceNames) as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($loggingServiceV2Client)) {
@@ -599,8 +611,18 @@ class LoggingServiceV2Client
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *
-     *     foreach ($loggingServiceV2Client->listMonitoredResourceDescriptors() as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors(['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($loggingServiceV2Client)) {
@@ -668,8 +690,18 @@ class LoggingServiceV2Client
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $formattedParent = LoggingServiceV2Client::formatProjectName("[PROJECT]");
-     *     foreach ($loggingServiceV2Client->listLogs($formattedParent) as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($loggingServiceV2Client)) {
