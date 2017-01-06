@@ -1,16 +1,30 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2016, Google Inc. All rights reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     * Redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+# copyright notice, this list of conditions and the following disclaimer
+# in the documentation and/or other materials provided with the
+# distribution.
+#     * Neither the name of Google Inc. nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # EDITING INSTRUCTIONS
 # This file was generated from the file
@@ -37,7 +51,7 @@ from google.longrunning import operations_pb2
 _PageDesc = google.gax.PageDescriptor
 
 
-class OperationsApi(object):
+class OperationsClient(object):
     """
     Manages long-running operations with an API service.
 
@@ -69,37 +83,12 @@ class OperationsApi(object):
     # this service
     _ALL_SCOPES = ()
 
-    _OPERATION_PATH_PATH_TEMPLATE = path_template.PathTemplate(
-        'operations/{operation_path=**}')
-
-    @classmethod
-    def operation_path_path(cls, operation_path):
-        """Returns a fully-qualified operation_path resource name string."""
-        return cls._OPERATION_PATH_PATH_TEMPLATE.render({
-            'operation_path': operation_path,
-        })
-
-    @classmethod
-    def match_operation_path_from_operation_path_name(cls,
-                                                      operation_path_name):
-        """Parses the operation_path from a operation_path resource.
-
-        Args:
-          operation_path_name (string): A fully-qualified path representing a operation_path
-            resource.
-
-        Returns:
-          A string representing the operation_path.
-        """
-        return cls._OPERATION_PATH_PATH_TEMPLATE.match(
-            operation_path_name).get('operation_path')
-
     def __init__(self,
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -111,21 +100,23 @@ class OperationsApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A OperationsApi object.
+          A OperationsClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -147,12 +138,12 @@ class OperationsApi(object):
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.operations_stub = config.create_stub(
             operations_pb2.OperationsStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._get_operation = api_callable.create_api_call(
             self.operations_stub.GetOperation,
@@ -175,9 +166,9 @@ class OperationsApi(object):
         service.
 
         Example:
-          >>> from google.cloud.gapic.longrunning import operations_api
-          >>> api = operations_api.OperationsApi()
-          >>> name = api.operation_path_path('[OPERATION_PATH]')
+          >>> from google.gapic.longrunning import operations_client
+          >>> api = operations_client.OperationsClient()
+          >>> name = ''
           >>> response = api.get_operation(name)
 
         Args:
@@ -203,9 +194,9 @@ class OperationsApi(object):
         to use different resource name schemes, such as ``users/*/operations``.
 
         Example:
-          >>> from google.cloud.gapic.longrunning import operations_api
+          >>> from google.gapic.longrunning import operations_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = operations_api.OperationsApi()
+          >>> api = operations_client.OperationsClient()
           >>> name = ''
           >>> filter_ = ''
           >>>
@@ -253,12 +244,15 @@ class OperationsApi(object):
         ``google.rpc.Code.UNIMPLEMENTED``.  Clients can use
         ``Operations.GetOperation`` or
         other methods to check whether the cancellation succeeded or whether the
-        operation completed despite cancellation.
+        operation completed despite cancellation. On successful cancellation,
+        the operation is not deleted; instead, it becomes an operation with
+        an ``Operation.error`` value with a ``google.rpc.Status.code`` of 1,
+        corresponding to ``Code.CANCELLED``.
 
         Example:
-          >>> from google.cloud.gapic.longrunning import operations_api
-          >>> api = operations_api.OperationsApi()
-          >>> name = api.operation_path_path('[OPERATION_PATH]')
+          >>> from google.gapic.longrunning import operations_client
+          >>> api = operations_client.OperationsClient()
+          >>> name = ''
           >>> api.cancel_operation(name)
 
         Args:
@@ -281,9 +275,9 @@ class OperationsApi(object):
         ``google.rpc.Code.UNIMPLEMENTED``.
 
         Example:
-          >>> from google.cloud.gapic.longrunning import operations_api
-          >>> api = operations_api.OperationsApi()
-          >>> name = api.operation_path_path('[OPERATION_PATH]')
+          >>> from google.gapic.longrunning import operations_client
+          >>> api = operations_client.OperationsClient()
+          >>> name = ''
           >>> api.delete_operation(name)
 
         Args:
