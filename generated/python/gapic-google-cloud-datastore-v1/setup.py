@@ -17,7 +17,7 @@ install_requires = [
 
 setup(
     name='gapic-google-cloud-datastore-v1',
-    version='0.14.0',
+    version='0.14.1',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
