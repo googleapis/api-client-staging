@@ -73,20 +73,18 @@ use google\monitoring\v3\UpdateGroupRequest;
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doThingsWith(element);
+ *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements, with the maximum page size set to 5
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
- *             // doThingsWith(element);
+ *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     if (isset($groupServiceClient)) {
- *         $groupServiceClient->close();
- *     }
+ *     $groupServiceClient->close();
  * }
  * ```
  *
@@ -101,6 +99,7 @@ class GroupServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -111,8 +110,15 @@ class GroupServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $groupNameTemplate;
@@ -270,8 +276,8 @@ class GroupServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -335,20 +341,18 @@ class GroupServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *
@@ -439,9 +443,7 @@ class GroupServiceClient
      *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *
@@ -494,9 +496,7 @@ class GroupServiceClient
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *
@@ -557,9 +557,7 @@ class GroupServiceClient
      *     $group = new Group();
      *     $response = $groupServiceClient->updateGroup($group);
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *
@@ -616,9 +614,7 @@ class GroupServiceClient
      *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *
@@ -669,20 +665,18 @@ class GroupServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($groupServiceClient)) {
-     *         $groupServiceClient->close();
-     *     }
+     *     $groupServiceClient->close();
      * }
      * ```
      *

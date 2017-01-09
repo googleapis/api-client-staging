@@ -27,6 +27,10 @@ use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
 
+/**
+ * @group errorreporting
+ * @group grpc
+ */
 class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorGroupServiceImpl($hostname, $opts)

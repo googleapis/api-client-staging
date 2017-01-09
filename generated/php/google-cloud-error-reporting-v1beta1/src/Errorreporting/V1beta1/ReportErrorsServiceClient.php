@@ -55,9 +55,7 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  *     $event = new ReportedErrorEvent();
  *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
  * } finally {
- *     if (isset($reportErrorsServiceClient)) {
- *         $reportErrorsServiceClient->close();
- *     }
+ *     $reportErrorsServiceClient->close();
  * }
  * ```
  *
@@ -72,6 +70,7 @@ class ReportErrorsServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -82,8 +81,15 @@ class ReportErrorsServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
 
@@ -120,14 +126,6 @@ class ReportErrorsServiceClient
         }
 
         return self::$projectNameTemplate;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -181,8 +179,8 @@ class ReportErrorsServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -191,10 +189,6 @@ class ReportErrorsServiceClient
         $this->descriptors = [
             'reportErrorEvent' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/report_errors_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
@@ -248,9 +242,7 @@ class ReportErrorsServiceClient
      *     $event = new ReportedErrorEvent();
      *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
      * } finally {
-     *     if (isset($reportErrorsServiceClient)) {
-     *         $reportErrorsServiceClient->close();
-     *     }
+     *     $reportErrorsServiceClient->close();
      * }
      * ```
      *

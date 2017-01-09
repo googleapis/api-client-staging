@@ -34,6 +34,10 @@ use google\monitoring\v3\ListTimeSeriesResponse;
 use google\monitoring\v3\TimeInterval;
 use google\monitoring\v3\TimeSeries;
 
+/**
+ * @group monitoring
+ * @group grpc
+ */
 class MetricServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockMetricServiceImpl($hostname, $opts)

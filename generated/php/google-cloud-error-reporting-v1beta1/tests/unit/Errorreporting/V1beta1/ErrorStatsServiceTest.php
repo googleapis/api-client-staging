@@ -32,6 +32,10 @@ use google\devtools\clouderrorreporting\v1beta1\ListEventsResponse;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsResponse;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
 
+/**
+ * @group errorreporting
+ * @group grpc
+ */
 class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorStatsServiceImpl($hostname, $opts)

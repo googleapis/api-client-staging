@@ -33,6 +33,10 @@ use google\pubsub\v1\PublishResponse;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
 
+/**
+ * @group pub_sub
+ * @group grpc
+ */
 class PublisherTest extends PHPUnit_Framework_TestCase
 {
     public function createMockPublisherImpl($hostname, $opts)

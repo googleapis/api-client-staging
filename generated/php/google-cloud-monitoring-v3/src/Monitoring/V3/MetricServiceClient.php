@@ -68,20 +68,18 @@ use google\monitoring\v3\TimeSeries;
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doThingsWith(element);
+ *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements, with the maximum page size set to 5
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
- *             // doThingsWith(element);
+ *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     if (isset($metricServiceClient)) {
- *         $metricServiceClient->close();
- *     }
+ *     $metricServiceClient->close();
  * }
  * ```
  *
@@ -96,6 +94,7 @@ class MetricServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -106,8 +105,15 @@ class MetricServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
@@ -313,8 +319,8 @@ class MetricServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -380,20 +386,18 @@ class MetricServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -471,9 +475,7 @@ class MetricServiceClient
      *     $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -528,20 +530,18 @@ class MetricServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -620,9 +620,7 @@ class MetricServiceClient
      *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -679,9 +677,7 @@ class MetricServiceClient
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -737,9 +733,7 @@ class MetricServiceClient
      *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -795,20 +789,18 @@ class MetricServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *
@@ -907,9 +899,7 @@ class MetricServiceClient
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
      * } finally {
-     *     if (isset($metricServiceClient)) {
-     *         $metricServiceClient->close();
-     *     }
+     *     $metricServiceClient->close();
      * }
      * ```
      *

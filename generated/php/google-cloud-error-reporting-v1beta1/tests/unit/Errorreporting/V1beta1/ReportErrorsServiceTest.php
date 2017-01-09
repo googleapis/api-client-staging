@@ -28,6 +28,10 @@ use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse;
 use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 
+/**
+ * @group errorreporting
+ * @group grpc
+ */
 class ReportErrorsServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockReportErrorsServiceImpl($hostname, $opts)

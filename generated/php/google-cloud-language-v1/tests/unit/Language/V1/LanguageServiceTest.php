@@ -33,6 +33,10 @@ use google\cloud\language\v1\AnnotateTextResponse;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
 
+/**
+ * @group language
+ * @group grpc
+ */
 class LanguageServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockLanguageServiceImpl($hostname, $opts)

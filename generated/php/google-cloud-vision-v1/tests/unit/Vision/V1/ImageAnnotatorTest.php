@@ -27,6 +27,10 @@ use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\cloud\vision\v1\BatchAnnotateImagesResponse;
 
+/**
+ * @group vision
+ * @group grpc
+ */
 class ImageAnnotatorTest extends PHPUnit_Framework_TestCase
 {
     public function createMockImageAnnotatorImpl($hostname, $opts)

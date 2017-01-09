@@ -55,9 +55,7 @@ use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
  *     $requests = [];
  *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
  * } finally {
- *     if (isset($imageAnnotatorClient)) {
- *         $imageAnnotatorClient->close();
- *     }
+ *     $imageAnnotatorClient->close();
  * }
  * ```
  *
@@ -72,6 +70,7 @@ class ImageAnnotatorClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'vision.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -82,22 +81,21 @@ class ImageAnnotatorClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private $grpcCredentialsHelper;
     private $imageAnnotatorStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
-    }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
@@ -150,8 +148,8 @@ class ImageAnnotatorClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -160,10 +158,6 @@ class ImageAnnotatorClient
         $this->descriptors = [
             'batchAnnotateImages' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/image_annotator_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
@@ -209,9 +203,7 @@ class ImageAnnotatorClient
      *     $requests = [];
      *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
      * } finally {
-     *     if (isset($imageAnnotatorClient)) {
-     *         $imageAnnotatorClient->close();
-     *     }
+     *     $imageAnnotatorClient->close();
      * }
      * ```
      *
