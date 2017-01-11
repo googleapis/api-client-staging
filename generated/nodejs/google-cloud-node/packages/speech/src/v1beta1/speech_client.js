@@ -80,7 +80,7 @@ function SpeechClient(gaxGrpc, grpcClients, opts) {
     'nodejs/' + process.version].join(' ');
 
 
-  var operationsClient = new gax.lro({
+  this.operationsClient = new gax.lro({
     auth: gaxGrpc.auth,
     grpc: gaxGrpc.grpc
   }).operationsClient({
@@ -92,9 +92,9 @@ function SpeechClient(gaxGrpc, grpcClients, opts) {
     appVersion: appVersion
   });
 
-  var longrunningDescriptors = {
+  this.longrunningDescriptors = {
     asyncRecognize: new gax.LongrunningDescriptor(
-      operationsClient,
+      this.operationsClient,
       grpcClients.google.cloud.speech.v1beta1.AsyncRecognizeResponse.decode,
       grpcClients.google.cloud.speech.v1beta1.AsyncRecognizeMetadata.decode)
   };
@@ -126,7 +126,7 @@ function SpeechClient(gaxGrpc, grpcClients, opts) {
         }
       }),
       defaults[methodName],
-      STREAM_DESCRIPTORS[methodName] || longrunningDescriptors[methodName]);
+      STREAM_DESCRIPTORS[methodName] || self.longrunningDescriptors[methodName]);
   });
 }
 
