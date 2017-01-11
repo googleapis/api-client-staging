@@ -28,6 +28,10 @@ use PHPUnit_Framework_TestCase;
 use google\logging\v2\ListSinksResponse;
 use google\logging\v2\LogSink;
 
+/**
+ * @group logging
+ * @group grpc
+ */
 class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
 {
     public function createMockConfigServiceV2Impl($hostname, $opts)

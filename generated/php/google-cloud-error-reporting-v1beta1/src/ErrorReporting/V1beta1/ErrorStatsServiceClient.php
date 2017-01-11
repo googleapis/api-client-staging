@@ -26,7 +26,7 @@
  * backwards compatibility.
  */
 
-namespace Google\Cloud\Errorreporting\V1beta1;
+namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -65,20 +65,18 @@ use google\protobuf\Timestamp;
  *     // Iterate through all elements
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doThingsWith(element);
+ *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements, with the maximum page size set to 5
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
- *             // doThingsWith(element);
+ *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     if (isset($errorStatsServiceClient)) {
- *         $errorStatsServiceClient->close();
- *     }
+ *     $errorStatsServiceClient->close();
  * }
  * ```
  *
@@ -93,6 +91,7 @@ class ErrorStatsServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -103,8 +102,15 @@ class ErrorStatsServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
 
@@ -219,8 +225,8 @@ class ErrorStatsServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -282,20 +288,18 @@ class ErrorStatsServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($errorStatsServiceClient)) {
-     *         $errorStatsServiceClient->close();
-     *     }
+     *     $errorStatsServiceClient->close();
      * }
      * ```
      *
@@ -414,20 +418,18 @@ class ErrorStatsServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($errorStatsServiceClient)) {
-     *         $errorStatsServiceClient->close();
-     *     }
+     *     $errorStatsServiceClient->close();
      * }
      * ```
      *
@@ -513,9 +515,7 @@ class ErrorStatsServiceClient
      *     $formattedProjectName = ErrorStatsServiceClient::formatProjectName("[PROJECT]");
      *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
      * } finally {
-     *     if (isset($errorStatsServiceClient)) {
-     *         $errorStatsServiceClient->close();
-     *     }
+     *     $errorStatsServiceClient->close();
      * }
      * ```
      *

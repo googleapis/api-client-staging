@@ -63,9 +63,7 @@ use google\protobuf\Timestamp;
  *     $traces = new Traces();
  *     $traceServiceClient->patchTraces($projectId, $traces);
  * } finally {
- *     if (isset($traceServiceClient)) {
- *         $traceServiceClient->close();
- *     }
+ *     $traceServiceClient->close();
  * }
  * ```
  *
@@ -80,6 +78,7 @@ class TraceServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'cloudtrace.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -90,8 +89,15 @@ class TraceServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private $grpcCredentialsHelper;
     private $traceServiceStub;
@@ -168,8 +174,8 @@ class TraceServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -234,9 +240,7 @@ class TraceServiceClient
      *     $traces = new Traces();
      *     $traceServiceClient->patchTraces($projectId, $traces);
      * } finally {
-     *     if (isset($traceServiceClient)) {
-     *         $traceServiceClient->close();
-     *     }
+     *     $traceServiceClient->close();
      * }
      * ```
      *
@@ -288,9 +292,7 @@ class TraceServiceClient
      *     $traceId = "";
      *     $response = $traceServiceClient->getTrace($projectId, $traceId);
      * } finally {
-     *     if (isset($traceServiceClient)) {
-     *         $traceServiceClient->close();
-     *     }
+     *     $traceServiceClient->close();
      * }
      * ```
      *
@@ -344,20 +346,18 @@ class TraceServiceClient
      *     // Iterate through all elements
      *     $pagedResponse = $traceServiceClient->listTraces($projectId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $traceServiceClient->listTraces($projectId, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($traceServiceClient)) {
-     *         $traceServiceClient->close();
-     *     }
+     *     $traceServiceClient->close();
      * }
      * ```
      *

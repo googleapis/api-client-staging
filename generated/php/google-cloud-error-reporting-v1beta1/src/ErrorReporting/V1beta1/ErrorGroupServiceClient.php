@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/devtools/clouderrorreporting/v1beta1/report_errors_service.proto
+ * https://github.com/google/googleapis/blob/master/google/devtools/clouderrorreporting/v1beta1/error_group_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
@@ -26,7 +26,7 @@
  * backwards compatibility.
  */
 
-namespace Google\Cloud\Errorreporting\V1beta1;
+namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -34,12 +34,13 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventRequest;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceGrpcClient;
-use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
+use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
+use google\devtools\clouderrorreporting\v1beta1\ErrorGroupServiceGrpcClient;
+use google\devtools\clouderrorreporting\v1beta1\GetGroupRequest;
+use google\devtools\clouderrorreporting\v1beta1\UpdateGroupRequest;
 
 /**
- * Service Description: An API for reporting error events.
+ * Service Description: Service for retrieving and updating individual error groups.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
@@ -50,14 +51,11 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  *
  * ```
  * try {
- *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
- *     $formattedProjectName = ReportErrorsServiceClient::formatProjectName("[PROJECT]");
- *     $event = new ReportedErrorEvent();
- *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+ *     $errorGroupServiceClient = new ErrorGroupServiceClient();
+ *     $formattedGroupName = ErrorGroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+ *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
  * } finally {
- *     if (isset($reportErrorsServiceClient)) {
- *         $reportErrorsServiceClient->close();
- *     }
+ *     $errorGroupServiceClient->close();
  * }
  * ```
  *
@@ -66,12 +64,13 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class ReportErrorsServiceClient
+class ErrorGroupServiceClient
 {
     /**
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -82,52 +81,61 @@ class ReportErrorsServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
 
-    private static $projectNameTemplate;
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
+
+    private static $groupNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $reportErrorsServiceStub;
+    private $errorGroupServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a group resource.
      */
-    public static function formatProjectName($project)
+    public static function formatGroupName($project, $group)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getGroupNameTemplate()->render([
             'project' => $project,
+            'group' => $group,
         ]);
     }
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a project resource.
+     * represents a group resource.
      */
-    public static function parseProjectFromProjectName($projectName)
+    public static function parseProjectFromGroupName($groupName)
     {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
+        return self::getGroupNameTemplate()->match($groupName)['project'];
     }
 
-    private static function getProjectNameTemplate()
+    /**
+     * Parses the group from the given fully-qualified path which
+     * represents a group resource.
+     */
+    public static function parseGroupFromGroupName($groupName)
     {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        return self::getGroupNameTemplate()->match($groupName)['group'];
+    }
+
+    private static function getGroupNameTemplate()
+    {
+        if (self::$groupNameTemplate == null) {
+            self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
         }
 
-        return self::$projectNameTemplate;
-    }
-
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
+        return self::$groupNameTemplate;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -181,26 +189,23 @@ class ReportErrorsServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'reportErrorEvent' => $defaultDescriptors,
+            'getGroup' => $defaultDescriptors,
+            'updateGroup' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/report_errors_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/error_group_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.devtools.clouderrorreporting.v1beta1.ReportErrorsService',
+                    'google.devtools.clouderrorreporting.v1beta1.ErrorGroupService',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -216,14 +221,14 @@ class ReportErrorsServiceClient
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
-        $createReportErrorsServiceStubFunction = function ($hostname, $opts) {
-            return new ReportErrorsServiceGrpcClient($hostname, $opts);
+        $createErrorGroupServiceStubFunction = function ($hostname, $opts) {
+            return new ErrorGroupServiceGrpcClient($hostname, $opts);
         };
-        if (array_key_exists('createReportErrorsServiceStubFunction', $options)) {
-            $createReportErrorsServiceStubFunction = $options['createReportErrorsServiceStubFunction'];
+        if (array_key_exists('createErrorGroupServiceStubFunction', $options)) {
+            $createErrorGroupServiceStubFunction = $options['createErrorGroupServiceStubFunction'];
         }
-        $this->reportErrorsServiceStub = $this->grpcCredentialsHelper->createStub(
-            $createReportErrorsServiceStubFunction,
+        $this->errorGroupServiceStub = $this->grpcCredentialsHelper->createStub(
+            $createErrorGroupServiceStubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -231,36 +236,29 @@ class ReportErrorsServiceClient
     }
 
     /**
-     * Report an individual error event.
-     *
-     * This endpoint accepts <strong>either</strong> an OAuth token,
-     * <strong>or</strong> an
-     * <a href="https://support.google.com/cloud/answer/6158862">API key</a>
-     * for authentication. To use an API key, append it to the URL as the value of
-     * a `key` parameter. For example:
-     * <pre>POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
+     * Get the specified group.
      *
      * Sample code:
      * ```
      * try {
-     *     $reportErrorsServiceClient = new ReportErrorsServiceClient();
-     *     $formattedProjectName = ReportErrorsServiceClient::formatProjectName("[PROJECT]");
-     *     $event = new ReportedErrorEvent();
-     *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+     *     $errorGroupServiceClient = new ErrorGroupServiceClient();
+     *     $formattedGroupName = ErrorGroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
      * } finally {
-     *     if (isset($reportErrorsServiceClient)) {
-     *         $reportErrorsServiceClient->close();
-     *     }
+     *     $errorGroupServiceClient->close();
      * }
      * ```
      *
-     * @param string             $projectName  [Required] The resource name of the Google Cloud Platform project. Written
-     *                                         as `projects/` plus the
-     *                                         [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
-     *                                         Example: `projects/my-project-123`.
-     * @param ReportedErrorEvent $event        [Required] The error event to be reported.
-     * @param array              $optionalArgs {
-     *                                         Optional.
+     * @param string $groupName [Required] The group resource name. Written as
+     *                          <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
+     *                          Call
+     *                          <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list">
+     *                          <code>groupStats.list</code></a> to return a list of groups belonging to
+     *                          this project.
+     *
+     * Example: <code>projects/my-project-123/groups/my-group</code>
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
@@ -270,24 +268,75 @@ class ReportErrorsServiceClient
      *          is not set.
      * }
      *
-     * @return \google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse
+     * @return \google\devtools\clouderrorreporting\v1beta1\ErrorGroup
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function reportErrorEvent($projectName, $event, $optionalArgs = [])
+    public function getGroup($groupName, $optionalArgs = [])
     {
-        $request = new ReportErrorEventRequest();
-        $request->setProjectName($projectName);
-        $request->setEvent($event);
+        $request = new GetGroupRequest();
+        $request->setGroupName($groupName);
 
-        $mergedSettings = $this->defaultCallSettings['reportErrorEvent']->merge(
+        $mergedSettings = $this->defaultCallSettings['getGroup']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->reportErrorsServiceStub,
-            'ReportErrorEvent',
+            $this->errorGroupServiceStub,
+            'GetGroup',
             $mergedSettings,
-            $this->descriptors['reportErrorEvent']
+            $this->descriptors['getGroup']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Replace the data for the specified group.
+     * Fails if the group does not exist.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $errorGroupServiceClient = new ErrorGroupServiceClient();
+     *     $group = new ErrorGroup();
+     *     $response = $errorGroupServiceClient->updateGroup($group);
+     * } finally {
+     *     $errorGroupServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ErrorGroup $group        [Required] The group which replaces the resource on the server.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \google\devtools\clouderrorreporting\v1beta1\ErrorGroup
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function updateGroup($group, $optionalArgs = [])
+    {
+        $request = new UpdateGroupRequest();
+        $request->setGroup($group);
+
+        $mergedSettings = $this->defaultCallSettings['updateGroup']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->errorGroupServiceStub,
+            'UpdateGroup',
+            $mergedSettings,
+            $this->descriptors['updateGroup']
         );
 
         return $callable(
@@ -302,7 +351,7 @@ class ReportErrorsServiceClient
      */
     public function close()
     {
-        $this->reportErrorsServiceStub->close();
+        $this->errorGroupServiceStub->close();
     }
 
     private function createCredentialsCallback()

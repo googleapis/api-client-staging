@@ -32,6 +32,10 @@ use google\pubsub\v1\PullResponse;
 use google\pubsub\v1\PushConfig;
 use google\pubsub\v1\Subscription;
 
+/**
+ * @group pub_sub
+ * @group grpc
+ */
 class SubscriberTest extends PHPUnit_Framework_TestCase
 {
     public function createMockSubscriberImpl($hostname, $opts)

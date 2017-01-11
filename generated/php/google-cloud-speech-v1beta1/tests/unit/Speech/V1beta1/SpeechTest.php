@@ -29,6 +29,10 @@ use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
 use google\cloud\speech\v1beta1\SyncRecognizeResponse;
 
+/**
+ * @group speech
+ * @group grpc
+ */
 class SpeechTest extends PHPUnit_Framework_TestCase
 {
     public function createMockSpeechImpl($hostname, $opts)

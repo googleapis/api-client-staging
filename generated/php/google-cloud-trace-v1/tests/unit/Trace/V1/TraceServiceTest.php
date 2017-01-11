@@ -29,6 +29,10 @@ use google\devtools\cloudtrace\v1\ListTracesResponse;
 use google\devtools\cloudtrace\v1\Trace;
 use google\devtools\cloudtrace\v1\Traces;
 
+/**
+ * @group trace
+ * @group grpc
+ */
 class TraceServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockTraceServiceImpl($hostname, $opts)

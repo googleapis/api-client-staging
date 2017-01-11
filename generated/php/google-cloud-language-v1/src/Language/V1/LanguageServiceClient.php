@@ -59,9 +59,7 @@ use google\cloud\language\v1\LanguageServiceGrpcClient;
  *     $document = new Document();
  *     $response = $languageServiceClient->analyzeSentiment($document);
  * } finally {
- *     if (isset($languageServiceClient)) {
- *         $languageServiceClient->close();
- *     }
+ *     $languageServiceClient->close();
  * }
  * ```
  *
@@ -76,6 +74,7 @@ class LanguageServiceClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'language.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -86,22 +85,21 @@ class LanguageServiceClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private $grpcCredentialsHelper;
     private $languageServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
-    }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
@@ -154,8 +152,8 @@ class LanguageServiceClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -167,10 +165,6 @@ class LanguageServiceClient
             'analyzeSyntax' => $defaultDescriptors,
             'annotateText' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/language_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
@@ -216,9 +210,7 @@ class LanguageServiceClient
      *     $document = new Document();
      *     $response = $languageServiceClient->analyzeSentiment($document);
      * } finally {
-     *     if (isset($languageServiceClient)) {
-     *         $languageServiceClient->close();
-     *     }
+     *     $languageServiceClient->close();
      * }
      * ```
      *
@@ -277,9 +269,7 @@ class LanguageServiceClient
      *     $encodingType = EncodingType::NONE;
      *     $response = $languageServiceClient->analyzeEntities($document, $encodingType);
      * } finally {
-     *     if (isset($languageServiceClient)) {
-     *         $languageServiceClient->close();
-     *     }
+     *     $languageServiceClient->close();
      * }
      * ```
      *
@@ -335,9 +325,7 @@ class LanguageServiceClient
      *     $encodingType = EncodingType::NONE;
      *     $response = $languageServiceClient->analyzeSyntax($document, $encodingType);
      * } finally {
-     *     if (isset($languageServiceClient)) {
-     *         $languageServiceClient->close();
-     *     }
+     *     $languageServiceClient->close();
      * }
      * ```
      *
@@ -393,9 +381,7 @@ class LanguageServiceClient
      *     $encodingType = EncodingType::NONE;
      *     $response = $languageServiceClient->annotateText($document, $features, $encodingType);
      * } finally {
-     *     if (isset($languageServiceClient)) {
-     *         $languageServiceClient->close();
-     *     }
+     *     $languageServiceClient->close();
      * }
      * ```
      *

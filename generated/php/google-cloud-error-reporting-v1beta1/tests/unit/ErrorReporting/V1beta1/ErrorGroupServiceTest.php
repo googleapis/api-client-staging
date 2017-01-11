@@ -20,13 +20,17 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Errorreporting\V1beta1;
+namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
-use Google\Cloud\Errorreporting\V1beta1\ErrorGroupServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
 use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
 
+/**
+ * @group error_reporting
+ * @group grpc
+ */
 class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorGroupServiceImpl($hostname, $opts)

@@ -20,9 +20,9 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Errorreporting\V1beta1;
+namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
-use Google\Cloud\Errorreporting\V1beta1\ErrorStatsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
 use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\DeleteEventsResponse;
@@ -32,6 +32,10 @@ use google\devtools\clouderrorreporting\v1beta1\ListEventsResponse;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsResponse;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
 
+/**
+ * @group error_reporting
+ * @group grpc
+ */
 class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorStatsServiceImpl($hostname, $opts)

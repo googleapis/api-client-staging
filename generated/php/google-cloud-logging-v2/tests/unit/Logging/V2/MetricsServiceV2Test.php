@@ -28,6 +28,10 @@ use PHPUnit_Framework_TestCase;
 use google\logging\v2\ListLogMetricsResponse;
 use google\logging\v2\LogMetric;
 
+/**
+ * @group logging
+ * @group grpc
+ */
 class MetricsServiceV2Test extends PHPUnit_Framework_TestCase
 {
     public function createMockMetricsServiceV2Impl($hostname, $opts)

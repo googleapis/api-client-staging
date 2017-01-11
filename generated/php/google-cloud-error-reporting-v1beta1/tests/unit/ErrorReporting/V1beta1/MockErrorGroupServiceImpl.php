@@ -20,12 +20,12 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Errorreporting\V1beta1;
+namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\devtools\clouderrorreporting\v1beta1\ErrorStatsServiceGrpcClient;
+use google\devtools\clouderrorreporting\v1beta1\ErrorGroupServiceGrpcClient;
 
-class MockErrorStatsServiceImpl extends ErrorStatsServiceGrpcClient
+class MockErrorGroupServiceImpl extends ErrorGroupServiceGrpcClient
 {
     use MockStubTrait;
 }

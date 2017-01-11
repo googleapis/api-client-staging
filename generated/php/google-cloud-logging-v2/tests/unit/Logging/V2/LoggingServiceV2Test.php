@@ -32,6 +32,10 @@ use google\logging\v2\ListMonitoredResourceDescriptorsResponse;
 use google\logging\v2\LogEntry;
 use google\logging\v2\WriteLogEntriesResponse;
 
+/**
+ * @group logging
+ * @group grpc
+ */
 class LoggingServiceV2Test extends PHPUnit_Framework_TestCase
 {
     public function createMockLoggingServiceV2Impl($hostname, $opts)

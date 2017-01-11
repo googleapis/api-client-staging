@@ -30,6 +30,10 @@ use google\monitoring\v3\Group;
 use google\monitoring\v3\ListGroupMembersResponse;
 use google\monitoring\v3\ListGroupsResponse;
 
+/**
+ * @group monitoring
+ * @group grpc
+ */
 class GroupServiceTest extends PHPUnit_Framework_TestCase
 {
     public function createMockGroupServiceImpl($hostname, $opts)
