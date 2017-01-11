@@ -16,6 +16,7 @@
 
 var assert = require('assert');
 var pubsubV1 = require('../src/').v1();
+var through2 = require('through2');
 
 describe('PublisherClient', function() {
   describe('createTopic', function() {
@@ -28,9 +29,9 @@ describe('PublisherClient', function() {
       };
 
       // Mock response
-      var formattedName2 = client.topicPath("[PROJECT]", "[TOPIC]");
+      var name2 = 'name2-1052831874';
       var expectedResponse = {
-          name : formattedName2
+          name : name2
       };
 
       // Mock Grpc layer
@@ -304,12 +305,12 @@ describe('SubscriberClient', function() {
       };
 
       // Mock response
-      var formattedName2 = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
-      var formattedTopic2 = client.topicPath("[PROJECT]", "[TOPIC]");
+      var name2 = 'name2-1052831874';
+      var topic2 = 'topic2-1139259102';
       var ackDeadlineSeconds = 2135351438;
       var expectedResponse = {
-          name : formattedName2,
-          topic : formattedTopic2,
+          name : name2,
+          topic : topic2,
           ackDeadlineSeconds : ackDeadlineSeconds
       };
 
@@ -489,6 +490,40 @@ describe('SubscriberClient', function() {
         assert.deepStrictEqual(response, expectedResponse);
         done();
       });
+    });
+  });
+
+  describe('streamingPull', function() {
+    it('invokes streamingPull without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var streamAckDeadlineSeconds = 1875467245;
+      var request = {
+          subscription : formattedSubscription,
+          streamAckDeadlineSeconds : streamAckDeadlineSeconds
+      };
+
+      // Mock response
+      var expectedResponse = {};
+
+      // Mock Grpc layer
+      client._streamingPull = function() {
+        var mockStream = through2.obj(function (chunk, enc, callback) {
+          assert.deepStrictEqual(chunk, request);
+          callback(null, expectedResponse);
+        });
+        return mockStream;
+      };
+
+      var stream = client.streamingPull().on('data', function(response) {
+        assert.deepStrictEqual(response, expectedResponse);
+        done()
+      }).on('error', function(err) {
+        done(err);
+      });
+
+      stream.write(request);
     });
   });
 

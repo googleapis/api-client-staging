@@ -16,6 +16,7 @@
 
 var assert = require('assert');
 var speechV1beta1 = require('../src/').v1beta1();
+var through2 = require('through2');
 
 describe('SpeechClient', function() {
   describe('syncRecognize', function() {
@@ -46,8 +47,8 @@ describe('SpeechClient', function() {
     });
   });
 
-  describe('asyncRecognizeAsync', function() {
-    it('invokes asyncRecognizeAsync without error', function(done) {
+  describe('asyncRecognize', function() {
+    it('invokes asyncRecognize without error', function(done) {
       var client = speechV1beta1.speechClient();
       // Mock request
       var config = {};
@@ -61,16 +62,48 @@ describe('SpeechClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._asyncRecognizeAsync = function(actualRequest, options, callback) {
+      client._asyncRecognize = function(actualRequest, options, callback) {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse);
       };
 
-      client.asyncRecognizeAsync(request, function(err, response) {
+      client.asyncRecognize(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
         done();
       });
+    });
+  });
+
+  describe('streamingRecognize', function() {
+    it('invokes streamingRecognize without error', function(done) {
+      var client = speechV1beta1.speechClient();
+      // Mock request
+      var request = {};
+
+      // Mock response
+      var resultIndex = 520358448;
+      var expectedResponse = {
+          resultIndex : resultIndex
+      };
+
+      // Mock Grpc layer
+      client._streamingRecognize = function() {
+        var mockStream = through2.obj(function (chunk, enc, callback) {
+          assert.deepStrictEqual(chunk, request);
+          callback(null, expectedResponse);
+        });
+        return mockStream;
+      };
+
+      var stream = client.streamingRecognize().on('data', function(response) {
+        assert.deepStrictEqual(response, expectedResponse);
+        done()
+      }).on('error', function(err) {
+        done(err);
+      });
+
+      stream.write(request);
     });
   });
 
