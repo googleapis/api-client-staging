@@ -1,18 +1,18 @@
 GAPIC library for the Stackdriver Error Reporting API
 ================================================================================
 
-google-cloud-error-reporting-v1beta1 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-error-reporting-v1beta1 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Stackdriver Error Reporting API`_ (v1beta1) defined in the googleapis_ git repository
 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouderrorreporting/v1beta1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Stackdriver Error Reporting API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/error-reporting/v1beta1
+.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
 
 Getting started
 ---------------
 
-google-cloud-error-reporting-v1beta1 will allow you to connect to the
+gapic-google-cloud-error-reporting-v1beta1 will allow you to connect to the
 Stackdriver Error Reporting API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
@@ -61,7 +61,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install google-cloud-error-reporting-v1beta1
+    <your-env>/bin/pip install gapic-google-cloud-error-reporting-v1beta1
 
 
 Windows
@@ -72,7 +72,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install google-cloud-error-reporting-v1beta1
+    <your-env>\Scripts\pip.exe install gapic-google-cloud-error-reporting-v1beta1
 
 
 At this point you are all set to continue.

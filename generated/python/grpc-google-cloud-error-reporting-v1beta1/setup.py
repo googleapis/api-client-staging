@@ -1,4 +1,4 @@
-"""A setup module for the GRPC Stackdriver Error Reporting API service.
+"""A setup module for the GRPC Stackdriver Error Reporting API.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
