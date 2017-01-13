@@ -1,4 +1,4 @@
-"""A setup module for the GAPIC Stackdriver Error Reporting library.
+"""A setup module for the GAPIC Stackdriver Error Reporting API library.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.3.5, <2.0.0dev',
-    'google-gax>=0.14.1, <0.15.0dev',
-    'grpc-google-cloud-error-reporting-v1beta1>=0.13.0, <0.14.0dev',
-    'oauth2client>=2.0.0, <4.0.0dev',
+    'googleapis-common-protos>=1.5.0, <2.0dev',
+    'google-gax>=0.15.0, <0.16dev',
+    'grpc-google-cloud-error-reporting-v1beta1>=0.14.0, <0.15dev',
+    'oauth2client>=2.0.0, <4.0dev',
 ]
 
 setup(
     name='gapic-google-cloud-error-reporting-v1beta1',
-    version='0.13.0',
+    version='0.14.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
@@ -39,6 +39,8 @@ setup(
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.errorreporting', ],
-    url='https://github.com/googleapis/googleapis'
-)
+    namespace_packages=[
+        'google', 'google.cloud', 'google.cloud.gapic',
+        'google.cloud.gapic.errorreporting'
+    ],
+    url='https://github.com/googleapis/googleapis')

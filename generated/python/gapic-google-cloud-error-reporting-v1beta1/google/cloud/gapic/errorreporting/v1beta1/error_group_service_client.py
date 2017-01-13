@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2016, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,11 +33,11 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.errorreporting.v1beta1 import enums
-from google.devtools.clouderrorreporting.v1beta1 import common_pb2
-from google.devtools.clouderrorreporting.v1beta1 import error_group_service_pb2
+from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import common_pb2
+from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import error_group_service_pb2
 
 
-class ErrorGroupServiceApi(object):
+class ErrorGroupServiceClient(object):
     """Service for retrieving and updating individual error groups."""
 
     SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com'
@@ -95,8 +95,8 @@ class ErrorGroupServiceApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -108,21 +108,23 @@ class ErrorGroupServiceApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A ErrorGroupServiceApi object.
+          A ErrorGroupServiceClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -143,12 +145,12 @@ class ErrorGroupServiceApi(object):
             kwargs={'metadata': metadata})
         self.error_group_service_stub = config.create_stub(
             error_group_service_pb2.ErrorGroupServiceStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._get_group = api_callable.create_api_call(
             self.error_group_service_stub.GetGroup,
@@ -163,8 +165,8 @@ class ErrorGroupServiceApi(object):
         Get the specified group.
 
         Example:
-          >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_api
-          >>> api = error_group_service_api.ErrorGroupServiceApi()
+          >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_client
+          >>> api = error_group_service_client.ErrorGroupServiceClient()
           >>> group_name = api.group_path('[PROJECT]', '[GROUP]')
           >>> response = api.get_group(group_name)
 
@@ -181,7 +183,7 @@ class ErrorGroupServiceApi(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup` instance.
+          A :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -197,19 +199,19 @@ class ErrorGroupServiceApi(object):
         Fails if the group does not exist.
 
         Example:
-          >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_api
-          >>> from google.devtools.clouderrorreporting.v1beta1 import common_pb2
-          >>> api = error_group_service_api.ErrorGroupServiceApi()
+          >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_client
+          >>> from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import common_pb2
+          >>> api = error_group_service_client.ErrorGroupServiceClient()
           >>> group = common_pb2.ErrorGroup()
           >>> response = api.update_group(group)
 
         Args:
-          group (:class:`google.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup`): [Required] The group which replaces the resource on the server.
+          group (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup`): [Required] The group which replaces the resource on the server.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup` instance.
+          A :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
