@@ -1,4 +1,4 @@
-gRPC library for Stackdriver Error Reporting
+gRPC library for Stackdriver Error Reporting API
 
 grpc-google-cloud-error-reporting-v1beta1 is the IDL-derived library for the Stackdriver Error Reporting (v1beta1) service in the googleapis_ repository.
 

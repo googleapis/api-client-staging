@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2016, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,10 +33,10 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.errorreporting.v1beta1 import enums
-from google.devtools.clouderrorreporting.v1beta1 import report_errors_service_pb2
+from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import report_errors_service_pb2
 
 
-class ReportErrorsServiceApi(object):
+class ReportErrorsServiceClient(object):
     """An API for reporting error events."""
 
     SERVICE_ADDRESS = 'clouderrorreporting.googleapis.com'
@@ -77,8 +77,8 @@ class ReportErrorsServiceApi(object):
                  service_path=SERVICE_ADDRESS,
                  port=DEFAULT_SERVICE_PORT,
                  channel=None,
-                 metadata_transformer=None,
-                 ssl_creds=None,
+                 credentials=None,
+                 ssl_credentials=None,
                  scopes=None,
                  client_config=None,
                  app_name='gax',
@@ -90,21 +90,23 @@ class ReportErrorsServiceApi(object):
           port (int): The port on which to connect to the remote host.
           channel (:class:`grpc.Channel`): A ``Channel`` instance through
             which to make calls.
-          ssl_creds (:class:`grpc.ChannelCredentials`): A
+          credentials (object): The authorization credentials to attach to
+            requests. These credentials identify this application to the
+            service.
+          ssl_credentials (:class:`grpc.ChannelCredentials`): A
             ``ChannelCredentials`` instance for use with an SSL-enabled
             channel.
+          scopes (list[string]): A list of OAuth2 scopes to attach to requests.
           client_config (dict):
             A dictionary for call options for each method. See
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          metadata_transformer (Callable[[], list]): A function that creates
-             the metadata for requests.
           app_name (string): The codename of the calling service.
           app_version (string): The version of the calling service.
 
         Returns:
-          A ReportErrorsServiceApi object.
+          A ReportErrorsServiceClient object.
         """
         if scopes is None:
             scopes = self._ALL_SCOPES
@@ -125,12 +127,12 @@ class ReportErrorsServiceApi(object):
             kwargs={'metadata': metadata})
         self.report_errors_service_stub = config.create_stub(
             report_errors_service_pb2.ReportErrorsServiceStub,
-            service_path,
-            port,
-            ssl_creds=ssl_creds,
             channel=channel,
-            metadata_transformer=metadata_transformer,
-            scopes=scopes)
+            service_path=service_path,
+            service_port=port,
+            credentials=credentials,
+            scopes=scopes,
+            ssl_credentials=ssl_credentials)
 
         self._report_error_event = api_callable.create_api_call(
             self.report_errors_service_stub.ReportErrorEvent,
@@ -148,9 +150,9 @@ class ReportErrorsServiceApi(object):
         <pre>POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
 
         Example:
-          >>> from google.cloud.gapic.errorreporting.v1beta1 import report_errors_service_api
-          >>> from google.devtools.clouderrorreporting.v1beta1 import report_errors_service_pb2
-          >>> api = report_errors_service_api.ReportErrorsServiceApi()
+          >>> from google.cloud.gapic.errorreporting.v1beta1 import report_errors_service_client
+          >>> from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import report_errors_service_pb2
+          >>> api = report_errors_service_client.ReportErrorsServiceClient()
           >>> project_name = api.project_path('[PROJECT]')
           >>> event = report_errors_service_pb2.ReportedErrorEvent()
           >>> response = api.report_error_event(project_name, event)
@@ -160,9 +162,12 @@ class ReportErrorsServiceApi(object):
             as ``projects/`` plus the
             `Google Cloud Platform project ID <https://support.google.com/cloud/answer/6158840>`_.
             Example: ``projects/my-project-123``.
-          event (:class:`google.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2.ReportedErrorEvent`): [Required] The error event to be reported.
+          event (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2.ReportedErrorEvent`): [Required] The error event to be reported.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2.ReportErrorEventResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -170,4 +175,4 @@ class ReportErrorsServiceApi(object):
         """
         request = report_errors_service_pb2.ReportErrorEventRequest(
             project_name=project_name, event=event)
-        self._report_error_event(request, options)
+        return self._report_error_event(request, options)

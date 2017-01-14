@@ -7,13 +7,13 @@ easy-to-use client library for the `Stackdriver Error Reporting API`_ (v1beta1) 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouderrorreporting/v1beta1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1/
+.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
 
 Getting started
 ---------------
 
-gapic-google-cloud-error-reporting-v1beta1 will allow you to connect to the Stackdriver
-Error Reporting API and access all its methods. In order to do this, you need
+gapic-google-cloud-error-reporting-v1beta1 will allow you to connect to the
+Stackdriver Error Reporting API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
 
