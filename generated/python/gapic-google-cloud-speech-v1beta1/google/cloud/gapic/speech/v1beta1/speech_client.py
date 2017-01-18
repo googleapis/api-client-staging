@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2016, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,6 +27,7 @@ import os
 import pkg_resources
 import platform
 
+from google.gapic.longrunning import operations_client
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
@@ -114,6 +115,17 @@ class SpeechClient(object):
             scopes=scopes,
             ssl_credentials=ssl_credentials)
 
+        self.operations_client = operations_client.OperationsClient(
+            service_path=service_path,
+            port=port,
+            channel=channel,
+            credentials=credentials,
+            ssl_credentials=ssl_credentials,
+            scopes=scopes,
+            client_config=client_config,
+            app_name=app_name,
+            app_version=app_version)
+
         self._sync_recognize = api_callable.create_api_call(
             self.speech_stub.SyncRecognize,
             settings=defaults['sync_recognize'])
@@ -170,6 +182,15 @@ class SpeechClient(object):
           >>> config = cloud_speech_pb2.RecognitionConfig()
           >>> audio = cloud_speech_pb2.RecognitionAudio()
           >>> response = api.async_recognize(config, audio)
+          >>>
+          >>> def callback(operation_future):
+          >>>     # Handle result.
+          >>>     result = operation_future.result()
+          >>>
+          >>> response.add_done_callback(callback)
+          >>>
+          >>> # Handle metadata.
+          >>> metadata = response.metadata()
 
         Args:
           config (:class:`google.cloud.grpc.speech.v1beta1.cloud_speech_pb2.RecognitionConfig`): [Required] The ``config`` message provides information to the recognizer
@@ -179,7 +200,7 @@ class SpeechClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.longrunning.operations_pb2.Operation` instance.
+          A :class:`google.gax._OperationFuture` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -187,7 +208,10 @@ class SpeechClient(object):
         """
         request = cloud_speech_pb2.AsyncRecognizeRequest(
             config=config, audio=audio)
-        return self._async_recognize(request, options)
+        return google.gax._OperationFuture(
+            self._async_recognize(request, options), self.operations_client,
+            cloud_speech_pb2.AsyncRecognizeResponse,
+            cloud_speech_pb2.AsyncRecognizeMetadata, options)
 
     def streaming_recognize(self, requests, options=None):
         """
