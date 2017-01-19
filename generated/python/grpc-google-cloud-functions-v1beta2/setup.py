@@ -38,6 +38,6 @@ setuptools.setup(
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google.cloud.grpc.functions', 'google.cloud.grpc', 'google.cloud.proto.functions', 'google.cloud.proto', 'google.cloud', 'google'],
+  namespace_packages=['google.cloud.proto.functions', 'google.cloud.proto', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )

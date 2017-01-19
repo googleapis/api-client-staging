@@ -25,7 +25,7 @@ def on_delete(operation_future):
         if callable(code) and code() == StatusCode.NOT_FOUND:
             print('Expect error here since the function should have been deleted')
         else:
-            raise e
+            raise
 
 
 def on_update(operation_future):
@@ -79,4 +79,4 @@ except GaxError as e:
     if callable(code) and code() == StatusCode.NOT_FOUND:
         on_init(None)
     else:
-        raise e
+        raise
