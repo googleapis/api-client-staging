@@ -21,7 +21,7 @@ def on_delete(operation_future):
     try:
         api.get_function(function_name)
     except GaxError as e:
-        code = getattr(e, "code", None)
+        code = getattr(e.cause, "code", None)
         if callable(code) and code() == StatusCode.NOT_FOUND:
             print('Expect error here since the function should have been deleted')
         else:
@@ -75,7 +75,7 @@ try:
     response = api.delete_function(function_name)
     response.add_done_callback(on_init)
 except GaxError as e:
-    code = getattr(e, "code", None)
+    code = getattr(e.cause, "code", None)
     if callable(code) and code() == StatusCode.NOT_FOUND:
         on_init(None)
     else:
