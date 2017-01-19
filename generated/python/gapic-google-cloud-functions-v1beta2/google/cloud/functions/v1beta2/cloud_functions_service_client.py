@@ -34,8 +34,8 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.functions.v1beta2 import enums
-from google.cloud.grpc.functions.v1beta2 import functions_pb2
-from google.cloud.grpc.functions.v1beta2 import operations_pb2
+from google.cloud.proto.functions.v1beta2 import functions_pb2
+from google.cloud.proto.functions.v1beta2 import operations_pb2
 from google.protobuf import empty_pb2
 
 _PageDesc = google.gax.PageDescriptor
@@ -280,7 +280,7 @@ class CloudFunctionsServiceClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.functions.v1beta2.functions_pb2.CloudFunction` instances.
+          is an iterable of :class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -308,7 +308,7 @@ class CloudFunctionsServiceClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.functions.v1beta2.functions_pb2.CloudFunction` instance.
+          A :class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -325,7 +325,7 @@ class CloudFunctionsServiceClient(object):
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> from google.cloud.grpc.functions.v1beta2 import functions_pb2
+          >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
           >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
           >>> location = api.location_path('[PROJECT]', '[LOCATION]')
           >>> function = functions_pb2.CloudFunction()
@@ -343,7 +343,7 @@ class CloudFunctionsServiceClient(object):
         Args:
           location (string): The project and location in which the function should be created, specified
             in the format: projects/*/locations/*
-          function (:class:`google.cloud.grpc.functions.v1beta2.functions_pb2.CloudFunction`): Function to be created.
+          function (:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`): Function to be created.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -367,7 +367,7 @@ class CloudFunctionsServiceClient(object):
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> from google.cloud.grpc.functions.v1beta2 import functions_pb2
+          >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
           >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
           >>> name = api.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> function = functions_pb2.CloudFunction()
@@ -384,7 +384,7 @@ class CloudFunctionsServiceClient(object):
 
         Args:
           name (string): The name of the function to be updated.
-          function (:class:`google.cloud.grpc.functions.v1beta2.functions_pb2.CloudFunction`): New version of the function.
+          function (:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`): New version of the function.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -459,7 +459,7 @@ class CloudFunctionsServiceClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.functions.v1beta2.functions_pb2.CallFunctionResponse` instance.
+          A :class:`google.cloud.proto.functions.v1beta2.functions_pb2.CallFunctionResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.

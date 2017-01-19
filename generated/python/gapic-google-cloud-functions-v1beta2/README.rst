@@ -1,18 +1,18 @@
 GAPIC library for the Google Cloud Functions API
 ================================================================================
 
-google-cloud-functions-v1beta2 uses google-gax_ (Google API extensions) to provide an
+gapic-google-cloud-functions-v1beta2 uses google-gax_ (Google API extensions) to provide an
 easy-to-use client library for the `Google Cloud Functions API`_ (v1beta2) defined in the googleapis_ git repository
 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/functions/v1beta2
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Cloud Functions API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/functions/v1beta2
+.. _`Google Cloud Functions API`: https://developers.google.com/apis-explorer/?hl=en_US#p/functions/v1beta2
 
 Getting started
 ---------------
 
-google-cloud-functions-v1beta2 will allow you to connect to the
+gapic-google-cloud-functions-v1beta2 will allow you to connect to the
 Google Cloud Functions API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
@@ -61,7 +61,7 @@ Mac/Linux
     pip install virtualenv
     virtualenv <your-env>
     source <your-env>/bin/activate
-    <your-env>/bin/pip install google-cloud-functions-v1beta2
+    <your-env>/bin/pip install gapic-google-cloud-functions-v1beta2
 
 
 Windows
@@ -72,7 +72,7 @@ Windows
     pip install virtualenv
     virtualenv <your-env>
     <your-env>\Scripts\activate
-    <your-env>\Scripts\pip.exe install google-cloud-functions-v1beta2
+    <your-env>\Scripts\pip.exe install gapic-google-cloud-functions-v1beta2
 
 
 At this point you are all set to continue.

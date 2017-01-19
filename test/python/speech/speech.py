@@ -1,6 +1,6 @@
 from google.cloud.gapic.speech.v1beta1 import enums
 from google.cloud.gapic.speech.v1beta1 import speech_client
-from google.cloud.grpc.speech.v1beta1 import cloud_speech_pb2 as types
+from google.cloud.proto.speech.v1beta1 import cloud_speech_pb2 as types
 
 
 # upload audio.raw from this directory to Google Storage for your project
