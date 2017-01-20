@@ -123,7 +123,7 @@ function PublisherClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return iamPolicyStub[methodName].apply(iamPolicyStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName] || bundleDescriptors[methodName]);
@@ -148,7 +148,7 @@ function PublisherClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return publisherStub[methodName].apply(publisherStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName] || bundleDescriptors[methodName]);

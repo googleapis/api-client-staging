@@ -98,7 +98,7 @@ function ErrorGroupServiceClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return errorGroupServiceStub[methodName].apply(errorGroupServiceStub, args);
-        }
+        };
       }),
       defaults[methodName],
       null);

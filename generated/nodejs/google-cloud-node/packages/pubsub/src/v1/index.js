@@ -15,8 +15,8 @@
  */
 'use strict';
 
-var PublisherClient = require('./publisher_client');
-var SubscriberClient = require('./subscriber_client');
+var publisherClient = require('./publisher_client');
+var subscriberClient = require('./subscriber_client');
 var gax = require('google-gax');
 var extend = require('extend');
 var union = require('lodash.union');
@@ -27,15 +27,15 @@ function v1(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, PublisherClient(gaxGrpc));
-  extend(result, SubscriberClient(gaxGrpc));
+  extend(result, publisherClient(gaxGrpc));
+  extend(result, subscriberClient(gaxGrpc));
   return result;
 }
 
-v1.SERVICE_ADDRESS = PublisherClient.SERVICE_ADDRESS;
+v1.SERVICE_ADDRESS = publisherClient.SERVICE_ADDRESS;
 v1.ALL_SCOPES = union(
-  PublisherClient.ALL_SCOPES,
-  SubscriberClient.ALL_SCOPES
+  publisherClient.ALL_SCOPES,
+  subscriberClient.ALL_SCOPES
 );
 
 module.exports = v1;

@@ -112,7 +112,7 @@ function MetricsServiceV2Client(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return metricsServiceV2Stub[methodName].apply(metricsServiceV2Stub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);

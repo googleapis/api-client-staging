@@ -15,7 +15,7 @@
  */
 'use strict';
 
-var TraceServiceClient = require('./trace_service_client');
+var traceServiceClient = require('./trace_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 
@@ -24,10 +24,10 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return TraceServiceClient(gaxGrpc);
+  return traceServiceClient(gaxGrpc);
 }
 
-v1.SERVICE_ADDRESS = TraceServiceClient.SERVICE_ADDRESS;
-v1.ALL_SCOPES = TraceServiceClient.ALL_SCOPES;
+v1.SERVICE_ADDRESS = traceServiceClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = traceServiceClient.ALL_SCOPES;
 
 module.exports = v1;

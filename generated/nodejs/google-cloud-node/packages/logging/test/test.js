@@ -17,6 +17,10 @@
 var assert = require('assert');
 var loggingV2 = require('../src/').v2();
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('LoggingServiceV2Client', function() {
   describe('deleteLog', function() {
     it('invokes deleteLog without error', function(done) {
@@ -28,13 +32,28 @@ describe('LoggingServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._deleteLog = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._deleteLog = mockSimpleGrpcMethod(request);
 
       client.deleteLog(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteLog with error', function(done) {
+      var client = loggingV2.loggingServiceV2Client();
+      // Mock request
+      var formattedLogName = client.logPath("[PROJECT]", "[LOG]");
+      var request = {
+          logName : formattedLogName
+      };
+
+      // Mock Grpc layer
+      client._deleteLog = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteLog(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -53,14 +72,29 @@ describe('LoggingServiceV2Client', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._writeLogEntries = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._writeLogEntries = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.writeLogEntries(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes writeLogEntries with error', function(done) {
+      var client = loggingV2.loggingServiceV2Client();
+      // Mock request
+      var entries = [];
+      var request = {
+          entries : entries
+      };
+
+      // Mock Grpc layer
+      client._writeLogEntries = mockSimpleGrpcMethod(request, null, error);
+
+      client.writeLogEntries(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -96,6 +130,24 @@ describe('LoggingServiceV2Client', function() {
         done();
       });
     });
+
+    it('invokes listLogEntries with error', function(done) {
+      var client = loggingV2.loggingServiceV2Client();
+      // Mock request
+      var resourceNames = [];
+      var request = {
+          resourceNames : resourceNames
+      };
+
+      // Mock Grpc layer
+      client._listLogEntries = mockSimpleGrpcMethod(request, null, error);
+
+      client.listLogEntries(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('listMonitoredResourceDescriptors', function() {
@@ -122,6 +174,21 @@ describe('LoggingServiceV2Client', function() {
       client.listMonitoredResourceDescriptors(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse.resourceDescriptors);
+        done();
+      });
+    });
+
+    it('invokes listMonitoredResourceDescriptors with error', function(done) {
+      var client = loggingV2.loggingServiceV2Client();
+      // Mock request
+      var request = {};
+
+      // Mock Grpc layer
+      client._listMonitoredResourceDescriptors = mockSimpleGrpcMethod(request, null, error);
+
+      client.listMonitoredResourceDescriptors(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -154,6 +221,24 @@ describe('LoggingServiceV2Client', function() {
       client.listLogs(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse.logNames);
+        done();
+      });
+    });
+
+    it('invokes listLogs with error', function(done) {
+      var client = loggingV2.loggingServiceV2Client();
+      // Mock request
+      var formattedParent = client.projectPath("[PROJECT]");
+      var request = {
+          parent : formattedParent
+      };
+
+      // Mock Grpc layer
+      client._listLogs = mockSimpleGrpcMethod(request, null, error);
+
+      client.listLogs(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -191,6 +276,24 @@ describe('ConfigServiceV2Client', function() {
         done();
       });
     });
+
+    it('invokes listSinks with error', function(done) {
+      var client = loggingV2.configServiceV2Client();
+      // Mock request
+      var formattedParent = client.projectPath("[PROJECT]");
+      var request = {
+          parent : formattedParent
+      };
+
+      // Mock Grpc layer
+      client._listSinks = mockSimpleGrpcMethod(request, null, error);
+
+      client.listSinks(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('getSink', function() {
@@ -215,14 +318,29 @@ describe('ConfigServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._getSink = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getSink = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getSink(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getSink with error', function(done) {
+      var client = loggingV2.configServiceV2Client();
+      // Mock request
+      var formattedSinkName = client.sinkPath("[PROJECT]", "[SINK]");
+      var request = {
+          sinkName : formattedSinkName
+      };
+
+      // Mock Grpc layer
+      client._getSink = mockSimpleGrpcMethod(request, null, error);
+
+      client.getSink(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -252,14 +370,31 @@ describe('ConfigServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._createSink = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._createSink = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.createSink(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes createSink with error', function(done) {
+      var client = loggingV2.configServiceV2Client();
+      // Mock request
+      var formattedParent = client.projectPath("[PROJECT]");
+      var sink = {};
+      var request = {
+          parent : formattedParent,
+          sink : sink
+      };
+
+      // Mock Grpc layer
+      client._createSink = mockSimpleGrpcMethod(request, null, error);
+
+      client.createSink(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -289,14 +424,31 @@ describe('ConfigServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._updateSink = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._updateSink = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.updateSink(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes updateSink with error', function(done) {
+      var client = loggingV2.configServiceV2Client();
+      // Mock request
+      var formattedSinkName = client.sinkPath("[PROJECT]", "[SINK]");
+      var sink = {};
+      var request = {
+          sinkName : formattedSinkName,
+          sink : sink
+      };
+
+      // Mock Grpc layer
+      client._updateSink = mockSimpleGrpcMethod(request, null, error);
+
+      client.updateSink(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -312,13 +464,28 @@ describe('ConfigServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._deleteSink = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._deleteSink = mockSimpleGrpcMethod(request);
 
       client.deleteSink(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteSink with error', function(done) {
+      var client = loggingV2.configServiceV2Client();
+      // Mock request
+      var formattedSinkName = client.sinkPath("[PROJECT]", "[SINK]");
+      var request = {
+          sinkName : formattedSinkName
+      };
+
+      // Mock Grpc layer
+      client._deleteSink = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteSink(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -356,6 +523,24 @@ describe('MetricsServiceV2Client', function() {
         done();
       });
     });
+
+    it('invokes listLogMetrics with error', function(done) {
+      var client = loggingV2.metricsServiceV2Client();
+      // Mock request
+      var formattedParent = client.projectPath("[PROJECT]");
+      var request = {
+          parent : formattedParent
+      };
+
+      // Mock Grpc layer
+      client._listLogMetrics = mockSimpleGrpcMethod(request, null, error);
+
+      client.listLogMetrics(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('getLogMetric', function() {
@@ -378,14 +563,29 @@ describe('MetricsServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._getLogMetric = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getLogMetric = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getLogMetric(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getLogMetric with error', function(done) {
+      var client = loggingV2.metricsServiceV2Client();
+      // Mock request
+      var formattedMetricName = client.metricPath("[PROJECT]", "[METRIC]");
+      var request = {
+          metricName : formattedMetricName
+      };
+
+      // Mock Grpc layer
+      client._getLogMetric = mockSimpleGrpcMethod(request, null, error);
+
+      client.getLogMetric(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -413,14 +613,31 @@ describe('MetricsServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._createLogMetric = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._createLogMetric = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.createLogMetric(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes createLogMetric with error', function(done) {
+      var client = loggingV2.metricsServiceV2Client();
+      // Mock request
+      var formattedParent = client.projectPath("[PROJECT]");
+      var metric = {};
+      var request = {
+          parent : formattedParent,
+          metric : metric
+      };
+
+      // Mock Grpc layer
+      client._createLogMetric = mockSimpleGrpcMethod(request, null, error);
+
+      client.createLogMetric(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -448,14 +665,31 @@ describe('MetricsServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._updateLogMetric = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._updateLogMetric = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.updateLogMetric(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes updateLogMetric with error', function(done) {
+      var client = loggingV2.metricsServiceV2Client();
+      // Mock request
+      var formattedMetricName = client.metricPath("[PROJECT]", "[METRIC]");
+      var metric = {};
+      var request = {
+          metricName : formattedMetricName,
+          metric : metric
+      };
+
+      // Mock Grpc layer
+      client._updateLogMetric = mockSimpleGrpcMethod(request, null, error);
+
+      client.updateLogMetric(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -471,16 +705,44 @@ describe('MetricsServiceV2Client', function() {
       };
 
       // Mock Grpc layer
-      client._deleteLogMetric = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._deleteLogMetric = mockSimpleGrpcMethod(request);
 
       client.deleteLogMetric(request, function(err) {
         assert.ifError(err);
         done();
       });
     });
+
+    it('invokes deleteLogMetric with error', function(done) {
+      var client = loggingV2.metricsServiceV2Client();
+      // Mock request
+      var formattedMetricName = client.metricPath("[PROJECT]", "[METRIC]");
+      var request = {
+          metricName : formattedMetricName
+      };
+
+      // Mock Grpc layer
+      client._deleteLogMetric = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteLogMetric(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}

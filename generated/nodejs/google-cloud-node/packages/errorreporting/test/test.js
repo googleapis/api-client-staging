@@ -17,6 +17,10 @@
 var assert = require('assert');
 var errorreportingV1beta1 = require('../src/').v1beta1();
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('ErrorGroupServiceClient', function() {
   describe('getGroup', function() {
     it('invokes getGroup without error', function(done) {
@@ -36,14 +40,29 @@ describe('ErrorGroupServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._getGroup = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getGroup = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getGroup(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getGroup with error', function(done) {
+      var client = errorreportingV1beta1.errorGroupServiceClient();
+      // Mock request
+      var formattedGroupName = client.groupPath("[PROJECT]", "[GROUP]");
+      var request = {
+          groupName : formattedGroupName
+      };
+
+      // Mock Grpc layer
+      client._getGroup = mockSimpleGrpcMethod(request, null, error);
+
+      client.getGroup(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -67,14 +86,29 @@ describe('ErrorGroupServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._updateGroup = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._updateGroup = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.updateGroup(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes updateGroup with error', function(done) {
+      var client = errorreportingV1beta1.errorGroupServiceClient();
+      // Mock request
+      var group = {};
+      var request = {
+          group : group
+      };
+
+      // Mock Grpc layer
+      client._updateGroup = mockSimpleGrpcMethod(request, null, error);
+
+      client.updateGroup(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -114,6 +148,26 @@ describe('ErrorStatsServiceClient', function() {
         done();
       });
     });
+
+    it('invokes listGroupStats with error', function(done) {
+      var client = errorreportingV1beta1.errorStatsServiceClient();
+      // Mock request
+      var formattedProjectName = client.projectPath("[PROJECT]");
+      var timeRange = {};
+      var request = {
+          projectName : formattedProjectName,
+          timeRange : timeRange
+      };
+
+      // Mock Grpc layer
+      client._listGroupStats = mockSimpleGrpcMethod(request, null, error);
+
+      client.listGroupStats(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('listEvents', function() {
@@ -148,6 +202,26 @@ describe('ErrorStatsServiceClient', function() {
         done();
       });
     });
+
+    it('invokes listEvents with error', function(done) {
+      var client = errorreportingV1beta1.errorStatsServiceClient();
+      // Mock request
+      var formattedProjectName = client.projectPath("[PROJECT]");
+      var groupId = 'groupId506361563';
+      var request = {
+          projectName : formattedProjectName,
+          groupId : groupId
+      };
+
+      // Mock Grpc layer
+      client._listEvents = mockSimpleGrpcMethod(request, null, error);
+
+      client.listEvents(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('deleteEvents', function() {
@@ -163,14 +237,29 @@ describe('ErrorStatsServiceClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._deleteEvents = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._deleteEvents = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.deleteEvents(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes deleteEvents with error', function(done) {
+      var client = errorreportingV1beta1.errorStatsServiceClient();
+      // Mock request
+      var formattedProjectName = client.projectPath("[PROJECT]");
+      var request = {
+          projectName : formattedProjectName
+      };
+
+      // Mock Grpc layer
+      client._deleteEvents = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteEvents(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -193,10 +282,7 @@ describe('ReportErrorsServiceClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._reportErrorEvent = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._reportErrorEvent = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.reportErrorEvent(request, function(err, response) {
         assert.ifError(err);
@@ -204,6 +290,39 @@ describe('ReportErrorsServiceClient', function() {
         done();
       });
     });
+
+    it('invokes reportErrorEvent with error', function(done) {
+      var client = errorreportingV1beta1.reportErrorsServiceClient();
+      // Mock request
+      var formattedProjectName = client.projectPath("[PROJECT]");
+      var event = {};
+      var request = {
+          projectName : formattedProjectName,
+          event : event
+      };
+
+      // Mock Grpc layer
+      client._reportErrorEvent = mockSimpleGrpcMethod(request, null, error);
+
+      client.reportErrorEvent(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}

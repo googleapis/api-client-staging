@@ -15,9 +15,9 @@
  */
 'use strict';
 
-var ErrorGroupServiceClient = require('./error_group_service_client');
-var ErrorStatsServiceClient = require('./error_stats_service_client');
-var ReportErrorsServiceClient = require('./report_errors_service_client');
+var errorGroupServiceClient = require('./error_group_service_client');
+var errorStatsServiceClient = require('./error_stats_service_client');
+var reportErrorsServiceClient = require('./report_errors_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 var union = require('lodash.union');
@@ -28,17 +28,17 @@ function v1beta1(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, ErrorGroupServiceClient(gaxGrpc));
-  extend(result, ErrorStatsServiceClient(gaxGrpc));
-  extend(result, ReportErrorsServiceClient(gaxGrpc));
+  extend(result, errorGroupServiceClient(gaxGrpc));
+  extend(result, errorStatsServiceClient(gaxGrpc));
+  extend(result, reportErrorsServiceClient(gaxGrpc));
   return result;
 }
 
-v1beta1.SERVICE_ADDRESS = ErrorGroupServiceClient.SERVICE_ADDRESS;
+v1beta1.SERVICE_ADDRESS = errorGroupServiceClient.SERVICE_ADDRESS;
 v1beta1.ALL_SCOPES = union(
-  ErrorGroupServiceClient.ALL_SCOPES,
-  ErrorStatsServiceClient.ALL_SCOPES,
-  ReportErrorsServiceClient.ALL_SCOPES
+  errorGroupServiceClient.ALL_SCOPES,
+  errorStatsServiceClient.ALL_SCOPES,
+  reportErrorsServiceClient.ALL_SCOPES
 );
 
 module.exports = v1beta1;

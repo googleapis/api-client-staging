@@ -17,6 +17,10 @@
 var assert = require('assert');
 var traceV1 = require('../src/').v1();
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('TraceServiceClient', function() {
   describe('patchTraces', function() {
     it('invokes patchTraces without error', function(done) {
@@ -30,13 +34,30 @@ describe('TraceServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._patchTraces = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._patchTraces = mockSimpleGrpcMethod(request);
 
       client.patchTraces(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes patchTraces with error', function(done) {
+      var client = traceV1.traceServiceClient();
+      // Mock request
+      var projectId = 'projectId-1969970175';
+      var traces = {};
+      var request = {
+          projectId : projectId,
+          traces : traces
+      };
+
+      // Mock Grpc layer
+      client._patchTraces = mockSimpleGrpcMethod(request, null, error);
+
+      client.patchTraces(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -62,14 +83,31 @@ describe('TraceServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._getTrace = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getTrace = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getTrace(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getTrace with error', function(done) {
+      var client = traceV1.traceServiceClient();
+      // Mock request
+      var projectId = 'projectId-1969970175';
+      var traceId = 'traceId1270300245';
+      var request = {
+          projectId : projectId,
+          traceId : traceId
+      };
+
+      // Mock Grpc layer
+      client._getTrace = mockSimpleGrpcMethod(request, null, error);
+
+      client.getTrace(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -105,6 +143,37 @@ describe('TraceServiceClient', function() {
         done();
       });
     });
+
+    it('invokes listTraces with error', function(done) {
+      var client = traceV1.traceServiceClient();
+      // Mock request
+      var projectId = 'projectId-1969970175';
+      var request = {
+          projectId : projectId
+      };
+
+      // Mock Grpc layer
+      client._listTraces = mockSimpleGrpcMethod(request, null, error);
+
+      client.listTraces(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}

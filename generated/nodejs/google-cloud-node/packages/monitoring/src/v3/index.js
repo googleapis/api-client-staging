@@ -15,8 +15,8 @@
  */
 'use strict';
 
-var GroupServiceClient = require('./group_service_client');
-var MetricServiceClient = require('./metric_service_client');
+var groupServiceClient = require('./group_service_client');
+var metricServiceClient = require('./metric_service_client');
 var gax = require('google-gax');
 var extend = require('extend');
 var union = require('lodash.union');
@@ -27,15 +27,15 @@ function v3(options) {
   }, options);
   var gaxGrpc = gax.grpc(options);
   var result = {};
-  extend(result, GroupServiceClient(gaxGrpc));
-  extend(result, MetricServiceClient(gaxGrpc));
+  extend(result, groupServiceClient(gaxGrpc));
+  extend(result, metricServiceClient(gaxGrpc));
   return result;
 }
 
-v3.SERVICE_ADDRESS = GroupServiceClient.SERVICE_ADDRESS;
+v3.SERVICE_ADDRESS = groupServiceClient.SERVICE_ADDRESS;
 v3.ALL_SCOPES = union(
-  GroupServiceClient.ALL_SCOPES,
-  MetricServiceClient.ALL_SCOPES
+  groupServiceClient.ALL_SCOPES,
+  metricServiceClient.ALL_SCOPES
 );
 
 module.exports = v3;
