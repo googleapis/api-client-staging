@@ -1,4 +1,4 @@
-"""A setup module for the GRPC Google Cloud Speech API service.
+"""A setup module for the GRPC Google Cloud Functions API service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -16,7 +16,7 @@ install_requires = [
 ]
 
 setuptools.setup(
-  name='proto-google-cloud-speech-v1beta1',
+  name='proto-google-cloud-functions-v1beta2',
   version='0.15.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
@@ -33,11 +33,11 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the Google Cloud Speech API',
+  description='GRPC library for the Google Cloud Functions API',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google.cloud.proto.speech', 'google.cloud.proto', 'google.cloud', 'google'],
+  namespace_packages=['google.cloud.proto.functions', 'google.cloud.proto', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )
