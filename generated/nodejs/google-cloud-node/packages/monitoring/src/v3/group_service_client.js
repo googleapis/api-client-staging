@@ -127,7 +127,7 @@ function GroupServiceClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return groupServiceStub[methodName].apply(groupServiceStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);

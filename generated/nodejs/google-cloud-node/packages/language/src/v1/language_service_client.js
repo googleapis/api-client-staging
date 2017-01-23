@@ -101,7 +101,7 @@ function LanguageServiceClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return languageServiceStub[methodName].apply(languageServiceStub, args);
-        }
+        };
       }),
       defaults[methodName],
       null);

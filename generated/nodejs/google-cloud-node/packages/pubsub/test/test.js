@@ -18,6 +18,10 @@ var assert = require('assert');
 var pubsubV1 = require('../src/').v1();
 var through2 = require('through2');
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('PublisherClient', function() {
   describe('createTopic', function() {
     it('invokes createTopic without error', function(done) {
@@ -35,14 +39,29 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._createTopic = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._createTopic = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.createTopic(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes createTopic with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedName = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          name : formattedName
+      };
+
+      // Mock Grpc layer
+      client._createTopic = mockSimpleGrpcMethod(request, null, error);
+
+      client.createTopic(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -71,14 +90,35 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._publish = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._publish = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.publish(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes publish with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedTopic = client.topicPath("[PROJECT]", "[TOPIC]");
+      var data = '-86';
+      var messagesElement = {
+          data : data
+      };
+      var messages = [messagesElement];
+      var request = {
+          topic : formattedTopic,
+          messages : messages
+      };
+
+      // Mock Grpc layer
+      client._publish = mockSimpleGrpcMethod(request, null, error);
+
+      client.publish(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -100,14 +140,29 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._getTopic = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getTopic = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getTopic(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getTopic with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedTopic = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          topic : formattedTopic
+      };
+
+      // Mock Grpc layer
+      client._getTopic = mockSimpleGrpcMethod(request, null, error);
+
+      client.getTopic(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -143,6 +198,24 @@ describe('PublisherClient', function() {
         done();
       });
     });
+
+    it('invokes listTopics with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedProject = client.projectPath("[PROJECT]");
+      var request = {
+          project : formattedProject
+      };
+
+      // Mock Grpc layer
+      client._listTopics = mockSimpleGrpcMethod(request, null, error);
+
+      client.listTopics(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('listTopicSubscriptions', function() {
@@ -175,6 +248,24 @@ describe('PublisherClient', function() {
         done();
       });
     });
+
+    it('invokes listTopicSubscriptions with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedTopic = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          topic : formattedTopic
+      };
+
+      // Mock Grpc layer
+      client._listTopicSubscriptions = mockSimpleGrpcMethod(request, null, error);
+
+      client.listTopicSubscriptions(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('deleteTopic', function() {
@@ -187,13 +278,28 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._deleteTopic = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._deleteTopic = mockSimpleGrpcMethod(request);
 
       client.deleteTopic(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteTopic with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedTopic = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          topic : formattedTopic
+      };
+
+      // Mock Grpc layer
+      client._deleteTopic = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteTopic(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -219,14 +325,31 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._setIamPolicy = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._setIamPolicy = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.setIamPolicy(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes setIamPolicy with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedResource = client.topicPath("[PROJECT]", "[TOPIC]");
+      var policy = {};
+      var request = {
+          resource : formattedResource,
+          policy : policy
+      };
+
+      // Mock Grpc layer
+      client._setIamPolicy = mockSimpleGrpcMethod(request, null, error);
+
+      client.setIamPolicy(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -250,14 +373,29 @@ describe('PublisherClient', function() {
       };
 
       // Mock Grpc layer
-      client._getIamPolicy = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getIamPolicy = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getIamPolicy(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getIamPolicy with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedResource = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          resource : formattedResource
+      };
+
+      // Mock Grpc layer
+      client._getIamPolicy = mockSimpleGrpcMethod(request, null, error);
+
+      client.getIamPolicy(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -278,14 +416,31 @@ describe('PublisherClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._testIamPermissions = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._testIamPermissions = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.testIamPermissions(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes testIamPermissions with error', function(done) {
+      var client = pubsubV1.publisherClient();
+      // Mock request
+      var formattedResource = client.topicPath("[PROJECT]", "[TOPIC]");
+      var permissions = [];
+      var request = {
+          resource : formattedResource,
+          permissions : permissions
+      };
+
+      // Mock Grpc layer
+      client._testIamPermissions = mockSimpleGrpcMethod(request, null, error);
+
+      client.testIamPermissions(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -315,14 +470,31 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._createSubscription = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._createSubscription = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.createSubscription(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes createSubscription with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedName = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var formattedTopic = client.topicPath("[PROJECT]", "[TOPIC]");
+      var request = {
+          name : formattedName,
+          topic : formattedTopic
+      };
+
+      // Mock Grpc layer
+      client._createSubscription = mockSimpleGrpcMethod(request, null, error);
+
+      client.createSubscription(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -348,14 +520,29 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._getSubscription = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getSubscription = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getSubscription(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getSubscription with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          subscription : formattedSubscription
+      };
+
+      // Mock Grpc layer
+      client._getSubscription = mockSimpleGrpcMethod(request, null, error);
+
+      client.getSubscription(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -391,6 +578,24 @@ describe('SubscriberClient', function() {
         done();
       });
     });
+
+    it('invokes listSubscriptions with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedProject = client.projectPath("[PROJECT]");
+      var request = {
+          project : formattedProject
+      };
+
+      // Mock Grpc layer
+      client._listSubscriptions = mockSimpleGrpcMethod(request, null, error);
+
+      client.listSubscriptions(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
   describe('deleteSubscription', function() {
@@ -403,13 +608,28 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._deleteSubscription = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._deleteSubscription = mockSimpleGrpcMethod(request);
 
       client.deleteSubscription(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteSubscription with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          subscription : formattedSubscription
+      };
+
+      // Mock Grpc layer
+      client._deleteSubscription = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteSubscription(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -429,13 +649,32 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._modifyAckDeadline = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._modifyAckDeadline = mockSimpleGrpcMethod(request);
 
       client.modifyAckDeadline(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes modifyAckDeadline with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var ackIds = [];
+      var ackDeadlineSeconds = 2135351438;
+      var request = {
+          subscription : formattedSubscription,
+          ackIds : ackIds,
+          ackDeadlineSeconds : ackDeadlineSeconds
+      };
+
+      // Mock Grpc layer
+      client._modifyAckDeadline = mockSimpleGrpcMethod(request, null, error);
+
+      client.modifyAckDeadline(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -453,13 +692,30 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._acknowledge = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._acknowledge = mockSimpleGrpcMethod(request);
 
       client.acknowledge(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes acknowledge with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var ackIds = [];
+      var request = {
+          subscription : formattedSubscription,
+          ackIds : ackIds
+      };
+
+      // Mock Grpc layer
+      client._acknowledge = mockSimpleGrpcMethod(request, null, error);
+
+      client.acknowledge(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -480,14 +736,31 @@ describe('SubscriberClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._pull = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._pull = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.pull(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes pull with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var maxMessages = 496131527;
+      var request = {
+          subscription : formattedSubscription,
+          maxMessages : maxMessages
+      };
+
+      // Mock Grpc layer
+      client._pull = mockSimpleGrpcMethod(request, null, error);
+
+      client.pull(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -508,19 +781,37 @@ describe('SubscriberClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._streamingPull = function() {
-        var mockStream = through2.obj(function (chunk, enc, callback) {
-          assert.deepStrictEqual(chunk, request);
-          callback(null, expectedResponse);
-        });
-        return mockStream;
-      };
+      client._streamingPull = mockBidiStreamingGrpcMethod(request, expectedResponse);
 
       var stream = client.streamingPull().on('data', function(response) {
         assert.deepStrictEqual(response, expectedResponse);
         done()
       }).on('error', function(err) {
         done(err);
+      });
+
+      stream.write(request);
+    });
+
+    it('invokes streamingPull with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var streamAckDeadlineSeconds = 1875467245;
+      var request = {
+          subscription : formattedSubscription,
+          streamAckDeadlineSeconds : streamAckDeadlineSeconds
+      };
+
+      // Mock Grpc layer
+      client._streamingPull = mockBidiStreamingGrpcMethod(request, null, error);
+
+      var stream = client.streamingPull().on('data', function(response) {
+        assert.fail();
+      }).on('error', function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
       });
 
       stream.write(request);
@@ -539,13 +830,30 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._modifyPushConfig = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null);
-      };
+      client._modifyPushConfig = mockSimpleGrpcMethod(request);
 
       client.modifyPushConfig(request, function(err) {
         assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes modifyPushConfig with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var pushConfig = {};
+      var request = {
+          subscription : formattedSubscription,
+          pushConfig : pushConfig
+      };
+
+      // Mock Grpc layer
+      client._modifyPushConfig = mockSimpleGrpcMethod(request, null, error);
+
+      client.modifyPushConfig(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -571,14 +879,31 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._setIamPolicy = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._setIamPolicy = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.setIamPolicy(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes setIamPolicy with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedResource = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var policy = {};
+      var request = {
+          resource : formattedResource,
+          policy : policy
+      };
+
+      // Mock Grpc layer
+      client._setIamPolicy = mockSimpleGrpcMethod(request, null, error);
+
+      client.setIamPolicy(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -602,14 +927,29 @@ describe('SubscriberClient', function() {
       };
 
       // Mock Grpc layer
-      client._getIamPolicy = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._getIamPolicy = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.getIamPolicy(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes getIamPolicy with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedResource = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          resource : formattedResource
+      };
+
+      // Mock Grpc layer
+      client._getIamPolicy = mockSimpleGrpcMethod(request, null, error);
+
+      client.getIamPolicy(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -630,10 +970,7 @@ describe('SubscriberClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._testIamPermissions = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._testIamPermissions = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.testIamPermissions(request, function(err, response) {
         assert.ifError(err);
@@ -641,6 +978,53 @@ describe('SubscriberClient', function() {
         done();
       });
     });
+
+    it('invokes testIamPermissions with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedResource = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var permissions = [];
+      var request = {
+          resource : formattedResource,
+          permissions : permissions
+      };
+
+      // Mock Grpc layer
+      client._testIamPermissions = mockSimpleGrpcMethod(request, null, error);
+
+      client.testIamPermissions(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}
+
+function mockBidiStreamingGrpcMethod(expectedRequest, response, error) {
+  return function() {
+    var mockStream = through2.obj(function (chunk, enc, callback) {
+      assert.deepStrictEqual(chunk, expectedRequest);
+      if (error) {
+        callback(error);
+      } else {
+        callback(null, response);
+      }
+    });
+    return mockStream;
+  }
+}

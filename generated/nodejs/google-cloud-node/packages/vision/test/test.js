@@ -17,6 +17,10 @@
 var assert = require('assert');
 var visionV1 = require('../src/').v1();
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('ImageAnnotatorClient', function() {
   describe('batchAnnotateImages', function() {
     it('invokes batchAnnotateImages without error', function(done) {
@@ -31,10 +35,7 @@ describe('ImageAnnotatorClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._batchAnnotateImages = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._batchAnnotateImages = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.batchAnnotateImages(request, function(err, response) {
         assert.ifError(err);
@@ -42,6 +43,37 @@ describe('ImageAnnotatorClient', function() {
         done();
       });
     });
+
+    it('invokes batchAnnotateImages with error', function(done) {
+      var client = visionV1.imageAnnotatorClient();
+      // Mock request
+      var requests = [];
+      var request = {
+          requests : requests
+      };
+
+      // Mock Grpc layer
+      client._batchAnnotateImages = mockSimpleGrpcMethod(request, null, error);
+
+      client.batchAnnotateImages(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}

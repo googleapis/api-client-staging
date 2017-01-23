@@ -18,6 +18,10 @@ var assert = require('assert');
 var speechV1beta1 = require('../src/').v1beta1();
 var through2 = require('through2');
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('SpeechClient', function() {
   describe('syncRecognize', function() {
     it('invokes syncRecognize without error', function(done) {
@@ -34,14 +38,31 @@ describe('SpeechClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._syncRecognize = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._syncRecognize = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.syncRecognize(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes syncRecognize with error', function(done) {
+      var client = speechV1beta1.speechClient();
+      // Mock request
+      var config = {};
+      var audio = {};
+      var request = {
+          config : config,
+          audio : audio
+      };
+
+      // Mock Grpc layer
+      client._syncRecognize = mockSimpleGrpcMethod(request, null, error);
+
+      client.syncRecognize(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -62,14 +83,40 @@ describe('SpeechClient', function() {
       var expectedResponse = {};
 
       // Mock Grpc layer
-      client._asyncRecognize = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
+      client._asyncRecognize = mockLongRunningGrpcMethod(request, expectedResponse);
+
+      client.asyncRecognize(request).then(function(responses) {
+        var operation = responses[0];
+        return operation.promise();
+      }).then(function(responses) {
+        assert.deepStrictEqual(responses[0], expectedResponse);
+        done();
+      }).catch(function(err) {
+        done(err);
+      });
+    });
+
+    it('invokes asyncRecognize with error', function(done) {
+      var client = speechV1beta1.speechClient();
+      // Mock request
+      var config = {};
+      var audio = {};
+      var request = {
+          config : config,
+          audio : audio
       };
 
-      client.asyncRecognize(request, function(err, response) {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
+      // Mock Grpc layer
+      client._asyncRecognize = mockLongRunningGrpcMethod(request, null, error);
+
+      client.asyncRecognize(request).then(function(responses) {
+        var operation = responses[0];
+        return operation.promise();
+      }).then(function(responses) {
+        assert.fail();
+      }).catch(function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -88,13 +135,7 @@ describe('SpeechClient', function() {
       };
 
       // Mock Grpc layer
-      client._streamingRecognize = function() {
-        var mockStream = through2.obj(function (chunk, enc, callback) {
-          assert.deepStrictEqual(chunk, request);
-          callback(null, expectedResponse);
-        });
-        return mockStream;
-      };
+      client._streamingRecognize = mockBidiStreamingGrpcMethod(request, expectedResponse);
 
       var stream = client.streamingRecognize().on('data', function(response) {
         assert.deepStrictEqual(response, expectedResponse);
@@ -105,6 +146,70 @@ describe('SpeechClient', function() {
 
       stream.write(request);
     });
+
+    it('invokes streamingRecognize with error', function(done) {
+      var client = speechV1beta1.speechClient();
+      // Mock request
+      var request = {};
+
+      // Mock Grpc layer
+      client._streamingRecognize = mockBidiStreamingGrpcMethod(request, null, error);
+
+      var stream = client.streamingRecognize().on('data', function(response) {
+        assert.fail();
+      }).on('error', function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+
+      stream.write(request);
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}
+
+function mockBidiStreamingGrpcMethod(expectedRequest, response, error) {
+  return function() {
+    var mockStream = through2.obj(function (chunk, enc, callback) {
+      assert.deepStrictEqual(chunk, expectedRequest);
+      if (error) {
+        callback(error);
+      } else {
+        callback(null, response);
+      }
+    });
+    return mockStream;
+  }
+}
+
+function mockLongRunningGrpcMethod(expectedRequest, response, error) {
+  return function(request) {
+    assert.deepStrictEqual(request, expectedRequest);
+    var mockOperation = {
+      promise: function() {
+        return new Promise(function(resolve, reject) {
+          if (error) {
+            reject(error)
+          } else {
+            resolve([response]);
+          }
+        });
+      }
+    };
+    return Promise.resolve([mockOperation]);
+  };
+}

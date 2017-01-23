@@ -97,7 +97,7 @@ function ReportErrorsServiceClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return reportErrorsServiceStub[methodName].apply(reportErrorsServiceStub, args);
-        }
+        };
       }),
       defaults[methodName],
       null);

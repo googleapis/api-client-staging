@@ -113,7 +113,7 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return iamPolicyStub[methodName].apply(iamPolicyStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName] || STREAM_DESCRIPTORS[methodName]);
@@ -141,7 +141,7 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return subscriberStub[methodName].apply(subscriberStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName] || STREAM_DESCRIPTORS[methodName]);

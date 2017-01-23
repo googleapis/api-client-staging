@@ -120,7 +120,7 @@ function LoggingServiceV2Client(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return loggingServiceV2Stub[methodName].apply(loggingServiceV2Stub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);

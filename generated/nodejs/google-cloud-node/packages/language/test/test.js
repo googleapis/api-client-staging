@@ -17,6 +17,10 @@
 var assert = require('assert');
 var languageV1 = require('../src/').v1();
 
+var FAKE_STATUS_CODE = 1;
+var error = new Error();
+error.code = FAKE_STATUS_CODE;
+
 describe('LanguageServiceClient', function() {
   describe('analyzeSentiment', function() {
     it('invokes analyzeSentiment without error', function(done) {
@@ -34,14 +38,29 @@ describe('LanguageServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._analyzeSentiment = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._analyzeSentiment = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.analyzeSentiment(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes analyzeSentiment with error', function(done) {
+      var client = languageV1.languageServiceClient();
+      // Mock request
+      var document = {};
+      var request = {
+          document : document
+      };
+
+      // Mock Grpc layer
+      client._analyzeSentiment = mockSimpleGrpcMethod(request, null, error);
+
+      client.analyzeSentiment(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -65,14 +84,31 @@ describe('LanguageServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._analyzeEntities = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._analyzeEntities = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.analyzeEntities(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes analyzeEntities with error', function(done) {
+      var client = languageV1.languageServiceClient();
+      // Mock request
+      var document = {};
+      var encodingType = languageV1.EncodingType.NONE;
+      var request = {
+          document : document,
+          encodingType : encodingType
+      };
+
+      // Mock Grpc layer
+      client._analyzeEntities = mockSimpleGrpcMethod(request, null, error);
+
+      client.analyzeEntities(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -96,14 +132,31 @@ describe('LanguageServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._analyzeSyntax = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._analyzeSyntax = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.analyzeSyntax(request, function(err, response) {
         assert.ifError(err);
         assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes analyzeSyntax with error', function(done) {
+      var client = languageV1.languageServiceClient();
+      // Mock request
+      var document = {};
+      var encodingType = languageV1.EncodingType.NONE;
+      var request = {
+          document : document,
+          encodingType : encodingType
+      };
+
+      // Mock Grpc layer
+      client._analyzeSyntax = mockSimpleGrpcMethod(request, null, error);
+
+      client.analyzeSyntax(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
         done();
       });
     });
@@ -129,10 +182,7 @@ describe('LanguageServiceClient', function() {
       };
 
       // Mock Grpc layer
-      client._annotateText = function(actualRequest, options, callback) {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
+      client._annotateText = mockSimpleGrpcMethod(request, expectedResponse);
 
       client.annotateText(request, function(err, response) {
         assert.ifError(err);
@@ -140,6 +190,41 @@ describe('LanguageServiceClient', function() {
         done();
       });
     });
+
+    it('invokes annotateText with error', function(done) {
+      var client = languageV1.languageServiceClient();
+      // Mock request
+      var document = {};
+      var features = {};
+      var encodingType = languageV1.EncodingType.NONE;
+      var request = {
+          document : document,
+          features : features,
+          encodingType : encodingType
+      };
+
+      // Mock Grpc layer
+      client._annotateText = mockSimpleGrpcMethod(request, null, error);
+
+      client.annotateText(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
   });
 
 });
+
+function mockSimpleGrpcMethod(expectedRequest, response, error) {
+  return function(actualRequest, options, callback) {
+    assert.deepStrictEqual(actualRequest, expectedRequest);
+    if (error) {
+      callback(error);
+    } else if (response) {
+      callback(null, response);
+    } else {
+      callback(null);
+    }
+  };
+}

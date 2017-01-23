@@ -111,7 +111,7 @@ function ErrorStatsServiceClient(gaxGrpc, grpcClients, opts) {
         return function() {
           var args = Array.prototype.slice.call(arguments, 0);
           return errorStatsServiceStub[methodName].apply(errorStatsServiceStub, args);
-        }
+        };
       }),
       defaults[methodName],
       PAGE_DESCRIPTORS[methodName]);
