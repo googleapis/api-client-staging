@@ -11,7 +11,7 @@ import sys
 install_requires = [
     'googleapis-common-protos>=1.5.0, <2.0dev',
     'google-gax>=0.15.4, <0.16dev',
-    'proto-google-cloud-datastore-v1>=0.15.0, <0.16dev',
+    'proto-google-cloud-datastore-v1[grpc]>=0.15.0, <0.16dev',
     'oauth2client>=2.0.0, <4.0dev',
 ]
 
