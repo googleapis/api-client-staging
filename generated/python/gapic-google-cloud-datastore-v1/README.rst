@@ -1,19 +1,19 @@
-GAPIC library for the Google Datastore API
+GAPIC library for the Google Cloud Datastore API
 ================================================================================
 
 gapic-google-cloud-datastore-v1 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Google Datastore API`_ (v1) defined in the googleapis_ git repository
+easy-to-use client library for the `Google Cloud Datastore API`_ (v1) defined in the googleapis_ git repository
 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/datastore/v1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Datastore API`: https://developers.google.com/apis-explorer/?hl=en_US#p/datastore/v1/
+.. _`Google Cloud Datastore API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/datastore/v1
 
 Getting started
 ---------------
 
-gapic-google-cloud-datastore-v1 will allow you to connect to the Google
-Datastore API and access all its methods. In order to do this, you need
+gapic-google-cloud-datastore-v1 will allow you to connect to the
+Google Cloud Datastore API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
 

@@ -8,7 +8,6 @@ APIs
    :toctree:
 
    google.cloud.gapic.datastore.v1.datastore_client
-   google.cloud.gapic.datastore.v1.enums
 
 
 API types
@@ -17,3 +16,4 @@ API types
 .. autosummary::
    :toctree:
 
+   google.cloud.gapic.datastore.v1.enums
