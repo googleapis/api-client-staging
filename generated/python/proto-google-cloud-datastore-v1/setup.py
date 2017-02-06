@@ -23,12 +23,12 @@ extras_require = {
 
 setuptools.setup(
   name='proto-google-cloud-datastore-v1',
-  version='0.15.0',
+  version='0.90.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Intended Audience :: Developers',
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
