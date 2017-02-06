@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2016, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,9 +33,9 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.datastore.v1 import enums
-from google.cloud.grpc.datastore.v1 import datastore_pb2
-from google.cloud.grpc.datastore.v1 import entity_pb2
-from google.cloud.grpc.datastore.v1 import query_pb2
+from google.cloud.proto.datastore.v1 import datastore_pb2
+from google.cloud.proto.datastore.v1 import entity_pb2
+from google.cloud.proto.datastore.v1 import query_pb2
 
 
 class DatastoreClient(object):
@@ -146,8 +146,8 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
-          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
+          >>> from google.cloud.proto.datastore.v1 import entity_pb2
           >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> read_options = datastore_pb2.ReadOptions()
@@ -156,13 +156,13 @@ class DatastoreClient(object):
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          read_options (:class:`google.cloud.grpc.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
-          keys (list[:class:`google.cloud.grpc.datastore.v1.entity_pb2.Key`]): Keys of entities to look up.
+          read_options (:class:`google.cloud.proto.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
+          keys (list[:class:`google.cloud.proto.datastore.v1.entity_pb2.Key`]): Keys of entities to look up.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.LookupResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.LookupResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -184,8 +184,8 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
-          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
+          >>> from google.cloud.proto.datastore.v1 import entity_pb2
           >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> partition_id = entity_pb2.PartitionId()
@@ -194,18 +194,18 @@ class DatastoreClient(object):
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          partition_id (:class:`google.cloud.grpc.datastore.v1.entity_pb2.PartitionId`): Entities are partitioned into subsets, identified by a partition ID.
+          partition_id (:class:`google.cloud.proto.datastore.v1.entity_pb2.PartitionId`): Entities are partitioned into subsets, identified by a partition ID.
             Queries are scoped to a single partition.
             This partition ID is normalized with the standard default context
             partition ID.
-          read_options (:class:`google.cloud.grpc.datastore.v1.datastore_pb2.ReadOptions`): The options for this query.
-          query (:class:`google.cloud.grpc.datastore.v1.query_pb2.Query`): The query to run.
-          gql_query (:class:`google.cloud.grpc.datastore.v1.query_pb2.GqlQuery`): The GQL query to run.
+          read_options (:class:`google.cloud.proto.datastore.v1.datastore_pb2.ReadOptions`): The options for this query.
+          query (:class:`google.cloud.proto.datastore.v1.query_pb2.Query`): The query to run.
+          gql_query (:class:`google.cloud.proto.datastore.v1.query_pb2.GqlQuery`): The GQL query to run.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.RunQueryResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.RunQueryResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -235,7 +235,7 @@ class DatastoreClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.BeginTransactionResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.BeginTransactionResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -257,7 +257,7 @@ class DatastoreClient(object):
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
           >>> from google.cloud.gapic.datastore.v1 import enums
-          >>> from google.cloud.grpc.datastore.v1 import datastore_pb2
+          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
           >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> mode = enums.CommitRequest.Mode.MODE_UNSPECIFIED
@@ -270,7 +270,7 @@ class DatastoreClient(object):
           transaction (bytes): The identifier of the transaction associated with the commit. A
             transaction identifier is returned by a call to
             ``Datastore.BeginTransaction``.
-          mutations (list[:class:`google.cloud.grpc.datastore.v1.datastore_pb2.Mutation`]): The mutations to perform.
+          mutations (list[:class:`google.cloud.proto.datastore.v1.datastore_pb2.Mutation`]): The mutations to perform.
 
             When mode is ``TRANSACTIONAL``, mutations affecting a single entity are
             applied in order. The following sequences of mutations affecting a single
@@ -287,7 +287,7 @@ class DatastoreClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.CommitResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.CommitResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -319,7 +319,7 @@ class DatastoreClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.RollbackResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.RollbackResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -336,7 +336,7 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.grpc.datastore.v1 import entity_pb2
+          >>> from google.cloud.proto.datastore.v1 import entity_pb2
           >>> api = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> keys = []
@@ -344,13 +344,13 @@ class DatastoreClient(object):
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          keys (list[:class:`google.cloud.grpc.datastore.v1.entity_pb2.Key`]): A list of keys with incomplete key paths for which to allocate IDs.
+          keys (list[:class:`google.cloud.proto.datastore.v1.entity_pb2.Key`]): A list of keys with incomplete key paths for which to allocate IDs.
             No key may be reserved/read-only.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.datastore.v1.datastore_pb2.AllocateIdsResponse` instance.
+          A :class:`google.cloud.proto.datastore.v1.datastore_pb2.AllocateIdsResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
