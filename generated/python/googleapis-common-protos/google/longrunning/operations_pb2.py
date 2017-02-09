@@ -20,6 +20,6 @@ AppEngine Standard).
 """
 
 try:
-  from google.longrunning.operations_grpc import *
+  from google.longrunning.operations_grpc_pb2 import *
 except ImportError:
-  from google.longrunning.operations_proto import *
+  from google.longrunning.operations_proto_pb2 import *
