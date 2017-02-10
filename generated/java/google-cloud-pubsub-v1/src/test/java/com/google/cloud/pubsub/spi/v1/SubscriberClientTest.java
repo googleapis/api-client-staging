@@ -64,7 +64,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 @javax.annotation.Generated("by GAPIC")
-public class SubscriberTest {
+public class SubscriberClientTest {
   private static MockPublisher mockPublisher;
   private static MockIAMPolicy mockIAMPolicy;
   private static MockSubscriber mockSubscriber;
