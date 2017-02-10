@@ -52,8 +52,16 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (SpeechClient speechClient = SpeechClient.create()) {
- *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
- *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+ *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+ *   int sampleRate = 44100;
+ *   RecognitionConfig config = RecognitionConfig.newBuilder()
+ *     .setEncoding(encoding)
+ *     .setSampleRate(sampleRate)
+ *     .build();
+ *   String uri = "gs://bucket_name/file_name.flac";
+ *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+ *     .setUri(uri)
+ *     .build();
  *   SyncRecognizeResponse response = speechClient.syncRecognize(config, audio);
  * }
  * </code>
@@ -200,8 +208,16 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   SyncRecognizeResponse response = speechClient.syncRecognize(config, audio);
    * }
    * </code></pre>
@@ -228,8 +244,16 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   SyncRecognizeRequest request = SyncRecognizeRequest.newBuilder()
    *     .setConfig(config)
    *     .setAudio(audio)
@@ -254,13 +278,21 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   SyncRecognizeRequest request = SyncRecognizeRequest.newBuilder()
    *     .setConfig(config)
    *     .setAudio(audio)
    *     .build();
-   *   ListenableFuture&lt;SyncRecognizeResponse&gt; future = speechClient.syncRecognizeCallable().futureCall(request);
+   *   RpcFuture&lt;SyncRecognizeResponse&gt; future = speechClient.syncRecognizeCallable().futureCall(request);
    *   // Do something
    *   SyncRecognizeResponse response = future.get();
    * }
@@ -280,8 +312,16 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   AsyncRecognizeResponse response = speechClient.asyncRecognizeAsync(config, audio).get();
    * }
    * </code></pre>
@@ -309,8 +349,16 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   AsyncRecognizeRequest request = AsyncRecognizeRequest.newBuilder()
    *     .setConfig(config)
    *     .setAudio(audio)
@@ -337,8 +385,16 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   AsyncRecognizeRequest request = AsyncRecognizeRequest.newBuilder()
    *     .setConfig(config)
    *     .setAudio(audio)
@@ -364,13 +420,21 @@ public class SpeechClient implements AutoCloseable {
    *
    * <pre><code>
    * try (SpeechClient speechClient = SpeechClient.create()) {
-   *   RecognitionConfig config = RecognitionConfig.newBuilder().build();
-   *   RecognitionAudio audio = RecognitionAudio.newBuilder().build();
+   *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
+   *   int sampleRate = 44100;
+   *   RecognitionConfig config = RecognitionConfig.newBuilder()
+   *     .setEncoding(encoding)
+   *     .setSampleRate(sampleRate)
+   *     .build();
+   *   String uri = "gs://bucket_name/file_name.flac";
+   *   RecognitionAudio audio = RecognitionAudio.newBuilder()
+   *     .setUri(uri)
+   *     .build();
    *   AsyncRecognizeRequest request = AsyncRecognizeRequest.newBuilder()
    *     .setConfig(config)
    *     .setAudio(audio)
    *     .build();
-   *   ListenableFuture&lt;Operation&gt; future = speechClient.asyncRecognizeCallable().futureCall(request);
+   *   RpcFuture&lt;Operation&gt; future = speechClient.asyncRecognizeCallable().futureCall(request);
    *   // Do something
    *   Operation response = future.get();
    * }

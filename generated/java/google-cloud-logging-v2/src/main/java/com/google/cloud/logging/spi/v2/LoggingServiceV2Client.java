@@ -151,6 +151,9 @@ public class LoggingServiceV2Client implements AutoCloseable {
         UnaryCallable.create(settings.deleteLogSettings(), this.channel, this.executor);
     this.writeLogEntriesCallable =
         UnaryCallable.create(settings.writeLogEntriesSettings(), this.channel, this.executor);
+    if (settings.writeLogEntriesSettings().getBundlerFactory() != null) {
+      closeables.add(settings.writeLogEntriesSettings().getBundlerFactory());
+    }
     this.listLogEntriesCallable =
         UnaryCallable.create(settings.listLogEntriesSettings(), this.channel, this.executor);
     this.listLogEntriesPagedCallable =
@@ -253,7 +256,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *   DeleteLogRequest request = DeleteLogRequest.newBuilder()
    *     .setLogNameWithLogNameOneof(logName)
    *     .build();
-   *   ListenableFuture&lt;Void&gt; future = loggingServiceV2Client.deleteLogCallable().futureCall(request);
+   *   RpcFuture&lt;Void&gt; future = loggingServiceV2Client.deleteLogCallable().futureCall(request);
    *   // Do something
    *   future.get();
    * }
@@ -353,7 +356,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *   WriteLogEntriesRequest request = WriteLogEntriesRequest.newBuilder()
    *     .addAllEntries(entries)
    *     .build();
-   *   ListenableFuture&lt;WriteLogEntriesResponse&gt; future = loggingServiceV2Client.writeLogEntriesCallable().futureCall(request);
+   *   RpcFuture&lt;WriteLogEntriesResponse&gt; future = loggingServiceV2Client.writeLogEntriesCallable().futureCall(request);
    *   // Do something
    *   WriteLogEntriesResponse response = future.get();
    * }
@@ -449,7 +452,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *   ListLogEntriesRequest request = ListLogEntriesRequest.newBuilder()
    *     .addAllResourceNames(resourceNames)
    *     .build();
-   *   ListenableFuture&lt;ListLogEntriesPagedResponse&gt; future = loggingServiceV2Client.listLogEntriesPagedCallable().futureCall(request);
+   *   RpcFuture&lt;ListLogEntriesPagedResponse&gt; future = loggingServiceV2Client.listLogEntriesPagedCallable().futureCall(request);
    *   // Do something
    *   for (LogEntry element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -527,7 +530,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    * <pre><code>
    * try (LoggingServiceV2Client loggingServiceV2Client = LoggingServiceV2Client.create()) {
    *   ListMonitoredResourceDescriptorsRequest request = ListMonitoredResourceDescriptorsRequest.newBuilder().build();
-   *   ListenableFuture&lt;ListMonitoredResourceDescriptorsPagedResponse&gt; future = loggingServiceV2Client.listMonitoredResourceDescriptorsPagedCallable().futureCall(request);
+   *   RpcFuture&lt;ListMonitoredResourceDescriptorsPagedResponse&gt; future = loggingServiceV2Client.listMonitoredResourceDescriptorsPagedCallable().futureCall(request);
    *   // Do something
    *   for (MonitoredResourceDescriptor element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
@@ -633,7 +636,7 @@ public class LoggingServiceV2Client implements AutoCloseable {
    *   ListLogsRequest request = ListLogsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
-   *   ListenableFuture&lt;ListLogsPagedResponse&gt; future = loggingServiceV2Client.listLogsPagedCallable().futureCall(request);
+   *   RpcFuture&lt;ListLogsPagedResponse&gt; future = loggingServiceV2Client.listLogsPagedCallable().futureCall(request);
    *   // Do something
    *   for (String element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
