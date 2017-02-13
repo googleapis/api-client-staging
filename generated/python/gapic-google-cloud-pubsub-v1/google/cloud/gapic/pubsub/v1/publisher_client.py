@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.pubsub.v1 Publisher API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -32,7 +33,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+from google.cloud.proto.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
 
@@ -52,10 +53,6 @@ class PublisherClient(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_topics': _PageDesc('page_token', 'next_page_token', 'topics'),
@@ -140,8 +137,11 @@ class PublisherClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -161,20 +161,49 @@ class PublisherClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A PublisherClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-pubsub-v1', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'publisher_client_config.json').decode())
@@ -183,7 +212,7 @@ class PublisherClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
+            metrics_headers=metrics_headers,
             bundle_descriptors=self._BUNDLE_DESCRIPTORS,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.iam_policy_stub = config.create_stub(
@@ -248,7 +277,7 @@ class PublisherClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Topic` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -265,7 +294,7 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+          >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
           >>> api = publisher_client.PublisherClient()
           >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
           >>> data = b''
@@ -275,12 +304,13 @@ class PublisherClient(object):
 
         Args:
           topic (string): The messages in the request will be published on this topic.
-          messages (list[:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PubsubMessage`]): The messages to publish.
+            Format is ``projects/{project}/topics/{topic}``.
+          messages (list[:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.PubsubMessage`]): The messages to publish.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PublishResponse` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.PublishResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -301,11 +331,12 @@ class PublisherClient(object):
 
         Args:
           topic (string): The name of the topic to get.
+            Format is ``projects/{project}/topics/{topic}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Topic` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -337,6 +368,7 @@ class PublisherClient(object):
 
         Args:
           project (string): The name of the cloud project that topics belong to.
+            Format is ``projects/{project}``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -347,7 +379,7 @@ class PublisherClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Topic` instances.
+          is an iterable of :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Topic` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -382,6 +414,7 @@ class PublisherClient(object):
 
         Args:
           topic (string): The name of the topic that subscriptions are attached to.
+            Format is ``projects/{project}/topics/{topic}``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -420,6 +453,7 @@ class PublisherClient(object):
 
         Args:
           topic (string): Name of the topic to delete.
+            Format is ``projects/{project}/topics/{topic}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -497,6 +531,8 @@ class PublisherClient(object):
     def test_iam_permissions(self, resource, permissions, options=None):
         """
         Returns permissions that a caller has on the specified resource.
+        If the resource does not exist, this will return an empty set of
+        permissions, not a NOT_FOUND error.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client

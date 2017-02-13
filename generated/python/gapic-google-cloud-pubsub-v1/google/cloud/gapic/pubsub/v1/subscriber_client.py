@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.pubsub.v1 Subscriber API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -32,7 +33,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+from google.cloud.proto.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
 
@@ -50,10 +51,6 @@ class SubscriberClient(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_subscriptions': _PageDesc('page_token', 'next_page_token',
@@ -168,8 +165,11 @@ class SubscriberClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -189,20 +189,49 @@ class SubscriberClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A SubscriberClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-pubsub-v1', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'subscriber_client_config.json').decode())
@@ -211,7 +240,7 @@ class SubscriberClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
+            metrics_headers=metrics_headers,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.iam_policy_stub = config.create_stub(
             iam_policy_pb2.IAMPolicyStub,
@@ -249,6 +278,9 @@ class SubscriberClient(object):
             self.subscriber_stub.Acknowledge, settings=defaults['acknowledge'])
         self._pull = api_callable.create_api_call(
             self.subscriber_stub.Pull, settings=defaults['pull'])
+        self._streaming_pull = api_callable.create_api_call(
+            self.subscriber_stub.StreamingPull,
+            settings=defaults['streaming_pull'])
         self._modify_push_config = api_callable.create_api_call(
             self.subscriber_stub.ModifyPushConfig,
             settings=defaults['modify_push_config'])
@@ -274,8 +306,11 @@ class SubscriberClient(object):
         If the subscription already exists, returns ``ALREADY_EXISTS``.
         If the corresponding topic doesn't exist, returns ``NOT_FOUND``.
         If the name is not provided in the request, the server will assign a random
-        name for this subscription on the same project as the topic. Note that
-        for REST API requests, you must specify a name.
+        name for this subscription on the same project as the topic, conforming
+        to the
+        `resource name format <https://cloud.google.com/pubsub/docs/overview#names>`_.
+        The generated name is populated in the returned Subscription object.
+        Note that for REST API requests, you must specify a name in the request.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
@@ -292,9 +327,10 @@ class SubscriberClient(object):
             plus (``+``) or percent signs (``%``). It must be between 3 and 255 characters
             in length, and it must not start with ``\"goog\"``.
           topic (string): The name of the topic from which this subscription is receiving messages.
+            Format is ``projects/{project}/topics/{topic}``.
             The value of this field will be ``_deleted-topic_`` if the topic has been
             deleted.
-          push_config (:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PushConfig`): If push delivery is used with this subscription, this field is
+          push_config (:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.PushConfig`): If push delivery is used with this subscription, this field is
             used to configure it. An empty ``pushConfig`` signifies that the subscriber
             will pull and ack messages using API methods.
           ack_deadline_seconds (int): This value is the maximum time after a subscriber receives a message
@@ -307,20 +343,20 @@ class SubscriberClient(object):
             deadline. To override this value for a given message, call
             ``ModifyAckDeadline`` with the corresponding ``ack_id`` if using
             pull.
+            The minimum custom deadline you can specify is 10 seconds.
             The maximum custom deadline you can specify is 600 seconds (10 minutes).
+            If this parameter is 0, a default value of 10 seconds is used.
 
             For push delivery, this value is also used to set the request timeout for
             the call to the push endpoint.
 
             If the subscriber never acknowledges the message, the Pub/Sub
             system will eventually redeliver the message.
-
-            If this parameter is 0, a default value of 10 seconds is used.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -347,11 +383,12 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The name of the subscription to get.
+            Format is ``projects/{project}/subscriptions/{sub}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -383,6 +420,7 @@ class SubscriberClient(object):
 
         Args:
           project (string): The name of the cloud project that subscriptions belong to.
+            Format is ``projects/{project}``.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -393,7 +431,7 @@ class SubscriberClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.Subscription` instances.
+          is an iterable of :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -407,11 +445,11 @@ class SubscriberClient(object):
 
     def delete_subscription(self, subscription, options=None):
         """
-        Deletes an existing subscription. All pending messages in the subscription
+        Deletes an existing subscription. All messages retained in the subscription
         are immediately dropped. Calls to ``Pull`` after deletion will return
         ``NOT_FOUND``. After a subscription is deleted, a new one may be created with
         the same name, but the new one has no association with the old
-        subscription, or its topic unless the same topic is specified.
+        subscription or its topic unless the same topic is specified.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
@@ -421,6 +459,7 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The subscription to delete.
+            Format is ``projects/{project}/subscriptions/{sub}``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -454,12 +493,15 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The name of the subscription.
+            Format is ``projects/{project}/subscriptions/{sub}``.
           ack_ids (list[string]): List of acknowledgment IDs.
           ack_deadline_seconds (int): The new ack deadline with respect to the time this request was sent to
-            the Pub/Sub system. Must be >= 0. For example, if the value is 10, the new
+            the Pub/Sub system. For example, if the value is 10, the new
             ack deadline will expire 10 seconds after the ``ModifyAckDeadline`` call
             was made. Specifying zero may immediately make the message available for
             another pull request.
+            The minimum deadline you can specify is 0 seconds.
+            The maximum deadline you can specify is 600 seconds (10 minutes).
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -491,6 +533,7 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The subscription whose message is being acknowledged.
+            Format is ``projects/{project}/subscriptions/{sub}``.
           ack_ids (list[string]): The acknowledgment ID for the messages being acknowledged that was returned
             by the Pub/Sub system in the ``Pull`` response. Must not be empty.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -524,18 +567,20 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The subscription from which messages should be pulled.
-          return_immediately (bool): If this is specified as true the system will respond immediately even if
-            it is not able to return a message in the ``Pull`` response. Otherwise the
-            system is allowed to wait until at least one message is available rather
-            than returning no messages. The client may cancel the request if it does
-            not wish to wait any longer for the response.
+            Format is ``projects/{project}/subscriptions/{sub}``.
+          return_immediately (bool): If this field set to true, the system will respond immediately even if
+            it there are no messages available to return in the ``Pull`` response.
+            Otherwise, the system may wait (for a bounded amount of time) until at
+            least one message is available, rather than returning no messages. The
+            client may cancel the request if it does not wish to wait any longer for
+            the response.
           max_messages (int): The maximum number of messages returned for this request. The Pub/Sub
             system may return fewer than the number specified.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PullResponse` instance.
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.PullResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -547,6 +592,48 @@ class SubscriberClient(object):
             return_immediately=return_immediately)
         return self._pull(request, options)
 
+    def streaming_pull(self, requests, options=None):
+        """
+        (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
+        respond with UNIMPLEMENTED errors unless you have been invited to test
+        this feature. Contact cloud-pubsub@google.com with any questions.
+        Establishes a stream with the server, which sends messages down to the
+        client. The client streams acknowledgements and ack deadline modifications
+        back to the server. The server will close the stream and return the status
+        on any error. The server may close the stream with status ``OK`` to reassign
+        server-side resources, in which case, the client should re-establish the
+        stream. ``UNAVAILABLE`` may also be returned in the case of a transient error
+        (e.g., a server restart). These should also be retried by the client. Flow
+        control can be achieved by configuring the underlying RPC channel.
+
+        EXPERIMENTAL: This method interface might change in the future.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
+          >>> api = subscriber_client.SubscriberClient()
+          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> stream_ack_deadline_seconds = 0
+          >>> request = pubsub_pb2.StreamingPullRequest(subscription, stream_ack_deadline_seconds)
+          >>> requests = [request]
+          >>> for element in api.streaming_pull(requests):
+          >>>   # process element
+          >>>   pass
+
+        Args:
+          requests (iterator[:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.StreamingPullRequest`]): The input objects.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          iterator[:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.StreamingPullResponse`].
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        return self._streaming_pull(requests, options)
+
     def modify_push_config(self, subscription, push_config, options=None):
         """
         Modifies the ``PushConfig`` for a specified subscription.
@@ -557,7 +644,7 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> from google.cloud.grpc.pubsub.v1 import pubsub_pb2
+          >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
           >>> api = subscriber_client.SubscriberClient()
           >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> push_config = pubsub_pb2.PushConfig()
@@ -565,7 +652,8 @@ class SubscriberClient(object):
 
         Args:
           subscription (string): The name of the subscription.
-          push_config (:class:`google.cloud.grpc.pubsub.v1.pubsub_pb2.PushConfig`): The push configuration for future deliveries.
+            Format is ``projects/{project}/subscriptions/{sub}``.
+          push_config (:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.PushConfig`): The push configuration for future deliveries.
 
             An empty ``pushConfig`` indicates that the Pub/Sub system should
             stop pushing messages from the given subscription and allow
@@ -649,6 +737,8 @@ class SubscriberClient(object):
     def test_iam_permissions(self, resource, permissions, options=None):
         """
         Returns permissions that a caller has on the specified resource.
+        If the resource does not exist, this will return an empty set of
+        permissions, not a NOT_FOUND error.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
