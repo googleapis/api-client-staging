@@ -1,4 +1,4 @@
-"""A setup module for the GRPC Stackdriver Error Reporting API.
+"""A setup module for the GRPC Stackdriver Error Reporting API service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -10,14 +10,14 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
+  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev'
   'oauth2client>=2.0.0, <4.0dev',
   'grpcio>=1.0.2, <2.0dev',
-  'googleapis-common-protos[grpc]>=1.5.0, <2.0dev'
 ]
 
 setuptools.setup(
-  name='grpc-google-cloud-error-reporting-v1beta1',
-  version='0.14.0',
+  name='proto-google-cloud-error-reporting-v1beta1',
+  version='0.15.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
@@ -38,6 +38,6 @@ setuptools.setup(
   install_requires=install_requires,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google.cloud.grpc.devtools.clouderrorreporting', 'google.cloud.grpc.devtools', 'google.cloud.grpc', 'google.cloud', 'google'],
+  namespace_packages=['google.cloud.proto.devtools.clouderrorreporting', 'google.cloud.proto.devtools', 'google.cloud.proto', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )

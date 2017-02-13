@@ -1,4 +1,4 @@
-# Copyright 2016, Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.devtools.clouderrorreporting.v1beta1 ErrorStatsService API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -33,7 +34,7 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.errorreporting.v1beta1 import enums
-from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import error_stats_service_pb2
+from google.cloud.proto.devtools.clouderrorreporting.v1beta1 import error_stats_service_pb2
 from google.protobuf import duration_pb2
 from google.protobuf import timestamp_pb2
 
@@ -51,10 +52,6 @@ class ErrorStatsServiceClient(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_group_stats': _PageDesc('page_token', 'next_page_token',
@@ -95,8 +92,11 @@ class ErrorStatsServiceClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -116,20 +116,49 @@ class ErrorStatsServiceClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A ErrorStatsServiceClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-error-reporting-v1beta1', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'error_stats_service_client_config.json').decode())
@@ -138,7 +167,7 @@ class ErrorStatsServiceClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
+            metrics_headers=metrics_headers,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.error_stats_service_stub = config.create_stub(
             error_stats_service_pb2.ErrorStatsServiceStub,
@@ -176,7 +205,7 @@ class ErrorStatsServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_stats_service_client
-          >>> from google.cloud.grpc.devtools.clouderrorreporting.v1beta1 import error_stats_service_pb2
+          >>> from google.cloud.proto.devtools.clouderrorreporting.v1beta1 import error_stats_service_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = error_stats_service_client.ErrorStatsServiceClient()
           >>> project_name = api.project_path('[PROJECT]')
@@ -201,10 +230,10 @@ class ErrorStatsServiceClient(object):
 
             Example: <code>projects/my-project-123</code>.
           group_id (list[string]): [Optional] List all <code>ErrorGroupStats</code> with these IDs.
-          service_filter (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+          service_filter (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only <code>ErrorGroupStats</code> which belong to a service
             context that matches the filter.
             Data for all service contexts is returned if this field is not specified.
-          time_range (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.QueryTimeRange`): [Optional] List data for the given time range.
+          time_range (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.QueryTimeRange`): [Optional] List data for the given time range.
             If not set a default time range is used. The field time_range_begin
             in the response will specify the beginning of this time range.
             Only <code>ErrorGroupStats</code> with a non-zero count in the given time
@@ -229,7 +258,7 @@ class ErrorStatsServiceClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ErrorGroupStats` instances.
+          is an iterable of :class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ErrorGroupStats` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -296,10 +325,10 @@ class ErrorStatsServiceClient(object):
             ID](https://support.google.com/cloud/answer/6158840).
             Example: ``projects/my-project-123``.
           group_id (string): [Required] The group for which events shall be returned.
-          service_filter (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only ErrorGroups which belong to a service context that
+          service_filter (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only ErrorGroups which belong to a service context that
             matches the filter.
             Data for all service contexts is returned if this field is not specified.
-          time_range (:class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.QueryTimeRange`): [Optional] List only data for the given time range.
+          time_range (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.QueryTimeRange`): [Optional] List only data for the given time range.
             If not set a default time range is used. The field time_range_begin
             in the response will specify the beginning of this time range.
           page_size (int): The maximum number of resources contained in the
@@ -312,7 +341,7 @@ class ErrorStatsServiceClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorEvent` instances.
+          is an iterable of :class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorEvent` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -352,7 +381,7 @@ class ErrorStatsServiceClient(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.DeleteEventsResponse` instance.
+          A :class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.DeleteEventsResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
