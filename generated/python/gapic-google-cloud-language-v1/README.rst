@@ -1,19 +1,19 @@
-GAPIC library for the Google Language API
+GAPIC library for the Google Cloud Natural Language API
 ================================================================================
 
 gapic-google-cloud-language-v1 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Google Language API`_ (v1) defined in the googleapis_ git repository
+easy-to-use client library for the `Google Cloud Natural Language API`_ (v1) defined in the googleapis_ git repository
 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/language/v1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1/
+.. _`Google Cloud Natural Language API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1
 
 Getting started
 ---------------
 
-gapic-google-cloud-language-v1 will allow you to connect to the Google
-Language API and access all its methods. In order to do this, you need
+gapic-google-cloud-language-v1 will allow you to connect to the
+Google Cloud Natural Language API and access all its methods. In order to do this, you need
 to set up authentication as well as install the library locally.
 
 

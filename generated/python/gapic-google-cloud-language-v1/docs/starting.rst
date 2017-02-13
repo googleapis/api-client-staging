@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gapic-google-cloud-language-v1 will allow you to connect to the `Google Language API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-cloud-language-v1 will allow you to connect to the `Google Cloud Natural Language API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1/
+.. _`Google Cloud Natural Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1/
 
 
 Installation
