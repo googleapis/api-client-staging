@@ -1,4 +1,4 @@
-# Copyright 2016, Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.cloud.speech.v1beta1 Speech API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -46,10 +47,6 @@ class SpeechClient(object):
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
 
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
-
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
     _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform', )
@@ -62,8 +59,11 @@ class SpeechClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -83,20 +83,49 @@ class SpeechClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A SpeechClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-speech-v1beta1', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'speech_client_config.json').decode())
@@ -105,7 +134,7 @@ class SpeechClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata})
+            metrics_headers=metrics_headers, )
         self.speech_stub = config.create_stub(
             cloud_speech_pb2.SpeechStub,
             channel=channel,
@@ -144,10 +173,14 @@ class SpeechClient(object):
 
         Example:
           >>> from google.cloud.gapic.speech.v1beta1 import speech_client
+          >>> from google.cloud.gapic.speech.v1beta1 import enums
           >>> from google.cloud.proto.speech.v1beta1 import cloud_speech_pb2
           >>> api = speech_client.SpeechClient()
-          >>> config = cloud_speech_pb2.RecognitionConfig()
-          >>> audio = cloud_speech_pb2.RecognitionAudio()
+          >>> encoding = enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED
+          >>> sample_rate = 0
+          >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate)
+          >>> uri = ''
+          >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
           >>> response = api.sync_recognize(config, audio)
 
         Args:
@@ -177,10 +210,14 @@ class SpeechClient(object):
 
         Example:
           >>> from google.cloud.gapic.speech.v1beta1 import speech_client
+          >>> from google.cloud.gapic.speech.v1beta1 import enums
           >>> from google.cloud.proto.speech.v1beta1 import cloud_speech_pb2
           >>> api = speech_client.SpeechClient()
-          >>> config = cloud_speech_pb2.RecognitionConfig()
-          >>> audio = cloud_speech_pb2.RecognitionAudio()
+          >>> encoding = enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED
+          >>> sample_rate = 0
+          >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate)
+          >>> uri = ''
+          >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
           >>> response = api.async_recognize(config, audio)
           >>>
           >>> def callback(operation_future):
