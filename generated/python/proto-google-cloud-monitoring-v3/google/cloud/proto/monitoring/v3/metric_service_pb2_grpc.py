@@ -2,21 +2,21 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
 import google.api.monitored_resource_pb2 as google_dot_api_dot_monitored__resource__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
 import google.api.metric_pb2 as google_dot_api_dot_metric__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
 import google.api.metric_pb2 as google_dot_api_dot_metric__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
-import google.cloud.grpc.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
+import google.cloud.proto.monitoring.v3.metric_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
@@ -33,42 +33,42 @@ class MetricServiceStub(object):
     """
     self.ListMonitoredResourceDescriptors = channel.unary_unary(
         '/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsResponse.FromString,
         )
     self.GetMonitoredResourceDescriptor = channel.unary_unary(
         '/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMonitoredResourceDescriptorRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMonitoredResourceDescriptorRequest.SerializeToString,
         response_deserializer=google_dot_api_dot_monitored__resource__pb2.MonitoredResourceDescriptor.FromString,
         )
     self.ListMetricDescriptors = channel.unary_unary(
         '/google.monitoring.v3.MetricService/ListMetricDescriptors',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsResponse.FromString,
         )
     self.GetMetricDescriptor = channel.unary_unary(
         '/google.monitoring.v3.MetricService/GetMetricDescriptor',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMetricDescriptorRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMetricDescriptorRequest.SerializeToString,
         response_deserializer=google_dot_api_dot_metric__pb2.MetricDescriptor.FromString,
         )
     self.CreateMetricDescriptor = channel.unary_unary(
         '/google.monitoring.v3.MetricService/CreateMetricDescriptor',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateMetricDescriptorRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateMetricDescriptorRequest.SerializeToString,
         response_deserializer=google_dot_api_dot_metric__pb2.MetricDescriptor.FromString,
         )
     self.DeleteMetricDescriptor = channel.unary_unary(
         '/google.monitoring.v3.MetricService/DeleteMetricDescriptor',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.DeleteMetricDescriptorRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.DeleteMetricDescriptorRequest.SerializeToString,
         response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
         )
     self.ListTimeSeries = channel.unary_unary(
         '/google.monitoring.v3.MetricService/ListTimeSeries',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesResponse.FromString,
         )
     self.CreateTimeSeries = channel.unary_unary(
         '/google.monitoring.v3.MetricService/CreateTimeSeries',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateTimeSeriesRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateTimeSeriesRequest.SerializeToString,
         response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
         )
 
@@ -145,42 +145,42 @@ def add_MetricServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'ListMonitoredResourceDescriptors': grpc.unary_unary_rpc_method_handler(
           servicer.ListMonitoredResourceDescriptors,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMonitoredResourceDescriptorsResponse.SerializeToString,
       ),
       'GetMonitoredResourceDescriptor': grpc.unary_unary_rpc_method_handler(
           servicer.GetMonitoredResourceDescriptor,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMonitoredResourceDescriptorRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMonitoredResourceDescriptorRequest.FromString,
           response_serializer=google_dot_api_dot_monitored__resource__pb2.MonitoredResourceDescriptor.SerializeToString,
       ),
       'ListMetricDescriptors': grpc.unary_unary_rpc_method_handler(
           servicer.ListMetricDescriptors,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListMetricDescriptorsResponse.SerializeToString,
       ),
       'GetMetricDescriptor': grpc.unary_unary_rpc_method_handler(
           servicer.GetMetricDescriptor,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMetricDescriptorRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.GetMetricDescriptorRequest.FromString,
           response_serializer=google_dot_api_dot_metric__pb2.MetricDescriptor.SerializeToString,
       ),
       'CreateMetricDescriptor': grpc.unary_unary_rpc_method_handler(
           servicer.CreateMetricDescriptor,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateMetricDescriptorRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateMetricDescriptorRequest.FromString,
           response_serializer=google_dot_api_dot_metric__pb2.MetricDescriptor.SerializeToString,
       ),
       'DeleteMetricDescriptor': grpc.unary_unary_rpc_method_handler(
           servicer.DeleteMetricDescriptor,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.DeleteMetricDescriptorRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.DeleteMetricDescriptorRequest.FromString,
           response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
       ),
       'ListTimeSeries': grpc.unary_unary_rpc_method_handler(
           servicer.ListTimeSeries,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.ListTimeSeriesResponse.SerializeToString,
       ),
       'CreateTimeSeries': grpc.unary_unary_rpc_method_handler(
           servicer.CreateTimeSeries,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateTimeSeriesRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_metric__service__pb2.CreateTimeSeriesRequest.FromString,
           response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
       ),
   }

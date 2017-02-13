@@ -2,18 +2,18 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
-import google.cloud.grpc.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
+import google.cloud.proto.monitoring.v3.group_service_pb2 as google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2
 
 
 class GroupServiceStub(object):
@@ -39,33 +39,33 @@ class GroupServiceStub(object):
     """
     self.ListGroups = channel.unary_unary(
         '/google.monitoring.v3.GroupService/ListGroups',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsResponse.FromString,
         )
     self.GetGroup = channel.unary_unary(
         '/google.monitoring.v3.GroupService/GetGroup',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.GetGroupRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.GetGroupRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
         )
     self.CreateGroup = channel.unary_unary(
         '/google.monitoring.v3.GroupService/CreateGroup',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.CreateGroupRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.CreateGroupRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
         )
     self.UpdateGroup = channel.unary_unary(
         '/google.monitoring.v3.GroupService/UpdateGroup',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.UpdateGroupRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.UpdateGroupRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.FromString,
         )
     self.DeleteGroup = channel.unary_unary(
         '/google.monitoring.v3.GroupService/DeleteGroup',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.DeleteGroupRequest.SerializeToString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.DeleteGroupRequest.SerializeToString,
         response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
         )
     self.ListGroupMembers = channel.unary_unary(
         '/google.monitoring.v3.GroupService/ListGroupMembers',
-        request_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersResponse.FromString,
         )
 
 
@@ -132,33 +132,33 @@ def add_GroupServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'ListGroups': grpc.unary_unary_rpc_method_handler(
           servicer.ListGroups,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupsResponse.SerializeToString,
       ),
       'GetGroup': grpc.unary_unary_rpc_method_handler(
           servicer.GetGroup,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.GetGroupRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.GetGroupRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
       ),
       'CreateGroup': grpc.unary_unary_rpc_method_handler(
           servicer.CreateGroup,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.CreateGroupRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.CreateGroupRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
       ),
       'UpdateGroup': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateGroup,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.UpdateGroupRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.UpdateGroupRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.Group.SerializeToString,
       ),
       'DeleteGroup': grpc.unary_unary_rpc_method_handler(
           servicer.DeleteGroup,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.DeleteGroupRequest.FromString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.DeleteGroupRequest.FromString,
           response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
       ),
       'ListGroupMembers': grpc.unary_unary_rpc_method_handler(
           servicer.ListGroupMembers,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__service__pb2.ListGroupMembersResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
