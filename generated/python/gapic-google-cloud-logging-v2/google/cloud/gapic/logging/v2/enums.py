@@ -14,36 +14,6 @@
 """Wrappers for protocol buffer enum types."""
 
 
-class LogMetric(object):
-    class ApiVersion(object):
-        """
-        Stackdriver Logging API version.
-
-        Attributes:
-          V2 (int): Stackdriver Logging API v2.
-          V1 (int): Stackdriver Logging API v1.
-        """
-        V2 = 0
-        V1 = 1
-
-
-class LogSink(object):
-    class VersionFormat(object):
-        """
-        Available log entry formats. Log entries can be written to Stackdriver
-        Logging in either format and can be exported in either format.
-        Version 2 is the preferred format.
-
-        Attributes:
-          VERSION_FORMAT_UNSPECIFIED (int): An unspecified version format will default to V2.
-          V2 (int): ``LogEntry`` version 2 format.
-          V1 (int): ``LogEntry`` version 1 format.
-        """
-        VERSION_FORMAT_UNSPECIFIED = 0
-        V2 = 1
-        V1 = 2
-
-
 class LabelDescriptor(object):
     class ValueType(object):
         """
@@ -113,3 +83,33 @@ class NullValue(object):
       NULL_VALUE (int): Null value.
     """
     NULL_VALUE = 0
+
+
+class LogSink(object):
+    class VersionFormat(object):
+        """
+        Available log entry formats. Log entries can be written to Stackdriver
+        Logging in either format and can be exported in either format.
+        Version 2 is the preferred format.
+
+        Attributes:
+          VERSION_FORMAT_UNSPECIFIED (int): An unspecified format version that will default to V2.
+          V2 (int): ``LogEntry`` version 2 format.
+          V1 (int): ``LogEntry`` version 1 format.
+        """
+        VERSION_FORMAT_UNSPECIFIED = 0
+        V2 = 1
+        V1 = 2
+
+
+class LogMetric(object):
+    class ApiVersion(object):
+        """
+        Stackdriver Logging API version.
+
+        Attributes:
+          V2 (int): Stackdriver Logging API v2.
+          V1 (int): Stackdriver Logging API v1.
+        """
+        V2 = 0
+        V1 = 1

@@ -17,7 +17,7 @@ install_requires = [
 
 setuptools.setup(
   name='proto-google-cloud-logging-v2',
-  version='0.15.0',
+  version='0.91.0',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[

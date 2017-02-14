@@ -1,4 +1,4 @@
-"""A setup module for the GAPIC Logging library.
+"""A setup module for the GAPIC Stackdriver Logging API library.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -9,20 +9,20 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.5.0, <2.0dev',
-    'google-gax>=0.15.0, <0.16dev',
-    'grpc-google-cloud-logging-v2>=0.90.0, <0.91dev',
+    'googleapis-common-protos>=1.5.2, <2.0dev',
+    'google-gax>=0.15.6, <0.16dev',
+    'proto-google-cloud-logging-v2>=0.91.0, <0.92dev',
     'oauth2client>=2.0.0, <4.0dev',
 ]
 
 setup(
     name='gapic-google-cloud-logging-v2',
-    version='0.90.1',
+    version='0.15.0',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
         'Intended Audience :: Developers',
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
@@ -39,6 +39,8 @@ setup(
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.gapic', 'google.cloud.gapic.logging', ],
-    url='https://github.com/googleapis/googleapis'
-)
+    namespace_packages=[
+        'google', 'google.cloud', 'google.cloud.gapic',
+        'google.cloud.gapic.logging'
+    ],
+    url='https://github.com/googleapis/googleapis')

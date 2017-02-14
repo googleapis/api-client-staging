@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.logging.v2 MetricsServiceV2 API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -33,7 +34,7 @@ from google.gax import path_template
 import google.gax
 
 from google.cloud.gapic.logging.v2 import enums
-from google.cloud.grpc.logging.v2 import logging_metrics_pb2
+from google.cloud.proto.logging.v2 import logging_metrics_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -46,10 +47,6 @@ class MetricsServiceV2Client(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_log_metrics': _PageDesc('page_token', 'next_page_token',
@@ -129,8 +126,11 @@ class MetricsServiceV2Client(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -150,20 +150,49 @@ class MetricsServiceV2Client(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A MetricsServiceV2Client object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-logging-v2', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'metrics_service_v2_client_config.json').decode())
@@ -172,7 +201,7 @@ class MetricsServiceV2Client(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
+            metrics_headers=metrics_headers,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.metrics_service_v2_stub = config.create_stub(
             logging_metrics_pb2.MetricsServiceV2Stub,
@@ -237,7 +266,7 @@ class MetricsServiceV2Client(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instances.
+          is an iterable of :class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -269,7 +298,7 @@ class MetricsServiceV2Client(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -285,7 +314,7 @@ class MetricsServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
-          >>> from google.cloud.grpc.logging.v2 import logging_metrics_pb2
+          >>> from google.cloud.proto.logging.v2 import logging_metrics_pb2
           >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> parent = api.project_path('[PROJECT]')
           >>> metric = logging_metrics_pb2.LogMetric()
@@ -299,13 +328,13 @@ class MetricsServiceV2Client(object):
                 \"projects/[PROJECT_ID]\"
 
             The new metric must be provided in the request.
-          metric (:class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric`): The new logs-based metric, which must not have an identifier that
+          metric (:class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric`): The new logs-based metric, which must not have an identifier that
             already exists.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -321,7 +350,7 @@ class MetricsServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
-          >>> from google.cloud.grpc.logging.v2 import logging_metrics_pb2
+          >>> from google.cloud.proto.logging.v2 import logging_metrics_pb2
           >>> api = metrics_service_v2_client.MetricsServiceV2Client()
           >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
           >>> metric = logging_metrics_pb2.LogMetric()
@@ -337,12 +366,12 @@ class MetricsServiceV2Client(object):
             The updated metric must be provided in the request and it's
             ``name`` field must be the same as ``[METRIC_ID]`` If the metric
             does not exist in ``[PROJECT_ID]``, then a new metric is created.
-          metric (:class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric`): The updated metric.
+          metric (:class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric`): The updated metric.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.logging.v2.logging_metrics_pb2.LogMetric` instance.
+          A :class:`google.cloud.proto.logging.v2.logging_metrics_pb2.LogMetric` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
