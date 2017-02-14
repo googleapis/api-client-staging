@@ -7,7 +7,7 @@ easy-to-use client library for the `Google Cloud Speech API`_ (v1beta1) defined 
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/speech/v1beta1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Cloud Speech API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/speech/v1beta1
+.. _`Google Cloud Speech API`: https://developers.google.com/apis-explorer/?hl=en_US#p/speech/v1beta1
 
 Getting started
 ---------------
