@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.monitoring.v3 MetricService API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -34,9 +35,9 @@ import google.gax
 
 from google.api import metric_pb2 as api_metric_pb2
 from google.cloud.gapic.monitoring.v3 import enums
-from google.cloud.grpc.monitoring.v3 import common_pb2
-from google.cloud.grpc.monitoring.v3 import metric_pb2 as v3_metric_pb2
-from google.cloud.grpc.monitoring.v3 import metric_service_pb2
+from google.cloud.proto.monitoring.v3 import common_pb2
+from google.cloud.proto.monitoring.v3 import metric_pb2 as v3_metric_pb2
+from google.cloud.proto.monitoring.v3 import metric_service_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -52,10 +53,6 @@ class MetricServiceClient(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_monitored_resource_descriptors':
@@ -184,8 +181,11 @@ class MetricServiceClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='UNKNOWN',
+                 lib_name=None,
+                 lib_version='UNKNOWN',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -205,20 +205,49 @@ class MetricServiceClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A MetricServiceClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-monitoring-v3', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'metric_service_client_config.json').decode())
@@ -227,7 +256,7 @@ class MetricServiceClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
+            metrics_headers=metrics_headers,
             page_descriptors=self._PAGE_DESCRIPTORS)
         self.metric_service_stub = config.create_stub(
             metric_service_pb2.MetricServiceStub,
@@ -514,7 +543,7 @@ class MetricServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.cloud.gapic.monitoring.v3 import enums
-          >>> from google.cloud.grpc.monitoring.v3 import common_pb2
+          >>> from google.cloud.proto.monitoring.v3 import common_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
@@ -545,10 +574,10 @@ class MetricServiceClient(object):
 
                 metric.type = \"compute.googleapis.com/instance/cpu/usage_time\" AND
                     metric.label.instance_name = \"my-instance-name\"
-          interval (:class:`google.cloud.grpc.monitoring.v3.common_pb2.TimeInterval`): The time interval for which results should be returned. Only time series
+          interval (:class:`google.cloud.proto.monitoring.v3.common_pb2.TimeInterval`): The time interval for which results should be returned. Only time series
             that contain data points in the specified interval are included
             in the response.
-          aggregation (:class:`google.cloud.grpc.monitoring.v3.common_pb2.Aggregation`): By default, the raw time series data is returned.
+          aggregation (:class:`google.cloud.proto.monitoring.v3.common_pb2.Aggregation`): By default, the raw time series data is returned.
             Use this field to combine multiple time series for different
             views of the data.
           order_by (string): Specifies the order in which the points of the time series should
@@ -565,7 +594,7 @@ class MetricServiceClient(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.monitoring.v3.metric_pb2.TimeSeries` instances.
+          is an iterable of :class:`google.cloud.proto.monitoring.v3.metric_pb2.TimeSeries` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -594,7 +623,7 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> from google.cloud.grpc.monitoring.v3 import metric_pb2 as v3_metric_pb2
+          >>> from google.cloud.proto.monitoring.v3 import metric_pb2 as v3_metric_pb2
           >>> api = metric_service_client.MetricServiceClient()
           >>> name = api.project_path('[PROJECT]')
           >>> time_series = []
@@ -603,7 +632,7 @@ class MetricServiceClient(object):
         Args:
           name (string): The project on which to execute the request. The format is
             ``\"projects/{project_id_or_number}\"``.
-          time_series (list[:class:`google.cloud.grpc.monitoring.v3.metric_pb2.TimeSeries`]): The new data to be added to a list of time series.
+          time_series (list[:class:`google.cloud.proto.monitoring.v3.metric_pb2.TimeSeries`]): The new data to be added to a list of time series.
             Adds at most one data point to each of several time series.  The new data
             point must be more recent than any other point in its time series.  Each
             ``TimeSeries`` value must fully specify a unique time series by supplying
