@@ -2,8 +2,8 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import google.cloud.grpc.vision.v1.image_annotator_pb2 as google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2
-import google.cloud.grpc.vision.v1.image_annotator_pb2 as google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2
+import google.cloud.proto.vision.v1.image_annotator_pb2 as google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2
+import google.cloud.proto.vision.v1.image_annotator_pb2 as google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2
 
 
 class ImageAnnotatorStub(object):
@@ -20,8 +20,8 @@ class ImageAnnotatorStub(object):
     """
     self.BatchAnnotateImages = channel.unary_unary(
         '/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages',
-        request_serializer=google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesResponse.FromString,
         )
 
 
@@ -43,8 +43,8 @@ def add_ImageAnnotatorServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'BatchAnnotateImages': grpc.unary_unary_rpc_method_handler(
           servicer.BatchAnnotateImages,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_image__annotator__pb2.BatchAnnotateImagesResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

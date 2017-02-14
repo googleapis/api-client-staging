@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gapic-google-cloud-vision-v1 will allow you to connect to the `Google Vision API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-cloud-vision-v1 will allow you to connect to the `Google Cloud Vision API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Vision API`: https://developers.google.com/apis-explorer/?hl=en_US#p/vision/v1/
+.. _`Google Cloud Vision API`: https://developers.google.com/apis-explorer/?hl=en_US#p/vision/v1/
 
 
 Installation
