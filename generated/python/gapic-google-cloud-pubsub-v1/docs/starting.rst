@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gapic-google-cloud-pubsub-v1 will allow you to connect to the `Google Pubsub API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-cloud-pubsub-v1 will allow you to connect to the `Google Cloud Pub/Sub API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Pubsub API`: https://developers.google.com/apis-explorer/?hl=en_US#p/pubsub/v1/
+.. _`Google Cloud Pub/Sub API`: https://developers.google.com/apis-explorer/?hl=en_US#p/pubsub/v1/
 
 
 Installation
