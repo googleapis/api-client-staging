@@ -2,8 +2,8 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import google.cloud.grpc.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2 as google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2
-import google.cloud.grpc.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2 as google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2
+import google.cloud.proto.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2 as google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2
+import google.cloud.proto.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2 as google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2
 
 
 class ReportErrorsServiceStub(object):
@@ -18,8 +18,8 @@ class ReportErrorsServiceStub(object):
     """
     self.ReportErrorEvent = channel.unary_unary(
         '/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent',
-        request_serializer=google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventRequest.SerializeToString,
-        response_deserializer=google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventResponse.FromString,
+        request_serializer=google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventResponse.FromString,
         )
 
 
@@ -46,8 +46,8 @@ def add_ReportErrorsServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'ReportErrorEvent': grpc.unary_unary_rpc_method_handler(
           servicer.ReportErrorEvent,
-          request_deserializer=google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventRequest.FromString,
-          response_serializer=google_dot_cloud_dot_grpc_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventResponse.SerializeToString,
+          request_deserializer=google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_report__errors__service__pb2.ReportErrorEventResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
