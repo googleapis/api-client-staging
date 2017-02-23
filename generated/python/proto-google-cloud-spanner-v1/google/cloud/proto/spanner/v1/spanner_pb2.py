@@ -20,7 +20,6 @@ from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.cloud.proto.spanner.v1 import keys_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_keys__pb2
 from google.cloud.proto.spanner.v1 import mutation_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_mutation__pb2
-from google.cloud.proto.spanner.v1 import query_plan_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_query__plan__pb2
 from google.cloud.proto.spanner.v1 import result_set_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_result__set__pb2
 from google.cloud.proto.spanner.v1 import transaction_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_transaction__pb2
 from google.cloud.proto.spanner.v1 import type_pb2 as google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2
@@ -30,9 +29,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/spanner/v1/spanner.proto',
   package='google.spanner.v1',
   syntax='proto3',
-  serialized_pb=_b('\n+google/cloud/proto/spanner/v1/spanner.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(google/cloud/proto/spanner/v1/keys.proto\x1a,google/cloud/proto/spanner/v1/mutation.proto\x1a.google/cloud/proto/spanner/v1/query_plan.proto\x1a.google/cloud/proto/spanner/v1/result_set.proto\x1a/google/cloud/proto/spanner/v1/transaction.proto\x1a(google/cloud/proto/spanner/v1/type.proto\"(\n\x14\x43reateSessionRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\"\x17\n\x07Session\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x11GetSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x14\x44\x65leteSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xb8\x03\n\x11\x45xecuteSqlRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\x0b\n\x03sql\x18\x03 \x01(\t\x12\'\n\x06params\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12I\n\x0bparam_types\x18\x05 \x03(\x0b\x32\x34.google.spanner.v1.ExecuteSqlRequest.ParamTypesEntry\x12\x14\n\x0cresume_token\x18\x06 \x01(\x0c\x12\x42\n\nquery_mode\x18\x07 \x01(\x0e\x32..google.spanner.v1.ExecuteSqlRequest.QueryMode\x1aJ\n\x0fParamTypesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12&\n\x05value\x18\x02 \x01(\x0b\x32\x17.google.spanner.v1.Type:\x02\x38\x01\".\n\tQueryMode\x12\n\n\x06NORMAL\x10\x00\x12\x08\n\x04PLAN\x10\x01\x12\x0b\n\x07PROFILE\x10\x02\"\xdb\x01\n\x0bReadRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\r\n\x05table\x18\x03 \x01(\t\x12\r\n\x05index\x18\x04 \x01(\t\x12\x0f\n\x07\x63olumns\x18\x05 \x03(\t\x12*\n\x07key_set\x18\x06 \x01(\x0b\x32\x19.google.spanner.v1.KeySet\x12\r\n\x05limit\x18\x08 \x01(\x03\x12\x14\n\x0cresume_token\x18\t \x01(\x0c\"b\n\x17\x42\x65ginTransactionRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x36\n\x07options\x18\x02 \x01(\x0b\x32%.google.spanner.v1.TransactionOptions\"\xc2\x01\n\rCommitRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x18\n\x0etransaction_id\x18\x02 \x01(\x0cH\x00\x12G\n\x16single_use_transaction\x18\x03 \x01(\x0b\x32%.google.spanner.v1.TransactionOptionsH\x00\x12.\n\tmutations\x18\x04 \x03(\x0b\x32\x1b.google.spanner.v1.MutationB\r\n\x0btransaction\"F\n\x0e\x43ommitResponse\x12\x34\n\x10\x63ommit_timestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x0fRollbackRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\x0c\x32\xe9\x0c\n\x07Spanner\x12\x98\x01\n\rCreateSession\x12\'.google.spanner.v1.CreateSessionRequest\x1a\x1a.google.spanner.v1.Session\"B\x82\xd3\xe4\x93\x02<\":/v1/{database=projects/*/instances/*/databases/*}/sessions\x12\x90\x01\n\nGetSession\x12$.google.spanner.v1.GetSessionRequest\x1a\x1a.google.spanner.v1.Session\"@\x82\xd3\xe4\x93\x02:\x12\x38/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\x92\x01\n\rDeleteSession\x12\'.google.spanner.v1.DeleteSessionRequest\x1a\x16.google.protobuf.Empty\"@\x82\xd3\xe4\x93\x02:*8/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\xa3\x01\n\nExecuteSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a\x1c.google.spanner.v1.ResultSet\"Q\x82\xd3\xe4\x93\x02K\"F/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeSql:\x01*\x12\xbe\x01\n\x13\x45xecuteStreamingSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a#.google.spanner.v1.PartialResultSet\"Z\x82\xd3\xe4\x93\x02T\"O/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeStreamingSql:\x01*0\x01\x12\x91\x01\n\x04Read\x12\x1e.google.spanner.v1.ReadRequest\x1a\x1c.google.spanner.v1.ResultSet\"K\x82\xd3\xe4\x93\x02\x45\"@/v1/{session=projects/*/instances/*/databases/*/sessions/*}:read:\x01*\x12\xac\x01\n\rStreamingRead\x12\x1e.google.spanner.v1.ReadRequest\x1a#.google.spanner.v1.PartialResultSet\"T\x82\xd3\xe4\x93\x02N\"I/v1/{session=projects/*/instances/*/databases/*/sessions/*}:streamingRead:\x01*0\x01\x12\xb7\x01\n\x10\x42\x65ginTransaction\x12*.google.spanner.v1.BeginTransactionRequest\x1a\x1e.google.spanner.v1.Transaction\"W\x82\xd3\xe4\x93\x02Q\"L/v1/{session=projects/*/instances/*/databases/*/sessions/*}:beginTransaction:\x01*\x12\x9c\x01\n\x06\x43ommit\x12 .google.spanner.v1.CommitRequest\x1a!.google.spanner.v1.CommitResponse\"M\x82\xd3\xe4\x93\x02G\"B/v1/{session=projects/*/instances/*/databases/*/sessions/*}:commit:\x01*\x12\x97\x01\n\x08Rollback\x12\".google.spanner.v1.RollbackRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\"D/v1/{session=projects/*/instances/*/databases/*/sessions/*}:rollback:\x01*Ba\n\x15\x63om.google.spanner.v1B\x0cSpannerProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spannerb\x06proto3')
+  serialized_pb=_b('\n+google/cloud/proto/spanner/v1/spanner.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(google/cloud/proto/spanner/v1/keys.proto\x1a,google/cloud/proto/spanner/v1/mutation.proto\x1a.google/cloud/proto/spanner/v1/result_set.proto\x1a/google/cloud/proto/spanner/v1/transaction.proto\x1a(google/cloud/proto/spanner/v1/type.proto\"(\n\x14\x43reateSessionRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\"\x17\n\x07Session\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x11GetSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x14\x44\x65leteSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xb8\x03\n\x11\x45xecuteSqlRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\x0b\n\x03sql\x18\x03 \x01(\t\x12\'\n\x06params\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12I\n\x0bparam_types\x18\x05 \x03(\x0b\x32\x34.google.spanner.v1.ExecuteSqlRequest.ParamTypesEntry\x12\x14\n\x0cresume_token\x18\x06 \x01(\x0c\x12\x42\n\nquery_mode\x18\x07 \x01(\x0e\x32..google.spanner.v1.ExecuteSqlRequest.QueryMode\x1aJ\n\x0fParamTypesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12&\n\x05value\x18\x02 \x01(\x0b\x32\x17.google.spanner.v1.Type:\x02\x38\x01\".\n\tQueryMode\x12\n\n\x06NORMAL\x10\x00\x12\x08\n\x04PLAN\x10\x01\x12\x0b\n\x07PROFILE\x10\x02\"\xdb\x01\n\x0bReadRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\r\n\x05table\x18\x03 \x01(\t\x12\r\n\x05index\x18\x04 \x01(\t\x12\x0f\n\x07\x63olumns\x18\x05 \x03(\t\x12*\n\x07key_set\x18\x06 \x01(\x0b\x32\x19.google.spanner.v1.KeySet\x12\r\n\x05limit\x18\x08 \x01(\x03\x12\x14\n\x0cresume_token\x18\t \x01(\x0c\"b\n\x17\x42\x65ginTransactionRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x36\n\x07options\x18\x02 \x01(\x0b\x32%.google.spanner.v1.TransactionOptions\"\xc2\x01\n\rCommitRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x18\n\x0etransaction_id\x18\x02 \x01(\x0cH\x00\x12G\n\x16single_use_transaction\x18\x03 \x01(\x0b\x32%.google.spanner.v1.TransactionOptionsH\x00\x12.\n\tmutations\x18\x04 \x03(\x0b\x32\x1b.google.spanner.v1.MutationB\r\n\x0btransaction\"F\n\x0e\x43ommitResponse\x12\x34\n\x10\x63ommit_timestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x0fRollbackRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\x0c\x32\xe9\x0c\n\x07Spanner\x12\x98\x01\n\rCreateSession\x12\'.google.spanner.v1.CreateSessionRequest\x1a\x1a.google.spanner.v1.Session\"B\x82\xd3\xe4\x93\x02<\":/v1/{database=projects/*/instances/*/databases/*}/sessions\x12\x90\x01\n\nGetSession\x12$.google.spanner.v1.GetSessionRequest\x1a\x1a.google.spanner.v1.Session\"@\x82\xd3\xe4\x93\x02:\x12\x38/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\x92\x01\n\rDeleteSession\x12\'.google.spanner.v1.DeleteSessionRequest\x1a\x16.google.protobuf.Empty\"@\x82\xd3\xe4\x93\x02:*8/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\xa3\x01\n\nExecuteSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a\x1c.google.spanner.v1.ResultSet\"Q\x82\xd3\xe4\x93\x02K\"F/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeSql:\x01*\x12\xbe\x01\n\x13\x45xecuteStreamingSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a#.google.spanner.v1.PartialResultSet\"Z\x82\xd3\xe4\x93\x02T\"O/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeStreamingSql:\x01*0\x01\x12\x91\x01\n\x04Read\x12\x1e.google.spanner.v1.ReadRequest\x1a\x1c.google.spanner.v1.ResultSet\"K\x82\xd3\xe4\x93\x02\x45\"@/v1/{session=projects/*/instances/*/databases/*/sessions/*}:read:\x01*\x12\xac\x01\n\rStreamingRead\x12\x1e.google.spanner.v1.ReadRequest\x1a#.google.spanner.v1.PartialResultSet\"T\x82\xd3\xe4\x93\x02N\"I/v1/{session=projects/*/instances/*/databases/*/sessions/*}:streamingRead:\x01*0\x01\x12\xb7\x01\n\x10\x42\x65ginTransaction\x12*.google.spanner.v1.BeginTransactionRequest\x1a\x1e.google.spanner.v1.Transaction\"W\x82\xd3\xe4\x93\x02Q\"L/v1/{session=projects/*/instances/*/databases/*/sessions/*}:beginTransaction:\x01*\x12\x9c\x01\n\x06\x43ommit\x12 .google.spanner.v1.CommitRequest\x1a!.google.spanner.v1.CommitResponse\"M\x82\xd3\xe4\x93\x02G\"B/v1/{session=projects/*/instances/*/databases/*/sessions/*}:commit:\x01*\x12\x97\x01\n\x08Rollback\x12\".google.spanner.v1.RollbackRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\"D/v1/{session=projects/*/instances/*/databases/*/sessions/*}:rollback:\x01*B{\n\x15\x63om.google.spanner.v1B\x0cSpannerProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_keys__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_mutation__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_query__plan__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_result__set__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_transaction__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_keys__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_mutation__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_result__set__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_transaction__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -58,8 +57,8 @@ _EXECUTESQLREQUEST_QUERYMODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1021,
-  serialized_end=1067,
+  serialized_start=973,
+  serialized_end=1019,
 )
 _sym_db.RegisterEnumDescriptor(_EXECUTESQLREQUEST_QUERYMODE)
 
@@ -90,8 +89,8 @@ _CREATESESSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=486,
-  serialized_end=526,
+  serialized_start=438,
+  serialized_end=478,
 )
 
 
@@ -121,8 +120,8 @@ _SESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=528,
-  serialized_end=551,
+  serialized_start=480,
+  serialized_end=503,
 )
 
 
@@ -152,8 +151,8 @@ _GETSESSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=553,
-  serialized_end=586,
+  serialized_start=505,
+  serialized_end=538,
 )
 
 
@@ -183,8 +182,8 @@ _DELETESESSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=588,
-  serialized_end=624,
+  serialized_start=540,
+  serialized_end=576,
 )
 
 
@@ -221,8 +220,8 @@ _EXECUTESQLREQUEST_PARAMTYPESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=945,
-  serialized_end=1019,
+  serialized_start=897,
+  serialized_end=971,
 )
 
 _EXECUTESQLREQUEST = _descriptor.Descriptor(
@@ -294,8 +293,8 @@ _EXECUTESQLREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=627,
-  serialized_end=1067,
+  serialized_start=579,
+  serialized_end=1019,
 )
 
 
@@ -374,8 +373,8 @@ _READREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1070,
-  serialized_end=1289,
+  serialized_start=1022,
+  serialized_end=1241,
 )
 
 
@@ -412,8 +411,8 @@ _BEGINTRANSACTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1291,
-  serialized_end=1389,
+  serialized_start=1243,
+  serialized_end=1341,
 )
 
 
@@ -467,8 +466,8 @@ _COMMITREQUEST = _descriptor.Descriptor(
       name='transaction', full_name='google.spanner.v1.CommitRequest.transaction',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1392,
-  serialized_end=1586,
+  serialized_start=1344,
+  serialized_end=1538,
 )
 
 
@@ -498,8 +497,8 @@ _COMMITRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1588,
-  serialized_end=1658,
+  serialized_start=1540,
+  serialized_end=1610,
 )
 
 
@@ -536,8 +535,8 @@ _ROLLBACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1660,
-  serialized_end=1718,
+  serialized_start=1612,
+  serialized_end=1670,
 )
 
 _EXECUTESQLREQUEST_PARAMTYPESENTRY.fields_by_name['value'].message_type = google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2._TYPE
@@ -650,7 +649,7 @@ _sym_db.RegisterMessage(RollbackRequest)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.spanner.v1B\014SpannerProtoP\001Z8google.golang.org/genproto/googleapis/spanner/v1;spanner'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\025com.google.spanner.v1B\014SpannerProtoP\001Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\252\002\027Google.Cloud.Spanner.V1'))
 _EXECUTESQLREQUEST_PARAMTYPESENTRY.has_options = True
 _EXECUTESQLREQUEST_PARAMTYPESENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 try:
@@ -749,10 +748,9 @@ try:
 
       Cloud Spanner limits the number of sessions that can exist at any given
       time; thus, it is a good idea to delete idle and/or unneeded sessions.
-      Aside from explicit deletes, Cloud Spanner can delete sessions for
-      which no operations are sent for more than an hour, or due to
-      internal errors. If a session is deleted, requests to it
-      return `NOT_FOUND`.
+      Aside from explicit deletes, Cloud Spanner can delete sessions for which no
+      operations are sent for more than an hour. If a session is deleted,
+      requests to it return `NOT_FOUND`.
 
       Idle sessions can be kept alive by sending a trivial SQL query
       periodically, e.g., `"SELECT 1"`.
@@ -957,10 +955,9 @@ try:
 
       Cloud Spanner limits the number of sessions that can exist at any given
       time; thus, it is a good idea to delete idle and/or unneeded sessions.
-      Aside from explicit deletes, Cloud Spanner can delete sessions for
-      which no operations are sent for more than an hour, or due to
-      internal errors. If a session is deleted, requests to it
-      return `NOT_FOUND`.
+      Aside from explicit deletes, Cloud Spanner can delete sessions for which no
+      operations are sent for more than an hour. If a session is deleted,
+      requests to it return `NOT_FOUND`.
 
       Idle sessions can be kept alive by sending a trivial SQL query
       periodically, e.g., `"SELECT 1"`.
@@ -1078,10 +1075,9 @@ try:
 
       Cloud Spanner limits the number of sessions that can exist at any given
       time; thus, it is a good idea to delete idle and/or unneeded sessions.
-      Aside from explicit deletes, Cloud Spanner can delete sessions for
-      which no operations are sent for more than an hour, or due to
-      internal errors. If a session is deleted, requests to it
-      return `NOT_FOUND`.
+      Aside from explicit deletes, Cloud Spanner can delete sessions for which no
+      operations are sent for more than an hour. If a session is deleted,
+      requests to it return `NOT_FOUND`.
 
       Idle sessions can be kept alive by sending a trivial SQL query
       periodically, e.g., `"SELECT 1"`.
