@@ -1,4 +1,4 @@
-"""A setup module for the GRPC Google Cloud Spanner API service.
+"""A setup module for the GRPC Cloud Spanner API service.
 
 See:
 https://packaging.python.org/en/latest/distributing.html
@@ -10,14 +10,14 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev'
+  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
   'oauth2client>=2.0.0, <4.0dev',
   'grpcio>=1.0.2, <2.0dev',
 ]
 
 setuptools.setup(
   name='proto-google-cloud-spanner-v1',
-  version='0.15.0',
+  version='0.15.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
@@ -33,7 +33,7 @@ setuptools.setup(
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: Implementation :: CPython',
   ],
-  description='GRPC library for the Google Cloud Spanner API',
+  description='GRPC library for the Cloud Spanner API',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
   license='Apache-2.0',

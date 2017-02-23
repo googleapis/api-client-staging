@@ -10,14 +10,14 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev'
+  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
   'oauth2client>=2.0.0, <4.0dev',
   'grpcio>=1.0.2, <2.0dev',
 ]
 
 setuptools.setup(
   name='proto-google-cloud-spanner-admin-instance-v1',
-  version='0.15.0',
+  version='0.15.1',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
