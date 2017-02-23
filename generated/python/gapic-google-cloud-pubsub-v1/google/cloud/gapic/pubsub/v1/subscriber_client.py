@@ -36,6 +36,7 @@ import google.gax
 from google.cloud.proto.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
+from google.protobuf import duration_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -166,9 +167,9 @@ class SubscriberClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -300,6 +301,8 @@ class SubscriberClient(object):
                             topic,
                             push_config=None,
                             ack_deadline_seconds=0,
+                            retain_acked_messages=False,
+                            message_retention_duration=None,
                             options=None):
         """
         Creates a subscription to a given topic.
@@ -352,6 +355,16 @@ class SubscriberClient(object):
 
             If the subscriber never acknowledges the message, the Pub/Sub
             system will eventually redeliver the message.
+          retain_acked_messages (bool): Indicates whether to retain acknowledged messages. If true, then
+            messages are not expunged from the subscription's backlog, even if they are
+            acknowledged, until they fall out of the ``message_retention_duration``
+            window.
+          message_retention_duration (:class:`google.protobuf.duration_pb2.Duration`): How long to retain unacknowledged messages in the subscription's backlog,
+            from the moment a message is published.
+            If ``retain_acked_messages`` is true, then this also configures the retention
+            of acknowledged messages, and thus configures how far back in time a ``Seek``
+            can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
+            minutes.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -364,11 +377,15 @@ class SubscriberClient(object):
         """
         if push_config is None:
             push_config = pubsub_pb2.PushConfig()
+        if message_retention_duration is None:
+            message_retention_duration = duration_pb2.Duration()
         request = pubsub_pb2.Subscription(
             name=name,
             topic=topic,
             push_config=push_config,
-            ack_deadline_seconds=ack_deadline_seconds)
+            ack_deadline_seconds=ack_deadline_seconds,
+            retain_acked_messages=retain_acked_messages,
+            message_retention_duration=message_retention_duration)
         return self._create_subscription(request, options)
 
     def get_subscription(self, subscription, options=None):
