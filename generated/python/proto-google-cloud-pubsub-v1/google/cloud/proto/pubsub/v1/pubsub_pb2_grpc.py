@@ -9,10 +9,18 @@ import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
@@ -20,6 +28,8 @@ import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.protobuf.empty_pb2 as google_dot_protobuf_dot_empty__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
+import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
 import google.cloud.proto.pubsub.v1.pubsub_pb2 as google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2
@@ -53,6 +63,11 @@ class SubscriberStub(object):
     self.GetSubscription = channel.unary_unary(
         '/google.pubsub.v1.Subscriber/GetSubscription',
         request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.GetSubscriptionRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Subscription.FromString,
+        )
+    self.UpdateSubscription = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/UpdateSubscription',
+        request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.UpdateSubscriptionRequest.SerializeToString,
         response_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Subscription.FromString,
         )
     self.ListSubscriptions = channel.unary_unary(
@@ -90,6 +105,26 @@ class SubscriberStub(object):
         request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ModifyPushConfigRequest.SerializeToString,
         response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
         )
+    self.ListSnapshots = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/ListSnapshots',
+        request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ListSnapshotsRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ListSnapshotsResponse.FromString,
+        )
+    self.CreateSnapshot = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/CreateSnapshot',
+        request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.CreateSnapshotRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Snapshot.FromString,
+        )
+    self.DeleteSnapshot = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/DeleteSnapshot',
+        request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.DeleteSnapshotRequest.SerializeToString,
+        response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+        )
+    self.Seek = channel.unary_unary(
+        '/google.pubsub.v1.Subscriber/Seek',
+        request_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.SeekRequest.SerializeToString,
+        response_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.SeekResponse.FromString,
+        )
 
 
 class SubscriberServicer(object):
@@ -115,6 +150,14 @@ class SubscriberServicer(object):
 
   def GetSubscription(self, request, context):
     """Gets the configuration details of a subscription.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateSubscription(self, request, context):
+    """Updates an existing subscription. Note that certain properties of a
+    subscription, such as its topic, are not modifiable.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -202,6 +245,47 @@ class SubscriberServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ListSnapshots(self, request, context):
+    """Lists the existing snapshots.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CreateSnapshot(self, request, context):
+    """Creates a snapshot from the requested subscription.
+    If the snapshot already exists, returns `ALREADY_EXISTS`.
+    If the requested subscription doesn't exist, returns `NOT_FOUND`.
+
+    If the name is not provided in the request, the server will assign a random
+    name for this snapshot on the same project as the subscription, conforming
+    to the
+    [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+    The generated name is populated in the returned Snapshot object.
+    Note that for REST API requests, you must specify a name in the request.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteSnapshot(self, request, context):
+    """Removes an existing snapshot. All messages retained in the snapshot
+    are immediately dropped. After a snapshot is deleted, a new one may be
+    created with the same name, but the new one has no association with the old
+    snapshot or its subscription, unless the same subscription is specified.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Seek(self, request, context):
+    """Seeks an existing subscription to a point in time or to a given snapshot,
+    whichever is provided in the request.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_SubscriberServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -213,6 +297,11 @@ def add_SubscriberServicer_to_server(servicer, server):
       'GetSubscription': grpc.unary_unary_rpc_method_handler(
           servicer.GetSubscription,
           request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.GetSubscriptionRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Subscription.SerializeToString,
+      ),
+      'UpdateSubscription': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateSubscription,
+          request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.UpdateSubscriptionRequest.FromString,
           response_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Subscription.SerializeToString,
       ),
       'ListSubscriptions': grpc.unary_unary_rpc_method_handler(
@@ -249,6 +338,26 @@ def add_SubscriberServicer_to_server(servicer, server):
           servicer.ModifyPushConfig,
           request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ModifyPushConfigRequest.FromString,
           response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'ListSnapshots': grpc.unary_unary_rpc_method_handler(
+          servicer.ListSnapshots,
+          request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ListSnapshotsRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.ListSnapshotsResponse.SerializeToString,
+      ),
+      'CreateSnapshot': grpc.unary_unary_rpc_method_handler(
+          servicer.CreateSnapshot,
+          request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.CreateSnapshotRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.Snapshot.SerializeToString,
+      ),
+      'DeleteSnapshot': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteSnapshot,
+          request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.DeleteSnapshotRequest.FromString,
+          response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+      ),
+      'Seek': grpc.unary_unary_rpc_method_handler(
+          servicer.Seek,
+          request_deserializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.SeekRequest.FromString,
+          response_serializer=google_dot_cloud_dot_proto_dot_pubsub_dot_v1_dot_pubsub__pb2.SeekResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
