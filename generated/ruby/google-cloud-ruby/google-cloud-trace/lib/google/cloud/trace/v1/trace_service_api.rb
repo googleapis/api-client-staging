@@ -178,10 +178,10 @@ module Google
               project_id,
               traces,
               options: nil
-            req = Google::Devtools::Cloudtrace::V1::PatchTracesRequest.new(
+            req = Google::Devtools::Cloudtrace::V1::PatchTracesRequest.new({
               project_id: project_id,
               traces: traces
-            )
+            }.delete_if { |_, v| v.nil? })
             @patch_traces.call(req, options)
           end
 
@@ -210,10 +210,10 @@ module Google
               project_id,
               trace_id,
               options: nil
-            req = Google::Devtools::Cloudtrace::V1::GetTraceRequest.new(
+            req = Google::Devtools::Cloudtrace::V1::GetTraceRequest.new({
               project_id: project_id,
               trace_id: trace_id
-            )
+            }.delete_if { |_, v| v.nil? })
             @get_trace.call(req, options)
           end
 
@@ -289,15 +289,15 @@ module Google
               filter: nil,
               order_by: nil,
               options: nil
-            req = Google::Devtools::Cloudtrace::V1::ListTracesRequest.new(
-              project_id: project_id
-            )
-            req.view = view unless view.nil?
-            req.page_size = page_size unless page_size.nil?
-            req.start_time = start_time unless start_time.nil?
-            req.end_time = end_time unless end_time.nil?
-            req.filter = filter unless filter.nil?
-            req.order_by = order_by unless order_by.nil?
+            req = Google::Devtools::Cloudtrace::V1::ListTracesRequest.new({
+              project_id: project_id,
+              view: view,
+              page_size: page_size,
+              start_time: start_time,
+              end_time: end_time,
+              filter: filter,
+              order_by: order_by
+            }.delete_if { |_, v| v.nil? })
             @list_traces.call(req, options)
           end
         end
