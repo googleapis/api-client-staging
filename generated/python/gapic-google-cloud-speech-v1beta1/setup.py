@@ -17,7 +17,7 @@ install_requires = [
 
 setup(
     name='gapic-google-cloud-speech-v1beta1',
-    version='0.15.1',
+    version='0.15.2',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
