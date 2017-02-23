@@ -2,13 +2,11 @@
   "interfaces": {
     "google.iam.admin.v1.IAM": {
       "retry_codes": {
-        "retry_codes_def": {
-          "idempotent": [
-            "DEADLINE_EXCEEDED",
-            "UNAVAILABLE"
-          ],
-          "non_idempotent": []
-        }
+        "idempotent": [
+          "DEADLINE_EXCEEDED",
+          "UNAVAILABLE"
+        ],
+        "non_idempotent": []
       },
       "retry_params": {
         "default": {
