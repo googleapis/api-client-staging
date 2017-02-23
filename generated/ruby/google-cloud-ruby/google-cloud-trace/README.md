@@ -1,26 +1,26 @@
-Stackdriver Cloudtrace API for Ruby
+Stackdriver Trace API for Ruby
 =================================================
 
-google-cloud-trace uses [Google API extensions][google-gax] to provide an
-easy-to-use client library for the [Stackdriver Cloudtrace API][] (v1) defined in the [googleapis][] git repository
+Stackdriver Trace API uses [Google API extensions][google-gax] to provide an
+easy-to-use client library for the [Stackdriver Trace API][] (v1) defined in the [googleapis][] git repository
 
 
-[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/devtools/cloudtrace/v1
+[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/devtools/cloudtrace/v1
 [google-gax]: https://github.com/googleapis/gax-ruby
-[Stackdriver Cloudtrace API]: https://developers.google.com/apis-explorer/#p/cloudtrace/v1/
+[Stackdriver Trace API]: https://developers.google.com/apis-explorer/#p/cloudtrace/v1/
 
 Getting started
 ---------------
 
-google-cloud-trace will allow you to connect to the [Stackdriver Cloudtrace API][] and access all its methods.
+google-cloud-trace will allow you to connect to the [Stackdriver Trace API][] and access all its methods.
 
-In order to achieve so you need to set up authentication as well as install the library locally.
+In order to achieve so, you need to set up authentication, as well as install the library locally.
 
 
 Setup Authentication
 --------------------
 
-To authenticate all your API calls, first install and setup the [Google Cloud SDK][].
+To authenticate all of your API calls, first install and setup the [Google Cloud SDK][].
 Once done, you can then run the following command in your terminal:
 
     $ gcloud beta auth application-default login
@@ -29,7 +29,7 @@ or
 
     $ gcloud auth login
 
-Please see [[gcloud beta auth application-default login][] document for the difference between these commands.
+Please see the [gcloud beta auth application-default login][] to find documentation showing the difference between these commands.
 
 [Google Cloud SDK]: https://cloud.google.com/sdk/
 [gcloud beta auth application-default login]: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login

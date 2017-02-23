@@ -32,18 +32,22 @@ module Google
           self.unmarshal_class_method = :decode
           self.service_name = 'google.logging.v2.LoggingServiceV2'
 
-          # Deletes a log and all its log entries.
-          # The log will reappear if it receives new entries.
+          # Deletes all the log entries in a log.
+          # The log reappears if it receives new entries.
           rpc :DeleteLog, DeleteLogRequest, Google::Protobuf::Empty
           # Writes log entries to Stackdriver Logging.  All log entries are
           # written by this method.
           rpc :WriteLogEntries, WriteLogEntriesRequest, WriteLogEntriesResponse
-          # Lists log entries.  Use this method to retrieve log entries from Cloud
-          # Logging.  For ways to export log entries, see
+          # Lists log entries.  Use this method to retrieve log entries from
+          # Stackdriver Logging.  For ways to export log entries, see
           # [Exporting Logs](/logging/docs/export).
           rpc :ListLogEntries, ListLogEntriesRequest, ListLogEntriesResponse
-          # Lists the monitored resource descriptors used by Stackdriver Logging.
+          # Lists the descriptors for monitored resource types used by Stackdriver
+          # Logging.
           rpc :ListMonitoredResourceDescriptors, ListMonitoredResourceDescriptorsRequest, ListMonitoredResourceDescriptorsResponse
+          # Lists the logs in projects or organizations.
+          # Only logs that have entries are listed.
+          rpc :ListLogs, ListLogsRequest, ListLogsResponse
         end
 
         Stub = Service.rpc_stub_class
