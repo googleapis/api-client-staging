@@ -567,7 +567,7 @@ public class SubscriberSettings extends ClientSettings {
 
       builder
           .updateSubscriptionSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder

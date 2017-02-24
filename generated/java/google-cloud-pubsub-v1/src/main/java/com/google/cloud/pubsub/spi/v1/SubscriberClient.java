@@ -28,8 +28,6 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.Empty;
 import com.google.protobuf.ExperimentalApi;
-import com.google.protobuf.FieldMask;
-import com.google.protobuf.Timestamp;
 import com.google.pubsub.v1.AcknowledgeRequest;
 import com.google.pubsub.v1.CreateSnapshotRequest;
 import com.google.pubsub.v1.DeleteSnapshotRequest;
@@ -437,36 +435,6 @@ public class SubscriberClient implements AutoCloseable {
    */
   public final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
     return getSubscriptionCallable;
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Updates an existing subscription. Note that certain properties of a subscription, such as its
-   * topic, are not modifiable.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
-   *   Subscription subscription = Subscription.newBuilder().build();
-   *   FieldMask updateMask = FieldMask.newBuilder().build();
-   *   Subscription response = subscriberClient.updateSubscription(subscription, updateMask);
-   * }
-   * </code></pre>
-   *
-   * @param subscription The updated subscription object.
-   * @param updateMask Indicates which fields in the provided subscription to update. Must be
-   *     specified and non-empty.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
-   */
-  public final Subscription updateSubscription(Subscription subscription, FieldMask updateMask) {
-
-    UpdateSubscriptionRequest request =
-        UpdateSubscriptionRequest.newBuilder()
-            .setSubscription(subscription)
-            .setUpdateMask(updateMask)
-            .build();
-    return updateSubscription(request);
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1260,8 +1228,8 @@ public class SubscriberClient implements AutoCloseable {
    * <pre><code>
    * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
    *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
-   *   String subscription = "";
-   *   Snapshot response = subscriberClient.createSnapshot(formattedName, subscription);
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+   *   Snapshot response = subscriberClient.createSnapshot(formattedName, formattedSubscription);
    * }
    * </code></pre>
    *
@@ -1300,10 +1268,10 @@ public class SubscriberClient implements AutoCloseable {
    * <pre><code>
    * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
    *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
-   *   String subscription = "";
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
    *   CreateSnapshotRequest request = CreateSnapshotRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setSubscription(subscription)
+   *     .setSubscription(formattedSubscription)
    *     .build();
    *   Snapshot response = subscriberClient.createSnapshot(request);
    * }
@@ -1332,10 +1300,10 @@ public class SubscriberClient implements AutoCloseable {
    * <pre><code>
    * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
    *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
-   *   String subscription = "";
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
    *   CreateSnapshotRequest request = CreateSnapshotRequest.newBuilder()
    *     .setName(formattedName)
-   *     .setSubscription(subscription)
+   *     .setSubscription(formattedSubscription)
    *     .build();
    *   RpcFuture&lt;Snapshot&gt; future = subscriberClient.createSnapshotCallable().futureCall(request);
    *   // Do something
@@ -1435,52 +1403,8 @@ public class SubscriberClient implements AutoCloseable {
    * <pre><code>
    * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
    *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
-   *   Timestamp time = Timestamp.newBuilder().build();
-   *   String snapshot = "";
-   *   SeekResponse response = subscriberClient.seek(formattedSubscription, time, snapshot);
-   * }
-   * </code></pre>
-   *
-   * @param subscription The subscription to affect.
-   * @param time The time to seek to. Messages retained in the subscription that were published
-   *     before this time are marked as acknowledged, and messages retained in the subscription that
-   *     were published after this time are marked as unacknowledged. Note that this operation
-   *     affects only those messages retained in the subscription (configured by the combination of
-   *     `message_retention_duration` and `retain_acked_messages`). For example, if `time`
-   *     corresponds to a point before the message retention window (or to a point before the
-   *     system's notion of the subscription creation time), only retained messages will be marked
-   *     as unacknowledged, and already-expunged messages will not be restored.
-   * @param snapshot The snapshot to seek to. The snapshot's topic must be the same as that of the
-   *     provided subscription. Format is `projects/{project}/snapshots/{snap}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
-   */
-  public final SeekResponse seek(String subscription, Timestamp time, String snapshot) {
-
-    SeekRequest request =
-        SeekRequest.newBuilder()
-            .setSubscription(subscription)
-            .setTime(time)
-            .setSnapshot(snapshot)
-            .build();
-    return seek(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided
-   * in the request.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
-   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
-   *   Timestamp time = Timestamp.newBuilder().build();
-   *   String snapshot = "";
    *   SeekRequest request = SeekRequest.newBuilder()
    *     .setSubscription(formattedSubscription)
-   *     .setTime(time)
-   *     .setSnapshot(snapshot)
    *     .build();
    *   SeekResponse response = subscriberClient.seek(request);
    * }
@@ -1503,12 +1427,8 @@ public class SubscriberClient implements AutoCloseable {
    * <pre><code>
    * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
    *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
-   *   Timestamp time = Timestamp.newBuilder().build();
-   *   String snapshot = "";
    *   SeekRequest request = SeekRequest.newBuilder()
    *     .setSubscription(formattedSubscription)
-   *     .setTime(time)
-   *     .setSnapshot(snapshot)
    *     .build();
    *   RpcFuture&lt;SeekResponse&gt; future = subscriberClient.seekCallable().futureCall(request);
    *   // Do something
