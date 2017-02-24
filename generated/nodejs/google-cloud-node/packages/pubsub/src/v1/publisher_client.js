@@ -75,19 +75,23 @@ var ALL_SCOPES = [
  * @class
  */
 function PublisherClient(gaxGrpc, grpcClients, opts) {
-  opts = opts || {};
-  var servicePath = opts.servicePath || SERVICE_ADDRESS;
-  var port = opts.port || DEFAULT_SERVICE_PORT;
-  var sslCreds = opts.sslCreds || null;
-  var clientConfig = opts.clientConfig || {};
-  var appName = opts.appName || 'gax';
-  var appVersion = opts.appVersion || gax.version;
+  opts = extend({
+    servicePath: SERVICE_ADDRESS,
+    port: DEFAULT_SERVICE_PORT,
+    clientConfig: {}
+  }, opts);
 
   var googleApiClient = [
-    appName + '/' + appVersion,
-    CODE_GEN_NAME_VERSION,
+    'gl-node/' + process.versions.node,
+    CODE_GEN_NAME_VERSION
+  ];
+  if (opts.libName && opts.libVersion) {
+    googleApiClient.push(opts.libName + '/' + opts.libVersion);
+  }
+  googleApiClient.push(
     'gax/' + gax.version,
-    'nodejs/' + process.version].join(' ');
+    'grpc/' + gaxGrpc.grpcVersion
+  );
 
   var bundleDescriptors = {
     publish: new gax.BundleDescriptor(
@@ -102,16 +106,15 @@ function PublisherClient(gaxGrpc, grpcClients, opts) {
   var defaults = gaxGrpc.constructSettings(
       'google.pubsub.v1.Publisher',
       configData,
-      clientConfig,
-      {'x-goog-api-client': googleApiClient});
+      opts.clientConfig,
+      {'x-goog-api-client': googleApiClient.join(' ')});
 
   var self = this;
 
+  this.auth = gaxGrpc.auth;
   var iamPolicyStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.iam.v1.IAMPolicy,
-      {sslCreds: sslCreds});
+      opts);
   var iamPolicyStubMethods = [
     'setIamPolicy',
     'getIamPolicy',
@@ -130,10 +133,8 @@ function PublisherClient(gaxGrpc, grpcClients, opts) {
   });
 
   var publisherStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.pubsub.v1.Publisher,
-      {sslCreds: sslCreds});
+      opts);
   var publisherStubMethods = [
     'createTopic',
     'publish',
@@ -215,6 +216,15 @@ PublisherClient.prototype.matchProjectFromTopicName = function(topicName) {
  */
 PublisherClient.prototype.matchTopicFromTopicName = function(topicName) {
   return TOPIC_PATH_TEMPLATE.match(topicName).topic;
+};
+
+/**
+ * Get the project ID used by this class.
+ * @aram {function(Error, string)} callback - the callback to be called with
+ *   the current project Id.
+ */
+PublisherClient.prototype.getProjectId = function(callback) {
+  return this.auth.getProjectId(callback);
 };
 
 // Service calls
@@ -864,10 +874,6 @@ function PublisherClientBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.appName
-   *   The codename of the calling service.
-   * @param {String=} opts.appVersion
-   *   The version of the calling service.
    */
   this.publisherClient = function(opts) {
     return new PublisherClient(gaxGrpc, grpcClients, opts);
