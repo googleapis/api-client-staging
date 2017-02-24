@@ -62,33 +62,36 @@ var ALL_SCOPES = [
  * @class
  */
 function LanguageServiceClient(gaxGrpc, grpcClients, opts) {
-  opts = opts || {};
-  var servicePath = opts.servicePath || SERVICE_ADDRESS;
-  var port = opts.port || DEFAULT_SERVICE_PORT;
-  var sslCreds = opts.sslCreds || null;
-  var clientConfig = opts.clientConfig || {};
-  var appName = opts.appName || 'gax';
-  var appVersion = opts.appVersion || gax.version;
+  opts = extend({
+    servicePath: SERVICE_ADDRESS,
+    port: DEFAULT_SERVICE_PORT,
+    clientConfig: {}
+  }, opts);
 
   var googleApiClient = [
-    appName + '/' + appVersion,
-    CODE_GEN_NAME_VERSION,
+    'gl-node/' + process.versions.node,
+    CODE_GEN_NAME_VERSION
+  ];
+  if (opts.libName && opts.libVersion) {
+    googleApiClient.push(opts.libName + '/' + opts.libVersion);
+  }
+  googleApiClient.push(
     'gax/' + gax.version,
-    'nodejs/' + process.version].join(' ');
+    'grpc/' + gaxGrpc.grpcVersion
+  );
 
   var defaults = gaxGrpc.constructSettings(
       'google.cloud.language.v1.LanguageService',
       configData,
-      clientConfig,
-      {'x-goog-api-client': googleApiClient});
+      opts.clientConfig,
+      {'x-goog-api-client': googleApiClient.join(' ')});
 
   var self = this;
 
+  this.auth = gaxGrpc.auth;
   var languageServiceStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.cloud.language.v1.LanguageService,
-      {sslCreds: sslCreds});
+      opts);
   var languageServiceStubMethods = [
     'analyzeSentiment',
     'analyzeEntities',
@@ -107,6 +110,15 @@ function LanguageServiceClient(gaxGrpc, grpcClients, opts) {
       null);
   });
 }
+
+/**
+ * Get the project ID used by this class.
+ * @aram {function(Error, string)} callback - the callback to be called with
+ *   the current project Id.
+ */
+LanguageServiceClient.prototype.getProjectId = function(callback) {
+  return this.auth.getProjectId(callback);
+};
 
 // Service calls
 
@@ -349,10 +361,6 @@ function LanguageServiceClientBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.appName
-   *   The codename of the calling service.
-   * @param {String=} opts.appVersion
-   *   The version of the calling service.
    */
   this.languageServiceClient = function(opts) {
     return new LanguageServiceClient(gaxGrpc, languageServiceClient, opts);

@@ -27,8 +27,16 @@ describe('SpeechClient', function() {
     it('invokes syncRecognize without error', function(done) {
       var client = speechV1beta1.speechClient();
       // Mock request
-      var config = {};
-      var audio = {};
+      var encoding = speechV1beta1.RecognitionConfig.AudioEncoding.FLAC;
+      var sampleRate = 44100;
+      var config = {
+          encoding : encoding,
+          sampleRate : sampleRate
+      };
+      var uri = 'gs://bucket_name/file_name.flac';
+      var audio = {
+          uri : uri
+      };
       var request = {
           config : config,
           audio : audio
@@ -50,8 +58,16 @@ describe('SpeechClient', function() {
     it('invokes syncRecognize with error', function(done) {
       var client = speechV1beta1.speechClient();
       // Mock request
-      var config = {};
-      var audio = {};
+      var encoding = speechV1beta1.RecognitionConfig.AudioEncoding.FLAC;
+      var sampleRate = 44100;
+      var config = {
+          encoding : encoding,
+          sampleRate : sampleRate
+      };
+      var uri = 'gs://bucket_name/file_name.flac';
+      var audio = {
+          uri : uri
+      };
       var request = {
           config : config,
           audio : audio
@@ -72,8 +88,16 @@ describe('SpeechClient', function() {
     it('invokes asyncRecognize without error', function(done) {
       var client = speechV1beta1.speechClient();
       // Mock request
-      var config = {};
-      var audio = {};
+      var encoding = speechV1beta1.RecognitionConfig.AudioEncoding.FLAC;
+      var sampleRate = 44100;
+      var config = {
+          encoding : encoding,
+          sampleRate : sampleRate
+      };
+      var uri = 'gs://bucket_name/file_name.flac';
+      var audio = {
+          uri : uri
+      };
       var request = {
           config : config,
           audio : audio
@@ -99,8 +123,16 @@ describe('SpeechClient', function() {
     it('invokes asyncRecognize with error', function(done) {
       var client = speechV1beta1.speechClient();
       // Mock request
-      var config = {};
-      var audio = {};
+      var encoding = speechV1beta1.RecognitionConfig.AudioEncoding.FLAC;
+      var sampleRate = 44100;
+      var config = {
+          encoding : encoding,
+          sampleRate : sampleRate
+      };
+      var uri = 'gs://bucket_name/file_name.flac';
+      var audio = {
+          uri : uri
+      };
       var request = {
           config : config,
           audio : audio

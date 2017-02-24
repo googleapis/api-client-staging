@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "google-proto-files": "^0.8.6",
-    "google-gax": "^0.10.6",
+    "google-gax": "^0.12.0",
     "extend": "^3.0.0"
   },
   "devDependencies": {
