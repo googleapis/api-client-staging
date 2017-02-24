@@ -1,5 +1,5 @@
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.google.cloud.pubsub.spi.v1;
 
+import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSnapshotsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
 import com.google.api.gax.grpc.ChannelAndExecutor;
@@ -27,9 +28,15 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.Empty;
 import com.google.protobuf.ExperimentalApi;
+import com.google.protobuf.FieldMask;
+import com.google.protobuf.Timestamp;
 import com.google.pubsub.v1.AcknowledgeRequest;
+import com.google.pubsub.v1.CreateSnapshotRequest;
+import com.google.pubsub.v1.DeleteSnapshotRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
 import com.google.pubsub.v1.GetSubscriptionRequest;
+import com.google.pubsub.v1.ListSnapshotsRequest;
+import com.google.pubsub.v1.ListSnapshotsResponse;
 import com.google.pubsub.v1.ListSubscriptionsRequest;
 import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
@@ -38,12 +45,16 @@ import com.google.pubsub.v1.ProjectName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
+import com.google.pubsub.v1.SeekRequest;
+import com.google.pubsub.v1.SeekResponse;
+import com.google.pubsub.v1.Snapshot;
 import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
+import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -123,6 +134,7 @@ public class SubscriberClient implements AutoCloseable {
 
   private final UnaryCallable<Subscription, Subscription> createSubscriptionCallable;
   private final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
+  private final UnaryCallable<UpdateSubscriptionRequest, Subscription> updateSubscriptionCallable;
   private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable;
   private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
@@ -134,6 +146,12 @@ public class SubscriberClient implements AutoCloseable {
   private final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
       streamingPullCallable;
   private final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
+  private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable;
+  private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
+      listSnapshotsPagedCallable;
+  private final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable;
+  private final UnaryCallable<DeleteSnapshotRequest, Empty> deleteSnapshotCallable;
+  private final UnaryCallable<SeekRequest, SeekResponse> seekCallable;
   private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
   private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
   private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
@@ -166,6 +184,8 @@ public class SubscriberClient implements AutoCloseable {
         UnaryCallable.create(settings.createSubscriptionSettings(), this.channel, this.executor);
     this.getSubscriptionCallable =
         UnaryCallable.create(settings.getSubscriptionSettings(), this.channel, this.executor);
+    this.updateSubscriptionCallable =
+        UnaryCallable.create(settings.updateSubscriptionSettings(), this.channel, this.executor);
     this.listSubscriptionsCallable =
         UnaryCallable.create(settings.listSubscriptionsSettings(), this.channel, this.executor);
     this.listSubscriptionsPagedCallable =
@@ -182,6 +202,16 @@ public class SubscriberClient implements AutoCloseable {
         StreamingCallable.create(settings.streamingPullSettings(), this.channel);
     this.modifyPushConfigCallable =
         UnaryCallable.create(settings.modifyPushConfigSettings(), this.channel, this.executor);
+    this.listSnapshotsCallable =
+        UnaryCallable.create(settings.listSnapshotsSettings(), this.channel, this.executor);
+    this.listSnapshotsPagedCallable =
+        UnaryCallable.createPagedVariant(
+            settings.listSnapshotsSettings(), this.channel, this.executor);
+    this.createSnapshotCallable =
+        UnaryCallable.create(settings.createSnapshotSettings(), this.channel, this.executor);
+    this.deleteSnapshotCallable =
+        UnaryCallable.create(settings.deleteSnapshotSettings(), this.channel, this.executor);
+    this.seekCallable = UnaryCallable.create(settings.seekSettings(), this.channel, this.executor);
     this.setIamPolicyCallable =
         UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
     this.getIamPolicyCallable =
@@ -407,6 +437,87 @@ public class SubscriberClient implements AutoCloseable {
    */
   public final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
     return getSubscriptionCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing subscription. Note that certain properties of a subscription, such as its
+   * topic, are not modifiable.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   Subscription subscription = Subscription.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   Subscription response = subscriberClient.updateSubscription(subscription, updateMask);
+   * }
+   * </code></pre>
+   *
+   * @param subscription The updated subscription object.
+   * @param updateMask Indicates which fields in the provided subscription to update. Must be
+   *     specified and non-empty.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final Subscription updateSubscription(Subscription subscription, FieldMask updateMask) {
+
+    UpdateSubscriptionRequest request =
+        UpdateSubscriptionRequest.newBuilder()
+            .setSubscription(subscription)
+            .setUpdateMask(updateMask)
+            .build();
+    return updateSubscription(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing subscription. Note that certain properties of a subscription, such as its
+   * topic, are not modifiable.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   Subscription subscription = Subscription.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateSubscriptionRequest request = UpdateSubscriptionRequest.newBuilder()
+   *     .setSubscription(subscription)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   Subscription response = subscriberClient.updateSubscription(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final Subscription updateSubscription(UpdateSubscriptionRequest request) {
+    return updateSubscriptionCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing subscription. Note that certain properties of a subscription, such as its
+   * topic, are not modifiable.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   Subscription subscription = Subscription.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateSubscriptionRequest request = UpdateSubscriptionRequest.newBuilder()
+   *     .setSubscription(subscription)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   RpcFuture&lt;Subscription&gt; future = subscriberClient.updateSubscriptionCallable().futureCall(request);
+   *   // Do something
+   *   Subscription response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<UpdateSubscriptionRequest, Subscription> updateSubscriptionCallable() {
+    return updateSubscriptionCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1026,6 +1137,387 @@ public class SubscriberClient implements AutoCloseable {
    */
   public final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
     return modifyPushConfigCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists the existing snapshots.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedProject = ProjectName.create("[PROJECT]").toString();
+   *   for (Snapshot element : subscriberClient.listSnapshots(formattedProject).iterateAllElements()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param project The name of the cloud project that snapshots belong to. Format is
+   *     `projects/{project}`.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final ListSnapshotsPagedResponse listSnapshots(String project) {
+    ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder().setProject(project).build();
+    return listSnapshots(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists the existing snapshots.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedProject = ProjectName.create("[PROJECT]").toString();
+   *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
+   *     .setProject(formattedProject)
+   *     .build();
+   *   for (Snapshot element : subscriberClient.listSnapshots(request).iterateAllElements()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final ListSnapshotsPagedResponse listSnapshots(ListSnapshotsRequest request) {
+    return listSnapshotsPagedCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists the existing snapshots.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedProject = ProjectName.create("[PROJECT]").toString();
+   *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
+   *     .setProject(formattedProject)
+   *     .build();
+   *   RpcFuture&lt;ListSnapshotsPagedResponse&gt; future = subscriberClient.listSnapshotsPagedCallable().futureCall(request);
+   *   // Do something
+   *   for (Snapshot element : future.get().iterateAllElements()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
+      listSnapshotsPagedCallable() {
+    return listSnapshotsPagedCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists the existing snapshots.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedProject = ProjectName.create("[PROJECT]").toString();
+   *   ListSnapshotsRequest request = ListSnapshotsRequest.newBuilder()
+   *     .setProject(formattedProject)
+   *     .build();
+   *   while (true) {
+   *     ListSnapshotsResponse response = subscriberClient.listSnapshotsCallable().call(request);
+   *     for (Snapshot element : response.getSnapshotsList()) {
+   *       // doThingsWith(element);
+   *     }
+   *     String nextPageToken = response.getNextPageToken();
+   *     if (!Strings.isNullOrEmpty(nextPageToken)) {
+   *       request = request.toBuilder().setPageToken(nextPageToken).build();
+   *     } else {
+   *       break;
+   *     }
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable() {
+    return listSnapshotsCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a snapshot from the requested subscription. If the snapshot already exists, returns
+   * `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`.
+   *
+   * <p>If the name is not provided in the request, the server will assign a random name for this
+   * snapshot on the same project as the subscription, conforming to the [resource name
+   * format](https://cloud.google.com/pubsub/docs/overview#names). The generated name is populated
+   * in the returned Snapshot object. Note that for REST API requests, you must specify a name in
+   * the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   String subscription = "";
+   *   Snapshot response = subscriberClient.createSnapshot(formattedName, subscription);
+   * }
+   * </code></pre>
+   *
+   * @param name Optional user-provided name for this snapshot. If the name is not provided in the
+   *     request, the server will assign a random name for this snapshot on the same project as the
+   *     subscription. Note that for REST API requests, you must specify a name. Format is
+   *     `projects/{project}/snapshots/{snap}`.
+   * @param subscription The subscription whose backlog the snapshot retains. Specifically, the
+   *     created snapshot is guaranteed to retain: (a) The existing backlog on the subscription.
+   *     More precisely, this is defined as the messages in the subscription's backlog that are
+   *     unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as:
+   *     (b) Any messages published to the subscription's topic following the successful completion
+   *     of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final Snapshot createSnapshot(String name, String subscription) {
+
+    CreateSnapshotRequest request =
+        CreateSnapshotRequest.newBuilder().setName(name).setSubscription(subscription).build();
+    return createSnapshot(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a snapshot from the requested subscription. If the snapshot already exists, returns
+   * `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`.
+   *
+   * <p>If the name is not provided in the request, the server will assign a random name for this
+   * snapshot on the same project as the subscription, conforming to the [resource name
+   * format](https://cloud.google.com/pubsub/docs/overview#names). The generated name is populated
+   * in the returned Snapshot object. Note that for REST API requests, you must specify a name in
+   * the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   String subscription = "";
+   *   CreateSnapshotRequest request = CreateSnapshotRequest.newBuilder()
+   *     .setName(formattedName)
+   *     .setSubscription(subscription)
+   *     .build();
+   *   Snapshot response = subscriberClient.createSnapshot(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final Snapshot createSnapshot(CreateSnapshotRequest request) {
+    return createSnapshotCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Creates a snapshot from the requested subscription. If the snapshot already exists, returns
+   * `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`.
+   *
+   * <p>If the name is not provided in the request, the server will assign a random name for this
+   * snapshot on the same project as the subscription, conforming to the [resource name
+   * format](https://cloud.google.com/pubsub/docs/overview#names). The generated name is populated
+   * in the returned Snapshot object. Note that for REST API requests, you must specify a name in
+   * the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   String subscription = "";
+   *   CreateSnapshotRequest request = CreateSnapshotRequest.newBuilder()
+   *     .setName(formattedName)
+   *     .setSubscription(subscription)
+   *     .build();
+   *   RpcFuture&lt;Snapshot&gt; future = subscriberClient.createSnapshotCallable().futureCall(request);
+   *   // Do something
+   *   Snapshot response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable() {
+    return createSnapshotCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Removes an existing snapshot. All messages retained in the snapshot are immediately dropped.
+   * After a snapshot is deleted, a new one may be created with the same name, but the new one has
+   * no association with the old snapshot or its subscription, unless the same subscription is
+   * specified.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSnapshot = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   subscriberClient.deleteSnapshot(formattedSnapshot);
+   * }
+   * </code></pre>
+   *
+   * @param snapshot The name of the snapshot to delete. Format is
+   *     `projects/{project}/snapshots/{snap}`.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final void deleteSnapshot(String snapshot) {
+
+    DeleteSnapshotRequest request =
+        DeleteSnapshotRequest.newBuilder().setSnapshot(snapshot).build();
+    deleteSnapshot(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Removes an existing snapshot. All messages retained in the snapshot are immediately dropped.
+   * After a snapshot is deleted, a new one may be created with the same name, but the new one has
+   * no association with the old snapshot or its subscription, unless the same subscription is
+   * specified.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSnapshot = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   DeleteSnapshotRequest request = DeleteSnapshotRequest.newBuilder()
+   *     .setSnapshot(formattedSnapshot)
+   *     .build();
+   *   subscriberClient.deleteSnapshot(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  private final void deleteSnapshot(DeleteSnapshotRequest request) {
+    deleteSnapshotCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Removes an existing snapshot. All messages retained in the snapshot are immediately dropped.
+   * After a snapshot is deleted, a new one may be created with the same name, but the new one has
+   * no association with the old snapshot or its subscription, unless the same subscription is
+   * specified.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSnapshot = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+   *   DeleteSnapshotRequest request = DeleteSnapshotRequest.newBuilder()
+   *     .setSnapshot(formattedSnapshot)
+   *     .build();
+   *   RpcFuture&lt;Void&gt; future = subscriberClient.deleteSnapshotCallable().futureCall(request);
+   *   // Do something
+   *   future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<DeleteSnapshotRequest, Empty> deleteSnapshotCallable() {
+    return deleteSnapshotCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided
+   * in the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+   *   Timestamp time = Timestamp.newBuilder().build();
+   *   String snapshot = "";
+   *   SeekResponse response = subscriberClient.seek(formattedSubscription, time, snapshot);
+   * }
+   * </code></pre>
+   *
+   * @param subscription The subscription to affect.
+   * @param time The time to seek to. Messages retained in the subscription that were published
+   *     before this time are marked as acknowledged, and messages retained in the subscription that
+   *     were published after this time are marked as unacknowledged. Note that this operation
+   *     affects only those messages retained in the subscription (configured by the combination of
+   *     `message_retention_duration` and `retain_acked_messages`). For example, if `time`
+   *     corresponds to a point before the message retention window (or to a point before the
+   *     system's notion of the subscription creation time), only retained messages will be marked
+   *     as unacknowledged, and already-expunged messages will not be restored.
+   * @param snapshot The snapshot to seek to. The snapshot's topic must be the same as that of the
+   *     provided subscription. Format is `projects/{project}/snapshots/{snap}`.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final SeekResponse seek(String subscription, Timestamp time, String snapshot) {
+
+    SeekRequest request =
+        SeekRequest.newBuilder()
+            .setSubscription(subscription)
+            .setTime(time)
+            .setSnapshot(snapshot)
+            .build();
+    return seek(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided
+   * in the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+   *   Timestamp time = Timestamp.newBuilder().build();
+   *   String snapshot = "";
+   *   SeekRequest request = SeekRequest.newBuilder()
+   *     .setSubscription(formattedSubscription)
+   *     .setTime(time)
+   *     .setSnapshot(snapshot)
+   *     .build();
+   *   SeekResponse response = subscriberClient.seek(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  public final SeekResponse seek(SeekRequest request) {
+    return seekCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided
+   * in the request.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriberClient subscriberClient = SubscriberClient.create()) {
+   *   String formattedSubscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+   *   Timestamp time = Timestamp.newBuilder().build();
+   *   String snapshot = "";
+   *   SeekRequest request = SeekRequest.newBuilder()
+   *     .setSubscription(formattedSubscription)
+   *     .setTime(time)
+   *     .setSnapshot(snapshot)
+   *     .build();
+   *   RpcFuture&lt;SeekResponse&gt; future = subscriberClient.seekCallable().futureCall(request);
+   *   // Do something
+   *   SeekResponse response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<SeekRequest, SeekResponse> seekCallable() {
+    return seekCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD

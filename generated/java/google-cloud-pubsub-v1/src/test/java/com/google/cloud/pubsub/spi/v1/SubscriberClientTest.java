@@ -1,5 +1,5 @@
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.google.cloud.pubsub.spi.v1;
 
+import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSnapshotsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
 import com.google.api.gax.core.RpcStreamObserver;
@@ -31,10 +32,16 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
+import com.google.protobuf.FieldMask;
 import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.Timestamp;
 import com.google.pubsub.v1.AcknowledgeRequest;
+import com.google.pubsub.v1.CreateSnapshotRequest;
+import com.google.pubsub.v1.DeleteSnapshotRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
 import com.google.pubsub.v1.GetSubscriptionRequest;
+import com.google.pubsub.v1.ListSnapshotsRequest;
+import com.google.pubsub.v1.ListSnapshotsResponse;
 import com.google.pubsub.v1.ListSubscriptionsRequest;
 import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
@@ -43,12 +50,17 @@ import com.google.pubsub.v1.ProjectName;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
 import com.google.pubsub.v1.PushConfig;
+import com.google.pubsub.v1.SeekRequest;
+import com.google.pubsub.v1.SeekResponse;
+import com.google.pubsub.v1.Snapshot;
+import com.google.pubsub.v1.SnapshotName;
 import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
+import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import java.io.IOException;
@@ -109,11 +121,13 @@ public class SubscriberClientTest {
     SubscriptionName name2 = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     TopicNameOneof topic2 = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
     int ackDeadlineSeconds2 = -921632575;
+    boolean retainAckedMessages = false;
     Subscription expectedResponse =
         Subscription.newBuilder()
             .setNameWithSubscriptionName(name2)
             .setTopicWithTopicNameOneof(topic2)
             .setAckDeadlineSeconds(ackDeadlineSeconds2)
+            .setRetainAckedMessages(retainAckedMessages)
             .build();
     mockSubscriber.addResponse(expectedResponse);
 
@@ -161,11 +175,13 @@ public class SubscriberClientTest {
     SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
     TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
     int ackDeadlineSeconds = 2135351438;
+    boolean retainAckedMessages = false;
     Subscription expectedResponse =
         Subscription.newBuilder()
             .setNameWithSubscriptionName(name)
             .setTopicWithTopicNameOneof(topic)
             .setAckDeadlineSeconds(ackDeadlineSeconds)
+            .setRetainAckedMessages(retainAckedMessages)
             .build();
     mockSubscriber.addResponse(expectedResponse);
 
@@ -191,6 +207,53 @@ public class SubscriberClientTest {
       SubscriptionName subscription = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
 
       client.getSubscription(subscription);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void updateSubscriptionTest() {
+    SubscriptionName name = SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]");
+    TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
+    int ackDeadlineSeconds = 2135351438;
+    boolean retainAckedMessages = false;
+    Subscription expectedResponse =
+        Subscription.newBuilder()
+            .setNameWithSubscriptionName(name)
+            .setTopicWithTopicNameOneof(topic)
+            .setAckDeadlineSeconds(ackDeadlineSeconds)
+            .setRetainAckedMessages(retainAckedMessages)
+            .build();
+    mockSubscriber.addResponse(expectedResponse);
+
+    Subscription subscription = Subscription.newBuilder().build();
+    FieldMask updateMask = FieldMask.newBuilder().build();
+
+    Subscription actualResponse = client.updateSubscription(subscription, updateMask);
+    Assert.assertEquals(expectedResponse, actualResponse);
+
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    UpdateSubscriptionRequest actualRequest = (UpdateSubscriptionRequest) actualRequests.get(0);
+
+    Assert.assertEquals(subscription, actualRequest.getSubscription());
+    Assert.assertEquals(updateMask, actualRequest.getUpdateMask());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void updateSubscriptionExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+
+    try {
+      Subscription subscription = Subscription.newBuilder().build();
+      FieldMask updateMask = FieldMask.newBuilder().build();
+
+      client.updateSubscription(subscription, updateMask);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
@@ -479,6 +542,164 @@ public class SubscriberClientTest {
       PushConfig pushConfig = PushConfig.newBuilder().build();
 
       client.modifyPushConfig(subscription, pushConfig);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listSnapshotsTest() {
+    String nextPageToken = "";
+    Snapshot snapshotsElement = Snapshot.newBuilder().build();
+    List<Snapshot> snapshots = Arrays.asList(snapshotsElement);
+    ListSnapshotsResponse expectedResponse =
+        ListSnapshotsResponse.newBuilder()
+            .setNextPageToken(nextPageToken)
+            .addAllSnapshots(snapshots)
+            .build();
+    mockSubscriber.addResponse(expectedResponse);
+
+    String formattedProject = ProjectName.create("[PROJECT]").toString();
+
+    ListSnapshotsPagedResponse pagedListResponse = client.listSnapshots(formattedProject);
+
+    List<Snapshot> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
+    Assert.assertEquals(1, resources.size());
+    Assert.assertEquals(expectedResponse.getSnapshotsList().get(0), resources.get(0));
+
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    ListSnapshotsRequest actualRequest = (ListSnapshotsRequest) actualRequests.get(0);
+
+    Assert.assertEquals(formattedProject, actualRequest.getProject());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listSnapshotsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+
+    try {
+      String formattedProject = ProjectName.create("[PROJECT]").toString();
+
+      client.listSnapshots(formattedProject);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void createSnapshotTest() {
+    String name2 = "name2-1052831874";
+    String topic = "topic110546223";
+    Snapshot expectedResponse = Snapshot.newBuilder().setName(name2).setTopic(topic).build();
+    mockSubscriber.addResponse(expectedResponse);
+
+    String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+    String subscription = "subscription341203229";
+
+    Snapshot actualResponse = client.createSnapshot(formattedName, subscription);
+    Assert.assertEquals(expectedResponse, actualResponse);
+
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    CreateSnapshotRequest actualRequest = (CreateSnapshotRequest) actualRequests.get(0);
+
+    Assert.assertEquals(formattedName, actualRequest.getName());
+    Assert.assertEquals(subscription, actualRequest.getSubscription());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void createSnapshotExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+
+    try {
+      String formattedName = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+      String subscription = "subscription341203229";
+
+      client.createSnapshot(formattedName, subscription);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void deleteSnapshotTest() {
+    Empty expectedResponse = Empty.newBuilder().build();
+    mockSubscriber.addResponse(expectedResponse);
+
+    String formattedSnapshot = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+
+    client.deleteSnapshot(formattedSnapshot);
+
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    DeleteSnapshotRequest actualRequest = (DeleteSnapshotRequest) actualRequests.get(0);
+
+    Assert.assertEquals(formattedSnapshot, actualRequest.getSnapshot());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void deleteSnapshotExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+
+    try {
+      String formattedSnapshot = SnapshotName.create("[PROJECT]", "[SNAPSHOT]").toString();
+
+      client.deleteSnapshot(formattedSnapshot);
+      Assert.fail("No exception raised");
+    } catch (ApiException e) {
+      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void seekTest() {
+    SeekResponse expectedResponse = SeekResponse.newBuilder().build();
+    mockSubscriber.addResponse(expectedResponse);
+
+    String formattedSubscription =
+        SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+    Timestamp time = Timestamp.newBuilder().build();
+    String snapshot = "snapshot284874180";
+
+    SeekResponse actualResponse = client.seek(formattedSubscription, time, snapshot);
+    Assert.assertEquals(expectedResponse, actualResponse);
+
+    List<GeneratedMessageV3> actualRequests = mockSubscriber.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    SeekRequest actualRequest = (SeekRequest) actualRequests.get(0);
+
+    Assert.assertEquals(formattedSubscription, actualRequest.getSubscription());
+    Assert.assertEquals(time, actualRequest.getTime());
+    Assert.assertEquals(snapshot, actualRequest.getSnapshot());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void seekExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    mockSubscriber.addException(exception);
+
+    try {
+      String formattedSubscription =
+          SubscriptionName.create("[PROJECT]", "[SUBSCRIPTION]").toString();
+      Timestamp time = Timestamp.newBuilder().build();
+      String snapshot = "snapshot284874180";
+
+      client.seek(formattedSubscription, time, snapshot);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
