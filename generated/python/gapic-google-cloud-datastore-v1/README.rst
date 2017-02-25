@@ -7,7 +7,7 @@ easy-to-use client library for the `Google Cloud Datastore API`_ (v1) defined in
 
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/datastore/v1
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Cloud Datastore API API`: https://developers.google.com/apis-explorer/?hl=en_US#p/datastore/v1
+.. _`Google Cloud Datastore API`: https://developers.google.com/apis-explorer/?hl=en_US#p/datastore/v1
 
 Getting started
 ---------------
