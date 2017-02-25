@@ -14,18 +14,63 @@
 """Wrappers for protocol buffer enum types."""
 
 
+class TextAnnotation(object):
+    class DetectedBreak(object):
+        class BreakType(object):
+            """
+            Enum to denote the type of break found. New line, space etc.
+
+            Attributes:
+              UNKNOWN (int): Unknown break label type.
+              SPACE (int): Regular space.
+              SURE_SPACE (int): Sure space (very wide).
+              EOL_SURE_SPACE (int): Line-wrapping break.
+              HYPHEN (int): End-line hyphen that is not present in text; does
+              LINE_BREAK (int): not co-occur with SPACE, LEADER_SPACE, or
+                LINE_BREAK.
+                Line break that ends a paragraph.
+            """
+            UNKNOWN = 0
+            SPACE = 1
+            SURE_SPACE = 2
+            EOL_SURE_SPACE = 3
+            HYPHEN = 4
+            LINE_BREAK = 5
+
+
+class Block(object):
+    class BlockType(object):
+        """
+        Type of a block (text, image etc) as identified by OCR.
+
+        Attributes:
+          UNKNOWN (int): Unknown block type.
+          TEXT (int): Regular text block.
+          TABLE (int): Table block.
+          PICTURE (int): Image block.
+          RULER (int): Horizontal/vertical line box.
+          BARCODE (int): Barcode block.
+        """
+        UNKNOWN = 0
+        TEXT = 1
+        TABLE = 2
+        PICTURE = 3
+        RULER = 4
+        BARCODE = 5
+
+
 class Likelihood(object):
     """
-    A bucketized representation of likelihood meant to give our clients highly
-    stable results across model upgrades.
+    A bucketized representation of likelihood, which is intended to give clients
+    highly stable results across model upgrades.
 
     Attributes:
       UNKNOWN (int): Unknown likelihood.
-      VERY_UNLIKELY (int): The image very unlikely belongs to the vertical specified.
-      UNLIKELY (int): The image unlikely belongs to the vertical specified.
-      POSSIBLE (int): The image possibly belongs to the vertical specified.
-      LIKELY (int): The image likely belongs to the vertical specified.
-      VERY_LIKELY (int): The image very likely belongs to the vertical specified.
+      VERY_UNLIKELY (int): It is very unlikely that the image belongs to the specified vertical.
+      UNLIKELY (int): It is unlikely that the image belongs to the specified vertical.
+      POSSIBLE (int): It is possible that the image belongs to the specified vertical.
+      LIKELY (int): It is likely that the image belongs to the specified vertical.
+      VERY_LIKELY (int): It is very likely that the image belongs to the specified vertical.
     """
     UNKNOWN = 0
     VERY_UNLIKELY = 1
@@ -47,8 +92,12 @@ class Feature(object):
           LOGO_DETECTION (int): Run logo detection.
           LABEL_DETECTION (int): Run label detection.
           TEXT_DETECTION (int): Run OCR.
-          SAFE_SEARCH_DETECTION (int): Run various computer vision models to compute image safe-search properties.
-          IMAGE_PROPERTIES (int): Compute a set of properties about the image (such as the image's dominant colors).
+          DOCUMENT_TEXT_DETECTION (int): Run dense text document OCR. Takes precedence when both
+            DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.
+          SAFE_SEARCH_DETECTION (int): Run computer vision models to compute image safe-search properties.
+          IMAGE_PROPERTIES (int): Compute a set of image properties, such as the image's dominant colors.
+          CROP_HINTS (int): Run crop hints.
+          WEB_DETECTION (int): Run web detection.
         """
         TYPE_UNSPECIFIED = 0
         FACE_DETECTION = 1
@@ -56,8 +105,11 @@ class Feature(object):
         LOGO_DETECTION = 3
         LABEL_DETECTION = 4
         TEXT_DETECTION = 5
+        DOCUMENT_TEXT_DETECTION = 11
         SAFE_SEARCH_DETECTION = 6
         IMAGE_PROPERTIES = 7
+        CROP_HINTS = 9
+        WEB_DETECTION = 10
 
 
 class FaceAnnotation(object):
@@ -65,9 +117,9 @@ class FaceAnnotation(object):
         class Type(object):
             """
             Face landmark (feature) type.
-            Left and right are defined from the vantage of the viewer of the image,
-            without considering mirror projections typical of photos. So, LEFT_EYE,
-            typically is the person's right eye.
+            Left and right are defined from the vantage of the viewer of the image
+            without considering mirror projections typical of photos. So, ``LEFT_EYE``,
+            typically, is the person's right eye.
 
             Attributes:
               UNKNOWN_LANDMARK (int): Unknown face landmark detected. Should not be filled.

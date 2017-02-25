@@ -7,9 +7,9 @@ import google.cloud.proto.vision.v1.image_annotator_pb2 as google_dot_cloud_dot_
 
 
 class ImageAnnotatorStub(object):
-  """Service that performs Google Cloud Vision API detection tasks, such as face,
-  landmark, logo, label, and text detection, over client images, and returns
-  detected entities from the images.
+  """Service that performs Google Cloud Vision API detection tasks over client
+  images, such as face, landmark, logo, label, and text detection. The
+  ImageAnnotator service returns detected entities from the images.
   """
 
   def __init__(self, channel):
@@ -26,9 +26,9 @@ class ImageAnnotatorStub(object):
 
 
 class ImageAnnotatorServicer(object):
-  """Service that performs Google Cloud Vision API detection tasks, such as face,
-  landmark, logo, label, and text detection, over client images, and returns
-  detected entities from the images.
+  """Service that performs Google Cloud Vision API detection tasks over client
+  images, such as face, landmark, logo, label, and text detection. The
+  ImageAnnotator service returns detected entities from the images.
   """
 
   def BatchAnnotateImages(self, request, context):
