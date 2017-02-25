@@ -20,7 +20,7 @@ import shlex
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('..'))
 
-__version__ = '0.15.0'
+__version__ = '0.15.2'
 
 # -- General configuration ------------------------------------------------
 
@@ -60,7 +60,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'gapic-google-cloud-vision-v1'
-copyright = u'2016, Google'
+copyright = u'2017, Google'
 author = u'Google APIs'
 
 # The version info for the project you're documenting, acts as replacement for
