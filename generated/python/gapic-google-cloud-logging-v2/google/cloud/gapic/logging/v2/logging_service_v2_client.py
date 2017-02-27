@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.logging.v2 LoggingServiceV2 API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -34,8 +35,8 @@ import google.gax
 
 from google.api import monitored_resource_pb2
 from google.cloud.gapic.logging.v2 import enums
-from google.cloud.grpc.logging.v2 import log_entry_pb2
-from google.cloud.grpc.logging.v2 import logging_pb2
+from google.cloud.proto.logging.v2 import log_entry_pb2
+from google.cloud.proto.logging.v2 import logging_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -49,15 +50,12 @@ class LoggingServiceV2Client(object):
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
 
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
-
     _PAGE_DESCRIPTORS = {
         'list_log_entries': _PageDesc('page_token', 'next_page_token',
                                       'entries'),
         'list_monitored_resource_descriptors':
-        _PageDesc('page_token', 'next_page_token', 'resource_descriptors')
+        _PageDesc('page_token', 'next_page_token', 'resource_descriptors'),
+        'list_logs': _PageDesc('page_token', 'next_page_token', 'log_names')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
@@ -133,8 +131,11 @@ class LoggingServiceV2Client(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='',
+                 lib_name=None,
+                 lib_version='',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -154,20 +155,49 @@ class LoggingServiceV2Client(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A LoggingServiceV2Client object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-logging-v2', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'logging_service_v2_client_config.json').decode())
@@ -176,8 +206,8 @@ class LoggingServiceV2Client(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            metrics_headers=metrics_headers,
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.logging_service_v2_stub = config.create_stub(
             logging_pb2.LoggingServiceV2Stub,
             channel=channel,
@@ -199,6 +229,9 @@ class LoggingServiceV2Client(object):
         self._list_monitored_resource_descriptors = api_callable.create_api_call(
             self.logging_service_v2_stub.ListMonitoredResourceDescriptors,
             settings=defaults['list_monitored_resource_descriptors'])
+        self._list_logs = api_callable.create_api_call(
+            self.logging_service_v2_stub.ListLogs,
+            settings=defaults['list_logs'])
 
     # Service calls
     def delete_log(self, log_name, options=None):
@@ -248,7 +281,7 @@ class LoggingServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
-          >>> from google.cloud.grpc.logging.v2 import log_entry_pb2
+          >>> from google.cloud.proto.logging.v2 import log_entry_pb2
           >>> api = logging_service_v2_client.LoggingServiceV2Client()
           >>> entries = []
           >>> response = api.write_log_entries(entries)
@@ -277,11 +310,11 @@ class LoggingServiceV2Client(object):
                     \"zone\": \"us-central1-a\", \"instance_id\": \"00000000000000000000\" }}
 
             See ``LogEntry``.
-          labels (dict[string -> :class:`google.cloud.grpc.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. Default labels that are added to the ``labels`` field of all log
+          labels (dict[string -> :class:`google.cloud.proto.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. Default labels that are added to the ``labels`` field of all log
             entries in ``entries``. If a log entry already has a label with the same key
             as a label in this parameter, then the log entry's label is not changed.
             See ``LogEntry``.
-          entries (list[:class:`google.cloud.grpc.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. Values supplied for the fields
+          entries (list[:class:`google.cloud.proto.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. Values supplied for the fields
             ``log_name``, ``resource``, and ``labels`` in this ``entries.write`` request are
             added to those log entries that do not provide their own values for the
             fields.
@@ -299,7 +332,7 @@ class LoggingServiceV2Client(object):
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.cloud.grpc.logging.v2.logging_pb2.WriteLogEntriesResponse` instance.
+          A :class:`google.cloud.proto.logging.v2.logging_pb2.WriteLogEntriesResponse` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
@@ -325,8 +358,8 @@ class LoggingServiceV2Client(object):
                          page_size=0,
                          options=None):
         """
-        Lists log entries.  Use this method to retrieve log entries from Cloud
-        Logging.  For ways to export log entries, see
+        Lists log entries.  Use this method to retrieve log entries from
+        Stackdriver Logging.  For ways to export log entries, see
         `Exporting Logs <https://cloud.google.com/logging/docs/export>`_.
 
         Example:
@@ -347,12 +380,12 @@ class LoggingServiceV2Client(object):
           >>>     pass
 
         Args:
-          project_ids (list[string]): Deprecated. One or more project identifiers or project numbers from which
-            to retrieve log entries.  Example: ``\"my-project-1A\"``. If
-            present, these project identifiers are converted to resource format and
-            added to the list of resources in ``resourceNames``. Callers should use
-            ``resourceNames`` rather than this parameter.
-          resource_names (list[string]): Required. One or more cloud resources from which to retrieve log
+          project_ids (list[string]): Deprecated. Use ``resource_names`` instead.  One or more project identifiers
+            or project numbers from which to retrieve log entries.  Example:
+            ``\"my-project-1A\"``. If present, these project identifiers are converted to
+            resource name format and added to the list of resources in
+            ``resource_names``.
+          resource_names (list[string]): Required. Names of one or more resources from which to retrieve log
             entries:
 
             ::
@@ -363,7 +396,10 @@ class LoggingServiceV2Client(object):
             Projects listed in the ``project_ids`` field are added to this list.
           filter_ (string): Optional. A filter that chooses which log entries to return.  See [Advanced
             Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
-            match the filter are returned.  An empty filter matches all log entries.
+            match the filter are returned.  An empty filter matches all log entries in
+            the resources listed in ``resource_names``. Referencing a parent resource
+            that is not listed in ``resource_names`` will cause the filter to return no
+            results.
             The maximum length of the filter is 20000 characters.
           order_by (string): Optional. How the results should be sorted.  Presently, the only permitted
             values are ``\"timestamp asc\"`` (default) and ``\"timestamp desc\"``. The first
@@ -381,7 +417,7 @@ class LoggingServiceV2Client(object):
 
         Returns:
           A :class:`google.gax.PageIterator` instance. By default, this
-          is an iterable of :class:`google.cloud.grpc.logging.v2.log_entry_pb2.LogEntry` instances.
+          is an iterable of :class:`google.cloud.proto.logging.v2.log_entry_pb2.LogEntry` instances.
           This object can also be configured to iterate over the pages
           of the response through the `CallOptions` parameter.
 
@@ -401,7 +437,8 @@ class LoggingServiceV2Client(object):
 
     def list_monitored_resource_descriptors(self, page_size=0, options=None):
         """
-        Lists the monitored resource descriptors used by Stackdriver Logging.
+        Lists the descriptors for monitored resource types used by Stackdriver
+        Logging.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
@@ -441,3 +478,54 @@ class LoggingServiceV2Client(object):
         request = logging_pb2.ListMonitoredResourceDescriptorsRequest(
             page_size=page_size)
         return self._list_monitored_resource_descriptors(request, options)
+
+    def list_logs(self, parent, page_size=0, options=None):
+        """
+        Lists the logs in projects or organizations.
+        Only logs that have entries are listed.
+
+        Example:
+          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.gax import CallOptions, INITIAL_PAGE
+          >>> api = logging_service_v2_client.LoggingServiceV2Client()
+          >>> parent = api.project_path('[PROJECT]')
+          >>>
+          >>> # Iterate over all results
+          >>> for element in api.list_logs(parent):
+          >>>   # process element
+          >>>   pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in api.list_logs(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>   for element in page:
+          >>>     # process element
+          >>>     pass
+
+        Args:
+          parent (string): Required. The resource name that owns the logs:
+
+            ::
+
+                \"projects/[PROJECT_ID]\"
+                \"organizations/[ORGANIZATION_ID]\"
+          page_size (int): The maximum number of resources contained in the
+            underlying API response. If page streaming is performed per-
+            resource, this parameter does not affect the return value. If page
+            streaming is performed per-page, this determines the maximum number
+            of resources in a page.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.gax.PageIterator` instance. By default, this
+          is an iterable of string instances.
+          This object can also be configured to iterate over the pages
+          of the response through the `CallOptions` parameter.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = logging_pb2.ListLogsRequest(
+            parent=parent, page_size=page_size)
+        return self._list_logs(request, options)
