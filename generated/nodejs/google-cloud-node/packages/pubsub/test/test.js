@@ -463,10 +463,12 @@ describe('SubscriberClient', function() {
       var name2 = 'name2-1052831874';
       var topic2 = 'topic2-1139259102';
       var ackDeadlineSeconds = 2135351438;
+      var retainAckedMessages = false;
       var expectedResponse = {
           name : name2,
           topic : topic2,
-          ackDeadlineSeconds : ackDeadlineSeconds
+          ackDeadlineSeconds : ackDeadlineSeconds,
+          retainAckedMessages : retainAckedMessages
       };
 
       // Mock Grpc layer
@@ -513,10 +515,12 @@ describe('SubscriberClient', function() {
       var name = 'name3373707';
       var topic = 'topic110546223';
       var ackDeadlineSeconds = 2135351438;
+      var retainAckedMessages = false;
       var expectedResponse = {
           name : name,
           topic : topic,
-          ackDeadlineSeconds : ackDeadlineSeconds
+          ackDeadlineSeconds : ackDeadlineSeconds,
+          retainAckedMessages : retainAckedMessages
       };
 
       // Mock Grpc layer
@@ -541,6 +545,60 @@ describe('SubscriberClient', function() {
       client._getSubscription = mockSimpleGrpcMethod(request, null, error);
 
       client.getSubscription(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('updateSubscription', function() {
+    it('invokes updateSubscription without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var subscription = {};
+      var updateMask = {};
+      var request = {
+          subscription : subscription,
+          updateMask : updateMask
+      };
+
+      // Mock response
+      var name = 'name3373707';
+      var topic = 'topic110546223';
+      var ackDeadlineSeconds = 2135351438;
+      var retainAckedMessages = false;
+      var expectedResponse = {
+          name : name,
+          topic : topic,
+          ackDeadlineSeconds : ackDeadlineSeconds,
+          retainAckedMessages : retainAckedMessages
+      };
+
+      // Mock Grpc layer
+      client._updateSubscription = mockSimpleGrpcMethod(request, expectedResponse);
+
+      client.updateSubscription(request, function(err, response) {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes updateSubscription with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var subscription = {};
+      var updateMask = {};
+      var request = {
+          subscription : subscription,
+          updateMask : updateMask
+      };
+
+      // Mock Grpc layer
+      client._updateSubscription = mockSimpleGrpcMethod(request, null, error);
+
+      client.updateSubscription(request, function(err, response) {
         assert(err instanceof Error);
         assert.equal(err.code, FAKE_STATUS_CODE);
         done();
@@ -852,6 +910,184 @@ describe('SubscriberClient', function() {
       client._modifyPushConfig = mockSimpleGrpcMethod(request, null, error);
 
       client.modifyPushConfig(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('listSnapshots', function() {
+    it('invokes listSnapshots without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedProject = client.projectPath("[PROJECT]");
+      var request = {
+          project : formattedProject
+      };
+
+      // Mock response
+      var nextPageToken = '';
+      var snapshotsElement = {};
+      var snapshots = [snapshotsElement];
+      var expectedResponse = {
+          nextPageToken : nextPageToken,
+          snapshots : snapshots
+      };
+
+      // Mock Grpc layer
+      client._listSnapshots = function(actualRequest, options, callback) {
+        assert.deepStrictEqual(actualRequest, request);
+        callback(null, expectedResponse.snapshots);
+      };
+
+      client.listSnapshots(request, function(err, response) {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse.snapshots);
+        done();
+      });
+    });
+
+    it('invokes listSnapshots with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedProject = client.projectPath("[PROJECT]");
+      var request = {
+          project : formattedProject
+      };
+
+      // Mock Grpc layer
+      client._listSnapshots = mockSimpleGrpcMethod(request, null, error);
+
+      client.listSnapshots(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('createSnapshot', function() {
+    it('invokes createSnapshot without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedName = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          name : formattedName,
+          subscription : formattedSubscription
+      };
+
+      // Mock response
+      var name2 = 'name2-1052831874';
+      var topic = 'topic110546223';
+      var expectedResponse = {
+          name : name2,
+          topic : topic
+      };
+
+      // Mock Grpc layer
+      client._createSnapshot = mockSimpleGrpcMethod(request, expectedResponse);
+
+      client.createSnapshot(request, function(err, response) {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes createSnapshot with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedName = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          name : formattedName,
+          subscription : formattedSubscription
+      };
+
+      // Mock Grpc layer
+      client._createSnapshot = mockSimpleGrpcMethod(request, null, error);
+
+      client.createSnapshot(request, function(err, response) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('deleteSnapshot', function() {
+    it('invokes deleteSnapshot without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSnapshot = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+      var request = {
+          snapshot : formattedSnapshot
+      };
+
+      // Mock Grpc layer
+      client._deleteSnapshot = mockSimpleGrpcMethod(request);
+
+      client.deleteSnapshot(request, function(err) {
+        assert.ifError(err);
+        done();
+      });
+    });
+
+    it('invokes deleteSnapshot with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSnapshot = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+      var request = {
+          snapshot : formattedSnapshot
+      };
+
+      // Mock Grpc layer
+      client._deleteSnapshot = mockSimpleGrpcMethod(request, null, error);
+
+      client.deleteSnapshot(request, function(err) {
+        assert(err instanceof Error);
+        assert.equal(err.code, FAKE_STATUS_CODE);
+        done();
+      });
+    });
+  });
+
+  describe('seek', function() {
+    it('invokes seek without error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          subscription : formattedSubscription
+      };
+
+      // Mock response
+      var expectedResponse = {};
+
+      // Mock Grpc layer
+      client._seek = mockSimpleGrpcMethod(request, expectedResponse);
+
+      client.seek(request, function(err, response) {
+        assert.ifError(err);
+        assert.deepStrictEqual(response, expectedResponse);
+        done();
+      });
+    });
+
+    it('invokes seek with error', function(done) {
+      var client = pubsubV1.subscriberClient();
+      // Mock request
+      var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+      var request = {
+          subscription : formattedSubscription
+      };
+
+      // Mock Grpc layer
+      client._seek = mockSimpleGrpcMethod(request, null, error);
+
+      client.seek(request, function(err, response) {
         assert(err instanceof Error);
         assert.equal(err.code, FAKE_STATUS_CODE);
         done();
