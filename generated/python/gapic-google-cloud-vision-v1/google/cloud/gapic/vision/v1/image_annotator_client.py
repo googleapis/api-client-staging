@@ -39,9 +39,9 @@ from google.cloud.proto.vision.v1 import image_annotator_pb2
 
 class ImageAnnotatorClient(object):
     """
-    Service that performs Google Cloud Vision API detection tasks, such as face,
-    landmark, logo, label, and text detection, over client images, and returns
-    detected entities from the images.
+    Service that performs Google Cloud Vision API detection tasks over client
+    images, such as face, landmark, logo, label, and text detection. The
+    ImageAnnotator service returns detected entities from the images.
     """
 
     SERVICE_ADDRESS = 'vision.googleapis.com'
@@ -63,9 +63,9 @@ class ImageAnnotatorClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 

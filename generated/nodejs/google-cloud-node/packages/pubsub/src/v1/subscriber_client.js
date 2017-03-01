@@ -42,7 +42,11 @@ var PAGE_DESCRIPTORS = {
   listSubscriptions: new gax.PageDescriptor(
       'pageToken',
       'nextPageToken',
-      'subscriptions')
+      'subscriptions'),
+  listSnapshots: new gax.PageDescriptor(
+      'pageToken',
+      'nextPageToken',
+      'snapshots')
 };
 
 var STREAM_DESCRIPTORS = {
@@ -75,33 +79,36 @@ var ALL_SCOPES = [
  * @class
  */
 function SubscriberClient(gaxGrpc, grpcClients, opts) {
-  opts = opts || {};
-  var servicePath = opts.servicePath || SERVICE_ADDRESS;
-  var port = opts.port || DEFAULT_SERVICE_PORT;
-  var sslCreds = opts.sslCreds || null;
-  var clientConfig = opts.clientConfig || {};
-  var appName = opts.appName || 'gax';
-  var appVersion = opts.appVersion || gax.version;
+  opts = extend({
+    servicePath: SERVICE_ADDRESS,
+    port: DEFAULT_SERVICE_PORT,
+    clientConfig: {}
+  }, opts);
 
   var googleApiClient = [
-    appName + '/' + appVersion,
-    CODE_GEN_NAME_VERSION,
+    'gl-node/' + process.versions.node,
+    CODE_GEN_NAME_VERSION
+  ];
+  if (opts.libName && opts.libVersion) {
+    googleApiClient.push(opts.libName + '/' + opts.libVersion);
+  }
+  googleApiClient.push(
     'gax/' + gax.version,
-    'nodejs/' + process.version].join(' ');
+    'grpc/' + gaxGrpc.grpcVersion
+  );
 
   var defaults = gaxGrpc.constructSettings(
       'google.pubsub.v1.Subscriber',
       configData,
-      clientConfig,
-      {'x-goog-api-client': googleApiClient});
+      opts.clientConfig,
+      {'x-goog-api-client': googleApiClient.join(' ')});
 
   var self = this;
 
+  this.auth = gaxGrpc.auth;
   var iamPolicyStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.iam.v1.IAMPolicy,
-      {sslCreds: sslCreds});
+      opts);
   var iamPolicyStubMethods = [
     'setIamPolicy',
     'getIamPolicy',
@@ -120,20 +127,23 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
   });
 
   var subscriberStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.pubsub.v1.Subscriber,
-      {sslCreds: sslCreds});
+      opts);
   var subscriberStubMethods = [
     'createSubscription',
     'getSubscription',
+    'updateSubscription',
     'listSubscriptions',
     'deleteSubscription',
     'modifyAckDeadline',
     'acknowledge',
     'pull',
     'streamingPull',
-    'modifyPushConfig'
+    'modifyPushConfig',
+    'listSnapshots',
+    'createSnapshot',
+    'deleteSnapshot',
+    'seek'
   ];
   subscriberStubMethods.forEach(function(methodName) {
     self['_' + methodName] = gax.createApiCall(
@@ -152,6 +162,9 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
 
 var PROJECT_PATH_TEMPLATE = new gax.PathTemplate(
     'projects/{project}');
+
+var SNAPSHOT_PATH_TEMPLATE = new gax.PathTemplate(
+    'projects/{project}/snapshots/{snapshot}');
 
 var SUBSCRIPTION_PATH_TEMPLATE = new gax.PathTemplate(
     'projects/{project}/subscriptions/{subscription}');
@@ -178,6 +191,39 @@ SubscriberClient.prototype.projectPath = function(project) {
  */
 SubscriberClient.prototype.matchProjectFromProjectName = function(projectName) {
   return PROJECT_PATH_TEMPLATE.match(projectName).project;
+};
+
+/**
+ * Returns a fully-qualified snapshot resource name string.
+ * @param {String} project
+ * @param {String} snapshot
+ * @returns {String}
+ */
+SubscriberClient.prototype.snapshotPath = function(project, snapshot) {
+  return SNAPSHOT_PATH_TEMPLATE.render({
+    project: project,
+    snapshot: snapshot
+  });
+};
+
+/**
+ * Parses the snapshotName from a snapshot resource.
+ * @param {String} snapshotName
+ *   A fully-qualified path representing a snapshot resources.
+ * @returns {String} - A string representing the project.
+ */
+SubscriberClient.prototype.matchProjectFromSnapshotName = function(snapshotName) {
+  return SNAPSHOT_PATH_TEMPLATE.match(snapshotName).project;
+};
+
+/**
+ * Parses the snapshotName from a snapshot resource.
+ * @param {String} snapshotName
+ *   A fully-qualified path representing a snapshot resources.
+ * @returns {String} - A string representing the snapshot.
+ */
+SubscriberClient.prototype.matchSnapshotFromSnapshotName = function(snapshotName) {
+  return SNAPSHOT_PATH_TEMPLATE.match(snapshotName).snapshot;
 };
 
 /**
@@ -246,6 +292,15 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
   return TOPIC_PATH_TEMPLATE.match(topicName).topic;
 };
 
+/**
+ * Get the project ID used by this class.
+ * @aram {function(Error, string)} callback - the callback to be called with
+ *   the current project Id.
+ */
+SubscriberClient.prototype.getProjectId = function(callback) {
+  return this.auth.getProjectId(callback);
+};
+
 // Service calls
 
 /**
@@ -300,6 +355,20 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
  *
  *   If the subscriber never acknowledges the message, the Pub/Sub
  *   system will eventually redeliver the message.
+ * @param {boolean=} request.retainAckedMessages
+ *   Indicates whether to retain acknowledged messages. If true, then
+ *   messages are not expunged from the subscription's backlog, even if they are
+ *   acknowledged, until they fall out of the `message_retention_duration`
+ *   window.
+ * @param {Object=} request.messageRetentionDuration
+ *   How long to retain unacknowledged messages in the subscription's backlog,
+ *   from the moment a message is published.
+ *   If `retain_acked_messages` is true, then this also configures the retention
+ *   of acknowledged messages, and thus configures how far back in time a `Seek`
+ *   can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
+ *   minutes.
+ *
+ *   This object should have the same structure as [google.protobuf.Duration]{@link external:"google.protobuf.Duration"}
  * @param {Object=} options
  *   Optional parameters. You can override the default settings for this call, e.g, timeout,
  *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
@@ -379,6 +448,60 @@ SubscriberClient.prototype.getSubscription = function(request, options, callback
   }
 
   return this._getSubscription(request, options, callback);
+};
+
+/**
+ * Updates an existing subscription. Note that certain properties of a
+ * subscription, such as its topic, are not modifiable.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {Object} request.subscription
+ *   The updated subscription object.
+ *
+ *   This object should have the same structure as [Subscription]{@link Subscription}
+ * @param {Object} request.updateMask
+ *   Indicates which fields in the provided subscription to update.
+ *   Must be specified and non-empty.
+ *
+ *   This object should have the same structure as [google.protobuf.FieldMask]{@link external:"google.protobuf.FieldMask"}
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error, ?Object)=} callback
+ *   The function which will be called with the result of the API call.
+ *
+ *   The second parameter to the callback is an object representing [Subscription]{@link Subscription}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Subscription]{@link Subscription}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var subscription = {};
+ * var updateMask = {};
+ * var request = {
+ *     subscription: subscription,
+ *     updateMask: updateMask
+ * };
+ * client.updateSubscription(request).then(function(responses) {
+ *     var response = responses[0];
+ *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
+ * });
+ */
+SubscriberClient.prototype.updateSubscription = function(request, options, callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._updateSubscription(request, options, callback);
 };
 
 /**
@@ -826,6 +949,308 @@ SubscriberClient.prototype.modifyPushConfig = function(request, options, callbac
 };
 
 /**
+ * Lists the existing snapshots.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.project
+ *   The name of the cloud project that snapshots belong to.
+ *   Format is `projects/{project}`.
+ * @param {number=} request.pageSize
+ *   The maximum number of resources contained in the underlying API
+ *   response. If page streaming is performed per-resource, this
+ *   parameter does not affect the return value. If page streaming is
+ *   performed per-page, this determines the maximum number of
+ *   resources in a page.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error, ?Array, ?Object, ?Object)=} callback
+ *   The function which will be called with the result of the API call.
+ *
+ *   The second parameter to the callback is Array of [Snapshot]{@link Snapshot}.
+ *
+ *   When autoPaginate: false is specified through options, it contains the result
+ *   in a single response. If the response indicates the next page exists, the third
+ *   parameter is set to be used for the next request object. The fourth parameter keeps
+ *   the raw response object of an object representing [ListSnapshotsResponse]{@link ListSnapshotsResponse}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Snapshot]{@link Snapshot}.
+ *
+ *   When autoPaginate: false is specified through options, the array has three elements.
+ *   The first element is Array of [Snapshot]{@link Snapshot} in a single response.
+ *   The second element is the next request object if the response
+ *   indicates the next page exists, or null. The third element is
+ *   an object representing [ListSnapshotsResponse]{@link ListSnapshotsResponse}.
+ *
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var formattedProject = client.projectPath("[PROJECT]");
+ * // Iterate over all elements.
+ * client.listSnapshots({project: formattedProject}).then(function(responses) {
+ *     var resources = responses[0];
+ *     for (var i = 0; i < resources.length; ++i) {
+ *         // doThingsWith(resources[i])
+ *     }
+ * }).catch(function(err) {
+ *     console.error(err);
+ * });
+ *
+ * // Or obtain the paged response.
+ * var options = {autoPaginate: false};
+ * function callback(responses) {
+ *     // The actual resources in a response.
+ *     var resources = responses[0];
+ *     // The next request if the response shows there's more responses.
+ *     var nextRequest = responses[1];
+ *     // The actual response object, if necessary.
+ *     // var rawResponse = responses[2];
+ *     for (var i = 0; i < resources.length; ++i) {
+ *         // doThingsWith(resources[i]);
+ *     }
+ *     if (nextRequest) {
+ *         // Fetch the next page.
+ *         return client.listSnapshots(nextRequest, options).then(callback);
+ *     }
+ * }
+ * client.listSnapshots({project: formattedProject}, options)
+ *     .then(callback)
+ *     .catch(function(err) {
+ *         console.error(err);
+ *     });
+ */
+SubscriberClient.prototype.listSnapshots = function(request, options, callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._listSnapshots(request, options, callback);
+};
+
+/**
+ * Equivalent to {@link listSnapshots}, but returns a NodeJS Stream object.
+ *
+ * This fetches the paged responses for {@link listSnapshots} continuously
+ * and invokes the callback registered for 'data' event for each element in the
+ * responses.
+ *
+ * The returned object has 'end' method when no more elements are required.
+ *
+ * autoPaginate option will be ignored.
+ *
+ * @see {@link https://nodejs.org/api/stream.html}
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.project
+ *   The name of the cloud project that snapshots belong to.
+ *   Format is `projects/{project}`.
+ * @param {number=} request.pageSize
+ *   The maximum number of resources contained in the underlying API
+ *   response. If page streaming is performed per-resource, this
+ *   parameter does not affect the return value. If page streaming is
+ *   performed per-page, this determines the maximum number of
+ *   resources in a page.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @return {Stream}
+ *   An object stream which emits an object representing [Snapshot]{@link Snapshot} on 'data' event.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var formattedProject = client.projectPath("[PROJECT]");
+ * client.listSnapshotsStream({project: formattedProject}).on('data', function(element) {
+ *     // doThingsWith(element)
+ * }).on('error', function(err) {
+ *     console.error(err);
+ * });
+ */
+SubscriberClient.prototype.listSnapshotsStream = function(request, options) {
+  if (options === undefined) {
+    options = {};
+  }
+
+  return PAGE_DESCRIPTORS.listSnapshots.createStream(this._listSnapshots, request, options);
+};
+
+/**
+ * Creates a snapshot from the requested subscription.
+ * If the snapshot already exists, returns `ALREADY_EXISTS`.
+ * If the requested subscription doesn't exist, returns `NOT_FOUND`.
+ *
+ * If the name is not provided in the request, the server will assign a random
+ * name for this snapshot on the same project as the subscription, conforming
+ * to the
+ * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+ * The generated name is populated in the returned Snapshot object.
+ * Note that for REST API requests, you must specify a name in the request.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Optional user-provided name for this snapshot.
+ *   If the name is not provided in the request, the server will assign a random
+ *   name for this snapshot on the same project as the subscription.
+ *   Note that for REST API requests, you must specify a name.
+ *   Format is `projects/{project}/snapshots/{snap}`.
+ * @param {string} request.subscription
+ *   The subscription whose backlog the snapshot retains.
+ *   Specifically, the created snapshot is guaranteed to retain:
+ *    (a) The existing backlog on the subscription. More precisely, this is
+ *        defined as the messages in the subscription's backlog that are
+ *        unacknowledged upon the successful completion of the
+ *        `CreateSnapshot` request; as well as:
+ *    (b) Any messages published to the subscription's topic following the
+ *        successful completion of the CreateSnapshot request.
+ *   Format is `projects/{project}/subscriptions/{sub}`.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error, ?Object)=} callback
+ *   The function which will be called with the result of the API call.
+ *
+ *   The second parameter to the callback is an object representing [Snapshot]{@link Snapshot}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Snapshot]{@link Snapshot}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var formattedName = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+ * var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+ * var request = {
+ *     name: formattedName,
+ *     subscription: formattedSubscription
+ * };
+ * client.createSnapshot(request).then(function(responses) {
+ *     var response = responses[0];
+ *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
+ * });
+ */
+SubscriberClient.prototype.createSnapshot = function(request, options, callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._createSnapshot(request, options, callback);
+};
+
+/**
+ * Removes an existing snapshot. All messages retained in the snapshot
+ * are immediately dropped. After a snapshot is deleted, a new one may be
+ * created with the same name, but the new one has no association with the old
+ * snapshot or its subscription, unless the same subscription is specified.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.snapshot
+ *   The name of the snapshot to delete.
+ *   Format is `projects/{project}/snapshots/{snap}`.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error)=} callback
+ *   The function which will be called with the result of the API call.
+ * @return {Promise} - The promise which resolves when API call finishes.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var formattedSnapshot = client.snapshotPath("[PROJECT]", "[SNAPSHOT]");
+ * client.deleteSnapshot({snapshot: formattedSnapshot}).catch(function(err) {
+ *     console.error(err);
+ * });
+ */
+SubscriberClient.prototype.deleteSnapshot = function(request, options, callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._deleteSnapshot(request, options, callback);
+};
+
+/**
+ * Seeks an existing subscription to a point in time or to a given snapshot,
+ * whichever is provided in the request.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.subscription
+ *   The subscription to affect.
+ * @param {Object=} request.time
+ *   The time to seek to.
+ *   Messages retained in the subscription that were published before this
+ *   time are marked as acknowledged, and messages retained in the
+ *   subscription that were published after this time are marked as
+ *   unacknowledged. Note that this operation affects only those messages
+ *   retained in the subscription (configured by the combination of
+ *   `message_retention_duration` and `retain_acked_messages`). For example,
+ *   if `time` corresponds to a point before the message retention
+ *   window (or to a point before the system's notion of the subscription
+ *   creation time), only retained messages will be marked as unacknowledged,
+ *   and already-expunged messages will not be restored.
+ *
+ *   This object should have the same structure as [google.protobuf.Timestamp]{@link external:"google.protobuf.Timestamp"}
+ * @param {string=} request.snapshot
+ *   The snapshot to seek to. The snapshot's topic must be the same as that of
+ *   the provided subscription.
+ *   Format is `projects/{project}/snapshots/{snap}`.
+ * @param {Object=} options
+ *   Optional parameters. You can override the default settings for this call, e.g, timeout,
+ *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/global.html#CallOptions} for the details.
+ * @param {function(?Error, ?Object)=} callback
+ *   The function which will be called with the result of the API call.
+ *
+ *   The second parameter to the callback is an object representing [SeekResponse]{@link SeekResponse}.
+ * @return {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [SeekResponse]{@link SeekResponse}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ *
+ * @example
+ *
+ * var client = pubsubV1.subscriberClient();
+ * var formattedSubscription = client.subscriptionPath("[PROJECT]", "[SUBSCRIPTION]");
+ * client.seek({subscription: formattedSubscription}).then(function(responses) {
+ *     var response = responses[0];
+ *     // doThingsWith(response)
+ * }).catch(function(err) {
+ *     console.error(err);
+ * });
+ */
+SubscriberClient.prototype.seek = function(request, options, callback) {
+  if (options instanceof Function && callback === undefined) {
+    callback = options;
+    options = {};
+  }
+  if (options === undefined) {
+    options = {};
+  }
+
+  return this._seek(request, options, callback);
+};
+
+/**
  * Sets the access control policy on the specified resource. Replaces any
  * existing policy.
  *
@@ -1017,10 +1442,6 @@ function SubscriberClientBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.appName
-   *   The codename of the calling service.
-   * @param {String=} opts.appVersion
-   *   The version of the calling service.
    */
   this.subscriberClient = function(opts) {
     return new SubscriberClient(gaxGrpc, grpcClients, opts);

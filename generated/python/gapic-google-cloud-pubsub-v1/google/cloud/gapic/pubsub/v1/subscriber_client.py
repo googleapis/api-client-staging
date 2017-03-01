@@ -36,6 +36,9 @@ import google.gax
 from google.cloud.proto.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
+from google.protobuf import duration_pb2
+from google.protobuf import field_mask_pb2
+from google.protobuf import timestamp_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -54,7 +57,9 @@ class SubscriberClient(object):
 
     _PAGE_DESCRIPTORS = {
         'list_subscriptions': _PageDesc('page_token', 'next_page_token',
-                                        'subscriptions')
+                                        'subscriptions'),
+        'list_snapshots': _PageDesc('page_token', 'next_page_token',
+                                    'snapshots')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
@@ -64,6 +69,8 @@ class SubscriberClient(object):
         'https://www.googleapis.com/auth/pubsub', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
+    _SNAPSHOT_PATH_TEMPLATE = path_template.PathTemplate(
+        'projects/{project}/snapshots/{snapshot}')
     _SUBSCRIPTION_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/subscriptions/{subscription}')
     _TOPIC_PATH_TEMPLATE = path_template.PathTemplate(
@@ -73,6 +80,14 @@ class SubscriberClient(object):
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
         return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+
+    @classmethod
+    def snapshot_path(cls, project, snapshot):
+        """Returns a fully-qualified snapshot resource name string."""
+        return cls._SNAPSHOT_PATH_TEMPLATE.render({
+            'project': project,
+            'snapshot': snapshot,
+        })
 
     @classmethod
     def subscription_path(cls, project, subscription):
@@ -102,6 +117,32 @@ class SubscriberClient(object):
           A string representing the project.
         """
         return cls._PROJECT_PATH_TEMPLATE.match(project_name).get('project')
+
+    @classmethod
+    def match_project_from_snapshot_name(cls, snapshot_name):
+        """Parses the project from a snapshot resource.
+
+        Args:
+          snapshot_name (string): A fully-qualified path representing a snapshot
+            resource.
+
+        Returns:
+          A string representing the project.
+        """
+        return cls._SNAPSHOT_PATH_TEMPLATE.match(snapshot_name).get('project')
+
+    @classmethod
+    def match_snapshot_from_snapshot_name(cls, snapshot_name):
+        """Parses the snapshot from a snapshot resource.
+
+        Args:
+          snapshot_name (string): A fully-qualified path representing a snapshot
+            resource.
+
+        Returns:
+          A string representing the snapshot.
+        """
+        return cls._SNAPSHOT_PATH_TEMPLATE.match(snapshot_name).get('snapshot')
 
     @classmethod
     def match_project_from_subscription_name(cls, subscription_name):
@@ -166,9 +207,9 @@ class SubscriberClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -265,6 +306,9 @@ class SubscriberClient(object):
         self._get_subscription = api_callable.create_api_call(
             self.subscriber_stub.GetSubscription,
             settings=defaults['get_subscription'])
+        self._update_subscription = api_callable.create_api_call(
+            self.subscriber_stub.UpdateSubscription,
+            settings=defaults['update_subscription'])
         self._list_subscriptions = api_callable.create_api_call(
             self.subscriber_stub.ListSubscriptions,
             settings=defaults['list_subscriptions'])
@@ -284,6 +328,17 @@ class SubscriberClient(object):
         self._modify_push_config = api_callable.create_api_call(
             self.subscriber_stub.ModifyPushConfig,
             settings=defaults['modify_push_config'])
+        self._list_snapshots = api_callable.create_api_call(
+            self.subscriber_stub.ListSnapshots,
+            settings=defaults['list_snapshots'])
+        self._create_snapshot = api_callable.create_api_call(
+            self.subscriber_stub.CreateSnapshot,
+            settings=defaults['create_snapshot'])
+        self._delete_snapshot = api_callable.create_api_call(
+            self.subscriber_stub.DeleteSnapshot,
+            settings=defaults['delete_snapshot'])
+        self._seek = api_callable.create_api_call(
+            self.subscriber_stub.Seek, settings=defaults['seek'])
         self._set_iam_policy = api_callable.create_api_call(
             self.iam_policy_stub.SetIamPolicy,
             settings=defaults['set_iam_policy'])
@@ -300,6 +355,8 @@ class SubscriberClient(object):
                             topic,
                             push_config=None,
                             ack_deadline_seconds=0,
+                            retain_acked_messages=False,
+                            message_retention_duration=None,
                             options=None):
         """
         Creates a subscription to a given topic.
@@ -352,6 +409,16 @@ class SubscriberClient(object):
 
             If the subscriber never acknowledges the message, the Pub/Sub
             system will eventually redeliver the message.
+          retain_acked_messages (bool): Indicates whether to retain acknowledged messages. If true, then
+            messages are not expunged from the subscription's backlog, even if they are
+            acknowledged, until they fall out of the ``message_retention_duration``
+            window.
+          message_retention_duration (:class:`google.protobuf.duration_pb2.Duration`): How long to retain unacknowledged messages in the subscription's backlog,
+            from the moment a message is published.
+            If ``retain_acked_messages`` is true, then this also configures the retention
+            of acknowledged messages, and thus configures how far back in time a ``Seek``
+            can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
+            minutes.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -364,11 +431,15 @@ class SubscriberClient(object):
         """
         if push_config is None:
             push_config = pubsub_pb2.PushConfig()
+        if message_retention_duration is None:
+            message_retention_duration = duration_pb2.Duration()
         request = pubsub_pb2.Subscription(
             name=name,
             topic=topic,
             push_config=push_config,
-            ack_deadline_seconds=ack_deadline_seconds)
+            ack_deadline_seconds=ack_deadline_seconds,
+            retain_acked_messages=retain_acked_messages,
+            message_retention_duration=message_retention_duration)
         return self._create_subscription(request, options)
 
     def get_subscription(self, subscription, options=None):
@@ -396,6 +467,38 @@ class SubscriberClient(object):
         """
         request = pubsub_pb2.GetSubscriptionRequest(subscription=subscription)
         return self._get_subscription(request, options)
+
+    def update_subscription(self, subscription, update_mask, options=None):
+        """
+        Updates an existing subscription. Note that certain properties of a
+        subscription, such as its topic, are not modifiable.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
+          >>> from google.protobuf import field_mask_pb2
+          >>> api = subscriber_client.SubscriberClient()
+          >>> subscription = pubsub_pb2.Subscription()
+          >>> update_mask = field_mask_pb2.FieldMask()
+          >>> response = api.update_subscription(subscription, update_mask)
+
+        Args:
+          subscription (:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription`): The updated subscription object.
+          update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`): Indicates which fields in the provided subscription to update.
+            Must be specified and non-empty.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = pubsub_pb2.UpdateSubscriptionRequest(
+            subscription=subscription, update_mask=update_mask)
+        return self._update_subscription(request, options)
 
     def list_subscriptions(self, project, page_size=0, options=None):
         """
@@ -669,6 +772,171 @@ class SubscriberClient(object):
         request = pubsub_pb2.ModifyPushConfigRequest(
             subscription=subscription, push_config=push_config)
         self._modify_push_config(request, options)
+
+    def list_snapshots(self, project, page_size=0, options=None):
+        """
+        Lists the existing snapshots.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> from google.gax import CallOptions, INITIAL_PAGE
+          >>> api = subscriber_client.SubscriberClient()
+          >>> project = api.project_path('[PROJECT]')
+          >>>
+          >>> # Iterate over all results
+          >>> for element in api.list_snapshots(project):
+          >>>   # process element
+          >>>   pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in api.list_snapshots(project, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>   for element in page:
+          >>>     # process element
+          >>>     pass
+
+        Args:
+          project (string): The name of the cloud project that snapshots belong to.
+            Format is ``projects/{project}``.
+          page_size (int): The maximum number of resources contained in the
+            underlying API response. If page streaming is performed per-
+            resource, this parameter does not affect the return value. If page
+            streaming is performed per-page, this determines the maximum number
+            of resources in a page.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.gax.PageIterator` instance. By default, this
+          is an iterable of :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Snapshot` instances.
+          This object can also be configured to iterate over the pages
+          of the response through the `CallOptions` parameter.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = pubsub_pb2.ListSnapshotsRequest(
+            project=project, page_size=page_size)
+        return self._list_snapshots(request, options)
+
+    def create_snapshot(self, name, subscription, options=None):
+        """
+        Creates a snapshot from the requested subscription.
+        If the snapshot already exists, returns ``ALREADY_EXISTS``.
+        If the requested subscription doesn't exist, returns ``NOT_FOUND``.
+        If the name is not provided in the request, the server will assign a random
+        name for this snapshot on the same project as the subscription, conforming
+        to the
+        `resource name format <https://cloud.google.com/pubsub/docs/overview#names>`_.
+        The generated name is populated in the returned Snapshot object.
+        Note that for REST API requests, you must specify a name in the request.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
+          >>> name = api.snapshot_path('[PROJECT]', '[SNAPSHOT]')
+          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = api.create_snapshot(name, subscription)
+
+        Args:
+          name (string): Optional user-provided name for this snapshot.
+            If the name is not provided in the request, the server will assign a random
+            name for this snapshot on the same project as the subscription.
+            Note that for REST API requests, you must specify a name.
+            Format is ``projects/{project}/snapshots/{snap}``.
+          subscription (string): The subscription whose backlog the snapshot retains.
+            Specifically, the created snapshot is guaranteed to retain:
+             (a) The existing backlog on the subscription. More precisely, this is
+            ::
+
+                 defined as the messages in the subscription's backlog that are
+                 unacknowledged upon the successful completion of the
+                 `CreateSnapshot` request; as well as:
+             (b) Any messages published to the subscription's topic following the
+            ::
+
+                 successful completion of the CreateSnapshot request.
+            Format is ``projects/{project}/subscriptions/{sub}``.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Snapshot` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = pubsub_pb2.CreateSnapshotRequest(
+            name=name, subscription=subscription)
+        return self._create_snapshot(request, options)
+
+    def delete_snapshot(self, snapshot, options=None):
+        """
+        Removes an existing snapshot. All messages retained in the snapshot
+        are immediately dropped. After a snapshot is deleted, a new one may be
+        created with the same name, but the new one has no association with the old
+        snapshot or its subscription, unless the same subscription is specified.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
+          >>> snapshot = api.snapshot_path('[PROJECT]', '[SNAPSHOT]')
+          >>> api.delete_snapshot(snapshot)
+
+        Args:
+          snapshot (string): The name of the snapshot to delete.
+            Format is ``projects/{project}/snapshots/{snap}``.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = pubsub_pb2.DeleteSnapshotRequest(snapshot=snapshot)
+        self._delete_snapshot(request, options)
+
+    def seek(self, subscription, time=None, snapshot=None, options=None):
+        """
+        Seeks an existing subscription to a point in time or to a given snapshot,
+        whichever is provided in the request.
+
+        Example:
+          >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
+          >>> api = subscriber_client.SubscriberClient()
+          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = api.seek(subscription)
+
+        Args:
+          subscription (string): The subscription to affect.
+          time (:class:`google.protobuf.timestamp_pb2.Timestamp`): The time to seek to.
+            Messages retained in the subscription that were published before this
+            time are marked as acknowledged, and messages retained in the
+            subscription that were published after this time are marked as
+            unacknowledged. Note that this operation affects only those messages
+            retained in the subscription (configured by the combination of
+            ``message_retention_duration`` and ``retain_acked_messages``). For example,
+            if ``time`` corresponds to a point before the message retention
+            window (or to a point before the system's notion of the subscription
+            creation time), only retained messages will be marked as unacknowledged,
+            and already-expunged messages will not be restored.
+          snapshot (string): The snapshot to seek to. The snapshot's topic must be the same as that of
+            the provided subscription.
+            Format is ``projects/{project}/snapshots/{snap}``.
+          options (:class:`google.gax.CallOptions`): Overrides the default
+            settings for this call, e.g, timeout, retries etc.
+
+        Returns:
+          A :class:`google.cloud.proto.pubsub.v1.pubsub_pb2.SeekResponse` instance.
+
+        Raises:
+          :exc:`google.gax.errors.GaxError` if the RPC is aborted.
+          :exc:`ValueError` if the parameters are invalid.
+        """
+        request = pubsub_pb2.SeekRequest(
+            subscription=subscription, time=time, snapshot=snapshot)
+        return self._seek(request, options)
 
     def set_iam_policy(self, resource, policy, options=None):
         """

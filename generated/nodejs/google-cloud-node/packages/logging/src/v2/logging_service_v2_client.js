@@ -80,33 +80,48 @@ var ALL_SCOPES = [
  * @class
  */
 function LoggingServiceV2Client(gaxGrpc, grpcClients, opts) {
-  opts = opts || {};
-  var servicePath = opts.servicePath || SERVICE_ADDRESS;
-  var port = opts.port || DEFAULT_SERVICE_PORT;
-  var sslCreds = opts.sslCreds || null;
-  var clientConfig = opts.clientConfig || {};
-  var appName = opts.appName || 'gax';
-  var appVersion = opts.appVersion || gax.version;
+  opts = extend({
+    servicePath: SERVICE_ADDRESS,
+    port: DEFAULT_SERVICE_PORT,
+    clientConfig: {}
+  }, opts);
 
   var googleApiClient = [
-    appName + '/' + appVersion,
-    CODE_GEN_NAME_VERSION,
+    'gl-node/' + process.versions.node,
+    CODE_GEN_NAME_VERSION
+  ];
+  if (opts.libName && opts.libVersion) {
+    googleApiClient.push(opts.libName + '/' + opts.libVersion);
+  }
+  googleApiClient.push(
     'gax/' + gax.version,
-    'nodejs/' + process.version].join(' ');
+    'grpc/' + gaxGrpc.grpcVersion
+  );
+
+  var bundleDescriptors = {
+    writeLogEntries: new gax.BundleDescriptor(
+      'entries',
+      [
+        'logName',
+        'resource',
+        'labels'
+      ],
+      null,
+      gax.createByteLengthFunction(grpcClients.google.logging.v2.LogEntry))
+  };
 
   var defaults = gaxGrpc.constructSettings(
       'google.logging.v2.LoggingServiceV2',
       configData,
-      clientConfig,
-      {'x-goog-api-client': googleApiClient});
+      opts.clientConfig,
+      {'x-goog-api-client': googleApiClient.join(' ')});
 
   var self = this;
 
+  this.auth = gaxGrpc.auth;
   var loggingServiceV2Stub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.logging.v2.LoggingServiceV2,
-      {sslCreds: sslCreds});
+      opts);
   var loggingServiceV2StubMethods = [
     'deleteLog',
     'writeLogEntries',
@@ -123,7 +138,7 @@ function LoggingServiceV2Client(gaxGrpc, grpcClients, opts) {
         };
       }),
       defaults[methodName],
-      PAGE_DESCRIPTORS[methodName]);
+      PAGE_DESCRIPTORS[methodName] || bundleDescriptors[methodName]);
   });
 }
 
@@ -187,6 +202,15 @@ LoggingServiceV2Client.prototype.matchProjectFromLogName = function(logName) {
  */
 LoggingServiceV2Client.prototype.matchLogFromLogName = function(logName) {
   return LOG_PATH_TEMPLATE.match(logName).log;
+};
+
+/**
+ * Get the project ID used by this class.
+ * @aram {function(Error, string)} callback - the callback to be called with
+ *   the current project Id.
+ */
+LoggingServiceV2Client.prototype.getProjectId = function(callback) {
+  return this.auth.getProjectId(callback);
 };
 
 // Service calls
@@ -803,10 +827,6 @@ function LoggingServiceV2ClientBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.appName
-   *   The codename of the calling service.
-   * @param {String=} opts.appVersion
-   *   The version of the calling service.
    */
   this.loggingServiceV2Client = function(opts) {
     return new LoggingServiceV2Client(gaxGrpc, loggingServiceV2Client, opts);
