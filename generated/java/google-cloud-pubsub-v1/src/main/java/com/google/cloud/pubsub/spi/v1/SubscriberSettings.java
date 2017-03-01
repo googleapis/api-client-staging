@@ -15,6 +15,7 @@
  */
 package com.google.cloud.pubsub.spi.v1;
 
+import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSnapshotsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
 import com.google.api.gax.core.GoogleCredentialsProvider;
@@ -46,18 +47,26 @@ import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.Empty;
 import com.google.protobuf.ExperimentalApi;
 import com.google.pubsub.v1.AcknowledgeRequest;
+import com.google.pubsub.v1.CreateSnapshotRequest;
+import com.google.pubsub.v1.DeleteSnapshotRequest;
 import com.google.pubsub.v1.DeleteSubscriptionRequest;
 import com.google.pubsub.v1.GetSubscriptionRequest;
+import com.google.pubsub.v1.ListSnapshotsRequest;
+import com.google.pubsub.v1.ListSnapshotsResponse;
 import com.google.pubsub.v1.ListSubscriptionsRequest;
 import com.google.pubsub.v1.ListSubscriptionsResponse;
 import com.google.pubsub.v1.ModifyAckDeadlineRequest;
 import com.google.pubsub.v1.ModifyPushConfigRequest;
 import com.google.pubsub.v1.PullRequest;
 import com.google.pubsub.v1.PullResponse;
+import com.google.pubsub.v1.SeekRequest;
+import com.google.pubsub.v1.SeekResponse;
+import com.google.pubsub.v1.Snapshot;
 import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.SubscriberGrpc;
 import com.google.pubsub.v1.Subscription;
+import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import io.grpc.Status;
 import java.io.IOException;
 import javax.annotation.Generated;
@@ -110,6 +119,8 @@ public class SubscriberSettings extends ClientSettings {
 
   private final SimpleCallSettings<Subscription, Subscription> createSubscriptionSettings;
   private final SimpleCallSettings<GetSubscriptionRequest, Subscription> getSubscriptionSettings;
+  private final SimpleCallSettings<UpdateSubscriptionRequest, Subscription>
+      updateSubscriptionSettings;
   private final PagedCallSettings<
           ListSubscriptionsRequest, ListSubscriptionsResponse, ListSubscriptionsPagedResponse>
       listSubscriptionsSettings;
@@ -120,6 +131,12 @@ public class SubscriberSettings extends ClientSettings {
   private final StreamingCallSettings<StreamingPullRequest, StreamingPullResponse>
       streamingPullSettings;
   private final SimpleCallSettings<ModifyPushConfigRequest, Empty> modifyPushConfigSettings;
+  private final PagedCallSettings<
+          ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
+      listSnapshotsSettings;
+  private final SimpleCallSettings<CreateSnapshotRequest, Snapshot> createSnapshotSettings;
+  private final SimpleCallSettings<DeleteSnapshotRequest, Empty> deleteSnapshotSettings;
+  private final SimpleCallSettings<SeekRequest, SeekResponse> seekSettings;
   private final SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
   private final SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
   private final SimpleCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
@@ -133,6 +150,11 @@ public class SubscriberSettings extends ClientSettings {
   /** Returns the object with the settings used for calls to getSubscription. */
   public SimpleCallSettings<GetSubscriptionRequest, Subscription> getSubscriptionSettings() {
     return getSubscriptionSettings;
+  }
+
+  /** Returns the object with the settings used for calls to updateSubscription. */
+  public SimpleCallSettings<UpdateSubscriptionRequest, Subscription> updateSubscriptionSettings() {
+    return updateSubscriptionSettings;
   }
 
   /** Returns the object with the settings used for calls to listSubscriptions. */
@@ -171,6 +193,27 @@ public class SubscriberSettings extends ClientSettings {
   /** Returns the object with the settings used for calls to modifyPushConfig. */
   public SimpleCallSettings<ModifyPushConfigRequest, Empty> modifyPushConfigSettings() {
     return modifyPushConfigSettings;
+  }
+
+  /** Returns the object with the settings used for calls to listSnapshots. */
+  public PagedCallSettings<ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
+      listSnapshotsSettings() {
+    return listSnapshotsSettings;
+  }
+
+  /** Returns the object with the settings used for calls to createSnapshot. */
+  public SimpleCallSettings<CreateSnapshotRequest, Snapshot> createSnapshotSettings() {
+    return createSnapshotSettings;
+  }
+
+  /** Returns the object with the settings used for calls to deleteSnapshot. */
+  public SimpleCallSettings<DeleteSnapshotRequest, Empty> deleteSnapshotSettings() {
+    return deleteSnapshotSettings;
+  }
+
+  /** Returns the object with the settings used for calls to seek. */
+  public SimpleCallSettings<SeekRequest, SeekResponse> seekSettings() {
+    return seekSettings;
   }
 
   /** Returns the object with the settings used for calls to setIamPolicy. */
@@ -243,6 +286,7 @@ public class SubscriberSettings extends ClientSettings {
 
     createSubscriptionSettings = settingsBuilder.createSubscriptionSettings().build();
     getSubscriptionSettings = settingsBuilder.getSubscriptionSettings().build();
+    updateSubscriptionSettings = settingsBuilder.updateSubscriptionSettings().build();
     listSubscriptionsSettings = settingsBuilder.listSubscriptionsSettings().build();
     deleteSubscriptionSettings = settingsBuilder.deleteSubscriptionSettings().build();
     modifyAckDeadlineSettings = settingsBuilder.modifyAckDeadlineSettings().build();
@@ -250,6 +294,10 @@ public class SubscriberSettings extends ClientSettings {
     pullSettings = settingsBuilder.pullSettings().build();
     streamingPullSettings = settingsBuilder.streamingPullSettings().build();
     modifyPushConfigSettings = settingsBuilder.modifyPushConfigSettings().build();
+    listSnapshotsSettings = settingsBuilder.listSnapshotsSettings().build();
+    createSnapshotSettings = settingsBuilder.createSnapshotSettings().build();
+    deleteSnapshotSettings = settingsBuilder.deleteSnapshotSettings().build();
+    seekSettings = settingsBuilder.seekSettings().build();
     setIamPolicySettings = settingsBuilder.setIamPolicySettings().build();
     getIamPolicySettings = settingsBuilder.getIamPolicySettings().build();
     testIamPermissionsSettings = settingsBuilder.testIamPermissionsSettings().build();
@@ -295,6 +343,40 @@ public class SubscriberSettings extends ClientSettings {
             }
           };
 
+  private static final PagedListDescriptor<ListSnapshotsRequest, ListSnapshotsResponse, Snapshot>
+      LIST_SNAPSHOTS_PAGE_STR_DESC =
+          new PagedListDescriptor<ListSnapshotsRequest, ListSnapshotsResponse, Snapshot>() {
+            @Override
+            public Object emptyToken() {
+              return "";
+            }
+
+            @Override
+            public ListSnapshotsRequest injectToken(ListSnapshotsRequest payload, Object token) {
+              return ListSnapshotsRequest.newBuilder(payload).setPageToken((String) token).build();
+            }
+
+            @Override
+            public ListSnapshotsRequest injectPageSize(ListSnapshotsRequest payload, int pageSize) {
+              return ListSnapshotsRequest.newBuilder(payload).setPageSize(pageSize).build();
+            }
+
+            @Override
+            public Integer extractPageSize(ListSnapshotsRequest payload) {
+              return payload.getPageSize();
+            }
+
+            @Override
+            public Object extractNextToken(ListSnapshotsResponse payload) {
+              return payload.getNextPageToken();
+            }
+
+            @Override
+            public Iterable<Snapshot> extractResources(ListSnapshotsResponse payload) {
+              return payload.getSnapshotsList();
+            }
+          };
+
   private static final PagedListResponseFactory<
           ListSubscriptionsRequest, ListSubscriptionsResponse, ListSubscriptionsPagedResponse>
       LIST_SUBSCRIPTIONS_PAGE_STR_FACT =
@@ -311,6 +393,21 @@ public class SubscriberSettings extends ClientSettings {
             }
           };
 
+  private static final PagedListResponseFactory<
+          ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
+      LIST_SNAPSHOTS_PAGE_STR_FACT =
+          new PagedListResponseFactory<
+              ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>() {
+            @Override
+            public ListSnapshotsPagedResponse createPagedListResponse(
+                UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> callable,
+                ListSnapshotsRequest request,
+                CallContext context) {
+              return new ListSnapshotsPagedResponse(
+                  callable, LIST_SNAPSHOTS_PAGE_STR_DESC, request, context);
+            }
+          };
+
   /** Builder for SubscriberSettings. */
   public static class Builder extends ClientSettings.Builder {
     private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
@@ -318,6 +415,8 @@ public class SubscriberSettings extends ClientSettings {
     private final SimpleCallSettings.Builder<Subscription, Subscription> createSubscriptionSettings;
     private final SimpleCallSettings.Builder<GetSubscriptionRequest, Subscription>
         getSubscriptionSettings;
+    private final SimpleCallSettings.Builder<UpdateSubscriptionRequest, Subscription>
+        updateSubscriptionSettings;
     private final PagedCallSettings.Builder<
             ListSubscriptionsRequest, ListSubscriptionsResponse, ListSubscriptionsPagedResponse>
         listSubscriptionsSettings;
@@ -331,6 +430,13 @@ public class SubscriberSettings extends ClientSettings {
         streamingPullSettings;
     private final SimpleCallSettings.Builder<ModifyPushConfigRequest, Empty>
         modifyPushConfigSettings;
+    private final PagedCallSettings.Builder<
+            ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
+        listSnapshotsSettings;
+    private final SimpleCallSettings.Builder<CreateSnapshotRequest, Snapshot>
+        createSnapshotSettings;
+    private final SimpleCallSettings.Builder<DeleteSnapshotRequest, Empty> deleteSnapshotSettings;
+    private final SimpleCallSettings.Builder<SeekRequest, SeekResponse> seekSettings;
     private final SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
     private final SimpleCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings;
     private final SimpleCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
@@ -386,6 +492,9 @@ public class SubscriberSettings extends ClientSettings {
       getSubscriptionSettings =
           SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_GET_SUBSCRIPTION);
 
+      updateSubscriptionSettings =
+          SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_UPDATE_SUBSCRIPTION);
+
       listSubscriptionsSettings =
           PagedCallSettings.newBuilder(
               SubscriberGrpc.METHOD_LIST_SUBSCRIPTIONS, LIST_SUBSCRIPTIONS_PAGE_STR_FACT);
@@ -406,6 +515,16 @@ public class SubscriberSettings extends ClientSettings {
       modifyPushConfigSettings =
           SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_MODIFY_PUSH_CONFIG);
 
+      listSnapshotsSettings =
+          PagedCallSettings.newBuilder(
+              SubscriberGrpc.METHOD_LIST_SNAPSHOTS, LIST_SNAPSHOTS_PAGE_STR_FACT);
+
+      createSnapshotSettings = SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_CREATE_SNAPSHOT);
+
+      deleteSnapshotSettings = SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_DELETE_SNAPSHOT);
+
+      seekSettings = SimpleCallSettings.newBuilder(SubscriberGrpc.METHOD_SEEK);
+
       setIamPolicySettings = SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_SET_IAM_POLICY);
 
       getIamPolicySettings = SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_GET_IAM_POLICY);
@@ -417,12 +536,17 @@ public class SubscriberSettings extends ClientSettings {
           ImmutableList.<UnaryCallSettings.Builder>of(
               createSubscriptionSettings,
               getSubscriptionSettings,
+              updateSubscriptionSettings,
               listSubscriptionsSettings,
               deleteSubscriptionSettings,
               modifyAckDeadlineSettings,
               acknowledgeSettings,
               pullSettings,
               modifyPushConfigSettings,
+              listSnapshotsSettings,
+              createSnapshotSettings,
+              deleteSnapshotSettings,
+              seekSettings,
               setIamPolicySettings,
               getIamPolicySettings,
               testIamPermissionsSettings);
@@ -438,6 +562,11 @@ public class SubscriberSettings extends ClientSettings {
 
       builder
           .getSubscriptionSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .updateSubscriptionSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
@@ -472,6 +601,26 @@ public class SubscriberSettings extends ClientSettings {
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .listSnapshotsSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .createSnapshotSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .deleteSnapshotSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .seekSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .setIamPolicySettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
@@ -494,6 +643,7 @@ public class SubscriberSettings extends ClientSettings {
 
       createSubscriptionSettings = settings.createSubscriptionSettings.toBuilder();
       getSubscriptionSettings = settings.getSubscriptionSettings.toBuilder();
+      updateSubscriptionSettings = settings.updateSubscriptionSettings.toBuilder();
       listSubscriptionsSettings = settings.listSubscriptionsSettings.toBuilder();
       deleteSubscriptionSettings = settings.deleteSubscriptionSettings.toBuilder();
       modifyAckDeadlineSettings = settings.modifyAckDeadlineSettings.toBuilder();
@@ -501,6 +651,10 @@ public class SubscriberSettings extends ClientSettings {
       pullSettings = settings.pullSettings.toBuilder();
       streamingPullSettings = settings.streamingPullSettings.toBuilder();
       modifyPushConfigSettings = settings.modifyPushConfigSettings.toBuilder();
+      listSnapshotsSettings = settings.listSnapshotsSettings.toBuilder();
+      createSnapshotSettings = settings.createSnapshotSettings.toBuilder();
+      deleteSnapshotSettings = settings.deleteSnapshotSettings.toBuilder();
+      seekSettings = settings.seekSettings.toBuilder();
       setIamPolicySettings = settings.setIamPolicySettings.toBuilder();
       getIamPolicySettings = settings.getIamPolicySettings.toBuilder();
       testIamPermissionsSettings = settings.testIamPermissionsSettings.toBuilder();
@@ -509,12 +663,17 @@ public class SubscriberSettings extends ClientSettings {
           ImmutableList.<UnaryCallSettings.Builder>of(
               createSubscriptionSettings,
               getSubscriptionSettings,
+              updateSubscriptionSettings,
               listSubscriptionsSettings,
               deleteSubscriptionSettings,
               modifyAckDeadlineSettings,
               acknowledgeSettings,
               pullSettings,
               modifyPushConfigSettings,
+              listSnapshotsSettings,
+              createSnapshotSettings,
+              deleteSnapshotSettings,
+              seekSettings,
               setIamPolicySettings,
               getIamPolicySettings,
               testIamPermissionsSettings);
@@ -555,6 +714,12 @@ public class SubscriberSettings extends ClientSettings {
       return getSubscriptionSettings;
     }
 
+    /** Returns the builder for the settings used for calls to updateSubscription. */
+    public SimpleCallSettings.Builder<UpdateSubscriptionRequest, Subscription>
+        updateSubscriptionSettings() {
+      return updateSubscriptionSettings;
+    }
+
     /** Returns the builder for the settings used for calls to listSubscriptions. */
     public PagedCallSettings.Builder<
             ListSubscriptionsRequest, ListSubscriptionsResponse, ListSubscriptionsPagedResponse>
@@ -592,6 +757,28 @@ public class SubscriberSettings extends ClientSettings {
     /** Returns the builder for the settings used for calls to modifyPushConfig. */
     public SimpleCallSettings.Builder<ModifyPushConfigRequest, Empty> modifyPushConfigSettings() {
       return modifyPushConfigSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to listSnapshots. */
+    public PagedCallSettings.Builder<
+            ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
+        listSnapshotsSettings() {
+      return listSnapshotsSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to createSnapshot. */
+    public SimpleCallSettings.Builder<CreateSnapshotRequest, Snapshot> createSnapshotSettings() {
+      return createSnapshotSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to deleteSnapshot. */
+    public SimpleCallSettings.Builder<DeleteSnapshotRequest, Empty> deleteSnapshotSettings() {
+      return deleteSnapshotSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to seek. */
+    public SimpleCallSettings.Builder<SeekRequest, SeekResponse> seekSettings() {
+      return seekSettings;
     }
 
     /** Returns the builder for the settings used for calls to setIamPolicy. */
