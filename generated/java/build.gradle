@@ -1,7 +1,6 @@
 import groovy.io.FileType
 
 def generated_grpc_version = "0.1.5"
-def pubsub_grpc_version = "0.1.6"
 
 buildscript {
   repositories {
@@ -123,7 +122,7 @@ project(':generated:java:google-cloud-logging-v2') {
 
 project(':generated:java:google-cloud-pubsub-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + pubsub_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + generated_grpc_version
   }
 }
 
