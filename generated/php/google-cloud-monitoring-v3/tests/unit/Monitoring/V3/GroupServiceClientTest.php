@@ -266,7 +266,7 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $nextPageToken = '';
-        $totalSize = 705419236;
+        $totalSize = -705419236;
         $membersElement = new MonitoredResource();
         $members = [$membersElement];
         $expectedResponse = new ListGroupMembersResponse();

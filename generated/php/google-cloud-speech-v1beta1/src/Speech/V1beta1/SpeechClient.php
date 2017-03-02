@@ -128,6 +128,17 @@ class SpeechClient
         ];
     }
 
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            return \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            return;
+        }
+    }
+
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
@@ -220,10 +231,12 @@ class SpeechClient
             ]);
         }
 
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
+
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => $options['libName'],
             'libVersion' => $options['libVersion'],
-            'gapicVersion' => self::CODEGEN_VERSION,
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];

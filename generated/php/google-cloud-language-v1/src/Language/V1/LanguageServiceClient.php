@@ -101,6 +101,17 @@ class LanguageServiceClient
     private $defaultCallSettings;
     private $descriptors;
 
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            return \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            return;
+        }
+    }
+
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -146,10 +157,12 @@ class LanguageServiceClient
         ];
         $options = array_merge($defaultOptions, $options);
 
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
+
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => $options['libName'],
             'libVersion' => $options['libVersion'],
-            'gapicVersion' => self::CODEGEN_VERSION,
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
