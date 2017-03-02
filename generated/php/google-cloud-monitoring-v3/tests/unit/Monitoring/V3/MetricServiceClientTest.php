@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,39 +33,49 @@ use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
 use google\monitoring\v3\ListTimeSeriesResponse;
 use google\monitoring\v3\TimeInterval;
 use google\monitoring\v3\TimeSeries;
+use google\protobuf\Any;
+use google\protobuf\EmptyC;
 
 /**
  * @group monitoring
  * @group grpc
  */
-class MetricServiceTest extends PHPUnit_Framework_TestCase
+class MetricServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockMetricServiceImpl($hostname, $opts)
     {
         return new MockMetricServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             MetricServiceClient::SERVICE_ADDRESS,
             MetricServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new MetricServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return MetricServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new MetricServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function listMonitoredResourceDescriptorsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -84,18 +94,18 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
 
         $response = $client->listMonitoredResourceDescriptors($formattedName);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListMonitoredResourceDescriptors', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getResourceDescriptorsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors', $actualFuncCall);
+
+        $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -104,7 +114,8 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function getMonitoredResourceDescriptorTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -124,14 +135,14 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
 
         $response = $client->getMonitoredResourceDescriptor($formattedName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetMonitoredResourceDescriptor', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -141,7 +152,8 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function listMetricDescriptorsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -160,18 +172,18 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
 
         $response = $client->listMetricDescriptors($formattedName);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListMetricDescriptors', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getMetricDescriptorsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/ListMetricDescriptors', $actualFuncCall);
+
+        $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -180,7 +192,8 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function getMetricDescriptorTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -202,14 +215,14 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         $response = $client->getMetricDescriptor($formattedName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetMetricDescriptor', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/GetMetricDescriptor', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -219,7 +232,8 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function createMetricDescriptorTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -242,15 +256,15 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $metricDescriptor = new MetricDescriptor();
 
         $response = $client->createMetricDescriptor($formattedName, $metricDescriptor);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('CreateMetricDescriptor', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/CreateMetricDescriptor', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertEquals($metricDescriptor, $actualRequestObject->getMetricDescriptor());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -260,18 +274,22 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function deleteMetricDescriptorTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         $client->deleteMetricDescriptor($formattedName);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('DeleteMetricDescriptor', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/DeleteMetricDescriptor', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
 
@@ -283,7 +301,8 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function listTimeSeriesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -305,21 +324,21 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $view = TimeSeriesView::FULL;
 
         $response = $client->listTimeSeries($formattedName, $filter, $interval, $view);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListTimeSeries', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertEquals($filter, $actualRequestObject->getFilter());
-        $this->assertEquals($interval, $actualRequestObject->getInterval());
-        $this->assertEquals($view, $actualRequestObject->getView());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTimeSeriesList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/ListTimeSeries', $actualFuncCall);
+
+        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertEquals($filter, $actualRequestObject->getFilter());
+        $this->assertEquals($interval, $actualRequestObject->getInterval());
+        $this->assertEquals($view, $actualRequestObject->getView());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -328,10 +347,13 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
      */
     public function createTimeSeriesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockMetricServiceImpl'], 'createMetricServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockMetricServiceImpl']);
+        $client = $this->createClient('createMetricServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
         $timeSeries = [];
@@ -339,8 +361,9 @@ class MetricServiceTest extends PHPUnit_Framework_TestCase
         $client->createTimeSeries($formattedName, $timeSeries);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('CreateTimeSeries', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.MetricService/CreateTimeSeries', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertEquals($timeSeries, $actualRequestObject->getTimeSeriesList());
