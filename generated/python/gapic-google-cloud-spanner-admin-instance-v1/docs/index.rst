@@ -11,7 +11,7 @@ easy-to-use client library for the `Cloud Spanner Instance Admin API`_ (v1) defi
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/spanner/admin/instance/v1
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/spanner/admin/instance/v1
 .. _`Cloud Spanner Instance Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner-admin-instance/v1/
 
 

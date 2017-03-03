@@ -31,6 +31,7 @@ import platform
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
+from google.gax.utils import oneof
 import google.gax
 
 from google.cloud.gapic.spanner.v1 import enums
@@ -186,9 +187,9 @@ class SpannerClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -310,10 +311,9 @@ class SpannerClient(object):
         limit.
         Cloud Spanner limits the number of sessions that can exist at any given
         time; thus, it is a good idea to delete idle and/or unneeded sessions.
-        Aside from explicit deletes, Cloud Spanner can delete sessions for
-        which no operations are sent for more than an hour, or due to
-        internal errors. If a session is deleted, requests to it
-        return ``NOT_FOUND``.
+        Aside from explicit deletes, Cloud Spanner can delete sessions for which no
+        operations are sent for more than an hour. If a session is deleted,
+        requests to it return ``NOT_FOUND``.
         Idle sessions can be kept alive by sending a trivial SQL query
         periodically, e.g., ``\"SELECT 1\"``.
 
@@ -335,6 +335,7 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_pb2.CreateSessionRequest(database=database)
         return self._create_session(request, options)
 
@@ -362,6 +363,7 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_pb2.GetSessionRequest(name=name)
         return self._get_session(request, options)
 
@@ -384,6 +386,7 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_pb2.DeleteSessionRequest(name=name)
         self._delete_session(request, options)
 
@@ -467,6 +470,7 @@ class SpannerClient(object):
             param_types = []
         if query_mode is None:
             query_mode = enums.ExecuteSqlRequest.QueryMode.NORMAL
+        # Create the request object.
         request = spanner_pb2.ExecuteSqlRequest(
             session=session,
             sql=sql,
@@ -555,6 +559,7 @@ class SpannerClient(object):
             param_types = []
         if query_mode is None:
             query_mode = enums.ExecuteSqlRequest.QueryMode.NORMAL
+        # Create the request object.
         request = spanner_pb2.ExecuteSqlRequest(
             session=session,
             sql=sql,
@@ -638,6 +643,7 @@ class SpannerClient(object):
         """
         if transaction is None:
             transaction = transaction_pb2.TransactionSelector()
+        # Create the request object.
         request = spanner_pb2.ReadRequest(
             session=session,
             table=table,
@@ -718,6 +724,7 @@ class SpannerClient(object):
         """
         if transaction is None:
             transaction = transaction_pb2.TransactionSelector()
+        # Create the request object.
         request = spanner_pb2.ReadRequest(
             session=session,
             table=table,
@@ -757,6 +764,7 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_pb2.BeginTransactionRequest(
             session=session, options=options_)
         return self._begin_transaction(request, options)
@@ -809,6 +817,13 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Sanity check: We have some fields which are mutually exclusive;
+        # raise ValueError if more than one is sent.
+        oneof.check_oneof(
+            transaction_id=transaction_id,
+            single_use_transaction=single_use_transaction, )
+
+        # Create the request object.
         request = spanner_pb2.CommitRequest(
             session=session,
             mutations=mutations,
@@ -843,6 +858,7 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_pb2.RollbackRequest(
             session=session, transaction_id=transaction_id)
         self._rollback(request, options)
