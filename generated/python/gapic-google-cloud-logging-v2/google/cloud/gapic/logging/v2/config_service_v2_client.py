@@ -272,6 +272,7 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_config_pb2.ListSinksRequest(
             parent=parent, page_size=page_size)
         return self._list_sinks(request, options)
@@ -305,6 +306,7 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_config_pb2.GetSinkRequest(sink_name=sink_name)
         return self._get_sink(request, options)
 
@@ -360,6 +362,7 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_config_pb2.CreateSinkRequest(
             parent=parent,
             sink=sink,
@@ -427,6 +430,7 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_config_pb2.UpdateSinkRequest(
             sink_name=sink_name,
             sink=sink,
@@ -463,5 +467,6 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_config_pb2.DeleteSinkRequest(sink_name=sink_name)
         self._delete_sink(request, options)
