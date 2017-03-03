@@ -1,4 +1,4 @@
-# Copyright 2016, Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 # merge preserves those additions if the generated source changes.
 """Accesses the google.cloud.functions.v1beta2 CloudFunctionsService API."""
 
+import collections
 import json
 import os
 import pkg_resources
@@ -49,10 +50,6 @@ class CloudFunctionsServiceClient(object):
 
     DEFAULT_SERVICE_PORT = 443
     """The default port of the service."""
-
-    _CODE_GEN_NAME_VERSION = 'gapic/0.1.0'
-
-    _GAX_VERSION = pkg_resources.get_distribution('google-gax').version
 
     _PAGE_DESCRIPTORS = {
         'list_functions': _PageDesc('page_token', 'next_page_token',
@@ -158,8 +155,11 @@ class CloudFunctionsServiceClient(object):
                  ssl_credentials=None,
                  scopes=None,
                  client_config=None,
-                 app_name='gax',
-                 app_version=_GAX_VERSION):
+                 app_name=None,
+                 app_version='',
+                 lib_name=None,
+                 lib_version='',
+                 metrics_headers=()):
         """Constructor.
 
         Args:
@@ -179,20 +179,49 @@ class CloudFunctionsServiceClient(object):
             :func:`google.gax.construct_settings` for the structure of
             this data. Falls back to the default config if not specified
             or the specified config is missing data points.
-          app_name (string): The codename of the calling service.
-          app_version (string): The version of the calling service.
+          app_name (string): The name of the application calling
+            the service. Recommended for analytics purposes.
+          app_version (string): The version of the application calling
+            the service. Recommended for analytics purposes.
+          lib_name (string): The API library software used for calling
+            the service. (Unless you are writing an API client itself,
+            leave this as default.)
+          lib_version (string): The API library software version used
+            for calling the service. (Unless you are writing an API client
+            itself, leave this as default.)
+          metrics_headers (dict): A dictionary of values for tracking
+            client library metrics. Ultimately serializes to a string
+            (e.g. 'foo/1.2.3 bar/3.14.1'). This argument should be
+            considered private.
 
         Returns:
           A CloudFunctionsServiceClient object.
         """
+        # Unless the calling application specifically requested
+        # OAuth scopes, request everything.
         if scopes is None:
             scopes = self._ALL_SCOPES
+
+        # Initialize an empty client config, if none is set.
         if client_config is None:
             client_config = {}
-        goog_api_client = '{}/{} {} gax/{} python/{}'.format(
-            app_name, app_version, self._CODE_GEN_NAME_VERSION,
-            self._GAX_VERSION, platform.python_version())
-        metadata = [('x-goog-api-client', goog_api_client)]
+
+        # Initialize metrics_headers as an ordered dictionary
+        # (cuts down on cardinality of the resulting string slightly).
+        metrics_headers = collections.OrderedDict(metrics_headers)
+        metrics_headers['gl-python'] = platform.python_version()
+
+        # The library may or may not be set, depending on what is
+        # calling this client. Newer client libraries set the library name
+        # and version.
+        if lib_name:
+            metrics_headers[lib_name] = lib_version
+
+        # Finally, track the GAPIC package version.
+        metrics_headers['gapic'] = pkg_resources.get_distribution(
+            'gapic-google-cloud-functions-v1beta2', ).version
+
+        # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
                 __name__, 'cloud_functions_service_client_config.json').decode(
@@ -202,8 +231,8 @@ class CloudFunctionsServiceClient(object):
             default_client_config,
             client_config,
             config.STATUS_CODE_NAMES,
-            kwargs={'metadata': metadata},
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            metrics_headers=metrics_headers,
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.cloud_functions_service_stub = config.create_stub(
             functions_pb2.CloudFunctionsServiceStub,
             channel=channel,
@@ -221,8 +250,7 @@ class CloudFunctionsServiceClient(object):
             ssl_credentials=ssl_credentials,
             scopes=scopes,
             client_config=client_config,
-            app_name=app_name,
-            app_version=app_version)
+            metrics_headers=metrics_headers, )
 
         self._list_functions = api_callable.create_api_call(
             self.cloud_functions_service_stub.ListFunctions,
@@ -267,8 +295,8 @@ class CloudFunctionsServiceClient(object):
 
         Args:
           location (string): The project and location from which the function should be listed,
-            specified in the format: projects/*/locations/*
-            If you want to list functions in all locations, use '-' in place of a
+            specified in the format ``projects/*/locations/*``
+            If you want to list functions in all locations, use \"-\" in place of a
             location.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
@@ -288,6 +316,7 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.ListFunctionsRequest(
             location=location, page_size=page_size)
         return self._list_functions(request, options)
@@ -314,6 +343,7 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.GetFunctionRequest(name=name)
         return self._get_function(request, options)
 
@@ -321,7 +351,7 @@ class CloudFunctionsServiceClient(object):
         """
         Creates a new function. If a function with the given name already exists in
         the specified project, the long running operation will return
-        ALREADY_EXISTS error.
+        ``ALREADY_EXISTS`` error.
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
@@ -342,7 +372,7 @@ class CloudFunctionsServiceClient(object):
 
         Args:
           location (string): The project and location in which the function should be created, specified
-            in the format: projects/*/locations/*
+            in the format ``projects/*/locations/*``
           function (:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`): Function to be created.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -354,6 +384,7 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.CreateFunctionRequest(
             location=location, function=function)
         return google.gax._OperationFuture(
@@ -395,6 +426,7 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.UpdateFunctionRequest(
             name=name, function=function)
         return google.gax._OperationFuture(
@@ -435,6 +467,7 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.DeleteFunctionRequest(name=name)
         return google.gax._OperationFuture(
             self._delete_function(request, options), self.operations_client,
@@ -465,5 +498,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = functions_pb2.CallFunctionRequest(name=name, data=data)
         return self._call_function(request, options)
