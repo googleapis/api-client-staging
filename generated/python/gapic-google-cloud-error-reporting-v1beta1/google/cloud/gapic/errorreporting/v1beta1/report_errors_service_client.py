@@ -79,9 +79,9 @@ class ReportErrorsServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -202,6 +202,7 @@ class ReportErrorsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = report_errors_service_pb2.ReportErrorEventRequest(
             project_name=project_name, event=event)
         return self._report_error_event(request, options)
