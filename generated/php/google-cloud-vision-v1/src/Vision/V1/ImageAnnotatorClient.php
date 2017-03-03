@@ -38,9 +38,9 @@ use google\cloud\vision\v1\BatchAnnotateImagesRequest;
 use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
 
 /**
- * Service Description: Service that performs Google Cloud Vision API detection tasks, such as face,
- * landmark, logo, label, and text detection, over client images, and returns
- * detected entities from the images.
+ * Service Description: Service that performs Google Cloud Vision API detection tasks over client
+ * images, such as face, landmark, logo, label, and text detection. The
+ * ImageAnnotator service returns detected entities from the images.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
