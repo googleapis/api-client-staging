@@ -31,6 +31,7 @@ import platform
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
+from google.gax.utils import oneof
 import google.gax
 
 from google.cloud.gapic.monitoring.v3 import enums
@@ -142,9 +143,9 @@ class GroupServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -217,7 +218,7 @@ class GroupServiceClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.group_service_stub = config.create_stub(
             group_service_pb2.GroupServiceStub,
             channel=channel,
@@ -306,6 +307,14 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Sanity check: We have some fields which are mutually exclusive;
+        # raise ValueError if more than one is sent.
+        oneof.check_oneof(
+            children_of_group=children_of_group,
+            ancestors_of_group=ancestors_of_group,
+            descendants_of_group=descendants_of_group, )
+
+        # Create the request object.
         request = group_service_pb2.ListGroupsRequest(
             name=name,
             children_of_group=children_of_group,
@@ -337,6 +346,7 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = group_service_pb2.GetGroupRequest(name=name)
         return self._get_group(request, options)
 
@@ -368,6 +378,7 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = group_service_pb2.CreateGroupRequest(
             name=name, group=group, validate_only=validate_only)
         return self._create_group(request, options)
@@ -398,6 +409,7 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = group_service_pb2.UpdateGroupRequest(
             group=group, validate_only=validate_only)
         return self._update_group(request, options)
@@ -422,6 +434,7 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = group_service_pb2.DeleteGroupRequest(name=name)
         self._delete_group(request, options)
 
@@ -487,6 +500,7 @@ class GroupServiceClient(object):
         """
         if interval is None:
             interval = common_pb2.TimeInterval()
+        # Create the request object.
         request = group_service_pb2.ListGroupMembersRequest(
             name=name, page_size=page_size, filter=filter_, interval=interval)
         return self._list_group_members(request, options)

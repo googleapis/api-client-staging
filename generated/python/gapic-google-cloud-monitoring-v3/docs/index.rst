@@ -11,7 +11,7 @@ easy-to-use client library for the `Stackdriver Monitoring API`_ (v3) defined in
 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/google/monitoring/v3
+.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/monitoring/v3
 .. _`Stackdriver Monitoring API`: https://developers.google.com/apis-explorer/?hl=en_US#p/monitoring/v3/
 
 
