@@ -1,9 +1,9 @@
 Getting started
 ===============
 
-gapic-google-cloud-spanner-v1 will allow you to connect to the `Google Cloud Spanner API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
+gapic-google-cloud-spanner-v1 will allow you to connect to the `Cloud Spanner API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Cloud Spanner API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1/
+.. _`Cloud Spanner API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1/
 
 
 Installation

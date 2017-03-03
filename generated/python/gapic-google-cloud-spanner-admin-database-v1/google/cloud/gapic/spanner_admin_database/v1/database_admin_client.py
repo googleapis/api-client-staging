@@ -165,9 +165,9 @@ class DatabaseAdminClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -240,7 +240,7 @@ class DatabaseAdminClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.database_admin_stub = config.create_stub(
             spanner_database_admin_pb2.DatabaseAdminStub,
             channel=channel,
@@ -258,8 +258,7 @@ class DatabaseAdminClient(object):
             ssl_credentials=ssl_credentials,
             scopes=scopes,
             client_config=client_config,
-            app_name=app_name,
-            app_version=app_version)
+            metrics_headers=metrics_headers, )
 
         self._list_databases = api_callable.create_api_call(
             self.database_admin_stub.ListDatabases,
@@ -332,6 +331,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_database_admin_pb2.ListDatabasesRequest(
             parent=parent, page_size=page_size)
         return self._list_databases(request, options)
@@ -389,6 +389,7 @@ class DatabaseAdminClient(object):
         """
         if extra_statements is None:
             extra_statements = []
+        # Create the request object.
         request = spanner_database_admin_pb2.CreateDatabaseRequest(
             parent=parent,
             create_statement=create_statement,
@@ -421,6 +422,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_database_admin_pb2.GetDatabaseRequest(name=name)
         return self._get_database(request, options)
 
@@ -471,7 +473,7 @@ class DatabaseAdminClient(object):
             ``longrunning.Operation``: ``<database>/operations/<operation_id>``.
 
             ``operation_id`` should be unique within the database, and must be
-            a valid identifier: ``[a-zA-Z][a-zA-Z0-9_]*``. Note that
+            a valid identifier: ``[a-z][a-z0-9_]*``. Note that
             automatically-generated operation IDs always begin with an
             underscore. If the named operation already exists,
             ``UpdateDatabaseDdl`` returns
@@ -486,6 +488,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_database_admin_pb2.UpdateDatabaseDdlRequest(
             database=database,
             statements=statements,
@@ -514,6 +517,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_database_admin_pb2.DropDatabaseRequest(
             database=database)
         self._drop_database(request, options)
@@ -542,6 +546,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_database_admin_pb2.GetDatabaseDdlRequest(
             database=database)
         return self._get_database_ddl(request, options)
@@ -579,6 +584,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.SetIamPolicyRequest(
             resource=resource, policy=policy)
         return self._set_iam_policy(request, options)
@@ -610,6 +616,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
         return self._get_iam_policy(request, options)
 
@@ -646,6 +653,7 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.TestIamPermissionsRequest(
             resource=resource, permissions=permissions)
         return self._test_iam_permissions(request, options)

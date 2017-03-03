@@ -31,6 +31,7 @@ import platform
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
+from google.gax.utils import oneof
 import google.gax
 
 from google.cloud.proto.pubsub.v1 import pubsub_pb2
@@ -282,7 +283,7 @@ class SubscriberClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.iam_policy_stub = config.create_stub(
             iam_policy_pb2.IAMPolicyStub,
             channel=channel,
@@ -433,6 +434,7 @@ class SubscriberClient(object):
             push_config = pubsub_pb2.PushConfig()
         if message_retention_duration is None:
             message_retention_duration = duration_pb2.Duration()
+        # Create the request object.
         request = pubsub_pb2.Subscription(
             name=name,
             topic=topic,
@@ -465,6 +467,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.GetSubscriptionRequest(subscription=subscription)
         return self._get_subscription(request, options)
 
@@ -496,6 +499,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.UpdateSubscriptionRequest(
             subscription=subscription, update_mask=update_mask)
         return self._update_subscription(request, options)
@@ -542,6 +546,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ListSubscriptionsRequest(
             project=project, page_size=page_size)
         return self._list_subscriptions(request, options)
@@ -570,6 +575,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.DeleteSubscriptionRequest(
             subscription=subscription)
         self._delete_subscription(request, options)
@@ -612,6 +618,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ModifyAckDeadlineRequest(
             subscription=subscription,
             ack_ids=ack_ids,
@@ -646,6 +653,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.AcknowledgeRequest(
             subscription=subscription, ack_ids=ack_ids)
         self._acknowledge(request, options)
@@ -689,6 +697,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.PullRequest(
             subscription=subscription,
             max_messages=max_messages,
@@ -769,6 +778,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ModifyPushConfigRequest(
             subscription=subscription, push_config=push_config)
         self._modify_push_config(request, options)
@@ -815,6 +825,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ListSnapshotsRequest(
             project=project, page_size=page_size)
         return self._list_snapshots(request, options)
@@ -867,6 +878,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.CreateSnapshotRequest(
             name=name, subscription=subscription)
         return self._create_snapshot(request, options)
@@ -894,6 +906,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.DeleteSnapshotRequest(snapshot=snapshot)
         self._delete_snapshot(request, options)
 
@@ -934,6 +947,13 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Sanity check: We have some fields which are mutually exclusive;
+        # raise ValueError if more than one is sent.
+        oneof.check_oneof(
+            time=time,
+            snapshot=snapshot, )
+
+        # Create the request object.
         request = pubsub_pb2.SeekRequest(
             subscription=subscription, time=time, snapshot=snapshot)
         return self._seek(request, options)
@@ -969,6 +989,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.SetIamPolicyRequest(
             resource=resource, policy=policy)
         return self._set_iam_policy(request, options)
@@ -999,6 +1020,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
         return self._get_iam_policy(request, options)
 
@@ -1033,6 +1055,7 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.TestIamPermissionsRequest(
             resource=resource, permissions=permissions)
         return self._test_iam_permissions(request, options)
