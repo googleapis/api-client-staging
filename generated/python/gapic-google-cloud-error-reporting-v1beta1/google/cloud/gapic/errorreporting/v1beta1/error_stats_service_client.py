@@ -93,9 +93,9 @@ class ErrorStatsServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -168,7 +168,7 @@ class ErrorStatsServiceClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.error_stats_service_stub = config.create_stub(
             error_stats_service_pb2.ErrorStatsServiceStub,
             channel=channel,
@@ -278,6 +278,7 @@ class ErrorStatsServiceClient(object):
             alignment_time = timestamp_pb2.Timestamp()
         if order is None:
             order = enums.ErrorGroupOrder.GROUP_ORDER_UNSPECIFIED
+        # Create the request object.
         request = error_stats_service_pb2.ListGroupStatsRequest(
             project_name=project_name,
             time_range=time_range,
@@ -353,6 +354,7 @@ class ErrorStatsServiceClient(object):
             service_filter = error_stats_service_pb2.ServiceContextFilter()
         if time_range is None:
             time_range = error_stats_service_pb2.QueryTimeRange()
+        # Create the request object.
         request = error_stats_service_pb2.ListEventsRequest(
             project_name=project_name,
             group_id=group_id,
@@ -387,6 +389,7 @@ class ErrorStatsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = error_stats_service_pb2.DeleteEventsRequest(
             project_name=project_name)
         return self._delete_events(request, options)
