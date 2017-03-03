@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,39 +29,49 @@ use google\api\MonitoredResource;
 use google\monitoring\v3\Group;
 use google\monitoring\v3\ListGroupMembersResponse;
 use google\monitoring\v3\ListGroupsResponse;
+use google\protobuf\Any;
+use google\protobuf\EmptyC;
 
 /**
  * @group monitoring
  * @group grpc
  */
-class GroupServiceTest extends PHPUnit_Framework_TestCase
+class GroupServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockGroupServiceImpl($hostname, $opts)
     {
         return new MockGroupServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             GroupServiceClient::SERVICE_ADDRESS,
             GroupServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new GroupServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return GroupServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new GroupServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function listGroupsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -80,18 +90,18 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
 
         $response = $client->listGroups($formattedName);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListGroups', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getGroupList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/ListGroups', $actualFuncCall);
+
+        $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -100,7 +110,8 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function getGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -122,14 +133,14 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/GetGroup', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -139,7 +150,8 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function createGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -162,15 +174,15 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
         $group = new Group();
 
         $response = $client->createGroup($formattedName, $group);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('CreateGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertEquals($group, $actualRequestObject->getGroup());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -180,7 +192,8 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function updateGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -202,14 +215,14 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
         $group = new Group();
 
         $response = $client->updateGroup($group);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('UpdateGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/UpdateGroup', $actualFuncCall);
 
         $this->assertEquals($group, $actualRequestObject->getGroup());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -219,18 +232,22 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function deleteGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
 
         $client->deleteGroup($formattedName);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('DeleteGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/DeleteGroup', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
 
@@ -242,7 +259,8 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function listGroupMembersTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockGroupServiceImpl'], 'createGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -263,18 +281,18 @@ class GroupServiceTest extends PHPUnit_Framework_TestCase
         $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
 
         $response = $client->listGroupMembers($formattedName);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListGroupMembers', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getMembersList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
+
+        $this->assertEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

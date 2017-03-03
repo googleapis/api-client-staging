@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ namespace Google\Cloud\Tests\Language\V1;
 
 use Google\GAX\Testing\MockStubTrait;
 use google\cloud\language\v1\LanguageServiceGrpcClient;
+use google\protobuf\Any;
 
 class MockLanguageServiceImpl extends LanguageServiceGrpcClient
 {

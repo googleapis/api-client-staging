@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,39 +32,48 @@ use google\cloud\language\v1\AnnotateTextRequest\Features;
 use google\cloud\language\v1\AnnotateTextResponse;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
+use google\protobuf\Any;
 
 /**
  * @group language
  * @group grpc
  */
-class LanguageServiceTest extends PHPUnit_Framework_TestCase
+class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockLanguageServiceImpl($hostname, $opts)
     {
         return new MockLanguageServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             LanguageServiceClient::SERVICE_ADDRESS,
             LanguageServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new LanguageServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return LanguageServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new LanguageServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function analyzeSentimentTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockLanguageServiceImpl'], 'createLanguageServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -78,14 +87,14 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
         $document = new Document();
 
         $response = $client->analyzeSentiment($document);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('AnalyzeSentiment', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSentiment', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -95,7 +104,8 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
      */
     public function analyzeEntitiesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockLanguageServiceImpl'], 'createLanguageServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -110,15 +120,15 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
         $encodingType = EncodingType::NONE;
 
         $response = $client->analyzeEntities($document, $encodingType);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('AnalyzeEntities', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeEntities', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
         $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -128,7 +138,8 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
      */
     public function analyzeSyntaxTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockLanguageServiceImpl'], 'createLanguageServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -143,15 +154,15 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
         $encodingType = EncodingType::NONE;
 
         $response = $client->analyzeSyntax($document, $encodingType);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('AnalyzeSyntax', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSyntax', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
         $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -161,7 +172,8 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
      */
     public function annotateTextTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockLanguageServiceImpl'], 'createLanguageServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -177,16 +189,16 @@ class LanguageServiceTest extends PHPUnit_Framework_TestCase
         $encodingType = EncodingType::NONE;
 
         $response = $client->annotateText($document, $features, $encodingType);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('AnnotateText', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/AnnotateText', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
         $this->assertEquals($features, $actualRequestObject->getFeatures());
         $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }

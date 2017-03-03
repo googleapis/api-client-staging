@@ -1,11 +1,11 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "0.6.*",
-        "google/proto-client-php": "0.7.*"
+        "google/gax": "0.8.*",
+        "google/proto-client-php": "0.9.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": {
@@ -13,8 +13,8 @@
           "Google\\Cloud\\Tests\\Bigtable\\": "generated/php/google-cloud-bigtable-admin-v2/tests/unit/Bigtable",
           "Google\\Cloud\\PubSub\\": "generated/php/google-cloud-pubsub-v1/src/PubSub",
           "Google\\Cloud\\Tests\\PubSub\\": "generated/php/google-cloud-pubsub-v1/tests/unit/PubSub",
-          "Google\\Cloud\\Errorreporting\\": "generated/php/google-cloud-error-reporting-v1beta1/src/Errorreporting",
-          "Google\\Cloud\\Tests\\Errorreporting\\": "generated/php/google-cloud-error-reporting-v1beta1/tests/unit/Errorreporting",
+          "Google\\Cloud\\ErrorReporting\\": "generated/php/google-cloud-error-reporting-v1beta1/src/ErrorReporting",
+          "Google\\Cloud\\Tests\\ErrorReporting\\": "generated/php/google-cloud-error-reporting-v1beta1/tests/unit/ErrorReporting",
           "Google\\Cloud\\Language\\": "generated/php/google-cloud-language-v1/src/Language",
           "Google\\Cloud\\Tests\\Language\\": "generated/php/google-cloud-language-v1/tests/unit/Language",
           "Google\\Cloud\\Logging\\": "generated/php/google-cloud-logging-v2/src/Logging",

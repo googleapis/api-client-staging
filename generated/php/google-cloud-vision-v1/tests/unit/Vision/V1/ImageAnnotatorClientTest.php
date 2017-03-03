@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,39 +26,48 @@ use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\cloud\vision\v1\BatchAnnotateImagesResponse;
+use google\protobuf\Any;
 
 /**
  * @group vision
  * @group grpc
  */
-class ImageAnnotatorTest extends PHPUnit_Framework_TestCase
+class ImageAnnotatorClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockImageAnnotatorImpl($hostname, $opts)
     {
         return new MockImageAnnotatorImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             ImageAnnotatorClient::SERVICE_ADDRESS,
             ImageAnnotatorClient::DEFAULT_SERVICE_PORT
         );
-        $client = new ImageAnnotatorClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return ImageAnnotatorClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new ImageAnnotatorClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function batchAnnotateImagesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockImageAnnotatorImpl'], 'createImageAnnotatorStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockImageAnnotatorImpl']);
+        $client = $this->createClient('createImageAnnotatorStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -70,14 +79,14 @@ class ImageAnnotatorTest extends PHPUnit_Framework_TestCase
         $requests = [];
 
         $response = $client->batchAnnotateImages($requests);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('BatchAnnotateImages', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
 
         $this->assertEquals($requests, $actualRequestObject->getRequestsList());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }

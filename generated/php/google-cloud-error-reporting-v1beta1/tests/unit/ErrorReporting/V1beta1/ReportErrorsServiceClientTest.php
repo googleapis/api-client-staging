@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,39 +27,48 @@ use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse;
 use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
+use google\protobuf\Any;
 
 /**
  * @group error_reporting
  * @group grpc
  */
-class ReportErrorsServiceTest extends PHPUnit_Framework_TestCase
+class ReportErrorsServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockReportErrorsServiceImpl($hostname, $opts)
     {
         return new MockReportErrorsServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             ReportErrorsServiceClient::SERVICE_ADDRESS,
             ReportErrorsServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new ReportErrorsServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return ReportErrorsServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new ReportErrorsServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function reportErrorEventTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockReportErrorsServiceImpl'], 'createReportErrorsServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockReportErrorsServiceImpl']);
+        $client = $this->createClient('createReportErrorsServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -72,15 +81,15 @@ class ReportErrorsServiceTest extends PHPUnit_Framework_TestCase
         $event = new ReportedErrorEvent();
 
         $response = $client->reportErrorEvent($formattedProjectName, $event);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ReportErrorEvent', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
 
         $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
         $this->assertEquals($event, $actualRequestObject->getEvent());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }

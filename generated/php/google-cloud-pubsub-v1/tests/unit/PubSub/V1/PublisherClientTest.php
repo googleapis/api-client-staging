@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@ use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\iam\v1\Policy;
 use google\iam\v1\TestIamPermissionsResponse;
+use google\protobuf\Any;
+use google\protobuf\EmptyC;
 use google\pubsub\v1\ListTopicSubscriptionsResponse;
 use google\pubsub\v1\ListTopicsResponse;
 use google\pubsub\v1\PublishResponse;
@@ -37,7 +39,7 @@ use google\pubsub\v1\Topic;
  * @group pub_sub
  * @group grpc
  */
-class PublisherTest extends PHPUnit_Framework_TestCase
+class PublisherClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockPublisherImpl($hostname, $opts)
     {
@@ -49,27 +51,35 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         return new MockIAMPolicyImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             PublisherClient::SERVICE_ADDRESS,
             PublisherClient::DEFAULT_SERVICE_PORT
         );
-        $client = new PublisherClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return PublisherClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new PublisherClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function createTopicTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -83,14 +93,14 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $formattedName = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->createTopic($formattedName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('CreateTopic', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/CreateTopic', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -100,7 +110,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function publishTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -121,15 +132,15 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $messages = [$messagesElement];
 
         $response = $client->publish($formattedTopic, $messages);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('Publish', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/Publish', $actualFuncCall);
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
         $this->assertEquals($messages, $actualRequestObject->getMessagesList());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -139,7 +150,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function getTopicTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -153,14 +165,14 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getTopic($formattedTopic);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetTopic', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/GetTopic', $actualFuncCall);
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -170,7 +182,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function listTopicsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -189,18 +202,18 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $formattedProject = PublisherClient::formatProjectName('[PROJECT]');
 
         $response = $client->listTopics($formattedProject);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListTopics', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedProject, $actualRequestObject->getProject());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTopicsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/ListTopics', $actualFuncCall);
+
+        $this->assertEquals($formattedProject, $actualRequestObject->getProject());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -209,7 +222,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function listTopicSubscriptionsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -228,18 +242,18 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->listTopicSubscriptions($formattedTopic);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListTopicSubscriptions', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSubscriptionsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSubscriptions', $actualFuncCall);
+
+        $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -248,18 +262,22 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function deleteTopicTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockPublisherImpl'], 'createPublisherStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
         $client->deleteTopic($formattedTopic);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('DeleteTopic', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/DeleteTopic', $actualFuncCall);
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
 
@@ -271,7 +289,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function setIamPolicyTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockIAMPolicyImpl'], 'createIamPolicyStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -288,15 +307,15 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $policy = new Policy();
 
         $response = $client->setIamPolicy($formattedResource, $policy);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('SetIamPolicy', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
         $this->assertEquals($policy, $actualRequestObject->getPolicy());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -306,7 +325,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function getIamPolicyTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockIAMPolicyImpl'], 'createIamPolicyStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -322,14 +342,14 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getIamPolicy($formattedResource);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetIamPolicy', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -339,7 +359,8 @@ class PublisherTest extends PHPUnit_Framework_TestCase
      */
     public function testIamPermissionsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockIAMPolicyImpl'], 'createIamPolicyStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -352,15 +373,15 @@ class PublisherTest extends PHPUnit_Framework_TestCase
         $permissions = [];
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('TestIamPermissions', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
         $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }

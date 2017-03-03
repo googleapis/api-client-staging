@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,39 +26,48 @@ use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
 use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
+use google\protobuf\Any;
 
 /**
  * @group error_reporting
  * @group grpc
  */
-class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
+class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorGroupServiceImpl($hostname, $opts)
     {
         return new MockErrorGroupServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             ErrorGroupServiceClient::SERVICE_ADDRESS,
             ErrorGroupServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new ErrorGroupServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return ErrorGroupServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new ErrorGroupServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function getGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockErrorGroupServiceImpl'], 'createErrorGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockErrorGroupServiceImpl']);
+        $client = $this->createClient('createErrorGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -74,14 +83,14 @@ class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
         $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedGroupName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup', $actualFuncCall);
 
         $this->assertEquals($formattedGroupName, $actualRequestObject->getGroupName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -91,7 +100,8 @@ class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
      */
     public function updateGroupTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockErrorGroupServiceImpl'], 'createErrorGroupServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockErrorGroupServiceImpl']);
+        $client = $this->createClient('createErrorGroupServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -107,14 +117,14 @@ class ErrorGroupServiceTest extends PHPUnit_Framework_TestCase
         $group = new ErrorGroup();
 
         $response = $client->updateGroup($group);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('UpdateGroup', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup', $actualFuncCall);
 
         $this->assertEquals($group, $actualRequestObject->getGroup());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
