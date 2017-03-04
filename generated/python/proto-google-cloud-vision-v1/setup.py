@@ -23,12 +23,12 @@ extras_require = {
 
 setuptools.setup(
   name='proto-google-cloud-vision-v1',
-  version='0.15.3',
+  version='0.90.3',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Intended Audience :: Developers',
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
