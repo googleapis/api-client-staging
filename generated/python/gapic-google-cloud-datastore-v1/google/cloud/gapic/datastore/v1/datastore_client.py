@@ -31,6 +31,7 @@ import platform
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
+from google.gax.utils import oneof
 import google.gax
 
 from google.cloud.gapic.datastore.v1 import enums
@@ -57,8 +58,9 @@ class DatastoreClient(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
-                   'https://www.googleapis.com/auth/datastore', )
+    _ALL_SCOPES = (
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/datastore', )
 
     def __init__(self,
                  service_path=SERVICE_ADDRESS,
@@ -196,6 +198,7 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = datastore_pb2.LookupRequest(
             project_id=project_id, read_options=read_options, keys=keys)
         return self._lookup(request, options)
@@ -239,6 +242,13 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Sanity check: We have some fields which are mutually exclusive;
+        # raise ValueError if more than one is sent.
+        oneof.check_oneof(
+            query=query,
+            gql_query=gql_query, )
+
+        # Create the request object.
         request = datastore_pb2.RunQueryRequest(
             project_id=project_id,
             partition_id=partition_id,
@@ -269,6 +279,7 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = datastore_pb2.BeginTransactionRequest(project_id=project_id)
         return self._begin_transaction(request, options)
 
@@ -321,6 +332,11 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Sanity check: We have some fields which are mutually exclusive;
+        # raise ValueError if more than one is sent.
+        oneof.check_oneof(transaction=transaction, )
+
+        # Create the request object.
         request = datastore_pb2.CommitRequest(
             project_id=project_id,
             mode=mode,
@@ -353,6 +369,7 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = datastore_pb2.RollbackRequest(
             project_id=project_id, transaction=transaction)
         return self._rollback(request, options)
@@ -384,6 +401,7 @@ class DatastoreClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = datastore_pb2.AllocateIdsRequest(
             project_id=project_id, keys=keys)
         return self._allocate_ids(request, options)
