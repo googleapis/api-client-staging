@@ -32,6 +32,7 @@ from google.gapic.longrunning import operations_client
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
+from google.gax.utils import oneof
 import google.gax
 
 from google.cloud.gapic.speech.v1beta1 import enums
@@ -152,8 +153,7 @@ class SpeechClient(object):
             ssl_credentials=ssl_credentials,
             scopes=scopes,
             client_config=client_config,
-            app_name=app_name,
-            app_version=app_version)
+            metrics_headers=metrics_headers, )
 
         self._sync_recognize = api_callable.create_api_call(
             self.speech_stub.SyncRecognize,
@@ -197,6 +197,7 @@ class SpeechClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = cloud_speech_pb2.SyncRecognizeRequest(
             config=config, audio=audio)
         return self._sync_recognize(request, options)
@@ -243,6 +244,7 @@ class SpeechClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = cloud_speech_pb2.AsyncRecognizeRequest(
             config=config, audio=audio)
         return google.gax._OperationFuture(
