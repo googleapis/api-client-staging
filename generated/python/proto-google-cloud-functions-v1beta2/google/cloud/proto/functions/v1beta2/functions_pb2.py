@@ -19,15 +19,16 @@ from google.api import auth_pb2 as google_dot_api_dot_auth__pb2
 from google.cloud.proto.functions.v1beta2 import operations_pb2 as google_dot_cloud_dot_proto_dot_functions_dot_v1beta2_dot_operations__pb2
 from google.longrunning import operations_pb2 as google_dot_longrunning_dot_operations__pb2
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/functions/v1beta2/functions.proto',
   package='google.cloud.functions.v1beta2',
   syntax='proto3',
-  serialized_pb=_b('\n4google/cloud/proto/functions/v1beta2/functions.proto\x12\x1egoogle.cloud.functions.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x35google/cloud/proto/functions/v1beta2/operations.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\"\xcc\x04\n\rCloudFunction\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\x07gcs_url\x18\x02 \x01(\tH\x00\x12\x1c\n\x12source_archive_url\x18\x0e \x01(\tH\x00\x12M\n\x11source_repository\x18\x03 \x01(\x0b\x32\x30.google.cloud.functions.v1beta2.SourceRepositoryH\x00\x12\x18\n\x0epubsub_trigger\x18\x04 \x01(\tH\x01\x12\x15\n\x0bgcs_trigger\x18\x05 \x01(\tH\x01\x12\x45\n\rhttps_trigger\x18\x06 \x01(\x0b\x32,.google.cloud.functions.v1beta2.HTTPSTriggerH\x01\x12\x45\n\revent_trigger\x18\x0c \x01(\x0b\x32,.google.cloud.functions.v1beta2.EventTriggerH\x01\x12\x43\n\x06status\x18\x07 \x01(\x0e\x32\x33.google.cloud.functions.v1beta2.CloudFunctionStatus\x12\x18\n\x10latest_operation\x18\x08 \x01(\t\x12\x13\n\x0b\x65ntry_point\x18\t \x01(\t\x12*\n\x07timeout\x18\n \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x1b\n\x13\x61vailable_memory_mb\x18\x0b \x01(\x05\x12\x17\n\x0fservice_account\x18\r \x01(\tB\r\n\x0bsource_codeB\t\n\x07trigger\"\x1b\n\x0cHTTPSTrigger\x12\x0b\n\x03url\x18\x01 \x01(\t\"B\n\x0c\x45ventTrigger\x12\x12\n\nevent_type\x18\x01 \x01(\t\x12\x10\n\x08resource\x18\x02 \x01(\t\x12\x0c\n\x04path\x18\x03 \x01(\t\"\x9a\x01\n\x10SourceRepository\x12\x16\n\x0erepository_url\x18\x01 \x01(\t\x12\x13\n\x0bsource_path\x18\x02 \x01(\t\x12\x10\n\x06\x62ranch\x18\x03 \x01(\tH\x00\x12\r\n\x03tag\x18\x04 \x01(\tH\x00\x12\x12\n\x08revision\x18\x05 \x01(\tH\x00\x12\x19\n\x11\x64\x65ployed_revision\x18\x06 \x01(\tB\t\n\x07version\"j\n\x15\x43reateFunctionRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"f\n\x15UpdateFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"\"\n\x12GetFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"O\n\x14ListFunctionsRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"r\n\x15ListFunctionsResponse\x12@\n\tfunctions\x18\x01 \x03(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"%\n\x15\x44\x65leteFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"1\n\x13\x43\x61llFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"K\n\x14\x43\x61llFunctionResponse\x12\x14\n\x0c\x65xecution_id\x18\x01 \x01(\t\x12\x0e\n\x06result\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t*a\n\x13\x43loudFunctionStatus\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\t\n\x05READY\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x12\r\n\tDEPLOYING\x10\x03\x12\x0c\n\x08\x44\x45LETING\x10\x04\x32\xc8\x08\n\x15\x43loudFunctionsService\x12\xba\x01\n\rListFunctions\x12\x34.google.cloud.functions.v1beta2.ListFunctionsRequest\x1a\x35.google.cloud.functions.v1beta2.ListFunctionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/v1beta2/{location=projects/*/locations/*}/functions\x12\xac\x01\n\x0bGetFunction\x12\x32.google.cloud.functions.v1beta2.GetFunctionRequest\x1a-.google.cloud.functions.v1beta2.CloudFunction\":\x82\xd3\xe4\x93\x02\x34\x12\x32/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xae\x01\n\x0e\x43reateFunction\x12\x35.google.cloud.functions.v1beta2.CreateFunctionRequest\x1a\x1d.google.longrunning.Operation\"F\x82\xd3\xe4\x93\x02@\"4/v1beta2/{location=projects/*/locations/*}/functions:\x08\x66unction\x12\xac\x01\n\x0eUpdateFunction\x12\x35.google.cloud.functions.v1beta2.UpdateFunctionRequest\x1a\x1d.google.longrunning.Operation\"D\x82\xd3\xe4\x93\x02>\x1a\x32/v1beta2/{name=projects/*/locations/*/functions/*}:\x08\x66unction\x12\xa2\x01\n\x0e\x44\x65leteFunction\x12\x35.google.cloud.functions.v1beta2.DeleteFunctionRequest\x1a\x1d.google.longrunning.Operation\":\x82\xd3\xe4\x93\x02\x34*2/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xbd\x01\n\x0c\x43\x61llFunction\x12\x33.google.cloud.functions.v1beta2.CallFunctionRequest\x1a\x34.google.cloud.functions.v1beta2.CallFunctionResponse\"B\x82\xd3\xe4\x93\x02<\"7/v1beta2/{name=projects/*/locations/*/functions/*}:call:\x01*B\x85\x01\n\"com.google.cloud.functions.v1beta2B\x0e\x46unctionsProtoP\x01ZGgoogle.golang.org/genproto/googleapis/cloud/functions/v1beta2;functions\xa2\x02\x03GCFb\x06proto3')
+  serialized_pb=_b('\n4google/cloud/proto/functions/v1beta2/functions.proto\x12\x1egoogle.cloud.functions.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x35google/cloud/proto/functions/v1beta2/operations.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x04\n\rCloudFunction\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1c\n\x12source_archive_url\x18\x0e \x01(\tH\x00\x12M\n\x11source_repository\x18\x03 \x01(\x0b\x32\x30.google.cloud.functions.v1beta2.SourceRepositoryH\x00\x12\x45\n\rhttps_trigger\x18\x06 \x01(\x0b\x32,.google.cloud.functions.v1beta2.HTTPSTriggerH\x01\x12\x45\n\revent_trigger\x18\x0c \x01(\x0b\x32,.google.cloud.functions.v1beta2.EventTriggerH\x01\x12\x43\n\x06status\x18\x07 \x01(\x0e\x32\x33.google.cloud.functions.v1beta2.CloudFunctionStatus\x12\x18\n\x10latest_operation\x18\x08 \x01(\t\x12\x13\n\x0b\x65ntry_point\x18\t \x01(\t\x12*\n\x07timeout\x18\n \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x1b\n\x13\x61vailable_memory_mb\x18\x0b \x01(\x05\x12\x17\n\x0fservice_account\x18\r \x01(\t\x12/\n\x0bupdate_time\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.TimestampB\r\n\x0bsource_codeB\t\n\x07trigger\"\x1b\n\x0cHTTPSTrigger\x12\x0b\n\x03url\x18\x01 \x01(\t\"4\n\x0c\x45ventTrigger\x12\x12\n\nevent_type\x18\x01 \x01(\t\x12\x10\n\x08resource\x18\x02 \x01(\t\"\x9a\x01\n\x10SourceRepository\x12\x16\n\x0erepository_url\x18\x01 \x01(\t\x12\x13\n\x0bsource_path\x18\x02 \x01(\t\x12\x10\n\x06\x62ranch\x18\x03 \x01(\tH\x00\x12\r\n\x03tag\x18\x04 \x01(\tH\x00\x12\x12\n\x08revision\x18\x05 \x01(\tH\x00\x12\x19\n\x11\x64\x65ployed_revision\x18\x06 \x01(\tB\t\n\x07version\"j\n\x15\x43reateFunctionRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"f\n\x15UpdateFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"\"\n\x12GetFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"O\n\x14ListFunctionsRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"r\n\x15ListFunctionsResponse\x12@\n\tfunctions\x18\x01 \x03(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"%\n\x15\x44\x65leteFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"1\n\x13\x43\x61llFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"K\n\x14\x43\x61llFunctionResponse\x12\x14\n\x0c\x65xecution_id\x18\x01 \x01(\t\x12\x0e\n\x06result\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t*a\n\x13\x43loudFunctionStatus\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\t\n\x05READY\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x12\r\n\tDEPLOYING\x10\x03\x12\x0c\n\x08\x44\x45LETING\x10\x04\x32\xc8\x08\n\x15\x43loudFunctionsService\x12\xba\x01\n\rListFunctions\x12\x34.google.cloud.functions.v1beta2.ListFunctionsRequest\x1a\x35.google.cloud.functions.v1beta2.ListFunctionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/v1beta2/{location=projects/*/locations/*}/functions\x12\xac\x01\n\x0bGetFunction\x12\x32.google.cloud.functions.v1beta2.GetFunctionRequest\x1a-.google.cloud.functions.v1beta2.CloudFunction\":\x82\xd3\xe4\x93\x02\x34\x12\x32/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xae\x01\n\x0e\x43reateFunction\x12\x35.google.cloud.functions.v1beta2.CreateFunctionRequest\x1a\x1d.google.longrunning.Operation\"F\x82\xd3\xe4\x93\x02@\"4/v1beta2/{location=projects/*/locations/*}/functions:\x08\x66unction\x12\xac\x01\n\x0eUpdateFunction\x12\x35.google.cloud.functions.v1beta2.UpdateFunctionRequest\x1a\x1d.google.longrunning.Operation\"D\x82\xd3\xe4\x93\x02>\x1a\x32/v1beta2/{name=projects/*/locations/*/functions/*}:\x08\x66unction\x12\xa2\x01\n\x0e\x44\x65leteFunction\x12\x35.google.cloud.functions.v1beta2.DeleteFunctionRequest\x1a\x1d.google.longrunning.Operation\":\x82\xd3\xe4\x93\x02\x34*2/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xbd\x01\n\x0c\x43\x61llFunction\x12\x33.google.cloud.functions.v1beta2.CallFunctionRequest\x1a\x34.google.cloud.functions.v1beta2.CallFunctionResponse\"B\x82\xd3\xe4\x93\x02<\"7/v1beta2/{name=projects/*/locations/*/functions/*}:call:\x01*B\x85\x01\n\"com.google.cloud.functions.v1beta2B\x0e\x46unctionsProtoP\x01ZGgoogle.golang.org/genproto/googleapis/cloud/functions/v1beta2;functions\xa2\x02\x03GCFb\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_functions_dot_v1beta2_dot_operations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_functions_dot_v1beta2_dot_operations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _CLOUDFUNCTIONSTATUS = _descriptor.EnumDescriptor(
@@ -88,93 +89,79 @@ _CLOUDFUNCTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='gcs_url', full_name='google.cloud.functions.v1beta2.CloudFunction.gcs_url', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='source_archive_url', full_name='google.cloud.functions.v1beta2.CloudFunction.source_archive_url', index=2,
+      name='source_archive_url', full_name='google.cloud.functions.v1beta2.CloudFunction.source_archive_url', index=1,
       number=14, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='source_repository', full_name='google.cloud.functions.v1beta2.CloudFunction.source_repository', index=3,
+      name='source_repository', full_name='google.cloud.functions.v1beta2.CloudFunction.source_repository', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='pubsub_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.pubsub_trigger', index=4,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='gcs_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.gcs_trigger', index=5,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='https_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.https_trigger', index=6,
+      name='https_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.https_trigger', index=3,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='event_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.event_trigger', index=7,
+      name='event_trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.event_trigger', index=4,
       number=12, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='google.cloud.functions.v1beta2.CloudFunction.status', index=8,
+      name='status', full_name='google.cloud.functions.v1beta2.CloudFunction.status', index=5,
       number=7, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='latest_operation', full_name='google.cloud.functions.v1beta2.CloudFunction.latest_operation', index=9,
+      name='latest_operation', full_name='google.cloud.functions.v1beta2.CloudFunction.latest_operation', index=6,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='entry_point', full_name='google.cloud.functions.v1beta2.CloudFunction.entry_point', index=10,
+      name='entry_point', full_name='google.cloud.functions.v1beta2.CloudFunction.entry_point', index=7,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='timeout', full_name='google.cloud.functions.v1beta2.CloudFunction.timeout', index=11,
+      name='timeout', full_name='google.cloud.functions.v1beta2.CloudFunction.timeout', index=8,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='available_memory_mb', full_name='google.cloud.functions.v1beta2.CloudFunction.available_memory_mb', index=12,
+      name='available_memory_mb', full_name='google.cloud.functions.v1beta2.CloudFunction.available_memory_mb', index=9,
       number=11, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='service_account', full_name='google.cloud.functions.v1beta2.CloudFunction.service_account', index=13,
+      name='service_account', full_name='google.cloud.functions.v1beta2.CloudFunction.service_account', index=10,
       number=13, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='update_time', full_name='google.cloud.functions.v1beta2.CloudFunction.update_time', index=11,
+      number=15, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -196,8 +183,8 @@ _CLOUDFUNCTION = _descriptor.Descriptor(
       name='trigger', full_name='google.cloud.functions.v1beta2.CloudFunction.trigger',
       index=1, containing_type=None, fields=[]),
   ],
-  serialized_start=266,
-  serialized_end=854,
+  serialized_start=299,
+  serialized_end=868,
 )
 
 
@@ -227,8 +214,8 @@ _HTTPSTRIGGER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=856,
-  serialized_end=883,
+  serialized_start=870,
+  serialized_end=897,
 )
 
 
@@ -253,13 +240,6 @@ _EVENTTRIGGER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='path', full_name='google.cloud.functions.v1beta2.EventTrigger.path', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -272,7 +252,7 @@ _EVENTTRIGGER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=885,
+  serialized_start=899,
   serialized_end=951,
 )
 
@@ -654,21 +634,13 @@ _CLOUDFUNCTION.fields_by_name['https_trigger'].message_type = _HTTPSTRIGGER
 _CLOUDFUNCTION.fields_by_name['event_trigger'].message_type = _EVENTTRIGGER
 _CLOUDFUNCTION.fields_by_name['status'].enum_type = _CLOUDFUNCTIONSTATUS
 _CLOUDFUNCTION.fields_by_name['timeout'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
-_CLOUDFUNCTION.oneofs_by_name['source_code'].fields.append(
-  _CLOUDFUNCTION.fields_by_name['gcs_url'])
-_CLOUDFUNCTION.fields_by_name['gcs_url'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['source_code']
+_CLOUDFUNCTION.fields_by_name['update_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _CLOUDFUNCTION.oneofs_by_name['source_code'].fields.append(
   _CLOUDFUNCTION.fields_by_name['source_archive_url'])
 _CLOUDFUNCTION.fields_by_name['source_archive_url'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['source_code']
 _CLOUDFUNCTION.oneofs_by_name['source_code'].fields.append(
   _CLOUDFUNCTION.fields_by_name['source_repository'])
 _CLOUDFUNCTION.fields_by_name['source_repository'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['source_code']
-_CLOUDFUNCTION.oneofs_by_name['trigger'].fields.append(
-  _CLOUDFUNCTION.fields_by_name['pubsub_trigger'])
-_CLOUDFUNCTION.fields_by_name['pubsub_trigger'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['trigger']
-_CLOUDFUNCTION.oneofs_by_name['trigger'].fields.append(
-  _CLOUDFUNCTION.fields_by_name['gcs_trigger'])
-_CLOUDFUNCTION.fields_by_name['gcs_trigger'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['trigger']
 _CLOUDFUNCTION.oneofs_by_name['trigger'].fields.append(
   _CLOUDFUNCTION.fields_by_name['https_trigger'])
 _CLOUDFUNCTION.fields_by_name['https_trigger'].containing_oneof = _CLOUDFUNCTION.oneofs_by_name['trigger']
@@ -861,7 +833,7 @@ try:
     def CreateFunction(self, request, context):
       """Creates a new function. If a function with the given name already exists in
       the specified project, the long running operation will return
-      ALREADY_EXISTS error.
+      `ALREADY_EXISTS` error.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -949,7 +921,7 @@ try:
     def CreateFunction(self, request, context):
       """Creates a new function. If a function with the given name already exists in
       the specified project, the long running operation will return
-      ALREADY_EXISTS error.
+      `ALREADY_EXISTS` error.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def UpdateFunction(self, request, context):
@@ -990,7 +962,7 @@ try:
     def CreateFunction(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Creates a new function. If a function with the given name already exists in
       the specified project, the long running operation will return
-      ALREADY_EXISTS error.
+      `ALREADY_EXISTS` error.
       """
       raise NotImplementedError()
     CreateFunction.future = None
