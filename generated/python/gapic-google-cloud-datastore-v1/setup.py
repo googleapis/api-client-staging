@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'google-gax>=0.15.7, <0.16dev',
+    'google-gax>=0.15.8, <0.16dev',
     'oauth2client>=2.0.0, <4.0dev',
     'proto-google-cloud-datastore-v1[grpc]>=0.90.3, <0.91dev',
     'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
