@@ -35,7 +35,7 @@ var SERVICE_ADDRESS = 'monitoring.googleapis.com';
 
 var DEFAULT_SERVICE_PORT = 443;
 
-var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
+var CODE_GEN_NAME_VERSION = 'gapic/0.7.1';
 
 var PAGE_DESCRIPTORS = {
   listMonitoredResourceDescriptors: new gax.PageDescriptor(
@@ -80,33 +80,36 @@ var ALL_SCOPES = [
  * @class
  */
 function MetricServiceClient(gaxGrpc, grpcClients, opts) {
-  opts = opts || {};
-  var servicePath = opts.servicePath || SERVICE_ADDRESS;
-  var port = opts.port || DEFAULT_SERVICE_PORT;
-  var sslCreds = opts.sslCreds || null;
-  var clientConfig = opts.clientConfig || {};
-  var appName = opts.appName || 'gax';
-  var appVersion = opts.appVersion || gax.version;
+  opts = extend({
+    servicePath: SERVICE_ADDRESS,
+    port: DEFAULT_SERVICE_PORT,
+    clientConfig: {}
+  }, opts);
 
   var googleApiClient = [
-    appName + '/' + appVersion,
+    'gl-node/' + process.versions.node
+  ];
+  if (opts.libName && opts.libVersion) {
+    googleApiClient.push(opts.libName + '/' + opts.libVersion);
+  }
+  googleApiClient.push(
     CODE_GEN_NAME_VERSION,
     'gax/' + gax.version,
-    'nodejs/' + process.version].join(' ');
+    'grpc/' + gaxGrpc.grpcVersion
+  );
 
   var defaults = gaxGrpc.constructSettings(
       'google.monitoring.v3.MetricService',
       configData,
-      clientConfig,
-      {'x-goog-api-client': googleApiClient});
+      opts.clientConfig,
+      {'x-goog-api-client': googleApiClient.join(' ')});
 
   var self = this;
 
+  this.auth = gaxGrpc.auth;
   var metricServiceStub = gaxGrpc.createStub(
-      servicePath,
-      port,
       grpcClients.google.monitoring.v3.MetricService,
-      {sslCreds: sslCreds});
+      opts);
   var metricServiceStubMethods = [
     'listMonitoredResourceDescriptors',
     'getMonitoredResourceDescriptor',
@@ -226,6 +229,15 @@ MetricServiceClient.prototype.matchProjectFromMonitoredResourceDescriptorName = 
  */
 MetricServiceClient.prototype.matchMonitoredResourceDescriptorFromMonitoredResourceDescriptorName = function(monitoredResourceDescriptorName) {
   return MONITORED_RESOURCE_DESCRIPTOR_PATH_TEMPLATE.match(monitoredResourceDescriptorName).monitored_resource_descriptor;
+};
+
+/**
+ * Get the project ID used by this class.
+ * @aram {function(Error, string)} callback - the callback to be called with
+ *   the current project Id.
+ */
+MetricServiceClient.prototype.getProjectId = function(callback) {
+  return this.auth.getProjectId(callback);
 };
 
 // Service calls
@@ -998,10 +1010,6 @@ function MetricServiceClientBuilder(gaxGrpc) {
    * @param {Object=} opts.clientConfig
    *   The customized config to build the call settings. See
    *   {@link gax.constructSettings} for the format.
-   * @param {number=} opts.appName
-   *   The codename of the calling service.
-   * @param {String=} opts.appVersion
-   *   The version of the calling service.
    */
   this.metricServiceClient = function(opts) {
     return new MetricServiceClient(gaxGrpc, metricServiceClient, opts);
