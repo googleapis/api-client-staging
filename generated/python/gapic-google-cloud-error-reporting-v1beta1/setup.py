@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.5.2, <2.0dev',
-    'google-gax>=0.15.6, <0.16dev',
-    'proto-google-cloud-error-reporting-v1beta1>=0.15.0, <0.16dev',
+    'google-gax>=0.15.7, <0.16dev',
     'oauth2client>=2.0.0, <4.0dev',
+    'proto-google-cloud-error-reporting-v1beta1[grpc]>=0.15.3, <0.16dev',
+    'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
 ]
 
 setup(
     name='gapic-google-cloud-error-reporting-v1beta1',
-    version='0.15.0',
+    version='0.15.3',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[

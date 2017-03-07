@@ -10,19 +10,25 @@ import setuptools
 from setuptools import setup, find_packages
 
 install_requires = [
-  'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
+  'googleapis-common-protos>=1.5.2, <2.0dev',
   'oauth2client>=2.0.0, <4.0dev',
-  'grpcio>=1.0.2, <2.0dev',
 ]
+
+extras_require = {
+  'grpc': [
+    'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
+    'grpcio>=1.0.2, <2.0dev',
+  ],
+}
 
 setuptools.setup(
   name='proto-google-cloud-vision-v1',
-  version='0.15.2',
+  version='0.90.3',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
     'Intended Audience :: Developers',
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python',
@@ -36,6 +42,7 @@ setuptools.setup(
   description='GRPC library for the Google Cloud Vision API',
   long_description=open('README.rst').read(),
   install_requires=install_requires,
+  extras_require=extras_require,
   license='Apache-2.0',
   packages=find_packages(),
   namespace_packages=['google.cloud.proto.vision', 'google.cloud.proto', 'google.cloud', 'google'],

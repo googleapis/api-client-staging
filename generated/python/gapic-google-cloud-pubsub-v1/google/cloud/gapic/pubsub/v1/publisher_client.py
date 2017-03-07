@@ -37,8 +37,6 @@ from google.cloud.proto.pubsub.v1 import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
 
-_BundleDesc = google.gax.BundleDescriptor
-
 _PageDesc = google.gax.PageDescriptor
 
 
@@ -58,13 +56,6 @@ class PublisherClient(object):
         'list_topics': _PageDesc('page_token', 'next_page_token', 'topics'),
         'list_topic_subscriptions': _PageDesc('page_token', 'next_page_token',
                                               'subscriptions')
-    }
-
-    _BUNDLE_DESCRIPTORS = {
-        'publish': _BundleDesc(
-            'messages',
-            ['topic'],
-            subresponse_field='message_ids', )
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
@@ -213,8 +204,7 @@ class PublisherClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            bundle_descriptors=self._BUNDLE_DESCRIPTORS,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.iam_policy_stub = config.create_stub(
             iam_policy_pb2.IAMPolicyStub,
             channel=channel,
@@ -283,6 +273,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.Topic(name=name)
         return self._create_topic(request, options)
 
@@ -316,6 +307,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.PublishRequest(topic=topic, messages=messages)
         return self._publish(request, options)
 
@@ -342,6 +334,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.GetTopicRequest(topic=topic)
         return self._get_topic(request, options)
 
@@ -387,6 +380,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ListTopicsRequest(
             project=project, page_size=page_size)
         return self._list_topics(request, options)
@@ -433,6 +427,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.ListTopicSubscriptionsRequest(
             topic=topic, page_size=page_size)
         return self._list_topic_subscriptions(request, options)
@@ -461,6 +456,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = pubsub_pb2.DeleteTopicRequest(topic=topic)
         self._delete_topic(request, options)
 
@@ -495,6 +491,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.SetIamPolicyRequest(
             resource=resource, policy=policy)
         return self._set_iam_policy(request, options)
@@ -525,6 +522,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
         return self._get_iam_policy(request, options)
 
@@ -559,6 +557,7 @@ class PublisherClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.TestIamPermissionsRequest(
             resource=resource, permissions=permissions)
         return self._test_iam_permissions(request, options)

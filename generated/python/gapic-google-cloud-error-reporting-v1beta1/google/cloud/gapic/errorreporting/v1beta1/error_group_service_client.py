@@ -97,9 +97,9 @@ class ErrorGroupServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -218,6 +218,7 @@ class ErrorGroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = error_group_service_pb2.GetGroupRequest(
             group_name=group_name)
         return self._get_group(request, options)
@@ -246,5 +247,6 @@ class ErrorGroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = error_group_service_pb2.UpdateGroupRequest(group=group)
         return self._update_group(request, options)

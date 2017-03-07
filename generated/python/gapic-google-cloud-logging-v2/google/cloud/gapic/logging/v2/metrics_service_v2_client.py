@@ -274,6 +274,7 @@ class MetricsServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_metrics_pb2.ListLogMetricsRequest(
             parent=parent, page_size=page_size)
         return self._list_log_metrics(request, options)
@@ -304,6 +305,7 @@ class MetricsServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_metrics_pb2.GetLogMetricRequest(
             metric_name=metric_name)
         return self._get_log_metric(request, options)
@@ -340,6 +342,7 @@ class MetricsServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_metrics_pb2.CreateLogMetricRequest(
             parent=parent, metric=metric)
         return self._create_log_metric(request, options)
@@ -377,6 +380,7 @@ class MetricsServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_metrics_pb2.UpdateLogMetricRequest(
             metric_name=metric_name, metric=metric)
         return self._update_log_metric(request, options)
@@ -404,6 +408,7 @@ class MetricsServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_metrics_pb2.DeleteLogMetricRequest(
             metric_name=metric_name)
         self._delete_log_metric(request, options)

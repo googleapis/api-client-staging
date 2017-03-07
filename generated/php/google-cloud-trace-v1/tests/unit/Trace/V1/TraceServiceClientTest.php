@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,42 +28,54 @@ use PHPUnit_Framework_TestCase;
 use google\devtools\cloudtrace\v1\ListTracesResponse;
 use google\devtools\cloudtrace\v1\Trace;
 use google\devtools\cloudtrace\v1\Traces;
+use google\protobuf\Any;
+use google\protobuf\EmptyC;
 
 /**
  * @group trace
  * @group grpc
  */
-class TraceServiceTest extends PHPUnit_Framework_TestCase
+class TraceServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockTraceServiceImpl($hostname, $opts)
     {
         return new MockTraceServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             TraceServiceClient::SERVICE_ADDRESS,
             TraceServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new TraceServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return TraceServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new TraceServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function patchTracesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockTraceServiceImpl'], 'createTraceServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $projectId = 'projectId-1969970175';
         $traces = new Traces();
@@ -71,8 +83,9 @@ class TraceServiceTest extends PHPUnit_Framework_TestCase
         $client->patchTraces($projectId, $traces);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('PatchTraces', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/PatchTraces', $actualFuncCall);
 
         $this->assertEquals($projectId, $actualRequestObject->getProjectId());
         $this->assertEquals($traces, $actualRequestObject->getTraces());
@@ -85,7 +98,8 @@ class TraceServiceTest extends PHPUnit_Framework_TestCase
      */
     public function getTraceTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockTraceServiceImpl'], 'createTraceServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -102,15 +116,15 @@ class TraceServiceTest extends PHPUnit_Framework_TestCase
         $traceId = 'traceId1270300245';
 
         $response = $client->getTrace($projectId, $traceId);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetTrace', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/GetTrace', $actualFuncCall);
 
         $this->assertEquals($projectId, $actualRequestObject->getProjectId());
         $this->assertEquals($traceId, $actualRequestObject->getTraceId());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -120,7 +134,8 @@ class TraceServiceTest extends PHPUnit_Framework_TestCase
      */
     public function listTracesTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockTraceServiceImpl'], 'createTraceServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -139,18 +154,18 @@ class TraceServiceTest extends PHPUnit_Framework_TestCase
         $projectId = 'projectId-1969970175';
 
         $response = $client->listTraces($projectId);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListTraces', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($projectId, $actualRequestObject->getProjectId());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTracesList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/ListTraces', $actualFuncCall);
+
+        $this->assertEquals($projectId, $actualRequestObject->getProjectId());
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

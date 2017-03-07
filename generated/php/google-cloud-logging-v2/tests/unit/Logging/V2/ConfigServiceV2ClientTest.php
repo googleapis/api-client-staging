@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,39 +27,49 @@ use Google\GAX\GrpcCredentialsHelper;
 use PHPUnit_Framework_TestCase;
 use google\logging\v2\ListSinksResponse;
 use google\logging\v2\LogSink;
+use google\protobuf\Any;
+use google\protobuf\EmptyC;
 
 /**
  * @group logging
  * @group grpc
  */
-class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
+class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockConfigServiceV2Impl($hostname, $opts)
     {
         return new MockConfigServiceV2Impl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             ConfigServiceV2Client::SERVICE_ADDRESS,
             ConfigServiceV2Client::DEFAULT_SERVICE_PORT
         );
-        $client = new ConfigServiceV2Client([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return ConfigServiceV2Client
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new ConfigServiceV2Client($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function listSinksTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockConfigServiceV2Impl'], 'createConfigServiceV2StubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -78,18 +88,18 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
         $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
 
         $response = $client->listSinks($formattedParent);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListSinks', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSinksList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/ListSinks', $actualFuncCall);
+
+        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -98,7 +108,8 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
      */
     public function getSinkTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockConfigServiceV2Impl'], 'createConfigServiceV2StubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -118,14 +129,14 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
         $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
 
         $response = $client->getSink($formattedSinkName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('GetSink', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSink', $actualFuncCall);
 
         $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -135,7 +146,8 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
      */
     public function createSinkTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockConfigServiceV2Impl'], 'createConfigServiceV2StubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -156,15 +168,15 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
         $sink = new LogSink();
 
         $response = $client->createSink($formattedParent, $sink);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('CreateSink', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateSink', $actualFuncCall);
 
         $this->assertEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertEquals($sink, $actualRequestObject->getSink());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -174,7 +186,8 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
      */
     public function updateSinkTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockConfigServiceV2Impl'], 'createConfigServiceV2StubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -195,15 +208,15 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
         $sink = new LogSink();
 
         $response = $client->updateSink($formattedSinkName, $sink);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('UpdateSink', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSink', $actualFuncCall);
 
         $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
         $this->assertEquals($sink, $actualRequestObject->getSink());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -213,18 +226,22 @@ class ConfigServiceV2Test extends PHPUnit_Framework_TestCase
      */
     public function deleteSinkTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockConfigServiceV2Impl'], 'createConfigServiceV2StubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
+        // Add empty response to the grpc stub
+        $grpcStub->addResponse(new EmptyC());
         // Mock request
         $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
 
         $client->deleteSink($formattedSinkName);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('DeleteSink', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteSink', $actualFuncCall);
 
         $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
 

@@ -191,9 +191,9 @@ class InstanceAdminClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -266,7 +266,7 @@ class InstanceAdminClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.instance_admin_stub = config.create_stub(
             spanner_instance_admin_pb2.InstanceAdminStub,
             channel=channel,
@@ -284,8 +284,7 @@ class InstanceAdminClient(object):
             ssl_credentials=ssl_credentials,
             scopes=scopes,
             client_config=client_config,
-            app_name=app_name,
-            app_version=app_version)
+            metrics_headers=metrics_headers, )
 
         self._list_instance_configs = api_callable.create_api_call(
             self.instance_admin_stub.ListInstanceConfigs,
@@ -362,6 +361,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.ListInstanceConfigsRequest(
             parent=parent, page_size=page_size)
         return self._list_instance_configs(request, options)
@@ -389,6 +389,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.GetInstanceConfigRequest(
             name=name)
         return self._get_instance_config(request, options)
@@ -458,6 +459,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.ListInstancesRequest(
             parent=parent, page_size=page_size, filter=filter_)
         return self._list_instances(request, options)
@@ -485,6 +487,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.GetInstanceRequest(name=name)
         return self._get_instance(request, options)
 
@@ -554,6 +557,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.CreateInstanceRequest(
             parent=parent, instance_id=instance_id, instance=instance)
         return google.gax._OperationFuture(
@@ -631,6 +635,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.UpdateInstanceRequest(
             instance=instance, field_mask=field_mask)
         return google.gax._OperationFuture(
@@ -664,6 +669,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = spanner_instance_admin_pb2.DeleteInstanceRequest(name=name)
         self._delete_instance(request, options)
 
@@ -700,6 +706,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.SetIamPolicyRequest(
             resource=resource, policy=policy)
         return self._set_iam_policy(request, options)
@@ -731,6 +738,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
         return self._get_iam_policy(request, options)
 
@@ -767,6 +775,7 @@ class InstanceAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = iam_policy_pb2.TestIamPermissionsRequest(
             resource=resource, permissions=permissions)
         return self._test_iam_permissions(request, options)

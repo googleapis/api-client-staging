@@ -79,7 +79,7 @@ class CloudFunctionsServiceServicer(object):
   def CreateFunction(self, request, context):
     """Creates a new function. If a function with the given name already exists in
     the specified project, the long running operation will return
-    ALREADY_EXISTS error.
+    `ALREADY_EXISTS` error.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

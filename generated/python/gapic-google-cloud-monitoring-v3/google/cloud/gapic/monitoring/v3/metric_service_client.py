@@ -182,9 +182,9 @@ class MetricServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -257,7 +257,7 @@ class MetricServiceClient(object):
             client_config,
             config.STATUS_CODE_NAMES,
             metrics_headers=metrics_headers,
-            page_descriptors=self._PAGE_DESCRIPTORS)
+            page_descriptors=self._PAGE_DESCRIPTORS, )
         self.metric_service_stub = config.create_stub(
             metric_service_pb2.MetricServiceStub,
             channel=channel,
@@ -348,6 +348,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.ListMonitoredResourceDescriptorsRequest(
             name=name, filter=filter_, page_size=page_size)
         return self._list_monitored_resource_descriptors(request, options)
@@ -377,6 +378,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.GetMonitoredResourceDescriptorRequest(
             name=name)
         return self._get_monitored_resource_descriptor(request, options)
@@ -437,6 +439,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.ListMetricDescriptorsRequest(
             name=name, filter=filter_, page_size=page_size)
         return self._list_metric_descriptors(request, options)
@@ -466,6 +469,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.GetMetricDescriptorRequest(name=name)
         return self._get_metric_descriptor(request, options)
 
@@ -498,6 +502,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.CreateMetricDescriptorRequest(
             name=name, metric_descriptor=metric_descriptor)
         return self._create_metric_descriptor(request, options)
@@ -525,6 +530,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.DeleteMetricDescriptorRequest(name=name)
         self._delete_metric_descriptor(request, options)
 
@@ -604,6 +610,7 @@ class MetricServiceClient(object):
         """
         if aggregation is None:
             aggregation = common_pb2.Aggregation()
+        # Create the request object.
         request = metric_service_pb2.ListTimeSeriesRequest(
             name=name,
             filter=filter_,
@@ -644,6 +651,7 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = metric_service_pb2.CreateTimeSeriesRequest(
             name=name, time_series=time_series)
         self._create_time_series(request, options)

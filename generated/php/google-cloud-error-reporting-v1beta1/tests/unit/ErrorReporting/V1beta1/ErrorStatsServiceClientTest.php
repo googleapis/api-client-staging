@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,39 +31,48 @@ use google\devtools\clouderrorreporting\v1beta1\ErrorGroupStats;
 use google\devtools\clouderrorreporting\v1beta1\ListEventsResponse;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsResponse;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
+use google\protobuf\Any;
 
 /**
  * @group error_reporting
  * @group grpc
  */
-class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
+class ErrorStatsServiceClientTest extends PHPUnit_Framework_TestCase
 {
     public function createMockErrorStatsServiceImpl($hostname, $opts)
     {
         return new MockErrorStatsServiceImpl($hostname, $opts);
     }
 
-    private function createStubAndClient($createGrpcStub, $createStubArg)
+    private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
-        $grpcStub = $grpcCredentialsHelper->createStub(
+
+        return $grpcCredentialsHelper->createStub(
             $createGrpcStub,
             ErrorStatsServiceClient::SERVICE_ADDRESS,
             ErrorStatsServiceClient::DEFAULT_SERVICE_PORT
         );
-        $client = new ErrorStatsServiceClient([$createStubArg => function ($hostname, $opts) use ($grpcStub) {
-                return $grpcStub;
-        },
-        ]);
+    }
 
-        return [$grpcStub, $client];
+    /**
+     * @return ErrorStatsServiceClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new ErrorStatsServiceClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
     }
     /**
      * @test
      */
     public function listGroupStatsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockErrorStatsServiceImpl'], 'createErrorStatsServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -83,19 +92,19 @@ class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
         $timeRange = new QueryTimeRange();
 
         $response = $client->listGroupStats($formattedProjectName, $timeRange);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListGroupStats', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertEquals($timeRange, $actualRequestObject->getTimeRange());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getErrorGroupStatsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
+
+        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertEquals($timeRange, $actualRequestObject->getTimeRange());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -104,7 +113,8 @@ class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
      */
     public function listEventsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockErrorStatsServiceImpl'], 'createErrorStatsServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -124,19 +134,19 @@ class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
         $groupId = 'groupId506361563';
 
         $response = $client->listEvents($formattedProjectName, $groupId);
-        $actualRequests = $grpcStub->getReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('ListEvents', explode('/', $actualFuncCall)[2]);
-
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertEquals($groupId, $actualRequestObject->getGroupId());
-
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getErrorEventsList()[0], $resources[0]);
 
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents', $actualFuncCall);
+
+        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertEquals($groupId, $actualRequestObject->getGroupId());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -145,7 +155,8 @@ class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
      */
     public function deleteEventsTest()
     {
-        list($grpcStub, $client) = $this->createStubAndClient([$this, 'createMockErrorStatsServiceImpl'], 'createErrorStatsServiceStubFunction');
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
 
         $this->assertTrue($grpcStub->isExhausted());
 
@@ -157,14 +168,14 @@ class ErrorStatsServiceTest extends PHPUnit_Framework_TestCase
         $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
 
         $response = $client->deleteEvents($formattedProjectName);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->getReceivedCalls();
         $this->assertSame(1, count($actualRequests));
-        list($actualFuncCall, $actualRequestObject) = $actualRequests[0];
-        $this->assertSame('DeleteEvents', explode('/', $actualFuncCall)[2]);
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
 
         $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-
-        $this->assertEquals($expectedResponse, $response);
 
         $this->assertTrue($grpcStub->isExhausted());
     }

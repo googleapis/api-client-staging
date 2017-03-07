@@ -175,6 +175,7 @@ class ImageAnnotatorClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = image_annotator_pb2.BatchAnnotateImagesRequest(
             requests=requests)
         return self._batch_annotate_images(request, options)

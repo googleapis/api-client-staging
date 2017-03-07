@@ -265,6 +265,7 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_pb2.DeleteLogRequest(log_name=log_name)
         self._delete_log(request, options)
 
@@ -342,6 +343,7 @@ class LoggingServiceV2Client(object):
             resource = monitored_resource_pb2.MonitoredResource()
         if labels is None:
             labels = []
+        # Create the request object.
         request = logging_pb2.WriteLogEntriesRequest(
             entries=entries,
             log_name=log_name,
@@ -427,6 +429,7 @@ class LoggingServiceV2Client(object):
         """
         if project_ids is None:
             project_ids = []
+        # Create the request object.
         request = logging_pb2.ListLogEntriesRequest(
             resource_names=resource_names,
             project_ids=project_ids,
@@ -475,6 +478,7 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_pb2.ListMonitoredResourceDescriptorsRequest(
             page_size=page_size)
         return self._list_monitored_resource_descriptors(request, options)
@@ -526,6 +530,7 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = logging_pb2.ListLogsRequest(
             parent=parent, page_size=page_size)
         return self._list_logs(request, options)

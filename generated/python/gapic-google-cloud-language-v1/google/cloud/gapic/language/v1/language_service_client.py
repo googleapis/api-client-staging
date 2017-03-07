@@ -62,9 +62,9 @@ class LanguageServiceClient(object):
                  scopes=None,
                  client_config=None,
                  app_name=None,
-                 app_version='UNKNOWN',
+                 app_version='',
                  lib_name=None,
-                 lib_version='UNKNOWN',
+                 lib_version='',
                  metrics_headers=()):
         """Constructor.
 
@@ -187,6 +187,7 @@ class LanguageServiceClient(object):
         """
         if encoding_type is None:
             encoding_type = enums.EncodingType.NONE
+        # Create the request object.
         request = language_service_pb2.AnalyzeSentimentRequest(
             document=document, encoding_type=encoding_type)
         return self._analyze_sentiment(request, options)
@@ -218,6 +219,7 @@ class LanguageServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = language_service_pb2.AnalyzeEntitiesRequest(
             document=document, encoding_type=encoding_type)
         return self._analyze_entities(request, options)
@@ -250,6 +252,7 @@ class LanguageServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = language_service_pb2.AnalyzeSyntaxRequest(
             document=document, encoding_type=encoding_type)
         return self._analyze_syntax(request, options)
@@ -283,6 +286,7 @@ class LanguageServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        # Create the request object.
         request = language_service_pb2.AnnotateTextRequest(
             document=document, features=features, encoding_type=encoding_type)
         return self._annotate_text(request, options)

@@ -9,15 +9,15 @@ from setuptools import setup, find_packages
 import sys
 
 install_requires = [
-    'googleapis-common-protos>=1.5.2, <2.0dev',
-    'google-gax>=0.15.6, <0.16dev',
-    'proto-google-cloud-datastore-v1>=0.90.1, <0.91dev',
+    'google-gax>=0.15.8, <0.16dev',
     'oauth2client>=2.0.0, <4.0dev',
+    'proto-google-cloud-datastore-v1[grpc]>=0.90.3, <0.91dev',
+    'googleapis-common-protos[grpc]>=1.5.2, <2.0dev',
 ]
 
 setup(
     name='gapic-google-cloud-datastore-v1',
-    version='0.15.1',
+    version='0.15.3',
     author='Google Inc',
     author_email='googleapis-packages@google.com',
     classifiers=[
