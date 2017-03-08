@@ -35,7 +35,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
-public class LoggingServiceV2SmokeTest {
+public class LoggingSmokeTest {
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
@@ -52,7 +52,7 @@ public class LoggingServiceV2SmokeTest {
       CommandLine cl = (new DefaultParser()).parse(options, args);
       if (cl.hasOption("help")) {
         HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("LoggingServiceV2SmokeTest", options);
+        formater.printHelp("LoggingSmokeTest", options);
       }
       executeNoCatch(cl.getOptionValue("project_id"));
       System.out.println("OK");
@@ -64,7 +64,7 @@ public class LoggingServiceV2SmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (LoggingServiceV2Client client = LoggingServiceV2Client.create()) {
+    try (LoggingClient client = LoggingClient.create()) {
       LogNameOneof logName =
           LogNameOneof.from(LogName.create(projectId, "test-" + System.currentTimeMillis()));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
