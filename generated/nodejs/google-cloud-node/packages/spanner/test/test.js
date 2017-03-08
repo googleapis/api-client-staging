@@ -519,7 +519,7 @@ function mockServerStreamingGrpcMethod(expectedRequest, response, error) {
         callback(null, response);
       }
     });
-    mockStream.write();
+    setTimeout(function() { mockStream.write(); }, 0);
     return mockStream;
   };
 }
