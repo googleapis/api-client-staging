@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
-public class PublisherSmokeTest {
+public class TopicAdminSmokeTest {
   public static void main(String args[]) {
     Logger.getLogger("").setLevel(Level.WARNING);
     try {
@@ -45,7 +45,7 @@ public class PublisherSmokeTest {
       CommandLine cl = (new DefaultParser()).parse(options, args);
       if (cl.hasOption("help")) {
         HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("PublisherSmokeTest", options);
+        formater.printHelp("TopicAdminSmokeTest", options);
       }
       executeNoCatch(cl.getOptionValue("project_id"));
       System.out.println("OK");
@@ -57,7 +57,7 @@ public class PublisherSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (PublisherClient client = PublisherClient.create()) {
+    try (TopicAdminClient client = TopicAdminClient.create()) {
       TopicName name = TopicName.create(projectId, "smoketesttopic-" + System.currentTimeMillis());
 
       Topic response = client.createTopic(name);

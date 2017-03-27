@@ -2,6 +2,9 @@ import groovy.io.FileType
 
 def generated_grpc_version = "0.1.5"
 
+// TODO: Update all grpc versions to 0.1.6
+def pubsub_grpc_version = "0.1.6"
+
 buildscript {
   repositories {
     mavenLocal()
@@ -31,7 +34,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.6.0',
+        gax: 'com.google.api:gax:0.7.0',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -122,7 +125,7 @@ project(':generated:java:google-cloud-logging-v2') {
 
 project(':generated:java:google-cloud-pubsub-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + pubsub_grpc_version
   }
 }
 
