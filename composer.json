@@ -2,7 +2,7 @@
     "name": "google/api-client-staging",
     "require": {
         "google/gax": "0.8.*",
-        "google/proto-client-php": "0.9.*"
+        "google/proto-client-php": "0.9.1"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
@@ -23,6 +23,8 @@
           "Google\\Cloud\\Tests\\Monitoring\\": "generated/php/google-cloud-monitoring-v3/tests/unit/Monitoring",
           "Google\\Cloud\\Speech\\": "generated/php/google-cloud-speech-v1beta1/src/Speech",
           "Google\\Cloud\\Tests\\Speech\\": "generated/php/google-cloud-speech-v1beta1/tests/unit/Speech",
+          "Google\\Cloud\\Speech\\V1\\": "generated/php/google-cloud-speech-v1/src/Speech/V1",
+          "Google\\Cloud\\Tests\\Speech\\V1\\": "generated/php/google-cloud-speech-v1/tests/unit/Speech/V1",
           "Google\\Cloud\\Trace\\": "generated/php/google-cloud-trace-v1/src/Trace",
           "Google\\Cloud\\Tests\\Trace\\": "generated/php/google-cloud-trace-v1/tests/unit/Trace",
           "Google\\Cloud\\Vision\\": "generated/php/google-cloud-vision-v1/src/Vision",
