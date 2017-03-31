@@ -2,7 +2,7 @@
     "name": "google/api-client-staging",
     "require": {
         "google/gax": "0.8.*",
-        "google/proto-client-php": "0.9.1"
+        "google/proto-client-php": "0.10.0"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
