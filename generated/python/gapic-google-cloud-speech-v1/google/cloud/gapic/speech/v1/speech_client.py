@@ -174,14 +174,14 @@ class SpeechClient(object):
           >>> from google.cloud.gapic.speech.v1 import speech_client
           >>> from google.cloud.gapic.speech.v1 import enums
           >>> from google.cloud.proto.speech.v1 import cloud_speech_pb2
-          >>> api = speech_client.SpeechClient()
-          >>> encoding = enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED
-          >>> sample_rate_hertz = 0
-          >>> language_code = ''
+          >>> client = speech_client.SpeechClient()
+          >>> encoding = enums.RecognitionConfig.AudioEncoding.FLAC
+          >>> sample_rate_hertz = 44100
+          >>> language_code = 'en-US'
           >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate_hertz, language_code)
-          >>> uri = ''
+          >>> uri = 'gs://bucket_name/file_name.flac'
           >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
-          >>> response = api.recognize(config, audio)
+          >>> response = client.recognize(config, audio)
 
         Args:
           config (:class:`google.cloud.proto.speech.v1.cloud_speech_pb2.RecognitionConfig`): *Required* Provides information to the recognizer that specifies how to
@@ -212,14 +212,14 @@ class SpeechClient(object):
           >>> from google.cloud.gapic.speech.v1 import speech_client
           >>> from google.cloud.gapic.speech.v1 import enums
           >>> from google.cloud.proto.speech.v1 import cloud_speech_pb2
-          >>> api = speech_client.SpeechClient()
-          >>> encoding = enums.RecognitionConfig.AudioEncoding.ENCODING_UNSPECIFIED
-          >>> sample_rate_hertz = 0
-          >>> language_code = ''
+          >>> client = speech_client.SpeechClient()
+          >>> encoding = enums.RecognitionConfig.AudioEncoding.FLAC
+          >>> sample_rate_hertz = 44100
+          >>> language_code = 'en-US'
           >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate_hertz, language_code)
-          >>> uri = ''
+          >>> uri = 'gs://bucket_name/file_name.flac'
           >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
-          >>> response = api.long_running_recognize(config, audio)
+          >>> response = client.long_running_recognize(config, audio)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -263,12 +263,12 @@ class SpeechClient(object):
         Example:
           >>> from google.cloud.gapic.speech.v1 import speech_client
           >>> from google.cloud.proto.speech.v1 import cloud_speech_pb2
-          >>> api = speech_client.SpeechClient()
+          >>> client = speech_client.SpeechClient()
           >>> request = cloud_speech_pb2.StreamingRecognizeRequest()
           >>> requests = [request]
-          >>> for element in api.streaming_recognize(requests):
-          >>>   # process element
-          >>>   pass
+          >>> for element in client.streaming_recognize(requests):
+          >>>     # process element
+          >>>     pass
 
         Args:
           requests (iterator[:class:`google.cloud.proto.speech.v1.cloud_speech_pb2.StreamingRecognizeRequest`]): The input objects.
