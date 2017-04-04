@@ -5,7 +5,7 @@ Stackdriver Debugger API uses [Google API extensions][google-gax] to provide an
 easy-to-use client library for the [Stackdriver Debugger API][] (v2) defined in the [googleapis][] git repository
 
 
-[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouddebugger/v2
+[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/devtools/
 [google-gax]: https://github.com/googleapis/gax-ruby
 [Stackdriver Debugger API]: https://developers.google.com/apis-explorer/?hl=en_US#p/clouddebugger/v2
 
