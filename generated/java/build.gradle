@@ -168,3 +168,6 @@ project(':generated:java:google-longrunning-v1') {
     compile 'com.google.api.grpc:grpc-google-common-protos:' + generated_grpc_version
   }
 }
+
+project(':generated:java:google-cloud-compute-v1') {
+}
