@@ -1,0 +1,194 @@
+<?php
+/*
+ * Copyright 2017, Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
+namespace Google\Cloud\Tests\Speech\V1;
+
+use Google\Cloud\Speech\V1\SpeechClient;
+use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use PHPUnit_Framework_TestCase;
+use google\cloud\speech\v1\LongRunningRecognizeResponse;
+use google\cloud\speech\v1\RecognitionAudio;
+use google\cloud\speech\v1\RecognitionConfig;
+use google\cloud\speech\v1\RecognitionConfig\AudioEncoding;
+use google\cloud\speech\v1\RecognizeResponse;
+use google\longrunning\GetOperationRequest;
+use google\longrunning\Operation;
+use google\protobuf\Any;
+
+/**
+ * @group speech
+ * @group grpc
+ */
+class SpeechClientTest extends PHPUnit_Framework_TestCase
+{
+    public function createMockSpeechImpl($hostname, $opts)
+    {
+        return new MockSpeechImpl($hostname, $opts);
+    }
+
+    public function createMockOperationsStub($hostname, $opts)
+    {
+        return new MockOperationsImpl($hostname, $opts);
+    }
+
+    private function createStub($createGrpcStub)
+    {
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+
+        return $grpcCredentialsHelper->createStub(
+            $createGrpcStub,
+            SpeechClient::SERVICE_ADDRESS,
+            SpeechClient::DEFAULT_SERVICE_PORT
+        );
+    }
+
+    /**
+     * @return SpeechClient
+     */
+    private function createClient($createStubFuncName, $grpcStub, $options = [])
+    {
+        return new SpeechClient($options + [
+            $createStubFuncName => function ($hostname, $opts) use ($grpcStub) {
+                return $grpcStub;
+            },
+        ]);
+    }
+    /**
+     * @test
+     */
+    public function recognizeTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new RecognizeResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $encoding = AudioEncoding::FLAC;
+        $sampleRateHertz = 44100;
+        $languageCode = 'en-US';
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRateHertz($sampleRateHertz);
+        $config->setLanguageCode($languageCode);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->recognize($config, $audio);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1.Speech/Recognize', $actualFuncCall);
+
+        $this->assertEquals($config, $actualRequestObject->getConfig());
+        $this->assertEquals($audio, $actualRequestObject->getAudio());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function longRunningRecognizeTest()
+    {
+        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'scopes' => [],
+            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
+                return $operationsStub;
+            },
+        ]);
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/longRunningRecognizeTest')->setDone(false);
+        $grpcStub->addResponse($incompleteOperation);
+        $expectedResponse = new LongRunningRecognizeResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serialize());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/longRunningRecognizeTest')->setDone(true)->setResponse($anyResponse);
+        $operationsStub->addResponse($completeOperation);
+
+        // Mock request
+        $encoding = AudioEncoding::FLAC;
+        $sampleRateHertz = 44100;
+        $languageCode = 'en-US';
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRateHertz($sampleRateHertz);
+        $config->setLanguageCode($languageCode);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->longRunningRecognize($config, $audio);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $grpcStub->getReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsStub->getReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1.Speech/LongRunningRecognize', $actualApiFuncCall);
+        $this->assertEquals($config, $actualApiRequestObject->getConfig());
+        $this->assertEquals($audio, $actualApiRequestObject->getAudio());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/longRunningRecognizeTest');
+
+        $response->pollUntilComplete();
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $grpcStub->getReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsStub->getReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+    }
+}
