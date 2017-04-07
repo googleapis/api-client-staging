@@ -1,6 +1,7 @@
 import groovy.io.FileType
 
 def generated_grpc_version = "0.1.5"
+def generated_language_version = "0.1.6"
 def generated_pubsub_version = "0.1.6"
 
 buildscript {
@@ -32,7 +33,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.8.0',
+        gax: 'com.google.api:gax:0.8.1',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -129,7 +130,8 @@ project(':generated:java:google-cloud-pubsub-v1') {
 
 project(':generated:java:google-cloud-language-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_language_version
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta2:' + generated_language_version
   }
 }
 
