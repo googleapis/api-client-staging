@@ -332,7 +332,7 @@ public class TopicAdminClient implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final PublishResponse publish(PublishRequest request) {
+  /* package-private */ final PublishResponse publish(PublishRequest request) {
     return publishCallable().call(request);
   }
 
