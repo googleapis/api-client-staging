@@ -1,5 +1,5 @@
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -234,7 +234,7 @@ public class OperationsClient implements AutoCloseable {
    *   GetOperationRequest request = GetOperationRequest.newBuilder()
    *     .setName(name)
    *     .build();
-   *   ListenableFuture&lt;Operation&gt; future = operationsClient.getOperationCallable().futureCall(request);
+   *   ApiFuture&lt;Operation&gt; future = operationsClient.getOperationCallable().futureCall(request);
    *   // Do something
    *   Operation response = future.get();
    * }
@@ -258,7 +258,7 @@ public class OperationsClient implements AutoCloseable {
    * try (OperationsClient operationsClient = OperationsClient.create()) {
    *   String name = "";
    *   String filter = "";
-   *   for (Operation element : operationsClient.listOperations(name, filter).iterateAllElements()) {
+   *   for (Operation element : operationsClient.listOperations(name, filter).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -292,7 +292,7 @@ public class OperationsClient implements AutoCloseable {
    *     .setName(name)
    *     .setFilter(filter)
    *     .build();
-   *   for (Operation element : operationsClient.listOperations(request).iterateAllElements()) {
+   *   for (Operation element : operationsClient.listOperations(request).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -323,9 +323,9 @@ public class OperationsClient implements AutoCloseable {
    *     .setName(name)
    *     .setFilter(filter)
    *     .build();
-   *   ListenableFuture&lt;ListOperationsPagedResponse&gt; future = operationsClient.listOperationsPagedCallable().futureCall(request);
+   *   ApiFuture&lt;ListOperationsPagedResponse&gt; future = operationsClient.listOperationsPagedCallable().futureCall(request);
    *   // Do something
-   *   for (Operation element : future.get().iterateAllElements()) {
+   *   for (Operation element : future.get().iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -452,7 +452,7 @@ public class OperationsClient implements AutoCloseable {
    *   CancelOperationRequest request = CancelOperationRequest.newBuilder()
    *     .setName(name)
    *     .build();
-   *   ListenableFuture&lt;Void&gt; future = operationsClient.cancelOperationCallable().futureCall(request);
+   *   ApiFuture&lt;Void&gt; future = operationsClient.cancelOperationCallable().futureCall(request);
    *   // Do something
    *   future.get();
    * }
@@ -525,7 +525,7 @@ public class OperationsClient implements AutoCloseable {
    *   DeleteOperationRequest request = DeleteOperationRequest.newBuilder()
    *     .setName(name)
    *     .build();
-   *   ListenableFuture&lt;Void&gt; future = operationsClient.deleteOperationCallable().futureCall(request);
+   *   ApiFuture&lt;Void&gt; future = operationsClient.deleteOperationCallable().futureCall(request);
    *   // Do something
    *   future.get();
    * }
