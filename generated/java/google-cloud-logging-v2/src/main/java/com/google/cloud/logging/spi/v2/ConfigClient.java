@@ -29,7 +29,6 @@ import com.google.logging.v2.ParentNameOneof;
 import com.google.logging.v2.SinkNameOneof;
 import com.google.logging.v2.UpdateSinkRequest;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -95,7 +94,6 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
 public class ConfigClient implements AutoCloseable {
   private final ConfigSettings settings;
   private final ScheduledExecutorService executor;
@@ -178,7 +176,7 @@ public class ConfigClient implements AutoCloseable {
    * <pre><code>
    * try (ConfigClient configClient = ConfigClient.create()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
-   *   for (LogSink element : configClient.listSinks(parent).iterateAllElements()) {
+   *   for (LogSink element : configClient.listSinks(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -207,7 +205,7 @@ public class ConfigClient implements AutoCloseable {
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
-   *   for (LogSink element : configClient.listSinks(request).iterateAllElements()) {
+   *   for (LogSink element : configClient.listSinks(request).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -234,7 +232,7 @@ public class ConfigClient implements AutoCloseable {
    *     .build();
    *   ApiFuture&lt;ListSinksPagedResponse&gt; future = configClient.listSinksPagedCallable().futureCall(request);
    *   // Do something
-   *   for (LogSink element : future.get().iterateAllElements()) {
+   *   for (LogSink element : future.get().iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -50,7 +50,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 @javax.annotation.Generated("by GAPIC")
-public class OperationsTest {
+public class OperationsClientTest {
   private static MockOperations mockOperations;
   private static MockServiceHelper serviceHelper;
   private OperationsClient client;
@@ -106,7 +106,7 @@ public class OperationsTest {
   @Test
   @SuppressWarnings("all")
   public void getOperationExceptionTest() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockOperations.addException(exception);
 
     try {
@@ -115,7 +115,7 @@ public class OperationsTest {
       client.getOperation(name);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
-      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
     }
   }
 
@@ -137,7 +137,7 @@ public class OperationsTest {
 
     ListOperationsPagedResponse pagedListResponse = client.listOperations(name, filter);
 
-    List<Operation> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
+    List<Operation> resources = Lists.newArrayList(pagedListResponse.iterateAll());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getOperationsList().get(0), resources.get(0));
 
@@ -152,7 +152,7 @@ public class OperationsTest {
   @Test
   @SuppressWarnings("all")
   public void listOperationsExceptionTest() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockOperations.addException(exception);
 
     try {
@@ -162,7 +162,7 @@ public class OperationsTest {
       client.listOperations(name, filter);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
-      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
     }
   }
 
@@ -186,7 +186,7 @@ public class OperationsTest {
   @Test
   @SuppressWarnings("all")
   public void cancelOperationExceptionTest() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockOperations.addException(exception);
 
     try {
@@ -195,7 +195,7 @@ public class OperationsTest {
       client.cancelOperation(name);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
-      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
     }
   }
 
@@ -219,7 +219,7 @@ public class OperationsTest {
   @Test
   @SuppressWarnings("all")
   public void deleteOperationExceptionTest() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INTERNAL);
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockOperations.addException(exception);
 
     try {
@@ -228,7 +228,7 @@ public class OperationsTest {
       client.deleteOperation(name);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
-      Assert.assertEquals(Status.INTERNAL.getCode(), e.getStatusCode());
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
     }
   }
 }

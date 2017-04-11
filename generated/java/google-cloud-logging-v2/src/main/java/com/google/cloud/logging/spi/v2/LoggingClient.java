@@ -35,7 +35,6 @@ import com.google.logging.v2.ParentNameOneof;
 import com.google.logging.v2.WriteLogEntriesRequest;
 import com.google.logging.v2.WriteLogEntriesResponse;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -101,7 +100,6 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
 public class LoggingClient implements AutoCloseable {
   private final LoggingSettings settings;
   private final ScheduledExecutorService executor;
@@ -384,7 +382,7 @@ public class LoggingClient implements AutoCloseable {
    *   List&lt;String&gt; resourceNames = new ArrayList&lt;&gt;();
    *   String filter = "";
    *   String orderBy = "";
-   *   for (LogEntry element : loggingClient.listLogEntries(resourceNames, filter, orderBy).iterateAllElements()) {
+   *   for (LogEntry element : loggingClient.listLogEntries(resourceNames, filter, orderBy).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -432,7 +430,7 @@ public class LoggingClient implements AutoCloseable {
    *   ListLogEntriesRequest request = ListLogEntriesRequest.newBuilder()
    *     .addAllResourceNames(resourceNames)
    *     .build();
-   *   for (LogEntry element : loggingClient.listLogEntries(request).iterateAllElements()) {
+   *   for (LogEntry element : loggingClient.listLogEntries(request).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -460,7 +458,7 @@ public class LoggingClient implements AutoCloseable {
    *     .build();
    *   ApiFuture&lt;ListLogEntriesPagedResponse&gt; future = loggingClient.listLogEntriesPagedCallable().futureCall(request);
    *   // Do something
-   *   for (LogEntry element : future.get().iterateAllElements()) {
+   *   for (LogEntry element : future.get().iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -513,7 +511,7 @@ public class LoggingClient implements AutoCloseable {
    * <pre><code>
    * try (LoggingClient loggingClient = LoggingClient.create()) {
    *   ListMonitoredResourceDescriptorsRequest request = ListMonitoredResourceDescriptorsRequest.newBuilder().build();
-   *   for (MonitoredResourceDescriptor element : loggingClient.listMonitoredResourceDescriptors(request).iterateAllElements()) {
+   *   for (MonitoredResourceDescriptor element : loggingClient.listMonitoredResourceDescriptors(request).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -538,7 +536,7 @@ public class LoggingClient implements AutoCloseable {
    *   ListMonitoredResourceDescriptorsRequest request = ListMonitoredResourceDescriptorsRequest.newBuilder().build();
    *   ApiFuture&lt;ListMonitoredResourceDescriptorsPagedResponse&gt; future = loggingClient.listMonitoredResourceDescriptorsPagedCallable().futureCall(request);
    *   // Do something
-   *   for (MonitoredResourceDescriptor element : future.get().iterateAllElements()) {
+   *   for (MonitoredResourceDescriptor element : future.get().iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -590,7 +588,7 @@ public class LoggingClient implements AutoCloseable {
    * <pre><code>
    * try (LoggingClient loggingClient = LoggingClient.create()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
-   *   for (String element : loggingClient.listLogs(parent).iterateAllElements()) {
+   *   for (String element : loggingClient.listLogs(parent).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -620,7 +618,7 @@ public class LoggingClient implements AutoCloseable {
    *   ListLogsRequest request = ListLogsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
    *     .build();
-   *   for (String element : loggingClient.listLogs(request).iterateAllElements()) {
+   *   for (String element : loggingClient.listLogs(request).iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -648,7 +646,7 @@ public class LoggingClient implements AutoCloseable {
    *     .build();
    *   ApiFuture&lt;ListLogsPagedResponse&gt; future = loggingClient.listLogsPagedCallable().futureCall(request);
    *   // Do something
-   *   for (String element : future.get().iterateAllElements()) {
+   *   for (String element : future.get().iterateAll()) {
    *     // doThingsWith(element);
    *   }
    * }
