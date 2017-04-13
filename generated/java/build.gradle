@@ -114,9 +114,33 @@ subprojects {
   }
 }
 
+project(':generated:java:google-cloud-error-reporting-v1beta1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-error-reporting-v1beta1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-language-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-language-v1beta2') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta2:' + generated_grpc_version
+  }
+}
+
 project(':generated:java:google-cloud-logging-v2') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-cloud-logging-v2:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-monitoring-v3') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-monitoring-v3:' + generated_grpc_version
   }
 }
 
@@ -126,10 +150,9 @@ project(':generated:java:google-cloud-pubsub-v1') {
   }
 }
 
-project(':generated:java:google-cloud-language-v1') {
+project(':generated:java:google-cloud-speech-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_grpc_version
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta2:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-speech-v1:' + generated_grpc_version
   }
 }
 
@@ -139,27 +162,15 @@ project(':generated:java:google-cloud-speech-v1beta1') {
   }
 }
 
-project(':generated:java:google-cloud-vision-v1') {
-  dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-vision-v1:' + generated_grpc_version
-  }
-}
-
-project(':generated:java:google-cloud-error-reporting-v1beta1') {
-  dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-error-reporting-v1beta1:' + generated_grpc_version
-  }
-}
-
 project(':generated:java:google-cloud-trace-v1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-cloud-trace-v1:' + generated_grpc_version
   }
 }
 
-project(':generated:java:google-cloud-monitoring-v3') {
+project(':generated:java:google-cloud-vision-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-monitoring-v3:' + generated_grpc_version
+    compile 'com.google.api.grpc:grpc-google-cloud-vision-v1:' + generated_grpc_version
   }
 }
 
