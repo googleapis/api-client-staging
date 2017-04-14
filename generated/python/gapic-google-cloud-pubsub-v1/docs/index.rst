@@ -12,7 +12,7 @@ easy-to-use client library for the `Google Cloud Pub/Sub API`_ (v1) defined in t
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/pubsub/v1
-.. _`Google Cloud Pub/Sub API`: https://developers.google.com/apis-explorer/?hl=en_US#p/pubsub/v1/
+.. _`Google Cloud Pub/Sub API`: https://developers.google.com/apis-explorer/?hl=en_US#p/pubsub/v1
 
 
 APIs

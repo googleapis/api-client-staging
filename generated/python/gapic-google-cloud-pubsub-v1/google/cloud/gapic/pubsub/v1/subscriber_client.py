@@ -57,17 +57,16 @@ class SubscriberClient(object):
     """The default port of the service."""
 
     _PAGE_DESCRIPTORS = {
-        'list_subscriptions': _PageDesc('page_token', 'next_page_token',
-                                        'subscriptions'),
-        'list_snapshots': _PageDesc('page_token', 'next_page_token',
-                                    'snapshots')
+        'list_subscriptions':
+        _PageDesc('page_token', 'next_page_token', 'subscriptions'),
+        'list_snapshots':
+        _PageDesc('page_token', 'next_page_token', 'snapshots')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/pubsub', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/pubsub', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _SNAPSHOT_PATH_TEMPLATE = path_template.PathTemplate(
@@ -80,7 +79,9 @@ class SubscriberClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def snapshot_path(cls, project, snapshot):
@@ -94,8 +95,10 @@ class SubscriberClient(object):
     def subscription_path(cls, project, subscription):
         """Returns a fully-qualified subscription resource name string."""
         return cls._SUBSCRIPTION_PATH_TEMPLATE.render({
-            'project': project,
-            'subscription': subscription,
+            'project':
+            project,
+            'subscription':
+            subscription,
         })
 
     @classmethod
@@ -355,14 +358,15 @@ class SubscriberClient(object):
                             name,
                             topic,
                             push_config=None,
-                            ack_deadline_seconds=0,
-                            retain_acked_messages=False,
+                            ack_deadline_seconds=None,
+                            retain_acked_messages=None,
                             message_retention_duration=None,
                             options=None):
         """
         Creates a subscription to a given topic.
         If the subscription already exists, returns ``ALREADY_EXISTS``.
         If the corresponding topic doesn't exist, returns ``NOT_FOUND``.
+
         If the name is not provided in the request, the server will assign a random
         name for this subscription on the same project as the topic, conforming
         to the
@@ -372,10 +376,10 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> name = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> response = api.create_subscription(name, topic)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> name = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
+          >>> response = client.create_subscription(name, topic)
 
         Args:
           name (string): The name of the subscription. It must have the format
@@ -430,10 +434,6 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if push_config is None:
-            push_config = pubsub_pb2.PushConfig()
-        if message_retention_duration is None:
-            message_retention_duration = duration_pb2.Duration()
         # Create the request object.
         request = pubsub_pb2.Subscription(
             name=name,
@@ -450,9 +450,9 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> response = api.get_subscription(subscription)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = client.get_subscription(subscription)
 
         Args:
           subscription (string): The name of the subscription to get.
@@ -480,10 +480,10 @@ class SubscriberClient(object):
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
           >>> from google.protobuf import field_mask_pb2
-          >>> api = subscriber_client.SubscriberClient()
+          >>> client = subscriber_client.SubscriberClient()
           >>> subscription = pubsub_pb2.Subscription()
           >>> update_mask = field_mask_pb2.FieldMask()
-          >>> response = api.update_subscription(subscription, update_mask)
+          >>> response = client.update_subscription(subscription, update_mask)
 
         Args:
           subscription (:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.Subscription`): The updated subscription object.
@@ -504,26 +504,26 @@ class SubscriberClient(object):
             subscription=subscription, update_mask=update_mask)
         return self._update_subscription(request, options)
 
-    def list_subscriptions(self, project, page_size=0, options=None):
+    def list_subscriptions(self, project, page_size=None, options=None):
         """
         Lists matching subscriptions.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = subscriber_client.SubscriberClient()
-          >>> project = api.project_path('[PROJECT]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> project = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_subscriptions(project):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_subscriptions(project, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_subscriptions(project):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_subscriptions(project, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           project (string): The name of the cloud project that subscriptions belong to.
@@ -561,9 +561,9 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> api.delete_subscription(subscription)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client.delete_subscription(subscription)
 
         Args:
           subscription (string): The subscription to delete.
@@ -594,11 +594,11 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
           >>> ack_deadline_seconds = 0
-          >>> api.modify_ack_deadline(subscription, ack_ids, ack_deadline_seconds)
+          >>> client.modify_ack_deadline(subscription, ack_ids, ack_deadline_seconds)
 
         Args:
           subscription (string): The name of the subscription.
@@ -630,16 +630,17 @@ class SubscriberClient(object):
         Acknowledges the messages associated with the ``ack_ids`` in the
         ``AcknowledgeRequest``. The Pub/Sub system can remove the relevant messages
         from the subscription.
+
         Acknowledging a message whose ack deadline has expired may succeed,
         but such a message may be redelivered later. Acknowledging a message more
         than once will not result in an error.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> ack_ids = []
-          >>> api.acknowledge(subscription, ack_ids)
+          >>> client.acknowledge(subscription, ack_ids)
 
         Args:
           subscription (string): The subscription whose message is being acknowledged.
@@ -661,7 +662,7 @@ class SubscriberClient(object):
     def pull(self,
              subscription,
              max_messages,
-             return_immediately=False,
+             return_immediately=None,
              options=None):
         """
         Pulls messages from the server. Returns an empty list if there are no
@@ -671,22 +672,22 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> max_messages = 0
-          >>> response = api.pull(subscription, max_messages)
+          >>> response = client.pull(subscription, max_messages)
 
         Args:
           subscription (string): The subscription from which messages should be pulled.
             Format is ``projects/{project}/subscriptions/{sub}``.
+          max_messages (int): The maximum number of messages returned for this request. The Pub/Sub
+            system may return fewer than the number specified.
           return_immediately (bool): If this field set to true, the system will respond immediately even if
             it there are no messages available to return in the ``Pull`` response.
             Otherwise, the system may wait (for a bounded amount of time) until at
             least one message is available, rather than returning no messages. The
             client may cancel the request if it does not wish to wait any longer for
             the response.
-          max_messages (int): The maximum number of messages returned for this request. The Pub/Sub
-            system may return fewer than the number specified.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -709,6 +710,7 @@ class SubscriberClient(object):
         (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
         respond with UNIMPLEMENTED errors unless you have been invited to test
         this feature. Contact cloud-pubsub@google.com with any questions.
+
         Establishes a stream with the server, which sends messages down to the
         client. The client streams acknowledgements and ack deadline modifications
         back to the server. The server will close the stream and return the status
@@ -723,14 +725,14 @@ class SubscriberClient(object):
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> stream_ack_deadline_seconds = 0
           >>> request = pubsub_pb2.StreamingPullRequest(subscription, stream_ack_deadline_seconds)
           >>> requests = [request]
-          >>> for element in api.streaming_pull(requests):
-          >>>   # process element
-          >>>   pass
+          >>> for element in client.streaming_pull(requests):
+          >>>     # process element
+          >>>     pass
 
         Args:
           requests (iterator[:class:`google.cloud.proto.pubsub.v1.pubsub_pb2.StreamingPullRequest`]): The input objects.
@@ -749,6 +751,7 @@ class SubscriberClient(object):
     def modify_push_config(self, subscription, push_config, options=None):
         """
         Modifies the ``PushConfig`` for a specified subscription.
+
         This may be used to change a push subscription to a pull one (signified by
         an empty ``PushConfig``) or vice versa, or change the endpoint URL and other
         attributes of a push subscription. Messages will accumulate for delivery
@@ -757,10 +760,10 @@ class SubscriberClient(object):
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> push_config = pubsub_pb2.PushConfig()
-          >>> api.modify_push_config(subscription, push_config)
+          >>> client.modify_push_config(subscription, push_config)
 
         Args:
           subscription (string): The name of the subscription.
@@ -783,26 +786,26 @@ class SubscriberClient(object):
             subscription=subscription, push_config=push_config)
         self._modify_push_config(request, options)
 
-    def list_snapshots(self, project, page_size=0, options=None):
+    def list_snapshots(self, project, page_size=None, options=None):
         """
         Lists the existing snapshots.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = subscriber_client.SubscriberClient()
-          >>> project = api.project_path('[PROJECT]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> project = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_snapshots(project):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_snapshots(project, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_snapshots(project):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_snapshots(project, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           project (string): The name of the cloud project that snapshots belong to.
@@ -835,6 +838,7 @@ class SubscriberClient(object):
         Creates a snapshot from the requested subscription.
         If the snapshot already exists, returns ``ALREADY_EXISTS``.
         If the requested subscription doesn't exist, returns ``NOT_FOUND``.
+
         If the name is not provided in the request, the server will assign a random
         name for this snapshot on the same project as the subscription, conforming
         to the
@@ -844,10 +848,10 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> name = api.snapshot_path('[PROJECT]', '[SNAPSHOT]')
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> response = api.create_snapshot(name, subscription)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> name = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = client.create_snapshot(name, subscription)
 
         Args:
           name (string): Optional user-provided name for this snapshot.
@@ -892,9 +896,9 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> snapshot = api.snapshot_path('[PROJECT]', '[SNAPSHOT]')
-          >>> api.delete_snapshot(snapshot)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> snapshot = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
+          >>> client.delete_snapshot(snapshot)
 
         Args:
           snapshot (string): The name of the snapshot to delete.
@@ -917,9 +921,9 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> subscription = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> response = api.seek(subscription)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = client.seek(subscription)
 
         Args:
           subscription (string): The subscription to affect.
@@ -966,10 +970,10 @@ class SubscriberClient(object):
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = subscriber_client.SubscriberClient()
-          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> policy = policy_pb2.Policy()
-          >>> response = api.set_iam_policy(resource, policy)
+          >>> response = client.set_iam_policy(resource, policy)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being specified.
@@ -1002,9 +1006,9 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-          >>> response = api.get_iam_policy(resource)
+          >>> client = subscriber_client.SubscriberClient()
+          >>> resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> response = client.get_iam_policy(resource)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being requested.
@@ -1032,10 +1036,10 @@ class SubscriberClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import subscriber_client
-          >>> api = subscriber_client.SubscriberClient()
-          >>> resource = api.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
+          >>> client = subscriber_client.SubscriberClient()
+          >>> resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> permissions = []
-          >>> response = api.test_iam_permissions(resource, permissions)
+          >>> response = client.test_iam_permissions(resource, permissions)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy detail is being requested.

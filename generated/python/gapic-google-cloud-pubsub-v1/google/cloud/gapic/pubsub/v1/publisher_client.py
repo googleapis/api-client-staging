@@ -53,16 +53,16 @@ class PublisherClient(object):
     """The default port of the service."""
 
     _PAGE_DESCRIPTORS = {
-        'list_topics': _PageDesc('page_token', 'next_page_token', 'topics'),
-        'list_topic_subscriptions': _PageDesc('page_token', 'next_page_token',
-                                              'subscriptions')
+        'list_topics':
+        _PageDesc('page_token', 'next_page_token', 'topics'),
+        'list_topic_subscriptions':
+        _PageDesc('page_token', 'next_page_token', 'subscriptions')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/pubsub', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/pubsub', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _TOPIC_PATH_TEMPLATE = path_template.PathTemplate(
@@ -71,7 +71,9 @@ class PublisherClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def topic_path(cls, project, topic):
@@ -252,9 +254,9 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> api = publisher_client.PublisherClient()
-          >>> name = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> response = api.create_topic(name)
+          >>> client = publisher_client.PublisherClient()
+          >>> name = client.topic_path('[PROJECT]', '[TOPIC]')
+          >>> response = client.create_topic(name)
 
         Args:
           name (string): The name of the topic. It must have the format
@@ -286,12 +288,12 @@ class PublisherClient(object):
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.cloud.proto.pubsub.v1 import pubsub_pb2
-          >>> api = publisher_client.PublisherClient()
-          >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> client = publisher_client.PublisherClient()
+          >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
           >>> data = b''
           >>> messages_element = pubsub_pb2.PubsubMessage(data)
           >>> messages = [messages_element]
-          >>> response = api.publish(topic, messages)
+          >>> response = client.publish(topic, messages)
 
         Args:
           topic (string): The messages in the request will be published on this topic.
@@ -317,9 +319,9 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> api = publisher_client.PublisherClient()
-          >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> response = api.get_topic(topic)
+          >>> client = publisher_client.PublisherClient()
+          >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
+          >>> response = client.get_topic(topic)
 
         Args:
           topic (string): The name of the topic to get.
@@ -338,26 +340,26 @@ class PublisherClient(object):
         request = pubsub_pb2.GetTopicRequest(topic=topic)
         return self._get_topic(request, options)
 
-    def list_topics(self, project, page_size=0, options=None):
+    def list_topics(self, project, page_size=None, options=None):
         """
         Lists matching topics.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = publisher_client.PublisherClient()
-          >>> project = api.project_path('[PROJECT]')
+          >>> client = publisher_client.PublisherClient()
+          >>> project = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_topics(project):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_topics(project, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_topics(project):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_topics(project, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           project (string): The name of the cloud project that topics belong to.
@@ -385,26 +387,26 @@ class PublisherClient(object):
             project=project, page_size=page_size)
         return self._list_topics(request, options)
 
-    def list_topic_subscriptions(self, topic, page_size=0, options=None):
+    def list_topic_subscriptions(self, topic, page_size=None, options=None):
         """
         Lists the name of the subscriptions for this topic.
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = publisher_client.PublisherClient()
-          >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> client = publisher_client.PublisherClient()
+          >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_topic_subscriptions(topic):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_topic_subscriptions(topic, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_topic_subscriptions(topic):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_topic_subscriptions(topic, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           topic (string): The name of the topic that subscriptions are attached to.
@@ -442,9 +444,9 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> api = publisher_client.PublisherClient()
-          >>> topic = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> api.delete_topic(topic)
+          >>> client = publisher_client.PublisherClient()
+          >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
+          >>> client.delete_topic(topic)
 
         Args:
           topic (string): Name of the topic to delete.
@@ -468,10 +470,10 @@ class PublisherClient(object):
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = publisher_client.PublisherClient()
-          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> client = publisher_client.PublisherClient()
+          >>> resource = client.topic_path('[PROJECT]', '[TOPIC]')
           >>> policy = policy_pb2.Policy()
-          >>> response = api.set_iam_policy(resource, policy)
+          >>> response = client.set_iam_policy(resource, policy)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being specified.
@@ -504,9 +506,9 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> api = publisher_client.PublisherClient()
-          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
-          >>> response = api.get_iam_policy(resource)
+          >>> client = publisher_client.PublisherClient()
+          >>> resource = client.topic_path('[PROJECT]', '[TOPIC]')
+          >>> response = client.get_iam_policy(resource)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being requested.
@@ -534,10 +536,10 @@ class PublisherClient(object):
 
         Example:
           >>> from google.cloud.gapic.pubsub.v1 import publisher_client
-          >>> api = publisher_client.PublisherClient()
-          >>> resource = api.topic_path('[PROJECT]', '[TOPIC]')
+          >>> client = publisher_client.PublisherClient()
+          >>> resource = client.topic_path('[PROJECT]', '[TOPIC]')
           >>> permissions = []
-          >>> response = api.test_iam_permissions(resource, permissions)
+          >>> response = client.test_iam_permissions(resource, permissions)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy detail is being requested.
