@@ -1,6 +1,6 @@
 import groovy.io.FileType
 
-def generated_grpc_version = "0.1.7"
+def generated_grpc_version = "0.1.8"
 
 buildscript {
   repositories {
@@ -31,7 +31,7 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.10.0',
+        gax: 'com.google.api:gax:0.12.0',
 
         // Testing
         junit: 'junit:junit:4.11',
