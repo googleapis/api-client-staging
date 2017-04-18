@@ -150,6 +150,24 @@ project(':generated:java:google-cloud-pubsub-v1') {
   }
 }
 
+project(':generated:java:google-cloud-spanner-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-spanner-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-spanner-admin-database-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-spanner-admin-database-v1:' + generated_grpc_version
+  }
+}
+
+project(':generated:java:google-cloud-spanner-admin-instance-v1') {
+  dependencies {
+    compile 'com.google.api.grpc:grpc-google-cloud-spanner-admin-instance-v1:' + generated_grpc_version
+  }
+}
+
 project(':generated:java:google-cloud-speech-v1') {
   dependencies {
     compile 'com.google.api.grpc:grpc-google-cloud-speech-v1:' + generated_grpc_version
