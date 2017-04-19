@@ -444,7 +444,7 @@ public class LoggingSettings extends ClientSettings {
             @Override
             public PartitionKey getBatchPartitionKey(WriteLogEntriesRequest request) {
               return new PartitionKey(
-                  request.getLogName(), request.getResource(), request.getLabels());
+                  request.getLogName(), request.getResource(), request.getLabelsMap());
             }
 
             @Override
@@ -599,8 +599,8 @@ public class LoggingSettings extends ClientSettings {
       builder
           .writeLogEntriesSettings()
           .getBatchingSettingsBuilder()
-          .setElementCountThreshold(1000)
-          .setRequestByteThreshold(1048576)
+          .setElementCountThreshold(1000L)
+          .setRequestByteThreshold(1048576L)
           .setDelayThreshold(Duration.millis(50))
           .setFlowControlSettings(
               FlowControlSettings.newBuilder()
