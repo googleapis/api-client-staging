@@ -615,8 +615,8 @@ public class TopicAdminSettings extends ClientSettings {
       builder
           .publishSettings()
           .getBatchingSettingsBuilder()
-          .setElementCountThreshold(10)
-          .setRequestByteThreshold(1024)
+          .setElementCountThreshold(10L)
+          .setRequestByteThreshold(1024L)
           .setDelayThreshold(Duration.millis(10))
           .setFlowControlSettings(
               FlowControlSettings.newBuilder()
