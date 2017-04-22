@@ -31,7 +31,8 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.13.0',
+        gax: 'com.google.api:gax:0.14.0',
+        gaxGrpc: 'com.google.api:gax-grpc:0.14.0',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -51,7 +52,8 @@ subprojects {
   }
 
   dependencies {
-    compile libraries.gax
+    compile libraries.gax,
+      libraries.gaxGrpc
 
     testCompile libraries.junit,
       libraries.mockito,

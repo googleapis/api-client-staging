@@ -17,9 +17,9 @@ package com.google.cloud.spanner.spi.v1;
 
 import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.grpc.StreamingCallable;
-import com.google.api.gax.testing.MockGrpcService;
-import com.google.api.gax.testing.MockServiceHelper;
-import com.google.api.gax.testing.MockStreamObserver;
+import com.google.api.gax.grpc.testing.MockGrpcService;
+import com.google.api.gax.grpc.testing.MockServiceHelper;
+import com.google.api.gax.grpc.testing.MockStreamObserver;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
