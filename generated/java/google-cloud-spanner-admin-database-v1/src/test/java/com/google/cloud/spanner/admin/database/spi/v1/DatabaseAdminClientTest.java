@@ -18,8 +18,8 @@ package com.google.cloud.spanner.admin.database.spi.v1;
 import static com.google.cloud.spanner.admin.database.spi.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
 
 import com.google.api.gax.grpc.ApiException;
-import com.google.api.gax.testing.MockGrpcService;
-import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.gax.grpc.testing.MockGrpcService;
+import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;

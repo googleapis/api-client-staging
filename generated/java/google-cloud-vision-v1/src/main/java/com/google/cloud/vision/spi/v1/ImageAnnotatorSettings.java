@@ -17,7 +17,6 @@ package com.google.cloud.vision.spi.v1;
 
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.ChannelProvider;
 import com.google.api.gax.grpc.ClientSettings;
 import com.google.api.gax.grpc.ExecutorProvider;
@@ -25,6 +24,7 @@ import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.UnaryCallSettings;
+import com.google.api.gax.retrying.RetrySettings;
 import com.google.cloud.vision.v1.BatchAnnotateImagesRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import com.google.common.collect.ImmutableList;
@@ -35,6 +35,7 @@ import com.google.common.collect.Sets;
 import com.google.protobuf.ExperimentalApi;
 import io.grpc.Status;
 import java.io.IOException;
+import java.util.List;
 import javax.annotation.Generated;
 import org.joda.time.Duration;
 
@@ -110,7 +111,7 @@ public class ImageAnnotatorSettings extends ClientSettings {
   }
 
   /** Returns the default service scopes. */
-  public static ImmutableList<String> getDefaultServiceScopes() {
+  public static List<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
   }
 

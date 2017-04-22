@@ -19,8 +19,8 @@ import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappe
 import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
 import com.google.api.gax.grpc.ApiException;
-import com.google.api.gax.testing.MockGrpcService;
-import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.gax.grpc.testing.MockGrpcService;
+import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
