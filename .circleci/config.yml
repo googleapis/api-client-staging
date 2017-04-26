@@ -1,0 +1,10 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:16.04
+    steps:
+      - run:
+          name: No-op.
+          command: echo "This command did nothing. It exists to configure CircleCI so that PRs that supply actual configuration will work."
