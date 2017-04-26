@@ -6,21 +6,26 @@ jobs:
       - image: ubuntu:16.04
     steps:
       - run:
-          name: Trigger jobs.
+          name: Add command to be able to trigger jobs.
           command: |
-            # http://bit.ly/2pn9lX8
-            function trigger_job() {
-              job_name=$1
-              curl -u ${CIRCLE_API_TOKEN}: \
-                -d build_parameters[CIRCLE_JOB]=${job_name} \
-                -d revision=$CIRCLE_SHA1 \
-                https://circleci.com/api/v1.1/project/github/your_org/your_project/tree/$CIRCLE_BRANCH
-            }
-
-            trigger_job python27
-            trigger_job python34
-            trigger_job python35
-            trigger_job python36
+            touch trigger_job.sh && chmod a+x trigger_job.sh
+            echo >> trigger_job.sh <<EOF
+            #!/bin/bash
+            # More information about this script: http://bit.ly/2pn9lX8
+            job_name=$1
+            curl -u ${CIRCLE_API_TOKEN}: \
+              -d build_parameters[CIRCLE_JOB]=${job_name} \
+              -d revision=$CIRCLE_SHA1 \
+              https://circleci.com/api/v1.1/project/github/your_org/your_project/tree/$CIRCLE_BRANCH
+            EOF
+      - run:
+          name: 'Trigger jobs: Python Unit Tests'
+          command: |
+            ./trigger_job.sh python27
+            ./trigger_job.sh python34
+            ./trigger_job.sh python35
+            ./trigger_job.sh python36
+    working_directory: /var/code/googleapis/
   python27:
     docker:
       - image: python:2.7.13
