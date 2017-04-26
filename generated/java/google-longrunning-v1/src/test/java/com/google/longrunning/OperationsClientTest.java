@@ -32,8 +32,8 @@ package com.google.longrunning;
 import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedResponse;
 
 import com.google.api.gax.grpc.ApiException;
-import com.google.api.gax.testing.MockGrpcService;
-import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.gax.grpc.testing.MockGrpcService;
+import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;

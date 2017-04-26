@@ -17,7 +17,6 @@ package com.google.cloud.spanner.spi.v1;
 
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.ChannelProvider;
 import com.google.api.gax.grpc.ClientSettings;
 import com.google.api.gax.grpc.ExecutorProvider;
@@ -26,6 +25,7 @@ import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.StreamingCallSettings;
 import com.google.api.gax.grpc.UnaryCallSettings;
+import com.google.api.gax.retrying.RetrySettings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -48,6 +48,7 @@ import com.google.spanner.v1.Session;
 import com.google.spanner.v1.Transaction;
 import io.grpc.Status;
 import java.io.IOException;
+import java.util.List;
 import javax.annotation.Generated;
 import org.joda.time.Duration;
 
@@ -233,7 +234,7 @@ public class SpannerSettings extends ClientSettings {
   }
 
   /** Returns the default service scopes. */
-  public static ImmutableList<String> getDefaultServiceScopes() {
+  public static List<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
   }
 
