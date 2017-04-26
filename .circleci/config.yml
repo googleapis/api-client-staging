@@ -8,3 +8,4 @@ jobs:
       - run:
           name: No-op.
           command: echo "This command did nothing. It exists to configure CircleCI so that PRs that supply actual configuration will work."
+    working_directory: /var/code/googleapis
