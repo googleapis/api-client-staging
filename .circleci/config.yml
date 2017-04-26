@@ -1,0 +1,71 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:16.04
+    steps:
+      - run:
+          name: Trigger jobs.
+          command: |
+            # http://bit.ly/2pn9lX8
+            function trigger_job() {
+              job_name=$1
+              curl -u ${CIRCLE_API_TOKEN}: \
+                -d build_parameters[CIRCLE_JOB]=${job_name} \
+                -d revision=$CIRCLE_SHA1 \
+                https://circleci.com/api/v1.1/project/github/your_org/your_project/tree/$CIRCLE_BRANCH
+            }
+
+            trigger_job python27
+            trigger_job python34
+            trigger_job python35
+            trigger_job python36
+  python27:
+    docker:
+      - image: python:2.7.13
+    steps:
+      - checkout
+      - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
+          name: Run GAPIC unit tests.
+          command: nox -e "unit_tests(python_version='2.7')"
+    working_directory: /var/code/googleapis/
+  python34:
+    docker:
+      - image: python:3.4.6
+    steps:
+      - checkout
+      - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
+          name: Run GAPIC unit tests.
+          command: nox -e "unit_tests(python_version='3.4')"
+    working_directory: /var/code/googleapis/
+  python35:
+    docker:
+      - image: python:3.5.3
+    steps:
+      - checkout
+      - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
+          name: Run GAPIC unit tests.
+          command: nox -e "unit_tests(python_version='3.5')"
+    working_directory: /var/code/googleapis/
+  python36:
+    docker:
+      - image: python:3.6.0
+    steps:
+      - checkout
+      - run:
+          name: Install nox.
+          command: pip install nox-automation
+      - run:
+          name: Run GAPIC unit tests.
+          command: nox -e "unit_tests(python_version='3.6')"
+    working_directory: /var/code/googleapis/
