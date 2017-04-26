@@ -26,6 +26,7 @@ jobs:
             ./trigger_job.sh python35
             ./trigger_job.sh python36
     working_directory: /var/code/googleapis/
+
   python27:
     docker:
       - image: python:2.7.13
@@ -38,6 +39,7 @@ jobs:
           name: Run GAPIC unit tests.
           command: nox -e "unit_tests(python_version='2.7')"
     working_directory: /var/code/googleapis/
+
   python34:
     docker:
       - image: python:3.4.6
@@ -50,6 +52,7 @@ jobs:
           name: Run GAPIC unit tests.
           command: nox -e "unit_tests(python_version='3.4')"
     working_directory: /var/code/googleapis/
+
   python35:
     docker:
       - image: python:3.5.3
@@ -62,6 +65,7 @@ jobs:
           name: Run GAPIC unit tests.
           command: nox -e "unit_tests(python_version='3.5')"
     working_directory: /var/code/googleapis/
+    
   python36:
     docker:
       - image: python:3.6.0
