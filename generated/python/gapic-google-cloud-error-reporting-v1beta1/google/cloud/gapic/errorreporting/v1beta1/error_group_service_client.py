@@ -195,9 +195,9 @@ class ErrorGroupServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_client
-          >>> api = error_group_service_client.ErrorGroupServiceClient()
-          >>> group_name = api.group_path('[PROJECT]', '[GROUP]')
-          >>> response = api.get_group(group_name)
+          >>> client = error_group_service_client.ErrorGroupServiceClient()
+          >>> group_name = client.group_path('[PROJECT]', '[GROUP]')
+          >>> response = client.get_group(group_name)
 
         Args:
           group_name (string): [Required] The group resource name. Written as
@@ -231,9 +231,9 @@ class ErrorGroupServiceClient(object):
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_group_service_client
           >>> from google.cloud.proto.devtools.clouderrorreporting.v1beta1 import common_pb2
-          >>> api = error_group_service_client.ErrorGroupServiceClient()
+          >>> client = error_group_service_client.ErrorGroupServiceClient()
           >>> group = common_pb2.ErrorGroup()
-          >>> response = api.update_group(group)
+          >>> response = client.update_group(group)
 
         Args:
           group (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2.ErrorGroup`): [Required] The group which replaces the resource on the server.
