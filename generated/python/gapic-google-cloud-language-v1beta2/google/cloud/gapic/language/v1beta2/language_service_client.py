@@ -189,8 +189,6 @@ class LanguageServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if encoding_type is None:
-            encoding_type = enums.EncodingType.NONE
         # Create the request object.
         request = language_service_pb2.AnalyzeSentimentRequest(
             document=document, encoding_type=encoding_type)
