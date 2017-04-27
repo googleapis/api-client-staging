@@ -291,7 +291,7 @@ class PublisherClient(object):
           >>> client = publisher_client.PublisherClient()
           >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
           >>> data = b''
-          >>> messages_element = pubsub_pb2.PubsubMessage(data)
+          >>> messages_element = pubsub_pb2.PubsubMessage(data=data)
           >>> messages = [messages_element]
           >>> response = client.publish(topic, messages)
 
