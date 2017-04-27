@@ -9,7 +9,7 @@ jobs:
           name: Install cURL.
           command: |
             apt-get update
-            apt-get install curl
+            apt-get install -y curl
       - run:
           name: Add command to be able to trigger jobs.
           command: |
