@@ -23,7 +23,7 @@ extras_require = {
 
 setuptools.setup(
   name='proto-google-cloud-monitoring-v3',
-  version='0.15.3',
+  version='0.15.4',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
