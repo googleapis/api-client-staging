@@ -16,7 +16,7 @@ jobs:
             curl -u ${CIRCLE_API_TOKEN}: \
               -d build_parameters[CIRCLE_JOB]=${job_name} \
               -d revision=$CIRCLE_SHA1 \
-              https://circleci.com/api/v1.1/project/github/your_org/your_project/tree/$CIRCLE_BRANCH
+              https://circleci.com/api/v1.1/project/github/googleapis/api-client-staging/tree/$CIRCLE_BRANCH
             EOF
       - run:
           name: 'Trigger jobs: Python Unit Tests'
@@ -65,7 +65,7 @@ jobs:
           name: Run GAPIC unit tests.
           command: nox -e "unit_tests(python_version='3.5')"
     working_directory: /var/code/googleapis/
-    
+
   python36:
     docker:
       - image: python:3.6.0
