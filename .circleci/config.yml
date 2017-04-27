@@ -9,7 +9,7 @@ jobs:
           name: Add command to be able to trigger jobs.
           command: |
             touch trigger_job.sh && chmod a+x trigger_job.sh
-            echo >> trigger_job.sh <<EOF
+            echo <<EOF >> trigger_job.sh
             #!/bin/bash
             # More information about this script: http://bit.ly/2pn9lX8
             job_name=$1
