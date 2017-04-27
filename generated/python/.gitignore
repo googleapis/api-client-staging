@@ -5,6 +5,7 @@
 .Python
 env/
 build/
+.cache
 develop-eggs/
 docs/generated
 dist/
@@ -23,3 +24,7 @@ var/
 # Python build
 *.pyc
 *.pyo
+
+
+# Testing
+.nox
