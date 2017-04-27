@@ -728,7 +728,7 @@ class SubscriberClient(object):
           >>> client = subscriber_client.SubscriberClient()
           >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> stream_ack_deadline_seconds = 0
-          >>> request = pubsub_pb2.StreamingPullRequest(subscription, stream_ack_deadline_seconds)
+          >>> request = pubsub_pb2.StreamingPullRequest(subscription=subscription, stream_ack_deadline_seconds=stream_ack_deadline_seconds)
           >>> requests = [request]
           >>> for element in client.streaming_pull(requests):
           >>>     # process element
