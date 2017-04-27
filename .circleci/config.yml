@@ -37,7 +37,8 @@ jobs:
           command: pip install nox-automation
       - run:
           name: Run GAPIC unit tests.
-          command: nox -e "unit_tests(python_version='2.7')"
+          command: nox --noxfile generated/python/nox.py \
+                       --sessions "unit_tests(python_version='2.7')"
     working_directory: /var/code/googleapis/
 
   python34:
@@ -50,7 +51,8 @@ jobs:
           command: pip install nox-automation
       - run:
           name: Run GAPIC unit tests.
-          command: nox -e "unit_tests(python_version='3.4')"
+          command: nox --noxfile generated/python/nox.py \
+                       --sessions "unit_tests(python_version='3.4')"
     working_directory: /var/code/googleapis/
 
   python35:
@@ -63,7 +65,8 @@ jobs:
           command: pip install nox-automation
       - run:
           name: Run GAPIC unit tests.
-          command: nox -e "unit_tests(python_version='3.5')"
+          command: nox --noxfile generated/python/nox.py \
+                       --sessions "unit_tests(python_version='3.5')"
     working_directory: /var/code/googleapis/
 
   python36:
@@ -76,5 +79,6 @@ jobs:
           command: pip install nox-automation
       - run:
           name: Run GAPIC unit tests.
-          command: nox -e "unit_tests(python_version='3.6')"
+          command: nox --noxfile generated/python/nox.py \
+                       --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
