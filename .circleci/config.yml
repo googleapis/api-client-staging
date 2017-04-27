@@ -13,6 +13,15 @@ jobs:
             #!/bin/sh
             # More information about this script: http://bit.ly/2pn9lX8
             job_name=$1
+
+            # Debugging.
+            cat <<EOCURL
+            curl -u ${CIRCLE_API_TOKEN}: \
+              -d build_parameters[CIRCLE_JOB]=${job_name} \
+              -d revision=$CIRCLE_SHA1 \
+              https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+            EOCURL
+
             curl -u ${CIRCLE_API_TOKEN}: \
               -d build_parameters[CIRCLE_JOB]=${job_name} \
               -d revision=$CIRCLE_SHA1 \
