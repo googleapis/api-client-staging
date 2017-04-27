@@ -30,10 +30,13 @@ def unit_tests(session, python_version):
     # Install all test dependencies, then install all GAPIC packages in-place.
     session.install('mock', 'pytest', 'pytest-cov')
 
-    # Install all GAPIC packages in-place.
-    gapics = ['%s/' % i for i in os.listdir('.')
-              if i.startswith('gapic-google-cloud')]
-    session.install('-e', *gapics)
+    # Install all GAPIC and proto packages in-place.
+    packages = []
+    packages += ['%s/' % i for i in os.listdir('.')
+                 if i.startswith('proto-google-cloud')]
+    packages += ['%s/' % i for i in os.listdir('.')
+                 if i.startswith('gapic-google-cloud')]
+    session.install('-e', *packages)
 
     # Run py.test against the unit tests.
     session.run(
