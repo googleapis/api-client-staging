@@ -3,13 +3,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ubuntu:16.04
+      - image: googleapis/curl:latest
     steps:
-      - run:
-          name: Install cURL.
-          command: |
-            apt-get update
-            apt-get install -y curl
       - run:
           name: Add command to be able to trigger jobs.
           command: |
