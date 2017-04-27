@@ -3,7 +3,7 @@ Getting started
 
 gapic-google-cloud-monitoring-v3 will allow you to connect to the `Stackdriver Monitoring API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Stackdriver Monitoring API`: https://developers.google.com/apis-explorer/?hl=en_US#p/monitoring/v3/
+.. _`Stackdriver Monitoring API`: https://developers.google.com/apis-explorer/?hl=en_US#p/monitoring/v3
 
 
 Installation
