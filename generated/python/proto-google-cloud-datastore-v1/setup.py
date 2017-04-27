@@ -23,7 +23,7 @@ extras_require = {
 
 setuptools.setup(
   name='proto-google-cloud-datastore-v1',
-  version='0.90.3',
+  version='0.90.4',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
