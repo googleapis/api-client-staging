@@ -178,9 +178,9 @@ class SpeechClient(object):
           >>> encoding = enums.RecognitionConfig.AudioEncoding.FLAC
           >>> sample_rate_hertz = 44100
           >>> language_code = 'en-US'
-          >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate_hertz, language_code)
+          >>> config = cloud_speech_pb2.RecognitionConfig(encoding=encoding, sample_rate_hertz=sample_rate_hertz, language_code=language_code)
           >>> uri = 'gs://bucket_name/file_name.flac'
-          >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
+          >>> audio = cloud_speech_pb2.RecognitionAudio(uri=uri)
           >>> response = client.recognize(config, audio)
 
         Args:
@@ -216,9 +216,9 @@ class SpeechClient(object):
           >>> encoding = enums.RecognitionConfig.AudioEncoding.FLAC
           >>> sample_rate_hertz = 44100
           >>> language_code = 'en-US'
-          >>> config = cloud_speech_pb2.RecognitionConfig(encoding, sample_rate_hertz, language_code)
+          >>> config = cloud_speech_pb2.RecognitionConfig(encoding=encoding, sample_rate_hertz=sample_rate_hertz, language_code=language_code)
           >>> uri = 'gs://bucket_name/file_name.flac'
-          >>> audio = cloud_speech_pb2.RecognitionAudio(uri)
+          >>> audio = cloud_speech_pb2.RecognitionAudio(uri=uri)
           >>> response = client.long_running_recognize(config, audio)
           >>>
           >>> def callback(operation_future):
@@ -248,8 +248,8 @@ class SpeechClient(object):
         request = cloud_speech_pb2.LongRunningRecognizeRequest(
             config=config, audio=audio)
         return google.gax._OperationFuture(
-            self._long_running_recognize(request, options),
-            self.operations_client,
+            self._long_running_recognize(request,
+                                         options), self.operations_client,
             cloud_speech_pb2.LongRunningRecognizeResponse,
             cloud_speech_pb2.LongRunningRecognizeMetadata, options)
 
