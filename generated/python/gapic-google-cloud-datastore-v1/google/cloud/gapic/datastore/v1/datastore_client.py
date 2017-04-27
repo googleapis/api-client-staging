@@ -58,9 +58,8 @@ class DatastoreClient(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/datastore', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/datastore', )
 
     def __init__(self,
                  service_path=SERVICE_ADDRESS,
@@ -170,24 +169,21 @@ class DatastoreClient(object):
             self.datastore_stub.AllocateIds, settings=defaults['allocate_ids'])
 
     # Service calls
-    def lookup(self, project_id, read_options, keys, options=None):
+    def lookup(self, project_id, keys, read_options=None, options=None):
         """
         Looks up entities by key.
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
-          >>> from google.cloud.proto.datastore.v1 import entity_pb2
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
-          >>> read_options = datastore_pb2.ReadOptions()
           >>> keys = []
-          >>> response = api.lookup(project_id, read_options, keys)
+          >>> response = client.lookup(project_id, keys)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
-          read_options (:class:`google.cloud.proto.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
           keys (list[:class:`google.cloud.proto.datastore.v1.entity_pb2.Key`]): Keys of entities to look up.
+          read_options (:class:`google.cloud.proto.datastore.v1.datastore_pb2.ReadOptions`): The options for this lookup request.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -200,13 +196,13 @@ class DatastoreClient(object):
         """
         # Create the request object.
         request = datastore_pb2.LookupRequest(
-            project_id=project_id, read_options=read_options, keys=keys)
+            project_id=project_id, keys=keys, read_options=read_options)
         return self._lookup(request, options)
 
     def run_query(self,
                   project_id,
                   partition_id,
-                  read_options,
+                  read_options=None,
                   query=None,
                   gql_query=None,
                   options=None):
@@ -215,13 +211,11 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
           >>> from google.cloud.proto.datastore.v1 import entity_pb2
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> partition_id = entity_pb2.PartitionId()
-          >>> read_options = datastore_pb2.ReadOptions()
-          >>> response = api.run_query(project_id, partition_id, read_options)
+          >>> response = client.run_query(project_id, partition_id)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
@@ -263,9 +257,9 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
-          >>> response = api.begin_transaction(project_id)
+          >>> response = client.begin_transaction(project_id)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
@@ -296,19 +290,15 @@ class DatastoreClient(object):
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
           >>> from google.cloud.gapic.datastore.v1 import enums
-          >>> from google.cloud.proto.datastore.v1 import datastore_pb2
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> mode = enums.CommitRequest.Mode.MODE_UNSPECIFIED
           >>> mutations = []
-          >>> response = api.commit(project_id, mode, mutations)
+          >>> response = client.commit(project_id, mode, mutations)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
           mode (enum :class:`google.cloud.gapic.datastore.v1.enums.CommitRequest.Mode`): The type of commit to perform. Defaults to ``TRANSACTIONAL``.
-          transaction (bytes): The identifier of the transaction associated with the commit. A
-            transaction identifier is returned by a call to
-            ``Datastore.BeginTransaction``.
           mutations (list[:class:`google.cloud.proto.datastore.v1.datastore_pb2.Mutation`]): The mutations to perform.
 
             When mode is ``TRANSACTIONAL``, mutations affecting a single entity are
@@ -322,6 +312,9 @@ class DatastoreClient(object):
 
             When mode is ``NON_TRANSACTIONAL``, no two mutations may affect a single
             entity.
+          transaction (bytes): The identifier of the transaction associated with the commit. A
+            transaction identifier is returned by a call to
+            ``Datastore.BeginTransaction``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -334,7 +327,8 @@ class DatastoreClient(object):
         """
         # Sanity check: We have some fields which are mutually exclusive;
         # raise ValueError if more than one is sent.
-        oneof.check_oneof(transaction=transaction, )
+        oneof.check_oneof(
+            transaction=transaction, )
 
         # Create the request object.
         request = datastore_pb2.CommitRequest(
@@ -350,10 +344,10 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> transaction = b''
-          >>> response = api.rollback(project_id, transaction)
+          >>> response = client.rollback(project_id, transaction)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
@@ -381,11 +375,10 @@ class DatastoreClient(object):
 
         Example:
           >>> from google.cloud.gapic.datastore.v1 import datastore_client
-          >>> from google.cloud.proto.datastore.v1 import entity_pb2
-          >>> api = datastore_client.DatastoreClient()
+          >>> client = datastore_client.DatastoreClient()
           >>> project_id = ''
           >>> keys = []
-          >>> response = api.allocate_ids(project_id, keys)
+          >>> response = client.allocate_ids(project_id, keys)
 
         Args:
           project_id (string): The ID of the project against which to make the request.
