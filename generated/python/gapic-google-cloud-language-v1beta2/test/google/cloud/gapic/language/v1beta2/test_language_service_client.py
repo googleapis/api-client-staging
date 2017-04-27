@@ -14,7 +14,7 @@
 """Unit tests."""
 
 import mock
-import unittest2
+import unittest
 
 from google.gax import errors
 
@@ -27,11 +27,11 @@ class CustomException(Exception):
     pass
 
 
-class TestLanguageServiceClient(unittest2.TestCase):
+class TestLanguageServiceClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_sentiment(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -42,22 +42,28 @@ class TestLanguageServiceClient(unittest2.TestCase):
         # Mock response
         language = 'language-1613589672'
         expected_response = language_service_pb2.AnalyzeSentimentResponse(
-            language)
+            language=language)
         grpc_stub.AnalyzeSentiment.return_value = expected_response
 
         response = client.analyze_sentiment(document)
         self.assertEqual(expected_response, response)
 
         grpc_stub.AnalyzeSentiment.assert_called_once()
-        request = grpc_stub.AnalyzeSentiment.call_args[0]
+        args, kwargs = grpc_stub.AnalyzeSentiment.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
 
-        self.assertEqual(document, request.document)
+        expected_request = language_service_pb2.AnalyzeSentimentRequest(
+            document=document)
+        self.assertEqual(expected_request, actual_request)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_sentiment_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -73,7 +79,7 @@ class TestLanguageServiceClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_entities(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -85,23 +91,28 @@ class TestLanguageServiceClient(unittest2.TestCase):
         # Mock response
         language = 'language-1613589672'
         expected_response = language_service_pb2.AnalyzeEntitiesResponse(
-            language)
+            language=language)
         grpc_stub.AnalyzeEntities.return_value = expected_response
 
         response = client.analyze_entities(document, encoding_type)
         self.assertEqual(expected_response, response)
 
         grpc_stub.AnalyzeEntities.assert_called_once()
-        request = grpc_stub.AnalyzeEntities.call_args[0]
+        args, kwargs = grpc_stub.AnalyzeEntities.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
 
-        self.assertEqual(document, request.document)
-        self.assertEqual(encoding_type, request.encoding_type)
+        expected_request = language_service_pb2.AnalyzeEntitiesRequest(
+            document=document, encoding_type=encoding_type)
+        self.assertEqual(expected_request, actual_request)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_entities_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -119,7 +130,7 @@ class TestLanguageServiceClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_entity_sentiment(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -131,23 +142,28 @@ class TestLanguageServiceClient(unittest2.TestCase):
         # Mock response
         language = 'language-1613589672'
         expected_response = language_service_pb2.AnalyzeEntitySentimentResponse(
-            language)
+            language=language)
         grpc_stub.AnalyzeEntitySentiment.return_value = expected_response
 
         response = client.analyze_entity_sentiment(document, encoding_type)
         self.assertEqual(expected_response, response)
 
         grpc_stub.AnalyzeEntitySentiment.assert_called_once()
-        request = grpc_stub.AnalyzeEntitySentiment.call_args[0]
+        args, kwargs = grpc_stub.AnalyzeEntitySentiment.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
 
-        self.assertEqual(document, request.document)
-        self.assertEqual(encoding_type, request.encoding_type)
+        expected_request = language_service_pb2.AnalyzeEntitySentimentRequest(
+            document=document, encoding_type=encoding_type)
+        self.assertEqual(expected_request, actual_request)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_entity_sentiment_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -165,7 +181,7 @@ class TestLanguageServiceClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_syntax(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -177,23 +193,28 @@ class TestLanguageServiceClient(unittest2.TestCase):
         # Mock response
         language = 'language-1613589672'
         expected_response = language_service_pb2.AnalyzeSyntaxResponse(
-            language)
+            language=language)
         grpc_stub.AnalyzeSyntax.return_value = expected_response
 
         response = client.analyze_syntax(document, encoding_type)
         self.assertEqual(expected_response, response)
 
         grpc_stub.AnalyzeSyntax.assert_called_once()
-        request = grpc_stub.AnalyzeSyntax.call_args[0]
+        args, kwargs = grpc_stub.AnalyzeSyntax.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
 
-        self.assertEqual(document, request.document)
-        self.assertEqual(encoding_type, request.encoding_type)
+        expected_request = language_service_pb2.AnalyzeSyntaxRequest(
+            document=document, encoding_type=encoding_type)
+        self.assertEqual(expected_request, actual_request)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_analyze_syntax_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -211,7 +232,7 @@ class TestLanguageServiceClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_annotate_text(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
@@ -223,24 +244,29 @@ class TestLanguageServiceClient(unittest2.TestCase):
 
         # Mock response
         language = 'language-1613589672'
-        expected_response = language_service_pb2.AnnotateTextResponse(language)
+        expected_response = language_service_pb2.AnnotateTextResponse(
+            language=language)
         grpc_stub.AnnotateText.return_value = expected_response
 
         response = client.annotate_text(document, features, encoding_type)
         self.assertEqual(expected_response, response)
 
         grpc_stub.AnnotateText.assert_called_once()
-        request = grpc_stub.AnnotateText.call_args[0]
+        args, kwargs = grpc_stub.AnnotateText.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
 
-        self.assertEqual(document, request.document)
-        self.assertEqual(features, request.features)
-        self.assertEqual(encoding_type, request.encoding_type)
+        expected_request = language_service_pb2.AnnotateTextRequest(
+            document=document, features=features, encoding_type=encoding_type)
+        self.assertEqual(expected_request, actual_request)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_annotate_text_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock(spec=language_service_pb2.LanguageServiceStub)
+        grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
         client = language_service_client.LanguageServiceClient()
