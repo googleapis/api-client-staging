@@ -35,7 +35,8 @@ def unit_tests(session, python_version):
     packages += sorted(['%s/[grpc]' % i for i in os.listdir('.')
                         if i.startswith('proto-google-cloud')])
     packages += sorted(['%s/' % i for i in os.listdir('.')
-                        if i.startswith('gapic-google-cloud')])
+                        if i.startswith('gapic-google-cloud')
+                        and not i.endswith('docs')])
     session.install('-e', *packages)
 
     # Run py.test against the unit tests.
