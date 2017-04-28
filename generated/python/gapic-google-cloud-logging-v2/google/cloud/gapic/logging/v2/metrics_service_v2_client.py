@@ -55,12 +55,11 @@ class MetricsServiceV2Client(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
-        'https://www.googleapis.com/auth/logging.admin',
-        'https://www.googleapis.com/auth/logging.read',
-        'https://www.googleapis.com/auth/logging.write', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/cloud-platform.read-only',
+                   'https://www.googleapis.com/auth/logging.admin',
+                   'https://www.googleapis.com/auth/logging.read',
+                   'https://www.googleapis.com/auth/logging.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _METRIC_PATH_TEMPLATE = path_template.PathTemplate(
@@ -69,7 +68,9 @@ class MetricsServiceV2Client(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def metric_path(cls, project, metric):
@@ -229,26 +230,26 @@ class MetricsServiceV2Client(object):
             settings=defaults['delete_log_metric'])
 
     # Service calls
-    def list_log_metrics(self, parent, page_size=0, options=None):
+    def list_log_metrics(self, parent, page_size=None, options=None):
         """
         Lists logs-based metrics.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = metrics_service_v2_client.MetricsServiceV2Client()
+          >>> parent = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_log_metrics(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_log_metrics(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_log_metrics(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_log_metrics(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           parent (string): Required. The name of the project containing the metrics:
@@ -285,9 +286,9 @@ class MetricsServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
-          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
-          >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
-          >>> response = api.get_log_metric(metric_name)
+          >>> client = metrics_service_v2_client.MetricsServiceV2Client()
+          >>> metric_name = client.metric_path('[PROJECT]', '[METRIC]')
+          >>> response = client.get_log_metric(metric_name)
 
         Args:
           metric_name (string): The resource name of the desired metric:
@@ -317,10 +318,10 @@ class MetricsServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_metrics_pb2
-          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = metrics_service_v2_client.MetricsServiceV2Client()
+          >>> parent = client.project_path('[PROJECT]')
           >>> metric = logging_metrics_pb2.LogMetric()
-          >>> response = api.create_log_metric(parent, metric)
+          >>> response = client.create_log_metric(parent, metric)
 
         Args:
           parent (string): The resource name of the project in which to create the metric:
@@ -354,10 +355,10 @@ class MetricsServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_metrics_pb2
-          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
-          >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
+          >>> client = metrics_service_v2_client.MetricsServiceV2Client()
+          >>> metric_name = client.metric_path('[PROJECT]', '[METRIC]')
           >>> metric = logging_metrics_pb2.LogMetric()
-          >>> response = api.update_log_metric(metric_name, metric)
+          >>> response = client.update_log_metric(metric_name, metric)
 
         Args:
           metric_name (string): The resource name of the metric to update:
@@ -391,9 +392,9 @@ class MetricsServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import metrics_service_v2_client
-          >>> api = metrics_service_v2_client.MetricsServiceV2Client()
-          >>> metric_name = api.metric_path('[PROJECT]', '[METRIC]')
-          >>> api.delete_log_metric(metric_name)
+          >>> client = metrics_service_v2_client.MetricsServiceV2Client()
+          >>> metric_name = client.metric_path('[PROJECT]', '[METRIC]')
+          >>> client.delete_log_metric(metric_name)
 
         Args:
           metric_name (string): The resource name of the metric to delete:
