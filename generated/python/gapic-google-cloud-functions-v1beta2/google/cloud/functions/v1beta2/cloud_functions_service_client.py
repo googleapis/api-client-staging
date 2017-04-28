@@ -224,8 +224,8 @@ class CloudFunctionsServiceClient(object):
         # Load the configuration defaults.
         default_client_config = json.loads(
             pkg_resources.resource_string(
-                __name__, 'cloud_functions_service_client_config.json').decode(
-                ))
+                __name__, 'cloud_functions_service_client_config.json')
+            .decode())
         defaults = api_callable.construct_settings(
             'google.cloud.functions.v1beta2.CloudFunctionsService',
             default_client_config,
@@ -272,26 +272,26 @@ class CloudFunctionsServiceClient(object):
             settings=defaults['call_function'])
 
     # Service calls
-    def list_functions(self, location, page_size=0, options=None):
+    def list_functions(self, location, page_size=None, options=None):
         """
         Returns a list of functions that belong to the requested project.
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> location = api.location_path('[PROJECT]', '[LOCATION]')
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> location = client.location_path('[PROJECT]', '[LOCATION]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_functions(location):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_functions(location, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_functions(location):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_functions(location, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           location (string): The project and location from which the function should be listed,
@@ -327,9 +327,9 @@ class CloudFunctionsServiceClient(object):
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> name = api.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
-          >>> response = api.get_function(name)
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
+          >>> response = client.get_function(name)
 
         Args:
           name (string): The name of the function which details should be obtained.
@@ -356,10 +356,10 @@ class CloudFunctionsServiceClient(object):
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
           >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> location = api.location_path('[PROJECT]', '[LOCATION]')
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> location = client.location_path('[PROJECT]', '[LOCATION]')
           >>> function = functions_pb2.CloudFunction()
-          >>> response = api.create_function(location, function)
+          >>> response = client.create_function(location, function)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -399,10 +399,10 @@ class CloudFunctionsServiceClient(object):
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
           >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> name = api.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> function = functions_pb2.CloudFunction()
-          >>> response = api.update_function(name, function)
+          >>> response = client.update_function(name, function)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -442,9 +442,9 @@ class CloudFunctionsServiceClient(object):
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> name = api.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
-          >>> response = api.delete_function(name)
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
+          >>> response = client.delete_function(name)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -480,10 +480,10 @@ class CloudFunctionsServiceClient(object):
 
         Example:
           >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> api = cloud_functions_service_client.CloudFunctionsServiceClient()
-          >>> name = api.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
+          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> data = ''
-          >>> response = api.call_function(name, data)
+          >>> response = client.call_function(name, data)
 
         Args:
           name (string): The name of the function to be called.
