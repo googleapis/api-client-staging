@@ -358,8 +358,8 @@ class SubscriberClient(object):
                             name,
                             topic,
                             push_config=None,
-                            ack_deadline_seconds=None,
-                            retain_acked_messages=None,
+                            ack_deadline_seconds=0,
+                            retain_acked_messages=False,
                             message_retention_duration=None,
                             options=None):
         """
@@ -434,6 +434,10 @@ class SubscriberClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
+        if push_config is None:
+            push_config = pubsub_pb2.PushConfig()
+        if message_retention_duration is None:
+            message_retention_duration = duration_pb2.Duration()
         # Create the request object.
         request = pubsub_pb2.Subscription(
             name=name,
@@ -504,7 +508,7 @@ class SubscriberClient(object):
             subscription=subscription, update_mask=update_mask)
         return self._update_subscription(request, options)
 
-    def list_subscriptions(self, project, page_size=None, options=None):
+    def list_subscriptions(self, project, page_size=0, options=None):
         """
         Lists matching subscriptions.
 
@@ -662,7 +666,7 @@ class SubscriberClient(object):
     def pull(self,
              subscription,
              max_messages,
-             return_immediately=None,
+             return_immediately=False,
              options=None):
         """
         Pulls messages from the server. Returns an empty list if there are no
@@ -728,7 +732,7 @@ class SubscriberClient(object):
           >>> client = subscriber_client.SubscriberClient()
           >>> subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
           >>> stream_ack_deadline_seconds = 0
-          >>> request = pubsub_pb2.StreamingPullRequest(subscription=subscription, stream_ack_deadline_seconds=stream_ack_deadline_seconds)
+          >>> request = pubsub_pb2.StreamingPullRequest(subscription, stream_ack_deadline_seconds)
           >>> requests = [request]
           >>> for element in client.streaming_pull(requests):
           >>>     # process element
@@ -786,7 +790,7 @@ class SubscriberClient(object):
             subscription=subscription, push_config=push_config)
         self._modify_push_config(request, options)
 
-    def list_snapshots(self, project, page_size=None, options=None):
+    def list_snapshots(self, project, page_size=0, options=None):
         """
         Lists the existing snapshots.
 
