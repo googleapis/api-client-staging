@@ -2167,8 +2167,9 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def AnalyzeEntities(self, request, context):
-      """Finds named entities (currently finds proper names) in the text,
-      entity types, salience, mentions for each entity, and other properties.
+      """Finds named entities (currently proper names and common nouns) in the text
+      along with entity types, salience, mentions for each entity, and
+      other properties.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -2234,8 +2235,9 @@ try:
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def AnalyzeEntities(self, request, context):
-      """Finds named entities (currently finds proper names) in the text,
-      entity types, salience, mentions for each entity, and other properties.
+      """Finds named entities (currently proper names and common nouns) in the text
+      along with entity types, salience, mentions for each entity, and
+      other properties.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def AnalyzeSyntax(self, request, context):
@@ -2266,8 +2268,9 @@ try:
       raise NotImplementedError()
     AnalyzeSentiment.future = None
     def AnalyzeEntities(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Finds named entities (currently finds proper names) in the text,
-      entity types, salience, mentions for each entity, and other properties.
+      """Finds named entities (currently proper names and common nouns) in the text
+      along with entity types, salience, mentions for each entity, and
+      other properties.
       """
       raise NotImplementedError()
     AnalyzeEntities.future = None
