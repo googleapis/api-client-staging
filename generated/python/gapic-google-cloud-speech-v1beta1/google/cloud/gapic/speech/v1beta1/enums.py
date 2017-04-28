@@ -57,13 +57,23 @@ class StreamingRecognizeResponse(object):
 
         Attributes:
           ENDPOINTER_EVENT_UNSPECIFIED (int): No endpointer event specified.
-          START_OF_SPEECH (int): Speech has been detected in the audio stream.
-          END_OF_SPEECH (int): Speech has ceased to be detected in the audio stream.
-          END_OF_AUDIO (int): The end of the audio stream has been reached. and it is being processed.
+          START_OF_SPEECH (int): Speech has been detected in the audio stream, and the service is
+            beginning to process it.
+          END_OF_SPEECH (int): Speech has ceased to be detected in the audio stream. (For example, the
+            user may have paused after speaking.) If ``single_utterance`` is ``false``,
+            the service will continue to process audio, and if subsequent speech is
+            detected, will send another START_OF_SPEECH event.
+          END_OF_AUDIO (int): This event is sent after the client has half-closed the input stream gRPC
+            connection and the server has received all of the audio. (The server may
+            still be processing the audio and may subsequently return additional
+            results.)
           END_OF_UTTERANCE (int): This event is only sent when ``single_utterance`` is ``true``. It indicates
             that the server has detected the end of the user's speech utterance and
             expects no additional speech. Therefore, the server will not process
-            additional audio. The client should stop sending additional audio data.
+            additional audio (although it may subsequently return additional
+            results). The client should stop sending additional audio data,
+            half-close the gRPC connection, and wait for any additional results
+            until the server closes the gRPC connection.
         """
         ENDPOINTER_EVENT_UNSPECIFIED = 0
         START_OF_SPEECH = 1
