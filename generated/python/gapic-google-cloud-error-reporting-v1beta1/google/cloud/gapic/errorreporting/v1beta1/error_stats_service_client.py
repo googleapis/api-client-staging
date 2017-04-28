@@ -54,10 +54,10 @@ class ErrorStatsServiceClient(object):
     """The default port of the service."""
 
     _PAGE_DESCRIPTORS = {
-        'list_group_stats': _PageDesc('page_token', 'next_page_token',
-                                      'error_group_stats'),
-        'list_events': _PageDesc('page_token', 'next_page_token',
-                                 'error_events')
+        'list_group_stats':
+        _PageDesc('page_token', 'next_page_token', 'error_group_stats'),
+        'list_events':
+        _PageDesc('page_token', 'next_page_token', 'error_events')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
@@ -69,7 +69,9 @@ class ErrorStatsServiceClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def match_project_from_project_name(cls, project_name):
@@ -198,7 +200,7 @@ class ErrorStatsServiceClient(object):
                          alignment=None,
                          alignment_time=None,
                          order=None,
-                         page_size=0,
+                         page_size=None,
                          options=None):
         """
         Lists the specified groups.
@@ -207,20 +209,20 @@ class ErrorStatsServiceClient(object):
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_stats_service_client
           >>> from google.cloud.proto.devtools.clouderrorreporting.v1beta1 import error_stats_service_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = error_stats_service_client.ErrorStatsServiceClient()
-          >>> project_name = api.project_path('[PROJECT]')
+          >>> client = error_stats_service_client.ErrorStatsServiceClient()
+          >>> project_name = client.project_path('[PROJECT]')
           >>> time_range = error_stats_service_pb2.QueryTimeRange()
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_group_stats(project_name, time_range):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_group_stats(project_name, time_range, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_group_stats(project_name, time_range):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_group_stats(project_name, time_range, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           project_name (string): [Required] The resource name of the Google Cloud Platform project. Written
@@ -229,10 +231,6 @@ class ErrorStatsServiceClient(object):
             Platform project ID</a>.
 
             Example: <code>projects/my-project-123</code>.
-          group_id (list[string]): [Optional] List all <code>ErrorGroupStats</code> with these IDs.
-          service_filter (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only <code>ErrorGroupStats</code> which belong to a service
-            context that matches the filter.
-            Data for all service contexts is returned if this field is not specified.
           time_range (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.QueryTimeRange`): [Optional] List data for the given time range.
             If not set a default time range is used. The field time_range_begin
             in the response will specify the beginning of this time range.
@@ -240,6 +238,10 @@ class ErrorStatsServiceClient(object):
             range are returned, unless the request contains an explicit group_id list.
             If a group_id list is given, also <code>ErrorGroupStats</code> with zero
             occurrences are returned.
+          group_id (list[string]): [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+          service_filter (:class:`google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2.ServiceContextFilter`): [Optional] List only <code>ErrorGroupStats</code> which belong to a service
+            context that matches the filter.
+            Data for all service contexts is returned if this field is not specified.
           timed_count_duration (:class:`google.protobuf.duration_pb2.Duration`): [Optional] The preferred duration for a single returned ``TimedCount``.
             If not set, no timed counts are returned.
           alignment (enum :class:`google.cloud.gapic.errorreporting.v1beta1.enums.TimedCountAlignment`): [Optional] The alignment of the timed counts to be returned.
@@ -266,18 +268,6 @@ class ErrorStatsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if group_id is None:
-            group_id = []
-        if service_filter is None:
-            service_filter = error_stats_service_pb2.ServiceContextFilter()
-        if timed_count_duration is None:
-            timed_count_duration = duration_pb2.Duration()
-        if alignment is None:
-            alignment = enums.TimedCountAlignment.ERROR_COUNT_ALIGNMENT_UNSPECIFIED
-        if alignment_time is None:
-            alignment_time = timestamp_pb2.Timestamp()
-        if order is None:
-            order = enums.ErrorGroupOrder.GROUP_ORDER_UNSPECIFIED
         # Create the request object.
         request = error_stats_service_pb2.ListGroupStatsRequest(
             project_name=project_name,
@@ -296,7 +286,7 @@ class ErrorStatsServiceClient(object):
                     group_id,
                     service_filter=None,
                     time_range=None,
-                    page_size=0,
+                    page_size=None,
                     options=None):
         """
         Lists the specified events.
@@ -304,20 +294,20 @@ class ErrorStatsServiceClient(object):
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_stats_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = error_stats_service_client.ErrorStatsServiceClient()
-          >>> project_name = api.project_path('[PROJECT]')
+          >>> client = error_stats_service_client.ErrorStatsServiceClient()
+          >>> project_name = client.project_path('[PROJECT]')
           >>> group_id = ''
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_events(project_name, group_id):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_events(project_name, group_id, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_events(project_name, group_id):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_events(project_name, group_id, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           project_name (string): [Required] The resource name of the Google Cloud Platform project. Written
@@ -350,10 +340,6 @@ class ErrorStatsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if service_filter is None:
-            service_filter = error_stats_service_pb2.ServiceContextFilter()
-        if time_range is None:
-            time_range = error_stats_service_pb2.QueryTimeRange()
         # Create the request object.
         request = error_stats_service_pb2.ListEventsRequest(
             project_name=project_name,
@@ -369,9 +355,9 @@ class ErrorStatsServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import error_stats_service_client
-          >>> api = error_stats_service_client.ErrorStatsServiceClient()
-          >>> project_name = api.project_path('[PROJECT]')
-          >>> response = api.delete_events(project_name)
+          >>> client = error_stats_service_client.ErrorStatsServiceClient()
+          >>> project_name = client.project_path('[PROJECT]')
+          >>> response = client.delete_events(project_name)
 
         Args:
           project_name (string): [Required] The resource name of the Google Cloud Platform project. Written
