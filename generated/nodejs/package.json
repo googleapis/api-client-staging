@@ -2,9 +2,20 @@
   "name": "api-client-staging-node",
   "private": "true",
   "dependencies": {
-    "google-proto-files": "^0.8.6",
-    "google-gax": "^0.12.0",
-    "extend": "^3.0.0"
+    "@google-cloud/datastore": "file:./datastore/",
+    "@google-cloud/errorreporting": "file:./errorreporting/",
+    "@google-cloud/iam": "file:./iam/",
+    "@google-cloud/language": "file:./language-v1/",
+    "@google-cloud/language-v1beta2": "file:./language-v1beta2/",
+    "@google-cloud/logging": "file:./logging/",
+    "@google-cloud/monitoring": "file:./monitoring/",
+    "@google-cloud/pubsub": "file:./pubsub/",
+    "@google-cloud/spanner": "file:./spanner/",
+    "@google-cloud/spanner-admin-database": "file:./spanner-admin-database/",
+    "@google-cloud/spanner-admin-instance": "file:./spanner-admin-instance/",
+    "@google-cloud/speech": "file:./speech/",
+    "@google-cloud/trace": "file:./trace/",
+    "@google-cloud/vision": "file:./vision/"    
   },
   "devDependencies": {
     "mocha": "3.2.0",
@@ -12,7 +23,7 @@
   },
   "scripts": {
     "test": "npm run unit-test",
-    "unit-test": "mocha --timeout 5000 */test/*.js",
+    "unit-test": "mocha --timeout 5000 */test/*.js"
   },
   "license": "Apache-2.0",
   "engines": {
