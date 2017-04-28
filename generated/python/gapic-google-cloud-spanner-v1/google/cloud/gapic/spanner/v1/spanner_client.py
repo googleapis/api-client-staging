@@ -58,9 +58,8 @@ class SpannerClient(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/spanner.data', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/spanner.data', )
 
     _DATABASE_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/instances/{instance}/databases/{database}')
@@ -304,24 +303,27 @@ class SpannerClient(object):
         transactions that read and/or modify data in a Cloud Spanner database.
         Sessions are meant to be reused for many consecutive
         transactions.
+
         Sessions can only execute one transaction at a time. To execute
         multiple concurrent read-write/write-only transactions, create
         multiple sessions. Note that standalone reads and queries use a
         transaction internally, and count toward the one transaction
         limit.
+
         Cloud Spanner limits the number of sessions that can exist at any given
         time; thus, it is a good idea to delete idle and/or unneeded sessions.
         Aside from explicit deletes, Cloud Spanner can delete sessions for which no
         operations are sent for more than an hour. If a session is deleted,
         requests to it return ``NOT_FOUND``.
+
         Idle sessions can be kept alive by sending a trivial SQL query
         periodically, e.g., ``\"SELECT 1\"``.
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> database = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
-          >>> response = api.create_session(database)
+          >>> client = spanner_client.SpannerClient()
+          >>> database = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> response = client.create_session(database)
 
         Args:
           database (string): Required. The database in which the new session is created.
@@ -347,9 +349,9 @@ class SpannerClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> name = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
-          >>> response = api.get_session(name)
+          >>> client = spanner_client.SpannerClient()
+          >>> name = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> response = client.get_session(name)
 
         Args:
           name (string): Required. The name of the session to retrieve.
@@ -373,9 +375,9 @@ class SpannerClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> name = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
-          >>> api.delete_session(name)
+          >>> client = spanner_client.SpannerClient()
+          >>> name = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client.delete_session(name)
 
         Args:
           name (string): Required. The name of the session to delete.
@@ -396,7 +398,7 @@ class SpannerClient(object):
                     transaction=None,
                     params=None,
                     param_types=None,
-                    resume_token=b'',
+                    resume_token=None,
                     query_mode=None,
                     options=None):
         """
@@ -404,24 +406,26 @@ class SpannerClient(object):
         method cannot be used to return a result set larger than 10 MiB;
         if the query yields more data than that, the query fails with
         a ``FAILED_PRECONDITION`` error.
+
         Queries inside read-write transactions might return ``ABORTED``. If
         this occurs, the application should restart the transaction from
         the beginning. See ``Transaction`` for more details.
+
         Larger result sets can be fetched in streaming fashion by calling
         ``ExecuteStreamingSql`` instead.
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> sql = ''
-          >>> response = api.execute_sql(session, sql)
+          >>> response = client.execute_sql(session, sql)
 
         Args:
           session (string): Required. The session in which the SQL query should be performed.
+          sql (string): Required. The SQL query string.
           transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
             temporary read-only transaction with strong concurrency.
-          sql (string): Required. The SQL query string.
           params (:class:`google.protobuf.struct_pb2.Struct`): The SQL query string can contain parameter placeholders. A parameter
             placeholder consists of ``'@'`` followed by the parameter
             name. Parameter names consist of any combination of letters,
@@ -436,7 +440,7 @@ class SpannerClient(object):
             Parameter values are specified using ``params``, which is a JSON
             object whose keys are parameter names, and whose values are the
             corresponding parameter values.
-          param_types (dict[string -> :class:`google.cloud.proto.spanner.v1.spanner_pb2.ExecuteSqlRequest.ParamTypesEntry`]): It is not always possible for Cloud Spanner to infer the right SQL type
+          param_types (dict[string -> :class:`google.cloud.proto.spanner.v1.type_pb2.Type`]): It is not always possible for Cloud Spanner to infer the right SQL type
             from a JSON value.  For example, values of type ``BYTES`` and values
             of type ``STRING`` both appear in ``params`` as JSON strings.
 
@@ -462,14 +466,6 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if transaction is None:
-            transaction = transaction_pb2.TransactionSelector()
-        if params is None:
-            params = struct_pb2.Struct()
-        if param_types is None:
-            param_types = []
-        if query_mode is None:
-            query_mode = enums.ExecuteSqlRequest.QueryMode.NORMAL
         # Create the request object.
         request = spanner_pb2.ExecuteSqlRequest(
             session=session,
@@ -487,7 +483,7 @@ class SpannerClient(object):
                               transaction=None,
                               params=None,
                               param_types=None,
-                              resume_token=b'',
+                              resume_token=None,
                               query_mode=None,
                               options=None):
         """
@@ -499,18 +495,18 @@ class SpannerClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> sql = ''
-          >>> for element in api.execute_streaming_sql(session, sql):
-          >>>   # process element
-          >>>   pass
+          >>> for element in client.execute_streaming_sql(session, sql):
+          >>>     # process element
+          >>>     pass
 
         Args:
           session (string): Required. The session in which the SQL query should be performed.
+          sql (string): Required. The SQL query string.
           transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
             temporary read-only transaction with strong concurrency.
-          sql (string): Required. The SQL query string.
           params (:class:`google.protobuf.struct_pb2.Struct`): The SQL query string can contain parameter placeholders. A parameter
             placeholder consists of ``'@'`` followed by the parameter
             name. Parameter names consist of any combination of letters,
@@ -525,7 +521,7 @@ class SpannerClient(object):
             Parameter values are specified using ``params``, which is a JSON
             object whose keys are parameter names, and whose values are the
             corresponding parameter values.
-          param_types (dict[string -> :class:`google.cloud.proto.spanner.v1.spanner_pb2.ExecuteSqlRequest.ParamTypesEntry`]): It is not always possible for Cloud Spanner to infer the right SQL type
+          param_types (dict[string -> :class:`google.cloud.proto.spanner.v1.type_pb2.Type`]): It is not always possible for Cloud Spanner to infer the right SQL type
             from a JSON value.  For example, values of type ``BYTES`` and values
             of type ``STRING`` both appear in ``params`` as JSON strings.
 
@@ -551,14 +547,6 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if transaction is None:
-            transaction = transaction_pb2.TransactionSelector()
-        if params is None:
-            params = struct_pb2.Struct()
-        if param_types is None:
-            param_types = []
-        if query_mode is None:
-            query_mode = enums.ExecuteSqlRequest.QueryMode.NORMAL
         # Create the request object.
         request = spanner_pb2.ExecuteSqlRequest(
             session=session,
@@ -576,9 +564,9 @@ class SpannerClient(object):
              columns,
              key_set,
              transaction=None,
-             index='',
-             limit=0,
-             resume_token=b'',
+             index=None,
+             limit=None,
+             resume_token=None,
              options=None):
         """
         Reads rows from the database using key lookups and scans, as a
@@ -587,30 +575,27 @@ class SpannerClient(object):
         return a result set larger than 10 MiB; if the read matches more
         data than that, the read fails with a ``FAILED_PRECONDITION``
         error.
+
         Reads inside read-write transactions might return ``ABORTED``. If
         this occurs, the application should restart the transaction from
         the beginning. See ``Transaction`` for more details.
+
         Larger result sets can be yielded in streaming fashion by calling
         ``StreamingRead`` instead.
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
           >>> from google.cloud.proto.spanner.v1 import keys_pb2
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> table = ''
           >>> columns = []
           >>> key_set = keys_pb2.KeySet()
-          >>> response = api.read(session, table, columns, key_set)
+          >>> response = client.read(session, table, columns, key_set)
 
         Args:
           session (string): Required. The session in which the read should be performed.
-          transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
-            temporary read-only transaction with strong concurrency.
           table (string): Required. The name of the table in the database to be read.
-          index (string): If non-empty, the name of an index on ``table``. This index is
-            used instead of the table primary key when interpreting ``key_set``
-            and sorting result rows. See ``key_set`` for further information.
           columns (list[string]): The columns of ``table`` to be returned for each row matching
             this request.
           key_set (:class:`google.cloud.proto.spanner.v1.keys_pb2.KeySet`): Required. ``key_set`` identifies the rows to be yielded. ``key_set`` names the
@@ -623,6 +608,11 @@ class SpannerClient(object):
 
             It is not an error for the ``key_set`` to name rows that do not
             exist in the database. Read yields nothing for nonexistent rows.
+          transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
+            temporary read-only transaction with strong concurrency.
+          index (string): If non-empty, the name of an index on ``table``. This index is
+            used instead of the table primary key when interpreting ``key_set``
+            and sorting result rows. See ``key_set`` for further information.
           limit (long): If greater than zero, only the first ``limit`` rows are yielded. If ``limit``
             is zero, the default is no limit.
           resume_token (bytes): If this request is resuming a previously interrupted read,
@@ -641,8 +631,6 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if transaction is None:
-            transaction = transaction_pb2.TransactionSelector()
         # Create the request object.
         request = spanner_pb2.ReadRequest(
             session=session,
@@ -661,9 +649,9 @@ class SpannerClient(object):
                        columns,
                        key_set,
                        transaction=None,
-                       index='',
-                       limit=0,
-                       resume_token=b'',
+                       index=None,
+                       limit=None,
+                       resume_token=None,
                        options=None):
         """
         Like ``Read``, except returns the result set as a
@@ -675,23 +663,18 @@ class SpannerClient(object):
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
           >>> from google.cloud.proto.spanner.v1 import keys_pb2
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> table = ''
           >>> columns = []
           >>> key_set = keys_pb2.KeySet()
-          >>> for element in api.streaming_read(session, table, columns, key_set):
-          >>>   # process element
-          >>>   pass
+          >>> for element in client.streaming_read(session, table, columns, key_set):
+          >>>     # process element
+          >>>     pass
 
         Args:
           session (string): Required. The session in which the read should be performed.
-          transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
-            temporary read-only transaction with strong concurrency.
           table (string): Required. The name of the table in the database to be read.
-          index (string): If non-empty, the name of an index on ``table``. This index is
-            used instead of the table primary key when interpreting ``key_set``
-            and sorting result rows. See ``key_set`` for further information.
           columns (list[string]): The columns of ``table`` to be returned for each row matching
             this request.
           key_set (:class:`google.cloud.proto.spanner.v1.keys_pb2.KeySet`): Required. ``key_set`` identifies the rows to be yielded. ``key_set`` names the
@@ -704,6 +687,11 @@ class SpannerClient(object):
 
             It is not an error for the ``key_set`` to name rows that do not
             exist in the database. Read yields nothing for nonexistent rows.
+          transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionSelector`): The transaction to use. If none is provided, the default is a
+            temporary read-only transaction with strong concurrency.
+          index (string): If non-empty, the name of an index on ``table``. This index is
+            used instead of the table primary key when interpreting ``key_set``
+            and sorting result rows. See ``key_set`` for further information.
           limit (long): If greater than zero, only the first ``limit`` rows are yielded. If ``limit``
             is zero, the default is no limit.
           resume_token (bytes): If this request is resuming a previously interrupted read,
@@ -722,8 +710,6 @@ class SpannerClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if transaction is None:
-            transaction = transaction_pb2.TransactionSelector()
         # Create the request object.
         request = spanner_pb2.ReadRequest(
             session=session,
@@ -746,10 +732,10 @@ class SpannerClient(object):
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
           >>> from google.cloud.proto.spanner.v1 import transaction_pb2
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> options_ = transaction_pb2.TransactionOptions()
-          >>> response = api.begin_transaction(session, options_)
+          >>> response = client.begin_transaction(session, options_)
 
         Args:
           session (string): Required. The session in which the transaction runs.
@@ -778,6 +764,7 @@ class SpannerClient(object):
         """
         Commits a transaction. The request includes the mutations to be
         applied to rows in the database.
+
         ``Commit`` might return an ``ABORTED`` error. This can occur at any time;
         commonly, the cause is conflicts with concurrent
         transactions. However, it can also happen for a variety of other
@@ -786,14 +773,16 @@ class SpannerClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> from google.cloud.proto.spanner.v1 import mutation_pb2
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> mutations = []
-          >>> response = api.commit(session, mutations)
+          >>> response = client.commit(session, mutations)
 
         Args:
           session (string): Required. The session in which the transaction to be committed is running.
+          mutations (list[:class:`google.cloud.proto.spanner.v1.mutation_pb2.Mutation`]): The mutations to be executed when this transaction commits. All
+            mutations are applied atomically, in the order they appear in
+            this list.
           transaction_id (bytes): Commit a previously-started transaction.
           single_use_transaction (:class:`google.cloud.proto.spanner.v1.transaction_pb2.TransactionOptions`): Execute mutations in a temporary transaction. Note that unlike
             commit of a previously-started transaction, commit with a
@@ -804,9 +793,6 @@ class SpannerClient(object):
             executed more than once. If this is undesirable, use
             ``BeginTransaction`` and
             ``Commit`` instead.
-          mutations (list[:class:`google.cloud.proto.spanner.v1.mutation_pb2.Mutation`]): The mutations to be executed when this transaction commits. All
-            mutations are applied atomically, in the order they appear in
-            this list.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -837,16 +823,17 @@ class SpannerClient(object):
         idea to call this for any transaction that includes one or more
         ``Read`` or ``ExecuteSql`` requests and
         ultimately decides not to commit.
+
         ``Rollback`` returns ``OK`` if it successfully aborts the transaction, the
         transaction was already aborted, or the transaction is not
         found. ``Rollback`` never returns ``ABORTED``.
 
         Example:
           >>> from google.cloud.gapic.spanner.v1 import spanner_client
-          >>> api = spanner_client.SpannerClient()
-          >>> session = api.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
+          >>> client = spanner_client.SpannerClient()
+          >>> session = client.session_path('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]')
           >>> transaction_id = b''
-          >>> api.rollback(session, transaction_id)
+          >>> client.rollback(session, transaction_id)
 
         Args:
           session (string): Required. The session in which the transaction to roll back is running.
