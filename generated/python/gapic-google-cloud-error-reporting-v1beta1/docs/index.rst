@@ -12,7 +12,7 @@ easy-to-use client library for the `Stackdriver Error Reporting API`_ (v1beta1) 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouderrorreporting/v1beta1
-.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/error-reporting/v1beta1/
+.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
 
 
 APIs

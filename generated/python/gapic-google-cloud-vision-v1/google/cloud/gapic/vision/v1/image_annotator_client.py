@@ -158,10 +158,9 @@ class ImageAnnotatorClient(object):
 
         Example:
           >>> from google.cloud.gapic.vision.v1 import image_annotator_client
-          >>> from google.cloud.proto.vision.v1 import image_annotator_pb2
-          >>> api = image_annotator_client.ImageAnnotatorClient()
+          >>> client = image_annotator_client.ImageAnnotatorClient()
           >>> requests = []
-          >>> response = api.batch_annotate_images(requests)
+          >>> response = client.batch_annotate_images(requests)
 
         Args:
           requests (list[:class:`google.cloud.proto.vision.v1.image_annotator_pb2.AnnotateImageRequest`]): Individual image annotation requests for this batch.
