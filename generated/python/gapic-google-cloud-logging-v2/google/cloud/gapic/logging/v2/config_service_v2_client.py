@@ -57,12 +57,11 @@ class ConfigServiceV2Client(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
-        'https://www.googleapis.com/auth/logging.admin',
-        'https://www.googleapis.com/auth/logging.read',
-        'https://www.googleapis.com/auth/logging.write', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/cloud-platform.read-only',
+                   'https://www.googleapis.com/auth/logging.admin',
+                   'https://www.googleapis.com/auth/logging.read',
+                   'https://www.googleapis.com/auth/logging.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _SINK_PATH_TEMPLATE = path_template.PathTemplate(
@@ -71,7 +70,9 @@ class ConfigServiceV2Client(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def sink_path(cls, project, sink):
@@ -230,30 +231,36 @@ class ConfigServiceV2Client(object):
             settings=defaults['delete_sink'])
 
     # Service calls
-    def list_sinks(self, parent, page_size=0, options=None):
+    def list_sinks(self, parent, page_size=None, options=None):
         """
         Lists sinks.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = config_service_v2_client.ConfigServiceV2Client()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = config_service_v2_client.ConfigServiceV2Client()
+          >>> parent = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_sinks(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_sinks(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_sinks(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_sinks(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
-          parent (string): Required. The parent resource whose sinks are to be listed.
-            Examples: ``\"projects/my-logging-project\"``, ``\"organizations/123456789\"``.
+          parent (string): Required. The parent resource whose sinks are to be listed:
+
+            ::
+
+                \"projects/[PROJECT_ID]\"
+                \"organizations/[ORGANIZATION_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]\"
+                \"folders/[FOLDER_ID]\"
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -283,17 +290,19 @@ class ConfigServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
-          >>> api = config_service_v2_client.ConfigServiceV2Client()
-          >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
-          >>> response = api.get_sink(sink_name)
+          >>> client = config_service_v2_client.ConfigServiceV2Client()
+          >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
+          >>> response = client.get_sink(sink_name)
 
         Args:
-          sink_name (string): Required. The parent resource name of the sink:
+          sink_name (string): Required. The resource name of the sink:
 
             ::
 
                 \"projects/[PROJECT_ID]/sinks/[SINK_ID]\"
                 \"organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]\"
+                \"folders/[FOLDER_ID]/sinks/[SINK_ID]\"
 
             Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -313,7 +322,7 @@ class ConfigServiceV2Client(object):
     def create_sink(self,
                     parent,
                     sink,
-                    unique_writer_identity=False,
+                    unique_writer_identity=None,
                     options=None):
         """
         Creates a sink that exports specified log entries to a destination.  The
@@ -325,10 +334,10 @@ class ConfigServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_config_pb2
-          >>> api = config_service_v2_client.ConfigServiceV2Client()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = config_service_v2_client.ConfigServiceV2Client()
+          >>> parent = client.project_path('[PROJECT]')
           >>> sink = logging_config_pb2.LogSink()
-          >>> response = api.create_sink(parent, sink)
+          >>> response = client.create_sink(parent, sink)
 
         Args:
           parent (string): Required. The resource in which to create the sink:
@@ -337,6 +346,8 @@ class ConfigServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]\"
                 \"organizations/[ORGANIZATION_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]\"
+                \"folders/[FOLDER_ID]\"
 
             Examples: ``\"projects/my-logging-project\"``, ``\"organizations/123456789\"``.
           sink (:class:`google.cloud.proto.logging.v2.logging_config_pb2.LogSink`): Required. The new sink, whose ``name`` parameter is a sink identifier that
@@ -344,9 +355,9 @@ class ConfigServiceV2Client(object):
           unique_writer_identity (bool): Optional. Determines the kind of IAM identity returned as ``writer_identity``
             in the new sink.  If this value is omitted or set to false, and if the
             sink's parent is a project, then the value returned as ``writer_identity`` is
-            ``cloud-logs@google.com``, the same identity used before the addition of
-            writer identities to this API. The sink's destination must be in the same
-            project as the sink itself.
+            the same group or service account used by Stackdriver Logging before the
+            addition of writer identities to this API. The sink's destination must be
+            in the same project as the sink itself.
 
             If this field is set to true, or if the sink is owned by a non-project
             resource such as an organization, then the value of ``writer_identity`` will
@@ -372,7 +383,7 @@ class ConfigServiceV2Client(object):
     def update_sink(self,
                     sink_name,
                     sink,
-                    unique_writer_identity=False,
+                    unique_writer_identity=None,
                     options=None):
         """
         Updates a sink. If the named sink doesn't exist, then this method is
@@ -387,10 +398,10 @@ class ConfigServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_config_pb2
-          >>> api = config_service_v2_client.ConfigServiceV2Client()
-          >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
+          >>> client = config_service_v2_client.ConfigServiceV2Client()
+          >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
           >>> sink = logging_config_pb2.LogSink()
-          >>> response = api.update_sink(sink_name, sink)
+          >>> response = client.update_sink(sink_name, sink)
 
         Args:
           sink_name (string): Required. The full resource name of the sink to update, including the
@@ -400,6 +411,8 @@ class ConfigServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]/sinks/[SINK_ID]\"
                 \"organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]\"
+                \"folders/[FOLDER_ID]/sinks/[SINK_ID]\"
 
             Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           sink (:class:`google.cloud.proto.logging.v2.logging_config_pb2.LogSink`): Required. The updated sink, whose name is the same identifier that appears
@@ -415,11 +428,11 @@ class ConfigServiceV2Client(object):
             ::
 
                 then there is no change to the sink's `writer_identity`.
-            +   If the old value was false and the new value is true, then
+            +   If the old value is false and the new value is true, then
             ::
 
                 `writer_identity` is changed to a unique service account.
-            +   It is an error if the old value was true and the new value is false.
+            +   It is an error if the old value is true and the new value is false.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -444,9 +457,9 @@ class ConfigServiceV2Client(object):
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
-          >>> api = config_service_v2_client.ConfigServiceV2Client()
-          >>> sink_name = api.sink_path('[PROJECT]', '[SINK]')
-          >>> api.delete_sink(sink_name)
+          >>> client = config_service_v2_client.ConfigServiceV2Client()
+          >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
+          >>> client.delete_sink(sink_name)
 
         Args:
           sink_name (string): Required. The full resource name of the sink to delete, including the
@@ -456,10 +469,10 @@ class ConfigServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]/sinks/[SINK_ID]\"
                 \"organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]\"
+                \"folders/[FOLDER_ID]/sinks/[SINK_ID]\"
 
-            It is an error if the sink does not exist.  Example:
-            ``\"projects/my-project-id/sinks/my-sink-id\"``.  It is an error if
-            the sink does not exist.
+            Example: ``\"projects/my-project-id/sinks/my-sink-id\"``.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
