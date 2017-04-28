@@ -101,5 +101,5 @@ jobs:
       - run:
           command: |
             git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
-            git push private HEAD:master 5a648c2b119da694dd7da26adf7443e0660d6caa
+            git push private HEAD:master
     working_directory: /var/code/googleapis/
