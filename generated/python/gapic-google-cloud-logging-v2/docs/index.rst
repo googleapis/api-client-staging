@@ -12,7 +12,7 @@ easy-to-use client library for the `Stackdriver Logging API`_ (v2) defined in th
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/logging/v2
-.. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2/
+.. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2
 
 
 APIs

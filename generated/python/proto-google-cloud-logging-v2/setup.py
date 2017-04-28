@@ -23,7 +23,7 @@ extras_require = {
 
 setuptools.setup(
   name='proto-google-cloud-logging-v2',
-  version='0.91.3',
+  version='0.91.4',
   author='Google Inc',
   author_email='googleapis-packages@google.com',
   classifiers=[
