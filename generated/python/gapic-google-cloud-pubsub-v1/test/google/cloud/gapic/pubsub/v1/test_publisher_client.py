@@ -14,7 +14,7 @@
 """Unit tests."""
 
 import mock
-import unittest
+import unittest2
 
 from google.gax import errors
 
@@ -29,11 +29,11 @@ class CustomException(Exception):
     pass
 
 
-class TestPublisherClient(unittest.TestCase):
+class TestPublisherClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_topic(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -43,27 +43,22 @@ class TestPublisherClient(unittest.TestCase):
 
         # Mock response
         name_2 = 'name2-1052831874'
-        expected_response = pubsub_pb2.Topic(name=name_2)
+        expected_response = pubsub_pb2.Topic(name_2)
         grpc_stub.CreateTopic.return_value = expected_response
 
         response = client.create_topic(name)
         self.assertEqual(expected_response, response)
 
         grpc_stub.CreateTopic.assert_called_once()
-        args, kwargs = grpc_stub.CreateTopic.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.CreateTopic.call_args[0]
 
-        expected_request = pubsub_pb2.Topic(name=name)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(name, request.name)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_topic_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -79,7 +74,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_publish(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -87,34 +82,29 @@ class TestPublisherClient(unittest.TestCase):
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
         data = b'-86'
-        messages_element = pubsub_pb2.PubsubMessage(data=data)
+        messages_element = pubsub_pb2.PubsubMessage(data)
         messages = [messages_element]
 
         # Mock response
         message_ids_element = 'messageIdsElement-744837059'
         message_ids = [message_ids_element]
-        expected_response = pubsub_pb2.PublishResponse(message_ids=message_ids)
+        expected_response = pubsub_pb2.PublishResponse(message_ids)
         grpc_stub.Publish.return_value = expected_response
 
         response = client.publish(topic, messages)
         self.assertEqual(expected_response, response)
 
         grpc_stub.Publish.assert_called_once()
-        args, kwargs = grpc_stub.Publish.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.Publish.call_args[0]
 
-        expected_request = pubsub_pb2.PublishRequest(
-            topic=topic, messages=messages)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(topic, request.topic)
+        self.assertEqual(messages, request.messages)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_publish_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -122,7 +112,7 @@ class TestPublisherClient(unittest.TestCase):
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
         data = b'-86'
-        messages_element = pubsub_pb2.PubsubMessage(data=data)
+        messages_element = pubsub_pb2.PubsubMessage(data)
         messages = [messages_element]
 
         # Mock exception response
@@ -133,7 +123,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_topic(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -143,27 +133,22 @@ class TestPublisherClient(unittest.TestCase):
 
         # Mock response
         name = 'name3373707'
-        expected_response = pubsub_pb2.Topic(name=name)
+        expected_response = pubsub_pb2.Topic(name)
         grpc_stub.GetTopic.return_value = expected_response
 
         response = client.get_topic(topic)
         self.assertEqual(expected_response, response)
 
         grpc_stub.GetTopic.assert_called_once()
-        args, kwargs = grpc_stub.GetTopic.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.GetTopic.call_args[0]
 
-        expected_request = pubsub_pb2.GetTopicRequest(topic=topic)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(topic, request.topic)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_topic_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -179,7 +164,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_topics(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -192,7 +177,7 @@ class TestPublisherClient(unittest.TestCase):
         topics_element = pubsub_pb2.Topic()
         topics = [topics_element]
         expected_response = pubsub_pb2.ListTopicsResponse(
-            next_page_token=next_page_token, topics=topics)
+            next_page_token, topics)
         grpc_stub.ListTopics.return_value = expected_response
 
         paged_list_response = client.list_topics(project)
@@ -201,20 +186,15 @@ class TestPublisherClient(unittest.TestCase):
         self.assertEqual(expected_response.topics[0], resources[0])
 
         grpc_stub.ListTopics.assert_called_once()
-        args, kwargs = grpc_stub.ListTopics.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ListTopics.call_args[0]
 
-        expected_request = pubsub_pb2.ListTopicsRequest(project=project)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(project, request.project)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_topics_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -225,13 +205,12 @@ class TestPublisherClient(unittest.TestCase):
         # Mock exception response
         grpc_stub.ListTopics.side_effect = CustomException()
 
-        paged_list_response = client.list_topics(project)
-        self.assertRaises(errors.GaxError, list, paged_list_response)
+        self.assertRaises(errors.GaxError, client.list_topics, project)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_topic_subscriptions(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -244,7 +223,7 @@ class TestPublisherClient(unittest.TestCase):
         subscriptions_element = 'subscriptionsElement1698708147'
         subscriptions = [subscriptions_element]
         expected_response = pubsub_pb2.ListTopicSubscriptionsResponse(
-            next_page_token=next_page_token, subscriptions=subscriptions)
+            next_page_token, subscriptions)
         grpc_stub.ListTopicSubscriptions.return_value = expected_response
 
         paged_list_response = client.list_topic_subscriptions(topic)
@@ -253,21 +232,15 @@ class TestPublisherClient(unittest.TestCase):
         self.assertEqual(expected_response.subscriptions[0], resources[0])
 
         grpc_stub.ListTopicSubscriptions.assert_called_once()
-        args, kwargs = grpc_stub.ListTopicSubscriptions.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ListTopicSubscriptions.call_args[0]
 
-        expected_request = pubsub_pb2.ListTopicSubscriptionsRequest(
-            topic=topic)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(topic, request.topic)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_topic_subscriptions_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -278,13 +251,13 @@ class TestPublisherClient(unittest.TestCase):
         # Mock exception response
         grpc_stub.ListTopicSubscriptions.side_effect = CustomException()
 
-        paged_list_response = client.list_topic_subscriptions(topic)
-        self.assertRaises(errors.GaxError, list, paged_list_response)
+        self.assertRaises(errors.GaxError, client.list_topic_subscriptions,
+                          topic)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_topic(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -295,20 +268,15 @@ class TestPublisherClient(unittest.TestCase):
         client.delete_topic(topic)
 
         grpc_stub.DeleteTopic.assert_called_once()
-        args, kwargs = grpc_stub.DeleteTopic.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.DeleteTopic.call_args[0]
 
-        expected_request = pubsub_pb2.DeleteTopicRequest(topic=topic)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(topic, request.topic)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_topic_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.PublisherStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -324,7 +292,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_set_iam_policy(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -336,28 +304,23 @@ class TestPublisherClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = policy_pb2.Policy(version, etag)
         grpc_stub.SetIamPolicy.return_value = expected_response
 
         response = client.set_iam_policy(resource, policy)
         self.assertEqual(expected_response, response)
 
         grpc_stub.SetIamPolicy.assert_called_once()
-        args, kwargs = grpc_stub.SetIamPolicy.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.SetIamPolicy.call_args[0]
 
-        expected_request = iam_policy_pb2.SetIamPolicyRequest(
-            resource=resource, policy=policy)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
+        self.assertEqual(policy, request.policy)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_set_iam_policy_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -375,7 +338,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_iam_policy(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -386,28 +349,22 @@ class TestPublisherClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = policy_pb2.Policy(version, etag)
         grpc_stub.GetIamPolicy.return_value = expected_response
 
         response = client.get_iam_policy(resource)
         self.assertEqual(expected_response, response)
 
         grpc_stub.GetIamPolicy.assert_called_once()
-        args, kwargs = grpc_stub.GetIamPolicy.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.GetIamPolicy.call_args[0]
 
-        expected_request = iam_policy_pb2.GetIamPolicyRequest(
-            resource=resource)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_iam_policy_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -423,7 +380,7 @@ class TestPublisherClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_test_iam_permissions(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
@@ -440,21 +397,16 @@ class TestPublisherClient(unittest.TestCase):
         self.assertEqual(expected_response, response)
 
         grpc_stub.TestIamPermissions.assert_called_once()
-        args, kwargs = grpc_stub.TestIamPermissions.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.TestIamPermissions.call_args[0]
 
-        expected_request = iam_policy_pb2.TestIamPermissionsRequest(
-            resource=resource, permissions=permissions)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
+        self.assertEqual(permissions, request.permissions)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_test_iam_permissions_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = publisher_client.PublisherClient()
