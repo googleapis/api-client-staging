@@ -75,17 +75,16 @@ class InstanceAdminClient(object):
     """The default port of the service."""
 
     _PAGE_DESCRIPTORS = {
-        'list_instance_configs': _PageDesc('page_token', 'next_page_token',
-                                           'instance_configs'),
-        'list_instances': _PageDesc('page_token', 'next_page_token',
-                                    'instances')
+        'list_instance_configs':
+        _PageDesc('page_token', 'next_page_token', 'instance_configs'),
+        'list_instances':
+        _PageDesc('page_token', 'next_page_token', 'instances')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/spanner.admin', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/spanner.admin', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _INSTANCE_CONFIG_PATH_TEMPLATE = path_template.PathTemplate(
@@ -96,14 +95,18 @@ class InstanceAdminClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def instance_config_path(cls, project, instance_config):
         """Returns a fully-qualified instance_config resource name string."""
         return cls._INSTANCE_CONFIG_PATH_TEMPLATE.render({
-            'project': project,
-            'instance_config': instance_config,
+            'project':
+            project,
+            'instance_config':
+            instance_config,
         })
 
     @classmethod
@@ -142,8 +145,8 @@ class InstanceAdminClient(object):
             instance_config_name).get('project')
 
     @classmethod
-    def match_instance_config_from_instance_config_name(cls,
-                                                        instance_config_name):
+    def match_instance_config_from_instance_config_name(
+            cls, instance_config_name):
         """Parses the instance_config from a instance_config resource.
 
         Args:
@@ -318,26 +321,26 @@ class InstanceAdminClient(object):
             settings=defaults['test_iam_permissions'])
 
     # Service calls
-    def list_instance_configs(self, parent, page_size=0, options=None):
+    def list_instance_configs(self, parent, page_size=None, options=None):
         """
         Lists the supported instance configurations for a given project.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> parent = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_instance_configs(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_instance_configs(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_instance_configs(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_instance_configs(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           parent (string): Required. The name of the project for which a list of supported instance
@@ -372,9 +375,9 @@ class InstanceAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> name = api.instance_config_path('[PROJECT]', '[INSTANCE_CONFIG]')
-          >>> response = api.get_instance_config(name)
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> name = client.instance_config_path('[PROJECT]', '[INSTANCE_CONFIG]')
+          >>> response = client.get_instance_config(name)
 
         Args:
           name (string): Required. The name of the requested instance configuration. Values are of
@@ -394,26 +397,30 @@ class InstanceAdminClient(object):
             name=name)
         return self._get_instance_config(request, options)
 
-    def list_instances(self, parent, page_size=0, filter_='', options=None):
+    def list_instances(self,
+                       parent,
+                       page_size=None,
+                       filter_=None,
+                       options=None):
         """
         Lists all instances in the given project.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> parent = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_instances(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_instances(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_instances(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_instances(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           parent (string): Required. The name of the project for which a list of instances is
@@ -470,9 +477,9 @@ class InstanceAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> name = api.instance_path('[PROJECT]', '[INSTANCE]')
-          >>> response = api.get_instance(name)
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> name = client.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> response = client.get_instance(name)
 
         Args:
           name (string): Required. The name of the requested instance. Values are of the form
@@ -499,20 +506,27 @@ class InstanceAdminClient(object):
         instance. The instance name is assigned by the caller. If the
         named instance already exists, ``CreateInstance`` returns
         ``ALREADY_EXISTS``.
+
         Immediately upon completion of this request:
+
         * The instance is readable via the API, with all requested attributes
         but no allocated resources. Its state is `CREATING`.
+
         Until completion of the returned operation:
+
         * Cancelling the operation renders the instance immediately unreadable
         via the API.
         * The instance can be deleted.
         * All other attempts to modify the instance are rejected.
+
         Upon completion of the returned operation:
+
         * Billing for all successfully-allocated resources begins (some types
         may have lower than the requested levels).
         * Databases can be created in the instance.
         * The instance's allocated resource levels are readable via the API.
         * The instance's state becomes ``READY``.
+
         The returned ``long-running operation`` will
         have a name of the format ``<instance_name>/operations/<operation_id>`` and
         can be used to track creation of the instance.  The
@@ -524,11 +538,11 @@ class InstanceAdminClient(object):
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
           >>> from google.cloud.proto.spanner.admin.instance.v1 import spanner_instance_admin_pb2
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> parent = client.project_path('[PROJECT]')
           >>> instance_id = ''
           >>> instance = spanner_instance_admin_pb2.Instance()
-          >>> response = api.create_instance(parent, instance_id, instance)
+          >>> response = client.create_instance(parent, instance_id, instance)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -572,10 +586,14 @@ class InstanceAdminClient(object):
         operation][google.longrunning.Operation] can be used to track the
         progress of updating the instance. If the named instance does not
         exist, returns ``NOT_FOUND``.
+
         Immediately upon completion of this request:
+
         * For resource types for which a decrease in the instance's allocation
         has been requested, billing is based on the newly-requested level.
+
         Until completion of the returned operation:
+
         * Cancelling the operation sets its metadata's
         [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
         restoring resources to their pre-request values. The operation
@@ -584,12 +602,15 @@ class InstanceAdminClient(object):
         * All other attempts to modify the instance are rejected.
         * Reading the instance via the API continues to give the pre-request
         resource levels.
+
         Upon completion of the returned operation:
+
         * Billing begins for all successfully-allocated resources (some types
         may have lower than the requested levels).
         * All newly-reserved resources are available for serving the instance's
         tables.
         * The instance's new resource levels are readable via the API.
+
         The returned ``long-running operation`` will
         have a name of the format ``<instance_name>/operations/<operation_id>`` and
         can be used to track the instance modification.  The
@@ -597,6 +618,7 @@ class InstanceAdminClient(object):
         ``UpdateInstanceMetadata``.
         The ``response`` field type is
         ``Instance``, if successful.
+
         Authorization requires ``spanner.instances.update`` permission on
         resource ``name``.
 
@@ -604,10 +626,10 @@ class InstanceAdminClient(object):
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
           >>> from google.cloud.proto.spanner.admin.instance.v1 import spanner_instance_admin_pb2
           >>> from google.protobuf import field_mask_pb2
-          >>> api = instance_admin_client.InstanceAdminClient()
+          >>> client = instance_admin_client.InstanceAdminClient()
           >>> instance = spanner_instance_admin_pb2.Instance()
           >>> field_mask = field_mask_pb2.FieldMask()
-          >>> response = api.update_instance(instance, field_mask)
+          >>> response = client.update_instance(instance, field_mask)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -646,18 +668,22 @@ class InstanceAdminClient(object):
     def delete_instance(self, name, options=None):
         """
         Deletes an instance.
+
         Immediately upon completion of the request:
+
         * Billing ceases for all of the instance's reserved resources.
+
         Soon afterward:
+
         * The instance and *all of its databases* immediately and
         irrevocably disappear from the API. All data in the databases
         is permanently deleted.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> name = api.instance_path('[PROJECT]', '[INSTANCE]')
-          >>> api.delete_instance(name)
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> name = client.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> client.delete_instance(name)
 
         Args:
           name (string): Required. The name of the instance to be deleted. Values are of the form
@@ -677,16 +703,17 @@ class InstanceAdminClient(object):
         """
         Sets the access control policy on an instance resource. Replaces any
         existing policy.
+
         Authorization requires ``spanner.instances.setIamPolicy`` on
         ``resource``.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> resource = api.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> resource = client.instance_path('[PROJECT]', '[INSTANCE]')
           >>> policy = policy_pb2.Policy()
-          >>> response = api.set_iam_policy(resource, policy)
+          >>> response = client.set_iam_policy(resource, policy)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being specified.
@@ -715,14 +742,15 @@ class InstanceAdminClient(object):
         """
         Gets the access control policy for an instance resource. Returns an empty
         policy if an instance exists but does not have a policy set.
+
         Authorization requires ``spanner.instances.getIamPolicy`` on
         ``resource``.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> resource = api.instance_path('[PROJECT]', '[INSTANCE]')
-          >>> response = api.get_iam_policy(resource)
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> resource = client.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> response = client.get_iam_policy(resource)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being requested.
@@ -745,6 +773,7 @@ class InstanceAdminClient(object):
     def test_iam_permissions(self, resource, permissions, options=None):
         """
         Returns permissions that the caller has on the specified instance resource.
+
         Attempting this RPC on a non-existent Cloud Spanner instance resource will
         result in a NOT_FOUND error if the user has ``spanner.instances.list``
         permission on the containing Google Cloud Project. Otherwise returns an
@@ -752,10 +781,10 @@ class InstanceAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_instance.v1 import instance_admin_client
-          >>> api = instance_admin_client.InstanceAdminClient()
-          >>> resource = api.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> client = instance_admin_client.InstanceAdminClient()
+          >>> resource = client.instance_path('[PROJECT]', '[INSTANCE]')
           >>> permissions = []
-          >>> response = api.test_iam_permissions(resource, permissions)
+          >>> response = client.test_iam_permissions(resource, permissions)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy detail is being requested.

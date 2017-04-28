@@ -51,21 +51,21 @@ class LoggingServiceV2Client(object):
     """The default port of the service."""
 
     _PAGE_DESCRIPTORS = {
-        'list_log_entries': _PageDesc('page_token', 'next_page_token',
-                                      'entries'),
+        'list_log_entries':
+        _PageDesc('page_token', 'next_page_token', 'entries'),
         'list_monitored_resource_descriptors':
         _PageDesc('page_token', 'next_page_token', 'resource_descriptors'),
-        'list_logs': _PageDesc('page_token', 'next_page_token', 'log_names')
+        'list_logs':
+        _PageDesc('page_token', 'next_page_token', 'log_names')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
-        'https://www.googleapis.com/auth/logging.admin',
-        'https://www.googleapis.com/auth/logging.read',
-        'https://www.googleapis.com/auth/logging.write', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/cloud-platform.read-only',
+                   'https://www.googleapis.com/auth/logging.admin',
+                   'https://www.googleapis.com/auth/logging.read',
+                   'https://www.googleapis.com/auth/logging.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _LOG_PATH_TEMPLATE = path_template.PathTemplate(
@@ -74,7 +74,9 @@ class LoggingServiceV2Client(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def log_path(cls, project, log):
@@ -238,12 +240,14 @@ class LoggingServiceV2Client(object):
         """
         Deletes all the log entries in a log.
         The log reappears if it receives new entries.
+        Log entries written shortly before the delete operation might not be
+        deleted.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
-          >>> api = logging_service_v2_client.LoggingServiceV2Client()
-          >>> log_name = api.log_path('[PROJECT]', '[LOG]')
-          >>> api.delete_log(log_name)
+          >>> client = logging_service_v2_client.LoggingServiceV2Client()
+          >>> log_name = client.log_path('[PROJECT]', '[LOG]')
+          >>> client.delete_log(log_name)
 
         Args:
           log_name (string): Required. The resource name of the log to delete:
@@ -252,6 +256,8 @@ class LoggingServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]/logs/[LOG_ID]\"
                 \"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\"
+                \"folders/[FOLDER_ID]/logs/[LOG_ID]\"
 
             ``[LOG_ID]`` must be URL-encoded. For example,
             ``\"projects/my-project-id/logs/syslog\"``,
@@ -271,23 +277,36 @@ class LoggingServiceV2Client(object):
 
     def write_log_entries(self,
                           entries,
-                          log_name='',
+                          log_name=None,
                           resource=None,
                           labels=None,
-                          partial_success=False,
+                          partial_success=None,
                           options=None):
         """
-        Writes log entries to Stackdriver Logging.  All log entries are
-        written by this method.
+        Writes log entries to Stackdriver Logging.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
-          >>> from google.cloud.proto.logging.v2 import log_entry_pb2
-          >>> api = logging_service_v2_client.LoggingServiceV2Client()
+          >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> entries = []
-          >>> response = api.write_log_entries(entries)
+          >>> response = client.write_log_entries(entries)
 
         Args:
+          entries (list[:class:`google.cloud.proto.logging.v2.log_entry_pb2.LogEntry`]): Required.  The log entries to write. Values supplied for the fields
+            ``log_name``, ``resource``, and ``labels`` in this ``entries.write`` request are
+            inserted into those log entries in this list that do not provide their own
+            values.
+
+            Stackdriver Logging also creates and inserts values for ``timestamp`` and
+            ``insert_id`` if the entries do not provide them. The created ``insert_id`` for
+            the N'th entry in this list will be greater than earlier entries and less
+            than later entries.  Otherwise, the order of log entries in this list does
+            not matter.
+
+            To improve throughput and to avoid exceeding the
+            `quota limit <https://cloud.google.com/logging/quota-policy>`_ for calls to ``entries.write``,
+            you should write multiple log entries at once rather than
+            calling this method for each individual log entry.
           log_name (string): Optional. A default log resource name that is assigned to all log entries
             in ``entries`` that do not specify a value for ``log_name``:
 
@@ -295,6 +314,8 @@ class LoggingServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]/logs/[LOG_ID]\"
                 \"organizations/[ORGANIZATION_ID]/logs/[LOG_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]\"
+                \"folders/[FOLDER_ID]/logs/[LOG_ID]\"
 
             ``[LOG_ID]`` must be URL-encoded. For example,
             ``\"projects/my-project-id/logs/syslog\"`` or
@@ -311,24 +332,15 @@ class LoggingServiceV2Client(object):
                     \"zone\": \"us-central1-a\", \"instance_id\": \"00000000000000000000\" }}
 
             See ``LogEntry``.
-          labels (dict[string -> :class:`google.cloud.proto.logging.v2.logging_pb2.WriteLogEntriesRequest.LabelsEntry`]): Optional. Default labels that are added to the ``labels`` field of all log
+          labels (dict[string -> string]): Optional. Default labels that are added to the ``labels`` field of all log
             entries in ``entries``. If a log entry already has a label with the same key
             as a label in this parameter, then the log entry's label is not changed.
             See ``LogEntry``.
-          entries (list[:class:`google.cloud.proto.logging.v2.log_entry_pb2.LogEntry`]): Required. The log entries to write. Values supplied for the fields
-            ``log_name``, ``resource``, and ``labels`` in this ``entries.write`` request are
-            added to those log entries that do not provide their own values for the
-            fields.
-
-            To improve throughput and to avoid exceeding the
-            `quota limit <https://cloud.google.com/logging/quota-policy>`_ for calls to ``entries.write``,
-            you should write multiple log entries at once rather than
-            calling this method for each individual log entry.
           partial_success (bool): Optional. Whether valid entries should be written even if some other
             entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
-            entry is not written, the response status will be the error associated
-            with one of the failed entries and include error details in the form of
-            WriteLogEntriesPartialErrors.
+            entry is not written, then the response status is the error associated
+            with one of the failed entries and the response includes error details
+            keyed by the entries' zero-based index in the ``entries.write`` method.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -339,10 +351,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if resource is None:
-            resource = monitored_resource_pb2.MonitoredResource()
-        if labels is None:
-            labels = []
         # Create the request object.
         request = logging_pb2.WriteLogEntriesRequest(
             entries=entries,
@@ -355,9 +363,9 @@ class LoggingServiceV2Client(object):
     def list_log_entries(self,
                          resource_names,
                          project_ids=None,
-                         filter_='',
-                         order_by='',
-                         page_size=0,
+                         filter_=None,
+                         order_by=None,
+                         page_size=None,
                          options=None):
         """
         Lists log entries.  Use this method to retrieve log entries from
@@ -367,35 +375,37 @@ class LoggingServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = logging_service_v2_client.LoggingServiceV2Client()
+          >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> resource_names = []
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_log_entries(resource_names):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_log_entries(resource_names, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_log_entries(resource_names):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_log_entries(resource_names, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
-          project_ids (list[string]): Deprecated. Use ``resource_names`` instead.  One or more project identifiers
-            or project numbers from which to retrieve log entries.  Example:
-            ``\"my-project-1A\"``. If present, these project identifiers are converted to
-            resource name format and added to the list of resources in
-            ``resource_names``.
-          resource_names (list[string]): Required. Names of one or more resources from which to retrieve log
-            entries:
+          resource_names (list[string]): Required. Names of one or more parent resources from which to
+            retrieve log entries:
 
             ::
 
                 \"projects/[PROJECT_ID]\"
                 \"organizations/[ORGANIZATION_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]\"
+                \"folders/[FOLDER_ID]\"
 
             Projects listed in the ``project_ids`` field are added to this list.
+          project_ids (list[string]): Deprecated. Use ``resource_names`` instead.  One or more project identifiers
+            or project numbers from which to retrieve log entries.  Example:
+            ``\"my-project-1A\"``. If present, these project identifiers are converted to
+            resource name format and added to the list of resources in
+            ``resource_names``.
           filter_ (string): Optional. A filter that chooses which log entries to return.  See [Advanced
             Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
             match the filter are returned.  An empty filter matches all log entries in
@@ -408,7 +418,7 @@ class LoggingServiceV2Client(object):
             option returns entries in order of increasing values of
             ``LogEntry.timestamp`` (oldest first), and the second option returns entries
             in order of decreasing timestamps (newest first).  Entries with equal
-            timestamps are returned in order of ``LogEntry.insertId``.
+            timestamps are returned in order of their ``insert_id`` values.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -427,8 +437,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if project_ids is None:
-            project_ids = []
         # Create the request object.
         request = logging_pb2.ListLogEntriesRequest(
             resource_names=resource_names,
@@ -438,7 +446,8 @@ class LoggingServiceV2Client(object):
             page_size=page_size)
         return self._list_log_entries(request, options)
 
-    def list_monitored_resource_descriptors(self, page_size=0, options=None):
+    def list_monitored_resource_descriptors(self, page_size=None,
+                                            options=None):
         """
         Lists the descriptors for monitored resource types used by Stackdriver
         Logging.
@@ -446,18 +455,18 @@ class LoggingServiceV2Client(object):
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = logging_service_v2_client.LoggingServiceV2Client()
+          >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_monitored_resource_descriptors():
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_monitored_resource_descriptors(options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_monitored_resource_descriptors():
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_monitored_resource_descriptors(options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           page_size (int): The maximum number of resources contained in the
@@ -483,27 +492,27 @@ class LoggingServiceV2Client(object):
             page_size=page_size)
         return self._list_monitored_resource_descriptors(request, options)
 
-    def list_logs(self, parent, page_size=0, options=None):
+    def list_logs(self, parent, page_size=None, options=None):
         """
-        Lists the logs in projects or organizations.
+        Lists the logs in projects, organizations, folders, or billing accounts.
         Only logs that have entries are listed.
 
         Example:
           >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = logging_service_v2_client.LoggingServiceV2Client()
-          >>> parent = api.project_path('[PROJECT]')
+          >>> client = logging_service_v2_client.LoggingServiceV2Client()
+          >>> parent = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_logs(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_logs(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_logs(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_logs(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           parent (string): Required. The resource name that owns the logs:
@@ -512,6 +521,8 @@ class LoggingServiceV2Client(object):
 
                 \"projects/[PROJECT_ID]\"
                 \"organizations/[ORGANIZATION_ID]\"
+                \"billingAccounts/[BILLING_ACCOUNT_ID]\"
+                \"folders/[FOLDER_ID]\"
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
