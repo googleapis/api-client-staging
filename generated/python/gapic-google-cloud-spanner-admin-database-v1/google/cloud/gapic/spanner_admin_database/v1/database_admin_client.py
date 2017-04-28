@@ -65,9 +65,8 @@ class DatabaseAdminClient(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/spanner.admin', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/spanner.admin', )
 
     _INSTANCE_PATH_TEMPLATE = path_template.PathTemplate(
         'projects/{project}/instances/{instance}')
@@ -289,26 +288,26 @@ class DatabaseAdminClient(object):
             settings=defaults['test_iam_permissions'])
 
     # Service calls
-    def list_databases(self, parent, page_size=0, options=None):
+    def list_databases(self, parent, page_size=None, options=None):
         """
         Lists Cloud Spanner databases.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> parent = api.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> parent = client.instance_path('[PROJECT]', '[INSTANCE]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_databases(parent):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_databases(parent, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_databases(parent):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_databases(parent, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           parent (string): Required. The instance whose databases should be listed.
@@ -353,10 +352,10 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> parent = api.instance_path('[PROJECT]', '[INSTANCE]')
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> parent = client.instance_path('[PROJECT]', '[INSTANCE]')
           >>> create_statement = ''
-          >>> response = api.create_database(parent, create_statement)
+          >>> response = client.create_database(parent, create_statement)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -387,8 +386,6 @@ class DatabaseAdminClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if extra_statements is None:
-            extra_statements = []
         # Create the request object.
         request = spanner_database_admin_pb2.CreateDatabaseRequest(
             parent=parent,
@@ -405,9 +402,9 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> name = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
-          >>> response = api.get_database(name)
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> name = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> response = client.get_database(name)
 
         Args:
           name (string): Required. The name of the requested database. Values are of the form
@@ -429,7 +426,7 @@ class DatabaseAdminClient(object):
     def update_database_ddl(self,
                             database,
                             statements,
-                            operation_id='',
+                            operation_id=None,
                             options=None):
         """
         Updates the schema of a Cloud Spanner database by
@@ -442,10 +439,10 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> database = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> database = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
           >>> statements = []
-          >>> response = api.update_database_ddl(database, statements)
+          >>> response = client.update_database_ddl(database, statements)
           >>>
           >>> def callback(operation_future):
           >>>     # Handle result.
@@ -504,9 +501,9 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> database = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
-          >>> api.drop_database(database)
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> database = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> client.drop_database(database)
 
         Args:
           database (string): Required. The database to be dropped.
@@ -530,9 +527,9 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> database = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
-          >>> response = api.get_database_ddl(database)
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> database = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> response = client.get_database_ddl(database)
 
         Args:
           database (string): Required. The database whose schema we wish to get.
@@ -555,16 +552,17 @@ class DatabaseAdminClient(object):
         """
         Sets the access control policy on a database resource. Replaces any
         existing policy.
+
         Authorization requires ``spanner.databases.setIamPolicy`` permission on
         ``resource``.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
           >>> from google.iam.v1 import policy_pb2
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> resource = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> resource = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
           >>> policy = policy_pb2.Policy()
-          >>> response = api.set_iam_policy(resource, policy)
+          >>> response = client.set_iam_policy(resource, policy)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being specified.
@@ -593,14 +591,15 @@ class DatabaseAdminClient(object):
         """
         Gets the access control policy for a database resource. Returns an empty
         policy if a database exists but does not have a policy set.
+
         Authorization requires ``spanner.databases.getIamPolicy`` permission on
         ``resource``.
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> resource = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
-          >>> response = api.get_iam_policy(resource)
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> resource = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> response = client.get_iam_policy(resource)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy is being requested.
@@ -623,6 +622,7 @@ class DatabaseAdminClient(object):
     def test_iam_permissions(self, resource, permissions, options=None):
         """
         Returns permissions that the caller has on the specified database resource.
+
         Attempting this RPC on a non-existent Cloud Spanner database will result in
         a NOT_FOUND error if the user has ``spanner.databases.list`` permission on
         the containing Cloud Spanner instance. Otherwise returns an empty set of
@@ -630,10 +630,10 @@ class DatabaseAdminClient(object):
 
         Example:
           >>> from google.cloud.gapic.spanner_admin_database.v1 import database_admin_client
-          >>> api = database_admin_client.DatabaseAdminClient()
-          >>> resource = api.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
+          >>> client = database_admin_client.DatabaseAdminClient()
+          >>> resource = client.database_path('[PROJECT]', '[INSTANCE]', '[DATABASE]')
           >>> permissions = []
-          >>> response = api.test_iam_permissions(resource, permissions)
+          >>> response = client.test_iam_permissions(resource, permissions)
 
         Args:
           resource (string): REQUIRED: The resource for which the policy detail is being requested.
