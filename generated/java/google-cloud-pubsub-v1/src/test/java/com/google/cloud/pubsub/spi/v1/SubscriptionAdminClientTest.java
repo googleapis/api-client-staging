@@ -18,12 +18,12 @@ package com.google.cloud.pubsub.spi.v1;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSnapshotsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
+import com.google.api.gax.core.ApiStreamObserver;
 import com.google.api.gax.grpc.ApiException;
-import com.google.api.gax.grpc.ApiStreamObserver;
 import com.google.api.gax.grpc.StreamingCallable;
-import com.google.api.gax.grpc.testing.MockGrpcService;
-import com.google.api.gax.grpc.testing.MockServiceHelper;
-import com.google.api.gax.grpc.testing.MockStreamObserver;
+import com.google.api.gax.testing.MockGrpcService;
+import com.google.api.gax.testing.MockServiceHelper;
+import com.google.api.gax.testing.MockStreamObserver;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -225,7 +225,7 @@ public class SubscriptionAdminClientTest {
 
     ListSubscriptionsPagedResponse pagedListResponse = client.listSubscriptions(project);
 
-    List<Subscription> resources = Lists.newArrayList(pagedListResponse.iterateAll());
+    List<Subscription> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
 
@@ -513,7 +513,7 @@ public class SubscriptionAdminClientTest {
 
     ListSnapshotsPagedResponse pagedListResponse = client.listSnapshots(project);
 
-    List<Snapshot> resources = Lists.newArrayList(pagedListResponse.iterateAll());
+    List<Snapshot> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSnapshotsList().get(0), resources.get(0));
 
