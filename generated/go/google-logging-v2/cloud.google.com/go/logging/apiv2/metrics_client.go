@@ -17,7 +17,6 @@
 package logging
 
 import (
-	"fmt"
 	"math"
 	"time"
 
@@ -73,6 +72,17 @@ func defaultMetricsCallOptions() *MetricsCallOptions {
 				})
 			}),
 		},
+		{"default", "non_idempotent"}: {
+			gax.WithRetry(func() gax.Retryer {
+				return gax.OnCodes([]codes.Code{
+					codes.Unavailable,
+				}, gax.Backoff{
+					Initial:    100 * time.Millisecond,
+					Max:        1000 * time.Millisecond,
+					Multiplier: 1.2,
+				})
+			}),
+		},
 	}
 	return &MetricsCallOptions{
 		ListLogMetrics:  retry[[2]string{"default", "idempotent"}],
@@ -112,7 +122,7 @@ func NewMetricsClient(ctx context.Context, opts ...option.ClientOption) (*Metric
 
 		metricsClient: loggingpb.NewMetricsServiceV2Client(conn),
 	}
-	c.SetGoogleClientInfo("gapic", version.Repo)
+	c.SetGoogleClientInfo()
 	return c, nil
 }
 
@@ -130,8 +140,10 @@ func (c *MetricsClient) Close() error {
 // SetGoogleClientInfo sets the name and version of the application in
 // the `x-goog-api-client` header passed on each request. Intended for
 // use by Google-written clients.
-func (c *MetricsClient) SetGoogleClientInfo(clientName, clientVersion string) {
-	c.xGoogHeader = fmt.Sprintf("gl-go/%s %s/%s gax/%s grpc/", version.Go(), clientName, clientVersion, gax.Version)
+func (c *MetricsClient) SetGoogleClientInfo(keyval ...string) {
+	kv := append([]string{"gl-go", version.Go()}, keyval...)
+	kv = append(kv, "gapic", version.Repo, "gax", gax.Version, "grpc", grpc.Version)
+	c.xGoogHeader = gax.XGoogHeader(kv...)
 }
 
 // MetricsProjectPath returns the path for the project resource.
@@ -169,9 +181,9 @@ func (c *MetricsClient) ListLogMetrics(ctx context.Context, req *loggingpb.ListL
 		} else {
 			req.PageSize = int32(pageSize)
 		}
-		err := gax.Invoke(ctx, func(ctx context.Context) error {
+		err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 			var err error
-			resp, err = c.metricsClient.ListLogMetrics(ctx, req)
+			resp, err = c.metricsClient.ListLogMetrics(ctx, req, settings.GRPC...)
 			return err
 		}, c.CallOptions.ListLogMetrics...)
 		if err != nil {
@@ -195,9 +207,9 @@ func (c *MetricsClient) ListLogMetrics(ctx context.Context, req *loggingpb.ListL
 func (c *MetricsClient) GetLogMetric(ctx context.Context, req *loggingpb.GetLogMetricRequest) (*loggingpb.LogMetric, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *loggingpb.LogMetric
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.metricsClient.GetLogMetric(ctx, req)
+		resp, err = c.metricsClient.GetLogMetric(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.GetLogMetric...)
 	if err != nil {
@@ -210,9 +222,9 @@ func (c *MetricsClient) GetLogMetric(ctx context.Context, req *loggingpb.GetLogM
 func (c *MetricsClient) CreateLogMetric(ctx context.Context, req *loggingpb.CreateLogMetricRequest) (*loggingpb.LogMetric, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *loggingpb.LogMetric
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.metricsClient.CreateLogMetric(ctx, req)
+		resp, err = c.metricsClient.CreateLogMetric(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.CreateLogMetric...)
 	if err != nil {
@@ -225,9 +237,9 @@ func (c *MetricsClient) CreateLogMetric(ctx context.Context, req *loggingpb.Crea
 func (c *MetricsClient) UpdateLogMetric(ctx context.Context, req *loggingpb.UpdateLogMetricRequest) (*loggingpb.LogMetric, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *loggingpb.LogMetric
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.metricsClient.UpdateLogMetric(ctx, req)
+		resp, err = c.metricsClient.UpdateLogMetric(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.UpdateLogMetric...)
 	if err != nil {
@@ -239,9 +251,9 @@ func (c *MetricsClient) UpdateLogMetric(ctx context.Context, req *loggingpb.Upda
 // DeleteLogMetric deletes a logs-based metric.
 func (c *MetricsClient) DeleteLogMetric(ctx context.Context, req *loggingpb.DeleteLogMetricRequest) error {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		_, err = c.metricsClient.DeleteLogMetric(ctx, req)
+		_, err = c.metricsClient.DeleteLogMetric(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.DeleteLogMetric...)
 	return err

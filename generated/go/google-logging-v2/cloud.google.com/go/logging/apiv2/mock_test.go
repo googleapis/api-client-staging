@@ -17,7 +17,7 @@
 package logging
 
 import (
-	google_protobuf "github.com/golang/protobuf/ptypes/empty"
+	emptypb "github.com/golang/protobuf/ptypes/empty"
 	monitoredrespb "google.golang.org/genproto/googleapis/api/monitoredres"
 	loggingpb "google.golang.org/genproto/googleapis/logging/v2"
 )
@@ -58,12 +58,12 @@ type mockLoggingServer struct {
 	resps []proto.Message
 }
 
-func (s *mockLoggingServer) DeleteLog(_ context.Context, req *loggingpb.DeleteLogRequest) (*google_protobuf.Empty, error) {
+func (s *mockLoggingServer) DeleteLog(_ context.Context, req *loggingpb.DeleteLogRequest) (*emptypb.Empty, error) {
 	s.reqs = append(s.reqs, req)
 	if s.err != nil {
 		return nil, s.err
 	}
-	return s.resps[0].(*google_protobuf.Empty), nil
+	return s.resps[0].(*emptypb.Empty), nil
 }
 
 func (s *mockLoggingServer) WriteLogEntries(_ context.Context, req *loggingpb.WriteLogEntriesRequest) (*loggingpb.WriteLogEntriesResponse, error) {
@@ -145,12 +145,12 @@ func (s *mockConfigServer) UpdateSink(_ context.Context, req *loggingpb.UpdateSi
 	return s.resps[0].(*loggingpb.LogSink), nil
 }
 
-func (s *mockConfigServer) DeleteSink(_ context.Context, req *loggingpb.DeleteSinkRequest) (*google_protobuf.Empty, error) {
+func (s *mockConfigServer) DeleteSink(_ context.Context, req *loggingpb.DeleteSinkRequest) (*emptypb.Empty, error) {
 	s.reqs = append(s.reqs, req)
 	if s.err != nil {
 		return nil, s.err
 	}
-	return s.resps[0].(*google_protobuf.Empty), nil
+	return s.resps[0].(*emptypb.Empty), nil
 }
 
 type mockMetricsServer struct {
@@ -200,12 +200,12 @@ func (s *mockMetricsServer) UpdateLogMetric(_ context.Context, req *loggingpb.Up
 	return s.resps[0].(*loggingpb.LogMetric), nil
 }
 
-func (s *mockMetricsServer) DeleteLogMetric(_ context.Context, req *loggingpb.DeleteLogMetricRequest) (*google_protobuf.Empty, error) {
+func (s *mockMetricsServer) DeleteLogMetric(_ context.Context, req *loggingpb.DeleteLogMetricRequest) (*emptypb.Empty, error) {
 	s.reqs = append(s.reqs, req)
 	if s.err != nil {
 		return nil, s.err
 	}
-	return s.resps[0].(*google_protobuf.Empty), nil
+	return s.resps[0].(*emptypb.Empty), nil
 }
 
 // clientOpt is the option tests should use to connect to the test server.
@@ -242,7 +242,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestLoggingServiceV2DeleteLog(t *testing.T) {
-	var expectedResponse *google_protobuf.Empty = &google_protobuf.Empty{}
+	var expectedResponse *emptypb.Empty = &emptypb.Empty{}
 
 	mockLogging.err = nil
 	mockLogging.reqs = nil
@@ -272,7 +272,7 @@ func TestLoggingServiceV2DeleteLog(t *testing.T) {
 }
 
 func TestLoggingServiceV2DeleteLogError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockLogging.err = grpc.Errorf(errCode, "test error")
 
 	var formattedLogName string = LoggingLogPath("[PROJECT]", "[LOG]")
@@ -325,7 +325,7 @@ func TestLoggingServiceV2WriteLogEntries(t *testing.T) {
 }
 
 func TestLoggingServiceV2WriteLogEntriesError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockLogging.err = grpc.Errorf(errCode, "test error")
 
 	var entries []*loggingpb.LogEntry = nil
@@ -395,7 +395,7 @@ func TestLoggingServiceV2ListLogEntries(t *testing.T) {
 }
 
 func TestLoggingServiceV2ListLogEntriesError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockLogging.err = grpc.Errorf(errCode, "test error")
 
 	var resourceNames []string = nil
@@ -462,7 +462,7 @@ func TestLoggingServiceV2ListMonitoredResourceDescriptors(t *testing.T) {
 }
 
 func TestLoggingServiceV2ListMonitoredResourceDescriptorsError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockLogging.err = grpc.Errorf(errCode, "test error")
 
 	var request *loggingpb.ListMonitoredResourceDescriptorsRequest = &loggingpb.ListMonitoredResourceDescriptorsRequest{}
@@ -529,7 +529,7 @@ func TestLoggingServiceV2ListLogs(t *testing.T) {
 }
 
 func TestLoggingServiceV2ListLogsError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockLogging.err = grpc.Errorf(errCode, "test error")
 
 	var formattedParent string = LoggingProjectPath("[PROJECT]")
@@ -599,7 +599,7 @@ func TestConfigServiceV2ListSinks(t *testing.T) {
 }
 
 func TestConfigServiceV2ListSinksError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockConfig.err = grpc.Errorf(errCode, "test error")
 
 	var formattedParent string = ConfigProjectPath("[PROJECT]")
@@ -662,7 +662,7 @@ func TestConfigServiceV2GetSink(t *testing.T) {
 }
 
 func TestConfigServiceV2GetSinkError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockConfig.err = grpc.Errorf(errCode, "test error")
 
 	var formattedSinkName string = ConfigSinkPath("[PROJECT]", "[SINK]")
@@ -727,7 +727,7 @@ func TestConfigServiceV2CreateSink(t *testing.T) {
 }
 
 func TestConfigServiceV2CreateSinkError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockConfig.err = grpc.Errorf(errCode, "test error")
 
 	var formattedParent string = ConfigProjectPath("[PROJECT]")
@@ -794,7 +794,7 @@ func TestConfigServiceV2UpdateSink(t *testing.T) {
 }
 
 func TestConfigServiceV2UpdateSinkError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockConfig.err = grpc.Errorf(errCode, "test error")
 
 	var formattedSinkName string = ConfigSinkPath("[PROJECT]", "[SINK]")
@@ -817,7 +817,7 @@ func TestConfigServiceV2UpdateSinkError(t *testing.T) {
 	_ = resp
 }
 func TestConfigServiceV2DeleteSink(t *testing.T) {
-	var expectedResponse *google_protobuf.Empty = &google_protobuf.Empty{}
+	var expectedResponse *emptypb.Empty = &emptypb.Empty{}
 
 	mockConfig.err = nil
 	mockConfig.reqs = nil
@@ -847,7 +847,7 @@ func TestConfigServiceV2DeleteSink(t *testing.T) {
 }
 
 func TestConfigServiceV2DeleteSinkError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockConfig.err = grpc.Errorf(errCode, "test error")
 
 	var formattedSinkName string = ConfigSinkPath("[PROJECT]", "[SINK]")
@@ -916,7 +916,7 @@ func TestMetricsServiceV2ListLogMetrics(t *testing.T) {
 }
 
 func TestMetricsServiceV2ListLogMetricsError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockMetrics.err = grpc.Errorf(errCode, "test error")
 
 	var formattedParent string = MetricsProjectPath("[PROJECT]")
@@ -977,7 +977,7 @@ func TestMetricsServiceV2GetLogMetric(t *testing.T) {
 }
 
 func TestMetricsServiceV2GetLogMetricError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockMetrics.err = grpc.Errorf(errCode, "test error")
 
 	var formattedMetricName string = MetricsMetricPath("[PROJECT]", "[METRIC]")
@@ -1040,7 +1040,7 @@ func TestMetricsServiceV2CreateLogMetric(t *testing.T) {
 }
 
 func TestMetricsServiceV2CreateLogMetricError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockMetrics.err = grpc.Errorf(errCode, "test error")
 
 	var formattedParent string = MetricsProjectPath("[PROJECT]")
@@ -1105,7 +1105,7 @@ func TestMetricsServiceV2UpdateLogMetric(t *testing.T) {
 }
 
 func TestMetricsServiceV2UpdateLogMetricError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockMetrics.err = grpc.Errorf(errCode, "test error")
 
 	var formattedMetricName string = MetricsMetricPath("[PROJECT]", "[METRIC]")
@@ -1128,7 +1128,7 @@ func TestMetricsServiceV2UpdateLogMetricError(t *testing.T) {
 	_ = resp
 }
 func TestMetricsServiceV2DeleteLogMetric(t *testing.T) {
-	var expectedResponse *google_protobuf.Empty = &google_protobuf.Empty{}
+	var expectedResponse *emptypb.Empty = &emptypb.Empty{}
 
 	mockMetrics.err = nil
 	mockMetrics.reqs = nil
@@ -1158,7 +1158,7 @@ func TestMetricsServiceV2DeleteLogMetric(t *testing.T) {
 }
 
 func TestMetricsServiceV2DeleteLogMetricError(t *testing.T) {
-	errCode := codes.Internal
+	errCode := codes.PermissionDenied
 	mockMetrics.err = grpc.Errorf(errCode, "test error")
 
 	var formattedMetricName string = MetricsMetricPath("[PROJECT]", "[METRIC]")
