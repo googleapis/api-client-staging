@@ -291,7 +291,7 @@ class PublisherClient(object):
           >>> client = publisher_client.PublisherClient()
           >>> topic = client.topic_path('[PROJECT]', '[TOPIC]')
           >>> data = b''
-          >>> messages_element = pubsub_pb2.PubsubMessage(data=data)
+          >>> messages_element = pubsub_pb2.PubsubMessage(data)
           >>> messages = [messages_element]
           >>> response = client.publish(topic, messages)
 
@@ -340,7 +340,7 @@ class PublisherClient(object):
         request = pubsub_pb2.GetTopicRequest(topic=topic)
         return self._get_topic(request, options)
 
-    def list_topics(self, project, page_size=None, options=None):
+    def list_topics(self, project, page_size=0, options=None):
         """
         Lists matching topics.
 
@@ -387,7 +387,7 @@ class PublisherClient(object):
             project=project, page_size=page_size)
         return self._list_topics(request, options)
 
-    def list_topic_subscriptions(self, topic, page_size=None, options=None):
+    def list_topic_subscriptions(self, topic, page_size=0, options=None):
         """
         Lists the name of the subscriptions for this topic.
 
