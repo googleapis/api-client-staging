@@ -1,11 +1,11 @@
 /*
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,7 +36,7 @@ var SERVICE_ADDRESS = 'pubsub.googleapis.com';
 
 var DEFAULT_SERVICE_PORT = 443;
 
-var CODE_GEN_NAME_VERSION = 'gapic/0.1.0';
+var CODE_GEN_NAME_VERSION = 'gapic/0.7.1';
 
 var PAGE_DESCRIPTORS = {
   listSubscriptions: new gax.PageDescriptor(
@@ -86,13 +86,13 @@ function SubscriberClient(gaxGrpc, grpcClients, opts) {
   }, opts);
 
   var googleApiClient = [
-    'gl-node/' + process.versions.node,
-    CODE_GEN_NAME_VERSION
+    'gl-node/' + process.versions.node
   ];
   if (opts.libName && opts.libVersion) {
     googleApiClient.push(opts.libName + '/' + opts.libVersion);
   }
   googleApiClient.push(
+    CODE_GEN_NAME_VERSION,
     'gax/' + gax.version,
     'grpc/' + gaxGrpc.grpcVersion
   );
@@ -184,16 +184,6 @@ SubscriberClient.prototype.projectPath = function(project) {
 };
 
 /**
- * Parses the projectName from a project resource.
- * @param {String} projectName
- *   A fully-qualified path representing a project resources.
- * @returns {String} - A string representing the project.
- */
-SubscriberClient.prototype.matchProjectFromProjectName = function(projectName) {
-  return PROJECT_PATH_TEMPLATE.match(projectName).project;
-};
-
-/**
  * Returns a fully-qualified snapshot resource name string.
  * @param {String} project
  * @param {String} snapshot
@@ -204,6 +194,42 @@ SubscriberClient.prototype.snapshotPath = function(project, snapshot) {
     project: project,
     snapshot: snapshot
   });
+};
+
+/**
+ * Returns a fully-qualified subscription resource name string.
+ * @param {String} project
+ * @param {String} subscription
+ * @returns {String}
+ */
+SubscriberClient.prototype.subscriptionPath = function(project, subscription) {
+  return SUBSCRIPTION_PATH_TEMPLATE.render({
+    project: project,
+    subscription: subscription
+  });
+};
+
+/**
+ * Returns a fully-qualified topic resource name string.
+ * @param {String} project
+ * @param {String} topic
+ * @returns {String}
+ */
+SubscriberClient.prototype.topicPath = function(project, topic) {
+  return TOPIC_PATH_TEMPLATE.render({
+    project: project,
+    topic: topic
+  });
+};
+
+/**
+ * Parses the projectName from a project resource.
+ * @param {String} projectName
+ *   A fully-qualified path representing a project resources.
+ * @returns {String} - A string representing the project.
+ */
+SubscriberClient.prototype.matchProjectFromProjectName = function(projectName) {
+  return PROJECT_PATH_TEMPLATE.match(projectName).project;
 };
 
 /**
@@ -227,19 +253,6 @@ SubscriberClient.prototype.matchSnapshotFromSnapshotName = function(snapshotName
 };
 
 /**
- * Returns a fully-qualified subscription resource name string.
- * @param {String} project
- * @param {String} subscription
- * @returns {String}
- */
-SubscriberClient.prototype.subscriptionPath = function(project, subscription) {
-  return SUBSCRIPTION_PATH_TEMPLATE.render({
-    project: project,
-    subscription: subscription
-  });
-};
-
-/**
  * Parses the subscriptionName from a subscription resource.
  * @param {String} subscriptionName
  *   A fully-qualified path representing a subscription resources.
@@ -257,19 +270,6 @@ SubscriberClient.prototype.matchProjectFromSubscriptionName = function(subscript
  */
 SubscriberClient.prototype.matchSubscriptionFromSubscriptionName = function(subscriptionName) {
   return SUBSCRIPTION_PATH_TEMPLATE.match(subscriptionName).subscription;
-};
-
-/**
- * Returns a fully-qualified topic resource name string.
- * @param {String} project
- * @param {String} topic
- * @returns {String}
- */
-SubscriberClient.prototype.topicPath = function(project, topic) {
-  return TOPIC_PATH_TEMPLATE.render({
-    project: project,
-    topic: topic
-  });
 };
 
 /**
@@ -294,7 +294,7 @@ SubscriberClient.prototype.matchTopicFromTopicName = function(topicName) {
 
 /**
  * Get the project ID used by this class.
- * @aram {function(Error, string)} callback - the callback to be called with
+ * @param {function(Error, string)} callback - the callback to be called with
  *   the current project Id.
  */
 SubscriberClient.prototype.getProjectId = function(callback) {
