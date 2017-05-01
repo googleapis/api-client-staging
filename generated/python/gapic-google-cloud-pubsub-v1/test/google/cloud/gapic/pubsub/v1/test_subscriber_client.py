@@ -14,7 +14,7 @@
 """Unit tests."""
 
 import mock
-import unittest
+import unittest2
 
 from google.gax import errors
 
@@ -30,11 +30,11 @@ class CustomException(Exception):
     pass
 
 
-class TestSubscriberClient(unittest.TestCase):
+class TestSubscriberClient(unittest2.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_subscription(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -49,30 +49,23 @@ class TestSubscriberClient(unittest.TestCase):
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
         expected_response = pubsub_pb2.Subscription(
-            name=name_2,
-            topic=topic_2,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+            name_2, topic_2, ack_deadline_seconds, retain_acked_messages)
         grpc_stub.CreateSubscription.return_value = expected_response
 
         response = client.create_subscription(name, topic)
         self.assertEqual(expected_response, response)
 
         grpc_stub.CreateSubscription.assert_called_once()
-        args, kwargs = grpc_stub.CreateSubscription.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.CreateSubscription.call_args[0]
 
-        expected_request = pubsub_pb2.Subscription(name=name, topic=topic)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(name, request.name)
+        self.assertEqual(topic, request.topic)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_subscription_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -90,7 +83,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_subscription(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -104,31 +97,22 @@ class TestSubscriberClient(unittest.TestCase):
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
         expected_response = pubsub_pb2.Subscription(
-            name=name,
-            topic=topic,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+            name, topic, ack_deadline_seconds, retain_acked_messages)
         grpc_stub.GetSubscription.return_value = expected_response
 
         response = client.get_subscription(subscription)
         self.assertEqual(expected_response, response)
 
         grpc_stub.GetSubscription.assert_called_once()
-        args, kwargs = grpc_stub.GetSubscription.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.GetSubscription.call_args[0]
 
-        expected_request = pubsub_pb2.GetSubscriptionRequest(
-            subscription=subscription)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_subscription_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -145,7 +129,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_update_subscription(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -160,31 +144,23 @@ class TestSubscriberClient(unittest.TestCase):
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
         expected_response = pubsub_pb2.Subscription(
-            name=name,
-            topic=topic,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+            name, topic, ack_deadline_seconds, retain_acked_messages)
         grpc_stub.UpdateSubscription.return_value = expected_response
 
         response = client.update_subscription(subscription, update_mask)
         self.assertEqual(expected_response, response)
 
         grpc_stub.UpdateSubscription.assert_called_once()
-        args, kwargs = grpc_stub.UpdateSubscription.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.UpdateSubscription.call_args[0]
 
-        expected_request = pubsub_pb2.UpdateSubscriptionRequest(
-            subscription=subscription, update_mask=update_mask)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
+        self.assertEqual(update_mask, request.update_mask)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_update_subscription_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -202,7 +178,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_subscriptions(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -215,7 +191,7 @@ class TestSubscriberClient(unittest.TestCase):
         subscriptions_element = pubsub_pb2.Subscription()
         subscriptions = [subscriptions_element]
         expected_response = pubsub_pb2.ListSubscriptionsResponse(
-            next_page_token=next_page_token, subscriptions=subscriptions)
+            next_page_token, subscriptions)
         grpc_stub.ListSubscriptions.return_value = expected_response
 
         paged_list_response = client.list_subscriptions(project)
@@ -224,20 +200,15 @@ class TestSubscriberClient(unittest.TestCase):
         self.assertEqual(expected_response.subscriptions[0], resources[0])
 
         grpc_stub.ListSubscriptions.assert_called_once()
-        args, kwargs = grpc_stub.ListSubscriptions.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ListSubscriptions.call_args[0]
 
-        expected_request = pubsub_pb2.ListSubscriptionsRequest(project=project)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(project, request.project)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_subscriptions_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -248,13 +219,12 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock exception response
         grpc_stub.ListSubscriptions.side_effect = CustomException()
 
-        paged_list_response = client.list_subscriptions(project)
-        self.assertRaises(errors.GaxError, list, paged_list_response)
+        self.assertRaises(errors.GaxError, client.list_subscriptions, project)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_subscription(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -265,21 +235,15 @@ class TestSubscriberClient(unittest.TestCase):
         client.delete_subscription(subscription)
 
         grpc_stub.DeleteSubscription.assert_called_once()
-        args, kwargs = grpc_stub.DeleteSubscription.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.DeleteSubscription.call_args[0]
 
-        expected_request = pubsub_pb2.DeleteSubscriptionRequest(
-            subscription=subscription)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_subscription_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -296,7 +260,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_modify_ack_deadline(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -309,23 +273,17 @@ class TestSubscriberClient(unittest.TestCase):
         client.modify_ack_deadline(subscription, ack_ids, ack_deadline_seconds)
 
         grpc_stub.ModifyAckDeadline.assert_called_once()
-        args, kwargs = grpc_stub.ModifyAckDeadline.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ModifyAckDeadline.call_args[0]
 
-        expected_request = pubsub_pb2.ModifyAckDeadlineRequest(
-            subscription=subscription,
-            ack_ids=ack_ids,
-            ack_deadline_seconds=ack_deadline_seconds)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
+        self.assertEqual(ack_ids, request.ack_ids)
+        self.assertEqual(ack_deadline_seconds, request.ack_deadline_seconds)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_modify_ack_deadline_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -344,7 +302,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_acknowledge(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -356,21 +314,16 @@ class TestSubscriberClient(unittest.TestCase):
         client.acknowledge(subscription, ack_ids)
 
         grpc_stub.Acknowledge.assert_called_once()
-        args, kwargs = grpc_stub.Acknowledge.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.Acknowledge.call_args[0]
 
-        expected_request = pubsub_pb2.AcknowledgeRequest(
-            subscription=subscription, ack_ids=ack_ids)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
+        self.assertEqual(ack_ids, request.ack_ids)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_acknowledge_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -388,7 +341,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_pull(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -405,21 +358,16 @@ class TestSubscriberClient(unittest.TestCase):
         self.assertEqual(expected_response, response)
 
         grpc_stub.Pull.assert_called_once()
-        args, kwargs = grpc_stub.Pull.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.Pull.call_args[0]
 
-        expected_request = pubsub_pb2.PullRequest(
-            subscription=subscription, max_messages=max_messages)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
+        self.assertEqual(max_messages, request.max_messages)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_pull_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -435,66 +383,9 @@ class TestSubscriberClient(unittest.TestCase):
                           max_messages)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_streaming_pull(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = subscriber_client.SubscriberClient()
-
-        # Mock request
-        subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        stream_ack_deadline_seconds = 1875467245
-        request = pubsub_pb2.StreamingPullRequest(
-            subscription=subscription,
-            stream_ack_deadline_seconds=stream_ack_deadline_seconds)
-        requests = [request]
-
-        # Mock response
-        expected_response = pubsub_pb2.StreamingPullResponse()
-        grpc_stub.StreamingPull.return_value = iter([expected_response])
-
-        response = client.streaming_pull(requests)
-        resources = list(response)
-        self.assertEqual(1, len(resources))
-        self.assertEqual(expected_response, resources[0])
-
-        grpc_stub.StreamingPull.assert_called_once()
-        args, kwargs = grpc_stub.StreamingPull.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_requests = args[0]
-        self.assertEqual(1, len(actual_requests))
-        actual_request = list(actual_requests)[0]
-        self.assertEqual(request, actual_request)
-
-    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
-    @mock.patch('google.gax.config.create_stub', spec=True)
-    def test_streaming_pull_exception(self, mock_create_stub):
-        # Mock gRPC layer
-        grpc_stub = mock.Mock()
-        mock_create_stub.return_value = grpc_stub
-
-        client = subscriber_client.SubscriberClient()
-
-        # Mock request
-        subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        stream_ack_deadline_seconds = 1875467245
-        request = pubsub_pb2.StreamingPullRequest(
-            subscription=subscription,
-            stream_ack_deadline_seconds=stream_ack_deadline_seconds)
-        requests = [request]
-
-        # Mock exception response
-        grpc_stub.StreamingPull.side_effect = CustomException()
-
-        self.assertRaises(errors.GaxError, client.streaming_pull, requests)
-
-    @mock.patch('google.gax.config.create_stub', spec=True)
     def test_modify_push_config(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -506,21 +397,16 @@ class TestSubscriberClient(unittest.TestCase):
         client.modify_push_config(subscription, push_config)
 
         grpc_stub.ModifyPushConfig.assert_called_once()
-        args, kwargs = grpc_stub.ModifyPushConfig.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ModifyPushConfig.call_args[0]
 
-        expected_request = pubsub_pb2.ModifyPushConfigRequest(
-            subscription=subscription, push_config=push_config)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
+        self.assertEqual(push_config, request.push_config)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_modify_push_config_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -538,7 +424,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_snapshots(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -551,7 +437,7 @@ class TestSubscriberClient(unittest.TestCase):
         snapshots_element = pubsub_pb2.Snapshot()
         snapshots = [snapshots_element]
         expected_response = pubsub_pb2.ListSnapshotsResponse(
-            next_page_token=next_page_token, snapshots=snapshots)
+            next_page_token, snapshots)
         grpc_stub.ListSnapshots.return_value = expected_response
 
         paged_list_response = client.list_snapshots(project)
@@ -560,20 +446,15 @@ class TestSubscriberClient(unittest.TestCase):
         self.assertEqual(expected_response.snapshots[0], resources[0])
 
         grpc_stub.ListSnapshots.assert_called_once()
-        args, kwargs = grpc_stub.ListSnapshots.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.ListSnapshots.call_args[0]
 
-        expected_request = pubsub_pb2.ListSnapshotsRequest(project=project)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(project, request.project)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_list_snapshots_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -584,13 +465,12 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock exception response
         grpc_stub.ListSnapshots.side_effect = CustomException()
 
-        paged_list_response = client.list_snapshots(project)
-        self.assertRaises(errors.GaxError, list, paged_list_response)
+        self.assertRaises(errors.GaxError, client.list_snapshots, project)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_snapshot(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -602,28 +482,23 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock response
         name_2 = 'name2-1052831874'
         topic = 'topic110546223'
-        expected_response = pubsub_pb2.Snapshot(name=name_2, topic=topic)
+        expected_response = pubsub_pb2.Snapshot(name_2, topic)
         grpc_stub.CreateSnapshot.return_value = expected_response
 
         response = client.create_snapshot(name, subscription)
         self.assertEqual(expected_response, response)
 
         grpc_stub.CreateSnapshot.assert_called_once()
-        args, kwargs = grpc_stub.CreateSnapshot.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.CreateSnapshot.call_args[0]
 
-        expected_request = pubsub_pb2.CreateSnapshotRequest(
-            name=name, subscription=subscription)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(name, request.name)
+        self.assertEqual(subscription, request.subscription)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_create_snapshot_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -641,7 +516,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_snapshot(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -652,20 +527,15 @@ class TestSubscriberClient(unittest.TestCase):
         client.delete_snapshot(snapshot)
 
         grpc_stub.DeleteSnapshot.assert_called_once()
-        args, kwargs = grpc_stub.DeleteSnapshot.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.DeleteSnapshot.call_args[0]
 
-        expected_request = pubsub_pb2.DeleteSnapshotRequest(snapshot=snapshot)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(snapshot, request.snapshot)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_snapshot_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -681,7 +551,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_seek(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -697,20 +567,15 @@ class TestSubscriberClient(unittest.TestCase):
         self.assertEqual(expected_response, response)
 
         grpc_stub.Seek.assert_called_once()
-        args, kwargs = grpc_stub.Seek.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.Seek.call_args[0]
 
-        expected_request = pubsub_pb2.SeekRequest(subscription=subscription)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(subscription, request.subscription)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_seek_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=pubsub_pb2.SubscriberStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -726,7 +591,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_set_iam_policy(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -738,28 +603,23 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = policy_pb2.Policy(version, etag)
         grpc_stub.SetIamPolicy.return_value = expected_response
 
         response = client.set_iam_policy(resource, policy)
         self.assertEqual(expected_response, response)
 
         grpc_stub.SetIamPolicy.assert_called_once()
-        args, kwargs = grpc_stub.SetIamPolicy.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.SetIamPolicy.call_args[0]
 
-        expected_request = iam_policy_pb2.SetIamPolicyRequest(
-            resource=resource, policy=policy)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
+        self.assertEqual(policy, request.policy)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_set_iam_policy_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -777,7 +637,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_iam_policy(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -788,28 +648,22 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = policy_pb2.Policy(version, etag)
         grpc_stub.GetIamPolicy.return_value = expected_response
 
         response = client.get_iam_policy(resource)
         self.assertEqual(expected_response, response)
 
         grpc_stub.GetIamPolicy.assert_called_once()
-        args, kwargs = grpc_stub.GetIamPolicy.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.GetIamPolicy.call_args[0]
 
-        expected_request = iam_policy_pb2.GetIamPolicyRequest(
-            resource=resource)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_get_iam_policy_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -825,7 +679,7 @@ class TestSubscriberClient(unittest.TestCase):
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_test_iam_permissions(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
@@ -842,21 +696,16 @@ class TestSubscriberClient(unittest.TestCase):
         self.assertEqual(expected_response, response)
 
         grpc_stub.TestIamPermissions.assert_called_once()
-        args, kwargs = grpc_stub.TestIamPermissions.call_args
-        self.assertEqual(len(args), 2)
-        self.assertEqual(len(kwargs), 1)
-        self.assertIn('metadata', kwargs)
-        actual_request = args[0]
+        request = grpc_stub.TestIamPermissions.call_args[0]
 
-        expected_request = iam_policy_pb2.TestIamPermissionsRequest(
-            resource=resource, permissions=permissions)
-        self.assertEqual(expected_request, actual_request)
+        self.assertEqual(resource, request.resource)
+        self.assertEqual(permissions, request.permissions)
 
     @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
     @mock.patch('google.gax.config.create_stub', spec=True)
     def test_test_iam_permissions_exception(self, mock_create_stub):
         # Mock gRPC layer
-        grpc_stub = mock.Mock()
+        grpc_stub = mock.Mock(spec=iam_policy_pb2.IAMPolicyStub)
         mock_create_stub.return_value = grpc_stub
 
         client = subscriber_client.SubscriberClient()
