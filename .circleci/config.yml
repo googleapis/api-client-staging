@@ -108,7 +108,6 @@ jobs:
       - run:
           name: Run GAPIC unit tests.
           command: |
-            export TERM=dumb
             ./gradlew clean test
     working_directory: /var/code/googleapis/
 
