@@ -101,6 +101,8 @@ jobs:
   openjdk7:
     docker:
       - image: openjdk:7
+        environment:
+          TERM: dumb
     steps:
       - checkout
       - run:
@@ -113,12 +115,13 @@ jobs:
   openjdk8:
     docker:
       - image: openjdk:8
+        environment:
+          TERM: dumb
     steps:
       - checkout
       - run:
           name: Run GAPIC unit tests.
           command: |
-            export TERM=dumb
             ./gradlew clean test
     working_directory: /var/code/googleapis/
 
