@@ -28,7 +28,7 @@ jobs:
       - deploy:
           name: Sync to api-client-staging-private (if this is master).
           command: |
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
+            if [ "$CIRCLE_BRANCH" == "master" ] && [ "$CIRCLE_PROJECT_REPONAME" == "api-client-staging" ]; then
               ./trigger_job.sh sync_to_private
             fi
     working_directory: /var/code/googleapis/
