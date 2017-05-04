@@ -18,7 +18,7 @@ package com.google.cloud.privacy.dlp.spi.v2beta1;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
-import com.google.api.gax.protobuf.PathTemplate;
+import com.google.api.pathtemplate.PathTemplate;
 import com.google.longrunning.Operation;
 import com.google.privacy.dlp.v2beta1.ContentItem;
 import com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest;
