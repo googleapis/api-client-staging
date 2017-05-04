@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'grpc-google-iam-v1'
-  s.version       = '0.6.8'
+  s.version       = '0.6.9'
 
   s.authors       = ['Google Inc']
   s.description   = 'a grpc-based api'
