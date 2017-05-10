@@ -1,4 +1,5 @@
-include 'generated:java:google-cloud-error-reporting-v1beta1',
+include 'generated:java:google-cloud-dlp-v2beta1',
+  'generated:java:google-cloud-error-reporting-v1beta1',
   'generated:java:google-cloud-language-v1',
   'generated:java:google-cloud-language-v1beta2',
   'generated:java:google-cloud-logging-v2',
