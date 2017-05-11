@@ -33,7 +33,11 @@ subprojects {
     libraries = [
         gax: 'com.google.api:gax:1.1.0',
         gaxGrpc: 'com.google.api:gax-grpc:0.17.0',
+<<<<<<< HEAD
         iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.10',
+=======
+        iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.9',
+>>>>>>> Restructure api-client-staging for Java
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -118,6 +122,7 @@ subprojects {
   }
 }
 
+
 project(':generated:java:google-cloud-dlp-v2beta1') {
   dependencies {
     compile 'com.google.api:gax:1.1.0'
@@ -126,86 +131,95 @@ project(':generated:java:google-cloud-dlp-v2beta1') {
   }
 }
 
-project(':generated:java:google-cloud-error-reporting-v1beta1') {
+
+project(':generated:java:gapic-google-cloud-error-reporting-v1beta1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-error-reporting-v1beta1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-error-reporting-v1beta1')
+    testCompile project(':generated:java:grpc-google-cloud-error-reporting-v1beta1')
   }
 }
 
-project(':generated:java:google-cloud-language-v1') {
+project(':generated:java:gapic-google-cloud-language-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-language-v1')
+    testCompile project(':generated:java:grpc-google-cloud-language-v1')
   }
 }
 
-project(':generated:java:google-cloud-language-v1beta2') {
+project(':generated:java:gapic-google-cloud-language-v1beta2') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-language-v1beta2:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-language-v1beta2')
+    testCompile project(':generated:java:grpc-google-cloud-language-v1beta2')
   }
 }
 
-project(':generated:java:google-cloud-logging-v2') {
+project(':generated:java:gapic-google-cloud-logging-v2') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-logging-v2:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-logging-v2')
+    testCompile project(':generated:java:grpc-google-cloud-logging-v2')
   }
 }
 
-project(':generated:java:google-cloud-monitoring-v3') {
+project(':generated:java:gapic-google-cloud-monitoring-v3') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-monitoring-v3:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-monitoring-v3')
+    testCompile project(':generated:java:grpc-google-cloud-monitoring-v3')
   }
 }
 
-project(':generated:java:google-cloud-pubsub-v1') {
+project(':generated:java:gapic-google-cloud-pubsub-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-pubsub-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-pubsub-v1')
+    testCompile project(':generated:java:grpc-google-cloud-pubsub-v1'),
+      libraries.iam
   }
 }
 
-project(':generated:java:google-cloud-spanner-v1') {
+project(':generated:java:gapic-google-cloud-spanner-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-spanner-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-spanner-v1')
+    testCompile project(':generated:java:grpc-google-cloud-spanner-v1')
   }
 }
 
-project(':generated:java:google-cloud-spanner-admin-database-v1') {
+project(':generated:java:gapic-google-cloud-spanner-admin-database-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-spanner-admin-database-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-spanner-admin-database-v1')
+    testCompile project(':generated:java:grpc-google-cloud-spanner-admin-database-v1')
   }
 }
 
-project(':generated:java:google-cloud-spanner-admin-instance-v1') {
+project(':generated:java:gapic-google-cloud-spanner-admin-instance-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-spanner-admin-instance-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-spanner-admin-instance-v1')
+    testCompile project(':generated:java:grpc-google-cloud-spanner-admin-instance-v1')
   }
 }
 
-project(':generated:java:google-cloud-speech-v1') {
+project(':generated:java:gapic-google-cloud-speech-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-speech-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-speech-v1')
+    testCompile project(':generated:java:grpc-google-cloud-speech-v1')
   }
 }
 
-project(':generated:java:google-cloud-speech-v1beta1') {
+project(':generated:java:gapic-google-cloud-speech-v1beta1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-speech-v1beta1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-speech-v1beta1')
+    testCompile project(':generated:java:grpc-google-cloud-speech-v1beta1')
   }
 }
 
-project(':generated:java:google-cloud-trace-v1') {
+project(':generated:java:gapic-google-cloud-trace-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-trace-v1:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-trace-v1')
+    testCompile project(':generated:java:grpc-google-cloud-trace-v1')
   }
 }
 
-project(':generated:java:google-cloud-vision-v1') {
+project(':generated:java:gapic-google-cloud-vision-v1') {
   dependencies {
-    compile 'com.google.api.grpc:grpc-google-cloud-vision-v1:' + generated_grpc_version
-  }
-}
-
-project(':generated:java:google-longrunning-v1') {
-  dependencies {
-    compile 'com.google.api.grpc:grpc-google-common-protos:' + generated_grpc_version
+    compile project(':generated:java:proto-google-cloud-vision-v1')
+    testCompile project(':generated:java:grpc-google-cloud-vision-v1')
   }
 }
