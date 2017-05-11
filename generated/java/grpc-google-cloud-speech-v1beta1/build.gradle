@@ -22,7 +22,7 @@ repositories {
 dependencies {
   compile "io.grpc:grpc-stub:1.2.0"
   compile "io.grpc:grpc-protobuf:1.2.0"
-  compile project(":generated:java:proto-google-cloud-speech-v1beta1")
+  compile project(":proto-google-cloud-speech-v1beta1")
 }
 
 ext {

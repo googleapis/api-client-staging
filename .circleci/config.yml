@@ -108,7 +108,7 @@ jobs:
       - run:
           name: Run GAPIC unit tests.
           command: |
-            ./gradlew clean test
+            ./generated/java/gradlew -p ./generated/java clean test
     working_directory: /var/code/googleapis/
 
   openjdk8:
@@ -121,9 +121,8 @@ jobs:
       - run:
           name: Run GAPIC unit tests.
           command: |
-            ./gradlew clean test
-    working_directory: /var/code/googleapis/
-
+            ./generated/java/gradlew -p ./generated/java clean test
+          working_directory: /var/code/googleapis/
   sync_to_private:
     docker:
       - image: googleapis/git
