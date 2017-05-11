@@ -32,6 +32,7 @@ function v1(options) {
   return result;
 }
 
+v1.GAPIC_VERSION = '0.7.1';
 v1.SERVICE_ADDRESS = publisherClient.SERVICE_ADDRESS;
 v1.ALL_SCOPES = union(
   publisherClient.ALL_SCOPES,
