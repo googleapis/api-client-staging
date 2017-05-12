@@ -1,0 +1,42 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+description = 'Staging GRPC library for grpc-google-cloud-spanner-v1'
+group = "com.google.api.grpc.staging"
+version = "0.1.9"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+dependencies {
+  compile "io.grpc:grpc-stub:1.2.0"
+  compile "io.grpc:grpc-protobuf:1.2.0"
+  compile project(":proto-google-cloud-spanner-v1")
+}
+
+ext {
+  packageName = 'grpc-google-cloud-spanner-v1'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}

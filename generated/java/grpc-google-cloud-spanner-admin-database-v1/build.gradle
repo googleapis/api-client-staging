@@ -22,11 +22,21 @@ repositories {
 dependencies {
   compile "io.grpc:grpc-stub:1.2.0"
   compile "io.grpc:grpc-protobuf:1.2.0"
-  compile project(":proto-google-cloud-spanner-admin-database-v1")
+  compile "com.google.api.grpc:proto-google-cloud-spanner-admin-database-v1:0.1.9"
 }
 
 ext {
   packageName = 'grpc-google-cloud-spanner-admin-database-v1'
+}
+
+task javadocJar(type: Jar) {
+  classifier = 'javadoc'
+  from javadoc
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
 }
 
 sourceSets {

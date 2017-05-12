@@ -1,0 +1,42 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+description = 'Staging PROTO library for proto-google-cloud-vision-v1'
+group = "com.google.api.grpc.staging"
+version = "0.1.9"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+dependencies {
+  compile "com.google.protobuf:protobuf-java:3.2.0"
+  compile "com.google.api:api-common:1.0.0-rc1"
+  compile "com.google.api.grpc:proto-google-common-protos:0.1.9"
+}
+
+ext {
+  packageName = 'proto-google-cloud-vision-v1'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}

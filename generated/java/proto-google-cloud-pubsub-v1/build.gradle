@@ -30,6 +30,16 @@ ext {
   packageName = 'proto-google-cloud-pubsub-v1'
 }
 
+task javadocJar(type: Jar) {
+  classifier = 'javadoc'
+  from javadoc
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
 sourceSets {
   main {
     java {

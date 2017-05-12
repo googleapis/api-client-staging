@@ -37,3 +37,10 @@ include ':gapic-google-cloud-error-reporting-v1beta1',
   ':gapic-google-cloud-vision-v1',
   ':grpc-google-cloud-vision-v1',
   ':proto-google-cloud-vision-v1'
+
+String stagingBuildFile="staging.gradle"
+
+rootProject.buildFileName = "${stagingBuildFile}"
+rootProject.children.each {project ->
+    project.buildFileName = "${stagingBuildFile}"
+}
