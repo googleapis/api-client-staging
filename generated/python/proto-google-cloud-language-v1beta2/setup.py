@@ -45,6 +45,6 @@ setuptools.setup(
   extras_require=extras_require,
   license='Apache-2.0',
   packages=find_packages(),
-  namespace_packages=['google.cloud.proto.language', 'google.cloud.proto', 'google.cloud', 'google.__pycache__', 'google'],
+  namespace_packages=['google.cloud.proto.language', 'google.cloud.proto', 'google.cloud', 'google'],
   url='https://github.com/googleapis/googleapis'
 )
