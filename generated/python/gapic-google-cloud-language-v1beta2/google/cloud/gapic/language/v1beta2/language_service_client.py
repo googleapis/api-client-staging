@@ -175,8 +175,7 @@ class LanguageServiceClient(object):
           >>> response = client.analyze_sentiment(document)
 
         Args:
-          document (:class:`google.cloud.proto.language.v1beta2.language_service_pb2.Document`): Input document. Currently, ``analyzeSentiment`` only supports English text
-            (``Document.language``=\"EN\").
+          document (:class:`google.cloud.proto.language.v1beta2.language_service_pb2.Document`): Input document.
           encoding_type (enum :class:`google.cloud.gapic.language.v1beta2.enums.EncodingType`): The encoding type used by the API to calculate sentence offsets for the
             sentence sentiment.
           options (:class:`google.gax.CallOptions`): Overrides the default
