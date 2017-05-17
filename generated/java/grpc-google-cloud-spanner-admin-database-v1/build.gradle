@@ -10,7 +10,7 @@ apply plugin: 'signing'
 
 description = 'GRPC library for grpc-google-cloud-spanner-admin-database-v1'
 group = "com.google.api.grpc"
-version = "0.1.9"
+version = "0.1.10"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -22,11 +22,19 @@ repositories {
 dependencies {
   compile "io.grpc:grpc-stub:1.2.0"
   compile "io.grpc:grpc-protobuf:1.2.0"
-  compile "com.google.api.grpc:proto-google-cloud-spanner-admin-database-v1:0.1.9"
+  compile "com.google.api.grpc:proto-google-cloud-spanner-admin-database-v1:0.1.10"
 }
 
 ext {
   packageName = 'grpc-google-cloud-spanner-admin-database-v1'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
 }
 
 task javadocJar(type: Jar) {
@@ -37,14 +45,6 @@ task javadocJar(type: Jar) {
 task sourcesJar(type: Jar) {
   classifier = 'sources'
   from sourceSets.main.allSource
-}
-
-sourceSets {
-  main {
-    java {
-      srcDir 'src/main/java'
-    }
-  }
 }
 
 artifacts {

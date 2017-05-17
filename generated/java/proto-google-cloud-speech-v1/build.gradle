@@ -10,7 +10,7 @@ apply plugin: 'signing'
 
 description = 'PROTO library for proto-google-cloud-speech-v1'
 group = "com.google.api.grpc"
-version = "0.1.9"
+version = "0.1.10"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -29,6 +29,14 @@ ext {
   packageName = 'proto-google-cloud-speech-v1'
 }
 
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
+}
+
 task javadocJar(type: Jar) {
   classifier = 'javadoc'
   from javadoc
@@ -37,14 +45,6 @@ task javadocJar(type: Jar) {
 task sourcesJar(type: Jar) {
   classifier = 'sources'
   from sourceSets.main.allSource
-}
-
-sourceSets {
-  main {
-    java {
-      srcDir 'src/main/java'
-    }
-  }
 }
 
 artifacts {

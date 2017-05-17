@@ -10,7 +10,7 @@ apply plugin: 'signing'
 
 description = 'Staging GRPC library for grpc-google-cloud-monitoring-v3'
 group = "com.google.api.grpc.staging"
-version = "0.1.9"
+version = "0.1.10"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
