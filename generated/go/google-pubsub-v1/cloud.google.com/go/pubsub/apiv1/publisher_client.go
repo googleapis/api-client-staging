@@ -17,7 +17,6 @@
 package pubsub
 
 import (
-	"fmt"
 	"math"
 	"time"
 
@@ -75,7 +74,12 @@ func defaultPublisherCallOptions() *PublisherCallOptions {
 		{"messaging", "one_plus_delivery"}: {
 			gax.WithRetry(func() gax.Retryer {
 				return gax.OnCodes([]codes.Code{
+					codes.Canceled,
+					codes.Unknown,
 					codes.DeadlineExceeded,
+					codes.ResourceExhausted,
+					codes.Aborted,
+					codes.Internal,
 					codes.Unavailable,
 				}, gax.Backoff{
 					Initial:    100 * time.Millisecond,
@@ -125,7 +129,7 @@ func NewPublisherClient(ctx context.Context, opts ...option.ClientOption) (*Publ
 
 		publisherClient: pubsubpb.NewPublisherClient(conn),
 	}
-	c.SetGoogleClientInfo("gapic", version.Repo)
+	c.SetGoogleClientInfo()
 	return c, nil
 }
 
@@ -143,8 +147,10 @@ func (c *PublisherClient) Close() error {
 // SetGoogleClientInfo sets the name and version of the application in
 // the `x-goog-api-client` header passed on each request. Intended for
 // use by Google-written clients.
-func (c *PublisherClient) SetGoogleClientInfo(clientName, clientVersion string) {
-	c.xGoogHeader = fmt.Sprintf("gl-go/%s %s/%s gax/%s grpc/", version.Go(), clientName, clientVersion, gax.Version)
+func (c *PublisherClient) SetGoogleClientInfo(keyval ...string) {
+	kv := append([]string{"gl-go", version.Go()}, keyval...)
+	kv = append(kv, "gapic", version.Repo, "gax", gax.Version, "grpc", grpc.Version)
+	c.xGoogHeader = gax.XGoogHeader(kv...)
 }
 
 // PublisherProjectPath returns the path for the project resource.
@@ -182,9 +188,9 @@ func (c *PublisherClient) TopicIAM(topic *pubsubpb.Topic) *iam.Handle {
 func (c *PublisherClient) CreateTopic(ctx context.Context, req *pubsubpb.Topic) (*pubsubpb.Topic, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *pubsubpb.Topic
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.publisherClient.CreateTopic(ctx, req)
+		resp, err = c.publisherClient.CreateTopic(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.CreateTopic...)
 	if err != nil {
@@ -199,9 +205,9 @@ func (c *PublisherClient) CreateTopic(ctx context.Context, req *pubsubpb.Topic) 
 func (c *PublisherClient) Publish(ctx context.Context, req *pubsubpb.PublishRequest) (*pubsubpb.PublishResponse, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *pubsubpb.PublishResponse
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.publisherClient.Publish(ctx, req)
+		resp, err = c.publisherClient.Publish(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.Publish...)
 	if err != nil {
@@ -214,9 +220,9 @@ func (c *PublisherClient) Publish(ctx context.Context, req *pubsubpb.PublishRequ
 func (c *PublisherClient) GetTopic(ctx context.Context, req *pubsubpb.GetTopicRequest) (*pubsubpb.Topic, error) {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
 	var resp *pubsubpb.Topic
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		resp, err = c.publisherClient.GetTopic(ctx, req)
+		resp, err = c.publisherClient.GetTopic(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.GetTopic...)
 	if err != nil {
@@ -237,9 +243,9 @@ func (c *PublisherClient) ListTopics(ctx context.Context, req *pubsubpb.ListTopi
 		} else {
 			req.PageSize = int32(pageSize)
 		}
-		err := gax.Invoke(ctx, func(ctx context.Context) error {
+		err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 			var err error
-			resp, err = c.publisherClient.ListTopics(ctx, req)
+			resp, err = c.publisherClient.ListTopics(ctx, req, settings.GRPC...)
 			return err
 		}, c.CallOptions.ListTopics...)
 		if err != nil {
@@ -271,9 +277,9 @@ func (c *PublisherClient) ListTopicSubscriptions(ctx context.Context, req *pubsu
 		} else {
 			req.PageSize = int32(pageSize)
 		}
-		err := gax.Invoke(ctx, func(ctx context.Context) error {
+		err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 			var err error
-			resp, err = c.publisherClient.ListTopicSubscriptions(ctx, req)
+			resp, err = c.publisherClient.ListTopicSubscriptions(ctx, req, settings.GRPC...)
 			return err
 		}, c.CallOptions.ListTopicSubscriptions...)
 		if err != nil {
@@ -300,9 +306,9 @@ func (c *PublisherClient) ListTopicSubscriptions(ctx context.Context, req *pubsu
 // not deleted, but their `topic` field is set to `_deleted-topic_`.
 func (c *PublisherClient) DeleteTopic(ctx context.Context, req *pubsubpb.DeleteTopicRequest) error {
 	ctx = insertXGoog(ctx, c.xGoogHeader)
-	err := gax.Invoke(ctx, func(ctx context.Context) error {
+	err := gax.Invoke(ctx, func(ctx context.Context, settings gax.CallSettings) error {
 		var err error
-		_, err = c.publisherClient.DeleteTopic(ctx, req)
+		_, err = c.publisherClient.DeleteTopic(ctx, req, settings.GRPC...)
 		return err
 	}, c.CallOptions.DeleteTopic...)
 	return err
