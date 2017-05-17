@@ -1,136 +1,108 @@
 ---
 version: 2
-jobs:
-  build:
-    docker:
-      - image: googleapis/curl:latest
-    steps:
-      - run:
-          name: Add command to be able to trigger jobs.
-          command: |
-            touch trigger_job.sh && chmod a+x trigger_job.sh
-            cat <<'EOF' >> trigger_job.sh
-            #!/bin/sh
-            # More information about this script: http://bit.ly/2pn9lX8
-            job_name=$1
-            curl -u ${CIRCLE_API_TOKEN}: \
-              -d build_parameters[CIRCLE_JOB]=${job_name} \
-              -d revision=$CIRCLE_SHA1 \
-              https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
-            EOF
-      - run:
-          name: 'Trigger jobs: Python Unit Tests'
-          command: |
-            ./trigger_job.sh python27
-            ./trigger_job.sh python34
-            ./trigger_job.sh python35
-            ./trigger_job.sh python36
-      - run:
-          name: 'Trigger jobs: Java Unit Tests'
-          command: |
-            ./trigger_job.sh openjdk7
-            ./trigger_job.sh openjdk8
-      - deploy:
-          name: Sync to api-client-staging-private (if this is master).
-          command: |
-            if [ "$CIRCLE_BRANCH" == "master" ] && [ "$CIRCLE_PROJECT_REPONAME" == "api-client-staging" ]; then
-              ./trigger_job.sh sync_to_private
-            fi
-    working_directory: /var/code/googleapis/
+workflows:
+  java:
+    openjdk7:
+      docker:
+        - image: openjdk:7
+          environment:
+            TERM: dumb
+      steps:
+        - checkout
+        - run:
+            name: Run GAPIC unit tests on OpenJDK 7.
+            command: |
+              ./gradlew clean test
+      working_directory: /var/code/googleapis/
+    openjdk8:
+      docker:
+        - image: openjdk:8
+          environment:
+            TERM: dumb
+      steps:
+        - checkout
+        - run:
+            name: Run GAPIC unit tests on OpenJDK 8.
+            command: |
+              ./gradlew clean test
+      working_directory: /var/code/googleapis/
 
-  python27:
-    docker:
-      - image: python:2.7.13
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='2.7')"
-    working_directory: /var/code/googleapis/
+  python:
+    jobs:
+      - python27:
+          docker:
+            - image: python:2.7.13
+          steps:
+            - checkout
+            - run:
+                name: Install nox.
+                command: pip install nox-automation
+            - run:
+                name: Run GAPIC unit tests on Python 2.7.
+                command: |
+                  nox --noxfile generated/python/nox.py \
+                      --sessions "unit_tests(python_version='2.7')"
+          working_directory: /var/code/googleapis/
+      - python34:
+          docker:
+            - image: python:3.4.6
+          steps:
+            - checkout
+            - run:
+                name: Install nox.
+                command: pip install nox-automation
+            - run:
+                name: Run GAPIC unit tests on Python 3.4.
+                command: |
+                  nox --noxfile generated/python/nox.py \
+                      --sessions "unit_tests(python_version='3.4')"
+          working_directory: /var/code/googleapis/
+      - python35:
+          docker:
+            - image: python:3.5.3
+          steps:
+            - checkout
+            - run:
+                name: Install nox.
+                command: pip install nox-automation
+            - run:
+                name: Run GAPIC unit tests on Python 3.5.
+                command: |
+                  nox --noxfile generated/python/nox.py \
+                      --sessions "unit_tests(python_version='3.5')"
+          working_directory: /var/code/googleapis/
+      - python36:
+          docker:
+            - image: python:3.6.1
+          steps:
+            - checkout
+            - run:
+                name: Install nox.
+                command: pip install nox-automation
+            - run:
+                name: Run GAPIC unit tests on Python 3.6.
+                command: |
+                  nox --noxfile generated/python/nox.py \
+                      --sessions "unit_tests(python_version='3.6')"
+          working_directory: /var/code/googleapis/
 
-  python34:
-    docker:
-      - image: python:3.4.6
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.4')"
-    working_directory: /var/code/googleapis/
-
-  python35:
-    docker:
-      - image: python:3.5.3
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.5')"
-    working_directory: /var/code/googleapis/
-
-  python36:
-    docker:
-      - image: python:3.6.1
-    steps:
-      - checkout
-      - run:
-          name: Install nox.
-          command: pip install nox-automation
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            nox --noxfile generated/python/nox.py \
-                --sessions "unit_tests(python_version='3.6')"
-    working_directory: /var/code/googleapis/
-
-  openjdk7:
-    docker:
-      - image: openjdk:7
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            ./gradlew clean test
-    working_directory: /var/code/googleapis/
-
-  openjdk8:
-    docker:
-      - image: openjdk:8
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            ./gradlew clean test
-    working_directory: /var/code/googleapis/
-
-  sync_to_private:
-    docker:
-      - image: googleapis/git
-    steps:
-      - checkout
-      - run:
-          command: |
-            git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
-            git push private HEAD:master
-    working_directory: /var/code/googleapis/
+  sync:
+    requires:
+      - java
+      - python
+    jobs:
+      - sync_to_private:
+          docker:
+            - image: googleapis/git
+          steps:
+            - checkout
+            - run:
+                command: |
+                  if [ "$CIRCLE_PROJECT_REPONAME"  == "api-client-staging" ]; then
+                    git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
+                    git push private HEAD:master
+                  fi
+          filters:
+            branches:
+              only: master
+          working_directory: /var/code/googleapis/
