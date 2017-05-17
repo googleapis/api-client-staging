@@ -18,14 +18,14 @@ package com.google.cloud.pubsub.spi.v1;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubscriptionsPagedResponse;
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
-import com.google.api.core.ApiFuture;
 import com.google.api.gax.batching.BatchingSettings;
-import com.google.api.gax.batching.FlowControlSettings;
-import com.google.api.gax.batching.FlowController.LimitExceededBehavior;
 import com.google.api.gax.batching.PartitionKey;
 import com.google.api.gax.batching.RequestBuilder;
+import com.google.api.gax.core.FlowControlSettings;
+import com.google.api.gax.core.FlowController.LimitExceededBehavior;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
+import com.google.api.gax.core.RetrySettings;
 import com.google.api.gax.grpc.BatchedRequestIssuer;
 import com.google.api.gax.grpc.BatchingCallSettings;
 import com.google.api.gax.grpc.BatchingDescriptor;
@@ -35,20 +35,19 @@ import com.google.api.gax.grpc.ClientSettings;
 import com.google.api.gax.grpc.ExecutorProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.grpc.InstantiatingExecutorProvider;
-import com.google.api.gax.grpc.PageContext;
 import com.google.api.gax.grpc.PagedCallSettings;
 import com.google.api.gax.grpc.PagedListDescriptor;
 import com.google.api.gax.grpc.PagedListResponseFactory;
 import com.google.api.gax.grpc.SimpleCallSettings;
 import com.google.api.gax.grpc.UnaryCallSettings;
 import com.google.api.gax.grpc.UnaryCallable;
-import com.google.api.gax.retrying.RetrySettings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.iam.v1.GetIamPolicyRequest;
+import com.google.iam.v1.IAMPolicyGrpc;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
 import com.google.iam.v1.TestIamPermissionsRequest;
@@ -63,6 +62,7 @@ import com.google.pubsub.v1.ListTopicsRequest;
 import com.google.pubsub.v1.ListTopicsResponse;
 import com.google.pubsub.v1.PublishRequest;
 import com.google.pubsub.v1.PublishResponse;
+import com.google.pubsub.v1.PublisherGrpc;
 import com.google.pubsub.v1.Topic;
 import io.grpc.Status;
 import java.io.IOException;
@@ -111,74 +111,10 @@ public class TopicAdminSettings extends ClientSettings {
   private static final String DEFAULT_GAPIC_NAME = "gapic";
   private static final String DEFAULT_GAPIC_VERSION = "";
 
-  private static final String PROPERTIES_FILE = "/com/google/cloud/pubsub/project.properties";
+  private static final String PROPERTIES_FILE = "/project.properties";
   private static final String META_VERSION_KEY = "artifact.version";
 
   private static String gapicVersion;
-
-  private static final io.grpc.MethodDescriptor<Topic, Topic> METHOD_CREATE_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.pubsub.v1.Publisher/CreateTopic",
-          io.grpc.protobuf.ProtoUtils.marshaller(Topic.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Topic.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<PublishRequest, PublishResponse> METHOD_PUBLISH =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.pubsub.v1.Publisher/Publish",
-          io.grpc.protobuf.ProtoUtils.marshaller(PublishRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(PublishResponse.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<GetTopicRequest, Topic> METHOD_GET_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.pubsub.v1.Publisher/GetTopic",
-          io.grpc.protobuf.ProtoUtils.marshaller(GetTopicRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Topic.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<ListTopicsRequest, ListTopicsResponse>
-      METHOD_LIST_TOPICS =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.pubsub.v1.Publisher/ListTopics",
-              io.grpc.protobuf.ProtoUtils.marshaller(ListTopicsRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(ListTopicsResponse.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<
-          ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
-      METHOD_LIST_TOPIC_SUBSCRIPTIONS =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.pubsub.v1.Publisher/ListTopicSubscriptions",
-              io.grpc.protobuf.ProtoUtils.marshaller(
-                  ListTopicSubscriptionsRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(
-                  ListTopicSubscriptionsResponse.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<DeleteTopicRequest, Empty> METHOD_DELETE_TOPIC =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.pubsub.v1.Publisher/DeleteTopic",
-          io.grpc.protobuf.ProtoUtils.marshaller(DeleteTopicRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<SetIamPolicyRequest, Policy> METHOD_SET_IAM_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.iam.v1.IAMPolicy/SetIamPolicy",
-          io.grpc.protobuf.ProtoUtils.marshaller(SetIamPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<GetIamPolicyRequest, Policy> METHOD_GET_IAM_POLICY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.iam.v1.IAMPolicy/GetIamPolicy",
-          io.grpc.protobuf.ProtoUtils.marshaller(GetIamPolicyRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<
-          TestIamPermissionsRequest, TestIamPermissionsResponse>
-      METHOD_TEST_IAM_PERMISSIONS =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.iam.v1.IAMPolicy/TestIamPermissions",
-              io.grpc.protobuf.ProtoUtils.marshaller(
-                  TestIamPermissionsRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(
-                  TestIamPermissionsResponse.getDefaultInstance()));
 
   private final SimpleCallSettings<Topic, Topic> createTopicSettings;
   private final BatchingCallSettings<PublishRequest, PublishResponse> publishSettings;
@@ -256,7 +192,7 @@ public class TopicAdminSettings extends ClientSettings {
   }
 
   /** Returns the default service scopes. */
-  public static List<String> getDefaultServiceScopes() {
+  public static ImmutableList<String> getDefaultServiceScopes() {
     return DEFAULT_SERVICE_SCOPES;
   }
 
@@ -316,13 +252,13 @@ public class TopicAdminSettings extends ClientSettings {
       LIST_TOPICS_PAGE_STR_DESC =
           new PagedListDescriptor<ListTopicsRequest, ListTopicsResponse, Topic>() {
             @Override
-            public String emptyToken() {
+            public Object emptyToken() {
               return "";
             }
 
             @Override
-            public ListTopicsRequest injectToken(ListTopicsRequest payload, String token) {
-              return ListTopicsRequest.newBuilder(payload).setPageToken(token).build();
+            public ListTopicsRequest injectToken(ListTopicsRequest payload, Object token) {
+              return ListTopicsRequest.newBuilder(payload).setPageToken((String) token).build();
             }
 
             @Override
@@ -336,7 +272,7 @@ public class TopicAdminSettings extends ClientSettings {
             }
 
             @Override
-            public String extractNextToken(ListTopicsResponse payload) {
+            public Object extractNextToken(ListTopicsResponse payload) {
               return payload.getNextPageToken();
             }
 
@@ -352,14 +288,16 @@ public class TopicAdminSettings extends ClientSettings {
           new PagedListDescriptor<
               ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>() {
             @Override
-            public String emptyToken() {
+            public Object emptyToken() {
               return "";
             }
 
             @Override
             public ListTopicSubscriptionsRequest injectToken(
-                ListTopicSubscriptionsRequest payload, String token) {
-              return ListTopicSubscriptionsRequest.newBuilder(payload).setPageToken(token).build();
+                ListTopicSubscriptionsRequest payload, Object token) {
+              return ListTopicSubscriptionsRequest.newBuilder(payload)
+                  .setPageToken((String) token)
+                  .build();
             }
 
             @Override
@@ -376,7 +314,7 @@ public class TopicAdminSettings extends ClientSettings {
             }
 
             @Override
-            public String extractNextToken(ListTopicSubscriptionsResponse payload) {
+            public Object extractNextToken(ListTopicSubscriptionsResponse payload) {
               return payload.getNextPageToken();
             }
 
@@ -392,14 +330,12 @@ public class TopicAdminSettings extends ClientSettings {
           new PagedListResponseFactory<
               ListTopicsRequest, ListTopicsResponse, ListTopicsPagedResponse>() {
             @Override
-            public ApiFuture<ListTopicsPagedResponse> getFuturePagedResponse(
+            public ListTopicsPagedResponse createPagedListResponse(
                 UnaryCallable<ListTopicsRequest, ListTopicsResponse> callable,
                 ListTopicsRequest request,
-                CallContext context,
-                ApiFuture<ListTopicsResponse> futureResponse) {
-              PageContext<ListTopicsRequest, ListTopicsResponse, Topic> pageContext =
-                  PageContext.create(callable, LIST_TOPICS_PAGE_STR_DESC, request, context);
-              return ListTopicsPagedResponse.createAsync(pageContext, futureResponse);
+                CallContext context) {
+              return new ListTopicsPagedResponse(
+                  callable, LIST_TOPICS_PAGE_STR_DESC, request, context);
             }
           };
 
@@ -411,17 +347,13 @@ public class TopicAdminSettings extends ClientSettings {
               ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse,
               ListTopicSubscriptionsPagedResponse>() {
             @Override
-            public ApiFuture<ListTopicSubscriptionsPagedResponse> getFuturePagedResponse(
+            public ListTopicSubscriptionsPagedResponse createPagedListResponse(
                 UnaryCallable<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse>
                     callable,
                 ListTopicSubscriptionsRequest request,
-                CallContext context,
-                ApiFuture<ListTopicSubscriptionsResponse> futureResponse) {
-              PageContext<ListTopicSubscriptionsRequest, ListTopicSubscriptionsResponse, String>
-                  pageContext =
-                      PageContext.create(
-                          callable, LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_DESC, request, context);
-              return ListTopicSubscriptionsPagedResponse.createAsync(pageContext, futureResponse);
+                CallContext context) {
+              return new ListTopicSubscriptionsPagedResponse(
+                  callable, LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_DESC, request, context);
             }
           };
 
@@ -568,28 +500,30 @@ public class TopicAdminSettings extends ClientSettings {
     private Builder() {
       super(defaultChannelProviderBuilder().build());
 
-      createTopicSettings = SimpleCallSettings.newBuilder(METHOD_CREATE_TOPIC);
+      createTopicSettings = SimpleCallSettings.newBuilder(PublisherGrpc.METHOD_CREATE_TOPIC);
 
       publishSettings =
-          BatchingCallSettings.newBuilder(METHOD_PUBLISH, PUBLISH_BATCHING_DESC)
+          BatchingCallSettings.newBuilder(PublisherGrpc.METHOD_PUBLISH, PUBLISH_BATCHING_DESC)
               .setBatchingSettingsBuilder(BatchingSettings.newBuilder());
 
-      getTopicSettings = SimpleCallSettings.newBuilder(METHOD_GET_TOPIC);
+      getTopicSettings = SimpleCallSettings.newBuilder(PublisherGrpc.METHOD_GET_TOPIC);
 
       listTopicsSettings =
-          PagedCallSettings.newBuilder(METHOD_LIST_TOPICS, LIST_TOPICS_PAGE_STR_FACT);
+          PagedCallSettings.newBuilder(PublisherGrpc.METHOD_LIST_TOPICS, LIST_TOPICS_PAGE_STR_FACT);
 
       listTopicSubscriptionsSettings =
           PagedCallSettings.newBuilder(
-              METHOD_LIST_TOPIC_SUBSCRIPTIONS, LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_FACT);
+              PublisherGrpc.METHOD_LIST_TOPIC_SUBSCRIPTIONS,
+              LIST_TOPIC_SUBSCRIPTIONS_PAGE_STR_FACT);
 
-      deleteTopicSettings = SimpleCallSettings.newBuilder(METHOD_DELETE_TOPIC);
+      deleteTopicSettings = SimpleCallSettings.newBuilder(PublisherGrpc.METHOD_DELETE_TOPIC);
 
-      setIamPolicySettings = SimpleCallSettings.newBuilder(METHOD_SET_IAM_POLICY);
+      setIamPolicySettings = SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_SET_IAM_POLICY);
 
-      getIamPolicySettings = SimpleCallSettings.newBuilder(METHOD_GET_IAM_POLICY);
+      getIamPolicySettings = SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_GET_IAM_POLICY);
 
-      testIamPermissionsSettings = SimpleCallSettings.newBuilder(METHOD_TEST_IAM_PERMISSIONS);
+      testIamPermissionsSettings =
+          SimpleCallSettings.newBuilder(IAMPolicyGrpc.METHOD_TEST_IAM_PERMISSIONS);
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder>of(
@@ -615,8 +549,8 @@ public class TopicAdminSettings extends ClientSettings {
       builder
           .publishSettings()
           .getBatchingSettingsBuilder()
-          .setElementCountThreshold(10L)
-          .setRequestByteThreshold(1024L)
+          .setElementCountThreshold(10)
+          .setRequestByteThreshold(1024)
           .setDelayThreshold(Duration.millis(10))
           .setFlowControlSettings(
               FlowControlSettings.newBuilder()

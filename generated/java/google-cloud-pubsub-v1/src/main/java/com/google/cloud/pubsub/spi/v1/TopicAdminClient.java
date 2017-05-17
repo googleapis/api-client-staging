@@ -442,7 +442,7 @@ public class TopicAdminClient implements AutoCloseable {
    * <pre><code>
    * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
    *   ProjectName project = ProjectName.create("[PROJECT]");
-   *   for (Topic element : topicAdminClient.listTopics(project).iterateAll()) {
+   *   for (Topic element : topicAdminClient.listTopics(project).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -470,7 +470,7 @@ public class TopicAdminClient implements AutoCloseable {
    *   ListTopicsRequest request = ListTopicsRequest.newBuilder()
    *     .setProjectWithProjectName(project)
    *     .build();
-   *   for (Topic element : topicAdminClient.listTopics(request).iterateAll()) {
+   *   for (Topic element : topicAdminClient.listTopics(request).iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }
@@ -497,7 +497,7 @@ public class TopicAdminClient implements AutoCloseable {
    *     .build();
    *   ApiFuture&lt;ListTopicsPagedResponse&gt; future = topicAdminClient.listTopicsPagedCallable().futureCall(request);
    *   // Do something
-   *   for (Topic element : future.get().iterateAll()) {
+   *   for (Topic element : future.get().iterateAllElements()) {
    *     // doThingsWith(element);
    *   }
    * }

@@ -19,8 +19,8 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubs
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
 import com.google.api.gax.grpc.ApiException;
-import com.google.api.gax.grpc.testing.MockGrpcService;
-import com.google.api.gax.grpc.testing.MockServiceHelper;
+import com.google.api.gax.testing.MockGrpcService;
+import com.google.api.gax.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -227,7 +227,7 @@ public class TopicAdminClientTest {
 
     ListTopicsPagedResponse pagedListResponse = client.listTopics(project);
 
-    List<Topic> resources = Lists.newArrayList(pagedListResponse.iterateAll());
+    List<Topic> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getTopicsList().get(0), resources.get(0));
 
@@ -271,7 +271,7 @@ public class TopicAdminClientTest {
 
     ListTopicSubscriptionsPagedResponse pagedListResponse = client.listTopicSubscriptions(topic);
 
-    List<String> resources = Lists.newArrayList(pagedListResponse.iterateAll());
+    List<String> resources = Lists.newArrayList(pagedListResponse.iterateAllElements());
     Assert.assertEquals(1, resources.size());
     Assert.assertEquals(expectedResponse.getSubscriptionsList().get(0), resources.get(0));
     List<SubscriptionName> resourceNames =
