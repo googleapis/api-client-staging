@@ -1,6 +1,7 @@
 ---
 version: 2.0
 jobs:
+  build: {}
   openjdk7:
     docker:
       - image: openjdk:7
