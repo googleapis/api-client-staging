@@ -1,34 +1,33 @@
 ---
 version: 2
 workflows:
-  java:
-    openjdk7:
-      docker:
-        - image: openjdk:7
-          environment:
-            TERM: dumb
-      steps:
-        - checkout
-        - run:
-            name: Run GAPIC unit tests on OpenJDK 7.
-            command: |
-              ./gradlew clean test
-      working_directory: /var/code/googleapis/
-    openjdk8:
-      docker:
-        - image: openjdk:8
-          environment:
-            TERM: dumb
-      steps:
-        - checkout
-        - run:
-            name: Run GAPIC unit tests on OpenJDK 8.
-            command: |
-              ./gradlew clean test
-      working_directory: /var/code/googleapis/
-
-  python:
+  version: 2
+  tests:
     jobs:
+      - openjdk7:
+          docker:
+            - image: openjdk:7
+              environment:
+                TERM: dumb
+          steps:
+            - checkout
+            - run:
+                name: Run GAPIC unit tests on OpenJDK 7.
+                command: |
+                  ./gradlew clean test
+          working_directory: /var/code/googleapis/
+      - openjdk8:
+          docker:
+            - image: openjdk:8
+              environment:
+                TERM: dumb
+          steps:
+            - checkout
+            - run:
+                name: Run GAPIC unit tests on OpenJDK 8.
+                command: |
+                  ./gradlew clean test
+          working_directory: /var/code/googleapis/
       - python27:
           docker:
             - image: python:2.7.13
@@ -85,13 +84,14 @@ workflows:
                   nox --noxfile generated/python/nox.py \
                       --sessions "unit_tests(python_version='3.6')"
           working_directory: /var/code/googleapis/
-
-  sync:
-    requires:
-      - java
-      - python
-    jobs:
-      - sync_to_private:
+      - sync:
+          requires:
+            - openjdk7
+            - openjdk8
+            - python27
+            - python34
+            - python35
+            - python36
           docker:
             - image: googleapis/git
           steps:
