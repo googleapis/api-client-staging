@@ -19,6 +19,7 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicSubs
 import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
 
 import com.google.api.core.ApiFuture;
+import com.google.api.core.BetaApi;
 import com.google.api.gax.batching.BatchingSettings;
 import com.google.api.gax.batching.FlowControlSettings;
 import com.google.api.gax.batching.FlowController.LimitExceededBehavior;
@@ -54,7 +55,6 @@ import com.google.iam.v1.SetIamPolicyRequest;
 import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import com.google.pubsub.v1.DeleteTopicRequest;
 import com.google.pubsub.v1.GetTopicRequest;
 import com.google.pubsub.v1.ListTopicSubscriptionsRequest;
@@ -70,7 +70,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Generated;
-import org.joda.time.Duration;
+import org.threeten.bp.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
@@ -93,13 +93,13 @@ import org.joda.time.Duration;
  * TopicAdminSettings.Builder topicAdminSettingsBuilder =
  *     TopicAdminSettings.defaultBuilder();
  * topicAdminSettingsBuilder.createTopicSettings().getRetrySettingsBuilder()
- *     .setTotalTimeout(Duration.standardSeconds(30));
+ *     .setTotalTimeout(Duration.ofSeconds(30));
  * TopicAdminSettings topicAdminSettings = topicAdminSettingsBuilder.build();
  * </code>
  * </pre>
  */
 @Generated("by GAPIC v0.0.5")
-@ExperimentalApi
+@BetaApi
 public class TopicAdminSettings extends ClientSettings {
   /** The default scopes of the service. */
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
@@ -544,23 +544,23 @@ public class TopicAdminSettings extends ClientSettings {
       RetrySettings.Builder settingsBuilder = null;
       settingsBuilder =
           RetrySettings.newBuilder()
-              .setInitialRetryDelay(Duration.millis(100L))
+              .setInitialRetryDelay(Duration.ofMillis(100L))
               .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.millis(60000L))
-              .setInitialRpcTimeout(Duration.millis(60000L))
+              .setMaxRetryDelay(Duration.ofMillis(60000L))
+              .setInitialRpcTimeout(Duration.ofMillis(60000L))
               .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.millis(60000L))
-              .setTotalTimeout(Duration.millis(600000L));
+              .setMaxRpcTimeout(Duration.ofMillis(60000L))
+              .setTotalTimeout(Duration.ofMillis(600000L));
       definitions.put("default", settingsBuilder);
       settingsBuilder =
           RetrySettings.newBuilder()
-              .setInitialRetryDelay(Duration.millis(100L))
+              .setInitialRetryDelay(Duration.ofMillis(100L))
               .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.millis(60000L))
-              .setInitialRpcTimeout(Duration.millis(12000L))
+              .setMaxRetryDelay(Duration.ofMillis(60000L))
+              .setInitialRpcTimeout(Duration.ofMillis(12000L))
               .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.millis(12000L))
-              .setTotalTimeout(Duration.millis(600000L));
+              .setMaxRpcTimeout(Duration.ofMillis(12000L))
+              .setTotalTimeout(Duration.ofMillis(600000L));
       definitions.put("messaging", settingsBuilder);
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }
@@ -617,7 +617,7 @@ public class TopicAdminSettings extends ClientSettings {
           .getBatchingSettingsBuilder()
           .setElementCountThreshold(10L)
           .setRequestByteThreshold(1024L)
-          .setDelayThreshold(Duration.millis(10))
+          .setDelayThreshold(Duration.ofMillis(10))
           .setFlowControlSettings(
               FlowControlSettings.newBuilder()
                   .setLimitExceededBehavior(LimitExceededBehavior.Ignore)

@@ -15,8 +15,9 @@
  */
 package com.google.cloud.pubsub.spi.v1;
 
-import com.google.pubsub.v1.Topic;
-import com.google.pubsub.v1.TopicName;
+import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPagedResponse;
+
+import com.google.pubsub.v1.ProjectName;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
@@ -25,7 +26,6 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @javax.annotation.Generated("by GAPIC")
 public class TopicAdminSmokeTest {
@@ -58,11 +58,10 @@ public class TopicAdminSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (TopicAdminClient client = TopicAdminClient.create()) {
-      TopicName name = TopicName.create(projectId, "smoketesttopic-" + System.currentTimeMillis());
+      ProjectName project = ProjectName.create(projectId);
 
-      Topic response = client.createTopic(name);
-      System.out.println(
-          ReflectionToStringBuilder.toString(response, ToStringStyle.MULTI_LINE_STYLE));
+      ListTopicsPagedResponse pagedResponse = client.listTopics(project);
+      System.out.println(ReflectionToStringBuilder.toString(pagedResponse));
     }
   }
 }
