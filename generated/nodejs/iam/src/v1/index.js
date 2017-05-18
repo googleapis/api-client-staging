@@ -15,20 +15,20 @@
  */
 'use strict';
 
-var languageServiceClient = require('./language_service_client');
+var iamClient = require('./iam_client');
 var gax = require('google-gax');
 var extend = require('extend');
 
-function v1beta2(options) {
+function v1(options) {
   options = extend({
-    scopes: v1beta2.ALL_SCOPES
+    scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return languageServiceClient(gaxGrpc);
+  return iamClient(gaxGrpc);
 }
 
-v1beta2.GAPIC_VERSION = '0.7.1';
-v1beta2.SERVICE_ADDRESS = languageServiceClient.SERVICE_ADDRESS;
-v1beta2.ALL_SCOPES = languageServiceClient.ALL_SCOPES;
+v1.GAPIC_VERSION = '0.7.1';
+v1.SERVICE_ADDRESS = iamClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = iamClient.ALL_SCOPES;
 
-module.exports = v1beta2;
+module.exports = v1;

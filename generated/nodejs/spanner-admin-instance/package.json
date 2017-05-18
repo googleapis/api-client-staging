@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/googleapis/googleapis",
-  "name": "@google-cloud/spanner",
+  "name": "@google-cloud/spanner-admin-instance",
   "version": "0.7.1",
   "author": "Google Inc",
-  "description": "Cloud Spanner Database Admin API client for Node.js",
+  "description": "Cloud Spanner Instance Admin API client for Node.js",
   "main": "src/index.js",
   "files": [
     "src"
