@@ -1,7 +1,5 @@
 import groovy.io.FileType
 
-def generated_grpc_version = "0.1.10"
-
 buildscript {
   repositories {
     mavenLocal()
@@ -60,8 +58,7 @@ subprojects {
       libraries.mockito,
       libraries.truth,
       libraries.lang,
-      libraries.cli,
-      libraries.iam
+      libraries.cli
   }
 
   jacocoTestReport {
