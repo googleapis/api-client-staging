@@ -6,7 +6,6 @@
     "@google-cloud/errorreporting": "file:./errorreporting/",
     "@google-cloud/iam": "file:./iam/",
     "@google-cloud/language": "file:./language-v1/",
-    "@google-cloud/language-v1beta2": "file:./language-v1beta2/",
     "@google-cloud/logging": "file:./logging/",
     "@google-cloud/monitoring": "file:./monitoring/",
     "@google-cloud/pubsub": "file:./pubsub/",
@@ -15,7 +14,7 @@
     "@google-cloud/spanner-admin-instance": "file:./spanner-admin-instance/",
     "@google-cloud/speech": "file:./speech/",
     "@google-cloud/trace": "file:./trace/",
-    "@google-cloud/vision": "file:./vision/"    
+    "@google-cloud/vision": "file:./vision/"
   },
   "devDependencies": {
     "mocha": "3.2.0",

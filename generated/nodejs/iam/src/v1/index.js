@@ -1,5 +1,5 @@
-/*!
- * Copyright 2016 Google Inc. All Rights Reserved.
+/*
+ * Copyright 2016 Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 'use strict';
 
-var iamApi = require('./iam_api');
+var iamClient = require('./iam_client');
 var gax = require('google-gax');
 var extend = require('extend');
 
@@ -24,8 +24,11 @@ function v1(options) {
     scopes: v1.ALL_SCOPES
   }, options);
   var gaxGrpc = gax.grpc(options);
-  return iamApi(gaxGrpc);
+  return iamClient(gaxGrpc);
 }
-v1.SERVICE_ADDRESS = iamApi.SERVICE_ADDRESS;
-v1.ALL_SCOPES = iamApi.ALL_SCOPES;
+
+v1.GAPIC_VERSION = '0.7.1';
+v1.SERVICE_ADDRESS = iamClient.SERVICE_ADDRESS;
+v1.ALL_SCOPES = iamClient.ALL_SCOPES;
+
 module.exports = v1;
