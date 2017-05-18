@@ -1,4 +1,7 @@
-include ':gapic-google-cloud-error-reporting-v1beta1',
+include ':gapic-google-cloud-dlp-v2beta1',
+  ':grpc-google-cloud-dlp-v2beta1',
+  ':proto-google-cloud-dlp-v2beta1',
+  ':gapic-google-cloud-error-reporting-v1beta1',
   ':grpc-google-cloud-error-reporting-v1beta1',
   ':proto-google-cloud-error-reporting-v1beta1',
   ':gapic-google-cloud-language-v1',
