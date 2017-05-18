@@ -86,7 +86,7 @@ jobs:
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
-    
+
   sync:
     docker:
       - image: googleapis/git
@@ -99,6 +99,7 @@ jobs:
               git push private HEAD:master
             fi
     working_directory: /var/code/googleapis/
+
 workflows:
   version: 2
   tests:
