@@ -26,6 +26,12 @@ jobs:
             ./trigger_job.sh python35
             ./trigger_job.sh python36
       - run:
+          name: 'Trigger jobs: Node.js Unit Tests'
+          command: echo node
+            # ./trigger_job.sh node4
+            # ./trigger_job.sh node6
+            # ./trigger_job.sh node7
+      - run:
           name: 'Trigger jobs: Java Unit Tests'
           command: |
             ./trigger_job.sh openjdk7
