@@ -18,6 +18,7 @@ package com.google.cloud.spanner.admin.database.spi.v1;
 import static com.google.cloud.spanner.admin.database.spi.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
 
 import com.google.api.core.ApiFuture;
+import com.google.api.core.BetaApi;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
 import com.google.api.gax.grpc.CallContext;
@@ -47,7 +48,6 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.longrunning.Operation;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import com.google.spanner.admin.database.v1.CreateDatabaseRequest;
 import com.google.spanner.admin.database.v1.Database;
 import com.google.spanner.admin.database.v1.DropDatabaseRequest;
@@ -61,7 +61,7 @@ import io.grpc.Status;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Generated;
-import org.joda.time.Duration;
+import org.threeten.bp.Duration;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 /**
@@ -84,13 +84,13 @@ import org.joda.time.Duration;
  * DatabaseAdminSettings.Builder databaseAdminSettingsBuilder =
  *     DatabaseAdminSettings.defaultBuilder();
  * databaseAdminSettingsBuilder.getDatabaseSettings().getRetrySettingsBuilder()
- *     .setTotalTimeout(Duration.standardSeconds(30));
+ *     .setTotalTimeout(Duration.ofSeconds(30));
  * DatabaseAdminSettings databaseAdminSettings = databaseAdminSettingsBuilder.build();
  * </code>
  * </pre>
  */
 @Generated("by GAPIC v0.0.5")
-@ExperimentalApi
+@BetaApi
 public class DatabaseAdminSettings extends ClientSettings {
   /** The default scopes of the service. */
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
@@ -393,13 +393,13 @@ public class DatabaseAdminSettings extends ClientSettings {
       RetrySettings.Builder settingsBuilder = null;
       settingsBuilder =
           RetrySettings.newBuilder()
-              .setInitialRetryDelay(Duration.millis(1000L))
+              .setInitialRetryDelay(Duration.ofMillis(1000L))
               .setRetryDelayMultiplier(1.3)
-              .setMaxRetryDelay(Duration.millis(32000L))
-              .setInitialRpcTimeout(Duration.millis(60000L))
+              .setMaxRetryDelay(Duration.ofMillis(32000L))
+              .setInitialRpcTimeout(Duration.ofMillis(60000L))
               .setRpcTimeoutMultiplier(1.0)
-              .setMaxRpcTimeout(Duration.millis(60000L))
-              .setTotalTimeout(Duration.millis(600000L));
+              .setMaxRpcTimeout(Duration.ofMillis(60000L))
+              .setTotalTimeout(Duration.ofMillis(600000L));
       definitions.put("default", settingsBuilder);
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }

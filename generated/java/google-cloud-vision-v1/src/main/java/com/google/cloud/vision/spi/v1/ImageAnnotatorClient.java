@@ -15,12 +15,12 @@
  */
 package com.google.cloud.vision.spi.v1;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -87,7 +87,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class ImageAnnotatorClient implements AutoCloseable {
   private final ImageAnnotatorSettings settings;
   private final ScheduledExecutorService executor;

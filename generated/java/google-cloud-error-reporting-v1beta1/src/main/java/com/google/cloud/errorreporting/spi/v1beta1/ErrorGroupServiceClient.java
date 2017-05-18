@@ -15,13 +15,13 @@
  */
 package com.google.cloud.errorreporting.spi.v1beta1;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup;
 import com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.GroupName;
 import com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -87,7 +87,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class ErrorGroupServiceClient implements AutoCloseable {
   private final ErrorGroupServiceSettings settings;
   private final ScheduledExecutorService executor;
