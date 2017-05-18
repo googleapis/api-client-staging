@@ -15,6 +15,7 @@
  */
 package com.google.cloud.language.spi.v1;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.cloud.language.v1.AnalyzeEntitiesRequest;
@@ -28,7 +29,6 @@ import com.google.cloud.language.v1.AnnotateTextRequest.Features;
 import com.google.cloud.language.v1.AnnotateTextResponse;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.EncodingType;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -95,7 +95,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class LanguageServiceClient implements AutoCloseable {
   private final LanguageServiceSettings settings;
   private final ScheduledExecutorService executor;
@@ -179,8 +179,7 @@ public class LanguageServiceClient implements AutoCloseable {
    * }
    * </code></pre>
    *
-   * @param document Input document. Currently, `analyzeSentiment` only supports English text
-   *     ([Document.language][google.cloud.language.v1.Document.language]="EN").
+   * @param document Input document.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
   public final AnalyzeSentimentResponse analyzeSentiment(Document document) {
