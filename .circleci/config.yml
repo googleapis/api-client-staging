@@ -59,6 +59,7 @@ jobs:
           command: |
             cd generated/nodejs/
             npm test
+    working_directory: /var/code/googleapis/
 
   node6:
     docker:
@@ -75,6 +76,7 @@ jobs:
           command: |
             cd generated/nodejs/
             npm test
+    working_directory: /var/code/googleapis/
 
   node7:
     docker:
@@ -91,6 +93,7 @@ jobs:
           command: |
             cd generated/nodejs/
             npm test
+    working_directory: /var/code/googleapis/
 
   openjdk7:
     docker:
