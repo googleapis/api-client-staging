@@ -17,6 +17,7 @@ package com.google.cloud.spanner.admin.database.spi.v1;
 
 import static com.google.cloud.spanner.admin.database.spi.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.FixedChannelProvider;
 import com.google.api.gax.grpc.FixedExecutorProvider;
@@ -32,7 +33,6 @@ import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
 import com.google.longrunning.OperationsSettings;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import com.google.spanner.admin.database.v1.CreateDatabaseRequest;
 import com.google.spanner.admin.database.v1.Database;
 import com.google.spanner.admin.database.v1.DatabaseName;
@@ -111,7 +111,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class DatabaseAdminClient implements AutoCloseable {
   private final DatabaseAdminSettings settings;
   private final ScheduledExecutorService executor;

@@ -18,6 +18,7 @@ package com.google.cloud.errorreporting.spi.v1beta1;
 import static com.google.cloud.errorreporting.spi.v1beta1.PagedResponseWrappers.ListEventsPagedResponse;
 import static com.google.cloud.errorreporting.spi.v1beta1.PagedResponseWrappers.ListGroupStatsPagedResponse;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.UnaryCallable;
 import com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest;
@@ -28,7 +29,6 @@ import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ProjectName;
 import com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange;
-import com.google.protobuf.ExperimentalApi;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -95,7 +95,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class ErrorStatsServiceClient implements AutoCloseable {
   private final ErrorStatsServiceSettings settings;
   private final ScheduledExecutorService executor;

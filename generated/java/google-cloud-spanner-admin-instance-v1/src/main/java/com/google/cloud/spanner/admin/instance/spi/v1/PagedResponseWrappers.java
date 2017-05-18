@@ -18,11 +18,11 @@ package com.google.cloud.spanner.admin.instance.spi.v1;
 import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.AbstractFixedSizeCollection;
 import com.google.api.gax.grpc.AbstractPage;
 import com.google.api.gax.grpc.AbstractPagedListResponse;
 import com.google.api.gax.grpc.PageContext;
-import com.google.protobuf.ExperimentalApi;
 import com.google.spanner.admin.instance.v1.Instance;
 import com.google.spanner.admin.instance.v1.InstanceConfig;
 import com.google.spanner.admin.instance.v1.ListInstanceConfigsRequest;
@@ -39,7 +39,7 @@ import javax.annotation.Generated;
  * page streaming pattern.
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class PagedResponseWrappers {
 
   public static class ListInstanceConfigsPagedResponse

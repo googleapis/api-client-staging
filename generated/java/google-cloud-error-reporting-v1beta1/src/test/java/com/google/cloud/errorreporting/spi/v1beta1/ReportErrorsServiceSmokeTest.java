@@ -15,9 +15,12 @@
  */
 package com.google.cloud.errorreporting.spi.v1beta1;
 
+import com.google.devtools.clouderrorreporting.v1beta1.ErrorContext;
 import com.google.devtools.clouderrorreporting.v1beta1.ProjectName;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent;
+import com.google.devtools.clouderrorreporting.v1beta1.ServiceContext;
+import com.google.devtools.clouderrorreporting.v1beta1.SourceLocation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
@@ -61,7 +64,24 @@ public class ReportErrorsServiceSmokeTest {
     try (ReportErrorsServiceClient client = ReportErrorsServiceClient.create()) {
       ProjectName projectName = ProjectName.create(projectId);
       String message = "[MESSAGE]";
-      ReportedErrorEvent event = ReportedErrorEvent.newBuilder().setMessage(message).build();
+      String service = "[SERVICE]";
+      ServiceContext serviceContext = ServiceContext.newBuilder().setService(service).build();
+      String filePath = "path/to/file.lang";
+      int lineNumber = 42;
+      String functionName = "meaningOfLife";
+      SourceLocation reportLocation =
+          SourceLocation.newBuilder()
+              .setFilePath(filePath)
+              .setLineNumber(lineNumber)
+              .setFunctionName(functionName)
+              .build();
+      ErrorContext context = ErrorContext.newBuilder().setReportLocation(reportLocation).build();
+      ReportedErrorEvent event =
+          ReportedErrorEvent.newBuilder()
+              .setMessage(message)
+              .setServiceContext(serviceContext)
+              .setContext(context)
+              .build();
 
       ReportErrorEventResponse response = client.reportErrorEvent(projectName, event);
       System.out.println(

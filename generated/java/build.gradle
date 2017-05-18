@@ -1,6 +1,6 @@
 import groovy.io.FileType
 
-def generated_grpc_version = "0.1.8"
+def generated_grpc_version = "0.1.10"
 
 buildscript {
   repositories {
@@ -31,8 +31,9 @@ subprojects {
   ext {
     // Shortcuts for libraries we are using
     libraries = [
-        gax: 'com.google.api:gax:0.14.0',
-        gaxGrpc: 'com.google.api:gax-grpc:0.14.0',
+        gax: 'com.google.api:gax:1.1.0',
+        gaxGrpc: 'com.google.api:gax-grpc:0.17.0',
+        iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.9',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -59,7 +60,8 @@ subprojects {
       libraries.mockito,
       libraries.truth,
       libraries.lang,
-      libraries.cli
+      libraries.cli,
+      libraries.iam
   }
 
   jacocoTestReport {
@@ -118,9 +120,9 @@ subprojects {
 
 project(':generated:java:google-cloud-dlp-v2beta1') {
   dependencies {
-    compile 'com.google.api:gax:1.0.0'
-    compile 'com.google.api:gax-grpc:0.16.0'
-    compile 'com.google.api.grpc:grpc-google-cloud-dlp-v2beta1:0.1.9'
+    compile 'com.google.api:gax:1.1.0'
+    compile 'com.google.api:gax-grpc:0.17.0'
+    compile 'com.google.api.grpc:grpc-google-cloud-dlp-v2beta1:0.1.10'
   }
 }
 
