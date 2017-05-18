@@ -73,27 +73,6 @@ subprojects {
 
   check.dependsOn jacocoTestReport
 
-  // Source jar
-  // ----------
-
-  task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-  }
-
-  // JavaDoc
-  // -------
-
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
-
-  javadoc.options {
-    encoding = 'UTF-8'
-    links 'https://docs.oracle.com/javase/7/docs/api/'
-  }
-
   // Test Logging
   // ------------
 

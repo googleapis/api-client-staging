@@ -41,10 +41,3 @@ include ':gapic-google-cloud-error-reporting-v1beta1',
   ':proto-google-longrunning-v1',
   ':grpc-google-common-protos',
   ':proto-google-common-protos'
-
-String stagingBuildFile="staging.gradle"
-
-rootProject.buildFileName = "${stagingBuildFile}"
-rootProject.children.each {project ->
-    project.buildFileName = "${stagingBuildFile}"
-}
