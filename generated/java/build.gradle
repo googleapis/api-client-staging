@@ -33,7 +33,7 @@ subprojects {
     libraries = [
         gax: 'com.google.api:gax:1.1.0',
         gaxGrpc: 'com.google.api:gax-grpc:0.17.0',
-        iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.9',
+        iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.10',
 
         // Testing
         junit: 'junit:junit:4.11',
