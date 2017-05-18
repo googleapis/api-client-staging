@@ -18,6 +18,7 @@ package com.google.cloud.spanner.admin.instance.spi.v1;
 import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappers.ListInstanceConfigsPagedResponse;
 import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
+import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
 import com.google.api.gax.grpc.FixedChannelProvider;
 import com.google.api.gax.grpc.FixedExecutorProvider;
@@ -33,7 +34,6 @@ import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
 import com.google.longrunning.OperationsSettings;
 import com.google.protobuf.Empty;
-import com.google.protobuf.ExperimentalApi;
 import com.google.protobuf.FieldMask;
 import com.google.spanner.admin.instance.v1.CreateInstanceRequest;
 import com.google.spanner.admin.instance.v1.DeleteInstanceRequest;
@@ -129,7 +129,7 @@ import javax.annotation.Generated;
  * </pre>
  */
 @Generated("by GAPIC")
-@ExperimentalApi
+@BetaApi
 public class InstanceAdminClient implements AutoCloseable {
   private final InstanceAdminSettings settings;
   private final ScheduledExecutorService executor;
