@@ -21,7 +21,7 @@ jobs:
       - run:
           name: 'Trigger jobs: Node.js Unit Tests'
           command: |
-            ./trigger_job.sh node4
+            # ./trigger_job.sh node4
             ./trigger_job.sh node6
             ./trigger_job.sh node7
       - run:
