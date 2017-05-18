@@ -37,7 +37,7 @@ def unit_tests(session, python_version):
     packages += sorted(['%s/' % i for i in os.listdir('.')
                         if i.startswith('gapic-google-cloud')
                         and not i.endswith('docs')])
-    session.install('-e', *packages)
+    session.install(*packages)
 
     # Run py.test against the unit tests.
     session.run(

@@ -167,13 +167,12 @@ class LanguageServiceClient(object):
         Example:
           >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.proto.language.v1 import language_service_pb2
-          >>> api = language_service_client.LanguageServiceClient()
+          >>> client = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
-          >>> response = api.analyze_sentiment(document)
+          >>> response = client.analyze_sentiment(document)
 
         Args:
-          document (:class:`google.cloud.proto.language.v1.language_service_pb2.Document`): Input document. Currently, ``analyzeSentiment`` only supports English text
-            (``Document.language``=\"EN\").
+          document (:class:`google.cloud.proto.language.v1.language_service_pb2.Document`): Input document.
           encoding_type (enum :class:`google.cloud.gapic.language.v1.enums.EncodingType`): The encoding type used by the API to calculate sentence offsets.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
@@ -185,8 +184,6 @@ class LanguageServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if encoding_type is None:
-            encoding_type = enums.EncodingType.NONE
         # Create the request object.
         request = language_service_pb2.AnalyzeSentimentRequest(
             document=document, encoding_type=encoding_type)
@@ -194,17 +191,18 @@ class LanguageServiceClient(object):
 
     def analyze_entities(self, document, encoding_type, options=None):
         """
-        Finds named entities (currently finds proper names) in the text,
-        entity types, salience, mentions for each entity, and other properties.
+        Finds named entities (currently proper names and common nouns) in the text
+        along with entity types, salience, mentions for each entity, and
+        other properties.
 
         Example:
           >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.proto.language.v1 import language_service_pb2
-          >>> api = language_service_client.LanguageServiceClient()
+          >>> client = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> encoding_type = enums.EncodingType.NONE
-          >>> response = api.analyze_entities(document, encoding_type)
+          >>> response = client.analyze_entities(document, encoding_type)
 
         Args:
           document (:class:`google.cloud.proto.language.v1.language_service_pb2.Document`): Input document.
@@ -234,10 +232,10 @@ class LanguageServiceClient(object):
           >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.proto.language.v1 import language_service_pb2
-          >>> api = language_service_client.LanguageServiceClient()
+          >>> client = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> encoding_type = enums.EncodingType.NONE
-          >>> response = api.analyze_syntax(document, encoding_type)
+          >>> response = client.analyze_syntax(document, encoding_type)
 
         Args:
           document (:class:`google.cloud.proto.language.v1.language_service_pb2.Document`): Input document.
@@ -266,11 +264,11 @@ class LanguageServiceClient(object):
           >>> from google.cloud.gapic.language.v1 import language_service_client
           >>> from google.cloud.gapic.language.v1 import enums
           >>> from google.cloud.proto.language.v1 import language_service_pb2
-          >>> api = language_service_client.LanguageServiceClient()
+          >>> client = language_service_client.LanguageServiceClient()
           >>> document = language_service_pb2.Document()
           >>> features = language_service_pb2.AnnotateTextRequest.Features()
           >>> encoding_type = enums.EncodingType.NONE
-          >>> response = api.annotate_text(document, features, encoding_type)
+          >>> response = client.annotate_text(document, features, encoding_type)
 
         Args:
           document (:class:`google.cloud.proto.language.v1.language_service_pb2.Document`): Input document.

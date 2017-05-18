@@ -593,14 +593,15 @@ try:
     def DeleteLog(self, request, context):
       """Deletes all the log entries in a log.
       The log reappears if it receives new entries.
+      Log entries written shortly before the delete operation might not be
+      deleted.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
     def WriteLogEntries(self, request, context):
-      """Writes log entries to Stackdriver Logging.  All log entries are
-      written by this method.
+      """Writes log entries to Stackdriver Logging.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
@@ -624,7 +625,7 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def ListLogs(self, request, context):
-      """Lists the logs in projects or organizations.
+      """Lists the logs in projects, organizations, folders, or billing accounts.
       Only logs that have entries are listed.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -676,11 +677,12 @@ try:
     def DeleteLog(self, request, context):
       """Deletes all the log entries in a log.
       The log reappears if it receives new entries.
+      Log entries written shortly before the delete operation might not be
+      deleted.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def WriteLogEntries(self, request, context):
-      """Writes log entries to Stackdriver Logging.  All log entries are
-      written by this method.
+      """Writes log entries to Stackdriver Logging.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ListLogEntries(self, request, context):
@@ -695,7 +697,7 @@ try:
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def ListLogs(self, request, context):
-      """Lists the logs in projects or organizations.
+      """Lists the logs in projects, organizations, folders, or billing accounts.
       Only logs that have entries are listed.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
@@ -712,12 +714,13 @@ try:
     def DeleteLog(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       """Deletes all the log entries in a log.
       The log reappears if it receives new entries.
+      Log entries written shortly before the delete operation might not be
+      deleted.
       """
       raise NotImplementedError()
     DeleteLog.future = None
     def WriteLogEntries(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Writes log entries to Stackdriver Logging.  All log entries are
-      written by this method.
+      """Writes log entries to Stackdriver Logging.
       """
       raise NotImplementedError()
     WriteLogEntries.future = None
@@ -735,7 +738,7 @@ try:
       raise NotImplementedError()
     ListMonitoredResourceDescriptors.future = None
     def ListLogs(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Lists the logs in projects or organizations.
+      """Lists the logs in projects, organizations, folders, or billing accounts.
       Only logs that have entries are listed.
       """
       raise NotImplementedError()

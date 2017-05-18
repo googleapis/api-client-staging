@@ -55,7 +55,9 @@ class ReportErrorsServiceClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def match_project_from_project_name(cls, project_name):
@@ -171,6 +173,7 @@ class ReportErrorsServiceClient(object):
     def report_error_event(self, project_name, event, options=None):
         """
         Report an individual error event.
+
         This endpoint accepts <strong>either</strong> an OAuth token,
         <strong>or</strong> an
         <a href=\"https://support.google.com/cloud/answer/6158862\">API key</a>
@@ -181,10 +184,10 @@ class ReportErrorsServiceClient(object):
         Example:
           >>> from google.cloud.gapic.errorreporting.v1beta1 import report_errors_service_client
           >>> from google.cloud.proto.devtools.clouderrorreporting.v1beta1 import report_errors_service_pb2
-          >>> api = report_errors_service_client.ReportErrorsServiceClient()
-          >>> project_name = api.project_path('[PROJECT]')
+          >>> client = report_errors_service_client.ReportErrorsServiceClient()
+          >>> project_name = client.project_path('[PROJECT]')
           >>> event = report_errors_service_pb2.ReportedErrorEvent()
-          >>> response = api.report_error_event(project_name, event)
+          >>> response = client.report_error_event(project_name, event)
 
         Args:
           project_name (string): [Required] The resource name of the Google Cloud Platform project. Written

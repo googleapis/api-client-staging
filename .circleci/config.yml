@@ -25,6 +25,17 @@ jobs:
             ./trigger_job.sh python34
             ./trigger_job.sh python35
             ./trigger_job.sh python36
+      - run:
+          name: 'Trigger jobs: Java Unit Tests'
+          command: |
+            ./trigger_job.sh openjdk7
+            ./trigger_job.sh openjdk8
+      - deploy:
+          name: Sync to api-client-staging-private (if this is master).
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ] && [ "$CIRCLE_PROJECT_REPONAME" == "api-client-staging" ]; then
+              ./trigger_job.sh sync_to_private
+            fi
     working_directory: /var/code/googleapis/
 
   python27:
@@ -85,4 +96,41 @@ jobs:
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.6')"
+    working_directory: /var/code/googleapis/
+
+  openjdk7:
+    docker:
+      - image: openjdk:7
+        environment:
+          TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Run GAPIC unit tests.
+          command: |
+            ./gradlew clean test
+    working_directory: /var/code/googleapis/
+
+  openjdk8:
+    docker:
+      - image: openjdk:8
+        environment:
+          TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Run GAPIC unit tests.
+          command: |
+            ./gradlew clean test
+    working_directory: /var/code/googleapis/
+
+  sync_to_private:
+    docker:
+      - image: googleapis/git
+    steps:
+      - checkout
+      - run:
+          command: |
+            git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
+            git push private HEAD:master
     working_directory: /var/code/googleapis/

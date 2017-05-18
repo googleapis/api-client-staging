@@ -15,6 +15,7 @@ _sym_db = _symbol_database.Default()
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.longrunning import operations_pb2 as google_dot_longrunning_dot_operations__pb2
+from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
 
@@ -23,9 +24,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/speech/v1beta1/cloud_speech.proto',
   package='google.cloud.speech.v1beta1',
   syntax='proto3',
-  serialized_pb=_b('\n4google/cloud/proto/speech/v1beta1/cloud_speech.proto\x12\x1bgoogle.cloud.speech.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/longrunning/operations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"\x94\x01\n\x14SyncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x95\x01\n\x15\x41syncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x9e\x01\n\x19StreamingRecognizeRequest\x12S\n\x10streaming_config\x18\x01 \x01(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionConfigH\x00\x12\x17\n\raudio_content\x18\x02 \x01(\x0cH\x00\x42\x13\n\x11streaming_request\"\x8f\x01\n\x1aStreamingRecognitionConfig\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12\x18\n\x10single_utterance\x18\x02 \x01(\x08\x12\x17\n\x0finterim_results\x18\x03 \x01(\x08\"\xea\x02\n\x11RecognitionConfig\x12N\n\x08\x65ncoding\x18\x01 \x01(\x0e\x32<.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x05\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12\x18\n\x10max_alternatives\x18\x04 \x01(\x05\x12\x18\n\x10profanity_filter\x18\x05 \x01(\x08\x12\x42\n\x0espeech_context\x18\x06 \x01(\x0b\x32*.google.cloud.speech.v1beta1.SpeechContext\"a\n\rAudioEncoding\x12\x18\n\x14\x45NCODING_UNSPECIFIED\x10\x00\x12\x0c\n\x08LINEAR16\x10\x01\x12\x08\n\x04\x46LAC\x10\x02\x12\t\n\x05MULAW\x10\x03\x12\x07\n\x03\x41MR\x10\x04\x12\n\n\x06\x41MR_WB\x10\x05\" \n\rSpeechContext\x12\x0f\n\x07phrases\x18\x01 \x03(\t\"D\n\x10RecognitionAudio\x12\x11\n\x07\x63ontent\x18\x01 \x01(\x0cH\x00\x12\r\n\x03uri\x18\x02 \x01(\tH\x00\x42\x0e\n\x0c\x61udio_source\"^\n\x15SyncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"_\n\x16\x41syncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"\x98\x01\n\x16\x41syncRecognizeMetadata\x12\x18\n\x10progress_percent\x18\x01 \x01(\x05\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x34\n\x10last_update_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x85\x03\n\x1aStreamingRecognizeResponse\x12!\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x12.google.rpc.Status\x12H\n\x07results\x18\x02 \x03(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionResult\x12\x14\n\x0cresult_index\x18\x03 \x01(\x05\x12_\n\x0f\x65ndpointer_type\x18\x04 \x01(\x0e\x32\x46.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType\"\x82\x01\n\x0e\x45ndpointerType\x12 \n\x1c\x45NDPOINTER_EVENT_UNSPECIFIED\x10\x00\x12\x13\n\x0fSTART_OF_SPEECH\x10\x01\x12\x11\n\rEND_OF_SPEECH\x10\x02\x12\x10\n\x0c\x45ND_OF_AUDIO\x10\x03\x12\x14\n\x10\x45ND_OF_UTTERANCE\x10\x04\"\x92\x01\n\x1aStreamingRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\x12\x10\n\x08is_final\x18\x02 \x01(\x08\x12\x11\n\tstability\x18\x03 \x01(\x02\"j\n\x17SpeechRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\"F\n\x1cSpeechRecognitionAlternative\x12\x12\n\ntranscript\x18\x01 \x01(\t\x12\x12\n\nconfidence\x18\x02 \x01(\x02\x32\xc8\x03\n\x06Speech\x12\xa0\x01\n\rSyncRecognize\x12\x31.google.cloud.speech.v1beta1.SyncRecognizeRequest\x1a\x32.google.cloud.speech.v1beta1.SyncRecognizeResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1beta1/speech:syncrecognize:\x01*\x12\x8e\x01\n\x0e\x41syncRecognize\x12\x32.google.cloud.speech.v1beta1.AsyncRecognizeRequest\x1a\x1d.google.longrunning.Operation\")\x82\xd3\xe4\x93\x02#\"\x1e/v1beta1/speech:asyncrecognize:\x01*\x12\x89\x01\n\x12StreamingRecognize\x12\x36.google.cloud.speech.v1beta1.StreamingRecognizeRequest\x1a\x37.google.cloud.speech.v1beta1.StreamingRecognizeResponse(\x01\x30\x01\x42s\n\x1f\x63om.google.cloud.speech.v1beta1B\x0bSpeechProtoP\x01ZAgoogle.golang.org/genproto/googleapis/cloud/speech/v1beta1;speechb\x06proto3')
+  serialized_pb=_b('\n4google/cloud/proto/speech/v1beta1/cloud_speech.proto\x12\x1bgoogle.cloud.speech.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"\x94\x01\n\x14SyncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x95\x01\n\x15\x41syncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x9e\x01\n\x19StreamingRecognizeRequest\x12S\n\x10streaming_config\x18\x01 \x01(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionConfigH\x00\x12\x17\n\raudio_content\x18\x02 \x01(\x0cH\x00\x42\x13\n\x11streaming_request\"\x8f\x01\n\x1aStreamingRecognitionConfig\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12\x18\n\x10single_utterance\x18\x02 \x01(\x08\x12\x17\n\x0finterim_results\x18\x03 \x01(\x08\"\xea\x02\n\x11RecognitionConfig\x12N\n\x08\x65ncoding\x18\x01 \x01(\x0e\x32<.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x05\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12\x18\n\x10max_alternatives\x18\x04 \x01(\x05\x12\x18\n\x10profanity_filter\x18\x05 \x01(\x08\x12\x42\n\x0espeech_context\x18\x06 \x01(\x0b\x32*.google.cloud.speech.v1beta1.SpeechContext\"a\n\rAudioEncoding\x12\x18\n\x14\x45NCODING_UNSPECIFIED\x10\x00\x12\x0c\n\x08LINEAR16\x10\x01\x12\x08\n\x04\x46LAC\x10\x02\x12\t\n\x05MULAW\x10\x03\x12\x07\n\x03\x41MR\x10\x04\x12\n\n\x06\x41MR_WB\x10\x05\" \n\rSpeechContext\x12\x0f\n\x07phrases\x18\x01 \x03(\t\"D\n\x10RecognitionAudio\x12\x11\n\x07\x63ontent\x18\x01 \x01(\x0cH\x00\x12\r\n\x03uri\x18\x02 \x01(\tH\x00\x42\x0e\n\x0c\x61udio_source\"^\n\x15SyncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"_\n\x16\x41syncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"\x98\x01\n\x16\x41syncRecognizeMetadata\x12\x18\n\x10progress_percent\x18\x01 \x01(\x05\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x34\n\x10last_update_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x85\x03\n\x1aStreamingRecognizeResponse\x12!\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x12.google.rpc.Status\x12H\n\x07results\x18\x02 \x03(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionResult\x12\x14\n\x0cresult_index\x18\x03 \x01(\x05\x12_\n\x0f\x65ndpointer_type\x18\x04 \x01(\x0e\x32\x46.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType\"\x82\x01\n\x0e\x45ndpointerType\x12 \n\x1c\x45NDPOINTER_EVENT_UNSPECIFIED\x10\x00\x12\x13\n\x0fSTART_OF_SPEECH\x10\x01\x12\x11\n\rEND_OF_SPEECH\x10\x02\x12\x10\n\x0c\x45ND_OF_AUDIO\x10\x03\x12\x14\n\x10\x45ND_OF_UTTERANCE\x10\x04\"\x92\x01\n\x1aStreamingRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\x12\x10\n\x08is_final\x18\x02 \x01(\x08\x12\x11\n\tstability\x18\x03 \x01(\x02\"j\n\x17SpeechRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\"F\n\x1cSpeechRecognitionAlternative\x12\x12\n\ntranscript\x18\x01 \x01(\t\x12\x12\n\nconfidence\x18\x02 \x01(\x02\x32\xc8\x03\n\x06Speech\x12\xa0\x01\n\rSyncRecognize\x12\x31.google.cloud.speech.v1beta1.SyncRecognizeRequest\x1a\x32.google.cloud.speech.v1beta1.SyncRecognizeResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1beta1/speech:syncrecognize:\x01*\x12\x8e\x01\n\x0e\x41syncRecognize\x12\x32.google.cloud.speech.v1beta1.AsyncRecognizeRequest\x1a\x1d.google.longrunning.Operation\")\x82\xd3\xe4\x93\x02#\"\x1e/v1beta1/speech:asyncrecognize:\x01*\x12\x89\x01\n\x12StreamingRecognize\x12\x36.google.cloud.speech.v1beta1.StreamingRecognizeRequest\x1a\x37.google.cloud.speech.v1beta1.StreamingRecognizeResponse(\x01\x30\x01\x42s\n\x1f\x63om.google.cloud.speech.v1beta1B\x0bSpeechProtoP\x01ZAgoogle.golang.org/genproto/googleapis/cloud/speech/v1beta1;speechb\x06proto3')
   ,
-  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -63,8 +64,8 @@ _RECOGNITIONCONFIG_AUDIOENCODING = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1086,
-  serialized_end=1183,
+  serialized_start=1118,
+  serialized_end=1215,
 )
 _sym_db.RegisterEnumDescriptor(_RECOGNITIONCONFIG_AUDIOENCODING)
 
@@ -97,8 +98,8 @@ _STREAMINGRECOGNIZERESPONSE_ENDPOINTERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1897,
-  serialized_end=2027,
+  serialized_start=1929,
+  serialized_end=2059,
 )
 _sym_db.RegisterEnumDescriptor(_STREAMINGRECOGNIZERESPONSE_ENDPOINTERTYPE)
 
@@ -136,8 +137,8 @@ _SYNCRECOGNIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=211,
-  serialized_end=359,
+  serialized_start=243,
+  serialized_end=391,
 )
 
 
@@ -174,8 +175,8 @@ _ASYNCRECOGNIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=362,
-  serialized_end=511,
+  serialized_start=394,
+  serialized_end=543,
 )
 
 
@@ -215,8 +216,8 @@ _STREAMINGRECOGNIZEREQUEST = _descriptor.Descriptor(
       name='streaming_request', full_name='google.cloud.speech.v1beta1.StreamingRecognizeRequest.streaming_request',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=514,
-  serialized_end=672,
+  serialized_start=546,
+  serialized_end=704,
 )
 
 
@@ -260,8 +261,8 @@ _STREAMINGRECOGNITIONCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=675,
-  serialized_end=818,
+  serialized_start=707,
+  serialized_end=850,
 )
 
 
@@ -327,8 +328,8 @@ _RECOGNITIONCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=821,
-  serialized_end=1183,
+  serialized_start=853,
+  serialized_end=1215,
 )
 
 
@@ -358,8 +359,8 @@ _SPEECHCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1185,
-  serialized_end=1217,
+  serialized_start=1217,
+  serialized_end=1249,
 )
 
 
@@ -399,8 +400,8 @@ _RECOGNITIONAUDIO = _descriptor.Descriptor(
       name='audio_source', full_name='google.cloud.speech.v1beta1.RecognitionAudio.audio_source',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1219,
-  serialized_end=1287,
+  serialized_start=1251,
+  serialized_end=1319,
 )
 
 
@@ -430,8 +431,8 @@ _SYNCRECOGNIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1289,
-  serialized_end=1383,
+  serialized_start=1321,
+  serialized_end=1415,
 )
 
 
@@ -461,8 +462,8 @@ _ASYNCRECOGNIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1385,
-  serialized_end=1480,
+  serialized_start=1417,
+  serialized_end=1512,
 )
 
 
@@ -506,8 +507,8 @@ _ASYNCRECOGNIZEMETADATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1483,
-  serialized_end=1635,
+  serialized_start=1515,
+  serialized_end=1667,
 )
 
 
@@ -559,8 +560,8 @@ _STREAMINGRECOGNIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1638,
-  serialized_end=2027,
+  serialized_start=1670,
+  serialized_end=2059,
 )
 
 
@@ -604,8 +605,8 @@ _STREAMINGRECOGNITIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2030,
-  serialized_end=2176,
+  serialized_start=2062,
+  serialized_end=2208,
 )
 
 
@@ -635,8 +636,8 @@ _SPEECHRECOGNITIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2178,
-  serialized_end=2284,
+  serialized_start=2210,
+  serialized_end=2316,
 )
 
 
@@ -673,8 +674,8 @@ _SPEECHRECOGNITIONALTERNATIVE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2286,
-  serialized_end=2356,
+  serialized_start=2318,
+  serialized_end=2388,
 )
 
 _SYNCRECOGNIZEREQUEST.fields_by_name['config'].message_type = _RECOGNITIONCONFIG
@@ -866,7 +867,7 @@ try:
     """
 
     def SyncRecognize(self, request, context):
-      """Perform synchronous speech-recognition: receive results after all audio
+      """Performs synchronous speech recognition: receive results after all audio
       has been sent and processed.
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -874,8 +875,10 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def AsyncRecognize(self, request, context):
-      """Perform asynchronous speech-recognition: receive results via the
-      google.longrunning.Operations interface. Returns either an
+      """Performs asynchronous speech recognition: receive results via the
+      [google.longrunning.Operations]
+      (/speech/reference/rest/v1beta1/operations#Operation)
+      interface. Returns either an
       `Operation.error` or an `Operation.response` which contains
       an `AsyncRecognizeResponse` message.
       """
@@ -884,7 +887,7 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def StreamingRecognize(self, request_iterator, context):
-      """Perform bidirectional streaming speech-recognition: receive results while
+      """Performs bidirectional streaming speech recognition: receive results while
       sending audio. This method is only available via the gRPC API (not REST).
       """
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -924,19 +927,21 @@ try:
     """Service that implements Google Cloud Speech API.
     """
     def SyncRecognize(self, request, context):
-      """Perform synchronous speech-recognition: receive results after all audio
+      """Performs synchronous speech recognition: receive results after all audio
       has been sent and processed.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def AsyncRecognize(self, request, context):
-      """Perform asynchronous speech-recognition: receive results via the
-      google.longrunning.Operations interface. Returns either an
+      """Performs asynchronous speech recognition: receive results via the
+      [google.longrunning.Operations]
+      (/speech/reference/rest/v1beta1/operations#Operation)
+      interface. Returns either an
       `Operation.error` or an `Operation.response` which contains
       an `AsyncRecognizeResponse` message.
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def StreamingRecognize(self, request_iterator, context):
-      """Perform bidirectional streaming speech-recognition: receive results while
+      """Performs bidirectional streaming speech recognition: receive results while
       sending audio. This method is only available via the gRPC API (not REST).
       """
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
@@ -951,21 +956,23 @@ try:
     """Service that implements Google Cloud Speech API.
     """
     def SyncRecognize(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Perform synchronous speech-recognition: receive results after all audio
+      """Performs synchronous speech recognition: receive results after all audio
       has been sent and processed.
       """
       raise NotImplementedError()
     SyncRecognize.future = None
     def AsyncRecognize(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Perform asynchronous speech-recognition: receive results via the
-      google.longrunning.Operations interface. Returns either an
+      """Performs asynchronous speech recognition: receive results via the
+      [google.longrunning.Operations]
+      (/speech/reference/rest/v1beta1/operations#Operation)
+      interface. Returns either an
       `Operation.error` or an `Operation.response` which contains
       an `AsyncRecognizeResponse` message.
       """
       raise NotImplementedError()
     AsyncRecognize.future = None
     def StreamingRecognize(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
-      """Perform bidirectional streaming speech-recognition: receive results while
+      """Performs bidirectional streaming speech recognition: receive results while
       sending audio. This method is only available via the gRPC API (not REST).
       """
       raise NotImplementedError()
