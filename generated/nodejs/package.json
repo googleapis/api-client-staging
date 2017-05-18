@@ -5,7 +5,7 @@
     "@google-cloud/datastore": "file:./datastore/",
     "@google-cloud/errorreporting": "file:./errorreporting/",
     "@google-cloud/iam": "file:./iam/",
-    "@google-cloud/language": "file:./language-v1/",
+    "@google-cloud/language": "file:./language/",
     "@google-cloud/logging": "file:./logging/",
     "@google-cloud/monitoring": "file:./monitoring/",
     "@google-cloud/pubsub": "file:./pubsub/",
