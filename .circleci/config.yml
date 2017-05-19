@@ -19,23 +19,106 @@ jobs:
               https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
             EOF
       - run:
+          name: 'Trigger jobs: Node.js Unit Tests'
+          command: |
+            # ./trigger_job.sh node4
+            ./trigger_job.sh node6
+            ./trigger_job.sh node7
+      - run:
+          name: 'Trigger jobs: Java Unit Tests'
+          command: |
+            ./trigger_job.sh openjdk7
+            ./trigger_job.sh openjdk8
+      - run:
           name: 'Trigger jobs: Python Unit Tests'
           command: |
             ./trigger_job.sh python27
             ./trigger_job.sh python34
             ./trigger_job.sh python35
             ./trigger_job.sh python36
-      - run:
-          name: 'Trigger jobs: Java Unit Tests'
-          command: |
-            ./trigger_job.sh openjdk7
-            ./trigger_job.sh openjdk8
       - deploy:
           name: Sync to api-client-staging-private (if this is master).
           command: |
             if [ "$CIRCLE_BRANCH" == "master" ] && [ "$CIRCLE_PROJECT_REPONAME" == "api-client-staging" ]; then
               ./trigger_job.sh sync_to_private
             fi
+    working_directory: /var/code/googleapis/
+
+  node4:
+    docker:
+      - image: node:4
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 4.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
+  node6:
+    docker:
+      - image: node:6
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 6.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
+  node7:
+    docker:
+      - image: node:7
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 7.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
+  openjdk7:
+    docker:
+      - image: openjdk:7
+        environment:
+          TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Run GAPIC unit tests in OpenJDK 7.
+          command: |
+            ./generated/java/gradlew -p ./generated/java clean test
+    working_directory: /var/code/googleapis/
+
+  openjdk8:
+    docker:
+      - image: openjdk:8
+        environment:
+          TERM: dumb
+    steps:
+      - checkout
+      - run:
+          name: Run GAPIC unit tests in OpenJDK 8.
+          command: |
+            ./generated/java/gradlew -p ./generated/java clean test
     working_directory: /var/code/googleapis/
 
   python27:
@@ -47,7 +130,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests.
+          name: Run GAPIC unit tests in Python 2.7.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='2.7')"
@@ -62,7 +145,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests.
+          name: Run GAPIC unit tests in Python 3.4.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.4')"
@@ -77,7 +160,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests.
+          name: Run GAPIC unit tests in Python 3.5.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.5')"
@@ -92,36 +175,10 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests.
+          name: Run GAPIC unit tests in Python 3.6.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.6')"
-    working_directory: /var/code/googleapis/
-
-  openjdk7:
-    docker:
-      - image: openjdk:7
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            ./gradlew clean test
-    working_directory: /var/code/googleapis/
-
-  openjdk8:
-    docker:
-      - image: openjdk:8
-        environment:
-          TERM: dumb
-    steps:
-      - checkout
-      - run:
-          name: Run GAPIC unit tests.
-          command: |
-            ./gradlew clean test
     working_directory: /var/code/googleapis/
 
   sync_to_private:
