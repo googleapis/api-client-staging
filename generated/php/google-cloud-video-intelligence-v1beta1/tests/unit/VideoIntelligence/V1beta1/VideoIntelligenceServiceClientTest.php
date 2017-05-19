@@ -20,9 +20,9 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\VideoIntelligence\V1Beta1;
+namespace Google\Cloud\Tests\VideoIntelligence\V1beta1;
 
-use Google\Cloud\VideoIntelligence\V1Beta1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
