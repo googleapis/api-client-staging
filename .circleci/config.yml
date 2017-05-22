@@ -36,6 +36,10 @@ jobs:
             ./trigger_job.sh python34
             ./trigger_job.sh python35
             ./trigger_job.sh python36
+      - run:
+          name: 'Trigger jobs: Go Unit Tests'
+          command: |
+            ./trigger_job.sh go18
       - deploy:
           name: Sync to api-client-staging-private (if this is master).
           command: |
@@ -58,7 +62,7 @@ jobs:
           name: Run GAPIC unit tests in Node 4.
           command: |
             cd generated/nodejs/
-            
+
             # Node 4 needs a special command because it is less forgiving
             # about finding the right packages when installed from the top.
             ./runtests.sh
@@ -183,6 +187,16 @@ jobs:
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
+
+  go18:
+    docker:
+      - image: circleci/golang:1.8.1
+    steps:
+      - checkout
+      - run:
+        name: Run GAPIC unit tests in Go 1.8
+        command: go test ./...
+    working_directory: /go/src/github.com/googleapis/api-client-staging
 
   sync_to_private:
     docker:
