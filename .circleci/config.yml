@@ -108,7 +108,7 @@ jobs:
       - run:
           name: Run GAPIC unit tests in OpenJDK 7.
           command: |
-            ./generated/java/gradlew -p ./generated/java clean test
+            ./generated/java/gradlew -p ./generated/java clean test --debug
     working_directory: /var/code/googleapis/
 
   openjdk8:
