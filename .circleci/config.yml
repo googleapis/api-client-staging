@@ -100,7 +100,7 @@ jobs:
 
   openjdk7:
     docker:
-      - image: openjdk:7
+      - image: openjdk:7u111
         environment:
           TERM: dumb
     steps:
@@ -108,7 +108,7 @@ jobs:
       - run:
           name: Run GAPIC unit tests in OpenJDK 7.
           command: |
-            ./generated/java/gradlew -p ./generated/java clean test --debug
+            ./generated/java/gradlew -p ./generated/java clean test
     working_directory: /var/code/googleapis/
 
   openjdk8:
