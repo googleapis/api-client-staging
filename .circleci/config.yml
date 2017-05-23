@@ -1,6 +1,60 @@
 ---
 version: 2.0
 jobs:
+  node4:
+    docker:
+      - image: node:4
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 4.
+          command: |
+            cd generated/nodejs/
+            
+            # Node 4 needs a special command because it is less forgiving
+            # about finding the right packages when installed from the top.
+            ./runtests.sh
+    working_directory: /var/code/googleapis/
+
+  node6:
+    docker:
+      - image: node:6
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 6.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
+  node7:
+    docker:
+      - image: node:7
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 7.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
   openjdk7:
     docker:
       - image: openjdk:7
@@ -9,9 +63,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run GAPIC unit tests on OpenJDK 7.
-          command: |
-            ./gradlew clean test
+          name: Run GAPIC unit tests in OpenJDK 7.
+          command: ./generated/java/gradlew -p ./generated/java clean test
     working_directory: /var/code/googleapis/
 
   openjdk8:
@@ -22,9 +75,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run GAPIC unit tests on OpenJDK 8.
-          command: |
-            ./gradlew clean test
+          name: Run GAPIC unit tests in OpenJDK 8.
+          command: ./generated/java/gradlew -p ./generated/java clean test
     working_directory: /var/code/googleapis/
 
   python27:
@@ -36,7 +88,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests on Python 2.7.
+          name: Run GAPIC unit tests in Python 2.7.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='2.7')"
@@ -51,7 +103,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests on Python 3.4.
+          name: Run GAPIC unit tests in Python 3.4.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.4')"
@@ -66,7 +118,7 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests on Python 3.5.
+          name: Run GAPIC unit tests in Python 3.5.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.5')"
@@ -81,13 +133,13 @@ jobs:
           name: Install nox.
           command: pip install nox-automation
       - run:
-          name: Run GAPIC unit tests on Python 3.6.
+          name: Run GAPIC unit tests in Python 3.6.
           command: |
             nox --noxfile generated/python/nox.py \
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
 
-  sync:
+  sync_to_private:
     docker:
       - image: googleapis/git
     steps:
@@ -104,6 +156,9 @@ workflows:
   version: 2
   tests:
     jobs:
+      - node4
+      - node6
+      - node7
       - openjdk7
       - openjdk8
       - python27
@@ -112,6 +167,9 @@ workflows:
       - python36
       - sync:
           requires:
+            - node4
+            - node6
+            - node7
             - openjdk7
             - openjdk8
             - python27
