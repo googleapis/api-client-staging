@@ -53,4 +53,28 @@ public interface ListServicesRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
+
+  /**
+   * <pre>
+   * Include services consumed by the specified consumer.
+   * The Google Service Management implementation accepts the following
+   * forms:
+   * - project:&lt;project_id&gt;
+   * </pre>
+   *
+   * <code>optional string consumer_id = 7;</code>
+   */
+  java.lang.String getConsumerId();
+  /**
+   * <pre>
+   * Include services consumed by the specified consumer.
+   * The Google Service Management implementation accepts the following
+   * forms:
+   * - project:&lt;project_id&gt;
+   * </pre>
+   *
+   * <code>optional string consumer_id = 7;</code>
+   */
+  com.google.protobuf.ByteString
+      getConsumerIdBytes();
 }

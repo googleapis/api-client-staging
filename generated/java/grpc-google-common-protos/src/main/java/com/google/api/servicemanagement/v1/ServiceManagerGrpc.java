@@ -198,7 +198,13 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Lists all managed services.
+     * Lists managed services.
+     * Returns all public services. For authenticated users, also returns all
+     * services the calling user has "servicemanagement.services.get" permission
+     * for.
+     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
+     * services enabled on the consumer. The `consumer_id` must have the format
+     * of "project:{PROJECT-ID}".
      * </pre>
      */
     public void listServices(com.google.api.servicemanagement.v1.ListServicesRequest request,
@@ -208,7 +214,8 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Gets a managed service.
+     * Gets a managed service. Authentication is required unless the service is
+     * public.
      * </pre>
      */
     public void getService(com.google.api.servicemanagement.v1.GetServiceRequest request,
@@ -230,7 +237,7 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Deletes a managed service. This method will change the serivce in the
+     * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
      * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
      * After 30 days, the service will be permanently deleted.
@@ -366,10 +373,11 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Enable a managed service for a project with default setting.
+     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
+     * for the project. See
+     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
+     * more information.
      * Operation&lt;response: EnableServiceResponse&gt;
-     * [google.rpc.Status][google.rpc.Status] errors may contain a
-     * [google.rpc.PreconditionFailure][] error detail.
      * </pre>
      */
     public void enableService(com.google.api.servicemanagement.v1.EnableServiceRequest request,
@@ -379,7 +387,9 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Disable a managed service for a project.
+     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
+     * be used for the project. It prevents accidental usage that may cause
+     * unexpected billing charges or security leaks.
      * Operation&lt;response: DisableServiceResponse&gt;
      * </pre>
      */
@@ -522,7 +532,13 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Lists all managed services.
+     * Lists managed services.
+     * Returns all public services. For authenticated users, also returns all
+     * services the calling user has "servicemanagement.services.get" permission
+     * for.
+     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
+     * services enabled on the consumer. The `consumer_id` must have the format
+     * of "project:{PROJECT-ID}".
      * </pre>
      */
     public void listServices(com.google.api.servicemanagement.v1.ListServicesRequest request,
@@ -533,7 +549,8 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Gets a managed service.
+     * Gets a managed service. Authentication is required unless the service is
+     * public.
      * </pre>
      */
     public void getService(com.google.api.servicemanagement.v1.GetServiceRequest request,
@@ -557,7 +574,7 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Deletes a managed service. This method will change the serivce in the
+     * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
      * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
      * After 30 days, the service will be permanently deleted.
@@ -703,10 +720,11 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Enable a managed service for a project with default setting.
+     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
+     * for the project. See
+     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
+     * more information.
      * Operation&lt;response: EnableServiceResponse&gt;
-     * [google.rpc.Status][google.rpc.Status] errors may contain a
-     * [google.rpc.PreconditionFailure][] error detail.
      * </pre>
      */
     public void enableService(com.google.api.servicemanagement.v1.EnableServiceRequest request,
@@ -717,7 +735,9 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Disable a managed service for a project.
+     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
+     * be used for the project. It prevents accidental usage that may cause
+     * unexpected billing charges or security leaks.
      * Operation&lt;response: DisableServiceResponse&gt;
      * </pre>
      */
@@ -751,7 +771,13 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Lists all managed services.
+     * Lists managed services.
+     * Returns all public services. For authenticated users, also returns all
+     * services the calling user has "servicemanagement.services.get" permission
+     * for.
+     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
+     * services enabled on the consumer. The `consumer_id` must have the format
+     * of "project:{PROJECT-ID}".
      * </pre>
      */
     public com.google.api.servicemanagement.v1.ListServicesResponse listServices(com.google.api.servicemanagement.v1.ListServicesRequest request) {
@@ -761,7 +787,8 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Gets a managed service.
+     * Gets a managed service. Authentication is required unless the service is
+     * public.
      * </pre>
      */
     public com.google.api.servicemanagement.v1.ManagedService getService(com.google.api.servicemanagement.v1.GetServiceRequest request) {
@@ -783,7 +810,7 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Deletes a managed service. This method will change the serivce in the
+     * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
      * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
      * After 30 days, the service will be permanently deleted.
@@ -919,10 +946,11 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Enable a managed service for a project with default setting.
+     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
+     * for the project. See
+     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
+     * more information.
      * Operation&lt;response: EnableServiceResponse&gt;
-     * [google.rpc.Status][google.rpc.Status] errors may contain a
-     * [google.rpc.PreconditionFailure][] error detail.
      * </pre>
      */
     public com.google.longrunning.Operation enableService(com.google.api.servicemanagement.v1.EnableServiceRequest request) {
@@ -932,7 +960,9 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Disable a managed service for a project.
+     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
+     * be used for the project. It prevents accidental usage that may cause
+     * unexpected billing charges or security leaks.
      * Operation&lt;response: DisableServiceResponse&gt;
      * </pre>
      */
@@ -965,7 +995,13 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Lists all managed services.
+     * Lists managed services.
+     * Returns all public services. For authenticated users, also returns all
+     * services the calling user has "servicemanagement.services.get" permission
+     * for.
+     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
+     * services enabled on the consumer. The `consumer_id` must have the format
+     * of "project:{PROJECT-ID}".
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.api.servicemanagement.v1.ListServicesResponse> listServices(
@@ -976,7 +1012,8 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Gets a managed service.
+     * Gets a managed service. Authentication is required unless the service is
+     * public.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.api.servicemanagement.v1.ManagedService> getService(
@@ -1000,7 +1037,7 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Deletes a managed service. This method will change the serivce in the
+     * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
      * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
      * After 30 days, the service will be permanently deleted.
@@ -1146,10 +1183,11 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Enable a managed service for a project with default setting.
+     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
+     * for the project. See
+     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
+     * more information.
      * Operation&lt;response: EnableServiceResponse&gt;
-     * [google.rpc.Status][google.rpc.Status] errors may contain a
-     * [google.rpc.PreconditionFailure][] error detail.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> enableService(
@@ -1160,7 +1198,9 @@ public final class ServiceManagerGrpc {
 
     /**
      * <pre>
-     * Disable a managed service for a project.
+     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
+     * be used for the project. It prevents accidental usage that may cause
+     * unexpected billing charges or security leaks.
      * Operation&lt;response: DisableServiceResponse&gt;
      * </pre>
      */

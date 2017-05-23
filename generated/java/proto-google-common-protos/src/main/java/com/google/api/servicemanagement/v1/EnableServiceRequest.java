@@ -134,7 +134,8 @@ public  final class EnableServiceRequest extends
    * The identity of consumer resource which service enablement will be
    * applied to.
    * The Google Service Management implementation accepts the following
-   * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+   * forms:
+   * - "project:&lt;project_id&gt;"
    * Note: this is made compatible with
    * google.api.servicecontrol.v1.Operation.consumer_id.
    * </pre>
@@ -158,7 +159,8 @@ public  final class EnableServiceRequest extends
    * The identity of consumer resource which service enablement will be
    * applied to.
    * The Google Service Management implementation accepts the following
-   * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+   * forms:
+   * - "project:&lt;project_id&gt;"
    * Note: this is made compatible with
    * google.api.servicecontrol.v1.Operation.consumer_id.
    * </pre>
@@ -569,7 +571,8 @@ public  final class EnableServiceRequest extends
      * The identity of consumer resource which service enablement will be
      * applied to.
      * The Google Service Management implementation accepts the following
-     * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+     * forms:
+     * - "project:&lt;project_id&gt;"
      * Note: this is made compatible with
      * google.api.servicecontrol.v1.Operation.consumer_id.
      * </pre>
@@ -593,7 +596,8 @@ public  final class EnableServiceRequest extends
      * The identity of consumer resource which service enablement will be
      * applied to.
      * The Google Service Management implementation accepts the following
-     * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+     * forms:
+     * - "project:&lt;project_id&gt;"
      * Note: this is made compatible with
      * google.api.servicecontrol.v1.Operation.consumer_id.
      * </pre>
@@ -618,7 +622,8 @@ public  final class EnableServiceRequest extends
      * The identity of consumer resource which service enablement will be
      * applied to.
      * The Google Service Management implementation accepts the following
-     * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+     * forms:
+     * - "project:&lt;project_id&gt;"
      * Note: this is made compatible with
      * google.api.servicecontrol.v1.Operation.consumer_id.
      * </pre>
@@ -640,7 +645,8 @@ public  final class EnableServiceRequest extends
      * The identity of consumer resource which service enablement will be
      * applied to.
      * The Google Service Management implementation accepts the following
-     * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+     * forms:
+     * - "project:&lt;project_id&gt;"
      * Note: this is made compatible with
      * google.api.servicecontrol.v1.Operation.consumer_id.
      * </pre>
@@ -658,7 +664,8 @@ public  final class EnableServiceRequest extends
      * The identity of consumer resource which service enablement will be
      * applied to.
      * The Google Service Management implementation accepts the following
-     * forms: "project:&lt;project_id&gt;", "project_number:&lt;project_number&gt;".
+     * forms:
+     * - "project:&lt;project_id&gt;"
      * Note: this is made compatible with
      * google.api.servicecontrol.v1.Operation.consumer_id.
      * </pre>

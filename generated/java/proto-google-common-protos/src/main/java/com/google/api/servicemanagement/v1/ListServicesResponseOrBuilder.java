@@ -9,7 +9,7 @@ public interface ListServicesResponseOrBuilder extends
 
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -18,7 +18,7 @@ public interface ListServicesResponseOrBuilder extends
       getServicesList();
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -26,7 +26,7 @@ public interface ListServicesResponseOrBuilder extends
   com.google.api.servicemanagement.v1.ManagedService getServices(int index);
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -34,7 +34,7 @@ public interface ListServicesResponseOrBuilder extends
   int getServicesCount();
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -43,7 +43,7 @@ public interface ListServicesResponseOrBuilder extends
       getServicesOrBuilderList();
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>

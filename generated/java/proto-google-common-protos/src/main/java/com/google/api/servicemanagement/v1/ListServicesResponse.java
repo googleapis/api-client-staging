@@ -94,7 +94,7 @@ public  final class ListServicesResponse extends
   private java.util.List<com.google.api.servicemanagement.v1.ManagedService> services_;
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -104,7 +104,7 @@ public  final class ListServicesResponse extends
   }
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -115,7 +115,7 @@ public  final class ListServicesResponse extends
   }
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -125,7 +125,7 @@ public  final class ListServicesResponse extends
   }
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -135,7 +135,7 @@ public  final class ListServicesResponse extends
   }
   /**
    * <pre>
-   * The results of the query.
+   * The returned services will only have the name field set.
    * </pre>
    *
    * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -533,7 +533,7 @@ public  final class ListServicesResponse extends
 
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -547,7 +547,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -561,7 +561,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -575,7 +575,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -596,7 +596,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -614,7 +614,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -634,7 +634,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -655,7 +655,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -673,7 +673,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -691,7 +691,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -710,7 +710,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -727,7 +727,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -744,7 +744,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -755,7 +755,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -769,7 +769,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -784,7 +784,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -795,7 +795,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
@@ -807,7 +807,7 @@ public  final class ListServicesResponse extends
     }
     /**
      * <pre>
-     * The results of the query.
+     * The returned services will only have the name field set.
      * </pre>
      *
      * <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>

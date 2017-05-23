@@ -53,4 +53,36 @@ public interface ListServiceRolloutsRequestOrBuilder extends
    * <code>optional int32 page_size = 3;</code>
    */
   int getPageSize();
+
+  /**
+   * <pre>
+   * Use `filter` to return subset of rollouts.
+   * The following filters are supported:
+   *   -- To limit the results to only those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+   *      use filter='status=SUCCESS'
+   *   -- To limit the results to those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+   *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+   * </pre>
+   *
+   * <code>optional string filter = 4;</code>
+   */
+  java.lang.String getFilter();
+  /**
+   * <pre>
+   * Use `filter` to return subset of rollouts.
+   * The following filters are supported:
+   *   -- To limit the results to only those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+   *      use filter='status=SUCCESS'
+   *   -- To limit the results to those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+   *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+   * </pre>
+   *
+   * <code>optional string filter = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getFilterBytes();
 }

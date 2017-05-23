@@ -22,6 +22,7 @@ public  final class ListServicesRequest extends
     producerProjectId_ = "";
     pageSize_ = 0;
     pageToken_ = "";
+    consumerId_ = "";
   }
 
   @java.lang.Override
@@ -64,6 +65,12 @@ public  final class ListServicesRequest extends
             java.lang.String s = input.readStringRequireUtf8();
 
             pageToken_ = s;
+            break;
+          }
+          case 58: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            consumerId_ = s;
             break;
           }
         }
@@ -188,6 +195,54 @@ public  final class ListServicesRequest extends
     }
   }
 
+  public static final int CONSUMER_ID_FIELD_NUMBER = 7;
+  private volatile java.lang.Object consumerId_;
+  /**
+   * <pre>
+   * Include services consumed by the specified consumer.
+   * The Google Service Management implementation accepts the following
+   * forms:
+   * - project:&lt;project_id&gt;
+   * </pre>
+   *
+   * <code>optional string consumer_id = 7;</code>
+   */
+  public java.lang.String getConsumerId() {
+    java.lang.Object ref = consumerId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      consumerId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Include services consumed by the specified consumer.
+   * The Google Service Management implementation accepts the following
+   * forms:
+   * - project:&lt;project_id&gt;
+   * </pre>
+   *
+   * <code>optional string consumer_id = 7;</code>
+   */
+  public com.google.protobuf.ByteString
+      getConsumerIdBytes() {
+    java.lang.Object ref = consumerId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      consumerId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -209,6 +264,9 @@ public  final class ListServicesRequest extends
     if (!getPageTokenBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, pageToken_);
     }
+    if (!getConsumerIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, consumerId_);
+    }
   }
 
   public int getSerializedSize() {
@@ -225,6 +283,9 @@ public  final class ListServicesRequest extends
     }
     if (!getPageTokenBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, pageToken_);
+    }
+    if (!getConsumerIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, consumerId_);
     }
     memoizedSize = size;
     return size;
@@ -248,6 +309,8 @@ public  final class ListServicesRequest extends
         == other.getPageSize());
     result = result && getPageToken()
         .equals(other.getPageToken());
+    result = result && getConsumerId()
+        .equals(other.getConsumerId());
     return result;
   }
 
@@ -264,6 +327,8 @@ public  final class ListServicesRequest extends
     hash = (53 * hash) + getPageSize();
     hash = (37 * hash) + PAGE_TOKEN_FIELD_NUMBER;
     hash = (53 * hash) + getPageToken().hashCode();
+    hash = (37 * hash) + CONSUMER_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getConsumerId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -392,6 +457,8 @@ public  final class ListServicesRequest extends
 
       pageToken_ = "";
 
+      consumerId_ = "";
+
       return this;
     }
 
@@ -417,6 +484,7 @@ public  final class ListServicesRequest extends
       result.producerProjectId_ = producerProjectId_;
       result.pageSize_ = pageSize_;
       result.pageToken_ = pageToken_;
+      result.consumerId_ = consumerId_;
       onBuilt();
       return result;
     }
@@ -467,6 +535,10 @@ public  final class ListServicesRequest extends
       }
       if (!other.getPageToken().isEmpty()) {
         pageToken_ = other.pageToken_;
+        onChanged();
+      }
+      if (!other.getConsumerId().isEmpty()) {
+        consumerId_ = other.consumerId_;
         onChanged();
       }
       onChanged();
@@ -712,6 +784,110 @@ public  final class ListServicesRequest extends
   checkByteStringIsUtf8(value);
       
       pageToken_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object consumerId_ = "";
+    /**
+     * <pre>
+     * Include services consumed by the specified consumer.
+     * The Google Service Management implementation accepts the following
+     * forms:
+     * - project:&lt;project_id&gt;
+     * </pre>
+     *
+     * <code>optional string consumer_id = 7;</code>
+     */
+    public java.lang.String getConsumerId() {
+      java.lang.Object ref = consumerId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        consumerId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Include services consumed by the specified consumer.
+     * The Google Service Management implementation accepts the following
+     * forms:
+     * - project:&lt;project_id&gt;
+     * </pre>
+     *
+     * <code>optional string consumer_id = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConsumerIdBytes() {
+      java.lang.Object ref = consumerId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        consumerId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Include services consumed by the specified consumer.
+     * The Google Service Management implementation accepts the following
+     * forms:
+     * - project:&lt;project_id&gt;
+     * </pre>
+     *
+     * <code>optional string consumer_id = 7;</code>
+     */
+    public Builder setConsumerId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      consumerId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Include services consumed by the specified consumer.
+     * The Google Service Management implementation accepts the following
+     * forms:
+     * - project:&lt;project_id&gt;
+     * </pre>
+     *
+     * <code>optional string consumer_id = 7;</code>
+     */
+    public Builder clearConsumerId() {
+      
+      consumerId_ = getDefaultInstance().getConsumerId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Include services consumed by the specified consumer.
+     * The Google Service Management implementation accepts the following
+     * forms:
+     * - project:&lt;project_id&gt;
+     * </pre>
+     *
+     * <code>optional string consumer_id = 7;</code>
+     */
+    public Builder setConsumerIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      consumerId_ = value;
       onChanged();
       return this;
     }

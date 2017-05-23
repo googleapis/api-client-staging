@@ -130,129 +130,132 @@ public final class ServiceManagerProto {
     java.lang.String[] descriptorData = {
       "\n4google/api/servicemanagement/v1/servic" +
       "emanager.proto\022\037google.api.servicemanage" +
-      "ment.v1\032\034google/api/annotations.proto\032\030g" +
-      "oogle/api/service.proto\032/google/api/serv" +
-      "icemanagement/v1/resources.proto\032#google" +
-      "/longrunning/operations.proto\032\031google/pr" +
-      "otobuf/any.proto\032\033google/protobuf/empty." +
-      "proto\032 google/protobuf/field_mask.proto\032" +
-      "\034google/protobuf/struct.proto\032\027google/rp" +
-      "c/status.proto\"Y\n\023ListServicesRequest\022\033\n",
-      "\023producer_project_id\030\001 \001(\t\022\021\n\tpage_size\030" +
-      "\005 \001(\005\022\022\n\npage_token\030\006 \001(\t\"r\n\024ListService" +
-      "sResponse\022A\n\010services\030\001 \003(\0132/.google.api" +
-      ".servicemanagement.v1.ManagedService\022\027\n\017" +
-      "next_page_token\030\002 \001(\t\")\n\021GetServiceReque" +
-      "st\022\024\n\014service_name\030\001 \001(\t\"X\n\024CreateServic" +
-      "eRequest\022@\n\007service\030\001 \001(\0132/.google.api.s" +
-      "ervicemanagement.v1.ManagedService\",\n\024De" +
-      "leteServiceRequest\022\024\n\014service_name\030\001 \001(\t" +
-      "\".\n\026UndeleteServiceRequest\022\024\n\014service_na",
-      "me\030\001 \001(\t\"[\n\027UndeleteServiceResponse\022@\n\007s" +
-      "ervice\030\001 \001(\0132/.google.api.servicemanagem" +
-      "ent.v1.ManagedService\"B\n\027GetServiceConfi" +
-      "gRequest\022\024\n\014service_name\030\001 \001(\t\022\021\n\tconfig" +
-      "_id\030\002 \001(\t\"X\n\031ListServiceConfigsRequest\022\024" +
-      "\n\014service_name\030\001 \001(\t\022\022\n\npage_token\030\002 \001(\t" +
-      "\022\021\n\tpage_size\030\003 \001(\005\"c\n\032ListServiceConfig" +
-      "sResponse\022,\n\017service_configs\030\001 \003(\0132\023.goo" +
-      "gle.api.Service\022\027\n\017next_page_token\030\002 \001(\t" +
-      "\"_\n\032CreateServiceConfigRequest\022\024\n\014servic",
-      "e_name\030\001 \001(\t\022+\n\016service_config\030\002 \001(\0132\023.g" +
-      "oogle.api.Service\"\216\001\n\031SubmitConfigSource" +
-      "Request\022\024\n\014service_name\030\001 \001(\t\022D\n\rconfig_" +
-      "source\030\002 \001(\0132-.google.api.servicemanagem" +
-      "ent.v1.ConfigSource\022\025\n\rvalidate_only\030\003 \001" +
-      "(\010\"I\n\032SubmitConfigSourceResponse\022+\n\016serv" +
-      "ice_config\030\001 \001(\0132\023.google.api.Service\"n\n" +
-      "\033CreateServiceRolloutRequest\022\024\n\014service_" +
-      "name\030\001 \001(\t\0229\n\007rollout\030\002 \001(\0132(.google.api" +
-      ".servicemanagement.v1.Rollout\"Y\n\032ListSer",
-      "viceRolloutsRequest\022\024\n\014service_name\030\001 \001(" +
-      "\t\022\022\n\npage_token\030\002 \001(\t\022\021\n\tpage_size\030\003 \001(\005" +
-      "\"r\n\033ListServiceRolloutsResponse\022:\n\010rollo" +
-      "uts\030\001 \003(\0132(.google.api.servicemanagement" +
-      ".v1.Rollout\022\027\n\017next_page_token\030\002 \001(\t\"D\n\030" +
-      "GetServiceRolloutRequest\022\024\n\014service_name" +
-      "\030\001 \001(\t\022\022\n\nrollout_id\030\002 \001(\t\"A\n\024EnableServ" +
-      "iceRequest\022\024\n\014service_name\030\001 \001(\t\022\023\n\013cons" +
-      "umer_id\030\002 \001(\t\"B\n\025DisableServiceRequest\022\024" +
-      "\n\014service_name\030\001 \001(\t\022\023\n\013consumer_id\030\002 \001(",
-      "\t\"q\n\033GenerateConfigReportRequest\022(\n\nnew_" +
-      "config\030\001 \001(\0132\024.google.protobuf.Any\022(\n\nol" +
-      "d_config\030\002 \001(\0132\024.google.protobuf.Any\"\311\001\n" +
-      "\034GenerateConfigReportResponse\022\024\n\014service" +
-      "_name\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022E\n\016change_report" +
-      "s\030\003 \003(\0132-.google.api.servicemanagement.v" +
-      "1.ChangeReport\022@\n\013diagnostics\030\004 \003(\0132+.go" +
-      "ogle.api.servicemanagement.v1.Diagnostic" +
-      "2\256\023\n\016ServiceManager\022\221\001\n\014ListServices\0224.g" +
-      "oogle.api.servicemanagement.v1.ListServi",
-      "cesRequest\0325.google.api.servicemanagemen" +
-      "t.v1.ListServicesResponse\"\024\202\323\344\223\002\016\022\014/v1/s" +
-      "ervices\022\226\001\n\nGetService\0222.google.api.serv" +
-      "icemanagement.v1.GetServiceRequest\032/.goo" +
-      "gle.api.servicemanagement.v1.ManagedServ" +
-      "ice\"#\202\323\344\223\002\035\022\033/v1/services/{service_name}" +
-      "\022\204\001\n\rCreateService\0225.google.api.servicem" +
-      "anagement.v1.CreateServiceRequest\032\035.goog" +
-      "le.longrunning.Operation\"\035\202\323\344\223\002\027\"\014/v1/se" +
-      "rvices:\007service\022\212\001\n\rDeleteService\0225.goog",
-      "le.api.servicemanagement.v1.DeleteServic" +
-      "eRequest\032\035.google.longrunning.Operation\"" +
-      "#\202\323\344\223\002\035*\033/v1/services/{service_name}\022\227\001\n" +
-      "\017UndeleteService\0227.google.api.serviceman" +
-      "agement.v1.UndeleteServiceRequest\032\035.goog" +
-      "le.longrunning.Operation\",\202\323\344\223\002&\"$/v1/se" +
-      "rvices/{service_name}:undelete\022\272\001\n\022ListS" +
-      "erviceConfigs\022:.google.api.servicemanage" +
-      "ment.v1.ListServiceConfigsRequest\032;.goog" +
-      "le.api.servicemanagement.v1.ListServiceC",
-      "onfigsResponse\"+\202\323\344\223\002%\022#/v1/services/{se" +
-      "rvice_name}/configs\022\232\001\n\020GetServiceConfig" +
-      "\0228.google.api.servicemanagement.v1.GetSe" +
-      "rviceConfigRequest\032\023.google.api.Service\"" +
-      "7\202\323\344\223\0021\022//v1/services/{service_name}/con" +
-      "figs/{config_id}\022\244\001\n\023CreateServiceConfig" +
-      "\022;.google.api.servicemanagement.v1.Creat" +
-      "eServiceConfigRequest\032\023.google.api.Servi" +
-      "ce\";\202\323\344\223\0025\"#/v1/services/{service_name}/" +
-      "configs:\016service_config\022\246\001\n\022SubmitConfig",
-      "Source\022:.google.api.servicemanagement.v1" +
-      ".SubmitConfigSourceRequest\032\035.google.long" +
-      "running.Operation\"5\202\323\344\223\002/\"*/v1/services/" +
-      "{service_name}/configs:submit:\001*\022\276\001\n\023Lis" +
-      "tServiceRollouts\022;.google.api.serviceman" +
-      "agement.v1.ListServiceRolloutsRequest\032<." +
-      "google.api.servicemanagement.v1.ListServ" +
-      "iceRolloutsResponse\",\202\323\344\223\002&\022$/v1/service" +
-      "s/{service_name}/rollouts\022\263\001\n\021GetService" +
-      "Rollout\0229.google.api.servicemanagement.v",
-      "1.GetServiceRolloutRequest\032(.google.api." +
-      "servicemanagement.v1.Rollout\"9\202\323\344\223\0023\0221/v" +
-      "1/services/{service_name}/rollouts/{roll" +
-      "out_id}\022\252\001\n\024CreateServiceRollout\022<.googl" +
-      "e.api.servicemanagement.v1.CreateService" +
-      "RolloutRequest\032\035.google.longrunning.Oper" +
-      "ation\"5\202\323\344\223\002/\"$/v1/services/{service_nam" +
-      "e}/rollouts:\007rollout\022\301\001\n\024GenerateConfigR" +
-      "eport\022<.google.api.servicemanagement.v1." +
-      "GenerateConfigReportRequest\032=.google.api",
-      ".servicemanagement.v1.GenerateConfigRepo" +
-      "rtResponse\",\202\323\344\223\002&\"!/v1/services:generat" +
-      "eConfigReport:\001*\022\224\001\n\rEnableService\0225.goo" +
-      "gle.api.servicemanagement.v1.EnableServi" +
-      "ceRequest\032\035.google.longrunning.Operation" +
-      "\"-\202\323\344\223\002\'\"\"/v1/services/{service_name}:en" +
-      "able:\001*\022\227\001\n\016DisableService\0226.google.api." +
-      "servicemanagement.v1.DisableServiceReque" +
-      "st\032\035.google.longrunning.Operation\".\202\323\344\223\002" +
-      "(\"#/v1/services/{service_name}:disable:\001",
-      "*B\225\001\n#com.google.api.servicemanagement.v" +
-      "1B\023ServiceManagerProtoP\001ZPgoogle.golang." +
-      "org/genproto/googleapis/api/servicemanag" +
-      "ement/v1;servicemanagement\242\002\004GASMb\006proto" +
-      "3"
+      "ment.v1\032\034google/api/annotations.proto\032\025g" +
+      "oogle/api/auth.proto\032\030google/api/service" +
+      ".proto\032/google/api/servicemanagement/v1/" +
+      "resources.proto\032#google/longrunning/oper" +
+      "ations.proto\032\031google/protobuf/any.proto\032" +
+      " google/protobuf/field_mask.proto\032\034googl" +
+      "e/protobuf/struct.proto\032\027google/rpc/stat" +
+      "us.proto\"n\n\023ListServicesRequest\022\033\n\023produ",
+      "cer_project_id\030\001 \001(\t\022\021\n\tpage_size\030\005 \001(\005\022" +
+      "\022\n\npage_token\030\006 \001(\t\022\023\n\013consumer_id\030\007 \001(\t" +
+      "\"r\n\024ListServicesResponse\022A\n\010services\030\001 \003" +
+      "(\0132/.google.api.servicemanagement.v1.Man" +
+      "agedService\022\027\n\017next_page_token\030\002 \001(\t\")\n\021" +
+      "GetServiceRequest\022\024\n\014service_name\030\001 \001(\t\"" +
+      "X\n\024CreateServiceRequest\022@\n\007service\030\001 \001(\013" +
+      "2/.google.api.servicemanagement.v1.Manag" +
+      "edService\",\n\024DeleteServiceRequest\022\024\n\014ser" +
+      "vice_name\030\001 \001(\t\".\n\026UndeleteServiceReques",
+      "t\022\024\n\014service_name\030\001 \001(\t\"[\n\027UndeleteServi" +
+      "ceResponse\022@\n\007service\030\001 \001(\0132/.google.api" +
+      ".servicemanagement.v1.ManagedService\"\270\001\n" +
+      "\027GetServiceConfigRequest\022\024\n\014service_name" +
+      "\030\001 \001(\t\022\021\n\tconfig_id\030\002 \001(\t\022Q\n\004view\030\003 \001(\0162" +
+      "C.google.api.servicemanagement.v1.GetSer" +
+      "viceConfigRequest.ConfigView\"!\n\nConfigVi" +
+      "ew\022\t\n\005BASIC\020\000\022\010\n\004FULL\020\001\"X\n\031ListServiceCo" +
+      "nfigsRequest\022\024\n\014service_name\030\001 \001(\t\022\022\n\npa" +
+      "ge_token\030\002 \001(\t\022\021\n\tpage_size\030\003 \001(\005\"c\n\032Lis",
+      "tServiceConfigsResponse\022,\n\017service_confi" +
+      "gs\030\001 \003(\0132\023.google.api.Service\022\027\n\017next_pa" +
+      "ge_token\030\002 \001(\t\"_\n\032CreateServiceConfigReq" +
+      "uest\022\024\n\014service_name\030\001 \001(\t\022+\n\016service_co" +
+      "nfig\030\002 \001(\0132\023.google.api.Service\"\216\001\n\031Subm" +
+      "itConfigSourceRequest\022\024\n\014service_name\030\001 " +
+      "\001(\t\022D\n\rconfig_source\030\002 \001(\0132-.google.api." +
+      "servicemanagement.v1.ConfigSource\022\025\n\rval" +
+      "idate_only\030\003 \001(\010\"I\n\032SubmitConfigSourceRe" +
+      "sponse\022+\n\016service_config\030\001 \001(\0132\023.google.",
+      "api.Service\"n\n\033CreateServiceRolloutReque" +
+      "st\022\024\n\014service_name\030\001 \001(\t\0229\n\007rollout\030\002 \001(" +
+      "\0132(.google.api.servicemanagement.v1.Roll" +
+      "out\"i\n\032ListServiceRolloutsRequest\022\024\n\014ser" +
+      "vice_name\030\001 \001(\t\022\022\n\npage_token\030\002 \001(\t\022\021\n\tp" +
+      "age_size\030\003 \001(\005\022\016\n\006filter\030\004 \001(\t\"r\n\033ListSe" +
+      "rviceRolloutsResponse\022:\n\010rollouts\030\001 \003(\0132" +
+      "(.google.api.servicemanagement.v1.Rollou" +
+      "t\022\027\n\017next_page_token\030\002 \001(\t\"D\n\030GetService" +
+      "RolloutRequest\022\024\n\014service_name\030\001 \001(\t\022\022\n\n",
+      "rollout_id\030\002 \001(\t\"A\n\024EnableServiceRequest" +
+      "\022\024\n\014service_name\030\001 \001(\t\022\023\n\013consumer_id\030\002 " +
+      "\001(\t\"B\n\025DisableServiceRequest\022\024\n\014service_" +
+      "name\030\001 \001(\t\022\023\n\013consumer_id\030\002 \001(\t\"q\n\033Gener" +
+      "ateConfigReportRequest\022(\n\nnew_config\030\001 \001" +
+      "(\0132\024.google.protobuf.Any\022(\n\nold_config\030\002" +
+      " \001(\0132\024.google.protobuf.Any\"\311\001\n\034GenerateC" +
+      "onfigReportResponse\022\024\n\014service_name\030\001 \001(" +
+      "\t\022\n\n\002id\030\002 \001(\t\022E\n\016change_reports\030\003 \003(\0132-." +
+      "google.api.servicemanagement.v1.ChangeRe",
+      "port\022@\n\013diagnostics\030\004 \003(\0132+.google.api.s" +
+      "ervicemanagement.v1.Diagnostic2\256\023\n\016Servi" +
+      "ceManager\022\221\001\n\014ListServices\0224.google.api." +
+      "servicemanagement.v1.ListServicesRequest" +
+      "\0325.google.api.servicemanagement.v1.ListS" +
+      "ervicesResponse\"\024\202\323\344\223\002\016\022\014/v1/services\022\226\001" +
+      "\n\nGetService\0222.google.api.servicemanagem" +
+      "ent.v1.GetServiceRequest\032/.google.api.se" +
+      "rvicemanagement.v1.ManagedService\"#\202\323\344\223\002" +
+      "\035\022\033/v1/services/{service_name}\022\204\001\n\rCreat",
+      "eService\0225.google.api.servicemanagement." +
+      "v1.CreateServiceRequest\032\035.google.longrun" +
+      "ning.Operation\"\035\202\323\344\223\002\027\"\014/v1/services:\007se" +
+      "rvice\022\212\001\n\rDeleteService\0225.google.api.ser" +
+      "vicemanagement.v1.DeleteServiceRequest\032\035" +
+      ".google.longrunning.Operation\"#\202\323\344\223\002\035*\033/" +
+      "v1/services/{service_name}\022\227\001\n\017UndeleteS" +
+      "ervice\0227.google.api.servicemanagement.v1" +
+      ".UndeleteServiceRequest\032\035.google.longrun" +
+      "ning.Operation\",\202\323\344\223\002&\"$/v1/services/{se",
+      "rvice_name}:undelete\022\272\001\n\022ListServiceConf" +
+      "igs\022:.google.api.servicemanagement.v1.Li" +
+      "stServiceConfigsRequest\032;.google.api.ser" +
+      "vicemanagement.v1.ListServiceConfigsResp" +
+      "onse\"+\202\323\344\223\002%\022#/v1/services/{service_name" +
+      "}/configs\022\232\001\n\020GetServiceConfig\0228.google." +
+      "api.servicemanagement.v1.GetServiceConfi" +
+      "gRequest\032\023.google.api.Service\"7\202\323\344\223\0021\022//" +
+      "v1/services/{service_name}/configs/{conf" +
+      "ig_id}\022\244\001\n\023CreateServiceConfig\022;.google.",
+      "api.servicemanagement.v1.CreateServiceCo" +
+      "nfigRequest\032\023.google.api.Service\";\202\323\344\223\0025" +
+      "\"#/v1/services/{service_name}/configs:\016s" +
+      "ervice_config\022\246\001\n\022SubmitConfigSource\022:.g" +
+      "oogle.api.servicemanagement.v1.SubmitCon" +
+      "figSourceRequest\032\035.google.longrunning.Op" +
+      "eration\"5\202\323\344\223\002/\"*/v1/services/{service_n" +
+      "ame}/configs:submit:\001*\022\276\001\n\023ListServiceRo" +
+      "llouts\022;.google.api.servicemanagement.v1" +
+      ".ListServiceRolloutsRequest\032<.google.api",
+      ".servicemanagement.v1.ListServiceRollout" +
+      "sResponse\",\202\323\344\223\002&\022$/v1/services/{service" +
+      "_name}/rollouts\022\263\001\n\021GetServiceRollout\0229." +
+      "google.api.servicemanagement.v1.GetServi" +
+      "ceRolloutRequest\032(.google.api.serviceman" +
+      "agement.v1.Rollout\"9\202\323\344\223\0023\0221/v1/services" +
+      "/{service_name}/rollouts/{rollout_id}\022\252\001" +
+      "\n\024CreateServiceRollout\022<.google.api.serv" +
+      "icemanagement.v1.CreateServiceRolloutReq" +
+      "uest\032\035.google.longrunning.Operation\"5\202\323\344",
+      "\223\002/\"$/v1/services/{service_name}/rollout" +
+      "s:\007rollout\022\301\001\n\024GenerateConfigReport\022<.go" +
+      "ogle.api.servicemanagement.v1.GenerateCo" +
+      "nfigReportRequest\032=.google.api.servicema" +
+      "nagement.v1.GenerateConfigReportResponse" +
+      "\",\202\323\344\223\002&\"!/v1/services:generateConfigRep" +
+      "ort:\001*\022\224\001\n\rEnableService\0225.google.api.se" +
+      "rvicemanagement.v1.EnableServiceRequest\032" +
+      "\035.google.longrunning.Operation\"-\202\323\344\223\002\'\"\"" +
+      "/v1/services/{service_name}:enable:\001*\022\227\001",
+      "\n\016DisableService\0226.google.api.serviceman" +
+      "agement.v1.DisableServiceRequest\032\035.googl" +
+      "e.longrunning.Operation\".\202\323\344\223\002(\"#/v1/ser" +
+      "vices/{service_name}:disable:\001*B\225\001\n#com." +
+      "google.api.servicemanagement.v1B\023Service" +
+      "ManagerProtoP\001ZPgoogle.golang.org/genpro" +
+      "to/googleapis/api/servicemanagement/v1;s" +
+      "ervicemanagement\242\002\004GASMb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -266,11 +269,11 @@ public final class ServiceManagerProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.api.AnnotationsProto.getDescriptor(),
+          com.google.api.AuthProto.getDescriptor(),
           com.google.api.ServiceProto.getDescriptor(),
           com.google.api.servicemanagement.v1.ResourcesProto.getDescriptor(),
           com.google.longrunning.OperationsProto.getDescriptor(),
           com.google.protobuf.AnyProto.getDescriptor(),
-          com.google.protobuf.EmptyProto.getDescriptor(),
           com.google.protobuf.FieldMaskProto.getDescriptor(),
           com.google.protobuf.StructProto.getDescriptor(),
           com.google.rpc.StatusProto.getDescriptor(),
@@ -280,7 +283,7 @@ public final class ServiceManagerProto {
     internal_static_google_api_servicemanagement_v1_ListServicesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_api_servicemanagement_v1_ListServicesRequest_descriptor,
-        new java.lang.String[] { "ProducerProjectId", "PageSize", "PageToken", });
+        new java.lang.String[] { "ProducerProjectId", "PageSize", "PageToken", "ConsumerId", });
     internal_static_google_api_servicemanagement_v1_ListServicesResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_google_api_servicemanagement_v1_ListServicesResponse_fieldAccessorTable = new
@@ -322,7 +325,7 @@ public final class ServiceManagerProto {
     internal_static_google_api_servicemanagement_v1_GetServiceConfigRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_api_servicemanagement_v1_GetServiceConfigRequest_descriptor,
-        new java.lang.String[] { "ServiceName", "ConfigId", });
+        new java.lang.String[] { "ServiceName", "ConfigId", "View", });
     internal_static_google_api_servicemanagement_v1_ListServiceConfigsRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_google_api_servicemanagement_v1_ListServiceConfigsRequest_fieldAccessorTable = new
@@ -364,7 +367,7 @@ public final class ServiceManagerProto {
     internal_static_google_api_servicemanagement_v1_ListServiceRolloutsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_api_servicemanagement_v1_ListServiceRolloutsRequest_descriptor,
-        new java.lang.String[] { "ServiceName", "PageToken", "PageSize", });
+        new java.lang.String[] { "ServiceName", "PageToken", "PageSize", "Filter", });
     internal_static_google_api_servicemanagement_v1_ListServiceRolloutsResponse_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_google_api_servicemanagement_v1_ListServiceRolloutsResponse_fieldAccessorTable = new
@@ -407,11 +410,11 @@ public final class ServiceManagerProto {
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     com.google.api.AnnotationsProto.getDescriptor();
+    com.google.api.AuthProto.getDescriptor();
     com.google.api.ServiceProto.getDescriptor();
     com.google.api.servicemanagement.v1.ResourcesProto.getDescriptor();
     com.google.longrunning.OperationsProto.getDescriptor();
     com.google.protobuf.AnyProto.getDescriptor();
-    com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.FieldMaskProto.getDescriptor();
     com.google.protobuf.StructProto.getDescriptor();
     com.google.rpc.StatusProto.getDescriptor();

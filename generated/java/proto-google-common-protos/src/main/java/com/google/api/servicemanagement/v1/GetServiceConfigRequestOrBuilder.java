@@ -28,12 +28,39 @@ public interface GetServiceConfigRequestOrBuilder extends
       getServiceNameBytes();
 
   /**
+   * <pre>
+   * The id of the service configuration resource.
+   * </pre>
+   *
    * <code>optional string config_id = 2;</code>
    */
   java.lang.String getConfigId();
   /**
+   * <pre>
+   * The id of the service configuration resource.
+   * </pre>
+   *
    * <code>optional string config_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getConfigIdBytes();
+
+  /**
+   * <pre>
+   * Specifies which parts of the Service Config should be returned in the
+   * response.
+   * </pre>
+   *
+   * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+   */
+  int getViewValue();
+  /**
+   * <pre>
+   * Specifies which parts of the Service Config should be returned in the
+   * response.
+   * </pre>
+   *
+   * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+   */
+  com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView getView();
 }

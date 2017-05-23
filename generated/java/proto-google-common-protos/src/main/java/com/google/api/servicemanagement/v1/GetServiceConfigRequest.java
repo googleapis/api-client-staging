@@ -21,6 +21,7 @@ public  final class GetServiceConfigRequest extends
   private GetServiceConfigRequest() {
     serviceName_ = "";
     configId_ = "";
+    view_ = 0;
   }
 
   @java.lang.Override
@@ -60,6 +61,12 @@ public  final class GetServiceConfigRequest extends
             configId_ = s;
             break;
           }
+          case 24: {
+            int rawValue = input.readEnum();
+
+            view_ = rawValue;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -81,6 +88,126 @@ public  final class GetServiceConfigRequest extends
     return com.google.api.servicemanagement.v1.ServiceManagerProto.internal_static_google_api_servicemanagement_v1_GetServiceConfigRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.google.api.servicemanagement.v1.GetServiceConfigRequest.class, com.google.api.servicemanagement.v1.GetServiceConfigRequest.Builder.class);
+  }
+
+  /**
+   * Protobuf enum {@code google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView}
+   */
+  public enum ConfigView
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * Server response includes all fields except SourceInfo.
+     * </pre>
+     *
+     * <code>BASIC = 0;</code>
+     */
+    BASIC(0),
+    /**
+     * <pre>
+     * Server response includes all fields including SourceInfo.
+     * SourceFiles are of type 'google.api.servicemanagement.v1.ConfigFile'
+     * and are only available for configs created using the
+     * SubmitConfigSource method.
+     * </pre>
+     *
+     * <code>FULL = 1;</code>
+     */
+    FULL(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * Server response includes all fields except SourceInfo.
+     * </pre>
+     *
+     * <code>BASIC = 0;</code>
+     */
+    public static final int BASIC_VALUE = 0;
+    /**
+     * <pre>
+     * Server response includes all fields including SourceInfo.
+     * SourceFiles are of type 'google.api.servicemanagement.v1.ConfigFile'
+     * and are only available for configs created using the
+     * SubmitConfigSource method.
+     * </pre>
+     *
+     * <code>FULL = 1;</code>
+     */
+    public static final int FULL_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ConfigView valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ConfigView forNumber(int value) {
+      switch (value) {
+        case 0: return BASIC;
+        case 1: return FULL;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ConfigView>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ConfigView> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ConfigView>() {
+            public ConfigView findValueByNumber(int number) {
+              return ConfigView.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.google.api.servicemanagement.v1.GetServiceConfigRequest.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final ConfigView[] VALUES = values();
+
+    public static ConfigView valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ConfigView(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView)
   }
 
   public static final int SERVICE_NAME_FIELD_NUMBER = 1;
@@ -130,6 +257,10 @@ public  final class GetServiceConfigRequest extends
   public static final int CONFIG_ID_FIELD_NUMBER = 2;
   private volatile java.lang.Object configId_;
   /**
+   * <pre>
+   * The id of the service configuration resource.
+   * </pre>
+   *
    * <code>optional string config_id = 2;</code>
    */
   public java.lang.String getConfigId() {
@@ -145,6 +276,10 @@ public  final class GetServiceConfigRequest extends
     }
   }
   /**
+   * <pre>
+   * The id of the service configuration resource.
+   * </pre>
+   *
    * <code>optional string config_id = 2;</code>
    */
   public com.google.protobuf.ByteString
@@ -159,6 +294,32 @@ public  final class GetServiceConfigRequest extends
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int VIEW_FIELD_NUMBER = 3;
+  private int view_;
+  /**
+   * <pre>
+   * Specifies which parts of the Service Config should be returned in the
+   * response.
+   * </pre>
+   *
+   * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+   */
+  public int getViewValue() {
+    return view_;
+  }
+  /**
+   * <pre>
+   * Specifies which parts of the Service Config should be returned in the
+   * response.
+   * </pre>
+   *
+   * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+   */
+  public com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView getView() {
+    com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView result = com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.valueOf(view_);
+    return result == null ? com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.UNRECOGNIZED : result;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -179,6 +340,9 @@ public  final class GetServiceConfigRequest extends
     if (!getConfigIdBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, configId_);
     }
+    if (view_ != com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.BASIC.getNumber()) {
+      output.writeEnum(3, view_);
+    }
   }
 
   public int getSerializedSize() {
@@ -191,6 +355,10 @@ public  final class GetServiceConfigRequest extends
     }
     if (!getConfigIdBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, configId_);
+    }
+    if (view_ != com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.BASIC.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(3, view_);
     }
     memoizedSize = size;
     return size;
@@ -212,6 +380,7 @@ public  final class GetServiceConfigRequest extends
         .equals(other.getServiceName());
     result = result && getConfigId()
         .equals(other.getConfigId());
+    result = result && view_ == other.view_;
     return result;
   }
 
@@ -226,6 +395,8 @@ public  final class GetServiceConfigRequest extends
     hash = (53 * hash) + getServiceName().hashCode();
     hash = (37 * hash) + CONFIG_ID_FIELD_NUMBER;
     hash = (53 * hash) + getConfigId().hashCode();
+    hash = (37 * hash) + VIEW_FIELD_NUMBER;
+    hash = (53 * hash) + view_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -352,6 +523,8 @@ public  final class GetServiceConfigRequest extends
 
       configId_ = "";
 
+      view_ = 0;
+
       return this;
     }
 
@@ -376,6 +549,7 @@ public  final class GetServiceConfigRequest extends
       com.google.api.servicemanagement.v1.GetServiceConfigRequest result = new com.google.api.servicemanagement.v1.GetServiceConfigRequest(this);
       result.serviceName_ = serviceName_;
       result.configId_ = configId_;
+      result.view_ = view_;
       onBuilt();
       return result;
     }
@@ -424,6 +598,9 @@ public  final class GetServiceConfigRequest extends
       if (!other.getConfigId().isEmpty()) {
         configId_ = other.configId_;
         onChanged();
+      }
+      if (other.view_ != 0) {
+        setViewValue(other.getViewValue());
       }
       onChanged();
       return this;
@@ -547,6 +724,10 @@ public  final class GetServiceConfigRequest extends
 
     private java.lang.Object configId_ = "";
     /**
+     * <pre>
+     * The id of the service configuration resource.
+     * </pre>
+     *
      * <code>optional string config_id = 2;</code>
      */
     public java.lang.String getConfigId() {
@@ -562,6 +743,10 @@ public  final class GetServiceConfigRequest extends
       }
     }
     /**
+     * <pre>
+     * The id of the service configuration resource.
+     * </pre>
+     *
      * <code>optional string config_id = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -578,6 +763,10 @@ public  final class GetServiceConfigRequest extends
       }
     }
     /**
+     * <pre>
+     * The id of the service configuration resource.
+     * </pre>
+     *
      * <code>optional string config_id = 2;</code>
      */
     public Builder setConfigId(
@@ -591,6 +780,10 @@ public  final class GetServiceConfigRequest extends
       return this;
     }
     /**
+     * <pre>
+     * The id of the service configuration resource.
+     * </pre>
+     *
      * <code>optional string config_id = 2;</code>
      */
     public Builder clearConfigId() {
@@ -600,6 +793,10 @@ public  final class GetServiceConfigRequest extends
       return this;
     }
     /**
+     * <pre>
+     * The id of the service configuration resource.
+     * </pre>
+     *
      * <code>optional string config_id = 2;</code>
      */
     public Builder setConfigIdBytes(
@@ -610,6 +807,75 @@ public  final class GetServiceConfigRequest extends
   checkByteStringIsUtf8(value);
       
       configId_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int view_ = 0;
+    /**
+     * <pre>
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     * </pre>
+     *
+     * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+     */
+    public int getViewValue() {
+      return view_;
+    }
+    /**
+     * <pre>
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     * </pre>
+     *
+     * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+     */
+    public Builder setViewValue(int value) {
+      view_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     * </pre>
+     *
+     * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+     */
+    public com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView getView() {
+      com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView result = com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.valueOf(view_);
+      return result == null ? com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     * </pre>
+     *
+     * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+     */
+    public Builder setView(com.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      view_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Specifies which parts of the Service Config should be returned in the
+     * response.
+     * </pre>
+     *
+     * <code>optional .google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
+     */
+    public Builder clearView() {
+      
+      view_ = 0;
       onChanged();
       return this;
     }

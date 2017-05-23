@@ -22,6 +22,7 @@ public  final class ListServiceRolloutsRequest extends
     serviceName_ = "";
     pageToken_ = "";
     pageSize_ = 0;
+    filter_ = "";
   }
 
   @java.lang.Override
@@ -64,6 +65,12 @@ public  final class ListServiceRolloutsRequest extends
           case 24: {
 
             pageSize_ = input.readInt32();
+            break;
+          }
+          case 34: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            filter_ = s;
             break;
           }
         }
@@ -188,6 +195,62 @@ public  final class ListServiceRolloutsRequest extends
     return pageSize_;
   }
 
+  public static final int FILTER_FIELD_NUMBER = 4;
+  private volatile java.lang.Object filter_;
+  /**
+   * <pre>
+   * Use `filter` to return subset of rollouts.
+   * The following filters are supported:
+   *   -- To limit the results to only those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+   *      use filter='status=SUCCESS'
+   *   -- To limit the results to those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+   *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+   * </pre>
+   *
+   * <code>optional string filter = 4;</code>
+   */
+  public java.lang.String getFilter() {
+    java.lang.Object ref = filter_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      filter_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Use `filter` to return subset of rollouts.
+   * The following filters are supported:
+   *   -- To limit the results to only those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+   *      use filter='status=SUCCESS'
+   *   -- To limit the results to those in
+   *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+   *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+   * </pre>
+   *
+   * <code>optional string filter = 4;</code>
+   */
+  public com.google.protobuf.ByteString
+      getFilterBytes() {
+    java.lang.Object ref = filter_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      filter_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -209,6 +272,9 @@ public  final class ListServiceRolloutsRequest extends
     if (pageSize_ != 0) {
       output.writeInt32(3, pageSize_);
     }
+    if (!getFilterBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, filter_);
+    }
   }
 
   public int getSerializedSize() {
@@ -225,6 +291,9 @@ public  final class ListServiceRolloutsRequest extends
     if (pageSize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(3, pageSize_);
+    }
+    if (!getFilterBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, filter_);
     }
     memoizedSize = size;
     return size;
@@ -248,6 +317,8 @@ public  final class ListServiceRolloutsRequest extends
         .equals(other.getPageToken());
     result = result && (getPageSize()
         == other.getPageSize());
+    result = result && getFilter()
+        .equals(other.getFilter());
     return result;
   }
 
@@ -264,6 +335,8 @@ public  final class ListServiceRolloutsRequest extends
     hash = (53 * hash) + getPageToken().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getPageSize();
+    hash = (37 * hash) + FILTER_FIELD_NUMBER;
+    hash = (53 * hash) + getFilter().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -392,6 +465,8 @@ public  final class ListServiceRolloutsRequest extends
 
       pageSize_ = 0;
 
+      filter_ = "";
+
       return this;
     }
 
@@ -417,6 +492,7 @@ public  final class ListServiceRolloutsRequest extends
       result.serviceName_ = serviceName_;
       result.pageToken_ = pageToken_;
       result.pageSize_ = pageSize_;
+      result.filter_ = filter_;
       onBuilt();
       return result;
     }
@@ -468,6 +544,10 @@ public  final class ListServiceRolloutsRequest extends
       }
       if (other.getPageSize() != 0) {
         setPageSize(other.getPageSize());
+      }
+      if (!other.getFilter().isEmpty()) {
+        filter_ = other.filter_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -712,6 +792,130 @@ public  final class ListServiceRolloutsRequest extends
     public Builder clearPageSize() {
       
       pageSize_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object filter_ = "";
+    /**
+     * <pre>
+     * Use `filter` to return subset of rollouts.
+     * The following filters are supported:
+     *   -- To limit the results to only those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *      use filter='status=SUCCESS'
+     *   -- To limit the results to those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * </pre>
+     *
+     * <code>optional string filter = 4;</code>
+     */
+    public java.lang.String getFilter() {
+      java.lang.Object ref = filter_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        filter_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Use `filter` to return subset of rollouts.
+     * The following filters are supported:
+     *   -- To limit the results to only those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *      use filter='status=SUCCESS'
+     *   -- To limit the results to those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * </pre>
+     *
+     * <code>optional string filter = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFilterBytes() {
+      java.lang.Object ref = filter_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        filter_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Use `filter` to return subset of rollouts.
+     * The following filters are supported:
+     *   -- To limit the results to only those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *      use filter='status=SUCCESS'
+     *   -- To limit the results to those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * </pre>
+     *
+     * <code>optional string filter = 4;</code>
+     */
+    public Builder setFilter(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      filter_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Use `filter` to return subset of rollouts.
+     * The following filters are supported:
+     *   -- To limit the results to only those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *      use filter='status=SUCCESS'
+     *   -- To limit the results to those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * </pre>
+     *
+     * <code>optional string filter = 4;</code>
+     */
+    public Builder clearFilter() {
+      
+      filter_ = getDefaultInstance().getFilter();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Use `filter` to return subset of rollouts.
+     * The following filters are supported:
+     *   -- To limit the results to only those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',
+     *      use filter='status=SUCCESS'
+     *   -- To limit the results to those in
+     *      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'
+     *      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * </pre>
+     *
+     * <code>optional string filter = 4;</code>
+     */
+    public Builder setFilterBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      filter_ = value;
       onChanged();
       return this;
     }
