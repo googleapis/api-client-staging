@@ -100,7 +100,7 @@ jobs:
 
   openjdk7:
     docker:
-      - image: openjdk:7
+      - image: openjdk:7u111
         environment:
           TERM: dumb
     steps:
