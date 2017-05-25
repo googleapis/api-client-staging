@@ -1,0 +1,31 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java'
+
+description = 'GAPIC library for google-cloud-pubsub-v1'
+group = "com.google.api"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+dependencies {
+  compile project(":proto-google-cloud-pubsub-v1")
+  testCompile project(":grpc-google-cloud-pubsub-v1")
+  testCompile project(":grpc-google-iam-v1")
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir 'src/main/java'
+    }
+  }
+}
