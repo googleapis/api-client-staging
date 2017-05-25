@@ -1,11 +1,11 @@
 /*
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,8 +15,9 @@
  */
 'use strict';
 
+var extend = require('extend');
 var gapic = {
- v1beta1: require('./v1beta1'),
+  v1beta1: require('./v1beta1')
 };
 
 const VERSION = require('../package.json').version;
@@ -25,27 +26,23 @@ const VERSION = require('../package.json').version;
  * Create an videoIntelligenceServiceClient with additional helpers for common
  * tasks.
  *
- * @param {Object=} opts - The optional parameters.
- * @param {String=} opts.servicePath
- *   The domain name of the API remote host.
- * @param {number=} opts.port
- *   The port on which to connect to the remote host.
- * @param {grpc.ClientCredentials=} opts.sslCreds
- *   A ClientCredentials for use with an SSL-enabled channel.
- * @param {Object=} opts.clientConfig
- *   The customized config to build the call settings. See
- *   {@link gax.constructSettings} for the format.
+ * Service that implements Google Cloud Video Intelligence API.
+ *
+ * @param {object=} options - [Configuration object](#/docs).
+ * @param {number=} options.port - The port on which to connect to the remote host.
+ * @param {string=} options.servicePath - The domain name of the API remote host.
  */
-function videoIntelligence_v1beta1(opts) {
+function videoIntelligenceV1beta1(options) {
   // Define the header options.
-  opts = opts || {};
-  opts.libName = 'gccl';
-  opts.libVersion = VERSION;
+  options = extend({}, options, {
+    libName: 'gccl',
+    libVersion: VERSION
+  });
 
   // Create the image annotator client with the provided options.
-  var client = gapic.v1beta1(opts).videoIntelligenceServiceClient(opts);
+  var client = gapic.v1beta1(options).videoIntelligenceServiceClient(options);
   return client;
 }
 
-module.exports = videoIntelligence_v1beta1;
-module.exports.v1beta1 = videoIntelligence_v1beta1;
+module.exports = videoIntelligenceV1beta1;
+module.exports.v1beta1 = videoIntelligenceV1beta1;
