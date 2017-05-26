@@ -72,11 +72,10 @@ class GroupServiceClient(object):
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/monitoring',
-        'https://www.googleapis.com/auth/monitoring.read',
-        'https://www.googleapis.com/auth/monitoring.write', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/monitoring',
+                   'https://www.googleapis.com/auth/monitoring.read',
+                   'https://www.googleapis.com/auth/monitoring.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _GROUP_PATH_TEMPLATE = path_template.PathTemplate(
@@ -85,7 +84,9 @@ class GroupServiceClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def group_path(cls, project, group):
@@ -252,7 +253,7 @@ class GroupServiceClient(object):
                     children_of_group=None,
                     ancestors_of_group=None,
                     descendants_of_group=None,
-                    page_size=0,
+                    page_size=None,
                     options=None):
         """
         Lists the existing groups.
@@ -260,19 +261,19 @@ class GroupServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = group_service_client.GroupServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = group_service_client.GroupServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_groups(name):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_groups(name, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_groups(name):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_groups(name, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           name (string): The project whose groups are to be listed. The format is
@@ -329,9 +330,9 @@ class GroupServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
-          >>> api = group_service_client.GroupServiceClient()
-          >>> name = api.group_path('[PROJECT]', '[GROUP]')
-          >>> response = api.get_group(name)
+          >>> client = group_service_client.GroupServiceClient()
+          >>> name = client.group_path('[PROJECT]', '[GROUP]')
+          >>> response = client.get_group(name)
 
         Args:
           name (string): The group to retrieve. The format is
@@ -350,17 +351,17 @@ class GroupServiceClient(object):
         request = group_service_pb2.GetGroupRequest(name=name)
         return self._get_group(request, options)
 
-    def create_group(self, name, group, validate_only=False, options=None):
+    def create_group(self, name, group, validate_only=None, options=None):
         """
         Creates a new group.
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.cloud.proto.monitoring.v3 import group_pb2
-          >>> api = group_service_client.GroupServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = group_service_client.GroupServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>> group = group_pb2.Group()
-          >>> response = api.create_group(name, group)
+          >>> response = client.create_group(name, group)
 
         Args:
           name (string): The project in which to create the group. The format is
@@ -383,7 +384,7 @@ class GroupServiceClient(object):
             name=name, group=group, validate_only=validate_only)
         return self._create_group(request, options)
 
-    def update_group(self, group, validate_only=False, options=None):
+    def update_group(self, group, validate_only=None, options=None):
         """
         Updates an existing group.
         You can change any group attributes except ``name``.
@@ -391,9 +392,9 @@ class GroupServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.cloud.proto.monitoring.v3 import group_pb2
-          >>> api = group_service_client.GroupServiceClient()
+          >>> client = group_service_client.GroupServiceClient()
           >>> group = group_pb2.Group()
-          >>> response = api.update_group(group)
+          >>> response = client.update_group(group)
 
         Args:
           group (:class:`google.cloud.proto.monitoring.v3.group_pb2.Group`): The new definition of the group.  All fields of the existing group,
@@ -420,9 +421,9 @@ class GroupServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
-          >>> api = group_service_client.GroupServiceClient()
-          >>> name = api.group_path('[PROJECT]', '[GROUP]')
-          >>> api.delete_group(name)
+          >>> client = group_service_client.GroupServiceClient()
+          >>> name = client.group_path('[PROJECT]', '[GROUP]')
+          >>> client.delete_group(name)
 
         Args:
           name (string): The group to delete. The format is
@@ -440,8 +441,8 @@ class GroupServiceClient(object):
 
     def list_group_members(self,
                            name,
-                           page_size=0,
-                           filter_='',
+                           page_size=None,
+                           filter_=None,
                            interval=None,
                            options=None):
         """
@@ -450,19 +451,19 @@ class GroupServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import group_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = group_service_client.GroupServiceClient()
-          >>> name = api.group_path('[PROJECT]', '[GROUP]')
+          >>> client = group_service_client.GroupServiceClient()
+          >>> name = client.group_path('[PROJECT]', '[GROUP]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_group_members(name):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_group_members(name, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_group_members(name):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_group_members(name, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           name (string): The group whose members are listed. The format is
@@ -498,8 +499,6 @@ class GroupServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if interval is None:
-            interval = common_pb2.TimeInterval()
         # Create the request object.
         request = group_service_pb2.ListGroupMembersRequest(
             name=name, page_size=page_size, filter=filter_, interval=interval)
