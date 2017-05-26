@@ -1,4 +1,5 @@
-# Copyright 2017, Google Inc. All rights reserved.#
+# Copyright 2017, Google Inc. All rights reserved.
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -24,13 +25,8 @@ describe "MetricServiceSmokeTest" do
     end
     project_id = ENV["SMOKE_TEST_PROJECT"].freeze
 
-    ListMonitoredResourceDescriptorsRequest = Google::Monitoring::V3::ListMonitoredResourceDescriptorsRequest
-    ListMonitoredResourceDescriptorsResponse = Google::Monitoring::V3::ListMonitoredResourceDescriptorsResponse
-    MetricServiceClient = Google::Cloud::Monitoring::V3::MetricServiceClient
-    MonitoredResourceDescriptor = Google::Api::MonitoredResourceDescriptor
-
-    metric_service_client = MetricServiceClient.new
-    formatted_name = MetricServiceClient.project_path(project_id)
+    metric_service_client = Google::Cloud::Monitoring::V3::MetricServiceClient.new
+    formatted_name = Google::Cloud::Monitoring::V3::MetricServiceClient.project_path(project_id)
 
     # Iterate over all results.
     metric_service_client.list_monitored_resource_descriptors(formatted_name).each do |element|
