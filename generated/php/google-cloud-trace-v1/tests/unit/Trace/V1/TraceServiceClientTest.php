@@ -23,13 +23,16 @@
 namespace Google\Cloud\Tests\Trace\V1;
 
 use Google\Cloud\Trace\V1\TraceServiceClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\devtools\cloudtrace\v1\ListTracesResponse;
 use google\devtools\cloudtrace\v1\Trace;
 use google\devtools\cloudtrace\v1\Traces;
 use google\protobuf\Any;
 use google\protobuf\EmptyC;
+use stdClass;
 
 /**
  * @group trace
@@ -74,8 +77,10 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($grpcStub->isExhausted());
 
-        // Add empty response to the grpc stub
-        $grpcStub->addResponse(new EmptyC());
+        // Mock response
+        $expectedResponse = new EmptyC();
+        $grpcStub->addResponse($expectedResponse);
+
         // Mock request
         $projectId = 'projectId-1969970175';
         $traces = new Traces();
@@ -90,6 +95,39 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($projectId, $actualRequestObject->getProjectId());
         $this->assertEquals($traces, $actualRequestObject->getTraces());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function patchTracesExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $traces = new Traces();
+
+        try {
+            $client->patchTraces($projectId, $traces);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -132,6 +170,39 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function getTraceExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $traceId = 'traceId1270300245';
+
+        try {
+            $client->getTrace($projectId, $traceId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listTracesTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
@@ -166,6 +237,38 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/ListTraces', $actualFuncCall);
 
         $this->assertEquals($projectId, $actualRequestObject->getProjectId());
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listTracesExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockTraceServiceImpl']);
+        $client = $this->createClient('createTraceServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $projectId = 'projectId-1969970175';
+
+        try {
+            $client->listTraces($projectId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

@@ -23,12 +23,15 @@
 namespace Google\Cloud\Tests\Logging\V2;
 
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\logging\v2\ListSinksResponse;
 use google\logging\v2\LogSink;
 use google\protobuf\Any;
 use google\protobuf\EmptyC;
+use stdClass;
 
 /**
  * @group logging
@@ -106,6 +109,38 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listSinksExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+
+        try {
+            $client->listSinks($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getSinkTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
@@ -118,11 +153,13 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
         $writerIdentity = 'writerIdentity775638794';
+        $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
+        $expectedResponse->setIncludeChildren($includeChildren);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -144,6 +181,38 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function getSinkExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+
+        try {
+            $client->getSink($formattedSinkName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createSinkTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
@@ -156,11 +225,13 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
         $writerIdentity = 'writerIdentity775638794';
+        $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
+        $expectedResponse->setIncludeChildren($includeChildren);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -184,6 +255,39 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function createSinkExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+        $sink = new LogSink();
+
+        try {
+            $client->createSink($formattedParent, $sink);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateSinkTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
@@ -196,11 +300,13 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $destination = 'destination-1429847026';
         $filter = 'filter-1274492040';
         $writerIdentity = 'writerIdentity775638794';
+        $includeChildren = true;
         $expectedResponse = new LogSink();
         $expectedResponse->setName($name);
         $expectedResponse->setDestination($destination);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setWriterIdentity($writerIdentity);
+        $expectedResponse->setIncludeChildren($includeChildren);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -224,6 +330,39 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function updateSinkExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $sink = new LogSink();
+
+        try {
+            $client->updateSink($formattedSinkName, $sink);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteSinkTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
@@ -231,8 +370,10 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($grpcStub->isExhausted());
 
-        // Add empty response to the grpc stub
-        $grpcStub->addResponse(new EmptyC());
+        // Mock response
+        $expectedResponse = new EmptyC();
+        $grpcStub->addResponse($expectedResponse);
+
         // Mock request
         $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
 
@@ -245,6 +386,38 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteSinkExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockConfigServiceV2Impl']);
+        $client = $this->createClient('createConfigServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+
+        try {
+            $client->deleteSink($formattedSinkName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }
