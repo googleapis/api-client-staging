@@ -15,7 +15,7 @@ jobs:
           name: Run GAPIC unit tests in Node 4.
           command: |
             cd generated/nodejs/
-            
+
             # Node 4 needs a special command because it is less forgiving
             # about finding the right packages when installed from the top.
             ./runtests.sh
@@ -50,6 +50,23 @@ jobs:
             npm install
       - run:
           name: Run GAPIC unit tests in Node 7.
+          command: |
+            cd generated/nodejs/
+            npm test
+    working_directory: /var/code/googleapis/
+
+  node8:
+    docker:
+      - image: node:8
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 8.
           command: |
             cd generated/nodejs/
             npm test
