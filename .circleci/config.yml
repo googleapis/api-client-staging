@@ -176,6 +176,7 @@ workflows:
       - node4
       - node6
       - node7
+      - node8
       - openjdk7
       - openjdk8
       - python27
@@ -187,6 +188,7 @@ workflows:
             - node4
             - node6
             - node7
+            - node8
             - openjdk7
             - openjdk8
             - python27
