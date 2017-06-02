@@ -31,7 +31,6 @@ subprojects {
     libraries = [
         gax: 'com.google.api:gax:1.1.0',
         gaxGrpc: 'com.google.api:gax-grpc:0.17.0',
-        iam: 'com.google.api.grpc:grpc-google-iam-v1:0.1.10',
 
         // Testing
         junit: 'junit:junit:4.11',
@@ -91,97 +90,5 @@ subprojects {
     exclude '.apt_generated/**'
     exclude 'bin/**'
     exclude 'build/**'
-  }
-}
-
-project(':gapic-google-cloud-error-reporting-v1beta1') {
-  dependencies {
-    compile project(':proto-google-cloud-error-reporting-v1beta1')
-    testCompile project(':grpc-google-cloud-error-reporting-v1beta1')
-  }
-}
-
-project(':gapic-google-cloud-language-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-language-v1')
-    testCompile project(':grpc-google-cloud-language-v1')
-  }
-}
-
-project(':gapic-google-cloud-language-v1beta2') {
-  dependencies {
-    compile project(':proto-google-cloud-language-v1beta2')
-    testCompile project(':grpc-google-cloud-language-v1beta2')
-  }
-}
-
-project(':gapic-google-cloud-logging-v2') {
-  dependencies {
-    compile project(':proto-google-cloud-logging-v2')
-    testCompile project(':grpc-google-cloud-logging-v2')
-  }
-}
-
-project(':gapic-google-cloud-monitoring-v3') {
-  dependencies {
-    compile project(':proto-google-cloud-monitoring-v3')
-    testCompile project(':grpc-google-cloud-monitoring-v3')
-  }
-}
-
-project(':gapic-google-cloud-pubsub-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-pubsub-v1')
-    testCompile project(':grpc-google-cloud-pubsub-v1'),
-      libraries.iam
-  }
-}
-
-project(':gapic-google-cloud-spanner-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-spanner-v1')
-    testCompile project(':grpc-google-cloud-spanner-v1')
-  }
-}
-
-project(':gapic-google-cloud-spanner-admin-database-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-spanner-admin-database-v1')
-    testCompile project(':grpc-google-cloud-spanner-admin-database-v1')
-  }
-}
-
-project(':gapic-google-cloud-spanner-admin-instance-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-spanner-admin-instance-v1')
-    testCompile project(':grpc-google-cloud-spanner-admin-instance-v1')
-  }
-}
-
-project(':gapic-google-cloud-speech-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-speech-v1')
-    testCompile project(':grpc-google-cloud-speech-v1')
-  }
-}
-
-project(':gapic-google-cloud-speech-v1beta1') {
-  dependencies {
-    compile project(':proto-google-cloud-speech-v1beta1')
-    testCompile project(':grpc-google-cloud-speech-v1beta1')
-  }
-}
-
-project(':gapic-google-cloud-trace-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-trace-v1')
-    testCompile project(':grpc-google-cloud-trace-v1')
-  }
-}
-
-project(':gapic-google-cloud-vision-v1') {
-  dependencies {
-    compile project(':proto-google-cloud-vision-v1')
-    testCompile project(':grpc-google-cloud-vision-v1')
   }
 }
