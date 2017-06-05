@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,6 +26,7 @@ require "json"
 require "pathname"
 
 require "google/gax"
+
 require "google/monitoring/v3/group_service_pb"
 
 module Google
@@ -141,6 +142,12 @@ module Google
           #   A Channel object through which to make calls.
           # @param chan_creds [Grpc::ChannelCredentials]
           #   A ChannelCredentials for the setting up the RPC client.
+          # @param updater_proc [Proc]
+          #   A function that transforms the metadata for requests, e.g., to give
+          #   OAuth credentials.
+          # @param scopes [Array<String>]
+          #   The OAuth scopes for this service. This parameter is ignored if
+          #   an updater_proc is supplied.
           # @param client_config[Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
@@ -153,6 +160,7 @@ module Google
               port: DEFAULT_SERVICE_PORT,
               channel: nil,
               chan_creds: nil,
+              updater_proc: nil,
               scopes: ALL_SCOPES,
               client_config: {},
               timeout: DEFAULT_TIMEOUT,
@@ -172,8 +180,8 @@ module Google
             end
 
             google_api_client = "gl-ruby/#{RUBY_VERSION}"
-            google_api_client << " #{lib_name}/{lib_version}" if lib_name
-            google_api_client << " gapic/0.1.0 gax/#{Google::Gax::VERSION}"
+            google_api_client << " #{lib_name}/#{lib_version}" if lib_name
+            google_api_client << " gapic/0.6.8 gax/#{Google::Gax::VERSION}"
             google_api_client << " grpc/#{GRPC::VERSION}"
             google_api_client.freeze
 
@@ -198,6 +206,7 @@ module Google
               port,
               chan_creds: chan_creds,
               channel: channel,
+              updater_proc: updater_proc,
               scopes: scopes,
               &Google::Monitoring::V3::GroupService::Stub.method(:new)
             )
@@ -266,12 +275,10 @@ module Google
           #   object.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   formatted_name = GroupServiceClient.project_path("[PROJECT]")
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   formatted_name = Google::Cloud::Monitoring::V3::GroupServiceClient.project_path("[PROJECT]")
           #
           #   # Iterate over all results.
           #   group_service_client.list_groups(formatted_name).each do |element|
@@ -314,12 +321,10 @@ module Google
           # @return [Google::Monitoring::V3::Group]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   formatted_name = GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   formatted_name = Google::Cloud::Monitoring::V3::GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
           #   response = group_service_client.get_group(formatted_name)
 
           def get_group \
@@ -347,14 +352,11 @@ module Google
           # @return [Google::Monitoring::V3::Group]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   Group = Google::Monitoring::V3::Group
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   formatted_name = GroupServiceClient.project_path("[PROJECT]")
-          #   group = Group.new
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   formatted_name = Google::Cloud::Monitoring::V3::GroupServiceClient.project_path("[PROJECT]")
+          #   group = Google::Monitoring::V3::Group.new
           #   response = group_service_client.create_group(formatted_name, group)
 
           def create_group \
@@ -384,13 +386,10 @@ module Google
           # @return [Google::Monitoring::V3::Group]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   Group = Google::Monitoring::V3::Group
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   group = Group.new
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   group = Google::Monitoring::V3::Group.new
           #   response = group_service_client.update_group(group)
 
           def update_group \
@@ -414,12 +413,10 @@ module Google
           #   retries, etc.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   formatted_name = GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   formatted_name = Google::Cloud::Monitoring::V3::GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
           #   group_service_client.delete_group(formatted_name)
 
           def delete_group \
@@ -466,12 +463,10 @@ module Google
           #   object.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/monitoring/v3/group_service_client"
+          #   require "google/cloud/monitoring/v3"
           #
-          #   GroupServiceClient = Google::Cloud::Monitoring::V3::GroupServiceClient
-          #
-          #   group_service_client = GroupServiceClient.new
-          #   formatted_name = GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
+          #   group_service_client = Google::Cloud::Monitoring::V3::GroupServiceClient.new
+          #   formatted_name = Google::Cloud::Monitoring::V3::GroupServiceClient.group_path("[PROJECT]", "[GROUP]")
           #
           #   # Iterate over all results.
           #   group_service_client.list_group_members(formatted_name).each do |element|
