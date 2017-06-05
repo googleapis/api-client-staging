@@ -9,7 +9,10 @@ jobs:
       - run:
           name: Run GAPIC unit tests in Go 1.7
           command: |
-            go get -u -f -t ./...
+            go list -f '{{range .Imports}}{{printf "%s\n" .}}{{end}}{{range .TestImports}}{{printf "%s\n" .}}{{end}}' ./... |
+              sort -u |
+              grep -v '^cloud.google.com/go' |
+              xargs go get
             go test ./...
     working_directory: /go/src/github.com/googleapis/api-client-staging
 
@@ -21,7 +24,10 @@ jobs:
       - run:
           name: Run GAPIC unit tests in Go 1.8
           command: |
-            go get -u -f -t ./...
+            go list -f '{{range .Imports}}{{printf "%s\n" .}}{{end}}{{range .TestImports}}{{printf "%s\n" .}}{{end}}' ./... |
+              sort -u |
+              grep -v '^cloud.google.com/go' |
+              xargs go get
             go test ./...
     working_directory: /go/src/github.com/googleapis/api-client-staging
 
