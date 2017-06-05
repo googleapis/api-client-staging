@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Run GAPIC unit tests in Go 1.7
-        command: go test ./...
+          name: Run GAPIC unit tests in Go 1.7
+          command: go test ./...
     working_directory: /go/src/github.com/googleapis/api-client-staging
 
   go18:
@@ -17,8 +17,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Run GAPIC unit tests in Go 1.8
-        command: go test ./...
+          name: Run GAPIC unit tests in Go 1.8
+          command: go test ./...
     working_directory: /go/src/github.com/googleapis/api-client-staging
 
   node4:
