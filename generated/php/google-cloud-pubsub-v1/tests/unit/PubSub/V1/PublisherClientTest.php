@@ -23,7 +23,9 @@
 namespace Google\Cloud\Tests\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\iam\v1\Policy;
 use google\iam\v1\TestIamPermissionsResponse;
@@ -34,6 +36,7 @@ use google\pubsub\v1\ListTopicsResponse;
 use google\pubsub\v1\PublishResponse;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
+use stdClass;
 
 /**
  * @group pub_sub
@@ -108,6 +111,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function createTopicExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->createTopic($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function publishTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
@@ -148,6 +183,42 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function publishExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $data = '-86';
+        $messagesElement = new PubsubMessage();
+        $messagesElement->setData($data);
+        $messages = [$messagesElement];
+
+        try {
+            $client->publish($formattedTopic, $messages);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getTopicTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
@@ -174,6 +245,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getTopicExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->getTopic($formattedTopic);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -220,6 +323,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listTopicsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedProject = PublisherClient::formatProjectName('[PROJECT]');
+
+        try {
+            $client->listTopics($formattedProject);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listTopicSubscriptionsTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
@@ -260,6 +395,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listTopicSubscriptionsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->listTopicSubscriptions($formattedTopic);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteTopicTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
@@ -267,8 +434,10 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($grpcStub->isExhausted());
 
-        // Add empty response to the grpc stub
-        $grpcStub->addResponse(new EmptyC());
+        // Mock response
+        $expectedResponse = new EmptyC();
+        $grpcStub->addResponse($expectedResponse);
+
         // Mock request
         $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
 
@@ -281,6 +450,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteTopicExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->deleteTopic($formattedTopic);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -323,6 +524,39 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function setIamPolicyExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $policy = new Policy();
+
+        try {
+            $client->setIamPolicy($formattedResource, $policy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getIamPolicyTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
@@ -357,6 +591,38 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function getIamPolicyExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+
+        try {
+            $client->getIamPolicy($formattedResource);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function testIamPermissionsTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
@@ -383,6 +649,39 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
         $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockIAMPolicyImpl']);
+        $client = $this->createClient('createIamPolicyStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $permissions = [];
+
+        try {
+            $client->testIamPermissions($formattedResource, $permissions);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

@@ -343,10 +343,14 @@ class ConfigServiceV2Client
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource whose sinks are to be listed.
-     *                             Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The parent resource whose sinks are to be listed:
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -410,10 +414,12 @@ class ConfigServiceV2Client
      * }
      * ```
      *
-     * @param string $sinkName Required. The parent resource name of the sink:
+     * @param string $sinkName Required. The resource name of the sink:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
@@ -475,6 +481,8 @@ class ConfigServiceV2Client
      *
      *     "projects/[PROJECT_ID]"
      *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
      *
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
@@ -486,9 +494,9 @@ class ConfigServiceV2Client
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
      *          in the new sink.  If this value is omitted or set to false, and if the
      *          sink's parent is a project, then the value returned as `writer_identity` is
-     *          `cloud-logs&#64;google.com`, the same identity used before the addition of
-     *          writer identities to this API. The sink's destination must be in the same
-     *          project as the sink itself.
+     *          the same group or service account used by Stackdriver Logging before the
+     *          addition of writer identities to this API. The sink's destination must be
+     *          in the same project as the sink itself.
      *
      *          If this field is set to true, or if the sink is owned by a non-project
      *          resource such as an organization, then the value of `writer_identity` will
@@ -558,6 +566,8 @@ class ConfigServiceV2Client
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
@@ -575,9 +585,9 @@ class ConfigServiceV2Client
      *
      *          +   If the old and new values of this field are both false or both true,
      *              then there is no change to the sink's `writer_identity`.
-     *          +   If the old value was false and the new value is true, then
+     *          +   If the old value is false and the new value is true, then
      *              `writer_identity` is changed to a unique service account.
-     *          +   It is an error if the old value was true and the new value is false.
+     *          +   It is an error if the old value is true and the new value is false.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -635,10 +645,10 @@ class ConfigServiceV2Client
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
-     * It is an error if the sink does not exist.  Example:
-     * `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if
-     * the sink does not exist.
+     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
      *                            Optional.
      *

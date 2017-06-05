@@ -1,34 +1,48 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "0.8.*",
-        "google/proto-client-php": "0.10.0"
+        "google/gax": "0.9.*",
+        "google/proto-client-php": "0.14.*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": {
-          "Google\\Cloud\\Bigtable\\": "generated/php/google-cloud-bigtable-admin-v2/src/Bigtable",
-          "Google\\Cloud\\Tests\\Bigtable\\": "generated/php/google-cloud-bigtable-admin-v2/tests/unit/Bigtable",
-          "Google\\Cloud\\PubSub\\": "generated/php/google-cloud-pubsub-v1/src/PubSub",
-          "Google\\Cloud\\Tests\\PubSub\\": "generated/php/google-cloud-pubsub-v1/tests/unit/PubSub",
-          "Google\\Cloud\\ErrorReporting\\": "generated/php/google-cloud-error-reporting-v1beta1/src/ErrorReporting",
-          "Google\\Cloud\\Tests\\ErrorReporting\\": "generated/php/google-cloud-error-reporting-v1beta1/tests/unit/ErrorReporting",
-          "Google\\Cloud\\Language\\": "generated/php/google-cloud-language-v1/src/Language",
-          "Google\\Cloud\\Tests\\Language\\": "generated/php/google-cloud-language-v1/tests/unit/Language",
-          "Google\\Cloud\\Logging\\": "generated/php/google-cloud-logging-v2/src/Logging",
-          "Google\\Cloud\\Tests\\Logging\\": "generated/php/google-cloud-logging-v2/tests/unit/Logging",
-          "Google\\Cloud\\Monitoring\\": "generated/php/google-cloud-monitoring-v3/src/Monitoring",
-          "Google\\Cloud\\Tests\\Monitoring\\": "generated/php/google-cloud-monitoring-v3/tests/unit/Monitoring",
-          "Google\\Cloud\\Speech\\": "generated/php/google-cloud-speech-v1beta1/src/Speech",
-          "Google\\Cloud\\Tests\\Speech\\": "generated/php/google-cloud-speech-v1beta1/tests/unit/Speech",
-          "Google\\Cloud\\Speech\\V1\\": "generated/php/google-cloud-speech-v1/src/Speech/V1",
-          "Google\\Cloud\\Tests\\Speech\\V1\\": "generated/php/google-cloud-speech-v1/tests/unit/Speech/V1",
-          "Google\\Cloud\\Trace\\": "generated/php/google-cloud-trace-v1/src/Trace",
-          "Google\\Cloud\\Tests\\Trace\\": "generated/php/google-cloud-trace-v1/tests/unit/Trace",
-          "Google\\Cloud\\Vision\\": "generated/php/google-cloud-vision-v1/src/Vision",
-          "Google\\Cloud\\Tests\\Vision\\": "generated/php/google-cloud-vision-v1/tests/unit/Vision"
+            "Google\\Cloud\\": [
+                "generated/php/google-cloud-bigtable-admin-v2/src",
+                "generated/php/google-cloud-pubsub-v1/src",
+                "generated/php/google-cloud-error-reporting-v1beta1/src",
+                "generated/php/google-cloud-language-v1/src",
+                "generated/php/google-cloud-language-v1beta2/src",
+                "generated/php/google-cloud-logging-v2/src",
+                "generated/php/google-cloud-monitoring-v3/src",
+                "generated/php/google-cloud-speech-v1beta1/src",
+                "generated/php/google-cloud-speech-v1/src",
+                "generated/php/google-cloud-spanner-v1/src",
+                "generated/php/google-cloud-spanner-admin-database-v1/src",
+                "generated/php/google-cloud-spanner-admin-instance-v1/src",
+                "generated/php/google-cloud-trace-v1/src",
+                "generated/php/google-cloud-video-intelligence-v1beta1/src",
+                "generated/php/google-cloud-vision-v1/src"
+            ],
+            "Google\\Cloud\\Tests\\": [
+                "generated/php/google-cloud-bigtable-admin-v2/tests/unit",
+                "generated/php/google-cloud-pubsub-v1/tests/unit",
+                "generated/php/google-cloud-error-reporting-v1beta1/tests/unit",
+                "generated/php/google-cloud-language-v1/tests/unit",
+                "generated/php/google-cloud-language-v1beta2/tests/unit",
+                "generated/php/google-cloud-logging-v2/tests/unit",
+                "generated/php/google-cloud-monitoring-v3/tests/unit",
+                "generated/php/google-cloud-speech-v1beta1/tests/unit",
+                "generated/php/google-cloud-speech-v1/tests/unit",
+                "generated/php/google-cloud-spanner-v1/tests/unit",
+                "generated/php/google-cloud-spanner-admin-database-v1/tests/unit",
+                "generated/php/google-cloud-spanner-admin-instance-v1/tests/unit",
+                "generated/php/google-cloud-trace-v1/tests/unit",
+                "generated/php/google-cloud-video-intelligence-v1beta1/tests/unit",
+                "generated/php/google-cloud-vision-v1/tests/unit"
+            ]
         }
     }
 }

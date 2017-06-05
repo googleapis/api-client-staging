@@ -23,7 +23,9 @@
 namespace Google\Cloud\Tests\Language\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\cloud\language\v1\AnalyzeEntitiesResponse;
 use google\cloud\language\v1\AnalyzeSentimentResponse;
@@ -33,6 +35,7 @@ use google\cloud\language\v1\AnnotateTextResponse;
 use google\cloud\language\v1\Document;
 use google\cloud\language\v1\EncodingType;
 use google\protobuf\Any;
+use stdClass;
 
 /**
  * @group language
@@ -102,6 +105,38 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function analyzeSentimentExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+
+        try {
+            $client->analyzeSentiment($document);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function analyzeEntitiesTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
@@ -130,6 +165,39 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($document, $actualRequestObject->getDocument());
         $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeEntitiesExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+        $encodingType = EncodingType::NONE;
+
+        try {
+            $client->analyzeEntities($document, $encodingType);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -170,6 +238,39 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function analyzeSyntaxExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+        $encodingType = EncodingType::NONE;
+
+        try {
+            $client->analyzeSyntax($document, $encodingType);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function annotateTextTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
@@ -200,6 +301,40 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($features, $actualRequestObject->getFeatures());
         $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function annotateTextExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+        $features = new Features();
+        $encodingType = EncodingType::NONE;
+
+        try {
+            $client->annotateText($document, $features, $encodingType);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

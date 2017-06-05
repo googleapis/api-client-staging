@@ -23,7 +23,9 @@
 namespace Google\Cloud\Tests\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\api\MonitoredResource;
 use google\monitoring\v3\Group;
@@ -31,6 +33,7 @@ use google\monitoring\v3\ListGroupMembersResponse;
 use google\monitoring\v3\ListGroupsResponse;
 use google\protobuf\Any;
 use google\protobuf\EmptyC;
+use stdClass;
 
 /**
  * @group monitoring
@@ -108,6 +111,38 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listGroupsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+
+        try {
+            $client->listGroups($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getGroupTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
@@ -142,6 +177,38 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getGroupExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+
+        try {
+            $client->getGroup($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -190,6 +257,39 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function createGroupExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+        $group = new Group();
+
+        try {
+            $client->createGroup($formattedName, $group);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateGroupTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
@@ -230,6 +330,38 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function updateGroupExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $group = new Group();
+
+        try {
+            $client->updateGroup($group);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteGroupTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
@@ -237,8 +369,10 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($grpcStub->isExhausted());
 
-        // Add empty response to the grpc stub
-        $grpcStub->addResponse(new EmptyC());
+        // Mock response
+        $expectedResponse = new EmptyC();
+        $grpcStub->addResponse($expectedResponse);
+
         // Mock request
         $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
 
@@ -251,6 +385,38 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteGroupExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+
+        try {
+            $client->deleteGroup($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -293,6 +459,38 @@ class GroupServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listGroupMembersExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockGroupServiceImpl']);
+        $client = $this->createClient('createGroupServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+
+        try {
+            $client->listGroupMembers($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

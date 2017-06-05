@@ -23,9 +23,11 @@
 namespace Google\Cloud\Tests\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
 use google\cloud\speech\v1beta1\RecognitionAudio;
@@ -35,6 +37,7 @@ use google\cloud\speech\v1beta1\SyncRecognizeResponse;
 use google\longrunning\GetOperationRequest;
 use google\longrunning\Operation;
 use google\protobuf\Any;
+use stdClass;
 
 /**
  * @group speech
@@ -115,6 +118,45 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function syncRecognizeExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $encoding = AudioEncoding::FLAC;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        try {
+            $client->syncRecognize($config, $audio);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function asyncRecognizeTest()
     {
         $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
@@ -184,6 +226,70 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
 
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function asyncRecognizeExceptionTest()
+    {
+        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'scopes' => [],
+            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
+                return $operationsStub;
+            },
+        ]);
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/asyncRecognizeTest')->setDone(false);
+        $grpcStub->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $operationsStub->addResponse(null, $status);
+
+        // Mock request
+        $encoding = AudioEncoding::FLAC;
+        $sampleRate = 44100;
+        $config = new RecognitionConfig();
+        $config->setEncoding($encoding);
+        $config->setSampleRate($sampleRate);
+        $uri = 'gs://bucket_name/file_name.flac';
+        $audio = new RecognitionAudio();
+        $audio->setUri($uri);
+
+        $response = $client->asyncRecognize($config, $audio);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/asyncRecognizeTest');
+
+        try {
+            $response->pollUntilComplete();
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stubs are exhausted
+        $grpcStub->getReceivedCalls();
+        $operationsStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
         $this->assertTrue($operationsStub->isExhausted());
     }
