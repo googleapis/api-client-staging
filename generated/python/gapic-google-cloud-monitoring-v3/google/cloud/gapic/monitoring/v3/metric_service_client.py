@@ -57,19 +57,18 @@ class MetricServiceClient(object):
     _PAGE_DESCRIPTORS = {
         'list_monitored_resource_descriptors':
         _PageDesc('page_token', 'next_page_token', 'resource_descriptors'),
-        'list_metric_descriptors': _PageDesc('page_token', 'next_page_token',
-                                             'metric_descriptors'),
-        'list_time_series': _PageDesc('page_token', 'next_page_token',
-                                      'time_series')
+        'list_metric_descriptors':
+        _PageDesc('page_token', 'next_page_token', 'metric_descriptors'),
+        'list_time_series':
+        _PageDesc('page_token', 'next_page_token', 'time_series')
     }
 
     # The scopes needed to make gRPC calls to all of the methods defined in
     # this service
-    _ALL_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/monitoring',
-        'https://www.googleapis.com/auth/monitoring.read',
-        'https://www.googleapis.com/auth/monitoring.write', )
+    _ALL_SCOPES = ('https://www.googleapis.com/auth/cloud-platform',
+                   'https://www.googleapis.com/auth/monitoring',
+                   'https://www.googleapis.com/auth/monitoring.read',
+                   'https://www.googleapis.com/auth/monitoring.write', )
 
     _PROJECT_PATH_TEMPLATE = path_template.PathTemplate('projects/{project}')
     _METRIC_DESCRIPTOR_PATH_TEMPLATE = path_template.PathTemplate(
@@ -81,14 +80,18 @@ class MetricServiceClient(object):
     @classmethod
     def project_path(cls, project):
         """Returns a fully-qualified project resource name string."""
-        return cls._PROJECT_PATH_TEMPLATE.render({'project': project, })
+        return cls._PROJECT_PATH_TEMPLATE.render({
+            'project': project,
+        })
 
     @classmethod
     def metric_descriptor_path(cls, project, metric_descriptor):
         """Returns a fully-qualified metric_descriptor resource name string."""
         return cls._METRIC_DESCRIPTOR_PATH_TEMPLATE.render({
-            'project': project,
-            'metric_descriptor': metric_descriptor,
+            'project':
+            project,
+            'metric_descriptor':
+            metric_descriptor,
         })
 
     @classmethod
@@ -96,8 +99,10 @@ class MetricServiceClient(object):
                                            monitored_resource_descriptor):
         """Returns a fully-qualified monitored_resource_descriptor resource name string."""
         return cls._MONITORED_RESOURCE_DESCRIPTOR_PATH_TEMPLATE.render({
-            'project': project,
-            'monitored_resource_descriptor': monitored_resource_descriptor,
+            'project':
+            project,
+            'monitored_resource_descriptor':
+            monitored_resource_descriptor,
         })
 
     @classmethod
@@ -295,8 +300,8 @@ class MetricServiceClient(object):
     # Service calls
     def list_monitored_resource_descriptors(self,
                                             name,
-                                            filter_='',
-                                            page_size=0,
+                                            filter_=None,
+                                            page_size=None,
                                             options=None):
         """
         Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
@@ -304,19 +309,19 @@ class MetricServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_monitored_resource_descriptors(name):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_monitored_resource_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_monitored_resource_descriptors(name):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_monitored_resource_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           name (string): The project on which to execute the request. The format is
@@ -359,9 +364,9 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.monitored_resource_descriptor_path('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]')
-          >>> response = api.get_monitored_resource_descriptor(name)
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.monitored_resource_descriptor_path('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]')
+          >>> response = client.get_monitored_resource_descriptor(name)
 
         Args:
           name (string): The monitored resource descriptor to get.  The format is
@@ -385,8 +390,8 @@ class MetricServiceClient(object):
 
     def list_metric_descriptors(self,
                                 name,
-                                filter_='',
-                                page_size=0,
+                                filter_=None,
+                                page_size=None,
                                 options=None):
         """
         Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
@@ -394,19 +399,19 @@ class MetricServiceClient(object):
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_metric_descriptors(name):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_metric_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_metric_descriptors(name):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_metric_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           name (string): The project on which to execute the request. The format is
@@ -450,9 +455,9 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
-          >>> response = api.get_metric_descriptor(name)
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
+          >>> response = client.get_metric_descriptor(name)
 
         Args:
           name (string): The metric descriptor on which to execute the request. The format is
@@ -481,11 +486,11 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> from google.api import metric_pb2 as api_metric_pb2
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.project_path('[PROJECT]')
-          >>> metric_descriptor = api_metric_pb2.MetricDescriptor()
-          >>> response = api.create_metric_descriptor(name, metric_descriptor)
+          >>> from google.api import metric_pb2
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.project_path('[PROJECT]')
+          >>> metric_descriptor = metric_pb2.MetricDescriptor()
+          >>> response = client.create_metric_descriptor(name, metric_descriptor)
 
         Args:
           name (string): The project on which to execute the request. The format is
@@ -514,9 +519,9 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
-          >>> api.delete_metric_descriptor(name)
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.metric_descriptor_path('[PROJECT]', '[METRIC_DESCRIPTOR]')
+          >>> client.delete_metric_descriptor(name)
 
         Args:
           name (string): The metric descriptor on which to execute the request. The format is
@@ -540,8 +545,8 @@ class MetricServiceClient(object):
                          interval,
                          view,
                          aggregation=None,
-                         order_by='',
-                         page_size=0,
+                         order_by=None,
+                         page_size=None,
                          options=None):
         """
         Lists time series that match a filter. This method does not require a Stackdriver account.
@@ -551,22 +556,22 @@ class MetricServiceClient(object):
           >>> from google.cloud.gapic.monitoring.v3 import enums
           >>> from google.cloud.proto.monitoring.v3 import common_pb2
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>> filter_ = ''
           >>> interval = common_pb2.TimeInterval()
           >>> view = enums.ListTimeSeriesRequest.TimeSeriesView.FULL
           >>>
           >>> # Iterate over all results
-          >>> for element in api.list_time_series(name, filter_, interval, view):
-          >>>   # process element
-          >>>   pass
-          >>>
-          >>> # Or iterate over results one page at a time
-          >>> for page in api.list_time_series(name, filter_, interval, view, options=CallOptions(page_token=INITIAL_PAGE)):
-          >>>   for element in page:
+          >>> for element in client.list_time_series(name, filter_, interval, view):
           >>>     # process element
           >>>     pass
+          >>>
+          >>> # Or iterate over results one page at a time
+          >>> for page in client.list_time_series(name, filter_, interval, view, options=CallOptions(page_token=INITIAL_PAGE)):
+          >>>     for element in page:
+          >>>         # process element
+          >>>         pass
 
         Args:
           name (string): The project on which to execute the request. The format is
@@ -583,13 +588,13 @@ class MetricServiceClient(object):
           interval (:class:`google.cloud.proto.monitoring.v3.common_pb2.TimeInterval`): The time interval for which results should be returned. Only time series
             that contain data points in the specified interval are included
             in the response.
+          view (enum :class:`google.cloud.gapic.monitoring.v3.enums.ListTimeSeriesRequest.TimeSeriesView`): Specifies which information is returned about the time series.
           aggregation (:class:`google.cloud.proto.monitoring.v3.common_pb2.Aggregation`): By default, the raw time series data is returned.
             Use this field to combine multiple time series for different
             views of the data.
           order_by (string): Specifies the order in which the points of the time series should
             be returned.  By default, results are not ordered.  Currently,
             this field must be left blank.
-          view (enum :class:`google.cloud.gapic.monitoring.v3.enums.ListTimeSeriesRequest.TimeSeriesView`): Specifies which information is returned about the time series.
           page_size (int): The maximum number of resources contained in the
             underlying API response. If page streaming is performed per-
             resource, this parameter does not affect the return value. If page
@@ -608,8 +613,6 @@ class MetricServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        if aggregation is None:
-            aggregation = common_pb2.Aggregation()
         # Create the request object.
         request = metric_service_pb2.ListTimeSeriesRequest(
             name=name,
@@ -630,11 +633,10 @@ class MetricServiceClient(object):
 
         Example:
           >>> from google.cloud.gapic.monitoring.v3 import metric_service_client
-          >>> from google.cloud.proto.monitoring.v3 import metric_pb2 as v3_metric_pb2
-          >>> api = metric_service_client.MetricServiceClient()
-          >>> name = api.project_path('[PROJECT]')
+          >>> client = metric_service_client.MetricServiceClient()
+          >>> name = client.project_path('[PROJECT]')
           >>> time_series = []
-          >>> api.create_time_series(name, time_series)
+          >>> client.create_time_series(name, time_series)
 
         Args:
           name (string): The project on which to execute the request. The format is
