@@ -29,6 +29,50 @@ class LabelDescriptor(object):
         INT64 = 2
 
 
+class MetricDescriptor(object):
+    class MetricKind(object):
+        """
+        The kind of measurement. It describes how the data is reported.
+
+        Attributes:
+          METRIC_KIND_UNSPECIFIED (int): Do not use this default value.
+          GAUGE (int): An instantaneous measurement of a value.
+          DELTA (int): The change in a value during a time interval.
+          CUMULATIVE (int): A value accumulated over a time interval.  Cumulative
+            measurements in a time series should have the same start time
+            and increasing end times, until an event resets the cumulative
+            value to zero and sets a new start time for the following
+            points.
+        """
+        METRIC_KIND_UNSPECIFIED = 0
+        GAUGE = 1
+        DELTA = 2
+        CUMULATIVE = 3
+
+    class ValueType(object):
+        """
+        The value type of a metric.
+
+        Attributes:
+          VALUE_TYPE_UNSPECIFIED (int): Do not use this default value.
+          BOOL (int): The value is a boolean.
+            This value type can be used only if the metric kind is ``GAUGE``.
+          INT64 (int): The value is a signed 64-bit integer.
+          DOUBLE (int): The value is a double precision floating point number.
+          STRING (int): The value is a text string.
+            This value type can be used only if the metric kind is ``GAUGE``.
+          DISTRIBUTION (int): The value is a ````Distribution````.
+          MONEY (int): The value is money.
+        """
+        VALUE_TYPE_UNSPECIFIED = 0
+        BOOL = 1
+        INT64 = 2
+        DOUBLE = 3
+        STRING = 4
+        DISTRIBUTION = 5
+        MONEY = 6
+
+
 class Aggregation(object):
     class Aligner(object):
         """
@@ -207,50 +251,6 @@ class Aggregation(object):
         REDUCE_PERCENTILE_95 = 10
         REDUCE_PERCENTILE_50 = 11
         REDUCE_PERCENTILE_05 = 12
-
-
-class MetricDescriptor(object):
-    class MetricKind(object):
-        """
-        The kind of measurement. It describes how the data is reported.
-
-        Attributes:
-          METRIC_KIND_UNSPECIFIED (int): Do not use this default value.
-          GAUGE (int): An instantaneous measurement of a value.
-          DELTA (int): The change in a value during a time interval.
-          CUMULATIVE (int): A value accumulated over a time interval.  Cumulative
-            measurements in a time series should have the same start time
-            and increasing end times, until an event resets the cumulative
-            value to zero and sets a new start time for the following
-            points.
-        """
-        METRIC_KIND_UNSPECIFIED = 0
-        GAUGE = 1
-        DELTA = 2
-        CUMULATIVE = 3
-
-    class ValueType(object):
-        """
-        The value type of a metric.
-
-        Attributes:
-          VALUE_TYPE_UNSPECIFIED (int): Do not use this default value.
-          BOOL (int): The value is a boolean.
-            This value type can be used only if the metric kind is ``GAUGE``.
-          INT64 (int): The value is a signed 64-bit integer.
-          DOUBLE (int): The value is a double precision floating point number.
-          STRING (int): The value is a text string.
-            This value type can be used only if the metric kind is ``GAUGE``.
-          DISTRIBUTION (int): The value is a ````Distribution````.
-          MONEY (int): The value is money.
-        """
-        VALUE_TYPE_UNSPECIFIED = 0
-        BOOL = 1
-        INT64 = 2
-        DOUBLE = 3
-        STRING = 4
-        DISTRIBUTION = 5
-        MONEY = 6
 
 
 class ListTimeSeriesRequest(object):
