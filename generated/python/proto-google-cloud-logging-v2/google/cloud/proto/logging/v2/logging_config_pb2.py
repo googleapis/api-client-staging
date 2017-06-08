@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/logging/v2/logging_config.proto',
   package='google.logging.v2',
   syntax='proto3',
-  serialized_pb=_b('\n2google/cloud/proto/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbd\x02\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\x12\x17\n\x0fwriter_identity\x18\x08 \x01(\t\x12.\n\nstart_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"m\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"p\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\xfe\x04\n\x0f\x43onfigServiceV2\x12}\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v2/{parent=projects/*}/sinks\x12t\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"*\x82\xd3\xe4\x93\x02$\x12\"/v2/{sink_name=projects/*/sinks/*}\x12{\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"+\x82\xd3\xe4\x93\x02%\"\x1d/v2/{parent=projects/*}/sinks:\x04sink\x12\x80\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\x1a\"/v2/{sink_name=projects/*/sinks/*}:\x04sink\x12v\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$*\"/v2/{sink_name=projects/*/sinks/*}B\x81\x01\n\x15\x63om.google.logging.v2B\x12LoggingConfigProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
+  serialized_pb=_b('\n2google/cloud/proto/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd7\x02\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\x12\x17\n\x0fwriter_identity\x18\x08 \x01(\t\x12\x18\n\x10include_children\x18\t \x01(\x08\x12.\n\nstart_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"m\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"p\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\xfe\x04\n\x0f\x43onfigServiceV2\x12}\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v2/{parent=projects/*}/sinks\x12t\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"*\x82\xd3\xe4\x93\x02$\x12\"/v2/{sink_name=projects/*/sinks/*}\x12{\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"+\x82\xd3\xe4\x93\x02%\"\x1d/v2/{parent=projects/*}/sinks:\x04sink\x12\x80\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\x1a\"/v2/{sink_name=projects/*/sinks/*}:\x04sink\x12v\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$*\"/v2/{sink_name=projects/*/sinks/*}B\x81\x01\n\x15\x63om.google.logging.v2B\x12LoggingConfigProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -50,8 +50,8 @@ _LOGSINK_VERSIONFORMAT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=420,
-  serialized_end=483,
+  serialized_start=446,
+  serialized_end=509,
 )
 _sym_db.RegisterEnumDescriptor(_LOGSINK_VERSIONFORMAT)
 
@@ -99,14 +99,21 @@ _LOGSINK = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='start_time', full_name='google.logging.v2.LogSink.start_time', index=5,
+      name='include_children', full_name='google.logging.v2.LogSink.include_children', index=5,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='start_time', full_name='google.logging.v2.LogSink.start_time', index=6,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='end_time', full_name='google.logging.v2.LogSink.end_time', index=6,
+      name='end_time', full_name='google.logging.v2.LogSink.end_time', index=7,
       number=11, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -126,7 +133,7 @@ _LOGSINK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=166,
-  serialized_end=483,
+  serialized_end=509,
 )
 
 
@@ -170,8 +177,8 @@ _LISTSINKSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=485,
-  serialized_end=558,
+  serialized_start=511,
+  serialized_end=584,
 )
 
 
@@ -208,8 +215,8 @@ _LISTSINKSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=560,
-  serialized_end=647,
+  serialized_start=586,
+  serialized_end=673,
 )
 
 
@@ -239,8 +246,8 @@ _GETSINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=649,
-  serialized_end=684,
+  serialized_start=675,
+  serialized_end=710,
 )
 
 
@@ -284,8 +291,8 @@ _CREATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=686,
-  serialized_end=795,
+  serialized_start=712,
+  serialized_end=821,
 )
 
 
@@ -329,8 +336,8 @@ _UPDATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=797,
-  serialized_end=909,
+  serialized_start=823,
+  serialized_end=935,
 )
 
 
@@ -360,8 +367,8 @@ _DELETESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=911,
-  serialized_end=949,
+  serialized_start=937,
+  serialized_end=975,
 )
 
 _LOGSINK.fields_by_name['output_version_format'].enum_type = _LOGSINK_VERSIONFORMAT
@@ -435,10 +442,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ConfigServiceV2Stub(object):
