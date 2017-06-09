@@ -17,7 +17,9 @@ package com.google.cloud.vision.spi.v1;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesRequest;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
@@ -75,12 +77,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     ImageAnnotatorSettings.defaultChannelProviderBuilder()
+ * ImageAnnotatorSettings imageAnnotatorSettings =
+ *     ImageAnnotatorSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * ImageAnnotatorSettings imageAnnotatorSettings =
- *     ImageAnnotatorSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * ImageAnnotatorClient imageAnnotatorClient =
  *     ImageAnnotatorClient.create(imageAnnotatorSettings);
  * </code>
@@ -120,9 +120,17 @@ public class ImageAnnotatorClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
 
     this.batchAnnotateImagesCallable =
-        UnaryCallable.create(settings.batchAnnotateImagesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.batchAnnotateImagesSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

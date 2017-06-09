@@ -16,6 +16,7 @@
 package com.google.cloud.spanner.spi.v1;
 
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
 import com.google.api.gax.grpc.ChannelProvider;
@@ -247,8 +248,7 @@ public class SpannerSettings extends ClientSettings {
   public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
     return InstantiatingChannelProvider.newBuilder()
         .setEndpoint(getDefaultEndpoint())
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
-        .setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion());
   }
 
   private static String getGapicVersion() {
@@ -276,7 +276,10 @@ public class SpannerSettings extends ClientSettings {
   }
 
   private SpannerSettings(Builder settingsBuilder) throws IOException {
-    super(settingsBuilder.getExecutorProvider(), settingsBuilder.getChannelProvider());
+    super(
+        settingsBuilder.getExecutorProvider(),
+        settingsBuilder.getChannelProvider(),
+        settingsBuilder.getCredentialsProvider());
 
     createSessionSettings = settingsBuilder.createSessionSettings().build();
     getSessionSettings = settingsBuilder.getSessionSettings().build();
@@ -317,9 +320,7 @@ public class SpannerSettings extends ClientSettings {
           Sets.immutableEnumSet(
               Lists.<Status.Code>newArrayList(
                   Status.Code.DEADLINE_EXCEEDED, Status.Code.UNAVAILABLE)));
-      definitions.put(
-          "non_idempotent",
-          Sets.immutableEnumSet(Lists.<Status.Code>newArrayList(Status.Code.UNAVAILABLE)));
+      definitions.put("non_idempotent", Sets.immutableEnumSet(Lists.<Status.Code>newArrayList()));
       RETRYABLE_CODE_DEFINITIONS = definitions.build();
     }
 
@@ -343,6 +344,7 @@ public class SpannerSettings extends ClientSettings {
 
     private Builder() {
       super(defaultChannelProviderBuilder().build());
+      setCredentialsProvider(defaultCredentialsProviderBuilder().build());
 
       createSessionSettings = SimpleCallSettings.newBuilder(METHOD_CREATE_SESSION);
 
@@ -457,6 +459,12 @@ public class SpannerSettings extends ClientSettings {
     @Override
     public Builder setChannelProvider(ChannelProvider channelProvider) {
       super.setChannelProvider(channelProvider);
+      return this;
+    }
+
+    @Override
+    public Builder setCredentialsProvider(CredentialsProvider credentialsProvider) {
+      super.setCredentialsProvider(credentialsProvider);
       return this;
     }
 

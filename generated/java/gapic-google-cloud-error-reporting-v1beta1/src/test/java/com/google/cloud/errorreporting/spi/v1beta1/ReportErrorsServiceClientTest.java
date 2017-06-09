@@ -15,6 +15,7 @@
  */
 package com.google.cloud.errorreporting.spi.v1beta1;
 
+import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
@@ -67,6 +68,7 @@ public class ReportErrorsServiceClientTest {
     ReportErrorsServiceSettings settings =
         ReportErrorsServiceSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
+            .setCredentialsProvider(new NoCredentialsProvider())
             .build();
     client = ReportErrorsServiceClient.create(settings);
   }

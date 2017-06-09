@@ -20,6 +20,7 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListSubscript
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.PropertiesProvider;
 import com.google.api.gax.grpc.CallContext;
@@ -378,8 +379,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
   public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
     return InstantiatingChannelProvider.newBuilder()
         .setEndpoint(getDefaultEndpoint())
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
-        .setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion());
   }
 
   private static String getGapicVersion() {
@@ -408,7 +408,10 @@ public class SubscriptionAdminSettings extends ClientSettings {
   }
 
   private SubscriptionAdminSettings(Builder settingsBuilder) throws IOException {
-    super(settingsBuilder.getExecutorProvider(), settingsBuilder.getChannelProvider());
+    super(
+        settingsBuilder.getExecutorProvider(),
+        settingsBuilder.getChannelProvider(),
+        settingsBuilder.getCredentialsProvider());
 
     createSubscriptionSettings = settingsBuilder.createSubscriptionSettings().build();
     getSubscriptionSettings = settingsBuilder.getSubscriptionSettings().build();
@@ -581,9 +584,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
           Sets.immutableEnumSet(
               Lists.<Status.Code>newArrayList(
                   Status.Code.DEADLINE_EXCEEDED, Status.Code.UNAVAILABLE)));
-      definitions.put(
-          "non_idempotent",
-          Sets.immutableEnumSet(Lists.<Status.Code>newArrayList(Status.Code.UNAVAILABLE)));
+      definitions.put("non_idempotent", Sets.immutableEnumSet(Lists.<Status.Code>newArrayList()));
       definitions.put(
           "pull",
           Sets.immutableEnumSet(
@@ -626,6 +627,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
 
     private Builder() {
       super(defaultChannelProviderBuilder().build());
+      setCredentialsProvider(defaultCredentialsProviderBuilder().build());
 
       createSubscriptionSettings = SimpleCallSettings.newBuilder(METHOD_CREATE_SUBSCRIPTION);
 
@@ -819,6 +821,12 @@ public class SubscriptionAdminSettings extends ClientSettings {
     @Override
     public Builder setChannelProvider(ChannelProvider channelProvider) {
       super.setChannelProvider(channelProvider);
+      return this;
+    }
+
+    @Override
+    public Builder setCredentialsProvider(CredentialsProvider credentialsProvider) {
+      super.setCredentialsProvider(credentialsProvider);
       return this;
     }
 

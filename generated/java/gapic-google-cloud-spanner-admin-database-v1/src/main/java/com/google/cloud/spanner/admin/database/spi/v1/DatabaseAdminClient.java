@@ -18,12 +18,15 @@ package com.google.cloud.spanner.admin.database.spi.v1;
 import static com.google.cloud.spanner.admin.database.spi.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
 
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.FixedChannelProvider;
 import com.google.api.gax.grpc.FixedExecutorProvider;
 import com.google.api.gax.grpc.OperationCallable;
 import com.google.api.gax.grpc.OperationFuture;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -99,12 +102,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     DatabaseAdminSettings.defaultChannelProviderBuilder()
+ * DatabaseAdminSettings databaseAdminSettings =
+ *     DatabaseAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * DatabaseAdminSettings databaseAdminSettings =
- *     DatabaseAdminSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * DatabaseAdminClient databaseAdminClient =
  *     DatabaseAdminClient.create(databaseAdminSettings);
  * </code>
@@ -158,52 +159,50 @@ public class DatabaseAdminClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
 
-    FixedExecutorProvider executorProvider = FixedExecutorProvider.create(this.executor);
-    FixedChannelProvider channelProvider = FixedChannelProvider.create(this.channel);
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
+
     OperationsSettings operationsSettings =
         OperationsSettings.defaultBuilder()
-            .setExecutorProvider(executorProvider)
-            .setChannelProvider(channelProvider)
+            .setExecutorProvider(FixedExecutorProvider.create(this.executor))
+            .setChannelProvider(FixedChannelProvider.create(this.channel))
+            .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
             .build();
     this.operationsClient = OperationsClient.create(operationsSettings);
 
     this.listDatabasesCallable =
-        UnaryCallable.create(settings.listDatabasesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listDatabasesSettings(), clientContext);
     this.listDatabasesPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listDatabasesSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listDatabasesSettings(), clientContext);
     this.createDatabaseCallable =
         UnaryCallable.create(
-            settings.createDatabaseSettings().getInitialCallSettings(),
-            this.channel,
-            this.executor);
+            settings.createDatabaseSettings().getInitialCallSettings(), clientContext);
     this.createDatabaseOperationCallable =
         OperationCallable.create(
-            settings.createDatabaseSettings(), this.channel, this.executor, this.operationsClient);
-    this.getDatabaseCallable =
-        UnaryCallable.create(settings.getDatabaseSettings(), this.channel, this.executor);
+            settings.createDatabaseSettings(), clientContext, this.operationsClient);
+    this.getDatabaseCallable = UnaryCallable.create(settings.getDatabaseSettings(), clientContext);
     this.updateDatabaseDdlCallable =
         UnaryCallable.create(
-            settings.updateDatabaseDdlSettings().getInitialCallSettings(),
-            this.channel,
-            this.executor);
+            settings.updateDatabaseDdlSettings().getInitialCallSettings(), clientContext);
     this.updateDatabaseDdlOperationCallable =
         OperationCallable.create(
-            settings.updateDatabaseDdlSettings(),
-            this.channel,
-            this.executor,
-            this.operationsClient);
+            settings.updateDatabaseDdlSettings(), clientContext, this.operationsClient);
     this.dropDatabaseCallable =
-        UnaryCallable.create(settings.dropDatabaseSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.dropDatabaseSettings(), clientContext);
     this.getDatabaseDdlCallable =
-        UnaryCallable.create(settings.getDatabaseDdlSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getDatabaseDdlSettings(), clientContext);
     this.setIamPolicyCallable =
-        UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.setIamPolicySettings(), clientContext);
     this.getIamPolicyCallable =
-        UnaryCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getIamPolicySettings(), clientContext);
     this.testIamPermissionsCallable =
-        UnaryCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.testIamPermissionsSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

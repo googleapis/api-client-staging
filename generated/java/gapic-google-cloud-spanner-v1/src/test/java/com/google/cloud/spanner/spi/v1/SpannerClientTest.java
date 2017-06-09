@@ -15,6 +15,7 @@
  */
 package com.google.cloud.spanner.spi.v1;
 
+import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.ApiException;
 import com.google.api.gax.grpc.StreamingCallable;
 import com.google.api.gax.grpc.testing.MockGrpcService;
@@ -79,6 +80,7 @@ public class SpannerClientTest {
     SpannerSettings settings =
         SpannerSettings.defaultBuilder()
             .setChannelProvider(serviceHelper.createChannelProvider())
+            .setCredentialsProvider(new NoCredentialsProvider())
             .build();
     client = SpannerClient.create(settings);
   }

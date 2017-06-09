@@ -17,7 +17,9 @@ package com.google.cloud.errorreporting.spi.v1beta1;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup;
 import com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.GroupName;
@@ -75,12 +77,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     ErrorGroupServiceSettings.defaultChannelProviderBuilder()
+ * ErrorGroupServiceSettings errorGroupServiceSettings =
+ *     ErrorGroupServiceSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * ErrorGroupServiceSettings errorGroupServiceSettings =
- *     ErrorGroupServiceSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * ErrorGroupServiceClient errorGroupServiceClient =
  *     ErrorGroupServiceClient.create(errorGroupServiceSettings);
  * </code>
@@ -121,11 +121,17 @@ public class ErrorGroupServiceClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
 
-    this.getGroupCallable =
-        UnaryCallable.create(settings.getGroupSettings(), this.channel, this.executor);
-    this.updateGroupCallable =
-        UnaryCallable.create(settings.updateGroupSettings(), this.channel, this.executor);
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
+
+    this.getGroupCallable = UnaryCallable.create(settings.getGroupSettings(), clientContext);
+    this.updateGroupCallable = UnaryCallable.create(settings.updateGroupSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
