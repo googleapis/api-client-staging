@@ -20,7 +20,9 @@ import static com.google.cloud.pubsub.spi.v1.PagedResponseWrappers.ListTopicsPag
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -94,12 +96,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     TopicAdminSettings.defaultChannelProviderBuilder()
+ * TopicAdminSettings topicAdminSettings =
+ *     TopicAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * TopicAdminSettings topicAdminSettings =
- *     TopicAdminSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * TopicAdminClient topicAdminClient =
  *     TopicAdminClient.create(topicAdminSettings);
  * </code>
@@ -150,32 +150,32 @@ public class TopicAdminClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
 
-    this.createTopicCallable =
-        UnaryCallable.create(settings.createTopicSettings(), this.channel, this.executor);
-    this.publishCallable =
-        UnaryCallable.create(settings.publishSettings(), this.channel, this.executor);
-    this.getTopicCallable =
-        UnaryCallable.create(settings.getTopicSettings(), this.channel, this.executor);
-    this.listTopicsCallable =
-        UnaryCallable.create(settings.listTopicsSettings(), this.channel, this.executor);
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
+
+    this.createTopicCallable = UnaryCallable.create(settings.createTopicSettings(), clientContext);
+    this.publishCallable = UnaryCallable.create(settings.publishSettings(), clientContext);
+    this.getTopicCallable = UnaryCallable.create(settings.getTopicSettings(), clientContext);
+    this.listTopicsCallable = UnaryCallable.create(settings.listTopicsSettings(), clientContext);
     this.listTopicsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listTopicsSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listTopicsSettings(), clientContext);
     this.listTopicSubscriptionsCallable =
-        UnaryCallable.create(
-            settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listTopicSubscriptionsSettings(), clientContext);
     this.listTopicSubscriptionsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listTopicSubscriptionsSettings(), this.channel, this.executor);
-    this.deleteTopicCallable =
-        UnaryCallable.create(settings.deleteTopicSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listTopicSubscriptionsSettings(), clientContext);
+    this.deleteTopicCallable = UnaryCallable.create(settings.deleteTopicSettings(), clientContext);
     this.setIamPolicyCallable =
-        UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.setIamPolicySettings(), clientContext);
     this.getIamPolicyCallable =
-        UnaryCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getIamPolicySettings(), clientContext);
     this.testIamPermissionsCallable =
-        UnaryCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.testIamPermissionsSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

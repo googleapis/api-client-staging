@@ -17,8 +17,10 @@ package com.google.cloud.spanner.spi.v1;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.StreamingCallable;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
@@ -93,12 +95,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     SpannerSettings.defaultChannelProviderBuilder()
+ * SpannerSettings spannerSettings =
+ *     SpannerSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * SpannerSettings spannerSettings =
- *     SpannerSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * SpannerClient spannerClient =
  *     SpannerClient.create(spannerSettings);
  * </code>
@@ -145,26 +145,30 @@ public class SpannerClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
 
     this.createSessionCallable =
-        UnaryCallable.create(settings.createSessionSettings(), this.channel, this.executor);
-    this.getSessionCallable =
-        UnaryCallable.create(settings.getSessionSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.createSessionSettings(), clientContext);
+    this.getSessionCallable = UnaryCallable.create(settings.getSessionSettings(), clientContext);
     this.deleteSessionCallable =
-        UnaryCallable.create(settings.deleteSessionSettings(), this.channel, this.executor);
-    this.executeSqlCallable =
-        UnaryCallable.create(settings.executeSqlSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteSessionSettings(), clientContext);
+    this.executeSqlCallable = UnaryCallable.create(settings.executeSqlSettings(), clientContext);
     this.executeStreamingSqlCallable =
-        StreamingCallable.create(settings.executeStreamingSqlSettings(), this.channel);
-    this.readCallable = UnaryCallable.create(settings.readSettings(), this.channel, this.executor);
+        StreamingCallable.create(settings.executeStreamingSqlSettings(), clientContext);
+    this.readCallable = UnaryCallable.create(settings.readSettings(), clientContext);
     this.streamingReadCallable =
-        StreamingCallable.create(settings.streamingReadSettings(), this.channel);
+        StreamingCallable.create(settings.streamingReadSettings(), clientContext);
     this.beginTransactionCallable =
-        UnaryCallable.create(settings.beginTransactionSettings(), this.channel, this.executor);
-    this.commitCallable =
-        UnaryCallable.create(settings.commitSettings(), this.channel, this.executor);
-    this.rollbackCallable =
-        UnaryCallable.create(settings.rollbackSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.beginTransactionSettings(), clientContext);
+    this.commitCallable = UnaryCallable.create(settings.commitSettings(), clientContext);
+    this.rollbackCallable = UnaryCallable.create(settings.rollbackSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
@@ -541,7 +545,7 @@ public class SpannerClient implements AutoCloseable {
    *     .setSql(sql)
    *     .build();
    *
-   *   spannerClient.executeStreamingSqlCallable().serverStreamingCall(request, responseObserver)});
+   *   spannerClient.executeStreamingSqlCallable().serverStreamingCall(request, responseObserver));
    * }
    * </code></pre>
    */
@@ -667,7 +671,7 @@ public class SpannerClient implements AutoCloseable {
    *     .setKeySet(keySet)
    *     .build();
    *
-   *   spannerClient.streamingReadCallable().serverStreamingCall(request, responseObserver)});
+   *   spannerClient.streamingReadCallable().serverStreamingCall(request, responseObserver));
    * }
    * </code></pre>
    */

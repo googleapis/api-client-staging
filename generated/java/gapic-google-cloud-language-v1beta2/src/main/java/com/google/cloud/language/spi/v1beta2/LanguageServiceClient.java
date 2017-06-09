@@ -17,7 +17,9 @@ package com.google.cloud.language.spi.v1beta2;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.cloud.language.v1beta2.AnalyzeEntitiesRequest;
 import com.google.cloud.language.v1beta2.AnalyzeEntitiesResponse;
 import com.google.cloud.language.v1beta2.AnalyzeEntitySentimentRequest;
@@ -85,12 +87,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     LanguageServiceSettings.defaultChannelProviderBuilder()
+ * LanguageServiceSettings languageServiceSettings =
+ *     LanguageServiceSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * LanguageServiceSettings languageServiceSettings =
- *     LanguageServiceSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * LanguageServiceClient languageServiceClient =
  *     LanguageServiceClient.create(languageServiceSettings);
  * </code>
@@ -136,18 +136,25 @@ public class LanguageServiceClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
 
     this.analyzeSentimentCallable =
-        UnaryCallable.create(settings.analyzeSentimentSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeSentimentSettings(), clientContext);
     this.analyzeEntitiesCallable =
-        UnaryCallable.create(settings.analyzeEntitiesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeEntitiesSettings(), clientContext);
     this.analyzeEntitySentimentCallable =
-        UnaryCallable.create(
-            settings.analyzeEntitySentimentSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeEntitySentimentSettings(), clientContext);
     this.analyzeSyntaxCallable =
-        UnaryCallable.create(settings.analyzeSyntaxSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.analyzeSyntaxSettings(), clientContext);
     this.annotateTextCallable =
-        UnaryCallable.create(settings.annotateTextSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.annotateTextSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

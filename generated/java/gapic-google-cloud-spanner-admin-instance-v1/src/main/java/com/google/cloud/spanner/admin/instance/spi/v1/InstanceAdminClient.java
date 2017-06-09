@@ -19,12 +19,15 @@ import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappe
 import static com.google.cloud.spanner.admin.instance.spi.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.FixedChannelProvider;
 import com.google.api.gax.grpc.FixedExecutorProvider;
 import com.google.api.gax.grpc.OperationCallable;
 import com.google.api.gax.grpc.OperationFuture;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -117,12 +120,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     InstanceAdminSettings.defaultChannelProviderBuilder()
+ * InstanceAdminSettings instanceAdminSettings =
+ *     InstanceAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * InstanceAdminSettings instanceAdminSettings =
- *     InstanceAdminSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * InstanceAdminClient instanceAdminClient =
  *     InstanceAdminClient.create(instanceAdminSettings);
  * </code>
@@ -179,54 +180,54 @@ public class InstanceAdminClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
 
-    FixedExecutorProvider executorProvider = FixedExecutorProvider.create(this.executor);
-    FixedChannelProvider channelProvider = FixedChannelProvider.create(this.channel);
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
+
     OperationsSettings operationsSettings =
         OperationsSettings.defaultBuilder()
-            .setExecutorProvider(executorProvider)
-            .setChannelProvider(channelProvider)
+            .setExecutorProvider(FixedExecutorProvider.create(this.executor))
+            .setChannelProvider(FixedChannelProvider.create(this.channel))
+            .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
             .build();
     this.operationsClient = OperationsClient.create(operationsSettings);
 
     this.listInstanceConfigsCallable =
-        UnaryCallable.create(settings.listInstanceConfigsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listInstanceConfigsSettings(), clientContext);
     this.listInstanceConfigsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listInstanceConfigsSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listInstanceConfigsSettings(), clientContext);
     this.getInstanceConfigCallable =
-        UnaryCallable.create(settings.getInstanceConfigSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getInstanceConfigSettings(), clientContext);
     this.listInstancesCallable =
-        UnaryCallable.create(settings.listInstancesSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listInstancesSettings(), clientContext);
     this.listInstancesPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listInstancesSettings(), this.channel, this.executor);
-    this.getInstanceCallable =
-        UnaryCallable.create(settings.getInstanceSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listInstancesSettings(), clientContext);
+    this.getInstanceCallable = UnaryCallable.create(settings.getInstanceSettings(), clientContext);
     this.createInstanceCallable =
         UnaryCallable.create(
-            settings.createInstanceSettings().getInitialCallSettings(),
-            this.channel,
-            this.executor);
+            settings.createInstanceSettings().getInitialCallSettings(), clientContext);
     this.createInstanceOperationCallable =
         OperationCallable.create(
-            settings.createInstanceSettings(), this.channel, this.executor, this.operationsClient);
+            settings.createInstanceSettings(), clientContext, this.operationsClient);
     this.updateInstanceCallable =
         UnaryCallable.create(
-            settings.updateInstanceSettings().getInitialCallSettings(),
-            this.channel,
-            this.executor);
+            settings.updateInstanceSettings().getInitialCallSettings(), clientContext);
     this.updateInstanceOperationCallable =
         OperationCallable.create(
-            settings.updateInstanceSettings(), this.channel, this.executor, this.operationsClient);
+            settings.updateInstanceSettings(), clientContext, this.operationsClient);
     this.deleteInstanceCallable =
-        UnaryCallable.create(settings.deleteInstanceSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteInstanceSettings(), clientContext);
     this.setIamPolicyCallable =
-        UnaryCallable.create(settings.setIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.setIamPolicySettings(), clientContext);
     this.getIamPolicyCallable =
-        UnaryCallable.create(settings.getIamPolicySettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getIamPolicySettings(), clientContext);
     this.testIamPermissionsCallable =
-        UnaryCallable.create(settings.testIamPermissionsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.testIamPermissionsSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

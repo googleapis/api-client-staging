@@ -20,7 +20,9 @@ import static com.google.cloud.errorreporting.spi.v1beta1.PagedResponseWrappers.
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse;
 import com.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest;
@@ -83,12 +85,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     ErrorStatsServiceSettings.defaultChannelProviderBuilder()
+ * ErrorStatsServiceSettings errorStatsServiceSettings =
+ *     ErrorStatsServiceSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * ErrorStatsServiceSettings errorStatsServiceSettings =
- *     ErrorStatsServiceSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * ErrorStatsServiceClient errorStatsServiceClient =
  *     ErrorStatsServiceClient.create(errorStatsServiceSettings);
  * </code>
@@ -133,19 +133,24 @@ public class ErrorStatsServiceClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
 
     this.listGroupStatsCallable =
-        UnaryCallable.create(settings.listGroupStatsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listGroupStatsSettings(), clientContext);
     this.listGroupStatsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listGroupStatsSettings(), this.channel, this.executor);
-    this.listEventsCallable =
-        UnaryCallable.create(settings.listEventsSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listGroupStatsSettings(), clientContext);
+    this.listEventsCallable = UnaryCallable.create(settings.listEventsSettings(), clientContext);
     this.listEventsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listEventsSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listEventsSettings(), clientContext);
     this.deleteEventsCallable =
-        UnaryCallable.create(settings.deleteEventsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteEventsSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(

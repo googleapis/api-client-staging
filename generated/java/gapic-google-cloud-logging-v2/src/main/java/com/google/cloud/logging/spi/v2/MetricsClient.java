@@ -19,7 +19,9 @@ import static com.google.cloud.logging.spi.v2.PagedResponseWrappers.ListLogMetri
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.grpc.ChannelAndExecutor;
+import com.google.api.gax.grpc.ClientContext;
 import com.google.api.gax.grpc.UnaryCallable;
+import com.google.auth.Credentials;
 import com.google.logging.v2.CreateLogMetricRequest;
 import com.google.logging.v2.DeleteLogMetricRequest;
 import com.google.logging.v2.GetLogMetricRequest;
@@ -82,12 +84,10 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * InstantiatingChannelProvider channelProvider =
- *     MetricsSettings.defaultChannelProviderBuilder()
+ * MetricsSettings metricsSettings =
+ *     MetricsSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
- * MetricsSettings metricsSettings =
- *     MetricsSettings.defaultBuilder().setChannelProvider(channelProvider).build();
  * MetricsClient metricsClient =
  *     MetricsClient.create(metricsSettings);
  * </code>
@@ -131,20 +131,27 @@ public class MetricsClient implements AutoCloseable {
     ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
     this.executor = channelAndExecutor.getExecutor();
     this.channel = channelAndExecutor.getChannel();
+    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+
+    ClientContext clientContext =
+        ClientContext.newBuilder()
+            .setExecutor(this.executor)
+            .setChannel(this.channel)
+            .setCredentials(credentials)
+            .build();
 
     this.listLogMetricsCallable =
-        UnaryCallable.create(settings.listLogMetricsSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.listLogMetricsSettings(), clientContext);
     this.listLogMetricsPagedCallable =
-        UnaryCallable.createPagedVariant(
-            settings.listLogMetricsSettings(), this.channel, this.executor);
+        UnaryCallable.createPagedVariant(settings.listLogMetricsSettings(), clientContext);
     this.getLogMetricCallable =
-        UnaryCallable.create(settings.getLogMetricSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.getLogMetricSettings(), clientContext);
     this.createLogMetricCallable =
-        UnaryCallable.create(settings.createLogMetricSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.createLogMetricSettings(), clientContext);
     this.updateLogMetricCallable =
-        UnaryCallable.create(settings.updateLogMetricSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.updateLogMetricSettings(), clientContext);
     this.deleteLogMetricCallable =
-        UnaryCallable.create(settings.deleteLogMetricSettings(), this.channel, this.executor);
+        UnaryCallable.create(settings.deleteLogMetricSettings(), clientContext);
 
     if (settings.getChannelProvider().shouldAutoClose()) {
       closeables.add(
