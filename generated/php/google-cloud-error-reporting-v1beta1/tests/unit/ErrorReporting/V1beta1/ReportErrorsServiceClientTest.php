@@ -23,11 +23,14 @@
 namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse;
 use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 use google\protobuf\Any;
+use stdClass;
 
 /**
  * @group error_reporting
@@ -91,6 +94,39 @@ class ReportErrorsServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
         $this->assertEquals($event, $actualRequestObject->getEvent());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function reportErrorEventExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockReportErrorsServiceImpl']);
+        $client = $this->createClient('createReportErrorsServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedProjectName = ReportErrorsServiceClient::formatProjectName('[PROJECT]');
+        $event = new ReportedErrorEvent();
+
+        try {
+            $client->reportErrorEvent($formattedProjectName, $event);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

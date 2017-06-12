@@ -221,8 +221,7 @@ class LanguageServiceClient
      * }
      * ```
      *
-     * @param Document $document     Input document. Currently, `analyzeSentiment` only supports English text
-     *                               ([Document.language][google.cloud.language.v1.Document.language]="EN").
+     * @param Document $document     Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -265,8 +264,9 @@ class LanguageServiceClient
     }
 
     /**
-     * Finds named entities (currently finds proper names) in the text,
-     * entity types, salience, mentions for each entity, and other properties.
+     * Finds named entities (currently proper names and common nouns) in the text
+     * along with entity types, salience, mentions for each entity, and
+     * other properties.
      *
      * Sample code:
      * ```

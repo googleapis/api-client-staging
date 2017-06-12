@@ -23,7 +23,9 @@
 namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\devtools\clouderrorreporting\v1beta1\DeleteEventsResponse;
 use google\devtools\clouderrorreporting\v1beta1\ErrorEvent;
@@ -32,6 +34,7 @@ use google\devtools\clouderrorreporting\v1beta1\ListEventsResponse;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsResponse;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
 use google\protobuf\Any;
+use stdClass;
 
 /**
  * @group error_reporting
@@ -111,6 +114,39 @@ class ErrorStatsServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listGroupStatsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $timeRange = new QueryTimeRange();
+
+        try {
+            $client->listGroupStats($formattedProjectName, $timeRange);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listEventsTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
@@ -153,6 +189,39 @@ class ErrorStatsServiceClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listEventsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $groupId = 'groupId506361563';
+
+        try {
+            $client->listEvents($formattedProjectName, $groupId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteEventsTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
@@ -177,6 +246,38 @@ class ErrorStatsServiceClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteEventsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockErrorStatsServiceImpl']);
+        $client = $this->createClient('createErrorStatsServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+
+        try {
+            $client->deleteEvents($formattedProjectName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }

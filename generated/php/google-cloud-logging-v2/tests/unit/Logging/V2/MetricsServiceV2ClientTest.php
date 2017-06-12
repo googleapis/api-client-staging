@@ -23,12 +23,15 @@
 namespace Google\Cloud\Tests\Logging\V2;
 
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
+use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Grpc;
 use PHPUnit_Framework_TestCase;
 use google\logging\v2\ListLogMetricsResponse;
 use google\logging\v2\LogMetric;
 use google\protobuf\Any;
 use google\protobuf\EmptyC;
+use stdClass;
 
 /**
  * @group logging
@@ -106,6 +109,38 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function listLogMetricsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
+        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+
+        try {
+            $client->listLogMetrics($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getLogMetricTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
@@ -136,6 +171,38 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedMetricName, $actualRequestObject->getMetricName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLogMetricExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
+        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+
+        try {
+            $client->getLogMetric($formattedMetricName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -180,6 +247,39 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function createLogMetricExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
+        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $metric = new LogMetric();
+
+        try {
+            $client->createLogMetric($formattedParent, $metric);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateLogMetricTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
@@ -218,6 +318,39 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function updateLogMetricExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
+        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $metric = new LogMetric();
+
+        try {
+            $client->updateLogMetric($formattedMetricName, $metric);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteLogMetricTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
@@ -225,8 +358,10 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($grpcStub->isExhausted());
 
-        // Add empty response to the grpc stub
-        $grpcStub->addResponse(new EmptyC());
+        // Mock response
+        $expectedResponse = new EmptyC();
+        $grpcStub->addResponse($expectedResponse);
+
         // Mock request
         $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
 
@@ -239,6 +374,38 @@ class MetricsServiceV2ClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedMetricName, $actualRequestObject->getMetricName());
 
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteLogMetricExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockMetricsServiceV2Impl']);
+        $client = $this->createClient('createMetricsServiceV2StubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+
+        try {
+            $client->deleteLogMetric($formattedMetricName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call getReceivedCalls to ensure the stub is exhausted
+        $grpcStub->getReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }
