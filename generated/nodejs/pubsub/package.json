@@ -1,29 +1,45 @@
 {
-  "url": "https://github.com/googleapis/googleapis",
+  "repository": "GoogleCloudPlatform/google-cloud-node",
   "name": "@google-cloud/pubsub",
   "version": "0.7.1",
   "author": "Google Inc",
   "description": "Google Cloud Pub/Sub API client for Node.js",
   "main": "src/index.js",
   "files": [
-    "src"
+    "src",
+    "AUTHORS",
+    "CONTRIBUTING",
+    "COPYING"
+  ],
+  "keywords": [
+    "google apis client",
+    "google api client",
+    "google apis",
+    "google api",
+    "google",
+    "google cloud platform",
+    "google cloud",
+    "cloud",
+    "google pubsub",
+    "pubsub",
+    "Google Cloud Pub/Sub API"
   ],
   "dependencies": {
-    "extend": "^3.0.0",
-    "google-gax": "^0.12.0",
-    "google-proto-files": "^0.8.6",
-    "lodash.merge": "^4.6.0",
-    "lodash.union": "^4.6.0"
+    "google-proto-files": "^0.12.0",
+    "google-gax": "^0.13.2",
+    "lodash.union": "^4.6.0",
+    "extend": "^3.0.0"
   },
   "devDependencies": {
-    "mocha": "3.2.0",
-    "through2": "2.0.3"
+    "mocha": "^3.2.0",
+    "through2": "^2.0.3"
+  },
+  "scripts": {
+    "test": "mocha",
+    "publish-module": "node ../../scripts/publish.js pubsub"
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=0.12.0"
-  },
-  "scripts": {
-    "test": "mocha"
+    "node": ">=4.0.0"
   }
 }
