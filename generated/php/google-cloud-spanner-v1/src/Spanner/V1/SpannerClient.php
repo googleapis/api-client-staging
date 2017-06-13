@@ -710,7 +710,7 @@ class SpannerClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStreamingResponse
+     * @return \Google\GAX\ServerStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -929,7 +929,7 @@ class SpannerClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStreamingResponse
+     * @return \Google\GAX\ServerStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
