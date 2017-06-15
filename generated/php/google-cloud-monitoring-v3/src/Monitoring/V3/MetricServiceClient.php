@@ -877,7 +877,7 @@ class MetricServiceClient
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
      * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see TimeSeriesView}
+     *                                   For allowed values, use constants defined on {@see \google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView}
      * @param array        $optionalArgs {
      *                                   Optional.
      *

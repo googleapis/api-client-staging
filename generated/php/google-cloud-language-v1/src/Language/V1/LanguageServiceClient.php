@@ -227,7 +227,7 @@ class LanguageServiceClient
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets.
-     *          For allowed values, use constants defined on {@see EncodingType}
+     *          For allowed values, use constants defined on {@see \google\cloud\language\v1\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -284,7 +284,7 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see EncodingType}
+     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -342,7 +342,7 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see EncodingType}
+     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -401,7 +401,7 @@ class LanguageServiceClient
      * @param Document $document     Input document.
      * @param Features $features     The enabled features.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see EncodingType}
+     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *

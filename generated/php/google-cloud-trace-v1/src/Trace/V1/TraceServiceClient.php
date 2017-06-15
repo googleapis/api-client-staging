@@ -38,7 +38,6 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use google\devtools\cloudtrace\v1\GetTraceRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest;
-use google\devtools\cloudtrace\v1\ListTracesRequest\ViewType;
 use google\devtools\cloudtrace\v1\PatchTracesRequest;
 use google\devtools\cloudtrace\v1\TraceServiceGrpcClient;
 use google\devtools\cloudtrace\v1\Traces;
@@ -377,7 +376,7 @@ class TraceServiceClient
      *     @type int $view
      *          Type of data returned for traces in the list. Optional. Default is
      *          `MINIMAL`.
-     *          For allowed values, use constants defined on {@see ViewType}
+     *          For allowed values, use constants defined on {@see \google\devtools\cloudtrace\v1\ListTracesRequest\ViewType}
      *     @type int $pageSize
      *          Maximum number of traces to return. If not specified or <= 0, the
      *          implementation selects a reasonable value.  The implementation may

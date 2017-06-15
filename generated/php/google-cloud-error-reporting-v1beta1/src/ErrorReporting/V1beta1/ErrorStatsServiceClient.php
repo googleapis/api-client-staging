@@ -38,13 +38,11 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\devtools\clouderrorreporting\v1beta1\DeleteEventsRequest;
-use google\devtools\clouderrorreporting\v1beta1\ErrorGroupOrder;
 use google\devtools\clouderrorreporting\v1beta1\ErrorStatsServiceGrpcClient;
 use google\devtools\clouderrorreporting\v1beta1\ListEventsRequest;
 use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsRequest;
 use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
 use google\devtools\clouderrorreporting\v1beta1\ServiceContextFilter;
-use google\devtools\clouderrorreporting\v1beta1\TimedCountAlignment;
 use google\protobuf\Duration;
 use google\protobuf\Timestamp;
 
@@ -353,14 +351,14 @@ class ErrorStatsServiceClient
      *     @type int $alignment
      *          [Optional] The alignment of the timed counts to be returned.
      *          Default is `ALIGNMENT_EQUAL_AT_END`.
-     *          For allowed values, use constants defined on {@see TimedCountAlignment}
+     *          For allowed values, use constants defined on {@see \google\devtools\clouderrorreporting\v1beta1\TimedCountAlignment}
      *     @type Timestamp $alignmentTime
      *          [Optional] Time where the timed counts shall be aligned if rounded
      *          alignment is chosen. Default is 00:00 UTC.
      *     @type int $order
      *          [Optional] The sort order in which the results are returned.
      *          Default is `COUNT_DESC`.
-     *          For allowed values, use constants defined on {@see ErrorGroupOrder}
+     *          For allowed values, use constants defined on {@see \google\devtools\clouderrorreporting\v1beta1\ErrorGroupOrder}
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if

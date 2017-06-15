@@ -345,7 +345,7 @@ class VideoIntelligenceServiceClient
      *                             '?' to match 1 character. If unset, the input video should be embedded
      *                             in the request as `input_content`. If set, `input_content` should be unset.
      * @param int[]  $features     Requested video annotation features.
-     *                             For allowed values, use constants defined on {@see Feature}
+     *                             For allowed values, use constants defined on {@see \google\cloud\videointelligence\v1beta1\Feature}
      * @param array  $optionalArgs {
      *                             Optional.
      *
