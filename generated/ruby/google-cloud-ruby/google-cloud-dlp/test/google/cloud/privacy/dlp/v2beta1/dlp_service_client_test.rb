@@ -19,6 +19,7 @@ require "google/gax"
 
 require "google/cloud/privacy/dlp/v2beta1/dlp_service_client"
 require "google/privacy/dlp/v2beta1/dlp_services_pb"
+require "google/longrunning/operations_pb"
 
 class CustomTestError < StandardError; end
 
@@ -58,15 +59,17 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
     it 'invokes inspect_content without error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+      inspect_config = {}
       items = []
 
       # Create expected grpc response
-      expected_response = Google::Privacy::Dlp::V2beta1::InspectContentResponse.new
+      expected_response = {}
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::InspectContentResponse)
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::InspectContentRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
         assert_equal(items, request.items)
         expected_response
       end
@@ -85,12 +88,13 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
     it 'invokes inspect_content with error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+      inspect_config = {}
       items = []
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::InspectContentRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
         assert_equal(items, request.items)
         raise custom_error
       end
@@ -115,16 +119,18 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
     it 'invokes redact_content without error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+      inspect_config = {}
       items = []
       replace_configs = []
 
       # Create expected grpc response
-      expected_response = Google::Privacy::Dlp::V2beta1::RedactContentResponse.new
+      expected_response = {}
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::RedactContentResponse)
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::RedactContentRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
         assert_equal(items, request.items)
         assert_equal(replace_configs, request.replace_configs)
         expected_response
@@ -148,13 +154,14 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
     it 'invokes redact_content with error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+      inspect_config = {}
       items = []
       replace_configs = []
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::RedactContentRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
         assert_equal(items, request.items)
         assert_equal(replace_configs, request.replace_configs)
         raise custom_error
@@ -184,21 +191,29 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
     it 'invokes create_inspect_operation without error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
-      storage_config = Google::Privacy::Dlp::V2beta1::StorageConfig.new
-      output_config = Google::Privacy::Dlp::V2beta1::OutputStorageConfig.new
+      inspect_config = {}
+      storage_config = {}
+      output_config = {}
 
       # Create expected grpc response
       name = "name3373707"
-      done = true
-      expected_response = Google::Longrunning::Operation.new(name: name, done: done)
+      expected_response = { name: name }
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::InspectOperationResult)
+      result = Google::Protobuf::Any.new
+      result.pack(expected_response)
+      operation = Google::Longrunning::Operation.new(
+        name: 'operations/create_inspect_operation_test',
+        done: true,
+        response: result
+      )
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
-        assert_equal(storage_config, request.storage_config)
-        assert_equal(output_config, request.output_config)
-        expected_response
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::CreateInspectOperationRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
+        assert_equal(Google::Gax::to_proto(storage_config, Google::Privacy::Dlp::V2beta1::StorageConfig), request.storage_config)
+        assert_equal(Google::Gax::to_proto(output_config, Google::Privacy::Dlp::V2beta1::OutputStorageConfig), request.output_config)
+        operation
       end
       mock_stub = MockGrpcClientStub.new(:create_inspect_operation, mock_method)
 
@@ -213,21 +228,64 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
         )
 
         # Verify the response
-        assert_equal(expected_response, response)
+        assert_equal(expected_response, response.response)
+      end
+    end
+
+    it 'invokes create_inspect_operation and returns an operation error.' do
+      # Create request parameters
+      inspect_config = {}
+      storage_config = {}
+      output_config = {}
+
+      # Create expected grpc response
+      operation_error = Google::Rpc::Status.new(
+        message: 'Operation error for Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient#create_inspect_operation.'
+      )
+      operation = Google::Longrunning::Operation.new(
+        name: 'operations/create_inspect_operation_test',
+        done: true,
+        error: operation_error
+      )
+
+      # Mock Grpc layer
+      mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::CreateInspectOperationRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
+        assert_equal(Google::Gax::to_proto(storage_config, Google::Privacy::Dlp::V2beta1::StorageConfig), request.storage_config)
+        assert_equal(Google::Gax::to_proto(output_config, Google::Privacy::Dlp::V2beta1::OutputStorageConfig), request.output_config)
+        operation
+      end
+      mock_stub = MockGrpcClientStub.new(:create_inspect_operation, mock_method)
+
+      Google::Privacy::Dlp::V2beta1::DlpService::Stub.stub(:new, mock_stub) do
+        client = Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient.new
+
+        # Call method
+        response = client.create_inspect_operation(
+          inspect_config,
+          storage_config,
+          output_config
+        )
+
+        # Verify the response
+        assert(response.error?)
+        assert_equal(operation_error, response.error)
       end
     end
 
     it 'invokes create_inspect_operation with error' do
       # Create request parameters
-      inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
-      storage_config = Google::Privacy::Dlp::V2beta1::StorageConfig.new
-      output_config = Google::Privacy::Dlp::V2beta1::OutputStorageConfig.new
+      inspect_config = {}
+      storage_config = {}
+      output_config = {}
 
       # Mock Grpc layer
       mock_method = proc do |request|
-        assert_equal(inspect_config, request.inspect_config)
-        assert_equal(storage_config, request.storage_config)
-        assert_equal(output_config, request.output_config)
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::CreateInspectOperationRequest, request)
+        assert_equal(Google::Gax::to_proto(inspect_config, Google::Privacy::Dlp::V2beta1::InspectConfig), request.inspect_config)
+        assert_equal(Google::Gax::to_proto(storage_config, Google::Privacy::Dlp::V2beta1::StorageConfig), request.storage_config)
+        assert_equal(Google::Gax::to_proto(output_config, Google::Privacy::Dlp::V2beta1::OutputStorageConfig), request.output_config)
         raise custom_error
       end
       mock_stub = MockGrpcClientStub.new(:create_inspect_operation, mock_method)
@@ -259,10 +317,12 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
       # Create expected grpc response
       next_page_token = "nextPageToken-1530815211"
-      expected_response = Google::Privacy::Dlp::V2beta1::ListInspectFindingsResponse.new(next_page_token: next_page_token)
+      expected_response = { next_page_token: next_page_token }
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::ListInspectFindingsResponse)
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListInspectFindingsRequest, request)
         assert_equal(formatted_name, request.name)
         expected_response
       end
@@ -285,6 +345,7 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListInspectFindingsRequest, request)
         assert_equal(formatted_name, request.name)
         raise custom_error
       end
@@ -313,10 +374,12 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
       language_code = ''
 
       # Create expected grpc response
-      expected_response = Google::Privacy::Dlp::V2beta1::ListInfoTypesResponse.new
+      expected_response = {}
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::ListInfoTypesResponse)
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListInfoTypesRequest, request)
         assert_equal(category, request.category)
         assert_equal(language_code, request.language_code)
         expected_response
@@ -341,6 +404,7 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListInfoTypesRequest, request)
         assert_equal(category, request.category)
         assert_equal(language_code, request.language_code)
         raise custom_error
@@ -369,10 +433,12 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
       language_code = ''
 
       # Create expected grpc response
-      expected_response = Google::Privacy::Dlp::V2beta1::ListRootCategoriesResponse.new
+      expected_response = {}
+      expected_response = Google::Gax::to_proto(expected_response, Google::Privacy::Dlp::V2beta1::ListRootCategoriesResponse)
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListRootCategoriesRequest, request)
         assert_equal(language_code, request.language_code)
         expected_response
       end
@@ -395,6 +461,7 @@ describe Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient do
 
       # Mock Grpc layer
       mock_method = proc do |request|
+        assert_instance_of(Google::Privacy::Dlp::V2beta1::ListRootCategoriesRequest, request)
         assert_equal(language_code, request.language_code)
         raise custom_error
       end

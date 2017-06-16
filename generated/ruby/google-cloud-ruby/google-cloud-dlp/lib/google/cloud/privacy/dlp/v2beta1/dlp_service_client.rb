@@ -26,6 +26,8 @@ require "json"
 require "pathname"
 
 require "google/gax"
+require "google/gax/operation"
+require "google/longrunning/operations_client"
 
 require "google/privacy/dlp/v2beta1/dlp_pb"
 
@@ -122,6 +124,20 @@ module Google
               require "google/gax/grpc"
               require "google/privacy/dlp/v2beta1/dlp_services_pb"
 
+              @operations_client = Google::Longrunning::OperationsClient.new(
+                service_path: service_path,
+                port: port,
+                channel: channel,
+                chan_creds: chan_creds,
+                updater_proc: updater_proc,
+                scopes: scopes,
+                client_config: client_config,
+                timeout: timeout,
+                app_name: app_name,
+                app_version: app_version,
+                lib_name: lib_name,
+                lib_version: lib_version,
+              )
 
               if app_name || app_version
                 warn "`app_name` and `app_version` are no longer being used in the request headers."
@@ -189,12 +205,16 @@ module Google
             # Find potentially sensitive info in a list of strings.
             # This method has limits on input size, processing time, and output size.
             #
-            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig]
+            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig | Hash]
             #   Configuration for the inspector.
-            # @param items [Array<Google::Privacy::Dlp::V2beta1::ContentItem>]
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::InspectConfig`
+            #   can also be provided.
+            # @param items [Array<Google::Privacy::Dlp::V2beta1::ContentItem | Hash>]
             #   The list of items to inspect. Items in a single request are
             #   considered "related" unless inspect_config.independent_inputs is true.
             #   Up to 100 are allowed per request.
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::ContentItem`
+            #   can also be provided.
             # @param options [Google::Gax::CallOptions]
             #   Overrides the default settings for this call, e.g, timeout,
             #   retries, etc.
@@ -204,7 +224,7 @@ module Google
             #   require "google/cloud/privacy/dlp/v2beta1"
             #
             #   dlp_service_client = Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient.new
-            #   inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+            #   inspect_config = {}
             #   items = []
             #   response = dlp_service_client.inspect_content(inspect_config, items)
 
@@ -212,22 +232,29 @@ module Google
                 inspect_config,
                 items,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::InspectContentRequest.new({
+              req = {
                 inspect_config: inspect_config,
                 items: items
-              }.delete_if { |_, v| v.nil? })
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::InspectContentRequest)
               @inspect_content.call(req, options)
             end
 
             # Redact potentially sensitive info from a list of strings.
             # This method has limits on input size, processing time, and output size.
             #
-            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig]
+            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig | Hash]
             #   Configuration for the inspector.
-            # @param items [Array<Google::Privacy::Dlp::V2beta1::ContentItem>]
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::InspectConfig`
+            #   can also be provided.
+            # @param items [Array<Google::Privacy::Dlp::V2beta1::ContentItem | Hash>]
             #   The list of items to inspect. Up to 100 are allowed per request.
-            # @param replace_configs [Array<Google::Privacy::Dlp::V2beta1::RedactContentRequest::ReplaceConfig>]
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::ContentItem`
+            #   can also be provided.
+            # @param replace_configs [Array<Google::Privacy::Dlp::V2beta1::RedactContentRequest::ReplaceConfig | Hash>]
             #   The strings to replace findings with. Must specify at least one.
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::RedactContentRequest::ReplaceConfig`
+            #   can also be provided.
             # @param options [Google::Gax::CallOptions]
             #   Overrides the default settings for this call, e.g, timeout,
             #   retries, etc.
@@ -237,7 +264,7 @@ module Google
             #   require "google/cloud/privacy/dlp/v2beta1"
             #
             #   dlp_service_client = Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient.new
-            #   inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
+            #   inspect_config = {}
             #   items = []
             #   replace_configs = []
             #   response = dlp_service_client.redact_content(inspect_config, items, replace_configs)
@@ -247,21 +274,26 @@ module Google
                 items,
                 replace_configs,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::RedactContentRequest.new({
+              req = {
                 inspect_config: inspect_config,
                 items: items,
                 replace_configs: replace_configs
-              }.delete_if { |_, v| v.nil? })
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::RedactContentRequest)
               @redact_content.call(req, options)
             end
 
             # Schedule a job scanning content in a Google Cloud Platform data repository.
             #
-            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig]
+            # @param inspect_config [Google::Privacy::Dlp::V2beta1::InspectConfig | Hash]
             #   Configuration for the inspector.
-            # @param storage_config [Google::Privacy::Dlp::V2beta1::StorageConfig]
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::InspectConfig`
+            #   can also be provided.
+            # @param storage_config [Google::Privacy::Dlp::V2beta1::StorageConfig | Hash]
             #   Specification of the data set to process.
-            # @param output_config [Google::Privacy::Dlp::V2beta1::OutputStorageConfig]
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::StorageConfig`
+            #   can also be provided.
+            # @param output_config [Google::Privacy::Dlp::V2beta1::OutputStorageConfig | Hash]
             #   Optional location to store findings. The bucket must already exist and
             #   the Google APIs service account for DLP must have write permission to
             #   write to the given bucket.
@@ -274,31 +306,68 @@ module Google
             #   For cloud storage the next two columns are: file_path, start_offset
             #   For datastore the next two columns are: project_id, namespace_id, path,
             #       column_name, offset.
+            #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::OutputStorageConfig`
+            #   can also be provided.
             # @param options [Google::Gax::CallOptions]
             #   Overrides the default settings for this call, e.g, timeout,
             #   retries, etc.
-            # @return [Google::Longrunning::Operation]
+            # @return [Google::Gax::Operation]
             # @raise [Google::Gax::GaxError] if the RPC is aborted.
             # @example
             #   require "google/cloud/privacy/dlp/v2beta1"
             #
             #   dlp_service_client = Google::Cloud::Privacy::Dlp::V2beta1::DlpServiceClient.new
-            #   inspect_config = Google::Privacy::Dlp::V2beta1::InspectConfig.new
-            #   storage_config = Google::Privacy::Dlp::V2beta1::StorageConfig.new
-            #   output_config = Google::Privacy::Dlp::V2beta1::OutputStorageConfig.new
-            #   response = dlp_service_client.create_inspect_operation(inspect_config, storage_config, output_config)
+            #   inspect_config = {}
+            #   storage_config = {}
+            #   output_config = {}
+            #
+            #   # Register a callback during the method call.
+            #   operation = dlp_service_client.create_inspect_operation(inspect_config, storage_config, output_config) do |op|
+            #     raise op.results.message if op.error?
+            #     op_results = op.results
+            #     # Process the results.
+            #
+            #     metadata = op.metadata
+            #     # Process the metadata.
+            #   end
+            #
+            #   # Or use the return value to register a callback.
+            #   operation.on_done do |op|
+            #     raise op.results.message if op.error?
+            #     op_results = op.results
+            #     # Process the results.
+            #
+            #     metadata = op.metadata
+            #     # Process the metadata.
+            #   end
+            #
+            #   # Manually reload the operation.
+            #   operation.reload!
+            #
+            #   # Or block until the operation completes, triggering callbacks on
+            #   # completion.
+            #   operation.wait_until_done!
 
             def create_inspect_operation \
                 inspect_config,
                 storage_config,
                 output_config,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::CreateInspectOperationRequest.new({
+              req = {
                 inspect_config: inspect_config,
                 storage_config: storage_config,
                 output_config: output_config
-              }.delete_if { |_, v| v.nil? })
-              @create_inspect_operation.call(req, options)
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::CreateInspectOperationRequest)
+              operation = Google::Gax::Operation.new(
+                @create_inspect_operation.call(req, options),
+                @operations_client,
+                Google::Privacy::Dlp::V2beta1::InspectOperationResult,
+                Google::Privacy::Dlp::V2beta1::InspectOperationMetadata,
+                call_options: options
+              )
+              operation.on_done { |operation| yield(operation) } if block_given?
+              operation
             end
 
             # Returns list of results for given inspect operation result set id.
@@ -331,11 +400,12 @@ module Google
                 page_size: nil,
                 page_token: nil,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::ListInspectFindingsRequest.new({
+              req = {
                 name: name,
                 page_size: page_size,
                 page_token: page_token
-              }.delete_if { |_, v| v.nil? })
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::ListInspectFindingsRequest)
               @list_inspect_findings.call(req, options)
             end
 
@@ -364,10 +434,11 @@ module Google
                 category,
                 language_code,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::ListInfoTypesRequest.new({
+              req = {
                 category: category,
                 language_code: language_code
-              }.delete_if { |_, v| v.nil? })
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::ListInfoTypesRequest)
               @list_info_types.call(req, options)
             end
 
@@ -392,9 +463,10 @@ module Google
             def list_root_categories \
                 language_code,
                 options: nil
-              req = Google::Privacy::Dlp::V2beta1::ListRootCategoriesRequest.new({
+              req = {
                 language_code: language_code
-              }.delete_if { |_, v| v.nil? })
+              }.delete_if { |_, v| v.nil? }
+              req = Google::Gax::to_proto(req, Google::Privacy::Dlp::V2beta1::ListRootCategoriesRequest)
               @list_root_categories.call(req, options)
             end
           end
