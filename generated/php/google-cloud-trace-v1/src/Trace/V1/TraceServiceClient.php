@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Trace\V1;
@@ -36,7 +38,6 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use google\devtools\cloudtrace\v1\GetTraceRequest;
 use google\devtools\cloudtrace\v1\ListTracesRequest;
-use google\devtools\cloudtrace\v1\ListTracesRequest\ViewType;
 use google\devtools\cloudtrace\v1\PatchTracesRequest;
 use google\devtools\cloudtrace\v1\TraceServiceGrpcClient;
 use google\devtools\cloudtrace\v1\Traces;
@@ -67,10 +68,7 @@ use google\protobuf\Timestamp;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class TraceServiceClient
 {
@@ -161,6 +159,7 @@ class TraceServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -265,6 +264,7 @@ class TraceServiceClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function patchTraces($projectId, $traces, $optionalArgs = [])
     {
@@ -319,6 +319,7 @@ class TraceServiceClient
      * @return \google\devtools\cloudtrace\v1\Trace
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getTrace($projectId, $traceId, $optionalArgs = [])
     {
@@ -372,9 +373,10 @@ class TraceServiceClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type ViewType $view
+     *     @type int $view
      *          Type of data returned for traces in the list. Optional. Default is
      *          `MINIMAL`.
+     *          For allowed values, use constants defined on {@see \google\devtools\cloudtrace\v1\ListTracesRequest\ViewType}
      *     @type int $pageSize
      *          Maximum number of traces to return. If not specified or <= 0, the
      *          implementation selects a reasonable value.  The implementation may
@@ -396,11 +398,11 @@ class TraceServiceClient
      *          Field used to sort the returned traces. Optional.
      *          Can be one of the following:
      *
-     *          &#42;   `trace_id`
-     *          &#42;   `name` (`name` field of root span in the trace)
-     *          &#42;   `duration` (difference between `end_time` and `start_time` fields of
+     *          *   `trace_id`
+     *          *   `name` (`name` field of root span in the trace)
+     *          *   `duration` (difference between `end_time` and `start_time` fields of
      *               the root span)
-     *          &#42;   `start` (`start_time` field of the root span)
+     *          *   `start` (`start_time` field of the root span)
      *
      *          Descending order can be specified by appending `desc` to the sort field
      *          (for example, `name desc`).
@@ -417,6 +419,7 @@ class TraceServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTraces($projectId, $optionalArgs = [])
     {
@@ -463,6 +466,8 @@ class TraceServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {
