@@ -24,6 +24,7 @@ namespace Google\Cloud\Tests\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
@@ -33,6 +34,8 @@ use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
 use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
 use google\cloud\speech\v1beta1\RecognitionConfig\AudioEncoding;
+use google\cloud\speech\v1beta1\StreamingRecognizeRequest;
+use google\cloud\speech\v1beta1\StreamingRecognizeResponse;
 use google\cloud\speech\v1beta1\SyncRecognizeResponse;
 use google\longrunning\GetOperationRequest;
 use google\longrunning\Operation;
@@ -103,7 +106,7 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
 
         $response = $client->syncRecognize($config, $audio);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -149,8 +152,8 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -199,9 +202,9 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $response = $client->asyncRecognize($config, $audio);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-        $apiRequests = $grpcStub->getReceivedCalls();
+        $apiRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsStub->getReceivedCalls();
+        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
 
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
@@ -216,9 +219,9 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $response->pollUntilComplete();
         $this->assertTrue($response->isDone());
         $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $grpcStub->getReceivedCalls();
+        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
         $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsStub->getReceivedCalls();
+        $operationsRequests = $operationsStub->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
 
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
@@ -287,10 +290,107 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stubs are exhausted
-        $grpcStub->getReceivedCalls();
-        $operationsStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $grpcStub->popReceivedCalls();
+        $operationsStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
         $this->assertTrue($operationsStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingRecognizeTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $resultIndex = 520358448;
+        $expectedResponse = new StreamingRecognizeResponse();
+        $expectedResponse->setResultIndex($resultIndex);
+        $grpcStub->addResponse($expectedResponse);
+        $resultIndex2 = 1848265187;
+        $expectedResponse2 = new StreamingRecognizeResponse();
+        $expectedResponse2->setResultIndex($resultIndex2);
+        $grpcStub->addResponse($expectedResponse2);
+        $resultIndex3 = 1848265188;
+        $expectedResponse3 = new StreamingRecognizeResponse();
+        $expectedResponse3->setResultIndex($resultIndex3);
+        $grpcStub->addResponse($expectedResponse3);
+
+        // Mock request
+        $request = new StreamingRecognizeRequest();
+        $request2 = new StreamingRecognizeRequest();
+        $request3 = new StreamingRecognizeRequest();
+
+        $bidi = $client->streamingRecognize();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+
+        $createStreamRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.speech.v1beta1.Speech/StreamingRecognize', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+
+        $callObjects = $grpcStub->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $this->assertSame(3, count($writeRequests));
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingRecognizeExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
+        $client = $this->createClient('createSpeechStubFunction', $grpcStub);
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $grpcStub->setStreamingStatus($status);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $bidi = $client->streamingRecognize();
+        $results = $bidi->closeWriteAndReadAll();
+
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($status->details, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
     }
 }

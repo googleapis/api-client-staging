@@ -102,7 +102,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getResourceDescriptorsList()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -139,8 +139,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -171,7 +171,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
 
         $response = $client->getMonitoredResourceDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -209,8 +209,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -244,7 +244,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getMetricDescriptorsList()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -281,8 +281,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -315,7 +315,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
 
         $response = $client->getMetricDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -353,8 +353,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -388,7 +388,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
 
         $response = $client->createMetricDescriptor($formattedName, $metricDescriptor);
         $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -428,8 +428,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -451,7 +451,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         $client->deleteMetricDescriptor($formattedName);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -489,8 +489,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -527,7 +527,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTimeSeriesList()[0], $resources[0]);
 
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -570,8 +570,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -594,7 +594,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $timeSeries = [];
 
         $client->createTimeSeries($formattedName, $timeSeries);
-        $actualRequests = $grpcStub->getReceivedCalls();
+        $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
@@ -634,8 +634,8 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($status->details, $ex->getMessage());
         }
 
-        // Call getReceivedCalls to ensure the stub is exhausted
-        $grpcStub->getReceivedCalls();
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
 }
