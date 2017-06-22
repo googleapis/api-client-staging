@@ -101,7 +101,7 @@ public  final class Transaction extends
    * single-use transactions do not support multiple requests.
    * </pre>
    *
-   * <code>optional bytes id = 1;</code>
+   * <code>bytes id = 1;</code>
    */
   public com.google.protobuf.ByteString getId() {
     return id_;
@@ -116,7 +116,7 @@ public  final class Transaction extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   public boolean hasReadTimestamp() {
     return readTimestamp_ != null;
@@ -128,7 +128,7 @@ public  final class Transaction extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   public com.google.protobuf.Timestamp getReadTimestamp() {
     return readTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : readTimestamp_;
@@ -140,7 +140,7 @@ public  final class Transaction extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder() {
     return getReadTimestamp();
@@ -211,7 +211,7 @@ public  final class Transaction extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId().hashCode();
     if (hasReadTimestamp()) {
@@ -223,6 +223,17 @@ public  final class Transaction extends
     return hash;
   }
 
+  public static com.google.spanner.v1.Transaction parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.Transaction parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.Transaction parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -461,7 +472,7 @@ public  final class Transaction extends
      * single-use transactions do not support multiple requests.
      * </pre>
      *
-     * <code>optional bytes id = 1;</code>
+     * <code>bytes id = 1;</code>
      */
     public com.google.protobuf.ByteString getId() {
       return id_;
@@ -477,7 +488,7 @@ public  final class Transaction extends
      * single-use transactions do not support multiple requests.
      * </pre>
      *
-     * <code>optional bytes id = 1;</code>
+     * <code>bytes id = 1;</code>
      */
     public Builder setId(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -499,7 +510,7 @@ public  final class Transaction extends
      * single-use transactions do not support multiple requests.
      * </pre>
      *
-     * <code>optional bytes id = 1;</code>
+     * <code>bytes id = 1;</code>
      */
     public Builder clearId() {
       
@@ -518,7 +529,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public boolean hasReadTimestamp() {
       return readTimestampBuilder_ != null || readTimestamp_ != null;
@@ -530,7 +541,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public com.google.protobuf.Timestamp getReadTimestamp() {
       if (readTimestampBuilder_ == null) {
@@ -546,7 +557,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public Builder setReadTimestamp(com.google.protobuf.Timestamp value) {
       if (readTimestampBuilder_ == null) {
@@ -568,7 +579,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public Builder setReadTimestamp(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -588,7 +599,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public Builder mergeReadTimestamp(com.google.protobuf.Timestamp value) {
       if (readTimestampBuilder_ == null) {
@@ -612,7 +623,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public Builder clearReadTimestamp() {
       if (readTimestampBuilder_ == null) {
@@ -632,7 +643,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public com.google.protobuf.Timestamp.Builder getReadTimestampBuilder() {
       
@@ -646,7 +657,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder() {
       if (readTimestampBuilder_ != null) {
@@ -663,7 +674,7 @@ public  final class Transaction extends
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
+     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

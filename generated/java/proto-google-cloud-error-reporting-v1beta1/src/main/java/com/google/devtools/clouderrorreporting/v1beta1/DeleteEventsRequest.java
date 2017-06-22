@@ -87,7 +87,7 @@ public  final class DeleteEventsRequest extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public java.lang.String getProjectName() {
     java.lang.Object ref = projectName_;
@@ -110,7 +110,7 @@ public  final class DeleteEventsRequest extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectNameBytes() {
@@ -178,7 +178,7 @@ public  final class DeleteEventsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getProjectName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -186,6 +186,17 @@ public  final class DeleteEventsRequest extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -409,7 +420,7 @@ public  final class DeleteEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public java.lang.String getProjectName() {
       java.lang.Object ref = projectName_;
@@ -432,7 +443,7 @@ public  final class DeleteEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectNameBytes() {
@@ -456,7 +467,7 @@ public  final class DeleteEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectName(
         java.lang.String value) {
@@ -477,7 +488,7 @@ public  final class DeleteEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder clearProjectName() {
       
@@ -494,7 +505,7 @@ public  final class DeleteEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectNameBytes(
         com.google.protobuf.ByteString value) {

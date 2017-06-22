@@ -36,6 +36,7 @@ import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
 import com.google.longrunning.OperationsSettings;
 import com.google.protobuf.Empty;
+import com.google.spanner.admin.database.v1.CreateDatabaseMetadata;
 import com.google.spanner.admin.database.v1.CreateDatabaseRequest;
 import com.google.spanner.admin.database.v1.Database;
 import com.google.spanner.admin.database.v1.DatabaseName;
@@ -46,6 +47,7 @@ import com.google.spanner.admin.database.v1.GetDatabaseRequest;
 import com.google.spanner.admin.database.v1.InstanceName;
 import com.google.spanner.admin.database.v1.ListDatabasesRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesResponse;
+import com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
@@ -124,10 +126,11 @@ public class DatabaseAdminClient implements AutoCloseable {
   private final UnaryCallable<ListDatabasesRequest, ListDatabasesPagedResponse>
       listDatabasesPagedCallable;
   private final UnaryCallable<CreateDatabaseRequest, Operation> createDatabaseCallable;
-  private final OperationCallable<CreateDatabaseRequest, Database> createDatabaseOperationCallable;
+  private final OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+      createDatabaseOperationCallable;
   private final UnaryCallable<GetDatabaseRequest, Database> getDatabaseCallable;
   private final UnaryCallable<UpdateDatabaseDdlRequest, Operation> updateDatabaseDdlCallable;
-  private final OperationCallable<UpdateDatabaseDdlRequest, Empty>
+  private final OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable;
   private final UnaryCallable<DropDatabaseRequest, Empty> dropDatabaseCallable;
   private final UnaryCallable<GetDatabaseDdlRequest, GetDatabaseDdlResponse> getDatabaseDdlCallable;
@@ -369,7 +372,7 @@ public class DatabaseAdminClient implements AutoCloseable {
    *     `[a-z][a-z0-9_\-]&#42;[a-z0-9]` and be between 2 and 30 characters in length.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Database> createDatabaseAsync(
+  public final OperationFuture<Database, CreateDatabaseMetadata> createDatabaseAsync(
       InstanceName parent, String createStatement) {
 
     CreateDatabaseRequest request =
@@ -407,7 +410,8 @@ public class DatabaseAdminClient implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Database> createDatabaseAsync(CreateDatabaseRequest request) {
+  public final OperationFuture<Database, CreateDatabaseMetadata> createDatabaseAsync(
+      CreateDatabaseRequest request) {
     return createDatabaseOperationCallable().futureCall(request);
   }
 
@@ -437,7 +441,7 @@ public class DatabaseAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<CreateDatabaseRequest, Database>
+  public final OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
       createDatabaseOperationCallable() {
     return createDatabaseOperationCallable;
   }
@@ -565,7 +569,7 @@ public class DatabaseAdminClient implements AutoCloseable {
    * @param statements DDL statements to be applied to the database.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Empty> updateDatabaseDdlAsync(
+  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata> updateDatabaseDdlAsync(
       DatabaseName database, List<String> statements) {
 
     UpdateDatabaseDdlRequest request =
@@ -603,7 +607,8 @@ public class DatabaseAdminClient implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Empty> updateDatabaseDdlAsync(UpdateDatabaseDdlRequest request) {
+  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata> updateDatabaseDdlAsync(
+      UpdateDatabaseDdlRequest request) {
     return updateDatabaseDdlOperationCallable().futureCall(request);
   }
 
@@ -633,7 +638,7 @@ public class DatabaseAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<UpdateDatabaseDdlRequest, Empty>
+  public final OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable() {
     return updateDatabaseDdlOperationCallable;
   }

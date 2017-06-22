@@ -13,7 +13,7 @@ public interface DeleteLogMetricRequestOrBuilder extends
    *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
    * </pre>
    *
-   * <code>optional string metric_name = 1;</code>
+   * <code>string metric_name = 1;</code>
    */
   java.lang.String getMetricName();
   /**
@@ -22,7 +22,7 @@ public interface DeleteLogMetricRequestOrBuilder extends
    *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
    * </pre>
    *
-   * <code>optional string metric_name = 1;</code>
+   * <code>string metric_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getMetricNameBytes();

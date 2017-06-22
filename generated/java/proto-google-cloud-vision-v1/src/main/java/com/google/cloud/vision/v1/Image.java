@@ -97,7 +97,7 @@ public  final class Image extends
    * representation, whereas JSON representations use base64.
    * </pre>
    *
-   * <code>optional bytes content = 1;</code>
+   * <code>bytes content = 1;</code>
    */
   public com.google.protobuf.ByteString getContent() {
     return content_;
@@ -112,7 +112,7 @@ public  final class Image extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   public boolean hasSource() {
     return source_ != null;
@@ -124,7 +124,7 @@ public  final class Image extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   public com.google.cloud.vision.v1.ImageSource getSource() {
     return source_ == null ? com.google.cloud.vision.v1.ImageSource.getDefaultInstance() : source_;
@@ -136,7 +136,7 @@ public  final class Image extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   public com.google.cloud.vision.v1.ImageSourceOrBuilder getSourceOrBuilder() {
     return getSource();
@@ -207,7 +207,7 @@ public  final class Image extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CONTENT_FIELD_NUMBER;
     hash = (53 * hash) + getContent().hashCode();
     if (hasSource()) {
@@ -219,6 +219,17 @@ public  final class Image extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.Image parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.Image parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.Image parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -453,7 +464,7 @@ public  final class Image extends
      * representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>optional bytes content = 1;</code>
+     * <code>bytes content = 1;</code>
      */
     public com.google.protobuf.ByteString getContent() {
       return content_;
@@ -465,7 +476,7 @@ public  final class Image extends
      * representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>optional bytes content = 1;</code>
+     * <code>bytes content = 1;</code>
      */
     public Builder setContent(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -483,7 +494,7 @@ public  final class Image extends
      * representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>optional bytes content = 1;</code>
+     * <code>bytes content = 1;</code>
      */
     public Builder clearContent() {
       
@@ -502,7 +513,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public boolean hasSource() {
       return sourceBuilder_ != null || source_ != null;
@@ -514,7 +525,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public com.google.cloud.vision.v1.ImageSource getSource() {
       if (sourceBuilder_ == null) {
@@ -530,7 +541,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public Builder setSource(com.google.cloud.vision.v1.ImageSource value) {
       if (sourceBuilder_ == null) {
@@ -552,7 +563,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public Builder setSource(
         com.google.cloud.vision.v1.ImageSource.Builder builderForValue) {
@@ -572,7 +583,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public Builder mergeSource(com.google.cloud.vision.v1.ImageSource value) {
       if (sourceBuilder_ == null) {
@@ -596,7 +607,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public Builder clearSource() {
       if (sourceBuilder_ == null) {
@@ -616,7 +627,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public com.google.cloud.vision.v1.ImageSource.Builder getSourceBuilder() {
       
@@ -630,7 +641,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     public com.google.cloud.vision.v1.ImageSourceOrBuilder getSourceOrBuilder() {
       if (sourceBuilder_ != null) {
@@ -647,7 +658,7 @@ public  final class Image extends
      * used to perform the image annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.ImageSource, com.google.cloud.vision.v1.ImageSource.Builder, com.google.cloud.vision.v1.ImageSourceOrBuilder> 

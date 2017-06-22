@@ -12,7 +12,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * The updated subscription object.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.Subscription subscription = 1;</code>
+   * <code>.google.pubsub.v1.Subscription subscription = 1;</code>
    */
   boolean hasSubscription();
   /**
@@ -20,7 +20,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * The updated subscription object.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.Subscription subscription = 1;</code>
+   * <code>.google.pubsub.v1.Subscription subscription = 1;</code>
    */
   com.google.pubsub.v1.Subscription getSubscription();
   /**
@@ -28,7 +28,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * The updated subscription object.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.Subscription subscription = 1;</code>
+   * <code>.google.pubsub.v1.Subscription subscription = 1;</code>
    */
   com.google.pubsub.v1.SubscriptionOrBuilder getSubscriptionOrBuilder();
 
@@ -38,7 +38,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * Must be specified and non-empty.
    * </pre>
    *
-   * <code>optional .google.protobuf.FieldMask update_mask = 2;</code>
+   * <code>.google.protobuf.FieldMask update_mask = 2;</code>
    */
   boolean hasUpdateMask();
   /**
@@ -47,7 +47,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * Must be specified and non-empty.
    * </pre>
    *
-   * <code>optional .google.protobuf.FieldMask update_mask = 2;</code>
+   * <code>.google.protobuf.FieldMask update_mask = 2;</code>
    */
   com.google.protobuf.FieldMask getUpdateMask();
   /**
@@ -56,7 +56,7 @@ public interface UpdateSubscriptionRequestOrBuilder extends
    * Must be specified and non-empty.
    * </pre>
    *
-   * <code>optional .google.protobuf.FieldMask update_mask = 2;</code>
+   * <code>.google.protobuf.FieldMask update_mask = 2;</code>
    */
   com.google.protobuf.FieldMaskOrBuilder getUpdateMaskOrBuilder();
 }

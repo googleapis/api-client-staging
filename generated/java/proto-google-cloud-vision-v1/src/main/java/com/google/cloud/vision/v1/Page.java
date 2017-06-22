@@ -115,7 +115,7 @@ public  final class Page extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public boolean hasProperty() {
     return property_ != null;
@@ -125,7 +125,7 @@ public  final class Page extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty() {
     return property_ == null ? com.google.cloud.vision.v1.TextAnnotation.TextProperty.getDefaultInstance() : property_;
@@ -135,7 +135,7 @@ public  final class Page extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder() {
     return getProperty();
@@ -148,7 +148,7 @@ public  final class Page extends
    * Page width in pixels.
    * </pre>
    *
-   * <code>optional int32 width = 2;</code>
+   * <code>int32 width = 2;</code>
    */
   public int getWidth() {
     return width_;
@@ -161,7 +161,7 @@ public  final class Page extends
    * Page height in pixels.
    * </pre>
    *
-   * <code>optional int32 height = 3;</code>
+   * <code>int32 height = 3;</code>
    */
   public int getHeight() {
     return height_;
@@ -305,7 +305,7 @@ public  final class Page extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasProperty()) {
       hash = (37 * hash) + PROPERTY_FIELD_NUMBER;
       hash = (53 * hash) + getProperty().hashCode();
@@ -323,6 +323,17 @@ public  final class Page extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.Page parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.Page parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.Page parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -609,7 +620,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public boolean hasProperty() {
       return propertyBuilder_ != null || property_ != null;
@@ -619,7 +630,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty() {
       if (propertyBuilder_ == null) {
@@ -633,7 +644,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder setProperty(com.google.cloud.vision.v1.TextAnnotation.TextProperty value) {
       if (propertyBuilder_ == null) {
@@ -653,7 +664,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder setProperty(
         com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder builderForValue) {
@@ -671,7 +682,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder mergeProperty(com.google.cloud.vision.v1.TextAnnotation.TextProperty value) {
       if (propertyBuilder_ == null) {
@@ -693,7 +704,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder clearProperty() {
       if (propertyBuilder_ == null) {
@@ -711,7 +722,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder getPropertyBuilder() {
       
@@ -723,7 +734,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder() {
       if (propertyBuilder_ != null) {
@@ -738,7 +749,7 @@ public  final class Page extends
      * Additional information detected on the page.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.TextAnnotation.TextProperty, com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder, com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder> 
@@ -760,7 +771,7 @@ public  final class Page extends
      * Page width in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 2;</code>
+     * <code>int32 width = 2;</code>
      */
     public int getWidth() {
       return width_;
@@ -770,7 +781,7 @@ public  final class Page extends
      * Page width in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 2;</code>
+     * <code>int32 width = 2;</code>
      */
     public Builder setWidth(int value) {
       
@@ -783,7 +794,7 @@ public  final class Page extends
      * Page width in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 2;</code>
+     * <code>int32 width = 2;</code>
      */
     public Builder clearWidth() {
       
@@ -798,7 +809,7 @@ public  final class Page extends
      * Page height in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 3;</code>
+     * <code>int32 height = 3;</code>
      */
     public int getHeight() {
       return height_;
@@ -808,7 +819,7 @@ public  final class Page extends
      * Page height in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 3;</code>
+     * <code>int32 height = 3;</code>
      */
     public Builder setHeight(int value) {
       
@@ -821,7 +832,7 @@ public  final class Page extends
      * Page height in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 3;</code>
+     * <code>int32 height = 3;</code>
      */
     public Builder clearHeight() {
       

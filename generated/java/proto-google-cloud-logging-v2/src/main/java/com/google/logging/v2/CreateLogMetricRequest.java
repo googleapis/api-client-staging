@@ -98,7 +98,7 @@ public  final class CreateLogMetricRequest extends
    * The new metric must be provided in the request.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public java.lang.String getParent() {
     java.lang.Object ref = parent_;
@@ -119,7 +119,7 @@ public  final class CreateLogMetricRequest extends
    * The new metric must be provided in the request.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public com.google.protobuf.ByteString
       getParentBytes() {
@@ -143,7 +143,7 @@ public  final class CreateLogMetricRequest extends
    * already exists.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   public boolean hasMetric() {
     return metric_ != null;
@@ -154,7 +154,7 @@ public  final class CreateLogMetricRequest extends
    * already exists.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   public com.google.logging.v2.LogMetric getMetric() {
     return metric_ == null ? com.google.logging.v2.LogMetric.getDefaultInstance() : metric_;
@@ -165,7 +165,7 @@ public  final class CreateLogMetricRequest extends
    * already exists.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   public com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder() {
     return getMetric();
@@ -235,7 +235,7 @@ public  final class CreateLogMetricRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PARENT_FIELD_NUMBER;
     hash = (53 * hash) + getParent().hashCode();
     if (hasMetric()) {
@@ -247,6 +247,17 @@ public  final class CreateLogMetricRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.CreateLogMetricRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.CreateLogMetricRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.CreateLogMetricRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -482,7 +493,7 @@ public  final class CreateLogMetricRequest extends
      * The new metric must be provided in the request.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
@@ -503,7 +514,7 @@ public  final class CreateLogMetricRequest extends
      * The new metric must be provided in the request.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -525,7 +536,7 @@ public  final class CreateLogMetricRequest extends
      * The new metric must be provided in the request.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParent(
         java.lang.String value) {
@@ -544,7 +555,7 @@ public  final class CreateLogMetricRequest extends
      * The new metric must be provided in the request.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder clearParent() {
       
@@ -559,7 +570,7 @@ public  final class CreateLogMetricRequest extends
      * The new metric must be provided in the request.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParentBytes(
         com.google.protobuf.ByteString value) {
@@ -582,7 +593,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public boolean hasMetric() {
       return metricBuilder_ != null || metric_ != null;
@@ -593,7 +604,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetric getMetric() {
       if (metricBuilder_ == null) {
@@ -608,7 +619,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder setMetric(com.google.logging.v2.LogMetric value) {
       if (metricBuilder_ == null) {
@@ -629,7 +640,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder setMetric(
         com.google.logging.v2.LogMetric.Builder builderForValue) {
@@ -648,7 +659,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder mergeMetric(com.google.logging.v2.LogMetric value) {
       if (metricBuilder_ == null) {
@@ -671,7 +682,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder clearMetric() {
       if (metricBuilder_ == null) {
@@ -690,7 +701,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetric.Builder getMetricBuilder() {
       
@@ -703,7 +714,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder() {
       if (metricBuilder_ != null) {
@@ -719,7 +730,7 @@ public  final class CreateLogMetricRequest extends
      * already exists.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+     * <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogMetric, com.google.logging.v2.LogMetric.Builder, com.google.logging.v2.LogMetricOrBuilder> 

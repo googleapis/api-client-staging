@@ -85,7 +85,7 @@ public  final class GetInstanceConfigRequest extends
    * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -105,7 +105,7 @@ public  final class GetInstanceConfigRequest extends
    * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -173,7 +173,7 @@ public  final class GetInstanceConfigRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -181,6 +181,17 @@ public  final class GetInstanceConfigRequest extends
     return hash;
   }
 
+  public static com.google.spanner.admin.instance.v1.GetInstanceConfigRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.admin.instance.v1.GetInstanceConfigRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.admin.instance.v1.GetInstanceConfigRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -402,7 +413,7 @@ public  final class GetInstanceConfigRequest extends
      * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -422,7 +433,7 @@ public  final class GetInstanceConfigRequest extends
      * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -443,7 +454,7 @@ public  final class GetInstanceConfigRequest extends
      * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -461,7 +472,7 @@ public  final class GetInstanceConfigRequest extends
      * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -475,7 +486,7 @@ public  final class GetInstanceConfigRequest extends
      * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {

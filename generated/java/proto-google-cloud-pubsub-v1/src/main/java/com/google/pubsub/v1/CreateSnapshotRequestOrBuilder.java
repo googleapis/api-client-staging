@@ -16,7 +16,7 @@ public interface CreateSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -28,7 +28,7 @@ public interface CreateSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -46,7 +46,7 @@ public interface CreateSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 2;</code>
+   * <code>string subscription = 2;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -62,7 +62,7 @@ public interface CreateSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 2;</code>
+   * <code>string subscription = 2;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();

@@ -97,7 +97,7 @@ public  final class ListDatabasesRequest extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public java.lang.String getParent() {
     java.lang.Object ref = parent_;
@@ -117,7 +117,7 @@ public  final class ListDatabasesRequest extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public com.google.protobuf.ByteString
       getParentBytes() {
@@ -141,7 +141,7 @@ public  final class ListDatabasesRequest extends
    * defaults to the server's maximum allowed page size.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -156,7 +156,7 @@ public  final class ListDatabasesRequest extends
    * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -177,7 +177,7 @@ public  final class ListDatabasesRequest extends
    * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -262,7 +262,7 @@ public  final class ListDatabasesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PARENT_FIELD_NUMBER;
     hash = (53 * hash) + getParent().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -274,6 +274,17 @@ public  final class ListDatabasesRequest extends
     return hash;
   }
 
+  public static com.google.spanner.admin.database.v1.ListDatabasesRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.admin.database.v1.ListDatabasesRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.admin.database.v1.ListDatabasesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -507,7 +518,7 @@ public  final class ListDatabasesRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
@@ -527,7 +538,7 @@ public  final class ListDatabasesRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -548,7 +559,7 @@ public  final class ListDatabasesRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParent(
         java.lang.String value) {
@@ -566,7 +577,7 @@ public  final class ListDatabasesRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder clearParent() {
       
@@ -580,7 +591,7 @@ public  final class ListDatabasesRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParentBytes(
         com.google.protobuf.ByteString value) {
@@ -601,7 +612,7 @@ public  final class ListDatabasesRequest extends
      * defaults to the server's maximum allowed page size.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -612,7 +623,7 @@ public  final class ListDatabasesRequest extends
      * defaults to the server's maximum allowed page size.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -626,7 +637,7 @@ public  final class ListDatabasesRequest extends
      * defaults to the server's maximum allowed page size.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder clearPageSize() {
       
@@ -643,7 +654,7 @@ public  final class ListDatabasesRequest extends
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -664,7 +675,7 @@ public  final class ListDatabasesRequest extends
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -686,7 +697,7 @@ public  final class ListDatabasesRequest extends
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -705,7 +716,7 @@ public  final class ListDatabasesRequest extends
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder clearPageToken() {
       
@@ -720,7 +731,7 @@ public  final class ListDatabasesRequest extends
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

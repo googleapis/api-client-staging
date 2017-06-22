@@ -108,7 +108,7 @@ public  final class UpdateSinkRequest extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   public java.lang.String getSinkName() {
     java.lang.Object ref = sinkName_;
@@ -133,7 +133,7 @@ public  final class UpdateSinkRequest extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSinkNameBytes() {
@@ -158,7 +158,7 @@ public  final class UpdateSinkRequest extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public boolean hasSink() {
     return sink_ != null;
@@ -170,7 +170,7 @@ public  final class UpdateSinkRequest extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public com.google.logging.v2.LogSink getSink() {
     return sink_ == null ? com.google.logging.v2.LogSink.getDefaultInstance() : sink_;
@@ -182,7 +182,7 @@ public  final class UpdateSinkRequest extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder() {
     return getSink();
@@ -204,7 +204,7 @@ public  final class UpdateSinkRequest extends
    * +   It is an error if the old value is true and the new value is false.
    * </pre>
    *
-   * <code>optional bool unique_writer_identity = 3;</code>
+   * <code>bool unique_writer_identity = 3;</code>
    */
   public boolean getUniqueWriterIdentity() {
     return uniqueWriterIdentity_;
@@ -283,7 +283,7 @@ public  final class UpdateSinkRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SINK_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getSinkName().hashCode();
     if (hasSink()) {
@@ -298,6 +298,17 @@ public  final class UpdateSinkRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.UpdateSinkRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.UpdateSinkRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.UpdateSinkRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -543,7 +554,7 @@ public  final class UpdateSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public java.lang.String getSinkName() {
       java.lang.Object ref = sinkName_;
@@ -568,7 +579,7 @@ public  final class UpdateSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSinkNameBytes() {
@@ -594,7 +605,7 @@ public  final class UpdateSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder setSinkName(
         java.lang.String value) {
@@ -617,7 +628,7 @@ public  final class UpdateSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder clearSinkName() {
       
@@ -636,7 +647,7 @@ public  final class UpdateSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder setSinkNameBytes(
         com.google.protobuf.ByteString value) {
@@ -660,7 +671,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public boolean hasSink() {
       return sinkBuilder_ != null || sink_ != null;
@@ -672,7 +683,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSink getSink() {
       if (sinkBuilder_ == null) {
@@ -688,7 +699,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder setSink(com.google.logging.v2.LogSink value) {
       if (sinkBuilder_ == null) {
@@ -710,7 +721,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder setSink(
         com.google.logging.v2.LogSink.Builder builderForValue) {
@@ -730,7 +741,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder mergeSink(com.google.logging.v2.LogSink value) {
       if (sinkBuilder_ == null) {
@@ -754,7 +765,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder clearSink() {
       if (sinkBuilder_ == null) {
@@ -774,7 +785,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSink.Builder getSinkBuilder() {
       
@@ -788,7 +799,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder() {
       if (sinkBuilder_ != null) {
@@ -805,7 +816,7 @@ public  final class UpdateSinkRequest extends
      * this method creates a new sink.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogSink, com.google.logging.v2.LogSink.Builder, com.google.logging.v2.LogSinkOrBuilder> 
@@ -836,7 +847,7 @@ public  final class UpdateSinkRequest extends
      * +   It is an error if the old value is true and the new value is false.
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public boolean getUniqueWriterIdentity() {
       return uniqueWriterIdentity_;
@@ -855,7 +866,7 @@ public  final class UpdateSinkRequest extends
      * +   It is an error if the old value is true and the new value is false.
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public Builder setUniqueWriterIdentity(boolean value) {
       
@@ -877,7 +888,7 @@ public  final class UpdateSinkRequest extends
      * +   It is an error if the old value is true and the new value is false.
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public Builder clearUniqueWriterIdentity() {
       

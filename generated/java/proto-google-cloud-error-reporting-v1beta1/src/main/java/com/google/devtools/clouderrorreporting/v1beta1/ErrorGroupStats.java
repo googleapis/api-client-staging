@@ -174,7 +174,7 @@ public  final class ErrorGroupStats extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public boolean hasGroup() {
     return group_ != null;
@@ -184,7 +184,7 @@ public  final class ErrorGroupStats extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup() {
     return group_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance() : group_;
@@ -194,7 +194,7 @@ public  final class ErrorGroupStats extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder() {
     return getGroup();
@@ -208,7 +208,7 @@ public  final class ErrorGroupStats extends
    * the filter criteria.
    * </pre>
    *
-   * <code>optional int64 count = 2;</code>
+   * <code>int64 count = 2;</code>
    */
   public long getCount() {
     return count_;
@@ -232,7 +232,7 @@ public  final class ErrorGroupStats extends
    * this is not reflected here.
    * </pre>
    *
-   * <code>optional int64 affected_users_count = 3;</code>
+   * <code>int64 affected_users_count = 3;</code>
    */
   public long getAffectedUsersCount() {
     return affectedUsersCount_;
@@ -322,7 +322,7 @@ public  final class ErrorGroupStats extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   public boolean hasFirstSeenTime() {
     return firstSeenTime_ != null;
@@ -334,7 +334,7 @@ public  final class ErrorGroupStats extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   public com.google.protobuf.Timestamp getFirstSeenTime() {
     return firstSeenTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : firstSeenTime_;
@@ -346,7 +346,7 @@ public  final class ErrorGroupStats extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getFirstSeenTimeOrBuilder() {
     return getFirstSeenTime();
@@ -361,7 +361,7 @@ public  final class ErrorGroupStats extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   public boolean hasLastSeenTime() {
     return lastSeenTime_ != null;
@@ -373,7 +373,7 @@ public  final class ErrorGroupStats extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   public com.google.protobuf.Timestamp getLastSeenTime() {
     return lastSeenTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastSeenTime_;
@@ -385,7 +385,7 @@ public  final class ErrorGroupStats extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getLastSeenTimeOrBuilder() {
     return getLastSeenTime();
@@ -464,7 +464,7 @@ public  final class ErrorGroupStats extends
    * filter criteria.
    * </pre>
    *
-   * <code>optional int32 num_affected_services = 8;</code>
+   * <code>int32 num_affected_services = 8;</code>
    */
   public int getNumAffectedServices() {
     return numAffectedServices_;
@@ -481,7 +481,7 @@ public  final class ErrorGroupStats extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   public boolean hasRepresentative() {
     return representative_ != null;
@@ -495,7 +495,7 @@ public  final class ErrorGroupStats extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent getRepresentative() {
     return representative_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent.getDefaultInstance() : representative_;
@@ -509,7 +509,7 @@ public  final class ErrorGroupStats extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorEventOrBuilder getRepresentativeOrBuilder() {
     return getRepresentative();
@@ -652,7 +652,7 @@ public  final class ErrorGroupStats extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasGroup()) {
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
@@ -690,6 +690,17 @@ public  final class ErrorGroupStats extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1067,7 +1078,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public boolean hasGroup() {
       return groupBuilder_ != null || group_ != null;
@@ -1077,7 +1088,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup() {
       if (groupBuilder_ == null) {
@@ -1091,7 +1102,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder setGroup(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup value) {
       if (groupBuilder_ == null) {
@@ -1111,7 +1122,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder setGroup(
         com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder builderForValue) {
@@ -1129,7 +1140,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder mergeGroup(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup value) {
       if (groupBuilder_ == null) {
@@ -1151,7 +1162,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder clearGroup() {
       if (groupBuilder_ == null) {
@@ -1169,7 +1180,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder getGroupBuilder() {
       
@@ -1181,7 +1192,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder() {
       if (groupBuilder_ != null) {
@@ -1196,7 +1207,7 @@ public  final class ErrorGroupStats extends
      * Group data that is independent of the filter criteria.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder> 
@@ -1219,7 +1230,7 @@ public  final class ErrorGroupStats extends
      * the filter criteria.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public long getCount() {
       return count_;
@@ -1230,7 +1241,7 @@ public  final class ErrorGroupStats extends
      * the filter criteria.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public Builder setCount(long value) {
       
@@ -1244,7 +1255,7 @@ public  final class ErrorGroupStats extends
      * the filter criteria.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public Builder clearCount() {
       
@@ -1270,7 +1281,7 @@ public  final class ErrorGroupStats extends
      * this is not reflected here.
      * </pre>
      *
-     * <code>optional int64 affected_users_count = 3;</code>
+     * <code>int64 affected_users_count = 3;</code>
      */
     public long getAffectedUsersCount() {
       return affectedUsersCount_;
@@ -1291,7 +1302,7 @@ public  final class ErrorGroupStats extends
      * this is not reflected here.
      * </pre>
      *
-     * <code>optional int64 affected_users_count = 3;</code>
+     * <code>int64 affected_users_count = 3;</code>
      */
     public Builder setAffectedUsersCount(long value) {
       
@@ -1315,7 +1326,7 @@ public  final class ErrorGroupStats extends
      * this is not reflected here.
      * </pre>
      *
-     * <code>optional int64 affected_users_count = 3;</code>
+     * <code>int64 affected_users_count = 3;</code>
      */
     public Builder clearAffectedUsersCount() {
       
@@ -1718,7 +1729,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public boolean hasFirstSeenTime() {
       return firstSeenTimeBuilder_ != null || firstSeenTime_ != null;
@@ -1730,7 +1741,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public com.google.protobuf.Timestamp getFirstSeenTime() {
       if (firstSeenTimeBuilder_ == null) {
@@ -1746,7 +1757,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public Builder setFirstSeenTime(com.google.protobuf.Timestamp value) {
       if (firstSeenTimeBuilder_ == null) {
@@ -1768,7 +1779,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public Builder setFirstSeenTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1788,7 +1799,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public Builder mergeFirstSeenTime(com.google.protobuf.Timestamp value) {
       if (firstSeenTimeBuilder_ == null) {
@@ -1812,7 +1823,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public Builder clearFirstSeenTime() {
       if (firstSeenTimeBuilder_ == null) {
@@ -1832,7 +1843,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getFirstSeenTimeBuilder() {
       
@@ -1846,7 +1857,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getFirstSeenTimeOrBuilder() {
       if (firstSeenTimeBuilder_ != null) {
@@ -1863,7 +1874,7 @@ public  final class ErrorGroupStats extends
      * time_range that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1889,7 +1900,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public boolean hasLastSeenTime() {
       return lastSeenTimeBuilder_ != null || lastSeenTime_ != null;
@@ -1901,7 +1912,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public com.google.protobuf.Timestamp getLastSeenTime() {
       if (lastSeenTimeBuilder_ == null) {
@@ -1917,7 +1928,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public Builder setLastSeenTime(com.google.protobuf.Timestamp value) {
       if (lastSeenTimeBuilder_ == null) {
@@ -1939,7 +1950,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public Builder setLastSeenTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1959,7 +1970,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public Builder mergeLastSeenTime(com.google.protobuf.Timestamp value) {
       if (lastSeenTimeBuilder_ == null) {
@@ -1983,7 +1994,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public Builder clearLastSeenTime() {
       if (lastSeenTimeBuilder_ == null) {
@@ -2003,7 +2014,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public com.google.protobuf.Timestamp.Builder getLastSeenTimeBuilder() {
       
@@ -2017,7 +2028,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getLastSeenTimeOrBuilder() {
       if (lastSeenTimeBuilder_ != null) {
@@ -2034,7 +2045,7 @@ public  final class ErrorGroupStats extends
      * that was specified in the request.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2405,7 +2416,7 @@ public  final class ErrorGroupStats extends
      * filter criteria.
      * </pre>
      *
-     * <code>optional int32 num_affected_services = 8;</code>
+     * <code>int32 num_affected_services = 8;</code>
      */
     public int getNumAffectedServices() {
       return numAffectedServices_;
@@ -2416,7 +2427,7 @@ public  final class ErrorGroupStats extends
      * filter criteria.
      * </pre>
      *
-     * <code>optional int32 num_affected_services = 8;</code>
+     * <code>int32 num_affected_services = 8;</code>
      */
     public Builder setNumAffectedServices(int value) {
       
@@ -2430,7 +2441,7 @@ public  final class ErrorGroupStats extends
      * filter criteria.
      * </pre>
      *
-     * <code>optional int32 num_affected_services = 8;</code>
+     * <code>int32 num_affected_services = 8;</code>
      */
     public Builder clearNumAffectedServices() {
       
@@ -2451,7 +2462,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public boolean hasRepresentative() {
       return representativeBuilder_ != null || representative_ != null;
@@ -2465,7 +2476,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent getRepresentative() {
       if (representativeBuilder_ == null) {
@@ -2483,7 +2494,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public Builder setRepresentative(com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent value) {
       if (representativeBuilder_ == null) {
@@ -2507,7 +2518,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public Builder setRepresentative(
         com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent.Builder builderForValue) {
@@ -2529,7 +2540,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public Builder mergeRepresentative(com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent value) {
       if (representativeBuilder_ == null) {
@@ -2555,7 +2566,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public Builder clearRepresentative() {
       if (representativeBuilder_ == null) {
@@ -2577,7 +2588,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent.Builder getRepresentativeBuilder() {
       
@@ -2593,7 +2604,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorEventOrBuilder getRepresentativeOrBuilder() {
       if (representativeBuilder_ != null) {
@@ -2612,7 +2623,7 @@ public  final class ErrorGroupStats extends
      * insight into the characteristics of the group as a whole.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent, com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent.Builder, com.google.devtools.clouderrorreporting.v1beta1.ErrorEventOrBuilder> 

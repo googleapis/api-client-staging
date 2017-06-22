@@ -29,6 +29,7 @@ import com.google.api.gax.grpc.ExecutorProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.OperationCallSettings;
+import com.google.api.gax.grpc.OperationTimedPollAlgorithm;
 import com.google.api.gax.grpc.PageContext;
 import com.google.api.gax.grpc.PagedCallSettings;
 import com.google.api.gax.grpc.PagedListDescriptor;
@@ -49,6 +50,7 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.longrunning.Operation;
 import com.google.protobuf.Empty;
+import com.google.spanner.admin.database.v1.CreateDatabaseMetadata;
 import com.google.spanner.admin.database.v1.CreateDatabaseRequest;
 import com.google.spanner.admin.database.v1.Database;
 import com.google.spanner.admin.database.v1.DropDatabaseRequest;
@@ -57,6 +59,7 @@ import com.google.spanner.admin.database.v1.GetDatabaseDdlResponse;
 import com.google.spanner.admin.database.v1.GetDatabaseRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesResponse;
+import com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest;
 import io.grpc.Status;
 import java.io.IOException;
@@ -175,9 +178,11 @@ public class DatabaseAdminSettings extends ClientSettings {
   private final PagedCallSettings<
           ListDatabasesRequest, ListDatabasesResponse, ListDatabasesPagedResponse>
       listDatabasesSettings;
-  private final OperationCallSettings<CreateDatabaseRequest, Database> createDatabaseSettings;
+  private final OperationCallSettings<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+      createDatabaseSettings;
   private final SimpleCallSettings<GetDatabaseRequest, Database> getDatabaseSettings;
-  private final OperationCallSettings<UpdateDatabaseDdlRequest, Empty> updateDatabaseDdlSettings;
+  private final OperationCallSettings<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+      updateDatabaseDdlSettings;
   private final SimpleCallSettings<DropDatabaseRequest, Empty> dropDatabaseSettings;
   private final SimpleCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
       getDatabaseDdlSettings;
@@ -193,7 +198,8 @@ public class DatabaseAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to createDatabase. */
-  public OperationCallSettings<CreateDatabaseRequest, Database> createDatabaseSettings() {
+  public OperationCallSettings<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+      createDatabaseSettings() {
     return createDatabaseSettings;
   }
 
@@ -203,7 +209,8 @@ public class DatabaseAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to updateDatabaseDdl. */
-  public OperationCallSettings<UpdateDatabaseDdlRequest, Empty> updateDatabaseDdlSettings() {
+  public OperationCallSettings<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+      updateDatabaseDdlSettings() {
     return updateDatabaseDdlSettings;
   }
 
@@ -361,10 +368,12 @@ public class DatabaseAdminSettings extends ClientSettings {
     private final PagedCallSettings.Builder<
             ListDatabasesRequest, ListDatabasesResponse, ListDatabasesPagedResponse>
         listDatabasesSettings;
-    private final OperationCallSettings.Builder<CreateDatabaseRequest, Database>
+    private final OperationCallSettings.Builder<
+            CreateDatabaseRequest, Database, CreateDatabaseMetadata>
         createDatabaseSettings;
     private final SimpleCallSettings.Builder<GetDatabaseRequest, Database> getDatabaseSettings;
-    private final OperationCallSettings.Builder<UpdateDatabaseDdlRequest, Empty>
+    private final OperationCallSettings.Builder<
+            UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
         updateDatabaseDdlSettings;
     private final SimpleCallSettings.Builder<DropDatabaseRequest, Empty> dropDatabaseSettings;
     private final SimpleCallSettings.Builder<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
@@ -412,13 +421,11 @@ public class DatabaseAdminSettings extends ClientSettings {
       listDatabasesSettings =
           PagedCallSettings.newBuilder(METHOD_LIST_DATABASES, LIST_DATABASES_PAGE_STR_FACT);
 
-      createDatabaseSettings =
-          OperationCallSettings.newBuilder(METHOD_CREATE_DATABASE, Database.class);
+      createDatabaseSettings = OperationCallSettings.newBuilder();
 
       getDatabaseSettings = SimpleCallSettings.newBuilder(METHOD_GET_DATABASE);
 
-      updateDatabaseDdlSettings =
-          OperationCallSettings.newBuilder(METHOD_UPDATE_DATABASE_DDL, Empty.class);
+      updateDatabaseDdlSettings = OperationCallSettings.newBuilder();
 
       dropDatabaseSettings = SimpleCallSettings.newBuilder(METHOD_DROP_DATABASE);
 
@@ -480,14 +487,44 @@ public class DatabaseAdminSettings extends ClientSettings {
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
       builder
           .createDatabaseSettings()
-          .getInitialCallSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setInitialCallSettings(
+              SimpleCallSettings.newBuilder(METHOD_CREATE_DATABASE)
+                  .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+                  .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"))
+                  .build())
+          .setResponseClass(Database.class)
+          .setMetadataClass(CreateDatabaseMetadata.class)
+          .setPollingAlgorithm(
+              OperationTimedPollAlgorithm.create(
+                  RetrySettings.newBuilder()
+                      .setInitialRetryDelay(Duration.ofMillis(20000L))
+                      .setRetryDelayMultiplier(1.5)
+                      .setMaxRetryDelay(Duration.ofMillis(45000L))
+                      .setInitialRpcTimeout(Duration.ZERO) // ignored
+                      .setRpcTimeoutMultiplier(1.0) // ignored
+                      .setMaxRpcTimeout(Duration.ZERO) // ignored
+                      .setTotalTimeout(Duration.ofMillis(86400000L))
+                      .build()));
       builder
           .updateDatabaseDdlSettings()
-          .getInitialCallSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setInitialCallSettings(
+              SimpleCallSettings.newBuilder(METHOD_UPDATE_DATABASE_DDL)
+                  .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+                  .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"))
+                  .build())
+          .setResponseClass(Empty.class)
+          .setMetadataClass(UpdateDatabaseDdlMetadata.class)
+          .setPollingAlgorithm(
+              OperationTimedPollAlgorithm.create(
+                  RetrySettings.newBuilder()
+                      .setInitialRetryDelay(Duration.ofMillis(20000L))
+                      .setRetryDelayMultiplier(1.5)
+                      .setMaxRetryDelay(Duration.ofMillis(45000L))
+                      .setInitialRpcTimeout(Duration.ZERO) // ignored
+                      .setRpcTimeoutMultiplier(1.0) // ignored
+                      .setMaxRpcTimeout(Duration.ZERO) // ignored
+                      .setTotalTimeout(Duration.ofMillis(86400000L))
+                      .build()));
 
       return builder;
     }
@@ -554,7 +591,8 @@ public class DatabaseAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to createDatabase. */
-    public OperationCallSettings.Builder<CreateDatabaseRequest, Database> createDatabaseSettings() {
+    public OperationCallSettings.Builder<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+        createDatabaseSettings() {
       return createDatabaseSettings;
     }
 
@@ -564,7 +602,7 @@ public class DatabaseAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to updateDatabaseDdl. */
-    public OperationCallSettings.Builder<UpdateDatabaseDdlRequest, Empty>
+    public OperationCallSettings.Builder<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
         updateDatabaseDdlSettings() {
       return updateDatabaseDdlSettings;
     }

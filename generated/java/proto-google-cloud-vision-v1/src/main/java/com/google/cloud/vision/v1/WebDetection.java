@@ -130,7 +130,7 @@ public  final class WebDetection extends
      * Opaque entity ID.
      * </pre>
      *
-     * <code>optional string entity_id = 1;</code>
+     * <code>string entity_id = 1;</code>
      */
     java.lang.String getEntityId();
     /**
@@ -138,7 +138,7 @@ public  final class WebDetection extends
      * Opaque entity ID.
      * </pre>
      *
-     * <code>optional string entity_id = 1;</code>
+     * <code>string entity_id = 1;</code>
      */
     com.google.protobuf.ByteString
         getEntityIdBytes();
@@ -149,7 +149,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     float getScore();
 
@@ -158,7 +158,7 @@ public  final class WebDetection extends
      * Canonical description of the entity, in English.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     java.lang.String getDescription();
     /**
@@ -166,7 +166,7 @@ public  final class WebDetection extends
      * Canonical description of the entity, in English.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
@@ -264,7 +264,7 @@ public  final class WebDetection extends
      * Opaque entity ID.
      * </pre>
      *
-     * <code>optional string entity_id = 1;</code>
+     * <code>string entity_id = 1;</code>
      */
     public java.lang.String getEntityId() {
       java.lang.Object ref = entityId_;
@@ -283,7 +283,7 @@ public  final class WebDetection extends
      * Opaque entity ID.
      * </pre>
      *
-     * <code>optional string entity_id = 1;</code>
+     * <code>string entity_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getEntityIdBytes() {
@@ -307,7 +307,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     public float getScore() {
       return score_;
@@ -320,7 +320,7 @@ public  final class WebDetection extends
      * Canonical description of the entity, in English.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -339,7 +339,7 @@ public  final class WebDetection extends
      * Canonical description of the entity, in English.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -426,7 +426,7 @@ public  final class WebDetection extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ENTITY_ID_FIELD_NUMBER;
       hash = (53 * hash) + getEntityId().hashCode();
       hash = (37 * hash) + SCORE_FIELD_NUMBER;
@@ -439,6 +439,17 @@ public  final class WebDetection extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.WebDetection.WebEntity parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebEntity parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.WebDetection.WebEntity parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -671,7 +682,7 @@ public  final class WebDetection extends
        * Opaque entity ID.
        * </pre>
        *
-       * <code>optional string entity_id = 1;</code>
+       * <code>string entity_id = 1;</code>
        */
       public java.lang.String getEntityId() {
         java.lang.Object ref = entityId_;
@@ -690,7 +701,7 @@ public  final class WebDetection extends
        * Opaque entity ID.
        * </pre>
        *
-       * <code>optional string entity_id = 1;</code>
+       * <code>string entity_id = 1;</code>
        */
       public com.google.protobuf.ByteString
           getEntityIdBytes() {
@@ -710,7 +721,7 @@ public  final class WebDetection extends
        * Opaque entity ID.
        * </pre>
        *
-       * <code>optional string entity_id = 1;</code>
+       * <code>string entity_id = 1;</code>
        */
       public Builder setEntityId(
           java.lang.String value) {
@@ -727,7 +738,7 @@ public  final class WebDetection extends
        * Opaque entity ID.
        * </pre>
        *
-       * <code>optional string entity_id = 1;</code>
+       * <code>string entity_id = 1;</code>
        */
       public Builder clearEntityId() {
         
@@ -740,7 +751,7 @@ public  final class WebDetection extends
        * Opaque entity ID.
        * </pre>
        *
-       * <code>optional string entity_id = 1;</code>
+       * <code>string entity_id = 1;</code>
        */
       public Builder setEntityIdBytes(
           com.google.protobuf.ByteString value) {
@@ -761,7 +772,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public float getScore() {
         return score_;
@@ -772,7 +783,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder setScore(float value) {
         
@@ -786,7 +797,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder clearScore() {
         
@@ -801,7 +812,7 @@ public  final class WebDetection extends
        * Canonical description of the entity, in English.
        * </pre>
        *
-       * <code>optional string description = 3;</code>
+       * <code>string description = 3;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -820,7 +831,7 @@ public  final class WebDetection extends
        * Canonical description of the entity, in English.
        * </pre>
        *
-       * <code>optional string description = 3;</code>
+       * <code>string description = 3;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -840,7 +851,7 @@ public  final class WebDetection extends
        * Canonical description of the entity, in English.
        * </pre>
        *
-       * <code>optional string description = 3;</code>
+       * <code>string description = 3;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -857,7 +868,7 @@ public  final class WebDetection extends
        * Canonical description of the entity, in English.
        * </pre>
        *
-       * <code>optional string description = 3;</code>
+       * <code>string description = 3;</code>
        */
       public Builder clearDescription() {
         
@@ -870,7 +881,7 @@ public  final class WebDetection extends
        * Canonical description of the entity, in English.
        * </pre>
        *
-       * <code>optional string description = 3;</code>
+       * <code>string description = 3;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -941,7 +952,7 @@ public  final class WebDetection extends
      * The result image URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     java.lang.String getUrl();
     /**
@@ -949,7 +960,7 @@ public  final class WebDetection extends
      * The result image URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     com.google.protobuf.ByteString
         getUrlBytes();
@@ -960,7 +971,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     float getScore();
   }
@@ -1050,7 +1061,7 @@ public  final class WebDetection extends
      * The result image URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
@@ -1069,7 +1080,7 @@ public  final class WebDetection extends
      * The result image URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -1093,7 +1104,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     public float getScore() {
       return score_;
@@ -1162,7 +1173,7 @@ public  final class WebDetection extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + URL_FIELD_NUMBER;
       hash = (53 * hash) + getUrl().hashCode();
       hash = (37 * hash) + SCORE_FIELD_NUMBER;
@@ -1173,6 +1184,17 @@ public  final class WebDetection extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.WebDetection.WebImage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebImage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.WebDetection.WebImage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1398,7 +1420,7 @@ public  final class WebDetection extends
        * The result image URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public java.lang.String getUrl() {
         java.lang.Object ref = url_;
@@ -1417,7 +1439,7 @@ public  final class WebDetection extends
        * The result image URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
@@ -1437,7 +1459,7 @@ public  final class WebDetection extends
        * The result image URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrl(
           java.lang.String value) {
@@ -1454,7 +1476,7 @@ public  final class WebDetection extends
        * The result image URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder clearUrl() {
         
@@ -1467,7 +1489,7 @@ public  final class WebDetection extends
        * The result image URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -1488,7 +1510,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public float getScore() {
         return score_;
@@ -1499,7 +1521,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder setScore(float value) {
         
@@ -1513,7 +1535,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder clearScore() {
         
@@ -1579,7 +1601,7 @@ public  final class WebDetection extends
      * The result web page URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     java.lang.String getUrl();
     /**
@@ -1587,7 +1609,7 @@ public  final class WebDetection extends
      * The result web page URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     com.google.protobuf.ByteString
         getUrlBytes();
@@ -1598,7 +1620,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     float getScore();
   }
@@ -1688,7 +1710,7 @@ public  final class WebDetection extends
      * The result web page URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
@@ -1707,7 +1729,7 @@ public  final class WebDetection extends
      * The result web page URL.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -1731,7 +1753,7 @@ public  final class WebDetection extends
      * Not normalized and not comparable across different image queries.
      * </pre>
      *
-     * <code>optional float score = 2;</code>
+     * <code>float score = 2;</code>
      */
     public float getScore() {
       return score_;
@@ -1800,7 +1822,7 @@ public  final class WebDetection extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + URL_FIELD_NUMBER;
       hash = (53 * hash) + getUrl().hashCode();
       hash = (37 * hash) + SCORE_FIELD_NUMBER;
@@ -1811,6 +1833,17 @@ public  final class WebDetection extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.WebDetection.WebPage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.WebDetection.WebPage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.WebDetection.WebPage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2036,7 +2069,7 @@ public  final class WebDetection extends
        * The result web page URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public java.lang.String getUrl() {
         java.lang.Object ref = url_;
@@ -2055,7 +2088,7 @@ public  final class WebDetection extends
        * The result web page URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
@@ -2075,7 +2108,7 @@ public  final class WebDetection extends
        * The result web page URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrl(
           java.lang.String value) {
@@ -2092,7 +2125,7 @@ public  final class WebDetection extends
        * The result web page URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder clearUrl() {
         
@@ -2105,7 +2138,7 @@ public  final class WebDetection extends
        * The result web page URL.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -2126,7 +2159,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public float getScore() {
         return score_;
@@ -2137,7 +2170,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder setScore(float value) {
         
@@ -2151,7 +2184,7 @@ public  final class WebDetection extends
        * Not normalized and not comparable across different image queries.
        * </pre>
        *
-       * <code>optional float score = 2;</code>
+       * <code>float score = 2;</code>
        */
       public Builder clearScore() {
         
@@ -2528,7 +2561,7 @@ public  final class WebDetection extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getWebEntitiesCount() > 0) {
       hash = (37 * hash) + WEB_ENTITIES_FIELD_NUMBER;
       hash = (53 * hash) + getWebEntitiesList().hashCode();
@@ -2550,6 +2583,17 @@ public  final class WebDetection extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.WebDetection parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.WebDetection parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.WebDetection parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

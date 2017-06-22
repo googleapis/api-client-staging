@@ -18,7 +18,7 @@ public interface GetGroupRequestOrBuilder extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
    * </pre>
    *
-   * <code>optional string group_name = 1;</code>
+   * <code>string group_name = 1;</code>
    */
   java.lang.String getGroupName();
   /**
@@ -32,7 +32,7 @@ public interface GetGroupRequestOrBuilder extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
    * </pre>
    *
-   * <code>optional string group_name = 1;</code>
+   * <code>string group_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getGroupNameBytes();

@@ -102,7 +102,7 @@ public  final class CropHint extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public boolean hasBoundingPoly() {
     return boundingPoly_ != null;
@@ -113,7 +113,7 @@ public  final class CropHint extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
     return boundingPoly_ == null ? com.google.cloud.vision.v1.BoundingPoly.getDefaultInstance() : boundingPoly_;
@@ -124,7 +124,7 @@ public  final class CropHint extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
     return getBoundingPoly();
@@ -137,7 +137,7 @@ public  final class CropHint extends
    * Confidence of this being a salient region.  Range [0, 1].
    * </pre>
    *
-   * <code>optional float confidence = 2;</code>
+   * <code>float confidence = 2;</code>
    */
   public float getConfidence() {
     return confidence_;
@@ -151,7 +151,7 @@ public  final class CropHint extends
    * image.
    * </pre>
    *
-   * <code>optional float importance_fraction = 3;</code>
+   * <code>float importance_fraction = 3;</code>
    */
   public float getImportanceFraction() {
     return importanceFraction_;
@@ -235,7 +235,7 @@ public  final class CropHint extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasBoundingPoly()) {
       hash = (37 * hash) + BOUNDING_POLY_FIELD_NUMBER;
       hash = (53 * hash) + getBoundingPoly().hashCode();
@@ -251,6 +251,17 @@ public  final class CropHint extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.CropHint parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.CropHint parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.CropHint parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -492,7 +503,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public boolean hasBoundingPoly() {
       return boundingPolyBuilder_ != null || boundingPoly_ != null;
@@ -503,7 +514,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -518,7 +529,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder setBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -539,7 +550,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder setBoundingPoly(
         com.google.cloud.vision.v1.BoundingPoly.Builder builderForValue) {
@@ -558,7 +569,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder mergeBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -581,7 +592,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder clearBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -600,7 +611,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly.Builder getBoundingPolyBuilder() {
       
@@ -613,7 +624,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
       if (boundingPolyBuilder_ != null) {
@@ -629,7 +640,7 @@ public  final class CropHint extends
      * box are in the original image's scale, as returned in `ImageParams`.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> 
@@ -651,7 +662,7 @@ public  final class CropHint extends
      * Confidence of this being a salient region.  Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 2;</code>
+     * <code>float confidence = 2;</code>
      */
     public float getConfidence() {
       return confidence_;
@@ -661,7 +672,7 @@ public  final class CropHint extends
      * Confidence of this being a salient region.  Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 2;</code>
+     * <code>float confidence = 2;</code>
      */
     public Builder setConfidence(float value) {
       
@@ -674,7 +685,7 @@ public  final class CropHint extends
      * Confidence of this being a salient region.  Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 2;</code>
+     * <code>float confidence = 2;</code>
      */
     public Builder clearConfidence() {
       
@@ -690,7 +701,7 @@ public  final class CropHint extends
      * image.
      * </pre>
      *
-     * <code>optional float importance_fraction = 3;</code>
+     * <code>float importance_fraction = 3;</code>
      */
     public float getImportanceFraction() {
       return importanceFraction_;
@@ -701,7 +712,7 @@ public  final class CropHint extends
      * image.
      * </pre>
      *
-     * <code>optional float importance_fraction = 3;</code>
+     * <code>float importance_fraction = 3;</code>
      */
     public Builder setImportanceFraction(float value) {
       
@@ -715,7 +726,7 @@ public  final class CropHint extends
      * image.
      * </pre>
      *
-     * <code>optional float importance_fraction = 3;</code>
+     * <code>float importance_fraction = 3;</code>
      */
     public Builder clearImportanceFraction() {
       

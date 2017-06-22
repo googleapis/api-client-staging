@@ -107,7 +107,7 @@ public  final class CreateSinkRequest extends
    * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public java.lang.String getParent() {
     java.lang.Object ref = parent_;
@@ -131,7 +131,7 @@ public  final class CreateSinkRequest extends
    * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public com.google.protobuf.ByteString
       getParentBytes() {
@@ -155,7 +155,7 @@ public  final class CreateSinkRequest extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public boolean hasSink() {
     return sink_ != null;
@@ -166,7 +166,7 @@ public  final class CreateSinkRequest extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public com.google.logging.v2.LogSink getSink() {
     return sink_ == null ? com.google.logging.v2.LogSink.getDefaultInstance() : sink_;
@@ -177,7 +177,7 @@ public  final class CreateSinkRequest extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   public com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder() {
     return getSink();
@@ -199,7 +199,7 @@ public  final class CreateSinkRequest extends
    * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
    * </pre>
    *
-   * <code>optional bool unique_writer_identity = 3;</code>
+   * <code>bool unique_writer_identity = 3;</code>
    */
   public boolean getUniqueWriterIdentity() {
     return uniqueWriterIdentity_;
@@ -278,7 +278,7 @@ public  final class CreateSinkRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PARENT_FIELD_NUMBER;
     hash = (53 * hash) + getParent().hashCode();
     if (hasSink()) {
@@ -293,6 +293,17 @@ public  final class CreateSinkRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.CreateSinkRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.CreateSinkRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.CreateSinkRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -537,7 +548,7 @@ public  final class CreateSinkRequest extends
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
@@ -561,7 +572,7 @@ public  final class CreateSinkRequest extends
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -586,7 +597,7 @@ public  final class CreateSinkRequest extends
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParent(
         java.lang.String value) {
@@ -608,7 +619,7 @@ public  final class CreateSinkRequest extends
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder clearParent() {
       
@@ -626,7 +637,7 @@ public  final class CreateSinkRequest extends
      * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParentBytes(
         com.google.protobuf.ByteString value) {
@@ -649,7 +660,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public boolean hasSink() {
       return sinkBuilder_ != null || sink_ != null;
@@ -660,7 +671,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSink getSink() {
       if (sinkBuilder_ == null) {
@@ -675,7 +686,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder setSink(com.google.logging.v2.LogSink value) {
       if (sinkBuilder_ == null) {
@@ -696,7 +707,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder setSink(
         com.google.logging.v2.LogSink.Builder builderForValue) {
@@ -715,7 +726,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder mergeSink(com.google.logging.v2.LogSink value) {
       if (sinkBuilder_ == null) {
@@ -738,7 +749,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public Builder clearSink() {
       if (sinkBuilder_ == null) {
@@ -757,7 +768,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSink.Builder getSinkBuilder() {
       
@@ -770,7 +781,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     public com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder() {
       if (sinkBuilder_ != null) {
@@ -786,7 +797,7 @@ public  final class CreateSinkRequest extends
      * is not already in use.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+     * <code>.google.logging.v2.LogSink sink = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogSink, com.google.logging.v2.LogSink.Builder, com.google.logging.v2.LogSinkOrBuilder> 
@@ -817,7 +828,7 @@ public  final class CreateSinkRequest extends
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public boolean getUniqueWriterIdentity() {
       return uniqueWriterIdentity_;
@@ -836,7 +847,7 @@ public  final class CreateSinkRequest extends
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public Builder setUniqueWriterIdentity(boolean value) {
       
@@ -858,7 +869,7 @@ public  final class CreateSinkRequest extends
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      * </pre>
      *
-     * <code>optional bool unique_writer_identity = 3;</code>
+     * <code>bool unique_writer_identity = 3;</code>
      */
     public Builder clearUniqueWriterIdentity() {
       

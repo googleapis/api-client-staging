@@ -18,7 +18,7 @@ public interface DeleteSinkRequestOrBuilder extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   java.lang.String getSinkName();
   /**
@@ -32,7 +32,7 @@ public interface DeleteSinkRequestOrBuilder extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getSinkNameBytes();

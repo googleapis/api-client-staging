@@ -12,7 +12,7 @@ public interface GetDatabaseDdlRequestOrBuilder extends
    * Required. The database whose schema we wish to get.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   java.lang.String getDatabase();
   /**
@@ -20,7 +20,7 @@ public interface GetDatabaseDdlRequestOrBuilder extends
    * Required. The database whose schema we wish to get.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   com.google.protobuf.ByteString
       getDatabaseBytes();

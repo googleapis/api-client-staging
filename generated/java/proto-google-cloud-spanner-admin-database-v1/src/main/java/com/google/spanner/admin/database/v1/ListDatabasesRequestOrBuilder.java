@@ -13,7 +13,7 @@ public interface ListDatabasesRequestOrBuilder extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -22,7 +22,7 @@ public interface ListDatabasesRequestOrBuilder extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -33,7 +33,7 @@ public interface ListDatabasesRequestOrBuilder extends
    * defaults to the server's maximum allowed page size.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   int getPageSize();
 
@@ -44,7 +44,7 @@ public interface ListDatabasesRequestOrBuilder extends
    * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -54,7 +54,7 @@ public interface ListDatabasesRequestOrBuilder extends
    * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

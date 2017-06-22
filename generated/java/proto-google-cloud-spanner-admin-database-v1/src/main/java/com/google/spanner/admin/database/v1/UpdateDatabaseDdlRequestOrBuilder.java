@@ -12,7 +12,7 @@ public interface UpdateDatabaseDdlRequestOrBuilder extends
    * Required. The database to update.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   java.lang.String getDatabase();
   /**
@@ -20,7 +20,7 @@ public interface UpdateDatabaseDdlRequestOrBuilder extends
    * Required. The database to update.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   com.google.protobuf.ByteString
       getDatabaseBytes();
@@ -81,7 +81,7 @@ public interface UpdateDatabaseDdlRequestOrBuilder extends
    * `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>optional string operation_id = 3;</code>
+   * <code>string operation_id = 3;</code>
    */
   java.lang.String getOperationId();
   /**
@@ -105,7 +105,7 @@ public interface UpdateDatabaseDdlRequestOrBuilder extends
    * `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>optional string operation_id = 3;</code>
+   * <code>string operation_id = 3;</code>
    */
   com.google.protobuf.ByteString
       getOperationIdBytes();

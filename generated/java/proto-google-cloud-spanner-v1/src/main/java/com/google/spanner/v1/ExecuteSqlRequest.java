@@ -96,9 +96,10 @@ public  final class ExecuteSqlRequest extends
               mutable_bitField0_ |= 0x00000010;
             }
             com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type>
-            paramTypes = input.readMessage(
+            paramTypes__ = input.readMessage(
                 ParamTypesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            paramTypes_.getMutableMap().put(paramTypes.getKey(), paramTypes.getValue());
+            paramTypes_.getMutableMap().put(
+                paramTypes__.getKey(), paramTypes__.getValue());
             break;
           }
           case 50: {
@@ -295,7 +296,7 @@ public  final class ExecuteSqlRequest extends
    * Required. The session in which the SQL query should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public java.lang.String getSession() {
     java.lang.Object ref = session_;
@@ -314,7 +315,7 @@ public  final class ExecuteSqlRequest extends
    * Required. The session in which the SQL query should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSessionBytes() {
@@ -338,7 +339,7 @@ public  final class ExecuteSqlRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public boolean hasTransaction() {
     return transaction_ != null;
@@ -349,7 +350,7 @@ public  final class ExecuteSqlRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public com.google.spanner.v1.TransactionSelector getTransaction() {
     return transaction_ == null ? com.google.spanner.v1.TransactionSelector.getDefaultInstance() : transaction_;
@@ -360,7 +361,7 @@ public  final class ExecuteSqlRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
     return getTransaction();
@@ -373,7 +374,7 @@ public  final class ExecuteSqlRequest extends
    * Required. The SQL query string.
    * </pre>
    *
-   * <code>optional string sql = 3;</code>
+   * <code>string sql = 3;</code>
    */
   public java.lang.String getSql() {
     java.lang.Object ref = sql_;
@@ -392,7 +393,7 @@ public  final class ExecuteSqlRequest extends
    * Required. The SQL query string.
    * </pre>
    *
-   * <code>optional string sql = 3;</code>
+   * <code>string sql = 3;</code>
    */
   public com.google.protobuf.ByteString
       getSqlBytes() {
@@ -425,7 +426,7 @@ public  final class ExecuteSqlRequest extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   public boolean hasParams() {
     return params_ != null;
@@ -445,7 +446,7 @@ public  final class ExecuteSqlRequest extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   public com.google.protobuf.Struct getParams() {
     return params_ == null ? com.google.protobuf.Struct.getDefaultInstance() : params_;
@@ -465,7 +466,7 @@ public  final class ExecuteSqlRequest extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   public com.google.protobuf.StructOrBuilder getParamsOrBuilder() {
     return getParams();
@@ -599,7 +600,7 @@ public  final class ExecuteSqlRequest extends
    * request that yielded this token.
    * </pre>
    *
-   * <code>optional bytes resume_token = 6;</code>
+   * <code>bytes resume_token = 6;</code>
    */
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
@@ -613,7 +614,7 @@ public  final class ExecuteSqlRequest extends
    * [ResultSetStats][google.spanner.v1.ResultSetStats].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+   * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
    */
   public int getQueryModeValue() {
     return queryMode_;
@@ -624,7 +625,7 @@ public  final class ExecuteSqlRequest extends
    * [ResultSetStats][google.spanner.v1.ResultSetStats].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+   * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
    */
   public com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode() {
     com.google.spanner.v1.ExecuteSqlRequest.QueryMode result = com.google.spanner.v1.ExecuteSqlRequest.QueryMode.valueOf(queryMode_);
@@ -655,15 +656,12 @@ public  final class ExecuteSqlRequest extends
     if (params_ != null) {
       output.writeMessage(4, getParams());
     }
-    for (java.util.Map.Entry<java.lang.String, com.google.spanner.v1.Type> entry
-         : internalGetParamTypes().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type>
-      paramTypes = ParamTypesDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(5, paramTypes);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetParamTypes(),
+        ParamTypesDefaultEntryHolder.defaultEntry,
+        5);
     if (!resumeToken_.isEmpty()) {
       output.writeBytes(6, resumeToken_);
     }
@@ -694,12 +692,12 @@ public  final class ExecuteSqlRequest extends
     for (java.util.Map.Entry<java.lang.String, com.google.spanner.v1.Type> entry
          : internalGetParamTypes().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, com.google.spanner.v1.Type>
-      paramTypes = ParamTypesDefaultEntryHolder.defaultEntry.newBuilderForType()
+      paramTypes__ = ParamTypesDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, paramTypes);
+          .computeMessageSize(5, paramTypes__);
     }
     if (!resumeToken_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
@@ -753,7 +751,7 @@ public  final class ExecuteSqlRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SESSION_FIELD_NUMBER;
     hash = (53 * hash) + getSession().hashCode();
     if (hasTransaction()) {
@@ -779,6 +777,17 @@ public  final class ExecuteSqlRequest extends
     return hash;
   }
 
+  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.ExecuteSqlRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1077,7 +1086,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The session in which the SQL query should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public java.lang.String getSession() {
       java.lang.Object ref = session_;
@@ -1096,7 +1105,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The session in which the SQL query should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSessionBytes() {
@@ -1116,7 +1125,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The session in which the SQL query should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSession(
         java.lang.String value) {
@@ -1133,7 +1142,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The session in which the SQL query should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder clearSession() {
       
@@ -1146,7 +1155,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The session in which the SQL query should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSessionBytes(
         com.google.protobuf.ByteString value) {
@@ -1169,7 +1178,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public boolean hasTransaction() {
       return transactionBuilder_ != null || transaction_ != null;
@@ -1180,7 +1189,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelector getTransaction() {
       if (transactionBuilder_ == null) {
@@ -1195,7 +1204,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder setTransaction(com.google.spanner.v1.TransactionSelector value) {
       if (transactionBuilder_ == null) {
@@ -1216,7 +1225,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder setTransaction(
         com.google.spanner.v1.TransactionSelector.Builder builderForValue) {
@@ -1235,7 +1244,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder mergeTransaction(com.google.spanner.v1.TransactionSelector value) {
       if (transactionBuilder_ == null) {
@@ -1258,7 +1267,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder clearTransaction() {
       if (transactionBuilder_ == null) {
@@ -1277,7 +1286,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelector.Builder getTransactionBuilder() {
       
@@ -1290,7 +1299,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
       if (transactionBuilder_ != null) {
@@ -1306,7 +1315,7 @@ public  final class ExecuteSqlRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionSelector, com.google.spanner.v1.TransactionSelector.Builder, com.google.spanner.v1.TransactionSelectorOrBuilder> 
@@ -1328,7 +1337,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The SQL query string.
      * </pre>
      *
-     * <code>optional string sql = 3;</code>
+     * <code>string sql = 3;</code>
      */
     public java.lang.String getSql() {
       java.lang.Object ref = sql_;
@@ -1347,7 +1356,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The SQL query string.
      * </pre>
      *
-     * <code>optional string sql = 3;</code>
+     * <code>string sql = 3;</code>
      */
     public com.google.protobuf.ByteString
         getSqlBytes() {
@@ -1367,7 +1376,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The SQL query string.
      * </pre>
      *
-     * <code>optional string sql = 3;</code>
+     * <code>string sql = 3;</code>
      */
     public Builder setSql(
         java.lang.String value) {
@@ -1384,7 +1393,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The SQL query string.
      * </pre>
      *
-     * <code>optional string sql = 3;</code>
+     * <code>string sql = 3;</code>
      */
     public Builder clearSql() {
       
@@ -1397,7 +1406,7 @@ public  final class ExecuteSqlRequest extends
      * Required. The SQL query string.
      * </pre>
      *
-     * <code>optional string sql = 3;</code>
+     * <code>string sql = 3;</code>
      */
     public Builder setSqlBytes(
         com.google.protobuf.ByteString value) {
@@ -1429,7 +1438,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public boolean hasParams() {
       return paramsBuilder_ != null || params_ != null;
@@ -1449,7 +1458,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public com.google.protobuf.Struct getParams() {
       if (paramsBuilder_ == null) {
@@ -1473,7 +1482,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public Builder setParams(com.google.protobuf.Struct value) {
       if (paramsBuilder_ == null) {
@@ -1503,7 +1512,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public Builder setParams(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -1531,7 +1540,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public Builder mergeParams(com.google.protobuf.Struct value) {
       if (paramsBuilder_ == null) {
@@ -1563,7 +1572,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public Builder clearParams() {
       if (paramsBuilder_ == null) {
@@ -1591,7 +1600,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public com.google.protobuf.Struct.Builder getParamsBuilder() {
       
@@ -1613,7 +1622,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     public com.google.protobuf.StructOrBuilder getParamsOrBuilder() {
       if (paramsBuilder_ != null) {
@@ -1638,7 +1647,7 @@ public  final class ExecuteSqlRequest extends
      * corresponding parameter values.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct params = 4;</code>
+     * <code>.google.protobuf.Struct params = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -1771,7 +1780,8 @@ public  final class ExecuteSqlRequest extends
     }
 
     public Builder clearParamTypes() {
-      getMutableParamTypes().clear();
+      internalGetMutableParamTypes().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -1791,7 +1801,8 @@ public  final class ExecuteSqlRequest extends
     public Builder removeParamTypes(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableParamTypes().remove(key);
+      internalGetMutableParamTypes().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -1820,7 +1831,8 @@ public  final class ExecuteSqlRequest extends
         com.google.spanner.v1.Type value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableParamTypes().put(key, value);
+      internalGetMutableParamTypes().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -1839,7 +1851,8 @@ public  final class ExecuteSqlRequest extends
 
     public Builder putAllParamTypes(
         java.util.Map<java.lang.String, com.google.spanner.v1.Type> values) {
-      getMutableParamTypes().putAll(values);
+      internalGetMutableParamTypes().getMutableMap()
+          .putAll(values);
       return this;
     }
 
@@ -1854,7 +1867,7 @@ public  final class ExecuteSqlRequest extends
      * request that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 6;</code>
+     * <code>bytes resume_token = 6;</code>
      */
     public com.google.protobuf.ByteString getResumeToken() {
       return resumeToken_;
@@ -1869,7 +1882,7 @@ public  final class ExecuteSqlRequest extends
      * request that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 6;</code>
+     * <code>bytes resume_token = 6;</code>
      */
     public Builder setResumeToken(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -1890,7 +1903,7 @@ public  final class ExecuteSqlRequest extends
      * request that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 6;</code>
+     * <code>bytes resume_token = 6;</code>
      */
     public Builder clearResumeToken() {
       
@@ -1906,7 +1919,7 @@ public  final class ExecuteSqlRequest extends
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     public int getQueryModeValue() {
       return queryMode_;
@@ -1917,7 +1930,7 @@ public  final class ExecuteSqlRequest extends
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     public Builder setQueryModeValue(int value) {
       queryMode_ = value;
@@ -1930,7 +1943,7 @@ public  final class ExecuteSqlRequest extends
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     public com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode() {
       com.google.spanner.v1.ExecuteSqlRequest.QueryMode result = com.google.spanner.v1.ExecuteSqlRequest.QueryMode.valueOf(queryMode_);
@@ -1942,7 +1955,7 @@ public  final class ExecuteSqlRequest extends
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     public Builder setQueryMode(com.google.spanner.v1.ExecuteSqlRequest.QueryMode value) {
       if (value == null) {
@@ -1959,7 +1972,7 @@ public  final class ExecuteSqlRequest extends
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     public Builder clearQueryMode() {
       

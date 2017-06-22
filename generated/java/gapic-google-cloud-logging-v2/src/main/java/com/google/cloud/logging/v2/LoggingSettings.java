@@ -529,7 +529,7 @@ public class LoggingSettings extends ClientSettings {
           "idempotent",
           Sets.immutableEnumSet(
               Lists.<Status.Code>newArrayList(
-                  Status.Code.DEADLINE_EXCEEDED, Status.Code.UNAVAILABLE)));
+                  Status.Code.DEADLINE_EXCEEDED, Status.Code.INTERNAL, Status.Code.UNAVAILABLE)));
       definitions.put("non_idempotent", Sets.immutableEnumSet(Lists.<Status.Code>newArrayList()));
       RETRYABLE_CODE_DEFINITIONS = definitions.build();
     }

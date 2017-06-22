@@ -304,7 +304,7 @@ public  final class ListTracesRequest extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public java.lang.String getProjectId() {
     java.lang.Object ref = projectId_;
@@ -323,7 +323,7 @@ public  final class ListTracesRequest extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectIdBytes() {
@@ -347,7 +347,7 @@ public  final class ListTracesRequest extends
    * `MINIMAL`.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
    */
   public int getViewValue() {
     return view_;
@@ -358,7 +358,7 @@ public  final class ListTracesRequest extends
    * `MINIMAL`.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
    */
   public com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType getView() {
     com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType result = com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType.valueOf(view_);
@@ -374,7 +374,7 @@ public  final class ListTracesRequest extends
    * return fewer traces than the requested page size. Optional.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -388,7 +388,7 @@ public  final class ListTracesRequest extends
    * value of the `next_page_token` field from a previous request. Optional.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -408,7 +408,7 @@ public  final class ListTracesRequest extends
    * value of the `next_page_token` field from a previous request. Optional.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -432,7 +432,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -443,7 +443,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -454,7 +454,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+   * <code>.google.protobuf.Timestamp start_time = 5;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -468,7 +468,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
    */
   public boolean hasEndTime() {
     return endTime_ != null;
@@ -479,7 +479,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
    */
   public com.google.protobuf.Timestamp getEndTime() {
     return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
@@ -490,7 +490,7 @@ public  final class ListTracesRequest extends
    * collected from the application.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+   * <code>.google.protobuf.Timestamp end_time = 6;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
     return getEndTime();
@@ -503,7 +503,7 @@ public  final class ListTracesRequest extends
    * An optional filter for the request.
    * </pre>
    *
-   * <code>optional string filter = 7;</code>
+   * <code>string filter = 7;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -522,7 +522,7 @@ public  final class ListTracesRequest extends
    * An optional filter for the request.
    * </pre>
    *
-   * <code>optional string filter = 7;</code>
+   * <code>string filter = 7;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -554,7 +554,7 @@ public  final class ListTracesRequest extends
    * Only one sort field is permitted.
    * </pre>
    *
-   * <code>optional string order_by = 8;</code>
+   * <code>string order_by = 8;</code>
    */
   public java.lang.String getOrderBy() {
     java.lang.Object ref = orderBy_;
@@ -582,7 +582,7 @@ public  final class ListTracesRequest extends
    * Only one sort field is permitted.
    * </pre>
    *
-   * <code>optional string order_by = 8;</code>
+   * <code>string order_by = 8;</code>
    */
   public com.google.protobuf.ByteString
       getOrderByBytes() {
@@ -715,7 +715,7 @@ public  final class ListTracesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_ID_FIELD_NUMBER;
     hash = (53 * hash) + getProjectId().hashCode();
     hash = (37 * hash) + VIEW_FIELD_NUMBER;
@@ -741,6 +741,17 @@ public  final class ListTracesRequest extends
     return hash;
   }
 
+  public static com.google.devtools.cloudtrace.v1.ListTracesRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.cloudtrace.v1.ListTracesRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.cloudtrace.v1.ListTracesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1022,7 +1033,7 @@ public  final class ListTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public java.lang.String getProjectId() {
       java.lang.Object ref = projectId_;
@@ -1041,7 +1052,7 @@ public  final class ListTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectIdBytes() {
@@ -1061,7 +1072,7 @@ public  final class ListTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectId(
         java.lang.String value) {
@@ -1078,7 +1089,7 @@ public  final class ListTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder clearProjectId() {
       
@@ -1091,7 +1102,7 @@ public  final class ListTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectIdBytes(
         com.google.protobuf.ByteString value) {
@@ -1112,7 +1123,7 @@ public  final class ListTracesRequest extends
      * `MINIMAL`.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
      */
     public int getViewValue() {
       return view_;
@@ -1123,7 +1134,7 @@ public  final class ListTracesRequest extends
      * `MINIMAL`.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
      */
     public Builder setViewValue(int value) {
       view_ = value;
@@ -1136,7 +1147,7 @@ public  final class ListTracesRequest extends
      * `MINIMAL`.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
      */
     public com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType getView() {
       com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType result = com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType.valueOf(view_);
@@ -1148,7 +1159,7 @@ public  final class ListTracesRequest extends
      * `MINIMAL`.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
      */
     public Builder setView(com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType value) {
       if (value == null) {
@@ -1165,7 +1176,7 @@ public  final class ListTracesRequest extends
      * `MINIMAL`.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
      */
     public Builder clearView() {
       
@@ -1182,7 +1193,7 @@ public  final class ListTracesRequest extends
      * return fewer traces than the requested page size. Optional.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -1194,7 +1205,7 @@ public  final class ListTracesRequest extends
      * return fewer traces than the requested page size. Optional.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -1209,7 +1220,7 @@ public  final class ListTracesRequest extends
      * return fewer traces than the requested page size. Optional.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder clearPageSize() {
       
@@ -1225,7 +1236,7 @@ public  final class ListTracesRequest extends
      * value of the `next_page_token` field from a previous request. Optional.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -1245,7 +1256,7 @@ public  final class ListTracesRequest extends
      * value of the `next_page_token` field from a previous request. Optional.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -1266,7 +1277,7 @@ public  final class ListTracesRequest extends
      * value of the `next_page_token` field from a previous request. Optional.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -1284,7 +1295,7 @@ public  final class ListTracesRequest extends
      * value of the `next_page_token` field from a previous request. Optional.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder clearPageToken() {
       
@@ -1298,7 +1309,7 @@ public  final class ListTracesRequest extends
      * value of the `next_page_token` field from a previous request. Optional.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {
@@ -1321,7 +1332,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -1332,7 +1343,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -1347,7 +1358,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -1368,7 +1379,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1387,7 +1398,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -1410,7 +1421,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -1429,7 +1440,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -1442,7 +1453,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -1458,7 +1469,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
+     * <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1483,7 +1494,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public boolean hasEndTime() {
       return endTimeBuilder_ != null || endTime_ != null;
@@ -1494,7 +1505,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public com.google.protobuf.Timestamp getEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1509,7 +1520,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder setEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1530,7 +1541,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder setEndTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1549,7 +1560,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder mergeEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1572,7 +1583,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public Builder clearEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1591,7 +1602,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public com.google.protobuf.Timestamp.Builder getEndTimeBuilder() {
       
@@ -1604,7 +1615,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
       if (endTimeBuilder_ != null) {
@@ -1620,7 +1631,7 @@ public  final class ListTracesRequest extends
      * collected from the application.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
+     * <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1642,7 +1653,7 @@ public  final class ListTracesRequest extends
      * An optional filter for the request.
      * </pre>
      *
-     * <code>optional string filter = 7;</code>
+     * <code>string filter = 7;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -1661,7 +1672,7 @@ public  final class ListTracesRequest extends
      * An optional filter for the request.
      * </pre>
      *
-     * <code>optional string filter = 7;</code>
+     * <code>string filter = 7;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -1681,7 +1692,7 @@ public  final class ListTracesRequest extends
      * An optional filter for the request.
      * </pre>
      *
-     * <code>optional string filter = 7;</code>
+     * <code>string filter = 7;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -1698,7 +1709,7 @@ public  final class ListTracesRequest extends
      * An optional filter for the request.
      * </pre>
      *
-     * <code>optional string filter = 7;</code>
+     * <code>string filter = 7;</code>
      */
     public Builder clearFilter() {
       
@@ -1711,7 +1722,7 @@ public  final class ListTracesRequest extends
      * An optional filter for the request.
      * </pre>
      *
-     * <code>optional string filter = 7;</code>
+     * <code>string filter = 7;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1740,7 +1751,7 @@ public  final class ListTracesRequest extends
      * Only one sort field is permitted.
      * </pre>
      *
-     * <code>optional string order_by = 8;</code>
+     * <code>string order_by = 8;</code>
      */
     public java.lang.String getOrderBy() {
       java.lang.Object ref = orderBy_;
@@ -1768,7 +1779,7 @@ public  final class ListTracesRequest extends
      * Only one sort field is permitted.
      * </pre>
      *
-     * <code>optional string order_by = 8;</code>
+     * <code>string order_by = 8;</code>
      */
     public com.google.protobuf.ByteString
         getOrderByBytes() {
@@ -1797,7 +1808,7 @@ public  final class ListTracesRequest extends
      * Only one sort field is permitted.
      * </pre>
      *
-     * <code>optional string order_by = 8;</code>
+     * <code>string order_by = 8;</code>
      */
     public Builder setOrderBy(
         java.lang.String value) {
@@ -1823,7 +1834,7 @@ public  final class ListTracesRequest extends
      * Only one sort field is permitted.
      * </pre>
      *
-     * <code>optional string order_by = 8;</code>
+     * <code>string order_by = 8;</code>
      */
     public Builder clearOrderBy() {
       
@@ -1845,7 +1856,7 @@ public  final class ListTracesRequest extends
      * Only one sort field is permitted.
      * </pre>
      *
-     * <code>optional string order_by = 8;</code>
+     * <code>string order_by = 8;</code>
      */
     public Builder setOrderByBytes(
         com.google.protobuf.ByteString value) {

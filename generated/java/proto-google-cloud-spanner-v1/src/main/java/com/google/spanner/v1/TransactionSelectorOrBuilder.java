@@ -14,7 +14,7 @@ public interface TransactionSelectorOrBuilder extends
    * consists of a single SQL query.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
    */
   com.google.spanner.v1.TransactionOptions getSingleUse();
   /**
@@ -24,7 +24,7 @@ public interface TransactionSelectorOrBuilder extends
    * consists of a single SQL query.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
    */
   com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseOrBuilder();
 
@@ -33,7 +33,7 @@ public interface TransactionSelectorOrBuilder extends
    * Execute the read or SQL query in a previously-started transaction.
    * </pre>
    *
-   * <code>optional bytes id = 2;</code>
+   * <code>bytes id = 2;</code>
    */
   com.google.protobuf.ByteString getId();
 
@@ -44,7 +44,7 @@ public interface TransactionSelectorOrBuilder extends
    * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
    */
   com.google.spanner.v1.TransactionOptions getBegin();
   /**
@@ -54,7 +54,7 @@ public interface TransactionSelectorOrBuilder extends
    * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
    */
   com.google.spanner.v1.TransactionOptionsOrBuilder getBeginOrBuilder();
 

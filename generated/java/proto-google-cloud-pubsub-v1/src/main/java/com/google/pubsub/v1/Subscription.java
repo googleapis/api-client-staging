@@ -133,7 +133,7 @@ public  final class Subscription extends
    * in length, and it must not start with `"goog"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -157,7 +157,7 @@ public  final class Subscription extends
    * in length, and it must not start with `"goog"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -183,7 +183,7 @@ public  final class Subscription extends
    * deleted.
    * </pre>
    *
-   * <code>optional string topic = 2;</code>
+   * <code>string topic = 2;</code>
    */
   public java.lang.String getTopic() {
     java.lang.Object ref = topic_;
@@ -205,7 +205,7 @@ public  final class Subscription extends
    * deleted.
    * </pre>
    *
-   * <code>optional string topic = 2;</code>
+   * <code>string topic = 2;</code>
    */
   public com.google.protobuf.ByteString
       getTopicBytes() {
@@ -230,7 +230,7 @@ public  final class Subscription extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   public boolean hasPushConfig() {
     return pushConfig_ != null;
@@ -242,7 +242,7 @@ public  final class Subscription extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   public com.google.pubsub.v1.PushConfig getPushConfig() {
     return pushConfig_ == null ? com.google.pubsub.v1.PushConfig.getDefaultInstance() : pushConfig_;
@@ -254,7 +254,7 @@ public  final class Subscription extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   public com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder() {
     return getPushConfig();
@@ -282,7 +282,7 @@ public  final class Subscription extends
    * system will eventually redeliver the message.
    * </pre>
    *
-   * <code>optional int32 ack_deadline_seconds = 5;</code>
+   * <code>int32 ack_deadline_seconds = 5;</code>
    */
   public int getAckDeadlineSeconds() {
     return ackDeadlineSeconds_;
@@ -298,7 +298,7 @@ public  final class Subscription extends
    * window.
    * </pre>
    *
-   * <code>optional bool retain_acked_messages = 7;</code>
+   * <code>bool retain_acked_messages = 7;</code>
    */
   public boolean getRetainAckedMessages() {
     return retainAckedMessages_;
@@ -316,7 +316,7 @@ public  final class Subscription extends
    * minutes.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
    */
   public boolean hasMessageRetentionDuration() {
     return messageRetentionDuration_ != null;
@@ -331,7 +331,7 @@ public  final class Subscription extends
    * minutes.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
    */
   public com.google.protobuf.Duration getMessageRetentionDuration() {
     return messageRetentionDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : messageRetentionDuration_;
@@ -346,7 +346,7 @@ public  final class Subscription extends
    * minutes.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
    */
   public com.google.protobuf.DurationOrBuilder getMessageRetentionDurationOrBuilder() {
     return getMessageRetentionDuration();
@@ -454,7 +454,7 @@ public  final class Subscription extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + TOPIC_FIELD_NUMBER;
@@ -477,6 +477,17 @@ public  final class Subscription extends
     return hash;
   }
 
+  public static com.google.pubsub.v1.Subscription parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.pubsub.v1.Subscription parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.pubsub.v1.Subscription parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -748,7 +759,7 @@ public  final class Subscription extends
      * in length, and it must not start with `"goog"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -772,7 +783,7 @@ public  final class Subscription extends
      * in length, and it must not start with `"goog"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -797,7 +808,7 @@ public  final class Subscription extends
      * in length, and it must not start with `"goog"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -819,7 +830,7 @@ public  final class Subscription extends
      * in length, and it must not start with `"goog"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -837,7 +848,7 @@ public  final class Subscription extends
      * in length, and it must not start with `"goog"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -860,7 +871,7 @@ public  final class Subscription extends
      * deleted.
      * </pre>
      *
-     * <code>optional string topic = 2;</code>
+     * <code>string topic = 2;</code>
      */
     public java.lang.String getTopic() {
       java.lang.Object ref = topic_;
@@ -882,7 +893,7 @@ public  final class Subscription extends
      * deleted.
      * </pre>
      *
-     * <code>optional string topic = 2;</code>
+     * <code>string topic = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTopicBytes() {
@@ -905,7 +916,7 @@ public  final class Subscription extends
      * deleted.
      * </pre>
      *
-     * <code>optional string topic = 2;</code>
+     * <code>string topic = 2;</code>
      */
     public Builder setTopic(
         java.lang.String value) {
@@ -925,7 +936,7 @@ public  final class Subscription extends
      * deleted.
      * </pre>
      *
-     * <code>optional string topic = 2;</code>
+     * <code>string topic = 2;</code>
      */
     public Builder clearTopic() {
       
@@ -941,7 +952,7 @@ public  final class Subscription extends
      * deleted.
      * </pre>
      *
-     * <code>optional string topic = 2;</code>
+     * <code>string topic = 2;</code>
      */
     public Builder setTopicBytes(
         com.google.protobuf.ByteString value) {
@@ -965,7 +976,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public boolean hasPushConfig() {
       return pushConfigBuilder_ != null || pushConfig_ != null;
@@ -977,7 +988,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public com.google.pubsub.v1.PushConfig getPushConfig() {
       if (pushConfigBuilder_ == null) {
@@ -993,7 +1004,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public Builder setPushConfig(com.google.pubsub.v1.PushConfig value) {
       if (pushConfigBuilder_ == null) {
@@ -1015,7 +1026,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public Builder setPushConfig(
         com.google.pubsub.v1.PushConfig.Builder builderForValue) {
@@ -1035,7 +1046,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public Builder mergePushConfig(com.google.pubsub.v1.PushConfig value) {
       if (pushConfigBuilder_ == null) {
@@ -1059,7 +1070,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public Builder clearPushConfig() {
       if (pushConfigBuilder_ == null) {
@@ -1079,7 +1090,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public com.google.pubsub.v1.PushConfig.Builder getPushConfigBuilder() {
       
@@ -1093,7 +1104,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     public com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder() {
       if (pushConfigBuilder_ != null) {
@@ -1110,7 +1121,7 @@ public  final class Subscription extends
      * will pull and ack messages using API methods.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
+     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.pubsub.v1.PushConfig, com.google.pubsub.v1.PushConfig.Builder, com.google.pubsub.v1.PushConfigOrBuilder> 
@@ -1147,7 +1158,7 @@ public  final class Subscription extends
      * system will eventually redeliver the message.
      * </pre>
      *
-     * <code>optional int32 ack_deadline_seconds = 5;</code>
+     * <code>int32 ack_deadline_seconds = 5;</code>
      */
     public int getAckDeadlineSeconds() {
       return ackDeadlineSeconds_;
@@ -1172,7 +1183,7 @@ public  final class Subscription extends
      * system will eventually redeliver the message.
      * </pre>
      *
-     * <code>optional int32 ack_deadline_seconds = 5;</code>
+     * <code>int32 ack_deadline_seconds = 5;</code>
      */
     public Builder setAckDeadlineSeconds(int value) {
       
@@ -1200,7 +1211,7 @@ public  final class Subscription extends
      * system will eventually redeliver the message.
      * </pre>
      *
-     * <code>optional int32 ack_deadline_seconds = 5;</code>
+     * <code>int32 ack_deadline_seconds = 5;</code>
      */
     public Builder clearAckDeadlineSeconds() {
       
@@ -1218,7 +1229,7 @@ public  final class Subscription extends
      * window.
      * </pre>
      *
-     * <code>optional bool retain_acked_messages = 7;</code>
+     * <code>bool retain_acked_messages = 7;</code>
      */
     public boolean getRetainAckedMessages() {
       return retainAckedMessages_;
@@ -1231,7 +1242,7 @@ public  final class Subscription extends
      * window.
      * </pre>
      *
-     * <code>optional bool retain_acked_messages = 7;</code>
+     * <code>bool retain_acked_messages = 7;</code>
      */
     public Builder setRetainAckedMessages(boolean value) {
       
@@ -1247,7 +1258,7 @@ public  final class Subscription extends
      * window.
      * </pre>
      *
-     * <code>optional bool retain_acked_messages = 7;</code>
+     * <code>bool retain_acked_messages = 7;</code>
      */
     public Builder clearRetainAckedMessages() {
       
@@ -1269,7 +1280,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public boolean hasMessageRetentionDuration() {
       return messageRetentionDurationBuilder_ != null || messageRetentionDuration_ != null;
@@ -1284,7 +1295,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public com.google.protobuf.Duration getMessageRetentionDuration() {
       if (messageRetentionDurationBuilder_ == null) {
@@ -1303,7 +1314,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public Builder setMessageRetentionDuration(com.google.protobuf.Duration value) {
       if (messageRetentionDurationBuilder_ == null) {
@@ -1328,7 +1339,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public Builder setMessageRetentionDuration(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1351,7 +1362,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public Builder mergeMessageRetentionDuration(com.google.protobuf.Duration value) {
       if (messageRetentionDurationBuilder_ == null) {
@@ -1378,7 +1389,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public Builder clearMessageRetentionDuration() {
       if (messageRetentionDurationBuilder_ == null) {
@@ -1401,7 +1412,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public com.google.protobuf.Duration.Builder getMessageRetentionDurationBuilder() {
       
@@ -1418,7 +1429,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     public com.google.protobuf.DurationOrBuilder getMessageRetentionDurationOrBuilder() {
       if (messageRetentionDurationBuilder_ != null) {
@@ -1438,7 +1449,7 @@ public  final class Subscription extends
      * minutes.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
+     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 

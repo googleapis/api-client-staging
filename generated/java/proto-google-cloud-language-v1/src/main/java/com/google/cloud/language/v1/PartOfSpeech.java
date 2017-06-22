@@ -2572,7 +2572,7 @@ public  final class PartOfSpeech extends
    * The part of speech tag.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
    */
   public int getTagValue() {
     return tag_;
@@ -2582,7 +2582,7 @@ public  final class PartOfSpeech extends
    * The part of speech tag.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Tag getTag() {
     com.google.cloud.language.v1.PartOfSpeech.Tag result = com.google.cloud.language.v1.PartOfSpeech.Tag.valueOf(tag_);
@@ -2596,7 +2596,7 @@ public  final class PartOfSpeech extends
    * The grammatical aspect.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
    */
   public int getAspectValue() {
     return aspect_;
@@ -2606,7 +2606,7 @@ public  final class PartOfSpeech extends
    * The grammatical aspect.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Aspect getAspect() {
     com.google.cloud.language.v1.PartOfSpeech.Aspect result = com.google.cloud.language.v1.PartOfSpeech.Aspect.valueOf(aspect_);
@@ -2620,7 +2620,7 @@ public  final class PartOfSpeech extends
    * The grammatical case.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
    */
   public int getCaseValue() {
     return case_;
@@ -2630,7 +2630,7 @@ public  final class PartOfSpeech extends
    * The grammatical case.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Case getCase() {
     com.google.cloud.language.v1.PartOfSpeech.Case result = com.google.cloud.language.v1.PartOfSpeech.Case.valueOf(case_);
@@ -2644,7 +2644,7 @@ public  final class PartOfSpeech extends
    * The grammatical form.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
    */
   public int getFormValue() {
     return form_;
@@ -2654,7 +2654,7 @@ public  final class PartOfSpeech extends
    * The grammatical form.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Form getForm() {
     com.google.cloud.language.v1.PartOfSpeech.Form result = com.google.cloud.language.v1.PartOfSpeech.Form.valueOf(form_);
@@ -2668,7 +2668,7 @@ public  final class PartOfSpeech extends
    * The grammatical gender.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
    */
   public int getGenderValue() {
     return gender_;
@@ -2678,7 +2678,7 @@ public  final class PartOfSpeech extends
    * The grammatical gender.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Gender getGender() {
     com.google.cloud.language.v1.PartOfSpeech.Gender result = com.google.cloud.language.v1.PartOfSpeech.Gender.valueOf(gender_);
@@ -2692,7 +2692,7 @@ public  final class PartOfSpeech extends
    * The grammatical mood.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
    */
   public int getMoodValue() {
     return mood_;
@@ -2702,7 +2702,7 @@ public  final class PartOfSpeech extends
    * The grammatical mood.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Mood getMood() {
     com.google.cloud.language.v1.PartOfSpeech.Mood result = com.google.cloud.language.v1.PartOfSpeech.Mood.valueOf(mood_);
@@ -2716,7 +2716,7 @@ public  final class PartOfSpeech extends
    * The grammatical number.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
    */
   public int getNumberValue() {
     return number_;
@@ -2726,7 +2726,7 @@ public  final class PartOfSpeech extends
    * The grammatical number.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Number getNumber() {
     com.google.cloud.language.v1.PartOfSpeech.Number result = com.google.cloud.language.v1.PartOfSpeech.Number.valueOf(number_);
@@ -2740,7 +2740,7 @@ public  final class PartOfSpeech extends
    * The grammatical person.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
    */
   public int getPersonValue() {
     return person_;
@@ -2750,7 +2750,7 @@ public  final class PartOfSpeech extends
    * The grammatical person.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Person getPerson() {
     com.google.cloud.language.v1.PartOfSpeech.Person result = com.google.cloud.language.v1.PartOfSpeech.Person.valueOf(person_);
@@ -2764,7 +2764,7 @@ public  final class PartOfSpeech extends
    * The grammatical properness.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
    */
   public int getProperValue() {
     return proper_;
@@ -2774,7 +2774,7 @@ public  final class PartOfSpeech extends
    * The grammatical properness.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Proper getProper() {
     com.google.cloud.language.v1.PartOfSpeech.Proper result = com.google.cloud.language.v1.PartOfSpeech.Proper.valueOf(proper_);
@@ -2788,7 +2788,7 @@ public  final class PartOfSpeech extends
    * The grammatical reciprocity.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
    */
   public int getReciprocityValue() {
     return reciprocity_;
@@ -2798,7 +2798,7 @@ public  final class PartOfSpeech extends
    * The grammatical reciprocity.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Reciprocity getReciprocity() {
     com.google.cloud.language.v1.PartOfSpeech.Reciprocity result = com.google.cloud.language.v1.PartOfSpeech.Reciprocity.valueOf(reciprocity_);
@@ -2812,7 +2812,7 @@ public  final class PartOfSpeech extends
    * The grammatical tense.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
    */
   public int getTenseValue() {
     return tense_;
@@ -2822,7 +2822,7 @@ public  final class PartOfSpeech extends
    * The grammatical tense.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Tense getTense() {
     com.google.cloud.language.v1.PartOfSpeech.Tense result = com.google.cloud.language.v1.PartOfSpeech.Tense.valueOf(tense_);
@@ -2836,7 +2836,7 @@ public  final class PartOfSpeech extends
    * The grammatical voice.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
    */
   public int getVoiceValue() {
     return voice_;
@@ -2846,7 +2846,7 @@ public  final class PartOfSpeech extends
    * The grammatical voice.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+   * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
    */
   public com.google.cloud.language.v1.PartOfSpeech.Voice getVoice() {
     com.google.cloud.language.v1.PartOfSpeech.Voice result = com.google.cloud.language.v1.PartOfSpeech.Voice.valueOf(voice_);
@@ -2993,7 +2993,7 @@ public  final class PartOfSpeech extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TAG_FIELD_NUMBER;
     hash = (53 * hash) + tag_;
     hash = (37 * hash) + ASPECT_FIELD_NUMBER;
@@ -3023,6 +3023,17 @@ public  final class PartOfSpeech extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1.PartOfSpeech parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1.PartOfSpeech parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1.PartOfSpeech parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3309,7 +3320,7 @@ public  final class PartOfSpeech extends
      * The part of speech tag.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
     public int getTagValue() {
       return tag_;
@@ -3319,7 +3330,7 @@ public  final class PartOfSpeech extends
      * The part of speech tag.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
     public Builder setTagValue(int value) {
       tag_ = value;
@@ -3331,7 +3342,7 @@ public  final class PartOfSpeech extends
      * The part of speech tag.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Tag getTag() {
       com.google.cloud.language.v1.PartOfSpeech.Tag result = com.google.cloud.language.v1.PartOfSpeech.Tag.valueOf(tag_);
@@ -3342,7 +3353,7 @@ public  final class PartOfSpeech extends
      * The part of speech tag.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
     public Builder setTag(com.google.cloud.language.v1.PartOfSpeech.Tag value) {
       if (value == null) {
@@ -3358,7 +3369,7 @@ public  final class PartOfSpeech extends
      * The part of speech tag.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
     public Builder clearTag() {
       
@@ -3373,7 +3384,7 @@ public  final class PartOfSpeech extends
      * The grammatical aspect.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
     public int getAspectValue() {
       return aspect_;
@@ -3383,7 +3394,7 @@ public  final class PartOfSpeech extends
      * The grammatical aspect.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
     public Builder setAspectValue(int value) {
       aspect_ = value;
@@ -3395,7 +3406,7 @@ public  final class PartOfSpeech extends
      * The grammatical aspect.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Aspect getAspect() {
       com.google.cloud.language.v1.PartOfSpeech.Aspect result = com.google.cloud.language.v1.PartOfSpeech.Aspect.valueOf(aspect_);
@@ -3406,7 +3417,7 @@ public  final class PartOfSpeech extends
      * The grammatical aspect.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
     public Builder setAspect(com.google.cloud.language.v1.PartOfSpeech.Aspect value) {
       if (value == null) {
@@ -3422,7 +3433,7 @@ public  final class PartOfSpeech extends
      * The grammatical aspect.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
     public Builder clearAspect() {
       
@@ -3437,7 +3448,7 @@ public  final class PartOfSpeech extends
      * The grammatical case.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
     public int getCaseValue() {
       return case_;
@@ -3447,7 +3458,7 @@ public  final class PartOfSpeech extends
      * The grammatical case.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
     public Builder setCaseValue(int value) {
       case_ = value;
@@ -3459,7 +3470,7 @@ public  final class PartOfSpeech extends
      * The grammatical case.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Case getCase() {
       com.google.cloud.language.v1.PartOfSpeech.Case result = com.google.cloud.language.v1.PartOfSpeech.Case.valueOf(case_);
@@ -3470,7 +3481,7 @@ public  final class PartOfSpeech extends
      * The grammatical case.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
     public Builder setCase(com.google.cloud.language.v1.PartOfSpeech.Case value) {
       if (value == null) {
@@ -3486,7 +3497,7 @@ public  final class PartOfSpeech extends
      * The grammatical case.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
     public Builder clearCase() {
       
@@ -3501,7 +3512,7 @@ public  final class PartOfSpeech extends
      * The grammatical form.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
     public int getFormValue() {
       return form_;
@@ -3511,7 +3522,7 @@ public  final class PartOfSpeech extends
      * The grammatical form.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
     public Builder setFormValue(int value) {
       form_ = value;
@@ -3523,7 +3534,7 @@ public  final class PartOfSpeech extends
      * The grammatical form.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Form getForm() {
       com.google.cloud.language.v1.PartOfSpeech.Form result = com.google.cloud.language.v1.PartOfSpeech.Form.valueOf(form_);
@@ -3534,7 +3545,7 @@ public  final class PartOfSpeech extends
      * The grammatical form.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
     public Builder setForm(com.google.cloud.language.v1.PartOfSpeech.Form value) {
       if (value == null) {
@@ -3550,7 +3561,7 @@ public  final class PartOfSpeech extends
      * The grammatical form.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
     public Builder clearForm() {
       
@@ -3565,7 +3576,7 @@ public  final class PartOfSpeech extends
      * The grammatical gender.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
     public int getGenderValue() {
       return gender_;
@@ -3575,7 +3586,7 @@ public  final class PartOfSpeech extends
      * The grammatical gender.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
     public Builder setGenderValue(int value) {
       gender_ = value;
@@ -3587,7 +3598,7 @@ public  final class PartOfSpeech extends
      * The grammatical gender.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Gender getGender() {
       com.google.cloud.language.v1.PartOfSpeech.Gender result = com.google.cloud.language.v1.PartOfSpeech.Gender.valueOf(gender_);
@@ -3598,7 +3609,7 @@ public  final class PartOfSpeech extends
      * The grammatical gender.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
     public Builder setGender(com.google.cloud.language.v1.PartOfSpeech.Gender value) {
       if (value == null) {
@@ -3614,7 +3625,7 @@ public  final class PartOfSpeech extends
      * The grammatical gender.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
     public Builder clearGender() {
       
@@ -3629,7 +3640,7 @@ public  final class PartOfSpeech extends
      * The grammatical mood.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
     public int getMoodValue() {
       return mood_;
@@ -3639,7 +3650,7 @@ public  final class PartOfSpeech extends
      * The grammatical mood.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
     public Builder setMoodValue(int value) {
       mood_ = value;
@@ -3651,7 +3662,7 @@ public  final class PartOfSpeech extends
      * The grammatical mood.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Mood getMood() {
       com.google.cloud.language.v1.PartOfSpeech.Mood result = com.google.cloud.language.v1.PartOfSpeech.Mood.valueOf(mood_);
@@ -3662,7 +3673,7 @@ public  final class PartOfSpeech extends
      * The grammatical mood.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
     public Builder setMood(com.google.cloud.language.v1.PartOfSpeech.Mood value) {
       if (value == null) {
@@ -3678,7 +3689,7 @@ public  final class PartOfSpeech extends
      * The grammatical mood.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
     public Builder clearMood() {
       
@@ -3693,7 +3704,7 @@ public  final class PartOfSpeech extends
      * The grammatical number.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
     public int getNumberValue() {
       return number_;
@@ -3703,7 +3714,7 @@ public  final class PartOfSpeech extends
      * The grammatical number.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
     public Builder setNumberValue(int value) {
       number_ = value;
@@ -3715,7 +3726,7 @@ public  final class PartOfSpeech extends
      * The grammatical number.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Number getNumber() {
       com.google.cloud.language.v1.PartOfSpeech.Number result = com.google.cloud.language.v1.PartOfSpeech.Number.valueOf(number_);
@@ -3726,7 +3737,7 @@ public  final class PartOfSpeech extends
      * The grammatical number.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
     public Builder setNumber(com.google.cloud.language.v1.PartOfSpeech.Number value) {
       if (value == null) {
@@ -3742,7 +3753,7 @@ public  final class PartOfSpeech extends
      * The grammatical number.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
     public Builder clearNumber() {
       
@@ -3757,7 +3768,7 @@ public  final class PartOfSpeech extends
      * The grammatical person.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
     public int getPersonValue() {
       return person_;
@@ -3767,7 +3778,7 @@ public  final class PartOfSpeech extends
      * The grammatical person.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
     public Builder setPersonValue(int value) {
       person_ = value;
@@ -3779,7 +3790,7 @@ public  final class PartOfSpeech extends
      * The grammatical person.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Person getPerson() {
       com.google.cloud.language.v1.PartOfSpeech.Person result = com.google.cloud.language.v1.PartOfSpeech.Person.valueOf(person_);
@@ -3790,7 +3801,7 @@ public  final class PartOfSpeech extends
      * The grammatical person.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
     public Builder setPerson(com.google.cloud.language.v1.PartOfSpeech.Person value) {
       if (value == null) {
@@ -3806,7 +3817,7 @@ public  final class PartOfSpeech extends
      * The grammatical person.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
     public Builder clearPerson() {
       
@@ -3821,7 +3832,7 @@ public  final class PartOfSpeech extends
      * The grammatical properness.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
     public int getProperValue() {
       return proper_;
@@ -3831,7 +3842,7 @@ public  final class PartOfSpeech extends
      * The grammatical properness.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
     public Builder setProperValue(int value) {
       proper_ = value;
@@ -3843,7 +3854,7 @@ public  final class PartOfSpeech extends
      * The grammatical properness.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Proper getProper() {
       com.google.cloud.language.v1.PartOfSpeech.Proper result = com.google.cloud.language.v1.PartOfSpeech.Proper.valueOf(proper_);
@@ -3854,7 +3865,7 @@ public  final class PartOfSpeech extends
      * The grammatical properness.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
     public Builder setProper(com.google.cloud.language.v1.PartOfSpeech.Proper value) {
       if (value == null) {
@@ -3870,7 +3881,7 @@ public  final class PartOfSpeech extends
      * The grammatical properness.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
     public Builder clearProper() {
       
@@ -3885,7 +3896,7 @@ public  final class PartOfSpeech extends
      * The grammatical reciprocity.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     public int getReciprocityValue() {
       return reciprocity_;
@@ -3895,7 +3906,7 @@ public  final class PartOfSpeech extends
      * The grammatical reciprocity.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     public Builder setReciprocityValue(int value) {
       reciprocity_ = value;
@@ -3907,7 +3918,7 @@ public  final class PartOfSpeech extends
      * The grammatical reciprocity.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Reciprocity getReciprocity() {
       com.google.cloud.language.v1.PartOfSpeech.Reciprocity result = com.google.cloud.language.v1.PartOfSpeech.Reciprocity.valueOf(reciprocity_);
@@ -3918,7 +3929,7 @@ public  final class PartOfSpeech extends
      * The grammatical reciprocity.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     public Builder setReciprocity(com.google.cloud.language.v1.PartOfSpeech.Reciprocity value) {
       if (value == null) {
@@ -3934,7 +3945,7 @@ public  final class PartOfSpeech extends
      * The grammatical reciprocity.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     public Builder clearReciprocity() {
       
@@ -3949,7 +3960,7 @@ public  final class PartOfSpeech extends
      * The grammatical tense.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
     public int getTenseValue() {
       return tense_;
@@ -3959,7 +3970,7 @@ public  final class PartOfSpeech extends
      * The grammatical tense.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
     public Builder setTenseValue(int value) {
       tense_ = value;
@@ -3971,7 +3982,7 @@ public  final class PartOfSpeech extends
      * The grammatical tense.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Tense getTense() {
       com.google.cloud.language.v1.PartOfSpeech.Tense result = com.google.cloud.language.v1.PartOfSpeech.Tense.valueOf(tense_);
@@ -3982,7 +3993,7 @@ public  final class PartOfSpeech extends
      * The grammatical tense.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
     public Builder setTense(com.google.cloud.language.v1.PartOfSpeech.Tense value) {
       if (value == null) {
@@ -3998,7 +4009,7 @@ public  final class PartOfSpeech extends
      * The grammatical tense.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
     public Builder clearTense() {
       
@@ -4013,7 +4024,7 @@ public  final class PartOfSpeech extends
      * The grammatical voice.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
     public int getVoiceValue() {
       return voice_;
@@ -4023,7 +4034,7 @@ public  final class PartOfSpeech extends
      * The grammatical voice.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
     public Builder setVoiceValue(int value) {
       voice_ = value;
@@ -4035,7 +4046,7 @@ public  final class PartOfSpeech extends
      * The grammatical voice.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
     public com.google.cloud.language.v1.PartOfSpeech.Voice getVoice() {
       com.google.cloud.language.v1.PartOfSpeech.Voice result = com.google.cloud.language.v1.PartOfSpeech.Voice.valueOf(voice_);
@@ -4046,7 +4057,7 @@ public  final class PartOfSpeech extends
      * The grammatical voice.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
     public Builder setVoice(com.google.cloud.language.v1.PartOfSpeech.Voice value) {
       if (value == null) {
@@ -4062,7 +4073,7 @@ public  final class PartOfSpeech extends
      * The grammatical voice.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
+     * <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
     public Builder clearVoice() {
       

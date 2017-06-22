@@ -154,7 +154,7 @@ public  final class ListGroupsResponse extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -175,7 +175,7 @@ public  final class ListGroupsResponse extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -252,7 +252,7 @@ public  final class ListGroupsResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getGroupCount() > 0) {
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroupList().hashCode();
@@ -264,6 +264,17 @@ public  final class ListGroupsResponse extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.ListGroupsResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.ListGroupsResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.ListGroupsResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -843,7 +854,7 @@ public  final class ListGroupsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -864,7 +875,7 @@ public  final class ListGroupsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -886,7 +897,7 @@ public  final class ListGroupsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -905,7 +916,7 @@ public  final class ListGroupsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -920,7 +931,7 @@ public  final class ListGroupsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {

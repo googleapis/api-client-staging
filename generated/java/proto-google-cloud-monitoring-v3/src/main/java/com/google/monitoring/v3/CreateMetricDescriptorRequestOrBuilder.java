@@ -13,7 +13,7 @@ public interface CreateMetricDescriptorRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 3;</code>
+   * <code>string name = 3;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface CreateMetricDescriptorRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 3;</code>
+   * <code>string name = 3;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -33,7 +33,7 @@ public interface CreateMetricDescriptorRequestOrBuilder extends
    * descriptor.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   boolean hasMetricDescriptor();
   /**
@@ -42,7 +42,7 @@ public interface CreateMetricDescriptorRequestOrBuilder extends
    * descriptor.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   com.google.api.MetricDescriptor getMetricDescriptor();
   /**
@@ -51,7 +51,7 @@ public interface CreateMetricDescriptorRequestOrBuilder extends
    * descriptor.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   com.google.api.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder();
 }

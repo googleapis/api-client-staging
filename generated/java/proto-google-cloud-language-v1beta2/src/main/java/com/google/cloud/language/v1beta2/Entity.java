@@ -71,9 +71,10 @@ public  final class Entity extends
               mutable_bitField0_ |= 0x00000004;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            metadata = input.readMessage(
+            metadata__ = input.readMessage(
                 MetadataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            metadata_.getMutableMap().put(metadata.getKey(), metadata.getValue());
+            metadata_.getMutableMap().put(
+                metadata__.getKey(), metadata__.getValue());
             break;
           }
           case 37: {
@@ -368,7 +369,7 @@ public  final class Entity extends
    * The representative name for the entity.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -387,7 +388,7 @@ public  final class Entity extends
    * The representative name for the entity.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -410,7 +411,7 @@ public  final class Entity extends
    * The entity type.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+   * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
    */
   public int getTypeValue() {
     return type_;
@@ -420,7 +421,7 @@ public  final class Entity extends
    * The entity type.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+   * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
    */
   public com.google.cloud.language.v1beta2.Entity.Type getType() {
     com.google.cloud.language.v1beta2.Entity.Type result = com.google.cloud.language.v1beta2.Entity.Type.valueOf(type_);
@@ -538,7 +539,7 @@ public  final class Entity extends
    * salient.
    * </pre>
    *
-   * <code>optional float salience = 4;</code>
+   * <code>float salience = 4;</code>
    */
   public float getSalience() {
     return salience_;
@@ -614,7 +615,7 @@ public  final class Entity extends
    * entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
    */
   public boolean hasSentiment() {
     return sentiment_ != null;
@@ -627,7 +628,7 @@ public  final class Entity extends
    * entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
    */
   public com.google.cloud.language.v1beta2.Sentiment getSentiment() {
     return sentiment_ == null ? com.google.cloud.language.v1beta2.Sentiment.getDefaultInstance() : sentiment_;
@@ -640,7 +641,7 @@ public  final class Entity extends
    * entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
    */
   public com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder() {
     return getSentiment();
@@ -664,15 +665,12 @@ public  final class Entity extends
     if (type_ != com.google.cloud.language.v1beta2.Entity.Type.UNKNOWN.getNumber()) {
       output.writeEnum(2, type_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetMetadata().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      metadata = MetadataDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(3, metadata);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetMetadata(),
+        MetadataDefaultEntryHolder.defaultEntry,
+        3);
     if (salience_ != 0F) {
       output.writeFloat(4, salience_);
     }
@@ -699,12 +697,12 @@ public  final class Entity extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetMetadata().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      metadata = MetadataDefaultEntryHolder.defaultEntry.newBuilderForType()
+      metadata__ = MetadataDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, metadata);
+          .computeMessageSize(3, metadata__);
     }
     if (salience_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
@@ -759,7 +757,7 @@ public  final class Entity extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
@@ -784,6 +782,17 @@ public  final class Entity extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.Entity parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.Entity parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.Entity parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1104,7 +1113,7 @@ public  final class Entity extends
      * The representative name for the entity.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -1123,7 +1132,7 @@ public  final class Entity extends
      * The representative name for the entity.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -1143,7 +1152,7 @@ public  final class Entity extends
      * The representative name for the entity.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -1160,7 +1169,7 @@ public  final class Entity extends
      * The representative name for the entity.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -1173,7 +1182,7 @@ public  final class Entity extends
      * The representative name for the entity.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1193,7 +1202,7 @@ public  final class Entity extends
      * The entity type.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -1203,7 +1212,7 @@ public  final class Entity extends
      * The entity type.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -1215,7 +1224,7 @@ public  final class Entity extends
      * The entity type.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     public com.google.cloud.language.v1beta2.Entity.Type getType() {
       com.google.cloud.language.v1beta2.Entity.Type result = com.google.cloud.language.v1beta2.Entity.Type.valueOf(type_);
@@ -1226,7 +1235,7 @@ public  final class Entity extends
      * The entity type.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     public Builder setType(com.google.cloud.language.v1beta2.Entity.Type value) {
       if (value == null) {
@@ -1242,7 +1251,7 @@ public  final class Entity extends
      * The entity type.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     public Builder clearType() {
       
@@ -1352,7 +1361,8 @@ public  final class Entity extends
     }
 
     public Builder clearMetadata() {
-      getMutableMetadata().clear();
+      internalGetMutableMetadata().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -1368,7 +1378,8 @@ public  final class Entity extends
     public Builder removeMetadata(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableMetadata().remove(key);
+      internalGetMutableMetadata().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -1393,7 +1404,8 @@ public  final class Entity extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableMetadata().put(key, value);
+      internalGetMutableMetadata().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -1408,7 +1420,8 @@ public  final class Entity extends
 
     public Builder putAllMetadata(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      getMutableMetadata().putAll(values);
+      internalGetMutableMetadata().getMutableMap()
+          .putAll(values);
       return this;
     }
 
@@ -1422,7 +1435,7 @@ public  final class Entity extends
      * salient.
      * </pre>
      *
-     * <code>optional float salience = 4;</code>
+     * <code>float salience = 4;</code>
      */
     public float getSalience() {
       return salience_;
@@ -1436,7 +1449,7 @@ public  final class Entity extends
      * salient.
      * </pre>
      *
-     * <code>optional float salience = 4;</code>
+     * <code>float salience = 4;</code>
      */
     public Builder setSalience(float value) {
       
@@ -1453,7 +1466,7 @@ public  final class Entity extends
      * salient.
      * </pre>
      *
-     * <code>optional float salience = 4;</code>
+     * <code>float salience = 4;</code>
      */
     public Builder clearSalience() {
       
@@ -1803,7 +1816,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public boolean hasSentiment() {
       return sentimentBuilder_ != null || sentiment_ != null;
@@ -1816,7 +1829,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public com.google.cloud.language.v1beta2.Sentiment getSentiment() {
       if (sentimentBuilder_ == null) {
@@ -1833,7 +1846,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public Builder setSentiment(com.google.cloud.language.v1beta2.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -1856,7 +1869,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public Builder setSentiment(
         com.google.cloud.language.v1beta2.Sentiment.Builder builderForValue) {
@@ -1877,7 +1890,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public Builder mergeSentiment(com.google.cloud.language.v1beta2.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -1902,7 +1915,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public Builder clearSentiment() {
       if (sentimentBuilder_ == null) {
@@ -1923,7 +1936,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public com.google.cloud.language.v1beta2.Sentiment.Builder getSentimentBuilder() {
       
@@ -1938,7 +1951,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     public com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder() {
       if (sentimentBuilder_ != null) {
@@ -1956,7 +1969,7 @@ public  final class Entity extends
      * entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.Sentiment, com.google.cloud.language.v1beta2.Sentiment.Builder, com.google.cloud.language.v1beta2.SentimentOrBuilder> 

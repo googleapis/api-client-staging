@@ -124,7 +124,7 @@ public  final class ReportedErrorEvent extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   public boolean hasEventTime() {
     return eventTime_ != null;
@@ -136,7 +136,7 @@ public  final class ReportedErrorEvent extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   public com.google.protobuf.Timestamp getEventTime() {
     return eventTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : eventTime_;
@@ -148,7 +148,7 @@ public  final class ReportedErrorEvent extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getEventTimeOrBuilder() {
     return getEventTime();
@@ -161,7 +161,7 @@ public  final class ReportedErrorEvent extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   public boolean hasServiceContext() {
     return serviceContext_ != null;
@@ -171,7 +171,7 @@ public  final class ReportedErrorEvent extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContext getServiceContext() {
     return serviceContext_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ServiceContext.getDefaultInstance() : serviceContext_;
@@ -181,7 +181,7 @@ public  final class ReportedErrorEvent extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextOrBuilder getServiceContextOrBuilder() {
     return getServiceContext();
@@ -197,7 +197,7 @@ public  final class ReportedErrorEvent extends
    * is returned when retrieving the error event again.
    * </pre>
    *
-   * <code>optional string message = 3;</code>
+   * <code>string message = 3;</code>
    */
   public java.lang.String getMessage() {
     java.lang.Object ref = message_;
@@ -219,7 +219,7 @@ public  final class ReportedErrorEvent extends
    * is returned when retrieving the error event again.
    * </pre>
    *
-   * <code>optional string message = 3;</code>
+   * <code>string message = 3;</code>
    */
   public com.google.protobuf.ByteString
       getMessageBytes() {
@@ -242,7 +242,7 @@ public  final class ReportedErrorEvent extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   public boolean hasContext() {
     return context_ != null;
@@ -252,7 +252,7 @@ public  final class ReportedErrorEvent extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorContext getContext() {
     return context_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ErrorContext.getDefaultInstance() : context_;
@@ -262,7 +262,7 @@ public  final class ReportedErrorEvent extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorContextOrBuilder getContextOrBuilder() {
     return getContext();
@@ -356,7 +356,7 @@ public  final class ReportedErrorEvent extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasEventTime()) {
       hash = (37 * hash) + EVENT_TIME_FIELD_NUMBER;
       hash = (53 * hash) + getEventTime().hashCode();
@@ -376,6 +376,17 @@ public  final class ReportedErrorEvent extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -641,7 +652,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public boolean hasEventTime() {
       return eventTimeBuilder_ != null || eventTime_ != null;
@@ -653,7 +664,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public com.google.protobuf.Timestamp getEventTime() {
       if (eventTimeBuilder_ == null) {
@@ -669,7 +680,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public Builder setEventTime(com.google.protobuf.Timestamp value) {
       if (eventTimeBuilder_ == null) {
@@ -691,7 +702,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public Builder setEventTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -711,7 +722,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public Builder mergeEventTime(com.google.protobuf.Timestamp value) {
       if (eventTimeBuilder_ == null) {
@@ -735,7 +746,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public Builder clearEventTime() {
       if (eventTimeBuilder_ == null) {
@@ -755,7 +766,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public com.google.protobuf.Timestamp.Builder getEventTimeBuilder() {
       
@@ -769,7 +780,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getEventTimeOrBuilder() {
       if (eventTimeBuilder_ != null) {
@@ -786,7 +797,7 @@ public  final class ReportedErrorEvent extends
      * Error Reporting system will be used.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+     * <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -810,7 +821,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public boolean hasServiceContext() {
       return serviceContextBuilder_ != null || serviceContext_ != null;
@@ -820,7 +831,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContext getServiceContext() {
       if (serviceContextBuilder_ == null) {
@@ -834,7 +845,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public Builder setServiceContext(com.google.devtools.clouderrorreporting.v1beta1.ServiceContext value) {
       if (serviceContextBuilder_ == null) {
@@ -854,7 +865,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public Builder setServiceContext(
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContext.Builder builderForValue) {
@@ -872,7 +883,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public Builder mergeServiceContext(com.google.devtools.clouderrorreporting.v1beta1.ServiceContext value) {
       if (serviceContextBuilder_ == null) {
@@ -894,7 +905,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public Builder clearServiceContext() {
       if (serviceContextBuilder_ == null) {
@@ -912,7 +923,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContext.Builder getServiceContextBuilder() {
       
@@ -924,7 +935,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextOrBuilder getServiceContextOrBuilder() {
       if (serviceContextBuilder_ != null) {
@@ -939,7 +950,7 @@ public  final class ReportedErrorEvent extends
      * [Required] The service context in which this error has occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContext, com.google.devtools.clouderrorreporting.v1beta1.ServiceContext.Builder, com.google.devtools.clouderrorreporting.v1beta1.ServiceContextOrBuilder> 
@@ -964,7 +975,7 @@ public  final class ReportedErrorEvent extends
      * is returned when retrieving the error event again.
      * </pre>
      *
-     * <code>optional string message = 3;</code>
+     * <code>string message = 3;</code>
      */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
@@ -986,7 +997,7 @@ public  final class ReportedErrorEvent extends
      * is returned when retrieving the error event again.
      * </pre>
      *
-     * <code>optional string message = 3;</code>
+     * <code>string message = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
@@ -1009,7 +1020,7 @@ public  final class ReportedErrorEvent extends
      * is returned when retrieving the error event again.
      * </pre>
      *
-     * <code>optional string message = 3;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessage(
         java.lang.String value) {
@@ -1029,7 +1040,7 @@ public  final class ReportedErrorEvent extends
      * is returned when retrieving the error event again.
      * </pre>
      *
-     * <code>optional string message = 3;</code>
+     * <code>string message = 3;</code>
      */
     public Builder clearMessage() {
       
@@ -1045,7 +1056,7 @@ public  final class ReportedErrorEvent extends
      * is returned when retrieving the error event again.
      * </pre>
      *
-     * <code>optional string message = 3;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
@@ -1067,7 +1078,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public boolean hasContext() {
       return contextBuilder_ != null || context_ != null;
@@ -1077,7 +1088,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorContext getContext() {
       if (contextBuilder_ == null) {
@@ -1091,7 +1102,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public Builder setContext(com.google.devtools.clouderrorreporting.v1beta1.ErrorContext value) {
       if (contextBuilder_ == null) {
@@ -1111,7 +1122,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public Builder setContext(
         com.google.devtools.clouderrorreporting.v1beta1.ErrorContext.Builder builderForValue) {
@@ -1129,7 +1140,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public Builder mergeContext(com.google.devtools.clouderrorreporting.v1beta1.ErrorContext value) {
       if (contextBuilder_ == null) {
@@ -1151,7 +1162,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public Builder clearContext() {
       if (contextBuilder_ == null) {
@@ -1169,7 +1180,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorContext.Builder getContextBuilder() {
       
@@ -1181,7 +1192,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorContextOrBuilder getContextOrBuilder() {
       if (contextBuilder_ != null) {
@@ -1196,7 +1207,7 @@ public  final class ReportedErrorEvent extends
      * [Optional] A description of the context in which the error occurred.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ErrorContext, com.google.devtools.clouderrorreporting.v1beta1.ErrorContext.Builder, com.google.devtools.clouderrorreporting.v1beta1.ErrorContextOrBuilder> 

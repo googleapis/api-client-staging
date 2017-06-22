@@ -13,7 +13,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 1;</code>
+   * <code>.google.rpc.Status error = 1;</code>
    */
   boolean hasError();
   /**
@@ -22,7 +22,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 1;</code>
+   * <code>.google.rpc.Status error = 1;</code>
    */
   com.google.rpc.Status getError();
   /**
@@ -31,7 +31,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 1;</code>
+   * <code>.google.rpc.Status error = 1;</code>
    */
   com.google.rpc.StatusOrBuilder getErrorOrBuilder();
 
@@ -101,7 +101,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * results at this index and higher.
    * </pre>
    *
-   * <code>optional int32 result_index = 3;</code>
+   * <code>int32 result_index = 3;</code>
    */
   int getResultIndex();
 
@@ -110,7 +110,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * *Output-only* Indicates the type of endpointer event.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+   * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
    */
   int getEndpointerTypeValue();
   /**
@@ -118,7 +118,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * *Output-only* Indicates the type of endpointer event.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+   * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
    */
   com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType getEndpointerType();
 }

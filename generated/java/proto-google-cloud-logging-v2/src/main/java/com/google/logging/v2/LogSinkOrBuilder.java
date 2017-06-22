@@ -16,7 +16,7 @@ public interface LogSinkOrBuilder extends
    * periods.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -28,7 +28,7 @@ public interface LogSinkOrBuilder extends
    * periods.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -45,7 +45,7 @@ public interface LogSinkOrBuilder extends
    * [Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
    * </pre>
    *
-   * <code>optional string destination = 3;</code>
+   * <code>string destination = 3;</code>
    */
   java.lang.String getDestination();
   /**
@@ -60,7 +60,7 @@ public interface LogSinkOrBuilder extends
    * [Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
    * </pre>
    *
-   * <code>optional string destination = 3;</code>
+   * <code>string destination = 3;</code>
    */
   com.google.protobuf.ByteString
       getDestinationBytes();
@@ -75,7 +75,7 @@ public interface LogSinkOrBuilder extends
    *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   java.lang.String getFilter();
   /**
@@ -88,7 +88,7 @@ public interface LogSinkOrBuilder extends
    *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -102,7 +102,7 @@ public interface LogSinkOrBuilder extends
    * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+   * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
    */
   int getOutputVersionFormatValue();
   /**
@@ -114,7 +114,7 @@ public interface LogSinkOrBuilder extends
    * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+   * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
    */
   com.google.logging.v2.LogSink.VersionFormat getOutputVersionFormat();
 
@@ -135,7 +135,7 @@ public interface LogSinkOrBuilder extends
    * appropriate IAM roles to assign to the identity.
    * </pre>
    *
-   * <code>optional string writer_identity = 8;</code>
+   * <code>string writer_identity = 8;</code>
    */
   java.lang.String getWriterIdentity();
   /**
@@ -155,7 +155,7 @@ public interface LogSinkOrBuilder extends
    * appropriate IAM roles to assign to the identity.
    * </pre>
    *
-   * <code>optional string writer_identity = 8;</code>
+   * <code>string writer_identity = 8;</code>
    */
   com.google.protobuf.ByteString
       getWriterIdentityBytes();
@@ -176,7 +176,7 @@ public interface LogSinkOrBuilder extends
    *     resource.type=gce_instance
    * </pre>
    *
-   * <code>optional bool include_children = 9;</code>
+   * <code>bool include_children = 9;</code>
    */
   boolean getIncludeChildren();
 
@@ -188,7 +188,7 @@ public interface LogSinkOrBuilder extends
    * created or updated.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 10;</code>
+   * <code>.google.protobuf.Timestamp start_time = 10;</code>
    */
   boolean hasStartTime();
   /**
@@ -199,7 +199,7 @@ public interface LogSinkOrBuilder extends
    * created or updated.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 10;</code>
+   * <code>.google.protobuf.Timestamp start_time = 10;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -210,7 +210,7 @@ public interface LogSinkOrBuilder extends
    * created or updated.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 10;</code>
+   * <code>.google.protobuf.Timestamp start_time = 10;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -223,7 +223,7 @@ public interface LogSinkOrBuilder extends
    * start time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 11;</code>
+   * <code>.google.protobuf.Timestamp end_time = 11;</code>
    */
   boolean hasEndTime();
   /**
@@ -235,7 +235,7 @@ public interface LogSinkOrBuilder extends
    * start time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 11;</code>
+   * <code>.google.protobuf.Timestamp end_time = 11;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -247,7 +247,7 @@ public interface LogSinkOrBuilder extends
    * start time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 11;</code>
+   * <code>.google.protobuf.Timestamp end_time = 11;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 }

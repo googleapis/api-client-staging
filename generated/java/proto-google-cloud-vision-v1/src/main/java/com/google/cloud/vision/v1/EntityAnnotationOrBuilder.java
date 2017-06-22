@@ -13,7 +13,7 @@ public interface EntityAnnotationOrBuilder extends
    * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
-   * <code>optional string mid = 1;</code>
+   * <code>string mid = 1;</code>
    */
   java.lang.String getMid();
   /**
@@ -22,7 +22,7 @@ public interface EntityAnnotationOrBuilder extends
    * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
-   * <code>optional string mid = 1;</code>
+   * <code>string mid = 1;</code>
    */
   com.google.protobuf.ByteString
       getMidBytes();
@@ -33,7 +33,7 @@ public interface EntityAnnotationOrBuilder extends
    * `description` is expressed.
    * </pre>
    *
-   * <code>optional string locale = 2;</code>
+   * <code>string locale = 2;</code>
    */
   java.lang.String getLocale();
   /**
@@ -42,7 +42,7 @@ public interface EntityAnnotationOrBuilder extends
    * `description` is expressed.
    * </pre>
    *
-   * <code>optional string locale = 2;</code>
+   * <code>string locale = 2;</code>
    */
   com.google.protobuf.ByteString
       getLocaleBytes();
@@ -52,7 +52,7 @@ public interface EntityAnnotationOrBuilder extends
    * Entity textual description, expressed in its `locale` language.
    * </pre>
    *
-   * <code>optional string description = 3;</code>
+   * <code>string description = 3;</code>
    */
   java.lang.String getDescription();
   /**
@@ -60,7 +60,7 @@ public interface EntityAnnotationOrBuilder extends
    * Entity textual description, expressed in its `locale` language.
    * </pre>
    *
-   * <code>optional string description = 3;</code>
+   * <code>string description = 3;</code>
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
@@ -70,7 +70,7 @@ public interface EntityAnnotationOrBuilder extends
    * Overall score of the result. Range [0, 1].
    * </pre>
    *
-   * <code>optional float score = 4;</code>
+   * <code>float score = 4;</code>
    */
   float getScore();
 
@@ -82,7 +82,7 @@ public interface EntityAnnotationOrBuilder extends
    * image. Range [0, 1].
    * </pre>
    *
-   * <code>optional float confidence = 5;</code>
+   * <code>float confidence = 5;</code>
    */
   float getConfidence();
 
@@ -95,7 +95,7 @@ public interface EntityAnnotationOrBuilder extends
    * there is a tower in each image may be the same. Range [0, 1].
    * </pre>
    *
-   * <code>optional float topicality = 6;</code>
+   * <code>float topicality = 6;</code>
    */
   float getTopicality();
 
@@ -107,7 +107,7 @@ public interface EntityAnnotationOrBuilder extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   boolean hasBoundingPoly();
   /**
@@ -118,7 +118,7 @@ public interface EntityAnnotationOrBuilder extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   com.google.cloud.vision.v1.BoundingPoly getBoundingPoly();
   /**
@@ -129,7 +129,7 @@ public interface EntityAnnotationOrBuilder extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder();
 

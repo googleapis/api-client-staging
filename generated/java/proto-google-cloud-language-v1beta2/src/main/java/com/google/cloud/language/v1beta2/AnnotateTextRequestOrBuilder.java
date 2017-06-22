@@ -12,7 +12,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   boolean hasDocument();
   /**
@@ -20,7 +20,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   com.google.cloud.language.v1beta2.Document getDocument();
   /**
@@ -28,7 +28,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder();
 
@@ -37,7 +37,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   boolean hasFeatures();
   /**
@@ -45,7 +45,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   com.google.cloud.language.v1beta2.AnnotateTextRequest.Features getFeatures();
   /**
@@ -53,7 +53,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   com.google.cloud.language.v1beta2.AnnotateTextRequest.FeaturesOrBuilder getFeaturesOrBuilder();
 
@@ -62,7 +62,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * The encoding type used by the API to calculate offsets.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
    */
   int getEncodingTypeValue();
   /**
@@ -70,7 +70,7 @@ public interface AnnotateTextRequestOrBuilder extends
    * The encoding type used by the API to calculate offsets.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
    */
   com.google.cloud.language.v1beta2.EncodingType getEncodingType();
 }

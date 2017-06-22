@@ -89,7 +89,7 @@ public  final class Vertex extends
    * X coordinate.
    * </pre>
    *
-   * <code>optional int32 x = 1;</code>
+   * <code>int32 x = 1;</code>
    */
   public int getX() {
     return x_;
@@ -102,7 +102,7 @@ public  final class Vertex extends
    * Y coordinate.
    * </pre>
    *
-   * <code>optional int32 y = 2;</code>
+   * <code>int32 y = 2;</code>
    */
   public int getY() {
     return y_;
@@ -170,7 +170,7 @@ public  final class Vertex extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + X_FIELD_NUMBER;
     hash = (53 * hash) + getX();
     hash = (37 * hash) + Y_FIELD_NUMBER;
@@ -180,6 +180,17 @@ public  final class Vertex extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.Vertex parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.Vertex parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.Vertex parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -405,7 +416,7 @@ public  final class Vertex extends
      * X coordinate.
      * </pre>
      *
-     * <code>optional int32 x = 1;</code>
+     * <code>int32 x = 1;</code>
      */
     public int getX() {
       return x_;
@@ -415,7 +426,7 @@ public  final class Vertex extends
      * X coordinate.
      * </pre>
      *
-     * <code>optional int32 x = 1;</code>
+     * <code>int32 x = 1;</code>
      */
     public Builder setX(int value) {
       
@@ -428,7 +439,7 @@ public  final class Vertex extends
      * X coordinate.
      * </pre>
      *
-     * <code>optional int32 x = 1;</code>
+     * <code>int32 x = 1;</code>
      */
     public Builder clearX() {
       
@@ -443,7 +454,7 @@ public  final class Vertex extends
      * Y coordinate.
      * </pre>
      *
-     * <code>optional int32 y = 2;</code>
+     * <code>int32 y = 2;</code>
      */
     public int getY() {
       return y_;
@@ -453,7 +464,7 @@ public  final class Vertex extends
      * Y coordinate.
      * </pre>
      *
-     * <code>optional int32 y = 2;</code>
+     * <code>int32 y = 2;</code>
      */
     public Builder setY(int value) {
       
@@ -466,7 +477,7 @@ public  final class Vertex extends
      * Y coordinate.
      * </pre>
      *
-     * <code>optional int32 y = 2;</code>
+     * <code>int32 y = 2;</code>
      */
     public Builder clearY() {
       
