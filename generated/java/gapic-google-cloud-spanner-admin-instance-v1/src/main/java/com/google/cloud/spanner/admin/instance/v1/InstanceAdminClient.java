@@ -38,6 +38,7 @@ import com.google.longrunning.OperationsClient;
 import com.google.longrunning.OperationsSettings;
 import com.google.protobuf.Empty;
 import com.google.protobuf.FieldMask;
+import com.google.spanner.admin.instance.v1.CreateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.CreateInstanceRequest;
 import com.google.spanner.admin.instance.v1.DeleteInstanceRequest;
 import com.google.spanner.admin.instance.v1.GetInstanceConfigRequest;
@@ -51,6 +52,7 @@ import com.google.spanner.admin.instance.v1.ListInstanceConfigsResponse;
 import com.google.spanner.admin.instance.v1.ListInstancesRequest;
 import com.google.spanner.admin.instance.v1.ListInstancesResponse;
 import com.google.spanner.admin.instance.v1.ProjectName;
+import com.google.spanner.admin.instance.v1.UpdateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.UpdateInstanceRequest;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
@@ -148,9 +150,11 @@ public class InstanceAdminClient implements AutoCloseable {
       listInstancesPagedCallable;
   private final UnaryCallable<GetInstanceRequest, Instance> getInstanceCallable;
   private final UnaryCallable<CreateInstanceRequest, Operation> createInstanceCallable;
-  private final OperationCallable<CreateInstanceRequest, Instance> createInstanceOperationCallable;
+  private final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+      createInstanceOperationCallable;
   private final UnaryCallable<UpdateInstanceRequest, Operation> updateInstanceCallable;
-  private final OperationCallable<UpdateInstanceRequest, Instance> updateInstanceOperationCallable;
+  private final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+      updateInstanceOperationCallable;
   private final UnaryCallable<DeleteInstanceRequest, Empty> deleteInstanceCallable;
   private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
   private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
@@ -664,7 +668,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *     must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance> createInstanceAsync(
+  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
       ProjectName parent, InstanceName instanceId, Instance instance) {
 
     CreateInstanceRequest request =
@@ -727,7 +731,8 @@ public class InstanceAdminClient implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance> createInstanceAsync(CreateInstanceRequest request) {
+  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
+      CreateInstanceRequest request) {
     return createInstanceOperationCallable().futureCall(request);
   }
 
@@ -781,7 +786,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<CreateInstanceRequest, Instance>
+  public final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
       createInstanceOperationCallable() {
     return createInstanceOperationCallable;
   }
@@ -896,7 +901,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *     that do not know about them.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance> updateInstanceAsync(
+  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
       Instance instance, FieldMask fieldMask) {
 
     UpdateInstanceRequest request =
@@ -957,7 +962,8 @@ public class InstanceAdminClient implements AutoCloseable {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance> updateInstanceAsync(UpdateInstanceRequest request) {
+  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
+      UpdateInstanceRequest request) {
     return updateInstanceOperationCallable().futureCall(request);
   }
 
@@ -1013,7 +1019,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<UpdateInstanceRequest, Instance>
+  public final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
       updateInstanceOperationCallable() {
     return updateInstanceOperationCallable;
   }

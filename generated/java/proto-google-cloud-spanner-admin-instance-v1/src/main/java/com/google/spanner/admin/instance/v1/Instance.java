@@ -87,9 +87,10 @@ public  final class Instance extends
               mutable_bitField0_ |= 0x00000020;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            labels = input.readMessage(
+            labels__ = input.readMessage(
                 LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            labels_.getMutableMap().put(labels.getKey(), labels.getValue());
+            labels_.getMutableMap().put(
+                labels__.getKey(), labels__.getValue());
             break;
           }
         }
@@ -278,7 +279,7 @@ public  final class Instance extends
    * segment of the name must be between 6 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -300,7 +301,7 @@ public  final class Instance extends
    * segment of the name must be between 6 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -326,7 +327,7 @@ public  final class Instance extends
    * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
    * </pre>
    *
-   * <code>optional string config = 2;</code>
+   * <code>string config = 2;</code>
    */
   public java.lang.String getConfig() {
     java.lang.Object ref = config_;
@@ -348,7 +349,7 @@ public  final class Instance extends
    * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
    * </pre>
    *
-   * <code>optional string config = 2;</code>
+   * <code>string config = 2;</code>
    */
   public com.google.protobuf.ByteString
       getConfigBytes() {
@@ -372,7 +373,7 @@ public  final class Instance extends
    * Must be unique per project and between 4 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string display_name = 3;</code>
+   * <code>string display_name = 3;</code>
    */
   public java.lang.String getDisplayName() {
     java.lang.Object ref = displayName_;
@@ -392,7 +393,7 @@ public  final class Instance extends
    * Must be unique per project and between 4 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string display_name = 3;</code>
+   * <code>string display_name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDisplayNameBytes() {
@@ -415,7 +416,7 @@ public  final class Instance extends
    * Required. The number of nodes allocated to this instance.
    * </pre>
    *
-   * <code>optional int32 node_count = 5;</code>
+   * <code>int32 node_count = 5;</code>
    */
   public int getNodeCount() {
     return nodeCount_;
@@ -432,7 +433,7 @@ public  final class Instance extends
    * either omitted or set to `READY`.
    * </pre>
    *
-   * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+   * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
    */
   public int getStateValue() {
     return state_;
@@ -446,7 +447,7 @@ public  final class Instance extends
    * either omitted or set to `READY`.
    * </pre>
    *
-   * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+   * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
    */
   public com.google.spanner.admin.instance.v1.Instance.State getState() {
     com.google.spanner.admin.instance.v1.Instance.State result = com.google.spanner.admin.instance.v1.Instance.State.valueOf(state_);
@@ -640,15 +641,12 @@ public  final class Instance extends
     if (state_ != com.google.spanner.admin.instance.v1.Instance.State.STATE_UNSPECIFIED.getNumber()) {
       output.writeEnum(6, state_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetLabels().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(7, labels);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabels(),
+        LabelsDefaultEntryHolder.defaultEntry,
+        7);
   }
 
   public int getSerializedSize() {
@@ -676,12 +674,12 @@ public  final class Instance extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetLabels().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
+      labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, labels);
+          .computeMessageSize(7, labels__);
     }
     memoizedSize = size;
     return size;
@@ -719,7 +717,7 @@ public  final class Instance extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + CONFIG_FIELD_NUMBER;
@@ -739,6 +737,17 @@ public  final class Instance extends
     return hash;
   }
 
+  public static com.google.spanner.admin.instance.v1.Instance parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.admin.instance.v1.Instance parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.admin.instance.v1.Instance parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1018,7 +1027,7 @@ public  final class Instance extends
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -1040,7 +1049,7 @@ public  final class Instance extends
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -1063,7 +1072,7 @@ public  final class Instance extends
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -1083,7 +1092,7 @@ public  final class Instance extends
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -1099,7 +1108,7 @@ public  final class Instance extends
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1122,7 +1131,7 @@ public  final class Instance extends
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
-     * <code>optional string config = 2;</code>
+     * <code>string config = 2;</code>
      */
     public java.lang.String getConfig() {
       java.lang.Object ref = config_;
@@ -1144,7 +1153,7 @@ public  final class Instance extends
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
-     * <code>optional string config = 2;</code>
+     * <code>string config = 2;</code>
      */
     public com.google.protobuf.ByteString
         getConfigBytes() {
@@ -1167,7 +1176,7 @@ public  final class Instance extends
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
-     * <code>optional string config = 2;</code>
+     * <code>string config = 2;</code>
      */
     public Builder setConfig(
         java.lang.String value) {
@@ -1187,7 +1196,7 @@ public  final class Instance extends
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
-     * <code>optional string config = 2;</code>
+     * <code>string config = 2;</code>
      */
     public Builder clearConfig() {
       
@@ -1203,7 +1212,7 @@ public  final class Instance extends
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
-     * <code>optional string config = 2;</code>
+     * <code>string config = 2;</code>
      */
     public Builder setConfigBytes(
         com.google.protobuf.ByteString value) {
@@ -1224,7 +1233,7 @@ public  final class Instance extends
      * Must be unique per project and between 4 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public java.lang.String getDisplayName() {
       java.lang.Object ref = displayName_;
@@ -1244,7 +1253,7 @@ public  final class Instance extends
      * Must be unique per project and between 4 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDisplayNameBytes() {
@@ -1265,7 +1274,7 @@ public  final class Instance extends
      * Must be unique per project and between 4 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder setDisplayName(
         java.lang.String value) {
@@ -1283,7 +1292,7 @@ public  final class Instance extends
      * Must be unique per project and between 4 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder clearDisplayName() {
       
@@ -1297,7 +1306,7 @@ public  final class Instance extends
      * Must be unique per project and between 4 and 30 characters in length.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder setDisplayNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1317,7 +1326,7 @@ public  final class Instance extends
      * Required. The number of nodes allocated to this instance.
      * </pre>
      *
-     * <code>optional int32 node_count = 5;</code>
+     * <code>int32 node_count = 5;</code>
      */
     public int getNodeCount() {
       return nodeCount_;
@@ -1327,7 +1336,7 @@ public  final class Instance extends
      * Required. The number of nodes allocated to this instance.
      * </pre>
      *
-     * <code>optional int32 node_count = 5;</code>
+     * <code>int32 node_count = 5;</code>
      */
     public Builder setNodeCount(int value) {
       
@@ -1340,7 +1349,7 @@ public  final class Instance extends
      * Required. The number of nodes allocated to this instance.
      * </pre>
      *
-     * <code>optional int32 node_count = 5;</code>
+     * <code>int32 node_count = 5;</code>
      */
     public Builder clearNodeCount() {
       
@@ -1359,7 +1368,7 @@ public  final class Instance extends
      * either omitted or set to `READY`.
      * </pre>
      *
-     * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     public int getStateValue() {
       return state_;
@@ -1373,7 +1382,7 @@ public  final class Instance extends
      * either omitted or set to `READY`.
      * </pre>
      *
-     * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     public Builder setStateValue(int value) {
       state_ = value;
@@ -1389,7 +1398,7 @@ public  final class Instance extends
      * either omitted or set to `READY`.
      * </pre>
      *
-     * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     public com.google.spanner.admin.instance.v1.Instance.State getState() {
       com.google.spanner.admin.instance.v1.Instance.State result = com.google.spanner.admin.instance.v1.Instance.State.valueOf(state_);
@@ -1404,7 +1413,7 @@ public  final class Instance extends
      * either omitted or set to `READY`.
      * </pre>
      *
-     * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     public Builder setState(com.google.spanner.admin.instance.v1.Instance.State value) {
       if (value == null) {
@@ -1424,7 +1433,7 @@ public  final class Instance extends
      * either omitted or set to `READY`.
      * </pre>
      *
-     * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     public Builder clearState() {
       
@@ -1594,7 +1603,8 @@ public  final class Instance extends
     }
 
     public Builder clearLabels() {
-      getMutableLabels().clear();
+      internalGetMutableLabels().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -1625,7 +1635,8 @@ public  final class Instance extends
     public Builder removeLabels(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().remove(key);
+      internalGetMutableLabels().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -1665,7 +1676,8 @@ public  final class Instance extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().put(key, value);
+      internalGetMutableLabels().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -1695,7 +1707,8 @@ public  final class Instance extends
 
     public Builder putAllLabels(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      getMutableLabels().putAll(values);
+      internalGetMutableLabels().getMutableMap()
+          .putAll(values);
       return this;
     }
     public final Builder setUnknownFields(

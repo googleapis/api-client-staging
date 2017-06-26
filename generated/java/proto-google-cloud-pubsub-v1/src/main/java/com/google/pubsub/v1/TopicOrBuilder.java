@@ -17,7 +17,7 @@ public interface TopicOrBuilder extends
    * must not start with `"goog"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -30,7 +30,7 @@ public interface TopicOrBuilder extends
    * must not start with `"goog"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

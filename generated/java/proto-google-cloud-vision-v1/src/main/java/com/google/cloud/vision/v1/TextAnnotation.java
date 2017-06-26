@@ -106,7 +106,7 @@ public  final class TextAnnotation extends
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      * </pre>
      *
-     * <code>optional string language_code = 1;</code>
+     * <code>string language_code = 1;</code>
      */
     java.lang.String getLanguageCode();
     /**
@@ -116,7 +116,7 @@ public  final class TextAnnotation extends
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      * </pre>
      *
-     * <code>optional string language_code = 1;</code>
+     * <code>string language_code = 1;</code>
      */
     com.google.protobuf.ByteString
         getLanguageCodeBytes();
@@ -126,7 +126,7 @@ public  final class TextAnnotation extends
      * Confidence of detected language. Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 2;</code>
+     * <code>float confidence = 2;</code>
      */
     float getConfidence();
   }
@@ -218,7 +218,7 @@ public  final class TextAnnotation extends
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      * </pre>
      *
-     * <code>optional string language_code = 1;</code>
+     * <code>string language_code = 1;</code>
      */
     public java.lang.String getLanguageCode() {
       java.lang.Object ref = languageCode_;
@@ -239,7 +239,7 @@ public  final class TextAnnotation extends
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      * </pre>
      *
-     * <code>optional string language_code = 1;</code>
+     * <code>string language_code = 1;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageCodeBytes() {
@@ -262,7 +262,7 @@ public  final class TextAnnotation extends
      * Confidence of detected language. Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 2;</code>
+     * <code>float confidence = 2;</code>
      */
     public float getConfidence() {
       return confidence_;
@@ -331,7 +331,7 @@ public  final class TextAnnotation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + LANGUAGE_CODE_FIELD_NUMBER;
       hash = (53 * hash) + getLanguageCode().hashCode();
       hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
@@ -342,6 +342,17 @@ public  final class TextAnnotation extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.TextAnnotation.DetectedLanguage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.TextAnnotation.DetectedLanguage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.TextAnnotation.DetectedLanguage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -569,7 +580,7 @@ public  final class TextAnnotation extends
        * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
        * </pre>
        *
-       * <code>optional string language_code = 1;</code>
+       * <code>string language_code = 1;</code>
        */
       public java.lang.String getLanguageCode() {
         java.lang.Object ref = languageCode_;
@@ -590,7 +601,7 @@ public  final class TextAnnotation extends
        * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
        * </pre>
        *
-       * <code>optional string language_code = 1;</code>
+       * <code>string language_code = 1;</code>
        */
       public com.google.protobuf.ByteString
           getLanguageCodeBytes() {
@@ -612,7 +623,7 @@ public  final class TextAnnotation extends
        * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
        * </pre>
        *
-       * <code>optional string language_code = 1;</code>
+       * <code>string language_code = 1;</code>
        */
       public Builder setLanguageCode(
           java.lang.String value) {
@@ -631,7 +642,7 @@ public  final class TextAnnotation extends
        * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
        * </pre>
        *
-       * <code>optional string language_code = 1;</code>
+       * <code>string language_code = 1;</code>
        */
       public Builder clearLanguageCode() {
         
@@ -646,7 +657,7 @@ public  final class TextAnnotation extends
        * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
        * </pre>
        *
-       * <code>optional string language_code = 1;</code>
+       * <code>string language_code = 1;</code>
        */
       public Builder setLanguageCodeBytes(
           com.google.protobuf.ByteString value) {
@@ -666,7 +677,7 @@ public  final class TextAnnotation extends
        * Confidence of detected language. Range [0, 1].
        * </pre>
        *
-       * <code>optional float confidence = 2;</code>
+       * <code>float confidence = 2;</code>
        */
       public float getConfidence() {
         return confidence_;
@@ -676,7 +687,7 @@ public  final class TextAnnotation extends
        * Confidence of detected language. Range [0, 1].
        * </pre>
        *
-       * <code>optional float confidence = 2;</code>
+       * <code>float confidence = 2;</code>
        */
       public Builder setConfidence(float value) {
         
@@ -689,7 +700,7 @@ public  final class TextAnnotation extends
        * Confidence of detected language. Range [0, 1].
        * </pre>
        *
-       * <code>optional float confidence = 2;</code>
+       * <code>float confidence = 2;</code>
        */
       public Builder clearConfidence() {
         
@@ -751,11 +762,11 @@ public  final class TextAnnotation extends
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     int getTypeValue();
     /**
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType();
 
@@ -764,7 +775,7 @@ public  final class TextAnnotation extends
      * True if break prepends the element.
      * </pre>
      *
-     * <code>optional bool is_prefix = 2;</code>
+     * <code>bool is_prefix = 2;</code>
      */
     boolean getIsPrefix();
   }
@@ -1040,13 +1051,13 @@ public  final class TextAnnotation extends
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType() {
       com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType result = com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType.valueOf(type_);
@@ -1060,7 +1071,7 @@ public  final class TextAnnotation extends
      * True if break prepends the element.
      * </pre>
      *
-     * <code>optional bool is_prefix = 2;</code>
+     * <code>bool is_prefix = 2;</code>
      */
     public boolean getIsPrefix() {
       return isPrefix_;
@@ -1127,7 +1138,7 @@ public  final class TextAnnotation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
       hash = (37 * hash) + IS_PREFIX_FIELD_NUMBER;
@@ -1138,6 +1149,17 @@ public  final class TextAnnotation extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.TextAnnotation.DetectedBreak parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.TextAnnotation.DetectedBreak parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.TextAnnotation.DetectedBreak parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1358,13 +1380,13 @@ public  final class TextAnnotation extends
 
       private int type_ = 0;
       /**
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -1372,14 +1394,14 @@ public  final class TextAnnotation extends
         return this;
       }
       /**
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType getType() {
         com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType result = com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType.valueOf(type_);
         return result == null ? com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder setType(com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType value) {
         if (value == null) {
@@ -1391,7 +1413,7 @@ public  final class TextAnnotation extends
         return this;
       }
       /**
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
        */
       public Builder clearType() {
         
@@ -1406,7 +1428,7 @@ public  final class TextAnnotation extends
        * True if break prepends the element.
        * </pre>
        *
-       * <code>optional bool is_prefix = 2;</code>
+       * <code>bool is_prefix = 2;</code>
        */
       public boolean getIsPrefix() {
         return isPrefix_;
@@ -1416,7 +1438,7 @@ public  final class TextAnnotation extends
        * True if break prepends the element.
        * </pre>
        *
-       * <code>optional bool is_prefix = 2;</code>
+       * <code>bool is_prefix = 2;</code>
        */
       public Builder setIsPrefix(boolean value) {
         
@@ -1429,7 +1451,7 @@ public  final class TextAnnotation extends
        * True if break prepends the element.
        * </pre>
        *
-       * <code>optional bool is_prefix = 2;</code>
+       * <code>bool is_prefix = 2;</code>
        */
       public Builder clearIsPrefix() {
         
@@ -1539,7 +1561,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     boolean hasDetectedBreak();
     /**
@@ -1547,7 +1569,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     com.google.cloud.vision.v1.TextAnnotation.DetectedBreak getDetectedBreak();
     /**
@@ -1555,7 +1577,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     com.google.cloud.vision.v1.TextAnnotation.DetectedBreakOrBuilder getDetectedBreakOrBuilder();
   }
@@ -1714,7 +1736,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     public boolean hasDetectedBreak() {
       return detectedBreak_ != null;
@@ -1724,7 +1746,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak getDetectedBreak() {
       return detectedBreak_ == null ? com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.getDefaultInstance() : detectedBreak_;
@@ -1734,7 +1756,7 @@ public  final class TextAnnotation extends
      * Detected start or end of a text segment.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.DetectedBreakOrBuilder getDetectedBreakOrBuilder() {
       return getDetectedBreak();
@@ -1805,7 +1827,7 @@ public  final class TextAnnotation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (getDetectedLanguagesCount() > 0) {
         hash = (37 * hash) + DETECTED_LANGUAGES_FIELD_NUMBER;
         hash = (53 * hash) + getDetectedLanguagesList().hashCode();
@@ -1819,6 +1841,17 @@ public  final class TextAnnotation extends
       return hash;
     }
 
+    public static com.google.cloud.vision.v1.TextAnnotation.TextProperty parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.vision.v1.TextAnnotation.TextProperty parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.vision.v1.TextAnnotation.TextProperty parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2405,7 +2438,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public boolean hasDetectedBreak() {
         return detectedBreakBuilder_ != null || detectedBreak_ != null;
@@ -2415,7 +2448,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak getDetectedBreak() {
         if (detectedBreakBuilder_ == null) {
@@ -2429,7 +2462,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public Builder setDetectedBreak(com.google.cloud.vision.v1.TextAnnotation.DetectedBreak value) {
         if (detectedBreakBuilder_ == null) {
@@ -2449,7 +2482,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public Builder setDetectedBreak(
           com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.Builder builderForValue) {
@@ -2467,7 +2500,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public Builder mergeDetectedBreak(com.google.cloud.vision.v1.TextAnnotation.DetectedBreak value) {
         if (detectedBreakBuilder_ == null) {
@@ -2489,7 +2522,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public Builder clearDetectedBreak() {
         if (detectedBreakBuilder_ == null) {
@@ -2507,7 +2540,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.Builder getDetectedBreakBuilder() {
         
@@ -2519,7 +2552,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       public com.google.cloud.vision.v1.TextAnnotation.DetectedBreakOrBuilder getDetectedBreakOrBuilder() {
         if (detectedBreakBuilder_ != null) {
@@ -2534,7 +2567,7 @@ public  final class TextAnnotation extends
        * Detected start or end of a text segment.
        * </pre>
        *
-       * <code>optional .google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+       * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.vision.v1.TextAnnotation.DetectedBreak, com.google.cloud.vision.v1.TextAnnotation.DetectedBreak.Builder, com.google.cloud.vision.v1.TextAnnotation.DetectedBreakOrBuilder> 
@@ -2661,7 +2694,7 @@ public  final class TextAnnotation extends
    * UTF-8 text detected on the pages.
    * </pre>
    *
-   * <code>optional string text = 2;</code>
+   * <code>string text = 2;</code>
    */
   public java.lang.String getText() {
     java.lang.Object ref = text_;
@@ -2680,7 +2713,7 @@ public  final class TextAnnotation extends
    * UTF-8 text detected on the pages.
    * </pre>
    *
-   * <code>optional string text = 2;</code>
+   * <code>string text = 2;</code>
    */
   public com.google.protobuf.ByteString
       getTextBytes() {
@@ -2757,7 +2790,7 @@ public  final class TextAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getPagesCount() > 0) {
       hash = (37 * hash) + PAGES_FIELD_NUMBER;
       hash = (53 * hash) + getPagesList().hashCode();
@@ -2769,6 +2802,17 @@ public  final class TextAnnotation extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.TextAnnotation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.TextAnnotation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.TextAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3352,7 +3396,7 @@ public  final class TextAnnotation extends
      * UTF-8 text detected on the pages.
      * </pre>
      *
-     * <code>optional string text = 2;</code>
+     * <code>string text = 2;</code>
      */
     public java.lang.String getText() {
       java.lang.Object ref = text_;
@@ -3371,7 +3415,7 @@ public  final class TextAnnotation extends
      * UTF-8 text detected on the pages.
      * </pre>
      *
-     * <code>optional string text = 2;</code>
+     * <code>string text = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTextBytes() {
@@ -3391,7 +3435,7 @@ public  final class TextAnnotation extends
      * UTF-8 text detected on the pages.
      * </pre>
      *
-     * <code>optional string text = 2;</code>
+     * <code>string text = 2;</code>
      */
     public Builder setText(
         java.lang.String value) {
@@ -3408,7 +3452,7 @@ public  final class TextAnnotation extends
      * UTF-8 text detected on the pages.
      * </pre>
      *
-     * <code>optional string text = 2;</code>
+     * <code>string text = 2;</code>
      */
     public Builder clearText() {
       
@@ -3421,7 +3465,7 @@ public  final class TextAnnotation extends
      * UTF-8 text detected on the pages.
      * </pre>
      *
-     * <code>optional string text = 2;</code>
+     * <code>string text = 2;</code>
      */
     public Builder setTextBytes(
         com.google.protobuf.ByteString value) {

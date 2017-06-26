@@ -13,7 +13,7 @@ public interface AcknowledgeRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -22,7 +22,7 @@ public interface AcknowledgeRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();

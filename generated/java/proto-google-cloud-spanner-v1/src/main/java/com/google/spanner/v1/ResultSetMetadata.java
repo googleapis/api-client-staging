@@ -108,7 +108,7 @@ public  final class ResultSetMetadata extends
    *     ]
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+   * <code>.google.spanner.v1.StructType row_type = 1;</code>
    */
   public boolean hasRowType() {
     return rowType_ != null;
@@ -124,7 +124,7 @@ public  final class ResultSetMetadata extends
    *     ]
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+   * <code>.google.spanner.v1.StructType row_type = 1;</code>
    */
   public com.google.spanner.v1.StructType getRowType() {
     return rowType_ == null ? com.google.spanner.v1.StructType.getDefaultInstance() : rowType_;
@@ -140,7 +140,7 @@ public  final class ResultSetMetadata extends
    *     ]
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+   * <code>.google.spanner.v1.StructType row_type = 1;</code>
    */
   public com.google.spanner.v1.StructTypeOrBuilder getRowTypeOrBuilder() {
     return getRowType();
@@ -154,7 +154,7 @@ public  final class ResultSetMetadata extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
    */
   public boolean hasTransaction() {
     return transaction_ != null;
@@ -165,7 +165,7 @@ public  final class ResultSetMetadata extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
    */
   public com.google.spanner.v1.Transaction getTransaction() {
     return transaction_ == null ? com.google.spanner.v1.Transaction.getDefaultInstance() : transaction_;
@@ -176,7 +176,7 @@ public  final class ResultSetMetadata extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
    */
   public com.google.spanner.v1.TransactionOrBuilder getTransactionOrBuilder() {
     return getTransaction();
@@ -250,7 +250,7 @@ public  final class ResultSetMetadata extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasRowType()) {
       hash = (37 * hash) + ROW_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getRowType().hashCode();
@@ -264,6 +264,17 @@ public  final class ResultSetMetadata extends
     return hash;
   }
 
+  public static com.google.spanner.v1.ResultSetMetadata parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.ResultSetMetadata parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.ResultSetMetadata parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -512,7 +523,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public boolean hasRowType() {
       return rowTypeBuilder_ != null || rowType_ != null;
@@ -528,7 +539,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public com.google.spanner.v1.StructType getRowType() {
       if (rowTypeBuilder_ == null) {
@@ -548,7 +559,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public Builder setRowType(com.google.spanner.v1.StructType value) {
       if (rowTypeBuilder_ == null) {
@@ -574,7 +585,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public Builder setRowType(
         com.google.spanner.v1.StructType.Builder builderForValue) {
@@ -598,7 +609,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public Builder mergeRowType(com.google.spanner.v1.StructType value) {
       if (rowTypeBuilder_ == null) {
@@ -626,7 +637,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public Builder clearRowType() {
       if (rowTypeBuilder_ == null) {
@@ -650,7 +661,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public com.google.spanner.v1.StructType.Builder getRowTypeBuilder() {
       
@@ -668,7 +679,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     public com.google.spanner.v1.StructTypeOrBuilder getRowTypeOrBuilder() {
       if (rowTypeBuilder_ != null) {
@@ -689,7 +700,7 @@ public  final class ResultSetMetadata extends
      *     ]
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
+     * <code>.google.spanner.v1.StructType row_type = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.StructType, com.google.spanner.v1.StructType.Builder, com.google.spanner.v1.StructTypeOrBuilder> 
@@ -714,7 +725,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public boolean hasTransaction() {
       return transactionBuilder_ != null || transaction_ != null;
@@ -725,7 +736,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public com.google.spanner.v1.Transaction getTransaction() {
       if (transactionBuilder_ == null) {
@@ -740,7 +751,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public Builder setTransaction(com.google.spanner.v1.Transaction value) {
       if (transactionBuilder_ == null) {
@@ -761,7 +772,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public Builder setTransaction(
         com.google.spanner.v1.Transaction.Builder builderForValue) {
@@ -780,7 +791,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public Builder mergeTransaction(com.google.spanner.v1.Transaction value) {
       if (transactionBuilder_ == null) {
@@ -803,7 +814,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public Builder clearTransaction() {
       if (transactionBuilder_ == null) {
@@ -822,7 +833,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public com.google.spanner.v1.Transaction.Builder getTransactionBuilder() {
       
@@ -835,7 +846,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionOrBuilder getTransactionOrBuilder() {
       if (transactionBuilder_ != null) {
@@ -851,7 +862,7 @@ public  final class ResultSetMetadata extends
      * information about the new transaction is yielded here.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
+     * <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Transaction, com.google.spanner.v1.Transaction.Builder, com.google.spanner.v1.TransactionOrBuilder> 

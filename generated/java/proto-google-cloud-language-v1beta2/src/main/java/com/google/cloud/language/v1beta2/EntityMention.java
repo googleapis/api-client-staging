@@ -245,7 +245,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public boolean hasText() {
     return text_ != null;
@@ -255,7 +255,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1beta2.TextSpan getText() {
     return text_ == null ? com.google.cloud.language.v1beta2.TextSpan.getDefaultInstance() : text_;
@@ -265,7 +265,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder() {
     return getText();
@@ -278,7 +278,7 @@ public  final class EntityMention extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+   * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
    */
   public int getTypeValue() {
     return type_;
@@ -288,7 +288,7 @@ public  final class EntityMention extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+   * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
    */
   public com.google.cloud.language.v1beta2.EntityMention.Type getType() {
     com.google.cloud.language.v1beta2.EntityMention.Type result = com.google.cloud.language.v1beta2.EntityMention.Type.valueOf(type_);
@@ -305,7 +305,7 @@ public  final class EntityMention extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   public boolean hasSentiment() {
     return sentiment_ != null;
@@ -318,7 +318,7 @@ public  final class EntityMention extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   public com.google.cloud.language.v1beta2.Sentiment getSentiment() {
     return sentiment_ == null ? com.google.cloud.language.v1beta2.Sentiment.getDefaultInstance() : sentiment_;
@@ -331,7 +331,7 @@ public  final class EntityMention extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   public com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder() {
     return getSentiment();
@@ -413,7 +413,7 @@ public  final class EntityMention extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasText()) {
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
@@ -429,6 +429,17 @@ public  final class EntityMention extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.EntityMention parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.EntityMention parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.EntityMention parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -678,7 +689,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public boolean hasText() {
       return textBuilder_ != null || text_ != null;
@@ -688,7 +699,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpan getText() {
       if (textBuilder_ == null) {
@@ -702,7 +713,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder setText(com.google.cloud.language.v1beta2.TextSpan value) {
       if (textBuilder_ == null) {
@@ -722,7 +733,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder setText(
         com.google.cloud.language.v1beta2.TextSpan.Builder builderForValue) {
@@ -740,7 +751,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder mergeText(com.google.cloud.language.v1beta2.TextSpan value) {
       if (textBuilder_ == null) {
@@ -762,7 +773,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder clearText() {
       if (textBuilder_ == null) {
@@ -780,7 +791,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpan.Builder getTextBuilder() {
       
@@ -792,7 +803,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder() {
       if (textBuilder_ != null) {
@@ -807,7 +818,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.TextSpan, com.google.cloud.language.v1beta2.TextSpan.Builder, com.google.cloud.language.v1beta2.TextSpanOrBuilder> 
@@ -829,7 +840,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -839,7 +850,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -851,7 +862,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
      */
     public com.google.cloud.language.v1beta2.EntityMention.Type getType() {
       com.google.cloud.language.v1beta2.EntityMention.Type result = com.google.cloud.language.v1beta2.EntityMention.Type.valueOf(type_);
@@ -862,7 +873,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
      */
     public Builder setType(com.google.cloud.language.v1beta2.EntityMention.Type value) {
       if (value == null) {
@@ -878,7 +889,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
      */
     public Builder clearType() {
       
@@ -898,7 +909,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public boolean hasSentiment() {
       return sentimentBuilder_ != null || sentiment_ != null;
@@ -911,7 +922,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public com.google.cloud.language.v1beta2.Sentiment getSentiment() {
       if (sentimentBuilder_ == null) {
@@ -928,7 +939,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public Builder setSentiment(com.google.cloud.language.v1beta2.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -951,7 +962,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public Builder setSentiment(
         com.google.cloud.language.v1beta2.Sentiment.Builder builderForValue) {
@@ -972,7 +983,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public Builder mergeSentiment(com.google.cloud.language.v1beta2.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -997,7 +1008,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public Builder clearSentiment() {
       if (sentimentBuilder_ == null) {
@@ -1018,7 +1029,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public com.google.cloud.language.v1beta2.Sentiment.Builder getSentimentBuilder() {
       
@@ -1033,7 +1044,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     public com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder() {
       if (sentimentBuilder_ != null) {
@@ -1051,7 +1062,7 @@ public  final class EntityMention extends
      * the entity in the provided document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.Sentiment, com.google.cloud.language.v1beta2.Sentiment.Builder, com.google.cloud.language.v1beta2.SentimentOrBuilder> 

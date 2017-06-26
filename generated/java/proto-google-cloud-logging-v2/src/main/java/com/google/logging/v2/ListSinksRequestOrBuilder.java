@@ -16,7 +16,7 @@ public interface ListSinksRequestOrBuilder extends
    *     "folders/[FOLDER_ID]"
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -28,7 +28,7 @@ public interface ListSinksRequestOrBuilder extends
    *     "folders/[FOLDER_ID]"
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -41,7 +41,7 @@ public interface ListSinksRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 2;</code>
+   * <code>string page_token = 2;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -52,7 +52,7 @@ public interface ListSinksRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 2;</code>
+   * <code>string page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -64,7 +64,7 @@ public interface ListSinksRequestOrBuilder extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   int getPageSize();
 }

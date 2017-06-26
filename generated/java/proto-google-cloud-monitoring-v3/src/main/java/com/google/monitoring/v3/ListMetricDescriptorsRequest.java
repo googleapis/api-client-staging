@@ -104,7 +104,7 @@ public  final class ListMetricDescriptorsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 5;</code>
+   * <code>string name = 5;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -124,7 +124,7 @@ public  final class ListMetricDescriptorsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 5;</code>
+   * <code>string name = 5;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -153,7 +153,7 @@ public  final class ListMetricDescriptorsRequest extends
    *     metric.type = starts_with("custom.googleapis.com/")
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -178,7 +178,7 @@ public  final class ListMetricDescriptorsRequest extends
    *     metric.type = starts_with("custom.googleapis.com/")
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -201,7 +201,7 @@ public  final class ListMetricDescriptorsRequest extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -216,7 +216,7 @@ public  final class ListMetricDescriptorsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -237,7 +237,7 @@ public  final class ListMetricDescriptorsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -330,7 +330,7 @@ public  final class ListMetricDescriptorsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + FILTER_FIELD_NUMBER;
@@ -344,6 +344,17 @@ public  final class ListMetricDescriptorsRequest extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.ListMetricDescriptorsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.ListMetricDescriptorsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.ListMetricDescriptorsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -584,7 +595,7 @@ public  final class ListMetricDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 5;</code>
+     * <code>string name = 5;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -604,7 +615,7 @@ public  final class ListMetricDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 5;</code>
+     * <code>string name = 5;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -625,7 +636,7 @@ public  final class ListMetricDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 5;</code>
+     * <code>string name = 5;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -643,7 +654,7 @@ public  final class ListMetricDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 5;</code>
+     * <code>string name = 5;</code>
      */
     public Builder clearName() {
       
@@ -657,7 +668,7 @@ public  final class ListMetricDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 5;</code>
+     * <code>string name = 5;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -683,7 +694,7 @@ public  final class ListMetricDescriptorsRequest extends
      *     metric.type = starts_with("custom.googleapis.com/")
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -708,7 +719,7 @@ public  final class ListMetricDescriptorsRequest extends
      *     metric.type = starts_with("custom.googleapis.com/")
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -734,7 +745,7 @@ public  final class ListMetricDescriptorsRequest extends
      *     metric.type = starts_with("custom.googleapis.com/")
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -757,7 +768,7 @@ public  final class ListMetricDescriptorsRequest extends
      *     metric.type = starts_with("custom.googleapis.com/")
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder clearFilter() {
       
@@ -776,7 +787,7 @@ public  final class ListMetricDescriptorsRequest extends
      *     metric.type = starts_with("custom.googleapis.com/")
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -796,7 +807,7 @@ public  final class ListMetricDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -806,7 +817,7 @@ public  final class ListMetricDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -819,7 +830,7 @@ public  final class ListMetricDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder clearPageSize() {
       
@@ -836,7 +847,7 @@ public  final class ListMetricDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -857,7 +868,7 @@ public  final class ListMetricDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -879,7 +890,7 @@ public  final class ListMetricDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -898,7 +909,7 @@ public  final class ListMetricDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder clearPageToken() {
       
@@ -913,7 +924,7 @@ public  final class ListMetricDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

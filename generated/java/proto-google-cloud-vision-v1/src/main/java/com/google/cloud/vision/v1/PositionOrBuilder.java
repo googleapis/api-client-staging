@@ -12,7 +12,7 @@ public interface PositionOrBuilder extends
    * X coordinate.
    * </pre>
    *
-   * <code>optional float x = 1;</code>
+   * <code>float x = 1;</code>
    */
   float getX();
 
@@ -21,7 +21,7 @@ public interface PositionOrBuilder extends
    * Y coordinate.
    * </pre>
    *
-   * <code>optional float y = 2;</code>
+   * <code>float y = 2;</code>
    */
   float getY();
 
@@ -30,7 +30,7 @@ public interface PositionOrBuilder extends
    * Z coordinate (or depth).
    * </pre>
    *
-   * <code>optional float z = 3;</code>
+   * <code>float z = 3;</code>
    */
   float getZ();
 }

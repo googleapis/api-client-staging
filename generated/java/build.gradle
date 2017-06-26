@@ -50,9 +50,6 @@ subprojects {
   }
 
   dependencies {
-    compile libraries.gax,
-      libraries.gaxGrpc
-
     testCompile libraries.junit,
       libraries.mockito,
       libraries.truth,

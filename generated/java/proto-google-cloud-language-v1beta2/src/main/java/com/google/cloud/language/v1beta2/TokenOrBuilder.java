@@ -12,7 +12,7 @@ public interface TokenOrBuilder extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   boolean hasText();
   /**
@@ -20,7 +20,7 @@ public interface TokenOrBuilder extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpan getText();
   /**
@@ -28,7 +28,7 @@ public interface TokenOrBuilder extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder();
 
@@ -37,7 +37,7 @@ public interface TokenOrBuilder extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   boolean hasPartOfSpeech();
   /**
@@ -45,7 +45,7 @@ public interface TokenOrBuilder extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech getPartOfSpeech();
   /**
@@ -53,7 +53,7 @@ public interface TokenOrBuilder extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeechOrBuilder getPartOfSpeechOrBuilder();
 
@@ -62,7 +62,7 @@ public interface TokenOrBuilder extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   boolean hasDependencyEdge();
   /**
@@ -70,7 +70,7 @@ public interface TokenOrBuilder extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   com.google.cloud.language.v1beta2.DependencyEdge getDependencyEdge();
   /**
@@ -78,7 +78,7 @@ public interface TokenOrBuilder extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   com.google.cloud.language.v1beta2.DependencyEdgeOrBuilder getDependencyEdgeOrBuilder();
 
@@ -87,7 +87,7 @@ public interface TokenOrBuilder extends
    * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
    * </pre>
    *
-   * <code>optional string lemma = 4;</code>
+   * <code>string lemma = 4;</code>
    */
   java.lang.String getLemma();
   /**
@@ -95,7 +95,7 @@ public interface TokenOrBuilder extends
    * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
    * </pre>
    *
-   * <code>optional string lemma = 4;</code>
+   * <code>string lemma = 4;</code>
    */
   com.google.protobuf.ByteString
       getLemmaBytes();

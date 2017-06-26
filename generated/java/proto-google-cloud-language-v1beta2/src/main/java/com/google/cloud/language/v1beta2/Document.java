@@ -277,7 +277,7 @@ public  final class Document extends
    * returns an `INVALID_ARGUMENT` error.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
    */
   public int getTypeValue() {
     return type_;
@@ -288,7 +288,7 @@ public  final class Document extends
    * returns an `INVALID_ARGUMENT` error.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
    */
   public com.google.cloud.language.v1beta2.Document.Type getType() {
     com.google.cloud.language.v1beta2.Document.Type result = com.google.cloud.language.v1beta2.Document.Type.valueOf(type_);
@@ -301,7 +301,7 @@ public  final class Document extends
    * The content of the input in string format.
    * </pre>
    *
-   * <code>optional string content = 2;</code>
+   * <code>string content = 2;</code>
    */
   public java.lang.String getContent() {
     java.lang.Object ref = "";
@@ -325,7 +325,7 @@ public  final class Document extends
    * The content of the input in string format.
    * </pre>
    *
-   * <code>optional string content = 2;</code>
+   * <code>string content = 2;</code>
    */
   public com.google.protobuf.ByteString
       getContentBytes() {
@@ -355,7 +355,7 @@ public  final class Document extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>optional string gcs_content_uri = 3;</code>
+   * <code>string gcs_content_uri = 3;</code>
    */
   public java.lang.String getGcsContentUri() {
     java.lang.Object ref = "";
@@ -382,7 +382,7 @@ public  final class Document extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>optional string gcs_content_uri = 3;</code>
+   * <code>string gcs_content_uri = 3;</code>
    */
   public com.google.protobuf.ByteString
       getGcsContentUriBytes() {
@@ -417,7 +417,7 @@ public  final class Document extends
    * is returned.
    * </pre>
    *
-   * <code>optional string language = 4;</code>
+   * <code>string language = 4;</code>
    */
   public java.lang.String getLanguage() {
     java.lang.Object ref = language_;
@@ -443,7 +443,7 @@ public  final class Document extends
    * is returned.
    * </pre>
    *
-   * <code>optional string language = 4;</code>
+   * <code>string language = 4;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageBytes() {
@@ -546,7 +546,7 @@ public  final class Document extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + type_;
     hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
@@ -568,6 +568,17 @@ public  final class Document extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.Document parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.Document parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.Document parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -836,7 +847,7 @@ public  final class Document extends
      * returns an `INVALID_ARGUMENT` error.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -847,7 +858,7 @@ public  final class Document extends
      * returns an `INVALID_ARGUMENT` error.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -860,7 +871,7 @@ public  final class Document extends
      * returns an `INVALID_ARGUMENT` error.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     public com.google.cloud.language.v1beta2.Document.Type getType() {
       com.google.cloud.language.v1beta2.Document.Type result = com.google.cloud.language.v1beta2.Document.Type.valueOf(type_);
@@ -872,7 +883,7 @@ public  final class Document extends
      * returns an `INVALID_ARGUMENT` error.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     public Builder setType(com.google.cloud.language.v1beta2.Document.Type value) {
       if (value == null) {
@@ -889,7 +900,7 @@ public  final class Document extends
      * returns an `INVALID_ARGUMENT` error.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     public Builder clearType() {
       
@@ -903,7 +914,7 @@ public  final class Document extends
      * The content of the input in string format.
      * </pre>
      *
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public java.lang.String getContent() {
       java.lang.Object ref = "";
@@ -927,7 +938,7 @@ public  final class Document extends
      * The content of the input in string format.
      * </pre>
      *
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -952,7 +963,7 @@ public  final class Document extends
      * The content of the input in string format.
      * </pre>
      *
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public Builder setContent(
         java.lang.String value) {
@@ -969,7 +980,7 @@ public  final class Document extends
      * The content of the input in string format.
      * </pre>
      *
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public Builder clearContent() {
       if (sourceCase_ == 2) {
@@ -984,7 +995,7 @@ public  final class Document extends
      * The content of the input in string format.
      * </pre>
      *
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public Builder setContentBytes(
         com.google.protobuf.ByteString value) {
@@ -1006,7 +1017,7 @@ public  final class Document extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_content_uri = 3;</code>
+     * <code>string gcs_content_uri = 3;</code>
      */
     public java.lang.String getGcsContentUri() {
       java.lang.Object ref = "";
@@ -1033,7 +1044,7 @@ public  final class Document extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_content_uri = 3;</code>
+     * <code>string gcs_content_uri = 3;</code>
      */
     public com.google.protobuf.ByteString
         getGcsContentUriBytes() {
@@ -1061,7 +1072,7 @@ public  final class Document extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_content_uri = 3;</code>
+     * <code>string gcs_content_uri = 3;</code>
      */
     public Builder setGcsContentUri(
         java.lang.String value) {
@@ -1081,7 +1092,7 @@ public  final class Document extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_content_uri = 3;</code>
+     * <code>string gcs_content_uri = 3;</code>
      */
     public Builder clearGcsContentUri() {
       if (sourceCase_ == 3) {
@@ -1099,7 +1110,7 @@ public  final class Document extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_content_uri = 3;</code>
+     * <code>string gcs_content_uri = 3;</code>
      */
     public Builder setGcsContentUriBytes(
         com.google.protobuf.ByteString value) {
@@ -1126,7 +1137,7 @@ public  final class Document extends
      * is returned.
      * </pre>
      *
-     * <code>optional string language = 4;</code>
+     * <code>string language = 4;</code>
      */
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
@@ -1152,7 +1163,7 @@ public  final class Document extends
      * is returned.
      * </pre>
      *
-     * <code>optional string language = 4;</code>
+     * <code>string language = 4;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageBytes() {
@@ -1179,7 +1190,7 @@ public  final class Document extends
      * is returned.
      * </pre>
      *
-     * <code>optional string language = 4;</code>
+     * <code>string language = 4;</code>
      */
     public Builder setLanguage(
         java.lang.String value) {
@@ -1203,7 +1214,7 @@ public  final class Document extends
      * is returned.
      * </pre>
      *
-     * <code>optional string language = 4;</code>
+     * <code>string language = 4;</code>
      */
     public Builder clearLanguage() {
       
@@ -1223,7 +1234,7 @@ public  final class Document extends
      * is returned.
      * </pre>
      *
-     * <code>optional string language = 4;</code>
+     * <code>string language = 4;</code>
      */
     public Builder setLanguageBytes(
         com.google.protobuf.ByteString value) {

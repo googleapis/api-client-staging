@@ -102,7 +102,7 @@ public interface AnalyzeSyntaxResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 3;</code>
+   * <code>string language = 3;</code>
    */
   java.lang.String getLanguage();
   /**
@@ -112,7 +112,7 @@ public interface AnalyzeSyntaxResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 3;</code>
+   * <code>string language = 3;</code>
    */
   com.google.protobuf.ByteString
       getLanguageBytes();

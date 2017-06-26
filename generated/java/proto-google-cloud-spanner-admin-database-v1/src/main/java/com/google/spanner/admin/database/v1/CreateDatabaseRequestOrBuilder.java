@@ -13,7 +13,7 @@ public interface CreateDatabaseRequestOrBuilder extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -22,7 +22,7 @@ public interface CreateDatabaseRequestOrBuilder extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -34,7 +34,7 @@ public interface CreateDatabaseRequestOrBuilder extends
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string create_statement = 2;</code>
+   * <code>string create_statement = 2;</code>
    */
   java.lang.String getCreateStatement();
   /**
@@ -44,7 +44,7 @@ public interface CreateDatabaseRequestOrBuilder extends
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
    * </pre>
    *
-   * <code>optional string create_statement = 2;</code>
+   * <code>string create_statement = 2;</code>
    */
   com.google.protobuf.ByteString
       getCreateStatementBytes();

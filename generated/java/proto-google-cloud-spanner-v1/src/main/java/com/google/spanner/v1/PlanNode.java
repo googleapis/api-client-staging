@@ -296,7 +296,7 @@ public  final class PlanNode extends
      * The node to which the link points.
      * </pre>
      *
-     * <code>optional int32 child_index = 1;</code>
+     * <code>int32 child_index = 1;</code>
      */
     int getChildIndex();
 
@@ -308,7 +308,7 @@ public  final class PlanNode extends
      * with the output variable.
      * </pre>
      *
-     * <code>optional string type = 2;</code>
+     * <code>string type = 2;</code>
      */
     java.lang.String getType();
     /**
@@ -319,7 +319,7 @@ public  final class PlanNode extends
      * with the output variable.
      * </pre>
      *
-     * <code>optional string type = 2;</code>
+     * <code>string type = 2;</code>
      */
     com.google.protobuf.ByteString
         getTypeBytes();
@@ -336,7 +336,7 @@ public  final class PlanNode extends
      * columns.
      * </pre>
      *
-     * <code>optional string variable = 3;</code>
+     * <code>string variable = 3;</code>
      */
     java.lang.String getVariable();
     /**
@@ -351,7 +351,7 @@ public  final class PlanNode extends
      * columns.
      * </pre>
      *
-     * <code>optional string variable = 3;</code>
+     * <code>string variable = 3;</code>
      */
     com.google.protobuf.ByteString
         getVariableBytes();
@@ -450,7 +450,7 @@ public  final class PlanNode extends
      * The node to which the link points.
      * </pre>
      *
-     * <code>optional int32 child_index = 1;</code>
+     * <code>int32 child_index = 1;</code>
      */
     public int getChildIndex() {
       return childIndex_;
@@ -466,7 +466,7 @@ public  final class PlanNode extends
      * with the output variable.
      * </pre>
      *
-     * <code>optional string type = 2;</code>
+     * <code>string type = 2;</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -488,7 +488,7 @@ public  final class PlanNode extends
      * with the output variable.
      * </pre>
      *
-     * <code>optional string type = 2;</code>
+     * <code>string type = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -518,7 +518,7 @@ public  final class PlanNode extends
      * columns.
      * </pre>
      *
-     * <code>optional string variable = 3;</code>
+     * <code>string variable = 3;</code>
      */
     public java.lang.String getVariable() {
       java.lang.Object ref = variable_;
@@ -544,7 +544,7 @@ public  final class PlanNode extends
      * columns.
      * </pre>
      *
-     * <code>optional string variable = 3;</code>
+     * <code>string variable = 3;</code>
      */
     public com.google.protobuf.ByteString
         getVariableBytes() {
@@ -629,7 +629,7 @@ public  final class PlanNode extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CHILD_INDEX_FIELD_NUMBER;
       hash = (53 * hash) + getChildIndex();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
@@ -641,6 +641,17 @@ public  final class PlanNode extends
       return hash;
     }
 
+    public static com.google.spanner.v1.PlanNode.ChildLink parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.spanner.v1.PlanNode.ChildLink parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.spanner.v1.PlanNode.ChildLink parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -874,7 +885,7 @@ public  final class PlanNode extends
        * The node to which the link points.
        * </pre>
        *
-       * <code>optional int32 child_index = 1;</code>
+       * <code>int32 child_index = 1;</code>
        */
       public int getChildIndex() {
         return childIndex_;
@@ -884,7 +895,7 @@ public  final class PlanNode extends
        * The node to which the link points.
        * </pre>
        *
-       * <code>optional int32 child_index = 1;</code>
+       * <code>int32 child_index = 1;</code>
        */
       public Builder setChildIndex(int value) {
         
@@ -897,7 +908,7 @@ public  final class PlanNode extends
        * The node to which the link points.
        * </pre>
        *
-       * <code>optional int32 child_index = 1;</code>
+       * <code>int32 child_index = 1;</code>
        */
       public Builder clearChildIndex() {
         
@@ -915,7 +926,7 @@ public  final class PlanNode extends
        * with the output variable.
        * </pre>
        *
-       * <code>optional string type = 2;</code>
+       * <code>string type = 2;</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -937,7 +948,7 @@ public  final class PlanNode extends
        * with the output variable.
        * </pre>
        *
-       * <code>optional string type = 2;</code>
+       * <code>string type = 2;</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -960,7 +971,7 @@ public  final class PlanNode extends
        * with the output variable.
        * </pre>
        *
-       * <code>optional string type = 2;</code>
+       * <code>string type = 2;</code>
        */
       public Builder setType(
           java.lang.String value) {
@@ -980,7 +991,7 @@ public  final class PlanNode extends
        * with the output variable.
        * </pre>
        *
-       * <code>optional string type = 2;</code>
+       * <code>string type = 2;</code>
        */
       public Builder clearType() {
         
@@ -996,7 +1007,7 @@ public  final class PlanNode extends
        * with the output variable.
        * </pre>
        *
-       * <code>optional string type = 2;</code>
+       * <code>string type = 2;</code>
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
@@ -1023,7 +1034,7 @@ public  final class PlanNode extends
        * columns.
        * </pre>
        *
-       * <code>optional string variable = 3;</code>
+       * <code>string variable = 3;</code>
        */
       public java.lang.String getVariable() {
         java.lang.Object ref = variable_;
@@ -1049,7 +1060,7 @@ public  final class PlanNode extends
        * columns.
        * </pre>
        *
-       * <code>optional string variable = 3;</code>
+       * <code>string variable = 3;</code>
        */
       public com.google.protobuf.ByteString
           getVariableBytes() {
@@ -1076,7 +1087,7 @@ public  final class PlanNode extends
        * columns.
        * </pre>
        *
-       * <code>optional string variable = 3;</code>
+       * <code>string variable = 3;</code>
        */
       public Builder setVariable(
           java.lang.String value) {
@@ -1100,7 +1111,7 @@ public  final class PlanNode extends
        * columns.
        * </pre>
        *
-       * <code>optional string variable = 3;</code>
+       * <code>string variable = 3;</code>
        */
       public Builder clearVariable() {
         
@@ -1120,7 +1131,7 @@ public  final class PlanNode extends
        * columns.
        * </pre>
        *
-       * <code>optional string variable = 3;</code>
+       * <code>string variable = 3;</code>
        */
       public Builder setVariableBytes(
           com.google.protobuf.ByteString value) {
@@ -1191,7 +1202,7 @@ public  final class PlanNode extends
      * A string representation of the expression subtree rooted at this node.
      * </pre>
      *
-     * <code>optional string description = 1;</code>
+     * <code>string description = 1;</code>
      */
     java.lang.String getDescription();
     /**
@@ -1199,7 +1210,7 @@ public  final class PlanNode extends
      * A string representation of the expression subtree rooted at this node.
      * </pre>
      *
-     * <code>optional string description = 1;</code>
+     * <code>string description = 1;</code>
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
@@ -1336,9 +1347,10 @@ public  final class PlanNode extends
                 mutable_bitField0_ |= 0x00000002;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
-              subqueries = input.readMessage(
+              subqueries__ = input.readMessage(
                   SubqueriesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              subqueries_.getMutableMap().put(subqueries.getKey(), subqueries.getValue());
+              subqueries_.getMutableMap().put(
+                  subqueries__.getKey(), subqueries__.getValue());
               break;
             }
           }
@@ -1383,7 +1395,7 @@ public  final class PlanNode extends
      * A string representation of the expression subtree rooted at this node.
      * </pre>
      *
-     * <code>optional string description = 1;</code>
+     * <code>string description = 1;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -1402,7 +1414,7 @@ public  final class PlanNode extends
      * A string representation of the expression subtree rooted at this node.
      * </pre>
      *
-     * <code>optional string description = 1;</code>
+     * <code>string description = 1;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -1541,15 +1553,12 @@ public  final class PlanNode extends
       if (!getDescriptionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, description_);
       }
-      for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
-           : internalGetSubqueries().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
-        subqueries = SubqueriesDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        output.writeMessage(2, subqueries);
-      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetSubqueries(),
+          SubqueriesDefaultEntryHolder.defaultEntry,
+          2);
     }
 
     public int getSerializedSize() {
@@ -1563,12 +1572,12 @@ public  final class PlanNode extends
       for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
            : internalGetSubqueries().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
-        subqueries = SubqueriesDefaultEntryHolder.defaultEntry.newBuilderForType()
+        subqueries__ = SubqueriesDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, subqueries);
+            .computeMessageSize(2, subqueries__);
       }
       memoizedSize = size;
       return size;
@@ -1599,7 +1608,7 @@ public  final class PlanNode extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
       hash = (53 * hash) + getDescription().hashCode();
       if (!internalGetSubqueries().getMap().isEmpty()) {
@@ -1611,6 +1620,17 @@ public  final class PlanNode extends
       return hash;
     }
 
+    public static com.google.spanner.v1.PlanNode.ShortRepresentation parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.spanner.v1.PlanNode.ShortRepresentation parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.spanner.v1.PlanNode.ShortRepresentation parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1862,7 +1882,7 @@ public  final class PlanNode extends
        * A string representation of the expression subtree rooted at this node.
        * </pre>
        *
-       * <code>optional string description = 1;</code>
+       * <code>string description = 1;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -1881,7 +1901,7 @@ public  final class PlanNode extends
        * A string representation of the expression subtree rooted at this node.
        * </pre>
        *
-       * <code>optional string description = 1;</code>
+       * <code>string description = 1;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -1901,7 +1921,7 @@ public  final class PlanNode extends
        * A string representation of the expression subtree rooted at this node.
        * </pre>
        *
-       * <code>optional string description = 1;</code>
+       * <code>string description = 1;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -1918,7 +1938,7 @@ public  final class PlanNode extends
        * A string representation of the expression subtree rooted at this node.
        * </pre>
        *
-       * <code>optional string description = 1;</code>
+       * <code>string description = 1;</code>
        */
       public Builder clearDescription() {
         
@@ -1931,7 +1951,7 @@ public  final class PlanNode extends
        * A string representation of the expression subtree rooted at this node.
        * </pre>
        *
-       * <code>optional string description = 1;</code>
+       * <code>string description = 1;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -2054,7 +2074,8 @@ public  final class PlanNode extends
       }
 
       public Builder clearSubqueries() {
-        getMutableSubqueries().clear();
+        internalGetMutableSubqueries().getMutableMap()
+            .clear();
         return this;
       }
       /**
@@ -2072,7 +2093,8 @@ public  final class PlanNode extends
       public Builder removeSubqueries(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableSubqueries().remove(key);
+        internalGetMutableSubqueries().getMutableMap()
+            .remove(key);
         return this;
       }
       /**
@@ -2099,7 +2121,8 @@ public  final class PlanNode extends
           int value) {
         if (key == null) { throw new java.lang.NullPointerException(); }
         
-        getMutableSubqueries().put(key, value);
+        internalGetMutableSubqueries().getMutableMap()
+            .put(key, value);
         return this;
       }
       /**
@@ -2116,7 +2139,8 @@ public  final class PlanNode extends
 
       public Builder putAllSubqueries(
           java.util.Map<java.lang.String, java.lang.Integer> values) {
-        getMutableSubqueries().putAll(values);
+        internalGetMutableSubqueries().getMutableMap()
+            .putAll(values);
         return this;
       }
       public final Builder setUnknownFields(
@@ -2176,7 +2200,7 @@ public  final class PlanNode extends
    * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
    * </pre>
    *
-   * <code>optional int32 index = 1;</code>
+   * <code>int32 index = 1;</code>
    */
   public int getIndex() {
     return index_;
@@ -2193,7 +2217,7 @@ public  final class PlanNode extends
    * parent.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+   * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
    */
   public int getKindValue() {
     return kind_;
@@ -2207,7 +2231,7 @@ public  final class PlanNode extends
    * parent.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+   * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
    */
   public com.google.spanner.v1.PlanNode.Kind getKind() {
     com.google.spanner.v1.PlanNode.Kind result = com.google.spanner.v1.PlanNode.Kind.valueOf(kind_);
@@ -2221,7 +2245,7 @@ public  final class PlanNode extends
    * The display name for the node.
    * </pre>
    *
-   * <code>optional string display_name = 3;</code>
+   * <code>string display_name = 3;</code>
    */
   public java.lang.String getDisplayName() {
     java.lang.Object ref = displayName_;
@@ -2240,7 +2264,7 @@ public  final class PlanNode extends
    * The display name for the node.
    * </pre>
    *
-   * <code>optional string display_name = 3;</code>
+   * <code>string display_name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDisplayNameBytes() {
@@ -2318,7 +2342,7 @@ public  final class PlanNode extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   public boolean hasShortRepresentation() {
     return shortRepresentation_ != null;
@@ -2328,7 +2352,7 @@ public  final class PlanNode extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   public com.google.spanner.v1.PlanNode.ShortRepresentation getShortRepresentation() {
     return shortRepresentation_ == null ? com.google.spanner.v1.PlanNode.ShortRepresentation.getDefaultInstance() : shortRepresentation_;
@@ -2338,7 +2362,7 @@ public  final class PlanNode extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   public com.google.spanner.v1.PlanNode.ShortRepresentationOrBuilder getShortRepresentationOrBuilder() {
     return getShortRepresentation();
@@ -2357,7 +2381,7 @@ public  final class PlanNode extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct metadata = 6;</code>
+   * <code>.google.protobuf.Struct metadata = 6;</code>
    */
   public boolean hasMetadata() {
     return metadata_ != null;
@@ -2373,7 +2397,7 @@ public  final class PlanNode extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct metadata = 6;</code>
+   * <code>.google.protobuf.Struct metadata = 6;</code>
    */
   public com.google.protobuf.Struct getMetadata() {
     return metadata_ == null ? com.google.protobuf.Struct.getDefaultInstance() : metadata_;
@@ -2389,7 +2413,7 @@ public  final class PlanNode extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct metadata = 6;</code>
+   * <code>.google.protobuf.Struct metadata = 6;</code>
    */
   public com.google.protobuf.StructOrBuilder getMetadataOrBuilder() {
     return getMetadata();
@@ -2405,7 +2429,7 @@ public  final class PlanNode extends
    * execution etc.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+   * <code>.google.protobuf.Struct execution_stats = 7;</code>
    */
   public boolean hasExecutionStats() {
     return executionStats_ != null;
@@ -2418,7 +2442,7 @@ public  final class PlanNode extends
    * execution etc.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+   * <code>.google.protobuf.Struct execution_stats = 7;</code>
    */
   public com.google.protobuf.Struct getExecutionStats() {
     return executionStats_ == null ? com.google.protobuf.Struct.getDefaultInstance() : executionStats_;
@@ -2431,7 +2455,7 @@ public  final class PlanNode extends
    * execution etc.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+   * <code>.google.protobuf.Struct execution_stats = 7;</code>
    */
   public com.google.protobuf.StructOrBuilder getExecutionStatsOrBuilder() {
     return getExecutionStats();
@@ -2551,7 +2575,7 @@ public  final class PlanNode extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + INDEX_FIELD_NUMBER;
     hash = (53 * hash) + getIndex();
     hash = (37 * hash) + KIND_FIELD_NUMBER;
@@ -2579,6 +2603,17 @@ public  final class PlanNode extends
     return hash;
   }
 
+  public static com.google.spanner.v1.PlanNode parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.PlanNode parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.PlanNode parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2898,7 +2933,7 @@ public  final class PlanNode extends
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
      * </pre>
      *
-     * <code>optional int32 index = 1;</code>
+     * <code>int32 index = 1;</code>
      */
     public int getIndex() {
       return index_;
@@ -2908,7 +2943,7 @@ public  final class PlanNode extends
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
      * </pre>
      *
-     * <code>optional int32 index = 1;</code>
+     * <code>int32 index = 1;</code>
      */
     public Builder setIndex(int value) {
       
@@ -2921,7 +2956,7 @@ public  final class PlanNode extends
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
      * </pre>
      *
-     * <code>optional int32 index = 1;</code>
+     * <code>int32 index = 1;</code>
      */
     public Builder clearIndex() {
       
@@ -2940,7 +2975,7 @@ public  final class PlanNode extends
      * parent.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     public int getKindValue() {
       return kind_;
@@ -2954,7 +2989,7 @@ public  final class PlanNode extends
      * parent.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     public Builder setKindValue(int value) {
       kind_ = value;
@@ -2970,7 +3005,7 @@ public  final class PlanNode extends
      * parent.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     public com.google.spanner.v1.PlanNode.Kind getKind() {
       com.google.spanner.v1.PlanNode.Kind result = com.google.spanner.v1.PlanNode.Kind.valueOf(kind_);
@@ -2985,7 +3020,7 @@ public  final class PlanNode extends
      * parent.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     public Builder setKind(com.google.spanner.v1.PlanNode.Kind value) {
       if (value == null) {
@@ -3005,7 +3040,7 @@ public  final class PlanNode extends
      * parent.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     public Builder clearKind() {
       
@@ -3020,7 +3055,7 @@ public  final class PlanNode extends
      * The display name for the node.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public java.lang.String getDisplayName() {
       java.lang.Object ref = displayName_;
@@ -3039,7 +3074,7 @@ public  final class PlanNode extends
      * The display name for the node.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDisplayNameBytes() {
@@ -3059,7 +3094,7 @@ public  final class PlanNode extends
      * The display name for the node.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder setDisplayName(
         java.lang.String value) {
@@ -3076,7 +3111,7 @@ public  final class PlanNode extends
      * The display name for the node.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder clearDisplayName() {
       
@@ -3089,7 +3124,7 @@ public  final class PlanNode extends
      * The display name for the node.
      * </pre>
      *
-     * <code>optional string display_name = 3;</code>
+     * <code>string display_name = 3;</code>
      */
     public Builder setDisplayNameBytes(
         com.google.protobuf.ByteString value) {
@@ -3423,7 +3458,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public boolean hasShortRepresentation() {
       return shortRepresentationBuilder_ != null || shortRepresentation_ != null;
@@ -3433,7 +3468,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public com.google.spanner.v1.PlanNode.ShortRepresentation getShortRepresentation() {
       if (shortRepresentationBuilder_ == null) {
@@ -3447,7 +3482,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public Builder setShortRepresentation(com.google.spanner.v1.PlanNode.ShortRepresentation value) {
       if (shortRepresentationBuilder_ == null) {
@@ -3467,7 +3502,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public Builder setShortRepresentation(
         com.google.spanner.v1.PlanNode.ShortRepresentation.Builder builderForValue) {
@@ -3485,7 +3520,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public Builder mergeShortRepresentation(com.google.spanner.v1.PlanNode.ShortRepresentation value) {
       if (shortRepresentationBuilder_ == null) {
@@ -3507,7 +3542,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public Builder clearShortRepresentation() {
       if (shortRepresentationBuilder_ == null) {
@@ -3525,7 +3560,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public com.google.spanner.v1.PlanNode.ShortRepresentation.Builder getShortRepresentationBuilder() {
       
@@ -3537,7 +3572,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     public com.google.spanner.v1.PlanNode.ShortRepresentationOrBuilder getShortRepresentationOrBuilder() {
       if (shortRepresentationBuilder_ != null) {
@@ -3552,7 +3587,7 @@ public  final class PlanNode extends
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.PlanNode.ShortRepresentation, com.google.spanner.v1.PlanNode.ShortRepresentation.Builder, com.google.spanner.v1.PlanNode.ShortRepresentationOrBuilder> 
@@ -3582,7 +3617,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public boolean hasMetadata() {
       return metadataBuilder_ != null || metadata_ != null;
@@ -3598,7 +3633,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public com.google.protobuf.Struct getMetadata() {
       if (metadataBuilder_ == null) {
@@ -3618,7 +3653,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public Builder setMetadata(com.google.protobuf.Struct value) {
       if (metadataBuilder_ == null) {
@@ -3644,7 +3679,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public Builder setMetadata(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -3668,7 +3703,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public Builder mergeMetadata(com.google.protobuf.Struct value) {
       if (metadataBuilder_ == null) {
@@ -3696,7 +3731,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public Builder clearMetadata() {
       if (metadataBuilder_ == null) {
@@ -3720,7 +3755,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public com.google.protobuf.Struct.Builder getMetadataBuilder() {
       
@@ -3738,7 +3773,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     public com.google.protobuf.StructOrBuilder getMetadataOrBuilder() {
       if (metadataBuilder_ != null) {
@@ -3759,7 +3794,7 @@ public  final class PlanNode extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct metadata = 6;</code>
+     * <code>.google.protobuf.Struct metadata = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -3786,7 +3821,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public boolean hasExecutionStats() {
       return executionStatsBuilder_ != null || executionStats_ != null;
@@ -3799,7 +3834,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public com.google.protobuf.Struct getExecutionStats() {
       if (executionStatsBuilder_ == null) {
@@ -3816,7 +3851,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public Builder setExecutionStats(com.google.protobuf.Struct value) {
       if (executionStatsBuilder_ == null) {
@@ -3839,7 +3874,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public Builder setExecutionStats(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -3860,7 +3895,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public Builder mergeExecutionStats(com.google.protobuf.Struct value) {
       if (executionStatsBuilder_ == null) {
@@ -3885,7 +3920,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public Builder clearExecutionStats() {
       if (executionStatsBuilder_ == null) {
@@ -3906,7 +3941,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public com.google.protobuf.Struct.Builder getExecutionStatsBuilder() {
       
@@ -3921,7 +3956,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     public com.google.protobuf.StructOrBuilder getExecutionStatsOrBuilder() {
       if (executionStatsBuilder_ != null) {
@@ -3939,7 +3974,7 @@ public  final class PlanNode extends
      * execution etc.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
+     * <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 

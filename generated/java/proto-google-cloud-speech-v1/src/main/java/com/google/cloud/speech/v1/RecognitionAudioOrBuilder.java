@@ -14,7 +14,7 @@ public interface RecognitionAudioOrBuilder extends
    * pure binary representation, whereas JSON representations use base64.
    * </pre>
    *
-   * <code>optional bytes content = 1;</code>
+   * <code>bytes content = 1;</code>
    */
   com.google.protobuf.ByteString getContent();
 
@@ -28,7 +28,7 @@ public interface RecognitionAudioOrBuilder extends
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>optional string uri = 2;</code>
+   * <code>string uri = 2;</code>
    */
   java.lang.String getUri();
   /**
@@ -41,7 +41,7 @@ public interface RecognitionAudioOrBuilder extends
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>optional string uri = 2;</code>
+   * <code>string uri = 2;</code>
    */
   com.google.protobuf.ByteString
       getUriBytes();

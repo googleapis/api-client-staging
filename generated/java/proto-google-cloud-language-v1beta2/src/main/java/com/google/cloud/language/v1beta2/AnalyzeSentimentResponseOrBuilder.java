@@ -12,7 +12,7 @@ public interface AnalyzeSentimentResponseOrBuilder extends
    * The overall sentiment of the input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
    */
   boolean hasDocumentSentiment();
   /**
@@ -20,7 +20,7 @@ public interface AnalyzeSentimentResponseOrBuilder extends
    * The overall sentiment of the input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
    */
   com.google.cloud.language.v1beta2.Sentiment getDocumentSentiment();
   /**
@@ -28,7 +28,7 @@ public interface AnalyzeSentimentResponseOrBuilder extends
    * The overall sentiment of the input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
    */
   com.google.cloud.language.v1beta2.SentimentOrBuilder getDocumentSentimentOrBuilder();
 
@@ -39,7 +39,7 @@ public interface AnalyzeSentimentResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 2;</code>
+   * <code>string language = 2;</code>
    */
   java.lang.String getLanguage();
   /**
@@ -49,7 +49,7 @@ public interface AnalyzeSentimentResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 2;</code>
+   * <code>string language = 2;</code>
    */
   com.google.protobuf.ByteString
       getLanguageBytes();

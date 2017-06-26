@@ -13,7 +13,7 @@ public interface ErrorContextOrBuilder extends
    * triggered.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   boolean hasHttpRequest();
   /**
@@ -22,7 +22,7 @@ public interface ErrorContextOrBuilder extends
    * triggered.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext getHttpRequest();
   /**
@@ -31,7 +31,7 @@ public interface ErrorContextOrBuilder extends
    * triggered.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContextOrBuilder getHttpRequestOrBuilder();
 
@@ -47,7 +47,7 @@ public interface ErrorContextOrBuilder extends
    * `ErrorGroupStats`.
    * </pre>
    *
-   * <code>optional string user = 2;</code>
+   * <code>string user = 2;</code>
    */
   java.lang.String getUser();
   /**
@@ -62,7 +62,7 @@ public interface ErrorContextOrBuilder extends
    * `ErrorGroupStats`.
    * </pre>
    *
-   * <code>optional string user = 2;</code>
+   * <code>string user = 2;</code>
    */
   com.google.protobuf.ByteString
       getUserBytes();
@@ -77,7 +77,7 @@ public interface ErrorContextOrBuilder extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   boolean hasReportLocation();
   /**
@@ -90,7 +90,7 @@ public interface ErrorContextOrBuilder extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.SourceLocation getReportLocation();
   /**
@@ -103,7 +103,7 @@ public interface ErrorContextOrBuilder extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.SourceLocationOrBuilder getReportLocationOrBuilder();
 }

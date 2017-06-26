@@ -13,7 +13,7 @@ public interface PullRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -22,7 +22,7 @@ public interface PullRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();
@@ -37,7 +37,7 @@ public interface PullRequestOrBuilder extends
    * the response.
    * </pre>
    *
-   * <code>optional bool return_immediately = 2;</code>
+   * <code>bool return_immediately = 2;</code>
    */
   boolean getReturnImmediately();
 
@@ -47,7 +47,7 @@ public interface PullRequestOrBuilder extends
    * system may return fewer than the number specified.
    * </pre>
    *
-   * <code>optional int32 max_messages = 3;</code>
+   * <code>int32 max_messages = 3;</code>
    */
   int getMaxMessages();
 }

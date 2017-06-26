@@ -12,7 +12,7 @@ public interface ReadRequestOrBuilder extends
    * Required. The session in which the read should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   java.lang.String getSession();
   /**
@@ -20,7 +20,7 @@ public interface ReadRequestOrBuilder extends
    * Required. The session in which the read should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   com.google.protobuf.ByteString
       getSessionBytes();
@@ -31,7 +31,7 @@ public interface ReadRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   boolean hasTransaction();
   /**
@@ -40,7 +40,7 @@ public interface ReadRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   com.google.spanner.v1.TransactionSelector getTransaction();
   /**
@@ -49,7 +49,7 @@ public interface ReadRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder();
 
@@ -58,7 +58,7 @@ public interface ReadRequestOrBuilder extends
    * Required. The name of the table in the database to be read.
    * </pre>
    *
-   * <code>optional string table = 3;</code>
+   * <code>string table = 3;</code>
    */
   java.lang.String getTable();
   /**
@@ -66,7 +66,7 @@ public interface ReadRequestOrBuilder extends
    * Required. The name of the table in the database to be read.
    * </pre>
    *
-   * <code>optional string table = 3;</code>
+   * <code>string table = 3;</code>
    */
   com.google.protobuf.ByteString
       getTableBytes();
@@ -78,7 +78,7 @@ public interface ReadRequestOrBuilder extends
    * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
    * </pre>
    *
-   * <code>optional string index = 4;</code>
+   * <code>string index = 4;</code>
    */
   java.lang.String getIndex();
   /**
@@ -88,7 +88,7 @@ public interface ReadRequestOrBuilder extends
    * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
    * </pre>
    *
-   * <code>optional string index = 4;</code>
+   * <code>string index = 4;</code>
    */
   com.google.protobuf.ByteString
       getIndexBytes();
@@ -144,7 +144,7 @@ public interface ReadRequestOrBuilder extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   boolean hasKeySet();
   /**
@@ -159,7 +159,7 @@ public interface ReadRequestOrBuilder extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   com.google.spanner.v1.KeySet getKeySet();
   /**
@@ -174,7 +174,7 @@ public interface ReadRequestOrBuilder extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder();
 
@@ -184,7 +184,7 @@ public interface ReadRequestOrBuilder extends
    * is zero, the default is no limit.
    * </pre>
    *
-   * <code>optional int64 limit = 8;</code>
+   * <code>int64 limit = 8;</code>
    */
   long getLimit();
 
@@ -198,7 +198,7 @@ public interface ReadRequestOrBuilder extends
    * that yielded this token.
    * </pre>
    *
-   * <code>optional bytes resume_token = 9;</code>
+   * <code>bytes resume_token = 9;</code>
    */
   com.google.protobuf.ByteString getResumeToken();
 }

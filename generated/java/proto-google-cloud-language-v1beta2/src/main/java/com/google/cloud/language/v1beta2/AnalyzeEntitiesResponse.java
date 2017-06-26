@@ -154,7 +154,7 @@ public  final class AnalyzeEntitiesResponse extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 2;</code>
+   * <code>string language = 2;</code>
    */
   public java.lang.String getLanguage() {
     java.lang.Object ref = language_;
@@ -175,7 +175,7 @@ public  final class AnalyzeEntitiesResponse extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>optional string language = 2;</code>
+   * <code>string language = 2;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageBytes() {
@@ -252,7 +252,7 @@ public  final class AnalyzeEntitiesResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getEntitiesCount() > 0) {
       hash = (37 * hash) + ENTITIES_FIELD_NUMBER;
       hash = (53 * hash) + getEntitiesList().hashCode();
@@ -264,6 +264,17 @@ public  final class AnalyzeEntitiesResponse extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.AnalyzeEntitiesResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.AnalyzeEntitiesResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.AnalyzeEntitiesResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -843,7 +854,7 @@ public  final class AnalyzeEntitiesResponse extends
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
      * </pre>
      *
-     * <code>optional string language = 2;</code>
+     * <code>string language = 2;</code>
      */
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
@@ -864,7 +875,7 @@ public  final class AnalyzeEntitiesResponse extends
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
      * </pre>
      *
-     * <code>optional string language = 2;</code>
+     * <code>string language = 2;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageBytes() {
@@ -886,7 +897,7 @@ public  final class AnalyzeEntitiesResponse extends
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
      * </pre>
      *
-     * <code>optional string language = 2;</code>
+     * <code>string language = 2;</code>
      */
     public Builder setLanguage(
         java.lang.String value) {
@@ -905,7 +916,7 @@ public  final class AnalyzeEntitiesResponse extends
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
      * </pre>
      *
-     * <code>optional string language = 2;</code>
+     * <code>string language = 2;</code>
      */
     public Builder clearLanguage() {
       
@@ -920,7 +931,7 @@ public  final class AnalyzeEntitiesResponse extends
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
      * </pre>
      *
-     * <code>optional string language = 2;</code>
+     * <code>string language = 2;</code>
      */
     public Builder setLanguageBytes(
         com.google.protobuf.ByteString value) {

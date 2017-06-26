@@ -112,7 +112,7 @@ public  final class AnnotateTextRequest extends
      * Extract syntax information.
      * </pre>
      *
-     * <code>optional bool extract_syntax = 1;</code>
+     * <code>bool extract_syntax = 1;</code>
      */
     boolean getExtractSyntax();
 
@@ -121,7 +121,7 @@ public  final class AnnotateTextRequest extends
      * Extract entities.
      * </pre>
      *
-     * <code>optional bool extract_entities = 2;</code>
+     * <code>bool extract_entities = 2;</code>
      */
     boolean getExtractEntities();
 
@@ -130,7 +130,7 @@ public  final class AnnotateTextRequest extends
      * Extract document-level sentiment.
      * </pre>
      *
-     * <code>optional bool extract_document_sentiment = 3;</code>
+     * <code>bool extract_document_sentiment = 3;</code>
      */
     boolean getExtractDocumentSentiment();
 
@@ -139,7 +139,7 @@ public  final class AnnotateTextRequest extends
      * Extract entities and their associated sentiment.
      * </pre>
      *
-     * <code>optional bool extract_entity_sentiment = 4;</code>
+     * <code>bool extract_entity_sentiment = 4;</code>
      */
     boolean getExtractEntitySentiment();
   }
@@ -241,7 +241,7 @@ public  final class AnnotateTextRequest extends
      * Extract syntax information.
      * </pre>
      *
-     * <code>optional bool extract_syntax = 1;</code>
+     * <code>bool extract_syntax = 1;</code>
      */
     public boolean getExtractSyntax() {
       return extractSyntax_;
@@ -254,7 +254,7 @@ public  final class AnnotateTextRequest extends
      * Extract entities.
      * </pre>
      *
-     * <code>optional bool extract_entities = 2;</code>
+     * <code>bool extract_entities = 2;</code>
      */
     public boolean getExtractEntities() {
       return extractEntities_;
@@ -267,7 +267,7 @@ public  final class AnnotateTextRequest extends
      * Extract document-level sentiment.
      * </pre>
      *
-     * <code>optional bool extract_document_sentiment = 3;</code>
+     * <code>bool extract_document_sentiment = 3;</code>
      */
     public boolean getExtractDocumentSentiment() {
       return extractDocumentSentiment_;
@@ -280,7 +280,7 @@ public  final class AnnotateTextRequest extends
      * Extract entities and their associated sentiment.
      * </pre>
      *
-     * <code>optional bool extract_entity_sentiment = 4;</code>
+     * <code>bool extract_entity_sentiment = 4;</code>
      */
     public boolean getExtractEntitySentiment() {
       return extractEntitySentiment_;
@@ -366,7 +366,7 @@ public  final class AnnotateTextRequest extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EXTRACT_SYNTAX_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getExtractSyntax());
@@ -384,6 +384,17 @@ public  final class AnnotateTextRequest extends
       return hash;
     }
 
+    public static com.google.cloud.language.v1beta2.AnnotateTextRequest.Features parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.cloud.language.v1beta2.AnnotateTextRequest.Features parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.cloud.language.v1beta2.AnnotateTextRequest.Features parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -621,7 +632,7 @@ public  final class AnnotateTextRequest extends
        * Extract syntax information.
        * </pre>
        *
-       * <code>optional bool extract_syntax = 1;</code>
+       * <code>bool extract_syntax = 1;</code>
        */
       public boolean getExtractSyntax() {
         return extractSyntax_;
@@ -631,7 +642,7 @@ public  final class AnnotateTextRequest extends
        * Extract syntax information.
        * </pre>
        *
-       * <code>optional bool extract_syntax = 1;</code>
+       * <code>bool extract_syntax = 1;</code>
        */
       public Builder setExtractSyntax(boolean value) {
         
@@ -644,7 +655,7 @@ public  final class AnnotateTextRequest extends
        * Extract syntax information.
        * </pre>
        *
-       * <code>optional bool extract_syntax = 1;</code>
+       * <code>bool extract_syntax = 1;</code>
        */
       public Builder clearExtractSyntax() {
         
@@ -659,7 +670,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities.
        * </pre>
        *
-       * <code>optional bool extract_entities = 2;</code>
+       * <code>bool extract_entities = 2;</code>
        */
       public boolean getExtractEntities() {
         return extractEntities_;
@@ -669,7 +680,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities.
        * </pre>
        *
-       * <code>optional bool extract_entities = 2;</code>
+       * <code>bool extract_entities = 2;</code>
        */
       public Builder setExtractEntities(boolean value) {
         
@@ -682,7 +693,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities.
        * </pre>
        *
-       * <code>optional bool extract_entities = 2;</code>
+       * <code>bool extract_entities = 2;</code>
        */
       public Builder clearExtractEntities() {
         
@@ -697,7 +708,7 @@ public  final class AnnotateTextRequest extends
        * Extract document-level sentiment.
        * </pre>
        *
-       * <code>optional bool extract_document_sentiment = 3;</code>
+       * <code>bool extract_document_sentiment = 3;</code>
        */
       public boolean getExtractDocumentSentiment() {
         return extractDocumentSentiment_;
@@ -707,7 +718,7 @@ public  final class AnnotateTextRequest extends
        * Extract document-level sentiment.
        * </pre>
        *
-       * <code>optional bool extract_document_sentiment = 3;</code>
+       * <code>bool extract_document_sentiment = 3;</code>
        */
       public Builder setExtractDocumentSentiment(boolean value) {
         
@@ -720,7 +731,7 @@ public  final class AnnotateTextRequest extends
        * Extract document-level sentiment.
        * </pre>
        *
-       * <code>optional bool extract_document_sentiment = 3;</code>
+       * <code>bool extract_document_sentiment = 3;</code>
        */
       public Builder clearExtractDocumentSentiment() {
         
@@ -735,7 +746,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities and their associated sentiment.
        * </pre>
        *
-       * <code>optional bool extract_entity_sentiment = 4;</code>
+       * <code>bool extract_entity_sentiment = 4;</code>
        */
       public boolean getExtractEntitySentiment() {
         return extractEntitySentiment_;
@@ -745,7 +756,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities and their associated sentiment.
        * </pre>
        *
-       * <code>optional bool extract_entity_sentiment = 4;</code>
+       * <code>bool extract_entity_sentiment = 4;</code>
        */
       public Builder setExtractEntitySentiment(boolean value) {
         
@@ -758,7 +769,7 @@ public  final class AnnotateTextRequest extends
        * Extract entities and their associated sentiment.
        * </pre>
        *
-       * <code>optional bool extract_entity_sentiment = 4;</code>
+       * <code>bool extract_entity_sentiment = 4;</code>
        */
       public Builder clearExtractEntitySentiment() {
         
@@ -822,7 +833,7 @@ public  final class AnnotateTextRequest extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public boolean hasDocument() {
     return document_ != null;
@@ -832,7 +843,7 @@ public  final class AnnotateTextRequest extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public com.google.cloud.language.v1beta2.Document getDocument() {
     return document_ == null ? com.google.cloud.language.v1beta2.Document.getDefaultInstance() : document_;
@@ -842,7 +853,7 @@ public  final class AnnotateTextRequest extends
    * Input document.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder() {
     return getDocument();
@@ -855,7 +866,7 @@ public  final class AnnotateTextRequest extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   public boolean hasFeatures() {
     return features_ != null;
@@ -865,7 +876,7 @@ public  final class AnnotateTextRequest extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   public com.google.cloud.language.v1beta2.AnnotateTextRequest.Features getFeatures() {
     return features_ == null ? com.google.cloud.language.v1beta2.AnnotateTextRequest.Features.getDefaultInstance() : features_;
@@ -875,7 +886,7 @@ public  final class AnnotateTextRequest extends
    * The enabled features.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+   * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
    */
   public com.google.cloud.language.v1beta2.AnnotateTextRequest.FeaturesOrBuilder getFeaturesOrBuilder() {
     return getFeatures();
@@ -888,7 +899,7 @@ public  final class AnnotateTextRequest extends
    * The encoding type used by the API to calculate offsets.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
    */
   public int getEncodingTypeValue() {
     return encodingType_;
@@ -898,7 +909,7 @@ public  final class AnnotateTextRequest extends
    * The encoding type used by the API to calculate offsets.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
    */
   public com.google.cloud.language.v1beta2.EncodingType getEncodingType() {
     com.google.cloud.language.v1beta2.EncodingType result = com.google.cloud.language.v1beta2.EncodingType.valueOf(encodingType_);
@@ -981,7 +992,7 @@ public  final class AnnotateTextRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasDocument()) {
       hash = (37 * hash) + DOCUMENT_FIELD_NUMBER;
       hash = (53 * hash) + getDocument().hashCode();
@@ -997,6 +1008,17 @@ public  final class AnnotateTextRequest extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.AnnotateTextRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.AnnotateTextRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.AnnotateTextRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1246,7 +1268,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public boolean hasDocument() {
       return documentBuilder_ != null || document_ != null;
@@ -1256,7 +1278,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.Document getDocument() {
       if (documentBuilder_ == null) {
@@ -1270,7 +1292,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder setDocument(com.google.cloud.language.v1beta2.Document value) {
       if (documentBuilder_ == null) {
@@ -1290,7 +1312,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder setDocument(
         com.google.cloud.language.v1beta2.Document.Builder builderForValue) {
@@ -1308,7 +1330,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder mergeDocument(com.google.cloud.language.v1beta2.Document value) {
       if (documentBuilder_ == null) {
@@ -1330,7 +1352,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder clearDocument() {
       if (documentBuilder_ == null) {
@@ -1348,7 +1370,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.Document.Builder getDocumentBuilder() {
       
@@ -1360,7 +1382,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder() {
       if (documentBuilder_ != null) {
@@ -1375,7 +1397,7 @@ public  final class AnnotateTextRequest extends
      * Input document.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.Document, com.google.cloud.language.v1beta2.Document.Builder, com.google.cloud.language.v1beta2.DocumentOrBuilder> 
@@ -1399,7 +1421,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public boolean hasFeatures() {
       return featuresBuilder_ != null || features_ != null;
@@ -1409,7 +1431,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public com.google.cloud.language.v1beta2.AnnotateTextRequest.Features getFeatures() {
       if (featuresBuilder_ == null) {
@@ -1423,7 +1445,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public Builder setFeatures(com.google.cloud.language.v1beta2.AnnotateTextRequest.Features value) {
       if (featuresBuilder_ == null) {
@@ -1443,7 +1465,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public Builder setFeatures(
         com.google.cloud.language.v1beta2.AnnotateTextRequest.Features.Builder builderForValue) {
@@ -1461,7 +1483,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public Builder mergeFeatures(com.google.cloud.language.v1beta2.AnnotateTextRequest.Features value) {
       if (featuresBuilder_ == null) {
@@ -1483,7 +1505,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public Builder clearFeatures() {
       if (featuresBuilder_ == null) {
@@ -1501,7 +1523,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public com.google.cloud.language.v1beta2.AnnotateTextRequest.Features.Builder getFeaturesBuilder() {
       
@@ -1513,7 +1535,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     public com.google.cloud.language.v1beta2.AnnotateTextRequest.FeaturesOrBuilder getFeaturesOrBuilder() {
       if (featuresBuilder_ != null) {
@@ -1528,7 +1550,7 @@ public  final class AnnotateTextRequest extends
      * The enabled features.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.AnnotateTextRequest.Features, com.google.cloud.language.v1beta2.AnnotateTextRequest.Features.Builder, com.google.cloud.language.v1beta2.AnnotateTextRequest.FeaturesOrBuilder> 
@@ -1550,7 +1572,7 @@ public  final class AnnotateTextRequest extends
      * The encoding type used by the API to calculate offsets.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
      */
     public int getEncodingTypeValue() {
       return encodingType_;
@@ -1560,7 +1582,7 @@ public  final class AnnotateTextRequest extends
      * The encoding type used by the API to calculate offsets.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
      */
     public Builder setEncodingTypeValue(int value) {
       encodingType_ = value;
@@ -1572,7 +1594,7 @@ public  final class AnnotateTextRequest extends
      * The encoding type used by the API to calculate offsets.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
      */
     public com.google.cloud.language.v1beta2.EncodingType getEncodingType() {
       com.google.cloud.language.v1beta2.EncodingType result = com.google.cloud.language.v1beta2.EncodingType.valueOf(encodingType_);
@@ -1583,7 +1605,7 @@ public  final class AnnotateTextRequest extends
      * The encoding type used by the API to calculate offsets.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
      */
     public Builder setEncodingType(com.google.cloud.language.v1beta2.EncodingType value) {
       if (value == null) {
@@ -1599,7 +1621,7 @@ public  final class AnnotateTextRequest extends
      * The encoding type used by the API to calculate offsets.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
      */
     public Builder clearEncodingType() {
       

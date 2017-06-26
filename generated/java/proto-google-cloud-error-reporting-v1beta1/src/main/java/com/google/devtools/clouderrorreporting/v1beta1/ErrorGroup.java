@@ -105,7 +105,7 @@ public  final class ErrorGroup extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -125,7 +125,7 @@ public  final class ErrorGroup extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -149,7 +149,7 @@ public  final class ErrorGroup extends
    * occurs in different service contexts, it will receive the same group ID.
    * </pre>
    *
-   * <code>optional string group_id = 2;</code>
+   * <code>string group_id = 2;</code>
    */
   public java.lang.String getGroupId() {
     java.lang.Object ref = groupId_;
@@ -169,7 +169,7 @@ public  final class ErrorGroup extends
    * occurs in different service contexts, it will receive the same group ID.
    * </pre>
    *
-   * <code>optional string group_id = 2;</code>
+   * <code>string group_id = 2;</code>
    */
   public com.google.protobuf.ByteString
       getGroupIdBytes() {
@@ -309,7 +309,7 @@ public  final class ErrorGroup extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + GROUP_ID_FIELD_NUMBER;
@@ -323,6 +323,17 @@ public  final class ErrorGroup extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -596,7 +607,7 @@ public  final class ErrorGroup extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -616,7 +627,7 @@ public  final class ErrorGroup extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -637,7 +648,7 @@ public  final class ErrorGroup extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -655,7 +666,7 @@ public  final class ErrorGroup extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -669,7 +680,7 @@ public  final class ErrorGroup extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -690,7 +701,7 @@ public  final class ErrorGroup extends
      * occurs in different service contexts, it will receive the same group ID.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public java.lang.String getGroupId() {
       java.lang.Object ref = groupId_;
@@ -710,7 +721,7 @@ public  final class ErrorGroup extends
      * occurs in different service contexts, it will receive the same group ID.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public com.google.protobuf.ByteString
         getGroupIdBytes() {
@@ -731,7 +742,7 @@ public  final class ErrorGroup extends
      * occurs in different service contexts, it will receive the same group ID.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder setGroupId(
         java.lang.String value) {
@@ -749,7 +760,7 @@ public  final class ErrorGroup extends
      * occurs in different service contexts, it will receive the same group ID.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder clearGroupId() {
       
@@ -763,7 +774,7 @@ public  final class ErrorGroup extends
      * occurs in different service contexts, it will receive the same group ID.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder setGroupIdBytes(
         com.google.protobuf.ByteString value) {

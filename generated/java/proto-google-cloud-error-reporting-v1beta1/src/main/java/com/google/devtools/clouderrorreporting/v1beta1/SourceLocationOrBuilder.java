@@ -13,7 +13,7 @@ public interface SourceLocationOrBuilder extends
    * path, or a full path from a production machine.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   java.lang.String getFilePath();
   /**
@@ -22,7 +22,7 @@ public interface SourceLocationOrBuilder extends
    * path, or a full path from a production machine.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   com.google.protobuf.ByteString
       getFilePathBytes();
@@ -32,7 +32,7 @@ public interface SourceLocationOrBuilder extends
    * 1-based. 0 indicates that the line number is unknown.
    * </pre>
    *
-   * <code>optional int32 line_number = 2;</code>
+   * <code>int32 line_number = 2;</code>
    */
   int getLineNumber();
 
@@ -43,7 +43,7 @@ public interface SourceLocationOrBuilder extends
    * For example, `my.package.MyClass.method` in case of Java.
    * </pre>
    *
-   * <code>optional string function_name = 4;</code>
+   * <code>string function_name = 4;</code>
    */
   java.lang.String getFunctionName();
   /**
@@ -53,7 +53,7 @@ public interface SourceLocationOrBuilder extends
    * For example, `my.package.MyClass.method` in case of Java.
    * </pre>
    *
-   * <code>optional string function_name = 4;</code>
+   * <code>string function_name = 4;</code>
    */
   com.google.protobuf.ByteString
       getFunctionNameBytes();

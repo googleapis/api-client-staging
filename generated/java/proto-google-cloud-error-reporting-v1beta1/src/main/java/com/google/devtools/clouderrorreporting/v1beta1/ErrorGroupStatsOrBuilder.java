@@ -12,7 +12,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   boolean hasGroup();
   /**
@@ -20,7 +20,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup();
   /**
@@ -28,7 +28,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * Group data that is independent of the filter criteria.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder();
 
@@ -38,7 +38,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * the filter criteria.
    * </pre>
    *
-   * <code>optional int64 count = 2;</code>
+   * <code>int64 count = 2;</code>
    */
   long getCount();
 
@@ -58,7 +58,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * this is not reflected here.
    * </pre>
    *
-   * <code>optional int64 affected_users_count = 3;</code>
+   * <code>int64 affected_users_count = 3;</code>
    */
   long getAffectedUsersCount();
 
@@ -133,7 +133,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   boolean hasFirstSeenTime();
   /**
@@ -143,7 +143,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   com.google.protobuf.Timestamp getFirstSeenTime();
   /**
@@ -153,7 +153,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * time_range that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp first_seen_time = 5;</code>
+   * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
    */
   com.google.protobuf.TimestampOrBuilder getFirstSeenTimeOrBuilder();
 
@@ -164,7 +164,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   boolean hasLastSeenTime();
   /**
@@ -174,7 +174,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   com.google.protobuf.Timestamp getLastSeenTime();
   /**
@@ -184,7 +184,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * that was specified in the request.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_seen_time = 6;</code>
+   * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getLastSeenTimeOrBuilder();
 
@@ -248,7 +248,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * filter criteria.
    * </pre>
    *
-   * <code>optional int32 num_affected_services = 8;</code>
+   * <code>int32 num_affected_services = 8;</code>
    */
   int getNumAffectedServices();
 
@@ -261,7 +261,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   boolean hasRepresentative();
   /**
@@ -273,7 +273,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorEvent getRepresentative();
   /**
@@ -285,7 +285,7 @@ public interface ErrorGroupStatsOrBuilder extends
    * insight into the characteristics of the group as a whole.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorEventOrBuilder getRepresentativeOrBuilder();
 }

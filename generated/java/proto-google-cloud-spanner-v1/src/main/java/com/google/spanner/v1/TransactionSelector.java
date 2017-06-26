@@ -153,7 +153,7 @@ public  final class TransactionSelector extends
    * consists of a single SQL query.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
    */
   public com.google.spanner.v1.TransactionOptions getSingleUse() {
     if (selectorCase_ == 1) {
@@ -168,7 +168,7 @@ public  final class TransactionSelector extends
    * consists of a single SQL query.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
    */
   public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseOrBuilder() {
     if (selectorCase_ == 1) {
@@ -183,7 +183,7 @@ public  final class TransactionSelector extends
    * Execute the read or SQL query in a previously-started transaction.
    * </pre>
    *
-   * <code>optional bytes id = 2;</code>
+   * <code>bytes id = 2;</code>
    */
   public com.google.protobuf.ByteString getId() {
     if (selectorCase_ == 2) {
@@ -200,7 +200,7 @@ public  final class TransactionSelector extends
    * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
    */
   public com.google.spanner.v1.TransactionOptions getBegin() {
     if (selectorCase_ == 3) {
@@ -215,7 +215,7 @@ public  final class TransactionSelector extends
    * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
    */
   public com.google.spanner.v1.TransactionOptionsOrBuilder getBeginOrBuilder() {
     if (selectorCase_ == 3) {
@@ -241,7 +241,7 @@ public  final class TransactionSelector extends
     }
     if (selectorCase_ == 2) {
       output.writeBytes(
-          2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) selector_));
+          2, (com.google.protobuf.ByteString) selector_);
     }
     if (selectorCase_ == 3) {
       output.writeMessage(3, (com.google.spanner.v1.TransactionOptions) selector_);
@@ -260,7 +260,7 @@ public  final class TransactionSelector extends
     if (selectorCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(
-            2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) selector_));
+            2, (com.google.protobuf.ByteString) selector_);
     }
     if (selectorCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
@@ -310,7 +310,7 @@ public  final class TransactionSelector extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (selectorCase_) {
       case 1:
         hash = (37 * hash) + SINGLE_USE_FIELD_NUMBER;
@@ -332,6 +332,17 @@ public  final class TransactionSelector extends
     return hash;
   }
 
+  public static com.google.spanner.v1.TransactionSelector parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.TransactionSelector parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.TransactionSelector parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -602,7 +613,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptions getSingleUse() {
       if (singleUseBuilder_ == null) {
@@ -624,7 +635,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public Builder setSingleUse(com.google.spanner.v1.TransactionOptions value) {
       if (singleUseBuilder_ == null) {
@@ -646,7 +657,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public Builder setSingleUse(
         com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
@@ -666,7 +677,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public Builder mergeSingleUse(com.google.spanner.v1.TransactionOptions value) {
       if (singleUseBuilder_ == null) {
@@ -694,7 +705,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public Builder clearSingleUse() {
       if (singleUseBuilder_ == null) {
@@ -719,7 +730,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptions.Builder getSingleUseBuilder() {
       return getSingleUseFieldBuilder().getBuilder();
@@ -731,7 +742,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseOrBuilder() {
       if ((selectorCase_ == 1) && (singleUseBuilder_ != null)) {
@@ -750,7 +761,7 @@ public  final class TransactionSelector extends
      * consists of a single SQL query.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions, com.google.spanner.v1.TransactionOptions.Builder, com.google.spanner.v1.TransactionOptionsOrBuilder> 
@@ -776,7 +787,7 @@ public  final class TransactionSelector extends
      * Execute the read or SQL query in a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes id = 2;</code>
+     * <code>bytes id = 2;</code>
      */
     public com.google.protobuf.ByteString getId() {
       if (selectorCase_ == 2) {
@@ -789,7 +800,7 @@ public  final class TransactionSelector extends
      * Execute the read or SQL query in a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes id = 2;</code>
+     * <code>bytes id = 2;</code>
      */
     public Builder setId(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -805,7 +816,7 @@ public  final class TransactionSelector extends
      * Execute the read or SQL query in a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes id = 2;</code>
+     * <code>bytes id = 2;</code>
      */
     public Builder clearId() {
       if (selectorCase_ == 2) {
@@ -825,7 +836,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptions getBegin() {
       if (beginBuilder_ == null) {
@@ -847,7 +858,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public Builder setBegin(com.google.spanner.v1.TransactionOptions value) {
       if (beginBuilder_ == null) {
@@ -869,7 +880,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public Builder setBegin(
         com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
@@ -889,7 +900,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public Builder mergeBegin(com.google.spanner.v1.TransactionOptions value) {
       if (beginBuilder_ == null) {
@@ -917,7 +928,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public Builder clearBegin() {
       if (beginBuilder_ == null) {
@@ -942,7 +953,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptions.Builder getBeginBuilder() {
       return getBeginFieldBuilder().getBuilder();
@@ -954,7 +965,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptionsOrBuilder getBeginOrBuilder() {
       if ((selectorCase_ == 3) && (beginBuilder_ != null)) {
@@ -973,7 +984,7 @@ public  final class TransactionSelector extends
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions begin = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions, com.google.spanner.v1.TransactionOptions.Builder, com.google.spanner.v1.TransactionOptionsOrBuilder> 

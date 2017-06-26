@@ -63,7 +63,7 @@ public interface ListMetricDescriptorsResponseOrBuilder extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -73,7 +73,7 @@ public interface ListMetricDescriptorsResponseOrBuilder extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

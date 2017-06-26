@@ -12,7 +12,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
    * *Output-only* Transcript text representing the words that the user spoke.
    * </pre>
    *
-   * <code>optional string transcript = 1;</code>
+   * <code>string transcript = 1;</code>
    */
   java.lang.String getTranscript();
   /**
@@ -20,7 +20,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
    * *Output-only* Transcript text representing the words that the user spoke.
    * </pre>
    *
-   * <code>optional string transcript = 1;</code>
+   * <code>string transcript = 1;</code>
    */
   com.google.protobuf.ByteString
       getTranscriptBytes();
@@ -36,7 +36,7 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
    * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * </pre>
    *
-   * <code>optional float confidence = 2;</code>
+   * <code>float confidence = 2;</code>
    */
   float getConfidence();
 }

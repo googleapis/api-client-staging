@@ -12,7 +12,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   boolean hasText();
   /**
@@ -20,7 +20,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpan getText();
   /**
@@ -28,7 +28,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder();
 
@@ -39,7 +39,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
    */
   boolean hasSentiment();
   /**
@@ -49,7 +49,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
    */
   com.google.cloud.language.v1beta2.Sentiment getSentiment();
   /**
@@ -59,7 +59,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
    */
   com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder();
 }

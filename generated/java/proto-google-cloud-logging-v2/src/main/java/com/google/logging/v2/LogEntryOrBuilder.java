@@ -26,7 +26,7 @@ public interface LogEntryOrBuilder extends
    * any results.
    * </pre>
    *
-   * <code>optional string log_name = 12;</code>
+   * <code>string log_name = 12;</code>
    */
   java.lang.String getLogName();
   /**
@@ -48,7 +48,7 @@ public interface LogEntryOrBuilder extends
    * any results.
    * </pre>
    *
-   * <code>optional string log_name = 12;</code>
+   * <code>string log_name = 12;</code>
    */
   com.google.protobuf.ByteString
       getLogNameBytes();
@@ -61,7 +61,7 @@ public interface LogEntryOrBuilder extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   boolean hasResource();
   /**
@@ -72,7 +72,7 @@ public interface LogEntryOrBuilder extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   com.google.api.MonitoredResource getResource();
   /**
@@ -83,7 +83,7 @@ public interface LogEntryOrBuilder extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder();
 
@@ -94,7 +94,7 @@ public interface LogEntryOrBuilder extends
    * entry payloads.
    * </pre>
    *
-   * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+   * <code>.google.protobuf.Any proto_payload = 2;</code>
    */
   com.google.protobuf.Any getProtoPayload();
   /**
@@ -104,7 +104,7 @@ public interface LogEntryOrBuilder extends
    * entry payloads.
    * </pre>
    *
-   * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+   * <code>.google.protobuf.Any proto_payload = 2;</code>
    */
   com.google.protobuf.AnyOrBuilder getProtoPayloadOrBuilder();
 
@@ -113,7 +113,7 @@ public interface LogEntryOrBuilder extends
    * The log entry payload, represented as a Unicode string (UTF-8).
    * </pre>
    *
-   * <code>optional string text_payload = 3;</code>
+   * <code>string text_payload = 3;</code>
    */
   java.lang.String getTextPayload();
   /**
@@ -121,7 +121,7 @@ public interface LogEntryOrBuilder extends
    * The log entry payload, represented as a Unicode string (UTF-8).
    * </pre>
    *
-   * <code>optional string text_payload = 3;</code>
+   * <code>string text_payload = 3;</code>
    */
   com.google.protobuf.ByteString
       getTextPayloadBytes();
@@ -132,7 +132,7 @@ public interface LogEntryOrBuilder extends
    * expressed as a JSON object.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+   * <code>.google.protobuf.Struct json_payload = 6;</code>
    */
   com.google.protobuf.Struct getJsonPayload();
   /**
@@ -141,7 +141,7 @@ public interface LogEntryOrBuilder extends
    * expressed as a JSON object.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+   * <code>.google.protobuf.Struct json_payload = 6;</code>
    */
   com.google.protobuf.StructOrBuilder getJsonPayloadOrBuilder();
 
@@ -154,7 +154,7 @@ public interface LogEntryOrBuilder extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   boolean hasTimestamp();
   /**
@@ -166,7 +166,7 @@ public interface LogEntryOrBuilder extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   com.google.protobuf.Timestamp getTimestamp();
   /**
@@ -178,7 +178,7 @@ public interface LogEntryOrBuilder extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();
 
@@ -187,7 +187,7 @@ public interface LogEntryOrBuilder extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   boolean hasReceiveTimestamp();
   /**
@@ -195,7 +195,7 @@ public interface LogEntryOrBuilder extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   com.google.protobuf.Timestamp getReceiveTimestamp();
   /**
@@ -203,7 +203,7 @@ public interface LogEntryOrBuilder extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   com.google.protobuf.TimestampOrBuilder getReceiveTimestampOrBuilder();
 
@@ -213,7 +213,7 @@ public interface LogEntryOrBuilder extends
    * `LogSeverity.DEFAULT`.
    * </pre>
    *
-   * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+   * <code>.google.logging.type.LogSeverity severity = 10;</code>
    */
   int getSeverityValue();
   /**
@@ -222,7 +222,7 @@ public interface LogEntryOrBuilder extends
    * `LogSeverity.DEFAULT`.
    * </pre>
    *
-   * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+   * <code>.google.logging.type.LogSeverity severity = 10;</code>
    */
   com.google.logging.type.LogSeverity getSeverity();
 
@@ -236,7 +236,7 @@ public interface LogEntryOrBuilder extends
    * to order log entries that have the same `timestamp` value.
    * </pre>
    *
-   * <code>optional string insert_id = 4;</code>
+   * <code>string insert_id = 4;</code>
    */
   java.lang.String getInsertId();
   /**
@@ -249,7 +249,7 @@ public interface LogEntryOrBuilder extends
    * to order log entries that have the same `timestamp` value.
    * </pre>
    *
-   * <code>optional string insert_id = 4;</code>
+   * <code>string insert_id = 4;</code>
    */
   com.google.protobuf.ByteString
       getInsertIdBytes();
@@ -260,7 +260,7 @@ public interface LogEntryOrBuilder extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   boolean hasHttpRequest();
   /**
@@ -269,7 +269,7 @@ public interface LogEntryOrBuilder extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   com.google.logging.type.HttpRequest getHttpRequest();
   /**
@@ -278,7 +278,7 @@ public interface LogEntryOrBuilder extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   com.google.logging.type.HttpRequestOrBuilder getHttpRequestOrBuilder();
 
@@ -347,7 +347,7 @@ public interface LogEntryOrBuilder extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   boolean hasOperation();
   /**
@@ -356,7 +356,7 @@ public interface LogEntryOrBuilder extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   com.google.logging.v2.LogEntryOperation getOperation();
   /**
@@ -365,7 +365,7 @@ public interface LogEntryOrBuilder extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   com.google.logging.v2.LogEntryOperationOrBuilder getOperationOrBuilder();
 
@@ -377,7 +377,7 @@ public interface LogEntryOrBuilder extends
    * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
    * </pre>
    *
-   * <code>optional string trace = 22;</code>
+   * <code>string trace = 22;</code>
    */
   java.lang.String getTrace();
   /**
@@ -388,7 +388,7 @@ public interface LogEntryOrBuilder extends
    * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
    * </pre>
    *
-   * <code>optional string trace = 22;</code>
+   * <code>string trace = 22;</code>
    */
   com.google.protobuf.ByteString
       getTraceBytes();
@@ -399,7 +399,7 @@ public interface LogEntryOrBuilder extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   boolean hasSourceLocation();
   /**
@@ -408,7 +408,7 @@ public interface LogEntryOrBuilder extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   com.google.logging.v2.LogEntrySourceLocation getSourceLocation();
   /**
@@ -417,7 +417,7 @@ public interface LogEntryOrBuilder extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   com.google.logging.v2.LogEntrySourceLocationOrBuilder getSourceLocationOrBuilder();
 

@@ -17,7 +17,7 @@ public interface ServiceContextOrBuilder extends
    * App Engine logs or `default` if the App Engine default service is used.
    * </pre>
    *
-   * <code>optional string service = 2;</code>
+   * <code>string service = 2;</code>
    */
   java.lang.String getService();
   /**
@@ -30,7 +30,7 @@ public interface ServiceContextOrBuilder extends
    * App Engine logs or `default` if the App Engine default service is used.
    * </pre>
    *
-   * <code>optional string service = 2;</code>
+   * <code>string service = 2;</code>
    */
   com.google.protobuf.ByteString
       getServiceBytes();
@@ -41,7 +41,7 @@ public interface ServiceContextOrBuilder extends
    * which could represent a version label or a Git SHA-1 hash, for example.
    * </pre>
    *
-   * <code>optional string version = 3;</code>
+   * <code>string version = 3;</code>
    */
   java.lang.String getVersion();
   /**
@@ -50,7 +50,7 @@ public interface ServiceContextOrBuilder extends
    * which could represent a version label or a Git SHA-1 hash, for example.
    * </pre>
    *
-   * <code>optional string version = 3;</code>
+   * <code>string version = 3;</code>
    */
   com.google.protobuf.ByteString
       getVersionBytes();
@@ -63,7 +63,7 @@ public interface ServiceContextOrBuilder extends
    * reporting errors.
    * </pre>
    *
-   * <code>optional string resource_type = 4;</code>
+   * <code>string resource_type = 4;</code>
    */
   java.lang.String getResourceType();
   /**
@@ -74,7 +74,7 @@ public interface ServiceContextOrBuilder extends
    * reporting errors.
    * </pre>
    *
-   * <code>optional string resource_type = 4;</code>
+   * <code>string resource_type = 4;</code>
    */
   com.google.protobuf.ByteString
       getResourceTypeBytes();

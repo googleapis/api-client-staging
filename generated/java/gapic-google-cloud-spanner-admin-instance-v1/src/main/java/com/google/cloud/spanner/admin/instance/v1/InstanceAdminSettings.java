@@ -30,6 +30,7 @@ import com.google.api.gax.grpc.ExecutorProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.grpc.InstantiatingExecutorProvider;
 import com.google.api.gax.grpc.OperationCallSettings;
+import com.google.api.gax.grpc.OperationTimedPollAlgorithm;
 import com.google.api.gax.grpc.PageContext;
 import com.google.api.gax.grpc.PagedCallSettings;
 import com.google.api.gax.grpc.PagedListDescriptor;
@@ -50,6 +51,7 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.longrunning.Operation;
 import com.google.protobuf.Empty;
+import com.google.spanner.admin.instance.v1.CreateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.CreateInstanceRequest;
 import com.google.spanner.admin.instance.v1.DeleteInstanceRequest;
 import com.google.spanner.admin.instance.v1.GetInstanceConfigRequest;
@@ -60,6 +62,7 @@ import com.google.spanner.admin.instance.v1.ListInstanceConfigsRequest;
 import com.google.spanner.admin.instance.v1.ListInstanceConfigsResponse;
 import com.google.spanner.admin.instance.v1.ListInstancesRequest;
 import com.google.spanner.admin.instance.v1.ListInstancesResponse;
+import com.google.spanner.admin.instance.v1.UpdateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.UpdateInstanceRequest;
 import io.grpc.Status;
 import java.io.IOException;
@@ -195,8 +198,10 @@ public class InstanceAdminSettings extends ClientSettings {
           ListInstancesRequest, ListInstancesResponse, ListInstancesPagedResponse>
       listInstancesSettings;
   private final SimpleCallSettings<GetInstanceRequest, Instance> getInstanceSettings;
-  private final OperationCallSettings<CreateInstanceRequest, Instance> createInstanceSettings;
-  private final OperationCallSettings<UpdateInstanceRequest, Instance> updateInstanceSettings;
+  private final OperationCallSettings<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+      createInstanceSettings;
+  private final OperationCallSettings<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+      updateInstanceSettings;
   private final SimpleCallSettings<DeleteInstanceRequest, Empty> deleteInstanceSettings;
   private final SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
   private final SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
@@ -227,12 +232,14 @@ public class InstanceAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to createInstance. */
-  public OperationCallSettings<CreateInstanceRequest, Instance> createInstanceSettings() {
+  public OperationCallSettings<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+      createInstanceSettings() {
     return createInstanceSettings;
   }
 
   /** Returns the object with the settings used for calls to updateInstance. */
-  public OperationCallSettings<UpdateInstanceRequest, Instance> updateInstanceSettings() {
+  public OperationCallSettings<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+      updateInstanceSettings() {
     return updateInstanceSettings;
   }
 
@@ -450,9 +457,11 @@ public class InstanceAdminSettings extends ClientSettings {
             ListInstancesRequest, ListInstancesResponse, ListInstancesPagedResponse>
         listInstancesSettings;
     private final SimpleCallSettings.Builder<GetInstanceRequest, Instance> getInstanceSettings;
-    private final OperationCallSettings.Builder<CreateInstanceRequest, Instance>
+    private final OperationCallSettings.Builder<
+            CreateInstanceRequest, Instance, CreateInstanceMetadata>
         createInstanceSettings;
-    private final OperationCallSettings.Builder<UpdateInstanceRequest, Instance>
+    private final OperationCallSettings.Builder<
+            UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
         updateInstanceSettings;
     private final SimpleCallSettings.Builder<DeleteInstanceRequest, Empty> deleteInstanceSettings;
     private final SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
@@ -506,11 +515,9 @@ public class InstanceAdminSettings extends ClientSettings {
 
       getInstanceSettings = SimpleCallSettings.newBuilder(METHOD_GET_INSTANCE);
 
-      createInstanceSettings =
-          OperationCallSettings.newBuilder(METHOD_CREATE_INSTANCE, Instance.class);
+      createInstanceSettings = OperationCallSettings.newBuilder();
 
-      updateInstanceSettings =
-          OperationCallSettings.newBuilder(METHOD_UPDATE_INSTANCE, Instance.class);
+      updateInstanceSettings = OperationCallSettings.newBuilder();
 
       deleteInstanceSettings = SimpleCallSettings.newBuilder(METHOD_DELETE_INSTANCE);
 
@@ -576,14 +583,44 @@ public class InstanceAdminSettings extends ClientSettings {
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
       builder
           .createInstanceSettings()
-          .getInitialCallSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setInitialCallSettings(
+              SimpleCallSettings.newBuilder(METHOD_CREATE_INSTANCE)
+                  .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+                  .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"))
+                  .build())
+          .setResponseClass(Instance.class)
+          .setMetadataClass(CreateInstanceMetadata.class)
+          .setPollingAlgorithm(
+              OperationTimedPollAlgorithm.create(
+                  RetrySettings.newBuilder()
+                      .setInitialRetryDelay(Duration.ofMillis(20000L))
+                      .setRetryDelayMultiplier(1.5)
+                      .setMaxRetryDelay(Duration.ofMillis(45000L))
+                      .setInitialRpcTimeout(Duration.ZERO) // ignored
+                      .setRpcTimeoutMultiplier(1.0) // ignored
+                      .setMaxRpcTimeout(Duration.ZERO) // ignored
+                      .setTotalTimeout(Duration.ofMillis(86400000L))
+                      .build()));
       builder
           .updateInstanceSettings()
-          .getInitialCallSettings()
-          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setInitialCallSettings(
+              SimpleCallSettings.newBuilder(METHOD_UPDATE_INSTANCE)
+                  .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+                  .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"))
+                  .build())
+          .setResponseClass(Instance.class)
+          .setMetadataClass(UpdateInstanceMetadata.class)
+          .setPollingAlgorithm(
+              OperationTimedPollAlgorithm.create(
+                  RetrySettings.newBuilder()
+                      .setInitialRetryDelay(Duration.ofMillis(20000L))
+                      .setRetryDelayMultiplier(1.5)
+                      .setMaxRetryDelay(Duration.ofMillis(45000L))
+                      .setInitialRpcTimeout(Duration.ZERO) // ignored
+                      .setRpcTimeoutMultiplier(1.0) // ignored
+                      .setMaxRpcTimeout(Duration.ZERO) // ignored
+                      .setTotalTimeout(Duration.ofMillis(86400000L))
+                      .build()));
 
       return builder;
     }
@@ -671,12 +708,14 @@ public class InstanceAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to createInstance. */
-    public OperationCallSettings.Builder<CreateInstanceRequest, Instance> createInstanceSettings() {
+    public OperationCallSettings.Builder<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+        createInstanceSettings() {
       return createInstanceSettings;
     }
 
     /** Returns the builder for the settings used for calls to updateInstance. */
-    public OperationCallSettings.Builder<UpdateInstanceRequest, Instance> updateInstanceSettings() {
+    public OperationCallSettings.Builder<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+        updateInstanceSettings() {
       return updateInstanceSettings;
     }
 

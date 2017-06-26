@@ -89,7 +89,7 @@ public  final class LocationInfo extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   public boolean hasLatLng() {
     return latLng_ != null;
@@ -99,7 +99,7 @@ public  final class LocationInfo extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   public com.google.type.LatLng getLatLng() {
     return latLng_ == null ? com.google.type.LatLng.getDefaultInstance() : latLng_;
@@ -109,7 +109,7 @@ public  final class LocationInfo extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   public com.google.type.LatLngOrBuilder getLatLngOrBuilder() {
     return getLatLng();
@@ -171,7 +171,7 @@ public  final class LocationInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasLatLng()) {
       hash = (37 * hash) + LAT_LNG_FIELD_NUMBER;
       hash = (53 * hash) + getLatLng().hashCode();
@@ -181,6 +181,17 @@ public  final class LocationInfo extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.LocationInfo parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.LocationInfo parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.LocationInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -409,7 +420,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public boolean hasLatLng() {
       return latLngBuilder_ != null || latLng_ != null;
@@ -419,7 +430,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public com.google.type.LatLng getLatLng() {
       if (latLngBuilder_ == null) {
@@ -433,7 +444,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public Builder setLatLng(com.google.type.LatLng value) {
       if (latLngBuilder_ == null) {
@@ -453,7 +464,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public Builder setLatLng(
         com.google.type.LatLng.Builder builderForValue) {
@@ -471,7 +482,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public Builder mergeLatLng(com.google.type.LatLng value) {
       if (latLngBuilder_ == null) {
@@ -493,7 +504,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public Builder clearLatLng() {
       if (latLngBuilder_ == null) {
@@ -511,7 +522,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public com.google.type.LatLng.Builder getLatLngBuilder() {
       
@@ -523,7 +534,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     public com.google.type.LatLngOrBuilder getLatLngOrBuilder() {
       if (latLngBuilder_ != null) {
@@ -538,7 +549,7 @@ public  final class LocationInfo extends
      * lat/long location coordinates.
      * </pre>
      *
-     * <code>optional .google.type.LatLng lat_lng = 1;</code>
+     * <code>.google.type.LatLng lat_lng = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.type.LatLng, com.google.type.LatLng.Builder, com.google.type.LatLngOrBuilder> 

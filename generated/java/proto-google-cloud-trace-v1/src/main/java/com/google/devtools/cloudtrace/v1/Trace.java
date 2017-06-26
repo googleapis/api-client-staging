@@ -106,7 +106,7 @@ public  final class Trace extends
    * Project ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public java.lang.String getProjectId() {
     java.lang.Object ref = projectId_;
@@ -125,7 +125,7 @@ public  final class Trace extends
    * Project ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectIdBytes() {
@@ -149,7 +149,7 @@ public  final class Trace extends
    * numeric value formatted as a 32-byte hex string.
    * </pre>
    *
-   * <code>optional string trace_id = 2;</code>
+   * <code>string trace_id = 2;</code>
    */
   public java.lang.String getTraceId() {
     java.lang.Object ref = traceId_;
@@ -169,7 +169,7 @@ public  final class Trace extends
    * numeric value formatted as a 32-byte hex string.
    * </pre>
    *
-   * <code>optional string trace_id = 2;</code>
+   * <code>string trace_id = 2;</code>
    */
   public com.google.protobuf.ByteString
       getTraceIdBytes() {
@@ -309,7 +309,7 @@ public  final class Trace extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_ID_FIELD_NUMBER;
     hash = (53 * hash) + getProjectId().hashCode();
     hash = (37 * hash) + TRACE_ID_FIELD_NUMBER;
@@ -323,6 +323,17 @@ public  final class Trace extends
     return hash;
   }
 
+  public static com.google.devtools.cloudtrace.v1.Trace parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.cloudtrace.v1.Trace parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.cloudtrace.v1.Trace parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -597,7 +608,7 @@ public  final class Trace extends
      * Project ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public java.lang.String getProjectId() {
       java.lang.Object ref = projectId_;
@@ -616,7 +627,7 @@ public  final class Trace extends
      * Project ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectIdBytes() {
@@ -636,7 +647,7 @@ public  final class Trace extends
      * Project ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectId(
         java.lang.String value) {
@@ -653,7 +664,7 @@ public  final class Trace extends
      * Project ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder clearProjectId() {
       
@@ -666,7 +677,7 @@ public  final class Trace extends
      * Project ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectIdBytes(
         com.google.protobuf.ByteString value) {
@@ -687,7 +698,7 @@ public  final class Trace extends
      * numeric value formatted as a 32-byte hex string.
      * </pre>
      *
-     * <code>optional string trace_id = 2;</code>
+     * <code>string trace_id = 2;</code>
      */
     public java.lang.String getTraceId() {
       java.lang.Object ref = traceId_;
@@ -707,7 +718,7 @@ public  final class Trace extends
      * numeric value formatted as a 32-byte hex string.
      * </pre>
      *
-     * <code>optional string trace_id = 2;</code>
+     * <code>string trace_id = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTraceIdBytes() {
@@ -728,7 +739,7 @@ public  final class Trace extends
      * numeric value formatted as a 32-byte hex string.
      * </pre>
      *
-     * <code>optional string trace_id = 2;</code>
+     * <code>string trace_id = 2;</code>
      */
     public Builder setTraceId(
         java.lang.String value) {
@@ -746,7 +757,7 @@ public  final class Trace extends
      * numeric value formatted as a 32-byte hex string.
      * </pre>
      *
-     * <code>optional string trace_id = 2;</code>
+     * <code>string trace_id = 2;</code>
      */
     public Builder clearTraceId() {
       
@@ -760,7 +771,7 @@ public  final class Trace extends
      * numeric value formatted as a 32-byte hex string.
      * </pre>
      *
-     * <code>optional string trace_id = 2;</code>
+     * <code>string trace_id = 2;</code>
      */
     public Builder setTraceIdBytes(
         com.google.protobuf.ByteString value) {

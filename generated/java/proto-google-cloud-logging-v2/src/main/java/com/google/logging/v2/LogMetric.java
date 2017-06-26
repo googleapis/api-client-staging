@@ -235,7 +235,7 @@ public  final class LogMetric extends
    * `"projects/my-project/metrics/nginx%2Frequests"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -266,7 +266,7 @@ public  final class LogMetric extends
    * `"projects/my-project/metrics/nginx%2Frequests"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -289,7 +289,7 @@ public  final class LogMetric extends
    * Optional. A description of this metric, which is used in documentation.
    * </pre>
    *
-   * <code>optional string description = 2;</code>
+   * <code>string description = 2;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -308,7 +308,7 @@ public  final class LogMetric extends
    * Optional. A description of this metric, which is used in documentation.
    * </pre>
    *
-   * <code>optional string description = 2;</code>
+   * <code>string description = 2;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -335,7 +335,7 @@ public  final class LogMetric extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 3;</code>
+   * <code>string filter = 3;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -358,7 +358,7 @@ public  final class LogMetric extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 3;</code>
+   * <code>string filter = 3;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -383,7 +383,7 @@ public  final class LogMetric extends
    * for this field is missing, the default value of V2 should be assumed.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+   * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
    */
   public int getVersionValue() {
     return version_;
@@ -395,7 +395,7 @@ public  final class LogMetric extends
    * for this field is missing, the default value of V2 should be assumed.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+   * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
    */
   public com.google.logging.v2.LogMetric.ApiVersion getVersion() {
     com.google.logging.v2.LogMetric.ApiVersion result = com.google.logging.v2.LogMetric.ApiVersion.valueOf(version_);
@@ -478,7 +478,7 @@ public  final class LogMetric extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
@@ -492,6 +492,17 @@ public  final class LogMetric extends
     return hash;
   }
 
+  public static com.google.logging.v2.LogMetric parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.LogMetric parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.LogMetric parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -744,7 +755,7 @@ public  final class LogMetric extends
      * `"projects/my-project/metrics/nginx%2Frequests"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -775,7 +786,7 @@ public  final class LogMetric extends
      * `"projects/my-project/metrics/nginx%2Frequests"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -807,7 +818,7 @@ public  final class LogMetric extends
      * `"projects/my-project/metrics/nginx%2Frequests"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -836,7 +847,7 @@ public  final class LogMetric extends
      * `"projects/my-project/metrics/nginx%2Frequests"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -861,7 +872,7 @@ public  final class LogMetric extends
      * `"projects/my-project/metrics/nginx%2Frequests"`.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -881,7 +892,7 @@ public  final class LogMetric extends
      * Optional. A description of this metric, which is used in documentation.
      * </pre>
      *
-     * <code>optional string description = 2;</code>
+     * <code>string description = 2;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -900,7 +911,7 @@ public  final class LogMetric extends
      * Optional. A description of this metric, which is used in documentation.
      * </pre>
      *
-     * <code>optional string description = 2;</code>
+     * <code>string description = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -920,7 +931,7 @@ public  final class LogMetric extends
      * Optional. A description of this metric, which is used in documentation.
      * </pre>
      *
-     * <code>optional string description = 2;</code>
+     * <code>string description = 2;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -937,7 +948,7 @@ public  final class LogMetric extends
      * Optional. A description of this metric, which is used in documentation.
      * </pre>
      *
-     * <code>optional string description = 2;</code>
+     * <code>string description = 2;</code>
      */
     public Builder clearDescription() {
       
@@ -950,7 +961,7 @@ public  final class LogMetric extends
      * Optional. A description of this metric, which is used in documentation.
      * </pre>
      *
-     * <code>optional string description = 2;</code>
+     * <code>string description = 2;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -974,7 +985,7 @@ public  final class LogMetric extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 3;</code>
+     * <code>string filter = 3;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -997,7 +1008,7 @@ public  final class LogMetric extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 3;</code>
+     * <code>string filter = 3;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -1021,7 +1032,7 @@ public  final class LogMetric extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 3;</code>
+     * <code>string filter = 3;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -1042,7 +1053,7 @@ public  final class LogMetric extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 3;</code>
+     * <code>string filter = 3;</code>
      */
     public Builder clearFilter() {
       
@@ -1059,7 +1070,7 @@ public  final class LogMetric extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 3;</code>
+     * <code>string filter = 3;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1081,7 +1092,7 @@ public  final class LogMetric extends
      * for this field is missing, the default value of V2 should be assumed.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     public int getVersionValue() {
       return version_;
@@ -1093,7 +1104,7 @@ public  final class LogMetric extends
      * for this field is missing, the default value of V2 should be assumed.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     public Builder setVersionValue(int value) {
       version_ = value;
@@ -1107,7 +1118,7 @@ public  final class LogMetric extends
      * for this field is missing, the default value of V2 should be assumed.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     public com.google.logging.v2.LogMetric.ApiVersion getVersion() {
       com.google.logging.v2.LogMetric.ApiVersion result = com.google.logging.v2.LogMetric.ApiVersion.valueOf(version_);
@@ -1120,7 +1131,7 @@ public  final class LogMetric extends
      * for this field is missing, the default value of V2 should be assumed.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     public Builder setVersion(com.google.logging.v2.LogMetric.ApiVersion value) {
       if (value == null) {
@@ -1138,7 +1149,7 @@ public  final class LogMetric extends
      * for this field is missing, the default value of V2 should be assumed.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     public Builder clearVersion() {
       
