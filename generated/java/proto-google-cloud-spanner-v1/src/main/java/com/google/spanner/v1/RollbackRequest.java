@@ -89,7 +89,7 @@ public  final class RollbackRequest extends
    * Required. The session in which the transaction to roll back is running.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public java.lang.String getSession() {
     java.lang.Object ref = session_;
@@ -108,7 +108,7 @@ public  final class RollbackRequest extends
    * Required. The session in which the transaction to roll back is running.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSessionBytes() {
@@ -131,7 +131,7 @@ public  final class RollbackRequest extends
    * Required. The transaction to roll back.
    * </pre>
    *
-   * <code>optional bytes transaction_id = 2;</code>
+   * <code>bytes transaction_id = 2;</code>
    */
   public com.google.protobuf.ByteString getTransactionId() {
     return transactionId_;
@@ -198,7 +198,7 @@ public  final class RollbackRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SESSION_FIELD_NUMBER;
     hash = (53 * hash) + getSession().hashCode();
     hash = (37 * hash) + TRANSACTION_ID_FIELD_NUMBER;
@@ -208,6 +208,17 @@ public  final class RollbackRequest extends
     return hash;
   }
 
+  public static com.google.spanner.v1.RollbackRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.RollbackRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.RollbackRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -433,7 +444,7 @@ public  final class RollbackRequest extends
      * Required. The session in which the transaction to roll back is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public java.lang.String getSession() {
       java.lang.Object ref = session_;
@@ -452,7 +463,7 @@ public  final class RollbackRequest extends
      * Required. The session in which the transaction to roll back is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSessionBytes() {
@@ -472,7 +483,7 @@ public  final class RollbackRequest extends
      * Required. The session in which the transaction to roll back is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSession(
         java.lang.String value) {
@@ -489,7 +500,7 @@ public  final class RollbackRequest extends
      * Required. The session in which the transaction to roll back is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder clearSession() {
       
@@ -502,7 +513,7 @@ public  final class RollbackRequest extends
      * Required. The session in which the transaction to roll back is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSessionBytes(
         com.google.protobuf.ByteString value) {
@@ -522,7 +533,7 @@ public  final class RollbackRequest extends
      * Required. The transaction to roll back.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public com.google.protobuf.ByteString getTransactionId() {
       return transactionId_;
@@ -532,7 +543,7 @@ public  final class RollbackRequest extends
      * Required. The transaction to roll back.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public Builder setTransactionId(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -548,7 +559,7 @@ public  final class RollbackRequest extends
      * Required. The transaction to roll back.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public Builder clearTransactionId() {
       

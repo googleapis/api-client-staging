@@ -167,7 +167,7 @@ public  final class ListGroupStatsResponse extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -188,7 +188,7 @@ public  final class ListGroupStatsResponse extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -214,7 +214,7 @@ public  final class ListGroupStatsResponse extends
    * has been deleted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   public boolean hasTimeRangeBegin() {
     return timeRangeBegin_ != null;
@@ -227,7 +227,7 @@ public  final class ListGroupStatsResponse extends
    * has been deleted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   public com.google.protobuf.Timestamp getTimeRangeBegin() {
     return timeRangeBegin_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timeRangeBegin_;
@@ -240,7 +240,7 @@ public  final class ListGroupStatsResponse extends
    * has been deleted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getTimeRangeBeginOrBuilder() {
     return getTimeRangeBegin();
@@ -319,7 +319,7 @@ public  final class ListGroupStatsResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getErrorGroupStatsCount() > 0) {
       hash = (37 * hash) + ERROR_GROUP_STATS_FIELD_NUMBER;
       hash = (53 * hash) + getErrorGroupStatsList().hashCode();
@@ -335,6 +335,17 @@ public  final class ListGroupStatsResponse extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -928,7 +939,7 @@ public  final class ListGroupStatsResponse extends
      * request, to view the next page of results.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -949,7 +960,7 @@ public  final class ListGroupStatsResponse extends
      * request, to view the next page of results.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -971,7 +982,7 @@ public  final class ListGroupStatsResponse extends
      * request, to view the next page of results.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -990,7 +1001,7 @@ public  final class ListGroupStatsResponse extends
      * request, to view the next page of results.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -1005,7 +1016,7 @@ public  final class ListGroupStatsResponse extends
      * request, to view the next page of results.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {
@@ -1030,7 +1041,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public boolean hasTimeRangeBegin() {
       return timeRangeBeginBuilder_ != null || timeRangeBegin_ != null;
@@ -1043,7 +1054,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public com.google.protobuf.Timestamp getTimeRangeBegin() {
       if (timeRangeBeginBuilder_ == null) {
@@ -1060,7 +1071,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public Builder setTimeRangeBegin(com.google.protobuf.Timestamp value) {
       if (timeRangeBeginBuilder_ == null) {
@@ -1083,7 +1094,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public Builder setTimeRangeBegin(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1104,7 +1115,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public Builder mergeTimeRangeBegin(com.google.protobuf.Timestamp value) {
       if (timeRangeBeginBuilder_ == null) {
@@ -1129,7 +1140,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public Builder clearTimeRangeBegin() {
       if (timeRangeBeginBuilder_ == null) {
@@ -1150,7 +1161,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getTimeRangeBeginBuilder() {
       
@@ -1165,7 +1176,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimeRangeBeginOrBuilder() {
       if (timeRangeBeginBuilder_ != null) {
@@ -1183,7 +1194,7 @@ public  final class ListGroupStatsResponse extends
      * has been deleted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
+     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

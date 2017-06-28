@@ -13,7 +13,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * `"projects/{project_id_or_number}/groups/{group_id}"`.
    * </pre>
    *
-   * <code>optional string name = 7;</code>
+   * <code>string name = 7;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * `"projects/{project_id_or_number}/groups/{group_id}"`.
    * </pre>
    *
-   * <code>optional string name = 7;</code>
+   * <code>string name = 7;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -32,7 +32,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   int getPageSize();
 
@@ -43,7 +43,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -53,7 +53,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -68,7 +68,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    *     resource.type = "gce_instance"
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   java.lang.String getFilter();
   /**
@@ -81,7 +81,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    *     resource.type = "gce_instance"
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -94,7 +94,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   boolean hasInterval();
   /**
@@ -105,7 +105,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   com.google.monitoring.v3.TimeInterval getInterval();
   /**
@@ -116,7 +116,7 @@ public interface ListGroupMembersRequestOrBuilder extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder();
 }

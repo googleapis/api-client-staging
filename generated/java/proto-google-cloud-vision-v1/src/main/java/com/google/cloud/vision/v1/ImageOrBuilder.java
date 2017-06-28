@@ -14,7 +14,7 @@ public interface ImageOrBuilder extends
    * representation, whereas JSON representations use base64.
    * </pre>
    *
-   * <code>optional bytes content = 1;</code>
+   * <code>bytes content = 1;</code>
    */
   com.google.protobuf.ByteString getContent();
 
@@ -25,7 +25,7 @@ public interface ImageOrBuilder extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   boolean hasSource();
   /**
@@ -35,7 +35,7 @@ public interface ImageOrBuilder extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   com.google.cloud.vision.v1.ImageSource getSource();
   /**
@@ -45,7 +45,7 @@ public interface ImageOrBuilder extends
    * used to perform the image annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageSource source = 2;</code>
+   * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
    */
   com.google.cloud.vision.v1.ImageSourceOrBuilder getSourceOrBuilder();
 }

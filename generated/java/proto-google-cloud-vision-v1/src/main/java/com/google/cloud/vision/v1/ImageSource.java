@@ -95,7 +95,7 @@ public  final class ImageSource extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>optional string gcs_image_uri = 1;</code>
+   * <code>string gcs_image_uri = 1;</code>
    */
   public java.lang.String getGcsImageUri() {
     java.lang.Object ref = gcsImageUri_;
@@ -119,7 +119,7 @@ public  final class ImageSource extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>optional string gcs_image_uri = 1;</code>
+   * <code>string gcs_image_uri = 1;</code>
    */
   public com.google.protobuf.ByteString
       getGcsImageUriBytes() {
@@ -151,7 +151,7 @@ public  final class ImageSource extends
    * precedence.
    * </pre>
    *
-   * <code>optional string image_uri = 2;</code>
+   * <code>string image_uri = 2;</code>
    */
   public java.lang.String getImageUri() {
     java.lang.Object ref = imageUri_;
@@ -179,7 +179,7 @@ public  final class ImageSource extends
    * precedence.
    * </pre>
    *
-   * <code>optional string image_uri = 2;</code>
+   * <code>string image_uri = 2;</code>
    */
   public com.google.protobuf.ByteString
       getImageUriBytes() {
@@ -255,7 +255,7 @@ public  final class ImageSource extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + GCS_IMAGE_URI_FIELD_NUMBER;
     hash = (53 * hash) + getGcsImageUri().hashCode();
     hash = (37 * hash) + IMAGE_URI_FIELD_NUMBER;
@@ -265,6 +265,17 @@ public  final class ImageSource extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.ImageSource parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.ImageSource parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.ImageSource parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -496,7 +507,7 @@ public  final class ImageSource extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_image_uri = 1;</code>
+     * <code>string gcs_image_uri = 1;</code>
      */
     public java.lang.String getGcsImageUri() {
       java.lang.Object ref = gcsImageUri_;
@@ -520,7 +531,7 @@ public  final class ImageSource extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_image_uri = 1;</code>
+     * <code>string gcs_image_uri = 1;</code>
      */
     public com.google.protobuf.ByteString
         getGcsImageUriBytes() {
@@ -545,7 +556,7 @@ public  final class ImageSource extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_image_uri = 1;</code>
+     * <code>string gcs_image_uri = 1;</code>
      */
     public Builder setGcsImageUri(
         java.lang.String value) {
@@ -567,7 +578,7 @@ public  final class ImageSource extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_image_uri = 1;</code>
+     * <code>string gcs_image_uri = 1;</code>
      */
     public Builder clearGcsImageUri() {
       
@@ -585,7 +596,7 @@ public  final class ImageSource extends
      * NOTE: Cloud Storage object versioning is not supported.
      * </pre>
      *
-     * <code>optional string gcs_image_uri = 1;</code>
+     * <code>string gcs_image_uri = 1;</code>
      */
     public Builder setGcsImageUriBytes(
         com.google.protobuf.ByteString value) {
@@ -614,7 +625,7 @@ public  final class ImageSource extends
      * precedence.
      * </pre>
      *
-     * <code>optional string image_uri = 2;</code>
+     * <code>string image_uri = 2;</code>
      */
     public java.lang.String getImageUri() {
       java.lang.Object ref = imageUri_;
@@ -642,7 +653,7 @@ public  final class ImageSource extends
      * precedence.
      * </pre>
      *
-     * <code>optional string image_uri = 2;</code>
+     * <code>string image_uri = 2;</code>
      */
     public com.google.protobuf.ByteString
         getImageUriBytes() {
@@ -671,7 +682,7 @@ public  final class ImageSource extends
      * precedence.
      * </pre>
      *
-     * <code>optional string image_uri = 2;</code>
+     * <code>string image_uri = 2;</code>
      */
     public Builder setImageUri(
         java.lang.String value) {
@@ -697,7 +708,7 @@ public  final class ImageSource extends
      * precedence.
      * </pre>
      *
-     * <code>optional string image_uri = 2;</code>
+     * <code>string image_uri = 2;</code>
      */
     public Builder clearImageUri() {
       
@@ -719,7 +730,7 @@ public  final class ImageSource extends
      * precedence.
      * </pre>
      *
-     * <code>optional string image_uri = 2;</code>
+     * <code>string image_uri = 2;</code>
      */
     public Builder setImageUriBytes(
         com.google.protobuf.ByteString value) {

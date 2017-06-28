@@ -13,7 +13,7 @@ public interface PartialResultSetOrBuilder extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   boolean hasMetadata();
   /**
@@ -22,7 +22,7 @@ public interface PartialResultSetOrBuilder extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   com.google.spanner.v1.ResultSetMetadata getMetadata();
   /**
@@ -31,7 +31,7 @@ public interface PartialResultSetOrBuilder extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder();
 
@@ -376,7 +376,7 @@ public interface PartialResultSetOrBuilder extends
    * to obtain a complete field value.
    * </pre>
    *
-   * <code>optional bool chunked_value = 3;</code>
+   * <code>bool chunked_value = 3;</code>
    */
   boolean getChunkedValue();
 
@@ -389,7 +389,7 @@ public interface PartialResultSetOrBuilder extends
    * same session invalidates the token.
    * </pre>
    *
-   * <code>optional bytes resume_token = 4;</code>
+   * <code>bytes resume_token = 4;</code>
    */
   com.google.protobuf.ByteString getResumeToken();
 
@@ -401,7 +401,7 @@ public interface PartialResultSetOrBuilder extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   boolean hasStats();
   /**
@@ -412,7 +412,7 @@ public interface PartialResultSetOrBuilder extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   com.google.spanner.v1.ResultSetStats getStats();
   /**
@@ -423,7 +423,7 @@ public interface PartialResultSetOrBuilder extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder();
 }

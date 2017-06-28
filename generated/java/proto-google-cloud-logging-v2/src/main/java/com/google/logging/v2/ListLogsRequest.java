@@ -100,7 +100,7 @@ public  final class ListLogsRequest extends
    *     "folders/[FOLDER_ID]"
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public java.lang.String getParent() {
     java.lang.Object ref = parent_;
@@ -123,7 +123,7 @@ public  final class ListLogsRequest extends
    *     "folders/[FOLDER_ID]"
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   public com.google.protobuf.ByteString
       getParentBytes() {
@@ -148,7 +148,7 @@ public  final class ListLogsRequest extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -164,7 +164,7 @@ public  final class ListLogsRequest extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -186,7 +186,7 @@ public  final class ListLogsRequest extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -271,7 +271,7 @@ public  final class ListLogsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PARENT_FIELD_NUMBER;
     hash = (53 * hash) + getParent().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -283,6 +283,17 @@ public  final class ListLogsRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.ListLogsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.ListLogsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.ListLogsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -519,7 +530,7 @@ public  final class ListLogsRequest extends
      *     "folders/[FOLDER_ID]"
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
@@ -542,7 +553,7 @@ public  final class ListLogsRequest extends
      *     "folders/[FOLDER_ID]"
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -566,7 +577,7 @@ public  final class ListLogsRequest extends
      *     "folders/[FOLDER_ID]"
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParent(
         java.lang.String value) {
@@ -587,7 +598,7 @@ public  final class ListLogsRequest extends
      *     "folders/[FOLDER_ID]"
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder clearParent() {
       
@@ -604,7 +615,7 @@ public  final class ListLogsRequest extends
      *     "folders/[FOLDER_ID]"
      * </pre>
      *
-     * <code>optional string parent = 1;</code>
+     * <code>string parent = 1;</code>
      */
     public Builder setParentBytes(
         com.google.protobuf.ByteString value) {
@@ -626,7 +637,7 @@ public  final class ListLogsRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -638,7 +649,7 @@ public  final class ListLogsRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -653,7 +664,7 @@ public  final class ListLogsRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public Builder clearPageSize() {
       
@@ -671,7 +682,7 @@ public  final class ListLogsRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -693,7 +704,7 @@ public  final class ListLogsRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -716,7 +727,7 @@ public  final class ListLogsRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -736,7 +747,7 @@ public  final class ListLogsRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder clearPageToken() {
       
@@ -752,7 +763,7 @@ public  final class ListLogsRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

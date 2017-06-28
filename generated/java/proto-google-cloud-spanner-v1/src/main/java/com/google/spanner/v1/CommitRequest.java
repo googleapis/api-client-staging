@@ -154,7 +154,7 @@ public  final class CommitRequest extends
    * Required. The session in which the transaction to be committed is running.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public java.lang.String getSession() {
     java.lang.Object ref = session_;
@@ -173,7 +173,7 @@ public  final class CommitRequest extends
    * Required. The session in which the transaction to be committed is running.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSessionBytes() {
@@ -195,7 +195,7 @@ public  final class CommitRequest extends
    * Commit a previously-started transaction.
    * </pre>
    *
-   * <code>optional bytes transaction_id = 2;</code>
+   * <code>bytes transaction_id = 2;</code>
    */
   public com.google.protobuf.ByteString getTransactionId() {
     if (transactionCase_ == 2) {
@@ -218,7 +218,7 @@ public  final class CommitRequest extends
    * [Commit][google.spanner.v1.Spanner.Commit] instead.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
   public com.google.spanner.v1.TransactionOptions getSingleUseTransaction() {
     if (transactionCase_ == 3) {
@@ -239,7 +239,7 @@ public  final class CommitRequest extends
    * [Commit][google.spanner.v1.Spanner.Commit] instead.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+   * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
   public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
     if (transactionCase_ == 3) {
@@ -330,7 +330,7 @@ public  final class CommitRequest extends
     }
     if (transactionCase_ == 2) {
       output.writeBytes(
-          2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) transaction_));
+          2, (com.google.protobuf.ByteString) transaction_);
     }
     if (transactionCase_ == 3) {
       output.writeMessage(3, (com.google.spanner.v1.TransactionOptions) transaction_);
@@ -351,7 +351,7 @@ public  final class CommitRequest extends
     if (transactionCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(
-            2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) transaction_));
+            2, (com.google.protobuf.ByteString) transaction_);
     }
     if (transactionCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
@@ -405,7 +405,7 @@ public  final class CommitRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SESSION_FIELD_NUMBER;
     hash = (53 * hash) + getSession().hashCode();
     if (getMutationsCount() > 0) {
@@ -429,6 +429,17 @@ public  final class CommitRequest extends
     return hash;
   }
 
+  public static com.google.spanner.v1.CommitRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.CommitRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.CommitRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -735,7 +746,7 @@ public  final class CommitRequest extends
      * Required. The session in which the transaction to be committed is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public java.lang.String getSession() {
       java.lang.Object ref = session_;
@@ -754,7 +765,7 @@ public  final class CommitRequest extends
      * Required. The session in which the transaction to be committed is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSessionBytes() {
@@ -774,7 +785,7 @@ public  final class CommitRequest extends
      * Required. The session in which the transaction to be committed is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSession(
         java.lang.String value) {
@@ -791,7 +802,7 @@ public  final class CommitRequest extends
      * Required. The session in which the transaction to be committed is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder clearSession() {
       
@@ -804,7 +815,7 @@ public  final class CommitRequest extends
      * Required. The session in which the transaction to be committed is running.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSessionBytes(
         com.google.protobuf.ByteString value) {
@@ -823,7 +834,7 @@ public  final class CommitRequest extends
      * Commit a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public com.google.protobuf.ByteString getTransactionId() {
       if (transactionCase_ == 2) {
@@ -836,7 +847,7 @@ public  final class CommitRequest extends
      * Commit a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public Builder setTransactionId(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -852,7 +863,7 @@ public  final class CommitRequest extends
      * Commit a previously-started transaction.
      * </pre>
      *
-     * <code>optional bytes transaction_id = 2;</code>
+     * <code>bytes transaction_id = 2;</code>
      */
     public Builder clearTransactionId() {
       if (transactionCase_ == 2) {
@@ -878,7 +889,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptions getSingleUseTransaction() {
       if (singleUseTransactionBuilder_ == null) {
@@ -906,7 +917,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public Builder setSingleUseTransaction(com.google.spanner.v1.TransactionOptions value) {
       if (singleUseTransactionBuilder_ == null) {
@@ -934,7 +945,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public Builder setSingleUseTransaction(
         com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
@@ -960,7 +971,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public Builder mergeSingleUseTransaction(com.google.spanner.v1.TransactionOptions value) {
       if (singleUseTransactionBuilder_ == null) {
@@ -994,7 +1005,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public Builder clearSingleUseTransaction() {
       if (singleUseTransactionBuilder_ == null) {
@@ -1025,7 +1036,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptions.Builder getSingleUseTransactionBuilder() {
       return getSingleUseTransactionFieldBuilder().getBuilder();
@@ -1043,7 +1054,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     public com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder() {
       if ((transactionCase_ == 3) && (singleUseTransactionBuilder_ != null)) {
@@ -1068,7 +1079,7 @@ public  final class CommitRequest extends
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions, com.google.spanner.v1.TransactionOptions.Builder, com.google.spanner.v1.TransactionOptionsOrBuilder> 

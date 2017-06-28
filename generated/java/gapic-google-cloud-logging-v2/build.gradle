@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
   compile project(":proto-google-cloud-logging-v2")
+  compile libraries.gax, libraries.gaxGrpc
   testCompile project(":grpc-google-cloud-logging-v2")
 }
 

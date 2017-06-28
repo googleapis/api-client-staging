@@ -16,7 +16,7 @@ public interface UpdateLogMetricRequestOrBuilder extends
    * does not exist in `[PROJECT_ID]`, then a new metric is created.
    * </pre>
    *
-   * <code>optional string metric_name = 1;</code>
+   * <code>string metric_name = 1;</code>
    */
   java.lang.String getMetricName();
   /**
@@ -28,7 +28,7 @@ public interface UpdateLogMetricRequestOrBuilder extends
    * does not exist in `[PROJECT_ID]`, then a new metric is created.
    * </pre>
    *
-   * <code>optional string metric_name = 1;</code>
+   * <code>string metric_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getMetricNameBytes();
@@ -38,7 +38,7 @@ public interface UpdateLogMetricRequestOrBuilder extends
    * The updated metric.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   boolean hasMetric();
   /**
@@ -46,7 +46,7 @@ public interface UpdateLogMetricRequestOrBuilder extends
    * The updated metric.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   com.google.logging.v2.LogMetric getMetric();
   /**
@@ -54,7 +54,7 @@ public interface UpdateLogMetricRequestOrBuilder extends
    * The updated metric.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
+   * <code>.google.logging.v2.LogMetric metric = 2;</code>
    */
   com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder();
 }

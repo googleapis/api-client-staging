@@ -13,7 +13,7 @@ public interface ModifyAckDeadlineRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -22,7 +22,7 @@ public interface ModifyAckDeadlineRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();
@@ -73,7 +73,7 @@ public interface ModifyAckDeadlineRequestOrBuilder extends
    * The maximum deadline you can specify is 600 seconds (10 minutes).
    * </pre>
    *
-   * <code>optional int32 ack_deadline_seconds = 3;</code>
+   * <code>int32 ack_deadline_seconds = 3;</code>
    */
   int getAckDeadlineSeconds();
 }

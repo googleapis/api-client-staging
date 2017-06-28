@@ -12,7 +12,7 @@ public interface CommitResponseOrBuilder extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   boolean hasCommitTimestamp();
   /**
@@ -20,7 +20,7 @@ public interface CommitResponseOrBuilder extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   com.google.protobuf.Timestamp getCommitTimestamp();
   /**
@@ -28,7 +28,7 @@ public interface CommitResponseOrBuilder extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCommitTimestampOrBuilder();
 }

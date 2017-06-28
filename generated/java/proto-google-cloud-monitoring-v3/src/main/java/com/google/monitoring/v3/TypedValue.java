@@ -154,7 +154,7 @@ public  final class TypedValue extends
    * A Boolean value: `true` or `false`.
    * </pre>
    *
-   * <code>optional bool bool_value = 1;</code>
+   * <code>bool bool_value = 1;</code>
    */
   public boolean getBoolValue() {
     if (valueCase_ == 1) {
@@ -169,7 +169,7 @@ public  final class TypedValue extends
    * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
    * </pre>
    *
-   * <code>optional int64 int64_value = 2;</code>
+   * <code>int64 int64_value = 2;</code>
    */
   public long getInt64Value() {
     if (valueCase_ == 2) {
@@ -186,7 +186,7 @@ public  final class TypedValue extends
    * significant digits of precision.
    * </pre>
    *
-   * <code>optional double double_value = 3;</code>
+   * <code>double double_value = 3;</code>
    */
   public double getDoubleValue() {
     if (valueCase_ == 3) {
@@ -201,7 +201,7 @@ public  final class TypedValue extends
    * A variable-length string value.
    * </pre>
    *
-   * <code>optional string string_value = 4;</code>
+   * <code>string string_value = 4;</code>
    */
   public java.lang.String getStringValue() {
     java.lang.Object ref = "";
@@ -225,7 +225,7 @@ public  final class TypedValue extends
    * A variable-length string value.
    * </pre>
    *
-   * <code>optional string string_value = 4;</code>
+   * <code>string string_value = 4;</code>
    */
   public com.google.protobuf.ByteString
       getStringValueBytes() {
@@ -252,7 +252,7 @@ public  final class TypedValue extends
    * A distribution value.
    * </pre>
    *
-   * <code>optional .google.api.Distribution distribution_value = 5;</code>
+   * <code>.google.api.Distribution distribution_value = 5;</code>
    */
   public com.google.api.Distribution getDistributionValue() {
     if (valueCase_ == 5) {
@@ -265,7 +265,7 @@ public  final class TypedValue extends
    * A distribution value.
    * </pre>
    *
-   * <code>optional .google.api.Distribution distribution_value = 5;</code>
+   * <code>.google.api.Distribution distribution_value = 5;</code>
    */
   public com.google.api.DistributionOrBuilder getDistributionValueOrBuilder() {
     if (valueCase_ == 5) {
@@ -387,7 +387,7 @@ public  final class TypedValue extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (valueCase_) {
       case 1:
         hash = (37 * hash) + BOOL_VALUE_FIELD_NUMBER;
@@ -420,6 +420,17 @@ public  final class TypedValue extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.TypedValue parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.TypedValue parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.TypedValue parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -695,7 +706,7 @@ public  final class TypedValue extends
      * A Boolean value: `true` or `false`.
      * </pre>
      *
-     * <code>optional bool bool_value = 1;</code>
+     * <code>bool bool_value = 1;</code>
      */
     public boolean getBoolValue() {
       if (valueCase_ == 1) {
@@ -708,7 +719,7 @@ public  final class TypedValue extends
      * A Boolean value: `true` or `false`.
      * </pre>
      *
-     * <code>optional bool bool_value = 1;</code>
+     * <code>bool bool_value = 1;</code>
      */
     public Builder setBoolValue(boolean value) {
       valueCase_ = 1;
@@ -721,7 +732,7 @@ public  final class TypedValue extends
      * A Boolean value: `true` or `false`.
      * </pre>
      *
-     * <code>optional bool bool_value = 1;</code>
+     * <code>bool bool_value = 1;</code>
      */
     public Builder clearBoolValue() {
       if (valueCase_ == 1) {
@@ -737,7 +748,7 @@ public  final class TypedValue extends
      * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
      * </pre>
      *
-     * <code>optional int64 int64_value = 2;</code>
+     * <code>int64 int64_value = 2;</code>
      */
     public long getInt64Value() {
       if (valueCase_ == 2) {
@@ -750,7 +761,7 @@ public  final class TypedValue extends
      * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
      * </pre>
      *
-     * <code>optional int64 int64_value = 2;</code>
+     * <code>int64 int64_value = 2;</code>
      */
     public Builder setInt64Value(long value) {
       valueCase_ = 2;
@@ -763,7 +774,7 @@ public  final class TypedValue extends
      * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
      * </pre>
      *
-     * <code>optional int64 int64_value = 2;</code>
+     * <code>int64 int64_value = 2;</code>
      */
     public Builder clearInt64Value() {
       if (valueCase_ == 2) {
@@ -781,7 +792,7 @@ public  final class TypedValue extends
      * significant digits of precision.
      * </pre>
      *
-     * <code>optional double double_value = 3;</code>
+     * <code>double double_value = 3;</code>
      */
     public double getDoubleValue() {
       if (valueCase_ == 3) {
@@ -796,7 +807,7 @@ public  final class TypedValue extends
      * significant digits of precision.
      * </pre>
      *
-     * <code>optional double double_value = 3;</code>
+     * <code>double double_value = 3;</code>
      */
     public Builder setDoubleValue(double value) {
       valueCase_ = 3;
@@ -811,7 +822,7 @@ public  final class TypedValue extends
      * significant digits of precision.
      * </pre>
      *
-     * <code>optional double double_value = 3;</code>
+     * <code>double double_value = 3;</code>
      */
     public Builder clearDoubleValue() {
       if (valueCase_ == 3) {
@@ -827,7 +838,7 @@ public  final class TypedValue extends
      * A variable-length string value.
      * </pre>
      *
-     * <code>optional string string_value = 4;</code>
+     * <code>string string_value = 4;</code>
      */
     public java.lang.String getStringValue() {
       java.lang.Object ref = "";
@@ -851,7 +862,7 @@ public  final class TypedValue extends
      * A variable-length string value.
      * </pre>
      *
-     * <code>optional string string_value = 4;</code>
+     * <code>string string_value = 4;</code>
      */
     public com.google.protobuf.ByteString
         getStringValueBytes() {
@@ -876,7 +887,7 @@ public  final class TypedValue extends
      * A variable-length string value.
      * </pre>
      *
-     * <code>optional string string_value = 4;</code>
+     * <code>string string_value = 4;</code>
      */
     public Builder setStringValue(
         java.lang.String value) {
@@ -893,7 +904,7 @@ public  final class TypedValue extends
      * A variable-length string value.
      * </pre>
      *
-     * <code>optional string string_value = 4;</code>
+     * <code>string string_value = 4;</code>
      */
     public Builder clearStringValue() {
       if (valueCase_ == 4) {
@@ -908,7 +919,7 @@ public  final class TypedValue extends
      * A variable-length string value.
      * </pre>
      *
-     * <code>optional string string_value = 4;</code>
+     * <code>string string_value = 4;</code>
      */
     public Builder setStringValueBytes(
         com.google.protobuf.ByteString value) {
@@ -929,7 +940,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public com.google.api.Distribution getDistributionValue() {
       if (distributionValueBuilder_ == null) {
@@ -949,7 +960,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public Builder setDistributionValue(com.google.api.Distribution value) {
       if (distributionValueBuilder_ == null) {
@@ -969,7 +980,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public Builder setDistributionValue(
         com.google.api.Distribution.Builder builderForValue) {
@@ -987,7 +998,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public Builder mergeDistributionValue(com.google.api.Distribution value) {
       if (distributionValueBuilder_ == null) {
@@ -1013,7 +1024,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public Builder clearDistributionValue() {
       if (distributionValueBuilder_ == null) {
@@ -1036,7 +1047,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public com.google.api.Distribution.Builder getDistributionValueBuilder() {
       return getDistributionValueFieldBuilder().getBuilder();
@@ -1046,7 +1057,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     public com.google.api.DistributionOrBuilder getDistributionValueOrBuilder() {
       if ((valueCase_ == 5) && (distributionValueBuilder_ != null)) {
@@ -1063,7 +1074,7 @@ public  final class TypedValue extends
      * A distribution value.
      * </pre>
      *
-     * <code>optional .google.api.Distribution distribution_value = 5;</code>
+     * <code>.google.api.Distribution distribution_value = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Distribution, com.google.api.Distribution.Builder, com.google.api.DistributionOrBuilder> 

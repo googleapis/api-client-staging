@@ -12,7 +12,7 @@ public interface RecognitionConfigOrBuilder extends
    * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+   * <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
    */
   int getEncodingValue();
   /**
@@ -20,7 +20,7 @@ public interface RecognitionConfigOrBuilder extends
    * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+   * <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
    */
   com.google.cloud.speech.v1.RecognitionConfig.AudioEncoding getEncoding();
 
@@ -33,7 +33,7 @@ public interface RecognitionConfigOrBuilder extends
    * the audio source (instead of re-sampling).
    * </pre>
    *
-   * <code>optional int32 sample_rate_hertz = 2;</code>
+   * <code>int32 sample_rate_hertz = 2;</code>
    */
   int getSampleRateHertz();
 
@@ -46,7 +46,7 @@ public interface RecognitionConfigOrBuilder extends
    * for a list of the currently supported language codes.
    * </pre>
    *
-   * <code>optional string language_code = 3;</code>
+   * <code>string language_code = 3;</code>
    */
   java.lang.String getLanguageCode();
   /**
@@ -58,7 +58,7 @@ public interface RecognitionConfigOrBuilder extends
    * for a list of the currently supported language codes.
    * </pre>
    *
-   * <code>optional string language_code = 3;</code>
+   * <code>string language_code = 3;</code>
    */
   com.google.protobuf.ByteString
       getLanguageCodeBytes();
@@ -73,7 +73,7 @@ public interface RecognitionConfigOrBuilder extends
    * one. If omitted, will return a maximum of one.
    * </pre>
    *
-   * <code>optional int32 max_alternatives = 4;</code>
+   * <code>int32 max_alternatives = 4;</code>
    */
   int getMaxAlternatives();
 
@@ -85,7 +85,7 @@ public interface RecognitionConfigOrBuilder extends
    * won't be filtered out.
    * </pre>
    *
-   * <code>optional bool profanity_filter = 5;</code>
+   * <code>bool profanity_filter = 5;</code>
    */
   boolean getProfanityFilter();
 

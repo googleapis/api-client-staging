@@ -12,7 +12,7 @@ public interface TimeIntervalOrBuilder extends
    * Required. The end of the time interval.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 2;</code>
+   * <code>.google.protobuf.Timestamp end_time = 2;</code>
    */
   boolean hasEndTime();
   /**
@@ -20,7 +20,7 @@ public interface TimeIntervalOrBuilder extends
    * Required. The end of the time interval.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 2;</code>
+   * <code>.google.protobuf.Timestamp end_time = 2;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -28,7 +28,7 @@ public interface TimeIntervalOrBuilder extends
    * Required. The end of the time interval.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 2;</code>
+   * <code>.google.protobuf.Timestamp end_time = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 
@@ -39,7 +39,7 @@ public interface TimeIntervalOrBuilder extends
    * later than the end time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 1;</code>
+   * <code>.google.protobuf.Timestamp start_time = 1;</code>
    */
   boolean hasStartTime();
   /**
@@ -49,7 +49,7 @@ public interface TimeIntervalOrBuilder extends
    * later than the end time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 1;</code>
+   * <code>.google.protobuf.Timestamp start_time = 1;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -59,7 +59,7 @@ public interface TimeIntervalOrBuilder extends
    * later than the end time.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 1;</code>
+   * <code>.google.protobuf.Timestamp start_time = 1;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 }

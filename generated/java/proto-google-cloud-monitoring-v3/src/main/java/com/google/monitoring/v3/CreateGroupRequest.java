@@ -103,7 +103,7 @@ public  final class CreateGroupRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 4;</code>
+   * <code>string name = 4;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -123,7 +123,7 @@ public  final class CreateGroupRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 4;</code>
+   * <code>string name = 4;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -147,7 +147,7 @@ public  final class CreateGroupRequest extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Group group = 2;</code>
+   * <code>.google.monitoring.v3.Group group = 2;</code>
    */
   public boolean hasGroup() {
     return group_ != null;
@@ -158,7 +158,7 @@ public  final class CreateGroupRequest extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Group group = 2;</code>
+   * <code>.google.monitoring.v3.Group group = 2;</code>
    */
   public com.google.monitoring.v3.Group getGroup() {
     return group_ == null ? com.google.monitoring.v3.Group.getDefaultInstance() : group_;
@@ -169,7 +169,7 @@ public  final class CreateGroupRequest extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Group group = 2;</code>
+   * <code>.google.monitoring.v3.Group group = 2;</code>
    */
   public com.google.monitoring.v3.GroupOrBuilder getGroupOrBuilder() {
     return getGroup();
@@ -182,7 +182,7 @@ public  final class CreateGroupRequest extends
    * If true, validate this request but do not create the group.
    * </pre>
    *
-   * <code>optional bool validate_only = 3;</code>
+   * <code>bool validate_only = 3;</code>
    */
   public boolean getValidateOnly() {
     return validateOnly_;
@@ -261,7 +261,7 @@ public  final class CreateGroupRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     if (hasGroup()) {
@@ -276,6 +276,17 @@ public  final class CreateGroupRequest extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.CreateGroupRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.CreateGroupRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.CreateGroupRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -516,7 +527,7 @@ public  final class CreateGroupRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 4;</code>
+     * <code>string name = 4;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -536,7 +547,7 @@ public  final class CreateGroupRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 4;</code>
+     * <code>string name = 4;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -557,7 +568,7 @@ public  final class CreateGroupRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 4;</code>
+     * <code>string name = 4;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -575,7 +586,7 @@ public  final class CreateGroupRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 4;</code>
+     * <code>string name = 4;</code>
      */
     public Builder clearName() {
       
@@ -589,7 +600,7 @@ public  final class CreateGroupRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>optional string name = 4;</code>
+     * <code>string name = 4;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -612,7 +623,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public boolean hasGroup() {
       return groupBuilder_ != null || group_ != null;
@@ -623,7 +634,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public com.google.monitoring.v3.Group getGroup() {
       if (groupBuilder_ == null) {
@@ -638,7 +649,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public Builder setGroup(com.google.monitoring.v3.Group value) {
       if (groupBuilder_ == null) {
@@ -659,7 +670,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public Builder setGroup(
         com.google.monitoring.v3.Group.Builder builderForValue) {
@@ -678,7 +689,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public Builder mergeGroup(com.google.monitoring.v3.Group value) {
       if (groupBuilder_ == null) {
@@ -701,7 +712,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public Builder clearGroup() {
       if (groupBuilder_ == null) {
@@ -720,7 +731,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public com.google.monitoring.v3.Group.Builder getGroupBuilder() {
       
@@ -733,7 +744,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     public com.google.monitoring.v3.GroupOrBuilder getGroupOrBuilder() {
       if (groupBuilder_ != null) {
@@ -749,7 +760,7 @@ public  final class CreateGroupRequest extends
      * the system assigns the name.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Group group = 2;</code>
+     * <code>.google.monitoring.v3.Group group = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.Group, com.google.monitoring.v3.Group.Builder, com.google.monitoring.v3.GroupOrBuilder> 
@@ -771,7 +782,7 @@ public  final class CreateGroupRequest extends
      * If true, validate this request but do not create the group.
      * </pre>
      *
-     * <code>optional bool validate_only = 3;</code>
+     * <code>bool validate_only = 3;</code>
      */
     public boolean getValidateOnly() {
       return validateOnly_;
@@ -781,7 +792,7 @@ public  final class CreateGroupRequest extends
      * If true, validate this request but do not create the group.
      * </pre>
      *
-     * <code>optional bool validate_only = 3;</code>
+     * <code>bool validate_only = 3;</code>
      */
     public Builder setValidateOnly(boolean value) {
       
@@ -794,7 +805,7 @@ public  final class CreateGroupRequest extends
      * If true, validate this request but do not create the group.
      * </pre>
      *
-     * <code>optional bool validate_only = 3;</code>
+     * <code>bool validate_only = 3;</code>
      */
     public Builder clearValidateOnly() {
       

@@ -89,7 +89,7 @@ public  final class ImageProperties extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   public boolean hasDominantColors() {
     return dominantColors_ != null;
@@ -99,7 +99,7 @@ public  final class ImageProperties extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   public com.google.cloud.vision.v1.DominantColorsAnnotation getDominantColors() {
     return dominantColors_ == null ? com.google.cloud.vision.v1.DominantColorsAnnotation.getDefaultInstance() : dominantColors_;
@@ -109,7 +109,7 @@ public  final class ImageProperties extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   public com.google.cloud.vision.v1.DominantColorsAnnotationOrBuilder getDominantColorsOrBuilder() {
     return getDominantColors();
@@ -171,7 +171,7 @@ public  final class ImageProperties extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasDominantColors()) {
       hash = (37 * hash) + DOMINANT_COLORS_FIELD_NUMBER;
       hash = (53 * hash) + getDominantColors().hashCode();
@@ -181,6 +181,17 @@ public  final class ImageProperties extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.ImageProperties parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.ImageProperties parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.ImageProperties parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -409,7 +420,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public boolean hasDominantColors() {
       return dominantColorsBuilder_ != null || dominantColors_ != null;
@@ -419,7 +430,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public com.google.cloud.vision.v1.DominantColorsAnnotation getDominantColors() {
       if (dominantColorsBuilder_ == null) {
@@ -433,7 +444,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public Builder setDominantColors(com.google.cloud.vision.v1.DominantColorsAnnotation value) {
       if (dominantColorsBuilder_ == null) {
@@ -453,7 +464,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public Builder setDominantColors(
         com.google.cloud.vision.v1.DominantColorsAnnotation.Builder builderForValue) {
@@ -471,7 +482,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public Builder mergeDominantColors(com.google.cloud.vision.v1.DominantColorsAnnotation value) {
       if (dominantColorsBuilder_ == null) {
@@ -493,7 +504,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public Builder clearDominantColors() {
       if (dominantColorsBuilder_ == null) {
@@ -511,7 +522,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public com.google.cloud.vision.v1.DominantColorsAnnotation.Builder getDominantColorsBuilder() {
       
@@ -523,7 +534,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     public com.google.cloud.vision.v1.DominantColorsAnnotationOrBuilder getDominantColorsOrBuilder() {
       if (dominantColorsBuilder_ != null) {
@@ -538,7 +549,7 @@ public  final class ImageProperties extends
      * If present, dominant colors completed successfully.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.DominantColorsAnnotation, com.google.cloud.vision.v1.DominantColorsAnnotation.Builder, com.google.cloud.vision.v1.DominantColorsAnnotationOrBuilder> 

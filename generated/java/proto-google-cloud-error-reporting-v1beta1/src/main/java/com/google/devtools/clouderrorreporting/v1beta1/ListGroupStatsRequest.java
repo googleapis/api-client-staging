@@ -180,7 +180,7 @@ public  final class ListGroupStatsRequest extends
    * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public java.lang.String getProjectName() {
     java.lang.Object ref = projectName_;
@@ -203,7 +203,7 @@ public  final class ListGroupStatsRequest extends
    * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectNameBytes() {
@@ -273,7 +273,7 @@ public  final class ListGroupStatsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public boolean hasServiceFilter() {
     return serviceFilter_ != null;
@@ -285,7 +285,7 @@ public  final class ListGroupStatsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter getServiceFilter() {
     return serviceFilter_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.getDefaultInstance() : serviceFilter_;
@@ -297,7 +297,7 @@ public  final class ListGroupStatsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder getServiceFilterOrBuilder() {
     return getServiceFilter();
@@ -316,7 +316,7 @@ public  final class ListGroupStatsRequest extends
    * occurrences are returned.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
    */
   public boolean hasTimeRange() {
     return timeRange_ != null;
@@ -332,7 +332,7 @@ public  final class ListGroupStatsRequest extends
    * occurrences are returned.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange getTimeRange() {
     return timeRange_ == null ? com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.getDefaultInstance() : timeRange_;
@@ -348,7 +348,7 @@ public  final class ListGroupStatsRequest extends
    * occurrences are returned.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder getTimeRangeOrBuilder() {
     return getTimeRange();
@@ -362,7 +362,7 @@ public  final class ListGroupStatsRequest extends
    * If not set, no timed counts are returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+   * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
    */
   public boolean hasTimedCountDuration() {
     return timedCountDuration_ != null;
@@ -373,7 +373,7 @@ public  final class ListGroupStatsRequest extends
    * If not set, no timed counts are returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+   * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
    */
   public com.google.protobuf.Duration getTimedCountDuration() {
     return timedCountDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : timedCountDuration_;
@@ -384,7 +384,7 @@ public  final class ListGroupStatsRequest extends
    * If not set, no timed counts are returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+   * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
    */
   public com.google.protobuf.DurationOrBuilder getTimedCountDurationOrBuilder() {
     return getTimedCountDuration();
@@ -398,7 +398,7 @@ public  final class ListGroupStatsRequest extends
    * Default is `ALIGNMENT_EQUAL_AT_END`.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
    */
   public int getAlignmentValue() {
     return alignment_;
@@ -409,7 +409,7 @@ public  final class ListGroupStatsRequest extends
    * Default is `ALIGNMENT_EQUAL_AT_END`.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment getAlignment() {
     com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment result = com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment.valueOf(alignment_);
@@ -424,7 +424,7 @@ public  final class ListGroupStatsRequest extends
    * alignment is chosen. Default is 00:00 UTC.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+   * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
    */
   public boolean hasAlignmentTime() {
     return alignmentTime_ != null;
@@ -435,7 +435,7 @@ public  final class ListGroupStatsRequest extends
    * alignment is chosen. Default is 00:00 UTC.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+   * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
    */
   public com.google.protobuf.Timestamp getAlignmentTime() {
     return alignmentTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : alignmentTime_;
@@ -446,7 +446,7 @@ public  final class ListGroupStatsRequest extends
    * alignment is chosen. Default is 00:00 UTC.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+   * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getAlignmentTimeOrBuilder() {
     return getAlignmentTime();
@@ -460,7 +460,7 @@ public  final class ListGroupStatsRequest extends
    * Default is `COUNT_DESC`.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
    */
   public int getOrderValue() {
     return order_;
@@ -471,7 +471,7 @@ public  final class ListGroupStatsRequest extends
    * Default is `COUNT_DESC`.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder getOrder() {
     com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder result = com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder.valueOf(order_);
@@ -486,7 +486,7 @@ public  final class ListGroupStatsRequest extends
    * Default is 20.
    * </pre>
    *
-   * <code>optional int32 page_size = 11;</code>
+   * <code>int32 page_size = 11;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -501,7 +501,7 @@ public  final class ListGroupStatsRequest extends
    * parameters as the first request.
    * </pre>
    *
-   * <code>optional string page_token = 12;</code>
+   * <code>string page_token = 12;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -522,7 +522,7 @@ public  final class ListGroupStatsRequest extends
    * parameters as the first request.
    * </pre>
    *
-   * <code>optional string page_token = 12;</code>
+   * <code>string page_token = 12;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -684,7 +684,7 @@ public  final class ListGroupStatsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getProjectName().hashCode();
     if (getGroupIdCount() > 0) {
@@ -720,6 +720,17 @@ public  final class ListGroupStatsRequest extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1045,7 +1056,7 @@ public  final class ListGroupStatsRequest extends
      * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public java.lang.String getProjectName() {
       java.lang.Object ref = projectName_;
@@ -1068,7 +1079,7 @@ public  final class ListGroupStatsRequest extends
      * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectNameBytes() {
@@ -1092,7 +1103,7 @@ public  final class ListGroupStatsRequest extends
      * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectName(
         java.lang.String value) {
@@ -1113,7 +1124,7 @@ public  final class ListGroupStatsRequest extends
      * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder clearProjectName() {
       
@@ -1130,7 +1141,7 @@ public  final class ListGroupStatsRequest extends
      * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1284,7 +1295,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public boolean hasServiceFilter() {
       return serviceFilterBuilder_ != null || serviceFilter_ != null;
@@ -1296,7 +1307,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter getServiceFilter() {
       if (serviceFilterBuilder_ == null) {
@@ -1312,7 +1323,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder setServiceFilter(com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter value) {
       if (serviceFilterBuilder_ == null) {
@@ -1334,7 +1345,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder setServiceFilter(
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder builderForValue) {
@@ -1354,7 +1365,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder mergeServiceFilter(com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter value) {
       if (serviceFilterBuilder_ == null) {
@@ -1378,7 +1389,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder clearServiceFilter() {
       if (serviceFilterBuilder_ == null) {
@@ -1398,7 +1409,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder getServiceFilterBuilder() {
       
@@ -1412,7 +1423,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder getServiceFilterOrBuilder() {
       if (serviceFilterBuilder_ != null) {
@@ -1429,7 +1440,7 @@ public  final class ListGroupStatsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter, com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder, com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder> 
@@ -1459,7 +1470,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public boolean hasTimeRange() {
       return timeRangeBuilder_ != null || timeRange_ != null;
@@ -1475,7 +1486,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange getTimeRange() {
       if (timeRangeBuilder_ == null) {
@@ -1495,7 +1506,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public Builder setTimeRange(com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange value) {
       if (timeRangeBuilder_ == null) {
@@ -1521,7 +1532,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public Builder setTimeRange(
         com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder builderForValue) {
@@ -1545,7 +1556,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public Builder mergeTimeRange(com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange value) {
       if (timeRangeBuilder_ == null) {
@@ -1573,7 +1584,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public Builder clearTimeRange() {
       if (timeRangeBuilder_ == null) {
@@ -1597,7 +1608,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder getTimeRangeBuilder() {
       
@@ -1615,7 +1626,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder getTimeRangeOrBuilder() {
       if (timeRangeBuilder_ != null) {
@@ -1636,7 +1647,7 @@ public  final class ListGroupStatsRequest extends
      * occurrences are returned.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange, com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder, com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder> 
@@ -1661,7 +1672,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public boolean hasTimedCountDuration() {
       return timedCountDurationBuilder_ != null || timedCountDuration_ != null;
@@ -1672,7 +1683,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public com.google.protobuf.Duration getTimedCountDuration() {
       if (timedCountDurationBuilder_ == null) {
@@ -1687,7 +1698,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public Builder setTimedCountDuration(com.google.protobuf.Duration value) {
       if (timedCountDurationBuilder_ == null) {
@@ -1708,7 +1719,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public Builder setTimedCountDuration(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1727,7 +1738,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public Builder mergeTimedCountDuration(com.google.protobuf.Duration value) {
       if (timedCountDurationBuilder_ == null) {
@@ -1750,7 +1761,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public Builder clearTimedCountDuration() {
       if (timedCountDurationBuilder_ == null) {
@@ -1769,7 +1780,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public com.google.protobuf.Duration.Builder getTimedCountDurationBuilder() {
       
@@ -1782,7 +1793,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     public com.google.protobuf.DurationOrBuilder getTimedCountDurationOrBuilder() {
       if (timedCountDurationBuilder_ != null) {
@@ -1798,7 +1809,7 @@ public  final class ListGroupStatsRequest extends
      * If not set, no timed counts are returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration timed_count_duration = 6;</code>
+     * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -1821,7 +1832,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
      */
     public int getAlignmentValue() {
       return alignment_;
@@ -1832,7 +1843,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
      */
     public Builder setAlignmentValue(int value) {
       alignment_ = value;
@@ -1845,7 +1856,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment getAlignment() {
       com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment result = com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment.valueOf(alignment_);
@@ -1857,7 +1868,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
      */
     public Builder setAlignment(com.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment value) {
       if (value == null) {
@@ -1874,7 +1885,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `ALIGNMENT_EQUAL_AT_END`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
      */
     public Builder clearAlignment() {
       
@@ -1892,7 +1903,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public boolean hasAlignmentTime() {
       return alignmentTimeBuilder_ != null || alignmentTime_ != null;
@@ -1903,7 +1914,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public com.google.protobuf.Timestamp getAlignmentTime() {
       if (alignmentTimeBuilder_ == null) {
@@ -1918,7 +1929,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public Builder setAlignmentTime(com.google.protobuf.Timestamp value) {
       if (alignmentTimeBuilder_ == null) {
@@ -1939,7 +1950,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public Builder setAlignmentTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1958,7 +1969,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public Builder mergeAlignmentTime(com.google.protobuf.Timestamp value) {
       if (alignmentTimeBuilder_ == null) {
@@ -1981,7 +1992,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public Builder clearAlignmentTime() {
       if (alignmentTimeBuilder_ == null) {
@@ -2000,7 +2011,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public com.google.protobuf.Timestamp.Builder getAlignmentTimeBuilder() {
       
@@ -2013,7 +2024,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getAlignmentTimeOrBuilder() {
       if (alignmentTimeBuilder_ != null) {
@@ -2029,7 +2040,7 @@ public  final class ListGroupStatsRequest extends
      * alignment is chosen. Default is 00:00 UTC.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp alignment_time = 8;</code>
+     * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2052,7 +2063,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `COUNT_DESC`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
      */
     public int getOrderValue() {
       return order_;
@@ -2063,7 +2074,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `COUNT_DESC`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
      */
     public Builder setOrderValue(int value) {
       order_ = value;
@@ -2076,7 +2087,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `COUNT_DESC`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder getOrder() {
       com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder result = com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder.valueOf(order_);
@@ -2088,7 +2099,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `COUNT_DESC`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
      */
     public Builder setOrder(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder value) {
       if (value == null) {
@@ -2105,7 +2116,7 @@ public  final class ListGroupStatsRequest extends
      * Default is `COUNT_DESC`.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
      */
     public Builder clearOrder() {
       
@@ -2121,7 +2132,7 @@ public  final class ListGroupStatsRequest extends
      * Default is 20.
      * </pre>
      *
-     * <code>optional int32 page_size = 11;</code>
+     * <code>int32 page_size = 11;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -2132,7 +2143,7 @@ public  final class ListGroupStatsRequest extends
      * Default is 20.
      * </pre>
      *
-     * <code>optional int32 page_size = 11;</code>
+     * <code>int32 page_size = 11;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -2146,7 +2157,7 @@ public  final class ListGroupStatsRequest extends
      * Default is 20.
      * </pre>
      *
-     * <code>optional int32 page_size = 11;</code>
+     * <code>int32 page_size = 11;</code>
      */
     public Builder clearPageSize() {
       
@@ -2163,7 +2174,7 @@ public  final class ListGroupStatsRequest extends
      * parameters as the first request.
      * </pre>
      *
-     * <code>optional string page_token = 12;</code>
+     * <code>string page_token = 12;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -2184,7 +2195,7 @@ public  final class ListGroupStatsRequest extends
      * parameters as the first request.
      * </pre>
      *
-     * <code>optional string page_token = 12;</code>
+     * <code>string page_token = 12;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -2206,7 +2217,7 @@ public  final class ListGroupStatsRequest extends
      * parameters as the first request.
      * </pre>
      *
-     * <code>optional string page_token = 12;</code>
+     * <code>string page_token = 12;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -2225,7 +2236,7 @@ public  final class ListGroupStatsRequest extends
      * parameters as the first request.
      * </pre>
      *
-     * <code>optional string page_token = 12;</code>
+     * <code>string page_token = 12;</code>
      */
     public Builder clearPageToken() {
       
@@ -2240,7 +2251,7 @@ public  final class ListGroupStatsRequest extends
      * parameters as the first request.
      * </pre>
      *
-     * <code>optional string page_token = 12;</code>
+     * <code>string page_token = 12;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

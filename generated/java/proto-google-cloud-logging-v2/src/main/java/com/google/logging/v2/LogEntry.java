@@ -142,9 +142,10 @@ public  final class LogEntry extends
               mutable_bitField0_ |= 0x00000400;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            labels = input.readMessage(
+            labels__ = input.readMessage(
                 LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            labels_.getMutableMap().put(labels.getKey(), labels.getValue());
+            labels_.getMutableMap().put(
+                labels__.getKey(), labels__.getValue());
             break;
           }
           case 98: {
@@ -294,7 +295,7 @@ public  final class LogEntry extends
    * any results.
    * </pre>
    *
-   * <code>optional string log_name = 12;</code>
+   * <code>string log_name = 12;</code>
    */
   public java.lang.String getLogName() {
     java.lang.Object ref = logName_;
@@ -327,7 +328,7 @@ public  final class LogEntry extends
    * any results.
    * </pre>
    *
-   * <code>optional string log_name = 12;</code>
+   * <code>string log_name = 12;</code>
    */
   public com.google.protobuf.ByteString
       getLogNameBytes() {
@@ -353,7 +354,7 @@ public  final class LogEntry extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   public boolean hasResource() {
     return resource_ != null;
@@ -366,7 +367,7 @@ public  final class LogEntry extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   public com.google.api.MonitoredResource getResource() {
     return resource_ == null ? com.google.api.MonitoredResource.getDefaultInstance() : resource_;
@@ -379,7 +380,7 @@ public  final class LogEntry extends
    * database that reported the error.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 8;</code>
+   * <code>.google.api.MonitoredResource resource = 8;</code>
    */
   public com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder() {
     return getResource();
@@ -393,7 +394,7 @@ public  final class LogEntry extends
    * entry payloads.
    * </pre>
    *
-   * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+   * <code>.google.protobuf.Any proto_payload = 2;</code>
    */
   public com.google.protobuf.Any getProtoPayload() {
     if (payloadCase_ == 2) {
@@ -408,7 +409,7 @@ public  final class LogEntry extends
    * entry payloads.
    * </pre>
    *
-   * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+   * <code>.google.protobuf.Any proto_payload = 2;</code>
    */
   public com.google.protobuf.AnyOrBuilder getProtoPayloadOrBuilder() {
     if (payloadCase_ == 2) {
@@ -423,7 +424,7 @@ public  final class LogEntry extends
    * The log entry payload, represented as a Unicode string (UTF-8).
    * </pre>
    *
-   * <code>optional string text_payload = 3;</code>
+   * <code>string text_payload = 3;</code>
    */
   public java.lang.String getTextPayload() {
     java.lang.Object ref = "";
@@ -447,7 +448,7 @@ public  final class LogEntry extends
    * The log entry payload, represented as a Unicode string (UTF-8).
    * </pre>
    *
-   * <code>optional string text_payload = 3;</code>
+   * <code>string text_payload = 3;</code>
    */
   public com.google.protobuf.ByteString
       getTextPayloadBytes() {
@@ -475,7 +476,7 @@ public  final class LogEntry extends
    * expressed as a JSON object.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+   * <code>.google.protobuf.Struct json_payload = 6;</code>
    */
   public com.google.protobuf.Struct getJsonPayload() {
     if (payloadCase_ == 6) {
@@ -489,7 +490,7 @@ public  final class LogEntry extends
    * expressed as a JSON object.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+   * <code>.google.protobuf.Struct json_payload = 6;</code>
    */
   public com.google.protobuf.StructOrBuilder getJsonPayloadOrBuilder() {
     if (payloadCase_ == 6) {
@@ -509,7 +510,7 @@ public  final class LogEntry extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   public boolean hasTimestamp() {
     return timestamp_ != null;
@@ -523,7 +524,7 @@ public  final class LogEntry extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   public com.google.protobuf.Timestamp getTimestamp() {
     return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
@@ -537,7 +538,7 @@ public  final class LogEntry extends
    * with time stamps in the past are accepted.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 9;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
     return getTimestamp();
@@ -550,7 +551,7 @@ public  final class LogEntry extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   public boolean hasReceiveTimestamp() {
     return receiveTimestamp_ != null;
@@ -560,7 +561,7 @@ public  final class LogEntry extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   public com.google.protobuf.Timestamp getReceiveTimestamp() {
     return receiveTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : receiveTimestamp_;
@@ -570,7 +571,7 @@ public  final class LogEntry extends
    * Output only. The time the log entry was received by Stackdriver Logging.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+   * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getReceiveTimestampOrBuilder() {
     return getReceiveTimestamp();
@@ -584,7 +585,7 @@ public  final class LogEntry extends
    * `LogSeverity.DEFAULT`.
    * </pre>
    *
-   * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+   * <code>.google.logging.type.LogSeverity severity = 10;</code>
    */
   public int getSeverityValue() {
     return severity_;
@@ -595,7 +596,7 @@ public  final class LogEntry extends
    * `LogSeverity.DEFAULT`.
    * </pre>
    *
-   * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+   * <code>.google.logging.type.LogSeverity severity = 10;</code>
    */
   public com.google.logging.type.LogSeverity getSeverity() {
     com.google.logging.type.LogSeverity result = com.google.logging.type.LogSeverity.valueOf(severity_);
@@ -614,7 +615,7 @@ public  final class LogEntry extends
    * to order log entries that have the same `timestamp` value.
    * </pre>
    *
-   * <code>optional string insert_id = 4;</code>
+   * <code>string insert_id = 4;</code>
    */
   public java.lang.String getInsertId() {
     java.lang.Object ref = insertId_;
@@ -638,7 +639,7 @@ public  final class LogEntry extends
    * to order log entries that have the same `timestamp` value.
    * </pre>
    *
-   * <code>optional string insert_id = 4;</code>
+   * <code>string insert_id = 4;</code>
    */
   public com.google.protobuf.ByteString
       getInsertIdBytes() {
@@ -662,7 +663,7 @@ public  final class LogEntry extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   public boolean hasHttpRequest() {
     return httpRequest_ != null;
@@ -673,7 +674,7 @@ public  final class LogEntry extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   public com.google.logging.type.HttpRequest getHttpRequest() {
     return httpRequest_ == null ? com.google.logging.type.HttpRequest.getDefaultInstance() : httpRequest_;
@@ -684,7 +685,7 @@ public  final class LogEntry extends
    * log entry, if applicable.
    * </pre>
    *
-   * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+   * <code>.google.logging.type.HttpRequest http_request = 7;</code>
    */
   public com.google.logging.type.HttpRequestOrBuilder getHttpRequestOrBuilder() {
     return getHttpRequest();
@@ -794,7 +795,7 @@ public  final class LogEntry extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   public boolean hasOperation() {
     return operation_ != null;
@@ -805,7 +806,7 @@ public  final class LogEntry extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   public com.google.logging.v2.LogEntryOperation getOperation() {
     return operation_ == null ? com.google.logging.v2.LogEntryOperation.getDefaultInstance() : operation_;
@@ -816,7 +817,7 @@ public  final class LogEntry extends
    * applicable.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+   * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
    */
   public com.google.logging.v2.LogEntryOperationOrBuilder getOperationOrBuilder() {
     return getOperation();
@@ -832,7 +833,7 @@ public  final class LogEntry extends
    * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
    * </pre>
    *
-   * <code>optional string trace = 22;</code>
+   * <code>string trace = 22;</code>
    */
   public java.lang.String getTrace() {
     java.lang.Object ref = trace_;
@@ -854,7 +855,7 @@ public  final class LogEntry extends
    * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
    * </pre>
    *
-   * <code>optional string trace = 22;</code>
+   * <code>string trace = 22;</code>
    */
   public com.google.protobuf.ByteString
       getTraceBytes() {
@@ -878,7 +879,7 @@ public  final class LogEntry extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   public boolean hasSourceLocation() {
     return sourceLocation_ != null;
@@ -889,7 +890,7 @@ public  final class LogEntry extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   public com.google.logging.v2.LogEntrySourceLocation getSourceLocation() {
     return sourceLocation_ == null ? com.google.logging.v2.LogEntrySourceLocation.getDefaultInstance() : sourceLocation_;
@@ -900,7 +901,7 @@ public  final class LogEntry extends
    * if any.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+   * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
    */
   public com.google.logging.v2.LogEntrySourceLocationOrBuilder getSourceLocationOrBuilder() {
     return getSourceLocation();
@@ -942,15 +943,12 @@ public  final class LogEntry extends
     if (severity_ != com.google.logging.type.LogSeverity.DEFAULT.getNumber()) {
       output.writeEnum(10, severity_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetLabels().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(11, labels);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabels(),
+        LabelsDefaultEntryHolder.defaultEntry,
+        11);
     if (!getLogNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 12, logName_);
     }
@@ -1006,12 +1004,12 @@ public  final class LogEntry extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetLabels().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
+      labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, labels);
+          .computeMessageSize(11, labels__);
     }
     if (!getLogNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, logName_);
@@ -1114,7 +1112,7 @@ public  final class LogEntry extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + LOG_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getLogName().hashCode();
     if (hasResource()) {
@@ -1172,6 +1170,17 @@ public  final class LogEntry extends
     return hash;
   }
 
+  public static com.google.logging.v2.LogEntry parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.LogEntry parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.LogEntry parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1594,7 +1603,7 @@ public  final class LogEntry extends
      * any results.
      * </pre>
      *
-     * <code>optional string log_name = 12;</code>
+     * <code>string log_name = 12;</code>
      */
     public java.lang.String getLogName() {
       java.lang.Object ref = logName_;
@@ -1627,7 +1636,7 @@ public  final class LogEntry extends
      * any results.
      * </pre>
      *
-     * <code>optional string log_name = 12;</code>
+     * <code>string log_name = 12;</code>
      */
     public com.google.protobuf.ByteString
         getLogNameBytes() {
@@ -1661,7 +1670,7 @@ public  final class LogEntry extends
      * any results.
      * </pre>
      *
-     * <code>optional string log_name = 12;</code>
+     * <code>string log_name = 12;</code>
      */
     public Builder setLogName(
         java.lang.String value) {
@@ -1692,7 +1701,7 @@ public  final class LogEntry extends
      * any results.
      * </pre>
      *
-     * <code>optional string log_name = 12;</code>
+     * <code>string log_name = 12;</code>
      */
     public Builder clearLogName() {
       
@@ -1719,7 +1728,7 @@ public  final class LogEntry extends
      * any results.
      * </pre>
      *
-     * <code>optional string log_name = 12;</code>
+     * <code>string log_name = 12;</code>
      */
     public Builder setLogNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1744,7 +1753,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public boolean hasResource() {
       return resourceBuilder_ != null || resource_ != null;
@@ -1757,7 +1766,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public com.google.api.MonitoredResource getResource() {
       if (resourceBuilder_ == null) {
@@ -1774,7 +1783,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public Builder setResource(com.google.api.MonitoredResource value) {
       if (resourceBuilder_ == null) {
@@ -1797,7 +1806,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public Builder setResource(
         com.google.api.MonitoredResource.Builder builderForValue) {
@@ -1818,7 +1827,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public Builder mergeResource(com.google.api.MonitoredResource value) {
       if (resourceBuilder_ == null) {
@@ -1843,7 +1852,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public Builder clearResource() {
       if (resourceBuilder_ == null) {
@@ -1864,7 +1873,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public com.google.api.MonitoredResource.Builder getResourceBuilder() {
       
@@ -1879,7 +1888,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     public com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder() {
       if (resourceBuilder_ != null) {
@@ -1897,7 +1906,7 @@ public  final class LogEntry extends
      * database that reported the error.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 8;</code>
+     * <code>.google.api.MonitoredResource resource = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.MonitoredResource, com.google.api.MonitoredResource.Builder, com.google.api.MonitoredResourceOrBuilder> 
@@ -1922,7 +1931,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public com.google.protobuf.Any getProtoPayload() {
       if (protoPayloadBuilder_ == null) {
@@ -1944,7 +1953,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public Builder setProtoPayload(com.google.protobuf.Any value) {
       if (protoPayloadBuilder_ == null) {
@@ -1966,7 +1975,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public Builder setProtoPayload(
         com.google.protobuf.Any.Builder builderForValue) {
@@ -1986,7 +1995,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public Builder mergeProtoPayload(com.google.protobuf.Any value) {
       if (protoPayloadBuilder_ == null) {
@@ -2014,7 +2023,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public Builder clearProtoPayload() {
       if (protoPayloadBuilder_ == null) {
@@ -2039,7 +2048,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public com.google.protobuf.Any.Builder getProtoPayloadBuilder() {
       return getProtoPayloadFieldBuilder().getBuilder();
@@ -2051,7 +2060,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     public com.google.protobuf.AnyOrBuilder getProtoPayloadOrBuilder() {
       if ((payloadCase_ == 2) && (protoPayloadBuilder_ != null)) {
@@ -2070,7 +2079,7 @@ public  final class LogEntry extends
      * entry payloads.
      * </pre>
      *
-     * <code>optional .google.protobuf.Any proto_payload = 2;</code>
+     * <code>.google.protobuf.Any proto_payload = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
@@ -2096,7 +2105,7 @@ public  final class LogEntry extends
      * The log entry payload, represented as a Unicode string (UTF-8).
      * </pre>
      *
-     * <code>optional string text_payload = 3;</code>
+     * <code>string text_payload = 3;</code>
      */
     public java.lang.String getTextPayload() {
       java.lang.Object ref = "";
@@ -2120,7 +2129,7 @@ public  final class LogEntry extends
      * The log entry payload, represented as a Unicode string (UTF-8).
      * </pre>
      *
-     * <code>optional string text_payload = 3;</code>
+     * <code>string text_payload = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTextPayloadBytes() {
@@ -2145,7 +2154,7 @@ public  final class LogEntry extends
      * The log entry payload, represented as a Unicode string (UTF-8).
      * </pre>
      *
-     * <code>optional string text_payload = 3;</code>
+     * <code>string text_payload = 3;</code>
      */
     public Builder setTextPayload(
         java.lang.String value) {
@@ -2162,7 +2171,7 @@ public  final class LogEntry extends
      * The log entry payload, represented as a Unicode string (UTF-8).
      * </pre>
      *
-     * <code>optional string text_payload = 3;</code>
+     * <code>string text_payload = 3;</code>
      */
     public Builder clearTextPayload() {
       if (payloadCase_ == 3) {
@@ -2177,7 +2186,7 @@ public  final class LogEntry extends
      * The log entry payload, represented as a Unicode string (UTF-8).
      * </pre>
      *
-     * <code>optional string text_payload = 3;</code>
+     * <code>string text_payload = 3;</code>
      */
     public Builder setTextPayloadBytes(
         com.google.protobuf.ByteString value) {
@@ -2199,7 +2208,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public com.google.protobuf.Struct getJsonPayload() {
       if (jsonPayloadBuilder_ == null) {
@@ -2220,7 +2229,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public Builder setJsonPayload(com.google.protobuf.Struct value) {
       if (jsonPayloadBuilder_ == null) {
@@ -2241,7 +2250,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public Builder setJsonPayload(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -2260,7 +2269,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public Builder mergeJsonPayload(com.google.protobuf.Struct value) {
       if (jsonPayloadBuilder_ == null) {
@@ -2287,7 +2296,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public Builder clearJsonPayload() {
       if (jsonPayloadBuilder_ == null) {
@@ -2311,7 +2320,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public com.google.protobuf.Struct.Builder getJsonPayloadBuilder() {
       return getJsonPayloadFieldBuilder().getBuilder();
@@ -2322,7 +2331,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     public com.google.protobuf.StructOrBuilder getJsonPayloadOrBuilder() {
       if ((payloadCase_ == 6) && (jsonPayloadBuilder_ != null)) {
@@ -2340,7 +2349,7 @@ public  final class LogEntry extends
      * expressed as a JSON object.
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct json_payload = 6;</code>
+     * <code>.google.protobuf.Struct json_payload = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -2373,7 +2382,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public boolean hasTimestamp() {
       return timestampBuilder_ != null || timestamp_ != null;
@@ -2387,7 +2396,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public com.google.protobuf.Timestamp getTimestamp() {
       if (timestampBuilder_ == null) {
@@ -2405,7 +2414,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public Builder setTimestamp(com.google.protobuf.Timestamp value) {
       if (timestampBuilder_ == null) {
@@ -2429,7 +2438,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public Builder setTimestamp(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -2451,7 +2460,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
       if (timestampBuilder_ == null) {
@@ -2477,7 +2486,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public Builder clearTimestamp() {
       if (timestampBuilder_ == null) {
@@ -2499,7 +2508,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
       
@@ -2515,7 +2524,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
       if (timestampBuilder_ != null) {
@@ -2534,7 +2543,7 @@ public  final class LogEntry extends
      * with time stamps in the past are accepted.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp timestamp = 9;</code>
+     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2558,7 +2567,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public boolean hasReceiveTimestamp() {
       return receiveTimestampBuilder_ != null || receiveTimestamp_ != null;
@@ -2568,7 +2577,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public com.google.protobuf.Timestamp getReceiveTimestamp() {
       if (receiveTimestampBuilder_ == null) {
@@ -2582,7 +2591,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public Builder setReceiveTimestamp(com.google.protobuf.Timestamp value) {
       if (receiveTimestampBuilder_ == null) {
@@ -2602,7 +2611,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public Builder setReceiveTimestamp(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -2620,7 +2629,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public Builder mergeReceiveTimestamp(com.google.protobuf.Timestamp value) {
       if (receiveTimestampBuilder_ == null) {
@@ -2642,7 +2651,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public Builder clearReceiveTimestamp() {
       if (receiveTimestampBuilder_ == null) {
@@ -2660,7 +2669,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public com.google.protobuf.Timestamp.Builder getReceiveTimestampBuilder() {
       
@@ -2672,7 +2681,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getReceiveTimestampOrBuilder() {
       if (receiveTimestampBuilder_ != null) {
@@ -2687,7 +2696,7 @@ public  final class LogEntry extends
      * Output only. The time the log entry was received by Stackdriver Logging.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2710,7 +2719,7 @@ public  final class LogEntry extends
      * `LogSeverity.DEFAULT`.
      * </pre>
      *
-     * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+     * <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     public int getSeverityValue() {
       return severity_;
@@ -2721,7 +2730,7 @@ public  final class LogEntry extends
      * `LogSeverity.DEFAULT`.
      * </pre>
      *
-     * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+     * <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     public Builder setSeverityValue(int value) {
       severity_ = value;
@@ -2734,7 +2743,7 @@ public  final class LogEntry extends
      * `LogSeverity.DEFAULT`.
      * </pre>
      *
-     * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+     * <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     public com.google.logging.type.LogSeverity getSeverity() {
       com.google.logging.type.LogSeverity result = com.google.logging.type.LogSeverity.valueOf(severity_);
@@ -2746,7 +2755,7 @@ public  final class LogEntry extends
      * `LogSeverity.DEFAULT`.
      * </pre>
      *
-     * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+     * <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     public Builder setSeverity(com.google.logging.type.LogSeverity value) {
       if (value == null) {
@@ -2763,7 +2772,7 @@ public  final class LogEntry extends
      * `LogSeverity.DEFAULT`.
      * </pre>
      *
-     * <code>optional .google.logging.type.LogSeverity severity = 10;</code>
+     * <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     public Builder clearSeverity() {
       
@@ -2783,7 +2792,7 @@ public  final class LogEntry extends
      * to order log entries that have the same `timestamp` value.
      * </pre>
      *
-     * <code>optional string insert_id = 4;</code>
+     * <code>string insert_id = 4;</code>
      */
     public java.lang.String getInsertId() {
       java.lang.Object ref = insertId_;
@@ -2807,7 +2816,7 @@ public  final class LogEntry extends
      * to order log entries that have the same `timestamp` value.
      * </pre>
      *
-     * <code>optional string insert_id = 4;</code>
+     * <code>string insert_id = 4;</code>
      */
     public com.google.protobuf.ByteString
         getInsertIdBytes() {
@@ -2832,7 +2841,7 @@ public  final class LogEntry extends
      * to order log entries that have the same `timestamp` value.
      * </pre>
      *
-     * <code>optional string insert_id = 4;</code>
+     * <code>string insert_id = 4;</code>
      */
     public Builder setInsertId(
         java.lang.String value) {
@@ -2854,7 +2863,7 @@ public  final class LogEntry extends
      * to order log entries that have the same `timestamp` value.
      * </pre>
      *
-     * <code>optional string insert_id = 4;</code>
+     * <code>string insert_id = 4;</code>
      */
     public Builder clearInsertId() {
       
@@ -2872,7 +2881,7 @@ public  final class LogEntry extends
      * to order log entries that have the same `timestamp` value.
      * </pre>
      *
-     * <code>optional string insert_id = 4;</code>
+     * <code>string insert_id = 4;</code>
      */
     public Builder setInsertIdBytes(
         com.google.protobuf.ByteString value) {
@@ -2895,7 +2904,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public boolean hasHttpRequest() {
       return httpRequestBuilder_ != null || httpRequest_ != null;
@@ -2906,7 +2915,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public com.google.logging.type.HttpRequest getHttpRequest() {
       if (httpRequestBuilder_ == null) {
@@ -2921,7 +2930,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public Builder setHttpRequest(com.google.logging.type.HttpRequest value) {
       if (httpRequestBuilder_ == null) {
@@ -2942,7 +2951,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public Builder setHttpRequest(
         com.google.logging.type.HttpRequest.Builder builderForValue) {
@@ -2961,7 +2970,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public Builder mergeHttpRequest(com.google.logging.type.HttpRequest value) {
       if (httpRequestBuilder_ == null) {
@@ -2984,7 +2993,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public Builder clearHttpRequest() {
       if (httpRequestBuilder_ == null) {
@@ -3003,7 +3012,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public com.google.logging.type.HttpRequest.Builder getHttpRequestBuilder() {
       
@@ -3016,7 +3025,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     public com.google.logging.type.HttpRequestOrBuilder getHttpRequestOrBuilder() {
       if (httpRequestBuilder_ != null) {
@@ -3032,7 +3041,7 @@ public  final class LogEntry extends
      * log entry, if applicable.
      * </pre>
      *
-     * <code>optional .google.logging.type.HttpRequest http_request = 7;</code>
+     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.type.HttpRequest, com.google.logging.type.HttpRequest.Builder, com.google.logging.type.HttpRequestOrBuilder> 
@@ -3145,7 +3154,8 @@ public  final class LogEntry extends
     }
 
     public Builder clearLabels() {
-      getMutableLabels().clear();
+      internalGetMutableLabels().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -3160,7 +3170,8 @@ public  final class LogEntry extends
     public Builder removeLabels(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().remove(key);
+      internalGetMutableLabels().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -3184,7 +3195,8 @@ public  final class LogEntry extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().put(key, value);
+      internalGetMutableLabels().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -3198,7 +3210,8 @@ public  final class LogEntry extends
 
     public Builder putAllLabels(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      getMutableLabels().putAll(values);
+      internalGetMutableLabels().getMutableMap()
+          .putAll(values);
       return this;
     }
 
@@ -3211,7 +3224,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public boolean hasOperation() {
       return operationBuilder_ != null || operation_ != null;
@@ -3222,7 +3235,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public com.google.logging.v2.LogEntryOperation getOperation() {
       if (operationBuilder_ == null) {
@@ -3237,7 +3250,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public Builder setOperation(com.google.logging.v2.LogEntryOperation value) {
       if (operationBuilder_ == null) {
@@ -3258,7 +3271,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public Builder setOperation(
         com.google.logging.v2.LogEntryOperation.Builder builderForValue) {
@@ -3277,7 +3290,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public Builder mergeOperation(com.google.logging.v2.LogEntryOperation value) {
       if (operationBuilder_ == null) {
@@ -3300,7 +3313,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public Builder clearOperation() {
       if (operationBuilder_ == null) {
@@ -3319,7 +3332,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public com.google.logging.v2.LogEntryOperation.Builder getOperationBuilder() {
       
@@ -3332,7 +3345,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     public com.google.logging.v2.LogEntryOperationOrBuilder getOperationOrBuilder() {
       if (operationBuilder_ != null) {
@@ -3348,7 +3361,7 @@ public  final class LogEntry extends
      * applicable.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntryOperation operation = 15;</code>
+     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogEntryOperation, com.google.logging.v2.LogEntryOperation.Builder, com.google.logging.v2.LogEntryOperationOrBuilder> 
@@ -3373,7 +3386,7 @@ public  final class LogEntry extends
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      * </pre>
      *
-     * <code>optional string trace = 22;</code>
+     * <code>string trace = 22;</code>
      */
     public java.lang.String getTrace() {
       java.lang.Object ref = trace_;
@@ -3395,7 +3408,7 @@ public  final class LogEntry extends
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      * </pre>
      *
-     * <code>optional string trace = 22;</code>
+     * <code>string trace = 22;</code>
      */
     public com.google.protobuf.ByteString
         getTraceBytes() {
@@ -3418,7 +3431,7 @@ public  final class LogEntry extends
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      * </pre>
      *
-     * <code>optional string trace = 22;</code>
+     * <code>string trace = 22;</code>
      */
     public Builder setTrace(
         java.lang.String value) {
@@ -3438,7 +3451,7 @@ public  final class LogEntry extends
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      * </pre>
      *
-     * <code>optional string trace = 22;</code>
+     * <code>string trace = 22;</code>
      */
     public Builder clearTrace() {
       
@@ -3454,7 +3467,7 @@ public  final class LogEntry extends
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
      * </pre>
      *
-     * <code>optional string trace = 22;</code>
+     * <code>string trace = 22;</code>
      */
     public Builder setTraceBytes(
         com.google.protobuf.ByteString value) {
@@ -3477,7 +3490,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public boolean hasSourceLocation() {
       return sourceLocationBuilder_ != null || sourceLocation_ != null;
@@ -3488,7 +3501,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public com.google.logging.v2.LogEntrySourceLocation getSourceLocation() {
       if (sourceLocationBuilder_ == null) {
@@ -3503,7 +3516,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public Builder setSourceLocation(com.google.logging.v2.LogEntrySourceLocation value) {
       if (sourceLocationBuilder_ == null) {
@@ -3524,7 +3537,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public Builder setSourceLocation(
         com.google.logging.v2.LogEntrySourceLocation.Builder builderForValue) {
@@ -3543,7 +3556,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public Builder mergeSourceLocation(com.google.logging.v2.LogEntrySourceLocation value) {
       if (sourceLocationBuilder_ == null) {
@@ -3566,7 +3579,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public Builder clearSourceLocation() {
       if (sourceLocationBuilder_ == null) {
@@ -3585,7 +3598,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public com.google.logging.v2.LogEntrySourceLocation.Builder getSourceLocationBuilder() {
       
@@ -3598,7 +3611,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     public com.google.logging.v2.LogEntrySourceLocationOrBuilder getSourceLocationOrBuilder() {
       if (sourceLocationBuilder_ != null) {
@@ -3614,7 +3627,7 @@ public  final class LogEntry extends
      * if any.
      * </pre>
      *
-     * <code>optional .google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogEntrySourceLocation, com.google.logging.v2.LogEntrySourceLocation.Builder, com.google.logging.v2.LogEntrySourceLocationOrBuilder> 

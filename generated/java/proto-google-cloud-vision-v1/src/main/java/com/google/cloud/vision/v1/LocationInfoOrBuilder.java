@@ -12,7 +12,7 @@ public interface LocationInfoOrBuilder extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   boolean hasLatLng();
   /**
@@ -20,7 +20,7 @@ public interface LocationInfoOrBuilder extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   com.google.type.LatLng getLatLng();
   /**
@@ -28,7 +28,7 @@ public interface LocationInfoOrBuilder extends
    * lat/long location coordinates.
    * </pre>
    *
-   * <code>optional .google.type.LatLng lat_lng = 1;</code>
+   * <code>.google.type.LatLng lat_lng = 1;</code>
    */
   com.google.type.LatLngOrBuilder getLatLngOrBuilder();
 }

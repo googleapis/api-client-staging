@@ -96,7 +96,7 @@ public  final class ReceivedMessage extends
    * This ID can be used to acknowledge the received message.
    * </pre>
    *
-   * <code>optional string ack_id = 1;</code>
+   * <code>string ack_id = 1;</code>
    */
   public java.lang.String getAckId() {
     java.lang.Object ref = ackId_;
@@ -115,7 +115,7 @@ public  final class ReceivedMessage extends
    * This ID can be used to acknowledge the received message.
    * </pre>
    *
-   * <code>optional string ack_id = 1;</code>
+   * <code>string ack_id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getAckIdBytes() {
@@ -138,7 +138,7 @@ public  final class ReceivedMessage extends
    * The message.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   public boolean hasMessage() {
     return message_ != null;
@@ -148,7 +148,7 @@ public  final class ReceivedMessage extends
    * The message.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   public com.google.pubsub.v1.PubsubMessage getMessage() {
     return message_ == null ? com.google.pubsub.v1.PubsubMessage.getDefaultInstance() : message_;
@@ -158,7 +158,7 @@ public  final class ReceivedMessage extends
    * The message.
    * </pre>
    *
-   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   public com.google.pubsub.v1.PubsubMessageOrBuilder getMessageOrBuilder() {
     return getMessage();
@@ -228,7 +228,7 @@ public  final class ReceivedMessage extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ACK_ID_FIELD_NUMBER;
     hash = (53 * hash) + getAckId().hashCode();
     if (hasMessage()) {
@@ -240,6 +240,17 @@ public  final class ReceivedMessage extends
     return hash;
   }
 
+  public static com.google.pubsub.v1.ReceivedMessage parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.pubsub.v1.ReceivedMessage parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.pubsub.v1.ReceivedMessage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -473,7 +484,7 @@ public  final class ReceivedMessage extends
      * This ID can be used to acknowledge the received message.
      * </pre>
      *
-     * <code>optional string ack_id = 1;</code>
+     * <code>string ack_id = 1;</code>
      */
     public java.lang.String getAckId() {
       java.lang.Object ref = ackId_;
@@ -492,7 +503,7 @@ public  final class ReceivedMessage extends
      * This ID can be used to acknowledge the received message.
      * </pre>
      *
-     * <code>optional string ack_id = 1;</code>
+     * <code>string ack_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getAckIdBytes() {
@@ -512,7 +523,7 @@ public  final class ReceivedMessage extends
      * This ID can be used to acknowledge the received message.
      * </pre>
      *
-     * <code>optional string ack_id = 1;</code>
+     * <code>string ack_id = 1;</code>
      */
     public Builder setAckId(
         java.lang.String value) {
@@ -529,7 +540,7 @@ public  final class ReceivedMessage extends
      * This ID can be used to acknowledge the received message.
      * </pre>
      *
-     * <code>optional string ack_id = 1;</code>
+     * <code>string ack_id = 1;</code>
      */
     public Builder clearAckId() {
       
@@ -542,7 +553,7 @@ public  final class ReceivedMessage extends
      * This ID can be used to acknowledge the received message.
      * </pre>
      *
-     * <code>optional string ack_id = 1;</code>
+     * <code>string ack_id = 1;</code>
      */
     public Builder setAckIdBytes(
         com.google.protobuf.ByteString value) {
@@ -564,7 +575,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public boolean hasMessage() {
       return messageBuilder_ != null || message_ != null;
@@ -574,7 +585,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public com.google.pubsub.v1.PubsubMessage getMessage() {
       if (messageBuilder_ == null) {
@@ -588,7 +599,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public Builder setMessage(com.google.pubsub.v1.PubsubMessage value) {
       if (messageBuilder_ == null) {
@@ -608,7 +619,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public Builder setMessage(
         com.google.pubsub.v1.PubsubMessage.Builder builderForValue) {
@@ -626,7 +637,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public Builder mergeMessage(com.google.pubsub.v1.PubsubMessage value) {
       if (messageBuilder_ == null) {
@@ -648,7 +659,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public Builder clearMessage() {
       if (messageBuilder_ == null) {
@@ -666,7 +677,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public com.google.pubsub.v1.PubsubMessage.Builder getMessageBuilder() {
       
@@ -678,7 +689,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     public com.google.pubsub.v1.PubsubMessageOrBuilder getMessageOrBuilder() {
       if (messageBuilder_ != null) {
@@ -693,7 +704,7 @@ public  final class ReceivedMessage extends
      * The message.
      * </pre>
      *
-     * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
+     * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.pubsub.v1.PubsubMessage, com.google.pubsub.v1.PubsubMessage.Builder, com.google.pubsub.v1.PubsubMessageOrBuilder> 

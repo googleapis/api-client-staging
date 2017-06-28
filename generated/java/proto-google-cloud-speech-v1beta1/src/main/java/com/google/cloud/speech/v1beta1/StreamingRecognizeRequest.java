@@ -138,7 +138,7 @@ public  final class StreamingRecognizeRequest extends
    * `streaming_config`  message.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+   * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
    */
   public com.google.cloud.speech.v1beta1.StreamingRecognitionConfig getStreamingConfig() {
     if (streamingRequestCase_ == 1) {
@@ -153,7 +153,7 @@ public  final class StreamingRecognizeRequest extends
    * `streaming_config`  message.
    * </pre>
    *
-   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+   * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
    */
   public com.google.cloud.speech.v1beta1.StreamingRecognitionConfigOrBuilder getStreamingConfigOrBuilder() {
     if (streamingRequestCase_ == 1) {
@@ -175,7 +175,7 @@ public  final class StreamingRecognizeRequest extends
    * [audio limits](https://cloud.google.com/speech/limits#content).
    * </pre>
    *
-   * <code>optional bytes audio_content = 2;</code>
+   * <code>bytes audio_content = 2;</code>
    */
   public com.google.protobuf.ByteString getAudioContent() {
     if (streamingRequestCase_ == 2) {
@@ -201,7 +201,7 @@ public  final class StreamingRecognizeRequest extends
     }
     if (streamingRequestCase_ == 2) {
       output.writeBytes(
-          2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) streamingRequest_));
+          2, (com.google.protobuf.ByteString) streamingRequest_);
     }
   }
 
@@ -217,7 +217,7 @@ public  final class StreamingRecognizeRequest extends
     if (streamingRequestCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(
-            2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) streamingRequest_));
+            2, (com.google.protobuf.ByteString) streamingRequest_);
     }
     memoizedSize = size;
     return size;
@@ -259,7 +259,7 @@ public  final class StreamingRecognizeRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (streamingRequestCase_) {
       case 1:
         hash = (37 * hash) + STREAMING_CONFIG_FIELD_NUMBER;
@@ -277,6 +277,17 @@ public  final class StreamingRecognizeRequest extends
     return hash;
   }
 
+  public static com.google.cloud.speech.v1beta1.StreamingRecognizeRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.speech.v1beta1.StreamingRecognizeRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.speech.v1beta1.StreamingRecognizeRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -537,7 +548,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.StreamingRecognitionConfig getStreamingConfig() {
       if (streamingConfigBuilder_ == null) {
@@ -559,7 +570,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public Builder setStreamingConfig(com.google.cloud.speech.v1beta1.StreamingRecognitionConfig value) {
       if (streamingConfigBuilder_ == null) {
@@ -581,7 +592,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public Builder setStreamingConfig(
         com.google.cloud.speech.v1beta1.StreamingRecognitionConfig.Builder builderForValue) {
@@ -601,7 +612,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public Builder mergeStreamingConfig(com.google.cloud.speech.v1beta1.StreamingRecognitionConfig value) {
       if (streamingConfigBuilder_ == null) {
@@ -629,7 +640,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public Builder clearStreamingConfig() {
       if (streamingConfigBuilder_ == null) {
@@ -654,7 +665,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.StreamingRecognitionConfig.Builder getStreamingConfigBuilder() {
       return getStreamingConfigFieldBuilder().getBuilder();
@@ -666,7 +677,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.StreamingRecognitionConfigOrBuilder getStreamingConfigOrBuilder() {
       if ((streamingRequestCase_ == 1) && (streamingConfigBuilder_ != null)) {
@@ -685,7 +696,7 @@ public  final class StreamingRecognizeRequest extends
      * `streaming_config`  message.
      * </pre>
      *
-     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.speech.v1beta1.StreamingRecognitionConfig, com.google.cloud.speech.v1beta1.StreamingRecognitionConfig.Builder, com.google.cloud.speech.v1beta1.StreamingRecognitionConfigOrBuilder> 
@@ -718,7 +729,7 @@ public  final class StreamingRecognizeRequest extends
      * [audio limits](https://cloud.google.com/speech/limits#content).
      * </pre>
      *
-     * <code>optional bytes audio_content = 2;</code>
+     * <code>bytes audio_content = 2;</code>
      */
     public com.google.protobuf.ByteString getAudioContent() {
       if (streamingRequestCase_ == 2) {
@@ -738,7 +749,7 @@ public  final class StreamingRecognizeRequest extends
      * [audio limits](https://cloud.google.com/speech/limits#content).
      * </pre>
      *
-     * <code>optional bytes audio_content = 2;</code>
+     * <code>bytes audio_content = 2;</code>
      */
     public Builder setAudioContent(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -761,7 +772,7 @@ public  final class StreamingRecognizeRequest extends
      * [audio limits](https://cloud.google.com/speech/limits#content).
      * </pre>
      *
-     * <code>optional bytes audio_content = 2;</code>
+     * <code>bytes audio_content = 2;</code>
      */
     public Builder clearAudioContent() {
       if (streamingRequestCase_ == 2) {

@@ -90,7 +90,7 @@ public  final class Property extends
    * Name of the property.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -109,7 +109,7 @@ public  final class Property extends
    * Name of the property.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -132,7 +132,7 @@ public  final class Property extends
    * Value of the property.
    * </pre>
    *
-   * <code>optional string value = 2;</code>
+   * <code>string value = 2;</code>
    */
   public java.lang.String getValue() {
     java.lang.Object ref = value_;
@@ -151,7 +151,7 @@ public  final class Property extends
    * Value of the property.
    * </pre>
    *
-   * <code>optional string value = 2;</code>
+   * <code>string value = 2;</code>
    */
   public com.google.protobuf.ByteString
       getValueBytes() {
@@ -227,7 +227,7 @@ public  final class Property extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + VALUE_FIELD_NUMBER;
@@ -237,6 +237,17 @@ public  final class Property extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.Property parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.Property parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.Property parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -463,7 +474,7 @@ public  final class Property extends
      * Name of the property.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -482,7 +493,7 @@ public  final class Property extends
      * Name of the property.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -502,7 +513,7 @@ public  final class Property extends
      * Name of the property.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -519,7 +530,7 @@ public  final class Property extends
      * Name of the property.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -532,7 +543,7 @@ public  final class Property extends
      * Name of the property.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -552,7 +563,7 @@ public  final class Property extends
      * Value of the property.
      * </pre>
      *
-     * <code>optional string value = 2;</code>
+     * <code>string value = 2;</code>
      */
     public java.lang.String getValue() {
       java.lang.Object ref = value_;
@@ -571,7 +582,7 @@ public  final class Property extends
      * Value of the property.
      * </pre>
      *
-     * <code>optional string value = 2;</code>
+     * <code>string value = 2;</code>
      */
     public com.google.protobuf.ByteString
         getValueBytes() {
@@ -591,7 +602,7 @@ public  final class Property extends
      * Value of the property.
      * </pre>
      *
-     * <code>optional string value = 2;</code>
+     * <code>string value = 2;</code>
      */
     public Builder setValue(
         java.lang.String value) {
@@ -608,7 +619,7 @@ public  final class Property extends
      * Value of the property.
      * </pre>
      *
-     * <code>optional string value = 2;</code>
+     * <code>string value = 2;</code>
      */
     public Builder clearValue() {
       
@@ -621,7 +632,7 @@ public  final class Property extends
      * Value of the property.
      * </pre>
      *
-     * <code>optional string value = 2;</code>
+     * <code>string value = 2;</code>
      */
     public Builder setValueBytes(
         com.google.protobuf.ByteString value) {

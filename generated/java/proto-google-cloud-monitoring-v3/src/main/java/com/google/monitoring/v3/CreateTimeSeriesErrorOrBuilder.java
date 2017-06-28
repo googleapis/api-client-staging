@@ -15,7 +15,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   boolean hasTimeSeries();
   /**
@@ -26,7 +26,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   com.google.monitoring.v3.TimeSeries getTimeSeries();
   /**
@@ -37,7 +37,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   com.google.monitoring.v3.TimeSeriesOrBuilder getTimeSeriesOrBuilder();
 
@@ -46,7 +46,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status status = 2;</code>
+   * <code>.google.rpc.Status status = 2;</code>
    */
   boolean hasStatus();
   /**
@@ -54,7 +54,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status status = 2;</code>
+   * <code>.google.rpc.Status status = 2;</code>
    */
   com.google.rpc.Status getStatus();
   /**
@@ -62,7 +62,7 @@ public interface CreateTimeSeriesErrorOrBuilder extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>optional .google.rpc.Status status = 2;</code>
+   * <code>.google.rpc.Status status = 2;</code>
    */
   com.google.rpc.StatusOrBuilder getStatusOrBuilder();
 }

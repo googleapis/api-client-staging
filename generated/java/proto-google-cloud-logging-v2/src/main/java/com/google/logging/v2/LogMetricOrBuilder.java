@@ -24,7 +24,7 @@ public interface LogMetricOrBuilder extends
    * `"projects/my-project/metrics/nginx%2Frequests"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -44,7 +44,7 @@ public interface LogMetricOrBuilder extends
    * `"projects/my-project/metrics/nginx%2Frequests"`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -54,7 +54,7 @@ public interface LogMetricOrBuilder extends
    * Optional. A description of this metric, which is used in documentation.
    * </pre>
    *
-   * <code>optional string description = 2;</code>
+   * <code>string description = 2;</code>
    */
   java.lang.String getDescription();
   /**
@@ -62,7 +62,7 @@ public interface LogMetricOrBuilder extends
    * Optional. A description of this metric, which is used in documentation.
    * </pre>
    *
-   * <code>optional string description = 2;</code>
+   * <code>string description = 2;</code>
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
@@ -76,7 +76,7 @@ public interface LogMetricOrBuilder extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 3;</code>
+   * <code>string filter = 3;</code>
    */
   java.lang.String getFilter();
   /**
@@ -88,7 +88,7 @@ public interface LogMetricOrBuilder extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 3;</code>
+   * <code>string filter = 3;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -100,7 +100,7 @@ public interface LogMetricOrBuilder extends
    * for this field is missing, the default value of V2 should be assumed.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+   * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
    */
   int getVersionValue();
   /**
@@ -110,7 +110,7 @@ public interface LogMetricOrBuilder extends
    * for this field is missing, the default value of V2 should be assumed.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+   * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
    */
   com.google.logging.v2.LogMetric.ApiVersion getVersion();
 }

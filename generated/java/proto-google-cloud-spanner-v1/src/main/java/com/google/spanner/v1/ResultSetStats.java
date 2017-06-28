@@ -102,7 +102,7 @@ public  final class ResultSetStats extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   public boolean hasQueryPlan() {
     return queryPlan_ != null;
@@ -112,7 +112,7 @@ public  final class ResultSetStats extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   public com.google.spanner.v1.QueryPlan getQueryPlan() {
     return queryPlan_ == null ? com.google.spanner.v1.QueryPlan.getDefaultInstance() : queryPlan_;
@@ -122,7 +122,7 @@ public  final class ResultSetStats extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   public com.google.spanner.v1.QueryPlanOrBuilder getQueryPlanOrBuilder() {
     return getQueryPlan();
@@ -142,7 +142,7 @@ public  final class ResultSetStats extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+   * <code>.google.protobuf.Struct query_stats = 2;</code>
    */
   public boolean hasQueryStats() {
     return queryStats_ != null;
@@ -159,7 +159,7 @@ public  final class ResultSetStats extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+   * <code>.google.protobuf.Struct query_stats = 2;</code>
    */
   public com.google.protobuf.Struct getQueryStats() {
     return queryStats_ == null ? com.google.protobuf.Struct.getDefaultInstance() : queryStats_;
@@ -176,7 +176,7 @@ public  final class ResultSetStats extends
    *     }
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+   * <code>.google.protobuf.Struct query_stats = 2;</code>
    */
   public com.google.protobuf.StructOrBuilder getQueryStatsOrBuilder() {
     return getQueryStats();
@@ -250,7 +250,7 @@ public  final class ResultSetStats extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasQueryPlan()) {
       hash = (37 * hash) + QUERY_PLAN_FIELD_NUMBER;
       hash = (53 * hash) + getQueryPlan().hashCode();
@@ -264,6 +264,17 @@ public  final class ResultSetStats extends
     return hash;
   }
 
+  public static com.google.spanner.v1.ResultSetStats parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.ResultSetStats parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.ResultSetStats parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -506,7 +517,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public boolean hasQueryPlan() {
       return queryPlanBuilder_ != null || queryPlan_ != null;
@@ -516,7 +527,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public com.google.spanner.v1.QueryPlan getQueryPlan() {
       if (queryPlanBuilder_ == null) {
@@ -530,7 +541,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public Builder setQueryPlan(com.google.spanner.v1.QueryPlan value) {
       if (queryPlanBuilder_ == null) {
@@ -550,7 +561,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public Builder setQueryPlan(
         com.google.spanner.v1.QueryPlan.Builder builderForValue) {
@@ -568,7 +579,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public Builder mergeQueryPlan(com.google.spanner.v1.QueryPlan value) {
       if (queryPlanBuilder_ == null) {
@@ -590,7 +601,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public Builder clearQueryPlan() {
       if (queryPlanBuilder_ == null) {
@@ -608,7 +619,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public com.google.spanner.v1.QueryPlan.Builder getQueryPlanBuilder() {
       
@@ -620,7 +631,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     public com.google.spanner.v1.QueryPlanOrBuilder getQueryPlanOrBuilder() {
       if (queryPlanBuilder_ != null) {
@@ -635,7 +646,7 @@ public  final class ResultSetStats extends
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.QueryPlan, com.google.spanner.v1.QueryPlan.Builder, com.google.spanner.v1.QueryPlanOrBuilder> 
@@ -666,7 +677,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public boolean hasQueryStats() {
       return queryStatsBuilder_ != null || queryStats_ != null;
@@ -683,7 +694,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public com.google.protobuf.Struct getQueryStats() {
       if (queryStatsBuilder_ == null) {
@@ -704,7 +715,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public Builder setQueryStats(com.google.protobuf.Struct value) {
       if (queryStatsBuilder_ == null) {
@@ -731,7 +742,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public Builder setQueryStats(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -756,7 +767,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public Builder mergeQueryStats(com.google.protobuf.Struct value) {
       if (queryStatsBuilder_ == null) {
@@ -785,7 +796,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public Builder clearQueryStats() {
       if (queryStatsBuilder_ == null) {
@@ -810,7 +821,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public com.google.protobuf.Struct.Builder getQueryStatsBuilder() {
       
@@ -829,7 +840,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     public com.google.protobuf.StructOrBuilder getQueryStatsOrBuilder() {
       if (queryStatsBuilder_ != null) {
@@ -851,7 +862,7 @@ public  final class ResultSetStats extends
      *     }
      * </pre>
      *
-     * <code>optional .google.protobuf.Struct query_stats = 2;</code>
+     * <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 

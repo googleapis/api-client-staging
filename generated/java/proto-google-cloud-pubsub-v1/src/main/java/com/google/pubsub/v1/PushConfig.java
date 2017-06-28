@@ -60,9 +60,10 @@ public  final class PushConfig extends
               mutable_bitField0_ |= 0x00000002;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            attributes = input.readMessage(
+            attributes__ = input.readMessage(
                 AttributesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            attributes_.getMutableMap().put(attributes.getKey(), attributes.getValue());
+            attributes_.getMutableMap().put(
+                attributes__.getKey(), attributes__.getValue());
             break;
           }
         }
@@ -108,7 +109,7 @@ public  final class PushConfig extends
    * For example, a Webhook endpoint might use "https://example.com/push".
    * </pre>
    *
-   * <code>optional string push_endpoint = 1;</code>
+   * <code>string push_endpoint = 1;</code>
    */
   public java.lang.String getPushEndpoint() {
     java.lang.Object ref = pushEndpoint_;
@@ -128,7 +129,7 @@ public  final class PushConfig extends
    * For example, a Webhook endpoint might use "https://example.com/push".
    * </pre>
    *
-   * <code>optional string push_endpoint = 1;</code>
+   * <code>string push_endpoint = 1;</code>
    */
   public com.google.protobuf.ByteString
       getPushEndpointBytes() {
@@ -311,15 +312,12 @@ public  final class PushConfig extends
     if (!getPushEndpointBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, pushEndpoint_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetAttributes().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      attributes = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(2, attributes);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetAttributes(),
+        AttributesDefaultEntryHolder.defaultEntry,
+        2);
   }
 
   public int getSerializedSize() {
@@ -333,12 +331,12 @@ public  final class PushConfig extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetAttributes().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      attributes = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
+      attributes__ = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, attributes);
+          .computeMessageSize(2, attributes__);
     }
     memoizedSize = size;
     return size;
@@ -369,7 +367,7 @@ public  final class PushConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PUSH_ENDPOINT_FIELD_NUMBER;
     hash = (53 * hash) + getPushEndpoint().hashCode();
     if (!internalGetAttributes().getMap().isEmpty()) {
@@ -381,6 +379,17 @@ public  final class PushConfig extends
     return hash;
   }
 
+  public static com.google.pubsub.v1.PushConfig parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.pubsub.v1.PushConfig parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.pubsub.v1.PushConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -632,7 +641,7 @@ public  final class PushConfig extends
      * For example, a Webhook endpoint might use "https://example.com/push".
      * </pre>
      *
-     * <code>optional string push_endpoint = 1;</code>
+     * <code>string push_endpoint = 1;</code>
      */
     public java.lang.String getPushEndpoint() {
       java.lang.Object ref = pushEndpoint_;
@@ -652,7 +661,7 @@ public  final class PushConfig extends
      * For example, a Webhook endpoint might use "https://example.com/push".
      * </pre>
      *
-     * <code>optional string push_endpoint = 1;</code>
+     * <code>string push_endpoint = 1;</code>
      */
     public com.google.protobuf.ByteString
         getPushEndpointBytes() {
@@ -673,7 +682,7 @@ public  final class PushConfig extends
      * For example, a Webhook endpoint might use "https://example.com/push".
      * </pre>
      *
-     * <code>optional string push_endpoint = 1;</code>
+     * <code>string push_endpoint = 1;</code>
      */
     public Builder setPushEndpoint(
         java.lang.String value) {
@@ -691,7 +700,7 @@ public  final class PushConfig extends
      * For example, a Webhook endpoint might use "https://example.com/push".
      * </pre>
      *
-     * <code>optional string push_endpoint = 1;</code>
+     * <code>string push_endpoint = 1;</code>
      */
     public Builder clearPushEndpoint() {
       
@@ -705,7 +714,7 @@ public  final class PushConfig extends
      * For example, a Webhook endpoint might use "https://example.com/push".
      * </pre>
      *
-     * <code>optional string push_endpoint = 1;</code>
+     * <code>string push_endpoint = 1;</code>
      */
     public Builder setPushEndpointBytes(
         com.google.protobuf.ByteString value) {
@@ -872,7 +881,8 @@ public  final class PushConfig extends
     }
 
     public Builder clearAttributes() {
-      getMutableAttributes().clear();
+      internalGetMutableAttributes().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -901,7 +911,8 @@ public  final class PushConfig extends
     public Builder removeAttributes(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableAttributes().remove(key);
+      internalGetMutableAttributes().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -939,7 +950,8 @@ public  final class PushConfig extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableAttributes().put(key, value);
+      internalGetMutableAttributes().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -967,7 +979,8 @@ public  final class PushConfig extends
 
     public Builder putAllAttributes(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      getMutableAttributes().putAll(values);
+      internalGetMutableAttributes().getMutableMap()
+          .putAll(values);
       return this;
     }
     public final Builder setUnknownFields(

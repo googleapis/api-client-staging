@@ -109,9 +109,10 @@ public  final class TraceSpan extends
               mutable_bitField0_ |= 0x00000040;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            labels = input.readMessage(
+            labels__ = input.readMessage(
                 LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            labels_.getMutableMap().put(labels.getKey(), labels.getValue());
+            labels_.getMutableMap().put(
+                labels__.getKey(), labels__.getValue());
             break;
           }
         }
@@ -297,7 +298,7 @@ public  final class TraceSpan extends
    * unique within a trace.
    * </pre>
    *
-   * <code>optional fixed64 span_id = 1;</code>
+   * <code>fixed64 span_id = 1;</code>
    */
   public long getSpanId() {
     return spanId_;
@@ -312,7 +313,7 @@ public  final class TraceSpan extends
    * and `RPC_SERVER` to identify queueing latency associated with the span.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
    */
   public int getKindValue() {
     return kind_;
@@ -324,7 +325,7 @@ public  final class TraceSpan extends
    * and `RPC_SERVER` to identify queueing latency associated with the span.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
    */
   public com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind getKind() {
     com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind result = com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind.valueOf(kind_);
@@ -343,7 +344,7 @@ public  final class TraceSpan extends
    * cross-trace spans.
    * </pre>
    *
-   * <code>optional string name = 3;</code>
+   * <code>string name = 3;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -367,7 +368,7 @@ public  final class TraceSpan extends
    * cross-trace spans.
    * </pre>
    *
-   * <code>optional string name = 3;</code>
+   * <code>string name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -390,7 +391,7 @@ public  final class TraceSpan extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+   * <code>.google.protobuf.Timestamp start_time = 4;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -400,7 +401,7 @@ public  final class TraceSpan extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+   * <code>.google.protobuf.Timestamp start_time = 4;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -410,7 +411,7 @@ public  final class TraceSpan extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+   * <code>.google.protobuf.Timestamp start_time = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -423,7 +424,7 @@ public  final class TraceSpan extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+   * <code>.google.protobuf.Timestamp end_time = 5;</code>
    */
   public boolean hasEndTime() {
     return endTime_ != null;
@@ -433,7 +434,7 @@ public  final class TraceSpan extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+   * <code>.google.protobuf.Timestamp end_time = 5;</code>
    */
   public com.google.protobuf.Timestamp getEndTime() {
     return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
@@ -443,7 +444,7 @@ public  final class TraceSpan extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+   * <code>.google.protobuf.Timestamp end_time = 5;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
     return getEndTime();
@@ -456,7 +457,7 @@ public  final class TraceSpan extends
    * ID of the parent span, if any. Optional.
    * </pre>
    *
-   * <code>optional fixed64 parent_span_id = 6;</code>
+   * <code>fixed64 parent_span_id = 6;</code>
    */
   public long getParentSpanId() {
     return parentSpanId_;
@@ -584,15 +585,12 @@ public  final class TraceSpan extends
     if (parentSpanId_ != 0L) {
       output.writeFixed64(6, parentSpanId_);
     }
-    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-         : internalGetLabels().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      output.writeMessage(7, labels);
-    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabels(),
+        LabelsDefaultEntryHolder.defaultEntry,
+        7);
   }
 
   public int getSerializedSize() {
@@ -626,12 +624,12 @@ public  final class TraceSpan extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetLabels().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      labels = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
+      labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, labels);
+          .computeMessageSize(7, labels__);
     }
     memoizedSize = size;
     return size;
@@ -677,7 +675,7 @@ public  final class TraceSpan extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SPAN_ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getSpanId());
@@ -705,6 +703,17 @@ public  final class TraceSpan extends
     return hash;
   }
 
+  public static com.google.devtools.cloudtrace.v1.TraceSpan parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.cloudtrace.v1.TraceSpan parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.cloudtrace.v1.TraceSpan parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1006,7 +1015,7 @@ public  final class TraceSpan extends
      * unique within a trace.
      * </pre>
      *
-     * <code>optional fixed64 span_id = 1;</code>
+     * <code>fixed64 span_id = 1;</code>
      */
     public long getSpanId() {
       return spanId_;
@@ -1017,7 +1026,7 @@ public  final class TraceSpan extends
      * unique within a trace.
      * </pre>
      *
-     * <code>optional fixed64 span_id = 1;</code>
+     * <code>fixed64 span_id = 1;</code>
      */
     public Builder setSpanId(long value) {
       
@@ -1031,7 +1040,7 @@ public  final class TraceSpan extends
      * unique within a trace.
      * </pre>
      *
-     * <code>optional fixed64 span_id = 1;</code>
+     * <code>fixed64 span_id = 1;</code>
      */
     public Builder clearSpanId() {
       
@@ -1048,7 +1057,7 @@ public  final class TraceSpan extends
      * and `RPC_SERVER` to identify queueing latency associated with the span.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
      */
     public int getKindValue() {
       return kind_;
@@ -1060,7 +1069,7 @@ public  final class TraceSpan extends
      * and `RPC_SERVER` to identify queueing latency associated with the span.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
      */
     public Builder setKindValue(int value) {
       kind_ = value;
@@ -1074,7 +1083,7 @@ public  final class TraceSpan extends
      * and `RPC_SERVER` to identify queueing latency associated with the span.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
      */
     public com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind getKind() {
       com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind result = com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind.valueOf(kind_);
@@ -1087,7 +1096,7 @@ public  final class TraceSpan extends
      * and `RPC_SERVER` to identify queueing latency associated with the span.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
      */
     public Builder setKind(com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind value) {
       if (value == null) {
@@ -1105,7 +1114,7 @@ public  final class TraceSpan extends
      * and `RPC_SERVER` to identify queueing latency associated with the span.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
      */
     public Builder clearKind() {
       
@@ -1125,7 +1134,7 @@ public  final class TraceSpan extends
      * cross-trace spans.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -1149,7 +1158,7 @@ public  final class TraceSpan extends
      * cross-trace spans.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -1174,7 +1183,7 @@ public  final class TraceSpan extends
      * cross-trace spans.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -1196,7 +1205,7 @@ public  final class TraceSpan extends
      * cross-trace spans.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public Builder clearName() {
       
@@ -1214,7 +1223,7 @@ public  final class TraceSpan extends
      * cross-trace spans.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1236,7 +1245,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -1246,7 +1255,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -1260,7 +1269,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -1280,7 +1289,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1298,7 +1307,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -1320,7 +1329,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -1338,7 +1347,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -1350,7 +1359,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -1365,7 +1374,7 @@ public  final class TraceSpan extends
      * Start time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
+     * <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1389,7 +1398,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public boolean hasEndTime() {
       return endTimeBuilder_ != null || endTime_ != null;
@@ -1399,7 +1408,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public com.google.protobuf.Timestamp getEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1413,7 +1422,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public Builder setEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1433,7 +1442,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public Builder setEndTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1451,7 +1460,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public Builder mergeEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1473,7 +1482,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public Builder clearEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1491,7 +1500,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getEndTimeBuilder() {
       
@@ -1503,7 +1512,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
       if (endTimeBuilder_ != null) {
@@ -1518,7 +1527,7 @@ public  final class TraceSpan extends
      * End time of the span in nanoseconds from the UNIX epoch.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
+     * <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1540,7 +1549,7 @@ public  final class TraceSpan extends
      * ID of the parent span, if any. Optional.
      * </pre>
      *
-     * <code>optional fixed64 parent_span_id = 6;</code>
+     * <code>fixed64 parent_span_id = 6;</code>
      */
     public long getParentSpanId() {
       return parentSpanId_;
@@ -1550,7 +1559,7 @@ public  final class TraceSpan extends
      * ID of the parent span, if any. Optional.
      * </pre>
      *
-     * <code>optional fixed64 parent_span_id = 6;</code>
+     * <code>fixed64 parent_span_id = 6;</code>
      */
     public Builder setParentSpanId(long value) {
       
@@ -1563,7 +1572,7 @@ public  final class TraceSpan extends
      * ID of the parent span, if any. Optional.
      * </pre>
      *
-     * <code>optional fixed64 parent_span_id = 6;</code>
+     * <code>fixed64 parent_span_id = 6;</code>
      */
     public Builder clearParentSpanId() {
       
@@ -1665,7 +1674,8 @@ public  final class TraceSpan extends
     }
 
     public Builder clearLabels() {
-      getMutableLabels().clear();
+      internalGetMutableLabels().getMutableMap()
+          .clear();
       return this;
     }
     /**
@@ -1679,7 +1689,8 @@ public  final class TraceSpan extends
     public Builder removeLabels(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().remove(key);
+      internalGetMutableLabels().getMutableMap()
+          .remove(key);
       return this;
     }
     /**
@@ -1702,7 +1713,8 @@ public  final class TraceSpan extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      getMutableLabels().put(key, value);
+      internalGetMutableLabels().getMutableMap()
+          .put(key, value);
       return this;
     }
     /**
@@ -1715,7 +1727,8 @@ public  final class TraceSpan extends
 
     public Builder putAllLabels(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      getMutableLabels().putAll(values);
+      internalGetMutableLabels().getMutableMap()
+          .putAll(values);
       return this;
     }
     public final Builder setUnknownFields(

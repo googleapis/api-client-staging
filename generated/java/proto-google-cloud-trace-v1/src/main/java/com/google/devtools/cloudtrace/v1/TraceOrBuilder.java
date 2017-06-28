@@ -12,7 +12,7 @@ public interface TraceOrBuilder extends
    * Project ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   java.lang.String getProjectId();
   /**
@@ -20,7 +20,7 @@ public interface TraceOrBuilder extends
    * Project ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectIdBytes();
@@ -31,7 +31,7 @@ public interface TraceOrBuilder extends
    * numeric value formatted as a 32-byte hex string.
    * </pre>
    *
-   * <code>optional string trace_id = 2;</code>
+   * <code>string trace_id = 2;</code>
    */
   java.lang.String getTraceId();
   /**
@@ -40,7 +40,7 @@ public interface TraceOrBuilder extends
    * numeric value formatted as a 32-byte hex string.
    * </pre>
    *
-   * <code>optional string trace_id = 2;</code>
+   * <code>string trace_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getTraceIdBytes();

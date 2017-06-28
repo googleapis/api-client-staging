@@ -13,7 +13,7 @@ public interface GetTopicRequestOrBuilder extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>optional string topic = 1;</code>
+   * <code>string topic = 1;</code>
    */
   java.lang.String getTopic();
   /**
@@ -22,7 +22,7 @@ public interface GetTopicRequestOrBuilder extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>optional string topic = 1;</code>
+   * <code>string topic = 1;</code>
    */
   com.google.protobuf.ByteString
       getTopicBytes();

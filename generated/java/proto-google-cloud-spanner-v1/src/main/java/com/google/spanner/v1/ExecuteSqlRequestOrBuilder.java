@@ -12,7 +12,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * Required. The session in which the SQL query should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   java.lang.String getSession();
   /**
@@ -20,7 +20,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * Required. The session in which the SQL query should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   com.google.protobuf.ByteString
       getSessionBytes();
@@ -31,7 +31,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   boolean hasTransaction();
   /**
@@ -40,7 +40,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   com.google.spanner.v1.TransactionSelector getTransaction();
   /**
@@ -49,7 +49,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder();
 
@@ -58,7 +58,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * Required. The SQL query string.
    * </pre>
    *
-   * <code>optional string sql = 3;</code>
+   * <code>string sql = 3;</code>
    */
   java.lang.String getSql();
   /**
@@ -66,7 +66,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * Required. The SQL query string.
    * </pre>
    *
-   * <code>optional string sql = 3;</code>
+   * <code>string sql = 3;</code>
    */
   com.google.protobuf.ByteString
       getSqlBytes();
@@ -86,7 +86,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   boolean hasParams();
   /**
@@ -104,7 +104,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   com.google.protobuf.Struct getParams();
   /**
@@ -122,7 +122,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * corresponding parameter values.
    * </pre>
    *
-   * <code>optional .google.protobuf.Struct params = 4;</code>
+   * <code>.google.protobuf.Struct params = 4;</code>
    */
   com.google.protobuf.StructOrBuilder getParamsOrBuilder();
 
@@ -220,7 +220,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * request that yielded this token.
    * </pre>
    *
-   * <code>optional bytes resume_token = 6;</code>
+   * <code>bytes resume_token = 6;</code>
    */
   com.google.protobuf.ByteString getResumeToken();
 
@@ -230,7 +230,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * [ResultSetStats][google.spanner.v1.ResultSetStats].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+   * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
    */
   int getQueryModeValue();
   /**
@@ -239,7 +239,7 @@ public interface ExecuteSqlRequestOrBuilder extends
    * [ResultSetStats][google.spanner.v1.ResultSetStats].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+   * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
    */
   com.google.spanner.v1.ExecuteSqlRequest.QueryMode getQueryMode();
 }

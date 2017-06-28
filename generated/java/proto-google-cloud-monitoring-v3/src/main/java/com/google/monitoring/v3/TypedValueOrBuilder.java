@@ -12,7 +12,7 @@ public interface TypedValueOrBuilder extends
    * A Boolean value: `true` or `false`.
    * </pre>
    *
-   * <code>optional bool bool_value = 1;</code>
+   * <code>bool bool_value = 1;</code>
    */
   boolean getBoolValue();
 
@@ -21,7 +21,7 @@ public interface TypedValueOrBuilder extends
    * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
    * </pre>
    *
-   * <code>optional int64 int64_value = 2;</code>
+   * <code>int64 int64_value = 2;</code>
    */
   long getInt64Value();
 
@@ -32,7 +32,7 @@ public interface TypedValueOrBuilder extends
    * significant digits of precision.
    * </pre>
    *
-   * <code>optional double double_value = 3;</code>
+   * <code>double double_value = 3;</code>
    */
   double getDoubleValue();
 
@@ -41,7 +41,7 @@ public interface TypedValueOrBuilder extends
    * A variable-length string value.
    * </pre>
    *
-   * <code>optional string string_value = 4;</code>
+   * <code>string string_value = 4;</code>
    */
   java.lang.String getStringValue();
   /**
@@ -49,7 +49,7 @@ public interface TypedValueOrBuilder extends
    * A variable-length string value.
    * </pre>
    *
-   * <code>optional string string_value = 4;</code>
+   * <code>string string_value = 4;</code>
    */
   com.google.protobuf.ByteString
       getStringValueBytes();
@@ -59,7 +59,7 @@ public interface TypedValueOrBuilder extends
    * A distribution value.
    * </pre>
    *
-   * <code>optional .google.api.Distribution distribution_value = 5;</code>
+   * <code>.google.api.Distribution distribution_value = 5;</code>
    */
   com.google.api.Distribution getDistributionValue();
   /**
@@ -67,7 +67,7 @@ public interface TypedValueOrBuilder extends
    * A distribution value.
    * </pre>
    *
-   * <code>optional .google.api.Distribution distribution_value = 5;</code>
+   * <code>.google.api.Distribution distribution_value = 5;</code>
    */
   com.google.api.DistributionOrBuilder getDistributionValueOrBuilder();
 

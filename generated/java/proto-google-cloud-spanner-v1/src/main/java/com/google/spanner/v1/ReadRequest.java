@@ -150,7 +150,7 @@ public  final class ReadRequest extends
    * Required. The session in which the read should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public java.lang.String getSession() {
     java.lang.Object ref = session_;
@@ -169,7 +169,7 @@ public  final class ReadRequest extends
    * Required. The session in which the read should be performed.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSessionBytes() {
@@ -193,7 +193,7 @@ public  final class ReadRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public boolean hasTransaction() {
     return transaction_ != null;
@@ -204,7 +204,7 @@ public  final class ReadRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public com.google.spanner.v1.TransactionSelector getTransaction() {
     return transaction_ == null ? com.google.spanner.v1.TransactionSelector.getDefaultInstance() : transaction_;
@@ -215,7 +215,7 @@ public  final class ReadRequest extends
    * temporary read-only transaction with strong concurrency.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+   * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
    */
   public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
     return getTransaction();
@@ -228,7 +228,7 @@ public  final class ReadRequest extends
    * Required. The name of the table in the database to be read.
    * </pre>
    *
-   * <code>optional string table = 3;</code>
+   * <code>string table = 3;</code>
    */
   public java.lang.String getTable() {
     java.lang.Object ref = table_;
@@ -247,7 +247,7 @@ public  final class ReadRequest extends
    * Required. The name of the table in the database to be read.
    * </pre>
    *
-   * <code>optional string table = 3;</code>
+   * <code>string table = 3;</code>
    */
   public com.google.protobuf.ByteString
       getTableBytes() {
@@ -272,7 +272,7 @@ public  final class ReadRequest extends
    * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
    * </pre>
    *
-   * <code>optional string index = 4;</code>
+   * <code>string index = 4;</code>
    */
   public java.lang.String getIndex() {
     java.lang.Object ref = index_;
@@ -293,7 +293,7 @@ public  final class ReadRequest extends
    * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
    * </pre>
    *
-   * <code>optional string index = 4;</code>
+   * <code>string index = 4;</code>
    */
   public com.google.protobuf.ByteString
       getIndexBytes() {
@@ -372,7 +372,7 @@ public  final class ReadRequest extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   public boolean hasKeySet() {
     return keySet_ != null;
@@ -389,7 +389,7 @@ public  final class ReadRequest extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   public com.google.spanner.v1.KeySet getKeySet() {
     return keySet_ == null ? com.google.spanner.v1.KeySet.getDefaultInstance() : keySet_;
@@ -406,7 +406,7 @@ public  final class ReadRequest extends
    * exist in the database. Read yields nothing for nonexistent rows.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+   * <code>.google.spanner.v1.KeySet key_set = 6;</code>
    */
   public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
     return getKeySet();
@@ -420,7 +420,7 @@ public  final class ReadRequest extends
    * is zero, the default is no limit.
    * </pre>
    *
-   * <code>optional int64 limit = 8;</code>
+   * <code>int64 limit = 8;</code>
    */
   public long getLimit() {
     return limit_;
@@ -438,7 +438,7 @@ public  final class ReadRequest extends
    * that yielded this token.
    * </pre>
    *
-   * <code>optional bytes resume_token = 9;</code>
+   * <code>bytes resume_token = 9;</code>
    */
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
@@ -567,7 +567,7 @@ public  final class ReadRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SESSION_FIELD_NUMBER;
     hash = (53 * hash) + getSession().hashCode();
     if (hasTransaction()) {
@@ -596,6 +596,17 @@ public  final class ReadRequest extends
     return hash;
   }
 
+  public static com.google.spanner.v1.ReadRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.ReadRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.ReadRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -891,7 +902,7 @@ public  final class ReadRequest extends
      * Required. The session in which the read should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public java.lang.String getSession() {
       java.lang.Object ref = session_;
@@ -910,7 +921,7 @@ public  final class ReadRequest extends
      * Required. The session in which the read should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSessionBytes() {
@@ -930,7 +941,7 @@ public  final class ReadRequest extends
      * Required. The session in which the read should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSession(
         java.lang.String value) {
@@ -947,7 +958,7 @@ public  final class ReadRequest extends
      * Required. The session in which the read should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder clearSession() {
       
@@ -960,7 +971,7 @@ public  final class ReadRequest extends
      * Required. The session in which the read should be performed.
      * </pre>
      *
-     * <code>optional string session = 1;</code>
+     * <code>string session = 1;</code>
      */
     public Builder setSessionBytes(
         com.google.protobuf.ByteString value) {
@@ -983,7 +994,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public boolean hasTransaction() {
       return transactionBuilder_ != null || transaction_ != null;
@@ -994,7 +1005,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelector getTransaction() {
       if (transactionBuilder_ == null) {
@@ -1009,7 +1020,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder setTransaction(com.google.spanner.v1.TransactionSelector value) {
       if (transactionBuilder_ == null) {
@@ -1030,7 +1041,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder setTransaction(
         com.google.spanner.v1.TransactionSelector.Builder builderForValue) {
@@ -1049,7 +1060,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder mergeTransaction(com.google.spanner.v1.TransactionSelector value) {
       if (transactionBuilder_ == null) {
@@ -1072,7 +1083,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public Builder clearTransaction() {
       if (transactionBuilder_ == null) {
@@ -1091,7 +1102,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelector.Builder getTransactionBuilder() {
       
@@ -1104,7 +1115,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     public com.google.spanner.v1.TransactionSelectorOrBuilder getTransactionOrBuilder() {
       if (transactionBuilder_ != null) {
@@ -1120,7 +1131,7 @@ public  final class ReadRequest extends
      * temporary read-only transaction with strong concurrency.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionSelector, com.google.spanner.v1.TransactionSelector.Builder, com.google.spanner.v1.TransactionSelectorOrBuilder> 
@@ -1142,7 +1153,7 @@ public  final class ReadRequest extends
      * Required. The name of the table in the database to be read.
      * </pre>
      *
-     * <code>optional string table = 3;</code>
+     * <code>string table = 3;</code>
      */
     public java.lang.String getTable() {
       java.lang.Object ref = table_;
@@ -1161,7 +1172,7 @@ public  final class ReadRequest extends
      * Required. The name of the table in the database to be read.
      * </pre>
      *
-     * <code>optional string table = 3;</code>
+     * <code>string table = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTableBytes() {
@@ -1181,7 +1192,7 @@ public  final class ReadRequest extends
      * Required. The name of the table in the database to be read.
      * </pre>
      *
-     * <code>optional string table = 3;</code>
+     * <code>string table = 3;</code>
      */
     public Builder setTable(
         java.lang.String value) {
@@ -1198,7 +1209,7 @@ public  final class ReadRequest extends
      * Required. The name of the table in the database to be read.
      * </pre>
      *
-     * <code>optional string table = 3;</code>
+     * <code>string table = 3;</code>
      */
     public Builder clearTable() {
       
@@ -1211,7 +1222,7 @@ public  final class ReadRequest extends
      * Required. The name of the table in the database to be read.
      * </pre>
      *
-     * <code>optional string table = 3;</code>
+     * <code>string table = 3;</code>
      */
     public Builder setTableBytes(
         com.google.protobuf.ByteString value) {
@@ -1233,7 +1244,7 @@ public  final class ReadRequest extends
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      * </pre>
      *
-     * <code>optional string index = 4;</code>
+     * <code>string index = 4;</code>
      */
     public java.lang.String getIndex() {
       java.lang.Object ref = index_;
@@ -1254,7 +1265,7 @@ public  final class ReadRequest extends
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      * </pre>
      *
-     * <code>optional string index = 4;</code>
+     * <code>string index = 4;</code>
      */
     public com.google.protobuf.ByteString
         getIndexBytes() {
@@ -1276,7 +1287,7 @@ public  final class ReadRequest extends
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      * </pre>
      *
-     * <code>optional string index = 4;</code>
+     * <code>string index = 4;</code>
      */
     public Builder setIndex(
         java.lang.String value) {
@@ -1295,7 +1306,7 @@ public  final class ReadRequest extends
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      * </pre>
      *
-     * <code>optional string index = 4;</code>
+     * <code>string index = 4;</code>
      */
     public Builder clearIndex() {
       
@@ -1310,7 +1321,7 @@ public  final class ReadRequest extends
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
      * </pre>
      *
-     * <code>optional string index = 4;</code>
+     * <code>string index = 4;</code>
      */
     public Builder setIndexBytes(
         com.google.protobuf.ByteString value) {
@@ -1478,7 +1489,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public boolean hasKeySet() {
       return keySetBuilder_ != null || keySet_ != null;
@@ -1495,7 +1506,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public com.google.spanner.v1.KeySet getKeySet() {
       if (keySetBuilder_ == null) {
@@ -1516,7 +1527,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public Builder setKeySet(com.google.spanner.v1.KeySet value) {
       if (keySetBuilder_ == null) {
@@ -1543,7 +1554,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public Builder setKeySet(
         com.google.spanner.v1.KeySet.Builder builderForValue) {
@@ -1568,7 +1579,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public Builder mergeKeySet(com.google.spanner.v1.KeySet value) {
       if (keySetBuilder_ == null) {
@@ -1597,7 +1608,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public Builder clearKeySet() {
       if (keySetBuilder_ == null) {
@@ -1622,7 +1633,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public com.google.spanner.v1.KeySet.Builder getKeySetBuilder() {
       
@@ -1641,7 +1652,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
       if (keySetBuilder_ != null) {
@@ -1663,7 +1674,7 @@ public  final class ReadRequest extends
      * exist in the database. Read yields nothing for nonexistent rows.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.KeySet key_set = 6;</code>
+     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.KeySet, com.google.spanner.v1.KeySet.Builder, com.google.spanner.v1.KeySetOrBuilder> 
@@ -1686,7 +1697,7 @@ public  final class ReadRequest extends
      * is zero, the default is no limit.
      * </pre>
      *
-     * <code>optional int64 limit = 8;</code>
+     * <code>int64 limit = 8;</code>
      */
     public long getLimit() {
       return limit_;
@@ -1697,7 +1708,7 @@ public  final class ReadRequest extends
      * is zero, the default is no limit.
      * </pre>
      *
-     * <code>optional int64 limit = 8;</code>
+     * <code>int64 limit = 8;</code>
      */
     public Builder setLimit(long value) {
       
@@ -1711,7 +1722,7 @@ public  final class ReadRequest extends
      * is zero, the default is no limit.
      * </pre>
      *
-     * <code>optional int64 limit = 8;</code>
+     * <code>int64 limit = 8;</code>
      */
     public Builder clearLimit() {
       
@@ -1731,7 +1742,7 @@ public  final class ReadRequest extends
      * that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 9;</code>
+     * <code>bytes resume_token = 9;</code>
      */
     public com.google.protobuf.ByteString getResumeToken() {
       return resumeToken_;
@@ -1746,7 +1757,7 @@ public  final class ReadRequest extends
      * that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 9;</code>
+     * <code>bytes resume_token = 9;</code>
      */
     public Builder setResumeToken(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -1767,7 +1778,7 @@ public  final class ReadRequest extends
      * that yielded this token.
      * </pre>
      *
-     * <code>optional bytes resume_token = 9;</code>
+     * <code>bytes resume_token = 9;</code>
      */
     public Builder clearResumeToken() {
       

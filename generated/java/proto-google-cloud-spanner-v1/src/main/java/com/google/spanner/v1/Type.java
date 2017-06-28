@@ -110,7 +110,7 @@ public  final class Type extends
    * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+   * <code>.google.spanner.v1.TypeCode code = 1;</code>
    */
   public int getCodeValue() {
     return code_;
@@ -120,7 +120,7 @@ public  final class Type extends
    * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+   * <code>.google.spanner.v1.TypeCode code = 1;</code>
    */
   public com.google.spanner.v1.TypeCode getCode() {
     com.google.spanner.v1.TypeCode result = com.google.spanner.v1.TypeCode.valueOf(code_);
@@ -135,7 +135,7 @@ public  final class Type extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
    */
   public boolean hasArrayElementType() {
     return arrayElementType_ != null;
@@ -146,7 +146,7 @@ public  final class Type extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
    */
   public com.google.spanner.v1.Type getArrayElementType() {
     return arrayElementType_ == null ? com.google.spanner.v1.Type.getDefaultInstance() : arrayElementType_;
@@ -157,7 +157,7 @@ public  final class Type extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
    */
   public com.google.spanner.v1.TypeOrBuilder getArrayElementTypeOrBuilder() {
     return getArrayElementType();
@@ -171,7 +171,7 @@ public  final class Type extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
    */
   public boolean hasStructType() {
     return structType_ != null;
@@ -182,7 +182,7 @@ public  final class Type extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
    */
   public com.google.spanner.v1.StructType getStructType() {
     return structType_ == null ? com.google.spanner.v1.StructType.getDefaultInstance() : structType_;
@@ -193,7 +193,7 @@ public  final class Type extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
    */
   public com.google.spanner.v1.StructTypeOrBuilder getStructTypeOrBuilder() {
     return getStructType();
@@ -275,7 +275,7 @@ public  final class Type extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CODE_FIELD_NUMBER;
     hash = (53 * hash) + code_;
     if (hasArrayElementType()) {
@@ -291,6 +291,17 @@ public  final class Type extends
     return hash;
   }
 
+  public static com.google.spanner.v1.Type parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.spanner.v1.Type parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.spanner.v1.Type parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -538,7 +549,7 @@ public  final class Type extends
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+     * <code>.google.spanner.v1.TypeCode code = 1;</code>
      */
     public int getCodeValue() {
       return code_;
@@ -548,7 +559,7 @@ public  final class Type extends
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+     * <code>.google.spanner.v1.TypeCode code = 1;</code>
      */
     public Builder setCodeValue(int value) {
       code_ = value;
@@ -560,7 +571,7 @@ public  final class Type extends
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+     * <code>.google.spanner.v1.TypeCode code = 1;</code>
      */
     public com.google.spanner.v1.TypeCode getCode() {
       com.google.spanner.v1.TypeCode result = com.google.spanner.v1.TypeCode.valueOf(code_);
@@ -571,7 +582,7 @@ public  final class Type extends
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+     * <code>.google.spanner.v1.TypeCode code = 1;</code>
      */
     public Builder setCode(com.google.spanner.v1.TypeCode value) {
       if (value == null) {
@@ -587,7 +598,7 @@ public  final class Type extends
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
+     * <code>.google.spanner.v1.TypeCode code = 1;</code>
      */
     public Builder clearCode() {
       
@@ -605,7 +616,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public boolean hasArrayElementType() {
       return arrayElementTypeBuilder_ != null || arrayElementType_ != null;
@@ -616,7 +627,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public com.google.spanner.v1.Type getArrayElementType() {
       if (arrayElementTypeBuilder_ == null) {
@@ -631,7 +642,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public Builder setArrayElementType(com.google.spanner.v1.Type value) {
       if (arrayElementTypeBuilder_ == null) {
@@ -652,7 +663,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public Builder setArrayElementType(
         com.google.spanner.v1.Type.Builder builderForValue) {
@@ -671,7 +682,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public Builder mergeArrayElementType(com.google.spanner.v1.Type value) {
       if (arrayElementTypeBuilder_ == null) {
@@ -694,7 +705,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public Builder clearArrayElementType() {
       if (arrayElementTypeBuilder_ == null) {
@@ -713,7 +724,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public com.google.spanner.v1.Type.Builder getArrayElementTypeBuilder() {
       
@@ -726,7 +737,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     public com.google.spanner.v1.TypeOrBuilder getArrayElementTypeOrBuilder() {
       if (arrayElementTypeBuilder_ != null) {
@@ -742,7 +753,7 @@ public  final class Type extends
      * is the type of the array elements.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
+     * <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Type, com.google.spanner.v1.Type.Builder, com.google.spanner.v1.TypeOrBuilder> 
@@ -767,7 +778,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public boolean hasStructType() {
       return structTypeBuilder_ != null || structType_ != null;
@@ -778,7 +789,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public com.google.spanner.v1.StructType getStructType() {
       if (structTypeBuilder_ == null) {
@@ -793,7 +804,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public Builder setStructType(com.google.spanner.v1.StructType value) {
       if (structTypeBuilder_ == null) {
@@ -814,7 +825,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public Builder setStructType(
         com.google.spanner.v1.StructType.Builder builderForValue) {
@@ -833,7 +844,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public Builder mergeStructType(com.google.spanner.v1.StructType value) {
       if (structTypeBuilder_ == null) {
@@ -856,7 +867,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public Builder clearStructType() {
       if (structTypeBuilder_ == null) {
@@ -875,7 +886,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public com.google.spanner.v1.StructType.Builder getStructTypeBuilder() {
       
@@ -888,7 +899,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     public com.google.spanner.v1.StructTypeOrBuilder getStructTypeOrBuilder() {
       if (structTypeBuilder_ != null) {
@@ -904,7 +915,7 @@ public  final class Type extends
      * provides type information for the struct's fields.
      * </pre>
      *
-     * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
+     * <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.StructType, com.google.spanner.v1.StructType.Builder, com.google.spanner.v1.StructTypeOrBuilder> 

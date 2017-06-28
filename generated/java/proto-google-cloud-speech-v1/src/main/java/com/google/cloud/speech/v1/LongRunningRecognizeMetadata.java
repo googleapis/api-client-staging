@@ -111,7 +111,7 @@ public  final class LongRunningRecognizeMetadata extends
    * when the audio is fully processed and the results are available.
    * </pre>
    *
-   * <code>optional int32 progress_percent = 1;</code>
+   * <code>int32 progress_percent = 1;</code>
    */
   public int getProgressPercent() {
     return progressPercent_;
@@ -124,7 +124,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+   * <code>.google.protobuf.Timestamp start_time = 2;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -134,7 +134,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+   * <code>.google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -144,7 +144,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+   * <code>.google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -157,7 +157,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
    */
   public boolean hasLastUpdateTime() {
     return lastUpdateTime_ != null;
@@ -167,7 +167,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
    */
   public com.google.protobuf.Timestamp getLastUpdateTime() {
     return lastUpdateTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastUpdateTime_;
@@ -177,7 +177,7 @@ public  final class LongRunningRecognizeMetadata extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getLastUpdateTimeOrBuilder() {
     return getLastUpdateTime();
@@ -260,7 +260,7 @@ public  final class LongRunningRecognizeMetadata extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROGRESS_PERCENT_FIELD_NUMBER;
     hash = (53 * hash) + getProgressPercent();
     if (hasStartTime()) {
@@ -276,6 +276,17 @@ public  final class LongRunningRecognizeMetadata extends
     return hash;
   }
 
+  public static com.google.cloud.speech.v1.LongRunningRecognizeMetadata parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.speech.v1.LongRunningRecognizeMetadata parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.speech.v1.LongRunningRecognizeMetadata parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -525,7 +536,7 @@ public  final class LongRunningRecognizeMetadata extends
      * when the audio is fully processed and the results are available.
      * </pre>
      *
-     * <code>optional int32 progress_percent = 1;</code>
+     * <code>int32 progress_percent = 1;</code>
      */
     public int getProgressPercent() {
       return progressPercent_;
@@ -536,7 +547,7 @@ public  final class LongRunningRecognizeMetadata extends
      * when the audio is fully processed and the results are available.
      * </pre>
      *
-     * <code>optional int32 progress_percent = 1;</code>
+     * <code>int32 progress_percent = 1;</code>
      */
     public Builder setProgressPercent(int value) {
       
@@ -550,7 +561,7 @@ public  final class LongRunningRecognizeMetadata extends
      * when the audio is fully processed and the results are available.
      * </pre>
      *
-     * <code>optional int32 progress_percent = 1;</code>
+     * <code>int32 progress_percent = 1;</code>
      */
     public Builder clearProgressPercent() {
       
@@ -567,7 +578,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -577,7 +588,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -591,7 +602,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -611,7 +622,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -629,7 +640,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -651,7 +662,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -669,7 +680,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -681,7 +692,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -696,7 +707,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
+     * <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -720,7 +731,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public boolean hasLastUpdateTime() {
       return lastUpdateTimeBuilder_ != null || lastUpdateTime_ != null;
@@ -730,7 +741,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public com.google.protobuf.Timestamp getLastUpdateTime() {
       if (lastUpdateTimeBuilder_ == null) {
@@ -744,7 +755,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public Builder setLastUpdateTime(com.google.protobuf.Timestamp value) {
       if (lastUpdateTimeBuilder_ == null) {
@@ -764,7 +775,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public Builder setLastUpdateTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -782,7 +793,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public Builder mergeLastUpdateTime(com.google.protobuf.Timestamp value) {
       if (lastUpdateTimeBuilder_ == null) {
@@ -804,7 +815,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public Builder clearLastUpdateTime() {
       if (lastUpdateTimeBuilder_ == null) {
@@ -822,7 +833,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public com.google.protobuf.Timestamp.Builder getLastUpdateTimeBuilder() {
       
@@ -834,7 +845,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getLastUpdateTimeOrBuilder() {
       if (lastUpdateTimeBuilder_ != null) {
@@ -849,7 +860,7 @@ public  final class LongRunningRecognizeMetadata extends
      * Time of the most recent processing update.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
+     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

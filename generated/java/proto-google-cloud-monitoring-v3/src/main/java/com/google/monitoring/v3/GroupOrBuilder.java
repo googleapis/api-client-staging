@@ -16,7 +16,7 @@ public interface GroupOrBuilder extends
    * and a unique `{group_id}` that is generated automatically.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -28,7 +28,7 @@ public interface GroupOrBuilder extends
    * and a unique `{group_id}` that is generated automatically.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -38,7 +38,7 @@ public interface GroupOrBuilder extends
    * A user-assigned name for this group, used only for display purposes.
    * </pre>
    *
-   * <code>optional string display_name = 2;</code>
+   * <code>string display_name = 2;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -46,7 +46,7 @@ public interface GroupOrBuilder extends
    * A user-assigned name for this group, used only for display purposes.
    * </pre>
    *
-   * <code>optional string display_name = 2;</code>
+   * <code>string display_name = 2;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();
@@ -58,7 +58,7 @@ public interface GroupOrBuilder extends
    * For groups with no parent, `parentName` is the empty string, `""`.
    * </pre>
    *
-   * <code>optional string parent_name = 3;</code>
+   * <code>string parent_name = 3;</code>
    */
   java.lang.String getParentName();
   /**
@@ -68,7 +68,7 @@ public interface GroupOrBuilder extends
    * For groups with no parent, `parentName` is the empty string, `""`.
    * </pre>
    *
-   * <code>optional string parent_name = 3;</code>
+   * <code>string parent_name = 3;</code>
    */
   com.google.protobuf.ByteString
       getParentNameBytes();
@@ -78,7 +78,7 @@ public interface GroupOrBuilder extends
    * The filter used to determine which monitored resources belong to this group.
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   java.lang.String getFilter();
   /**
@@ -86,7 +86,7 @@ public interface GroupOrBuilder extends
    * The filter used to determine which monitored resources belong to this group.
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -97,7 +97,7 @@ public interface GroupOrBuilder extends
    * The system can perform additional analysis on groups that are clusters.
    * </pre>
    *
-   * <code>optional bool is_cluster = 6;</code>
+   * <code>bool is_cluster = 6;</code>
    */
   boolean getIsCluster();
 }

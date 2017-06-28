@@ -128,7 +128,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   java.lang.String getFilter();
   /**
@@ -142,7 +142,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -157,7 +157,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * timestamps are returned in order of their `insert_id` values.
    * </pre>
    *
-   * <code>optional string order_by = 3;</code>
+   * <code>string order_by = 3;</code>
    */
   java.lang.String getOrderBy();
   /**
@@ -170,7 +170,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * timestamps are returned in order of their `insert_id` values.
    * </pre>
    *
-   * <code>optional string order_by = 3;</code>
+   * <code>string order_by = 3;</code>
    */
   com.google.protobuf.ByteString
       getOrderByBytes();
@@ -182,7 +182,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>optional int32 page_size = 4;</code>
+   * <code>int32 page_size = 4;</code>
    */
   int getPageSize();
 
@@ -194,7 +194,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 5;</code>
+   * <code>string page_token = 5;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -205,7 +205,7 @@ public interface ListLogEntriesRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 5;</code>
+   * <code>string page_token = 5;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

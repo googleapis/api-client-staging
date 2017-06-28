@@ -117,7 +117,7 @@ public  final class AnnotateImageRequest extends
    * The image to be processed.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+   * <code>.google.cloud.vision.v1.Image image = 1;</code>
    */
   public boolean hasImage() {
     return image_ != null;
@@ -127,7 +127,7 @@ public  final class AnnotateImageRequest extends
    * The image to be processed.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+   * <code>.google.cloud.vision.v1.Image image = 1;</code>
    */
   public com.google.cloud.vision.v1.Image getImage() {
     return image_ == null ? com.google.cloud.vision.v1.Image.getDefaultInstance() : image_;
@@ -137,7 +137,7 @@ public  final class AnnotateImageRequest extends
    * The image to be processed.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+   * <code>.google.cloud.vision.v1.Image image = 1;</code>
    */
   public com.google.cloud.vision.v1.ImageOrBuilder getImageOrBuilder() {
     return getImage();
@@ -205,7 +205,7 @@ public  final class AnnotateImageRequest extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   public boolean hasImageContext() {
     return imageContext_ != null;
@@ -215,7 +215,7 @@ public  final class AnnotateImageRequest extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   public com.google.cloud.vision.v1.ImageContext getImageContext() {
     return imageContext_ == null ? com.google.cloud.vision.v1.ImageContext.getDefaultInstance() : imageContext_;
@@ -225,7 +225,7 @@ public  final class AnnotateImageRequest extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   public com.google.cloud.vision.v1.ImageContextOrBuilder getImageContextOrBuilder() {
     return getImageContext();
@@ -308,7 +308,7 @@ public  final class AnnotateImageRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasImage()) {
       hash = (37 * hash) + IMAGE_FIELD_NUMBER;
       hash = (53 * hash) + getImage().hashCode();
@@ -326,6 +326,17 @@ public  final class AnnotateImageRequest extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.AnnotateImageRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.AnnotateImageRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.AnnotateImageRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -615,7 +626,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public boolean hasImage() {
       return imageBuilder_ != null || image_ != null;
@@ -625,7 +636,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public com.google.cloud.vision.v1.Image getImage() {
       if (imageBuilder_ == null) {
@@ -639,7 +650,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public Builder setImage(com.google.cloud.vision.v1.Image value) {
       if (imageBuilder_ == null) {
@@ -659,7 +670,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public Builder setImage(
         com.google.cloud.vision.v1.Image.Builder builderForValue) {
@@ -677,7 +688,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public Builder mergeImage(com.google.cloud.vision.v1.Image value) {
       if (imageBuilder_ == null) {
@@ -699,7 +710,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public Builder clearImage() {
       if (imageBuilder_ == null) {
@@ -717,7 +728,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public com.google.cloud.vision.v1.Image.Builder getImageBuilder() {
       
@@ -729,7 +740,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     public com.google.cloud.vision.v1.ImageOrBuilder getImageOrBuilder() {
       if (imageBuilder_ != null) {
@@ -744,7 +755,7 @@ public  final class AnnotateImageRequest extends
      * The image to be processed.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
+     * <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.Image, com.google.cloud.vision.v1.Image.Builder, com.google.cloud.vision.v1.ImageOrBuilder> 
@@ -1080,7 +1091,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public boolean hasImageContext() {
       return imageContextBuilder_ != null || imageContext_ != null;
@@ -1090,7 +1101,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public com.google.cloud.vision.v1.ImageContext getImageContext() {
       if (imageContextBuilder_ == null) {
@@ -1104,7 +1115,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public Builder setImageContext(com.google.cloud.vision.v1.ImageContext value) {
       if (imageContextBuilder_ == null) {
@@ -1124,7 +1135,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public Builder setImageContext(
         com.google.cloud.vision.v1.ImageContext.Builder builderForValue) {
@@ -1142,7 +1153,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public Builder mergeImageContext(com.google.cloud.vision.v1.ImageContext value) {
       if (imageContextBuilder_ == null) {
@@ -1164,7 +1175,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public Builder clearImageContext() {
       if (imageContextBuilder_ == null) {
@@ -1182,7 +1193,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public com.google.cloud.vision.v1.ImageContext.Builder getImageContextBuilder() {
       
@@ -1194,7 +1205,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     public com.google.cloud.vision.v1.ImageContextOrBuilder getImageContextOrBuilder() {
       if (imageContextBuilder_ != null) {
@@ -1209,7 +1220,7 @@ public  final class AnnotateImageRequest extends
      * Additional context that may accompany the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.ImageContext, com.google.cloud.vision.v1.ImageContext.Builder, com.google.cloud.vision.v1.ImageContextOrBuilder> 

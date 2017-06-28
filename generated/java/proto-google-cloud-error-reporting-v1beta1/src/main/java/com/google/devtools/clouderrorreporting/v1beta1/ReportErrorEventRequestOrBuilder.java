@@ -15,7 +15,7 @@ public interface ReportErrorEventRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   java.lang.String getProjectName();
   /**
@@ -26,7 +26,7 @@ public interface ReportErrorEventRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectNameBytes();
@@ -36,7 +36,7 @@ public interface ReportErrorEventRequestOrBuilder extends
    * [Required] The error event to be reported.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
    */
   boolean hasEvent();
   /**
@@ -44,7 +44,7 @@ public interface ReportErrorEventRequestOrBuilder extends
    * [Required] The error event to be reported.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent getEvent();
   /**
@@ -52,7 +52,7 @@ public interface ReportErrorEventRequestOrBuilder extends
    * [Required] The error event to be reported.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEventOrBuilder getEventOrBuilder();
 }

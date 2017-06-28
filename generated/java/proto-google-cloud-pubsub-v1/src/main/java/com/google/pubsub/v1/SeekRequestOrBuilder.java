@@ -12,7 +12,7 @@ public interface SeekRequestOrBuilder extends
    * The subscription to affect.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -20,7 +20,7 @@ public interface SeekRequestOrBuilder extends
    * The subscription to affect.
    * </pre>
    *
-   * <code>optional string subscription = 1;</code>
+   * <code>string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();
@@ -40,7 +40,7 @@ public interface SeekRequestOrBuilder extends
    * and already-expunged messages will not be restored.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp time = 2;</code>
+   * <code>.google.protobuf.Timestamp time = 2;</code>
    */
   com.google.protobuf.Timestamp getTime();
   /**
@@ -58,7 +58,7 @@ public interface SeekRequestOrBuilder extends
    * and already-expunged messages will not be restored.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp time = 2;</code>
+   * <code>.google.protobuf.Timestamp time = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
 
@@ -69,7 +69,7 @@ public interface SeekRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string snapshot = 3;</code>
+   * <code>string snapshot = 3;</code>
    */
   java.lang.String getSnapshot();
   /**
@@ -79,7 +79,7 @@ public interface SeekRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string snapshot = 3;</code>
+   * <code>string snapshot = 3;</code>
    */
   com.google.protobuf.ByteString
       getSnapshotBytes();

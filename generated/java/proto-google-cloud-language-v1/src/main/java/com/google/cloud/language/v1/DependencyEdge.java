@@ -1488,7 +1488,7 @@ public  final class DependencyEdge extends
    * `head_token_index` is its own index.
    * </pre>
    *
-   * <code>optional int32 head_token_index = 1;</code>
+   * <code>int32 head_token_index = 1;</code>
    */
   public int getHeadTokenIndex() {
     return headTokenIndex_;
@@ -1501,7 +1501,7 @@ public  final class DependencyEdge extends
    * The parse label for the token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+   * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
    */
   public int getLabelValue() {
     return label_;
@@ -1511,7 +1511,7 @@ public  final class DependencyEdge extends
    * The parse label for the token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+   * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
    */
   public com.google.cloud.language.v1.DependencyEdge.Label getLabel() {
     com.google.cloud.language.v1.DependencyEdge.Label result = com.google.cloud.language.v1.DependencyEdge.Label.valueOf(label_);
@@ -1579,7 +1579,7 @@ public  final class DependencyEdge extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + HEAD_TOKEN_INDEX_FIELD_NUMBER;
     hash = (53 * hash) + getHeadTokenIndex();
     hash = (37 * hash) + LABEL_FIELD_NUMBER;
@@ -1589,6 +1589,17 @@ public  final class DependencyEdge extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1.DependencyEdge parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1.DependencyEdge parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1.DependencyEdge parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1819,7 +1830,7 @@ public  final class DependencyEdge extends
      * `head_token_index` is its own index.
      * </pre>
      *
-     * <code>optional int32 head_token_index = 1;</code>
+     * <code>int32 head_token_index = 1;</code>
      */
     public int getHeadTokenIndex() {
       return headTokenIndex_;
@@ -1833,7 +1844,7 @@ public  final class DependencyEdge extends
      * `head_token_index` is its own index.
      * </pre>
      *
-     * <code>optional int32 head_token_index = 1;</code>
+     * <code>int32 head_token_index = 1;</code>
      */
     public Builder setHeadTokenIndex(int value) {
       
@@ -1850,7 +1861,7 @@ public  final class DependencyEdge extends
      * `head_token_index` is its own index.
      * </pre>
      *
-     * <code>optional int32 head_token_index = 1;</code>
+     * <code>int32 head_token_index = 1;</code>
      */
     public Builder clearHeadTokenIndex() {
       
@@ -1865,7 +1876,7 @@ public  final class DependencyEdge extends
      * The parse label for the token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+     * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
     public int getLabelValue() {
       return label_;
@@ -1875,7 +1886,7 @@ public  final class DependencyEdge extends
      * The parse label for the token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+     * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
     public Builder setLabelValue(int value) {
       label_ = value;
@@ -1887,7 +1898,7 @@ public  final class DependencyEdge extends
      * The parse label for the token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+     * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
     public com.google.cloud.language.v1.DependencyEdge.Label getLabel() {
       com.google.cloud.language.v1.DependencyEdge.Label result = com.google.cloud.language.v1.DependencyEdge.Label.valueOf(label_);
@@ -1898,7 +1909,7 @@ public  final class DependencyEdge extends
      * The parse label for the token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+     * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
     public Builder setLabel(com.google.cloud.language.v1.DependencyEdge.Label value) {
       if (value == null) {
@@ -1914,7 +1925,7 @@ public  final class DependencyEdge extends
      * The parse label for the token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+     * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
     public Builder clearLabel() {
       

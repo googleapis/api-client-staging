@@ -13,7 +13,7 @@ public interface ListSubscriptionsRequestOrBuilder extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>optional string project = 1;</code>
+   * <code>string project = 1;</code>
    */
   java.lang.String getProject();
   /**
@@ -22,7 +22,7 @@ public interface ListSubscriptionsRequestOrBuilder extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>optional string project = 1;</code>
+   * <code>string project = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectBytes();
@@ -32,7 +32,7 @@ public interface ListSubscriptionsRequestOrBuilder extends
    * Maximum number of subscriptions to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -43,7 +43,7 @@ public interface ListSubscriptionsRequestOrBuilder extends
    * system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -53,7 +53,7 @@ public interface ListSubscriptionsRequestOrBuilder extends
    * system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

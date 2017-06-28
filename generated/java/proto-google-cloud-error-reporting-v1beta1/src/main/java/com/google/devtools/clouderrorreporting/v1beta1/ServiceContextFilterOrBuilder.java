@@ -13,7 +13,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
    * </pre>
    *
-   * <code>optional string service = 2;</code>
+   * <code>string service = 2;</code>
    */
   java.lang.String getService();
   /**
@@ -22,7 +22,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
    * </pre>
    *
-   * <code>optional string service = 2;</code>
+   * <code>string service = 2;</code>
    */
   com.google.protobuf.ByteString
       getServiceBytes();
@@ -33,7 +33,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
    * </pre>
    *
-   * <code>optional string version = 3;</code>
+   * <code>string version = 3;</code>
    */
   java.lang.String getVersion();
   /**
@@ -42,7 +42,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
    * </pre>
    *
-   * <code>optional string version = 3;</code>
+   * <code>string version = 3;</code>
    */
   com.google.protobuf.ByteString
       getVersionBytes();
@@ -53,7 +53,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
    * </pre>
    *
-   * <code>optional string resource_type = 4;</code>
+   * <code>string resource_type = 4;</code>
    */
   java.lang.String getResourceType();
   /**
@@ -62,7 +62,7 @@ public interface ServiceContextFilterOrBuilder extends
    * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
    * </pre>
    *
-   * <code>optional string resource_type = 4;</code>
+   * <code>string resource_type = 4;</code>
    */
   com.google.protobuf.ByteString
       getResourceTypeBytes();

@@ -96,7 +96,7 @@ public  final class PatchTracesRequest extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public java.lang.String getProjectId() {
     java.lang.Object ref = projectId_;
@@ -115,7 +115,7 @@ public  final class PatchTracesRequest extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>optional string project_id = 1;</code>
+   * <code>string project_id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectIdBytes() {
@@ -138,7 +138,7 @@ public  final class PatchTracesRequest extends
    * The body of the message.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   public boolean hasTraces() {
     return traces_ != null;
@@ -148,7 +148,7 @@ public  final class PatchTracesRequest extends
    * The body of the message.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   public com.google.devtools.cloudtrace.v1.Traces getTraces() {
     return traces_ == null ? com.google.devtools.cloudtrace.v1.Traces.getDefaultInstance() : traces_;
@@ -158,7 +158,7 @@ public  final class PatchTracesRequest extends
    * The body of the message.
    * </pre>
    *
-   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   public com.google.devtools.cloudtrace.v1.TracesOrBuilder getTracesOrBuilder() {
     return getTraces();
@@ -228,7 +228,7 @@ public  final class PatchTracesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_ID_FIELD_NUMBER;
     hash = (53 * hash) + getProjectId().hashCode();
     if (hasTraces()) {
@@ -240,6 +240,17 @@ public  final class PatchTracesRequest extends
     return hash;
   }
 
+  public static com.google.devtools.cloudtrace.v1.PatchTracesRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.cloudtrace.v1.PatchTracesRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.cloudtrace.v1.PatchTracesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -473,7 +484,7 @@ public  final class PatchTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public java.lang.String getProjectId() {
       java.lang.Object ref = projectId_;
@@ -492,7 +503,7 @@ public  final class PatchTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectIdBytes() {
@@ -512,7 +523,7 @@ public  final class PatchTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectId(
         java.lang.String value) {
@@ -529,7 +540,7 @@ public  final class PatchTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder clearProjectId() {
       
@@ -542,7 +553,7 @@ public  final class PatchTracesRequest extends
      * ID of the Cloud project where the trace data is stored.
      * </pre>
      *
-     * <code>optional string project_id = 1;</code>
+     * <code>string project_id = 1;</code>
      */
     public Builder setProjectIdBytes(
         com.google.protobuf.ByteString value) {
@@ -564,7 +575,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public boolean hasTraces() {
       return tracesBuilder_ != null || traces_ != null;
@@ -574,7 +585,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public com.google.devtools.cloudtrace.v1.Traces getTraces() {
       if (tracesBuilder_ == null) {
@@ -588,7 +599,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public Builder setTraces(com.google.devtools.cloudtrace.v1.Traces value) {
       if (tracesBuilder_ == null) {
@@ -608,7 +619,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public Builder setTraces(
         com.google.devtools.cloudtrace.v1.Traces.Builder builderForValue) {
@@ -626,7 +637,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public Builder mergeTraces(com.google.devtools.cloudtrace.v1.Traces value) {
       if (tracesBuilder_ == null) {
@@ -648,7 +659,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public Builder clearTraces() {
       if (tracesBuilder_ == null) {
@@ -666,7 +677,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public com.google.devtools.cloudtrace.v1.Traces.Builder getTracesBuilder() {
       
@@ -678,7 +689,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     public com.google.devtools.cloudtrace.v1.TracesOrBuilder getTracesOrBuilder() {
       if (tracesBuilder_ != null) {
@@ -693,7 +704,7 @@ public  final class PatchTracesRequest extends
      * The body of the message.
      * </pre>
      *
-     * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+     * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.cloudtrace.v1.Traces, com.google.devtools.cloudtrace.v1.Traces.Builder, com.google.devtools.cloudtrace.v1.TracesOrBuilder> 
