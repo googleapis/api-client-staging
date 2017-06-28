@@ -24,10 +24,13 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Logging\V2;
 
+use Google\Api\MonitoredResource;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,15 +38,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\api\MonitoredResource;
-use google\logging\v2\DeleteLogRequest;
-use google\logging\v2\ListLogEntriesRequest;
-use google\logging\v2\ListLogsRequest;
-use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
-use google\logging\v2\LogEntry;
-use google\logging\v2\LoggingServiceV2GrpcClient;
-use google\logging\v2\WriteLogEntriesRequest;
-use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
+use Google\Logging\V2\DeleteLogRequest;
+use Google\Logging\V2\ListLogEntriesRequest;
+use Google\Logging\V2\ListLogsRequest;
+use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
+use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LoggingServiceV2GrpcClient;
+use Google\Logging\V2\WriteLogEntriesRequest;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -69,6 +70,8 @@ use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class LoggingServiceV2Client
 {
@@ -109,6 +112,11 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -120,6 +128,12 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a log resource.
+     *
+     * @param string $project
+     * @param string $log
+     *
+     * @return string The formatted log resource.
+     * @experimental
      */
     public static function formatLogName($project, $log)
     {
@@ -132,6 +146,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -141,6 +160,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromLogName($logName)
     {
@@ -150,6 +174,11 @@ class LoggingServiceV2Client
     /**
      * Parses the log from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted log value.
+     * @experimental
      */
     public static function parseLogFromLogName($logName)
     {
@@ -178,24 +207,30 @@ class LoggingServiceV2Client
     {
         $listLogEntriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'entries',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntries',
                 ]);
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'resource_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceDescriptors',
                 ]);
         $listLogsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'log_names',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLogNames',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -247,6 +282,7 @@ class LoggingServiceV2Client
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -363,6 +399,7 @@ class LoggingServiceV2Client
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteLog($logName, $optionalArgs = [])
     {
@@ -459,16 +496,15 @@ class LoggingServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\WriteLogEntriesResponse
+     * @return \Google\Logging\V2\WriteLogEntriesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function writeLogEntries($entries, $optionalArgs = [])
     {
         $request = new WriteLogEntriesRequest();
-        foreach ($entries as $elem) {
-            $request->addEntries($elem);
-        }
+        $request->setEntries($entries);
         if (isset($optionalArgs['logName'])) {
             $request->setLogName($optionalArgs['logName']);
         }
@@ -476,9 +512,7 @@ class LoggingServiceV2Client
             $request->setResource($optionalArgs['resource']);
         }
         if (isset($optionalArgs['labels'])) {
-            foreach ($optionalArgs['labels'] as $key => $value) {
-                $request->addLabels((new LabelsEntry())->setKey($key)->setValue($value));
-            }
+            $request->setLabels($optionalArgs['labels']);
         }
         if (isset($optionalArgs['partialSuccess'])) {
             $request->setPartialSuccess($optionalArgs['partialSuccess']);
@@ -581,17 +615,14 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogEntries($resourceNames, $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
-        foreach ($resourceNames as $elem) {
-            $request->addResourceNames($elem);
-        }
+        $request->setResourceNames($resourceNames);
         if (isset($optionalArgs['projectIds'])) {
-            foreach ($optionalArgs['projectIds'] as $elem) {
-                $request->addProjectIds($elem);
-            }
+            $request->setProjectIds($optionalArgs['projectIds']);
         }
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
@@ -672,6 +703,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listMonitoredResourceDescriptors($optionalArgs = [])
     {
@@ -755,6 +787,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogs($parent, $optionalArgs = [])
     {
@@ -786,6 +819,8 @@ class LoggingServiceV2Client
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

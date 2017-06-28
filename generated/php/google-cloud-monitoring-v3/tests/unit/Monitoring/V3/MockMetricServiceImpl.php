@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Monitoring\V3;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\monitoring\v3\MetricServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Protobuf\Any;
 
 class MockMetricServiceImpl extends MetricServiceGrpcClient
 {

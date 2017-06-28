@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Spanner\Admin\Database\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\protobuf\Any;
-use google\spanner\admin\database\v1\DatabaseAdminGrpcClient;
+use Google\Protobuf\Any;
+use Google\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
 
 class MockDatabaseAdminImpl extends DatabaseAdminGrpcClient
 {

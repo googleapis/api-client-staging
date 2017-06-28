@@ -26,27 +26,27 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\Operation;
+use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\iam\v1\Policy;
-use google\iam\v1\TestIamPermissionsResponse;
-use google\longrunning\GetOperationRequest;
-use google\longrunning\Operation;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
-use google\protobuf\FieldMask;
-use google\spanner\admin\instance\v1\Instance;
-use google\spanner\admin\instance\v1\InstanceConfig;
-use google\spanner\admin\instance\v1\ListInstanceConfigsResponse;
-use google\spanner\admin\instance\v1\ListInstancesResponse;
 use stdClass;
 
 /**
  * @group instance
  * @group grpc
  */
-class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
+class InstanceAdminClientTest extends GeneratedTest
 {
     public function createMockInstanceAdminImpl($hostname, $opts)
     {
@@ -96,9 +96,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $instanceConfigs = [$instanceConfigsElement];
         $expectedResponse = new ListInstanceConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($instanceConfigs as $elem) {
-            $expectedResponse->addInstanceConfigs($elem);
-        }
+        $expectedResponse->setInstanceConfigs($instanceConfigs);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -108,7 +106,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getInstanceConfigsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getInstanceConfigs()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -133,6 +131,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -144,7 +149,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -199,6 +204,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -210,7 +222,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -234,9 +246,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $instances = [$instancesElement];
         $expectedResponse = new ListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($instances as $elem) {
-            $expectedResponse->addInstances($elem);
-        }
+        $expectedResponse->setInstances($instances);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -246,7 +256,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getInstancesList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getInstances()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -271,6 +281,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -282,7 +299,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -341,6 +358,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -352,7 +376,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -383,7 +407,8 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createInstanceTest')->setDone(false);
+        $incompleteOperation->setName('operations/createInstanceTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
         $name = 'name3373707';
         $config = 'config-1354792126';
@@ -395,9 +420,11 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNodeCount($nodeCount);
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createInstanceTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/createInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -463,12 +490,20 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createInstanceTest')->setDone(false);
+        $incompleteOperation->setName('operations/createInstanceTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsStub->addResponse(null, $status);
 
         // Mock request
@@ -489,7 +524,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
@@ -522,7 +557,8 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateInstanceTest')->setDone(false);
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
         $name = 'name3373707';
         $config = 'config-1354792126';
@@ -534,9 +570,11 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNodeCount($nodeCount);
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateInstanceTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/updateInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -600,12 +638,20 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateInstanceTest')->setDone(false);
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsStub->addResponse(null, $status);
 
         // Mock request
@@ -625,7 +671,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
@@ -646,7 +692,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -677,6 +723,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -688,7 +741,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -745,6 +798,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -757,7 +817,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -812,6 +872,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -823,7 +890,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -858,7 +925,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
+        $this->assertRepeatedFieldEquals($permissions, $actualRequestObject->getPermissions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -876,6 +943,13 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -888,7 +962,7 @@ class InstanceAdminClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

@@ -26,30 +26,30 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Google\Pubsub\V1\ListSnapshotsResponse;
+use Google\Pubsub\V1\ListSubscriptionsResponse;
+use Google\Pubsub\V1\PullResponse;
+use Google\Pubsub\V1\PushConfig;
+use Google\Pubsub\V1\ReceivedMessage;
+use Google\Pubsub\V1\SeekResponse;
+use Google\Pubsub\V1\Snapshot;
+use Google\Pubsub\V1\StreamingPullRequest;
+use Google\Pubsub\V1\StreamingPullResponse;
+use Google\Pubsub\V1\Subscription;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\iam\v1\Policy;
-use google\iam\v1\TestIamPermissionsResponse;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
-use google\protobuf\FieldMask;
-use google\pubsub\v1\ListSnapshotsResponse;
-use google\pubsub\v1\ListSubscriptionsResponse;
-use google\pubsub\v1\PullResponse;
-use google\pubsub\v1\PushConfig;
-use google\pubsub\v1\ReceivedMessage;
-use google\pubsub\v1\SeekResponse;
-use google\pubsub\v1\Snapshot;
-use google\pubsub\v1\StreamingPullRequest;
-use google\pubsub\v1\StreamingPullResponse;
-use google\pubsub\v1\Subscription;
 use stdClass;
 
 /**
  * @group pub_sub
  * @group grpc
  */
-class SubscriberClientTest extends PHPUnit_Framework_TestCase
+class SubscriberClientTest extends GeneratedTest
 {
     public function createMockSubscriberImpl($hostname, $opts)
     {
@@ -136,6 +136,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -148,7 +155,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -207,6 +214,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -218,7 +232,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -279,6 +293,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -291,7 +312,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -315,9 +336,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $subscriptions = [$subscriptionsElement];
         $expectedResponse = new ListSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($subscriptions as $elem) {
-            $expectedResponse->addSubscriptions($elem);
-        }
+        $expectedResponse->setSubscriptions($subscriptions);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -327,7 +346,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSubscriptionsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -352,6 +371,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -363,7 +389,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -382,7 +408,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -413,6 +439,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -424,7 +457,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -443,7 +476,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -459,7 +492,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyAckDeadline', $actualFuncCall);
 
         $this->assertEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertEquals($ackIds, $actualRequestObject->getAckIdsList());
+        $this->assertRepeatedFieldEquals($ackIds, $actualRequestObject->getAckIds());
         $this->assertEquals($ackDeadlineSeconds, $actualRequestObject->getAckDeadlineSeconds());
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -478,6 +511,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -491,7 +531,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -510,7 +550,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -525,7 +565,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.pubsub.v1.Subscriber/Acknowledge', $actualFuncCall);
 
         $this->assertEquals($formattedSubscription, $actualRequestObject->getSubscription());
-        $this->assertEquals($ackIds, $actualRequestObject->getAckIdsList());
+        $this->assertRepeatedFieldEquals($ackIds, $actualRequestObject->getAckIds());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -543,6 +583,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -555,7 +602,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -608,6 +655,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -620,7 +674,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -642,23 +696,17 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $receivedMessagesElement = new ReceivedMessage();
         $receivedMessages = [$receivedMessagesElement];
         $expectedResponse = new StreamingPullResponse();
-        foreach ($receivedMessages as $elem) {
-            $expectedResponse->addReceivedMessages($elem);
-        }
+        $expectedResponse->setReceivedMessages($receivedMessages);
         $grpcStub->addResponse($expectedResponse);
         $receivedMessagesElement2 = new ReceivedMessage();
         $receivedMessages2 = [$receivedMessagesElement2];
         $expectedResponse2 = new StreamingPullResponse();
-        foreach ($receivedMessages2 as $elem) {
-            $expectedResponse2->addReceivedMessages($elem);
-        }
+        $expectedResponse2->setReceivedMessages($receivedMessages2);
         $grpcStub->addResponse($expectedResponse2);
         $receivedMessagesElement3 = new ReceivedMessage();
         $receivedMessages3 = [$receivedMessagesElement3];
         $expectedResponse3 = new StreamingPullResponse();
-        foreach ($receivedMessages3 as $elem) {
-            $expectedResponse3->addReceivedMessages($elem);
-        }
+        $expectedResponse3->setReceivedMessages($receivedMessages3);
         $grpcStub->addResponse($expectedResponse3);
 
         // Mock request
@@ -668,12 +716,12 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
         $formattedSubscription2 = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds2 = 1562238880;
+        $streamAckDeadlineSeconds2 = -1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
         $formattedSubscription3 = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds3 = 1562238879;
+        $streamAckDeadlineSeconds3 = -1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
         $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);
@@ -691,9 +739,9 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         }
 
         $expectedResources = [];
-        $expectedResources[] = $expectedResponse->getReceivedMessagesList()[0];
-        $expectedResources[] = $expectedResponse2->getReceivedMessagesList()[0];
-        $expectedResources[] = $expectedResponse3->getReceivedMessagesList()[0];
+        $expectedResources[] = $expectedResponse->getReceivedMessages()[0];
+        $expectedResources[] = $expectedResponse2->getReceivedMessages()[0];
+        $expectedResources[] = $expectedResponse3->getReceivedMessages()[0];
         $this->assertEquals($expectedResources, $responses);
 
         $createStreamRequests = $grpcStub->popReceivedCalls();
@@ -729,6 +777,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
 
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+
         $grpcStub->setStreamingStatus($status);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -742,7 +797,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -761,7 +816,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -794,6 +849,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -806,7 +868,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -830,9 +892,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $snapshots = [$snapshotsElement];
         $expectedResponse = new ListSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($snapshots as $elem) {
-            $expectedResponse->addSnapshots($elem);
-        }
+        $expectedResponse->setSnapshots($snapshots);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -842,7 +902,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSnapshotsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSnapshots()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -867,6 +927,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -878,7 +945,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -935,6 +1002,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -947,7 +1021,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -966,7 +1040,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -997,6 +1071,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -1008,7 +1089,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -1059,6 +1140,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -1070,7 +1158,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -1127,6 +1215,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -1139,7 +1234,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -1194,6 +1289,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -1205,7 +1307,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -1240,7 +1342,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
+        $this->assertRepeatedFieldEquals($permissions, $actualRequestObject->getPermissions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -1258,6 +1360,13 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -1270,7 +1379,7 @@ class SubscriberClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

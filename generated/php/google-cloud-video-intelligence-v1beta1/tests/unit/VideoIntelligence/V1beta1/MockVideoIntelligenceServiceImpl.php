@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\VideoIntelligence\V1beta1;
 
+use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\cloud\videointelligence\v1beta1\VideoIntelligenceServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockVideoIntelligenceServiceImpl extends VideoIntelligenceServiceGrpcClient
 {

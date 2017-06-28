@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\Language\V1;
 
+use Google\Cloud\Language\V1\LanguageServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\cloud\language\v1\LanguageServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockLanguageServiceImpl extends LanguageServiceGrpcClient
 {

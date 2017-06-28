@@ -23,30 +23,30 @@
 namespace Google\Cloud\Tests\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechClient;
+use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
+use Google\Cloud\Speech\V1beta1\RecognitionAudio;
+use Google\Cloud\Speech\V1beta1\RecognitionConfig;
+use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding as AudioEncoding;
+use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
+use Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse;
+use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\Operation;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
-use google\cloud\speech\v1beta1\RecognitionAudio;
-use google\cloud\speech\v1beta1\RecognitionConfig;
-use google\cloud\speech\v1beta1\RecognitionConfig\AudioEncoding;
-use google\cloud\speech\v1beta1\StreamingRecognizeRequest;
-use google\cloud\speech\v1beta1\StreamingRecognizeResponse;
-use google\cloud\speech\v1beta1\SyncRecognizeResponse;
-use google\longrunning\GetOperationRequest;
-use google\longrunning\Operation;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group speech
  * @group grpc
  */
-class SpeechClientTest extends PHPUnit_Framework_TestCase
+class SpeechClientTest extends GeneratedTest
 {
     public function createMockSpeechImpl($hostname, $opts)
     {
@@ -131,6 +131,13 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -149,7 +156,7 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -180,13 +187,16 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/asyncRecognizeTest')->setDone(false);
+        $incompleteOperation->setName('operations/asyncRecognizeTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
         $expectedResponse = new AsyncRecognizeResponse();
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/asyncRecognizeTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/asyncRecognizeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -256,12 +266,20 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/asyncRecognizeTest')->setDone(false);
+        $incompleteOperation->setName('operations/asyncRecognizeTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsStub->addResponse(null, $status);
 
         // Mock request
@@ -287,7 +305,7 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stubs are exhausted
@@ -356,7 +374,11 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $bidiCall = $callObjects[0];
 
         $writeRequests = $bidiCall->popReceivedCalls();
-        $this->assertSame(3, count($writeRequests));
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -373,6 +395,13 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
 
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+
         $grpcStub->setStreamingStatus($status);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -386,7 +415,7 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\Vision\V1;
 
+use Google\Cloud\Vision\V1\ImageAnnotatorGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockImageAnnotatorImpl extends ImageAnnotatorGrpcClient
 {

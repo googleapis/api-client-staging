@@ -26,24 +26,24 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\ServerStream;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
+use Google\Spanner\V1\CommitResponse;
+use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\PartialResultSet;
+use Google\Spanner\V1\ResultSet;
+use Google\Spanner\V1\Session;
+use Google\Spanner\V1\Transaction;
+use Google\Spanner\V1\TransactionOptions;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
-use google\spanner\v1\CommitResponse;
-use google\spanner\v1\KeySet;
-use google\spanner\v1\PartialResultSet;
-use google\spanner\v1\ResultSet;
-use google\spanner\v1\Session;
-use google\spanner\v1\Transaction;
-use google\spanner\v1\TransactionOptions;
 use stdClass;
 
 /**
  * @group spanner
  * @group grpc
  */
-class SpannerClientTest extends PHPUnit_Framework_TestCase
+class SpannerClientTest extends GeneratedTest
 {
     public function createMockSpannerImpl($hostname, $opts)
     {
@@ -117,6 +117,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -128,7 +135,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -181,6 +188,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -192,7 +206,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -211,7 +225,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -242,6 +256,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -253,7 +274,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -306,6 +327,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -318,7 +346,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -395,6 +423,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
 
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+
         $grpcStub->setStreamingStatus($status);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -412,7 +447,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -450,7 +485,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedSession, $actualRequestObject->getSession());
         $this->assertEquals($table, $actualRequestObject->getTable());
-        $this->assertEquals($columns, $actualRequestObject->getColumnsList());
+        $this->assertRepeatedFieldEquals($columns, $actualRequestObject->getColumns());
         $this->assertEquals($keySet, $actualRequestObject->getKeySet());
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -469,6 +504,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -483,7 +525,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -546,7 +588,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($formattedSession, $actualRequestObject->getSession());
         $this->assertEquals($table, $actualRequestObject->getTable());
-        $this->assertEquals($columns, $actualRequestObject->getColumnsList());
+        $this->assertRepeatedFieldEquals($columns, $actualRequestObject->getColumns());
         $this->assertEquals($keySet, $actualRequestObject->getKeySet());
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -563,6 +605,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
 
         $grpcStub->setStreamingStatus($status);
 
@@ -583,7 +632,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -638,6 +687,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -650,7 +706,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -685,7 +741,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.spanner.v1.Spanner/Commit', $actualFuncCall);
 
         $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($mutations, $actualRequestObject->getMutationsList());
+        $this->assertRepeatedFieldEquals($mutations, $actualRequestObject->getMutations());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -703,6 +759,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -715,7 +778,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -734,7 +797,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -767,6 +830,13 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -779,7 +849,7 @@ class SpannerClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

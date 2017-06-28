@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\PubSub\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\iam\v1\IAMPolicyGrpcClient;
-use google\protobuf\Any;
+use Google\Iam\V1\IAMPolicyGrpcClient;
+use Google\Protobuf\Any;
 
 class MockIAMPolicyImpl extends IAMPolicyGrpcClient
 {

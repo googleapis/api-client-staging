@@ -23,25 +23,25 @@
 namespace Google\Cloud\Tests\Language\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceClient;
+use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
+use Google\Cloud\Language\V1\AnalyzeSentimentResponse;
+use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
+use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1\AnnotateTextResponse;
+use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\EncodingType;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\cloud\language\v1\AnalyzeEntitiesResponse;
-use google\cloud\language\v1\AnalyzeSentimentResponse;
-use google\cloud\language\v1\AnalyzeSyntaxResponse;
-use google\cloud\language\v1\AnnotateTextRequest\Features;
-use google\cloud\language\v1\AnnotateTextResponse;
-use google\cloud\language\v1\Document;
-use google\cloud\language\v1\EncodingType;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group language
  * @group grpc
  */
-class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
+class LanguageServiceClientTest extends GeneratedTest
 {
     public function createMockLanguageServiceImpl($hostname, $opts)
     {
@@ -115,6 +115,13 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -126,7 +133,7 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -181,6 +188,13 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -193,7 +207,7 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -248,6 +262,13 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -260,7 +281,7 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -317,6 +338,13 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -330,7 +358,7 @@ class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

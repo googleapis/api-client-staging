@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\PubSub\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\protobuf\Any;
-use google\pubsub\v1\PublisherGrpcClient;
+use Google\Protobuf\Any;
+use Google\Pubsub\V1\PublisherGrpcClient;
 
 class MockPublisherImpl extends PublisherGrpcClient
 {

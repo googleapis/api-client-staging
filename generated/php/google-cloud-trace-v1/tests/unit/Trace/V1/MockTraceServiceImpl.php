@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\Trace\V1;
 
+use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\devtools\cloudtrace\v1\TraceServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockTraceServiceImpl extends TraceServiceGrpcClient
 {

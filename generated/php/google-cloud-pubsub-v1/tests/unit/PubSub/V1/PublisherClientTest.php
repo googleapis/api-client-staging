@@ -25,24 +25,24 @@ namespace Google\Cloud\Tests\PubSub\V1;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
+use Google\Pubsub\V1\ListTopicSubscriptionsResponse;
+use Google\Pubsub\V1\ListTopicsResponse;
+use Google\Pubsub\V1\PublishResponse;
+use Google\Pubsub\V1\PubsubMessage;
+use Google\Pubsub\V1\Topic;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\iam\v1\Policy;
-use google\iam\v1\TestIamPermissionsResponse;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
-use google\pubsub\v1\ListTopicSubscriptionsResponse;
-use google\pubsub\v1\ListTopicsResponse;
-use google\pubsub\v1\PublishResponse;
-use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\Topic;
 use stdClass;
 
 /**
  * @group pub_sub
  * @group grpc
  */
-class PublisherClientTest extends PHPUnit_Framework_TestCase
+class PublisherClientTest extends GeneratedTest
 {
     public function createMockPublisherImpl($hostname, $opts)
     {
@@ -121,6 +121,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -132,7 +139,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -154,9 +161,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $messageIdsElement = 'messageIdsElement-744837059';
         $messageIds = [$messageIdsElement];
         $expectedResponse = new PublishResponse();
-        foreach ($messageIds as $elem) {
-            $expectedResponse->addMessageIds($elem);
-        }
+        $expectedResponse->setMessageIds($messageIds);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -175,7 +180,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.pubsub.v1.Publisher/Publish', $actualFuncCall);
 
         $this->assertEquals($formattedTopic, $actualRequestObject->getTopic());
-        $this->assertEquals($messages, $actualRequestObject->getMessagesList());
+        $this->assertRepeatedFieldEquals($messages, $actualRequestObject->getMessages());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -193,6 +198,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -208,7 +220,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -261,6 +273,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -272,7 +291,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -296,9 +315,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $topics = [$topicsElement];
         $expectedResponse = new ListTopicsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($topics as $elem) {
-            $expectedResponse->addTopics($elem);
-        }
+        $expectedResponse->setTopics($topics);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -308,7 +325,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTopicsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getTopics()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -333,6 +350,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -344,7 +368,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -368,9 +392,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $subscriptions = [$subscriptionsElement];
         $expectedResponse = new ListTopicSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($subscriptions as $elem) {
-            $expectedResponse->addSubscriptions($elem);
-        }
+        $expectedResponse->setSubscriptions($subscriptions);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -380,7 +402,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSubscriptionsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSubscriptions()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -405,6 +427,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -416,7 +445,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -435,7 +464,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -466,6 +495,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -477,7 +513,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -534,6 +570,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -546,7 +589,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -601,6 +644,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -612,7 +662,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -647,7 +697,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
+        $this->assertRepeatedFieldEquals($permissions, $actualRequestObject->getPermissions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -665,6 +715,13 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -677,7 +734,7 @@ class PublisherClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

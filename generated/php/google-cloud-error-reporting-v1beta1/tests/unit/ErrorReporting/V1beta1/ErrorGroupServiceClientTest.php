@@ -23,19 +23,19 @@
 namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\devtools\clouderrorreporting\v1beta1\ErrorGroup;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group error_reporting
  * @group grpc
  */
-class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
+class ErrorGroupServiceClientTest extends GeneratedTest
 {
     public function createMockErrorGroupServiceImpl($hostname, $opts)
     {
@@ -111,6 +111,13 @@ class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -122,7 +129,7 @@ class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted
@@ -177,6 +184,13 @@ class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
         $status = new stdClass();
         $status->code = Grpc\STATUS_DATA_LOSS;
         $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
         // Mock request
@@ -188,7 +202,7 @@ class ErrorGroupServiceClientTest extends PHPUnit_Framework_TestCase
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($status->details, $ex->getMessage());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
 
         // Call popReceivedCalls to ensure the stub is exhausted

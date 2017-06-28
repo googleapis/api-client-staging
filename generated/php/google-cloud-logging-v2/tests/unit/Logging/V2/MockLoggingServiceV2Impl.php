@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Logging\V2;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\logging\v2\LoggingServiceV2GrpcClient;
-use google\protobuf\Any;
+use Google\Logging\V2\LoggingServiceV2GrpcClient;
+use Google\Protobuf\Any;
 
 class MockLoggingServiceV2Impl extends LoggingServiceV2GrpcClient
 {

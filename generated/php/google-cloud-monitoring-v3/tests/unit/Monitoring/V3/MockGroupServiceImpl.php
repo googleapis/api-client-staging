@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Monitoring\V3;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\monitoring\v3\GroupServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Monitoring\V3\GroupServiceGrpcClient;
+use Google\Protobuf\Any;
 
 class MockGroupServiceImpl extends GroupServiceGrpcClient
 {
