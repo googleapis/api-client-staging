@@ -24,7 +24,6 @@ import com.google.api.gax.grpc.FixedExecutorProvider;
 import com.google.api.gax.grpc.OperationCallable;
 import com.google.api.gax.grpc.OperationFuture;
 import com.google.api.gax.grpc.UnaryCallable;
-import com.google.api.pathtemplate.PathTemplate;
 import com.google.auth.Credentials;
 import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
@@ -46,6 +45,7 @@ import com.google.privacy.dlp.v2beta1.OutputStorageConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentResponse;
+import com.google.privacy.dlp.v2beta1.ResultName;
 import com.google.privacy.dlp.v2beta1.StorageConfig;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
@@ -133,19 +133,6 @@ public class DlpServiceClient implements AutoCloseable {
   private final UnaryCallable<ListInfoTypesRequest, ListInfoTypesResponse> listInfoTypesCallable;
   private final UnaryCallable<ListRootCategoriesRequest, ListRootCategoriesResponse>
       listRootCategoriesCallable;
-
-  private static final PathTemplate RESULT_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding("inspect/results/{result}");
-
-  /** Formats a string containing the fully-qualified path to represent a result resource. */
-  public static final String formatResultName(String result) {
-    return RESULT_PATH_TEMPLATE.instantiate("result", result);
-  }
-
-  /** Parses the result from the given fully-qualified path which represents a result resource. */
-  public static final String parseResultFromResultName(String resultName) {
-    return RESULT_PATH_TEMPLATE.parse(resultName).get("result");
-  }
 
   /** Constructs an instance of DlpServiceClient with default settings. */
   public static final DlpServiceClient create() throws IOException {
@@ -546,8 +533,8 @@ public class DlpServiceClient implements AutoCloseable {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String formattedName = DlpServiceClient.formatResultName("[RESULT]");
-   *   ListInspectFindingsResponse response = dlpServiceClient.listInspectFindings(formattedName);
+   *   ResultName name = ResultName.create("[RESULT]");
+   *   ListInspectFindingsResponse response = dlpServiceClient.listInspectFindings(name);
    * }
    * </code></pre>
    *
@@ -556,10 +543,10 @@ public class DlpServiceClient implements AutoCloseable {
    *     `inspect/results/{id}.
    * @throws com.google.api.gax.grpc.ApiException if the remote call fails
    */
-  public final ListInspectFindingsResponse listInspectFindings(String name) {
-    RESULT_PATH_TEMPLATE.validate(name, "listInspectFindings");
+  public final ListInspectFindingsResponse listInspectFindings(ResultName name) {
+
     ListInspectFindingsRequest request =
-        ListInspectFindingsRequest.newBuilder().setName(name).build();
+        ListInspectFindingsRequest.newBuilder().setNameWithResultName(name).build();
     return listInspectFindings(request);
   }
 
@@ -571,9 +558,9 @@ public class DlpServiceClient implements AutoCloseable {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String formattedName = DlpServiceClient.formatResultName("[RESULT]");
+   *   ResultName name = ResultName.create("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
-   *     .setName(formattedName)
+   *     .setNameWithResultName(name)
    *     .build();
    *   ListInspectFindingsResponse response = dlpServiceClient.listInspectFindings(request);
    * }
@@ -594,9 +581,9 @@ public class DlpServiceClient implements AutoCloseable {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String formattedName = DlpServiceClient.formatResultName("[RESULT]");
+   *   ResultName name = ResultName.create("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
-   *     .setName(formattedName)
+   *     .setNameWithResultName(name)
    *     .build();
    *   ApiFuture&lt;ListInspectFindingsResponse&gt; future = dlpServiceClient.listInspectFindingsCallable().futureCall(request);
    *   // Do something

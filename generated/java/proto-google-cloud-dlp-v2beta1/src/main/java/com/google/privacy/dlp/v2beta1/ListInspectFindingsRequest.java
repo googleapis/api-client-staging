@@ -948,9 +948,30 @@ public  final class ListInspectFindingsRequest extends
     }
 
 
+    public final Builder setNameWithResultName(com.google.privacy.dlp.v2beta1.ResultName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    public final com.google.privacy.dlp.v2beta1.ResultName getNameAsResultName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.privacy.dlp.v2beta1.ResultName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta1.ListInspectFindingsRequest)
   }
 
+  public final com.google.privacy.dlp.v2beta1.ResultName getNameAsResultName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.privacy.dlp.v2beta1.ResultName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta1.ListInspectFindingsRequest)
   private static final com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest DEFAULT_INSTANCE;
   static {

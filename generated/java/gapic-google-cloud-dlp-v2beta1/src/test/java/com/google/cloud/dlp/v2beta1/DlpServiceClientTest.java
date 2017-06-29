@@ -36,6 +36,7 @@ import com.google.privacy.dlp.v2beta1.OutputStorageConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentResponse;
+import com.google.privacy.dlp.v2beta1.ResultName;
 import com.google.privacy.dlp.v2beta1.StorageConfig;
 import com.google.protobuf.Any;
 import com.google.protobuf.GeneratedMessageV3;
@@ -169,9 +170,9 @@ public class DlpServiceClientTest {
   @Test
   @SuppressWarnings("all")
   public void createInspectOperationTest() throws Exception {
-    String name = "name3373707";
+    ResultName name = ResultName.create("[RESULT]");
     InspectOperationResult expectedResponse =
-        InspectOperationResult.newBuilder().setName(name).build();
+        InspectOperationResult.newBuilder().setNameWithResultName(name).build();
     Operation resultOperation =
         Operation.newBuilder()
             .setName("createInspectOperationTest")
@@ -226,16 +227,16 @@ public class DlpServiceClientTest {
         ListInspectFindingsResponse.newBuilder().setNextPageToken(nextPageToken).build();
     mockDlpService.addResponse(expectedResponse);
 
-    String formattedName = DlpServiceClient.formatResultName("[RESULT]");
+    ResultName name = ResultName.create("[RESULT]");
 
-    ListInspectFindingsResponse actualResponse = client.listInspectFindings(formattedName);
+    ListInspectFindingsResponse actualResponse = client.listInspectFindings(name);
     Assert.assertEquals(expectedResponse, actualResponse);
 
     List<GeneratedMessageV3> actualRequests = mockDlpService.getRequests();
     Assert.assertEquals(1, actualRequests.size());
     ListInspectFindingsRequest actualRequest = (ListInspectFindingsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(formattedName, actualRequest.getName());
+    Assert.assertEquals(name, actualRequest.getNameAsResultName());
   }
 
   @Test
@@ -245,9 +246,9 @@ public class DlpServiceClientTest {
     mockDlpService.addException(exception);
 
     try {
-      String formattedName = DlpServiceClient.formatResultName("[RESULT]");
+      ResultName name = ResultName.create("[RESULT]");
 
-      client.listInspectFindings(formattedName);
+      client.listInspectFindings(name);
       Assert.fail("No exception raised");
     } catch (ApiException e) {
       Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
