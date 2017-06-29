@@ -19,10 +19,10 @@ import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
-import com.google.api.gax.grpc.AbstractFixedSizeCollection;
-import com.google.api.gax.grpc.AbstractPage;
-import com.google.api.gax.grpc.AbstractPagedListResponse;
-import com.google.api.gax.grpc.PageContext;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
+import com.google.api.gax.rpc.PageContext;
 import com.google.spanner.admin.instance.v1.Instance;
 import com.google.spanner.admin.instance.v1.InstanceConfig;
 import com.google.spanner.admin.instance.v1.ListInstanceConfigsRequest;
@@ -93,7 +93,7 @@ public class PagedResponseWrappers {
     }
 
     @Override
-    protected ApiFuture<ListInstanceConfigsPage> createPageAsync(
+    public ApiFuture<ListInstanceConfigsPage> createPageAsync(
         PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
             context,
         ApiFuture<ListInstanceConfigsResponse> futureResponse) {
@@ -169,7 +169,7 @@ public class PagedResponseWrappers {
     }
 
     @Override
-    protected ApiFuture<ListInstancesPage> createPageAsync(
+    public ApiFuture<ListInstancesPage> createPageAsync(
         PageContext<ListInstancesRequest, ListInstancesResponse, Instance> context,
         ApiFuture<ListInstancesResponse> futureResponse) {
       return super.createPageAsync(context, futureResponse);

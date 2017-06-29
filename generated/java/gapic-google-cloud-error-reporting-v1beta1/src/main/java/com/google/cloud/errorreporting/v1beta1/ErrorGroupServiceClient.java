@@ -16,20 +16,15 @@
 package com.google.cloud.errorreporting.v1beta1;
 
 import com.google.api.core.BetaApi;
-import com.google.api.gax.grpc.ChannelAndExecutor;
-import com.google.api.gax.grpc.ClientContext;
-import com.google.api.gax.grpc.UnaryCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.rpc.UnaryCallable;
+import com.google.cloud.errorreporting.v1beta1.stub.ErrorGroupServiceStub;
 import com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup;
 import com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest;
 import com.google.devtools.clouderrorreporting.v1beta1.GroupName;
 import com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest;
-import io.grpc.ManagedChannel;
-import java.io.Closeable;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
@@ -86,16 +81,11 @@ import javax.annotation.Generated;
  * </code>
  * </pre>
  */
-@Generated("by GAPIC")
+@Generated("by GAPIC v0.0.5")
 @BetaApi
-public class ErrorGroupServiceClient implements AutoCloseable {
+public class ErrorGroupServiceClient implements BackgroundResource {
   private final ErrorGroupServiceSettings settings;
-  private final ScheduledExecutorService executor;
-  private final ManagedChannel channel;
-  private final List<AutoCloseable> closeables = new ArrayList<>();
-
-  private final UnaryCallable<GetGroupRequest, ErrorGroup> getGroupCallable;
-  private final UnaryCallable<UpdateGroupRequest, ErrorGroup> updateGroupCallable;
+  private final ErrorGroupServiceStub stub;
 
   /** Constructs an instance of ErrorGroupServiceClient with default settings. */
   public static final ErrorGroupServiceClient create() throws IOException {
@@ -112,49 +102,34 @@ public class ErrorGroupServiceClient implements AutoCloseable {
   }
 
   /**
+   * Constructs an instance of ErrorGroupServiceClient, using the given stub for making calls. This
+   * is for advanced usage - prefer to use ErrorGroupServiceSettings}.
+   */
+  public static final ErrorGroupServiceClient create(ErrorGroupServiceStub stub) {
+    return new ErrorGroupServiceClient(stub);
+  }
+
+  /**
    * Constructs an instance of ErrorGroupServiceClient, using the given settings. This is protected
-   * so that it easy to make a subclass, but otherwise, the static factory methods should be
+   * so that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
   protected ErrorGroupServiceClient(ErrorGroupServiceSettings settings) throws IOException {
     this.settings = settings;
-    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
-    this.executor = channelAndExecutor.getExecutor();
-    this.channel = channelAndExecutor.getChannel();
-    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+    this.stub = settings.createStub();
+  }
 
-    ClientContext clientContext =
-        ClientContext.newBuilder()
-            .setExecutor(this.executor)
-            .setChannel(this.channel)
-            .setCredentials(credentials)
-            .build();
-
-    this.getGroupCallable = UnaryCallable.create(settings.getGroupSettings(), clientContext);
-    this.updateGroupCallable = UnaryCallable.create(settings.updateGroupSettings(), clientContext);
-
-    if (settings.getChannelProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              channel.shutdown();
-            }
-          });
-    }
-    if (settings.getExecutorProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              executor.shutdown();
-            }
-          });
-    }
+  protected ErrorGroupServiceClient(ErrorGroupServiceStub stub) {
+    this.settings = null;
+    this.stub = stub;
   }
 
   public final ErrorGroupServiceSettings getSettings() {
     return settings;
+  }
+
+  public ErrorGroupServiceStub getStub() {
+    return stub;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -176,7 +151,7 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    *     &lt;code&gt;groupStats.list&lt;/code&gt;&lt;/a&gt; to return a list of groups belonging to
    *     this project.
    *     <p>Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ErrorGroup getGroup(GroupName groupName) {
 
@@ -202,7 +177,7 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final ErrorGroup getGroup(GetGroupRequest request) {
     return getGroupCallable().call(request);
@@ -227,7 +202,7 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetGroupRequest, ErrorGroup> getGroupCallable() {
-    return getGroupCallable;
+    return stub.getGroupCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -244,7 +219,7 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    * </code></pre>
    *
    * @param group [Required] The group which replaces the resource on the server.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ErrorGroup updateGroup(ErrorGroup group) {
 
@@ -269,7 +244,7 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final ErrorGroup updateGroup(UpdateGroupRequest request) {
     return updateGroupCallable().call(request);
@@ -294,17 +269,36 @@ public class ErrorGroupServiceClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<UpdateGroupRequest, ErrorGroup> updateGroupCallable() {
-    return updateGroupCallable;
+    return stub.updateGroupCallable();
   }
 
-  /**
-   * Initiates an orderly shutdown in which preexisting calls continue but new calls are immediately
-   * cancelled.
-   */
   @Override
   public final void close() throws Exception {
-    for (AutoCloseable closeable : closeables) {
-      closeable.close();
-    }
+    stub.close();
+  }
+
+  @Override
+  public void shutdown() {
+    stub.shutdown();
+  }
+
+  @Override
+  public boolean isShutdown() {
+    return stub.isShutdown();
+  }
+
+  @Override
+  public boolean isTerminated() {
+    return stub.isTerminated();
+  }
+
+  @Override
+  public void shutdownNow() {
+    stub.shutdownNow();
+  }
+
+  @Override
+  public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
+    return stub.awaitTermination(duration, unit);
   }
 }
