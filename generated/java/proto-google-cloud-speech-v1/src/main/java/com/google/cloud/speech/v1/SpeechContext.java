@@ -205,7 +205,7 @@ public  final class SpeechContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getPhrasesCount() > 0) {
       hash = (37 * hash) + PHRASES_FIELD_NUMBER;
       hash = (53 * hash) + getPhrasesList().hashCode();
@@ -215,6 +215,17 @@ public  final class SpeechContext extends
     return hash;
   }
 
+  public static com.google.cloud.speech.v1.SpeechContext parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.speech.v1.SpeechContext parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.speech.v1.SpeechContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

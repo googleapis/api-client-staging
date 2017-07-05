@@ -58,7 +58,7 @@ public interface ListInstancesResponseOrBuilder extends
    * of the matching instances.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -68,7 +68,7 @@ public interface ListInstancesResponseOrBuilder extends
    * of the matching instances.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

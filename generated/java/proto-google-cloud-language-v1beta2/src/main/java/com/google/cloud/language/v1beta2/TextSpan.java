@@ -89,7 +89,7 @@ public  final class TextSpan extends
    * The content of the output text.
    * </pre>
    *
-   * <code>optional string content = 1;</code>
+   * <code>string content = 1;</code>
    */
   public java.lang.String getContent() {
     java.lang.Object ref = content_;
@@ -108,7 +108,7 @@ public  final class TextSpan extends
    * The content of the output text.
    * </pre>
    *
-   * <code>optional string content = 1;</code>
+   * <code>string content = 1;</code>
    */
   public com.google.protobuf.ByteString
       getContentBytes() {
@@ -132,7 +132,7 @@ public  final class TextSpan extends
    * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
    * </pre>
    *
-   * <code>optional int32 begin_offset = 2;</code>
+   * <code>int32 begin_offset = 2;</code>
    */
   public int getBeginOffset() {
     return beginOffset_;
@@ -199,7 +199,7 @@ public  final class TextSpan extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CONTENT_FIELD_NUMBER;
     hash = (53 * hash) + getContent().hashCode();
     hash = (37 * hash) + BEGIN_OFFSET_FIELD_NUMBER;
@@ -209,6 +209,17 @@ public  final class TextSpan extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.TextSpan parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.TextSpan parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.TextSpan parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -434,7 +445,7 @@ public  final class TextSpan extends
      * The content of the output text.
      * </pre>
      *
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
@@ -453,7 +464,7 @@ public  final class TextSpan extends
      * The content of the output text.
      * </pre>
      *
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -473,7 +484,7 @@ public  final class TextSpan extends
      * The content of the output text.
      * </pre>
      *
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public Builder setContent(
         java.lang.String value) {
@@ -490,7 +501,7 @@ public  final class TextSpan extends
      * The content of the output text.
      * </pre>
      *
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public Builder clearContent() {
       
@@ -503,7 +514,7 @@ public  final class TextSpan extends
      * The content of the output text.
      * </pre>
      *
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public Builder setContentBytes(
         com.google.protobuf.ByteString value) {
@@ -524,7 +535,7 @@ public  final class TextSpan extends
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
      * </pre>
      *
-     * <code>optional int32 begin_offset = 2;</code>
+     * <code>int32 begin_offset = 2;</code>
      */
     public int getBeginOffset() {
       return beginOffset_;
@@ -535,7 +546,7 @@ public  final class TextSpan extends
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
      * </pre>
      *
-     * <code>optional int32 begin_offset = 2;</code>
+     * <code>int32 begin_offset = 2;</code>
      */
     public Builder setBeginOffset(int value) {
       
@@ -549,7 +560,7 @@ public  final class TextSpan extends
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
      * </pre>
      *
-     * <code>optional int32 begin_offset = 2;</code>
+     * <code>int32 begin_offset = 2;</code>
      */
     public Builder clearBeginOffset() {
       

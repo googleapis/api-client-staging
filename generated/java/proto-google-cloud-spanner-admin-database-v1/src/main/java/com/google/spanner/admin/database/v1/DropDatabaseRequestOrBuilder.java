@@ -12,7 +12,7 @@ public interface DropDatabaseRequestOrBuilder extends
    * Required. The database to be dropped.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   java.lang.String getDatabase();
   /**
@@ -20,7 +20,7 @@ public interface DropDatabaseRequestOrBuilder extends
    * Required. The database to be dropped.
    * </pre>
    *
-   * <code>optional string database = 1;</code>
+   * <code>string database = 1;</code>
    */
   com.google.protobuf.ByteString
       getDatabaseBytes();

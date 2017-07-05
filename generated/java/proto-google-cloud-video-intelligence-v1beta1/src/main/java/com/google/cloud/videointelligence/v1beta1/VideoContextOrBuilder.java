@@ -68,7 +68,7 @@ public interface VideoContextOrBuilder extends
    * defaults to `SHOT_MODE`.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
    */
   int getLabelDetectionModeValue();
   /**
@@ -78,7 +78,7 @@ public interface VideoContextOrBuilder extends
    * defaults to `SHOT_MODE`.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
    */
   com.google.cloud.videointelligence.v1beta1.LabelDetectionMode getLabelDetectionMode();
 
@@ -88,7 +88,7 @@ public interface VideoContextOrBuilder extends
    * When set to true, might improve detection accuracy for moving objects.
    * </pre>
    *
-   * <code>optional bool stationary_camera = 3;</code>
+   * <code>bool stationary_camera = 3;</code>
    */
   boolean getStationaryCamera();
 
@@ -98,7 +98,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string label_detection_model = 4;</code>
+   * <code>string label_detection_model = 4;</code>
    */
   java.lang.String getLabelDetectionModel();
   /**
@@ -107,7 +107,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string label_detection_model = 4;</code>
+   * <code>string label_detection_model = 4;</code>
    */
   com.google.protobuf.ByteString
       getLabelDetectionModelBytes();
@@ -118,7 +118,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string face_detection_model = 5;</code>
+   * <code>string face_detection_model = 5;</code>
    */
   java.lang.String getFaceDetectionModel();
   /**
@@ -127,7 +127,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string face_detection_model = 5;</code>
+   * <code>string face_detection_model = 5;</code>
    */
   com.google.protobuf.ByteString
       getFaceDetectionModelBytes();
@@ -138,7 +138,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string shot_change_detection_model = 6;</code>
+   * <code>string shot_change_detection_model = 6;</code>
    */
   java.lang.String getShotChangeDetectionModel();
   /**
@@ -147,7 +147,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string shot_change_detection_model = 6;</code>
+   * <code>string shot_change_detection_model = 6;</code>
    */
   com.google.protobuf.ByteString
       getShotChangeDetectionModelBytes();
@@ -158,7 +158,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string safe_search_detection_model = 7;</code>
+   * <code>string safe_search_detection_model = 7;</code>
    */
   java.lang.String getSafeSearchDetectionModel();
   /**
@@ -167,7 +167,7 @@ public interface VideoContextOrBuilder extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>optional string safe_search_detection_model = 7;</code>
+   * <code>string safe_search_detection_model = 7;</code>
    */
   com.google.protobuf.ByteString
       getSafeSearchDetectionModelBytes();

@@ -12,7 +12,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
    */
   boolean hasText();
   /**
@@ -20,7 +20,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1.TextSpan getText();
   /**
@@ -28,7 +28,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder();
 
@@ -37,7 +37,7 @@ public interface EntityMentionOrBuilder extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
+   * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
    */
   int getTypeValue();
   /**
@@ -45,7 +45,7 @@ public interface EntityMentionOrBuilder extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
+   * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
    */
   com.google.cloud.language.v1.EntityMention.Type getType();
 }

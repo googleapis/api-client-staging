@@ -17,7 +17,7 @@ public interface CreateSinkRequestOrBuilder extends
    * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -30,7 +30,7 @@ public interface CreateSinkRequestOrBuilder extends
    * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -41,7 +41,7 @@ public interface CreateSinkRequestOrBuilder extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   boolean hasSink();
   /**
@@ -50,7 +50,7 @@ public interface CreateSinkRequestOrBuilder extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   com.google.logging.v2.LogSink getSink();
   /**
@@ -59,7 +59,7 @@ public interface CreateSinkRequestOrBuilder extends
    * is not already in use.
    * </pre>
    *
-   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
+   * <code>.google.logging.v2.LogSink sink = 2;</code>
    */
   com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder();
 
@@ -77,7 +77,7 @@ public interface CreateSinkRequestOrBuilder extends
    * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
    * </pre>
    *
-   * <code>optional bool unique_writer_identity = 3;</code>
+   * <code>bool unique_writer_identity = 3;</code>
    */
   boolean getUniqueWriterIdentity();
 }

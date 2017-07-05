@@ -133,7 +133,7 @@ public  final class ListEventsRequest extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public java.lang.String getProjectName() {
     java.lang.Object ref = projectName_;
@@ -156,7 +156,7 @@ public  final class ListEventsRequest extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>optional string project_name = 1;</code>
+   * <code>string project_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectNameBytes() {
@@ -179,7 +179,7 @@ public  final class ListEventsRequest extends
    * [Required] The group for which events shall be returned.
    * </pre>
    *
-   * <code>optional string group_id = 2;</code>
+   * <code>string group_id = 2;</code>
    */
   public java.lang.String getGroupId() {
     java.lang.Object ref = groupId_;
@@ -198,7 +198,7 @@ public  final class ListEventsRequest extends
    * [Required] The group for which events shall be returned.
    * </pre>
    *
-   * <code>optional string group_id = 2;</code>
+   * <code>string group_id = 2;</code>
    */
   public com.google.protobuf.ByteString
       getGroupIdBytes() {
@@ -223,7 +223,7 @@ public  final class ListEventsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public boolean hasServiceFilter() {
     return serviceFilter_ != null;
@@ -235,7 +235,7 @@ public  final class ListEventsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter getServiceFilter() {
     return serviceFilter_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.getDefaultInstance() : serviceFilter_;
@@ -247,7 +247,7 @@ public  final class ListEventsRequest extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder getServiceFilterOrBuilder() {
     return getServiceFilter();
@@ -262,7 +262,7 @@ public  final class ListEventsRequest extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   public boolean hasTimeRange() {
     return timeRange_ != null;
@@ -274,7 +274,7 @@ public  final class ListEventsRequest extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange getTimeRange() {
     return timeRange_ == null ? com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.getDefaultInstance() : timeRange_;
@@ -286,7 +286,7 @@ public  final class ListEventsRequest extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder getTimeRangeOrBuilder() {
     return getTimeRange();
@@ -299,7 +299,7 @@ public  final class ListEventsRequest extends
    * [Optional] The maximum number of results to return per response.
    * </pre>
    *
-   * <code>optional int32 page_size = 6;</code>
+   * <code>int32 page_size = 6;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -312,7 +312,7 @@ public  final class ListEventsRequest extends
    * [Optional] A `next_page_token` provided by a previous response.
    * </pre>
    *
-   * <code>optional string page_token = 7;</code>
+   * <code>string page_token = 7;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -331,7 +331,7 @@ public  final class ListEventsRequest extends
    * [Optional] A `next_page_token` provided by a previous response.
    * </pre>
    *
-   * <code>optional string page_token = 7;</code>
+   * <code>string page_token = 7;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -448,7 +448,7 @@ public  final class ListEventsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getProjectName().hashCode();
     hash = (37 * hash) + GROUP_ID_FIELD_NUMBER;
@@ -470,6 +470,17 @@ public  final class ListEventsRequest extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -741,7 +752,7 @@ public  final class ListEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public java.lang.String getProjectName() {
       java.lang.Object ref = projectName_;
@@ -764,7 +775,7 @@ public  final class ListEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectNameBytes() {
@@ -788,7 +799,7 @@ public  final class ListEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectName(
         java.lang.String value) {
@@ -809,7 +820,7 @@ public  final class ListEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder clearProjectName() {
       
@@ -826,7 +837,7 @@ public  final class ListEventsRequest extends
      * Example: `projects/my-project-123`.
      * </pre>
      *
-     * <code>optional string project_name = 1;</code>
+     * <code>string project_name = 1;</code>
      */
     public Builder setProjectNameBytes(
         com.google.protobuf.ByteString value) {
@@ -846,7 +857,7 @@ public  final class ListEventsRequest extends
      * [Required] The group for which events shall be returned.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public java.lang.String getGroupId() {
       java.lang.Object ref = groupId_;
@@ -865,7 +876,7 @@ public  final class ListEventsRequest extends
      * [Required] The group for which events shall be returned.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public com.google.protobuf.ByteString
         getGroupIdBytes() {
@@ -885,7 +896,7 @@ public  final class ListEventsRequest extends
      * [Required] The group for which events shall be returned.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder setGroupId(
         java.lang.String value) {
@@ -902,7 +913,7 @@ public  final class ListEventsRequest extends
      * [Required] The group for which events shall be returned.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder clearGroupId() {
       
@@ -915,7 +926,7 @@ public  final class ListEventsRequest extends
      * [Required] The group for which events shall be returned.
      * </pre>
      *
-     * <code>optional string group_id = 2;</code>
+     * <code>string group_id = 2;</code>
      */
     public Builder setGroupIdBytes(
         com.google.protobuf.ByteString value) {
@@ -939,7 +950,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public boolean hasServiceFilter() {
       return serviceFilterBuilder_ != null || serviceFilter_ != null;
@@ -951,7 +962,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter getServiceFilter() {
       if (serviceFilterBuilder_ == null) {
@@ -967,7 +978,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder setServiceFilter(com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter value) {
       if (serviceFilterBuilder_ == null) {
@@ -989,7 +1000,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder setServiceFilter(
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder builderForValue) {
@@ -1009,7 +1020,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder mergeServiceFilter(com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter value) {
       if (serviceFilterBuilder_ == null) {
@@ -1033,7 +1044,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public Builder clearServiceFilter() {
       if (serviceFilterBuilder_ == null) {
@@ -1053,7 +1064,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder getServiceFilterBuilder() {
       
@@ -1067,7 +1078,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder getServiceFilterOrBuilder() {
       if (serviceFilterBuilder_ != null) {
@@ -1084,7 +1095,7 @@ public  final class ListEventsRequest extends
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter, com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter.Builder, com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder> 
@@ -1110,7 +1121,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public boolean hasTimeRange() {
       return timeRangeBuilder_ != null || timeRange_ != null;
@@ -1122,7 +1133,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange getTimeRange() {
       if (timeRangeBuilder_ == null) {
@@ -1138,7 +1149,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public Builder setTimeRange(com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange value) {
       if (timeRangeBuilder_ == null) {
@@ -1160,7 +1171,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public Builder setTimeRange(
         com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder builderForValue) {
@@ -1180,7 +1191,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public Builder mergeTimeRange(com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange value) {
       if (timeRangeBuilder_ == null) {
@@ -1204,7 +1215,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public Builder clearTimeRange() {
       if (timeRangeBuilder_ == null) {
@@ -1224,7 +1235,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder getTimeRangeBuilder() {
       
@@ -1238,7 +1249,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder getTimeRangeOrBuilder() {
       if (timeRangeBuilder_ != null) {
@@ -1255,7 +1266,7 @@ public  final class ListEventsRequest extends
      * in the response will specify the beginning of this time range.
      * </pre>
      *
-     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange, com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Builder, com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder> 
@@ -1277,7 +1288,7 @@ public  final class ListEventsRequest extends
      * [Optional] The maximum number of results to return per response.
      * </pre>
      *
-     * <code>optional int32 page_size = 6;</code>
+     * <code>int32 page_size = 6;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -1287,7 +1298,7 @@ public  final class ListEventsRequest extends
      * [Optional] The maximum number of results to return per response.
      * </pre>
      *
-     * <code>optional int32 page_size = 6;</code>
+     * <code>int32 page_size = 6;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -1300,7 +1311,7 @@ public  final class ListEventsRequest extends
      * [Optional] The maximum number of results to return per response.
      * </pre>
      *
-     * <code>optional int32 page_size = 6;</code>
+     * <code>int32 page_size = 6;</code>
      */
     public Builder clearPageSize() {
       
@@ -1315,7 +1326,7 @@ public  final class ListEventsRequest extends
      * [Optional] A `next_page_token` provided by a previous response.
      * </pre>
      *
-     * <code>optional string page_token = 7;</code>
+     * <code>string page_token = 7;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -1334,7 +1345,7 @@ public  final class ListEventsRequest extends
      * [Optional] A `next_page_token` provided by a previous response.
      * </pre>
      *
-     * <code>optional string page_token = 7;</code>
+     * <code>string page_token = 7;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -1354,7 +1365,7 @@ public  final class ListEventsRequest extends
      * [Optional] A `next_page_token` provided by a previous response.
      * </pre>
      *
-     * <code>optional string page_token = 7;</code>
+     * <code>string page_token = 7;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -1371,7 +1382,7 @@ public  final class ListEventsRequest extends
      * [Optional] A `next_page_token` provided by a previous response.
      * </pre>
      *
-     * <code>optional string page_token = 7;</code>
+     * <code>string page_token = 7;</code>
      */
     public Builder clearPageToken() {
       
@@ -1384,7 +1395,7 @@ public  final class ListEventsRequest extends
      * [Optional] A `next_page_token` provided by a previous response.
      * </pre>
      *
-     * <code>optional string page_token = 7;</code>
+     * <code>string page_token = 7;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

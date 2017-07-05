@@ -13,7 +13,7 @@ public interface ListInstancesRequestOrBuilder extends
    * requested. Values are of the form `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -22,7 +22,7 @@ public interface ListInstancesRequestOrBuilder extends
    * requested. Values are of the form `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>optional string parent = 1;</code>
+   * <code>string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -33,7 +33,7 @@ public interface ListInstancesRequestOrBuilder extends
    * to the server's maximum allowed page size.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -44,7 +44,7 @@ public interface ListInstancesRequestOrBuilder extends
    * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -54,7 +54,7 @@ public interface ListInstancesRequestOrBuilder extends
    * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -79,7 +79,7 @@ public interface ListInstancesRequestOrBuilder extends
    *                                  containing "dev".
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   java.lang.String getFilter();
   /**
@@ -102,7 +102,7 @@ public interface ListInstancesRequestOrBuilder extends
    *                                  containing "dev".
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();

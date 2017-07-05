@@ -13,7 +13,7 @@ public interface ListTopicSubscriptionsRequestOrBuilder extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>optional string topic = 1;</code>
+   * <code>string topic = 1;</code>
    */
   java.lang.String getTopic();
   /**
@@ -22,7 +22,7 @@ public interface ListTopicSubscriptionsRequestOrBuilder extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>optional string topic = 1;</code>
+   * <code>string topic = 1;</code>
    */
   com.google.protobuf.ByteString
       getTopicBytes();
@@ -32,7 +32,7 @@ public interface ListTopicSubscriptionsRequestOrBuilder extends
    * Maximum number of subscription names to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -43,7 +43,7 @@ public interface ListTopicSubscriptionsRequestOrBuilder extends
    * that the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -53,7 +53,7 @@ public interface ListTopicSubscriptionsRequestOrBuilder extends
    * that the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

@@ -13,7 +13,7 @@ public interface PushConfigOrBuilder extends
    * For example, a Webhook endpoint might use "https://example.com/push".
    * </pre>
    *
-   * <code>optional string push_endpoint = 1;</code>
+   * <code>string push_endpoint = 1;</code>
    */
   java.lang.String getPushEndpoint();
   /**
@@ -22,7 +22,7 @@ public interface PushConfigOrBuilder extends
    * For example, a Webhook endpoint might use "https://example.com/push".
    * </pre>
    *
-   * <code>optional string push_endpoint = 1;</code>
+   * <code>string push_endpoint = 1;</code>
    */
   com.google.protobuf.ByteString
       getPushEndpointBytes();

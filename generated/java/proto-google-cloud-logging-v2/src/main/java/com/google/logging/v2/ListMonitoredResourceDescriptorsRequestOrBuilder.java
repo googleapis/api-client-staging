@@ -14,7 +14,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>optional int32 page_size = 1;</code>
+   * <code>int32 page_size = 1;</code>
    */
   int getPageSize();
 
@@ -26,7 +26,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 2;</code>
+   * <code>string page_token = 2;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -37,7 +37,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 2;</code>
+   * <code>string page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

@@ -88,7 +88,7 @@ public  final class VideoSegment extends
    * Start offset in microseconds (inclusive). Unset means 0.
    * </pre>
    *
-   * <code>optional int64 start_time_offset = 1;</code>
+   * <code>int64 start_time_offset = 1;</code>
    */
   public long getStartTimeOffset() {
     return startTimeOffset_;
@@ -101,7 +101,7 @@ public  final class VideoSegment extends
    * End offset in microseconds (inclusive). Unset means 0.
    * </pre>
    *
-   * <code>optional int64 end_time_offset = 2;</code>
+   * <code>int64 end_time_offset = 2;</code>
    */
   public long getEndTimeOffset() {
     return endTimeOffset_;
@@ -169,7 +169,7 @@ public  final class VideoSegment extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + START_TIME_OFFSET_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getStartTimeOffset());
@@ -181,6 +181,17 @@ public  final class VideoSegment extends
     return hash;
   }
 
+  public static com.google.cloud.videointelligence.v1beta1.VideoSegment parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.videointelligence.v1beta1.VideoSegment parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.videointelligence.v1beta1.VideoSegment parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -405,7 +416,7 @@ public  final class VideoSegment extends
      * Start offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 start_time_offset = 1;</code>
+     * <code>int64 start_time_offset = 1;</code>
      */
     public long getStartTimeOffset() {
       return startTimeOffset_;
@@ -415,7 +426,7 @@ public  final class VideoSegment extends
      * Start offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 start_time_offset = 1;</code>
+     * <code>int64 start_time_offset = 1;</code>
      */
     public Builder setStartTimeOffset(long value) {
       
@@ -428,7 +439,7 @@ public  final class VideoSegment extends
      * Start offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 start_time_offset = 1;</code>
+     * <code>int64 start_time_offset = 1;</code>
      */
     public Builder clearStartTimeOffset() {
       
@@ -443,7 +454,7 @@ public  final class VideoSegment extends
      * End offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 end_time_offset = 2;</code>
+     * <code>int64 end_time_offset = 2;</code>
      */
     public long getEndTimeOffset() {
       return endTimeOffset_;
@@ -453,7 +464,7 @@ public  final class VideoSegment extends
      * End offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 end_time_offset = 2;</code>
+     * <code>int64 end_time_offset = 2;</code>
      */
     public Builder setEndTimeOffset(long value) {
       
@@ -466,7 +477,7 @@ public  final class VideoSegment extends
      * End offset in microseconds (inclusive). Unset means 0.
      * </pre>
      *
-     * <code>optional int64 end_time_offset = 2;</code>
+     * <code>int64 end_time_offset = 2;</code>
      */
     public Builder clearEndTimeOffset() {
       

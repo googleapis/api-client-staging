@@ -14,7 +14,7 @@ public interface ReportedErrorEventOrBuilder extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   boolean hasEventTime();
   /**
@@ -24,7 +24,7 @@ public interface ReportedErrorEventOrBuilder extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   com.google.protobuf.Timestamp getEventTime();
   /**
@@ -34,7 +34,7 @@ public interface ReportedErrorEventOrBuilder extends
    * Error Reporting system will be used.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp event_time = 1;</code>
+   * <code>.google.protobuf.Timestamp event_time = 1;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEventTimeOrBuilder();
 
@@ -43,7 +43,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   boolean hasServiceContext();
   /**
@@ -51,7 +51,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ServiceContext getServiceContext();
   /**
@@ -59,7 +59,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Required] The service context in which this error has occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ServiceContextOrBuilder getServiceContextOrBuilder();
 
@@ -71,7 +71,7 @@ public interface ReportedErrorEventOrBuilder extends
    * is returned when retrieving the error event again.
    * </pre>
    *
-   * <code>optional string message = 3;</code>
+   * <code>string message = 3;</code>
    */
   java.lang.String getMessage();
   /**
@@ -82,7 +82,7 @@ public interface ReportedErrorEventOrBuilder extends
    * is returned when retrieving the error event again.
    * </pre>
    *
-   * <code>optional string message = 3;</code>
+   * <code>string message = 3;</code>
    */
   com.google.protobuf.ByteString
       getMessageBytes();
@@ -92,7 +92,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   boolean hasContext();
   /**
@@ -100,7 +100,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorContext getContext();
   /**
@@ -108,7 +108,7 @@ public interface ReportedErrorEventOrBuilder extends
    * [Optional] A description of the context in which the error occurred.
    * </pre>
    *
-   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorContextOrBuilder getContextOrBuilder();
 }

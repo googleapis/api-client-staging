@@ -12,7 +12,7 @@ public interface ResultSetOrBuilder extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   boolean hasMetadata();
   /**
@@ -20,7 +20,7 @@ public interface ResultSetOrBuilder extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   com.google.spanner.v1.ResultSetMetadata getMetadata();
   /**
@@ -28,7 +28,7 @@ public interface ResultSetOrBuilder extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder();
 
@@ -108,7 +108,7 @@ public interface ResultSetOrBuilder extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   boolean hasStats();
   /**
@@ -118,7 +118,7 @@ public interface ResultSetOrBuilder extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   com.google.spanner.v1.ResultSetStats getStats();
   /**
@@ -128,7 +128,7 @@ public interface ResultSetOrBuilder extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder();
 }

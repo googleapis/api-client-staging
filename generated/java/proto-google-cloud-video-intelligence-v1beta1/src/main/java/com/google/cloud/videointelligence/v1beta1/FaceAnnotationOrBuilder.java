@@ -12,7 +12,7 @@ public interface FaceAnnotationOrBuilder extends
    * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
    * </pre>
    *
-   * <code>optional string thumbnail = 1;</code>
+   * <code>string thumbnail = 1;</code>
    */
   java.lang.String getThumbnail();
   /**
@@ -20,7 +20,7 @@ public interface FaceAnnotationOrBuilder extends
    * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
    * </pre>
    *
-   * <code>optional string thumbnail = 1;</code>
+   * <code>string thumbnail = 1;</code>
    */
   com.google.protobuf.ByteString
       getThumbnailBytes();

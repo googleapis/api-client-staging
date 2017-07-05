@@ -1012,7 +1012,7 @@ public  final class Aggregation extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+   * <code>.google.protobuf.Duration alignment_period = 1;</code>
    */
   public boolean hasAlignmentPeriod() {
     return alignmentPeriod_ != null;
@@ -1029,7 +1029,7 @@ public  final class Aggregation extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+   * <code>.google.protobuf.Duration alignment_period = 1;</code>
    */
   public com.google.protobuf.Duration getAlignmentPeriod() {
     return alignmentPeriod_ == null ? com.google.protobuf.Duration.getDefaultInstance() : alignmentPeriod_;
@@ -1046,7 +1046,7 @@ public  final class Aggregation extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+   * <code>.google.protobuf.Duration alignment_period = 1;</code>
    */
   public com.google.protobuf.DurationOrBuilder getAlignmentPeriodOrBuilder() {
     return getAlignmentPeriod();
@@ -1068,7 +1068,7 @@ public  final class Aggregation extends
    * returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+   * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
    */
   public int getPerSeriesAlignerValue() {
     return perSeriesAligner_;
@@ -1087,7 +1087,7 @@ public  final class Aggregation extends
    * returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+   * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
    */
   public com.google.monitoring.v3.Aggregation.Aligner getPerSeriesAligner() {
     com.google.monitoring.v3.Aggregation.Aligner result = com.google.monitoring.v3.Aggregation.Aligner.valueOf(perSeriesAligner_);
@@ -1110,7 +1110,7 @@ public  final class Aggregation extends
    * returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+   * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
    */
   public int getCrossSeriesReducerValue() {
     return crossSeriesReducer_;
@@ -1129,7 +1129,7 @@ public  final class Aggregation extends
    * returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+   * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
    */
   public com.google.monitoring.v3.Aggregation.Reducer getCrossSeriesReducer() {
     com.google.monitoring.v3.Aggregation.Reducer result = com.google.monitoring.v3.Aggregation.Reducer.valueOf(crossSeriesReducer_);
@@ -1318,7 +1318,7 @@ public  final class Aggregation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasAlignmentPeriod()) {
       hash = (37 * hash) + ALIGNMENT_PERIOD_FIELD_NUMBER;
       hash = (53 * hash) + getAlignmentPeriod().hashCode();
@@ -1336,6 +1336,17 @@ public  final class Aggregation extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.Aggregation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.Aggregation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.Aggregation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1608,7 +1619,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public boolean hasAlignmentPeriod() {
       return alignmentPeriodBuilder_ != null || alignmentPeriod_ != null;
@@ -1625,7 +1636,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public com.google.protobuf.Duration getAlignmentPeriod() {
       if (alignmentPeriodBuilder_ == null) {
@@ -1646,7 +1657,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public Builder setAlignmentPeriod(com.google.protobuf.Duration value) {
       if (alignmentPeriodBuilder_ == null) {
@@ -1673,7 +1684,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public Builder setAlignmentPeriod(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1698,7 +1709,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public Builder mergeAlignmentPeriod(com.google.protobuf.Duration value) {
       if (alignmentPeriodBuilder_ == null) {
@@ -1727,7 +1738,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public Builder clearAlignmentPeriod() {
       if (alignmentPeriodBuilder_ == null) {
@@ -1752,7 +1763,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public com.google.protobuf.Duration.Builder getAlignmentPeriodBuilder() {
       
@@ -1771,7 +1782,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     public com.google.protobuf.DurationOrBuilder getAlignmentPeriodOrBuilder() {
       if (alignmentPeriodBuilder_ != null) {
@@ -1793,7 +1804,7 @@ public  final class Aggregation extends
      * otherwise an error is returned.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
+     * <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -1824,7 +1835,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
      */
     public int getPerSeriesAlignerValue() {
       return perSeriesAligner_;
@@ -1843,7 +1854,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
      */
     public Builder setPerSeriesAlignerValue(int value) {
       perSeriesAligner_ = value;
@@ -1864,7 +1875,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
      */
     public com.google.monitoring.v3.Aggregation.Aligner getPerSeriesAligner() {
       com.google.monitoring.v3.Aggregation.Aligner result = com.google.monitoring.v3.Aggregation.Aligner.valueOf(perSeriesAligner_);
@@ -1884,7 +1895,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
      */
     public Builder setPerSeriesAligner(com.google.monitoring.v3.Aggregation.Aligner value) {
       if (value == null) {
@@ -1909,7 +1920,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
      */
     public Builder clearPerSeriesAligner() {
       
@@ -1933,7 +1944,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
      */
     public int getCrossSeriesReducerValue() {
       return crossSeriesReducer_;
@@ -1952,7 +1963,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
      */
     public Builder setCrossSeriesReducerValue(int value) {
       crossSeriesReducer_ = value;
@@ -1973,7 +1984,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
      */
     public com.google.monitoring.v3.Aggregation.Reducer getCrossSeriesReducer() {
       com.google.monitoring.v3.Aggregation.Reducer result = com.google.monitoring.v3.Aggregation.Reducer.valueOf(crossSeriesReducer_);
@@ -1993,7 +2004,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
      */
     public Builder setCrossSeriesReducer(com.google.monitoring.v3.Aggregation.Reducer value) {
       if (value == null) {
@@ -2018,7 +2029,7 @@ public  final class Aggregation extends
      * returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
      */
     public Builder clearCrossSeriesReducer() {
       

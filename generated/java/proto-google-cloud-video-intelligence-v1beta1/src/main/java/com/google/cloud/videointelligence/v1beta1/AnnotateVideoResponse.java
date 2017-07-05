@@ -192,7 +192,7 @@ public  final class AnnotateVideoResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getAnnotationResultsCount() > 0) {
       hash = (37 * hash) + ANNOTATION_RESULTS_FIELD_NUMBER;
       hash = (53 * hash) + getAnnotationResultsList().hashCode();
@@ -202,6 +202,17 @@ public  final class AnnotateVideoResponse extends
     return hash;
   }
 
+  public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

@@ -117,7 +117,7 @@ public  final class ListGroupMembersRequest extends
    * `"projects/{project_id_or_number}/groups/{group_id}"`.
    * </pre>
    *
-   * <code>optional string name = 7;</code>
+   * <code>string name = 7;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -137,7 +137,7 @@ public  final class ListGroupMembersRequest extends
    * `"projects/{project_id_or_number}/groups/{group_id}"`.
    * </pre>
    *
-   * <code>optional string name = 7;</code>
+   * <code>string name = 7;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -160,7 +160,7 @@ public  final class ListGroupMembersRequest extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -175,7 +175,7 @@ public  final class ListGroupMembersRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -196,7 +196,7 @@ public  final class ListGroupMembersRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -224,7 +224,7 @@ public  final class ListGroupMembersRequest extends
    *     resource.type = "gce_instance"
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -248,7 +248,7 @@ public  final class ListGroupMembersRequest extends
    *     resource.type = "gce_instance"
    * </pre>
    *
-   * <code>optional string filter = 5;</code>
+   * <code>string filter = 5;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -274,7 +274,7 @@ public  final class ListGroupMembersRequest extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   public boolean hasInterval() {
     return interval_ != null;
@@ -287,7 +287,7 @@ public  final class ListGroupMembersRequest extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   public com.google.monitoring.v3.TimeInterval getInterval() {
     return interval_ == null ? com.google.monitoring.v3.TimeInterval.getDefaultInstance() : interval_;
@@ -300,7 +300,7 @@ public  final class ListGroupMembersRequest extends
    * membership over the last minute is returned.
    * </pre>
    *
-   * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+   * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
    */
   public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
     return getInterval();
@@ -395,7 +395,7 @@ public  final class ListGroupMembersRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -413,6 +413,17 @@ public  final class ListGroupMembersRequest extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.ListGroupMembersRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.ListGroupMembersRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.ListGroupMembersRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -667,7 +678,7 @@ public  final class ListGroupMembersRequest extends
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * </pre>
      *
-     * <code>optional string name = 7;</code>
+     * <code>string name = 7;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -687,7 +698,7 @@ public  final class ListGroupMembersRequest extends
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * </pre>
      *
-     * <code>optional string name = 7;</code>
+     * <code>string name = 7;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -708,7 +719,7 @@ public  final class ListGroupMembersRequest extends
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * </pre>
      *
-     * <code>optional string name = 7;</code>
+     * <code>string name = 7;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -726,7 +737,7 @@ public  final class ListGroupMembersRequest extends
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * </pre>
      *
-     * <code>optional string name = 7;</code>
+     * <code>string name = 7;</code>
      */
     public Builder clearName() {
       
@@ -740,7 +751,7 @@ public  final class ListGroupMembersRequest extends
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * </pre>
      *
-     * <code>optional string name = 7;</code>
+     * <code>string name = 7;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -760,7 +771,7 @@ public  final class ListGroupMembersRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -770,7 +781,7 @@ public  final class ListGroupMembersRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -783,7 +794,7 @@ public  final class ListGroupMembersRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>optional int32 page_size = 3;</code>
+     * <code>int32 page_size = 3;</code>
      */
     public Builder clearPageSize() {
       
@@ -800,7 +811,7 @@ public  final class ListGroupMembersRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -821,7 +832,7 @@ public  final class ListGroupMembersRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -843,7 +854,7 @@ public  final class ListGroupMembersRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -862,7 +873,7 @@ public  final class ListGroupMembersRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder clearPageToken() {
       
@@ -877,7 +888,7 @@ public  final class ListGroupMembersRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>optional string page_token = 4;</code>
+     * <code>string page_token = 4;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {
@@ -902,7 +913,7 @@ public  final class ListGroupMembersRequest extends
      *     resource.type = "gce_instance"
      * </pre>
      *
-     * <code>optional string filter = 5;</code>
+     * <code>string filter = 5;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -926,7 +937,7 @@ public  final class ListGroupMembersRequest extends
      *     resource.type = "gce_instance"
      * </pre>
      *
-     * <code>optional string filter = 5;</code>
+     * <code>string filter = 5;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -951,7 +962,7 @@ public  final class ListGroupMembersRequest extends
      *     resource.type = "gce_instance"
      * </pre>
      *
-     * <code>optional string filter = 5;</code>
+     * <code>string filter = 5;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -973,7 +984,7 @@ public  final class ListGroupMembersRequest extends
      *     resource.type = "gce_instance"
      * </pre>
      *
-     * <code>optional string filter = 5;</code>
+     * <code>string filter = 5;</code>
      */
     public Builder clearFilter() {
       
@@ -991,7 +1002,7 @@ public  final class ListGroupMembersRequest extends
      *     resource.type = "gce_instance"
      * </pre>
      *
-     * <code>optional string filter = 5;</code>
+     * <code>string filter = 5;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1016,7 +1027,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public boolean hasInterval() {
       return intervalBuilder_ != null || interval_ != null;
@@ -1029,7 +1040,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public com.google.monitoring.v3.TimeInterval getInterval() {
       if (intervalBuilder_ == null) {
@@ -1046,7 +1057,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public Builder setInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -1069,7 +1080,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public Builder setInterval(
         com.google.monitoring.v3.TimeInterval.Builder builderForValue) {
@@ -1090,7 +1101,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public Builder mergeInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -1115,7 +1126,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public Builder clearInterval() {
       if (intervalBuilder_ == null) {
@@ -1136,7 +1147,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public com.google.monitoring.v3.TimeInterval.Builder getIntervalBuilder() {
       
@@ -1151,7 +1162,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
       if (intervalBuilder_ != null) {
@@ -1169,7 +1180,7 @@ public  final class ListGroupMembersRequest extends
      * membership over the last minute is returned.
      * </pre>
      *
-     * <code>optional .google.monitoring.v3.TimeInterval interval = 6;</code>
+     * <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.TimeInterval, com.google.monitoring.v3.TimeInterval.Builder, com.google.monitoring.v3.TimeIntervalOrBuilder> 

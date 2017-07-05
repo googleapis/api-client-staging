@@ -88,7 +88,7 @@ public  final class GetSinkRequest extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   public java.lang.String getSinkName() {
     java.lang.Object ref = sinkName_;
@@ -112,7 +112,7 @@ public  final class GetSinkRequest extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>optional string sink_name = 1;</code>
+   * <code>string sink_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSinkNameBytes() {
@@ -180,7 +180,7 @@ public  final class GetSinkRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SINK_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getSinkName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -188,6 +188,17 @@ public  final class GetSinkRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.GetSinkRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.GetSinkRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.GetSinkRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -412,7 +423,7 @@ public  final class GetSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public java.lang.String getSinkName() {
       java.lang.Object ref = sinkName_;
@@ -436,7 +447,7 @@ public  final class GetSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSinkNameBytes() {
@@ -461,7 +472,7 @@ public  final class GetSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder setSinkName(
         java.lang.String value) {
@@ -483,7 +494,7 @@ public  final class GetSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder clearSinkName() {
       
@@ -501,7 +512,7 @@ public  final class GetSinkRequest extends
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * </pre>
      *
-     * <code>optional string sink_name = 1;</code>
+     * <code>string sink_name = 1;</code>
      */
     public Builder setSinkNameBytes(
         com.google.protobuf.ByteString value) {

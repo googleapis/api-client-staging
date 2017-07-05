@@ -13,7 +13,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 5;</code>
+   * <code>string name = 5;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>optional string name = 5;</code>
+   * <code>string name = 5;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -37,7 +37,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    *     resource.type = starts_with("gce_") AND resource.label:id
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   java.lang.String getFilter();
   /**
@@ -50,7 +50,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    *     resource.type = starts_with("gce_") AND resource.label:id
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -60,7 +60,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>optional int32 page_size = 3;</code>
+   * <code>int32 page_size = 3;</code>
    */
   int getPageSize();
 
@@ -71,7 +71,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -81,7 +81,7 @@ public interface ListMonitoredResourceDescriptorsRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>optional string page_token = 4;</code>
+   * <code>string page_token = 4;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

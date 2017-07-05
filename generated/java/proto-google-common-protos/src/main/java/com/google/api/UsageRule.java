@@ -114,7 +114,7 @@ public  final class UsageRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>optional string selector = 1;</code>
+   * <code>string selector = 1;</code>
    */
   public java.lang.String getSelector() {
     java.lang.Object ref = selector_;
@@ -135,7 +135,7 @@ public  final class UsageRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>optional string selector = 1;</code>
+   * <code>string selector = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSelectorBytes() {
@@ -158,7 +158,7 @@ public  final class UsageRule extends
    * True, if the method allows unregistered calls; false otherwise.
    * </pre>
    *
-   * <code>optional bool allow_unregistered_calls = 2;</code>
+   * <code>bool allow_unregistered_calls = 2;</code>
    */
   public boolean getAllowUnregisteredCalls() {
     return allowUnregisteredCalls_;
@@ -172,7 +172,7 @@ public  final class UsageRule extends
    * feature (like quota and billing) will be enabled.
    * </pre>
    *
-   * <code>optional bool skip_service_control = 3;</code>
+   * <code>bool skip_service_control = 3;</code>
    */
   public boolean getSkipServiceControl() {
     return skipServiceControl_;
@@ -248,7 +248,7 @@ public  final class UsageRule extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SELECTOR_FIELD_NUMBER;
     hash = (53 * hash) + getSelector().hashCode();
     hash = (37 * hash) + ALLOW_UNREGISTERED_CALLS_FIELD_NUMBER;
@@ -262,6 +262,17 @@ public  final class UsageRule extends
     return hash;
   }
 
+  public static com.google.api.UsageRule parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.api.UsageRule parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.api.UsageRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -512,7 +523,7 @@ public  final class UsageRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>optional string selector = 1;</code>
+     * <code>string selector = 1;</code>
      */
     public java.lang.String getSelector() {
       java.lang.Object ref = selector_;
@@ -533,7 +544,7 @@ public  final class UsageRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>optional string selector = 1;</code>
+     * <code>string selector = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSelectorBytes() {
@@ -555,7 +566,7 @@ public  final class UsageRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>optional string selector = 1;</code>
+     * <code>string selector = 1;</code>
      */
     public Builder setSelector(
         java.lang.String value) {
@@ -574,7 +585,7 @@ public  final class UsageRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>optional string selector = 1;</code>
+     * <code>string selector = 1;</code>
      */
     public Builder clearSelector() {
       
@@ -589,7 +600,7 @@ public  final class UsageRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>optional string selector = 1;</code>
+     * <code>string selector = 1;</code>
      */
     public Builder setSelectorBytes(
         com.google.protobuf.ByteString value) {
@@ -609,7 +620,7 @@ public  final class UsageRule extends
      * True, if the method allows unregistered calls; false otherwise.
      * </pre>
      *
-     * <code>optional bool allow_unregistered_calls = 2;</code>
+     * <code>bool allow_unregistered_calls = 2;</code>
      */
     public boolean getAllowUnregisteredCalls() {
       return allowUnregisteredCalls_;
@@ -619,7 +630,7 @@ public  final class UsageRule extends
      * True, if the method allows unregistered calls; false otherwise.
      * </pre>
      *
-     * <code>optional bool allow_unregistered_calls = 2;</code>
+     * <code>bool allow_unregistered_calls = 2;</code>
      */
     public Builder setAllowUnregisteredCalls(boolean value) {
       
@@ -632,7 +643,7 @@ public  final class UsageRule extends
      * True, if the method allows unregistered calls; false otherwise.
      * </pre>
      *
-     * <code>optional bool allow_unregistered_calls = 2;</code>
+     * <code>bool allow_unregistered_calls = 2;</code>
      */
     public Builder clearAllowUnregisteredCalls() {
       
@@ -648,7 +659,7 @@ public  final class UsageRule extends
      * feature (like quota and billing) will be enabled.
      * </pre>
      *
-     * <code>optional bool skip_service_control = 3;</code>
+     * <code>bool skip_service_control = 3;</code>
      */
     public boolean getSkipServiceControl() {
       return skipServiceControl_;
@@ -659,7 +670,7 @@ public  final class UsageRule extends
      * feature (like quota and billing) will be enabled.
      * </pre>
      *
-     * <code>optional bool skip_service_control = 3;</code>
+     * <code>bool skip_service_control = 3;</code>
      */
     public Builder setSkipServiceControl(boolean value) {
       
@@ -673,7 +684,7 @@ public  final class UsageRule extends
      * feature (like quota and billing) will be enabled.
      * </pre>
      *
-     * <code>optional bool skip_service_control = 3;</code>
+     * <code>bool skip_service_control = 3;</code>
      */
     public Builder clearSkipServiceControl() {
       

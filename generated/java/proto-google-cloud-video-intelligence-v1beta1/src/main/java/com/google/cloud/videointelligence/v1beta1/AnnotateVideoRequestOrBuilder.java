@@ -21,7 +21,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * in the request as `input_content`. If set, `input_content` should be unset.
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   java.lang.String getInputUri();
   /**
@@ -38,7 +38,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * in the request as `input_content`. If set, `input_content` should be unset.
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   com.google.protobuf.ByteString
       getInputUriBytes();
@@ -49,7 +49,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * should be specified via `input_uri`. If set, `input_uri` should be unset.
    * </pre>
    *
-   * <code>optional string input_content = 6;</code>
+   * <code>string input_content = 6;</code>
    */
   java.lang.String getInputContent();
   /**
@@ -58,7 +58,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * should be specified via `input_uri`. If set, `input_uri` should be unset.
    * </pre>
    *
-   * <code>optional string input_content = 6;</code>
+   * <code>string input_content = 6;</code>
    */
   com.google.protobuf.ByteString
       getInputContentBytes();
@@ -110,7 +110,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * Additional video context and/or feature-specific parameters.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
    */
   boolean hasVideoContext();
   /**
@@ -118,7 +118,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * Additional video context and/or feature-specific parameters.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
    */
   com.google.cloud.videointelligence.v1beta1.VideoContext getVideoContext();
   /**
@@ -126,7 +126,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * Additional video context and/or feature-specific parameters.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
    */
   com.google.cloud.videointelligence.v1beta1.VideoContextOrBuilder getVideoContextOrBuilder();
 
@@ -140,7 +140,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * [Request URIs](/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>optional string output_uri = 4;</code>
+   * <code>string output_uri = 4;</code>
    */
   java.lang.String getOutputUri();
   /**
@@ -153,7 +153,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * [Request URIs](/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>optional string output_uri = 4;</code>
+   * <code>string output_uri = 4;</code>
    */
   com.google.protobuf.ByteString
       getOutputUriBytes();
@@ -165,7 +165,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * is specified, a region will be determined based on video file location.
    * </pre>
    *
-   * <code>optional string location_id = 5;</code>
+   * <code>string location_id = 5;</code>
    */
   java.lang.String getLocationId();
   /**
@@ -175,7 +175,7 @@ public interface AnnotateVideoRequestOrBuilder extends
    * is specified, a region will be determined based on video file location.
    * </pre>
    *
-   * <code>optional string location_id = 5;</code>
+   * <code>string location_id = 5;</code>
    */
   com.google.protobuf.ByteString
       getLocationIdBytes();

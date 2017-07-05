@@ -12,7 +12,7 @@ public interface BoundingBoxOrBuilder extends
    * Left X coordinate.
    * </pre>
    *
-   * <code>optional int32 left = 1;</code>
+   * <code>int32 left = 1;</code>
    */
   int getLeft();
 
@@ -21,7 +21,7 @@ public interface BoundingBoxOrBuilder extends
    * Right X coordinate.
    * </pre>
    *
-   * <code>optional int32 right = 2;</code>
+   * <code>int32 right = 2;</code>
    */
   int getRight();
 
@@ -30,7 +30,7 @@ public interface BoundingBoxOrBuilder extends
    * Bottom Y coordinate.
    * </pre>
    *
-   * <code>optional int32 bottom = 3;</code>
+   * <code>int32 bottom = 3;</code>
    */
   int getBottom();
 
@@ -39,7 +39,7 @@ public interface BoundingBoxOrBuilder extends
    * Top Y coordinate.
    * </pre>
    *
-   * <code>optional int32 top = 4;</code>
+   * <code>int32 top = 4;</code>
    */
   int getTop();
 }

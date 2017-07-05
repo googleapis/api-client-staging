@@ -120,7 +120,7 @@ public  final class HttpRequestContext extends
    * The type of HTTP request, such as `GET`, `POST`, etc.
    * </pre>
    *
-   * <code>optional string method = 1;</code>
+   * <code>string method = 1;</code>
    */
   public java.lang.String getMethod() {
     java.lang.Object ref = method_;
@@ -139,7 +139,7 @@ public  final class HttpRequestContext extends
    * The type of HTTP request, such as `GET`, `POST`, etc.
    * </pre>
    *
-   * <code>optional string method = 1;</code>
+   * <code>string method = 1;</code>
    */
   public com.google.protobuf.ByteString
       getMethodBytes() {
@@ -162,7 +162,7 @@ public  final class HttpRequestContext extends
    * The URL of the request.
    * </pre>
    *
-   * <code>optional string url = 2;</code>
+   * <code>string url = 2;</code>
    */
   public java.lang.String getUrl() {
     java.lang.Object ref = url_;
@@ -181,7 +181,7 @@ public  final class HttpRequestContext extends
    * The URL of the request.
    * </pre>
    *
-   * <code>optional string url = 2;</code>
+   * <code>string url = 2;</code>
    */
   public com.google.protobuf.ByteString
       getUrlBytes() {
@@ -204,7 +204,7 @@ public  final class HttpRequestContext extends
    * The user agent information that is provided with the request.
    * </pre>
    *
-   * <code>optional string user_agent = 3;</code>
+   * <code>string user_agent = 3;</code>
    */
   public java.lang.String getUserAgent() {
     java.lang.Object ref = userAgent_;
@@ -223,7 +223,7 @@ public  final class HttpRequestContext extends
    * The user agent information that is provided with the request.
    * </pre>
    *
-   * <code>optional string user_agent = 3;</code>
+   * <code>string user_agent = 3;</code>
    */
   public com.google.protobuf.ByteString
       getUserAgentBytes() {
@@ -246,7 +246,7 @@ public  final class HttpRequestContext extends
    * The referrer information that is provided with the request.
    * </pre>
    *
-   * <code>optional string referrer = 4;</code>
+   * <code>string referrer = 4;</code>
    */
   public java.lang.String getReferrer() {
     java.lang.Object ref = referrer_;
@@ -265,7 +265,7 @@ public  final class HttpRequestContext extends
    * The referrer information that is provided with the request.
    * </pre>
    *
-   * <code>optional string referrer = 4;</code>
+   * <code>string referrer = 4;</code>
    */
   public com.google.protobuf.ByteString
       getReferrerBytes() {
@@ -288,7 +288,7 @@ public  final class HttpRequestContext extends
    * The HTTP response status code for the request.
    * </pre>
    *
-   * <code>optional int32 response_status_code = 5;</code>
+   * <code>int32 response_status_code = 5;</code>
    */
   public int getResponseStatusCode() {
     return responseStatusCode_;
@@ -304,7 +304,7 @@ public  final class HttpRequestContext extends
    * in the error report.
    * </pre>
    *
-   * <code>optional string remote_ip = 6;</code>
+   * <code>string remote_ip = 6;</code>
    */
   public java.lang.String getRemoteIp() {
     java.lang.Object ref = remoteIp_;
@@ -326,7 +326,7 @@ public  final class HttpRequestContext extends
    * in the error report.
    * </pre>
    *
-   * <code>optional string remote_ip = 6;</code>
+   * <code>string remote_ip = 6;</code>
    */
   public com.google.protobuf.ByteString
       getRemoteIpBytes() {
@@ -435,7 +435,7 @@ public  final class HttpRequestContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + METHOD_FIELD_NUMBER;
     hash = (53 * hash) + getMethod().hashCode();
     hash = (37 * hash) + URL_FIELD_NUMBER;
@@ -453,6 +453,17 @@ public  final class HttpRequestContext extends
     return hash;
   }
 
+  public static com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -709,7 +720,7 @@ public  final class HttpRequestContext extends
      * The type of HTTP request, such as `GET`, `POST`, etc.
      * </pre>
      *
-     * <code>optional string method = 1;</code>
+     * <code>string method = 1;</code>
      */
     public java.lang.String getMethod() {
       java.lang.Object ref = method_;
@@ -728,7 +739,7 @@ public  final class HttpRequestContext extends
      * The type of HTTP request, such as `GET`, `POST`, etc.
      * </pre>
      *
-     * <code>optional string method = 1;</code>
+     * <code>string method = 1;</code>
      */
     public com.google.protobuf.ByteString
         getMethodBytes() {
@@ -748,7 +759,7 @@ public  final class HttpRequestContext extends
      * The type of HTTP request, such as `GET`, `POST`, etc.
      * </pre>
      *
-     * <code>optional string method = 1;</code>
+     * <code>string method = 1;</code>
      */
     public Builder setMethod(
         java.lang.String value) {
@@ -765,7 +776,7 @@ public  final class HttpRequestContext extends
      * The type of HTTP request, such as `GET`, `POST`, etc.
      * </pre>
      *
-     * <code>optional string method = 1;</code>
+     * <code>string method = 1;</code>
      */
     public Builder clearMethod() {
       
@@ -778,7 +789,7 @@ public  final class HttpRequestContext extends
      * The type of HTTP request, such as `GET`, `POST`, etc.
      * </pre>
      *
-     * <code>optional string method = 1;</code>
+     * <code>string method = 1;</code>
      */
     public Builder setMethodBytes(
         com.google.protobuf.ByteString value) {
@@ -798,7 +809,7 @@ public  final class HttpRequestContext extends
      * The URL of the request.
      * </pre>
      *
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
@@ -817,7 +828,7 @@ public  final class HttpRequestContext extends
      * The URL of the request.
      * </pre>
      *
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -837,7 +848,7 @@ public  final class HttpRequestContext extends
      * The URL of the request.
      * </pre>
      *
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder setUrl(
         java.lang.String value) {
@@ -854,7 +865,7 @@ public  final class HttpRequestContext extends
      * The URL of the request.
      * </pre>
      *
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder clearUrl() {
       
@@ -867,7 +878,7 @@ public  final class HttpRequestContext extends
      * The URL of the request.
      * </pre>
      *
-     * <code>optional string url = 2;</code>
+     * <code>string url = 2;</code>
      */
     public Builder setUrlBytes(
         com.google.protobuf.ByteString value) {
@@ -887,7 +898,7 @@ public  final class HttpRequestContext extends
      * The user agent information that is provided with the request.
      * </pre>
      *
-     * <code>optional string user_agent = 3;</code>
+     * <code>string user_agent = 3;</code>
      */
     public java.lang.String getUserAgent() {
       java.lang.Object ref = userAgent_;
@@ -906,7 +917,7 @@ public  final class HttpRequestContext extends
      * The user agent information that is provided with the request.
      * </pre>
      *
-     * <code>optional string user_agent = 3;</code>
+     * <code>string user_agent = 3;</code>
      */
     public com.google.protobuf.ByteString
         getUserAgentBytes() {
@@ -926,7 +937,7 @@ public  final class HttpRequestContext extends
      * The user agent information that is provided with the request.
      * </pre>
      *
-     * <code>optional string user_agent = 3;</code>
+     * <code>string user_agent = 3;</code>
      */
     public Builder setUserAgent(
         java.lang.String value) {
@@ -943,7 +954,7 @@ public  final class HttpRequestContext extends
      * The user agent information that is provided with the request.
      * </pre>
      *
-     * <code>optional string user_agent = 3;</code>
+     * <code>string user_agent = 3;</code>
      */
     public Builder clearUserAgent() {
       
@@ -956,7 +967,7 @@ public  final class HttpRequestContext extends
      * The user agent information that is provided with the request.
      * </pre>
      *
-     * <code>optional string user_agent = 3;</code>
+     * <code>string user_agent = 3;</code>
      */
     public Builder setUserAgentBytes(
         com.google.protobuf.ByteString value) {
@@ -976,7 +987,7 @@ public  final class HttpRequestContext extends
      * The referrer information that is provided with the request.
      * </pre>
      *
-     * <code>optional string referrer = 4;</code>
+     * <code>string referrer = 4;</code>
      */
     public java.lang.String getReferrer() {
       java.lang.Object ref = referrer_;
@@ -995,7 +1006,7 @@ public  final class HttpRequestContext extends
      * The referrer information that is provided with the request.
      * </pre>
      *
-     * <code>optional string referrer = 4;</code>
+     * <code>string referrer = 4;</code>
      */
     public com.google.protobuf.ByteString
         getReferrerBytes() {
@@ -1015,7 +1026,7 @@ public  final class HttpRequestContext extends
      * The referrer information that is provided with the request.
      * </pre>
      *
-     * <code>optional string referrer = 4;</code>
+     * <code>string referrer = 4;</code>
      */
     public Builder setReferrer(
         java.lang.String value) {
@@ -1032,7 +1043,7 @@ public  final class HttpRequestContext extends
      * The referrer information that is provided with the request.
      * </pre>
      *
-     * <code>optional string referrer = 4;</code>
+     * <code>string referrer = 4;</code>
      */
     public Builder clearReferrer() {
       
@@ -1045,7 +1056,7 @@ public  final class HttpRequestContext extends
      * The referrer information that is provided with the request.
      * </pre>
      *
-     * <code>optional string referrer = 4;</code>
+     * <code>string referrer = 4;</code>
      */
     public Builder setReferrerBytes(
         com.google.protobuf.ByteString value) {
@@ -1065,7 +1076,7 @@ public  final class HttpRequestContext extends
      * The HTTP response status code for the request.
      * </pre>
      *
-     * <code>optional int32 response_status_code = 5;</code>
+     * <code>int32 response_status_code = 5;</code>
      */
     public int getResponseStatusCode() {
       return responseStatusCode_;
@@ -1075,7 +1086,7 @@ public  final class HttpRequestContext extends
      * The HTTP response status code for the request.
      * </pre>
      *
-     * <code>optional int32 response_status_code = 5;</code>
+     * <code>int32 response_status_code = 5;</code>
      */
     public Builder setResponseStatusCode(int value) {
       
@@ -1088,7 +1099,7 @@ public  final class HttpRequestContext extends
      * The HTTP response status code for the request.
      * </pre>
      *
-     * <code>optional int32 response_status_code = 5;</code>
+     * <code>int32 response_status_code = 5;</code>
      */
     public Builder clearResponseStatusCode() {
       
@@ -1106,7 +1117,7 @@ public  final class HttpRequestContext extends
      * in the error report.
      * </pre>
      *
-     * <code>optional string remote_ip = 6;</code>
+     * <code>string remote_ip = 6;</code>
      */
     public java.lang.String getRemoteIp() {
       java.lang.Object ref = remoteIp_;
@@ -1128,7 +1139,7 @@ public  final class HttpRequestContext extends
      * in the error report.
      * </pre>
      *
-     * <code>optional string remote_ip = 6;</code>
+     * <code>string remote_ip = 6;</code>
      */
     public com.google.protobuf.ByteString
         getRemoteIpBytes() {
@@ -1151,7 +1162,7 @@ public  final class HttpRequestContext extends
      * in the error report.
      * </pre>
      *
-     * <code>optional string remote_ip = 6;</code>
+     * <code>string remote_ip = 6;</code>
      */
     public Builder setRemoteIp(
         java.lang.String value) {
@@ -1171,7 +1182,7 @@ public  final class HttpRequestContext extends
      * in the error report.
      * </pre>
      *
-     * <code>optional string remote_ip = 6;</code>
+     * <code>string remote_ip = 6;</code>
      */
     public Builder clearRemoteIp() {
       
@@ -1187,7 +1198,7 @@ public  final class HttpRequestContext extends
      * in the error report.
      * </pre>
      *
-     * <code>optional string remote_ip = 6;</code>
+     * <code>string remote_ip = 6;</code>
      */
     public Builder setRemoteIpBytes(
         com.google.protobuf.ByteString value) {

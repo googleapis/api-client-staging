@@ -57,7 +57,7 @@ public interface ListLogsResponseOrBuilder extends
    * method again using the value of `nextPageToken` as `pageToken`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -67,7 +67,7 @@ public interface ListLogsResponseOrBuilder extends
    * method again using the value of `nextPageToken` as `pageToken`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

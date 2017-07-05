@@ -18,7 +18,7 @@ public interface FaceAnnotationOrBuilder extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   boolean hasBoundingPoly();
   /**
@@ -32,7 +32,7 @@ public interface FaceAnnotationOrBuilder extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   com.google.cloud.vision.v1.BoundingPoly getBoundingPoly();
   /**
@@ -46,7 +46,7 @@ public interface FaceAnnotationOrBuilder extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder();
 
@@ -60,7 +60,7 @@ public interface FaceAnnotationOrBuilder extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   boolean hasFdBoundingPoly();
   /**
@@ -73,7 +73,7 @@ public interface FaceAnnotationOrBuilder extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   com.google.cloud.vision.v1.BoundingPoly getFdBoundingPoly();
   /**
@@ -86,7 +86,7 @@ public interface FaceAnnotationOrBuilder extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   com.google.cloud.vision.v1.BoundingPolyOrBuilder getFdBoundingPolyOrBuilder();
 
@@ -141,7 +141,7 @@ public interface FaceAnnotationOrBuilder extends
    * the face. Range [-180,180].
    * </pre>
    *
-   * <code>optional float roll_angle = 4;</code>
+   * <code>float roll_angle = 4;</code>
    */
   float getRollAngle();
 
@@ -152,7 +152,7 @@ public interface FaceAnnotationOrBuilder extends
    * [-180,180].
    * </pre>
    *
-   * <code>optional float pan_angle = 5;</code>
+   * <code>float pan_angle = 5;</code>
    */
   float getPanAngle();
 
@@ -162,7 +162,7 @@ public interface FaceAnnotationOrBuilder extends
    * pointing relative to the image's horizontal plane. Range [-180,180].
    * </pre>
    *
-   * <code>optional float tilt_angle = 6;</code>
+   * <code>float tilt_angle = 6;</code>
    */
   float getTiltAngle();
 
@@ -171,7 +171,7 @@ public interface FaceAnnotationOrBuilder extends
    * Detection confidence. Range [0, 1].
    * </pre>
    *
-   * <code>optional float detection_confidence = 7;</code>
+   * <code>float detection_confidence = 7;</code>
    */
   float getDetectionConfidence();
 
@@ -180,7 +180,7 @@ public interface FaceAnnotationOrBuilder extends
    * Face landmarking confidence. Range [0, 1].
    * </pre>
    *
-   * <code>optional float landmarking_confidence = 8;</code>
+   * <code>float landmarking_confidence = 8;</code>
    */
   float getLandmarkingConfidence();
 
@@ -189,7 +189,7 @@ public interface FaceAnnotationOrBuilder extends
    * Joy likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+   * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
    */
   int getJoyLikelihoodValue();
   /**
@@ -197,7 +197,7 @@ public interface FaceAnnotationOrBuilder extends
    * Joy likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+   * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
    */
   com.google.cloud.vision.v1.Likelihood getJoyLikelihood();
 
@@ -206,7 +206,7 @@ public interface FaceAnnotationOrBuilder extends
    * Sorrow likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+   * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
    */
   int getSorrowLikelihoodValue();
   /**
@@ -214,7 +214,7 @@ public interface FaceAnnotationOrBuilder extends
    * Sorrow likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+   * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
    */
   com.google.cloud.vision.v1.Likelihood getSorrowLikelihood();
 
@@ -223,7 +223,7 @@ public interface FaceAnnotationOrBuilder extends
    * Anger likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+   * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
    */
   int getAngerLikelihoodValue();
   /**
@@ -231,7 +231,7 @@ public interface FaceAnnotationOrBuilder extends
    * Anger likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+   * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
    */
   com.google.cloud.vision.v1.Likelihood getAngerLikelihood();
 
@@ -240,7 +240,7 @@ public interface FaceAnnotationOrBuilder extends
    * Surprise likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+   * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
    */
   int getSurpriseLikelihoodValue();
   /**
@@ -248,7 +248,7 @@ public interface FaceAnnotationOrBuilder extends
    * Surprise likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+   * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
    */
   com.google.cloud.vision.v1.Likelihood getSurpriseLikelihood();
 
@@ -257,7 +257,7 @@ public interface FaceAnnotationOrBuilder extends
    * Under-exposed likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+   * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
    */
   int getUnderExposedLikelihoodValue();
   /**
@@ -265,7 +265,7 @@ public interface FaceAnnotationOrBuilder extends
    * Under-exposed likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+   * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
    */
   com.google.cloud.vision.v1.Likelihood getUnderExposedLikelihood();
 
@@ -274,7 +274,7 @@ public interface FaceAnnotationOrBuilder extends
    * Blurred likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+   * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
    */
   int getBlurredLikelihoodValue();
   /**
@@ -282,7 +282,7 @@ public interface FaceAnnotationOrBuilder extends
    * Blurred likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+   * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
    */
   com.google.cloud.vision.v1.Likelihood getBlurredLikelihood();
 
@@ -291,7 +291,7 @@ public interface FaceAnnotationOrBuilder extends
    * Headwear likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+   * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
    */
   int getHeadwearLikelihoodValue();
   /**
@@ -299,7 +299,7 @@ public interface FaceAnnotationOrBuilder extends
    * Headwear likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+   * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
    */
   com.google.cloud.vision.v1.Likelihood getHeadwearLikelihood();
 }

@@ -14,7 +14,7 @@ public interface SentimentOrBuilder extends
    * negative).
    * </pre>
    *
-   * <code>optional float magnitude = 2;</code>
+   * <code>float magnitude = 2;</code>
    */
   float getMagnitude();
 
@@ -24,7 +24,7 @@ public interface SentimentOrBuilder extends
    * (positive sentiment).
    * </pre>
    *
-   * <code>optional float score = 3;</code>
+   * <code>float score = 3;</code>
    */
   float getScore();
 }

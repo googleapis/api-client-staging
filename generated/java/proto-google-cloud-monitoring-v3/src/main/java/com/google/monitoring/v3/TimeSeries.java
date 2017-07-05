@@ -134,7 +134,7 @@ public  final class TimeSeries extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   public boolean hasMetric() {
     return metric_ != null;
@@ -145,7 +145,7 @@ public  final class TimeSeries extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   public com.google.api.Metric getMetric() {
     return metric_ == null ? com.google.api.Metric.getDefaultInstance() : metric_;
@@ -156,7 +156,7 @@ public  final class TimeSeries extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   public com.google.api.MetricOrBuilder getMetricOrBuilder() {
     return getMetric();
@@ -170,7 +170,7 @@ public  final class TimeSeries extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   public boolean hasResource() {
     return resource_ != null;
@@ -181,7 +181,7 @@ public  final class TimeSeries extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   public com.google.api.MonitoredResource getResource() {
     return resource_ == null ? com.google.api.MonitoredResource.getDefaultInstance() : resource_;
@@ -192,7 +192,7 @@ public  final class TimeSeries extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   public com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder() {
     return getResource();
@@ -212,7 +212,7 @@ public  final class TimeSeries extends
    * or `CUMULATIVE`.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+   * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
    */
   public int getMetricKindValue() {
     return metricKind_;
@@ -229,7 +229,7 @@ public  final class TimeSeries extends
    * or `CUMULATIVE`.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+   * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
    */
   public com.google.api.MetricDescriptor.MetricKind getMetricKind() {
     com.google.api.MetricDescriptor.MetricKind result = com.google.api.MetricDescriptor.MetricKind.valueOf(metricKind_);
@@ -247,7 +247,7 @@ public  final class TimeSeries extends
    * the same as the type of the data in the `points` field.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+   * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
    */
   public int getValueTypeValue() {
     return valueType_;
@@ -261,7 +261,7 @@ public  final class TimeSeries extends
    * the same as the type of the data in the `points` field.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+   * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
    */
   public com.google.api.MetricDescriptor.ValueType getValueType() {
     com.google.api.MetricDescriptor.ValueType result = com.google.api.MetricDescriptor.ValueType.valueOf(valueType_);
@@ -446,7 +446,7 @@ public  final class TimeSeries extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasMetric()) {
       hash = (37 * hash) + METRIC_FIELD_NUMBER;
       hash = (53 * hash) + getMetric().hashCode();
@@ -468,6 +468,17 @@ public  final class TimeSeries extends
     return hash;
   }
 
+  public static com.google.monitoring.v3.TimeSeries parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.monitoring.v3.TimeSeries parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.monitoring.v3.TimeSeries parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -772,7 +783,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public boolean hasMetric() {
       return metricBuilder_ != null || metric_ != null;
@@ -783,7 +794,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public com.google.api.Metric getMetric() {
       if (metricBuilder_ == null) {
@@ -798,7 +809,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public Builder setMetric(com.google.api.Metric value) {
       if (metricBuilder_ == null) {
@@ -819,7 +830,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public Builder setMetric(
         com.google.api.Metric.Builder builderForValue) {
@@ -838,7 +849,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public Builder mergeMetric(com.google.api.Metric value) {
       if (metricBuilder_ == null) {
@@ -861,7 +872,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public Builder clearMetric() {
       if (metricBuilder_ == null) {
@@ -880,7 +891,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public com.google.api.Metric.Builder getMetricBuilder() {
       
@@ -893,7 +904,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     public com.google.api.MetricOrBuilder getMetricOrBuilder() {
       if (metricBuilder_ != null) {
@@ -909,7 +920,7 @@ public  final class TimeSeries extends
      * series.
      * </pre>
      *
-     * <code>optional .google.api.Metric metric = 1;</code>
+     * <code>.google.api.Metric metric = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Metric, com.google.api.Metric.Builder, com.google.api.MetricOrBuilder> 
@@ -934,7 +945,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public boolean hasResource() {
       return resourceBuilder_ != null || resource_ != null;
@@ -945,7 +956,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public com.google.api.MonitoredResource getResource() {
       if (resourceBuilder_ == null) {
@@ -960,7 +971,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public Builder setResource(com.google.api.MonitoredResource value) {
       if (resourceBuilder_ == null) {
@@ -981,7 +992,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public Builder setResource(
         com.google.api.MonitoredResource.Builder builderForValue) {
@@ -1000,7 +1011,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public Builder mergeResource(com.google.api.MonitoredResource value) {
       if (resourceBuilder_ == null) {
@@ -1023,7 +1034,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public Builder clearResource() {
       if (resourceBuilder_ == null) {
@@ -1042,7 +1053,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public com.google.api.MonitoredResource.Builder getResourceBuilder() {
       
@@ -1055,7 +1066,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     public com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder() {
       if (resourceBuilder_ != null) {
@@ -1071,7 +1082,7 @@ public  final class TimeSeries extends
      * identify the time series.
      * </pre>
      *
-     * <code>optional .google.api.MonitoredResource resource = 2;</code>
+     * <code>.google.api.MonitoredResource resource = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.MonitoredResource, com.google.api.MonitoredResource.Builder, com.google.api.MonitoredResourceOrBuilder> 
@@ -1100,7 +1111,7 @@ public  final class TimeSeries extends
      * or `CUMULATIVE`.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     public int getMetricKindValue() {
       return metricKind_;
@@ -1117,7 +1128,7 @@ public  final class TimeSeries extends
      * or `CUMULATIVE`.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     public Builder setMetricKindValue(int value) {
       metricKind_ = value;
@@ -1136,7 +1147,7 @@ public  final class TimeSeries extends
      * or `CUMULATIVE`.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     public com.google.api.MetricDescriptor.MetricKind getMetricKind() {
       com.google.api.MetricDescriptor.MetricKind result = com.google.api.MetricDescriptor.MetricKind.valueOf(metricKind_);
@@ -1154,7 +1165,7 @@ public  final class TimeSeries extends
      * or `CUMULATIVE`.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     public Builder setMetricKind(com.google.api.MetricDescriptor.MetricKind value) {
       if (value == null) {
@@ -1177,7 +1188,7 @@ public  final class TimeSeries extends
      * or `CUMULATIVE`.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     public Builder clearMetricKind() {
       
@@ -1196,7 +1207,7 @@ public  final class TimeSeries extends
      * the same as the type of the data in the `points` field.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     public int getValueTypeValue() {
       return valueType_;
@@ -1210,7 +1221,7 @@ public  final class TimeSeries extends
      * the same as the type of the data in the `points` field.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     public Builder setValueTypeValue(int value) {
       valueType_ = value;
@@ -1226,7 +1237,7 @@ public  final class TimeSeries extends
      * the same as the type of the data in the `points` field.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     public com.google.api.MetricDescriptor.ValueType getValueType() {
       com.google.api.MetricDescriptor.ValueType result = com.google.api.MetricDescriptor.ValueType.valueOf(valueType_);
@@ -1241,7 +1252,7 @@ public  final class TimeSeries extends
      * the same as the type of the data in the `points` field.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     public Builder setValueType(com.google.api.MetricDescriptor.ValueType value) {
       if (value == null) {
@@ -1261,7 +1272,7 @@ public  final class TimeSeries extends
      * the same as the type of the data in the `points` field.
      * </pre>
      *
-     * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     public Builder clearValueType() {
       

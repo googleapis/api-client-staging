@@ -13,7 +13,7 @@ public interface TrackingIssueOrBuilder extends
    * Example: https://github.com/user/project/issues/4
    * </pre>
    *
-   * <code>optional string url = 1;</code>
+   * <code>string url = 1;</code>
    */
   java.lang.String getUrl();
   /**
@@ -22,7 +22,7 @@ public interface TrackingIssueOrBuilder extends
    * Example: https://github.com/user/project/issues/4
    * </pre>
    *
-   * <code>optional string url = 1;</code>
+   * <code>string url = 1;</code>
    */
   com.google.protobuf.ByteString
       getUrlBytes();

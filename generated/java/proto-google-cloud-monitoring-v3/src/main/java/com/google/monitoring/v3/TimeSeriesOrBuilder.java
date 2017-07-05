@@ -13,7 +13,7 @@ public interface TimeSeriesOrBuilder extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   boolean hasMetric();
   /**
@@ -22,7 +22,7 @@ public interface TimeSeriesOrBuilder extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   com.google.api.Metric getMetric();
   /**
@@ -31,7 +31,7 @@ public interface TimeSeriesOrBuilder extends
    * series.
    * </pre>
    *
-   * <code>optional .google.api.Metric metric = 1;</code>
+   * <code>.google.api.Metric metric = 1;</code>
    */
   com.google.api.MetricOrBuilder getMetricOrBuilder();
 
@@ -41,7 +41,7 @@ public interface TimeSeriesOrBuilder extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   boolean hasResource();
   /**
@@ -50,7 +50,7 @@ public interface TimeSeriesOrBuilder extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   com.google.api.MonitoredResource getResource();
   /**
@@ -59,7 +59,7 @@ public interface TimeSeriesOrBuilder extends
    * identify the time series.
    * </pre>
    *
-   * <code>optional .google.api.MonitoredResource resource = 2;</code>
+   * <code>.google.api.MonitoredResource resource = 2;</code>
    */
   com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder();
 
@@ -75,7 +75,7 @@ public interface TimeSeriesOrBuilder extends
    * or `CUMULATIVE`.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+   * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
    */
   int getMetricKindValue();
   /**
@@ -90,7 +90,7 @@ public interface TimeSeriesOrBuilder extends
    * or `CUMULATIVE`.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+   * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
    */
   com.google.api.MetricDescriptor.MetricKind getMetricKind();
 
@@ -103,7 +103,7 @@ public interface TimeSeriesOrBuilder extends
    * the same as the type of the data in the `points` field.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+   * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
    */
   int getValueTypeValue();
   /**
@@ -115,7 +115,7 @@ public interface TimeSeriesOrBuilder extends
    * the same as the type of the data in the `points` field.
    * </pre>
    *
-   * <code>optional .google.api.MetricDescriptor.ValueType value_type = 4;</code>
+   * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
    */
   com.google.api.MetricDescriptor.ValueType getValueType();
 

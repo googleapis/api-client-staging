@@ -266,7 +266,7 @@ public  final class ListLogEntriesRequest extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -291,7 +291,7 @@ public  final class ListLogEntriesRequest extends
    * The maximum length of the filter is 20000 characters.
    * </pre>
    *
-   * <code>optional string filter = 2;</code>
+   * <code>string filter = 2;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -319,7 +319,7 @@ public  final class ListLogEntriesRequest extends
    * timestamps are returned in order of their `insert_id` values.
    * </pre>
    *
-   * <code>optional string order_by = 3;</code>
+   * <code>string order_by = 3;</code>
    */
   public java.lang.String getOrderBy() {
     java.lang.Object ref = orderBy_;
@@ -343,7 +343,7 @@ public  final class ListLogEntriesRequest extends
    * timestamps are returned in order of their `insert_id` values.
    * </pre>
    *
-   * <code>optional string order_by = 3;</code>
+   * <code>string order_by = 3;</code>
    */
   public com.google.protobuf.ByteString
       getOrderByBytes() {
@@ -368,7 +368,7 @@ public  final class ListLogEntriesRequest extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>optional int32 page_size = 4;</code>
+   * <code>int32 page_size = 4;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -384,7 +384,7 @@ public  final class ListLogEntriesRequest extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 5;</code>
+   * <code>string page_token = 5;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -406,7 +406,7 @@ public  final class ListLogEntriesRequest extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>optional string page_token = 5;</code>
+   * <code>string page_token = 5;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -525,7 +525,7 @@ public  final class ListLogEntriesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getProjectIdsCount() > 0) {
       hash = (37 * hash) + PROJECT_IDS_FIELD_NUMBER;
       hash = (53 * hash) + getProjectIdsList().hashCode();
@@ -547,6 +547,17 @@ public  final class ListLogEntriesRequest extends
     return hash;
   }
 
+  public static com.google.logging.v2.ListLogEntriesRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.logging.v2.ListLogEntriesRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.logging.v2.ListLogEntriesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1180,7 +1191,7 @@ public  final class ListLogEntriesRequest extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -1205,7 +1216,7 @@ public  final class ListLogEntriesRequest extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -1231,7 +1242,7 @@ public  final class ListLogEntriesRequest extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -1254,7 +1265,7 @@ public  final class ListLogEntriesRequest extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder clearFilter() {
       
@@ -1273,7 +1284,7 @@ public  final class ListLogEntriesRequest extends
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
-     * <code>optional string filter = 2;</code>
+     * <code>string filter = 2;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1298,7 +1309,7 @@ public  final class ListLogEntriesRequest extends
      * timestamps are returned in order of their `insert_id` values.
      * </pre>
      *
-     * <code>optional string order_by = 3;</code>
+     * <code>string order_by = 3;</code>
      */
     public java.lang.String getOrderBy() {
       java.lang.Object ref = orderBy_;
@@ -1322,7 +1333,7 @@ public  final class ListLogEntriesRequest extends
      * timestamps are returned in order of their `insert_id` values.
      * </pre>
      *
-     * <code>optional string order_by = 3;</code>
+     * <code>string order_by = 3;</code>
      */
     public com.google.protobuf.ByteString
         getOrderByBytes() {
@@ -1347,7 +1358,7 @@ public  final class ListLogEntriesRequest extends
      * timestamps are returned in order of their `insert_id` values.
      * </pre>
      *
-     * <code>optional string order_by = 3;</code>
+     * <code>string order_by = 3;</code>
      */
     public Builder setOrderBy(
         java.lang.String value) {
@@ -1369,7 +1380,7 @@ public  final class ListLogEntriesRequest extends
      * timestamps are returned in order of their `insert_id` values.
      * </pre>
      *
-     * <code>optional string order_by = 3;</code>
+     * <code>string order_by = 3;</code>
      */
     public Builder clearOrderBy() {
       
@@ -1387,7 +1398,7 @@ public  final class ListLogEntriesRequest extends
      * timestamps are returned in order of their `insert_id` values.
      * </pre>
      *
-     * <code>optional string order_by = 3;</code>
+     * <code>string order_by = 3;</code>
      */
     public Builder setOrderByBytes(
         com.google.protobuf.ByteString value) {
@@ -1409,7 +1420,7 @@ public  final class ListLogEntriesRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 4;</code>
+     * <code>int32 page_size = 4;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -1421,7 +1432,7 @@ public  final class ListLogEntriesRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 4;</code>
+     * <code>int32 page_size = 4;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -1436,7 +1447,7 @@ public  final class ListLogEntriesRequest extends
      * response indicates that more results might be available.
      * </pre>
      *
-     * <code>optional int32 page_size = 4;</code>
+     * <code>int32 page_size = 4;</code>
      */
     public Builder clearPageSize() {
       
@@ -1454,7 +1465,7 @@ public  final class ListLogEntriesRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 5;</code>
+     * <code>string page_token = 5;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -1476,7 +1487,7 @@ public  final class ListLogEntriesRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 5;</code>
+     * <code>string page_token = 5;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -1499,7 +1510,7 @@ public  final class ListLogEntriesRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 5;</code>
+     * <code>string page_token = 5;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -1519,7 +1530,7 @@ public  final class ListLogEntriesRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 5;</code>
+     * <code>string page_token = 5;</code>
      */
     public Builder clearPageToken() {
       
@@ -1535,7 +1546,7 @@ public  final class ListLogEntriesRequest extends
      * parameters should be identical to those in the previous call.
      * </pre>
      *
-     * <code>optional string page_token = 5;</code>
+     * <code>string page_token = 5;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

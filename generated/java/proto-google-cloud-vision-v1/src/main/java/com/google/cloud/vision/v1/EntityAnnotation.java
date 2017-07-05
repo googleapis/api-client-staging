@@ -156,7 +156,7 @@ public  final class EntityAnnotation extends
    * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
-   * <code>optional string mid = 1;</code>
+   * <code>string mid = 1;</code>
    */
   public java.lang.String getMid() {
     java.lang.Object ref = mid_;
@@ -176,7 +176,7 @@ public  final class EntityAnnotation extends
    * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
    * </pre>
    *
-   * <code>optional string mid = 1;</code>
+   * <code>string mid = 1;</code>
    */
   public com.google.protobuf.ByteString
       getMidBytes() {
@@ -200,7 +200,7 @@ public  final class EntityAnnotation extends
    * `description` is expressed.
    * </pre>
    *
-   * <code>optional string locale = 2;</code>
+   * <code>string locale = 2;</code>
    */
   public java.lang.String getLocale() {
     java.lang.Object ref = locale_;
@@ -220,7 +220,7 @@ public  final class EntityAnnotation extends
    * `description` is expressed.
    * </pre>
    *
-   * <code>optional string locale = 2;</code>
+   * <code>string locale = 2;</code>
    */
   public com.google.protobuf.ByteString
       getLocaleBytes() {
@@ -243,7 +243,7 @@ public  final class EntityAnnotation extends
    * Entity textual description, expressed in its `locale` language.
    * </pre>
    *
-   * <code>optional string description = 3;</code>
+   * <code>string description = 3;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -262,7 +262,7 @@ public  final class EntityAnnotation extends
    * Entity textual description, expressed in its `locale` language.
    * </pre>
    *
-   * <code>optional string description = 3;</code>
+   * <code>string description = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -285,7 +285,7 @@ public  final class EntityAnnotation extends
    * Overall score of the result. Range [0, 1].
    * </pre>
    *
-   * <code>optional float score = 4;</code>
+   * <code>float score = 4;</code>
    */
   public float getScore() {
     return score_;
@@ -301,7 +301,7 @@ public  final class EntityAnnotation extends
    * image. Range [0, 1].
    * </pre>
    *
-   * <code>optional float confidence = 5;</code>
+   * <code>float confidence = 5;</code>
    */
   public float getConfidence() {
     return confidence_;
@@ -318,7 +318,7 @@ public  final class EntityAnnotation extends
    * there is a tower in each image may be the same. Range [0, 1].
    * </pre>
    *
-   * <code>optional float topicality = 6;</code>
+   * <code>float topicality = 6;</code>
    */
   public float getTopicality() {
     return topicality_;
@@ -334,7 +334,7 @@ public  final class EntityAnnotation extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   public boolean hasBoundingPoly() {
     return boundingPoly_ != null;
@@ -347,7 +347,7 @@ public  final class EntityAnnotation extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
     return boundingPoly_ == null ? com.google.cloud.vision.v1.BoundingPoly.getDefaultInstance() : boundingPoly_;
@@ -360,7 +360,7 @@ public  final class EntityAnnotation extends
    * `boundingPoly`s for each word within the detected text.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
    */
   public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
     return getBoundingPoly();
@@ -632,7 +632,7 @@ public  final class EntityAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MID_FIELD_NUMBER;
     hash = (53 * hash) + getMid().hashCode();
     hash = (37 * hash) + LOCALE_FIELD_NUMBER;
@@ -665,6 +665,17 @@ public  final class EntityAnnotation extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.EntityAnnotation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.EntityAnnotation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.EntityAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1019,7 +1030,7 @@ public  final class EntityAnnotation extends
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
-     * <code>optional string mid = 1;</code>
+     * <code>string mid = 1;</code>
      */
     public java.lang.String getMid() {
       java.lang.Object ref = mid_;
@@ -1039,7 +1050,7 @@ public  final class EntityAnnotation extends
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
-     * <code>optional string mid = 1;</code>
+     * <code>string mid = 1;</code>
      */
     public com.google.protobuf.ByteString
         getMidBytes() {
@@ -1060,7 +1071,7 @@ public  final class EntityAnnotation extends
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
-     * <code>optional string mid = 1;</code>
+     * <code>string mid = 1;</code>
      */
     public Builder setMid(
         java.lang.String value) {
@@ -1078,7 +1089,7 @@ public  final class EntityAnnotation extends
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
-     * <code>optional string mid = 1;</code>
+     * <code>string mid = 1;</code>
      */
     public Builder clearMid() {
       
@@ -1092,7 +1103,7 @@ public  final class EntityAnnotation extends
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      * </pre>
      *
-     * <code>optional string mid = 1;</code>
+     * <code>string mid = 1;</code>
      */
     public Builder setMidBytes(
         com.google.protobuf.ByteString value) {
@@ -1113,7 +1124,7 @@ public  final class EntityAnnotation extends
      * `description` is expressed.
      * </pre>
      *
-     * <code>optional string locale = 2;</code>
+     * <code>string locale = 2;</code>
      */
     public java.lang.String getLocale() {
       java.lang.Object ref = locale_;
@@ -1133,7 +1144,7 @@ public  final class EntityAnnotation extends
      * `description` is expressed.
      * </pre>
      *
-     * <code>optional string locale = 2;</code>
+     * <code>string locale = 2;</code>
      */
     public com.google.protobuf.ByteString
         getLocaleBytes() {
@@ -1154,7 +1165,7 @@ public  final class EntityAnnotation extends
      * `description` is expressed.
      * </pre>
      *
-     * <code>optional string locale = 2;</code>
+     * <code>string locale = 2;</code>
      */
     public Builder setLocale(
         java.lang.String value) {
@@ -1172,7 +1183,7 @@ public  final class EntityAnnotation extends
      * `description` is expressed.
      * </pre>
      *
-     * <code>optional string locale = 2;</code>
+     * <code>string locale = 2;</code>
      */
     public Builder clearLocale() {
       
@@ -1186,7 +1197,7 @@ public  final class EntityAnnotation extends
      * `description` is expressed.
      * </pre>
      *
-     * <code>optional string locale = 2;</code>
+     * <code>string locale = 2;</code>
      */
     public Builder setLocaleBytes(
         com.google.protobuf.ByteString value) {
@@ -1206,7 +1217,7 @@ public  final class EntityAnnotation extends
      * Entity textual description, expressed in its `locale` language.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -1225,7 +1236,7 @@ public  final class EntityAnnotation extends
      * Entity textual description, expressed in its `locale` language.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -1245,7 +1256,7 @@ public  final class EntityAnnotation extends
      * Entity textual description, expressed in its `locale` language.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -1262,7 +1273,7 @@ public  final class EntityAnnotation extends
      * Entity textual description, expressed in its `locale` language.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public Builder clearDescription() {
       
@@ -1275,7 +1286,7 @@ public  final class EntityAnnotation extends
      * Entity textual description, expressed in its `locale` language.
      * </pre>
      *
-     * <code>optional string description = 3;</code>
+     * <code>string description = 3;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -1295,7 +1306,7 @@ public  final class EntityAnnotation extends
      * Overall score of the result. Range [0, 1].
      * </pre>
      *
-     * <code>optional float score = 4;</code>
+     * <code>float score = 4;</code>
      */
     public float getScore() {
       return score_;
@@ -1305,7 +1316,7 @@ public  final class EntityAnnotation extends
      * Overall score of the result. Range [0, 1].
      * </pre>
      *
-     * <code>optional float score = 4;</code>
+     * <code>float score = 4;</code>
      */
     public Builder setScore(float value) {
       
@@ -1318,7 +1329,7 @@ public  final class EntityAnnotation extends
      * Overall score of the result. Range [0, 1].
      * </pre>
      *
-     * <code>optional float score = 4;</code>
+     * <code>float score = 4;</code>
      */
     public Builder clearScore() {
       
@@ -1336,7 +1347,7 @@ public  final class EntityAnnotation extends
      * image. Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 5;</code>
+     * <code>float confidence = 5;</code>
      */
     public float getConfidence() {
       return confidence_;
@@ -1349,7 +1360,7 @@ public  final class EntityAnnotation extends
      * image. Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 5;</code>
+     * <code>float confidence = 5;</code>
      */
     public Builder setConfidence(float value) {
       
@@ -1365,7 +1376,7 @@ public  final class EntityAnnotation extends
      * image. Range [0, 1].
      * </pre>
      *
-     * <code>optional float confidence = 5;</code>
+     * <code>float confidence = 5;</code>
      */
     public Builder clearConfidence() {
       
@@ -1384,7 +1395,7 @@ public  final class EntityAnnotation extends
      * there is a tower in each image may be the same. Range [0, 1].
      * </pre>
      *
-     * <code>optional float topicality = 6;</code>
+     * <code>float topicality = 6;</code>
      */
     public float getTopicality() {
       return topicality_;
@@ -1398,7 +1409,7 @@ public  final class EntityAnnotation extends
      * there is a tower in each image may be the same. Range [0, 1].
      * </pre>
      *
-     * <code>optional float topicality = 6;</code>
+     * <code>float topicality = 6;</code>
      */
     public Builder setTopicality(float value) {
       
@@ -1415,7 +1426,7 @@ public  final class EntityAnnotation extends
      * there is a tower in each image may be the same. Range [0, 1].
      * </pre>
      *
-     * <code>optional float topicality = 6;</code>
+     * <code>float topicality = 6;</code>
      */
     public Builder clearTopicality() {
       
@@ -1435,7 +1446,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public boolean hasBoundingPoly() {
       return boundingPolyBuilder_ != null || boundingPoly_ != null;
@@ -1448,7 +1459,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -1465,7 +1476,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public Builder setBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -1488,7 +1499,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public Builder setBoundingPoly(
         com.google.cloud.vision.v1.BoundingPoly.Builder builderForValue) {
@@ -1509,7 +1520,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public Builder mergeBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -1534,7 +1545,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public Builder clearBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -1555,7 +1566,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly.Builder getBoundingPolyBuilder() {
       
@@ -1570,7 +1581,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
       if (boundingPolyBuilder_ != null) {
@@ -1588,7 +1599,7 @@ public  final class EntityAnnotation extends
      * `boundingPoly`s for each word within the detected text.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> 

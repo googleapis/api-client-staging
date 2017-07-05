@@ -91,7 +91,7 @@ public  final class Sentiment extends
    * negative).
    * </pre>
    *
-   * <code>optional float magnitude = 2;</code>
+   * <code>float magnitude = 2;</code>
    */
   public float getMagnitude() {
     return magnitude_;
@@ -105,7 +105,7 @@ public  final class Sentiment extends
    * (positive sentiment).
    * </pre>
    *
-   * <code>optional float score = 3;</code>
+   * <code>float score = 3;</code>
    */
   public float getScore() {
     return score_;
@@ -177,7 +177,7 @@ public  final class Sentiment extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MAGNITUDE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getMagnitude());
@@ -189,6 +189,17 @@ public  final class Sentiment extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1.Sentiment parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1.Sentiment parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1.Sentiment parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -416,7 +427,7 @@ public  final class Sentiment extends
      * negative).
      * </pre>
      *
-     * <code>optional float magnitude = 2;</code>
+     * <code>float magnitude = 2;</code>
      */
     public float getMagnitude() {
       return magnitude_;
@@ -428,7 +439,7 @@ public  final class Sentiment extends
      * negative).
      * </pre>
      *
-     * <code>optional float magnitude = 2;</code>
+     * <code>float magnitude = 2;</code>
      */
     public Builder setMagnitude(float value) {
       
@@ -443,7 +454,7 @@ public  final class Sentiment extends
      * negative).
      * </pre>
      *
-     * <code>optional float magnitude = 2;</code>
+     * <code>float magnitude = 2;</code>
      */
     public Builder clearMagnitude() {
       
@@ -459,7 +470,7 @@ public  final class Sentiment extends
      * (positive sentiment).
      * </pre>
      *
-     * <code>optional float score = 3;</code>
+     * <code>float score = 3;</code>
      */
     public float getScore() {
       return score_;
@@ -470,7 +481,7 @@ public  final class Sentiment extends
      * (positive sentiment).
      * </pre>
      *
-     * <code>optional float score = 3;</code>
+     * <code>float score = 3;</code>
      */
     public Builder setScore(float value) {
       
@@ -484,7 +495,7 @@ public  final class Sentiment extends
      * (positive sentiment).
      * </pre>
      *
-     * <code>optional float score = 3;</code>
+     * <code>float score = 3;</code>
      */
     public Builder clearScore() {
       

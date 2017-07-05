@@ -100,7 +100,7 @@ public  final class BoundingBox extends
    * Left X coordinate.
    * </pre>
    *
-   * <code>optional int32 left = 1;</code>
+   * <code>int32 left = 1;</code>
    */
   public int getLeft() {
     return left_;
@@ -113,7 +113,7 @@ public  final class BoundingBox extends
    * Right X coordinate.
    * </pre>
    *
-   * <code>optional int32 right = 2;</code>
+   * <code>int32 right = 2;</code>
    */
   public int getRight() {
     return right_;
@@ -126,7 +126,7 @@ public  final class BoundingBox extends
    * Bottom Y coordinate.
    * </pre>
    *
-   * <code>optional int32 bottom = 3;</code>
+   * <code>int32 bottom = 3;</code>
    */
   public int getBottom() {
     return bottom_;
@@ -139,7 +139,7 @@ public  final class BoundingBox extends
    * Top Y coordinate.
    * </pre>
    *
-   * <code>optional int32 top = 4;</code>
+   * <code>int32 top = 4;</code>
    */
   public int getTop() {
     return top_;
@@ -225,7 +225,7 @@ public  final class BoundingBox extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + LEFT_FIELD_NUMBER;
     hash = (53 * hash) + getLeft();
     hash = (37 * hash) + RIGHT_FIELD_NUMBER;
@@ -239,6 +239,17 @@ public  final class BoundingBox extends
     return hash;
   }
 
+  public static com.google.cloud.videointelligence.v1beta1.BoundingBox parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.videointelligence.v1beta1.BoundingBox parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.videointelligence.v1beta1.BoundingBox parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -475,7 +486,7 @@ public  final class BoundingBox extends
      * Left X coordinate.
      * </pre>
      *
-     * <code>optional int32 left = 1;</code>
+     * <code>int32 left = 1;</code>
      */
     public int getLeft() {
       return left_;
@@ -485,7 +496,7 @@ public  final class BoundingBox extends
      * Left X coordinate.
      * </pre>
      *
-     * <code>optional int32 left = 1;</code>
+     * <code>int32 left = 1;</code>
      */
     public Builder setLeft(int value) {
       
@@ -498,7 +509,7 @@ public  final class BoundingBox extends
      * Left X coordinate.
      * </pre>
      *
-     * <code>optional int32 left = 1;</code>
+     * <code>int32 left = 1;</code>
      */
     public Builder clearLeft() {
       
@@ -513,7 +524,7 @@ public  final class BoundingBox extends
      * Right X coordinate.
      * </pre>
      *
-     * <code>optional int32 right = 2;</code>
+     * <code>int32 right = 2;</code>
      */
     public int getRight() {
       return right_;
@@ -523,7 +534,7 @@ public  final class BoundingBox extends
      * Right X coordinate.
      * </pre>
      *
-     * <code>optional int32 right = 2;</code>
+     * <code>int32 right = 2;</code>
      */
     public Builder setRight(int value) {
       
@@ -536,7 +547,7 @@ public  final class BoundingBox extends
      * Right X coordinate.
      * </pre>
      *
-     * <code>optional int32 right = 2;</code>
+     * <code>int32 right = 2;</code>
      */
     public Builder clearRight() {
       
@@ -551,7 +562,7 @@ public  final class BoundingBox extends
      * Bottom Y coordinate.
      * </pre>
      *
-     * <code>optional int32 bottom = 3;</code>
+     * <code>int32 bottom = 3;</code>
      */
     public int getBottom() {
       return bottom_;
@@ -561,7 +572,7 @@ public  final class BoundingBox extends
      * Bottom Y coordinate.
      * </pre>
      *
-     * <code>optional int32 bottom = 3;</code>
+     * <code>int32 bottom = 3;</code>
      */
     public Builder setBottom(int value) {
       
@@ -574,7 +585,7 @@ public  final class BoundingBox extends
      * Bottom Y coordinate.
      * </pre>
      *
-     * <code>optional int32 bottom = 3;</code>
+     * <code>int32 bottom = 3;</code>
      */
     public Builder clearBottom() {
       
@@ -589,7 +600,7 @@ public  final class BoundingBox extends
      * Top Y coordinate.
      * </pre>
      *
-     * <code>optional int32 top = 4;</code>
+     * <code>int32 top = 4;</code>
      */
     public int getTop() {
       return top_;
@@ -599,7 +610,7 @@ public  final class BoundingBox extends
      * Top Y coordinate.
      * </pre>
      *
-     * <code>optional int32 top = 4;</code>
+     * <code>int32 top = 4;</code>
      */
     public Builder setTop(int value) {
       
@@ -612,7 +623,7 @@ public  final class BoundingBox extends
      * Top Y coordinate.
      * </pre>
      *
-     * <code>optional int32 top = 4;</code>
+     * <code>int32 top = 4;</code>
      */
     public Builder clearTop() {
       

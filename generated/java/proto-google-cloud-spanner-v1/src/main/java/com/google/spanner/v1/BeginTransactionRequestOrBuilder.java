@@ -12,7 +12,7 @@ public interface BeginTransactionRequestOrBuilder extends
    * Required. The session in which the transaction runs.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   java.lang.String getSession();
   /**
@@ -20,7 +20,7 @@ public interface BeginTransactionRequestOrBuilder extends
    * Required. The session in which the transaction runs.
    * </pre>
    *
-   * <code>optional string session = 1;</code>
+   * <code>string session = 1;</code>
    */
   com.google.protobuf.ByteString
       getSessionBytes();
@@ -30,7 +30,7 @@ public interface BeginTransactionRequestOrBuilder extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
    */
   boolean hasOptions();
   /**
@@ -38,7 +38,7 @@ public interface BeginTransactionRequestOrBuilder extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
    */
   com.google.spanner.v1.TransactionOptions getOptions();
   /**
@@ -46,7 +46,7 @@ public interface BeginTransactionRequestOrBuilder extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
    */
   com.google.spanner.v1.TransactionOptionsOrBuilder getOptionsOrBuilder();
 }

@@ -116,7 +116,7 @@ public  final class ImageContext extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   public boolean hasLatLongRect() {
     return latLongRect_ != null;
@@ -126,7 +126,7 @@ public  final class ImageContext extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   public com.google.cloud.vision.v1.LatLongRect getLatLongRect() {
     return latLongRect_ == null ? com.google.cloud.vision.v1.LatLongRect.getDefaultInstance() : latLongRect_;
@@ -136,7 +136,7 @@ public  final class ImageContext extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   public com.google.cloud.vision.v1.LatLongRectOrBuilder getLatLongRectOrBuilder() {
     return getLatLongRect();
@@ -222,7 +222,7 @@ public  final class ImageContext extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   public boolean hasCropHintsParams() {
     return cropHintsParams_ != null;
@@ -232,7 +232,7 @@ public  final class ImageContext extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   public com.google.cloud.vision.v1.CropHintsParams getCropHintsParams() {
     return cropHintsParams_ == null ? com.google.cloud.vision.v1.CropHintsParams.getDefaultInstance() : cropHintsParams_;
@@ -242,7 +242,7 @@ public  final class ImageContext extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   public com.google.cloud.vision.v1.CropHintsParamsOrBuilder getCropHintsParamsOrBuilder() {
     return getCropHintsParams();
@@ -329,7 +329,7 @@ public  final class ImageContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasLatLongRect()) {
       hash = (37 * hash) + LAT_LONG_RECT_FIELD_NUMBER;
       hash = (53 * hash) + getLatLongRect().hashCode();
@@ -347,6 +347,17 @@ public  final class ImageContext extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.ImageContext parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.ImageContext parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.ImageContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -610,7 +621,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public boolean hasLatLongRect() {
       return latLongRectBuilder_ != null || latLongRect_ != null;
@@ -620,7 +631,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public com.google.cloud.vision.v1.LatLongRect getLatLongRect() {
       if (latLongRectBuilder_ == null) {
@@ -634,7 +645,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public Builder setLatLongRect(com.google.cloud.vision.v1.LatLongRect value) {
       if (latLongRectBuilder_ == null) {
@@ -654,7 +665,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public Builder setLatLongRect(
         com.google.cloud.vision.v1.LatLongRect.Builder builderForValue) {
@@ -672,7 +683,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public Builder mergeLatLongRect(com.google.cloud.vision.v1.LatLongRect value) {
       if (latLongRectBuilder_ == null) {
@@ -694,7 +705,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public Builder clearLatLongRect() {
       if (latLongRectBuilder_ == null) {
@@ -712,7 +723,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public com.google.cloud.vision.v1.LatLongRect.Builder getLatLongRectBuilder() {
       
@@ -724,7 +735,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     public com.google.cloud.vision.v1.LatLongRectOrBuilder getLatLongRectOrBuilder() {
       if (latLongRectBuilder_ != null) {
@@ -739,7 +750,7 @@ public  final class ImageContext extends
      * lat/long rectangle that specifies the location of the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.LatLongRect, com.google.cloud.vision.v1.LatLongRect.Builder, com.google.cloud.vision.v1.LatLongRectOrBuilder> 
@@ -956,7 +967,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public boolean hasCropHintsParams() {
       return cropHintsParamsBuilder_ != null || cropHintsParams_ != null;
@@ -966,7 +977,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public com.google.cloud.vision.v1.CropHintsParams getCropHintsParams() {
       if (cropHintsParamsBuilder_ == null) {
@@ -980,7 +991,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public Builder setCropHintsParams(com.google.cloud.vision.v1.CropHintsParams value) {
       if (cropHintsParamsBuilder_ == null) {
@@ -1000,7 +1011,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public Builder setCropHintsParams(
         com.google.cloud.vision.v1.CropHintsParams.Builder builderForValue) {
@@ -1018,7 +1029,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public Builder mergeCropHintsParams(com.google.cloud.vision.v1.CropHintsParams value) {
       if (cropHintsParamsBuilder_ == null) {
@@ -1040,7 +1051,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public Builder clearCropHintsParams() {
       if (cropHintsParamsBuilder_ == null) {
@@ -1058,7 +1069,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public com.google.cloud.vision.v1.CropHintsParams.Builder getCropHintsParamsBuilder() {
       
@@ -1070,7 +1081,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     public com.google.cloud.vision.v1.CropHintsParamsOrBuilder getCropHintsParamsOrBuilder() {
       if (cropHintsParamsBuilder_ != null) {
@@ -1085,7 +1096,7 @@ public  final class ImageContext extends
      * Parameters for crop hints annotation request.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.CropHintsParams, com.google.cloud.vision.v1.CropHintsParams.Builder, com.google.cloud.vision.v1.CropHintsParamsOrBuilder> 

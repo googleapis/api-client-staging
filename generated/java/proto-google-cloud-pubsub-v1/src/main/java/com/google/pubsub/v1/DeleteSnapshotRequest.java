@@ -84,7 +84,7 @@ public  final class DeleteSnapshotRequest extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string snapshot = 1;</code>
+   * <code>string snapshot = 1;</code>
    */
   public java.lang.String getSnapshot() {
     java.lang.Object ref = snapshot_;
@@ -104,7 +104,7 @@ public  final class DeleteSnapshotRequest extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>optional string snapshot = 1;</code>
+   * <code>string snapshot = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSnapshotBytes() {
@@ -172,7 +172,7 @@ public  final class DeleteSnapshotRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SNAPSHOT_FIELD_NUMBER;
     hash = (53 * hash) + getSnapshot().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -180,6 +180,17 @@ public  final class DeleteSnapshotRequest extends
     return hash;
   }
 
+  public static com.google.pubsub.v1.DeleteSnapshotRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.pubsub.v1.DeleteSnapshotRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.pubsub.v1.DeleteSnapshotRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -400,7 +411,7 @@ public  final class DeleteSnapshotRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>optional string snapshot = 1;</code>
+     * <code>string snapshot = 1;</code>
      */
     public java.lang.String getSnapshot() {
       java.lang.Object ref = snapshot_;
@@ -420,7 +431,7 @@ public  final class DeleteSnapshotRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>optional string snapshot = 1;</code>
+     * <code>string snapshot = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSnapshotBytes() {
@@ -441,7 +452,7 @@ public  final class DeleteSnapshotRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>optional string snapshot = 1;</code>
+     * <code>string snapshot = 1;</code>
      */
     public Builder setSnapshot(
         java.lang.String value) {
@@ -459,7 +470,7 @@ public  final class DeleteSnapshotRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>optional string snapshot = 1;</code>
+     * <code>string snapshot = 1;</code>
      */
     public Builder clearSnapshot() {
       
@@ -473,7 +484,7 @@ public  final class DeleteSnapshotRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>optional string snapshot = 1;</code>
+     * <code>string snapshot = 1;</code>
      */
     public Builder setSnapshotBytes(
         com.google.protobuf.ByteString value) {

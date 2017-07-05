@@ -13,7 +13,7 @@ public interface VideoAnnotationResultsOrBuilder extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   java.lang.String getInputUri();
   /**
@@ -22,7 +22,7 @@ public interface VideoAnnotationResultsOrBuilder extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   com.google.protobuf.ByteString
       getInputUriBytes();
@@ -209,7 +209,7 @@ public interface VideoAnnotationResultsOrBuilder extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   boolean hasError();
   /**
@@ -218,7 +218,7 @@ public interface VideoAnnotationResultsOrBuilder extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   com.google.rpc.Status getError();
   /**
@@ -227,7 +227,7 @@ public interface VideoAnnotationResultsOrBuilder extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   com.google.rpc.StatusOrBuilder getErrorOrBuilder();
 }

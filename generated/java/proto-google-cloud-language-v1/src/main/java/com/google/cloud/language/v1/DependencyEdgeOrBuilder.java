@@ -16,7 +16,7 @@ public interface DependencyEdgeOrBuilder extends
    * `head_token_index` is its own index.
    * </pre>
    *
-   * <code>optional int32 head_token_index = 1;</code>
+   * <code>int32 head_token_index = 1;</code>
    */
   int getHeadTokenIndex();
 
@@ -25,7 +25,7 @@ public interface DependencyEdgeOrBuilder extends
    * The parse label for the token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+   * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
    */
   int getLabelValue();
   /**
@@ -33,7 +33,7 @@ public interface DependencyEdgeOrBuilder extends
    * The parse label for the token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
+   * <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
    */
   com.google.cloud.language.v1.DependencyEdge.Label getLabel();
 }

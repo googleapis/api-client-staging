@@ -121,7 +121,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of adult content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
    */
   public int getAdultValue() {
     return adult_;
@@ -131,7 +131,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of adult content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.Likelihood getAdult() {
     com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(adult_);
@@ -146,7 +146,7 @@ public  final class SafeSearchAnnotation extends
    * version to make it appear funny or offensive.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
    */
   public int getSpoofValue() {
     return spoof_;
@@ -157,7 +157,7 @@ public  final class SafeSearchAnnotation extends
    * version to make it appear funny or offensive.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.Likelihood getSpoof() {
     com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(spoof_);
@@ -171,7 +171,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of medical content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
    */
   public int getMedicalValue() {
     return medical_;
@@ -181,7 +181,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of medical content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.Likelihood getMedical() {
     com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(medical_);
@@ -195,7 +195,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of violent content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
    */
   public int getViolentValue() {
     return violent_;
@@ -205,7 +205,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of violent content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.Likelihood getViolent() {
     com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(violent_);
@@ -219,7 +219,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of racy content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
    */
   public int getRacyValue() {
     return racy_;
@@ -229,7 +229,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood of racy content.
    * </pre>
    *
-   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+   * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.Likelihood getRacy() {
     com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(racy_);
@@ -243,7 +243,7 @@ public  final class SafeSearchAnnotation extends
    * Video time offset in microseconds.
    * </pre>
    *
-   * <code>optional int64 time_offset = 6;</code>
+   * <code>int64 time_offset = 6;</code>
    */
   public long getTimeOffset() {
     return timeOffset_;
@@ -342,7 +342,7 @@ public  final class SafeSearchAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ADULT_FIELD_NUMBER;
     hash = (53 * hash) + adult_;
     hash = (37 * hash) + SPOOF_FIELD_NUMBER;
@@ -361,6 +361,17 @@ public  final class SafeSearchAnnotation extends
     return hash;
   }
 
+  public static com.google.cloud.videointelligence.v1beta1.SafeSearchAnnotation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.videointelligence.v1beta1.SafeSearchAnnotation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.videointelligence.v1beta1.SafeSearchAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -613,7 +624,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of adult content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     public int getAdultValue() {
       return adult_;
@@ -623,7 +634,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of adult content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     public Builder setAdultValue(int value) {
       adult_ = value;
@@ -635,7 +646,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of adult content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.Likelihood getAdult() {
       com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(adult_);
@@ -646,7 +657,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of adult content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     public Builder setAdult(com.google.cloud.videointelligence.v1beta1.Likelihood value) {
       if (value == null) {
@@ -662,7 +673,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of adult content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     public Builder clearAdult() {
       
@@ -678,7 +689,7 @@ public  final class SafeSearchAnnotation extends
      * version to make it appear funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     public int getSpoofValue() {
       return spoof_;
@@ -689,7 +700,7 @@ public  final class SafeSearchAnnotation extends
      * version to make it appear funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     public Builder setSpoofValue(int value) {
       spoof_ = value;
@@ -702,7 +713,7 @@ public  final class SafeSearchAnnotation extends
      * version to make it appear funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.Likelihood getSpoof() {
       com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(spoof_);
@@ -714,7 +725,7 @@ public  final class SafeSearchAnnotation extends
      * version to make it appear funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     public Builder setSpoof(com.google.cloud.videointelligence.v1beta1.Likelihood value) {
       if (value == null) {
@@ -731,7 +742,7 @@ public  final class SafeSearchAnnotation extends
      * version to make it appear funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     public Builder clearSpoof() {
       
@@ -746,7 +757,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of medical content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     public int getMedicalValue() {
       return medical_;
@@ -756,7 +767,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of medical content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     public Builder setMedicalValue(int value) {
       medical_ = value;
@@ -768,7 +779,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of medical content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.Likelihood getMedical() {
       com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(medical_);
@@ -779,7 +790,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of medical content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     public Builder setMedical(com.google.cloud.videointelligence.v1beta1.Likelihood value) {
       if (value == null) {
@@ -795,7 +806,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of medical content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     public Builder clearMedical() {
       
@@ -810,7 +821,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of violent content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     public int getViolentValue() {
       return violent_;
@@ -820,7 +831,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of violent content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     public Builder setViolentValue(int value) {
       violent_ = value;
@@ -832,7 +843,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of violent content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.Likelihood getViolent() {
       com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(violent_);
@@ -843,7 +854,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of violent content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     public Builder setViolent(com.google.cloud.videointelligence.v1beta1.Likelihood value) {
       if (value == null) {
@@ -859,7 +870,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of violent content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     public Builder clearViolent() {
       
@@ -874,7 +885,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of racy content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     public int getRacyValue() {
       return racy_;
@@ -884,7 +895,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of racy content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     public Builder setRacyValue(int value) {
       racy_ = value;
@@ -896,7 +907,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of racy content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.Likelihood getRacy() {
       com.google.cloud.videointelligence.v1beta1.Likelihood result = com.google.cloud.videointelligence.v1beta1.Likelihood.valueOf(racy_);
@@ -907,7 +918,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of racy content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     public Builder setRacy(com.google.cloud.videointelligence.v1beta1.Likelihood value) {
       if (value == null) {
@@ -923,7 +934,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood of racy content.
      * </pre>
      *
-     * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     public Builder clearRacy() {
       
@@ -938,7 +949,7 @@ public  final class SafeSearchAnnotation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>optional int64 time_offset = 6;</code>
+     * <code>int64 time_offset = 6;</code>
      */
     public long getTimeOffset() {
       return timeOffset_;
@@ -948,7 +959,7 @@ public  final class SafeSearchAnnotation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>optional int64 time_offset = 6;</code>
+     * <code>int64 time_offset = 6;</code>
      */
     public Builder setTimeOffset(long value) {
       
@@ -961,7 +972,7 @@ public  final class SafeSearchAnnotation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>optional int64 time_offset = 6;</code>
+     * <code>int64 time_offset = 6;</code>
      */
     public Builder clearTimeOffset() {
       

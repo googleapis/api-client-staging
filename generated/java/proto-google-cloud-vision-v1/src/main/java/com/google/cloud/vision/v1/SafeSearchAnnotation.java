@@ -106,7 +106,7 @@ public  final class SafeSearchAnnotation extends
    * Represents the adult content likelihood for the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+   * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
    */
   public int getAdultValue() {
     return adult_;
@@ -116,7 +116,7 @@ public  final class SafeSearchAnnotation extends
    * Represents the adult content likelihood for the image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+   * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getAdult() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(adult_);
@@ -132,7 +132,7 @@ public  final class SafeSearchAnnotation extends
    * funny or offensive.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+   * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
    */
   public int getSpoofValue() {
     return spoof_;
@@ -144,7 +144,7 @@ public  final class SafeSearchAnnotation extends
    * funny or offensive.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+   * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getSpoof() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(spoof_);
@@ -158,7 +158,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood that this is a medical image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+   * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
    */
   public int getMedicalValue() {
     return medical_;
@@ -168,7 +168,7 @@ public  final class SafeSearchAnnotation extends
    * Likelihood that this is a medical image.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+   * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getMedical() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(medical_);
@@ -182,7 +182,7 @@ public  final class SafeSearchAnnotation extends
    * Violence likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+   * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   public int getViolenceValue() {
     return violence_;
@@ -192,7 +192,7 @@ public  final class SafeSearchAnnotation extends
    * Violence likelihood.
    * </pre>
    *
-   * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+   * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getViolence() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(violence_);
@@ -275,7 +275,7 @@ public  final class SafeSearchAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ADULT_FIELD_NUMBER;
     hash = (53 * hash) + adult_;
     hash = (37 * hash) + SPOOF_FIELD_NUMBER;
@@ -289,6 +289,17 @@ public  final class SafeSearchAnnotation extends
     return hash;
   }
 
+  public static com.google.cloud.vision.v1.SafeSearchAnnotation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.vision.v1.SafeSearchAnnotation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.vision.v1.SafeSearchAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -527,7 +538,7 @@ public  final class SafeSearchAnnotation extends
      * Represents the adult content likelihood for the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     public int getAdultValue() {
       return adult_;
@@ -537,7 +548,7 @@ public  final class SafeSearchAnnotation extends
      * Represents the adult content likelihood for the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     public Builder setAdultValue(int value) {
       adult_ = value;
@@ -549,7 +560,7 @@ public  final class SafeSearchAnnotation extends
      * Represents the adult content likelihood for the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getAdult() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(adult_);
@@ -560,7 +571,7 @@ public  final class SafeSearchAnnotation extends
      * Represents the adult content likelihood for the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     public Builder setAdult(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -576,7 +587,7 @@ public  final class SafeSearchAnnotation extends
      * Represents the adult content likelihood for the image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     public Builder clearAdult() {
       
@@ -593,7 +604,7 @@ public  final class SafeSearchAnnotation extends
      * funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     public int getSpoofValue() {
       return spoof_;
@@ -605,7 +616,7 @@ public  final class SafeSearchAnnotation extends
      * funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     public Builder setSpoofValue(int value) {
       spoof_ = value;
@@ -619,7 +630,7 @@ public  final class SafeSearchAnnotation extends
      * funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getSpoof() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(spoof_);
@@ -632,7 +643,7 @@ public  final class SafeSearchAnnotation extends
      * funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     public Builder setSpoof(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -650,7 +661,7 @@ public  final class SafeSearchAnnotation extends
      * funny or offensive.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     public Builder clearSpoof() {
       
@@ -665,7 +676,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood that this is a medical image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     public int getMedicalValue() {
       return medical_;
@@ -675,7 +686,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood that this is a medical image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     public Builder setMedicalValue(int value) {
       medical_ = value;
@@ -687,7 +698,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood that this is a medical image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getMedical() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(medical_);
@@ -698,7 +709,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood that this is a medical image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     public Builder setMedical(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -714,7 +725,7 @@ public  final class SafeSearchAnnotation extends
      * Likelihood that this is a medical image.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     public Builder clearMedical() {
       
@@ -729,7 +740,7 @@ public  final class SafeSearchAnnotation extends
      * Violence likelihood.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     public int getViolenceValue() {
       return violence_;
@@ -739,7 +750,7 @@ public  final class SafeSearchAnnotation extends
      * Violence likelihood.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     public Builder setViolenceValue(int value) {
       violence_ = value;
@@ -751,7 +762,7 @@ public  final class SafeSearchAnnotation extends
      * Violence likelihood.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getViolence() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(violence_);
@@ -762,7 +773,7 @@ public  final class SafeSearchAnnotation extends
      * Violence likelihood.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     public Builder setViolence(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -778,7 +789,7 @@ public  final class SafeSearchAnnotation extends
      * Violence likelihood.
      * </pre>
      *
-     * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     public Builder clearViolence() {
       

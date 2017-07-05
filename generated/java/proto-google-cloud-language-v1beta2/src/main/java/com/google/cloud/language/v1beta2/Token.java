@@ -122,7 +122,7 @@ public  final class Token extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public boolean hasText() {
     return text_ != null;
@@ -132,7 +132,7 @@ public  final class Token extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1beta2.TextSpan getText() {
     return text_ == null ? com.google.cloud.language.v1beta2.TextSpan.getDefaultInstance() : text_;
@@ -142,7 +142,7 @@ public  final class Token extends
    * The token text.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder() {
     return getText();
@@ -155,7 +155,7 @@ public  final class Token extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   public boolean hasPartOfSpeech() {
     return partOfSpeech_ != null;
@@ -165,7 +165,7 @@ public  final class Token extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   public com.google.cloud.language.v1beta2.PartOfSpeech getPartOfSpeech() {
     return partOfSpeech_ == null ? com.google.cloud.language.v1beta2.PartOfSpeech.getDefaultInstance() : partOfSpeech_;
@@ -175,7 +175,7 @@ public  final class Token extends
    * Parts of speech tag for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+   * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
    */
   public com.google.cloud.language.v1beta2.PartOfSpeechOrBuilder getPartOfSpeechOrBuilder() {
     return getPartOfSpeech();
@@ -188,7 +188,7 @@ public  final class Token extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   public boolean hasDependencyEdge() {
     return dependencyEdge_ != null;
@@ -198,7 +198,7 @@ public  final class Token extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   public com.google.cloud.language.v1beta2.DependencyEdge getDependencyEdge() {
     return dependencyEdge_ == null ? com.google.cloud.language.v1beta2.DependencyEdge.getDefaultInstance() : dependencyEdge_;
@@ -208,7 +208,7 @@ public  final class Token extends
    * Dependency tree parse for this token.
    * </pre>
    *
-   * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+   * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
    */
   public com.google.cloud.language.v1beta2.DependencyEdgeOrBuilder getDependencyEdgeOrBuilder() {
     return getDependencyEdge();
@@ -221,7 +221,7 @@ public  final class Token extends
    * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
    * </pre>
    *
-   * <code>optional string lemma = 4;</code>
+   * <code>string lemma = 4;</code>
    */
   public java.lang.String getLemma() {
     java.lang.Object ref = lemma_;
@@ -240,7 +240,7 @@ public  final class Token extends
    * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
    * </pre>
    *
-   * <code>optional string lemma = 4;</code>
+   * <code>string lemma = 4;</code>
    */
   public com.google.protobuf.ByteString
       getLemmaBytes() {
@@ -344,7 +344,7 @@ public  final class Token extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasText()) {
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
@@ -364,6 +364,17 @@ public  final class Token extends
     return hash;
   }
 
+  public static com.google.cloud.language.v1beta2.Token parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.language.v1beta2.Token parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.language.v1beta2.Token parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -627,7 +638,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public boolean hasText() {
       return textBuilder_ != null || text_ != null;
@@ -637,7 +648,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpan getText() {
       if (textBuilder_ == null) {
@@ -651,7 +662,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder setText(com.google.cloud.language.v1beta2.TextSpan value) {
       if (textBuilder_ == null) {
@@ -671,7 +682,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder setText(
         com.google.cloud.language.v1beta2.TextSpan.Builder builderForValue) {
@@ -689,7 +700,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder mergeText(com.google.cloud.language.v1beta2.TextSpan value) {
       if (textBuilder_ == null) {
@@ -711,7 +722,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public Builder clearText() {
       if (textBuilder_ == null) {
@@ -729,7 +740,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpan.Builder getTextBuilder() {
       
@@ -741,7 +752,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder() {
       if (textBuilder_ != null) {
@@ -756,7 +767,7 @@ public  final class Token extends
      * The token text.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.TextSpan, com.google.cloud.language.v1beta2.TextSpan.Builder, com.google.cloud.language.v1beta2.TextSpanOrBuilder> 
@@ -780,7 +791,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public boolean hasPartOfSpeech() {
       return partOfSpeechBuilder_ != null || partOfSpeech_ != null;
@@ -790,7 +801,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public com.google.cloud.language.v1beta2.PartOfSpeech getPartOfSpeech() {
       if (partOfSpeechBuilder_ == null) {
@@ -804,7 +815,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public Builder setPartOfSpeech(com.google.cloud.language.v1beta2.PartOfSpeech value) {
       if (partOfSpeechBuilder_ == null) {
@@ -824,7 +835,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public Builder setPartOfSpeech(
         com.google.cloud.language.v1beta2.PartOfSpeech.Builder builderForValue) {
@@ -842,7 +853,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public Builder mergePartOfSpeech(com.google.cloud.language.v1beta2.PartOfSpeech value) {
       if (partOfSpeechBuilder_ == null) {
@@ -864,7 +875,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public Builder clearPartOfSpeech() {
       if (partOfSpeechBuilder_ == null) {
@@ -882,7 +893,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public com.google.cloud.language.v1beta2.PartOfSpeech.Builder getPartOfSpeechBuilder() {
       
@@ -894,7 +905,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     public com.google.cloud.language.v1beta2.PartOfSpeechOrBuilder getPartOfSpeechOrBuilder() {
       if (partOfSpeechBuilder_ != null) {
@@ -909,7 +920,7 @@ public  final class Token extends
      * Parts of speech tag for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.PartOfSpeech, com.google.cloud.language.v1beta2.PartOfSpeech.Builder, com.google.cloud.language.v1beta2.PartOfSpeechOrBuilder> 
@@ -933,7 +944,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public boolean hasDependencyEdge() {
       return dependencyEdgeBuilder_ != null || dependencyEdge_ != null;
@@ -943,7 +954,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public com.google.cloud.language.v1beta2.DependencyEdge getDependencyEdge() {
       if (dependencyEdgeBuilder_ == null) {
@@ -957,7 +968,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public Builder setDependencyEdge(com.google.cloud.language.v1beta2.DependencyEdge value) {
       if (dependencyEdgeBuilder_ == null) {
@@ -977,7 +988,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public Builder setDependencyEdge(
         com.google.cloud.language.v1beta2.DependencyEdge.Builder builderForValue) {
@@ -995,7 +1006,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public Builder mergeDependencyEdge(com.google.cloud.language.v1beta2.DependencyEdge value) {
       if (dependencyEdgeBuilder_ == null) {
@@ -1017,7 +1028,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public Builder clearDependencyEdge() {
       if (dependencyEdgeBuilder_ == null) {
@@ -1035,7 +1046,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public com.google.cloud.language.v1beta2.DependencyEdge.Builder getDependencyEdgeBuilder() {
       
@@ -1047,7 +1058,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     public com.google.cloud.language.v1beta2.DependencyEdgeOrBuilder getDependencyEdgeOrBuilder() {
       if (dependencyEdgeBuilder_ != null) {
@@ -1062,7 +1073,7 @@ public  final class Token extends
      * Dependency tree parse for this token.
      * </pre>
      *
-     * <code>optional .google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.DependencyEdge, com.google.cloud.language.v1beta2.DependencyEdge.Builder, com.google.cloud.language.v1beta2.DependencyEdgeOrBuilder> 
@@ -1084,7 +1095,7 @@ public  final class Token extends
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      * </pre>
      *
-     * <code>optional string lemma = 4;</code>
+     * <code>string lemma = 4;</code>
      */
     public java.lang.String getLemma() {
       java.lang.Object ref = lemma_;
@@ -1103,7 +1114,7 @@ public  final class Token extends
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      * </pre>
      *
-     * <code>optional string lemma = 4;</code>
+     * <code>string lemma = 4;</code>
      */
     public com.google.protobuf.ByteString
         getLemmaBytes() {
@@ -1123,7 +1134,7 @@ public  final class Token extends
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      * </pre>
      *
-     * <code>optional string lemma = 4;</code>
+     * <code>string lemma = 4;</code>
      */
     public Builder setLemma(
         java.lang.String value) {
@@ -1140,7 +1151,7 @@ public  final class Token extends
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      * </pre>
      *
-     * <code>optional string lemma = 4;</code>
+     * <code>string lemma = 4;</code>
      */
     public Builder clearLemma() {
       
@@ -1153,7 +1164,7 @@ public  final class Token extends
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      * </pre>
      *
-     * <code>optional string lemma = 4;</code>
+     * <code>string lemma = 4;</code>
      */
     public Builder setLemmaBytes(
         com.google.protobuf.ByteString value) {

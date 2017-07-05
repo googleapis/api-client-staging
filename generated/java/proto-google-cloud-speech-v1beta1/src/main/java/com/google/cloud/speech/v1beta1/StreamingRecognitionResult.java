@@ -167,7 +167,7 @@ public  final class StreamingRecognitionResult extends
    * the transcript and corresponding audio.
    * </pre>
    *
-   * <code>optional bool is_final = 2;</code>
+   * <code>bool is_final = 2;</code>
    */
   public boolean getIsFinal() {
     return isFinal_;
@@ -184,7 +184,7 @@ public  final class StreamingRecognitionResult extends
    * The default of 0.0 is a sentinel value indicating `stability` was not set.
    * </pre>
    *
-   * <code>optional float stability = 3;</code>
+   * <code>float stability = 3;</code>
    */
   public float getStability() {
     return stability_;
@@ -263,7 +263,7 @@ public  final class StreamingRecognitionResult extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getAlternativesCount() > 0) {
       hash = (37 * hash) + ALTERNATIVES_FIELD_NUMBER;
       hash = (53 * hash) + getAlternativesList().hashCode();
@@ -279,6 +279,17 @@ public  final class StreamingRecognitionResult extends
     return hash;
   }
 
+  public static com.google.cloud.speech.v1beta1.StreamingRecognitionResult parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.speech.v1beta1.StreamingRecognitionResult parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.speech.v1beta1.StreamingRecognitionResult parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -884,7 +895,7 @@ public  final class StreamingRecognitionResult extends
      * the transcript and corresponding audio.
      * </pre>
      *
-     * <code>optional bool is_final = 2;</code>
+     * <code>bool is_final = 2;</code>
      */
     public boolean getIsFinal() {
       return isFinal_;
@@ -898,7 +909,7 @@ public  final class StreamingRecognitionResult extends
      * the transcript and corresponding audio.
      * </pre>
      *
-     * <code>optional bool is_final = 2;</code>
+     * <code>bool is_final = 2;</code>
      */
     public Builder setIsFinal(boolean value) {
       
@@ -915,7 +926,7 @@ public  final class StreamingRecognitionResult extends
      * the transcript and corresponding audio.
      * </pre>
      *
-     * <code>optional bool is_final = 2;</code>
+     * <code>bool is_final = 2;</code>
      */
     public Builder clearIsFinal() {
       
@@ -934,7 +945,7 @@ public  final class StreamingRecognitionResult extends
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
      * </pre>
      *
-     * <code>optional float stability = 3;</code>
+     * <code>float stability = 3;</code>
      */
     public float getStability() {
       return stability_;
@@ -948,7 +959,7 @@ public  final class StreamingRecognitionResult extends
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
      * </pre>
      *
-     * <code>optional float stability = 3;</code>
+     * <code>float stability = 3;</code>
      */
     public Builder setStability(float value) {
       
@@ -965,7 +976,7 @@ public  final class StreamingRecognitionResult extends
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
      * </pre>
      *
-     * <code>optional float stability = 3;</code>
+     * <code>float stability = 3;</code>
      */
     public Builder clearStability() {
       

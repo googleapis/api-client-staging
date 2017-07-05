@@ -150,7 +150,7 @@ public  final class VideoAnnotationResults extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   public java.lang.String getInputUri() {
     java.lang.Object ref = inputUri_;
@@ -170,7 +170,7 @@ public  final class VideoAnnotationResults extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>optional string input_uri = 1;</code>
+   * <code>string input_uri = 1;</code>
    */
   public com.google.protobuf.ByteString
       getInputUriBytes() {
@@ -414,7 +414,7 @@ public  final class VideoAnnotationResults extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   public boolean hasError() {
     return error_ != null;
@@ -425,7 +425,7 @@ public  final class VideoAnnotationResults extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   public com.google.rpc.Status getError() {
     return error_ == null ? com.google.rpc.Status.getDefaultInstance() : error_;
@@ -436,7 +436,7 @@ public  final class VideoAnnotationResults extends
    * some videos may succeed and some may fail.
    * </pre>
    *
-   * <code>optional .google.rpc.Status error = 5;</code>
+   * <code>.google.rpc.Status error = 5;</code>
    */
   public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
     return getError();
@@ -542,7 +542,7 @@ public  final class VideoAnnotationResults extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + INPUT_URI_FIELD_NUMBER;
     hash = (53 * hash) + getInputUri().hashCode();
     if (getLabelAnnotationsCount() > 0) {
@@ -570,6 +570,17 @@ public  final class VideoAnnotationResults extends
     return hash;
   }
 
+  public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationResults parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationResults parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationResults parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -976,7 +987,7 @@ public  final class VideoAnnotationResults extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>optional string input_uri = 1;</code>
+     * <code>string input_uri = 1;</code>
      */
     public java.lang.String getInputUri() {
       java.lang.Object ref = inputUri_;
@@ -996,7 +1007,7 @@ public  final class VideoAnnotationResults extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>optional string input_uri = 1;</code>
+     * <code>string input_uri = 1;</code>
      */
     public com.google.protobuf.ByteString
         getInputUriBytes() {
@@ -1017,7 +1028,7 @@ public  final class VideoAnnotationResults extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>optional string input_uri = 1;</code>
+     * <code>string input_uri = 1;</code>
      */
     public Builder setInputUri(
         java.lang.String value) {
@@ -1035,7 +1046,7 @@ public  final class VideoAnnotationResults extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>optional string input_uri = 1;</code>
+     * <code>string input_uri = 1;</code>
      */
     public Builder clearInputUri() {
       
@@ -1049,7 +1060,7 @@ public  final class VideoAnnotationResults extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>optional string input_uri = 1;</code>
+     * <code>string input_uri = 1;</code>
      */
     public Builder setInputUriBytes(
         com.google.protobuf.ByteString value) {
@@ -2320,7 +2331,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public boolean hasError() {
       return errorBuilder_ != null || error_ != null;
@@ -2331,7 +2342,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public com.google.rpc.Status getError() {
       if (errorBuilder_ == null) {
@@ -2346,7 +2357,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public Builder setError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -2367,7 +2378,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public Builder setError(
         com.google.rpc.Status.Builder builderForValue) {
@@ -2386,7 +2397,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public Builder mergeError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -2409,7 +2420,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public Builder clearError() {
       if (errorBuilder_ == null) {
@@ -2428,7 +2439,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public com.google.rpc.Status.Builder getErrorBuilder() {
       
@@ -2441,7 +2452,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
       if (errorBuilder_ != null) {
@@ -2457,7 +2468,7 @@ public  final class VideoAnnotationResults extends
      * some videos may succeed and some may fail.
      * </pre>
      *
-     * <code>optional .google.rpc.Status error = 5;</code>
+     * <code>.google.rpc.Status error = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> 
