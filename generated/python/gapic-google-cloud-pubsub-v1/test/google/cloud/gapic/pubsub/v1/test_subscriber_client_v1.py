@@ -451,7 +451,10 @@ class TestSubscriberClient(unittest.TestCase):
         requests = [request]
 
         # Mock response
-        expected_response = pubsub_pb2.StreamingPullResponse()
+        received_messages_element = pubsub_pb2.ReceivedMessage()
+        received_messages = [received_messages_element]
+        expected_response = pubsub_pb2.StreamingPullResponse(
+            received_messages=received_messages)
         grpc_stub.StreamingPull.return_value = iter([expected_response])
 
         response = client.streaming_pull(requests)
