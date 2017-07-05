@@ -209,7 +209,7 @@ public  final class CropHintsParams extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getAspectRatiosCount() > 0) {
       hash = (37 * hash) + ASPECT_RATIOS_FIELD_NUMBER;
       hash = (53 * hash) + getAspectRatiosList().hashCode();
@@ -219,17 +219,6 @@ public  final class CropHintsParams extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.CropHintsParams parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.CropHintsParams parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.CropHintsParams parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

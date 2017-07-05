@@ -17,7 +17,7 @@ public interface ImageSourceOrBuilder extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>string gcs_image_uri = 1;</code>
+   * <code>optional string gcs_image_uri = 1;</code>
    */
   java.lang.String getGcsImageUri();
   /**
@@ -30,7 +30,7 @@ public interface ImageSourceOrBuilder extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>string gcs_image_uri = 1;</code>
+   * <code>optional string gcs_image_uri = 1;</code>
    */
   com.google.protobuf.ByteString
       getGcsImageUriBytes();
@@ -49,7 +49,7 @@ public interface ImageSourceOrBuilder extends
    * precedence.
    * </pre>
    *
-   * <code>string image_uri = 2;</code>
+   * <code>optional string image_uri = 2;</code>
    */
   java.lang.String getImageUri();
   /**
@@ -66,7 +66,7 @@ public interface ImageSourceOrBuilder extends
    * precedence.
    * </pre>
    *
-   * <code>string image_uri = 2;</code>
+   * <code>optional string image_uri = 2;</code>
    */
   com.google.protobuf.ByteString
       getImageUriBytes();

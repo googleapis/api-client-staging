@@ -58,7 +58,7 @@ public interface AnalyzeEntitiesResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 2;</code>
+   * <code>optional string language = 2;</code>
    */
   java.lang.String getLanguage();
   /**
@@ -68,7 +68,7 @@ public interface AnalyzeEntitiesResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 2;</code>
+   * <code>optional string language = 2;</code>
    */
   com.google.protobuf.ByteString
       getLanguageBytes();

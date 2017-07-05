@@ -139,7 +139,7 @@ public  final class Monitoring extends
      * [Service.monitored_resources][google.api.Service.monitored_resources] section.
      * </pre>
      *
-     * <code>string monitored_resource = 1;</code>
+     * <code>optional string monitored_resource = 1;</code>
      */
     java.lang.String getMonitoredResource();
     /**
@@ -148,7 +148,7 @@ public  final class Monitoring extends
      * [Service.monitored_resources][google.api.Service.monitored_resources] section.
      * </pre>
      *
-     * <code>string monitored_resource = 1;</code>
+     * <code>optional string monitored_resource = 1;</code>
      */
     com.google.protobuf.ByteString
         getMonitoredResourceBytes();
@@ -288,7 +288,7 @@ public  final class Monitoring extends
      * [Service.monitored_resources][google.api.Service.monitored_resources] section.
      * </pre>
      *
-     * <code>string monitored_resource = 1;</code>
+     * <code>optional string monitored_resource = 1;</code>
      */
     public java.lang.String getMonitoredResource() {
       java.lang.Object ref = monitoredResource_;
@@ -308,7 +308,7 @@ public  final class Monitoring extends
      * [Service.monitored_resources][google.api.Service.monitored_resources] section.
      * </pre>
      *
-     * <code>string monitored_resource = 1;</code>
+     * <code>optional string monitored_resource = 1;</code>
      */
     public com.google.protobuf.ByteString
         getMonitoredResourceBytes() {
@@ -438,7 +438,7 @@ public  final class Monitoring extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + MONITORED_RESOURCE_FIELD_NUMBER;
       hash = (53 * hash) + getMonitoredResource().hashCode();
       if (getMetricsCount() > 0) {
@@ -450,17 +450,6 @@ public  final class Monitoring extends
       return hash;
     }
 
-    public static com.google.api.Monitoring.MonitoringDestination parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.api.Monitoring.MonitoringDestination parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.api.Monitoring.MonitoringDestination parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -703,7 +692,7 @@ public  final class Monitoring extends
        * [Service.monitored_resources][google.api.Service.monitored_resources] section.
        * </pre>
        *
-       * <code>string monitored_resource = 1;</code>
+       * <code>optional string monitored_resource = 1;</code>
        */
       public java.lang.String getMonitoredResource() {
         java.lang.Object ref = monitoredResource_;
@@ -723,7 +712,7 @@ public  final class Monitoring extends
        * [Service.monitored_resources][google.api.Service.monitored_resources] section.
        * </pre>
        *
-       * <code>string monitored_resource = 1;</code>
+       * <code>optional string monitored_resource = 1;</code>
        */
       public com.google.protobuf.ByteString
           getMonitoredResourceBytes() {
@@ -744,7 +733,7 @@ public  final class Monitoring extends
        * [Service.monitored_resources][google.api.Service.monitored_resources] section.
        * </pre>
        *
-       * <code>string monitored_resource = 1;</code>
+       * <code>optional string monitored_resource = 1;</code>
        */
       public Builder setMonitoredResource(
           java.lang.String value) {
@@ -762,7 +751,7 @@ public  final class Monitoring extends
        * [Service.monitored_resources][google.api.Service.monitored_resources] section.
        * </pre>
        *
-       * <code>string monitored_resource = 1;</code>
+       * <code>optional string monitored_resource = 1;</code>
        */
       public Builder clearMonitoredResource() {
         
@@ -776,7 +765,7 @@ public  final class Monitoring extends
        * [Service.monitored_resources][google.api.Service.monitored_resources] section.
        * </pre>
        *
-       * <code>string monitored_resource = 1;</code>
+       * <code>optional string monitored_resource = 1;</code>
        */
       public Builder setMonitoredResourceBytes(
           com.google.protobuf.ByteString value) {
@@ -1179,7 +1168,7 @@ public  final class Monitoring extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getProducerDestinationsCount() > 0) {
       hash = (37 * hash) + PRODUCER_DESTINATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getProducerDestinationsList().hashCode();
@@ -1193,17 +1182,6 @@ public  final class Monitoring extends
     return hash;
   }
 
-  public static com.google.api.Monitoring parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.Monitoring parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.Monitoring parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

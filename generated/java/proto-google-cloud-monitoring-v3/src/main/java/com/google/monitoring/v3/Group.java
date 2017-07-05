@@ -136,7 +136,7 @@ public  final class Group extends
    * and a unique `{group_id}` that is generated automatically.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -159,7 +159,7 @@ public  final class Group extends
    * and a unique `{group_id}` that is generated automatically.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -182,7 +182,7 @@ public  final class Group extends
    * A user-assigned name for this group, used only for display purposes.
    * </pre>
    *
-   * <code>string display_name = 2;</code>
+   * <code>optional string display_name = 2;</code>
    */
   public java.lang.String getDisplayName() {
     java.lang.Object ref = displayName_;
@@ -201,7 +201,7 @@ public  final class Group extends
    * A user-assigned name for this group, used only for display purposes.
    * </pre>
    *
-   * <code>string display_name = 2;</code>
+   * <code>optional string display_name = 2;</code>
    */
   public com.google.protobuf.ByteString
       getDisplayNameBytes() {
@@ -226,7 +226,7 @@ public  final class Group extends
    * For groups with no parent, `parentName` is the empty string, `""`.
    * </pre>
    *
-   * <code>string parent_name = 3;</code>
+   * <code>optional string parent_name = 3;</code>
    */
   public java.lang.String getParentName() {
     java.lang.Object ref = parentName_;
@@ -247,7 +247,7 @@ public  final class Group extends
    * For groups with no parent, `parentName` is the empty string, `""`.
    * </pre>
    *
-   * <code>string parent_name = 3;</code>
+   * <code>optional string parent_name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getParentNameBytes() {
@@ -270,7 +270,7 @@ public  final class Group extends
    * The filter used to determine which monitored resources belong to this group.
    * </pre>
    *
-   * <code>string filter = 5;</code>
+   * <code>optional string filter = 5;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -289,7 +289,7 @@ public  final class Group extends
    * The filter used to determine which monitored resources belong to this group.
    * </pre>
    *
-   * <code>string filter = 5;</code>
+   * <code>optional string filter = 5;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -313,7 +313,7 @@ public  final class Group extends
    * The system can perform additional analysis on groups that are clusters.
    * </pre>
    *
-   * <code>bool is_cluster = 6;</code>
+   * <code>optional bool is_cluster = 6;</code>
    */
   public boolean getIsCluster() {
     return isCluster_;
@@ -404,7 +404,7 @@ public  final class Group extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + DISPLAY_NAME_FIELD_NUMBER;
@@ -421,17 +421,6 @@ public  final class Group extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.Group parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.Group parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.Group parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -704,7 +693,7 @@ public  final class Group extends
      * and a unique `{group_id}` that is generated automatically.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -727,7 +716,7 @@ public  final class Group extends
      * and a unique `{group_id}` that is generated automatically.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -751,7 +740,7 @@ public  final class Group extends
      * and a unique `{group_id}` that is generated automatically.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -772,7 +761,7 @@ public  final class Group extends
      * and a unique `{group_id}` that is generated automatically.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -789,7 +778,7 @@ public  final class Group extends
      * and a unique `{group_id}` that is generated automatically.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -809,7 +798,7 @@ public  final class Group extends
      * A user-assigned name for this group, used only for display purposes.
      * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * <code>optional string display_name = 2;</code>
      */
     public java.lang.String getDisplayName() {
       java.lang.Object ref = displayName_;
@@ -828,7 +817,7 @@ public  final class Group extends
      * A user-assigned name for this group, used only for display purposes.
      * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * <code>optional string display_name = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDisplayNameBytes() {
@@ -848,7 +837,7 @@ public  final class Group extends
      * A user-assigned name for this group, used only for display purposes.
      * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * <code>optional string display_name = 2;</code>
      */
     public Builder setDisplayName(
         java.lang.String value) {
@@ -865,7 +854,7 @@ public  final class Group extends
      * A user-assigned name for this group, used only for display purposes.
      * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * <code>optional string display_name = 2;</code>
      */
     public Builder clearDisplayName() {
       
@@ -878,7 +867,7 @@ public  final class Group extends
      * A user-assigned name for this group, used only for display purposes.
      * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * <code>optional string display_name = 2;</code>
      */
     public Builder setDisplayNameBytes(
         com.google.protobuf.ByteString value) {
@@ -900,7 +889,7 @@ public  final class Group extends
      * For groups with no parent, `parentName` is the empty string, `""`.
      * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * <code>optional string parent_name = 3;</code>
      */
     public java.lang.String getParentName() {
       java.lang.Object ref = parentName_;
@@ -921,7 +910,7 @@ public  final class Group extends
      * For groups with no parent, `parentName` is the empty string, `""`.
      * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * <code>optional string parent_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getParentNameBytes() {
@@ -943,7 +932,7 @@ public  final class Group extends
      * For groups with no parent, `parentName` is the empty string, `""`.
      * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * <code>optional string parent_name = 3;</code>
      */
     public Builder setParentName(
         java.lang.String value) {
@@ -962,7 +951,7 @@ public  final class Group extends
      * For groups with no parent, `parentName` is the empty string, `""`.
      * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * <code>optional string parent_name = 3;</code>
      */
     public Builder clearParentName() {
       
@@ -977,7 +966,7 @@ public  final class Group extends
      * For groups with no parent, `parentName` is the empty string, `""`.
      * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * <code>optional string parent_name = 3;</code>
      */
     public Builder setParentNameBytes(
         com.google.protobuf.ByteString value) {
@@ -997,7 +986,7 @@ public  final class Group extends
      * The filter used to determine which monitored resources belong to this group.
      * </pre>
      *
-     * <code>string filter = 5;</code>
+     * <code>optional string filter = 5;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -1016,7 +1005,7 @@ public  final class Group extends
      * The filter used to determine which monitored resources belong to this group.
      * </pre>
      *
-     * <code>string filter = 5;</code>
+     * <code>optional string filter = 5;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -1036,7 +1025,7 @@ public  final class Group extends
      * The filter used to determine which monitored resources belong to this group.
      * </pre>
      *
-     * <code>string filter = 5;</code>
+     * <code>optional string filter = 5;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -1053,7 +1042,7 @@ public  final class Group extends
      * The filter used to determine which monitored resources belong to this group.
      * </pre>
      *
-     * <code>string filter = 5;</code>
+     * <code>optional string filter = 5;</code>
      */
     public Builder clearFilter() {
       
@@ -1066,7 +1055,7 @@ public  final class Group extends
      * The filter used to determine which monitored resources belong to this group.
      * </pre>
      *
-     * <code>string filter = 5;</code>
+     * <code>optional string filter = 5;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1087,7 +1076,7 @@ public  final class Group extends
      * The system can perform additional analysis on groups that are clusters.
      * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * <code>optional bool is_cluster = 6;</code>
      */
     public boolean getIsCluster() {
       return isCluster_;
@@ -1098,7 +1087,7 @@ public  final class Group extends
      * The system can perform additional analysis on groups that are clusters.
      * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * <code>optional bool is_cluster = 6;</code>
      */
     public Builder setIsCluster(boolean value) {
       
@@ -1112,7 +1101,7 @@ public  final class Group extends
      * The system can perform additional analysis on groups that are clusters.
      * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * <code>optional bool is_cluster = 6;</code>
      */
     public Builder clearIsCluster() {
       

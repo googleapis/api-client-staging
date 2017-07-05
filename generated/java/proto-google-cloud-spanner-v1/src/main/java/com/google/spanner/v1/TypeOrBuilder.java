@@ -12,7 +12,7 @@ public interface TypeOrBuilder extends
    * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
    * </pre>
    *
-   * <code>.google.spanner.v1.TypeCode code = 1;</code>
+   * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
    */
   int getCodeValue();
   /**
@@ -20,7 +20,7 @@ public interface TypeOrBuilder extends
    * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
    * </pre>
    *
-   * <code>.google.spanner.v1.TypeCode code = 1;</code>
+   * <code>optional .google.spanner.v1.TypeCode code = 1;</code>
    */
   com.google.spanner.v1.TypeCode getCode();
 
@@ -30,7 +30,7 @@ public interface TypeOrBuilder extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
    */
   boolean hasArrayElementType();
   /**
@@ -39,7 +39,7 @@ public interface TypeOrBuilder extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
    */
   com.google.spanner.v1.Type getArrayElementType();
   /**
@@ -48,7 +48,7 @@ public interface TypeOrBuilder extends
    * is the type of the array elements.
    * </pre>
    *
-   * <code>.google.spanner.v1.Type array_element_type = 2;</code>
+   * <code>optional .google.spanner.v1.Type array_element_type = 2;</code>
    */
   com.google.spanner.v1.TypeOrBuilder getArrayElementTypeOrBuilder();
 
@@ -58,7 +58,7 @@ public interface TypeOrBuilder extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
    */
   boolean hasStructType();
   /**
@@ -67,7 +67,7 @@ public interface TypeOrBuilder extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
    */
   com.google.spanner.v1.StructType getStructType();
   /**
@@ -76,7 +76,7 @@ public interface TypeOrBuilder extends
    * provides type information for the struct's fields.
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType struct_type = 3;</code>
+   * <code>optional .google.spanner.v1.StructType struct_type = 3;</code>
    */
   com.google.spanner.v1.StructTypeOrBuilder getStructTypeOrBuilder();
 }

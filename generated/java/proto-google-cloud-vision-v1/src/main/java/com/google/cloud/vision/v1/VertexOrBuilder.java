@@ -12,7 +12,7 @@ public interface VertexOrBuilder extends
    * X coordinate.
    * </pre>
    *
-   * <code>int32 x = 1;</code>
+   * <code>optional int32 x = 1;</code>
    */
   int getX();
 
@@ -21,7 +21,7 @@ public interface VertexOrBuilder extends
    * Y coordinate.
    * </pre>
    *
-   * <code>int32 y = 2;</code>
+   * <code>optional int32 y = 2;</code>
    */
   int getY();
 }

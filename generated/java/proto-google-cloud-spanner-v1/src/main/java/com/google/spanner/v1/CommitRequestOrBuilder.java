@@ -12,7 +12,7 @@ public interface CommitRequestOrBuilder extends
    * Required. The session in which the transaction to be committed is running.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   java.lang.String getSession();
   /**
@@ -20,7 +20,7 @@ public interface CommitRequestOrBuilder extends
    * Required. The session in which the transaction to be committed is running.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   com.google.protobuf.ByteString
       getSessionBytes();
@@ -30,7 +30,7 @@ public interface CommitRequestOrBuilder extends
    * Commit a previously-started transaction.
    * </pre>
    *
-   * <code>bytes transaction_id = 2;</code>
+   * <code>optional bytes transaction_id = 2;</code>
    */
   com.google.protobuf.ByteString getTransactionId();
 
@@ -47,7 +47,7 @@ public interface CommitRequestOrBuilder extends
    * [Commit][google.spanner.v1.Spanner.Commit] instead.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
   com.google.spanner.v1.TransactionOptions getSingleUseTransaction();
   /**
@@ -63,7 +63,7 @@ public interface CommitRequestOrBuilder extends
    * [Commit][google.spanner.v1.Spanner.Commit] instead.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
   com.google.spanner.v1.TransactionOptionsOrBuilder getSingleUseTransactionOrBuilder();
 

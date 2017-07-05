@@ -16,7 +16,7 @@ public interface DeleteEventsRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>string project_name = 1;</code>
+   * <code>optional string project_name = 1;</code>
    */
   java.lang.String getProjectName();
   /**
@@ -28,7 +28,7 @@ public interface DeleteEventsRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>string project_name = 1;</code>
+   * <code>optional string project_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectNameBytes();

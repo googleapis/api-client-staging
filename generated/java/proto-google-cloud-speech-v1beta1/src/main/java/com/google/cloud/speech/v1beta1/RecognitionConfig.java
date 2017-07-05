@@ -329,7 +329,7 @@ public  final class RecognitionConfig extends
    * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
    */
   public int getEncodingValue() {
     return encoding_;
@@ -339,7 +339,7 @@ public  final class RecognitionConfig extends
    * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
    */
   public com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding getEncoding() {
     com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding result = com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding.valueOf(encoding_);
@@ -357,7 +357,7 @@ public  final class RecognitionConfig extends
    * the audio source (instead of re-sampling).
    * </pre>
    *
-   * <code>int32 sample_rate = 2;</code>
+   * <code>optional int32 sample_rate = 2;</code>
    */
   public int getSampleRate() {
     return sampleRate_;
@@ -374,7 +374,7 @@ public  final class RecognitionConfig extends
    * for a list of the currently supported language codes.
    * </pre>
    *
-   * <code>string language_code = 3;</code>
+   * <code>optional string language_code = 3;</code>
    */
   public java.lang.String getLanguageCode() {
     java.lang.Object ref = languageCode_;
@@ -397,7 +397,7 @@ public  final class RecognitionConfig extends
    * for a list of the currently supported language codes.
    * </pre>
    *
-   * <code>string language_code = 3;</code>
+   * <code>optional string language_code = 3;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageCodeBytes() {
@@ -425,7 +425,7 @@ public  final class RecognitionConfig extends
    * one. If omitted, will return a maximum of one.
    * </pre>
    *
-   * <code>int32 max_alternatives = 4;</code>
+   * <code>optional int32 max_alternatives = 4;</code>
    */
   public int getMaxAlternatives() {
     return maxAlternatives_;
@@ -441,7 +441,7 @@ public  final class RecognitionConfig extends
    * won't be filtered out.
    * </pre>
    *
-   * <code>bool profanity_filter = 5;</code>
+   * <code>optional bool profanity_filter = 5;</code>
    */
   public boolean getProfanityFilter() {
     return profanityFilter_;
@@ -454,7 +454,7 @@ public  final class RecognitionConfig extends
    * *Optional* A means to provide context to assist the speech recognition.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+   * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
    */
   public boolean hasSpeechContext() {
     return speechContext_ != null;
@@ -464,7 +464,7 @@ public  final class RecognitionConfig extends
    * *Optional* A means to provide context to assist the speech recognition.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+   * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
    */
   public com.google.cloud.speech.v1beta1.SpeechContext getSpeechContext() {
     return speechContext_ == null ? com.google.cloud.speech.v1beta1.SpeechContext.getDefaultInstance() : speechContext_;
@@ -474,7 +474,7 @@ public  final class RecognitionConfig extends
    * *Optional* A means to provide context to assist the speech recognition.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+   * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
    */
   public com.google.cloud.speech.v1beta1.SpeechContextOrBuilder getSpeechContextOrBuilder() {
     return getSpeechContext();
@@ -579,7 +579,7 @@ public  final class RecognitionConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + ENCODING_FIELD_NUMBER;
     hash = (53 * hash) + encoding_;
     hash = (37 * hash) + SAMPLE_RATE_FIELD_NUMBER;
@@ -600,17 +600,6 @@ public  final class RecognitionConfig extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1beta1.RecognitionConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1beta1.RecognitionConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1beta1.RecognitionConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -869,7 +858,7 @@ public  final class RecognitionConfig extends
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     public int getEncodingValue() {
       return encoding_;
@@ -879,7 +868,7 @@ public  final class RecognitionConfig extends
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     public Builder setEncodingValue(int value) {
       encoding_ = value;
@@ -891,7 +880,7 @@ public  final class RecognitionConfig extends
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding getEncoding() {
       com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding result = com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding.valueOf(encoding_);
@@ -902,7 +891,7 @@ public  final class RecognitionConfig extends
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     public Builder setEncoding(com.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding value) {
       if (value == null) {
@@ -918,7 +907,7 @@ public  final class RecognitionConfig extends
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     public Builder clearEncoding() {
       
@@ -937,7 +926,7 @@ public  final class RecognitionConfig extends
      * the audio source (instead of re-sampling).
      * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * <code>optional int32 sample_rate = 2;</code>
      */
     public int getSampleRate() {
       return sampleRate_;
@@ -951,7 +940,7 @@ public  final class RecognitionConfig extends
      * the audio source (instead of re-sampling).
      * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * <code>optional int32 sample_rate = 2;</code>
      */
     public Builder setSampleRate(int value) {
       
@@ -968,7 +957,7 @@ public  final class RecognitionConfig extends
      * the audio source (instead of re-sampling).
      * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * <code>optional int32 sample_rate = 2;</code>
      */
     public Builder clearSampleRate() {
       
@@ -987,7 +976,7 @@ public  final class RecognitionConfig extends
      * for a list of the currently supported language codes.
      * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * <code>optional string language_code = 3;</code>
      */
     public java.lang.String getLanguageCode() {
       java.lang.Object ref = languageCode_;
@@ -1010,7 +999,7 @@ public  final class RecognitionConfig extends
      * for a list of the currently supported language codes.
      * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * <code>optional string language_code = 3;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageCodeBytes() {
@@ -1034,7 +1023,7 @@ public  final class RecognitionConfig extends
      * for a list of the currently supported language codes.
      * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * <code>optional string language_code = 3;</code>
      */
     public Builder setLanguageCode(
         java.lang.String value) {
@@ -1055,7 +1044,7 @@ public  final class RecognitionConfig extends
      * for a list of the currently supported language codes.
      * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * <code>optional string language_code = 3;</code>
      */
     public Builder clearLanguageCode() {
       
@@ -1072,7 +1061,7 @@ public  final class RecognitionConfig extends
      * for a list of the currently supported language codes.
      * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * <code>optional string language_code = 3;</code>
      */
     public Builder setLanguageCodeBytes(
         com.google.protobuf.ByteString value) {
@@ -1097,7 +1086,7 @@ public  final class RecognitionConfig extends
      * one. If omitted, will return a maximum of one.
      * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * <code>optional int32 max_alternatives = 4;</code>
      */
     public int getMaxAlternatives() {
       return maxAlternatives_;
@@ -1112,7 +1101,7 @@ public  final class RecognitionConfig extends
      * one. If omitted, will return a maximum of one.
      * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * <code>optional int32 max_alternatives = 4;</code>
      */
     public Builder setMaxAlternatives(int value) {
       
@@ -1130,7 +1119,7 @@ public  final class RecognitionConfig extends
      * one. If omitted, will return a maximum of one.
      * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * <code>optional int32 max_alternatives = 4;</code>
      */
     public Builder clearMaxAlternatives() {
       
@@ -1148,7 +1137,7 @@ public  final class RecognitionConfig extends
      * won't be filtered out.
      * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * <code>optional bool profanity_filter = 5;</code>
      */
     public boolean getProfanityFilter() {
       return profanityFilter_;
@@ -1161,7 +1150,7 @@ public  final class RecognitionConfig extends
      * won't be filtered out.
      * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * <code>optional bool profanity_filter = 5;</code>
      */
     public Builder setProfanityFilter(boolean value) {
       
@@ -1177,7 +1166,7 @@ public  final class RecognitionConfig extends
      * won't be filtered out.
      * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * <code>optional bool profanity_filter = 5;</code>
      */
     public Builder clearProfanityFilter() {
       
@@ -1194,7 +1183,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public boolean hasSpeechContext() {
       return speechContextBuilder_ != null || speechContext_ != null;
@@ -1204,7 +1193,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public com.google.cloud.speech.v1beta1.SpeechContext getSpeechContext() {
       if (speechContextBuilder_ == null) {
@@ -1218,7 +1207,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public Builder setSpeechContext(com.google.cloud.speech.v1beta1.SpeechContext value) {
       if (speechContextBuilder_ == null) {
@@ -1238,7 +1227,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public Builder setSpeechContext(
         com.google.cloud.speech.v1beta1.SpeechContext.Builder builderForValue) {
@@ -1256,7 +1245,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public Builder mergeSpeechContext(com.google.cloud.speech.v1beta1.SpeechContext value) {
       if (speechContextBuilder_ == null) {
@@ -1278,7 +1267,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public Builder clearSpeechContext() {
       if (speechContextBuilder_ == null) {
@@ -1296,7 +1285,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public com.google.cloud.speech.v1beta1.SpeechContext.Builder getSpeechContextBuilder() {
       
@@ -1308,7 +1297,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     public com.google.cloud.speech.v1beta1.SpeechContextOrBuilder getSpeechContextOrBuilder() {
       if (speechContextBuilder_ != null) {
@@ -1323,7 +1312,7 @@ public  final class RecognitionConfig extends
      * *Optional* A means to provide context to assist the speech recognition.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * <code>optional .google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.speech.v1beta1.SpeechContext, com.google.cloud.speech.v1beta1.SpeechContext.Builder, com.google.cloud.speech.v1beta1.SpeechContextOrBuilder> 

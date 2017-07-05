@@ -116,7 +116,7 @@ public  final class HttpBody extends
    * The HTTP Content-Type string representing the content type of the body.
    * </pre>
    *
-   * <code>string content_type = 1;</code>
+   * <code>optional string content_type = 1;</code>
    */
   public java.lang.String getContentType() {
     java.lang.Object ref = contentType_;
@@ -135,7 +135,7 @@ public  final class HttpBody extends
    * The HTTP Content-Type string representing the content type of the body.
    * </pre>
    *
-   * <code>string content_type = 1;</code>
+   * <code>optional string content_type = 1;</code>
    */
   public com.google.protobuf.ByteString
       getContentTypeBytes() {
@@ -158,7 +158,7 @@ public  final class HttpBody extends
    * HTTP body binary data.
    * </pre>
    *
-   * <code>bytes data = 2;</code>
+   * <code>optional bytes data = 2;</code>
    */
   public com.google.protobuf.ByteString getData() {
     return data_;
@@ -225,7 +225,7 @@ public  final class HttpBody extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + CONTENT_TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getContentType().hashCode();
     hash = (37 * hash) + DATA_FIELD_NUMBER;
@@ -235,17 +235,6 @@ public  final class HttpBody extends
     return hash;
   }
 
-  public static com.google.api.HttpBody parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.HttpBody parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.HttpBody parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -498,7 +487,7 @@ public  final class HttpBody extends
      * The HTTP Content-Type string representing the content type of the body.
      * </pre>
      *
-     * <code>string content_type = 1;</code>
+     * <code>optional string content_type = 1;</code>
      */
     public java.lang.String getContentType() {
       java.lang.Object ref = contentType_;
@@ -517,7 +506,7 @@ public  final class HttpBody extends
      * The HTTP Content-Type string representing the content type of the body.
      * </pre>
      *
-     * <code>string content_type = 1;</code>
+     * <code>optional string content_type = 1;</code>
      */
     public com.google.protobuf.ByteString
         getContentTypeBytes() {
@@ -537,7 +526,7 @@ public  final class HttpBody extends
      * The HTTP Content-Type string representing the content type of the body.
      * </pre>
      *
-     * <code>string content_type = 1;</code>
+     * <code>optional string content_type = 1;</code>
      */
     public Builder setContentType(
         java.lang.String value) {
@@ -554,7 +543,7 @@ public  final class HttpBody extends
      * The HTTP Content-Type string representing the content type of the body.
      * </pre>
      *
-     * <code>string content_type = 1;</code>
+     * <code>optional string content_type = 1;</code>
      */
     public Builder clearContentType() {
       
@@ -567,7 +556,7 @@ public  final class HttpBody extends
      * The HTTP Content-Type string representing the content type of the body.
      * </pre>
      *
-     * <code>string content_type = 1;</code>
+     * <code>optional string content_type = 1;</code>
      */
     public Builder setContentTypeBytes(
         com.google.protobuf.ByteString value) {
@@ -587,7 +576,7 @@ public  final class HttpBody extends
      * HTTP body binary data.
      * </pre>
      *
-     * <code>bytes data = 2;</code>
+     * <code>optional bytes data = 2;</code>
      */
     public com.google.protobuf.ByteString getData() {
       return data_;
@@ -597,7 +586,7 @@ public  final class HttpBody extends
      * HTTP body binary data.
      * </pre>
      *
-     * <code>bytes data = 2;</code>
+     * <code>optional bytes data = 2;</code>
      */
     public Builder setData(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -613,7 +602,7 @@ public  final class HttpBody extends
      * HTTP body binary data.
      * </pre>
      *
-     * <code>bytes data = 2;</code>
+     * <code>optional bytes data = 2;</code>
      */
     public Builder clearData() {
       

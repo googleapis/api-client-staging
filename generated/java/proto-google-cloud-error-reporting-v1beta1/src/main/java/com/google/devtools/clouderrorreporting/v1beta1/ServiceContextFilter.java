@@ -101,7 +101,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
    * </pre>
    *
-   * <code>string service = 2;</code>
+   * <code>optional string service = 2;</code>
    */
   public java.lang.String getService() {
     java.lang.Object ref = service_;
@@ -121,7 +121,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
    * </pre>
    *
-   * <code>string service = 2;</code>
+   * <code>optional string service = 2;</code>
    */
   public com.google.protobuf.ByteString
       getServiceBytes() {
@@ -145,7 +145,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
    * </pre>
    *
-   * <code>string version = 3;</code>
+   * <code>optional string version = 3;</code>
    */
   public java.lang.String getVersion() {
     java.lang.Object ref = version_;
@@ -165,7 +165,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
    * </pre>
    *
-   * <code>string version = 3;</code>
+   * <code>optional string version = 3;</code>
    */
   public com.google.protobuf.ByteString
       getVersionBytes() {
@@ -189,7 +189,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
    * </pre>
    *
-   * <code>string resource_type = 4;</code>
+   * <code>optional string resource_type = 4;</code>
    */
   public java.lang.String getResourceType() {
     java.lang.Object ref = resourceType_;
@@ -209,7 +209,7 @@ public  final class ServiceContextFilter extends
    * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
    * </pre>
    *
-   * <code>string resource_type = 4;</code>
+   * <code>optional string resource_type = 4;</code>
    */
   public com.google.protobuf.ByteString
       getResourceTypeBytes() {
@@ -293,7 +293,7 @@ public  final class ServiceContextFilter extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SERVICE_FIELD_NUMBER;
     hash = (53 * hash) + getService().hashCode();
     hash = (37 * hash) + VERSION_FIELD_NUMBER;
@@ -305,17 +305,6 @@ public  final class ServiceContextFilter extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -553,7 +542,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public java.lang.String getService() {
       java.lang.Object ref = service_;
@@ -573,7 +562,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public com.google.protobuf.ByteString
         getServiceBytes() {
@@ -594,7 +583,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder setService(
         java.lang.String value) {
@@ -612,7 +601,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder clearService() {
       
@@ -626,7 +615,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder setServiceBytes(
         com.google.protobuf.ByteString value) {
@@ -647,7 +636,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public java.lang.String getVersion() {
       java.lang.Object ref = version_;
@@ -667,7 +656,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public com.google.protobuf.ByteString
         getVersionBytes() {
@@ -688,7 +677,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder setVersion(
         java.lang.String value) {
@@ -706,7 +695,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder clearVersion() {
       
@@ -720,7 +709,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder setVersionBytes(
         com.google.protobuf.ByteString value) {
@@ -741,7 +730,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public java.lang.String getResourceType() {
       java.lang.Object ref = resourceType_;
@@ -761,7 +750,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public com.google.protobuf.ByteString
         getResourceTypeBytes() {
@@ -782,7 +771,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder setResourceType(
         java.lang.String value) {
@@ -800,7 +789,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder clearResourceType() {
       
@@ -814,7 +803,7 @@ public  final class ServiceContextFilter extends
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder setResourceTypeBytes(
         com.google.protobuf.ByteString value) {

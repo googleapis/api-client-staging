@@ -95,7 +95,7 @@ public  final class Money extends
    * The 3-letter currency code defined in ISO 4217.
    * </pre>
    *
-   * <code>string currency_code = 1;</code>
+   * <code>optional string currency_code = 1;</code>
    */
   public java.lang.String getCurrencyCode() {
     java.lang.Object ref = currencyCode_;
@@ -114,7 +114,7 @@ public  final class Money extends
    * The 3-letter currency code defined in ISO 4217.
    * </pre>
    *
-   * <code>string currency_code = 1;</code>
+   * <code>optional string currency_code = 1;</code>
    */
   public com.google.protobuf.ByteString
       getCurrencyCodeBytes() {
@@ -138,7 +138,7 @@ public  final class Money extends
    * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
    * </pre>
    *
-   * <code>int64 units = 2;</code>
+   * <code>optional int64 units = 2;</code>
    */
   public long getUnits() {
     return units_;
@@ -156,7 +156,7 @@ public  final class Money extends
    * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
    * </pre>
    *
-   * <code>int32 nanos = 3;</code>
+   * <code>optional int32 nanos = 3;</code>
    */
   public int getNanos() {
     return nanos_;
@@ -232,7 +232,7 @@ public  final class Money extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + CURRENCY_CODE_FIELD_NUMBER;
     hash = (53 * hash) + getCurrencyCode().hashCode();
     hash = (37 * hash) + UNITS_FIELD_NUMBER;
@@ -245,17 +245,6 @@ public  final class Money extends
     return hash;
   }
 
-  public static com.google.type.Money parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.type.Money parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.type.Money parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -487,7 +476,7 @@ public  final class Money extends
      * The 3-letter currency code defined in ISO 4217.
      * </pre>
      *
-     * <code>string currency_code = 1;</code>
+     * <code>optional string currency_code = 1;</code>
      */
     public java.lang.String getCurrencyCode() {
       java.lang.Object ref = currencyCode_;
@@ -506,7 +495,7 @@ public  final class Money extends
      * The 3-letter currency code defined in ISO 4217.
      * </pre>
      *
-     * <code>string currency_code = 1;</code>
+     * <code>optional string currency_code = 1;</code>
      */
     public com.google.protobuf.ByteString
         getCurrencyCodeBytes() {
@@ -526,7 +515,7 @@ public  final class Money extends
      * The 3-letter currency code defined in ISO 4217.
      * </pre>
      *
-     * <code>string currency_code = 1;</code>
+     * <code>optional string currency_code = 1;</code>
      */
     public Builder setCurrencyCode(
         java.lang.String value) {
@@ -543,7 +532,7 @@ public  final class Money extends
      * The 3-letter currency code defined in ISO 4217.
      * </pre>
      *
-     * <code>string currency_code = 1;</code>
+     * <code>optional string currency_code = 1;</code>
      */
     public Builder clearCurrencyCode() {
       
@@ -556,7 +545,7 @@ public  final class Money extends
      * The 3-letter currency code defined in ISO 4217.
      * </pre>
      *
-     * <code>string currency_code = 1;</code>
+     * <code>optional string currency_code = 1;</code>
      */
     public Builder setCurrencyCodeBytes(
         com.google.protobuf.ByteString value) {
@@ -577,7 +566,7 @@ public  final class Money extends
      * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      * </pre>
      *
-     * <code>int64 units = 2;</code>
+     * <code>optional int64 units = 2;</code>
      */
     public long getUnits() {
       return units_;
@@ -588,7 +577,7 @@ public  final class Money extends
      * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      * </pre>
      *
-     * <code>int64 units = 2;</code>
+     * <code>optional int64 units = 2;</code>
      */
     public Builder setUnits(long value) {
       
@@ -602,7 +591,7 @@ public  final class Money extends
      * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      * </pre>
      *
-     * <code>int64 units = 2;</code>
+     * <code>optional int64 units = 2;</code>
      */
     public Builder clearUnits() {
       
@@ -622,7 +611,7 @@ public  final class Money extends
      * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      * </pre>
      *
-     * <code>int32 nanos = 3;</code>
+     * <code>optional int32 nanos = 3;</code>
      */
     public int getNanos() {
       return nanos_;
@@ -637,7 +626,7 @@ public  final class Money extends
      * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      * </pre>
      *
-     * <code>int32 nanos = 3;</code>
+     * <code>optional int32 nanos = 3;</code>
      */
     public Builder setNanos(int value) {
       
@@ -655,7 +644,7 @@ public  final class Money extends
      * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      * </pre>
      *
-     * <code>int32 nanos = 3;</code>
+     * <code>optional int32 nanos = 3;</code>
      */
     public Builder clearNanos() {
       

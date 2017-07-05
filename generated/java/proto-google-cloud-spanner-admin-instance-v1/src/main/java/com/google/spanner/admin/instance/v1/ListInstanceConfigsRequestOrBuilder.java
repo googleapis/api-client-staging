@@ -14,7 +14,7 @@ public interface ListInstanceConfigsRequestOrBuilder extends
    * `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -24,7 +24,7 @@ public interface ListInstanceConfigsRequestOrBuilder extends
    * `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -35,7 +35,7 @@ public interface ListInstanceConfigsRequestOrBuilder extends
    * less, defaults to the server's maximum allowed page size.
    * </pre>
    *
-   * <code>int32 page_size = 2;</code>
+   * <code>optional int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -46,7 +46,7 @@ public interface ListInstanceConfigsRequestOrBuilder extends
    * from a previous [ListInstanceConfigsResponse][google.spanner.admin.instance.v1.ListInstanceConfigsResponse].
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -56,7 +56,7 @@ public interface ListInstanceConfigsRequestOrBuilder extends
    * from a previous [ListInstanceConfigsResponse][google.spanner.admin.instance.v1.ListInstanceConfigsResponse].
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

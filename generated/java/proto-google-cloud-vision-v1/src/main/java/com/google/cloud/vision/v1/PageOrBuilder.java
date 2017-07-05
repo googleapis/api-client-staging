@@ -12,7 +12,7 @@ public interface PageOrBuilder extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   boolean hasProperty();
   /**
@@ -20,7 +20,7 @@ public interface PageOrBuilder extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty();
   /**
@@ -28,7 +28,7 @@ public interface PageOrBuilder extends
    * Additional information detected on the page.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder();
 
@@ -37,7 +37,7 @@ public interface PageOrBuilder extends
    * Page width in pixels.
    * </pre>
    *
-   * <code>int32 width = 2;</code>
+   * <code>optional int32 width = 2;</code>
    */
   int getWidth();
 
@@ -46,7 +46,7 @@ public interface PageOrBuilder extends
    * Page height in pixels.
    * </pre>
    *
-   * <code>int32 height = 3;</code>
+   * <code>optional int32 height = 3;</code>
    */
   int getHeight();
 

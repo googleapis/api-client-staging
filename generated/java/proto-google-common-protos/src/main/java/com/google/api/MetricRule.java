@@ -63,10 +63,9 @@ public  final class MetricRule extends
               mutable_bitField0_ |= 0x00000002;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-            metricCosts__ = input.readMessage(
+            metricCosts = input.readMessage(
                 MetricCostsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            metricCosts_.getMutableMap().put(
-                metricCosts__.getKey(), metricCosts__.getValue());
+            metricCosts_.getMutableMap().put(metricCosts.getKey(), metricCosts.getValue());
             break;
           }
         }
@@ -112,7 +111,7 @@ public  final class MetricRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public java.lang.String getSelector() {
     java.lang.Object ref = selector_;
@@ -132,7 +131,7 @@ public  final class MetricRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSelectorBytes() {
@@ -271,12 +270,15 @@ public  final class MetricRule extends
     if (!getSelectorBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, selector_);
     }
-    com.google.protobuf.GeneratedMessageV3
-      .serializeStringMapTo(
-        output,
-        internalGetMetricCosts(),
-        MetricCostsDefaultEntryHolder.defaultEntry,
-        2);
+    for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
+         : internalGetMetricCosts().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+      metricCosts = MetricCostsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      output.writeMessage(2, metricCosts);
+    }
   }
 
   public int getSerializedSize() {
@@ -290,12 +292,12 @@ public  final class MetricRule extends
     for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
          : internalGetMetricCosts().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-      metricCosts__ = MetricCostsDefaultEntryHolder.defaultEntry.newBuilderForType()
+      metricCosts = MetricCostsDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, metricCosts__);
+          .computeMessageSize(2, metricCosts);
     }
     memoizedSize = size;
     return size;
@@ -326,7 +328,7 @@ public  final class MetricRule extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SELECTOR_FIELD_NUMBER;
     hash = (53 * hash) + getSelector().hashCode();
     if (!internalGetMetricCosts().getMap().isEmpty()) {
@@ -338,17 +340,6 @@ public  final class MetricRule extends
     return hash;
   }
 
-  public static com.google.api.MetricRule parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.MetricRule parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.MetricRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -603,7 +594,7 @@ public  final class MetricRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public java.lang.String getSelector() {
       java.lang.Object ref = selector_;
@@ -623,7 +614,7 @@ public  final class MetricRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSelectorBytes() {
@@ -644,7 +635,7 @@ public  final class MetricRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelector(
         java.lang.String value) {
@@ -662,7 +653,7 @@ public  final class MetricRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder clearSelector() {
       
@@ -676,7 +667,7 @@ public  final class MetricRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelectorBytes(
         com.google.protobuf.ByteString value) {
@@ -799,8 +790,7 @@ public  final class MetricRule extends
     }
 
     public Builder clearMetricCosts() {
-      internalGetMutableMetricCosts().getMutableMap()
-          .clear();
+      getMutableMetricCosts().clear();
       return this;
     }
     /**
@@ -818,8 +808,7 @@ public  final class MetricRule extends
     public Builder removeMetricCosts(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      internalGetMutableMetricCosts().getMutableMap()
-          .remove(key);
+      getMutableMetricCosts().remove(key);
       return this;
     }
     /**
@@ -846,8 +835,7 @@ public  final class MetricRule extends
         long value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       
-      internalGetMutableMetricCosts().getMutableMap()
-          .put(key, value);
+      getMutableMetricCosts().put(key, value);
       return this;
     }
     /**
@@ -864,8 +852,7 @@ public  final class MetricRule extends
 
     public Builder putAllMetricCosts(
         java.util.Map<java.lang.String, java.lang.Long> values) {
-      internalGetMutableMetricCosts().getMutableMap()
-          .putAll(values);
+      getMutableMetricCosts().putAll(values);
       return this;
     }
     public final Builder setUnknownFields(

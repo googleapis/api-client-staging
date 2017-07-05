@@ -103,7 +103,7 @@ public  final class UpdateInstanceRequest extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public boolean hasInstance() {
     return instance_ != null;
@@ -114,7 +114,7 @@ public  final class UpdateInstanceRequest extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public com.google.spanner.admin.instance.v1.Instance getInstance() {
     return instance_ == null ? com.google.spanner.admin.instance.v1.Instance.getDefaultInstance() : instance_;
@@ -125,7 +125,7 @@ public  final class UpdateInstanceRequest extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder() {
     return getInstance();
@@ -141,7 +141,7 @@ public  final class UpdateInstanceRequest extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   public boolean hasFieldMask() {
     return fieldMask_ != null;
@@ -154,7 +154,7 @@ public  final class UpdateInstanceRequest extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   public com.google.protobuf.FieldMask getFieldMask() {
     return fieldMask_ == null ? com.google.protobuf.FieldMask.getDefaultInstance() : fieldMask_;
@@ -167,7 +167,7 @@ public  final class UpdateInstanceRequest extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   public com.google.protobuf.FieldMaskOrBuilder getFieldMaskOrBuilder() {
     return getFieldMask();
@@ -241,7 +241,7 @@ public  final class UpdateInstanceRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasInstance()) {
       hash = (37 * hash) + INSTANCE_FIELD_NUMBER;
       hash = (53 * hash) + getInstance().hashCode();
@@ -255,17 +255,6 @@ public  final class UpdateInstanceRequest extends
     return hash;
   }
 
-  public static com.google.spanner.admin.instance.v1.UpdateInstanceRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.instance.v1.UpdateInstanceRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.instance.v1.UpdateInstanceRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -509,7 +498,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public boolean hasInstance() {
       return instanceBuilder_ != null || instance_ != null;
@@ -520,7 +509,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.Instance getInstance() {
       if (instanceBuilder_ == null) {
@@ -535,7 +524,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder setInstance(com.google.spanner.admin.instance.v1.Instance value) {
       if (instanceBuilder_ == null) {
@@ -556,7 +545,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder setInstance(
         com.google.spanner.admin.instance.v1.Instance.Builder builderForValue) {
@@ -575,7 +564,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder mergeInstance(com.google.spanner.admin.instance.v1.Instance value) {
       if (instanceBuilder_ == null) {
@@ -598,7 +587,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder clearInstance() {
       if (instanceBuilder_ == null) {
@@ -617,7 +606,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.Instance.Builder getInstanceBuilder() {
       
@@ -630,7 +619,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder() {
       if (instanceBuilder_ != null) {
@@ -646,7 +635,7 @@ public  final class UpdateInstanceRequest extends
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.admin.instance.v1.Instance, com.google.spanner.admin.instance.v1.Instance.Builder, com.google.spanner.admin.instance.v1.InstanceOrBuilder> 
@@ -673,7 +662,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public boolean hasFieldMask() {
       return fieldMaskBuilder_ != null || fieldMask_ != null;
@@ -686,7 +675,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public com.google.protobuf.FieldMask getFieldMask() {
       if (fieldMaskBuilder_ == null) {
@@ -703,7 +692,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public Builder setFieldMask(com.google.protobuf.FieldMask value) {
       if (fieldMaskBuilder_ == null) {
@@ -726,7 +715,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public Builder setFieldMask(
         com.google.protobuf.FieldMask.Builder builderForValue) {
@@ -747,7 +736,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public Builder mergeFieldMask(com.google.protobuf.FieldMask value) {
       if (fieldMaskBuilder_ == null) {
@@ -772,7 +761,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public Builder clearFieldMask() {
       if (fieldMaskBuilder_ == null) {
@@ -793,7 +782,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public com.google.protobuf.FieldMask.Builder getFieldMaskBuilder() {
       
@@ -808,7 +797,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     public com.google.protobuf.FieldMaskOrBuilder getFieldMaskOrBuilder() {
       if (fieldMaskBuilder_ != null) {
@@ -826,7 +815,7 @@ public  final class UpdateInstanceRequest extends
      * about them.
      * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.FieldMask, com.google.protobuf.FieldMask.Builder, com.google.protobuf.FieldMaskOrBuilder> 

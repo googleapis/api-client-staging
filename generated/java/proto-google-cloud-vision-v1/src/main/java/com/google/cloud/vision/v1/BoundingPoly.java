@@ -190,7 +190,7 @@ public  final class BoundingPoly extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getVerticesCount() > 0) {
       hash = (37 * hash) + VERTICES_FIELD_NUMBER;
       hash = (53 * hash) + getVerticesList().hashCode();
@@ -200,17 +200,6 @@ public  final class BoundingPoly extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.BoundingPoly parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.BoundingPoly parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.BoundingPoly parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

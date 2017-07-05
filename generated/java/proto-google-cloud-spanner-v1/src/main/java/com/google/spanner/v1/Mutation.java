@@ -150,7 +150,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be written.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     java.lang.String getTable();
     /**
@@ -158,7 +158,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be written.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     com.google.protobuf.ByteString
         getTableBytes();
@@ -397,7 +397,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be written.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     public java.lang.String getTable() {
       java.lang.Object ref = table_;
@@ -416,7 +416,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be written.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTableBytes() {
@@ -653,7 +653,7 @@ public  final class Mutation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TABLE_FIELD_NUMBER;
       hash = (53 * hash) + getTable().hashCode();
       if (getColumnsCount() > 0) {
@@ -669,17 +669,6 @@ public  final class Mutation extends
       return hash;
     }
 
-    public static com.google.spanner.v1.Mutation.Write parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.spanner.v1.Mutation.Write parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.spanner.v1.Mutation.Write parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -963,7 +952,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be written.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public java.lang.String getTable() {
         java.lang.Object ref = table_;
@@ -982,7 +971,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be written.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public com.google.protobuf.ByteString
           getTableBytes() {
@@ -1002,7 +991,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be written.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder setTable(
           java.lang.String value) {
@@ -1019,7 +1008,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be written.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder clearTable() {
         
@@ -1032,7 +1021,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be written.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder setTableBytes(
           com.google.protobuf.ByteString value) {
@@ -1698,7 +1687,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be deleted.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     java.lang.String getTable();
     /**
@@ -1706,7 +1695,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be deleted.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     com.google.protobuf.ByteString
         getTableBytes();
@@ -1716,7 +1705,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     boolean hasKeySet();
     /**
@@ -1724,7 +1713,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     com.google.spanner.v1.KeySet getKeySet();
     /**
@@ -1732,7 +1721,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder();
   }
@@ -1829,7 +1818,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be deleted.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     public java.lang.String getTable() {
       java.lang.Object ref = table_;
@@ -1848,7 +1837,7 @@ public  final class Mutation extends
      * Required. The table whose rows will be deleted.
      * </pre>
      *
-     * <code>string table = 1;</code>
+     * <code>optional string table = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTableBytes() {
@@ -1871,7 +1860,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     public boolean hasKeySet() {
       return keySet_ != null;
@@ -1881,7 +1870,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     public com.google.spanner.v1.KeySet getKeySet() {
       return keySet_ == null ? com.google.spanner.v1.KeySet.getDefaultInstance() : keySet_;
@@ -1891,7 +1880,7 @@ public  final class Mutation extends
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
      * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
      */
     public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
       return getKeySet();
@@ -1961,7 +1950,7 @@ public  final class Mutation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TABLE_FIELD_NUMBER;
       hash = (53 * hash) + getTable().hashCode();
       if (hasKeySet()) {
@@ -1973,17 +1962,6 @@ public  final class Mutation extends
       return hash;
     }
 
-    public static com.google.spanner.v1.Mutation.Delete parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.spanner.v1.Mutation.Delete parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.spanner.v1.Mutation.Delete parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2217,7 +2195,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be deleted.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public java.lang.String getTable() {
         java.lang.Object ref = table_;
@@ -2236,7 +2214,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be deleted.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public com.google.protobuf.ByteString
           getTableBytes() {
@@ -2256,7 +2234,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be deleted.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder setTable(
           java.lang.String value) {
@@ -2273,7 +2251,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be deleted.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder clearTable() {
         
@@ -2286,7 +2264,7 @@ public  final class Mutation extends
        * Required. The table whose rows will be deleted.
        * </pre>
        *
-       * <code>string table = 1;</code>
+       * <code>optional string table = 1;</code>
        */
       public Builder setTableBytes(
           com.google.protobuf.ByteString value) {
@@ -2308,7 +2286,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public boolean hasKeySet() {
         return keySetBuilder_ != null || keySet_ != null;
@@ -2318,7 +2296,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public com.google.spanner.v1.KeySet getKeySet() {
         if (keySetBuilder_ == null) {
@@ -2332,7 +2310,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public Builder setKeySet(com.google.spanner.v1.KeySet value) {
         if (keySetBuilder_ == null) {
@@ -2352,7 +2330,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public Builder setKeySet(
           com.google.spanner.v1.KeySet.Builder builderForValue) {
@@ -2370,7 +2348,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public Builder mergeKeySet(com.google.spanner.v1.KeySet value) {
         if (keySetBuilder_ == null) {
@@ -2392,7 +2370,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public Builder clearKeySet() {
         if (keySetBuilder_ == null) {
@@ -2410,7 +2388,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public com.google.spanner.v1.KeySet.Builder getKeySetBuilder() {
         
@@ -2422,7 +2400,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       public com.google.spanner.v1.KeySetOrBuilder getKeySetOrBuilder() {
         if (keySetBuilder_ != null) {
@@ -2437,7 +2415,7 @@ public  final class Mutation extends
        * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
        * </pre>
        *
-       * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+       * <code>optional .google.spanner.v1.KeySet key_set = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.spanner.v1.KeySet, com.google.spanner.v1.KeySet.Builder, com.google.spanner.v1.KeySetOrBuilder> 
@@ -2552,7 +2530,7 @@ public  final class Mutation extends
    * the write or transaction fails with error `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
    */
   public com.google.spanner.v1.Mutation.Write getInsert() {
     if (operationCase_ == 1) {
@@ -2566,7 +2544,7 @@ public  final class Mutation extends
    * the write or transaction fails with error `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
    */
   public com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrBuilder() {
     if (operationCase_ == 1) {
@@ -2582,7 +2560,7 @@ public  final class Mutation extends
    * already exist, the transaction fails with error `NOT_FOUND`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
    */
   public com.google.spanner.v1.Mutation.Write getUpdate() {
     if (operationCase_ == 2) {
@@ -2596,7 +2574,7 @@ public  final class Mutation extends
    * already exist, the transaction fails with error `NOT_FOUND`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
    */
   public com.google.spanner.v1.Mutation.WriteOrBuilder getUpdateOrBuilder() {
     if (operationCase_ == 2) {
@@ -2613,7 +2591,7 @@ public  final class Mutation extends
    * column values not explicitly written are preserved.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
    */
   public com.google.spanner.v1.Mutation.Write getInsertOrUpdate() {
     if (operationCase_ == 3) {
@@ -2628,7 +2606,7 @@ public  final class Mutation extends
    * column values not explicitly written are preserved.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
    */
   public com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrUpdateOrBuilder() {
     if (operationCase_ == 3) {
@@ -2646,7 +2624,7 @@ public  final class Mutation extends
    * explicitly written become `NULL`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
    */
   public com.google.spanner.v1.Mutation.Write getReplace() {
     if (operationCase_ == 4) {
@@ -2662,7 +2640,7 @@ public  final class Mutation extends
    * explicitly written become `NULL`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
    */
   public com.google.spanner.v1.Mutation.WriteOrBuilder getReplaceOrBuilder() {
     if (operationCase_ == 4) {
@@ -2678,7 +2656,7 @@ public  final class Mutation extends
    * rows were present.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+   * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
    */
   public com.google.spanner.v1.Mutation.Delete getDelete() {
     if (operationCase_ == 5) {
@@ -2692,7 +2670,7 @@ public  final class Mutation extends
    * rows were present.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+   * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
    */
   public com.google.spanner.v1.Mutation.DeleteOrBuilder getDeleteOrBuilder() {
     if (operationCase_ == 5) {
@@ -2807,7 +2785,7 @@ public  final class Mutation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     switch (operationCase_) {
       case 1:
         hash = (37 * hash) + INSERT_FIELD_NUMBER;
@@ -2837,17 +2815,6 @@ public  final class Mutation extends
     return hash;
   }
 
-  public static com.google.spanner.v1.Mutation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.Mutation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.Mutation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3142,7 +3109,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public com.google.spanner.v1.Mutation.Write getInsert() {
       if (insertBuilder_ == null) {
@@ -3163,7 +3130,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public Builder setInsert(com.google.spanner.v1.Mutation.Write value) {
       if (insertBuilder_ == null) {
@@ -3184,7 +3151,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public Builder setInsert(
         com.google.spanner.v1.Mutation.Write.Builder builderForValue) {
@@ -3203,7 +3170,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public Builder mergeInsert(com.google.spanner.v1.Mutation.Write value) {
       if (insertBuilder_ == null) {
@@ -3230,7 +3197,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public Builder clearInsert() {
       if (insertBuilder_ == null) {
@@ -3254,7 +3221,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public com.google.spanner.v1.Mutation.Write.Builder getInsertBuilder() {
       return getInsertFieldBuilder().getBuilder();
@@ -3265,7 +3232,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     public com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrBuilder() {
       if ((operationCase_ == 1) && (insertBuilder_ != null)) {
@@ -3283,7 +3250,7 @@ public  final class Mutation extends
      * the write or transaction fails with error `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Mutation.Write, com.google.spanner.v1.Mutation.Write.Builder, com.google.spanner.v1.Mutation.WriteOrBuilder> 
@@ -3312,7 +3279,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public com.google.spanner.v1.Mutation.Write getUpdate() {
       if (updateBuilder_ == null) {
@@ -3333,7 +3300,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public Builder setUpdate(com.google.spanner.v1.Mutation.Write value) {
       if (updateBuilder_ == null) {
@@ -3354,7 +3321,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public Builder setUpdate(
         com.google.spanner.v1.Mutation.Write.Builder builderForValue) {
@@ -3373,7 +3340,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public Builder mergeUpdate(com.google.spanner.v1.Mutation.Write value) {
       if (updateBuilder_ == null) {
@@ -3400,7 +3367,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public Builder clearUpdate() {
       if (updateBuilder_ == null) {
@@ -3424,7 +3391,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public com.google.spanner.v1.Mutation.Write.Builder getUpdateBuilder() {
       return getUpdateFieldBuilder().getBuilder();
@@ -3435,7 +3402,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     public com.google.spanner.v1.Mutation.WriteOrBuilder getUpdateOrBuilder() {
       if ((operationCase_ == 2) && (updateBuilder_ != null)) {
@@ -3453,7 +3420,7 @@ public  final class Mutation extends
      * already exist, the transaction fails with error `NOT_FOUND`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Mutation.Write, com.google.spanner.v1.Mutation.Write.Builder, com.google.spanner.v1.Mutation.WriteOrBuilder> 
@@ -3483,7 +3450,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public com.google.spanner.v1.Mutation.Write getInsertOrUpdate() {
       if (insertOrUpdateBuilder_ == null) {
@@ -3505,7 +3472,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public Builder setInsertOrUpdate(com.google.spanner.v1.Mutation.Write value) {
       if (insertOrUpdateBuilder_ == null) {
@@ -3527,7 +3494,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public Builder setInsertOrUpdate(
         com.google.spanner.v1.Mutation.Write.Builder builderForValue) {
@@ -3547,7 +3514,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public Builder mergeInsertOrUpdate(com.google.spanner.v1.Mutation.Write value) {
       if (insertOrUpdateBuilder_ == null) {
@@ -3575,7 +3542,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public Builder clearInsertOrUpdate() {
       if (insertOrUpdateBuilder_ == null) {
@@ -3600,7 +3567,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public com.google.spanner.v1.Mutation.Write.Builder getInsertOrUpdateBuilder() {
       return getInsertOrUpdateFieldBuilder().getBuilder();
@@ -3612,7 +3579,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     public com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrUpdateOrBuilder() {
       if ((operationCase_ == 3) && (insertOrUpdateBuilder_ != null)) {
@@ -3631,7 +3598,7 @@ public  final class Mutation extends
      * column values not explicitly written are preserved.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Mutation.Write, com.google.spanner.v1.Mutation.Write.Builder, com.google.spanner.v1.Mutation.WriteOrBuilder> 
@@ -3662,7 +3629,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public com.google.spanner.v1.Mutation.Write getReplace() {
       if (replaceBuilder_ == null) {
@@ -3685,7 +3652,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public Builder setReplace(com.google.spanner.v1.Mutation.Write value) {
       if (replaceBuilder_ == null) {
@@ -3708,7 +3675,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public Builder setReplace(
         com.google.spanner.v1.Mutation.Write.Builder builderForValue) {
@@ -3729,7 +3696,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public Builder mergeReplace(com.google.spanner.v1.Mutation.Write value) {
       if (replaceBuilder_ == null) {
@@ -3758,7 +3725,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public Builder clearReplace() {
       if (replaceBuilder_ == null) {
@@ -3784,7 +3751,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public com.google.spanner.v1.Mutation.Write.Builder getReplaceBuilder() {
       return getReplaceFieldBuilder().getBuilder();
@@ -3797,7 +3764,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     public com.google.spanner.v1.Mutation.WriteOrBuilder getReplaceOrBuilder() {
       if ((operationCase_ == 4) && (replaceBuilder_ != null)) {
@@ -3817,7 +3784,7 @@ public  final class Mutation extends
      * explicitly written become `NULL`.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Mutation.Write, com.google.spanner.v1.Mutation.Write.Builder, com.google.spanner.v1.Mutation.WriteOrBuilder> 
@@ -3846,7 +3813,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public com.google.spanner.v1.Mutation.Delete getDelete() {
       if (deleteBuilder_ == null) {
@@ -3867,7 +3834,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public Builder setDelete(com.google.spanner.v1.Mutation.Delete value) {
       if (deleteBuilder_ == null) {
@@ -3888,7 +3855,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public Builder setDelete(
         com.google.spanner.v1.Mutation.Delete.Builder builderForValue) {
@@ -3907,7 +3874,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public Builder mergeDelete(com.google.spanner.v1.Mutation.Delete value) {
       if (deleteBuilder_ == null) {
@@ -3934,7 +3901,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public Builder clearDelete() {
       if (deleteBuilder_ == null) {
@@ -3958,7 +3925,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public com.google.spanner.v1.Mutation.Delete.Builder getDeleteBuilder() {
       return getDeleteFieldBuilder().getBuilder();
@@ -3969,7 +3936,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     public com.google.spanner.v1.Mutation.DeleteOrBuilder getDeleteOrBuilder() {
       if ((operationCase_ == 5) && (deleteBuilder_ != null)) {
@@ -3987,7 +3954,7 @@ public  final class Mutation extends
      * rows were present.
      * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.Mutation.Delete, com.google.spanner.v1.Mutation.Delete.Builder, com.google.spanner.v1.Mutation.DeleteOrBuilder> 

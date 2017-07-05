@@ -18,7 +18,7 @@ public interface ResultSetMetadataOrBuilder extends
    *     ]
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType row_type = 1;</code>
+   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
    */
   boolean hasRowType();
   /**
@@ -32,7 +32,7 @@ public interface ResultSetMetadataOrBuilder extends
    *     ]
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType row_type = 1;</code>
+   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
    */
   com.google.spanner.v1.StructType getRowType();
   /**
@@ -46,7 +46,7 @@ public interface ResultSetMetadataOrBuilder extends
    *     ]
    * </pre>
    *
-   * <code>.google.spanner.v1.StructType row_type = 1;</code>
+   * <code>optional .google.spanner.v1.StructType row_type = 1;</code>
    */
   com.google.spanner.v1.StructTypeOrBuilder getRowTypeOrBuilder();
 
@@ -56,7 +56,7 @@ public interface ResultSetMetadataOrBuilder extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
    */
   boolean hasTransaction();
   /**
@@ -65,7 +65,7 @@ public interface ResultSetMetadataOrBuilder extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
    */
   com.google.spanner.v1.Transaction getTransaction();
   /**
@@ -74,7 +74,7 @@ public interface ResultSetMetadataOrBuilder extends
    * information about the new transaction is yielded here.
    * </pre>
    *
-   * <code>.google.spanner.v1.Transaction transaction = 2;</code>
+   * <code>optional .google.spanner.v1.Transaction transaction = 2;</code>
    */
   com.google.spanner.v1.TransactionOrBuilder getTransactionOrBuilder();
 }

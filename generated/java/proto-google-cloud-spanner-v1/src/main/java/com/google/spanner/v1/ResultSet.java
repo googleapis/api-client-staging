@@ -117,7 +117,7 @@ public  final class ResultSet extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public boolean hasMetadata() {
     return metadata_ != null;
@@ -127,7 +127,7 @@ public  final class ResultSet extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public com.google.spanner.v1.ResultSetMetadata getMetadata() {
     return metadata_ == null ? com.google.spanner.v1.ResultSetMetadata.getDefaultInstance() : metadata_;
@@ -137,7 +137,7 @@ public  final class ResultSet extends
    * Metadata about the result set, such as row type information.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder() {
     return getMetadata();
@@ -232,7 +232,7 @@ public  final class ResultSet extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   public boolean hasStats() {
     return stats_ != null;
@@ -244,7 +244,7 @@ public  final class ResultSet extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   public com.google.spanner.v1.ResultSetStats getStats() {
     return stats_ == null ? com.google.spanner.v1.ResultSetStats.getDefaultInstance() : stats_;
@@ -256,7 +256,7 @@ public  final class ResultSet extends
    * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
    */
   public com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder() {
     return getStats();
@@ -339,7 +339,7 @@ public  final class ResultSet extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasMetadata()) {
       hash = (37 * hash) + METADATA_FIELD_NUMBER;
       hash = (53 * hash) + getMetadata().hashCode();
@@ -357,17 +357,6 @@ public  final class ResultSet extends
     return hash;
   }
 
-  public static com.google.spanner.v1.ResultSet parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.ResultSet parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.ResultSet parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -657,7 +646,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public boolean hasMetadata() {
       return metadataBuilder_ != null || metadata_ != null;
@@ -667,7 +656,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadata getMetadata() {
       if (metadataBuilder_ == null) {
@@ -681,7 +670,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder setMetadata(com.google.spanner.v1.ResultSetMetadata value) {
       if (metadataBuilder_ == null) {
@@ -701,7 +690,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder setMetadata(
         com.google.spanner.v1.ResultSetMetadata.Builder builderForValue) {
@@ -719,7 +708,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder mergeMetadata(com.google.spanner.v1.ResultSetMetadata value) {
       if (metadataBuilder_ == null) {
@@ -741,7 +730,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder clearMetadata() {
       if (metadataBuilder_ == null) {
@@ -759,7 +748,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadata.Builder getMetadataBuilder() {
       
@@ -771,7 +760,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder() {
       if (metadataBuilder_ != null) {
@@ -786,7 +775,7 @@ public  final class ResultSet extends
      * Metadata about the result set, such as row type information.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.ResultSetMetadata, com.google.spanner.v1.ResultSetMetadata.Builder, com.google.spanner.v1.ResultSetMetadataOrBuilder> 
@@ -1214,7 +1203,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public boolean hasStats() {
       return statsBuilder_ != null || stats_ != null;
@@ -1226,7 +1215,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public com.google.spanner.v1.ResultSetStats getStats() {
       if (statsBuilder_ == null) {
@@ -1242,7 +1231,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public Builder setStats(com.google.spanner.v1.ResultSetStats value) {
       if (statsBuilder_ == null) {
@@ -1264,7 +1253,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public Builder setStats(
         com.google.spanner.v1.ResultSetStats.Builder builderForValue) {
@@ -1284,7 +1273,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public Builder mergeStats(com.google.spanner.v1.ResultSetStats value) {
       if (statsBuilder_ == null) {
@@ -1308,7 +1297,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public Builder clearStats() {
       if (statsBuilder_ == null) {
@@ -1328,7 +1317,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public com.google.spanner.v1.ResultSetStats.Builder getStatsBuilder() {
       
@@ -1342,7 +1331,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     public com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder() {
       if (statsBuilder_ != null) {
@@ -1359,7 +1348,7 @@ public  final class ResultSet extends
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.ResultSetStats, com.google.spanner.v1.ResultSetStats.Builder, com.google.spanner.v1.ResultSetStatsOrBuilder> 

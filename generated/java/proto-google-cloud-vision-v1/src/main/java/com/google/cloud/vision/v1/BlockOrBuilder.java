@@ -12,7 +12,7 @@ public interface BlockOrBuilder extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   boolean hasProperty();
   /**
@@ -20,7 +20,7 @@ public interface BlockOrBuilder extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty();
   /**
@@ -28,7 +28,7 @@ public interface BlockOrBuilder extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder();
 
@@ -51,7 +51,7 @@ public interface BlockOrBuilder extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   boolean hasBoundingBox();
   /**
@@ -73,7 +73,7 @@ public interface BlockOrBuilder extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   com.google.cloud.vision.v1.BoundingPoly getBoundingBox();
   /**
@@ -95,7 +95,7 @@ public interface BlockOrBuilder extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingBoxOrBuilder();
 
@@ -148,7 +148,7 @@ public interface BlockOrBuilder extends
    * Detected block type (text, image etc) for this block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
    */
   int getBlockTypeValue();
   /**
@@ -156,7 +156,7 @@ public interface BlockOrBuilder extends
    * Detected block type (text, image etc) for this block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
    */
   com.google.cloud.vision.v1.Block.BlockType getBlockType();
 }

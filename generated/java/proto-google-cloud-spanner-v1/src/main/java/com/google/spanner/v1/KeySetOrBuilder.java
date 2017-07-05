@@ -122,7 +122,7 @@ public interface KeySetOrBuilder extends
    * specified in `keys` or `ranges` are only yielded once.
    * </pre>
    *
-   * <code>bool all = 3;</code>
+   * <code>optional bool all = 3;</code>
    */
   boolean getAll();
 }

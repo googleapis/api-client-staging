@@ -129,7 +129,7 @@ public  final class RecognitionAudio extends
    * pure binary representation, whereas JSON representations use base64.
    * </pre>
    *
-   * <code>bytes content = 1;</code>
+   * <code>optional bytes content = 1;</code>
    */
   public com.google.protobuf.ByteString getContent() {
     if (audioSourceCase_ == 1) {
@@ -149,7 +149,7 @@ public  final class RecognitionAudio extends
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>string uri = 2;</code>
+   * <code>optional string uri = 2;</code>
    */
   public java.lang.String getUri() {
     java.lang.Object ref = "";
@@ -178,7 +178,7 @@ public  final class RecognitionAudio extends
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
-   * <code>string uri = 2;</code>
+   * <code>optional string uri = 2;</code>
    */
   public com.google.protobuf.ByteString
       getUriBytes() {
@@ -213,7 +213,7 @@ public  final class RecognitionAudio extends
                       throws java.io.IOException {
     if (audioSourceCase_ == 1) {
       output.writeBytes(
-          1, (com.google.protobuf.ByteString) audioSource_);
+          1, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) audioSource_));
     }
     if (audioSourceCase_ == 2) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, audioSource_);
@@ -228,7 +228,7 @@ public  final class RecognitionAudio extends
     if (audioSourceCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(
-            1, (com.google.protobuf.ByteString) audioSource_);
+            1, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) audioSource_));
     }
     if (audioSourceCase_ == 2) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, audioSource_);
@@ -273,7 +273,7 @@ public  final class RecognitionAudio extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     switch (audioSourceCase_) {
       case 1:
         hash = (37 * hash) + CONTENT_FIELD_NUMBER;
@@ -291,17 +291,6 @@ public  final class RecognitionAudio extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1.RecognitionAudio parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1.RecognitionAudio parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1.RecognitionAudio parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -557,7 +546,7 @@ public  final class RecognitionAudio extends
      * pure binary representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * <code>optional bytes content = 1;</code>
      */
     public com.google.protobuf.ByteString getContent() {
       if (audioSourceCase_ == 1) {
@@ -572,7 +561,7 @@ public  final class RecognitionAudio extends
      * pure binary representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * <code>optional bytes content = 1;</code>
      */
     public Builder setContent(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -590,7 +579,7 @@ public  final class RecognitionAudio extends
      * pure binary representation, whereas JSON representations use base64.
      * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * <code>optional bytes content = 1;</code>
      */
     public Builder clearContent() {
       if (audioSourceCase_ == 1) {
@@ -611,7 +600,7 @@ public  final class RecognitionAudio extends
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      * </pre>
      *
-     * <code>string uri = 2;</code>
+     * <code>optional string uri = 2;</code>
      */
     public java.lang.String getUri() {
       java.lang.Object ref = "";
@@ -640,7 +629,7 @@ public  final class RecognitionAudio extends
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      * </pre>
      *
-     * <code>string uri = 2;</code>
+     * <code>optional string uri = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUriBytes() {
@@ -670,7 +659,7 @@ public  final class RecognitionAudio extends
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      * </pre>
      *
-     * <code>string uri = 2;</code>
+     * <code>optional string uri = 2;</code>
      */
     public Builder setUri(
         java.lang.String value) {
@@ -692,7 +681,7 @@ public  final class RecognitionAudio extends
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      * </pre>
      *
-     * <code>string uri = 2;</code>
+     * <code>optional string uri = 2;</code>
      */
     public Builder clearUri() {
       if (audioSourceCase_ == 2) {
@@ -712,7 +701,7 @@ public  final class RecognitionAudio extends
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      * </pre>
      *
-     * <code>string uri = 2;</code>
+     * <code>optional string uri = 2;</code>
      */
     public Builder setUriBytes(
         com.google.protobuf.ByteString value) {

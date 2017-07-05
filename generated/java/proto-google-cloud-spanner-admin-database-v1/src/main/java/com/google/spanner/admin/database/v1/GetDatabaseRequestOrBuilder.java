@@ -13,7 +13,7 @@ public interface GetDatabaseRequestOrBuilder extends
    * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface GetDatabaseRequestOrBuilder extends
    * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

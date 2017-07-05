@@ -13,7 +13,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   boolean hasInstance();
   /**
@@ -22,7 +22,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   com.google.spanner.admin.instance.v1.Instance getInstance();
   /**
@@ -31,7 +31,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder();
 
@@ -43,7 +43,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   boolean hasFieldMask();
   /**
@@ -54,7 +54,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   com.google.protobuf.FieldMask getFieldMask();
   /**
@@ -65,7 +65,7 @@ public interface UpdateInstanceRequestOrBuilder extends
    * about them.
    * </pre>
    *
-   * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+   * <code>optional .google.protobuf.FieldMask field_mask = 2;</code>
    */
   com.google.protobuf.FieldMaskOrBuilder getFieldMaskOrBuilder();
 }

@@ -164,7 +164,8 @@ public enum Likelihood
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.vision.v1.ImageAnnotatorProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.cloud.vision.v1.ImageAnnotatorProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final Likelihood[] VALUES = values();

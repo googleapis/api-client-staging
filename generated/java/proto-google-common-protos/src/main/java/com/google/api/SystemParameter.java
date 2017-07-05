@@ -99,7 +99,7 @@ public  final class SystemParameter extends
    * Define the name of the parameter, such as "api_key" . It is case sensitive.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -118,7 +118,7 @@ public  final class SystemParameter extends
    * Define the name of the parameter, such as "api_key" . It is case sensitive.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -142,7 +142,7 @@ public  final class SystemParameter extends
    * insensitive.
    * </pre>
    *
-   * <code>string http_header = 2;</code>
+   * <code>optional string http_header = 2;</code>
    */
   public java.lang.String getHttpHeader() {
     java.lang.Object ref = httpHeader_;
@@ -162,7 +162,7 @@ public  final class SystemParameter extends
    * insensitive.
    * </pre>
    *
-   * <code>string http_header = 2;</code>
+   * <code>optional string http_header = 2;</code>
    */
   public com.google.protobuf.ByteString
       getHttpHeaderBytes() {
@@ -186,7 +186,7 @@ public  final class SystemParameter extends
    * sensitive.
    * </pre>
    *
-   * <code>string url_query_parameter = 3;</code>
+   * <code>optional string url_query_parameter = 3;</code>
    */
   public java.lang.String getUrlQueryParameter() {
     java.lang.Object ref = urlQueryParameter_;
@@ -206,7 +206,7 @@ public  final class SystemParameter extends
    * sensitive.
    * </pre>
    *
-   * <code>string url_query_parameter = 3;</code>
+   * <code>optional string url_query_parameter = 3;</code>
    */
   public com.google.protobuf.ByteString
       getUrlQueryParameterBytes() {
@@ -290,7 +290,7 @@ public  final class SystemParameter extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + HTTP_HEADER_FIELD_NUMBER;
@@ -302,17 +302,6 @@ public  final class SystemParameter extends
     return hash;
   }
 
-  public static com.google.api.SystemParameter parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.SystemParameter parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.SystemParameter parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -548,7 +537,7 @@ public  final class SystemParameter extends
      * Define the name of the parameter, such as "api_key" . It is case sensitive.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -567,7 +556,7 @@ public  final class SystemParameter extends
      * Define the name of the parameter, such as "api_key" . It is case sensitive.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -587,7 +576,7 @@ public  final class SystemParameter extends
      * Define the name of the parameter, such as "api_key" . It is case sensitive.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -604,7 +593,7 @@ public  final class SystemParameter extends
      * Define the name of the parameter, such as "api_key" . It is case sensitive.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -617,7 +606,7 @@ public  final class SystemParameter extends
      * Define the name of the parameter, such as "api_key" . It is case sensitive.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -638,7 +627,7 @@ public  final class SystemParameter extends
      * insensitive.
      * </pre>
      *
-     * <code>string http_header = 2;</code>
+     * <code>optional string http_header = 2;</code>
      */
     public java.lang.String getHttpHeader() {
       java.lang.Object ref = httpHeader_;
@@ -658,7 +647,7 @@ public  final class SystemParameter extends
      * insensitive.
      * </pre>
      *
-     * <code>string http_header = 2;</code>
+     * <code>optional string http_header = 2;</code>
      */
     public com.google.protobuf.ByteString
         getHttpHeaderBytes() {
@@ -679,7 +668,7 @@ public  final class SystemParameter extends
      * insensitive.
      * </pre>
      *
-     * <code>string http_header = 2;</code>
+     * <code>optional string http_header = 2;</code>
      */
     public Builder setHttpHeader(
         java.lang.String value) {
@@ -697,7 +686,7 @@ public  final class SystemParameter extends
      * insensitive.
      * </pre>
      *
-     * <code>string http_header = 2;</code>
+     * <code>optional string http_header = 2;</code>
      */
     public Builder clearHttpHeader() {
       
@@ -711,7 +700,7 @@ public  final class SystemParameter extends
      * insensitive.
      * </pre>
      *
-     * <code>string http_header = 2;</code>
+     * <code>optional string http_header = 2;</code>
      */
     public Builder setHttpHeaderBytes(
         com.google.protobuf.ByteString value) {
@@ -732,7 +721,7 @@ public  final class SystemParameter extends
      * sensitive.
      * </pre>
      *
-     * <code>string url_query_parameter = 3;</code>
+     * <code>optional string url_query_parameter = 3;</code>
      */
     public java.lang.String getUrlQueryParameter() {
       java.lang.Object ref = urlQueryParameter_;
@@ -752,7 +741,7 @@ public  final class SystemParameter extends
      * sensitive.
      * </pre>
      *
-     * <code>string url_query_parameter = 3;</code>
+     * <code>optional string url_query_parameter = 3;</code>
      */
     public com.google.protobuf.ByteString
         getUrlQueryParameterBytes() {
@@ -773,7 +762,7 @@ public  final class SystemParameter extends
      * sensitive.
      * </pre>
      *
-     * <code>string url_query_parameter = 3;</code>
+     * <code>optional string url_query_parameter = 3;</code>
      */
     public Builder setUrlQueryParameter(
         java.lang.String value) {
@@ -791,7 +780,7 @@ public  final class SystemParameter extends
      * sensitive.
      * </pre>
      *
-     * <code>string url_query_parameter = 3;</code>
+     * <code>optional string url_query_parameter = 3;</code>
      */
     public Builder clearUrlQueryParameter() {
       
@@ -805,7 +794,7 @@ public  final class SystemParameter extends
      * sensitive.
      * </pre>
      *
-     * <code>string url_query_parameter = 3;</code>
+     * <code>optional string url_query_parameter = 3;</code>
      */
     public Builder setUrlQueryParameterBytes(
         com.google.protobuf.ByteString value) {

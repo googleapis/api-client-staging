@@ -148,7 +148,8 @@ public enum ErrorGroupOrder
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.devtools.clouderrorreporting.v1beta1.ErrorStatsServiceProto.getDescriptor().getEnumTypes().get(1);
+    return com.google.devtools.clouderrorreporting.v1beta1.ErrorStatsServiceProto.getDescriptor()
+        .getEnumTypes().get(1);
   }
 
   private static final ErrorGroupOrder[] VALUES = values();

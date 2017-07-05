@@ -101,7 +101,7 @@ public  final class QuotaFailure extends
      * developer project id&gt;".
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>optional string subject = 1;</code>
      */
     java.lang.String getSubject();
     /**
@@ -111,7 +111,7 @@ public  final class QuotaFailure extends
      * developer project id&gt;".
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>optional string subject = 1;</code>
      */
     com.google.protobuf.ByteString
         getSubjectBytes();
@@ -126,7 +126,7 @@ public  final class QuotaFailure extends
      * exceeded".
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     java.lang.String getDescription();
     /**
@@ -139,7 +139,7 @@ public  final class QuotaFailure extends
      * exceeded".
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
@@ -234,7 +234,7 @@ public  final class QuotaFailure extends
      * developer project id&gt;".
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>optional string subject = 1;</code>
      */
     public java.lang.String getSubject() {
       java.lang.Object ref = subject_;
@@ -255,7 +255,7 @@ public  final class QuotaFailure extends
      * developer project id&gt;".
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>optional string subject = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSubjectBytes() {
@@ -283,7 +283,7 @@ public  final class QuotaFailure extends
      * exceeded".
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -307,7 +307,7 @@ public  final class QuotaFailure extends
      * exceeded".
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -383,7 +383,7 @@ public  final class QuotaFailure extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUBJECT_FIELD_NUMBER;
       hash = (53 * hash) + getSubject().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
@@ -393,17 +393,6 @@ public  final class QuotaFailure extends
       return hash;
     }
 
-    public static com.google.rpc.QuotaFailure.Violation parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.rpc.QuotaFailure.Violation parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.rpc.QuotaFailure.Violation parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -633,7 +622,7 @@ public  final class QuotaFailure extends
        * developer project id&gt;".
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>optional string subject = 1;</code>
        */
       public java.lang.String getSubject() {
         java.lang.Object ref = subject_;
@@ -654,7 +643,7 @@ public  final class QuotaFailure extends
        * developer project id&gt;".
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>optional string subject = 1;</code>
        */
       public com.google.protobuf.ByteString
           getSubjectBytes() {
@@ -676,7 +665,7 @@ public  final class QuotaFailure extends
        * developer project id&gt;".
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>optional string subject = 1;</code>
        */
       public Builder setSubject(
           java.lang.String value) {
@@ -695,7 +684,7 @@ public  final class QuotaFailure extends
        * developer project id&gt;".
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>optional string subject = 1;</code>
        */
       public Builder clearSubject() {
         
@@ -710,7 +699,7 @@ public  final class QuotaFailure extends
        * developer project id&gt;".
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>optional string subject = 1;</code>
        */
       public Builder setSubjectBytes(
           com.google.protobuf.ByteString value) {
@@ -735,7 +724,7 @@ public  final class QuotaFailure extends
        * exceeded".
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -759,7 +748,7 @@ public  final class QuotaFailure extends
        * exceeded".
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -784,7 +773,7 @@ public  final class QuotaFailure extends
        * exceeded".
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -806,7 +795,7 @@ public  final class QuotaFailure extends
        * exceeded".
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder clearDescription() {
         
@@ -824,7 +813,7 @@ public  final class QuotaFailure extends
        * exceeded".
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -994,7 +983,7 @@ public  final class QuotaFailure extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getViolationsCount() > 0) {
       hash = (37 * hash) + VIOLATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getViolationsList().hashCode();
@@ -1004,17 +993,6 @@ public  final class QuotaFailure extends
     return hash;
   }
 
-  public static com.google.rpc.QuotaFailure parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.rpc.QuotaFailure parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.rpc.QuotaFailure parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

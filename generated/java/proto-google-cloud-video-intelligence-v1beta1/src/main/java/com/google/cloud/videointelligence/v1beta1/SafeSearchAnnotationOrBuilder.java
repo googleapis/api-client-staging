@@ -12,7 +12,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of adult content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
    */
   int getAdultValue();
   /**
@@ -20,7 +20,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of adult content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
    */
   com.google.cloud.videointelligence.v1beta1.Likelihood getAdult();
 
@@ -30,7 +30,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * version to make it appear funny or offensive.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
    */
   int getSpoofValue();
   /**
@@ -39,7 +39,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * version to make it appear funny or offensive.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
    */
   com.google.cloud.videointelligence.v1beta1.Likelihood getSpoof();
 
@@ -48,7 +48,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of medical content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
    */
   int getMedicalValue();
   /**
@@ -56,7 +56,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of medical content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
    */
   com.google.cloud.videointelligence.v1beta1.Likelihood getMedical();
 
@@ -65,7 +65,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of violent content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
    */
   int getViolentValue();
   /**
@@ -73,7 +73,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of violent content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
    */
   com.google.cloud.videointelligence.v1beta1.Likelihood getViolent();
 
@@ -82,7 +82,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of racy content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
    */
   int getRacyValue();
   /**
@@ -90,7 +90,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood of racy content.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
    */
   com.google.cloud.videointelligence.v1beta1.Likelihood getRacy();
 
@@ -99,7 +99,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Video time offset in microseconds.
    * </pre>
    *
-   * <code>int64 time_offset = 6;</code>
+   * <code>optional int64 time_offset = 6;</code>
    */
   long getTimeOffset();
 }

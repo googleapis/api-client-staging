@@ -12,7 +12,7 @@ public interface LabelAnnotationOrBuilder extends
    * Textual description, e.g. `Fixed-gear bicycle`.
    * </pre>
    *
-   * <code>string description = 1;</code>
+   * <code>optional string description = 1;</code>
    */
   java.lang.String getDescription();
   /**
@@ -20,7 +20,7 @@ public interface LabelAnnotationOrBuilder extends
    * Textual description, e.g. `Fixed-gear bicycle`.
    * </pre>
    *
-   * <code>string description = 1;</code>
+   * <code>optional string description = 1;</code>
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
@@ -30,7 +30,7 @@ public interface LabelAnnotationOrBuilder extends
    * Language code for `description` in BCP-47 format.
    * </pre>
    *
-   * <code>string language_code = 2;</code>
+   * <code>optional string language_code = 2;</code>
    */
   java.lang.String getLanguageCode();
   /**
@@ -38,7 +38,7 @@ public interface LabelAnnotationOrBuilder extends
    * Language code for `description` in BCP-47 format.
    * </pre>
    *
-   * <code>string language_code = 2;</code>
+   * <code>optional string language_code = 2;</code>
    */
   com.google.protobuf.ByteString
       getLanguageCodeBytes();

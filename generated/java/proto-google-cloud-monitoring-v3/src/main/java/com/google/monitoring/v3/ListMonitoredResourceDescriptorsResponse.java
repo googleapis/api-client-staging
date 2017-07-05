@@ -159,7 +159,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -180,7 +180,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
    * use that value as `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -257,7 +257,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getResourceDescriptorsCount() > 0) {
       hash = (37 * hash) + RESOURCE_DESCRIPTORS_FIELD_NUMBER;
       hash = (53 * hash) + getResourceDescriptorsList().hashCode();
@@ -269,17 +269,6 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -877,7 +866,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -898,7 +887,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -920,7 +909,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -939,7 +928,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -954,7 +943,7 @@ public  final class ListMonitoredResourceDescriptorsResponse extends
      * use that value as `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {

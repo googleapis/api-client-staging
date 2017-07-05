@@ -163,7 +163,8 @@ public enum Likelihood
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor().getEnumTypes().get(3);
+    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor()
+        .getEnumTypes().get(3);
   }
 
   private static final Likelihood[] VALUES = values();

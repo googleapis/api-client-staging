@@ -89,7 +89,7 @@ public  final class SpeechRecognitionAlternative extends
    * *Output-only* Transcript text representing the words that the user spoke.
    * </pre>
    *
-   * <code>string transcript = 1;</code>
+   * <code>optional string transcript = 1;</code>
    */
   public java.lang.String getTranscript() {
     java.lang.Object ref = transcript_;
@@ -108,7 +108,7 @@ public  final class SpeechRecognitionAlternative extends
    * *Output-only* Transcript text representing the words that the user spoke.
    * </pre>
    *
-   * <code>string transcript = 1;</code>
+   * <code>optional string transcript = 1;</code>
    */
   public com.google.protobuf.ByteString
       getTranscriptBytes() {
@@ -137,7 +137,7 @@ public  final class SpeechRecognitionAlternative extends
    * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * </pre>
    *
-   * <code>float confidence = 2;</code>
+   * <code>optional float confidence = 2;</code>
    */
   public float getConfidence() {
     return confidence_;
@@ -206,7 +206,7 @@ public  final class SpeechRecognitionAlternative extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + TRANSCRIPT_FIELD_NUMBER;
     hash = (53 * hash) + getTranscript().hashCode();
     hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
@@ -217,17 +217,6 @@ public  final class SpeechRecognitionAlternative extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1.SpeechRecognitionAlternative parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1.SpeechRecognitionAlternative parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1.SpeechRecognitionAlternative parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -453,7 +442,7 @@ public  final class SpeechRecognitionAlternative extends
      * *Output-only* Transcript text representing the words that the user spoke.
      * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * <code>optional string transcript = 1;</code>
      */
     public java.lang.String getTranscript() {
       java.lang.Object ref = transcript_;
@@ -472,7 +461,7 @@ public  final class SpeechRecognitionAlternative extends
      * *Output-only* Transcript text representing the words that the user spoke.
      * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * <code>optional string transcript = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTranscriptBytes() {
@@ -492,7 +481,7 @@ public  final class SpeechRecognitionAlternative extends
      * *Output-only* Transcript text representing the words that the user spoke.
      * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * <code>optional string transcript = 1;</code>
      */
     public Builder setTranscript(
         java.lang.String value) {
@@ -509,7 +498,7 @@ public  final class SpeechRecognitionAlternative extends
      * *Output-only* Transcript text representing the words that the user spoke.
      * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * <code>optional string transcript = 1;</code>
      */
     public Builder clearTranscript() {
       
@@ -522,7 +511,7 @@ public  final class SpeechRecognitionAlternative extends
      * *Output-only* Transcript text representing the words that the user spoke.
      * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * <code>optional string transcript = 1;</code>
      */
     public Builder setTranscriptBytes(
         com.google.protobuf.ByteString value) {
@@ -548,7 +537,7 @@ public  final class SpeechRecognitionAlternative extends
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public float getConfidence() {
       return confidence_;
@@ -564,7 +553,7 @@ public  final class SpeechRecognitionAlternative extends
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public Builder setConfidence(float value) {
       
@@ -583,7 +572,7 @@ public  final class SpeechRecognitionAlternative extends
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public Builder clearConfidence() {
       

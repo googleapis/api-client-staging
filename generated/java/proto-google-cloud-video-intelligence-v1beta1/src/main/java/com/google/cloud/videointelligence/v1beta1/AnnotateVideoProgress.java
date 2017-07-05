@@ -192,7 +192,7 @@ public  final class AnnotateVideoProgress extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getAnnotationProgressCount() > 0) {
       hash = (37 * hash) + ANNOTATION_PROGRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAnnotationProgressList().hashCode();
@@ -202,17 +202,6 @@ public  final class AnnotateVideoProgress extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoProgress parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoProgress parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.AnnotateVideoProgress parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

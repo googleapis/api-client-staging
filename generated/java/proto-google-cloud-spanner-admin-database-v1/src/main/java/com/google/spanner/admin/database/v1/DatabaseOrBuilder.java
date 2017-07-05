@@ -16,7 +16,7 @@ public interface DatabaseOrBuilder extends
    * identify the database.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -28,7 +28,7 @@ public interface DatabaseOrBuilder extends
    * identify the database.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -38,7 +38,7 @@ public interface DatabaseOrBuilder extends
    * Output only. The current database state.
    * </pre>
    *
-   * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+   * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
    */
   int getStateValue();
   /**
@@ -46,7 +46,7 @@ public interface DatabaseOrBuilder extends
    * Output only. The current database state.
    * </pre>
    *
-   * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+   * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
    */
   com.google.spanner.admin.database.v1.Database.State getState();
 }

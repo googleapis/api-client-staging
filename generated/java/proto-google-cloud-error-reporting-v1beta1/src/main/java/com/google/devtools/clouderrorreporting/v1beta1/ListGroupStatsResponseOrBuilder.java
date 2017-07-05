@@ -58,7 +58,7 @@ public interface ListGroupStatsResponseOrBuilder extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -68,7 +68,7 @@ public interface ListGroupStatsResponseOrBuilder extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();
@@ -81,7 +81,7 @@ public interface ListGroupStatsResponseOrBuilder extends
    * has been deleted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   boolean hasTimeRangeBegin();
   /**
@@ -92,7 +92,7 @@ public interface ListGroupStatsResponseOrBuilder extends
    * has been deleted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   com.google.protobuf.Timestamp getTimeRangeBegin();
   /**
@@ -103,7 +103,7 @@ public interface ListGroupStatsResponseOrBuilder extends
    * has been deleted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimeRangeBeginOrBuilder();
 }

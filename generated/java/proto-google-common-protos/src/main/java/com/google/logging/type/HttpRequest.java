@@ -175,7 +175,7 @@ public  final class HttpRequest extends
    * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
    * </pre>
    *
-   * <code>string request_method = 1;</code>
+   * <code>optional string request_method = 1;</code>
    */
   public java.lang.String getRequestMethod() {
     java.lang.Object ref = requestMethod_;
@@ -194,7 +194,7 @@ public  final class HttpRequest extends
    * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
    * </pre>
    *
-   * <code>string request_method = 1;</code>
+   * <code>optional string request_method = 1;</code>
    */
   public com.google.protobuf.ByteString
       getRequestMethodBytes() {
@@ -219,7 +219,7 @@ public  final class HttpRequest extends
    * Example: `"http://example.com/some/info?color=red"`.
    * </pre>
    *
-   * <code>string request_url = 2;</code>
+   * <code>optional string request_url = 2;</code>
    */
   public java.lang.String getRequestUrl() {
     java.lang.Object ref = requestUrl_;
@@ -240,7 +240,7 @@ public  final class HttpRequest extends
    * Example: `"http://example.com/some/info?color=red"`.
    * </pre>
    *
-   * <code>string request_url = 2;</code>
+   * <code>optional string request_url = 2;</code>
    */
   public com.google.protobuf.ByteString
       getRequestUrlBytes() {
@@ -264,7 +264,7 @@ public  final class HttpRequest extends
    * headers and the request body.
    * </pre>
    *
-   * <code>int64 request_size = 3;</code>
+   * <code>optional int64 request_size = 3;</code>
    */
   public long getRequestSize() {
     return requestSize_;
@@ -278,7 +278,7 @@ public  final class HttpRequest extends
    * Examples: 200, 404.
    * </pre>
    *
-   * <code>int32 status = 4;</code>
+   * <code>optional int32 status = 4;</code>
    */
   public int getStatus() {
     return status_;
@@ -292,7 +292,7 @@ public  final class HttpRequest extends
    * including the response headers and the response body.
    * </pre>
    *
-   * <code>int64 response_size = 5;</code>
+   * <code>optional int64 response_size = 5;</code>
    */
   public long getResponseSize() {
     return responseSize_;
@@ -306,7 +306,7 @@ public  final class HttpRequest extends
    * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
    * </pre>
    *
-   * <code>string user_agent = 6;</code>
+   * <code>optional string user_agent = 6;</code>
    */
   public java.lang.String getUserAgent() {
     java.lang.Object ref = userAgent_;
@@ -326,7 +326,7 @@ public  final class HttpRequest extends
    * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
    * </pre>
    *
-   * <code>string user_agent = 6;</code>
+   * <code>optional string user_agent = 6;</code>
    */
   public com.google.protobuf.ByteString
       getUserAgentBytes() {
@@ -350,7 +350,7 @@ public  final class HttpRequest extends
    * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
    * </pre>
    *
-   * <code>string remote_ip = 7;</code>
+   * <code>optional string remote_ip = 7;</code>
    */
   public java.lang.String getRemoteIp() {
     java.lang.Object ref = remoteIp_;
@@ -370,7 +370,7 @@ public  final class HttpRequest extends
    * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
    * </pre>
    *
-   * <code>string remote_ip = 7;</code>
+   * <code>optional string remote_ip = 7;</code>
    */
   public com.google.protobuf.ByteString
       getRemoteIpBytes() {
@@ -394,7 +394,7 @@ public  final class HttpRequest extends
    * sent to.
    * </pre>
    *
-   * <code>string server_ip = 13;</code>
+   * <code>optional string server_ip = 13;</code>
    */
   public java.lang.String getServerIp() {
     java.lang.Object ref = serverIp_;
@@ -414,7 +414,7 @@ public  final class HttpRequest extends
    * sent to.
    * </pre>
    *
-   * <code>string server_ip = 13;</code>
+   * <code>optional string server_ip = 13;</code>
    */
   public com.google.protobuf.ByteString
       getServerIpBytes() {
@@ -438,7 +438,7 @@ public  final class HttpRequest extends
    * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
    * </pre>
    *
-   * <code>string referer = 8;</code>
+   * <code>optional string referer = 8;</code>
    */
   public java.lang.String getReferer() {
     java.lang.Object ref = referer_;
@@ -458,7 +458,7 @@ public  final class HttpRequest extends
    * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
    * </pre>
    *
-   * <code>string referer = 8;</code>
+   * <code>optional string referer = 8;</code>
    */
   public com.google.protobuf.ByteString
       getRefererBytes() {
@@ -482,7 +482,7 @@ public  final class HttpRequest extends
    * received until the response was sent.
    * </pre>
    *
-   * <code>.google.protobuf.Duration latency = 14;</code>
+   * <code>optional .google.protobuf.Duration latency = 14;</code>
    */
   public boolean hasLatency() {
     return latency_ != null;
@@ -493,7 +493,7 @@ public  final class HttpRequest extends
    * received until the response was sent.
    * </pre>
    *
-   * <code>.google.protobuf.Duration latency = 14;</code>
+   * <code>optional .google.protobuf.Duration latency = 14;</code>
    */
   public com.google.protobuf.Duration getLatency() {
     return latency_ == null ? com.google.protobuf.Duration.getDefaultInstance() : latency_;
@@ -504,7 +504,7 @@ public  final class HttpRequest extends
    * received until the response was sent.
    * </pre>
    *
-   * <code>.google.protobuf.Duration latency = 14;</code>
+   * <code>optional .google.protobuf.Duration latency = 14;</code>
    */
   public com.google.protobuf.DurationOrBuilder getLatencyOrBuilder() {
     return getLatency();
@@ -517,7 +517,7 @@ public  final class HttpRequest extends
    * Whether or not a cache lookup was attempted.
    * </pre>
    *
-   * <code>bool cache_lookup = 11;</code>
+   * <code>optional bool cache_lookup = 11;</code>
    */
   public boolean getCacheLookup() {
     return cacheLookup_;
@@ -531,7 +531,7 @@ public  final class HttpRequest extends
    * (with or without validation).
    * </pre>
    *
-   * <code>bool cache_hit = 9;</code>
+   * <code>optional bool cache_hit = 9;</code>
    */
   public boolean getCacheHit() {
     return cacheHit_;
@@ -546,7 +546,7 @@ public  final class HttpRequest extends
    * True.
    * </pre>
    *
-   * <code>bool cache_validated_with_origin_server = 10;</code>
+   * <code>optional bool cache_validated_with_origin_server = 10;</code>
    */
   public boolean getCacheValidatedWithOriginServer() {
     return cacheValidatedWithOriginServer_;
@@ -560,7 +560,7 @@ public  final class HttpRequest extends
    * cache fill was attempted.
    * </pre>
    *
-   * <code>int64 cache_fill_bytes = 12;</code>
+   * <code>optional int64 cache_fill_bytes = 12;</code>
    */
   public long getCacheFillBytes() {
     return cacheFillBytes_;
@@ -733,7 +733,7 @@ public  final class HttpRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + REQUEST_METHOD_FIELD_NUMBER;
     hash = (53 * hash) + getRequestMethod().hashCode();
     hash = (37 * hash) + REQUEST_URL_FIELD_NUMBER;
@@ -775,17 +775,6 @@ public  final class HttpRequest extends
     return hash;
   }
 
-  public static com.google.logging.type.HttpRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.type.HttpRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.type.HttpRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1098,7 +1087,7 @@ public  final class HttpRequest extends
      * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
      * </pre>
      *
-     * <code>string request_method = 1;</code>
+     * <code>optional string request_method = 1;</code>
      */
     public java.lang.String getRequestMethod() {
       java.lang.Object ref = requestMethod_;
@@ -1117,7 +1106,7 @@ public  final class HttpRequest extends
      * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
      * </pre>
      *
-     * <code>string request_method = 1;</code>
+     * <code>optional string request_method = 1;</code>
      */
     public com.google.protobuf.ByteString
         getRequestMethodBytes() {
@@ -1137,7 +1126,7 @@ public  final class HttpRequest extends
      * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
      * </pre>
      *
-     * <code>string request_method = 1;</code>
+     * <code>optional string request_method = 1;</code>
      */
     public Builder setRequestMethod(
         java.lang.String value) {
@@ -1154,7 +1143,7 @@ public  final class HttpRequest extends
      * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
      * </pre>
      *
-     * <code>string request_method = 1;</code>
+     * <code>optional string request_method = 1;</code>
      */
     public Builder clearRequestMethod() {
       
@@ -1167,7 +1156,7 @@ public  final class HttpRequest extends
      * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
      * </pre>
      *
-     * <code>string request_method = 1;</code>
+     * <code>optional string request_method = 1;</code>
      */
     public Builder setRequestMethodBytes(
         com.google.protobuf.ByteString value) {
@@ -1189,7 +1178,7 @@ public  final class HttpRequest extends
      * Example: `"http://example.com/some/info?color=red"`.
      * </pre>
      *
-     * <code>string request_url = 2;</code>
+     * <code>optional string request_url = 2;</code>
      */
     public java.lang.String getRequestUrl() {
       java.lang.Object ref = requestUrl_;
@@ -1210,7 +1199,7 @@ public  final class HttpRequest extends
      * Example: `"http://example.com/some/info?color=red"`.
      * </pre>
      *
-     * <code>string request_url = 2;</code>
+     * <code>optional string request_url = 2;</code>
      */
     public com.google.protobuf.ByteString
         getRequestUrlBytes() {
@@ -1232,7 +1221,7 @@ public  final class HttpRequest extends
      * Example: `"http://example.com/some/info?color=red"`.
      * </pre>
      *
-     * <code>string request_url = 2;</code>
+     * <code>optional string request_url = 2;</code>
      */
     public Builder setRequestUrl(
         java.lang.String value) {
@@ -1251,7 +1240,7 @@ public  final class HttpRequest extends
      * Example: `"http://example.com/some/info?color=red"`.
      * </pre>
      *
-     * <code>string request_url = 2;</code>
+     * <code>optional string request_url = 2;</code>
      */
     public Builder clearRequestUrl() {
       
@@ -1266,7 +1255,7 @@ public  final class HttpRequest extends
      * Example: `"http://example.com/some/info?color=red"`.
      * </pre>
      *
-     * <code>string request_url = 2;</code>
+     * <code>optional string request_url = 2;</code>
      */
     public Builder setRequestUrlBytes(
         com.google.protobuf.ByteString value) {
@@ -1287,7 +1276,7 @@ public  final class HttpRequest extends
      * headers and the request body.
      * </pre>
      *
-     * <code>int64 request_size = 3;</code>
+     * <code>optional int64 request_size = 3;</code>
      */
     public long getRequestSize() {
       return requestSize_;
@@ -1298,7 +1287,7 @@ public  final class HttpRequest extends
      * headers and the request body.
      * </pre>
      *
-     * <code>int64 request_size = 3;</code>
+     * <code>optional int64 request_size = 3;</code>
      */
     public Builder setRequestSize(long value) {
       
@@ -1312,7 +1301,7 @@ public  final class HttpRequest extends
      * headers and the request body.
      * </pre>
      *
-     * <code>int64 request_size = 3;</code>
+     * <code>optional int64 request_size = 3;</code>
      */
     public Builder clearRequestSize() {
       
@@ -1328,7 +1317,7 @@ public  final class HttpRequest extends
      * Examples: 200, 404.
      * </pre>
      *
-     * <code>int32 status = 4;</code>
+     * <code>optional int32 status = 4;</code>
      */
     public int getStatus() {
       return status_;
@@ -1339,7 +1328,7 @@ public  final class HttpRequest extends
      * Examples: 200, 404.
      * </pre>
      *
-     * <code>int32 status = 4;</code>
+     * <code>optional int32 status = 4;</code>
      */
     public Builder setStatus(int value) {
       
@@ -1353,7 +1342,7 @@ public  final class HttpRequest extends
      * Examples: 200, 404.
      * </pre>
      *
-     * <code>int32 status = 4;</code>
+     * <code>optional int32 status = 4;</code>
      */
     public Builder clearStatus() {
       
@@ -1369,7 +1358,7 @@ public  final class HttpRequest extends
      * including the response headers and the response body.
      * </pre>
      *
-     * <code>int64 response_size = 5;</code>
+     * <code>optional int64 response_size = 5;</code>
      */
     public long getResponseSize() {
       return responseSize_;
@@ -1380,7 +1369,7 @@ public  final class HttpRequest extends
      * including the response headers and the response body.
      * </pre>
      *
-     * <code>int64 response_size = 5;</code>
+     * <code>optional int64 response_size = 5;</code>
      */
     public Builder setResponseSize(long value) {
       
@@ -1394,7 +1383,7 @@ public  final class HttpRequest extends
      * including the response headers and the response body.
      * </pre>
      *
-     * <code>int64 response_size = 5;</code>
+     * <code>optional int64 response_size = 5;</code>
      */
     public Builder clearResponseSize() {
       
@@ -1410,7 +1399,7 @@ public  final class HttpRequest extends
      * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
      * </pre>
      *
-     * <code>string user_agent = 6;</code>
+     * <code>optional string user_agent = 6;</code>
      */
     public java.lang.String getUserAgent() {
       java.lang.Object ref = userAgent_;
@@ -1430,7 +1419,7 @@ public  final class HttpRequest extends
      * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
      * </pre>
      *
-     * <code>string user_agent = 6;</code>
+     * <code>optional string user_agent = 6;</code>
      */
     public com.google.protobuf.ByteString
         getUserAgentBytes() {
@@ -1451,7 +1440,7 @@ public  final class HttpRequest extends
      * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
      * </pre>
      *
-     * <code>string user_agent = 6;</code>
+     * <code>optional string user_agent = 6;</code>
      */
     public Builder setUserAgent(
         java.lang.String value) {
@@ -1469,7 +1458,7 @@ public  final class HttpRequest extends
      * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
      * </pre>
      *
-     * <code>string user_agent = 6;</code>
+     * <code>optional string user_agent = 6;</code>
      */
     public Builder clearUserAgent() {
       
@@ -1483,7 +1472,7 @@ public  final class HttpRequest extends
      * `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
      * </pre>
      *
-     * <code>string user_agent = 6;</code>
+     * <code>optional string user_agent = 6;</code>
      */
     public Builder setUserAgentBytes(
         com.google.protobuf.ByteString value) {
@@ -1504,7 +1493,7 @@ public  final class HttpRequest extends
      * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
      * </pre>
      *
-     * <code>string remote_ip = 7;</code>
+     * <code>optional string remote_ip = 7;</code>
      */
     public java.lang.String getRemoteIp() {
       java.lang.Object ref = remoteIp_;
@@ -1524,7 +1513,7 @@ public  final class HttpRequest extends
      * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
      * </pre>
      *
-     * <code>string remote_ip = 7;</code>
+     * <code>optional string remote_ip = 7;</code>
      */
     public com.google.protobuf.ByteString
         getRemoteIpBytes() {
@@ -1545,7 +1534,7 @@ public  final class HttpRequest extends
      * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
      * </pre>
      *
-     * <code>string remote_ip = 7;</code>
+     * <code>optional string remote_ip = 7;</code>
      */
     public Builder setRemoteIp(
         java.lang.String value) {
@@ -1563,7 +1552,7 @@ public  final class HttpRequest extends
      * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
      * </pre>
      *
-     * <code>string remote_ip = 7;</code>
+     * <code>optional string remote_ip = 7;</code>
      */
     public Builder clearRemoteIp() {
       
@@ -1577,7 +1566,7 @@ public  final class HttpRequest extends
      * request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
      * </pre>
      *
-     * <code>string remote_ip = 7;</code>
+     * <code>optional string remote_ip = 7;</code>
      */
     public Builder setRemoteIpBytes(
         com.google.protobuf.ByteString value) {
@@ -1598,7 +1587,7 @@ public  final class HttpRequest extends
      * sent to.
      * </pre>
      *
-     * <code>string server_ip = 13;</code>
+     * <code>optional string server_ip = 13;</code>
      */
     public java.lang.String getServerIp() {
       java.lang.Object ref = serverIp_;
@@ -1618,7 +1607,7 @@ public  final class HttpRequest extends
      * sent to.
      * </pre>
      *
-     * <code>string server_ip = 13;</code>
+     * <code>optional string server_ip = 13;</code>
      */
     public com.google.protobuf.ByteString
         getServerIpBytes() {
@@ -1639,7 +1628,7 @@ public  final class HttpRequest extends
      * sent to.
      * </pre>
      *
-     * <code>string server_ip = 13;</code>
+     * <code>optional string server_ip = 13;</code>
      */
     public Builder setServerIp(
         java.lang.String value) {
@@ -1657,7 +1646,7 @@ public  final class HttpRequest extends
      * sent to.
      * </pre>
      *
-     * <code>string server_ip = 13;</code>
+     * <code>optional string server_ip = 13;</code>
      */
     public Builder clearServerIp() {
       
@@ -1671,7 +1660,7 @@ public  final class HttpRequest extends
      * sent to.
      * </pre>
      *
-     * <code>string server_ip = 13;</code>
+     * <code>optional string server_ip = 13;</code>
      */
     public Builder setServerIpBytes(
         com.google.protobuf.ByteString value) {
@@ -1692,7 +1681,7 @@ public  final class HttpRequest extends
      * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      * </pre>
      *
-     * <code>string referer = 8;</code>
+     * <code>optional string referer = 8;</code>
      */
     public java.lang.String getReferer() {
       java.lang.Object ref = referer_;
@@ -1712,7 +1701,7 @@ public  final class HttpRequest extends
      * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      * </pre>
      *
-     * <code>string referer = 8;</code>
+     * <code>optional string referer = 8;</code>
      */
     public com.google.protobuf.ByteString
         getRefererBytes() {
@@ -1733,7 +1722,7 @@ public  final class HttpRequest extends
      * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      * </pre>
      *
-     * <code>string referer = 8;</code>
+     * <code>optional string referer = 8;</code>
      */
     public Builder setReferer(
         java.lang.String value) {
@@ -1751,7 +1740,7 @@ public  final class HttpRequest extends
      * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      * </pre>
      *
-     * <code>string referer = 8;</code>
+     * <code>optional string referer = 8;</code>
      */
     public Builder clearReferer() {
       
@@ -1765,7 +1754,7 @@ public  final class HttpRequest extends
      * [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      * </pre>
      *
-     * <code>string referer = 8;</code>
+     * <code>optional string referer = 8;</code>
      */
     public Builder setRefererBytes(
         com.google.protobuf.ByteString value) {
@@ -1788,7 +1777,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public boolean hasLatency() {
       return latencyBuilder_ != null || latency_ != null;
@@ -1799,7 +1788,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public com.google.protobuf.Duration getLatency() {
       if (latencyBuilder_ == null) {
@@ -1814,7 +1803,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public Builder setLatency(com.google.protobuf.Duration value) {
       if (latencyBuilder_ == null) {
@@ -1835,7 +1824,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public Builder setLatency(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1854,7 +1843,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public Builder mergeLatency(com.google.protobuf.Duration value) {
       if (latencyBuilder_ == null) {
@@ -1877,7 +1866,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public Builder clearLatency() {
       if (latencyBuilder_ == null) {
@@ -1896,7 +1885,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public com.google.protobuf.Duration.Builder getLatencyBuilder() {
       
@@ -1909,7 +1898,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     public com.google.protobuf.DurationOrBuilder getLatencyOrBuilder() {
       if (latencyBuilder_ != null) {
@@ -1925,7 +1914,7 @@ public  final class HttpRequest extends
      * received until the response was sent.
      * </pre>
      *
-     * <code>.google.protobuf.Duration latency = 14;</code>
+     * <code>optional .google.protobuf.Duration latency = 14;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -1947,7 +1936,7 @@ public  final class HttpRequest extends
      * Whether or not a cache lookup was attempted.
      * </pre>
      *
-     * <code>bool cache_lookup = 11;</code>
+     * <code>optional bool cache_lookup = 11;</code>
      */
     public boolean getCacheLookup() {
       return cacheLookup_;
@@ -1957,7 +1946,7 @@ public  final class HttpRequest extends
      * Whether or not a cache lookup was attempted.
      * </pre>
      *
-     * <code>bool cache_lookup = 11;</code>
+     * <code>optional bool cache_lookup = 11;</code>
      */
     public Builder setCacheLookup(boolean value) {
       
@@ -1970,7 +1959,7 @@ public  final class HttpRequest extends
      * Whether or not a cache lookup was attempted.
      * </pre>
      *
-     * <code>bool cache_lookup = 11;</code>
+     * <code>optional bool cache_lookup = 11;</code>
      */
     public Builder clearCacheLookup() {
       
@@ -1986,7 +1975,7 @@ public  final class HttpRequest extends
      * (with or without validation).
      * </pre>
      *
-     * <code>bool cache_hit = 9;</code>
+     * <code>optional bool cache_hit = 9;</code>
      */
     public boolean getCacheHit() {
       return cacheHit_;
@@ -1997,7 +1986,7 @@ public  final class HttpRequest extends
      * (with or without validation).
      * </pre>
      *
-     * <code>bool cache_hit = 9;</code>
+     * <code>optional bool cache_hit = 9;</code>
      */
     public Builder setCacheHit(boolean value) {
       
@@ -2011,7 +2000,7 @@ public  final class HttpRequest extends
      * (with or without validation).
      * </pre>
      *
-     * <code>bool cache_hit = 9;</code>
+     * <code>optional bool cache_hit = 9;</code>
      */
     public Builder clearCacheHit() {
       
@@ -2028,7 +2017,7 @@ public  final class HttpRequest extends
      * True.
      * </pre>
      *
-     * <code>bool cache_validated_with_origin_server = 10;</code>
+     * <code>optional bool cache_validated_with_origin_server = 10;</code>
      */
     public boolean getCacheValidatedWithOriginServer() {
       return cacheValidatedWithOriginServer_;
@@ -2040,7 +2029,7 @@ public  final class HttpRequest extends
      * True.
      * </pre>
      *
-     * <code>bool cache_validated_with_origin_server = 10;</code>
+     * <code>optional bool cache_validated_with_origin_server = 10;</code>
      */
     public Builder setCacheValidatedWithOriginServer(boolean value) {
       
@@ -2055,7 +2044,7 @@ public  final class HttpRequest extends
      * True.
      * </pre>
      *
-     * <code>bool cache_validated_with_origin_server = 10;</code>
+     * <code>optional bool cache_validated_with_origin_server = 10;</code>
      */
     public Builder clearCacheValidatedWithOriginServer() {
       
@@ -2071,7 +2060,7 @@ public  final class HttpRequest extends
      * cache fill was attempted.
      * </pre>
      *
-     * <code>int64 cache_fill_bytes = 12;</code>
+     * <code>optional int64 cache_fill_bytes = 12;</code>
      */
     public long getCacheFillBytes() {
       return cacheFillBytes_;
@@ -2082,7 +2071,7 @@ public  final class HttpRequest extends
      * cache fill was attempted.
      * </pre>
      *
-     * <code>int64 cache_fill_bytes = 12;</code>
+     * <code>optional int64 cache_fill_bytes = 12;</code>
      */
     public Builder setCacheFillBytes(long value) {
       
@@ -2096,7 +2085,7 @@ public  final class HttpRequest extends
      * cache fill was attempted.
      * </pre>
      *
-     * <code>int64 cache_fill_bytes = 12;</code>
+     * <code>optional int64 cache_fill_bytes = 12;</code>
      */
     public Builder clearCacheFillBytes() {
       

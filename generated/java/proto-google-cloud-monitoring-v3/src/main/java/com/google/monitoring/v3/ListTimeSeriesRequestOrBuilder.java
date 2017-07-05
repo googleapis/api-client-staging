@@ -13,7 +13,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * "projects/{project_id_or_number}".
    * </pre>
    *
-   * <code>string name = 10;</code>
+   * <code>optional string name = 10;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * "projects/{project_id_or_number}".
    * </pre>
    *
-   * <code>string name = 10;</code>
+   * <code>optional string name = 10;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -37,7 +37,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    *         metric.label.instance_name = "my-instance-name"
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   java.lang.String getFilter();
   /**
@@ -50,7 +50,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    *         metric.label.instance_name = "my-instance-name"
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -62,7 +62,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   boolean hasInterval();
   /**
@@ -72,7 +72,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   com.google.monitoring.v3.TimeInterval getInterval();
   /**
@@ -82,7 +82,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder();
 
@@ -93,7 +93,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   boolean hasAggregation();
   /**
@@ -103,7 +103,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   com.google.monitoring.v3.Aggregation getAggregation();
   /**
@@ -113,7 +113,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   com.google.monitoring.v3.AggregationOrBuilder getAggregationOrBuilder();
 
@@ -124,7 +124,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * this field must be left blank.
    * </pre>
    *
-   * <code>string order_by = 6;</code>
+   * <code>optional string order_by = 6;</code>
    */
   java.lang.String getOrderBy();
   /**
@@ -134,7 +134,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * this field must be left blank.
    * </pre>
    *
-   * <code>string order_by = 6;</code>
+   * <code>optional string order_by = 6;</code>
    */
   com.google.protobuf.ByteString
       getOrderByBytes();
@@ -144,7 +144,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * Specifies which information is returned about the time series.
    * </pre>
    *
-   * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+   * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
    */
   int getViewValue();
   /**
@@ -152,7 +152,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * Specifies which information is returned about the time series.
    * </pre>
    *
-   * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+   * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
    */
   com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView getView();
 
@@ -164,7 +164,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * `TimeSeries` server will return.
    * </pre>
    *
-   * <code>int32 page_size = 8;</code>
+   * <code>optional int32 page_size = 8;</code>
    */
   int getPageSize();
 
@@ -175,7 +175,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 9;</code>
+   * <code>optional string page_token = 9;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -185,7 +185,7 @@ public interface ListTimeSeriesRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 9;</code>
+   * <code>optional string page_token = 9;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

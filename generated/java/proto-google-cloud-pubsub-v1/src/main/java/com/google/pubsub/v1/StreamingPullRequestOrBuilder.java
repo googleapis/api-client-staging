@@ -15,7 +15,7 @@ public interface StreamingPullRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -26,7 +26,7 @@ public interface StreamingPullRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();
@@ -196,7 +196,7 @@ public interface StreamingPullRequestOrBuilder extends
    * seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
    * </pre>
    *
-   * <code>int32 stream_ack_deadline_seconds = 5;</code>
+   * <code>optional int32 stream_ack_deadline_seconds = 5;</code>
    */
   int getStreamAckDeadlineSeconds();
 }

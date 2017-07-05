@@ -12,7 +12,7 @@ public interface VideoSegmentOrBuilder extends
    * Start offset in microseconds (inclusive). Unset means 0.
    * </pre>
    *
-   * <code>int64 start_time_offset = 1;</code>
+   * <code>optional int64 start_time_offset = 1;</code>
    */
   long getStartTimeOffset();
 
@@ -21,7 +21,7 @@ public interface VideoSegmentOrBuilder extends
    * End offset in microseconds (inclusive). Unset means 0.
    * </pre>
    *
-   * <code>int64 end_time_offset = 2;</code>
+   * <code>optional int64 end_time_offset = 2;</code>
    */
   long getEndTimeOffset();
 }

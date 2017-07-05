@@ -113,7 +113,7 @@ public  final class ErrorContext extends
    * triggered.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   public boolean hasHttpRequest() {
     return httpRequest_ != null;
@@ -124,7 +124,7 @@ public  final class ErrorContext extends
    * triggered.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext getHttpRequest() {
     return httpRequest_ == null ? com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext.getDefaultInstance() : httpRequest_;
@@ -135,7 +135,7 @@ public  final class ErrorContext extends
    * triggered.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContextOrBuilder getHttpRequestOrBuilder() {
     return getHttpRequest();
@@ -155,7 +155,7 @@ public  final class ErrorContext extends
    * `ErrorGroupStats`.
    * </pre>
    *
-   * <code>string user = 2;</code>
+   * <code>optional string user = 2;</code>
    */
   public java.lang.String getUser() {
     java.lang.Object ref = user_;
@@ -181,7 +181,7 @@ public  final class ErrorContext extends
    * `ErrorGroupStats`.
    * </pre>
    *
-   * <code>string user = 2;</code>
+   * <code>optional string user = 2;</code>
    */
   public com.google.protobuf.ByteString
       getUserBytes() {
@@ -209,7 +209,7 @@ public  final class ErrorContext extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   public boolean hasReportLocation() {
     return reportLocation_ != null;
@@ -224,7 +224,7 @@ public  final class ErrorContext extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.SourceLocation getReportLocation() {
     return reportLocation_ == null ? com.google.devtools.clouderrorreporting.v1beta1.SourceLocation.getDefaultInstance() : reportLocation_;
@@ -239,7 +239,7 @@ public  final class ErrorContext extends
    * which describes the source line where the exception was thrown.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.SourceLocationOrBuilder getReportLocationOrBuilder() {
     return getReportLocation();
@@ -321,7 +321,7 @@ public  final class ErrorContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasHttpRequest()) {
       hash = (37 * hash) + HTTP_REQUEST_FIELD_NUMBER;
       hash = (53 * hash) + getHttpRequest().hashCode();
@@ -337,17 +337,6 @@ public  final class ErrorContext extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorContext parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.ErrorContext parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ErrorContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -601,7 +590,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public boolean hasHttpRequest() {
       return httpRequestBuilder_ != null || httpRequest_ != null;
@@ -612,7 +601,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext getHttpRequest() {
       if (httpRequestBuilder_ == null) {
@@ -627,7 +616,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public Builder setHttpRequest(com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext value) {
       if (httpRequestBuilder_ == null) {
@@ -648,7 +637,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public Builder setHttpRequest(
         com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext.Builder builderForValue) {
@@ -667,7 +656,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public Builder mergeHttpRequest(com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext value) {
       if (httpRequestBuilder_ == null) {
@@ -690,7 +679,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public Builder clearHttpRequest() {
       if (httpRequestBuilder_ == null) {
@@ -709,7 +698,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext.Builder getHttpRequestBuilder() {
       
@@ -722,7 +711,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContextOrBuilder getHttpRequestOrBuilder() {
       if (httpRequestBuilder_ != null) {
@@ -738,7 +727,7 @@ public  final class ErrorContext extends
      * triggered.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext, com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext.Builder, com.google.devtools.clouderrorreporting.v1beta1.HttpRequestContextOrBuilder> 
@@ -767,7 +756,7 @@ public  final class ErrorContext extends
      * `ErrorGroupStats`.
      * </pre>
      *
-     * <code>string user = 2;</code>
+     * <code>optional string user = 2;</code>
      */
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
@@ -793,7 +782,7 @@ public  final class ErrorContext extends
      * `ErrorGroupStats`.
      * </pre>
      *
-     * <code>string user = 2;</code>
+     * <code>optional string user = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUserBytes() {
@@ -820,7 +809,7 @@ public  final class ErrorContext extends
      * `ErrorGroupStats`.
      * </pre>
      *
-     * <code>string user = 2;</code>
+     * <code>optional string user = 2;</code>
      */
     public Builder setUser(
         java.lang.String value) {
@@ -844,7 +833,7 @@ public  final class ErrorContext extends
      * `ErrorGroupStats`.
      * </pre>
      *
-     * <code>string user = 2;</code>
+     * <code>optional string user = 2;</code>
      */
     public Builder clearUser() {
       
@@ -864,7 +853,7 @@ public  final class ErrorContext extends
      * `ErrorGroupStats`.
      * </pre>
      *
-     * <code>string user = 2;</code>
+     * <code>optional string user = 2;</code>
      */
     public Builder setUserBytes(
         com.google.protobuf.ByteString value) {
@@ -891,7 +880,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public boolean hasReportLocation() {
       return reportLocationBuilder_ != null || reportLocation_ != null;
@@ -906,7 +895,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.SourceLocation getReportLocation() {
       if (reportLocationBuilder_ == null) {
@@ -925,7 +914,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public Builder setReportLocation(com.google.devtools.clouderrorreporting.v1beta1.SourceLocation value) {
       if (reportLocationBuilder_ == null) {
@@ -950,7 +939,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public Builder setReportLocation(
         com.google.devtools.clouderrorreporting.v1beta1.SourceLocation.Builder builderForValue) {
@@ -973,7 +962,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public Builder mergeReportLocation(com.google.devtools.clouderrorreporting.v1beta1.SourceLocation value) {
       if (reportLocationBuilder_ == null) {
@@ -1000,7 +989,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public Builder clearReportLocation() {
       if (reportLocationBuilder_ == null) {
@@ -1023,7 +1012,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.SourceLocation.Builder getReportLocationBuilder() {
       
@@ -1040,7 +1029,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.SourceLocationOrBuilder getReportLocationOrBuilder() {
       if (reportLocationBuilder_ != null) {
@@ -1060,7 +1049,7 @@ public  final class ErrorContext extends
      * which describes the source line where the exception was thrown.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.SourceLocation, com.google.devtools.clouderrorreporting.v1beta1.SourceLocation.Builder, com.google.devtools.clouderrorreporting.v1beta1.SourceLocationOrBuilder> 

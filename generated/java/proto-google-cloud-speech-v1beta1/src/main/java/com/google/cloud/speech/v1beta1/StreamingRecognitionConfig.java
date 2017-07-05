@@ -103,7 +103,7 @@ public  final class StreamingRecognitionConfig extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   public boolean hasConfig() {
     return config_ != null;
@@ -114,7 +114,7 @@ public  final class StreamingRecognitionConfig extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   public com.google.cloud.speech.v1beta1.RecognitionConfig getConfig() {
     return config_ == null ? com.google.cloud.speech.v1beta1.RecognitionConfig.getDefaultInstance() : config_;
@@ -125,7 +125,7 @@ public  final class StreamingRecognitionConfig extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   public com.google.cloud.speech.v1beta1.RecognitionConfigOrBuilder getConfigOrBuilder() {
     return getConfig();
@@ -146,7 +146,7 @@ public  final class StreamingRecognitionConfig extends
    * one `StreamingRecognitionResult` with the `is_final` flag set to `true`.
    * </pre>
    *
-   * <code>bool single_utterance = 2;</code>
+   * <code>optional bool single_utterance = 2;</code>
    */
   public boolean getSingleUtterance() {
     return singleUtterance_;
@@ -162,7 +162,7 @@ public  final class StreamingRecognitionConfig extends
    * If `false` or omitted, only `is_final=true` result(s) are returned.
    * </pre>
    *
-   * <code>bool interim_results = 3;</code>
+   * <code>optional bool interim_results = 3;</code>
    */
   public boolean getInterimResults() {
     return interimResults_;
@@ -242,7 +242,7 @@ public  final class StreamingRecognitionConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasConfig()) {
       hash = (37 * hash) + CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getConfig().hashCode();
@@ -258,17 +258,6 @@ public  final class StreamingRecognitionConfig extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1beta1.StreamingRecognitionConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1beta1.StreamingRecognitionConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1beta1.StreamingRecognitionConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -511,7 +500,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public boolean hasConfig() {
       return configBuilder_ != null || config_ != null;
@@ -522,7 +511,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.RecognitionConfig getConfig() {
       if (configBuilder_ == null) {
@@ -537,7 +526,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public Builder setConfig(com.google.cloud.speech.v1beta1.RecognitionConfig value) {
       if (configBuilder_ == null) {
@@ -558,7 +547,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public Builder setConfig(
         com.google.cloud.speech.v1beta1.RecognitionConfig.Builder builderForValue) {
@@ -577,7 +566,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public Builder mergeConfig(com.google.cloud.speech.v1beta1.RecognitionConfig value) {
       if (configBuilder_ == null) {
@@ -600,7 +589,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public Builder clearConfig() {
       if (configBuilder_ == null) {
@@ -619,7 +608,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.RecognitionConfig.Builder getConfigBuilder() {
       
@@ -632,7 +621,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1beta1.RecognitionConfigOrBuilder getConfigOrBuilder() {
       if (configBuilder_ != null) {
@@ -648,7 +637,7 @@ public  final class StreamingRecognitionConfig extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.speech.v1beta1.RecognitionConfig, com.google.cloud.speech.v1beta1.RecognitionConfig.Builder, com.google.cloud.speech.v1beta1.RecognitionConfigOrBuilder> 
@@ -678,7 +667,7 @@ public  final class StreamingRecognitionConfig extends
      * one `StreamingRecognitionResult` with the `is_final` flag set to `true`.
      * </pre>
      *
-     * <code>bool single_utterance = 2;</code>
+     * <code>optional bool single_utterance = 2;</code>
      */
     public boolean getSingleUtterance() {
       return singleUtterance_;
@@ -696,7 +685,7 @@ public  final class StreamingRecognitionConfig extends
      * one `StreamingRecognitionResult` with the `is_final` flag set to `true`.
      * </pre>
      *
-     * <code>bool single_utterance = 2;</code>
+     * <code>optional bool single_utterance = 2;</code>
      */
     public Builder setSingleUtterance(boolean value) {
       
@@ -717,7 +706,7 @@ public  final class StreamingRecognitionConfig extends
      * one `StreamingRecognitionResult` with the `is_final` flag set to `true`.
      * </pre>
      *
-     * <code>bool single_utterance = 2;</code>
+     * <code>optional bool single_utterance = 2;</code>
      */
     public Builder clearSingleUtterance() {
       
@@ -735,7 +724,7 @@ public  final class StreamingRecognitionConfig extends
      * If `false` or omitted, only `is_final=true` result(s) are returned.
      * </pre>
      *
-     * <code>bool interim_results = 3;</code>
+     * <code>optional bool interim_results = 3;</code>
      */
     public boolean getInterimResults() {
       return interimResults_;
@@ -748,7 +737,7 @@ public  final class StreamingRecognitionConfig extends
      * If `false` or omitted, only `is_final=true` result(s) are returned.
      * </pre>
      *
-     * <code>bool interim_results = 3;</code>
+     * <code>optional bool interim_results = 3;</code>
      */
     public Builder setInterimResults(boolean value) {
       
@@ -764,7 +753,7 @@ public  final class StreamingRecognitionConfig extends
      * If `false` or omitted, only `is_final=true` result(s) are returned.
      * </pre>
      *
-     * <code>bool interim_results = 3;</code>
+     * <code>optional bool interim_results = 3;</code>
      */
     public Builder clearInterimResults() {
       

@@ -12,7 +12,7 @@ public interface CreateDatabaseMetadataOrBuilder extends
    * The database being created.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   java.lang.String getDatabase();
   /**
@@ -20,7 +20,7 @@ public interface CreateDatabaseMetadataOrBuilder extends
    * The database being created.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   com.google.protobuf.ByteString
       getDatabaseBytes();

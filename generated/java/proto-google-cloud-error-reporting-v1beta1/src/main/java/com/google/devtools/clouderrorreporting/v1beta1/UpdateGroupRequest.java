@@ -89,7 +89,7 @@ public  final class UpdateGroupRequest extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public boolean hasGroup() {
     return group_ != null;
@@ -99,7 +99,7 @@ public  final class UpdateGroupRequest extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup() {
     return group_ == null ? com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.getDefaultInstance() : group_;
@@ -109,7 +109,7 @@ public  final class UpdateGroupRequest extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder() {
     return getGroup();
@@ -171,7 +171,7 @@ public  final class UpdateGroupRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasGroup()) {
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
@@ -181,17 +181,6 @@ public  final class UpdateGroupRequest extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -420,7 +409,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public boolean hasGroup() {
       return groupBuilder_ != null || group_ != null;
@@ -430,7 +419,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup() {
       if (groupBuilder_ == null) {
@@ -444,7 +433,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder setGroup(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup value) {
       if (groupBuilder_ == null) {
@@ -464,7 +453,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder setGroup(
         com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder builderForValue) {
@@ -482,7 +471,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder mergeGroup(com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup value) {
       if (groupBuilder_ == null) {
@@ -504,7 +493,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public Builder clearGroup() {
       if (groupBuilder_ == null) {
@@ -522,7 +511,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder getGroupBuilder() {
       
@@ -534,7 +523,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder() {
       if (groupBuilder_ != null) {
@@ -549,7 +538,7 @@ public  final class UpdateGroupRequest extends
      * [Required] The group which replaces the resource on the server.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup.Builder, com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder> 

@@ -148,7 +148,8 @@ public enum LabelLevel
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor().getEnumTypes().get(1);
+    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor()
+        .getEnumTypes().get(1);
   }
 
   private static final LabelLevel[] VALUES = values();

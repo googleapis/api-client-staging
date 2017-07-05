@@ -205,7 +205,7 @@ public  final class Color extends
    * The amount of red in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float red = 1;</code>
+   * <code>optional float red = 1;</code>
    */
   public float getRed() {
     return red_;
@@ -218,7 +218,7 @@ public  final class Color extends
    * The amount of green in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float green = 2;</code>
+   * <code>optional float green = 2;</code>
    */
   public float getGreen() {
     return green_;
@@ -231,7 +231,7 @@ public  final class Color extends
    * The amount of blue in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float blue = 3;</code>
+   * <code>optional float blue = 3;</code>
    */
   public float getBlue() {
     return blue_;
@@ -252,7 +252,7 @@ public  final class Color extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   public boolean hasAlpha() {
     return alpha_ != null;
@@ -270,7 +270,7 @@ public  final class Color extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   public com.google.protobuf.FloatValue getAlpha() {
     return alpha_ == null ? com.google.protobuf.FloatValue.getDefaultInstance() : alpha_;
@@ -288,7 +288,7 @@ public  final class Color extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   public com.google.protobuf.FloatValueOrBuilder getAlphaOrBuilder() {
     return getAlpha();
@@ -383,7 +383,7 @@ public  final class Color extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + RED_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getRed());
@@ -402,17 +402,6 @@ public  final class Color extends
     return hash;
   }
 
-  public static com.google.type.Color parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.type.Color parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.type.Color parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -755,7 +744,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float red = 1;</code>
+     * <code>optional float red = 1;</code>
      */
     public float getRed() {
       return red_;
@@ -765,7 +754,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float red = 1;</code>
+     * <code>optional float red = 1;</code>
      */
     public Builder setRed(float value) {
       
@@ -778,7 +767,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float red = 1;</code>
+     * <code>optional float red = 1;</code>
      */
     public Builder clearRed() {
       
@@ -793,7 +782,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float green = 2;</code>
+     * <code>optional float green = 2;</code>
      */
     public float getGreen() {
       return green_;
@@ -803,7 +792,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float green = 2;</code>
+     * <code>optional float green = 2;</code>
      */
     public Builder setGreen(float value) {
       
@@ -816,7 +805,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float green = 2;</code>
+     * <code>optional float green = 2;</code>
      */
     public Builder clearGreen() {
       
@@ -831,7 +820,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float blue = 3;</code>
+     * <code>optional float blue = 3;</code>
      */
     public float getBlue() {
       return blue_;
@@ -841,7 +830,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float blue = 3;</code>
+     * <code>optional float blue = 3;</code>
      */
     public Builder setBlue(float value) {
       
@@ -854,7 +843,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>float blue = 3;</code>
+     * <code>optional float blue = 3;</code>
      */
     public Builder clearBlue() {
       
@@ -879,7 +868,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public boolean hasAlpha() {
       return alphaBuilder_ != null || alpha_ != null;
@@ -897,7 +886,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public com.google.protobuf.FloatValue getAlpha() {
       if (alphaBuilder_ == null) {
@@ -919,7 +908,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public Builder setAlpha(com.google.protobuf.FloatValue value) {
       if (alphaBuilder_ == null) {
@@ -947,7 +936,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public Builder setAlpha(
         com.google.protobuf.FloatValue.Builder builderForValue) {
@@ -973,7 +962,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public Builder mergeAlpha(com.google.protobuf.FloatValue value) {
       if (alphaBuilder_ == null) {
@@ -1003,7 +992,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public Builder clearAlpha() {
       if (alphaBuilder_ == null) {
@@ -1029,7 +1018,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public com.google.protobuf.FloatValue.Builder getAlphaBuilder() {
       
@@ -1049,7 +1038,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     public com.google.protobuf.FloatValueOrBuilder getAlphaOrBuilder() {
       if (alphaBuilder_ != null) {
@@ -1072,7 +1061,7 @@ public  final class Color extends
      * (as if the alpha value had been explicitly given with a value of 1.0).
      * </pre>
      *
-     * <code>.google.protobuf.FloatValue alpha = 4;</code>
+     * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.FloatValue, com.google.protobuf.FloatValue.Builder, com.google.protobuf.FloatValueOrBuilder> 

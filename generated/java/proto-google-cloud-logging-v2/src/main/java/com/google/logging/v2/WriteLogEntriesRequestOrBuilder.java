@@ -22,7 +22,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   java.lang.String getLogName();
   /**
@@ -40,7 +40,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getLogNameBytes();
@@ -55,7 +55,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * See [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>.google.api.MonitoredResource resource = 2;</code>
+   * <code>optional .google.api.MonitoredResource resource = 2;</code>
    */
   boolean hasResource();
   /**
@@ -68,7 +68,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * See [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>.google.api.MonitoredResource resource = 2;</code>
+   * <code>optional .google.api.MonitoredResource resource = 2;</code>
    */
   com.google.api.MonitoredResource getResource();
   /**
@@ -81,7 +81,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * See [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>.google.api.MonitoredResource resource = 2;</code>
+   * <code>optional .google.api.MonitoredResource resource = 2;</code>
    */
   com.google.api.MonitoredResourceOrBuilder getResourceOrBuilder();
 
@@ -267,7 +267,7 @@ public interface WriteLogEntriesRequestOrBuilder extends
    * keyed by the entries' zero-based index in the `entries.write` method.
    * </pre>
    *
-   * <code>bool partial_success = 5;</code>
+   * <code>optional bool partial_success = 5;</code>
    */
   boolean getPartialSuccess();
 }

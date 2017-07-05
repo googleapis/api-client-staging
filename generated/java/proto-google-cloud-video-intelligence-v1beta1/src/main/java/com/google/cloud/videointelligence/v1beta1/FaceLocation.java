@@ -95,7 +95,7 @@ public  final class FaceLocation extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   public boolean hasBoundingBox() {
     return boundingBox_ != null;
@@ -105,7 +105,7 @@ public  final class FaceLocation extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.BoundingBox getBoundingBox() {
     return boundingBox_ == null ? com.google.cloud.videointelligence.v1beta1.BoundingBox.getDefaultInstance() : boundingBox_;
@@ -115,7 +115,7 @@ public  final class FaceLocation extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.BoundingBoxOrBuilder getBoundingBoxOrBuilder() {
     return getBoundingBox();
@@ -128,7 +128,7 @@ public  final class FaceLocation extends
    * Video time offset in microseconds.
    * </pre>
    *
-   * <code>int64 time_offset = 2;</code>
+   * <code>optional int64 time_offset = 2;</code>
    */
   public long getTimeOffset() {
     return timeOffset_;
@@ -199,7 +199,7 @@ public  final class FaceLocation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasBoundingBox()) {
       hash = (37 * hash) + BOUNDING_BOX_FIELD_NUMBER;
       hash = (53 * hash) + getBoundingBox().hashCode();
@@ -212,17 +212,6 @@ public  final class FaceLocation extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.FaceLocation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.FaceLocation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.FaceLocation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -457,7 +446,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public boolean hasBoundingBox() {
       return boundingBoxBuilder_ != null || boundingBox_ != null;
@@ -467,7 +456,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.BoundingBox getBoundingBox() {
       if (boundingBoxBuilder_ == null) {
@@ -481,7 +470,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public Builder setBoundingBox(com.google.cloud.videointelligence.v1beta1.BoundingBox value) {
       if (boundingBoxBuilder_ == null) {
@@ -501,7 +490,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public Builder setBoundingBox(
         com.google.cloud.videointelligence.v1beta1.BoundingBox.Builder builderForValue) {
@@ -519,7 +508,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public Builder mergeBoundingBox(com.google.cloud.videointelligence.v1beta1.BoundingBox value) {
       if (boundingBoxBuilder_ == null) {
@@ -541,7 +530,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public Builder clearBoundingBox() {
       if (boundingBoxBuilder_ == null) {
@@ -559,7 +548,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.BoundingBox.Builder getBoundingBoxBuilder() {
       
@@ -571,7 +560,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.BoundingBoxOrBuilder getBoundingBoxOrBuilder() {
       if (boundingBoxBuilder_ != null) {
@@ -586,7 +575,7 @@ public  final class FaceLocation extends
      * Bounding box in a frame.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.videointelligence.v1beta1.BoundingBox, com.google.cloud.videointelligence.v1beta1.BoundingBox.Builder, com.google.cloud.videointelligence.v1beta1.BoundingBoxOrBuilder> 
@@ -608,7 +597,7 @@ public  final class FaceLocation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * <code>optional int64 time_offset = 2;</code>
      */
     public long getTimeOffset() {
       return timeOffset_;
@@ -618,7 +607,7 @@ public  final class FaceLocation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * <code>optional int64 time_offset = 2;</code>
      */
     public Builder setTimeOffset(long value) {
       
@@ -631,7 +620,7 @@ public  final class FaceLocation extends
      * Video time offset in microseconds.
      * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * <code>optional int64 time_offset = 2;</code>
      */
     public Builder clearTimeOffset() {
       

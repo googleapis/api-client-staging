@@ -13,7 +13,7 @@ public interface DeleteSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>string snapshot = 1;</code>
+   * <code>optional string snapshot = 1;</code>
    */
   java.lang.String getSnapshot();
   /**
@@ -22,7 +22,7 @@ public interface DeleteSnapshotRequestOrBuilder extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>string snapshot = 1;</code>
+   * <code>optional string snapshot = 1;</code>
    */
   com.google.protobuf.ByteString
       getSnapshotBytes();

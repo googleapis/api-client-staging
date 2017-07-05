@@ -196,7 +196,7 @@ public  final class FaceAnnotation extends
      * Face landmark type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
     int getTypeValue();
     /**
@@ -204,7 +204,7 @@ public  final class FaceAnnotation extends
      * Face landmark type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
     com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type getType();
 
@@ -213,7 +213,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     boolean hasPosition();
     /**
@@ -221,7 +221,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     com.google.cloud.vision.v1.Position getPosition();
     /**
@@ -229,7 +229,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     com.google.cloud.vision.v1.PositionOrBuilder getPositionOrBuilder();
   }
@@ -1012,7 +1012,7 @@ public  final class FaceAnnotation extends
      * Face landmark type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -1022,7 +1022,7 @@ public  final class FaceAnnotation extends
      * Face landmark type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
     public com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type getType() {
       com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type result = com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type.valueOf(type_);
@@ -1036,7 +1036,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     public boolean hasPosition() {
       return position_ != null;
@@ -1046,7 +1046,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     public com.google.cloud.vision.v1.Position getPosition() {
       return position_ == null ? com.google.cloud.vision.v1.Position.getDefaultInstance() : position_;
@@ -1056,7 +1056,7 @@ public  final class FaceAnnotation extends
      * Face landmark position.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
      */
     public com.google.cloud.vision.v1.PositionOrBuilder getPositionOrBuilder() {
       return getPosition();
@@ -1126,7 +1126,7 @@ public  final class FaceAnnotation extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
       if (hasPosition()) {
@@ -1138,17 +1138,6 @@ public  final class FaceAnnotation extends
       return hash;
     }
 
-    public static com.google.cloud.vision.v1.FaceAnnotation.Landmark parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.cloud.vision.v1.FaceAnnotation.Landmark parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.cloud.vision.v1.FaceAnnotation.Landmark parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1385,7 +1374,7 @@ public  final class FaceAnnotation extends
        * Face landmark type.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+       * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
        */
       public int getTypeValue() {
         return type_;
@@ -1395,7 +1384,7 @@ public  final class FaceAnnotation extends
        * Face landmark type.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+       * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -1407,7 +1396,7 @@ public  final class FaceAnnotation extends
        * Face landmark type.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+       * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
        */
       public com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type getType() {
         com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type result = com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type.valueOf(type_);
@@ -1418,7 +1407,7 @@ public  final class FaceAnnotation extends
        * Face landmark type.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+       * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
        */
       public Builder setType(com.google.cloud.vision.v1.FaceAnnotation.Landmark.Type value) {
         if (value == null) {
@@ -1434,7 +1423,7 @@ public  final class FaceAnnotation extends
        * Face landmark type.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+       * <code>optional .google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
        */
       public Builder clearType() {
         
@@ -1451,7 +1440,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public boolean hasPosition() {
         return positionBuilder_ != null || position_ != null;
@@ -1461,7 +1450,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public com.google.cloud.vision.v1.Position getPosition() {
         if (positionBuilder_ == null) {
@@ -1475,7 +1464,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public Builder setPosition(com.google.cloud.vision.v1.Position value) {
         if (positionBuilder_ == null) {
@@ -1495,7 +1484,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public Builder setPosition(
           com.google.cloud.vision.v1.Position.Builder builderForValue) {
@@ -1513,7 +1502,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public Builder mergePosition(com.google.cloud.vision.v1.Position value) {
         if (positionBuilder_ == null) {
@@ -1535,7 +1524,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public Builder clearPosition() {
         if (positionBuilder_ == null) {
@@ -1553,7 +1542,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public com.google.cloud.vision.v1.Position.Builder getPositionBuilder() {
         
@@ -1565,7 +1554,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       public com.google.cloud.vision.v1.PositionOrBuilder getPositionOrBuilder() {
         if (positionBuilder_ != null) {
@@ -1580,7 +1569,7 @@ public  final class FaceAnnotation extends
        * Face landmark position.
        * </pre>
        *
-       * <code>.google.cloud.vision.v1.Position position = 4;</code>
+       * <code>optional .google.cloud.vision.v1.Position position = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.vision.v1.Position, com.google.cloud.vision.v1.Position.Builder, com.google.cloud.vision.v1.PositionOrBuilder> 
@@ -1658,7 +1647,7 @@ public  final class FaceAnnotation extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public boolean hasBoundingPoly() {
     return boundingPoly_ != null;
@@ -1674,7 +1663,7 @@ public  final class FaceAnnotation extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
     return boundingPoly_ == null ? com.google.cloud.vision.v1.BoundingPoly.getDefaultInstance() : boundingPoly_;
@@ -1690,7 +1679,7 @@ public  final class FaceAnnotation extends
    * appears in the image to be annotated.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
     return getBoundingPoly();
@@ -1708,7 +1697,7 @@ public  final class FaceAnnotation extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   public boolean hasFdBoundingPoly() {
     return fdBoundingPoly_ != null;
@@ -1723,7 +1712,7 @@ public  final class FaceAnnotation extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   public com.google.cloud.vision.v1.BoundingPoly getFdBoundingPoly() {
     return fdBoundingPoly_ == null ? com.google.cloud.vision.v1.BoundingPoly.getDefaultInstance() : fdBoundingPoly_;
@@ -1738,7 +1727,7 @@ public  final class FaceAnnotation extends
    * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
    */
   public com.google.cloud.vision.v1.BoundingPolyOrBuilder getFdBoundingPolyOrBuilder() {
     return getFdBoundingPoly();
@@ -1808,7 +1797,7 @@ public  final class FaceAnnotation extends
    * the face. Range [-180,180].
    * </pre>
    *
-   * <code>float roll_angle = 4;</code>
+   * <code>optional float roll_angle = 4;</code>
    */
   public float getRollAngle() {
     return rollAngle_;
@@ -1823,7 +1812,7 @@ public  final class FaceAnnotation extends
    * [-180,180].
    * </pre>
    *
-   * <code>float pan_angle = 5;</code>
+   * <code>optional float pan_angle = 5;</code>
    */
   public float getPanAngle() {
     return panAngle_;
@@ -1837,7 +1826,7 @@ public  final class FaceAnnotation extends
    * pointing relative to the image's horizontal plane. Range [-180,180].
    * </pre>
    *
-   * <code>float tilt_angle = 6;</code>
+   * <code>optional float tilt_angle = 6;</code>
    */
   public float getTiltAngle() {
     return tiltAngle_;
@@ -1850,7 +1839,7 @@ public  final class FaceAnnotation extends
    * Detection confidence. Range [0, 1].
    * </pre>
    *
-   * <code>float detection_confidence = 7;</code>
+   * <code>optional float detection_confidence = 7;</code>
    */
   public float getDetectionConfidence() {
     return detectionConfidence_;
@@ -1863,7 +1852,7 @@ public  final class FaceAnnotation extends
    * Face landmarking confidence. Range [0, 1].
    * </pre>
    *
-   * <code>float landmarking_confidence = 8;</code>
+   * <code>optional float landmarking_confidence = 8;</code>
    */
   public float getLandmarkingConfidence() {
     return landmarkingConfidence_;
@@ -1876,7 +1865,7 @@ public  final class FaceAnnotation extends
    * Joy likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
    */
   public int getJoyLikelihoodValue() {
     return joyLikelihood_;
@@ -1886,7 +1875,7 @@ public  final class FaceAnnotation extends
    * Joy likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getJoyLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(joyLikelihood_);
@@ -1900,7 +1889,7 @@ public  final class FaceAnnotation extends
    * Sorrow likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
    */
   public int getSorrowLikelihoodValue() {
     return sorrowLikelihood_;
@@ -1910,7 +1899,7 @@ public  final class FaceAnnotation extends
    * Sorrow likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getSorrowLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(sorrowLikelihood_);
@@ -1924,7 +1913,7 @@ public  final class FaceAnnotation extends
    * Anger likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
    */
   public int getAngerLikelihoodValue() {
     return angerLikelihood_;
@@ -1934,7 +1923,7 @@ public  final class FaceAnnotation extends
    * Anger likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getAngerLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(angerLikelihood_);
@@ -1948,7 +1937,7 @@ public  final class FaceAnnotation extends
    * Surprise likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
    */
   public int getSurpriseLikelihoodValue() {
     return surpriseLikelihood_;
@@ -1958,7 +1947,7 @@ public  final class FaceAnnotation extends
    * Surprise likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getSurpriseLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(surpriseLikelihood_);
@@ -1972,7 +1961,7 @@ public  final class FaceAnnotation extends
    * Under-exposed likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
    */
   public int getUnderExposedLikelihoodValue() {
     return underExposedLikelihood_;
@@ -1982,7 +1971,7 @@ public  final class FaceAnnotation extends
    * Under-exposed likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getUnderExposedLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(underExposedLikelihood_);
@@ -1996,7 +1985,7 @@ public  final class FaceAnnotation extends
    * Blurred likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
    */
   public int getBlurredLikelihoodValue() {
     return blurredLikelihood_;
@@ -2006,7 +1995,7 @@ public  final class FaceAnnotation extends
    * Blurred likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getBlurredLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(blurredLikelihood_);
@@ -2020,7 +2009,7 @@ public  final class FaceAnnotation extends
    * Headwear likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
    */
   public int getHeadwearLikelihoodValue() {
     return headwearLikelihood_;
@@ -2030,7 +2019,7 @@ public  final class FaceAnnotation extends
    * Headwear likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
    */
   public com.google.cloud.vision.v1.Likelihood getHeadwearLikelihood() {
     com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(headwearLikelihood_);
@@ -2225,7 +2214,7 @@ public  final class FaceAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasBoundingPoly()) {
       hash = (37 * hash) + BOUNDING_POLY_FIELD_NUMBER;
       hash = (53 * hash) + getBoundingPoly().hashCode();
@@ -2272,17 +2261,6 @@ public  final class FaceAnnotation extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.FaceAnnotation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.FaceAnnotation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.FaceAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2649,7 +2627,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public boolean hasBoundingPoly() {
       return boundingPolyBuilder_ != null || boundingPoly_ != null;
@@ -2665,7 +2643,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly getBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -2685,7 +2663,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder setBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -2711,7 +2689,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder setBoundingPoly(
         com.google.cloud.vision.v1.BoundingPoly.Builder builderForValue) {
@@ -2735,7 +2713,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder mergeBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingPolyBuilder_ == null) {
@@ -2763,7 +2741,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public Builder clearBoundingPoly() {
       if (boundingPolyBuilder_ == null) {
@@ -2787,7 +2765,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly.Builder getBoundingPolyBuilder() {
       
@@ -2805,7 +2783,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder() {
       if (boundingPolyBuilder_ != null) {
@@ -2826,7 +2804,7 @@ public  final class FaceAnnotation extends
      * appears in the image to be annotated.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> 
@@ -2855,7 +2833,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public boolean hasFdBoundingPoly() {
       return fdBoundingPolyBuilder_ != null || fdBoundingPoly_ != null;
@@ -2870,7 +2848,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly getFdBoundingPoly() {
       if (fdBoundingPolyBuilder_ == null) {
@@ -2889,7 +2867,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public Builder setFdBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (fdBoundingPolyBuilder_ == null) {
@@ -2914,7 +2892,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public Builder setFdBoundingPoly(
         com.google.cloud.vision.v1.BoundingPoly.Builder builderForValue) {
@@ -2937,7 +2915,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public Builder mergeFdBoundingPoly(com.google.cloud.vision.v1.BoundingPoly value) {
       if (fdBoundingPolyBuilder_ == null) {
@@ -2964,7 +2942,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public Builder clearFdBoundingPoly() {
       if (fdBoundingPolyBuilder_ == null) {
@@ -2987,7 +2965,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly.Builder getFdBoundingPolyBuilder() {
       
@@ -3004,7 +2982,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPolyOrBuilder getFdBoundingPolyOrBuilder() {
       if (fdBoundingPolyBuilder_ != null) {
@@ -3024,7 +3002,7 @@ public  final class FaceAnnotation extends
      * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> 
@@ -3360,7 +3338,7 @@ public  final class FaceAnnotation extends
      * the face. Range [-180,180].
      * </pre>
      *
-     * <code>float roll_angle = 4;</code>
+     * <code>optional float roll_angle = 4;</code>
      */
     public float getRollAngle() {
       return rollAngle_;
@@ -3372,7 +3350,7 @@ public  final class FaceAnnotation extends
      * the face. Range [-180,180].
      * </pre>
      *
-     * <code>float roll_angle = 4;</code>
+     * <code>optional float roll_angle = 4;</code>
      */
     public Builder setRollAngle(float value) {
       
@@ -3387,7 +3365,7 @@ public  final class FaceAnnotation extends
      * the face. Range [-180,180].
      * </pre>
      *
-     * <code>float roll_angle = 4;</code>
+     * <code>optional float roll_angle = 4;</code>
      */
     public Builder clearRollAngle() {
       
@@ -3404,7 +3382,7 @@ public  final class FaceAnnotation extends
      * [-180,180].
      * </pre>
      *
-     * <code>float pan_angle = 5;</code>
+     * <code>optional float pan_angle = 5;</code>
      */
     public float getPanAngle() {
       return panAngle_;
@@ -3416,7 +3394,7 @@ public  final class FaceAnnotation extends
      * [-180,180].
      * </pre>
      *
-     * <code>float pan_angle = 5;</code>
+     * <code>optional float pan_angle = 5;</code>
      */
     public Builder setPanAngle(float value) {
       
@@ -3431,7 +3409,7 @@ public  final class FaceAnnotation extends
      * [-180,180].
      * </pre>
      *
-     * <code>float pan_angle = 5;</code>
+     * <code>optional float pan_angle = 5;</code>
      */
     public Builder clearPanAngle() {
       
@@ -3447,7 +3425,7 @@ public  final class FaceAnnotation extends
      * pointing relative to the image's horizontal plane. Range [-180,180].
      * </pre>
      *
-     * <code>float tilt_angle = 6;</code>
+     * <code>optional float tilt_angle = 6;</code>
      */
     public float getTiltAngle() {
       return tiltAngle_;
@@ -3458,7 +3436,7 @@ public  final class FaceAnnotation extends
      * pointing relative to the image's horizontal plane. Range [-180,180].
      * </pre>
      *
-     * <code>float tilt_angle = 6;</code>
+     * <code>optional float tilt_angle = 6;</code>
      */
     public Builder setTiltAngle(float value) {
       
@@ -3472,7 +3450,7 @@ public  final class FaceAnnotation extends
      * pointing relative to the image's horizontal plane. Range [-180,180].
      * </pre>
      *
-     * <code>float tilt_angle = 6;</code>
+     * <code>optional float tilt_angle = 6;</code>
      */
     public Builder clearTiltAngle() {
       
@@ -3487,7 +3465,7 @@ public  final class FaceAnnotation extends
      * Detection confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float detection_confidence = 7;</code>
+     * <code>optional float detection_confidence = 7;</code>
      */
     public float getDetectionConfidence() {
       return detectionConfidence_;
@@ -3497,7 +3475,7 @@ public  final class FaceAnnotation extends
      * Detection confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float detection_confidence = 7;</code>
+     * <code>optional float detection_confidence = 7;</code>
      */
     public Builder setDetectionConfidence(float value) {
       
@@ -3510,7 +3488,7 @@ public  final class FaceAnnotation extends
      * Detection confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float detection_confidence = 7;</code>
+     * <code>optional float detection_confidence = 7;</code>
      */
     public Builder clearDetectionConfidence() {
       
@@ -3525,7 +3503,7 @@ public  final class FaceAnnotation extends
      * Face landmarking confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float landmarking_confidence = 8;</code>
+     * <code>optional float landmarking_confidence = 8;</code>
      */
     public float getLandmarkingConfidence() {
       return landmarkingConfidence_;
@@ -3535,7 +3513,7 @@ public  final class FaceAnnotation extends
      * Face landmarking confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float landmarking_confidence = 8;</code>
+     * <code>optional float landmarking_confidence = 8;</code>
      */
     public Builder setLandmarkingConfidence(float value) {
       
@@ -3548,7 +3526,7 @@ public  final class FaceAnnotation extends
      * Face landmarking confidence. Range [0, 1].
      * </pre>
      *
-     * <code>float landmarking_confidence = 8;</code>
+     * <code>optional float landmarking_confidence = 8;</code>
      */
     public Builder clearLandmarkingConfidence() {
       
@@ -3563,7 +3541,7 @@ public  final class FaceAnnotation extends
      * Joy likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
     public int getJoyLikelihoodValue() {
       return joyLikelihood_;
@@ -3573,7 +3551,7 @@ public  final class FaceAnnotation extends
      * Joy likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
     public Builder setJoyLikelihoodValue(int value) {
       joyLikelihood_ = value;
@@ -3585,7 +3563,7 @@ public  final class FaceAnnotation extends
      * Joy likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getJoyLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(joyLikelihood_);
@@ -3596,7 +3574,7 @@ public  final class FaceAnnotation extends
      * Joy likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
     public Builder setJoyLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3612,7 +3590,7 @@ public  final class FaceAnnotation extends
      * Joy likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
     public Builder clearJoyLikelihood() {
       
@@ -3627,7 +3605,7 @@ public  final class FaceAnnotation extends
      * Sorrow likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
     public int getSorrowLikelihoodValue() {
       return sorrowLikelihood_;
@@ -3637,7 +3615,7 @@ public  final class FaceAnnotation extends
      * Sorrow likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
     public Builder setSorrowLikelihoodValue(int value) {
       sorrowLikelihood_ = value;
@@ -3649,7 +3627,7 @@ public  final class FaceAnnotation extends
      * Sorrow likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getSorrowLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(sorrowLikelihood_);
@@ -3660,7 +3638,7 @@ public  final class FaceAnnotation extends
      * Sorrow likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
     public Builder setSorrowLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3676,7 +3654,7 @@ public  final class FaceAnnotation extends
      * Sorrow likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
     public Builder clearSorrowLikelihood() {
       
@@ -3691,7 +3669,7 @@ public  final class FaceAnnotation extends
      * Anger likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
     public int getAngerLikelihoodValue() {
       return angerLikelihood_;
@@ -3701,7 +3679,7 @@ public  final class FaceAnnotation extends
      * Anger likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
     public Builder setAngerLikelihoodValue(int value) {
       angerLikelihood_ = value;
@@ -3713,7 +3691,7 @@ public  final class FaceAnnotation extends
      * Anger likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getAngerLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(angerLikelihood_);
@@ -3724,7 +3702,7 @@ public  final class FaceAnnotation extends
      * Anger likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
     public Builder setAngerLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3740,7 +3718,7 @@ public  final class FaceAnnotation extends
      * Anger likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
     public Builder clearAngerLikelihood() {
       
@@ -3755,7 +3733,7 @@ public  final class FaceAnnotation extends
      * Surprise likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
     public int getSurpriseLikelihoodValue() {
       return surpriseLikelihood_;
@@ -3765,7 +3743,7 @@ public  final class FaceAnnotation extends
      * Surprise likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
     public Builder setSurpriseLikelihoodValue(int value) {
       surpriseLikelihood_ = value;
@@ -3777,7 +3755,7 @@ public  final class FaceAnnotation extends
      * Surprise likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getSurpriseLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(surpriseLikelihood_);
@@ -3788,7 +3766,7 @@ public  final class FaceAnnotation extends
      * Surprise likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
     public Builder setSurpriseLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3804,7 +3782,7 @@ public  final class FaceAnnotation extends
      * Surprise likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
     public Builder clearSurpriseLikelihood() {
       
@@ -3819,7 +3797,7 @@ public  final class FaceAnnotation extends
      * Under-exposed likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
     public int getUnderExposedLikelihoodValue() {
       return underExposedLikelihood_;
@@ -3829,7 +3807,7 @@ public  final class FaceAnnotation extends
      * Under-exposed likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
     public Builder setUnderExposedLikelihoodValue(int value) {
       underExposedLikelihood_ = value;
@@ -3841,7 +3819,7 @@ public  final class FaceAnnotation extends
      * Under-exposed likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getUnderExposedLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(underExposedLikelihood_);
@@ -3852,7 +3830,7 @@ public  final class FaceAnnotation extends
      * Under-exposed likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
     public Builder setUnderExposedLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3868,7 +3846,7 @@ public  final class FaceAnnotation extends
      * Under-exposed likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
     public Builder clearUnderExposedLikelihood() {
       
@@ -3883,7 +3861,7 @@ public  final class FaceAnnotation extends
      * Blurred likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
     public int getBlurredLikelihoodValue() {
       return blurredLikelihood_;
@@ -3893,7 +3871,7 @@ public  final class FaceAnnotation extends
      * Blurred likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
     public Builder setBlurredLikelihoodValue(int value) {
       blurredLikelihood_ = value;
@@ -3905,7 +3883,7 @@ public  final class FaceAnnotation extends
      * Blurred likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getBlurredLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(blurredLikelihood_);
@@ -3916,7 +3894,7 @@ public  final class FaceAnnotation extends
      * Blurred likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
     public Builder setBlurredLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3932,7 +3910,7 @@ public  final class FaceAnnotation extends
      * Blurred likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
     public Builder clearBlurredLikelihood() {
       
@@ -3947,7 +3925,7 @@ public  final class FaceAnnotation extends
      * Headwear likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
     public int getHeadwearLikelihoodValue() {
       return headwearLikelihood_;
@@ -3957,7 +3935,7 @@ public  final class FaceAnnotation extends
      * Headwear likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
     public Builder setHeadwearLikelihoodValue(int value) {
       headwearLikelihood_ = value;
@@ -3969,7 +3947,7 @@ public  final class FaceAnnotation extends
      * Headwear likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
     public com.google.cloud.vision.v1.Likelihood getHeadwearLikelihood() {
       com.google.cloud.vision.v1.Likelihood result = com.google.cloud.vision.v1.Likelihood.valueOf(headwearLikelihood_);
@@ -3980,7 +3958,7 @@ public  final class FaceAnnotation extends
      * Headwear likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
     public Builder setHeadwearLikelihood(com.google.cloud.vision.v1.Likelihood value) {
       if (value == null) {
@@ -3996,7 +3974,7 @@ public  final class FaceAnnotation extends
      * Headwear likelihood.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * <code>optional .google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
     public Builder clearHeadwearLikelihood() {
       

@@ -12,7 +12,7 @@ public interface AnalyzeSentimentRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   boolean hasDocument();
   /**
@@ -20,7 +20,7 @@ public interface AnalyzeSentimentRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   com.google.cloud.language.v1beta2.Document getDocument();
   /**
@@ -28,7 +28,7 @@ public interface AnalyzeSentimentRequestOrBuilder extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder();
 
@@ -38,7 +38,7 @@ public interface AnalyzeSentimentRequestOrBuilder extends
    * sentence sentiment.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
    */
   int getEncodingTypeValue();
   /**
@@ -47,7 +47,7 @@ public interface AnalyzeSentimentRequestOrBuilder extends
    * sentence sentiment.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
    */
   com.google.cloud.language.v1beta2.EncodingType getEncodingType();
 }

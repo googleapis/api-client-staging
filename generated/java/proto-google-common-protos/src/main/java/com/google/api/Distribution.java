@@ -158,7 +158,7 @@ public  final class Distribution extends
      * The minimum of the population values.
      * </pre>
      *
-     * <code>double min = 1;</code>
+     * <code>optional double min = 1;</code>
      */
     double getMin();
 
@@ -167,7 +167,7 @@ public  final class Distribution extends
      * The maximum of the population values.
      * </pre>
      *
-     * <code>double max = 2;</code>
+     * <code>optional double max = 2;</code>
      */
     double getMax();
   }
@@ -256,7 +256,7 @@ public  final class Distribution extends
      * The minimum of the population values.
      * </pre>
      *
-     * <code>double min = 1;</code>
+     * <code>optional double min = 1;</code>
      */
     public double getMin() {
       return min_;
@@ -269,7 +269,7 @@ public  final class Distribution extends
      * The maximum of the population values.
      * </pre>
      *
-     * <code>double max = 2;</code>
+     * <code>optional double max = 2;</code>
      */
     public double getMax() {
       return max_;
@@ -341,7 +341,7 @@ public  final class Distribution extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + MIN_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getMin()));
@@ -353,17 +353,6 @@ public  final class Distribution extends
       return hash;
     }
 
-    public static com.google.api.Distribution.Range parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.api.Distribution.Range parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.api.Distribution.Range parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -588,7 +577,7 @@ public  final class Distribution extends
        * The minimum of the population values.
        * </pre>
        *
-       * <code>double min = 1;</code>
+       * <code>optional double min = 1;</code>
        */
       public double getMin() {
         return min_;
@@ -598,7 +587,7 @@ public  final class Distribution extends
        * The minimum of the population values.
        * </pre>
        *
-       * <code>double min = 1;</code>
+       * <code>optional double min = 1;</code>
        */
       public Builder setMin(double value) {
         
@@ -611,7 +600,7 @@ public  final class Distribution extends
        * The minimum of the population values.
        * </pre>
        *
-       * <code>double min = 1;</code>
+       * <code>optional double min = 1;</code>
        */
       public Builder clearMin() {
         
@@ -626,7 +615,7 @@ public  final class Distribution extends
        * The maximum of the population values.
        * </pre>
        *
-       * <code>double max = 2;</code>
+       * <code>optional double max = 2;</code>
        */
       public double getMax() {
         return max_;
@@ -636,7 +625,7 @@ public  final class Distribution extends
        * The maximum of the population values.
        * </pre>
        *
-       * <code>double max = 2;</code>
+       * <code>optional double max = 2;</code>
        */
       public Builder setMax(double value) {
         
@@ -649,7 +638,7 @@ public  final class Distribution extends
        * The maximum of the population values.
        * </pre>
        *
-       * <code>double max = 2;</code>
+       * <code>optional double max = 2;</code>
        */
       public Builder clearMax() {
         
@@ -715,7 +704,7 @@ public  final class Distribution extends
      * The linear bucket.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
      */
     com.google.api.Distribution.BucketOptions.Linear getLinearBuckets();
     /**
@@ -723,7 +712,7 @@ public  final class Distribution extends
      * The linear bucket.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
      */
     com.google.api.Distribution.BucketOptions.LinearOrBuilder getLinearBucketsOrBuilder();
 
@@ -732,7 +721,7 @@ public  final class Distribution extends
      * The exponential buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      */
     com.google.api.Distribution.BucketOptions.Exponential getExponentialBuckets();
     /**
@@ -740,7 +729,7 @@ public  final class Distribution extends
      * The exponential buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      */
     com.google.api.Distribution.BucketOptions.ExponentialOrBuilder getExponentialBucketsOrBuilder();
 
@@ -749,7 +738,7 @@ public  final class Distribution extends
      * The explicit buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
      */
     com.google.api.Distribution.BucketOptions.Explicit getExplicitBuckets();
     /**
@@ -757,7 +746,7 @@ public  final class Distribution extends
      * The explicit buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
      */
     com.google.api.Distribution.BucketOptions.ExplicitOrBuilder getExplicitBucketsOrBuilder();
 
@@ -898,7 +887,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>int32 num_finite_buckets = 1;</code>
+       * <code>optional int32 num_finite_buckets = 1;</code>
        */
       int getNumFiniteBuckets();
 
@@ -907,7 +896,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>double width = 2;</code>
+       * <code>optional double width = 2;</code>
        */
       double getWidth();
 
@@ -916,7 +905,7 @@ public  final class Distribution extends
        * Lower bound of the first bucket.
        * </pre>
        *
-       * <code>double offset = 3;</code>
+       * <code>optional double offset = 3;</code>
        */
       double getOffset();
     }
@@ -1017,7 +1006,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>int32 num_finite_buckets = 1;</code>
+       * <code>optional int32 num_finite_buckets = 1;</code>
        */
       public int getNumFiniteBuckets() {
         return numFiniteBuckets_;
@@ -1030,7 +1019,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>double width = 2;</code>
+       * <code>optional double width = 2;</code>
        */
       public double getWidth() {
         return width_;
@@ -1043,7 +1032,7 @@ public  final class Distribution extends
        * Lower bound of the first bucket.
        * </pre>
        *
-       * <code>double offset = 3;</code>
+       * <code>optional double offset = 3;</code>
        */
       public double getOffset() {
         return offset_;
@@ -1124,7 +1113,7 @@ public  final class Distribution extends
           return memoizedHashCode;
         }
         int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (19 * hash) + getDescriptorForType().hashCode();
         hash = (37 * hash) + NUM_FINITE_BUCKETS_FIELD_NUMBER;
         hash = (53 * hash) + getNumFiniteBuckets();
         hash = (37 * hash) + WIDTH_FIELD_NUMBER;
@@ -1138,17 +1127,6 @@ public  final class Distribution extends
         return hash;
       }
 
-      public static com.google.api.Distribution.BucketOptions.Linear parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.google.api.Distribution.BucketOptions.Linear parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
       public static com.google.api.Distribution.BucketOptions.Linear parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1385,7 +1363,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public int getNumFiniteBuckets() {
           return numFiniteBuckets_;
@@ -1395,7 +1373,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public Builder setNumFiniteBuckets(int value) {
           
@@ -1408,7 +1386,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public Builder clearNumFiniteBuckets() {
           
@@ -1423,7 +1401,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double width = 2;</code>
+         * <code>optional double width = 2;</code>
          */
         public double getWidth() {
           return width_;
@@ -1433,7 +1411,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double width = 2;</code>
+         * <code>optional double width = 2;</code>
          */
         public Builder setWidth(double value) {
           
@@ -1446,7 +1424,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double width = 2;</code>
+         * <code>optional double width = 2;</code>
          */
         public Builder clearWidth() {
           
@@ -1461,7 +1439,7 @@ public  final class Distribution extends
          * Lower bound of the first bucket.
          * </pre>
          *
-         * <code>double offset = 3;</code>
+         * <code>optional double offset = 3;</code>
          */
         public double getOffset() {
           return offset_;
@@ -1471,7 +1449,7 @@ public  final class Distribution extends
          * Lower bound of the first bucket.
          * </pre>
          *
-         * <code>double offset = 3;</code>
+         * <code>optional double offset = 3;</code>
          */
         public Builder setOffset(double value) {
           
@@ -1484,7 +1462,7 @@ public  final class Distribution extends
          * Lower bound of the first bucket.
          * </pre>
          *
-         * <code>double offset = 3;</code>
+         * <code>optional double offset = 3;</code>
          */
         public Builder clearOffset() {
           
@@ -1550,7 +1528,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>int32 num_finite_buckets = 1;</code>
+       * <code>optional int32 num_finite_buckets = 1;</code>
        */
       int getNumFiniteBuckets();
 
@@ -1559,7 +1537,7 @@ public  final class Distribution extends
        * Must be greater than 1.
        * </pre>
        *
-       * <code>double growth_factor = 2;</code>
+       * <code>optional double growth_factor = 2;</code>
        */
       double getGrowthFactor();
 
@@ -1568,7 +1546,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>double scale = 3;</code>
+       * <code>optional double scale = 3;</code>
        */
       double getScale();
     }
@@ -1669,7 +1647,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>int32 num_finite_buckets = 1;</code>
+       * <code>optional int32 num_finite_buckets = 1;</code>
        */
       public int getNumFiniteBuckets() {
         return numFiniteBuckets_;
@@ -1682,7 +1660,7 @@ public  final class Distribution extends
        * Must be greater than 1.
        * </pre>
        *
-       * <code>double growth_factor = 2;</code>
+       * <code>optional double growth_factor = 2;</code>
        */
       public double getGrowthFactor() {
         return growthFactor_;
@@ -1695,7 +1673,7 @@ public  final class Distribution extends
        * Must be greater than 0.
        * </pre>
        *
-       * <code>double scale = 3;</code>
+       * <code>optional double scale = 3;</code>
        */
       public double getScale() {
         return scale_;
@@ -1776,7 +1754,7 @@ public  final class Distribution extends
           return memoizedHashCode;
         }
         int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (19 * hash) + getDescriptorForType().hashCode();
         hash = (37 * hash) + NUM_FINITE_BUCKETS_FIELD_NUMBER;
         hash = (53 * hash) + getNumFiniteBuckets();
         hash = (37 * hash) + GROWTH_FACTOR_FIELD_NUMBER;
@@ -1790,17 +1768,6 @@ public  final class Distribution extends
         return hash;
       }
 
-      public static com.google.api.Distribution.BucketOptions.Exponential parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.google.api.Distribution.BucketOptions.Exponential parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
       public static com.google.api.Distribution.BucketOptions.Exponential parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2037,7 +2004,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public int getNumFiniteBuckets() {
           return numFiniteBuckets_;
@@ -2047,7 +2014,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public Builder setNumFiniteBuckets(int value) {
           
@@ -2060,7 +2027,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>int32 num_finite_buckets = 1;</code>
+         * <code>optional int32 num_finite_buckets = 1;</code>
          */
         public Builder clearNumFiniteBuckets() {
           
@@ -2075,7 +2042,7 @@ public  final class Distribution extends
          * Must be greater than 1.
          * </pre>
          *
-         * <code>double growth_factor = 2;</code>
+         * <code>optional double growth_factor = 2;</code>
          */
         public double getGrowthFactor() {
           return growthFactor_;
@@ -2085,7 +2052,7 @@ public  final class Distribution extends
          * Must be greater than 1.
          * </pre>
          *
-         * <code>double growth_factor = 2;</code>
+         * <code>optional double growth_factor = 2;</code>
          */
         public Builder setGrowthFactor(double value) {
           
@@ -2098,7 +2065,7 @@ public  final class Distribution extends
          * Must be greater than 1.
          * </pre>
          *
-         * <code>double growth_factor = 2;</code>
+         * <code>optional double growth_factor = 2;</code>
          */
         public Builder clearGrowthFactor() {
           
@@ -2113,7 +2080,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double scale = 3;</code>
+         * <code>optional double scale = 3;</code>
          */
         public double getScale() {
           return scale_;
@@ -2123,7 +2090,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double scale = 3;</code>
+         * <code>optional double scale = 3;</code>
          */
         public Builder setScale(double value) {
           
@@ -2136,7 +2103,7 @@ public  final class Distribution extends
          * Must be greater than 0.
          * </pre>
          *
-         * <code>double scale = 3;</code>
+         * <code>optional double scale = 3;</code>
          */
         public Builder clearScale() {
           
@@ -2420,7 +2387,7 @@ public  final class Distribution extends
           return memoizedHashCode;
         }
         int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (19 * hash) + getDescriptorForType().hashCode();
         if (getBoundsCount() > 0) {
           hash = (37 * hash) + BOUNDS_FIELD_NUMBER;
           hash = (53 * hash) + getBoundsList().hashCode();
@@ -2430,17 +2397,6 @@ public  final class Distribution extends
         return hash;
       }
 
-      public static com.google.api.Distribution.BucketOptions.Explicit parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.google.api.Distribution.BucketOptions.Explicit parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
       public static com.google.api.Distribution.BucketOptions.Explicit parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2861,7 +2817,7 @@ public  final class Distribution extends
      * The linear bucket.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
      */
     public com.google.api.Distribution.BucketOptions.Linear getLinearBuckets() {
       if (optionsCase_ == 1) {
@@ -2874,7 +2830,7 @@ public  final class Distribution extends
      * The linear bucket.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
      */
     public com.google.api.Distribution.BucketOptions.LinearOrBuilder getLinearBucketsOrBuilder() {
       if (optionsCase_ == 1) {
@@ -2889,7 +2845,7 @@ public  final class Distribution extends
      * The exponential buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      */
     public com.google.api.Distribution.BucketOptions.Exponential getExponentialBuckets() {
       if (optionsCase_ == 2) {
@@ -2902,7 +2858,7 @@ public  final class Distribution extends
      * The exponential buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      */
     public com.google.api.Distribution.BucketOptions.ExponentialOrBuilder getExponentialBucketsOrBuilder() {
       if (optionsCase_ == 2) {
@@ -2917,7 +2873,7 @@ public  final class Distribution extends
      * The explicit buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
      */
     public com.google.api.Distribution.BucketOptions.Explicit getExplicitBuckets() {
       if (optionsCase_ == 3) {
@@ -2930,7 +2886,7 @@ public  final class Distribution extends
      * The explicit buckets.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+     * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
      */
     public com.google.api.Distribution.BucketOptions.ExplicitOrBuilder getExplicitBucketsOrBuilder() {
       if (optionsCase_ == 3) {
@@ -3023,7 +2979,7 @@ public  final class Distribution extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       switch (optionsCase_) {
         case 1:
           hash = (37 * hash) + LINEAR_BUCKETS_FIELD_NUMBER;
@@ -3045,17 +3001,6 @@ public  final class Distribution extends
       return hash;
     }
 
-    public static com.google.api.Distribution.BucketOptions parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.api.Distribution.BucketOptions parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.api.Distribution.BucketOptions parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3343,7 +3288,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public com.google.api.Distribution.BucketOptions.Linear getLinearBuckets() {
         if (linearBucketsBuilder_ == null) {
@@ -3363,7 +3308,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public Builder setLinearBuckets(com.google.api.Distribution.BucketOptions.Linear value) {
         if (linearBucketsBuilder_ == null) {
@@ -3383,7 +3328,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public Builder setLinearBuckets(
           com.google.api.Distribution.BucketOptions.Linear.Builder builderForValue) {
@@ -3401,7 +3346,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public Builder mergeLinearBuckets(com.google.api.Distribution.BucketOptions.Linear value) {
         if (linearBucketsBuilder_ == null) {
@@ -3427,7 +3372,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public Builder clearLinearBuckets() {
         if (linearBucketsBuilder_ == null) {
@@ -3450,7 +3395,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public com.google.api.Distribution.BucketOptions.Linear.Builder getLinearBucketsBuilder() {
         return getLinearBucketsFieldBuilder().getBuilder();
@@ -3460,7 +3405,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       public com.google.api.Distribution.BucketOptions.LinearOrBuilder getLinearBucketsOrBuilder() {
         if ((optionsCase_ == 1) && (linearBucketsBuilder_ != null)) {
@@ -3477,7 +3422,7 @@ public  final class Distribution extends
        * The linear bucket.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.api.Distribution.BucketOptions.Linear, com.google.api.Distribution.BucketOptions.Linear.Builder, com.google.api.Distribution.BucketOptions.LinearOrBuilder> 
@@ -3505,7 +3450,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public com.google.api.Distribution.BucketOptions.Exponential getExponentialBuckets() {
         if (exponentialBucketsBuilder_ == null) {
@@ -3525,7 +3470,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public Builder setExponentialBuckets(com.google.api.Distribution.BucketOptions.Exponential value) {
         if (exponentialBucketsBuilder_ == null) {
@@ -3545,7 +3490,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public Builder setExponentialBuckets(
           com.google.api.Distribution.BucketOptions.Exponential.Builder builderForValue) {
@@ -3563,7 +3508,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public Builder mergeExponentialBuckets(com.google.api.Distribution.BucketOptions.Exponential value) {
         if (exponentialBucketsBuilder_ == null) {
@@ -3589,7 +3534,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public Builder clearExponentialBuckets() {
         if (exponentialBucketsBuilder_ == null) {
@@ -3612,7 +3557,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public com.google.api.Distribution.BucketOptions.Exponential.Builder getExponentialBucketsBuilder() {
         return getExponentialBucketsFieldBuilder().getBuilder();
@@ -3622,7 +3567,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       public com.google.api.Distribution.BucketOptions.ExponentialOrBuilder getExponentialBucketsOrBuilder() {
         if ((optionsCase_ == 2) && (exponentialBucketsBuilder_ != null)) {
@@ -3639,7 +3584,7 @@ public  final class Distribution extends
        * The exponential buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.api.Distribution.BucketOptions.Exponential, com.google.api.Distribution.BucketOptions.Exponential.Builder, com.google.api.Distribution.BucketOptions.ExponentialOrBuilder> 
@@ -3667,7 +3612,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public com.google.api.Distribution.BucketOptions.Explicit getExplicitBuckets() {
         if (explicitBucketsBuilder_ == null) {
@@ -3687,7 +3632,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public Builder setExplicitBuckets(com.google.api.Distribution.BucketOptions.Explicit value) {
         if (explicitBucketsBuilder_ == null) {
@@ -3707,7 +3652,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public Builder setExplicitBuckets(
           com.google.api.Distribution.BucketOptions.Explicit.Builder builderForValue) {
@@ -3725,7 +3670,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public Builder mergeExplicitBuckets(com.google.api.Distribution.BucketOptions.Explicit value) {
         if (explicitBucketsBuilder_ == null) {
@@ -3751,7 +3696,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public Builder clearExplicitBuckets() {
         if (explicitBucketsBuilder_ == null) {
@@ -3774,7 +3719,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public com.google.api.Distribution.BucketOptions.Explicit.Builder getExplicitBucketsBuilder() {
         return getExplicitBucketsFieldBuilder().getBuilder();
@@ -3784,7 +3729,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       public com.google.api.Distribution.BucketOptions.ExplicitOrBuilder getExplicitBucketsOrBuilder() {
         if ((optionsCase_ == 3) && (explicitBucketsBuilder_ != null)) {
@@ -3801,7 +3746,7 @@ public  final class Distribution extends
        * The explicit buckets.
        * </pre>
        *
-       * <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
+       * <code>optional .google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.api.Distribution.BucketOptions.Explicit, com.google.api.Distribution.BucketOptions.Explicit.Builder, com.google.api.Distribution.BucketOptions.ExplicitOrBuilder> 
@@ -3878,7 +3823,7 @@ public  final class Distribution extends
    * The number of values in the population. Must be non-negative.
    * </pre>
    *
-   * <code>int64 count = 1;</code>
+   * <code>optional int64 count = 1;</code>
    */
   public long getCount() {
     return count_;
@@ -3892,7 +3837,7 @@ public  final class Distribution extends
    * then this field must be zero.
    * </pre>
    *
-   * <code>double mean = 2;</code>
+   * <code>optional double mean = 2;</code>
    */
   public double getMean() {
     return mean_;
@@ -3910,7 +3855,7 @@ public  final class Distribution extends
    * If `count` is zero then this field must be zero.
    * </pre>
    *
-   * <code>double sum_of_squared_deviation = 3;</code>
+   * <code>optional double sum_of_squared_deviation = 3;</code>
    */
   public double getSumOfSquaredDeviation() {
     return sumOfSquaredDeviation_;
@@ -3924,7 +3869,7 @@ public  final class Distribution extends
    * must not be present if the `count` is zero.
    * </pre>
    *
-   * <code>.google.api.Distribution.Range range = 4;</code>
+   * <code>optional .google.api.Distribution.Range range = 4;</code>
    */
   public boolean hasRange() {
     return range_ != null;
@@ -3935,7 +3880,7 @@ public  final class Distribution extends
    * must not be present if the `count` is zero.
    * </pre>
    *
-   * <code>.google.api.Distribution.Range range = 4;</code>
+   * <code>optional .google.api.Distribution.Range range = 4;</code>
    */
   public com.google.api.Distribution.Range getRange() {
     return range_ == null ? com.google.api.Distribution.Range.getDefaultInstance() : range_;
@@ -3946,7 +3891,7 @@ public  final class Distribution extends
    * must not be present if the `count` is zero.
    * </pre>
    *
-   * <code>.google.api.Distribution.Range range = 4;</code>
+   * <code>optional .google.api.Distribution.Range range = 4;</code>
    */
   public com.google.api.Distribution.RangeOrBuilder getRangeOrBuilder() {
     return getRange();
@@ -3959,7 +3904,7 @@ public  final class Distribution extends
    * Defines the histogram bucket boundaries.
    * </pre>
    *
-   * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+   * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
    */
   public boolean hasBucketOptions() {
     return bucketOptions_ != null;
@@ -3969,7 +3914,7 @@ public  final class Distribution extends
    * Defines the histogram bucket boundaries.
    * </pre>
    *
-   * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+   * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
    */
   public com.google.api.Distribution.BucketOptions getBucketOptions() {
     return bucketOptions_ == null ? com.google.api.Distribution.BucketOptions.getDefaultInstance() : bucketOptions_;
@@ -3979,7 +3924,7 @@ public  final class Distribution extends
    * Defines the histogram bucket boundaries.
    * </pre>
    *
-   * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+   * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
    */
   public com.google.api.Distribution.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
     return getBucketOptions();
@@ -4167,7 +4112,7 @@ public  final class Distribution extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + COUNT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getCount());
@@ -4194,17 +4139,6 @@ public  final class Distribution extends
     return hash;
   }
 
-  public static com.google.api.Distribution parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.Distribution parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.Distribution parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4495,7 +4429,7 @@ public  final class Distribution extends
      * The number of values in the population. Must be non-negative.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public long getCount() {
       return count_;
@@ -4505,7 +4439,7 @@ public  final class Distribution extends
      * The number of values in the population. Must be non-negative.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public Builder setCount(long value) {
       
@@ -4518,7 +4452,7 @@ public  final class Distribution extends
      * The number of values in the population. Must be non-negative.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public Builder clearCount() {
       
@@ -4534,7 +4468,7 @@ public  final class Distribution extends
      * then this field must be zero.
      * </pre>
      *
-     * <code>double mean = 2;</code>
+     * <code>optional double mean = 2;</code>
      */
     public double getMean() {
       return mean_;
@@ -4545,7 +4479,7 @@ public  final class Distribution extends
      * then this field must be zero.
      * </pre>
      *
-     * <code>double mean = 2;</code>
+     * <code>optional double mean = 2;</code>
      */
     public Builder setMean(double value) {
       
@@ -4559,7 +4493,7 @@ public  final class Distribution extends
      * then this field must be zero.
      * </pre>
      *
-     * <code>double mean = 2;</code>
+     * <code>optional double mean = 2;</code>
      */
     public Builder clearMean() {
       
@@ -4579,7 +4513,7 @@ public  final class Distribution extends
      * If `count` is zero then this field must be zero.
      * </pre>
      *
-     * <code>double sum_of_squared_deviation = 3;</code>
+     * <code>optional double sum_of_squared_deviation = 3;</code>
      */
     public double getSumOfSquaredDeviation() {
       return sumOfSquaredDeviation_;
@@ -4594,7 +4528,7 @@ public  final class Distribution extends
      * If `count` is zero then this field must be zero.
      * </pre>
      *
-     * <code>double sum_of_squared_deviation = 3;</code>
+     * <code>optional double sum_of_squared_deviation = 3;</code>
      */
     public Builder setSumOfSquaredDeviation(double value) {
       
@@ -4612,7 +4546,7 @@ public  final class Distribution extends
      * If `count` is zero then this field must be zero.
      * </pre>
      *
-     * <code>double sum_of_squared_deviation = 3;</code>
+     * <code>optional double sum_of_squared_deviation = 3;</code>
      */
     public Builder clearSumOfSquaredDeviation() {
       
@@ -4630,7 +4564,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public boolean hasRange() {
       return rangeBuilder_ != null || range_ != null;
@@ -4641,7 +4575,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public com.google.api.Distribution.Range getRange() {
       if (rangeBuilder_ == null) {
@@ -4656,7 +4590,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public Builder setRange(com.google.api.Distribution.Range value) {
       if (rangeBuilder_ == null) {
@@ -4677,7 +4611,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public Builder setRange(
         com.google.api.Distribution.Range.Builder builderForValue) {
@@ -4696,7 +4630,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public Builder mergeRange(com.google.api.Distribution.Range value) {
       if (rangeBuilder_ == null) {
@@ -4719,7 +4653,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public Builder clearRange() {
       if (rangeBuilder_ == null) {
@@ -4738,7 +4672,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public com.google.api.Distribution.Range.Builder getRangeBuilder() {
       
@@ -4751,7 +4685,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     public com.google.api.Distribution.RangeOrBuilder getRangeOrBuilder() {
       if (rangeBuilder_ != null) {
@@ -4767,7 +4701,7 @@ public  final class Distribution extends
      * must not be present if the `count` is zero.
      * </pre>
      *
-     * <code>.google.api.Distribution.Range range = 4;</code>
+     * <code>optional .google.api.Distribution.Range range = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Distribution.Range, com.google.api.Distribution.Range.Builder, com.google.api.Distribution.RangeOrBuilder> 
@@ -4791,7 +4725,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public boolean hasBucketOptions() {
       return bucketOptionsBuilder_ != null || bucketOptions_ != null;
@@ -4801,7 +4735,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public com.google.api.Distribution.BucketOptions getBucketOptions() {
       if (bucketOptionsBuilder_ == null) {
@@ -4815,7 +4749,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public Builder setBucketOptions(com.google.api.Distribution.BucketOptions value) {
       if (bucketOptionsBuilder_ == null) {
@@ -4835,7 +4769,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public Builder setBucketOptions(
         com.google.api.Distribution.BucketOptions.Builder builderForValue) {
@@ -4853,7 +4787,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public Builder mergeBucketOptions(com.google.api.Distribution.BucketOptions value) {
       if (bucketOptionsBuilder_ == null) {
@@ -4875,7 +4809,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public Builder clearBucketOptions() {
       if (bucketOptionsBuilder_ == null) {
@@ -4893,7 +4827,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public com.google.api.Distribution.BucketOptions.Builder getBucketOptionsBuilder() {
       
@@ -4905,7 +4839,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     public com.google.api.Distribution.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
       if (bucketOptionsBuilder_ != null) {
@@ -4920,7 +4854,7 @@ public  final class Distribution extends
      * Defines the histogram bucket boundaries.
      * </pre>
      *
-     * <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
+     * <code>optional .google.api.Distribution.BucketOptions bucket_options = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Distribution.BucketOptions, com.google.api.Distribution.BucketOptions.Builder, com.google.api.Distribution.BucketOptionsOrBuilder> 

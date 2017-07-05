@@ -13,7 +13,7 @@ public interface ModifyPushConfigRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -22,7 +22,7 @@ public interface ModifyPushConfigRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();
@@ -36,7 +36,7 @@ public interface ModifyPushConfigRequestOrBuilder extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   boolean hasPushConfig();
   /**
@@ -48,7 +48,7 @@ public interface ModifyPushConfigRequestOrBuilder extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   com.google.pubsub.v1.PushConfig getPushConfig();
   /**
@@ -60,7 +60,7 @@ public interface ModifyPushConfigRequestOrBuilder extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder();
 }

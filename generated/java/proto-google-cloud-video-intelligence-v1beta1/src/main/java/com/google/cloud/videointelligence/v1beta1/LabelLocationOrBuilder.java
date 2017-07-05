@@ -15,7 +15,7 @@ public interface LabelLocationOrBuilder extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   boolean hasSegment();
   /**
@@ -26,7 +26,7 @@ public interface LabelLocationOrBuilder extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   com.google.cloud.videointelligence.v1beta1.VideoSegment getSegment();
   /**
@@ -37,7 +37,7 @@ public interface LabelLocationOrBuilder extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   com.google.cloud.videointelligence.v1beta1.VideoSegmentOrBuilder getSegmentOrBuilder();
 
@@ -46,7 +46,7 @@ public interface LabelLocationOrBuilder extends
    * Confidence that the label is accurate. Range: [0, 1].
    * </pre>
    *
-   * <code>float confidence = 2;</code>
+   * <code>optional float confidence = 2;</code>
    */
   float getConfidence();
 
@@ -55,7 +55,7 @@ public interface LabelLocationOrBuilder extends
    * Label level.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
    */
   int getLevelValue();
   /**
@@ -63,7 +63,7 @@ public interface LabelLocationOrBuilder extends
    * Label level.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
    */
   com.google.cloud.videointelligence.v1beta1.LabelLevel getLevel();
 }

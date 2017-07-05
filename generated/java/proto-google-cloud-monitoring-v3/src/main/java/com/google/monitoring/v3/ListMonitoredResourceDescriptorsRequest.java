@@ -104,7 +104,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 5;</code>
+   * <code>optional string name = 5;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -124,7 +124,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 5;</code>
+   * <code>optional string name = 5;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -152,7 +152,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    *     resource.type = starts_with("gce_") AND resource.label:id
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -176,7 +176,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    *     resource.type = starts_with("gce_") AND resource.label:id
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -199,7 +199,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>int32 page_size = 3;</code>
+   * <code>optional int32 page_size = 3;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -214,7 +214,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -235,7 +235,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -328,7 +328,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + FILTER_FIELD_NUMBER;
@@ -342,17 +342,6 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.ListMonitoredResourceDescriptorsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -593,7 +582,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 5;</code>
+     * <code>optional string name = 5;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -613,7 +602,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 5;</code>
+     * <code>optional string name = 5;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -634,7 +623,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 5;</code>
+     * <code>optional string name = 5;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -652,7 +641,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 5;</code>
+     * <code>optional string name = 5;</code>
      */
     public Builder clearName() {
       
@@ -666,7 +655,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 5;</code>
+     * <code>optional string name = 5;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -691,7 +680,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      *     resource.type = starts_with("gce_") AND resource.label:id
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -715,7 +704,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      *     resource.type = starts_with("gce_") AND resource.label:id
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -740,7 +729,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      *     resource.type = starts_with("gce_") AND resource.label:id
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -762,7 +751,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      *     resource.type = starts_with("gce_") AND resource.label:id
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder clearFilter() {
       
@@ -780,7 +769,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      *     resource.type = starts_with("gce_") AND resource.label:id
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -800,7 +789,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * <code>optional int32 page_size = 3;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -810,7 +799,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * <code>optional int32 page_size = 3;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -823,7 +812,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * <code>optional int32 page_size = 3;</code>
      */
     public Builder clearPageSize() {
       
@@ -840,7 +829,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * <code>optional string page_token = 4;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -861,7 +850,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * <code>optional string page_token = 4;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -883,7 +872,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * <code>optional string page_token = 4;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -902,7 +891,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * <code>optional string page_token = 4;</code>
      */
     public Builder clearPageToken() {
       
@@ -917,7 +906,7 @@ public  final class ListMonitoredResourceDescriptorsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * <code>optional string page_token = 4;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

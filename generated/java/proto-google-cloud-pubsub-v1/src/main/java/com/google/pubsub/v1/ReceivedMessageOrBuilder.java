@@ -12,7 +12,7 @@ public interface ReceivedMessageOrBuilder extends
    * This ID can be used to acknowledge the received message.
    * </pre>
    *
-   * <code>string ack_id = 1;</code>
+   * <code>optional string ack_id = 1;</code>
    */
   java.lang.String getAckId();
   /**
@@ -20,7 +20,7 @@ public interface ReceivedMessageOrBuilder extends
    * This ID can be used to acknowledge the received message.
    * </pre>
    *
-   * <code>string ack_id = 1;</code>
+   * <code>optional string ack_id = 1;</code>
    */
   com.google.protobuf.ByteString
       getAckIdBytes();
@@ -30,7 +30,7 @@ public interface ReceivedMessageOrBuilder extends
    * The message.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   boolean hasMessage();
   /**
@@ -38,7 +38,7 @@ public interface ReceivedMessageOrBuilder extends
    * The message.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   com.google.pubsub.v1.PubsubMessage getMessage();
   /**
@@ -46,7 +46,7 @@ public interface ReceivedMessageOrBuilder extends
    * The message.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+   * <code>optional .google.pubsub.v1.PubsubMessage message = 2;</code>
    */
   com.google.pubsub.v1.PubsubMessageOrBuilder getMessageOrBuilder();
 }

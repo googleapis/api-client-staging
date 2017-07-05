@@ -61,10 +61,9 @@ public  final class PubsubMessage extends
               mutable_bitField0_ |= 0x00000002;
             }
             com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-            attributes__ = input.readMessage(
+            attributes = input.readMessage(
                 AttributesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            attributes_.getMutableMap().put(
-                attributes__.getKey(), attributes__.getValue());
+            attributes_.getMutableMap().put(attributes.getKey(), attributes.getValue());
             break;
           }
           case 26: {
@@ -128,7 +127,7 @@ public  final class PubsubMessage extends
    * The message payload.
    * </pre>
    *
-   * <code>bytes data = 1;</code>
+   * <code>optional bytes data = 1;</code>
    */
   public com.google.protobuf.ByteString getData() {
     return data_;
@@ -236,7 +235,7 @@ public  final class PubsubMessage extends
    * delivery. It must not be populated by the publisher in a `Publish` call.
    * </pre>
    *
-   * <code>string message_id = 3;</code>
+   * <code>optional string message_id = 3;</code>
    */
   public java.lang.String getMessageId() {
     java.lang.Object ref = messageId_;
@@ -258,7 +257,7 @@ public  final class PubsubMessage extends
    * delivery. It must not be populated by the publisher in a `Publish` call.
    * </pre>
    *
-   * <code>string message_id = 3;</code>
+   * <code>optional string message_id = 3;</code>
    */
   public com.google.protobuf.ByteString
       getMessageIdBytes() {
@@ -283,7 +282,7 @@ public  final class PubsubMessage extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   public boolean hasPublishTime() {
     return publishTime_ != null;
@@ -295,7 +294,7 @@ public  final class PubsubMessage extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   public com.google.protobuf.Timestamp getPublishTime() {
     return publishTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : publishTime_;
@@ -307,7 +306,7 @@ public  final class PubsubMessage extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getPublishTimeOrBuilder() {
     return getPublishTime();
@@ -328,12 +327,15 @@ public  final class PubsubMessage extends
     if (!data_.isEmpty()) {
       output.writeBytes(1, data_);
     }
-    com.google.protobuf.GeneratedMessageV3
-      .serializeStringMapTo(
-        output,
-        internalGetAttributes(),
-        AttributesDefaultEntryHolder.defaultEntry,
-        2);
+    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+         : internalGetAttributes().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+      attributes = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      output.writeMessage(2, attributes);
+    }
     if (!getMessageIdBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, messageId_);
     }
@@ -354,12 +356,12 @@ public  final class PubsubMessage extends
     for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
          : internalGetAttributes().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-      attributes__ = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
+      attributes = AttributesDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, attributes__);
+          .computeMessageSize(2, attributes);
     }
     if (!getMessageIdBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, messageId_);
@@ -404,7 +406,7 @@ public  final class PubsubMessage extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + DATA_FIELD_NUMBER;
     hash = (53 * hash) + getData().hashCode();
     if (!internalGetAttributes().getMap().isEmpty()) {
@@ -422,17 +424,6 @@ public  final class PubsubMessage extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.PubsubMessage parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.PubsubMessage parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.PubsubMessage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -704,7 +695,7 @@ public  final class PubsubMessage extends
      * The message payload.
      * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * <code>optional bytes data = 1;</code>
      */
     public com.google.protobuf.ByteString getData() {
       return data_;
@@ -714,7 +705,7 @@ public  final class PubsubMessage extends
      * The message payload.
      * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * <code>optional bytes data = 1;</code>
      */
     public Builder setData(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -730,7 +721,7 @@ public  final class PubsubMessage extends
      * The message payload.
      * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * <code>optional bytes data = 1;</code>
      */
     public Builder clearData() {
       
@@ -832,8 +823,7 @@ public  final class PubsubMessage extends
     }
 
     public Builder clearAttributes() {
-      internalGetMutableAttributes().getMutableMap()
-          .clear();
+      getMutableAttributes().clear();
       return this;
     }
     /**
@@ -847,8 +837,7 @@ public  final class PubsubMessage extends
     public Builder removeAttributes(
         java.lang.String key) {
       if (key == null) { throw new java.lang.NullPointerException(); }
-      internalGetMutableAttributes().getMutableMap()
-          .remove(key);
+      getMutableAttributes().remove(key);
       return this;
     }
     /**
@@ -871,8 +860,7 @@ public  final class PubsubMessage extends
         java.lang.String value) {
       if (key == null) { throw new java.lang.NullPointerException(); }
       if (value == null) { throw new java.lang.NullPointerException(); }
-      internalGetMutableAttributes().getMutableMap()
-          .put(key, value);
+      getMutableAttributes().put(key, value);
       return this;
     }
     /**
@@ -885,8 +873,7 @@ public  final class PubsubMessage extends
 
     public Builder putAllAttributes(
         java.util.Map<java.lang.String, java.lang.String> values) {
-      internalGetMutableAttributes().getMutableMap()
-          .putAll(values);
+      getMutableAttributes().putAll(values);
       return this;
     }
 
@@ -899,7 +886,7 @@ public  final class PubsubMessage extends
      * delivery. It must not be populated by the publisher in a `Publish` call.
      * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * <code>optional string message_id = 3;</code>
      */
     public java.lang.String getMessageId() {
       java.lang.Object ref = messageId_;
@@ -921,7 +908,7 @@ public  final class PubsubMessage extends
      * delivery. It must not be populated by the publisher in a `Publish` call.
      * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * <code>optional string message_id = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMessageIdBytes() {
@@ -944,7 +931,7 @@ public  final class PubsubMessage extends
      * delivery. It must not be populated by the publisher in a `Publish` call.
      * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * <code>optional string message_id = 3;</code>
      */
     public Builder setMessageId(
         java.lang.String value) {
@@ -964,7 +951,7 @@ public  final class PubsubMessage extends
      * delivery. It must not be populated by the publisher in a `Publish` call.
      * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * <code>optional string message_id = 3;</code>
      */
     public Builder clearMessageId() {
       
@@ -980,7 +967,7 @@ public  final class PubsubMessage extends
      * delivery. It must not be populated by the publisher in a `Publish` call.
      * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * <code>optional string message_id = 3;</code>
      */
     public Builder setMessageIdBytes(
         com.google.protobuf.ByteString value) {
@@ -1004,7 +991,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public boolean hasPublishTime() {
       return publishTimeBuilder_ != null || publishTime_ != null;
@@ -1016,7 +1003,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public com.google.protobuf.Timestamp getPublishTime() {
       if (publishTimeBuilder_ == null) {
@@ -1032,7 +1019,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public Builder setPublishTime(com.google.protobuf.Timestamp value) {
       if (publishTimeBuilder_ == null) {
@@ -1054,7 +1041,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public Builder setPublishTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1074,7 +1061,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public Builder mergePublishTime(com.google.protobuf.Timestamp value) {
       if (publishTimeBuilder_ == null) {
@@ -1098,7 +1085,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public Builder clearPublishTime() {
       if (publishTimeBuilder_ == null) {
@@ -1118,7 +1105,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getPublishTimeBuilder() {
       
@@ -1132,7 +1119,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getPublishTimeOrBuilder() {
       if (publishTimeBuilder_ != null) {
@@ -1149,7 +1136,7 @@ public  final class PubsubMessage extends
      * publisher in a `Publish` call.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

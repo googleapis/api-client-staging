@@ -154,7 +154,7 @@ public  final class ListSinksResponse extends
    * method again using the value of `nextPageToken` as `pageToken`.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -175,7 +175,7 @@ public  final class ListSinksResponse extends
    * method again using the value of `nextPageToken` as `pageToken`.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -252,7 +252,7 @@ public  final class ListSinksResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getSinksCount() > 0) {
       hash = (37 * hash) + SINKS_FIELD_NUMBER;
       hash = (53 * hash) + getSinksList().hashCode();
@@ -264,17 +264,6 @@ public  final class ListSinksResponse extends
     return hash;
   }
 
-  public static com.google.logging.v2.ListSinksResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.ListSinksResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.ListSinksResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -854,7 +843,7 @@ public  final class ListSinksResponse extends
      * method again using the value of `nextPageToken` as `pageToken`.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -875,7 +864,7 @@ public  final class ListSinksResponse extends
      * method again using the value of `nextPageToken` as `pageToken`.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -897,7 +886,7 @@ public  final class ListSinksResponse extends
      * method again using the value of `nextPageToken` as `pageToken`.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -916,7 +905,7 @@ public  final class ListSinksResponse extends
      * method again using the value of `nextPageToken` as `pageToken`.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -931,7 +920,7 @@ public  final class ListSinksResponse extends
      * method again using the value of `nextPageToken` as `pageToken`.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {

@@ -58,7 +58,7 @@ public interface ListGroupMembersResponseOrBuilder extends
    * `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -68,7 +68,7 @@ public interface ListGroupMembersResponseOrBuilder extends
    * `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();
@@ -78,7 +78,7 @@ public interface ListGroupMembersResponseOrBuilder extends
    * The total number of elements matching this request.
    * </pre>
    *
-   * <code>int32 total_size = 3;</code>
+   * <code>optional int32 total_size = 3;</code>
    */
   int getTotalSize();
 }

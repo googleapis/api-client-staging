@@ -131,7 +131,7 @@ public  final class PartialResultSet extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public boolean hasMetadata() {
     return metadata_ != null;
@@ -142,7 +142,7 @@ public  final class PartialResultSet extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public com.google.spanner.v1.ResultSetMetadata getMetadata() {
     return metadata_ == null ? com.google.spanner.v1.ResultSetMetadata.getDefaultInstance() : metadata_;
@@ -153,7 +153,7 @@ public  final class PartialResultSet extends
    * Only present in the first response.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+   * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
    */
   public com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder() {
     return getMetadata();
@@ -513,7 +513,7 @@ public  final class PartialResultSet extends
    * to obtain a complete field value.
    * </pre>
    *
-   * <code>bool chunked_value = 3;</code>
+   * <code>optional bool chunked_value = 3;</code>
    */
   public boolean getChunkedValue() {
     return chunkedValue_;
@@ -530,7 +530,7 @@ public  final class PartialResultSet extends
    * same session invalidates the token.
    * </pre>
    *
-   * <code>bytes resume_token = 4;</code>
+   * <code>optional bytes resume_token = 4;</code>
    */
   public com.google.protobuf.ByteString getResumeToken() {
     return resumeToken_;
@@ -546,7 +546,7 @@ public  final class PartialResultSet extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   public boolean hasStats() {
     return stats_ != null;
@@ -559,7 +559,7 @@ public  final class PartialResultSet extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   public com.google.spanner.v1.ResultSetStats getStats() {
     return stats_ == null ? com.google.spanner.v1.ResultSetStats.getDefaultInstance() : stats_;
@@ -572,7 +572,7 @@ public  final class PartialResultSet extends
    * only once with the last response in the stream.
    * </pre>
    *
-   * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+   * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
    */
   public com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder() {
     return getStats();
@@ -673,7 +673,7 @@ public  final class PartialResultSet extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasMetadata()) {
       hash = (37 * hash) + METADATA_FIELD_NUMBER;
       hash = (53 * hash) + getMetadata().hashCode();
@@ -696,17 +696,6 @@ public  final class PartialResultSet extends
     return hash;
   }
 
-  public static com.google.spanner.v1.PartialResultSet parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.PartialResultSet parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.PartialResultSet parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1010,7 +999,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public boolean hasMetadata() {
       return metadataBuilder_ != null || metadata_ != null;
@@ -1021,7 +1010,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadata getMetadata() {
       if (metadataBuilder_ == null) {
@@ -1036,7 +1025,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder setMetadata(com.google.spanner.v1.ResultSetMetadata value) {
       if (metadataBuilder_ == null) {
@@ -1057,7 +1046,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder setMetadata(
         com.google.spanner.v1.ResultSetMetadata.Builder builderForValue) {
@@ -1076,7 +1065,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder mergeMetadata(com.google.spanner.v1.ResultSetMetadata value) {
       if (metadataBuilder_ == null) {
@@ -1099,7 +1088,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public Builder clearMetadata() {
       if (metadataBuilder_ == null) {
@@ -1118,7 +1107,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadata.Builder getMetadataBuilder() {
       
@@ -1131,7 +1120,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     public com.google.spanner.v1.ResultSetMetadataOrBuilder getMetadataOrBuilder() {
       if (metadataBuilder_ != null) {
@@ -1147,7 +1136,7 @@ public  final class PartialResultSet extends
      * Only present in the first response.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * <code>optional .google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.ResultSetMetadata, com.google.spanner.v1.ResultSetMetadata.Builder, com.google.spanner.v1.ResultSetMetadataOrBuilder> 
@@ -2527,7 +2516,7 @@ public  final class PartialResultSet extends
      * to obtain a complete field value.
      * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * <code>optional bool chunked_value = 3;</code>
      */
     public boolean getChunkedValue() {
       return chunkedValue_;
@@ -2539,7 +2528,7 @@ public  final class PartialResultSet extends
      * to obtain a complete field value.
      * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * <code>optional bool chunked_value = 3;</code>
      */
     public Builder setChunkedValue(boolean value) {
       
@@ -2554,7 +2543,7 @@ public  final class PartialResultSet extends
      * to obtain a complete field value.
      * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * <code>optional bool chunked_value = 3;</code>
      */
     public Builder clearChunkedValue() {
       
@@ -2573,7 +2562,7 @@ public  final class PartialResultSet extends
      * same session invalidates the token.
      * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * <code>optional bytes resume_token = 4;</code>
      */
     public com.google.protobuf.ByteString getResumeToken() {
       return resumeToken_;
@@ -2587,7 +2576,7 @@ public  final class PartialResultSet extends
      * same session invalidates the token.
      * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * <code>optional bytes resume_token = 4;</code>
      */
     public Builder setResumeToken(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -2607,7 +2596,7 @@ public  final class PartialResultSet extends
      * same session invalidates the token.
      * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * <code>optional bytes resume_token = 4;</code>
      */
     public Builder clearResumeToken() {
       
@@ -2627,7 +2616,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public boolean hasStats() {
       return statsBuilder_ != null || stats_ != null;
@@ -2640,7 +2629,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public com.google.spanner.v1.ResultSetStats getStats() {
       if (statsBuilder_ == null) {
@@ -2657,7 +2646,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public Builder setStats(com.google.spanner.v1.ResultSetStats value) {
       if (statsBuilder_ == null) {
@@ -2680,7 +2669,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public Builder setStats(
         com.google.spanner.v1.ResultSetStats.Builder builderForValue) {
@@ -2701,7 +2690,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public Builder mergeStats(com.google.spanner.v1.ResultSetStats value) {
       if (statsBuilder_ == null) {
@@ -2726,7 +2715,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public Builder clearStats() {
       if (statsBuilder_ == null) {
@@ -2747,7 +2736,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public com.google.spanner.v1.ResultSetStats.Builder getStatsBuilder() {
       
@@ -2762,7 +2751,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     public com.google.spanner.v1.ResultSetStatsOrBuilder getStatsOrBuilder() {
       if (statsBuilder_ != null) {
@@ -2780,7 +2769,7 @@ public  final class PartialResultSet extends
      * only once with the last response in the stream.
      * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * <code>optional .google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.ResultSetStats, com.google.spanner.v1.ResultSetStats.Builder, com.google.spanner.v1.ResultSetStatsOrBuilder> 

@@ -104,7 +104,7 @@ public  final class LabelAnnotation extends
    * Textual description, e.g. `Fixed-gear bicycle`.
    * </pre>
    *
-   * <code>string description = 1;</code>
+   * <code>optional string description = 1;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -123,7 +123,7 @@ public  final class LabelAnnotation extends
    * Textual description, e.g. `Fixed-gear bicycle`.
    * </pre>
    *
-   * <code>string description = 1;</code>
+   * <code>optional string description = 1;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -146,7 +146,7 @@ public  final class LabelAnnotation extends
    * Language code for `description` in BCP-47 format.
    * </pre>
    *
-   * <code>string language_code = 2;</code>
+   * <code>optional string language_code = 2;</code>
    */
   public java.lang.String getLanguageCode() {
     java.lang.Object ref = languageCode_;
@@ -165,7 +165,7 @@ public  final class LabelAnnotation extends
    * Language code for `description` in BCP-47 format.
    * </pre>
    *
-   * <code>string language_code = 2;</code>
+   * <code>optional string language_code = 2;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageCodeBytes() {
@@ -305,7 +305,7 @@ public  final class LabelAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getDescription().hashCode();
     hash = (37 * hash) + LANGUAGE_CODE_FIELD_NUMBER;
@@ -319,17 +319,6 @@ public  final class LabelAnnotation extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.LabelAnnotation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.LabelAnnotation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.LabelAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -602,7 +591,7 @@ public  final class LabelAnnotation extends
      * Textual description, e.g. `Fixed-gear bicycle`.
      * </pre>
      *
-     * <code>string description = 1;</code>
+     * <code>optional string description = 1;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -621,7 +610,7 @@ public  final class LabelAnnotation extends
      * Textual description, e.g. `Fixed-gear bicycle`.
      * </pre>
      *
-     * <code>string description = 1;</code>
+     * <code>optional string description = 1;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -641,7 +630,7 @@ public  final class LabelAnnotation extends
      * Textual description, e.g. `Fixed-gear bicycle`.
      * </pre>
      *
-     * <code>string description = 1;</code>
+     * <code>optional string description = 1;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -658,7 +647,7 @@ public  final class LabelAnnotation extends
      * Textual description, e.g. `Fixed-gear bicycle`.
      * </pre>
      *
-     * <code>string description = 1;</code>
+     * <code>optional string description = 1;</code>
      */
     public Builder clearDescription() {
       
@@ -671,7 +660,7 @@ public  final class LabelAnnotation extends
      * Textual description, e.g. `Fixed-gear bicycle`.
      * </pre>
      *
-     * <code>string description = 1;</code>
+     * <code>optional string description = 1;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -691,7 +680,7 @@ public  final class LabelAnnotation extends
      * Language code for `description` in BCP-47 format.
      * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * <code>optional string language_code = 2;</code>
      */
     public java.lang.String getLanguageCode() {
       java.lang.Object ref = languageCode_;
@@ -710,7 +699,7 @@ public  final class LabelAnnotation extends
      * Language code for `description` in BCP-47 format.
      * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * <code>optional string language_code = 2;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageCodeBytes() {
@@ -730,7 +719,7 @@ public  final class LabelAnnotation extends
      * Language code for `description` in BCP-47 format.
      * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * <code>optional string language_code = 2;</code>
      */
     public Builder setLanguageCode(
         java.lang.String value) {
@@ -747,7 +736,7 @@ public  final class LabelAnnotation extends
      * Language code for `description` in BCP-47 format.
      * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * <code>optional string language_code = 2;</code>
      */
     public Builder clearLanguageCode() {
       
@@ -760,7 +749,7 @@ public  final class LabelAnnotation extends
      * Language code for `description` in BCP-47 format.
      * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * <code>optional string language_code = 2;</code>
      */
     public Builder setLanguageCodeBytes(
         com.google.protobuf.ByteString value) {

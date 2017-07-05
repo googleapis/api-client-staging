@@ -401,7 +401,7 @@ public  final class Service extends
    * options. The current default for the config version itself is `3`.
    * </pre>
    *
-   * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+   * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
    */
   public boolean hasConfigVersion() {
     return configVersion_ != null;
@@ -414,7 +414,7 @@ public  final class Service extends
    * options. The current default for the config version itself is `3`.
    * </pre>
    *
-   * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+   * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
    */
   public com.google.protobuf.UInt32Value getConfigVersion() {
     return configVersion_ == null ? com.google.protobuf.UInt32Value.getDefaultInstance() : configVersion_;
@@ -427,7 +427,7 @@ public  final class Service extends
    * options. The current default for the config version itself is `3`.
    * </pre>
    *
-   * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+   * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
    */
   public com.google.protobuf.UInt32ValueOrBuilder getConfigVersionOrBuilder() {
     return getConfigVersion();
@@ -441,7 +441,7 @@ public  final class Service extends
    * e.g. `calendar.googleapis.com`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -461,7 +461,7 @@ public  final class Service extends
    * e.g. `calendar.googleapis.com`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -486,7 +486,7 @@ public  final class Service extends
    * generate one instead.
    * </pre>
    *
-   * <code>string id = 33;</code>
+   * <code>optional string id = 33;</code>
    */
   public java.lang.String getId() {
     java.lang.Object ref = id_;
@@ -507,7 +507,7 @@ public  final class Service extends
    * generate one instead.
    * </pre>
    *
-   * <code>string id = 33;</code>
+   * <code>optional string id = 33;</code>
    */
   public com.google.protobuf.ByteString
       getIdBytes() {
@@ -530,7 +530,7 @@ public  final class Service extends
    * The product title associated with this service.
    * </pre>
    *
-   * <code>string title = 2;</code>
+   * <code>optional string title = 2;</code>
    */
   public java.lang.String getTitle() {
     java.lang.Object ref = title_;
@@ -549,7 +549,7 @@ public  final class Service extends
    * The product title associated with this service.
    * </pre>
    *
-   * <code>string title = 2;</code>
+   * <code>optional string title = 2;</code>
    */
   public com.google.protobuf.ByteString
       getTitleBytes() {
@@ -574,7 +574,7 @@ public  final class Service extends
    * manage consumption of the service, etc.
    * </pre>
    *
-   * <code>string producer_project_id = 22;</code>
+   * <code>optional string producer_project_id = 22;</code>
    */
   public java.lang.String getProducerProjectId() {
     java.lang.Object ref = producerProjectId_;
@@ -595,7 +595,7 @@ public  final class Service extends
    * manage consumption of the service, etc.
    * </pre>
    *
-   * <code>string producer_project_id = 22;</code>
+   * <code>optional string producer_project_id = 22;</code>
    */
   public com.google.protobuf.ByteString
       getProducerProjectIdBytes() {
@@ -858,7 +858,7 @@ public  final class Service extends
    * Additional API documentation.
    * </pre>
    *
-   * <code>.google.api.Documentation documentation = 6;</code>
+   * <code>optional .google.api.Documentation documentation = 6;</code>
    */
   public boolean hasDocumentation() {
     return documentation_ != null;
@@ -868,7 +868,7 @@ public  final class Service extends
    * Additional API documentation.
    * </pre>
    *
-   * <code>.google.api.Documentation documentation = 6;</code>
+   * <code>optional .google.api.Documentation documentation = 6;</code>
    */
   public com.google.api.Documentation getDocumentation() {
     return documentation_ == null ? com.google.api.Documentation.getDefaultInstance() : documentation_;
@@ -878,7 +878,7 @@ public  final class Service extends
    * Additional API documentation.
    * </pre>
    *
-   * <code>.google.api.Documentation documentation = 6;</code>
+   * <code>optional .google.api.Documentation documentation = 6;</code>
    */
   public com.google.api.DocumentationOrBuilder getDocumentationOrBuilder() {
     return getDocumentation();
@@ -891,7 +891,7 @@ public  final class Service extends
    * API backend configuration.
    * </pre>
    *
-   * <code>.google.api.Backend backend = 8;</code>
+   * <code>optional .google.api.Backend backend = 8;</code>
    */
   public boolean hasBackend() {
     return backend_ != null;
@@ -901,7 +901,7 @@ public  final class Service extends
    * API backend configuration.
    * </pre>
    *
-   * <code>.google.api.Backend backend = 8;</code>
+   * <code>optional .google.api.Backend backend = 8;</code>
    */
   public com.google.api.Backend getBackend() {
     return backend_ == null ? com.google.api.Backend.getDefaultInstance() : backend_;
@@ -911,7 +911,7 @@ public  final class Service extends
    * API backend configuration.
    * </pre>
    *
-   * <code>.google.api.Backend backend = 8;</code>
+   * <code>optional .google.api.Backend backend = 8;</code>
    */
   public com.google.api.BackendOrBuilder getBackendOrBuilder() {
     return getBackend();
@@ -924,7 +924,7 @@ public  final class Service extends
    * HTTP configuration.
    * </pre>
    *
-   * <code>.google.api.Http http = 9;</code>
+   * <code>optional .google.api.Http http = 9;</code>
    */
   public boolean hasHttp() {
     return http_ != null;
@@ -934,7 +934,7 @@ public  final class Service extends
    * HTTP configuration.
    * </pre>
    *
-   * <code>.google.api.Http http = 9;</code>
+   * <code>optional .google.api.Http http = 9;</code>
    */
   public com.google.api.Http getHttp() {
     return http_ == null ? com.google.api.Http.getDefaultInstance() : http_;
@@ -944,7 +944,7 @@ public  final class Service extends
    * HTTP configuration.
    * </pre>
    *
-   * <code>.google.api.Http http = 9;</code>
+   * <code>optional .google.api.Http http = 9;</code>
    */
   public com.google.api.HttpOrBuilder getHttpOrBuilder() {
     return getHttp();
@@ -957,7 +957,7 @@ public  final class Service extends
    * Quota configuration.
    * </pre>
    *
-   * <code>.google.api.Quota quota = 10;</code>
+   * <code>optional .google.api.Quota quota = 10;</code>
    */
   public boolean hasQuota() {
     return quota_ != null;
@@ -967,7 +967,7 @@ public  final class Service extends
    * Quota configuration.
    * </pre>
    *
-   * <code>.google.api.Quota quota = 10;</code>
+   * <code>optional .google.api.Quota quota = 10;</code>
    */
   public com.google.api.Quota getQuota() {
     return quota_ == null ? com.google.api.Quota.getDefaultInstance() : quota_;
@@ -977,7 +977,7 @@ public  final class Service extends
    * Quota configuration.
    * </pre>
    *
-   * <code>.google.api.Quota quota = 10;</code>
+   * <code>optional .google.api.Quota quota = 10;</code>
    */
   public com.google.api.QuotaOrBuilder getQuotaOrBuilder() {
     return getQuota();
@@ -990,7 +990,7 @@ public  final class Service extends
    * Auth configuration.
    * </pre>
    *
-   * <code>.google.api.Authentication authentication = 11;</code>
+   * <code>optional .google.api.Authentication authentication = 11;</code>
    */
   public boolean hasAuthentication() {
     return authentication_ != null;
@@ -1000,7 +1000,7 @@ public  final class Service extends
    * Auth configuration.
    * </pre>
    *
-   * <code>.google.api.Authentication authentication = 11;</code>
+   * <code>optional .google.api.Authentication authentication = 11;</code>
    */
   public com.google.api.Authentication getAuthentication() {
     return authentication_ == null ? com.google.api.Authentication.getDefaultInstance() : authentication_;
@@ -1010,7 +1010,7 @@ public  final class Service extends
    * Auth configuration.
    * </pre>
    *
-   * <code>.google.api.Authentication authentication = 11;</code>
+   * <code>optional .google.api.Authentication authentication = 11;</code>
    */
   public com.google.api.AuthenticationOrBuilder getAuthenticationOrBuilder() {
     return getAuthentication();
@@ -1023,7 +1023,7 @@ public  final class Service extends
    * Context configuration.
    * </pre>
    *
-   * <code>.google.api.Context context = 12;</code>
+   * <code>optional .google.api.Context context = 12;</code>
    */
   public boolean hasContext() {
     return context_ != null;
@@ -1033,7 +1033,7 @@ public  final class Service extends
    * Context configuration.
    * </pre>
    *
-   * <code>.google.api.Context context = 12;</code>
+   * <code>optional .google.api.Context context = 12;</code>
    */
   public com.google.api.Context getContext() {
     return context_ == null ? com.google.api.Context.getDefaultInstance() : context_;
@@ -1043,7 +1043,7 @@ public  final class Service extends
    * Context configuration.
    * </pre>
    *
-   * <code>.google.api.Context context = 12;</code>
+   * <code>optional .google.api.Context context = 12;</code>
    */
   public com.google.api.ContextOrBuilder getContextOrBuilder() {
     return getContext();
@@ -1056,7 +1056,7 @@ public  final class Service extends
    * Configuration controlling usage of this service.
    * </pre>
    *
-   * <code>.google.api.Usage usage = 15;</code>
+   * <code>optional .google.api.Usage usage = 15;</code>
    */
   public boolean hasUsage() {
     return usage_ != null;
@@ -1066,7 +1066,7 @@ public  final class Service extends
    * Configuration controlling usage of this service.
    * </pre>
    *
-   * <code>.google.api.Usage usage = 15;</code>
+   * <code>optional .google.api.Usage usage = 15;</code>
    */
   public com.google.api.Usage getUsage() {
     return usage_ == null ? com.google.api.Usage.getDefaultInstance() : usage_;
@@ -1076,7 +1076,7 @@ public  final class Service extends
    * Configuration controlling usage of this service.
    * </pre>
    *
-   * <code>.google.api.Usage usage = 15;</code>
+   * <code>optional .google.api.Usage usage = 15;</code>
    */
   public com.google.api.UsageOrBuilder getUsageOrBuilder() {
     return getUsage();
@@ -1154,7 +1154,7 @@ public  final class Service extends
    * Configuration for the service control plane.
    * </pre>
    *
-   * <code>.google.api.Control control = 21;</code>
+   * <code>optional .google.api.Control control = 21;</code>
    */
   public boolean hasControl() {
     return control_ != null;
@@ -1164,7 +1164,7 @@ public  final class Service extends
    * Configuration for the service control plane.
    * </pre>
    *
-   * <code>.google.api.Control control = 21;</code>
+   * <code>optional .google.api.Control control = 21;</code>
    */
   public com.google.api.Control getControl() {
     return control_ == null ? com.google.api.Control.getDefaultInstance() : control_;
@@ -1174,7 +1174,7 @@ public  final class Service extends
    * Configuration for the service control plane.
    * </pre>
    *
-   * <code>.google.api.Control control = 21;</code>
+   * <code>optional .google.api.Control control = 21;</code>
    */
   public com.google.api.ControlOrBuilder getControlOrBuilder() {
     return getControl();
@@ -1357,7 +1357,7 @@ public  final class Service extends
    * Logging configuration.
    * </pre>
    *
-   * <code>.google.api.Logging logging = 27;</code>
+   * <code>optional .google.api.Logging logging = 27;</code>
    */
   public boolean hasLogging() {
     return logging_ != null;
@@ -1367,7 +1367,7 @@ public  final class Service extends
    * Logging configuration.
    * </pre>
    *
-   * <code>.google.api.Logging logging = 27;</code>
+   * <code>optional .google.api.Logging logging = 27;</code>
    */
   public com.google.api.Logging getLogging() {
     return logging_ == null ? com.google.api.Logging.getDefaultInstance() : logging_;
@@ -1377,7 +1377,7 @@ public  final class Service extends
    * Logging configuration.
    * </pre>
    *
-   * <code>.google.api.Logging logging = 27;</code>
+   * <code>optional .google.api.Logging logging = 27;</code>
    */
   public com.google.api.LoggingOrBuilder getLoggingOrBuilder() {
     return getLogging();
@@ -1390,7 +1390,7 @@ public  final class Service extends
    * Monitoring configuration.
    * </pre>
    *
-   * <code>.google.api.Monitoring monitoring = 28;</code>
+   * <code>optional .google.api.Monitoring monitoring = 28;</code>
    */
   public boolean hasMonitoring() {
     return monitoring_ != null;
@@ -1400,7 +1400,7 @@ public  final class Service extends
    * Monitoring configuration.
    * </pre>
    *
-   * <code>.google.api.Monitoring monitoring = 28;</code>
+   * <code>optional .google.api.Monitoring monitoring = 28;</code>
    */
   public com.google.api.Monitoring getMonitoring() {
     return monitoring_ == null ? com.google.api.Monitoring.getDefaultInstance() : monitoring_;
@@ -1410,7 +1410,7 @@ public  final class Service extends
    * Monitoring configuration.
    * </pre>
    *
-   * <code>.google.api.Monitoring monitoring = 28;</code>
+   * <code>optional .google.api.Monitoring monitoring = 28;</code>
    */
   public com.google.api.MonitoringOrBuilder getMonitoringOrBuilder() {
     return getMonitoring();
@@ -1423,7 +1423,7 @@ public  final class Service extends
    * System parameter configuration.
    * </pre>
    *
-   * <code>.google.api.SystemParameters system_parameters = 29;</code>
+   * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
    */
   public boolean hasSystemParameters() {
     return systemParameters_ != null;
@@ -1433,7 +1433,7 @@ public  final class Service extends
    * System parameter configuration.
    * </pre>
    *
-   * <code>.google.api.SystemParameters system_parameters = 29;</code>
+   * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
    */
   public com.google.api.SystemParameters getSystemParameters() {
     return systemParameters_ == null ? com.google.api.SystemParameters.getDefaultInstance() : systemParameters_;
@@ -1443,7 +1443,7 @@ public  final class Service extends
    * System parameter configuration.
    * </pre>
    *
-   * <code>.google.api.SystemParameters system_parameters = 29;</code>
+   * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
    */
   public com.google.api.SystemParametersOrBuilder getSystemParametersOrBuilder() {
     return getSystemParameters();
@@ -1456,7 +1456,7 @@ public  final class Service extends
    * Output only. The source information for this configuration if available.
    * </pre>
    *
-   * <code>.google.api.SourceInfo source_info = 37;</code>
+   * <code>optional .google.api.SourceInfo source_info = 37;</code>
    */
   public boolean hasSourceInfo() {
     return sourceInfo_ != null;
@@ -1466,7 +1466,7 @@ public  final class Service extends
    * Output only. The source information for this configuration if available.
    * </pre>
    *
-   * <code>.google.api.SourceInfo source_info = 37;</code>
+   * <code>optional .google.api.SourceInfo source_info = 37;</code>
    */
   public com.google.api.SourceInfo getSourceInfo() {
     return sourceInfo_ == null ? com.google.api.SourceInfo.getDefaultInstance() : sourceInfo_;
@@ -1476,7 +1476,7 @@ public  final class Service extends
    * Output only. The source information for this configuration if available.
    * </pre>
    *
-   * <code>.google.api.SourceInfo source_info = 37;</code>
+   * <code>optional .google.api.SourceInfo source_info = 37;</code>
    */
   public com.google.api.SourceInfoOrBuilder getSourceInfoOrBuilder() {
     return getSourceInfo();
@@ -1489,7 +1489,7 @@ public  final class Service extends
    * Experimental configuration.
    * </pre>
    *
-   * <code>.google.api.Experimental experimental = 101;</code>
+   * <code>optional .google.api.Experimental experimental = 101;</code>
    */
   public boolean hasExperimental() {
     return experimental_ != null;
@@ -1499,7 +1499,7 @@ public  final class Service extends
    * Experimental configuration.
    * </pre>
    *
-   * <code>.google.api.Experimental experimental = 101;</code>
+   * <code>optional .google.api.Experimental experimental = 101;</code>
    */
   public com.google.api.Experimental getExperimental() {
     return experimental_ == null ? com.google.api.Experimental.getDefaultInstance() : experimental_;
@@ -1509,7 +1509,7 @@ public  final class Service extends
    * Experimental configuration.
    * </pre>
    *
-   * <code>.google.api.Experimental experimental = 101;</code>
+   * <code>optional .google.api.Experimental experimental = 101;</code>
    */
   public com.google.api.ExperimentalOrBuilder getExperimentalOrBuilder() {
     return getExperimental();
@@ -1822,7 +1822,7 @@ public  final class Service extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasConfigVersion()) {
       hash = (37 * hash) + CONFIG_VERSION_FIELD_NUMBER;
       hash = (53 * hash) + getConfigVersion().hashCode();
@@ -1920,17 +1920,6 @@ public  final class Service extends
     return hash;
   }
 
-  public static com.google.api.Service parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.Service parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.Service parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2690,7 +2679,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public boolean hasConfigVersion() {
       return configVersionBuilder_ != null || configVersion_ != null;
@@ -2703,7 +2692,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public com.google.protobuf.UInt32Value getConfigVersion() {
       if (configVersionBuilder_ == null) {
@@ -2720,7 +2709,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public Builder setConfigVersion(com.google.protobuf.UInt32Value value) {
       if (configVersionBuilder_ == null) {
@@ -2743,7 +2732,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public Builder setConfigVersion(
         com.google.protobuf.UInt32Value.Builder builderForValue) {
@@ -2764,7 +2753,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public Builder mergeConfigVersion(com.google.protobuf.UInt32Value value) {
       if (configVersionBuilder_ == null) {
@@ -2789,7 +2778,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public Builder clearConfigVersion() {
       if (configVersionBuilder_ == null) {
@@ -2810,7 +2799,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public com.google.protobuf.UInt32Value.Builder getConfigVersionBuilder() {
       
@@ -2825,7 +2814,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     public com.google.protobuf.UInt32ValueOrBuilder getConfigVersionOrBuilder() {
       if (configVersionBuilder_ != null) {
@@ -2843,7 +2832,7 @@ public  final class Service extends
      * options. The current default for the config version itself is `3`.
      * </pre>
      *
-     * <code>.google.protobuf.UInt32Value config_version = 20;</code>
+     * <code>optional .google.protobuf.UInt32Value config_version = 20;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.UInt32Value, com.google.protobuf.UInt32Value.Builder, com.google.protobuf.UInt32ValueOrBuilder> 
@@ -2866,7 +2855,7 @@ public  final class Service extends
      * e.g. `calendar.googleapis.com`.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -2886,7 +2875,7 @@ public  final class Service extends
      * e.g. `calendar.googleapis.com`.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -2907,7 +2896,7 @@ public  final class Service extends
      * e.g. `calendar.googleapis.com`.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -2925,7 +2914,7 @@ public  final class Service extends
      * e.g. `calendar.googleapis.com`.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -2939,7 +2928,7 @@ public  final class Service extends
      * e.g. `calendar.googleapis.com`.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -2961,7 +2950,7 @@ public  final class Service extends
      * generate one instead.
      * </pre>
      *
-     * <code>string id = 33;</code>
+     * <code>optional string id = 33;</code>
      */
     public java.lang.String getId() {
       java.lang.Object ref = id_;
@@ -2982,7 +2971,7 @@ public  final class Service extends
      * generate one instead.
      * </pre>
      *
-     * <code>string id = 33;</code>
+     * <code>optional string id = 33;</code>
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
@@ -3004,7 +2993,7 @@ public  final class Service extends
      * generate one instead.
      * </pre>
      *
-     * <code>string id = 33;</code>
+     * <code>optional string id = 33;</code>
      */
     public Builder setId(
         java.lang.String value) {
@@ -3023,7 +3012,7 @@ public  final class Service extends
      * generate one instead.
      * </pre>
      *
-     * <code>string id = 33;</code>
+     * <code>optional string id = 33;</code>
      */
     public Builder clearId() {
       
@@ -3038,7 +3027,7 @@ public  final class Service extends
      * generate one instead.
      * </pre>
      *
-     * <code>string id = 33;</code>
+     * <code>optional string id = 33;</code>
      */
     public Builder setIdBytes(
         com.google.protobuf.ByteString value) {
@@ -3058,7 +3047,7 @@ public  final class Service extends
      * The product title associated with this service.
      * </pre>
      *
-     * <code>string title = 2;</code>
+     * <code>optional string title = 2;</code>
      */
     public java.lang.String getTitle() {
       java.lang.Object ref = title_;
@@ -3077,7 +3066,7 @@ public  final class Service extends
      * The product title associated with this service.
      * </pre>
      *
-     * <code>string title = 2;</code>
+     * <code>optional string title = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTitleBytes() {
@@ -3097,7 +3086,7 @@ public  final class Service extends
      * The product title associated with this service.
      * </pre>
      *
-     * <code>string title = 2;</code>
+     * <code>optional string title = 2;</code>
      */
     public Builder setTitle(
         java.lang.String value) {
@@ -3114,7 +3103,7 @@ public  final class Service extends
      * The product title associated with this service.
      * </pre>
      *
-     * <code>string title = 2;</code>
+     * <code>optional string title = 2;</code>
      */
     public Builder clearTitle() {
       
@@ -3127,7 +3116,7 @@ public  final class Service extends
      * The product title associated with this service.
      * </pre>
      *
-     * <code>string title = 2;</code>
+     * <code>optional string title = 2;</code>
      */
     public Builder setTitleBytes(
         com.google.protobuf.ByteString value) {
@@ -3149,7 +3138,7 @@ public  final class Service extends
      * manage consumption of the service, etc.
      * </pre>
      *
-     * <code>string producer_project_id = 22;</code>
+     * <code>optional string producer_project_id = 22;</code>
      */
     public java.lang.String getProducerProjectId() {
       java.lang.Object ref = producerProjectId_;
@@ -3170,7 +3159,7 @@ public  final class Service extends
      * manage consumption of the service, etc.
      * </pre>
      *
-     * <code>string producer_project_id = 22;</code>
+     * <code>optional string producer_project_id = 22;</code>
      */
     public com.google.protobuf.ByteString
         getProducerProjectIdBytes() {
@@ -3192,7 +3181,7 @@ public  final class Service extends
      * manage consumption of the service, etc.
      * </pre>
      *
-     * <code>string producer_project_id = 22;</code>
+     * <code>optional string producer_project_id = 22;</code>
      */
     public Builder setProducerProjectId(
         java.lang.String value) {
@@ -3211,7 +3200,7 @@ public  final class Service extends
      * manage consumption of the service, etc.
      * </pre>
      *
-     * <code>string producer_project_id = 22;</code>
+     * <code>optional string producer_project_id = 22;</code>
      */
     public Builder clearProducerProjectId() {
       
@@ -3226,7 +3215,7 @@ public  final class Service extends
      * manage consumption of the service, etc.
      * </pre>
      *
-     * <code>string producer_project_id = 22;</code>
+     * <code>optional string producer_project_id = 22;</code>
      */
     public Builder setProducerProjectIdBytes(
         com.google.protobuf.ByteString value) {
@@ -4454,7 +4443,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public boolean hasDocumentation() {
       return documentationBuilder_ != null || documentation_ != null;
@@ -4464,7 +4453,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public com.google.api.Documentation getDocumentation() {
       if (documentationBuilder_ == null) {
@@ -4478,7 +4467,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public Builder setDocumentation(com.google.api.Documentation value) {
       if (documentationBuilder_ == null) {
@@ -4498,7 +4487,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public Builder setDocumentation(
         com.google.api.Documentation.Builder builderForValue) {
@@ -4516,7 +4505,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public Builder mergeDocumentation(com.google.api.Documentation value) {
       if (documentationBuilder_ == null) {
@@ -4538,7 +4527,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public Builder clearDocumentation() {
       if (documentationBuilder_ == null) {
@@ -4556,7 +4545,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public com.google.api.Documentation.Builder getDocumentationBuilder() {
       
@@ -4568,7 +4557,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     public com.google.api.DocumentationOrBuilder getDocumentationOrBuilder() {
       if (documentationBuilder_ != null) {
@@ -4583,7 +4572,7 @@ public  final class Service extends
      * Additional API documentation.
      * </pre>
      *
-     * <code>.google.api.Documentation documentation = 6;</code>
+     * <code>optional .google.api.Documentation documentation = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Documentation, com.google.api.Documentation.Builder, com.google.api.DocumentationOrBuilder> 
@@ -4607,7 +4596,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public boolean hasBackend() {
       return backendBuilder_ != null || backend_ != null;
@@ -4617,7 +4606,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public com.google.api.Backend getBackend() {
       if (backendBuilder_ == null) {
@@ -4631,7 +4620,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public Builder setBackend(com.google.api.Backend value) {
       if (backendBuilder_ == null) {
@@ -4651,7 +4640,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public Builder setBackend(
         com.google.api.Backend.Builder builderForValue) {
@@ -4669,7 +4658,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public Builder mergeBackend(com.google.api.Backend value) {
       if (backendBuilder_ == null) {
@@ -4691,7 +4680,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public Builder clearBackend() {
       if (backendBuilder_ == null) {
@@ -4709,7 +4698,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public com.google.api.Backend.Builder getBackendBuilder() {
       
@@ -4721,7 +4710,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     public com.google.api.BackendOrBuilder getBackendOrBuilder() {
       if (backendBuilder_ != null) {
@@ -4736,7 +4725,7 @@ public  final class Service extends
      * API backend configuration.
      * </pre>
      *
-     * <code>.google.api.Backend backend = 8;</code>
+     * <code>optional .google.api.Backend backend = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Backend, com.google.api.Backend.Builder, com.google.api.BackendOrBuilder> 
@@ -4760,7 +4749,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public boolean hasHttp() {
       return httpBuilder_ != null || http_ != null;
@@ -4770,7 +4759,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public com.google.api.Http getHttp() {
       if (httpBuilder_ == null) {
@@ -4784,7 +4773,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public Builder setHttp(com.google.api.Http value) {
       if (httpBuilder_ == null) {
@@ -4804,7 +4793,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public Builder setHttp(
         com.google.api.Http.Builder builderForValue) {
@@ -4822,7 +4811,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public Builder mergeHttp(com.google.api.Http value) {
       if (httpBuilder_ == null) {
@@ -4844,7 +4833,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public Builder clearHttp() {
       if (httpBuilder_ == null) {
@@ -4862,7 +4851,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public com.google.api.Http.Builder getHttpBuilder() {
       
@@ -4874,7 +4863,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     public com.google.api.HttpOrBuilder getHttpOrBuilder() {
       if (httpBuilder_ != null) {
@@ -4889,7 +4878,7 @@ public  final class Service extends
      * HTTP configuration.
      * </pre>
      *
-     * <code>.google.api.Http http = 9;</code>
+     * <code>optional .google.api.Http http = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Http, com.google.api.Http.Builder, com.google.api.HttpOrBuilder> 
@@ -4913,7 +4902,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public boolean hasQuota() {
       return quotaBuilder_ != null || quota_ != null;
@@ -4923,7 +4912,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public com.google.api.Quota getQuota() {
       if (quotaBuilder_ == null) {
@@ -4937,7 +4926,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public Builder setQuota(com.google.api.Quota value) {
       if (quotaBuilder_ == null) {
@@ -4957,7 +4946,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public Builder setQuota(
         com.google.api.Quota.Builder builderForValue) {
@@ -4975,7 +4964,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public Builder mergeQuota(com.google.api.Quota value) {
       if (quotaBuilder_ == null) {
@@ -4997,7 +4986,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public Builder clearQuota() {
       if (quotaBuilder_ == null) {
@@ -5015,7 +5004,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public com.google.api.Quota.Builder getQuotaBuilder() {
       
@@ -5027,7 +5016,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     public com.google.api.QuotaOrBuilder getQuotaOrBuilder() {
       if (quotaBuilder_ != null) {
@@ -5042,7 +5031,7 @@ public  final class Service extends
      * Quota configuration.
      * </pre>
      *
-     * <code>.google.api.Quota quota = 10;</code>
+     * <code>optional .google.api.Quota quota = 10;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Quota, com.google.api.Quota.Builder, com.google.api.QuotaOrBuilder> 
@@ -5066,7 +5055,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public boolean hasAuthentication() {
       return authenticationBuilder_ != null || authentication_ != null;
@@ -5076,7 +5065,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public com.google.api.Authentication getAuthentication() {
       if (authenticationBuilder_ == null) {
@@ -5090,7 +5079,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public Builder setAuthentication(com.google.api.Authentication value) {
       if (authenticationBuilder_ == null) {
@@ -5110,7 +5099,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public Builder setAuthentication(
         com.google.api.Authentication.Builder builderForValue) {
@@ -5128,7 +5117,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public Builder mergeAuthentication(com.google.api.Authentication value) {
       if (authenticationBuilder_ == null) {
@@ -5150,7 +5139,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public Builder clearAuthentication() {
       if (authenticationBuilder_ == null) {
@@ -5168,7 +5157,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public com.google.api.Authentication.Builder getAuthenticationBuilder() {
       
@@ -5180,7 +5169,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     public com.google.api.AuthenticationOrBuilder getAuthenticationOrBuilder() {
       if (authenticationBuilder_ != null) {
@@ -5195,7 +5184,7 @@ public  final class Service extends
      * Auth configuration.
      * </pre>
      *
-     * <code>.google.api.Authentication authentication = 11;</code>
+     * <code>optional .google.api.Authentication authentication = 11;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Authentication, com.google.api.Authentication.Builder, com.google.api.AuthenticationOrBuilder> 
@@ -5219,7 +5208,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public boolean hasContext() {
       return contextBuilder_ != null || context_ != null;
@@ -5229,7 +5218,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public com.google.api.Context getContext() {
       if (contextBuilder_ == null) {
@@ -5243,7 +5232,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public Builder setContext(com.google.api.Context value) {
       if (contextBuilder_ == null) {
@@ -5263,7 +5252,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public Builder setContext(
         com.google.api.Context.Builder builderForValue) {
@@ -5281,7 +5270,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public Builder mergeContext(com.google.api.Context value) {
       if (contextBuilder_ == null) {
@@ -5303,7 +5292,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public Builder clearContext() {
       if (contextBuilder_ == null) {
@@ -5321,7 +5310,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public com.google.api.Context.Builder getContextBuilder() {
       
@@ -5333,7 +5322,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     public com.google.api.ContextOrBuilder getContextOrBuilder() {
       if (contextBuilder_ != null) {
@@ -5348,7 +5337,7 @@ public  final class Service extends
      * Context configuration.
      * </pre>
      *
-     * <code>.google.api.Context context = 12;</code>
+     * <code>optional .google.api.Context context = 12;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Context, com.google.api.Context.Builder, com.google.api.ContextOrBuilder> 
@@ -5372,7 +5361,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public boolean hasUsage() {
       return usageBuilder_ != null || usage_ != null;
@@ -5382,7 +5371,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public com.google.api.Usage getUsage() {
       if (usageBuilder_ == null) {
@@ -5396,7 +5385,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public Builder setUsage(com.google.api.Usage value) {
       if (usageBuilder_ == null) {
@@ -5416,7 +5405,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public Builder setUsage(
         com.google.api.Usage.Builder builderForValue) {
@@ -5434,7 +5423,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public Builder mergeUsage(com.google.api.Usage value) {
       if (usageBuilder_ == null) {
@@ -5456,7 +5445,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public Builder clearUsage() {
       if (usageBuilder_ == null) {
@@ -5474,7 +5463,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public com.google.api.Usage.Builder getUsageBuilder() {
       
@@ -5486,7 +5475,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     public com.google.api.UsageOrBuilder getUsageOrBuilder() {
       if (usageBuilder_ != null) {
@@ -5501,7 +5490,7 @@ public  final class Service extends
      * Configuration controlling usage of this service.
      * </pre>
      *
-     * <code>.google.api.Usage usage = 15;</code>
+     * <code>optional .google.api.Usage usage = 15;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Usage, com.google.api.Usage.Builder, com.google.api.UsageOrBuilder> 
@@ -5873,7 +5862,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public boolean hasControl() {
       return controlBuilder_ != null || control_ != null;
@@ -5883,7 +5872,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public com.google.api.Control getControl() {
       if (controlBuilder_ == null) {
@@ -5897,7 +5886,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public Builder setControl(com.google.api.Control value) {
       if (controlBuilder_ == null) {
@@ -5917,7 +5906,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public Builder setControl(
         com.google.api.Control.Builder builderForValue) {
@@ -5935,7 +5924,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public Builder mergeControl(com.google.api.Control value) {
       if (controlBuilder_ == null) {
@@ -5957,7 +5946,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public Builder clearControl() {
       if (controlBuilder_ == null) {
@@ -5975,7 +5964,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public com.google.api.Control.Builder getControlBuilder() {
       
@@ -5987,7 +5976,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     public com.google.api.ControlOrBuilder getControlOrBuilder() {
       if (controlBuilder_ != null) {
@@ -6002,7 +5991,7 @@ public  final class Service extends
      * Configuration for the service control plane.
      * </pre>
      *
-     * <code>.google.api.Control control = 21;</code>
+     * <code>optional .google.api.Control control = 21;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Control, com.google.api.Control.Builder, com.google.api.ControlOrBuilder> 
@@ -6980,7 +6969,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public boolean hasLogging() {
       return loggingBuilder_ != null || logging_ != null;
@@ -6990,7 +6979,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public com.google.api.Logging getLogging() {
       if (loggingBuilder_ == null) {
@@ -7004,7 +6993,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public Builder setLogging(com.google.api.Logging value) {
       if (loggingBuilder_ == null) {
@@ -7024,7 +7013,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public Builder setLogging(
         com.google.api.Logging.Builder builderForValue) {
@@ -7042,7 +7031,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public Builder mergeLogging(com.google.api.Logging value) {
       if (loggingBuilder_ == null) {
@@ -7064,7 +7053,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public Builder clearLogging() {
       if (loggingBuilder_ == null) {
@@ -7082,7 +7071,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public com.google.api.Logging.Builder getLoggingBuilder() {
       
@@ -7094,7 +7083,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     public com.google.api.LoggingOrBuilder getLoggingOrBuilder() {
       if (loggingBuilder_ != null) {
@@ -7109,7 +7098,7 @@ public  final class Service extends
      * Logging configuration.
      * </pre>
      *
-     * <code>.google.api.Logging logging = 27;</code>
+     * <code>optional .google.api.Logging logging = 27;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Logging, com.google.api.Logging.Builder, com.google.api.LoggingOrBuilder> 
@@ -7133,7 +7122,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public boolean hasMonitoring() {
       return monitoringBuilder_ != null || monitoring_ != null;
@@ -7143,7 +7132,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public com.google.api.Monitoring getMonitoring() {
       if (monitoringBuilder_ == null) {
@@ -7157,7 +7146,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public Builder setMonitoring(com.google.api.Monitoring value) {
       if (monitoringBuilder_ == null) {
@@ -7177,7 +7166,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public Builder setMonitoring(
         com.google.api.Monitoring.Builder builderForValue) {
@@ -7195,7 +7184,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public Builder mergeMonitoring(com.google.api.Monitoring value) {
       if (monitoringBuilder_ == null) {
@@ -7217,7 +7206,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public Builder clearMonitoring() {
       if (monitoringBuilder_ == null) {
@@ -7235,7 +7224,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public com.google.api.Monitoring.Builder getMonitoringBuilder() {
       
@@ -7247,7 +7236,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     public com.google.api.MonitoringOrBuilder getMonitoringOrBuilder() {
       if (monitoringBuilder_ != null) {
@@ -7262,7 +7251,7 @@ public  final class Service extends
      * Monitoring configuration.
      * </pre>
      *
-     * <code>.google.api.Monitoring monitoring = 28;</code>
+     * <code>optional .google.api.Monitoring monitoring = 28;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Monitoring, com.google.api.Monitoring.Builder, com.google.api.MonitoringOrBuilder> 
@@ -7286,7 +7275,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public boolean hasSystemParameters() {
       return systemParametersBuilder_ != null || systemParameters_ != null;
@@ -7296,7 +7285,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public com.google.api.SystemParameters getSystemParameters() {
       if (systemParametersBuilder_ == null) {
@@ -7310,7 +7299,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public Builder setSystemParameters(com.google.api.SystemParameters value) {
       if (systemParametersBuilder_ == null) {
@@ -7330,7 +7319,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public Builder setSystemParameters(
         com.google.api.SystemParameters.Builder builderForValue) {
@@ -7348,7 +7337,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public Builder mergeSystemParameters(com.google.api.SystemParameters value) {
       if (systemParametersBuilder_ == null) {
@@ -7370,7 +7359,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public Builder clearSystemParameters() {
       if (systemParametersBuilder_ == null) {
@@ -7388,7 +7377,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public com.google.api.SystemParameters.Builder getSystemParametersBuilder() {
       
@@ -7400,7 +7389,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     public com.google.api.SystemParametersOrBuilder getSystemParametersOrBuilder() {
       if (systemParametersBuilder_ != null) {
@@ -7415,7 +7404,7 @@ public  final class Service extends
      * System parameter configuration.
      * </pre>
      *
-     * <code>.google.api.SystemParameters system_parameters = 29;</code>
+     * <code>optional .google.api.SystemParameters system_parameters = 29;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.SystemParameters, com.google.api.SystemParameters.Builder, com.google.api.SystemParametersOrBuilder> 
@@ -7439,7 +7428,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public boolean hasSourceInfo() {
       return sourceInfoBuilder_ != null || sourceInfo_ != null;
@@ -7449,7 +7438,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public com.google.api.SourceInfo getSourceInfo() {
       if (sourceInfoBuilder_ == null) {
@@ -7463,7 +7452,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public Builder setSourceInfo(com.google.api.SourceInfo value) {
       if (sourceInfoBuilder_ == null) {
@@ -7483,7 +7472,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public Builder setSourceInfo(
         com.google.api.SourceInfo.Builder builderForValue) {
@@ -7501,7 +7490,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public Builder mergeSourceInfo(com.google.api.SourceInfo value) {
       if (sourceInfoBuilder_ == null) {
@@ -7523,7 +7512,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public Builder clearSourceInfo() {
       if (sourceInfoBuilder_ == null) {
@@ -7541,7 +7530,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public com.google.api.SourceInfo.Builder getSourceInfoBuilder() {
       
@@ -7553,7 +7542,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     public com.google.api.SourceInfoOrBuilder getSourceInfoOrBuilder() {
       if (sourceInfoBuilder_ != null) {
@@ -7568,7 +7557,7 @@ public  final class Service extends
      * Output only. The source information for this configuration if available.
      * </pre>
      *
-     * <code>.google.api.SourceInfo source_info = 37;</code>
+     * <code>optional .google.api.SourceInfo source_info = 37;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.SourceInfo, com.google.api.SourceInfo.Builder, com.google.api.SourceInfoOrBuilder> 
@@ -7592,7 +7581,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public boolean hasExperimental() {
       return experimentalBuilder_ != null || experimental_ != null;
@@ -7602,7 +7591,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public com.google.api.Experimental getExperimental() {
       if (experimentalBuilder_ == null) {
@@ -7616,7 +7605,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public Builder setExperimental(com.google.api.Experimental value) {
       if (experimentalBuilder_ == null) {
@@ -7636,7 +7625,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public Builder setExperimental(
         com.google.api.Experimental.Builder builderForValue) {
@@ -7654,7 +7643,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public Builder mergeExperimental(com.google.api.Experimental value) {
       if (experimentalBuilder_ == null) {
@@ -7676,7 +7665,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public Builder clearExperimental() {
       if (experimentalBuilder_ == null) {
@@ -7694,7 +7683,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public com.google.api.Experimental.Builder getExperimentalBuilder() {
       
@@ -7706,7 +7695,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     public com.google.api.ExperimentalOrBuilder getExperimentalOrBuilder() {
       if (experimentalBuilder_ != null) {
@@ -7721,7 +7710,7 @@ public  final class Service extends
      * Experimental configuration.
      * </pre>
      *
-     * <code>.google.api.Experimental experimental = 101;</code>
+     * <code>optional .google.api.Experimental experimental = 101;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.Experimental, com.google.api.Experimental.Builder, com.google.api.ExperimentalOrBuilder> 

@@ -12,7 +12,7 @@ public interface LatLongRectOrBuilder extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   boolean hasMinLatLng();
   /**
@@ -20,7 +20,7 @@ public interface LatLongRectOrBuilder extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   com.google.type.LatLng getMinLatLng();
   /**
@@ -28,7 +28,7 @@ public interface LatLongRectOrBuilder extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   com.google.type.LatLngOrBuilder getMinLatLngOrBuilder();
 
@@ -37,7 +37,7 @@ public interface LatLongRectOrBuilder extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   boolean hasMaxLatLng();
   /**
@@ -45,7 +45,7 @@ public interface LatLongRectOrBuilder extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   com.google.type.LatLng getMaxLatLng();
   /**
@@ -53,7 +53,7 @@ public interface LatLongRectOrBuilder extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   com.google.type.LatLngOrBuilder getMaxLatLngOrBuilder();
 }

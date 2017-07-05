@@ -89,7 +89,7 @@ public  final class GetGroupRequest extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
    * </pre>
    *
-   * <code>string group_name = 1;</code>
+   * <code>optional string group_name = 1;</code>
    */
   public java.lang.String getGroupName() {
     java.lang.Object ref = groupName_;
@@ -114,7 +114,7 @@ public  final class GetGroupRequest extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
    * </pre>
    *
-   * <code>string group_name = 1;</code>
+   * <code>optional string group_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getGroupNameBytes() {
@@ -182,7 +182,7 @@ public  final class GetGroupRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + GROUP_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getGroupName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -190,17 +190,6 @@ public  final class GetGroupRequest extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -426,7 +415,7 @@ public  final class GetGroupRequest extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
      * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * <code>optional string group_name = 1;</code>
      */
     public java.lang.String getGroupName() {
       java.lang.Object ref = groupName_;
@@ -451,7 +440,7 @@ public  final class GetGroupRequest extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
      * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * <code>optional string group_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getGroupNameBytes() {
@@ -477,7 +466,7 @@ public  final class GetGroupRequest extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
      * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * <code>optional string group_name = 1;</code>
      */
     public Builder setGroupName(
         java.lang.String value) {
@@ -500,7 +489,7 @@ public  final class GetGroupRequest extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
      * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * <code>optional string group_name = 1;</code>
      */
     public Builder clearGroupName() {
       
@@ -519,7 +508,7 @@ public  final class GetGroupRequest extends
      * Example: &lt;code&gt;projects/my-project-123/groups/my-group&lt;/code&gt;
      * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * <code>optional string group_name = 1;</code>
      */
     public Builder setGroupNameBytes(
         com.google.protobuf.ByteString value) {

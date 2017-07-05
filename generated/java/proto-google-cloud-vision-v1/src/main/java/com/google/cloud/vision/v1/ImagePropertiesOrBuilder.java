@@ -12,7 +12,7 @@ public interface ImagePropertiesOrBuilder extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   boolean hasDominantColors();
   /**
@@ -20,7 +20,7 @@ public interface ImagePropertiesOrBuilder extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   com.google.cloud.vision.v1.DominantColorsAnnotation getDominantColors();
   /**
@@ -28,7 +28,7 @@ public interface ImagePropertiesOrBuilder extends
    * If present, dominant colors completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+   * <code>optional .google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
    */
   com.google.cloud.vision.v1.DominantColorsAnnotationOrBuilder getDominantColorsOrBuilder();
 }

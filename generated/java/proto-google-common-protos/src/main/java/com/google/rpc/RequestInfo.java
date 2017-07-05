@@ -92,7 +92,7 @@ public  final class RequestInfo extends
    * it. For example, it can be used to identify requests in the service's logs.
    * </pre>
    *
-   * <code>string request_id = 1;</code>
+   * <code>optional string request_id = 1;</code>
    */
   public java.lang.String getRequestId() {
     java.lang.Object ref = requestId_;
@@ -112,7 +112,7 @@ public  final class RequestInfo extends
    * it. For example, it can be used to identify requests in the service's logs.
    * </pre>
    *
-   * <code>string request_id = 1;</code>
+   * <code>optional string request_id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getRequestIdBytes() {
@@ -136,7 +136,7 @@ public  final class RequestInfo extends
    * stack trace that can be sent back to the service provider for debugging.
    * </pre>
    *
-   * <code>string serving_data = 2;</code>
+   * <code>optional string serving_data = 2;</code>
    */
   public java.lang.String getServingData() {
     java.lang.Object ref = servingData_;
@@ -156,7 +156,7 @@ public  final class RequestInfo extends
    * stack trace that can be sent back to the service provider for debugging.
    * </pre>
    *
-   * <code>string serving_data = 2;</code>
+   * <code>optional string serving_data = 2;</code>
    */
   public com.google.protobuf.ByteString
       getServingDataBytes() {
@@ -232,7 +232,7 @@ public  final class RequestInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
     hash = (53 * hash) + getRequestId().hashCode();
     hash = (37 * hash) + SERVING_DATA_FIELD_NUMBER;
@@ -242,17 +242,6 @@ public  final class RequestInfo extends
     return hash;
   }
 
-  public static com.google.rpc.RequestInfo parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.rpc.RequestInfo parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.rpc.RequestInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -481,7 +470,7 @@ public  final class RequestInfo extends
      * it. For example, it can be used to identify requests in the service's logs.
      * </pre>
      *
-     * <code>string request_id = 1;</code>
+     * <code>optional string request_id = 1;</code>
      */
     public java.lang.String getRequestId() {
       java.lang.Object ref = requestId_;
@@ -501,7 +490,7 @@ public  final class RequestInfo extends
      * it. For example, it can be used to identify requests in the service's logs.
      * </pre>
      *
-     * <code>string request_id = 1;</code>
+     * <code>optional string request_id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getRequestIdBytes() {
@@ -522,7 +511,7 @@ public  final class RequestInfo extends
      * it. For example, it can be used to identify requests in the service's logs.
      * </pre>
      *
-     * <code>string request_id = 1;</code>
+     * <code>optional string request_id = 1;</code>
      */
     public Builder setRequestId(
         java.lang.String value) {
@@ -540,7 +529,7 @@ public  final class RequestInfo extends
      * it. For example, it can be used to identify requests in the service's logs.
      * </pre>
      *
-     * <code>string request_id = 1;</code>
+     * <code>optional string request_id = 1;</code>
      */
     public Builder clearRequestId() {
       
@@ -554,7 +543,7 @@ public  final class RequestInfo extends
      * it. For example, it can be used to identify requests in the service's logs.
      * </pre>
      *
-     * <code>string request_id = 1;</code>
+     * <code>optional string request_id = 1;</code>
      */
     public Builder setRequestIdBytes(
         com.google.protobuf.ByteString value) {
@@ -575,7 +564,7 @@ public  final class RequestInfo extends
      * stack trace that can be sent back to the service provider for debugging.
      * </pre>
      *
-     * <code>string serving_data = 2;</code>
+     * <code>optional string serving_data = 2;</code>
      */
     public java.lang.String getServingData() {
       java.lang.Object ref = servingData_;
@@ -595,7 +584,7 @@ public  final class RequestInfo extends
      * stack trace that can be sent back to the service provider for debugging.
      * </pre>
      *
-     * <code>string serving_data = 2;</code>
+     * <code>optional string serving_data = 2;</code>
      */
     public com.google.protobuf.ByteString
         getServingDataBytes() {
@@ -616,7 +605,7 @@ public  final class RequestInfo extends
      * stack trace that can be sent back to the service provider for debugging.
      * </pre>
      *
-     * <code>string serving_data = 2;</code>
+     * <code>optional string serving_data = 2;</code>
      */
     public Builder setServingData(
         java.lang.String value) {
@@ -634,7 +623,7 @@ public  final class RequestInfo extends
      * stack trace that can be sent back to the service provider for debugging.
      * </pre>
      *
-     * <code>string serving_data = 2;</code>
+     * <code>optional string serving_data = 2;</code>
      */
     public Builder clearServingData() {
       
@@ -648,7 +637,7 @@ public  final class RequestInfo extends
      * stack trace that can be sent back to the service provider for debugging.
      * </pre>
      *
-     * <code>string serving_data = 2;</code>
+     * <code>optional string serving_data = 2;</code>
      */
     public Builder setServingDataBytes(
         com.google.protobuf.ByteString value) {

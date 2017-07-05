@@ -12,7 +12,7 @@ public interface ColorInfoOrBuilder extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   boolean hasColor();
   /**
@@ -20,7 +20,7 @@ public interface ColorInfoOrBuilder extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   com.google.type.Color getColor();
   /**
@@ -28,7 +28,7 @@ public interface ColorInfoOrBuilder extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   com.google.type.ColorOrBuilder getColorOrBuilder();
 
@@ -37,7 +37,7 @@ public interface ColorInfoOrBuilder extends
    * Image-specific score for this color. Value in range [0, 1].
    * </pre>
    *
-   * <code>float score = 2;</code>
+   * <code>optional float score = 2;</code>
    */
   float getScore();
 
@@ -47,7 +47,7 @@ public interface ColorInfoOrBuilder extends
    * Value in range [0, 1].
    * </pre>
    *
-   * <code>float pixel_fraction = 3;</code>
+   * <code>optional float pixel_fraction = 3;</code>
    */
   float getPixelFraction();
 }

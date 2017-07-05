@@ -15,7 +15,7 @@ public interface DeleteMetricDescriptorRequestOrBuilder extends
    * `"custom.googleapis.com/my_test_metric"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   java.lang.String getName();
   /**
@@ -26,7 +26,7 @@ public interface DeleteMetricDescriptorRequestOrBuilder extends
    * `"custom.googleapis.com/my_test_metric"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

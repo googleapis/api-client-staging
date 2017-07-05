@@ -232,7 +232,7 @@ public  final class LabelDescriptor extends
    * The label key.
    * </pre>
    *
-   * <code>string key = 1;</code>
+   * <code>optional string key = 1;</code>
    */
   public java.lang.String getKey() {
     java.lang.Object ref = key_;
@@ -251,7 +251,7 @@ public  final class LabelDescriptor extends
    * The label key.
    * </pre>
    *
-   * <code>string key = 1;</code>
+   * <code>optional string key = 1;</code>
    */
   public com.google.protobuf.ByteString
       getKeyBytes() {
@@ -274,7 +274,7 @@ public  final class LabelDescriptor extends
    * The type of data that can be assigned to the label.
    * </pre>
    *
-   * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+   * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
    */
   public int getValueTypeValue() {
     return valueType_;
@@ -284,7 +284,7 @@ public  final class LabelDescriptor extends
    * The type of data that can be assigned to the label.
    * </pre>
    *
-   * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+   * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
    */
   public com.google.api.LabelDescriptor.ValueType getValueType() {
     com.google.api.LabelDescriptor.ValueType result = com.google.api.LabelDescriptor.ValueType.valueOf(valueType_);
@@ -298,7 +298,7 @@ public  final class LabelDescriptor extends
    * A human-readable description for the label.
    * </pre>
    *
-   * <code>string description = 3;</code>
+   * <code>optional string description = 3;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -317,7 +317,7 @@ public  final class LabelDescriptor extends
    * A human-readable description for the label.
    * </pre>
    *
-   * <code>string description = 3;</code>
+   * <code>optional string description = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -401,7 +401,7 @@ public  final class LabelDescriptor extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + KEY_FIELD_NUMBER;
     hash = (53 * hash) + getKey().hashCode();
     hash = (37 * hash) + VALUE_TYPE_FIELD_NUMBER;
@@ -413,17 +413,6 @@ public  final class LabelDescriptor extends
     return hash;
   }
 
-  public static com.google.api.LabelDescriptor parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.LabelDescriptor parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.LabelDescriptor parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -656,7 +645,7 @@ public  final class LabelDescriptor extends
      * The label key.
      * </pre>
      *
-     * <code>string key = 1;</code>
+     * <code>optional string key = 1;</code>
      */
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
@@ -675,7 +664,7 @@ public  final class LabelDescriptor extends
      * The label key.
      * </pre>
      *
-     * <code>string key = 1;</code>
+     * <code>optional string key = 1;</code>
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
@@ -695,7 +684,7 @@ public  final class LabelDescriptor extends
      * The label key.
      * </pre>
      *
-     * <code>string key = 1;</code>
+     * <code>optional string key = 1;</code>
      */
     public Builder setKey(
         java.lang.String value) {
@@ -712,7 +701,7 @@ public  final class LabelDescriptor extends
      * The label key.
      * </pre>
      *
-     * <code>string key = 1;</code>
+     * <code>optional string key = 1;</code>
      */
     public Builder clearKey() {
       
@@ -725,7 +714,7 @@ public  final class LabelDescriptor extends
      * The label key.
      * </pre>
      *
-     * <code>string key = 1;</code>
+     * <code>optional string key = 1;</code>
      */
     public Builder setKeyBytes(
         com.google.protobuf.ByteString value) {
@@ -745,7 +734,7 @@ public  final class LabelDescriptor extends
      * The type of data that can be assigned to the label.
      * </pre>
      *
-     * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+     * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
      */
     public int getValueTypeValue() {
       return valueType_;
@@ -755,7 +744,7 @@ public  final class LabelDescriptor extends
      * The type of data that can be assigned to the label.
      * </pre>
      *
-     * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+     * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
      */
     public Builder setValueTypeValue(int value) {
       valueType_ = value;
@@ -767,7 +756,7 @@ public  final class LabelDescriptor extends
      * The type of data that can be assigned to the label.
      * </pre>
      *
-     * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+     * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
      */
     public com.google.api.LabelDescriptor.ValueType getValueType() {
       com.google.api.LabelDescriptor.ValueType result = com.google.api.LabelDescriptor.ValueType.valueOf(valueType_);
@@ -778,7 +767,7 @@ public  final class LabelDescriptor extends
      * The type of data that can be assigned to the label.
      * </pre>
      *
-     * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+     * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
      */
     public Builder setValueType(com.google.api.LabelDescriptor.ValueType value) {
       if (value == null) {
@@ -794,7 +783,7 @@ public  final class LabelDescriptor extends
      * The type of data that can be assigned to the label.
      * </pre>
      *
-     * <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
+     * <code>optional .google.api.LabelDescriptor.ValueType value_type = 2;</code>
      */
     public Builder clearValueType() {
       
@@ -809,7 +798,7 @@ public  final class LabelDescriptor extends
      * A human-readable description for the label.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -828,7 +817,7 @@ public  final class LabelDescriptor extends
      * A human-readable description for the label.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -848,7 +837,7 @@ public  final class LabelDescriptor extends
      * A human-readable description for the label.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -865,7 +854,7 @@ public  final class LabelDescriptor extends
      * A human-readable description for the label.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder clearDescription() {
       
@@ -878,7 +867,7 @@ public  final class LabelDescriptor extends
      * A human-readable description for the label.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {

@@ -129,7 +129,8 @@ public enum LabelDetectionMode
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor().getEnumTypes().get(2);
+    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor()
+        .getEnumTypes().get(2);
   }
 
   private static final LabelDetectionMode[] VALUES = values();

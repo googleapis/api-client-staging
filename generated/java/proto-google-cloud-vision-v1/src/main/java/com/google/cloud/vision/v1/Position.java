@@ -96,7 +96,7 @@ public  final class Position extends
    * X coordinate.
    * </pre>
    *
-   * <code>float x = 1;</code>
+   * <code>optional float x = 1;</code>
    */
   public float getX() {
     return x_;
@@ -109,7 +109,7 @@ public  final class Position extends
    * Y coordinate.
    * </pre>
    *
-   * <code>float y = 2;</code>
+   * <code>optional float y = 2;</code>
    */
   public float getY() {
     return y_;
@@ -122,7 +122,7 @@ public  final class Position extends
    * Z coordinate (or depth).
    * </pre>
    *
-   * <code>float z = 3;</code>
+   * <code>optional float z = 3;</code>
    */
   public float getZ() {
     return z_;
@@ -205,7 +205,7 @@ public  final class Position extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + X_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getX());
@@ -220,17 +220,6 @@ public  final class Position extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.Position parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.Position parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.Position parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -463,7 +452,7 @@ public  final class Position extends
      * X coordinate.
      * </pre>
      *
-     * <code>float x = 1;</code>
+     * <code>optional float x = 1;</code>
      */
     public float getX() {
       return x_;
@@ -473,7 +462,7 @@ public  final class Position extends
      * X coordinate.
      * </pre>
      *
-     * <code>float x = 1;</code>
+     * <code>optional float x = 1;</code>
      */
     public Builder setX(float value) {
       
@@ -486,7 +475,7 @@ public  final class Position extends
      * X coordinate.
      * </pre>
      *
-     * <code>float x = 1;</code>
+     * <code>optional float x = 1;</code>
      */
     public Builder clearX() {
       
@@ -501,7 +490,7 @@ public  final class Position extends
      * Y coordinate.
      * </pre>
      *
-     * <code>float y = 2;</code>
+     * <code>optional float y = 2;</code>
      */
     public float getY() {
       return y_;
@@ -511,7 +500,7 @@ public  final class Position extends
      * Y coordinate.
      * </pre>
      *
-     * <code>float y = 2;</code>
+     * <code>optional float y = 2;</code>
      */
     public Builder setY(float value) {
       
@@ -524,7 +513,7 @@ public  final class Position extends
      * Y coordinate.
      * </pre>
      *
-     * <code>float y = 2;</code>
+     * <code>optional float y = 2;</code>
      */
     public Builder clearY() {
       
@@ -539,7 +528,7 @@ public  final class Position extends
      * Z coordinate (or depth).
      * </pre>
      *
-     * <code>float z = 3;</code>
+     * <code>optional float z = 3;</code>
      */
     public float getZ() {
       return z_;
@@ -549,7 +538,7 @@ public  final class Position extends
      * Z coordinate (or depth).
      * </pre>
      *
-     * <code>float z = 3;</code>
+     * <code>optional float z = 3;</code>
      */
     public Builder setZ(float value) {
       
@@ -562,7 +551,7 @@ public  final class Position extends
      * Z coordinate (or depth).
      * </pre>
      *
-     * <code>float z = 3;</code>
+     * <code>optional float z = 3;</code>
      */
     public Builder clearZ() {
       

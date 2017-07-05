@@ -13,7 +13,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 5;</code>
+   * <code>optional string name = 5;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 5;</code>
+   * <code>optional string name = 5;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -38,7 +38,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    *     metric.type = starts_with("custom.googleapis.com/")
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   java.lang.String getFilter();
   /**
@@ -52,7 +52,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    *     metric.type = starts_with("custom.googleapis.com/")
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -62,7 +62,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>int32 page_size = 3;</code>
+   * <code>optional int32 page_size = 3;</code>
    */
   int getPageSize();
 
@@ -73,7 +73,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -83,7 +83,7 @@ public interface ListMetricDescriptorsRequestOrBuilder extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

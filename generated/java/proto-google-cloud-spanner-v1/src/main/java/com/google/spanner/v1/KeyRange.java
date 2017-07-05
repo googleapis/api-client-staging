@@ -267,7 +267,7 @@ public  final class KeyRange extends
    * first `len(start_closed)` key columns exactly match `start_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
    */
   public com.google.protobuf.ListValue getStartClosed() {
     if (startKeyTypeCase_ == 1) {
@@ -281,7 +281,7 @@ public  final class KeyRange extends
    * first `len(start_closed)` key columns exactly match `start_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
    */
   public com.google.protobuf.ListValueOrBuilder getStartClosedOrBuilder() {
     if (startKeyTypeCase_ == 1) {
@@ -297,7 +297,7 @@ public  final class KeyRange extends
    * `len(start_open)` key columns exactly match `start_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   * <code>optional .google.protobuf.ListValue start_open = 2;</code>
    */
   public com.google.protobuf.ListValue getStartOpen() {
     if (startKeyTypeCase_ == 2) {
@@ -311,7 +311,7 @@ public  final class KeyRange extends
    * `len(start_open)` key columns exactly match `start_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   * <code>optional .google.protobuf.ListValue start_open = 2;</code>
    */
   public com.google.protobuf.ListValueOrBuilder getStartOpenOrBuilder() {
     if (startKeyTypeCase_ == 2) {
@@ -327,7 +327,7 @@ public  final class KeyRange extends
    * first `len(end_closed)` key columns exactly match `end_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
    */
   public com.google.protobuf.ListValue getEndClosed() {
     if (endKeyTypeCase_ == 3) {
@@ -341,7 +341,7 @@ public  final class KeyRange extends
    * first `len(end_closed)` key columns exactly match `end_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
    */
   public com.google.protobuf.ListValueOrBuilder getEndClosedOrBuilder() {
     if (endKeyTypeCase_ == 3) {
@@ -357,7 +357,7 @@ public  final class KeyRange extends
    * `len(end_open)` key columns exactly match `end_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   * <code>optional .google.protobuf.ListValue end_open = 4;</code>
    */
   public com.google.protobuf.ListValue getEndOpen() {
     if (endKeyTypeCase_ == 4) {
@@ -371,7 +371,7 @@ public  final class KeyRange extends
    * `len(end_open)` key columns exactly match `end_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   * <code>optional .google.protobuf.ListValue end_open = 4;</code>
    */
   public com.google.protobuf.ListValueOrBuilder getEndOpenOrBuilder() {
     if (endKeyTypeCase_ == 4) {
@@ -482,7 +482,7 @@ public  final class KeyRange extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     switch (startKeyTypeCase_) {
       case 1:
         hash = (37 * hash) + START_CLOSED_FIELD_NUMBER;
@@ -512,17 +512,6 @@ public  final class KeyRange extends
     return hash;
   }
 
-  public static com.google.spanner.v1.KeyRange parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.KeyRange parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.KeyRange parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -886,7 +875,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public com.google.protobuf.ListValue getStartClosed() {
       if (startClosedBuilder_ == null) {
@@ -907,7 +896,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public Builder setStartClosed(com.google.protobuf.ListValue value) {
       if (startClosedBuilder_ == null) {
@@ -928,7 +917,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public Builder setStartClosed(
         com.google.protobuf.ListValue.Builder builderForValue) {
@@ -947,7 +936,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public Builder mergeStartClosed(com.google.protobuf.ListValue value) {
       if (startClosedBuilder_ == null) {
@@ -974,7 +963,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public Builder clearStartClosed() {
       if (startClosedBuilder_ == null) {
@@ -998,7 +987,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public com.google.protobuf.ListValue.Builder getStartClosedBuilder() {
       return getStartClosedFieldBuilder().getBuilder();
@@ -1009,7 +998,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     public com.google.protobuf.ListValueOrBuilder getStartClosedOrBuilder() {
       if ((startKeyTypeCase_ == 1) && (startClosedBuilder_ != null)) {
@@ -1027,7 +1016,7 @@ public  final class KeyRange extends
      * first `len(start_closed)` key columns exactly match `start_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> 
@@ -1056,7 +1045,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public com.google.protobuf.ListValue getStartOpen() {
       if (startOpenBuilder_ == null) {
@@ -1077,7 +1066,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public Builder setStartOpen(com.google.protobuf.ListValue value) {
       if (startOpenBuilder_ == null) {
@@ -1098,7 +1087,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public Builder setStartOpen(
         com.google.protobuf.ListValue.Builder builderForValue) {
@@ -1117,7 +1106,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public Builder mergeStartOpen(com.google.protobuf.ListValue value) {
       if (startOpenBuilder_ == null) {
@@ -1144,7 +1133,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public Builder clearStartOpen() {
       if (startOpenBuilder_ == null) {
@@ -1168,7 +1157,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public com.google.protobuf.ListValue.Builder getStartOpenBuilder() {
       return getStartOpenFieldBuilder().getBuilder();
@@ -1179,7 +1168,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     public com.google.protobuf.ListValueOrBuilder getStartOpenOrBuilder() {
       if ((startKeyTypeCase_ == 2) && (startOpenBuilder_ != null)) {
@@ -1197,7 +1186,7 @@ public  final class KeyRange extends
      * `len(start_open)` key columns exactly match `start_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * <code>optional .google.protobuf.ListValue start_open = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> 
@@ -1226,7 +1215,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public com.google.protobuf.ListValue getEndClosed() {
       if (endClosedBuilder_ == null) {
@@ -1247,7 +1236,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public Builder setEndClosed(com.google.protobuf.ListValue value) {
       if (endClosedBuilder_ == null) {
@@ -1268,7 +1257,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public Builder setEndClosed(
         com.google.protobuf.ListValue.Builder builderForValue) {
@@ -1287,7 +1276,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public Builder mergeEndClosed(com.google.protobuf.ListValue value) {
       if (endClosedBuilder_ == null) {
@@ -1314,7 +1303,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public Builder clearEndClosed() {
       if (endClosedBuilder_ == null) {
@@ -1338,7 +1327,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public com.google.protobuf.ListValue.Builder getEndClosedBuilder() {
       return getEndClosedFieldBuilder().getBuilder();
@@ -1349,7 +1338,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     public com.google.protobuf.ListValueOrBuilder getEndClosedOrBuilder() {
       if ((endKeyTypeCase_ == 3) && (endClosedBuilder_ != null)) {
@@ -1367,7 +1356,7 @@ public  final class KeyRange extends
      * first `len(end_closed)` key columns exactly match `end_closed`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> 
@@ -1396,7 +1385,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public com.google.protobuf.ListValue getEndOpen() {
       if (endOpenBuilder_ == null) {
@@ -1417,7 +1406,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public Builder setEndOpen(com.google.protobuf.ListValue value) {
       if (endOpenBuilder_ == null) {
@@ -1438,7 +1427,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public Builder setEndOpen(
         com.google.protobuf.ListValue.Builder builderForValue) {
@@ -1457,7 +1446,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public Builder mergeEndOpen(com.google.protobuf.ListValue value) {
       if (endOpenBuilder_ == null) {
@@ -1484,7 +1473,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public Builder clearEndOpen() {
       if (endOpenBuilder_ == null) {
@@ -1508,7 +1497,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public com.google.protobuf.ListValue.Builder getEndOpenBuilder() {
       return getEndOpenFieldBuilder().getBuilder();
@@ -1519,7 +1508,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     public com.google.protobuf.ListValueOrBuilder getEndOpenOrBuilder() {
       if ((endKeyTypeCase_ == 4) && (endOpenBuilder_ != null)) {
@@ -1537,7 +1526,7 @@ public  final class KeyRange extends
      * `len(end_open)` key columns exactly match `end_open`.
      * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * <code>optional .google.protobuf.ListValue end_open = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> 

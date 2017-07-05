@@ -222,7 +222,7 @@ public  final class AnalyzeSyntaxResponse extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 3;</code>
+   * <code>optional string language = 3;</code>
    */
   public java.lang.String getLanguage() {
     java.lang.Object ref = language_;
@@ -243,7 +243,7 @@ public  final class AnalyzeSyntaxResponse extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 3;</code>
+   * <code>optional string language = 3;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageBytes() {
@@ -329,7 +329,7 @@ public  final class AnalyzeSyntaxResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getSentencesCount() > 0) {
       hash = (37 * hash) + SENTENCES_FIELD_NUMBER;
       hash = (53 * hash) + getSentencesList().hashCode();
@@ -345,17 +345,6 @@ public  final class AnalyzeSyntaxResponse extends
     return hash;
   }
 
-  public static com.google.cloud.language.v1.AnalyzeSyntaxResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.language.v1.AnalyzeSyntaxResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.language.v1.AnalyzeSyntaxResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1289,7 +1278,7 @@ public  final class AnalyzeSyntaxResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 3;</code>
+     * <code>optional string language = 3;</code>
      */
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
@@ -1310,7 +1299,7 @@ public  final class AnalyzeSyntaxResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 3;</code>
+     * <code>optional string language = 3;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageBytes() {
@@ -1332,7 +1321,7 @@ public  final class AnalyzeSyntaxResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 3;</code>
+     * <code>optional string language = 3;</code>
      */
     public Builder setLanguage(
         java.lang.String value) {
@@ -1351,7 +1340,7 @@ public  final class AnalyzeSyntaxResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 3;</code>
+     * <code>optional string language = 3;</code>
      */
     public Builder clearLanguage() {
       
@@ -1366,7 +1355,7 @@ public  final class AnalyzeSyntaxResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 3;</code>
+     * <code>optional string language = 3;</code>
      */
     public Builder setLanguageBytes(
         com.google.protobuf.ByteString value) {

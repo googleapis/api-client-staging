@@ -107,7 +107,7 @@ public  final class AuthProvider extends
    * Example: "bookstore_auth".
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   public java.lang.String getId() {
     java.lang.Object ref = id_;
@@ -128,7 +128,7 @@ public  final class AuthProvider extends
    * Example: "bookstore_auth".
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getIdBytes() {
@@ -155,7 +155,7 @@ public  final class AuthProvider extends
    * Example: 1234567-compute&#64;developer.gserviceaccount.com
    * </pre>
    *
-   * <code>string issuer = 2;</code>
+   * <code>optional string issuer = 2;</code>
    */
   public java.lang.String getIssuer() {
     java.lang.Object ref = issuer_;
@@ -178,7 +178,7 @@ public  final class AuthProvider extends
    * Example: 1234567-compute&#64;developer.gserviceaccount.com
    * </pre>
    *
-   * <code>string issuer = 2;</code>
+   * <code>optional string issuer = 2;</code>
    */
   public com.google.protobuf.ByteString
       getIssuerBytes() {
@@ -208,7 +208,7 @@ public  final class AuthProvider extends
    * Example: https://www.googleapis.com/oauth2/v1/certs
    * </pre>
    *
-   * <code>string jwks_uri = 3;</code>
+   * <code>optional string jwks_uri = 3;</code>
    */
   public java.lang.String getJwksUri() {
     java.lang.Object ref = jwksUri_;
@@ -234,7 +234,7 @@ public  final class AuthProvider extends
    * Example: https://www.googleapis.com/oauth2/v1/certs
    * </pre>
    *
-   * <code>string jwks_uri = 3;</code>
+   * <code>optional string jwks_uri = 3;</code>
    */
   public com.google.protobuf.ByteString
       getJwksUriBytes() {
@@ -267,7 +267,7 @@ public  final class AuthProvider extends
    *                bookstore_web.apps.googleusercontent.com
    * </pre>
    *
-   * <code>string audiences = 4;</code>
+   * <code>optional string audiences = 4;</code>
    */
   public java.lang.String getAudiences() {
     java.lang.Object ref = audiences_;
@@ -296,7 +296,7 @@ public  final class AuthProvider extends
    *                bookstore_web.apps.googleusercontent.com
    * </pre>
    *
-   * <code>string audiences = 4;</code>
+   * <code>optional string audiences = 4;</code>
    */
   public com.google.protobuf.ByteString
       getAudiencesBytes() {
@@ -388,7 +388,7 @@ public  final class AuthProvider extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId().hashCode();
     hash = (37 * hash) + ISSUER_FIELD_NUMBER;
@@ -402,17 +402,6 @@ public  final class AuthProvider extends
     return hash;
   }
 
-  public static com.google.api.AuthProvider parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.AuthProvider parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.AuthProvider parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -656,7 +645,7 @@ public  final class AuthProvider extends
      * Example: "bookstore_auth".
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public java.lang.String getId() {
       java.lang.Object ref = id_;
@@ -677,7 +666,7 @@ public  final class AuthProvider extends
      * Example: "bookstore_auth".
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
@@ -699,7 +688,7 @@ public  final class AuthProvider extends
      * Example: "bookstore_auth".
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder setId(
         java.lang.String value) {
@@ -718,7 +707,7 @@ public  final class AuthProvider extends
      * Example: "bookstore_auth".
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder clearId() {
       
@@ -733,7 +722,7 @@ public  final class AuthProvider extends
      * Example: "bookstore_auth".
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder setIdBytes(
         com.google.protobuf.ByteString value) {
@@ -757,7 +746,7 @@ public  final class AuthProvider extends
      * Example: 1234567-compute&#64;developer.gserviceaccount.com
      * </pre>
      *
-     * <code>string issuer = 2;</code>
+     * <code>optional string issuer = 2;</code>
      */
     public java.lang.String getIssuer() {
       java.lang.Object ref = issuer_;
@@ -780,7 +769,7 @@ public  final class AuthProvider extends
      * Example: 1234567-compute&#64;developer.gserviceaccount.com
      * </pre>
      *
-     * <code>string issuer = 2;</code>
+     * <code>optional string issuer = 2;</code>
      */
     public com.google.protobuf.ByteString
         getIssuerBytes() {
@@ -804,7 +793,7 @@ public  final class AuthProvider extends
      * Example: 1234567-compute&#64;developer.gserviceaccount.com
      * </pre>
      *
-     * <code>string issuer = 2;</code>
+     * <code>optional string issuer = 2;</code>
      */
     public Builder setIssuer(
         java.lang.String value) {
@@ -825,7 +814,7 @@ public  final class AuthProvider extends
      * Example: 1234567-compute&#64;developer.gserviceaccount.com
      * </pre>
      *
-     * <code>string issuer = 2;</code>
+     * <code>optional string issuer = 2;</code>
      */
     public Builder clearIssuer() {
       
@@ -842,7 +831,7 @@ public  final class AuthProvider extends
      * Example: 1234567-compute&#64;developer.gserviceaccount.com
      * </pre>
      *
-     * <code>string issuer = 2;</code>
+     * <code>optional string issuer = 2;</code>
      */
     public Builder setIssuerBytes(
         com.google.protobuf.ByteString value) {
@@ -869,7 +858,7 @@ public  final class AuthProvider extends
      * Example: https://www.googleapis.com/oauth2/v1/certs
      * </pre>
      *
-     * <code>string jwks_uri = 3;</code>
+     * <code>optional string jwks_uri = 3;</code>
      */
     public java.lang.String getJwksUri() {
       java.lang.Object ref = jwksUri_;
@@ -895,7 +884,7 @@ public  final class AuthProvider extends
      * Example: https://www.googleapis.com/oauth2/v1/certs
      * </pre>
      *
-     * <code>string jwks_uri = 3;</code>
+     * <code>optional string jwks_uri = 3;</code>
      */
     public com.google.protobuf.ByteString
         getJwksUriBytes() {
@@ -922,7 +911,7 @@ public  final class AuthProvider extends
      * Example: https://www.googleapis.com/oauth2/v1/certs
      * </pre>
      *
-     * <code>string jwks_uri = 3;</code>
+     * <code>optional string jwks_uri = 3;</code>
      */
     public Builder setJwksUri(
         java.lang.String value) {
@@ -946,7 +935,7 @@ public  final class AuthProvider extends
      * Example: https://www.googleapis.com/oauth2/v1/certs
      * </pre>
      *
-     * <code>string jwks_uri = 3;</code>
+     * <code>optional string jwks_uri = 3;</code>
      */
     public Builder clearJwksUri() {
       
@@ -966,7 +955,7 @@ public  final class AuthProvider extends
      * Example: https://www.googleapis.com/oauth2/v1/certs
      * </pre>
      *
-     * <code>string jwks_uri = 3;</code>
+     * <code>optional string jwks_uri = 3;</code>
      */
     public Builder setJwksUriBytes(
         com.google.protobuf.ByteString value) {
@@ -996,7 +985,7 @@ public  final class AuthProvider extends
      *                bookstore_web.apps.googleusercontent.com
      * </pre>
      *
-     * <code>string audiences = 4;</code>
+     * <code>optional string audiences = 4;</code>
      */
     public java.lang.String getAudiences() {
       java.lang.Object ref = audiences_;
@@ -1025,7 +1014,7 @@ public  final class AuthProvider extends
      *                bookstore_web.apps.googleusercontent.com
      * </pre>
      *
-     * <code>string audiences = 4;</code>
+     * <code>optional string audiences = 4;</code>
      */
     public com.google.protobuf.ByteString
         getAudiencesBytes() {
@@ -1055,7 +1044,7 @@ public  final class AuthProvider extends
      *                bookstore_web.apps.googleusercontent.com
      * </pre>
      *
-     * <code>string audiences = 4;</code>
+     * <code>optional string audiences = 4;</code>
      */
     public Builder setAudiences(
         java.lang.String value) {
@@ -1082,7 +1071,7 @@ public  final class AuthProvider extends
      *                bookstore_web.apps.googleusercontent.com
      * </pre>
      *
-     * <code>string audiences = 4;</code>
+     * <code>optional string audiences = 4;</code>
      */
     public Builder clearAudiences() {
       
@@ -1105,7 +1094,7 @@ public  final class AuthProvider extends
      *                bookstore_web.apps.googleusercontent.com
      * </pre>
      *
-     * <code>string audiences = 4;</code>
+     * <code>optional string audiences = 4;</code>
      */
     public Builder setAudiencesBytes(
         com.google.protobuf.ByteString value) {

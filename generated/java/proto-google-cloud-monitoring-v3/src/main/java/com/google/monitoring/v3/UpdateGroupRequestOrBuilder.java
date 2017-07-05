@@ -13,7 +13,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * excepting `name`, are replaced with the corresponding fields of this group.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   boolean hasGroup();
   /**
@@ -22,7 +22,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * excepting `name`, are replaced with the corresponding fields of this group.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   com.google.monitoring.v3.Group getGroup();
   /**
@@ -31,7 +31,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * excepting `name`, are replaced with the corresponding fields of this group.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   com.google.monitoring.v3.GroupOrBuilder getGroupOrBuilder();
 
@@ -40,7 +40,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * If true, validate this request but do not update the existing group.
    * </pre>
    *
-   * <code>bool validate_only = 3;</code>
+   * <code>optional bool validate_only = 3;</code>
    */
   boolean getValidateOnly();
 }

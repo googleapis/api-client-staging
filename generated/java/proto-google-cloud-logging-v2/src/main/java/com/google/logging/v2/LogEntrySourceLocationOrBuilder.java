@@ -13,7 +13,7 @@ public interface LogEntrySourceLocationOrBuilder extends
    * might be a simple name or a fully-qualified name.
    * </pre>
    *
-   * <code>string file = 1;</code>
+   * <code>optional string file = 1;</code>
    */
   java.lang.String getFile();
   /**
@@ -22,7 +22,7 @@ public interface LogEntrySourceLocationOrBuilder extends
    * might be a simple name or a fully-qualified name.
    * </pre>
    *
-   * <code>string file = 1;</code>
+   * <code>optional string file = 1;</code>
    */
   com.google.protobuf.ByteString
       getFileBytes();
@@ -33,7 +33,7 @@ public interface LogEntrySourceLocationOrBuilder extends
    * available.
    * </pre>
    *
-   * <code>int64 line = 2;</code>
+   * <code>optional int64 line = 2;</code>
    */
   long getLine();
 
@@ -47,7 +47,7 @@ public interface LogEntrySourceLocationOrBuilder extends
    * (Python).
    * </pre>
    *
-   * <code>string function = 3;</code>
+   * <code>optional string function = 3;</code>
    */
   java.lang.String getFunction();
   /**
@@ -60,7 +60,7 @@ public interface LogEntrySourceLocationOrBuilder extends
    * (Python).
    * </pre>
    *
-   * <code>string function = 3;</code>
+   * <code>optional string function = 3;</code>
    */
   com.google.protobuf.ByteString
       getFunctionBytes();

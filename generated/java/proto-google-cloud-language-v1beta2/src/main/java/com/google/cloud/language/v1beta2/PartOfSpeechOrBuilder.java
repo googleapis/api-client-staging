@@ -12,7 +12,7 @@ public interface PartOfSpeechOrBuilder extends
    * The part of speech tag.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
    */
   int getTagValue();
   /**
@@ -20,7 +20,7 @@ public interface PartOfSpeechOrBuilder extends
    * The part of speech tag.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Tag getTag();
 
@@ -29,7 +29,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical aspect.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
    */
   int getAspectValue();
   /**
@@ -37,7 +37,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical aspect.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Aspect getAspect();
 
@@ -46,7 +46,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical case.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
    */
   int getCaseValue();
   /**
@@ -54,7 +54,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical case.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Case getCase();
 
@@ -63,7 +63,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical form.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
    */
   int getFormValue();
   /**
@@ -71,7 +71,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical form.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Form getForm();
 
@@ -80,7 +80,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical gender.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
    */
   int getGenderValue();
   /**
@@ -88,7 +88,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical gender.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Gender getGender();
 
@@ -97,7 +97,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical mood.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
    */
   int getMoodValue();
   /**
@@ -105,7 +105,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical mood.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Mood getMood();
 
@@ -114,7 +114,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical number.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
    */
   int getNumberValue();
   /**
@@ -122,7 +122,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical number.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Number getNumber();
 
@@ -131,7 +131,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical person.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
    */
   int getPersonValue();
   /**
@@ -139,7 +139,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical person.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Person getPerson();
 
@@ -148,7 +148,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical properness.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
    */
   int getProperValue();
   /**
@@ -156,7 +156,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical properness.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Proper getProper();
 
@@ -165,7 +165,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical reciprocity.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
    */
   int getReciprocityValue();
   /**
@@ -173,7 +173,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical reciprocity.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity getReciprocity();
 
@@ -182,7 +182,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical tense.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
    */
   int getTenseValue();
   /**
@@ -190,7 +190,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical tense.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Tense getTense();
 
@@ -199,7 +199,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical voice.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
    */
   int getVoiceValue();
   /**
@@ -207,7 +207,7 @@ public interface PartOfSpeechOrBuilder extends
    * The grammatical voice.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
+   * <code>optional .google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
    */
   com.google.cloud.language.v1beta2.PartOfSpeech.Voice getVoice();
 }

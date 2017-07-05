@@ -12,7 +12,7 @@ public interface TimedCountOrBuilder extends
    * Approximate number of occurrences in the given time period.
    * </pre>
    *
-   * <code>int64 count = 1;</code>
+   * <code>optional int64 count = 1;</code>
    */
   long getCount();
 
@@ -21,7 +21,7 @@ public interface TimedCountOrBuilder extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   boolean hasStartTime();
   /**
@@ -29,7 +29,7 @@ public interface TimedCountOrBuilder extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -37,7 +37,7 @@ public interface TimedCountOrBuilder extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -46,7 +46,7 @@ public interface TimedCountOrBuilder extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   boolean hasEndTime();
   /**
@@ -54,7 +54,7 @@ public interface TimedCountOrBuilder extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -62,7 +62,7 @@ public interface TimedCountOrBuilder extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 }

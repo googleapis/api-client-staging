@@ -503,7 +503,7 @@ public  final class AnnotateImageResponse extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   public boolean hasFullTextAnnotation() {
     return fullTextAnnotation_ != null;
@@ -516,7 +516,7 @@ public  final class AnnotateImageResponse extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotation getFullTextAnnotation() {
     return fullTextAnnotation_ == null ? com.google.cloud.vision.v1.TextAnnotation.getDefaultInstance() : fullTextAnnotation_;
@@ -529,7 +529,7 @@ public  final class AnnotateImageResponse extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotationOrBuilder getFullTextAnnotationOrBuilder() {
     return getFullTextAnnotation();
@@ -542,7 +542,7 @@ public  final class AnnotateImageResponse extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   public boolean hasSafeSearchAnnotation() {
     return safeSearchAnnotation_ != null;
@@ -552,7 +552,7 @@ public  final class AnnotateImageResponse extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   public com.google.cloud.vision.v1.SafeSearchAnnotation getSafeSearchAnnotation() {
     return safeSearchAnnotation_ == null ? com.google.cloud.vision.v1.SafeSearchAnnotation.getDefaultInstance() : safeSearchAnnotation_;
@@ -562,7 +562,7 @@ public  final class AnnotateImageResponse extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   public com.google.cloud.vision.v1.SafeSearchAnnotationOrBuilder getSafeSearchAnnotationOrBuilder() {
     return getSafeSearchAnnotation();
@@ -575,7 +575,7 @@ public  final class AnnotateImageResponse extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   public boolean hasImagePropertiesAnnotation() {
     return imagePropertiesAnnotation_ != null;
@@ -585,7 +585,7 @@ public  final class AnnotateImageResponse extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   public com.google.cloud.vision.v1.ImageProperties getImagePropertiesAnnotation() {
     return imagePropertiesAnnotation_ == null ? com.google.cloud.vision.v1.ImageProperties.getDefaultInstance() : imagePropertiesAnnotation_;
@@ -595,7 +595,7 @@ public  final class AnnotateImageResponse extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   public com.google.cloud.vision.v1.ImagePropertiesOrBuilder getImagePropertiesAnnotationOrBuilder() {
     return getImagePropertiesAnnotation();
@@ -608,7 +608,7 @@ public  final class AnnotateImageResponse extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   public boolean hasCropHintsAnnotation() {
     return cropHintsAnnotation_ != null;
@@ -618,7 +618,7 @@ public  final class AnnotateImageResponse extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   public com.google.cloud.vision.v1.CropHintsAnnotation getCropHintsAnnotation() {
     return cropHintsAnnotation_ == null ? com.google.cloud.vision.v1.CropHintsAnnotation.getDefaultInstance() : cropHintsAnnotation_;
@@ -628,7 +628,7 @@ public  final class AnnotateImageResponse extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   public com.google.cloud.vision.v1.CropHintsAnnotationOrBuilder getCropHintsAnnotationOrBuilder() {
     return getCropHintsAnnotation();
@@ -641,7 +641,7 @@ public  final class AnnotateImageResponse extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   public boolean hasWebDetection() {
     return webDetection_ != null;
@@ -651,7 +651,7 @@ public  final class AnnotateImageResponse extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   public com.google.cloud.vision.v1.WebDetection getWebDetection() {
     return webDetection_ == null ? com.google.cloud.vision.v1.WebDetection.getDefaultInstance() : webDetection_;
@@ -661,7 +661,7 @@ public  final class AnnotateImageResponse extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   public com.google.cloud.vision.v1.WebDetectionOrBuilder getWebDetectionOrBuilder() {
     return getWebDetection();
@@ -676,7 +676,7 @@ public  final class AnnotateImageResponse extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   public boolean hasError() {
     return error_ != null;
@@ -688,7 +688,7 @@ public  final class AnnotateImageResponse extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   public com.google.rpc.Status getError() {
     return error_ == null ? com.google.rpc.Status.getDefaultInstance() : error_;
@@ -700,7 +700,7 @@ public  final class AnnotateImageResponse extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
     return getError();
@@ -867,7 +867,7 @@ public  final class AnnotateImageResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getFaceAnnotationsCount() > 0) {
       hash = (37 * hash) + FACE_ANNOTATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getFaceAnnotationsList().hashCode();
@@ -917,17 +917,6 @@ public  final class AnnotateImageResponse extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.AnnotateImageResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.AnnotateImageResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.AnnotateImageResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3021,7 +3010,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public boolean hasFullTextAnnotation() {
       return fullTextAnnotationBuilder_ != null || fullTextAnnotation_ != null;
@@ -3034,7 +3023,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation getFullTextAnnotation() {
       if (fullTextAnnotationBuilder_ == null) {
@@ -3051,7 +3040,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public Builder setFullTextAnnotation(com.google.cloud.vision.v1.TextAnnotation value) {
       if (fullTextAnnotationBuilder_ == null) {
@@ -3074,7 +3063,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public Builder setFullTextAnnotation(
         com.google.cloud.vision.v1.TextAnnotation.Builder builderForValue) {
@@ -3095,7 +3084,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public Builder mergeFullTextAnnotation(com.google.cloud.vision.v1.TextAnnotation value) {
       if (fullTextAnnotationBuilder_ == null) {
@@ -3120,7 +3109,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public Builder clearFullTextAnnotation() {
       if (fullTextAnnotationBuilder_ == null) {
@@ -3141,7 +3130,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.Builder getFullTextAnnotationBuilder() {
       
@@ -3156,7 +3145,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotationOrBuilder getFullTextAnnotationOrBuilder() {
       if (fullTextAnnotationBuilder_ != null) {
@@ -3174,7 +3163,7 @@ public  final class AnnotateImageResponse extends
      * text.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.TextAnnotation, com.google.cloud.vision.v1.TextAnnotation.Builder, com.google.cloud.vision.v1.TextAnnotationOrBuilder> 
@@ -3198,7 +3187,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public boolean hasSafeSearchAnnotation() {
       return safeSearchAnnotationBuilder_ != null || safeSearchAnnotation_ != null;
@@ -3208,7 +3197,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public com.google.cloud.vision.v1.SafeSearchAnnotation getSafeSearchAnnotation() {
       if (safeSearchAnnotationBuilder_ == null) {
@@ -3222,7 +3211,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public Builder setSafeSearchAnnotation(com.google.cloud.vision.v1.SafeSearchAnnotation value) {
       if (safeSearchAnnotationBuilder_ == null) {
@@ -3242,7 +3231,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public Builder setSafeSearchAnnotation(
         com.google.cloud.vision.v1.SafeSearchAnnotation.Builder builderForValue) {
@@ -3260,7 +3249,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public Builder mergeSafeSearchAnnotation(com.google.cloud.vision.v1.SafeSearchAnnotation value) {
       if (safeSearchAnnotationBuilder_ == null) {
@@ -3282,7 +3271,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public Builder clearSafeSearchAnnotation() {
       if (safeSearchAnnotationBuilder_ == null) {
@@ -3300,7 +3289,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public com.google.cloud.vision.v1.SafeSearchAnnotation.Builder getSafeSearchAnnotationBuilder() {
       
@@ -3312,7 +3301,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     public com.google.cloud.vision.v1.SafeSearchAnnotationOrBuilder getSafeSearchAnnotationOrBuilder() {
       if (safeSearchAnnotationBuilder_ != null) {
@@ -3327,7 +3316,7 @@ public  final class AnnotateImageResponse extends
      * If present, safe-search annotation has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.SafeSearchAnnotation, com.google.cloud.vision.v1.SafeSearchAnnotation.Builder, com.google.cloud.vision.v1.SafeSearchAnnotationOrBuilder> 
@@ -3351,7 +3340,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public boolean hasImagePropertiesAnnotation() {
       return imagePropertiesAnnotationBuilder_ != null || imagePropertiesAnnotation_ != null;
@@ -3361,7 +3350,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public com.google.cloud.vision.v1.ImageProperties getImagePropertiesAnnotation() {
       if (imagePropertiesAnnotationBuilder_ == null) {
@@ -3375,7 +3364,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public Builder setImagePropertiesAnnotation(com.google.cloud.vision.v1.ImageProperties value) {
       if (imagePropertiesAnnotationBuilder_ == null) {
@@ -3395,7 +3384,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public Builder setImagePropertiesAnnotation(
         com.google.cloud.vision.v1.ImageProperties.Builder builderForValue) {
@@ -3413,7 +3402,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public Builder mergeImagePropertiesAnnotation(com.google.cloud.vision.v1.ImageProperties value) {
       if (imagePropertiesAnnotationBuilder_ == null) {
@@ -3435,7 +3424,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public Builder clearImagePropertiesAnnotation() {
       if (imagePropertiesAnnotationBuilder_ == null) {
@@ -3453,7 +3442,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public com.google.cloud.vision.v1.ImageProperties.Builder getImagePropertiesAnnotationBuilder() {
       
@@ -3465,7 +3454,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     public com.google.cloud.vision.v1.ImagePropertiesOrBuilder getImagePropertiesAnnotationOrBuilder() {
       if (imagePropertiesAnnotationBuilder_ != null) {
@@ -3480,7 +3469,7 @@ public  final class AnnotateImageResponse extends
      * If present, image properties were extracted successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.ImageProperties, com.google.cloud.vision.v1.ImageProperties.Builder, com.google.cloud.vision.v1.ImagePropertiesOrBuilder> 
@@ -3504,7 +3493,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public boolean hasCropHintsAnnotation() {
       return cropHintsAnnotationBuilder_ != null || cropHintsAnnotation_ != null;
@@ -3514,7 +3503,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public com.google.cloud.vision.v1.CropHintsAnnotation getCropHintsAnnotation() {
       if (cropHintsAnnotationBuilder_ == null) {
@@ -3528,7 +3517,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public Builder setCropHintsAnnotation(com.google.cloud.vision.v1.CropHintsAnnotation value) {
       if (cropHintsAnnotationBuilder_ == null) {
@@ -3548,7 +3537,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public Builder setCropHintsAnnotation(
         com.google.cloud.vision.v1.CropHintsAnnotation.Builder builderForValue) {
@@ -3566,7 +3555,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public Builder mergeCropHintsAnnotation(com.google.cloud.vision.v1.CropHintsAnnotation value) {
       if (cropHintsAnnotationBuilder_ == null) {
@@ -3588,7 +3577,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public Builder clearCropHintsAnnotation() {
       if (cropHintsAnnotationBuilder_ == null) {
@@ -3606,7 +3595,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public com.google.cloud.vision.v1.CropHintsAnnotation.Builder getCropHintsAnnotationBuilder() {
       
@@ -3618,7 +3607,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     public com.google.cloud.vision.v1.CropHintsAnnotationOrBuilder getCropHintsAnnotationOrBuilder() {
       if (cropHintsAnnotationBuilder_ != null) {
@@ -3633,7 +3622,7 @@ public  final class AnnotateImageResponse extends
      * If present, crop hints have completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.CropHintsAnnotation, com.google.cloud.vision.v1.CropHintsAnnotation.Builder, com.google.cloud.vision.v1.CropHintsAnnotationOrBuilder> 
@@ -3657,7 +3646,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public boolean hasWebDetection() {
       return webDetectionBuilder_ != null || webDetection_ != null;
@@ -3667,7 +3656,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public com.google.cloud.vision.v1.WebDetection getWebDetection() {
       if (webDetectionBuilder_ == null) {
@@ -3681,7 +3670,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public Builder setWebDetection(com.google.cloud.vision.v1.WebDetection value) {
       if (webDetectionBuilder_ == null) {
@@ -3701,7 +3690,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public Builder setWebDetection(
         com.google.cloud.vision.v1.WebDetection.Builder builderForValue) {
@@ -3719,7 +3708,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public Builder mergeWebDetection(com.google.cloud.vision.v1.WebDetection value) {
       if (webDetectionBuilder_ == null) {
@@ -3741,7 +3730,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public Builder clearWebDetection() {
       if (webDetectionBuilder_ == null) {
@@ -3759,7 +3748,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public com.google.cloud.vision.v1.WebDetection.Builder getWebDetectionBuilder() {
       
@@ -3771,7 +3760,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     public com.google.cloud.vision.v1.WebDetectionOrBuilder getWebDetectionOrBuilder() {
       if (webDetectionBuilder_ != null) {
@@ -3786,7 +3775,7 @@ public  final class AnnotateImageResponse extends
      * If present, web detection has completed successfully.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.WebDetection, com.google.cloud.vision.v1.WebDetection.Builder, com.google.cloud.vision.v1.WebDetectionOrBuilder> 
@@ -3812,7 +3801,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public boolean hasError() {
       return errorBuilder_ != null || error_ != null;
@@ -3824,7 +3813,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public com.google.rpc.Status getError() {
       if (errorBuilder_ == null) {
@@ -3840,7 +3829,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public Builder setError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -3862,7 +3851,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public Builder setError(
         com.google.rpc.Status.Builder builderForValue) {
@@ -3882,7 +3871,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public Builder mergeError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -3906,7 +3895,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public Builder clearError() {
       if (errorBuilder_ == null) {
@@ -3926,7 +3915,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public com.google.rpc.Status.Builder getErrorBuilder() {
       
@@ -3940,7 +3929,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
       if (errorBuilder_ != null) {
@@ -3957,7 +3946,7 @@ public  final class AnnotateImageResponse extends
      * correct, even when `error` is set.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * <code>optional .google.rpc.Status error = 9;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> 

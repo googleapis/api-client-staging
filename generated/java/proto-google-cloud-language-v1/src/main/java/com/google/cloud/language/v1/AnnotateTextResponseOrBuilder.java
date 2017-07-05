@@ -170,7 +170,7 @@ public interface AnnotateTextResponseOrBuilder extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   boolean hasDocumentSentiment();
   /**
@@ -179,7 +179,7 @@ public interface AnnotateTextResponseOrBuilder extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   com.google.cloud.language.v1.Sentiment getDocumentSentiment();
   /**
@@ -188,7 +188,7 @@ public interface AnnotateTextResponseOrBuilder extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   com.google.cloud.language.v1.SentimentOrBuilder getDocumentSentimentOrBuilder();
 
@@ -199,7 +199,7 @@ public interface AnnotateTextResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 5;</code>
+   * <code>optional string language = 5;</code>
    */
   java.lang.String getLanguage();
   /**
@@ -209,7 +209,7 @@ public interface AnnotateTextResponseOrBuilder extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 5;</code>
+   * <code>optional string language = 5;</code>
    */
   com.google.protobuf.ByteString
       getLanguageBytes();

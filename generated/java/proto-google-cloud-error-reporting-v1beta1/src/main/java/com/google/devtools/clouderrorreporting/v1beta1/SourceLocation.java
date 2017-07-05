@@ -101,7 +101,7 @@ public  final class SourceLocation extends
    * path, or a full path from a production machine.
    * </pre>
    *
-   * <code>string file_path = 1;</code>
+   * <code>optional string file_path = 1;</code>
    */
   public java.lang.String getFilePath() {
     java.lang.Object ref = filePath_;
@@ -121,7 +121,7 @@ public  final class SourceLocation extends
    * path, or a full path from a production machine.
    * </pre>
    *
-   * <code>string file_path = 1;</code>
+   * <code>optional string file_path = 1;</code>
    */
   public com.google.protobuf.ByteString
       getFilePathBytes() {
@@ -144,7 +144,7 @@ public  final class SourceLocation extends
    * 1-based. 0 indicates that the line number is unknown.
    * </pre>
    *
-   * <code>int32 line_number = 2;</code>
+   * <code>optional int32 line_number = 2;</code>
    */
   public int getLineNumber() {
     return lineNumber_;
@@ -159,7 +159,7 @@ public  final class SourceLocation extends
    * For example, `my.package.MyClass.method` in case of Java.
    * </pre>
    *
-   * <code>string function_name = 4;</code>
+   * <code>optional string function_name = 4;</code>
    */
   public java.lang.String getFunctionName() {
     java.lang.Object ref = functionName_;
@@ -180,7 +180,7 @@ public  final class SourceLocation extends
    * For example, `my.package.MyClass.method` in case of Java.
    * </pre>
    *
-   * <code>string function_name = 4;</code>
+   * <code>optional string function_name = 4;</code>
    */
   public com.google.protobuf.ByteString
       getFunctionNameBytes() {
@@ -265,7 +265,7 @@ public  final class SourceLocation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + FILE_PATH_FIELD_NUMBER;
     hash = (53 * hash) + getFilePath().hashCode();
     hash = (37 * hash) + LINE_NUMBER_FIELD_NUMBER;
@@ -277,17 +277,6 @@ public  final class SourceLocation extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.SourceLocation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.SourceLocation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.SourceLocation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -525,7 +514,7 @@ public  final class SourceLocation extends
      * path, or a full path from a production machine.
      * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * <code>optional string file_path = 1;</code>
      */
     public java.lang.String getFilePath() {
       java.lang.Object ref = filePath_;
@@ -545,7 +534,7 @@ public  final class SourceLocation extends
      * path, or a full path from a production machine.
      * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * <code>optional string file_path = 1;</code>
      */
     public com.google.protobuf.ByteString
         getFilePathBytes() {
@@ -566,7 +555,7 @@ public  final class SourceLocation extends
      * path, or a full path from a production machine.
      * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * <code>optional string file_path = 1;</code>
      */
     public Builder setFilePath(
         java.lang.String value) {
@@ -584,7 +573,7 @@ public  final class SourceLocation extends
      * path, or a full path from a production machine.
      * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * <code>optional string file_path = 1;</code>
      */
     public Builder clearFilePath() {
       
@@ -598,7 +587,7 @@ public  final class SourceLocation extends
      * path, or a full path from a production machine.
      * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * <code>optional string file_path = 1;</code>
      */
     public Builder setFilePathBytes(
         com.google.protobuf.ByteString value) {
@@ -618,7 +607,7 @@ public  final class SourceLocation extends
      * 1-based. 0 indicates that the line number is unknown.
      * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * <code>optional int32 line_number = 2;</code>
      */
     public int getLineNumber() {
       return lineNumber_;
@@ -628,7 +617,7 @@ public  final class SourceLocation extends
      * 1-based. 0 indicates that the line number is unknown.
      * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * <code>optional int32 line_number = 2;</code>
      */
     public Builder setLineNumber(int value) {
       
@@ -641,7 +630,7 @@ public  final class SourceLocation extends
      * 1-based. 0 indicates that the line number is unknown.
      * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * <code>optional int32 line_number = 2;</code>
      */
     public Builder clearLineNumber() {
       
@@ -658,7 +647,7 @@ public  final class SourceLocation extends
      * For example, `my.package.MyClass.method` in case of Java.
      * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * <code>optional string function_name = 4;</code>
      */
     public java.lang.String getFunctionName() {
       java.lang.Object ref = functionName_;
@@ -679,7 +668,7 @@ public  final class SourceLocation extends
      * For example, `my.package.MyClass.method` in case of Java.
      * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * <code>optional string function_name = 4;</code>
      */
     public com.google.protobuf.ByteString
         getFunctionNameBytes() {
@@ -701,7 +690,7 @@ public  final class SourceLocation extends
      * For example, `my.package.MyClass.method` in case of Java.
      * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * <code>optional string function_name = 4;</code>
      */
     public Builder setFunctionName(
         java.lang.String value) {
@@ -720,7 +709,7 @@ public  final class SourceLocation extends
      * For example, `my.package.MyClass.method` in case of Java.
      * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * <code>optional string function_name = 4;</code>
      */
     public Builder clearFunctionName() {
       
@@ -735,7 +724,7 @@ public  final class SourceLocation extends
      * For example, `my.package.MyClass.method` in case of Java.
      * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * <code>optional string function_name = 4;</code>
      */
     public Builder setFunctionNameBytes(
         com.google.protobuf.ByteString value) {

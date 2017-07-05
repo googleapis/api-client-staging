@@ -240,7 +240,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   boolean hasFullTextAnnotation();
   /**
@@ -251,7 +251,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   com.google.cloud.vision.v1.TextAnnotation getFullTextAnnotation();
   /**
@@ -262,7 +262,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * text.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
    */
   com.google.cloud.vision.v1.TextAnnotationOrBuilder getFullTextAnnotationOrBuilder();
 
@@ -271,7 +271,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   boolean hasSafeSearchAnnotation();
   /**
@@ -279,7 +279,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   com.google.cloud.vision.v1.SafeSearchAnnotation getSafeSearchAnnotation();
   /**
@@ -287,7 +287,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, safe-search annotation has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+   * <code>optional .google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
    */
   com.google.cloud.vision.v1.SafeSearchAnnotationOrBuilder getSafeSearchAnnotationOrBuilder();
 
@@ -296,7 +296,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   boolean hasImagePropertiesAnnotation();
   /**
@@ -304,7 +304,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   com.google.cloud.vision.v1.ImageProperties getImagePropertiesAnnotation();
   /**
@@ -312,7 +312,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, image properties were extracted successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+   * <code>optional .google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
    */
   com.google.cloud.vision.v1.ImagePropertiesOrBuilder getImagePropertiesAnnotationOrBuilder();
 
@@ -321,7 +321,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   boolean hasCropHintsAnnotation();
   /**
@@ -329,7 +329,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   com.google.cloud.vision.v1.CropHintsAnnotation getCropHintsAnnotation();
   /**
@@ -337,7 +337,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, crop hints have completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
    */
   com.google.cloud.vision.v1.CropHintsAnnotationOrBuilder getCropHintsAnnotationOrBuilder();
 
@@ -346,7 +346,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   boolean hasWebDetection();
   /**
@@ -354,7 +354,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   com.google.cloud.vision.v1.WebDetection getWebDetection();
   /**
@@ -362,7 +362,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * If present, web detection has completed successfully.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+   * <code>optional .google.cloud.vision.v1.WebDetection web_detection = 13;</code>
    */
   com.google.cloud.vision.v1.WebDetectionOrBuilder getWebDetectionOrBuilder();
 
@@ -373,7 +373,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   boolean hasError();
   /**
@@ -383,7 +383,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   com.google.rpc.Status getError();
   /**
@@ -393,7 +393,7 @@ public interface AnnotateImageResponseOrBuilder extends
    * correct, even when `error` is set.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 9;</code>
+   * <code>optional .google.rpc.Status error = 9;</code>
    */
   com.google.rpc.StatusOrBuilder getErrorOrBuilder();
 }

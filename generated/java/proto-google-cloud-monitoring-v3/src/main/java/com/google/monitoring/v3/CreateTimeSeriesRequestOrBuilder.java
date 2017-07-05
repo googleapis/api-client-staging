@@ -13,7 +13,7 @@ public interface CreateTimeSeriesRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface CreateTimeSeriesRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

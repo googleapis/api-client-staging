@@ -96,7 +96,7 @@ public  final class PullRequest extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public java.lang.String getSubscription() {
     java.lang.Object ref = subscription_;
@@ -116,7 +116,7 @@ public  final class PullRequest extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSubscriptionBytes() {
@@ -144,7 +144,7 @@ public  final class PullRequest extends
    * the response.
    * </pre>
    *
-   * <code>bool return_immediately = 2;</code>
+   * <code>optional bool return_immediately = 2;</code>
    */
   public boolean getReturnImmediately() {
     return returnImmediately_;
@@ -158,7 +158,7 @@ public  final class PullRequest extends
    * system may return fewer than the number specified.
    * </pre>
    *
-   * <code>int32 max_messages = 3;</code>
+   * <code>optional int32 max_messages = 3;</code>
    */
   public int getMaxMessages() {
     return maxMessages_;
@@ -234,7 +234,7 @@ public  final class PullRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SUBSCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getSubscription().hashCode();
     hash = (37 * hash) + RETURN_IMMEDIATELY_FIELD_NUMBER;
@@ -247,17 +247,6 @@ public  final class PullRequest extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.PullRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.PullRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.PullRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -490,7 +479,7 @@ public  final class PullRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public java.lang.String getSubscription() {
       java.lang.Object ref = subscription_;
@@ -510,7 +499,7 @@ public  final class PullRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSubscriptionBytes() {
@@ -531,7 +520,7 @@ public  final class PullRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscription(
         java.lang.String value) {
@@ -549,7 +538,7 @@ public  final class PullRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder clearSubscription() {
       
@@ -563,7 +552,7 @@ public  final class PullRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -588,7 +577,7 @@ public  final class PullRequest extends
      * the response.
      * </pre>
      *
-     * <code>bool return_immediately = 2;</code>
+     * <code>optional bool return_immediately = 2;</code>
      */
     public boolean getReturnImmediately() {
       return returnImmediately_;
@@ -603,7 +592,7 @@ public  final class PullRequest extends
      * the response.
      * </pre>
      *
-     * <code>bool return_immediately = 2;</code>
+     * <code>optional bool return_immediately = 2;</code>
      */
     public Builder setReturnImmediately(boolean value) {
       
@@ -621,7 +610,7 @@ public  final class PullRequest extends
      * the response.
      * </pre>
      *
-     * <code>bool return_immediately = 2;</code>
+     * <code>optional bool return_immediately = 2;</code>
      */
     public Builder clearReturnImmediately() {
       
@@ -637,7 +626,7 @@ public  final class PullRequest extends
      * system may return fewer than the number specified.
      * </pre>
      *
-     * <code>int32 max_messages = 3;</code>
+     * <code>optional int32 max_messages = 3;</code>
      */
     public int getMaxMessages() {
       return maxMessages_;
@@ -648,7 +637,7 @@ public  final class PullRequest extends
      * system may return fewer than the number specified.
      * </pre>
      *
-     * <code>int32 max_messages = 3;</code>
+     * <code>optional int32 max_messages = 3;</code>
      */
     public Builder setMaxMessages(int value) {
       
@@ -662,7 +651,7 @@ public  final class PullRequest extends
      * system may return fewer than the number specified.
      * </pre>
      *
-     * <code>int32 max_messages = 3;</code>
+     * <code>optional int32 max_messages = 3;</code>
      */
     public Builder clearMaxMessages() {
       

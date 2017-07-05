@@ -84,7 +84,7 @@ public  final class DeleteTopicRequest extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>string topic = 1;</code>
+   * <code>optional string topic = 1;</code>
    */
   public java.lang.String getTopic() {
     java.lang.Object ref = topic_;
@@ -104,7 +104,7 @@ public  final class DeleteTopicRequest extends
    * Format is `projects/{project}/topics/{topic}`.
    * </pre>
    *
-   * <code>string topic = 1;</code>
+   * <code>optional string topic = 1;</code>
    */
   public com.google.protobuf.ByteString
       getTopicBytes() {
@@ -172,7 +172,7 @@ public  final class DeleteTopicRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + TOPIC_FIELD_NUMBER;
     hash = (53 * hash) + getTopic().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -180,17 +180,6 @@ public  final class DeleteTopicRequest extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.DeleteTopicRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.DeleteTopicRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.DeleteTopicRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -411,7 +400,7 @@ public  final class DeleteTopicRequest extends
      * Format is `projects/{project}/topics/{topic}`.
      * </pre>
      *
-     * <code>string topic = 1;</code>
+     * <code>optional string topic = 1;</code>
      */
     public java.lang.String getTopic() {
       java.lang.Object ref = topic_;
@@ -431,7 +420,7 @@ public  final class DeleteTopicRequest extends
      * Format is `projects/{project}/topics/{topic}`.
      * </pre>
      *
-     * <code>string topic = 1;</code>
+     * <code>optional string topic = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTopicBytes() {
@@ -452,7 +441,7 @@ public  final class DeleteTopicRequest extends
      * Format is `projects/{project}/topics/{topic}`.
      * </pre>
      *
-     * <code>string topic = 1;</code>
+     * <code>optional string topic = 1;</code>
      */
     public Builder setTopic(
         java.lang.String value) {
@@ -470,7 +459,7 @@ public  final class DeleteTopicRequest extends
      * Format is `projects/{project}/topics/{topic}`.
      * </pre>
      *
-     * <code>string topic = 1;</code>
+     * <code>optional string topic = 1;</code>
      */
     public Builder clearTopic() {
       
@@ -484,7 +473,7 @@ public  final class DeleteTopicRequest extends
      * Format is `projects/{project}/topics/{topic}`.
      * </pre>
      *
-     * <code>string topic = 1;</code>
+     * <code>optional string topic = 1;</code>
      */
     public Builder setTopicBytes(
         com.google.protobuf.ByteString value) {

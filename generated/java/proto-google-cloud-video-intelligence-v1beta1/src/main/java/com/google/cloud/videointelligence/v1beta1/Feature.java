@@ -146,7 +146,8 @@ public enum Feature
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.cloud.videointelligence.v1beta1.VideoIntelligenceServiceProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final Feature[] VALUES = values();

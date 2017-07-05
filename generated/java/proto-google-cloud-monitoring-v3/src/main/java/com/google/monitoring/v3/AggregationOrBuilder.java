@@ -19,7 +19,7 @@ public interface AggregationOrBuilder extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>.google.protobuf.Duration alignment_period = 1;</code>
+   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
    */
   boolean hasAlignmentPeriod();
   /**
@@ -34,7 +34,7 @@ public interface AggregationOrBuilder extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>.google.protobuf.Duration alignment_period = 1;</code>
+   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
    */
   com.google.protobuf.Duration getAlignmentPeriod();
   /**
@@ -49,7 +49,7 @@ public interface AggregationOrBuilder extends
    * otherwise an error is returned.
    * </pre>
    *
-   * <code>.google.protobuf.Duration alignment_period = 1;</code>
+   * <code>optional .google.protobuf.Duration alignment_period = 1;</code>
    */
   com.google.protobuf.DurationOrBuilder getAlignmentPeriodOrBuilder();
 
@@ -67,7 +67,7 @@ public interface AggregationOrBuilder extends
    * returned.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+   * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
    */
   int getPerSeriesAlignerValue();
   /**
@@ -84,7 +84,7 @@ public interface AggregationOrBuilder extends
    * returned.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+   * <code>optional .google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
    */
   com.google.monitoring.v3.Aggregation.Aligner getPerSeriesAligner();
 
@@ -102,7 +102,7 @@ public interface AggregationOrBuilder extends
    * returned.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+   * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
    */
   int getCrossSeriesReducerValue();
   /**
@@ -119,7 +119,7 @@ public interface AggregationOrBuilder extends
    * returned.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+   * <code>optional .google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
    */
   com.google.monitoring.v3.Aggregation.Reducer getCrossSeriesReducer();
 

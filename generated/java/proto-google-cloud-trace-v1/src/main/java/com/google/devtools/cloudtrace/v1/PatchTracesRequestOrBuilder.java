@@ -12,7 +12,7 @@ public interface PatchTracesRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   java.lang.String getProjectId();
   /**
@@ -20,7 +20,7 @@ public interface PatchTracesRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectIdBytes();
@@ -30,7 +30,7 @@ public interface PatchTracesRequestOrBuilder extends
    * The body of the message.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   boolean hasTraces();
   /**
@@ -38,7 +38,7 @@ public interface PatchTracesRequestOrBuilder extends
    * The body of the message.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   com.google.devtools.cloudtrace.v1.Traces getTraces();
   /**
@@ -46,7 +46,7 @@ public interface PatchTracesRequestOrBuilder extends
    * The body of the message.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.Traces traces = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.Traces traces = 2;</code>
    */
   com.google.devtools.cloudtrace.v1.TracesOrBuilder getTracesOrBuilder();
 }

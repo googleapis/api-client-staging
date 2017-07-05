@@ -18,7 +18,7 @@ public interface TransactionOrBuilder extends
    * single-use transactions do not support multiple requests.
    * </pre>
    *
-   * <code>bytes id = 1;</code>
+   * <code>optional bytes id = 1;</code>
    */
   com.google.protobuf.ByteString getId();
 
@@ -29,7 +29,7 @@ public interface TransactionOrBuilder extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   boolean hasReadTimestamp();
   /**
@@ -39,7 +39,7 @@ public interface TransactionOrBuilder extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   com.google.protobuf.Timestamp getReadTimestamp();
   /**
@@ -49,7 +49,7 @@ public interface TransactionOrBuilder extends
    * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+   * <code>optional .google.protobuf.Timestamp read_timestamp = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder();
 }

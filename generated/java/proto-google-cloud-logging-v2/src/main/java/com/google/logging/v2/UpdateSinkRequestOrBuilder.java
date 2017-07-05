@@ -18,7 +18,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>string sink_name = 1;</code>
+   * <code>optional string sink_name = 1;</code>
    */
   java.lang.String getSinkName();
   /**
@@ -32,7 +32,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * Example: `"projects/my-project-id/sinks/my-sink-id"`.
    * </pre>
    *
-   * <code>string sink_name = 1;</code>
+   * <code>optional string sink_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getSinkNameBytes();
@@ -44,7 +44,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>.google.logging.v2.LogSink sink = 2;</code>
+   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
    */
   boolean hasSink();
   /**
@@ -54,7 +54,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>.google.logging.v2.LogSink sink = 2;</code>
+   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
    */
   com.google.logging.v2.LogSink getSink();
   /**
@@ -64,7 +64,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * this method creates a new sink.
    * </pre>
    *
-   * <code>.google.logging.v2.LogSink sink = 2;</code>
+   * <code>optional .google.logging.v2.LogSink sink = 2;</code>
    */
   com.google.logging.v2.LogSinkOrBuilder getSinkOrBuilder();
 
@@ -82,7 +82,7 @@ public interface UpdateSinkRequestOrBuilder extends
    * +   It is an error if the old value is true and the new value is false.
    * </pre>
    *
-   * <code>bool unique_writer_identity = 3;</code>
+   * <code>optional bool unique_writer_identity = 3;</code>
    */
   boolean getUniqueWriterIdentity();
 }

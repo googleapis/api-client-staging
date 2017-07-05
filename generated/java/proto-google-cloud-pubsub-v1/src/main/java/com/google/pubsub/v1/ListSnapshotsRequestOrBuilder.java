@@ -13,7 +13,7 @@ public interface ListSnapshotsRequestOrBuilder extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>string project = 1;</code>
+   * <code>optional string project = 1;</code>
    */
   java.lang.String getProject();
   /**
@@ -22,7 +22,7 @@ public interface ListSnapshotsRequestOrBuilder extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>string project = 1;</code>
+   * <code>optional string project = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectBytes();
@@ -32,7 +32,7 @@ public interface ListSnapshotsRequestOrBuilder extends
    * Maximum number of snapshots to return.
    * </pre>
    *
-   * <code>int32 page_size = 2;</code>
+   * <code>optional int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -43,7 +43,7 @@ public interface ListSnapshotsRequestOrBuilder extends
    * should return the next page of data.
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -53,7 +53,7 @@ public interface ListSnapshotsRequestOrBuilder extends
    * should return the next page of data.
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

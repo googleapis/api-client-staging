@@ -155,7 +155,7 @@ public  final class ListGroupsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 7;</code>
+   * <code>optional string name = 7;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -175,7 +175,7 @@ public  final class ListGroupsRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 7;</code>
+   * <code>optional string name = 7;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -199,7 +199,7 @@ public  final class ListGroupsRequest extends
    * name.  If no groups have this parent, the results are empty.
    * </pre>
    *
-   * <code>string children_of_group = 2;</code>
+   * <code>optional string children_of_group = 2;</code>
    */
   public java.lang.String getChildrenOfGroup() {
     java.lang.Object ref = "";
@@ -225,7 +225,7 @@ public  final class ListGroupsRequest extends
    * name.  If no groups have this parent, the results are empty.
    * </pre>
    *
-   * <code>string children_of_group = 2;</code>
+   * <code>optional string children_of_group = 2;</code>
    */
   public com.google.protobuf.ByteString
       getChildrenOfGroupBytes() {
@@ -256,7 +256,7 @@ public  final class ListGroupsRequest extends
    * immediate parent, the results are empty.
    * </pre>
    *
-   * <code>string ancestors_of_group = 3;</code>
+   * <code>optional string ancestors_of_group = 3;</code>
    */
   public java.lang.String getAncestorsOfGroup() {
     java.lang.Object ref = "";
@@ -284,7 +284,7 @@ public  final class ListGroupsRequest extends
    * immediate parent, the results are empty.
    * </pre>
    *
-   * <code>string ancestors_of_group = 3;</code>
+   * <code>optional string ancestors_of_group = 3;</code>
    */
   public com.google.protobuf.ByteString
       getAncestorsOfGroupBytes() {
@@ -314,7 +314,7 @@ public  final class ListGroupsRequest extends
    * children-of-children, and so forth.
    * </pre>
    *
-   * <code>string descendants_of_group = 4;</code>
+   * <code>optional string descendants_of_group = 4;</code>
    */
   public java.lang.String getDescendantsOfGroup() {
     java.lang.Object ref = "";
@@ -341,7 +341,7 @@ public  final class ListGroupsRequest extends
    * children-of-children, and so forth.
    * </pre>
    *
-   * <code>string descendants_of_group = 4;</code>
+   * <code>optional string descendants_of_group = 4;</code>
    */
   public com.google.protobuf.ByteString
       getDescendantsOfGroupBytes() {
@@ -369,7 +369,7 @@ public  final class ListGroupsRequest extends
    * A positive number that is the maximum number of results to return.
    * </pre>
    *
-   * <code>int32 page_size = 5;</code>
+   * <code>optional int32 page_size = 5;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -384,7 +384,7 @@ public  final class ListGroupsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 6;</code>
+   * <code>optional string page_token = 6;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -405,7 +405,7 @@ public  final class ListGroupsRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 6;</code>
+   * <code>optional string page_token = 6;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -527,7 +527,7 @@ public  final class ListGroupsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -555,17 +555,6 @@ public  final class ListGroupsRequest extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.ListGroupsRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.ListGroupsRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.ListGroupsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -849,7 +838,7 @@ public  final class ListGroupsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 7;</code>
+     * <code>optional string name = 7;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -869,7 +858,7 @@ public  final class ListGroupsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 7;</code>
+     * <code>optional string name = 7;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -890,7 +879,7 @@ public  final class ListGroupsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 7;</code>
+     * <code>optional string name = 7;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -908,7 +897,7 @@ public  final class ListGroupsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 7;</code>
+     * <code>optional string name = 7;</code>
      */
     public Builder clearName() {
       
@@ -922,7 +911,7 @@ public  final class ListGroupsRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 7;</code>
+     * <code>optional string name = 7;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -943,7 +932,7 @@ public  final class ListGroupsRequest extends
      * name.  If no groups have this parent, the results are empty.
      * </pre>
      *
-     * <code>string children_of_group = 2;</code>
+     * <code>optional string children_of_group = 2;</code>
      */
     public java.lang.String getChildrenOfGroup() {
       java.lang.Object ref = "";
@@ -969,7 +958,7 @@ public  final class ListGroupsRequest extends
      * name.  If no groups have this parent, the results are empty.
      * </pre>
      *
-     * <code>string children_of_group = 2;</code>
+     * <code>optional string children_of_group = 2;</code>
      */
     public com.google.protobuf.ByteString
         getChildrenOfGroupBytes() {
@@ -996,7 +985,7 @@ public  final class ListGroupsRequest extends
      * name.  If no groups have this parent, the results are empty.
      * </pre>
      *
-     * <code>string children_of_group = 2;</code>
+     * <code>optional string children_of_group = 2;</code>
      */
     public Builder setChildrenOfGroup(
         java.lang.String value) {
@@ -1015,7 +1004,7 @@ public  final class ListGroupsRequest extends
      * name.  If no groups have this parent, the results are empty.
      * </pre>
      *
-     * <code>string children_of_group = 2;</code>
+     * <code>optional string children_of_group = 2;</code>
      */
     public Builder clearChildrenOfGroup() {
       if (filterCase_ == 2) {
@@ -1032,7 +1021,7 @@ public  final class ListGroupsRequest extends
      * name.  If no groups have this parent, the results are empty.
      * </pre>
      *
-     * <code>string children_of_group = 2;</code>
+     * <code>optional string children_of_group = 2;</code>
      */
     public Builder setChildrenOfGroupBytes(
         com.google.protobuf.ByteString value) {
@@ -1055,7 +1044,7 @@ public  final class ListGroupsRequest extends
      * immediate parent, the results are empty.
      * </pre>
      *
-     * <code>string ancestors_of_group = 3;</code>
+     * <code>optional string ancestors_of_group = 3;</code>
      */
     public java.lang.String getAncestorsOfGroup() {
       java.lang.Object ref = "";
@@ -1083,7 +1072,7 @@ public  final class ListGroupsRequest extends
      * immediate parent, the results are empty.
      * </pre>
      *
-     * <code>string ancestors_of_group = 3;</code>
+     * <code>optional string ancestors_of_group = 3;</code>
      */
     public com.google.protobuf.ByteString
         getAncestorsOfGroupBytes() {
@@ -1112,7 +1101,7 @@ public  final class ListGroupsRequest extends
      * immediate parent, the results are empty.
      * </pre>
      *
-     * <code>string ancestors_of_group = 3;</code>
+     * <code>optional string ancestors_of_group = 3;</code>
      */
     public Builder setAncestorsOfGroup(
         java.lang.String value) {
@@ -1133,7 +1122,7 @@ public  final class ListGroupsRequest extends
      * immediate parent, the results are empty.
      * </pre>
      *
-     * <code>string ancestors_of_group = 3;</code>
+     * <code>optional string ancestors_of_group = 3;</code>
      */
     public Builder clearAncestorsOfGroup() {
       if (filterCase_ == 3) {
@@ -1152,7 +1141,7 @@ public  final class ListGroupsRequest extends
      * immediate parent, the results are empty.
      * </pre>
      *
-     * <code>string ancestors_of_group = 3;</code>
+     * <code>optional string ancestors_of_group = 3;</code>
      */
     public Builder setAncestorsOfGroupBytes(
         com.google.protobuf.ByteString value) {
@@ -1174,7 +1163,7 @@ public  final class ListGroupsRequest extends
      * children-of-children, and so forth.
      * </pre>
      *
-     * <code>string descendants_of_group = 4;</code>
+     * <code>optional string descendants_of_group = 4;</code>
      */
     public java.lang.String getDescendantsOfGroup() {
       java.lang.Object ref = "";
@@ -1201,7 +1190,7 @@ public  final class ListGroupsRequest extends
      * children-of-children, and so forth.
      * </pre>
      *
-     * <code>string descendants_of_group = 4;</code>
+     * <code>optional string descendants_of_group = 4;</code>
      */
     public com.google.protobuf.ByteString
         getDescendantsOfGroupBytes() {
@@ -1229,7 +1218,7 @@ public  final class ListGroupsRequest extends
      * children-of-children, and so forth.
      * </pre>
      *
-     * <code>string descendants_of_group = 4;</code>
+     * <code>optional string descendants_of_group = 4;</code>
      */
     public Builder setDescendantsOfGroup(
         java.lang.String value) {
@@ -1249,7 +1238,7 @@ public  final class ListGroupsRequest extends
      * children-of-children, and so forth.
      * </pre>
      *
-     * <code>string descendants_of_group = 4;</code>
+     * <code>optional string descendants_of_group = 4;</code>
      */
     public Builder clearDescendantsOfGroup() {
       if (filterCase_ == 4) {
@@ -1267,7 +1256,7 @@ public  final class ListGroupsRequest extends
      * children-of-children, and so forth.
      * </pre>
      *
-     * <code>string descendants_of_group = 4;</code>
+     * <code>optional string descendants_of_group = 4;</code>
      */
     public Builder setDescendantsOfGroupBytes(
         com.google.protobuf.ByteString value) {
@@ -1287,7 +1276,7 @@ public  final class ListGroupsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 5;</code>
+     * <code>optional int32 page_size = 5;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -1297,7 +1286,7 @@ public  final class ListGroupsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 5;</code>
+     * <code>optional int32 page_size = 5;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -1310,7 +1299,7 @@ public  final class ListGroupsRequest extends
      * A positive number that is the maximum number of results to return.
      * </pre>
      *
-     * <code>int32 page_size = 5;</code>
+     * <code>optional int32 page_size = 5;</code>
      */
     public Builder clearPageSize() {
       
@@ -1327,7 +1316,7 @@ public  final class ListGroupsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 6;</code>
+     * <code>optional string page_token = 6;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -1348,7 +1337,7 @@ public  final class ListGroupsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 6;</code>
+     * <code>optional string page_token = 6;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -1370,7 +1359,7 @@ public  final class ListGroupsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 6;</code>
+     * <code>optional string page_token = 6;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -1389,7 +1378,7 @@ public  final class ListGroupsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 6;</code>
+     * <code>optional string page_token = 6;</code>
      */
     public Builder clearPageToken() {
       
@@ -1404,7 +1393,7 @@ public  final class ListGroupsRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 6;</code>
+     * <code>optional string page_token = 6;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

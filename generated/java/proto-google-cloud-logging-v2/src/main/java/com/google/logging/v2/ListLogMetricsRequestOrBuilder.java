@@ -13,7 +13,7 @@ public interface ListLogMetricsRequestOrBuilder extends
    *     "projects/[PROJECT_ID]"
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -22,7 +22,7 @@ public interface ListLogMetricsRequestOrBuilder extends
    *     "projects/[PROJECT_ID]"
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -35,7 +35,7 @@ public interface ListLogMetricsRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>string page_token = 2;</code>
+   * <code>optional string page_token = 2;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -46,7 +46,7 @@ public interface ListLogMetricsRequestOrBuilder extends
    * parameters should be identical to those in the previous call.
    * </pre>
    *
-   * <code>string page_token = 2;</code>
+   * <code>optional string page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -58,7 +58,7 @@ public interface ListLogMetricsRequestOrBuilder extends
    * response indicates that more results might be available.
    * </pre>
    *
-   * <code>int32 page_size = 3;</code>
+   * <code>optional int32 page_size = 3;</code>
    */
   int getPageSize();
 }

@@ -13,7 +13,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * when the audio is fully processed and the results are available.
    * </pre>
    *
-   * <code>int32 progress_percent = 1;</code>
+   * <code>optional int32 progress_percent = 1;</code>
    */
   int getProgressPercent();
 
@@ -22,7 +22,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   boolean hasStartTime();
   /**
@@ -30,7 +30,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -38,7 +38,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -47,7 +47,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
    */
   boolean hasLastUpdateTime();
   /**
@@ -55,7 +55,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
    */
   com.google.protobuf.Timestamp getLastUpdateTime();
   /**
@@ -63,7 +63,7 @@ public interface LongRunningRecognizeMetadataOrBuilder extends
    * Time of the most recent processing update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp last_update_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getLastUpdateTimeOrBuilder();
 }

@@ -147,7 +147,8 @@ public enum EncodingType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.cloud.language.v1.LanguageServiceProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.cloud.language.v1.LanguageServiceProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final EncodingType[] VALUES = values();

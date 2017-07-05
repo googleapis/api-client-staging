@@ -13,7 +13,7 @@ public interface DocumentOrBuilder extends
    * returns an `INVALID_ARGUMENT` error.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
    */
   int getTypeValue();
   /**
@@ -22,7 +22,7 @@ public interface DocumentOrBuilder extends
    * returns an `INVALID_ARGUMENT` error.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document.Type type = 1;</code>
    */
   com.google.cloud.language.v1beta2.Document.Type getType();
 
@@ -31,7 +31,7 @@ public interface DocumentOrBuilder extends
    * The content of the input in string format.
    * </pre>
    *
-   * <code>string content = 2;</code>
+   * <code>optional string content = 2;</code>
    */
   java.lang.String getContent();
   /**
@@ -39,7 +39,7 @@ public interface DocumentOrBuilder extends
    * The content of the input in string format.
    * </pre>
    *
-   * <code>string content = 2;</code>
+   * <code>optional string content = 2;</code>
    */
   com.google.protobuf.ByteString
       getContentBytes();
@@ -52,7 +52,7 @@ public interface DocumentOrBuilder extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>string gcs_content_uri = 3;</code>
+   * <code>optional string gcs_content_uri = 3;</code>
    */
   java.lang.String getGcsContentUri();
   /**
@@ -63,7 +63,7 @@ public interface DocumentOrBuilder extends
    * NOTE: Cloud Storage object versioning is not supported.
    * </pre>
    *
-   * <code>string gcs_content_uri = 3;</code>
+   * <code>optional string gcs_content_uri = 3;</code>
    */
   com.google.protobuf.ByteString
       getGcsContentUriBytes();
@@ -80,7 +80,7 @@ public interface DocumentOrBuilder extends
    * is returned.
    * </pre>
    *
-   * <code>string language = 4;</code>
+   * <code>optional string language = 4;</code>
    */
   java.lang.String getLanguage();
   /**
@@ -95,7 +95,7 @@ public interface DocumentOrBuilder extends
    * is returned.
    * </pre>
    *
-   * <code>string language = 4;</code>
+   * <code>optional string language = 4;</code>
    */
   com.google.protobuf.ByteString
       getLanguageBytes();

@@ -12,7 +12,7 @@ public interface ListTracesRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   java.lang.String getProjectId();
   /**
@@ -20,7 +20,7 @@ public interface ListTracesRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectIdBytes();
@@ -31,7 +31,7 @@ public interface ListTracesRequestOrBuilder extends
    * `MINIMAL`.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
    */
   int getViewValue();
   /**
@@ -40,7 +40,7 @@ public interface ListTracesRequestOrBuilder extends
    * `MINIMAL`.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.ListTracesRequest.ViewType view = 2;</code>
    */
   com.google.devtools.cloudtrace.v1.ListTracesRequest.ViewType getView();
 
@@ -51,7 +51,7 @@ public interface ListTracesRequestOrBuilder extends
    * return fewer traces than the requested page size. Optional.
    * </pre>
    *
-   * <code>int32 page_size = 3;</code>
+   * <code>optional int32 page_size = 3;</code>
    */
   int getPageSize();
 
@@ -61,7 +61,7 @@ public interface ListTracesRequestOrBuilder extends
    * value of the `next_page_token` field from a previous request. Optional.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -70,7 +70,7 @@ public interface ListTracesRequestOrBuilder extends
    * value of the `next_page_token` field from a previous request. Optional.
    * </pre>
    *
-   * <code>string page_token = 4;</code>
+   * <code>optional string page_token = 4;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -81,7 +81,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
    */
   boolean hasStartTime();
   /**
@@ -90,7 +90,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -99,7 +99,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 5;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -109,7 +109,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
    */
   boolean hasEndTime();
   /**
@@ -118,7 +118,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -127,7 +127,7 @@ public interface ListTracesRequestOrBuilder extends
    * collected from the application.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 6;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 
@@ -136,7 +136,7 @@ public interface ListTracesRequestOrBuilder extends
    * An optional filter for the request.
    * </pre>
    *
-   * <code>string filter = 7;</code>
+   * <code>optional string filter = 7;</code>
    */
   java.lang.String getFilter();
   /**
@@ -144,7 +144,7 @@ public interface ListTracesRequestOrBuilder extends
    * An optional filter for the request.
    * </pre>
    *
-   * <code>string filter = 7;</code>
+   * <code>optional string filter = 7;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();
@@ -163,7 +163,7 @@ public interface ListTracesRequestOrBuilder extends
    * Only one sort field is permitted.
    * </pre>
    *
-   * <code>string order_by = 8;</code>
+   * <code>optional string order_by = 8;</code>
    */
   java.lang.String getOrderBy();
   /**
@@ -180,7 +180,7 @@ public interface ListTracesRequestOrBuilder extends
    * Only one sort field is permitted.
    * </pre>
    *
-   * <code>string order_by = 8;</code>
+   * <code>optional string order_by = 8;</code>
    */
   com.google.protobuf.ByteString
       getOrderByBytes();

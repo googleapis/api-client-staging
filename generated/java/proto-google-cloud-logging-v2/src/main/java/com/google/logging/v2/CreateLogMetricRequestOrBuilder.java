@@ -14,7 +14,7 @@ public interface CreateLogMetricRequestOrBuilder extends
    * The new metric must be provided in the request.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -24,7 +24,7 @@ public interface CreateLogMetricRequestOrBuilder extends
    * The new metric must be provided in the request.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -35,7 +35,7 @@ public interface CreateLogMetricRequestOrBuilder extends
    * already exists.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   boolean hasMetric();
   /**
@@ -44,7 +44,7 @@ public interface CreateLogMetricRequestOrBuilder extends
    * already exists.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   com.google.logging.v2.LogMetric getMetric();
   /**
@@ -53,7 +53,7 @@ public interface CreateLogMetricRequestOrBuilder extends
    * already exists.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder();
 }

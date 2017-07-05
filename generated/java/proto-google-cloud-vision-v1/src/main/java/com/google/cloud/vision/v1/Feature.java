@@ -365,7 +365,7 @@ public  final class Feature extends
    * The feature type.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
    */
   public int getTypeValue() {
     return type_;
@@ -375,7 +375,7 @@ public  final class Feature extends
    * The feature type.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
    */
   public com.google.cloud.vision.v1.Feature.Type getType() {
     com.google.cloud.vision.v1.Feature.Type result = com.google.cloud.vision.v1.Feature.Type.valueOf(type_);
@@ -389,7 +389,7 @@ public  final class Feature extends
    * Maximum number of results of this type.
    * </pre>
    *
-   * <code>int32 max_results = 2;</code>
+   * <code>optional int32 max_results = 2;</code>
    */
   public int getMaxResults() {
     return maxResults_;
@@ -456,7 +456,7 @@ public  final class Feature extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + type_;
     hash = (37 * hash) + MAX_RESULTS_FIELD_NUMBER;
@@ -466,17 +466,6 @@ public  final class Feature extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.Feature parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.Feature parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.Feature parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -704,7 +693,7 @@ public  final class Feature extends
      * The feature type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -714,7 +703,7 @@ public  final class Feature extends
      * The feature type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -726,7 +715,7 @@ public  final class Feature extends
      * The feature type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     public com.google.cloud.vision.v1.Feature.Type getType() {
       com.google.cloud.vision.v1.Feature.Type result = com.google.cloud.vision.v1.Feature.Type.valueOf(type_);
@@ -737,7 +726,7 @@ public  final class Feature extends
      * The feature type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     public Builder setType(com.google.cloud.vision.v1.Feature.Type value) {
       if (value == null) {
@@ -753,7 +742,7 @@ public  final class Feature extends
      * The feature type.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     public Builder clearType() {
       
@@ -768,7 +757,7 @@ public  final class Feature extends
      * Maximum number of results of this type.
      * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * <code>optional int32 max_results = 2;</code>
      */
     public int getMaxResults() {
       return maxResults_;
@@ -778,7 +767,7 @@ public  final class Feature extends
      * Maximum number of results of this type.
      * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * <code>optional int32 max_results = 2;</code>
      */
     public Builder setMaxResults(int value) {
       
@@ -791,7 +780,7 @@ public  final class Feature extends
      * Maximum number of results of this type.
      * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * <code>optional int32 max_results = 2;</code>
      */
     public Builder clearMaxResults() {
       

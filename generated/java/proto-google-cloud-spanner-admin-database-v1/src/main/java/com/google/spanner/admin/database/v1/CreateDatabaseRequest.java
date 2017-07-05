@@ -105,7 +105,7 @@ public  final class CreateDatabaseRequest extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   public java.lang.String getParent() {
     java.lang.Object ref = parent_;
@@ -125,7 +125,7 @@ public  final class CreateDatabaseRequest extends
    * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   public com.google.protobuf.ByteString
       getParentBytes() {
@@ -150,7 +150,7 @@ public  final class CreateDatabaseRequest extends
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
    * </pre>
    *
-   * <code>string create_statement = 2;</code>
+   * <code>optional string create_statement = 2;</code>
    */
   public java.lang.String getCreateStatement() {
     java.lang.Object ref = createStatement_;
@@ -171,7 +171,7 @@ public  final class CreateDatabaseRequest extends
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
    * </pre>
    *
-   * <code>string create_statement = 2;</code>
+   * <code>optional string create_statement = 2;</code>
    */
   public com.google.protobuf.ByteString
       getCreateStatementBytes() {
@@ -317,7 +317,7 @@ public  final class CreateDatabaseRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + PARENT_FIELD_NUMBER;
     hash = (53 * hash) + getParent().hashCode();
     hash = (37 * hash) + CREATE_STATEMENT_FIELD_NUMBER;
@@ -331,17 +331,6 @@ public  final class CreateDatabaseRequest extends
     return hash;
   }
 
-  public static com.google.spanner.admin.database.v1.CreateDatabaseRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.database.v1.CreateDatabaseRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.database.v1.CreateDatabaseRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -590,7 +579,7 @@ public  final class CreateDatabaseRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>string parent = 1;</code>
+     * <code>optional string parent = 1;</code>
      */
     public java.lang.String getParent() {
       java.lang.Object ref = parent_;
@@ -610,7 +599,7 @@ public  final class CreateDatabaseRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>string parent = 1;</code>
+     * <code>optional string parent = 1;</code>
      */
     public com.google.protobuf.ByteString
         getParentBytes() {
@@ -631,7 +620,7 @@ public  final class CreateDatabaseRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>string parent = 1;</code>
+     * <code>optional string parent = 1;</code>
      */
     public Builder setParent(
         java.lang.String value) {
@@ -649,7 +638,7 @@ public  final class CreateDatabaseRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>string parent = 1;</code>
+     * <code>optional string parent = 1;</code>
      */
     public Builder clearParent() {
       
@@ -663,7 +652,7 @@ public  final class CreateDatabaseRequest extends
      * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      * </pre>
      *
-     * <code>string parent = 1;</code>
+     * <code>optional string parent = 1;</code>
      */
     public Builder setParentBytes(
         com.google.protobuf.ByteString value) {
@@ -685,7 +674,7 @@ public  final class CreateDatabaseRequest extends
      * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * <code>optional string create_statement = 2;</code>
      */
     public java.lang.String getCreateStatement() {
       java.lang.Object ref = createStatement_;
@@ -706,7 +695,7 @@ public  final class CreateDatabaseRequest extends
      * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * <code>optional string create_statement = 2;</code>
      */
     public com.google.protobuf.ByteString
         getCreateStatementBytes() {
@@ -728,7 +717,7 @@ public  final class CreateDatabaseRequest extends
      * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * <code>optional string create_statement = 2;</code>
      */
     public Builder setCreateStatement(
         java.lang.String value) {
@@ -747,7 +736,7 @@ public  final class CreateDatabaseRequest extends
      * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * <code>optional string create_statement = 2;</code>
      */
     public Builder clearCreateStatement() {
       
@@ -762,7 +751,7 @@ public  final class CreateDatabaseRequest extends
      * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * <code>optional string create_statement = 2;</code>
      */
     public Builder setCreateStatementBytes(
         com.google.protobuf.ByteString value) {

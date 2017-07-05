@@ -13,7 +13,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   boolean hasConfig();
   /**
@@ -22,7 +22,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   com.google.cloud.speech.v1.RecognitionConfig getConfig();
   /**
@@ -31,7 +31,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   com.google.cloud.speech.v1.RecognitionConfigOrBuilder getConfigOrBuilder();
 
@@ -40,7 +40,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   boolean hasAudio();
   /**
@@ -48,7 +48,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   com.google.cloud.speech.v1.RecognitionAudio getAudio();
   /**
@@ -56,7 +56,7 @@ public interface LongRunningRecognizeRequestOrBuilder extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   com.google.cloud.speech.v1.RecognitionAudioOrBuilder getAudioOrBuilder();
 }

@@ -58,7 +58,7 @@ public interface ListEventsResponseOrBuilder extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -68,7 +68,7 @@ public interface ListEventsResponseOrBuilder extends
    * request, to view the next page of results.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();
@@ -78,7 +78,7 @@ public interface ListEventsResponseOrBuilder extends
    * The timestamp specifies the start time to which the request was restricted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   boolean hasTimeRangeBegin();
   /**
@@ -86,7 +86,7 @@ public interface ListEventsResponseOrBuilder extends
    * The timestamp specifies the start time to which the request was restricted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   com.google.protobuf.Timestamp getTimeRangeBegin();
   /**
@@ -94,7 +94,7 @@ public interface ListEventsResponseOrBuilder extends
    * The timestamp specifies the start time to which the request was restricted.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+   * <code>optional .google.protobuf.Timestamp time_range_begin = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimeRangeBeginOrBuilder();
 }

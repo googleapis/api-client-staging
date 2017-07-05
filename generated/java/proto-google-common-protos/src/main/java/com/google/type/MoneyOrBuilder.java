@@ -12,7 +12,7 @@ public interface MoneyOrBuilder extends
    * The 3-letter currency code defined in ISO 4217.
    * </pre>
    *
-   * <code>string currency_code = 1;</code>
+   * <code>optional string currency_code = 1;</code>
    */
   java.lang.String getCurrencyCode();
   /**
@@ -20,7 +20,7 @@ public interface MoneyOrBuilder extends
    * The 3-letter currency code defined in ISO 4217.
    * </pre>
    *
-   * <code>string currency_code = 1;</code>
+   * <code>optional string currency_code = 1;</code>
    */
   com.google.protobuf.ByteString
       getCurrencyCodeBytes();
@@ -31,7 +31,7 @@ public interface MoneyOrBuilder extends
    * For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
    * </pre>
    *
-   * <code>int64 units = 2;</code>
+   * <code>optional int64 units = 2;</code>
    */
   long getUnits();
 
@@ -45,7 +45,7 @@ public interface MoneyOrBuilder extends
    * For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
    * </pre>
    *
-   * <code>int32 nanos = 3;</code>
+   * <code>optional int32 nanos = 3;</code>
    */
   int getNanos();
 }

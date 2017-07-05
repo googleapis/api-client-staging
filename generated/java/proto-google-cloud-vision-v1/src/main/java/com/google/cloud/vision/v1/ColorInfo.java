@@ -102,7 +102,7 @@ public  final class ColorInfo extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   public boolean hasColor() {
     return color_ != null;
@@ -112,7 +112,7 @@ public  final class ColorInfo extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   public com.google.type.Color getColor() {
     return color_ == null ? com.google.type.Color.getDefaultInstance() : color_;
@@ -122,7 +122,7 @@ public  final class ColorInfo extends
    * RGB components of the color.
    * </pre>
    *
-   * <code>.google.type.Color color = 1;</code>
+   * <code>optional .google.type.Color color = 1;</code>
    */
   public com.google.type.ColorOrBuilder getColorOrBuilder() {
     return getColor();
@@ -135,7 +135,7 @@ public  final class ColorInfo extends
    * Image-specific score for this color. Value in range [0, 1].
    * </pre>
    *
-   * <code>float score = 2;</code>
+   * <code>optional float score = 2;</code>
    */
   public float getScore() {
     return score_;
@@ -149,7 +149,7 @@ public  final class ColorInfo extends
    * Value in range [0, 1].
    * </pre>
    *
-   * <code>float pixel_fraction = 3;</code>
+   * <code>optional float pixel_fraction = 3;</code>
    */
   public float getPixelFraction() {
     return pixelFraction_;
@@ -233,7 +233,7 @@ public  final class ColorInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasColor()) {
       hash = (37 * hash) + COLOR_FIELD_NUMBER;
       hash = (53 * hash) + getColor().hashCode();
@@ -249,17 +249,6 @@ public  final class ColorInfo extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.ColorInfo parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.ColorInfo parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.ColorInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -501,7 +490,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public boolean hasColor() {
       return colorBuilder_ != null || color_ != null;
@@ -511,7 +500,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public com.google.type.Color getColor() {
       if (colorBuilder_ == null) {
@@ -525,7 +514,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public Builder setColor(com.google.type.Color value) {
       if (colorBuilder_ == null) {
@@ -545,7 +534,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public Builder setColor(
         com.google.type.Color.Builder builderForValue) {
@@ -563,7 +552,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public Builder mergeColor(com.google.type.Color value) {
       if (colorBuilder_ == null) {
@@ -585,7 +574,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public Builder clearColor() {
       if (colorBuilder_ == null) {
@@ -603,7 +592,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public com.google.type.Color.Builder getColorBuilder() {
       
@@ -615,7 +604,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     public com.google.type.ColorOrBuilder getColorOrBuilder() {
       if (colorBuilder_ != null) {
@@ -630,7 +619,7 @@ public  final class ColorInfo extends
      * RGB components of the color.
      * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * <code>optional .google.type.Color color = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.type.Color, com.google.type.Color.Builder, com.google.type.ColorOrBuilder> 
@@ -652,7 +641,7 @@ public  final class ColorInfo extends
      * Image-specific score for this color. Value in range [0, 1].
      * </pre>
      *
-     * <code>float score = 2;</code>
+     * <code>optional float score = 2;</code>
      */
     public float getScore() {
       return score_;
@@ -662,7 +651,7 @@ public  final class ColorInfo extends
      * Image-specific score for this color. Value in range [0, 1].
      * </pre>
      *
-     * <code>float score = 2;</code>
+     * <code>optional float score = 2;</code>
      */
     public Builder setScore(float value) {
       
@@ -675,7 +664,7 @@ public  final class ColorInfo extends
      * Image-specific score for this color. Value in range [0, 1].
      * </pre>
      *
-     * <code>float score = 2;</code>
+     * <code>optional float score = 2;</code>
      */
     public Builder clearScore() {
       
@@ -691,7 +680,7 @@ public  final class ColorInfo extends
      * Value in range [0, 1].
      * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * <code>optional float pixel_fraction = 3;</code>
      */
     public float getPixelFraction() {
       return pixelFraction_;
@@ -702,7 +691,7 @@ public  final class ColorInfo extends
      * Value in range [0, 1].
      * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * <code>optional float pixel_fraction = 3;</code>
      */
     public Builder setPixelFraction(float value) {
       
@@ -716,7 +705,7 @@ public  final class ColorInfo extends
      * Value in range [0, 1].
      * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * <code>optional float pixel_fraction = 3;</code>
      */
     public Builder clearPixelFraction() {
       

@@ -57,7 +57,7 @@ public interface ListSnapshotsResponseOrBuilder extends
    * request; this value should be passed in a new `ListSnapshotsRequest`.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -66,7 +66,7 @@ public interface ListSnapshotsResponseOrBuilder extends
    * request; this value should be passed in a new `ListSnapshotsRequest`.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

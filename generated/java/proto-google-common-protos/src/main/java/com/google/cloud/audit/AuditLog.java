@@ -196,7 +196,7 @@ public  final class AuditLog extends
    * `"datastore.googleapis.com"`.
    * </pre>
    *
-   * <code>string service_name = 7;</code>
+   * <code>optional string service_name = 7;</code>
    */
   public java.lang.String getServiceName() {
     java.lang.Object ref = serviceName_;
@@ -216,7 +216,7 @@ public  final class AuditLog extends
    * `"datastore.googleapis.com"`.
    * </pre>
    *
-   * <code>string service_name = 7;</code>
+   * <code>optional string service_name = 7;</code>
    */
   public com.google.protobuf.ByteString
       getServiceNameBytes() {
@@ -243,7 +243,7 @@ public  final class AuditLog extends
    *     "google.logging.v1.LoggingService.DeleteLog"
    * </pre>
    *
-   * <code>string method_name = 8;</code>
+   * <code>optional string method_name = 8;</code>
    */
   public java.lang.String getMethodName() {
     java.lang.Object ref = methodName_;
@@ -266,7 +266,7 @@ public  final class AuditLog extends
    *     "google.logging.v1.LoggingService.DeleteLog"
    * </pre>
    *
-   * <code>string method_name = 8;</code>
+   * <code>optional string method_name = 8;</code>
    */
   public com.google.protobuf.ByteString
       getMethodNameBytes() {
@@ -293,7 +293,7 @@ public  final class AuditLog extends
    *     "shelves/SHELF_ID/books/BOOK_ID"
    * </pre>
    *
-   * <code>string resource_name = 11;</code>
+   * <code>optional string resource_name = 11;</code>
    */
   public java.lang.String getResourceName() {
     java.lang.Object ref = resourceName_;
@@ -316,7 +316,7 @@ public  final class AuditLog extends
    *     "shelves/SHELF_ID/books/BOOK_ID"
    * </pre>
    *
-   * <code>string resource_name = 11;</code>
+   * <code>optional string resource_name = 11;</code>
    */
   public com.google.protobuf.ByteString
       getResourceNameBytes() {
@@ -340,7 +340,7 @@ public  final class AuditLog extends
    * if applicable.
    * </pre>
    *
-   * <code>int64 num_response_items = 12;</code>
+   * <code>optional int64 num_response_items = 12;</code>
    */
   public long getNumResponseItems() {
     return numResponseItems_;
@@ -353,7 +353,7 @@ public  final class AuditLog extends
    * The status of the overall operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public boolean hasStatus() {
     return status_ != null;
@@ -363,7 +363,7 @@ public  final class AuditLog extends
    * The status of the overall operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public com.google.rpc.Status getStatus() {
     return status_ == null ? com.google.rpc.Status.getDefaultInstance() : status_;
@@ -373,7 +373,7 @@ public  final class AuditLog extends
    * The status of the overall operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public com.google.rpc.StatusOrBuilder getStatusOrBuilder() {
     return getStatus();
@@ -386,7 +386,7 @@ public  final class AuditLog extends
    * Authentication information.
    * </pre>
    *
-   * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+   * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
    */
   public boolean hasAuthenticationInfo() {
     return authenticationInfo_ != null;
@@ -396,7 +396,7 @@ public  final class AuditLog extends
    * Authentication information.
    * </pre>
    *
-   * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+   * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
    */
   public com.google.cloud.audit.AuthenticationInfo getAuthenticationInfo() {
     return authenticationInfo_ == null ? com.google.cloud.audit.AuthenticationInfo.getDefaultInstance() : authenticationInfo_;
@@ -406,7 +406,7 @@ public  final class AuditLog extends
    * Authentication information.
    * </pre>
    *
-   * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+   * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
    */
   public com.google.cloud.audit.AuthenticationInfoOrBuilder getAuthenticationInfoOrBuilder() {
     return getAuthenticationInfo();
@@ -484,7 +484,7 @@ public  final class AuditLog extends
    * Metadata about the operation.
    * </pre>
    *
-   * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+   * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
    */
   public boolean hasRequestMetadata() {
     return requestMetadata_ != null;
@@ -494,7 +494,7 @@ public  final class AuditLog extends
    * Metadata about the operation.
    * </pre>
    *
-   * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+   * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
    */
   public com.google.cloud.audit.RequestMetadata getRequestMetadata() {
     return requestMetadata_ == null ? com.google.cloud.audit.RequestMetadata.getDefaultInstance() : requestMetadata_;
@@ -504,7 +504,7 @@ public  final class AuditLog extends
    * Metadata about the operation.
    * </pre>
    *
-   * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+   * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
    */
   public com.google.cloud.audit.RequestMetadataOrBuilder getRequestMetadataOrBuilder() {
     return getRequestMetadata();
@@ -522,7 +522,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct request = 16;</code>
+   * <code>optional .google.protobuf.Struct request = 16;</code>
    */
   public boolean hasRequest() {
     return request_ != null;
@@ -537,7 +537,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct request = 16;</code>
+   * <code>optional .google.protobuf.Struct request = 16;</code>
    */
   public com.google.protobuf.Struct getRequest() {
     return request_ == null ? com.google.protobuf.Struct.getDefaultInstance() : request_;
@@ -552,7 +552,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct request = 16;</code>
+   * <code>optional .google.protobuf.Struct request = 16;</code>
    */
   public com.google.protobuf.StructOrBuilder getRequestOrBuilder() {
     return getRequest();
@@ -570,7 +570,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct response = 17;</code>
+   * <code>optional .google.protobuf.Struct response = 17;</code>
    */
   public boolean hasResponse() {
     return response_ != null;
@@ -585,7 +585,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct response = 17;</code>
+   * <code>optional .google.protobuf.Struct response = 17;</code>
    */
   public com.google.protobuf.Struct getResponse() {
     return response_ == null ? com.google.protobuf.Struct.getDefaultInstance() : response_;
@@ -600,7 +600,7 @@ public  final class AuditLog extends
    * name will be indicated in the `&#64;type` property.
    * </pre>
    *
-   * <code>.google.protobuf.Struct response = 17;</code>
+   * <code>optional .google.protobuf.Struct response = 17;</code>
    */
   public com.google.protobuf.StructOrBuilder getResponseOrBuilder() {
     return getResponse();
@@ -614,7 +614,7 @@ public  final class AuditLog extends
    * activities.
    * </pre>
    *
-   * <code>.google.protobuf.Any service_data = 15;</code>
+   * <code>optional .google.protobuf.Any service_data = 15;</code>
    */
   public boolean hasServiceData() {
     return serviceData_ != null;
@@ -625,7 +625,7 @@ public  final class AuditLog extends
    * activities.
    * </pre>
    *
-   * <code>.google.protobuf.Any service_data = 15;</code>
+   * <code>optional .google.protobuf.Any service_data = 15;</code>
    */
   public com.google.protobuf.Any getServiceData() {
     return serviceData_ == null ? com.google.protobuf.Any.getDefaultInstance() : serviceData_;
@@ -636,7 +636,7 @@ public  final class AuditLog extends
    * activities.
    * </pre>
    *
-   * <code>.google.protobuf.Any service_data = 15;</code>
+   * <code>optional .google.protobuf.Any service_data = 15;</code>
    */
   public com.google.protobuf.AnyOrBuilder getServiceDataOrBuilder() {
     return getServiceData();
@@ -800,7 +800,7 @@ public  final class AuditLog extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SERVICE_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getServiceName().hashCode();
     hash = (37 * hash) + METHOD_NAME_FIELD_NUMBER;
@@ -843,17 +843,6 @@ public  final class AuditLog extends
     return hash;
   }
 
-  public static com.google.cloud.audit.AuditLog parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.audit.AuditLog parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.audit.AuditLog parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1224,7 +1213,7 @@ public  final class AuditLog extends
      * `"datastore.googleapis.com"`.
      * </pre>
      *
-     * <code>string service_name = 7;</code>
+     * <code>optional string service_name = 7;</code>
      */
     public java.lang.String getServiceName() {
       java.lang.Object ref = serviceName_;
@@ -1244,7 +1233,7 @@ public  final class AuditLog extends
      * `"datastore.googleapis.com"`.
      * </pre>
      *
-     * <code>string service_name = 7;</code>
+     * <code>optional string service_name = 7;</code>
      */
     public com.google.protobuf.ByteString
         getServiceNameBytes() {
@@ -1265,7 +1254,7 @@ public  final class AuditLog extends
      * `"datastore.googleapis.com"`.
      * </pre>
      *
-     * <code>string service_name = 7;</code>
+     * <code>optional string service_name = 7;</code>
      */
     public Builder setServiceName(
         java.lang.String value) {
@@ -1283,7 +1272,7 @@ public  final class AuditLog extends
      * `"datastore.googleapis.com"`.
      * </pre>
      *
-     * <code>string service_name = 7;</code>
+     * <code>optional string service_name = 7;</code>
      */
     public Builder clearServiceName() {
       
@@ -1297,7 +1286,7 @@ public  final class AuditLog extends
      * `"datastore.googleapis.com"`.
      * </pre>
      *
-     * <code>string service_name = 7;</code>
+     * <code>optional string service_name = 7;</code>
      */
     public Builder setServiceNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1321,7 +1310,7 @@ public  final class AuditLog extends
      *     "google.logging.v1.LoggingService.DeleteLog"
      * </pre>
      *
-     * <code>string method_name = 8;</code>
+     * <code>optional string method_name = 8;</code>
      */
     public java.lang.String getMethodName() {
       java.lang.Object ref = methodName_;
@@ -1344,7 +1333,7 @@ public  final class AuditLog extends
      *     "google.logging.v1.LoggingService.DeleteLog"
      * </pre>
      *
-     * <code>string method_name = 8;</code>
+     * <code>optional string method_name = 8;</code>
      */
     public com.google.protobuf.ByteString
         getMethodNameBytes() {
@@ -1368,7 +1357,7 @@ public  final class AuditLog extends
      *     "google.logging.v1.LoggingService.DeleteLog"
      * </pre>
      *
-     * <code>string method_name = 8;</code>
+     * <code>optional string method_name = 8;</code>
      */
     public Builder setMethodName(
         java.lang.String value) {
@@ -1389,7 +1378,7 @@ public  final class AuditLog extends
      *     "google.logging.v1.LoggingService.DeleteLog"
      * </pre>
      *
-     * <code>string method_name = 8;</code>
+     * <code>optional string method_name = 8;</code>
      */
     public Builder clearMethodName() {
       
@@ -1406,7 +1395,7 @@ public  final class AuditLog extends
      *     "google.logging.v1.LoggingService.DeleteLog"
      * </pre>
      *
-     * <code>string method_name = 8;</code>
+     * <code>optional string method_name = 8;</code>
      */
     public Builder setMethodNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1430,7 +1419,7 @@ public  final class AuditLog extends
      *     "shelves/SHELF_ID/books/BOOK_ID"
      * </pre>
      *
-     * <code>string resource_name = 11;</code>
+     * <code>optional string resource_name = 11;</code>
      */
     public java.lang.String getResourceName() {
       java.lang.Object ref = resourceName_;
@@ -1453,7 +1442,7 @@ public  final class AuditLog extends
      *     "shelves/SHELF_ID/books/BOOK_ID"
      * </pre>
      *
-     * <code>string resource_name = 11;</code>
+     * <code>optional string resource_name = 11;</code>
      */
     public com.google.protobuf.ByteString
         getResourceNameBytes() {
@@ -1477,7 +1466,7 @@ public  final class AuditLog extends
      *     "shelves/SHELF_ID/books/BOOK_ID"
      * </pre>
      *
-     * <code>string resource_name = 11;</code>
+     * <code>optional string resource_name = 11;</code>
      */
     public Builder setResourceName(
         java.lang.String value) {
@@ -1498,7 +1487,7 @@ public  final class AuditLog extends
      *     "shelves/SHELF_ID/books/BOOK_ID"
      * </pre>
      *
-     * <code>string resource_name = 11;</code>
+     * <code>optional string resource_name = 11;</code>
      */
     public Builder clearResourceName() {
       
@@ -1515,7 +1504,7 @@ public  final class AuditLog extends
      *     "shelves/SHELF_ID/books/BOOK_ID"
      * </pre>
      *
-     * <code>string resource_name = 11;</code>
+     * <code>optional string resource_name = 11;</code>
      */
     public Builder setResourceNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1536,7 +1525,7 @@ public  final class AuditLog extends
      * if applicable.
      * </pre>
      *
-     * <code>int64 num_response_items = 12;</code>
+     * <code>optional int64 num_response_items = 12;</code>
      */
     public long getNumResponseItems() {
       return numResponseItems_;
@@ -1547,7 +1536,7 @@ public  final class AuditLog extends
      * if applicable.
      * </pre>
      *
-     * <code>int64 num_response_items = 12;</code>
+     * <code>optional int64 num_response_items = 12;</code>
      */
     public Builder setNumResponseItems(long value) {
       
@@ -1561,7 +1550,7 @@ public  final class AuditLog extends
      * if applicable.
      * </pre>
      *
-     * <code>int64 num_response_items = 12;</code>
+     * <code>optional int64 num_response_items = 12;</code>
      */
     public Builder clearNumResponseItems() {
       
@@ -1578,7 +1567,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public boolean hasStatus() {
       return statusBuilder_ != null || status_ != null;
@@ -1588,7 +1577,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.Status getStatus() {
       if (statusBuilder_ == null) {
@@ -1602,7 +1591,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder setStatus(com.google.rpc.Status value) {
       if (statusBuilder_ == null) {
@@ -1622,7 +1611,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder setStatus(
         com.google.rpc.Status.Builder builderForValue) {
@@ -1640,7 +1629,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder mergeStatus(com.google.rpc.Status value) {
       if (statusBuilder_ == null) {
@@ -1662,7 +1651,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder clearStatus() {
       if (statusBuilder_ == null) {
@@ -1680,7 +1669,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.Status.Builder getStatusBuilder() {
       
@@ -1692,7 +1681,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.StatusOrBuilder getStatusOrBuilder() {
       if (statusBuilder_ != null) {
@@ -1707,7 +1696,7 @@ public  final class AuditLog extends
      * The status of the overall operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> 
@@ -1731,7 +1720,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public boolean hasAuthenticationInfo() {
       return authenticationInfoBuilder_ != null || authenticationInfo_ != null;
@@ -1741,7 +1730,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public com.google.cloud.audit.AuthenticationInfo getAuthenticationInfo() {
       if (authenticationInfoBuilder_ == null) {
@@ -1755,7 +1744,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public Builder setAuthenticationInfo(com.google.cloud.audit.AuthenticationInfo value) {
       if (authenticationInfoBuilder_ == null) {
@@ -1775,7 +1764,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public Builder setAuthenticationInfo(
         com.google.cloud.audit.AuthenticationInfo.Builder builderForValue) {
@@ -1793,7 +1782,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public Builder mergeAuthenticationInfo(com.google.cloud.audit.AuthenticationInfo value) {
       if (authenticationInfoBuilder_ == null) {
@@ -1815,7 +1804,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public Builder clearAuthenticationInfo() {
       if (authenticationInfoBuilder_ == null) {
@@ -1833,7 +1822,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public com.google.cloud.audit.AuthenticationInfo.Builder getAuthenticationInfoBuilder() {
       
@@ -1845,7 +1834,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     public com.google.cloud.audit.AuthenticationInfoOrBuilder getAuthenticationInfoOrBuilder() {
       if (authenticationInfoBuilder_ != null) {
@@ -1860,7 +1849,7 @@ public  final class AuditLog extends
      * Authentication information.
      * </pre>
      *
-     * <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
+     * <code>optional .google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.audit.AuthenticationInfo, com.google.cloud.audit.AuthenticationInfo.Builder, com.google.cloud.audit.AuthenticationInfoOrBuilder> 
@@ -2232,7 +2221,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public boolean hasRequestMetadata() {
       return requestMetadataBuilder_ != null || requestMetadata_ != null;
@@ -2242,7 +2231,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public com.google.cloud.audit.RequestMetadata getRequestMetadata() {
       if (requestMetadataBuilder_ == null) {
@@ -2256,7 +2245,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public Builder setRequestMetadata(com.google.cloud.audit.RequestMetadata value) {
       if (requestMetadataBuilder_ == null) {
@@ -2276,7 +2265,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public Builder setRequestMetadata(
         com.google.cloud.audit.RequestMetadata.Builder builderForValue) {
@@ -2294,7 +2283,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public Builder mergeRequestMetadata(com.google.cloud.audit.RequestMetadata value) {
       if (requestMetadataBuilder_ == null) {
@@ -2316,7 +2305,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public Builder clearRequestMetadata() {
       if (requestMetadataBuilder_ == null) {
@@ -2334,7 +2323,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public com.google.cloud.audit.RequestMetadata.Builder getRequestMetadataBuilder() {
       
@@ -2346,7 +2335,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     public com.google.cloud.audit.RequestMetadataOrBuilder getRequestMetadataOrBuilder() {
       if (requestMetadataBuilder_ != null) {
@@ -2361,7 +2350,7 @@ public  final class AuditLog extends
      * Metadata about the operation.
      * </pre>
      *
-     * <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
+     * <code>optional .google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.audit.RequestMetadata, com.google.cloud.audit.RequestMetadata.Builder, com.google.cloud.audit.RequestMetadataOrBuilder> 
@@ -2390,7 +2379,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public boolean hasRequest() {
       return requestBuilder_ != null || request_ != null;
@@ -2405,7 +2394,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public com.google.protobuf.Struct getRequest() {
       if (requestBuilder_ == null) {
@@ -2424,7 +2413,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public Builder setRequest(com.google.protobuf.Struct value) {
       if (requestBuilder_ == null) {
@@ -2449,7 +2438,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public Builder setRequest(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -2472,7 +2461,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public Builder mergeRequest(com.google.protobuf.Struct value) {
       if (requestBuilder_ == null) {
@@ -2499,7 +2488,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public Builder clearRequest() {
       if (requestBuilder_ == null) {
@@ -2522,7 +2511,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public com.google.protobuf.Struct.Builder getRequestBuilder() {
       
@@ -2539,7 +2528,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     public com.google.protobuf.StructOrBuilder getRequestOrBuilder() {
       if (requestBuilder_ != null) {
@@ -2559,7 +2548,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct request = 16;</code>
+     * <code>optional .google.protobuf.Struct request = 16;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -2588,7 +2577,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public boolean hasResponse() {
       return responseBuilder_ != null || response_ != null;
@@ -2603,7 +2592,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public com.google.protobuf.Struct getResponse() {
       if (responseBuilder_ == null) {
@@ -2622,7 +2611,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public Builder setResponse(com.google.protobuf.Struct value) {
       if (responseBuilder_ == null) {
@@ -2647,7 +2636,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public Builder setResponse(
         com.google.protobuf.Struct.Builder builderForValue) {
@@ -2670,7 +2659,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public Builder mergeResponse(com.google.protobuf.Struct value) {
       if (responseBuilder_ == null) {
@@ -2697,7 +2686,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public Builder clearResponse() {
       if (responseBuilder_ == null) {
@@ -2720,7 +2709,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public com.google.protobuf.Struct.Builder getResponseBuilder() {
       
@@ -2737,7 +2726,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     public com.google.protobuf.StructOrBuilder getResponseOrBuilder() {
       if (responseBuilder_ != null) {
@@ -2757,7 +2746,7 @@ public  final class AuditLog extends
      * name will be indicated in the `&#64;type` property.
      * </pre>
      *
-     * <code>.google.protobuf.Struct response = 17;</code>
+     * <code>optional .google.protobuf.Struct response = 17;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> 
@@ -2782,7 +2771,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public boolean hasServiceData() {
       return serviceDataBuilder_ != null || serviceData_ != null;
@@ -2793,7 +2782,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public com.google.protobuf.Any getServiceData() {
       if (serviceDataBuilder_ == null) {
@@ -2808,7 +2797,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public Builder setServiceData(com.google.protobuf.Any value) {
       if (serviceDataBuilder_ == null) {
@@ -2829,7 +2818,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public Builder setServiceData(
         com.google.protobuf.Any.Builder builderForValue) {
@@ -2848,7 +2837,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public Builder mergeServiceData(com.google.protobuf.Any value) {
       if (serviceDataBuilder_ == null) {
@@ -2871,7 +2860,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public Builder clearServiceData() {
       if (serviceDataBuilder_ == null) {
@@ -2890,7 +2879,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public com.google.protobuf.Any.Builder getServiceDataBuilder() {
       
@@ -2903,7 +2892,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     public com.google.protobuf.AnyOrBuilder getServiceDataOrBuilder() {
       if (serviceDataBuilder_ != null) {
@@ -2919,7 +2908,7 @@ public  final class AuditLog extends
      * activities.
      * </pre>
      *
-     * <code>.google.protobuf.Any service_data = 15;</code>
+     * <code>optional .google.protobuf.Any service_data = 15;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 

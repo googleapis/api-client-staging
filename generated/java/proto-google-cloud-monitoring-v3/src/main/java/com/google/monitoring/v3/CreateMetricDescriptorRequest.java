@@ -97,7 +97,7 @@ public  final class CreateMetricDescriptorRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -117,7 +117,7 @@ public  final class CreateMetricDescriptorRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -141,7 +141,7 @@ public  final class CreateMetricDescriptorRequest extends
    * descriptor.
    * </pre>
    *
-   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   public boolean hasMetricDescriptor() {
     return metricDescriptor_ != null;
@@ -152,7 +152,7 @@ public  final class CreateMetricDescriptorRequest extends
    * descriptor.
    * </pre>
    *
-   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   public com.google.api.MetricDescriptor getMetricDescriptor() {
     return metricDescriptor_ == null ? com.google.api.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
@@ -163,7 +163,7 @@ public  final class CreateMetricDescriptorRequest extends
    * descriptor.
    * </pre>
    *
-   * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+   * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
    */
   public com.google.api.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
     return getMetricDescriptor();
@@ -233,7 +233,7 @@ public  final class CreateMetricDescriptorRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     if (hasMetricDescriptor()) {
@@ -245,17 +245,6 @@ public  final class CreateMetricDescriptorRequest extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.CreateMetricDescriptorRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.CreateMetricDescriptorRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.CreateMetricDescriptorRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -490,7 +479,7 @@ public  final class CreateMetricDescriptorRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -510,7 +499,7 @@ public  final class CreateMetricDescriptorRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -531,7 +520,7 @@ public  final class CreateMetricDescriptorRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -549,7 +538,7 @@ public  final class CreateMetricDescriptorRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder clearName() {
       
@@ -563,7 +552,7 @@ public  final class CreateMetricDescriptorRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -586,7 +575,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public boolean hasMetricDescriptor() {
       return metricDescriptorBuilder_ != null || metricDescriptor_ != null;
@@ -597,7 +586,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public com.google.api.MetricDescriptor getMetricDescriptor() {
       if (metricDescriptorBuilder_ == null) {
@@ -612,7 +601,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public Builder setMetricDescriptor(com.google.api.MetricDescriptor value) {
       if (metricDescriptorBuilder_ == null) {
@@ -633,7 +622,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public Builder setMetricDescriptor(
         com.google.api.MetricDescriptor.Builder builderForValue) {
@@ -652,7 +641,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public Builder mergeMetricDescriptor(com.google.api.MetricDescriptor value) {
       if (metricDescriptorBuilder_ == null) {
@@ -675,7 +664,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public Builder clearMetricDescriptor() {
       if (metricDescriptorBuilder_ == null) {
@@ -694,7 +683,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public com.google.api.MetricDescriptor.Builder getMetricDescriptorBuilder() {
       
@@ -707,7 +696,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     public com.google.api.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
       if (metricDescriptorBuilder_ != null) {
@@ -723,7 +712,7 @@ public  final class CreateMetricDescriptorRequest extends
      * descriptor.
      * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * <code>optional .google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.api.MetricDescriptor, com.google.api.MetricDescriptor.Builder, com.google.api.MetricDescriptorOrBuilder> 

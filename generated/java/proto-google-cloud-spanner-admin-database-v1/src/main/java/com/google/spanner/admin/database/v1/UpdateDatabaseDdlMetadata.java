@@ -111,7 +111,7 @@ public  final class UpdateDatabaseDdlMetadata extends
    * The database being modified.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   public java.lang.String getDatabase() {
     java.lang.Object ref = database_;
@@ -130,7 +130,7 @@ public  final class UpdateDatabaseDdlMetadata extends
    * The database being modified.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   public com.google.protobuf.ByteString
       getDatabaseBytes() {
@@ -334,7 +334,7 @@ public  final class UpdateDatabaseDdlMetadata extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + DATABASE_FIELD_NUMBER;
     hash = (53 * hash) + getDatabase().hashCode();
     if (getStatementsCount() > 0) {
@@ -350,17 +350,6 @@ public  final class UpdateDatabaseDdlMetadata extends
     return hash;
   }
 
-  public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -644,7 +633,7 @@ public  final class UpdateDatabaseDdlMetadata extends
      * The database being modified.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public java.lang.String getDatabase() {
       java.lang.Object ref = database_;
@@ -663,7 +652,7 @@ public  final class UpdateDatabaseDdlMetadata extends
      * The database being modified.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public com.google.protobuf.ByteString
         getDatabaseBytes() {
@@ -683,7 +672,7 @@ public  final class UpdateDatabaseDdlMetadata extends
      * The database being modified.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder setDatabase(
         java.lang.String value) {
@@ -700,7 +689,7 @@ public  final class UpdateDatabaseDdlMetadata extends
      * The database being modified.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder clearDatabase() {
       
@@ -713,7 +702,7 @@ public  final class UpdateDatabaseDdlMetadata extends
      * The database being modified.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder setDatabaseBytes(
         com.google.protobuf.ByteString value) {

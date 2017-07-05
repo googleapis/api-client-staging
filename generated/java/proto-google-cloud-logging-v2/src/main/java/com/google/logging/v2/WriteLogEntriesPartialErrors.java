@@ -53,10 +53,9 @@ public  final class WriteLogEntriesPartialErrors extends
               mutable_bitField0_ |= 0x00000001;
             }
             com.google.protobuf.MapEntry<java.lang.Integer, com.google.rpc.Status>
-            logEntryErrors__ = input.readMessage(
+            logEntryErrors = input.readMessage(
                 LogEntryErrorsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            logEntryErrors_.getMutableMap().put(
-                logEntryErrors__.getKey(), logEntryErrors__.getValue());
+            logEntryErrors_.getMutableMap().put(logEntryErrors.getKey(), logEntryErrors.getValue());
             break;
           }
         }
@@ -213,12 +212,15 @@ public  final class WriteLogEntriesPartialErrors extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    com.google.protobuf.GeneratedMessageV3
-      .serializeIntegerMapTo(
-        output,
-        internalGetLogEntryErrors(),
-        LogEntryErrorsDefaultEntryHolder.defaultEntry,
-        1);
+    for (java.util.Map.Entry<java.lang.Integer, com.google.rpc.Status> entry
+         : internalGetLogEntryErrors().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.Integer, com.google.rpc.Status>
+      logEntryErrors = LogEntryErrorsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      output.writeMessage(1, logEntryErrors);
+    }
   }
 
   public int getSerializedSize() {
@@ -229,12 +231,12 @@ public  final class WriteLogEntriesPartialErrors extends
     for (java.util.Map.Entry<java.lang.Integer, com.google.rpc.Status> entry
          : internalGetLogEntryErrors().getMap().entrySet()) {
       com.google.protobuf.MapEntry<java.lang.Integer, com.google.rpc.Status>
-      logEntryErrors__ = LogEntryErrorsDefaultEntryHolder.defaultEntry.newBuilderForType()
+      logEntryErrors = LogEntryErrorsDefaultEntryHolder.defaultEntry.newBuilderForType()
           .setKey(entry.getKey())
           .setValue(entry.getValue())
           .build();
       size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, logEntryErrors__);
+          .computeMessageSize(1, logEntryErrors);
     }
     memoizedSize = size;
     return size;
@@ -263,7 +265,7 @@ public  final class WriteLogEntriesPartialErrors extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (!internalGetLogEntryErrors().getMap().isEmpty()) {
       hash = (37 * hash) + LOG_ENTRY_ERRORS_FIELD_NUMBER;
       hash = (53 * hash) + internalGetLogEntryErrors().hashCode();
@@ -273,17 +275,6 @@ public  final class WriteLogEntriesPartialErrors extends
     return hash;
   }
 
-  public static com.google.logging.v2.WriteLogEntriesPartialErrors parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.WriteLogEntriesPartialErrors parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.WriteLogEntriesPartialErrors parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -628,8 +619,7 @@ public  final class WriteLogEntriesPartialErrors extends
     }
 
     public Builder clearLogEntryErrors() {
-      internalGetMutableLogEntryErrors().getMutableMap()
-          .clear();
+      getMutableLogEntryErrors().clear();
       return this;
     }
     /**
@@ -647,8 +637,7 @@ public  final class WriteLogEntriesPartialErrors extends
     public Builder removeLogEntryErrors(
         int key) {
       
-      internalGetMutableLogEntryErrors().getMutableMap()
-          .remove(key);
+      getMutableLogEntryErrors().remove(key);
       return this;
     }
     /**
@@ -675,8 +664,7 @@ public  final class WriteLogEntriesPartialErrors extends
         com.google.rpc.Status value) {
       
       if (value == null) { throw new java.lang.NullPointerException(); }
-      internalGetMutableLogEntryErrors().getMutableMap()
-          .put(key, value);
+      getMutableLogEntryErrors().put(key, value);
       return this;
     }
     /**
@@ -693,8 +681,7 @@ public  final class WriteLogEntriesPartialErrors extends
 
     public Builder putAllLogEntryErrors(
         java.util.Map<java.lang.Integer, com.google.rpc.Status> values) {
-      internalGetMutableLogEntryErrors().getMutableMap()
-          .putAll(values);
+      getMutableLogEntryErrors().putAll(values);
       return this;
     }
     public final Builder setUnknownFields(

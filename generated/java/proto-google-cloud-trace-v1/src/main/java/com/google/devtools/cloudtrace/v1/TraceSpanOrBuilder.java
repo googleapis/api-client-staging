@@ -13,7 +13,7 @@ public interface TraceSpanOrBuilder extends
    * unique within a trace.
    * </pre>
    *
-   * <code>fixed64 span_id = 1;</code>
+   * <code>optional fixed64 span_id = 1;</code>
    */
   long getSpanId();
 
@@ -24,7 +24,7 @@ public interface TraceSpanOrBuilder extends
    * and `RPC_SERVER` to identify queueing latency associated with the span.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
    */
   int getKindValue();
   /**
@@ -34,7 +34,7 @@ public interface TraceSpanOrBuilder extends
    * and `RPC_SERVER` to identify queueing latency associated with the span.
    * </pre>
    *
-   * <code>.google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
+   * <code>optional .google.devtools.cloudtrace.v1.TraceSpan.SpanKind kind = 2;</code>
    */
   com.google.devtools.cloudtrace.v1.TraceSpan.SpanKind getKind();
 
@@ -48,7 +48,7 @@ public interface TraceSpanOrBuilder extends
    * cross-trace spans.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   java.lang.String getName();
   /**
@@ -61,7 +61,7 @@ public interface TraceSpanOrBuilder extends
    * cross-trace spans.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -71,7 +71,7 @@ public interface TraceSpanOrBuilder extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
    */
   boolean hasStartTime();
   /**
@@ -79,7 +79,7 @@ public interface TraceSpanOrBuilder extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -87,7 +87,7 @@ public interface TraceSpanOrBuilder extends
    * Start time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -96,7 +96,7 @@ public interface TraceSpanOrBuilder extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
    */
   boolean hasEndTime();
   /**
@@ -104,7 +104,7 @@ public interface TraceSpanOrBuilder extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -112,7 +112,7 @@ public interface TraceSpanOrBuilder extends
    * End time of the span in nanoseconds from the UNIX epoch.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 5;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 5;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 
@@ -121,7 +121,7 @@ public interface TraceSpanOrBuilder extends
    * ID of the parent span, if any. Optional.
    * </pre>
    *
-   * <code>fixed64 parent_span_id = 6;</code>
+   * <code>optional fixed64 parent_span_id = 6;</code>
    */
   long getParentSpanId();
 

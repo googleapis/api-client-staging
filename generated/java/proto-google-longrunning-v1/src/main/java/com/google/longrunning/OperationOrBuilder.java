@@ -14,7 +14,7 @@ public interface OperationOrBuilder extends
    * `name` should have the format of `operations/some/unique/name`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -24,7 +24,7 @@ public interface OperationOrBuilder extends
    * `name` should have the format of `operations/some/unique/name`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -37,7 +37,7 @@ public interface OperationOrBuilder extends
    * long-running operation should document the metadata type, if any.
    * </pre>
    *
-   * <code>.google.protobuf.Any metadata = 2;</code>
+   * <code>optional .google.protobuf.Any metadata = 2;</code>
    */
   boolean hasMetadata();
   /**
@@ -48,7 +48,7 @@ public interface OperationOrBuilder extends
    * long-running operation should document the metadata type, if any.
    * </pre>
    *
-   * <code>.google.protobuf.Any metadata = 2;</code>
+   * <code>optional .google.protobuf.Any metadata = 2;</code>
    */
   com.google.protobuf.Any getMetadata();
   /**
@@ -59,7 +59,7 @@ public interface OperationOrBuilder extends
    * long-running operation should document the metadata type, if any.
    * </pre>
    *
-   * <code>.google.protobuf.Any metadata = 2;</code>
+   * <code>optional .google.protobuf.Any metadata = 2;</code>
    */
   com.google.protobuf.AnyOrBuilder getMetadataOrBuilder();
 
@@ -70,7 +70,7 @@ public interface OperationOrBuilder extends
    * available.
    * </pre>
    *
-   * <code>bool done = 3;</code>
+   * <code>optional bool done = 3;</code>
    */
   boolean getDone();
 
@@ -79,7 +79,7 @@ public interface OperationOrBuilder extends
    * The error result of the operation in case of failure or cancellation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 4;</code>
+   * <code>optional .google.rpc.Status error = 4;</code>
    */
   com.google.rpc.Status getError();
   /**
@@ -87,7 +87,7 @@ public interface OperationOrBuilder extends
    * The error result of the operation in case of failure or cancellation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 4;</code>
+   * <code>optional .google.rpc.Status error = 4;</code>
    */
   com.google.rpc.StatusOrBuilder getErrorOrBuilder();
 
@@ -103,7 +103,7 @@ public interface OperationOrBuilder extends
    * `TakeSnapshotResponse`.
    * </pre>
    *
-   * <code>.google.protobuf.Any response = 5;</code>
+   * <code>optional .google.protobuf.Any response = 5;</code>
    */
   com.google.protobuf.Any getResponse();
   /**
@@ -118,7 +118,7 @@ public interface OperationOrBuilder extends
    * `TakeSnapshotResponse`.
    * </pre>
    *
-   * <code>.google.protobuf.Any response = 5;</code>
+   * <code>optional .google.protobuf.Any response = 5;</code>
    */
   com.google.protobuf.AnyOrBuilder getResponseOrBuilder();
 

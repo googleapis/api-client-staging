@@ -149,7 +149,7 @@ public  final class Endpoint extends
    * The canonical name of this endpoint.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -168,7 +168,7 @@ public  final class Endpoint extends
    * The canonical name of this endpoint.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -341,7 +341,7 @@ public  final class Endpoint extends
    * For example, "8.8.8.8" or "myservice.appspot.com".
    * </pre>
    *
-   * <code>string target = 101;</code>
+   * <code>optional string target = 101;</code>
    */
   public java.lang.String getTarget() {
     java.lang.Object ref = target_;
@@ -363,7 +363,7 @@ public  final class Endpoint extends
    * For example, "8.8.8.8" or "myservice.appspot.com".
    * </pre>
    *
-   * <code>string target = 101;</code>
+   * <code>optional string target = 101;</code>
    */
   public com.google.protobuf.ByteString
       getTargetBytes() {
@@ -391,7 +391,7 @@ public  final class Endpoint extends
    * allowed to proceed.
    * </pre>
    *
-   * <code>bool allow_cors = 5;</code>
+   * <code>optional bool allow_cors = 5;</code>
    */
   public boolean getAllowCors() {
     return allowCors_;
@@ -505,7 +505,7 @@ public  final class Endpoint extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     if (getAliasesCount() > 0) {
@@ -530,17 +530,6 @@ public  final class Endpoint extends
     return hash;
   }
 
-  public static com.google.api.Endpoint parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.Endpoint parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.Endpoint parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -841,7 +830,7 @@ public  final class Endpoint extends
      * The canonical name of this endpoint.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -860,7 +849,7 @@ public  final class Endpoint extends
      * The canonical name of this endpoint.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -880,7 +869,7 @@ public  final class Endpoint extends
      * The canonical name of this endpoint.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -897,7 +886,7 @@ public  final class Endpoint extends
      * The canonical name of this endpoint.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -910,7 +899,7 @@ public  final class Endpoint extends
      * The canonical name of this endpoint.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1350,7 +1339,7 @@ public  final class Endpoint extends
      * For example, "8.8.8.8" or "myservice.appspot.com".
      * </pre>
      *
-     * <code>string target = 101;</code>
+     * <code>optional string target = 101;</code>
      */
     public java.lang.String getTarget() {
       java.lang.Object ref = target_;
@@ -1372,7 +1361,7 @@ public  final class Endpoint extends
      * For example, "8.8.8.8" or "myservice.appspot.com".
      * </pre>
      *
-     * <code>string target = 101;</code>
+     * <code>optional string target = 101;</code>
      */
     public com.google.protobuf.ByteString
         getTargetBytes() {
@@ -1395,7 +1384,7 @@ public  final class Endpoint extends
      * For example, "8.8.8.8" or "myservice.appspot.com".
      * </pre>
      *
-     * <code>string target = 101;</code>
+     * <code>optional string target = 101;</code>
      */
     public Builder setTarget(
         java.lang.String value) {
@@ -1415,7 +1404,7 @@ public  final class Endpoint extends
      * For example, "8.8.8.8" or "myservice.appspot.com".
      * </pre>
      *
-     * <code>string target = 101;</code>
+     * <code>optional string target = 101;</code>
      */
     public Builder clearTarget() {
       
@@ -1431,7 +1420,7 @@ public  final class Endpoint extends
      * For example, "8.8.8.8" or "myservice.appspot.com".
      * </pre>
      *
-     * <code>string target = 101;</code>
+     * <code>optional string target = 101;</code>
      */
     public Builder setTargetBytes(
         com.google.protobuf.ByteString value) {
@@ -1456,7 +1445,7 @@ public  final class Endpoint extends
      * allowed to proceed.
      * </pre>
      *
-     * <code>bool allow_cors = 5;</code>
+     * <code>optional bool allow_cors = 5;</code>
      */
     public boolean getAllowCors() {
       return allowCors_;
@@ -1471,7 +1460,7 @@ public  final class Endpoint extends
      * allowed to proceed.
      * </pre>
      *
-     * <code>bool allow_cors = 5;</code>
+     * <code>optional bool allow_cors = 5;</code>
      */
     public Builder setAllowCors(boolean value) {
       
@@ -1489,7 +1478,7 @@ public  final class Endpoint extends
      * allowed to proceed.
      * </pre>
      *
-     * <code>bool allow_cors = 5;</code>
+     * <code>optional bool allow_cors = 5;</code>
      */
     public Builder clearAllowCors() {
       

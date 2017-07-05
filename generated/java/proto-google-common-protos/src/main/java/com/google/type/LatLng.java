@@ -122,7 +122,7 @@ public  final class LatLng extends
    * The latitude in degrees. It must be in the range [-90.0, +90.0].
    * </pre>
    *
-   * <code>double latitude = 1;</code>
+   * <code>optional double latitude = 1;</code>
    */
   public double getLatitude() {
     return latitude_;
@@ -135,7 +135,7 @@ public  final class LatLng extends
    * The longitude in degrees. It must be in the range [-180.0, +180.0].
    * </pre>
    *
-   * <code>double longitude = 2;</code>
+   * <code>optional double longitude = 2;</code>
    */
   public double getLongitude() {
     return longitude_;
@@ -207,7 +207,7 @@ public  final class LatLng extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + LATITUDE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getLatitude()));
@@ -219,17 +219,6 @@ public  final class LatLng extends
     return hash;
   }
 
-  public static com.google.type.LatLng parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.type.LatLng parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.type.LatLng parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -488,7 +477,7 @@ public  final class LatLng extends
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      * </pre>
      *
-     * <code>double latitude = 1;</code>
+     * <code>optional double latitude = 1;</code>
      */
     public double getLatitude() {
       return latitude_;
@@ -498,7 +487,7 @@ public  final class LatLng extends
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      * </pre>
      *
-     * <code>double latitude = 1;</code>
+     * <code>optional double latitude = 1;</code>
      */
     public Builder setLatitude(double value) {
       
@@ -511,7 +500,7 @@ public  final class LatLng extends
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      * </pre>
      *
-     * <code>double latitude = 1;</code>
+     * <code>optional double latitude = 1;</code>
      */
     public Builder clearLatitude() {
       
@@ -526,7 +515,7 @@ public  final class LatLng extends
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      * </pre>
      *
-     * <code>double longitude = 2;</code>
+     * <code>optional double longitude = 2;</code>
      */
     public double getLongitude() {
       return longitude_;
@@ -536,7 +525,7 @@ public  final class LatLng extends
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      * </pre>
      *
-     * <code>double longitude = 2;</code>
+     * <code>optional double longitude = 2;</code>
      */
     public Builder setLongitude(double value) {
       
@@ -549,7 +538,7 @@ public  final class LatLng extends
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      * </pre>
      *
-     * <code>double longitude = 2;</code>
+     * <code>optional double longitude = 2;</code>
      */
     public Builder clearLongitude() {
       

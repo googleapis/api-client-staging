@@ -191,7 +191,7 @@ public  final class StreamingPullResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getReceivedMessagesCount() > 0) {
       hash = (37 * hash) + RECEIVED_MESSAGES_FIELD_NUMBER;
       hash = (53 * hash) + getReceivedMessagesList().hashCode();
@@ -201,17 +201,6 @@ public  final class StreamingPullResponse extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.StreamingPullResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.StreamingPullResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.StreamingPullResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

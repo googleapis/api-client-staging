@@ -12,7 +12,7 @@ public interface TextSpanOrBuilder extends
    * The content of the output text.
    * </pre>
    *
-   * <code>string content = 1;</code>
+   * <code>optional string content = 1;</code>
    */
   java.lang.String getContent();
   /**
@@ -20,7 +20,7 @@ public interface TextSpanOrBuilder extends
    * The content of the output text.
    * </pre>
    *
-   * <code>string content = 1;</code>
+   * <code>optional string content = 1;</code>
    */
   com.google.protobuf.ByteString
       getContentBytes();
@@ -31,7 +31,7 @@ public interface TextSpanOrBuilder extends
    * document according to the [EncodingType][google.cloud.language.v1.EncodingType] specified in the API request.
    * </pre>
    *
-   * <code>int32 begin_offset = 2;</code>
+   * <code>optional int32 begin_offset = 2;</code>
    */
   int getBeginOffset();
 }

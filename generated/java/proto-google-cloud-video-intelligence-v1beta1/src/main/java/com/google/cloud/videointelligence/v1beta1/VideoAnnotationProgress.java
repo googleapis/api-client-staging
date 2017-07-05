@@ -116,7 +116,7 @@ public  final class VideoAnnotationProgress extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>string input_uri = 1;</code>
+   * <code>optional string input_uri = 1;</code>
    */
   public java.lang.String getInputUri() {
     java.lang.Object ref = inputUri_;
@@ -136,7 +136,7 @@ public  final class VideoAnnotationProgress extends
    * [Google Cloud Storage](https://cloud.google.com/storage/).
    * </pre>
    *
-   * <code>string input_uri = 1;</code>
+   * <code>optional string input_uri = 1;</code>
    */
   public com.google.protobuf.ByteString
       getInputUriBytes() {
@@ -160,7 +160,7 @@ public  final class VideoAnnotationProgress extends
    * Guaranteed to be 100 when fully processed.
    * </pre>
    *
-   * <code>int32 progress_percent = 2;</code>
+   * <code>optional int32 progress_percent = 2;</code>
    */
   public int getProgressPercent() {
     return progressPercent_;
@@ -173,7 +173,7 @@ public  final class VideoAnnotationProgress extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -183,7 +183,7 @@ public  final class VideoAnnotationProgress extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -193,7 +193,7 @@ public  final class VideoAnnotationProgress extends
    * Time when the request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -206,7 +206,7 @@ public  final class VideoAnnotationProgress extends
    * Time of the most recent update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp update_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
    */
   public boolean hasUpdateTime() {
     return updateTime_ != null;
@@ -216,7 +216,7 @@ public  final class VideoAnnotationProgress extends
    * Time of the most recent update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp update_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
    */
   public com.google.protobuf.Timestamp getUpdateTime() {
     return updateTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updateTime_;
@@ -226,7 +226,7 @@ public  final class VideoAnnotationProgress extends
    * Time of the most recent update.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp update_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getUpdateTimeOrBuilder() {
     return getUpdateTime();
@@ -317,7 +317,7 @@ public  final class VideoAnnotationProgress extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + INPUT_URI_FIELD_NUMBER;
     hash = (53 * hash) + getInputUri().hashCode();
     hash = (37 * hash) + PROGRESS_PERCENT_FIELD_NUMBER;
@@ -335,17 +335,6 @@ public  final class VideoAnnotationProgress extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationProgress parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationProgress parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.VideoAnnotationProgress parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -600,7 +589,7 @@ public  final class VideoAnnotationProgress extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * <code>optional string input_uri = 1;</code>
      */
     public java.lang.String getInputUri() {
       java.lang.Object ref = inputUri_;
@@ -620,7 +609,7 @@ public  final class VideoAnnotationProgress extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * <code>optional string input_uri = 1;</code>
      */
     public com.google.protobuf.ByteString
         getInputUriBytes() {
@@ -641,7 +630,7 @@ public  final class VideoAnnotationProgress extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * <code>optional string input_uri = 1;</code>
      */
     public Builder setInputUri(
         java.lang.String value) {
@@ -659,7 +648,7 @@ public  final class VideoAnnotationProgress extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * <code>optional string input_uri = 1;</code>
      */
     public Builder clearInputUri() {
       
@@ -673,7 +662,7 @@ public  final class VideoAnnotationProgress extends
      * [Google Cloud Storage](https://cloud.google.com/storage/).
      * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * <code>optional string input_uri = 1;</code>
      */
     public Builder setInputUriBytes(
         com.google.protobuf.ByteString value) {
@@ -694,7 +683,7 @@ public  final class VideoAnnotationProgress extends
      * Guaranteed to be 100 when fully processed.
      * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * <code>optional int32 progress_percent = 2;</code>
      */
     public int getProgressPercent() {
       return progressPercent_;
@@ -705,7 +694,7 @@ public  final class VideoAnnotationProgress extends
      * Guaranteed to be 100 when fully processed.
      * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * <code>optional int32 progress_percent = 2;</code>
      */
     public Builder setProgressPercent(int value) {
       
@@ -719,7 +708,7 @@ public  final class VideoAnnotationProgress extends
      * Guaranteed to be 100 when fully processed.
      * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * <code>optional int32 progress_percent = 2;</code>
      */
     public Builder clearProgressPercent() {
       
@@ -736,7 +725,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -746,7 +735,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -760,7 +749,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -780,7 +769,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -798,7 +787,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -820,7 +809,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -838,7 +827,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -850,7 +839,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -865,7 +854,7 @@ public  final class VideoAnnotationProgress extends
      * Time when the request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -889,7 +878,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public boolean hasUpdateTime() {
       return updateTimeBuilder_ != null || updateTime_ != null;
@@ -899,7 +888,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public com.google.protobuf.Timestamp getUpdateTime() {
       if (updateTimeBuilder_ == null) {
@@ -913,7 +902,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public Builder setUpdateTime(com.google.protobuf.Timestamp value) {
       if (updateTimeBuilder_ == null) {
@@ -933,7 +922,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public Builder setUpdateTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -951,7 +940,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public Builder mergeUpdateTime(com.google.protobuf.Timestamp value) {
       if (updateTimeBuilder_ == null) {
@@ -973,7 +962,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public Builder clearUpdateTime() {
       if (updateTimeBuilder_ == null) {
@@ -991,7 +980,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getUpdateTimeBuilder() {
       
@@ -1003,7 +992,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getUpdateTimeOrBuilder() {
       if (updateTimeBuilder_ != null) {
@@ -1018,7 +1007,7 @@ public  final class VideoAnnotationProgress extends
      * Time of the most recent update.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp update_time = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

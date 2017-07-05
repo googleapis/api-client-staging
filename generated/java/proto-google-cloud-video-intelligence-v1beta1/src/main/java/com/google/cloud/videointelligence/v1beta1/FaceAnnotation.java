@@ -110,7 +110,7 @@ public  final class FaceAnnotation extends
    * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
    * </pre>
    *
-   * <code>string thumbnail = 1;</code>
+   * <code>optional string thumbnail = 1;</code>
    */
   public java.lang.String getThumbnail() {
     java.lang.Object ref = thumbnail_;
@@ -129,7 +129,7 @@ public  final class FaceAnnotation extends
    * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
    * </pre>
    *
-   * <code>string thumbnail = 1;</code>
+   * <code>optional string thumbnail = 1;</code>
    */
   public com.google.protobuf.ByteString
       getThumbnailBytes() {
@@ -335,7 +335,7 @@ public  final class FaceAnnotation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + THUMBNAIL_FIELD_NUMBER;
     hash = (53 * hash) + getThumbnail().hashCode();
     if (getSegmentsCount() > 0) {
@@ -351,17 +351,6 @@ public  final class FaceAnnotation extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.FaceAnnotation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.FaceAnnotation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.FaceAnnotation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -669,7 +658,7 @@ public  final class FaceAnnotation extends
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
      * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * <code>optional string thumbnail = 1;</code>
      */
     public java.lang.String getThumbnail() {
       java.lang.Object ref = thumbnail_;
@@ -688,7 +677,7 @@ public  final class FaceAnnotation extends
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
      * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * <code>optional string thumbnail = 1;</code>
      */
     public com.google.protobuf.ByteString
         getThumbnailBytes() {
@@ -708,7 +697,7 @@ public  final class FaceAnnotation extends
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
      * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * <code>optional string thumbnail = 1;</code>
      */
     public Builder setThumbnail(
         java.lang.String value) {
@@ -725,7 +714,7 @@ public  final class FaceAnnotation extends
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
      * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * <code>optional string thumbnail = 1;</code>
      */
     public Builder clearThumbnail() {
       
@@ -738,7 +727,7 @@ public  final class FaceAnnotation extends
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
      * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * <code>optional string thumbnail = 1;</code>
      */
     public Builder setThumbnailBytes(
         com.google.protobuf.ByteString value) {

@@ -13,7 +13,7 @@ public interface GetSubscriptionRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   java.lang.String getSubscription();
   /**
@@ -22,7 +22,7 @@ public interface GetSubscriptionRequestOrBuilder extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   com.google.protobuf.ByteString
       getSubscriptionBytes();

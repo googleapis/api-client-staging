@@ -65,7 +65,7 @@ public interface StreamingRecognitionResultOrBuilder extends
    * the transcript and corresponding audio.
    * </pre>
    *
-   * <code>bool is_final = 2;</code>
+   * <code>optional bool is_final = 2;</code>
    */
   boolean getIsFinal();
 
@@ -78,7 +78,7 @@ public interface StreamingRecognitionResultOrBuilder extends
    * The default of 0.0 is a sentinel value indicating `stability` was not set.
    * </pre>
    *
-   * <code>float stability = 3;</code>
+   * <code>optional float stability = 3;</code>
    */
   float getStability();
 }

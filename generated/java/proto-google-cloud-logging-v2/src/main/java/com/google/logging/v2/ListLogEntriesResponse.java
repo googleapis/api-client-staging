@@ -160,7 +160,7 @@ public  final class ListLogEntriesResponse extends
    * or resource type, or to narrow the time range of the search.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -187,7 +187,7 @@ public  final class ListLogEntriesResponse extends
    * or resource type, or to narrow the time range of the search.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -264,7 +264,7 @@ public  final class ListLogEntriesResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getEntriesCount() > 0) {
       hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
       hash = (53 * hash) + getEntriesList().hashCode();
@@ -276,17 +276,6 @@ public  final class ListLogEntriesResponse extends
     return hash;
   }
 
-  public static com.google.logging.v2.ListLogEntriesResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.ListLogEntriesResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.ListLogEntriesResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -872,7 +861,7 @@ public  final class ListLogEntriesResponse extends
      * or resource type, or to narrow the time range of the search.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -899,7 +888,7 @@ public  final class ListLogEntriesResponse extends
      * or resource type, or to narrow the time range of the search.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -927,7 +916,7 @@ public  final class ListLogEntriesResponse extends
      * or resource type, or to narrow the time range of the search.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -952,7 +941,7 @@ public  final class ListLogEntriesResponse extends
      * or resource type, or to narrow the time range of the search.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -973,7 +962,7 @@ public  final class ListLogEntriesResponse extends
      * or resource type, or to narrow the time range of the search.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {

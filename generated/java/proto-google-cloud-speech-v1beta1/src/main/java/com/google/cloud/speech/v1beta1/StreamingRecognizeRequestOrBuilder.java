@@ -14,7 +14,7 @@ public interface StreamingRecognizeRequestOrBuilder extends
    * `streaming_config`  message.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
    */
   com.google.cloud.speech.v1beta1.StreamingRecognitionConfig getStreamingConfig();
   /**
@@ -24,7 +24,7 @@ public interface StreamingRecognizeRequestOrBuilder extends
    * `streaming_config`  message.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
    */
   com.google.cloud.speech.v1beta1.StreamingRecognitionConfigOrBuilder getStreamingConfigOrBuilder();
 
@@ -40,7 +40,7 @@ public interface StreamingRecognizeRequestOrBuilder extends
    * [audio limits](https://cloud.google.com/speech/limits#content).
    * </pre>
    *
-   * <code>bytes audio_content = 2;</code>
+   * <code>optional bytes audio_content = 2;</code>
    */
   com.google.protobuf.ByteString getAudioContent();
 

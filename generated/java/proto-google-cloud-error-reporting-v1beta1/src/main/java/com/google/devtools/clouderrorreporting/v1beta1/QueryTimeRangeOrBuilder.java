@@ -12,7 +12,7 @@ public interface QueryTimeRangeOrBuilder extends
    * Restricts the query to the specified time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
    */
   int getPeriodValue();
   /**
@@ -20,7 +20,7 @@ public interface QueryTimeRangeOrBuilder extends
    * Restricts the query to the specified time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period getPeriod();
 }

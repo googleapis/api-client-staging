@@ -25,7 +25,7 @@ public interface QuotaLimitOrBuilder extends
    * affecting the identity of the limit.
    * </pre>
    *
-   * <code>string name = 6;</code>
+   * <code>optional string name = 6;</code>
    */
   java.lang.String getName();
   /**
@@ -46,7 +46,7 @@ public interface QuotaLimitOrBuilder extends
    * affecting the identity of the limit.
    * </pre>
    *
-   * <code>string name = 6;</code>
+   * <code>optional string name = 6;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -58,7 +58,7 @@ public interface QuotaLimitOrBuilder extends
    * than provided by the limit's display name (see: `display_name`).
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   java.lang.String getDescription();
   /**
@@ -68,7 +68,7 @@ public interface QuotaLimitOrBuilder extends
    * than provided by the limit's display name (see: `display_name`).
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();
@@ -85,7 +85,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by group-based quotas only.
    * </pre>
    *
-   * <code>int64 default_limit = 3;</code>
+   * <code>optional int64 default_limit = 3;</code>
    */
   long getDefaultLimit();
 
@@ -100,7 +100,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by group-based quotas only.
    * </pre>
    *
-   * <code>int64 max_limit = 4;</code>
+   * <code>optional int64 max_limit = 4;</code>
    */
   long getMaxLimit();
 
@@ -115,7 +115,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by group-based quotas only.
    * </pre>
    *
-   * <code>int64 free_tier = 7;</code>
+   * <code>optional int64 free_tier = 7;</code>
    */
   long getFreeTier();
 
@@ -128,7 +128,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by group-based quotas only.
    * </pre>
    *
-   * <code>string duration = 5;</code>
+   * <code>optional string duration = 5;</code>
    */
   java.lang.String getDuration();
   /**
@@ -140,7 +140,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by group-based quotas only.
    * </pre>
    *
-   * <code>string duration = 5;</code>
+   * <code>optional string duration = 5;</code>
    */
   com.google.protobuf.ByteString
       getDurationBytes();
@@ -153,7 +153,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by metric-based quotas only.
    * </pre>
    *
-   * <code>string metric = 8;</code>
+   * <code>optional string metric = 8;</code>
    */
   java.lang.String getMetric();
   /**
@@ -164,7 +164,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by metric-based quotas only.
    * </pre>
    *
-   * <code>string metric = 8;</code>
+   * <code>optional string metric = 8;</code>
    */
   com.google.protobuf.ByteString
       getMetricBytes();
@@ -200,7 +200,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by metric-based quotas only.
    * </pre>
    *
-   * <code>string unit = 9;</code>
+   * <code>optional string unit = 9;</code>
    */
   java.lang.String getUnit();
   /**
@@ -234,7 +234,7 @@ public interface QuotaLimitOrBuilder extends
    * Used by metric-based quotas only.
    * </pre>
    *
-   * <code>string unit = 9;</code>
+   * <code>optional string unit = 9;</code>
    */
   com.google.protobuf.ByteString
       getUnitBytes();
@@ -421,7 +421,7 @@ public interface QuotaLimitOrBuilder extends
    * display name generated from the configuration.
    * </pre>
    *
-   * <code>string display_name = 12;</code>
+   * <code>optional string display_name = 12;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -432,7 +432,7 @@ public interface QuotaLimitOrBuilder extends
    * display name generated from the configuration.
    * </pre>
    *
-   * <code>string display_name = 12;</code>
+   * <code>optional string display_name = 12;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();

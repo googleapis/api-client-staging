@@ -12,7 +12,7 @@ public interface HttpRequestContextOrBuilder extends
    * The type of HTTP request, such as `GET`, `POST`, etc.
    * </pre>
    *
-   * <code>string method = 1;</code>
+   * <code>optional string method = 1;</code>
    */
   java.lang.String getMethod();
   /**
@@ -20,7 +20,7 @@ public interface HttpRequestContextOrBuilder extends
    * The type of HTTP request, such as `GET`, `POST`, etc.
    * </pre>
    *
-   * <code>string method = 1;</code>
+   * <code>optional string method = 1;</code>
    */
   com.google.protobuf.ByteString
       getMethodBytes();
@@ -30,7 +30,7 @@ public interface HttpRequestContextOrBuilder extends
    * The URL of the request.
    * </pre>
    *
-   * <code>string url = 2;</code>
+   * <code>optional string url = 2;</code>
    */
   java.lang.String getUrl();
   /**
@@ -38,7 +38,7 @@ public interface HttpRequestContextOrBuilder extends
    * The URL of the request.
    * </pre>
    *
-   * <code>string url = 2;</code>
+   * <code>optional string url = 2;</code>
    */
   com.google.protobuf.ByteString
       getUrlBytes();
@@ -48,7 +48,7 @@ public interface HttpRequestContextOrBuilder extends
    * The user agent information that is provided with the request.
    * </pre>
    *
-   * <code>string user_agent = 3;</code>
+   * <code>optional string user_agent = 3;</code>
    */
   java.lang.String getUserAgent();
   /**
@@ -56,7 +56,7 @@ public interface HttpRequestContextOrBuilder extends
    * The user agent information that is provided with the request.
    * </pre>
    *
-   * <code>string user_agent = 3;</code>
+   * <code>optional string user_agent = 3;</code>
    */
   com.google.protobuf.ByteString
       getUserAgentBytes();
@@ -66,7 +66,7 @@ public interface HttpRequestContextOrBuilder extends
    * The referrer information that is provided with the request.
    * </pre>
    *
-   * <code>string referrer = 4;</code>
+   * <code>optional string referrer = 4;</code>
    */
   java.lang.String getReferrer();
   /**
@@ -74,7 +74,7 @@ public interface HttpRequestContextOrBuilder extends
    * The referrer information that is provided with the request.
    * </pre>
    *
-   * <code>string referrer = 4;</code>
+   * <code>optional string referrer = 4;</code>
    */
   com.google.protobuf.ByteString
       getReferrerBytes();
@@ -84,7 +84,7 @@ public interface HttpRequestContextOrBuilder extends
    * The HTTP response status code for the request.
    * </pre>
    *
-   * <code>int32 response_status_code = 5;</code>
+   * <code>optional int32 response_status_code = 5;</code>
    */
   int getResponseStatusCode();
 
@@ -96,7 +96,7 @@ public interface HttpRequestContextOrBuilder extends
    * in the error report.
    * </pre>
    *
-   * <code>string remote_ip = 6;</code>
+   * <code>optional string remote_ip = 6;</code>
    */
   java.lang.String getRemoteIp();
   /**
@@ -107,7 +107,7 @@ public interface HttpRequestContextOrBuilder extends
    * in the error report.
    * </pre>
    *
-   * <code>string remote_ip = 6;</code>
+   * <code>optional string remote_ip = 6;</code>
    */
   com.google.protobuf.ByteString
       getRemoteIpBytes();

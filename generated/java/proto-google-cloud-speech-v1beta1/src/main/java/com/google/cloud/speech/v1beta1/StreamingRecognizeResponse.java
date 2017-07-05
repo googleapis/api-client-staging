@@ -355,7 +355,7 @@ public  final class StreamingRecognizeResponse extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   public boolean hasError() {
     return error_ != null;
@@ -366,7 +366,7 @@ public  final class StreamingRecognizeResponse extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   public com.google.rpc.Status getError() {
     return error_ == null ? com.google.rpc.Status.getDefaultInstance() : error_;
@@ -377,7 +377,7 @@ public  final class StreamingRecognizeResponse extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
     return getError();
@@ -462,7 +462,7 @@ public  final class StreamingRecognizeResponse extends
    * results at this index and higher.
    * </pre>
    *
-   * <code>int32 result_index = 3;</code>
+   * <code>optional int32 result_index = 3;</code>
    */
   public int getResultIndex() {
     return resultIndex_;
@@ -475,7 +475,7 @@ public  final class StreamingRecognizeResponse extends
    * *Output-only* Indicates the type of endpointer event.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
    */
   public int getEndpointerTypeValue() {
     return endpointerType_;
@@ -485,7 +485,7 @@ public  final class StreamingRecognizeResponse extends
    * *Output-only* Indicates the type of endpointer event.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+   * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
    */
   public com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType getEndpointerType() {
     com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType result = com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType.valueOf(endpointerType_);
@@ -574,7 +574,7 @@ public  final class StreamingRecognizeResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasError()) {
       hash = (37 * hash) + ERROR_FIELD_NUMBER;
       hash = (53 * hash) + getError().hashCode();
@@ -592,17 +592,6 @@ public  final class StreamingRecognizeResponse extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1beta1.StreamingRecognizeResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1beta1.StreamingRecognizeResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1beta1.StreamingRecognizeResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -933,7 +922,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public boolean hasError() {
       return errorBuilder_ != null || error_ != null;
@@ -944,7 +933,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public com.google.rpc.Status getError() {
       if (errorBuilder_ == null) {
@@ -959,7 +948,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public Builder setError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -980,7 +969,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public Builder setError(
         com.google.rpc.Status.Builder builderForValue) {
@@ -999,7 +988,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public Builder mergeError(com.google.rpc.Status value) {
       if (errorBuilder_ == null) {
@@ -1022,7 +1011,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public Builder clearError() {
       if (errorBuilder_ == null) {
@@ -1041,7 +1030,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public com.google.rpc.Status.Builder getErrorBuilder() {
       
@@ -1054,7 +1043,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     public com.google.rpc.StatusOrBuilder getErrorOrBuilder() {
       if (errorBuilder_ != null) {
@@ -1070,7 +1059,7 @@ public  final class StreamingRecognizeResponse extends
      * specifies the error for the operation.
      * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * <code>optional .google.rpc.Status error = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> 
@@ -1460,7 +1449,7 @@ public  final class StreamingRecognizeResponse extends
      * results at this index and higher.
      * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * <code>optional int32 result_index = 3;</code>
      */
     public int getResultIndex() {
       return resultIndex_;
@@ -1472,7 +1461,7 @@ public  final class StreamingRecognizeResponse extends
      * results at this index and higher.
      * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * <code>optional int32 result_index = 3;</code>
      */
     public Builder setResultIndex(int value) {
       
@@ -1487,7 +1476,7 @@ public  final class StreamingRecognizeResponse extends
      * results at this index and higher.
      * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * <code>optional int32 result_index = 3;</code>
      */
     public Builder clearResultIndex() {
       
@@ -1502,7 +1491,7 @@ public  final class StreamingRecognizeResponse extends
      * *Output-only* Indicates the type of endpointer event.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     public int getEndpointerTypeValue() {
       return endpointerType_;
@@ -1512,7 +1501,7 @@ public  final class StreamingRecognizeResponse extends
      * *Output-only* Indicates the type of endpointer event.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     public Builder setEndpointerTypeValue(int value) {
       endpointerType_ = value;
@@ -1524,7 +1513,7 @@ public  final class StreamingRecognizeResponse extends
      * *Output-only* Indicates the type of endpointer event.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     public com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType getEndpointerType() {
       com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType result = com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType.valueOf(endpointerType_);
@@ -1535,7 +1524,7 @@ public  final class StreamingRecognizeResponse extends
      * *Output-only* Indicates the type of endpointer event.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     public Builder setEndpointerType(com.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType value) {
       if (value == null) {
@@ -1551,7 +1540,7 @@ public  final class StreamingRecognizeResponse extends
      * *Output-only* Indicates the type of endpointer event.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * <code>optional .google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     public Builder clearEndpointerType() {
       

@@ -99,7 +99,7 @@ public  final class RetryInfo extends
    * Clients should wait at least this long between retrying the same request.
    * </pre>
    *
-   * <code>.google.protobuf.Duration retry_delay = 1;</code>
+   * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
    */
   public boolean hasRetryDelay() {
     return retryDelay_ != null;
@@ -109,7 +109,7 @@ public  final class RetryInfo extends
    * Clients should wait at least this long between retrying the same request.
    * </pre>
    *
-   * <code>.google.protobuf.Duration retry_delay = 1;</code>
+   * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
    */
   public com.google.protobuf.Duration getRetryDelay() {
     return retryDelay_ == null ? com.google.protobuf.Duration.getDefaultInstance() : retryDelay_;
@@ -119,7 +119,7 @@ public  final class RetryInfo extends
    * Clients should wait at least this long between retrying the same request.
    * </pre>
    *
-   * <code>.google.protobuf.Duration retry_delay = 1;</code>
+   * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
    */
   public com.google.protobuf.DurationOrBuilder getRetryDelayOrBuilder() {
     return getRetryDelay();
@@ -181,7 +181,7 @@ public  final class RetryInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasRetryDelay()) {
       hash = (37 * hash) + RETRY_DELAY_FIELD_NUMBER;
       hash = (53 * hash) + getRetryDelay().hashCode();
@@ -191,17 +191,6 @@ public  final class RetryInfo extends
     return hash;
   }
 
-  public static com.google.rpc.RetryInfo parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.rpc.RetryInfo parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.rpc.RetryInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -440,7 +429,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public boolean hasRetryDelay() {
       return retryDelayBuilder_ != null || retryDelay_ != null;
@@ -450,7 +439,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public com.google.protobuf.Duration getRetryDelay() {
       if (retryDelayBuilder_ == null) {
@@ -464,7 +453,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public Builder setRetryDelay(com.google.protobuf.Duration value) {
       if (retryDelayBuilder_ == null) {
@@ -484,7 +473,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public Builder setRetryDelay(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -502,7 +491,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public Builder mergeRetryDelay(com.google.protobuf.Duration value) {
       if (retryDelayBuilder_ == null) {
@@ -524,7 +513,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public Builder clearRetryDelay() {
       if (retryDelayBuilder_ == null) {
@@ -542,7 +531,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public com.google.protobuf.Duration.Builder getRetryDelayBuilder() {
       
@@ -554,7 +543,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     public com.google.protobuf.DurationOrBuilder getRetryDelayOrBuilder() {
       if (retryDelayBuilder_ != null) {
@@ -569,7 +558,7 @@ public  final class RetryInfo extends
      * Clients should wait at least this long between retrying the same request.
      * </pre>
      *
-     * <code>.google.protobuf.Duration retry_delay = 1;</code>
+     * <code>optional .google.protobuf.Duration retry_delay = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 

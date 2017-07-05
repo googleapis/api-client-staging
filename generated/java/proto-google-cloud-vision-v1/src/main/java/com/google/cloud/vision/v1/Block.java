@@ -309,7 +309,7 @@ public  final class Block extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public boolean hasProperty() {
     return property_ != null;
@@ -319,7 +319,7 @@ public  final class Block extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty() {
     return property_ == null ? com.google.cloud.vision.v1.TextAnnotation.TextProperty.getDefaultInstance() : property_;
@@ -329,7 +329,7 @@ public  final class Block extends
    * Additional information detected for the block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+   * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
    */
   public com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder() {
     return getProperty();
@@ -356,7 +356,7 @@ public  final class Block extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   public boolean hasBoundingBox() {
     return boundingBox_ != null;
@@ -380,7 +380,7 @@ public  final class Block extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   public com.google.cloud.vision.v1.BoundingPoly getBoundingBox() {
     return boundingBox_ == null ? com.google.cloud.vision.v1.BoundingPoly.getDefaultInstance() : boundingBox_;
@@ -404,7 +404,7 @@ public  final class Block extends
    *   and the vertice order will still be (0, 1, 2, 3).
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
    */
   public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingBoxOrBuilder() {
     return getBoundingBox();
@@ -472,7 +472,7 @@ public  final class Block extends
    * Detected block type (text, image etc) for this block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
    */
   public int getBlockTypeValue() {
     return blockType_;
@@ -482,7 +482,7 @@ public  final class Block extends
    * Detected block type (text, image etc) for this block.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
    */
   public com.google.cloud.vision.v1.Block.BlockType getBlockType() {
     com.google.cloud.vision.v1.Block.BlockType result = com.google.cloud.vision.v1.Block.BlockType.valueOf(blockType_);
@@ -574,7 +574,7 @@ public  final class Block extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasProperty()) {
       hash = (37 * hash) + PROPERTY_FIELD_NUMBER;
       hash = (53 * hash) + getProperty().hashCode();
@@ -594,17 +594,6 @@ public  final class Block extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.Block parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.Block parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.Block parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -899,7 +888,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public boolean hasProperty() {
       return propertyBuilder_ != null || property_ != null;
@@ -909,7 +898,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextProperty getProperty() {
       if (propertyBuilder_ == null) {
@@ -923,7 +912,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder setProperty(com.google.cloud.vision.v1.TextAnnotation.TextProperty value) {
       if (propertyBuilder_ == null) {
@@ -943,7 +932,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder setProperty(
         com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder builderForValue) {
@@ -961,7 +950,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder mergeProperty(com.google.cloud.vision.v1.TextAnnotation.TextProperty value) {
       if (propertyBuilder_ == null) {
@@ -983,7 +972,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public Builder clearProperty() {
       if (propertyBuilder_ == null) {
@@ -1001,7 +990,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder getPropertyBuilder() {
       
@@ -1013,7 +1002,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     public com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder getPropertyOrBuilder() {
       if (propertyBuilder_ != null) {
@@ -1028,7 +1017,7 @@ public  final class Block extends
      * Additional information detected for the block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * <code>optional .google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.TextAnnotation.TextProperty, com.google.cloud.vision.v1.TextAnnotation.TextProperty.Builder, com.google.cloud.vision.v1.TextAnnotation.TextPropertyOrBuilder> 
@@ -1066,7 +1055,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public boolean hasBoundingBox() {
       return boundingBoxBuilder_ != null || boundingBox_ != null;
@@ -1090,7 +1079,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly getBoundingBox() {
       if (boundingBoxBuilder_ == null) {
@@ -1118,7 +1107,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public Builder setBoundingBox(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingBoxBuilder_ == null) {
@@ -1152,7 +1141,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public Builder setBoundingBox(
         com.google.cloud.vision.v1.BoundingPoly.Builder builderForValue) {
@@ -1184,7 +1173,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public Builder mergeBoundingBox(com.google.cloud.vision.v1.BoundingPoly value) {
       if (boundingBoxBuilder_ == null) {
@@ -1220,7 +1209,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public Builder clearBoundingBox() {
       if (boundingBoxBuilder_ == null) {
@@ -1252,7 +1241,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPoly.Builder getBoundingBoxBuilder() {
       
@@ -1278,7 +1267,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     public com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingBoxOrBuilder() {
       if (boundingBoxBuilder_ != null) {
@@ -1307,7 +1296,7 @@ public  final class Block extends
      *   and the vertice order will still be (0, 1, 2, 3).
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.vision.v1.BoundingPoly, com.google.cloud.vision.v1.BoundingPoly.Builder, com.google.cloud.vision.v1.BoundingPolyOrBuilder> 
@@ -1641,7 +1630,7 @@ public  final class Block extends
      * Detected block type (text, image etc) for this block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     public int getBlockTypeValue() {
       return blockType_;
@@ -1651,7 +1640,7 @@ public  final class Block extends
      * Detected block type (text, image etc) for this block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     public Builder setBlockTypeValue(int value) {
       blockType_ = value;
@@ -1663,7 +1652,7 @@ public  final class Block extends
      * Detected block type (text, image etc) for this block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     public com.google.cloud.vision.v1.Block.BlockType getBlockType() {
       com.google.cloud.vision.v1.Block.BlockType result = com.google.cloud.vision.v1.Block.BlockType.valueOf(blockType_);
@@ -1674,7 +1663,7 @@ public  final class Block extends
      * Detected block type (text, image etc) for this block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     public Builder setBlockType(com.google.cloud.vision.v1.Block.BlockType value) {
       if (value == null) {
@@ -1690,7 +1679,7 @@ public  final class Block extends
      * Detected block type (text, image etc) for this block.
      * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * <code>optional .google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     public Builder clearBlockType() {
       

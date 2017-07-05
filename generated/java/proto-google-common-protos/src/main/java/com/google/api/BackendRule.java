@@ -97,7 +97,7 @@ public  final class BackendRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public java.lang.String getSelector() {
     java.lang.Object ref = selector_;
@@ -117,7 +117,7 @@ public  final class BackendRule extends
    * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSelectorBytes() {
@@ -140,7 +140,7 @@ public  final class BackendRule extends
    * The address of the API backend.
    * </pre>
    *
-   * <code>string address = 2;</code>
+   * <code>optional string address = 2;</code>
    */
   public java.lang.String getAddress() {
     java.lang.Object ref = address_;
@@ -159,7 +159,7 @@ public  final class BackendRule extends
    * The address of the API backend.
    * </pre>
    *
-   * <code>string address = 2;</code>
+   * <code>optional string address = 2;</code>
    */
   public com.google.protobuf.ByteString
       getAddressBytes() {
@@ -183,7 +183,7 @@ public  final class BackendRule extends
    * default depends on the deployment context.
    * </pre>
    *
-   * <code>double deadline = 3;</code>
+   * <code>optional double deadline = 3;</code>
    */
   public double getDeadline() {
     return deadline_;
@@ -260,7 +260,7 @@ public  final class BackendRule extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SELECTOR_FIELD_NUMBER;
     hash = (53 * hash) + getSelector().hashCode();
     hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
@@ -273,17 +273,6 @@ public  final class BackendRule extends
     return hash;
   }
 
-  public static com.google.api.BackendRule parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.BackendRule parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.BackendRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -517,7 +506,7 @@ public  final class BackendRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public java.lang.String getSelector() {
       java.lang.Object ref = selector_;
@@ -537,7 +526,7 @@ public  final class BackendRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSelectorBytes() {
@@ -558,7 +547,7 @@ public  final class BackendRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelector(
         java.lang.String value) {
@@ -576,7 +565,7 @@ public  final class BackendRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder clearSelector() {
       
@@ -590,7 +579,7 @@ public  final class BackendRule extends
      * Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelectorBytes(
         com.google.protobuf.ByteString value) {
@@ -610,7 +599,7 @@ public  final class BackendRule extends
      * The address of the API backend.
      * </pre>
      *
-     * <code>string address = 2;</code>
+     * <code>optional string address = 2;</code>
      */
     public java.lang.String getAddress() {
       java.lang.Object ref = address_;
@@ -629,7 +618,7 @@ public  final class BackendRule extends
      * The address of the API backend.
      * </pre>
      *
-     * <code>string address = 2;</code>
+     * <code>optional string address = 2;</code>
      */
     public com.google.protobuf.ByteString
         getAddressBytes() {
@@ -649,7 +638,7 @@ public  final class BackendRule extends
      * The address of the API backend.
      * </pre>
      *
-     * <code>string address = 2;</code>
+     * <code>optional string address = 2;</code>
      */
     public Builder setAddress(
         java.lang.String value) {
@@ -666,7 +655,7 @@ public  final class BackendRule extends
      * The address of the API backend.
      * </pre>
      *
-     * <code>string address = 2;</code>
+     * <code>optional string address = 2;</code>
      */
     public Builder clearAddress() {
       
@@ -679,7 +668,7 @@ public  final class BackendRule extends
      * The address of the API backend.
      * </pre>
      *
-     * <code>string address = 2;</code>
+     * <code>optional string address = 2;</code>
      */
     public Builder setAddressBytes(
         com.google.protobuf.ByteString value) {
@@ -700,7 +689,7 @@ public  final class BackendRule extends
      * default depends on the deployment context.
      * </pre>
      *
-     * <code>double deadline = 3;</code>
+     * <code>optional double deadline = 3;</code>
      */
     public double getDeadline() {
       return deadline_;
@@ -711,7 +700,7 @@ public  final class BackendRule extends
      * default depends on the deployment context.
      * </pre>
      *
-     * <code>double deadline = 3;</code>
+     * <code>optional double deadline = 3;</code>
      */
     public Builder setDeadline(double value) {
       
@@ -725,7 +714,7 @@ public  final class BackendRule extends
      * default depends on the deployment context.
      * </pre>
      *
-     * <code>double deadline = 3;</code>
+     * <code>optional double deadline = 3;</code>
      */
     public Builder clearDeadline() {
       

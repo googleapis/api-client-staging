@@ -129,7 +129,7 @@ public  final class UpdateInstanceMetadata extends
    * The desired end state of the update.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public boolean hasInstance() {
     return instance_ != null;
@@ -139,7 +139,7 @@ public  final class UpdateInstanceMetadata extends
    * The desired end state of the update.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public com.google.spanner.admin.instance.v1.Instance getInstance() {
     return instance_ == null ? com.google.spanner.admin.instance.v1.Instance.getDefaultInstance() : instance_;
@@ -149,7 +149,7 @@ public  final class UpdateInstanceMetadata extends
    * The desired end state of the update.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   public com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder() {
     return getInstance();
@@ -163,7 +163,7 @@ public  final class UpdateInstanceMetadata extends
    * request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -174,7 +174,7 @@ public  final class UpdateInstanceMetadata extends
    * request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -185,7 +185,7 @@ public  final class UpdateInstanceMetadata extends
    * request was received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -200,7 +200,7 @@ public  final class UpdateInstanceMetadata extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   public boolean hasCancelTime() {
     return cancelTime_ != null;
@@ -212,7 +212,7 @@ public  final class UpdateInstanceMetadata extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   public com.google.protobuf.Timestamp getCancelTime() {
     return cancelTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : cancelTime_;
@@ -224,7 +224,7 @@ public  final class UpdateInstanceMetadata extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getCancelTimeOrBuilder() {
     return getCancelTime();
@@ -237,7 +237,7 @@ public  final class UpdateInstanceMetadata extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   public boolean hasEndTime() {
     return endTime_ != null;
@@ -247,7 +247,7 @@ public  final class UpdateInstanceMetadata extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   public com.google.protobuf.Timestamp getEndTime() {
     return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
@@ -257,7 +257,7 @@ public  final class UpdateInstanceMetadata extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
     return getEndTime();
@@ -355,7 +355,7 @@ public  final class UpdateInstanceMetadata extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasInstance()) {
       hash = (37 * hash) + INSTANCE_FIELD_NUMBER;
       hash = (53 * hash) + getInstance().hashCode();
@@ -377,17 +377,6 @@ public  final class UpdateInstanceMetadata extends
     return hash;
   }
 
-  public static com.google.spanner.admin.instance.v1.UpdateInstanceMetadata parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.instance.v1.UpdateInstanceMetadata parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.instance.v1.UpdateInstanceMetadata parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -659,7 +648,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public boolean hasInstance() {
       return instanceBuilder_ != null || instance_ != null;
@@ -669,7 +658,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.Instance getInstance() {
       if (instanceBuilder_ == null) {
@@ -683,7 +672,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder setInstance(com.google.spanner.admin.instance.v1.Instance value) {
       if (instanceBuilder_ == null) {
@@ -703,7 +692,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder setInstance(
         com.google.spanner.admin.instance.v1.Instance.Builder builderForValue) {
@@ -721,7 +710,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder mergeInstance(com.google.spanner.admin.instance.v1.Instance value) {
       if (instanceBuilder_ == null) {
@@ -743,7 +732,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public Builder clearInstance() {
       if (instanceBuilder_ == null) {
@@ -761,7 +750,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.Instance.Builder getInstanceBuilder() {
       
@@ -773,7 +762,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     public com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder() {
       if (instanceBuilder_ != null) {
@@ -788,7 +777,7 @@ public  final class UpdateInstanceMetadata extends
      * The desired end state of the update.
      * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.admin.instance.v1.Instance, com.google.spanner.admin.instance.v1.Instance.Builder, com.google.spanner.admin.instance.v1.InstanceOrBuilder> 
@@ -813,7 +802,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -824,7 +813,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -839,7 +828,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -860,7 +849,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -879,7 +868,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -902,7 +891,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -921,7 +910,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -934,7 +923,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -950,7 +939,7 @@ public  final class UpdateInstanceMetadata extends
      * request was received.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -976,7 +965,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public boolean hasCancelTime() {
       return cancelTimeBuilder_ != null || cancelTime_ != null;
@@ -988,7 +977,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public com.google.protobuf.Timestamp getCancelTime() {
       if (cancelTimeBuilder_ == null) {
@@ -1004,7 +993,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public Builder setCancelTime(com.google.protobuf.Timestamp value) {
       if (cancelTimeBuilder_ == null) {
@@ -1026,7 +1015,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public Builder setCancelTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1046,7 +1035,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public Builder mergeCancelTime(com.google.protobuf.Timestamp value) {
       if (cancelTimeBuilder_ == null) {
@@ -1070,7 +1059,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public Builder clearCancelTime() {
       if (cancelTimeBuilder_ == null) {
@@ -1090,7 +1079,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public com.google.protobuf.Timestamp.Builder getCancelTimeBuilder() {
       
@@ -1104,7 +1093,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getCancelTimeOrBuilder() {
       if (cancelTimeBuilder_ != null) {
@@ -1121,7 +1110,7 @@ public  final class UpdateInstanceMetadata extends
      * cannot be cancelled again.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1145,7 +1134,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public boolean hasEndTime() {
       return endTimeBuilder_ != null || endTime_ != null;
@@ -1155,7 +1144,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public com.google.protobuf.Timestamp getEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1169,7 +1158,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public Builder setEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1189,7 +1178,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public Builder setEndTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1207,7 +1196,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public Builder mergeEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -1229,7 +1218,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public Builder clearEndTime() {
       if (endTimeBuilder_ == null) {
@@ -1247,7 +1236,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getEndTimeBuilder() {
       
@@ -1259,7 +1248,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
       if (endTimeBuilder_ != null) {
@@ -1274,7 +1263,7 @@ public  final class UpdateInstanceMetadata extends
      * The time at which this operation failed or was completed successfully.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

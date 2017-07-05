@@ -103,7 +103,7 @@ public  final class RecognizeRequest extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   public boolean hasConfig() {
     return config_ != null;
@@ -114,7 +114,7 @@ public  final class RecognizeRequest extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   public com.google.cloud.speech.v1.RecognitionConfig getConfig() {
     return config_ == null ? com.google.cloud.speech.v1.RecognitionConfig.getDefaultInstance() : config_;
@@ -125,7 +125,7 @@ public  final class RecognizeRequest extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
    */
   public com.google.cloud.speech.v1.RecognitionConfigOrBuilder getConfigOrBuilder() {
     return getConfig();
@@ -138,7 +138,7 @@ public  final class RecognizeRequest extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   public boolean hasAudio() {
     return audio_ != null;
@@ -148,7 +148,7 @@ public  final class RecognizeRequest extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   public com.google.cloud.speech.v1.RecognitionAudio getAudio() {
     return audio_ == null ? com.google.cloud.speech.v1.RecognitionAudio.getDefaultInstance() : audio_;
@@ -158,7 +158,7 @@ public  final class RecognizeRequest extends
    * *Required* The audio data to be recognized.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+   * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
    */
   public com.google.cloud.speech.v1.RecognitionAudioOrBuilder getAudioOrBuilder() {
     return getAudio();
@@ -232,7 +232,7 @@ public  final class RecognizeRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasConfig()) {
       hash = (37 * hash) + CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getConfig().hashCode();
@@ -246,17 +246,6 @@ public  final class RecognizeRequest extends
     return hash;
   }
 
-  public static com.google.cloud.speech.v1.RecognizeRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.speech.v1.RecognizeRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.speech.v1.RecognizeRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -500,7 +489,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public boolean hasConfig() {
       return configBuilder_ != null || config_ != null;
@@ -511,7 +500,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1.RecognitionConfig getConfig() {
       if (configBuilder_ == null) {
@@ -526,7 +515,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public Builder setConfig(com.google.cloud.speech.v1.RecognitionConfig value) {
       if (configBuilder_ == null) {
@@ -547,7 +536,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public Builder setConfig(
         com.google.cloud.speech.v1.RecognitionConfig.Builder builderForValue) {
@@ -566,7 +555,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public Builder mergeConfig(com.google.cloud.speech.v1.RecognitionConfig value) {
       if (configBuilder_ == null) {
@@ -589,7 +578,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public Builder clearConfig() {
       if (configBuilder_ == null) {
@@ -608,7 +597,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1.RecognitionConfig.Builder getConfigBuilder() {
       
@@ -621,7 +610,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     public com.google.cloud.speech.v1.RecognitionConfigOrBuilder getConfigOrBuilder() {
       if (configBuilder_ != null) {
@@ -637,7 +626,7 @@ public  final class RecognizeRequest extends
      * process the request.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionConfig config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.speech.v1.RecognitionConfig, com.google.cloud.speech.v1.RecognitionConfig.Builder, com.google.cloud.speech.v1.RecognitionConfigOrBuilder> 
@@ -661,7 +650,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public boolean hasAudio() {
       return audioBuilder_ != null || audio_ != null;
@@ -671,7 +660,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public com.google.cloud.speech.v1.RecognitionAudio getAudio() {
       if (audioBuilder_ == null) {
@@ -685,7 +674,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public Builder setAudio(com.google.cloud.speech.v1.RecognitionAudio value) {
       if (audioBuilder_ == null) {
@@ -705,7 +694,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public Builder setAudio(
         com.google.cloud.speech.v1.RecognitionAudio.Builder builderForValue) {
@@ -723,7 +712,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public Builder mergeAudio(com.google.cloud.speech.v1.RecognitionAudio value) {
       if (audioBuilder_ == null) {
@@ -745,7 +734,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public Builder clearAudio() {
       if (audioBuilder_ == null) {
@@ -763,7 +752,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public com.google.cloud.speech.v1.RecognitionAudio.Builder getAudioBuilder() {
       
@@ -775,7 +764,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     public com.google.cloud.speech.v1.RecognitionAudioOrBuilder getAudioOrBuilder() {
       if (audioBuilder_ != null) {
@@ -790,7 +779,7 @@ public  final class RecognizeRequest extends
      * *Required* The audio data to be recognized.
      * </pre>
      *
-     * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * <code>optional .google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.speech.v1.RecognitionAudio, com.google.cloud.speech.v1.RecognitionAudio.Builder, com.google.cloud.speech.v1.RecognitionAudioOrBuilder> 

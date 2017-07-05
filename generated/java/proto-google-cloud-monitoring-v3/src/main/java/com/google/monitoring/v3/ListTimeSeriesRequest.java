@@ -266,7 +266,7 @@ public  final class ListTimeSeriesRequest extends
    * "projects/{project_id_or_number}".
    * </pre>
    *
-   * <code>string name = 10;</code>
+   * <code>optional string name = 10;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -286,7 +286,7 @@ public  final class ListTimeSeriesRequest extends
    * "projects/{project_id_or_number}".
    * </pre>
    *
-   * <code>string name = 10;</code>
+   * <code>optional string name = 10;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -314,7 +314,7 @@ public  final class ListTimeSeriesRequest extends
    *         metric.label.instance_name = "my-instance-name"
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -338,7 +338,7 @@ public  final class ListTimeSeriesRequest extends
    *         metric.label.instance_name = "my-instance-name"
    * </pre>
    *
-   * <code>string filter = 2;</code>
+   * <code>optional string filter = 2;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -363,7 +363,7 @@ public  final class ListTimeSeriesRequest extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   public boolean hasInterval() {
     return interval_ != null;
@@ -375,7 +375,7 @@ public  final class ListTimeSeriesRequest extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   public com.google.monitoring.v3.TimeInterval getInterval() {
     return interval_ == null ? com.google.monitoring.v3.TimeInterval.getDefaultInstance() : interval_;
@@ -387,7 +387,7 @@ public  final class ListTimeSeriesRequest extends
    * in the response.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
    */
   public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
     return getInterval();
@@ -402,7 +402,7 @@ public  final class ListTimeSeriesRequest extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   public boolean hasAggregation() {
     return aggregation_ != null;
@@ -414,7 +414,7 @@ public  final class ListTimeSeriesRequest extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   public com.google.monitoring.v3.Aggregation getAggregation() {
     return aggregation_ == null ? com.google.monitoring.v3.Aggregation.getDefaultInstance() : aggregation_;
@@ -426,7 +426,7 @@ public  final class ListTimeSeriesRequest extends
    * views of the data.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+   * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
    */
   public com.google.monitoring.v3.AggregationOrBuilder getAggregationOrBuilder() {
     return getAggregation();
@@ -441,7 +441,7 @@ public  final class ListTimeSeriesRequest extends
    * this field must be left blank.
    * </pre>
    *
-   * <code>string order_by = 6;</code>
+   * <code>optional string order_by = 6;</code>
    */
   public java.lang.String getOrderBy() {
     java.lang.Object ref = orderBy_;
@@ -462,7 +462,7 @@ public  final class ListTimeSeriesRequest extends
    * this field must be left blank.
    * </pre>
    *
-   * <code>string order_by = 6;</code>
+   * <code>optional string order_by = 6;</code>
    */
   public com.google.protobuf.ByteString
       getOrderByBytes() {
@@ -485,7 +485,7 @@ public  final class ListTimeSeriesRequest extends
    * Specifies which information is returned about the time series.
    * </pre>
    *
-   * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+   * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
    */
   public int getViewValue() {
     return view_;
@@ -495,7 +495,7 @@ public  final class ListTimeSeriesRequest extends
    * Specifies which information is returned about the time series.
    * </pre>
    *
-   * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+   * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
    */
   public com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView getView() {
     com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView result = com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView.valueOf(view_);
@@ -512,7 +512,7 @@ public  final class ListTimeSeriesRequest extends
    * `TimeSeries` server will return.
    * </pre>
    *
-   * <code>int32 page_size = 8;</code>
+   * <code>optional int32 page_size = 8;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -527,7 +527,7 @@ public  final class ListTimeSeriesRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 9;</code>
+   * <code>optional string page_token = 9;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -548,7 +548,7 @@ public  final class ListTimeSeriesRequest extends
    * method to return additional results from the previous method call.
    * </pre>
    *
-   * <code>string page_token = 9;</code>
+   * <code>optional string page_token = 9;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -681,7 +681,7 @@ public  final class ListTimeSeriesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + FILTER_FIELD_NUMBER;
@@ -707,17 +707,6 @@ public  final class ListTimeSeriesRequest extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.ListTimeSeriesRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.ListTimeSeriesRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.ListTimeSeriesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -999,7 +988,7 @@ public  final class ListTimeSeriesRequest extends
      * "projects/{project_id_or_number}".
      * </pre>
      *
-     * <code>string name = 10;</code>
+     * <code>optional string name = 10;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -1019,7 +1008,7 @@ public  final class ListTimeSeriesRequest extends
      * "projects/{project_id_or_number}".
      * </pre>
      *
-     * <code>string name = 10;</code>
+     * <code>optional string name = 10;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -1040,7 +1029,7 @@ public  final class ListTimeSeriesRequest extends
      * "projects/{project_id_or_number}".
      * </pre>
      *
-     * <code>string name = 10;</code>
+     * <code>optional string name = 10;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -1058,7 +1047,7 @@ public  final class ListTimeSeriesRequest extends
      * "projects/{project_id_or_number}".
      * </pre>
      *
-     * <code>string name = 10;</code>
+     * <code>optional string name = 10;</code>
      */
     public Builder clearName() {
       
@@ -1072,7 +1061,7 @@ public  final class ListTimeSeriesRequest extends
      * "projects/{project_id_or_number}".
      * </pre>
      *
-     * <code>string name = 10;</code>
+     * <code>optional string name = 10;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1097,7 +1086,7 @@ public  final class ListTimeSeriesRequest extends
      *         metric.label.instance_name = "my-instance-name"
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -1121,7 +1110,7 @@ public  final class ListTimeSeriesRequest extends
      *         metric.label.instance_name = "my-instance-name"
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -1146,7 +1135,7 @@ public  final class ListTimeSeriesRequest extends
      *         metric.label.instance_name = "my-instance-name"
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -1168,7 +1157,7 @@ public  final class ListTimeSeriesRequest extends
      *         metric.label.instance_name = "my-instance-name"
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder clearFilter() {
       
@@ -1186,7 +1175,7 @@ public  final class ListTimeSeriesRequest extends
      *         metric.label.instance_name = "my-instance-name"
      * </pre>
      *
-     * <code>string filter = 2;</code>
+     * <code>optional string filter = 2;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {
@@ -1210,7 +1199,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public boolean hasInterval() {
       return intervalBuilder_ != null || interval_ != null;
@@ -1222,7 +1211,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public com.google.monitoring.v3.TimeInterval getInterval() {
       if (intervalBuilder_ == null) {
@@ -1238,7 +1227,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public Builder setInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -1260,7 +1249,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public Builder setInterval(
         com.google.monitoring.v3.TimeInterval.Builder builderForValue) {
@@ -1280,7 +1269,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public Builder mergeInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -1304,7 +1293,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public Builder clearInterval() {
       if (intervalBuilder_ == null) {
@@ -1324,7 +1313,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public com.google.monitoring.v3.TimeInterval.Builder getIntervalBuilder() {
       
@@ -1338,7 +1327,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
       if (intervalBuilder_ != null) {
@@ -1355,7 +1344,7 @@ public  final class ListTimeSeriesRequest extends
      * in the response.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.TimeInterval, com.google.monitoring.v3.TimeInterval.Builder, com.google.monitoring.v3.TimeIntervalOrBuilder> 
@@ -1381,7 +1370,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public boolean hasAggregation() {
       return aggregationBuilder_ != null || aggregation_ != null;
@@ -1393,7 +1382,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public com.google.monitoring.v3.Aggregation getAggregation() {
       if (aggregationBuilder_ == null) {
@@ -1409,7 +1398,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public Builder setAggregation(com.google.monitoring.v3.Aggregation value) {
       if (aggregationBuilder_ == null) {
@@ -1431,7 +1420,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public Builder setAggregation(
         com.google.monitoring.v3.Aggregation.Builder builderForValue) {
@@ -1451,7 +1440,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public Builder mergeAggregation(com.google.monitoring.v3.Aggregation value) {
       if (aggregationBuilder_ == null) {
@@ -1475,7 +1464,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public Builder clearAggregation() {
       if (aggregationBuilder_ == null) {
@@ -1495,7 +1484,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public com.google.monitoring.v3.Aggregation.Builder getAggregationBuilder() {
       
@@ -1509,7 +1498,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     public com.google.monitoring.v3.AggregationOrBuilder getAggregationOrBuilder() {
       if (aggregationBuilder_ != null) {
@@ -1526,7 +1515,7 @@ public  final class ListTimeSeriesRequest extends
      * views of the data.
      * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * <code>optional .google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.Aggregation, com.google.monitoring.v3.Aggregation.Builder, com.google.monitoring.v3.AggregationOrBuilder> 
@@ -1550,7 +1539,7 @@ public  final class ListTimeSeriesRequest extends
      * this field must be left blank.
      * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * <code>optional string order_by = 6;</code>
      */
     public java.lang.String getOrderBy() {
       java.lang.Object ref = orderBy_;
@@ -1571,7 +1560,7 @@ public  final class ListTimeSeriesRequest extends
      * this field must be left blank.
      * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * <code>optional string order_by = 6;</code>
      */
     public com.google.protobuf.ByteString
         getOrderByBytes() {
@@ -1593,7 +1582,7 @@ public  final class ListTimeSeriesRequest extends
      * this field must be left blank.
      * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * <code>optional string order_by = 6;</code>
      */
     public Builder setOrderBy(
         java.lang.String value) {
@@ -1612,7 +1601,7 @@ public  final class ListTimeSeriesRequest extends
      * this field must be left blank.
      * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * <code>optional string order_by = 6;</code>
      */
     public Builder clearOrderBy() {
       
@@ -1627,7 +1616,7 @@ public  final class ListTimeSeriesRequest extends
      * this field must be left blank.
      * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * <code>optional string order_by = 6;</code>
      */
     public Builder setOrderByBytes(
         com.google.protobuf.ByteString value) {
@@ -1647,7 +1636,7 @@ public  final class ListTimeSeriesRequest extends
      * Specifies which information is returned about the time series.
      * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     public int getViewValue() {
       return view_;
@@ -1657,7 +1646,7 @@ public  final class ListTimeSeriesRequest extends
      * Specifies which information is returned about the time series.
      * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     public Builder setViewValue(int value) {
       view_ = value;
@@ -1669,7 +1658,7 @@ public  final class ListTimeSeriesRequest extends
      * Specifies which information is returned about the time series.
      * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     public com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView getView() {
       com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView result = com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView.valueOf(view_);
@@ -1680,7 +1669,7 @@ public  final class ListTimeSeriesRequest extends
      * Specifies which information is returned about the time series.
      * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     public Builder setView(com.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView value) {
       if (value == null) {
@@ -1696,7 +1685,7 @@ public  final class ListTimeSeriesRequest extends
      * Specifies which information is returned about the time series.
      * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * <code>optional .google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     public Builder clearView() {
       
@@ -1714,7 +1703,7 @@ public  final class ListTimeSeriesRequest extends
      * `TimeSeries` server will return.
      * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * <code>optional int32 page_size = 8;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -1727,7 +1716,7 @@ public  final class ListTimeSeriesRequest extends
      * `TimeSeries` server will return.
      * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * <code>optional int32 page_size = 8;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -1743,7 +1732,7 @@ public  final class ListTimeSeriesRequest extends
      * `TimeSeries` server will return.
      * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * <code>optional int32 page_size = 8;</code>
      */
     public Builder clearPageSize() {
       
@@ -1760,7 +1749,7 @@ public  final class ListTimeSeriesRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * <code>optional string page_token = 9;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -1781,7 +1770,7 @@ public  final class ListTimeSeriesRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * <code>optional string page_token = 9;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -1803,7 +1792,7 @@ public  final class ListTimeSeriesRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * <code>optional string page_token = 9;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -1822,7 +1811,7 @@ public  final class ListTimeSeriesRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * <code>optional string page_token = 9;</code>
      */
     public Builder clearPageToken() {
       
@@ -1837,7 +1826,7 @@ public  final class ListTimeSeriesRequest extends
      * method to return additional results from the previous method call.
      * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * <code>optional string page_token = 9;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

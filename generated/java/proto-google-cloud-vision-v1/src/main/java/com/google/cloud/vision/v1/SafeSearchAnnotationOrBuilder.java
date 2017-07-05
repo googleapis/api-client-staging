@@ -12,7 +12,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Represents the adult content likelihood for the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
    */
   int getAdultValue();
   /**
@@ -20,7 +20,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Represents the adult content likelihood for the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood adult = 1;</code>
    */
   com.google.cloud.vision.v1.Likelihood getAdult();
 
@@ -31,7 +31,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * funny or offensive.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
    */
   int getSpoofValue();
   /**
@@ -41,7 +41,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * funny or offensive.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood spoof = 2;</code>
    */
   com.google.cloud.vision.v1.Likelihood getSpoof();
 
@@ -50,7 +50,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood that this is a medical image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
    */
   int getMedicalValue();
   /**
@@ -58,7 +58,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Likelihood that this is a medical image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood medical = 3;</code>
    */
   com.google.cloud.vision.v1.Likelihood getMedical();
 
@@ -67,7 +67,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Violence likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   int getViolenceValue();
   /**
@@ -75,7 +75,7 @@ public interface SafeSearchAnnotationOrBuilder extends
    * Violence likelihood.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+   * <code>optional .google.cloud.vision.v1.Likelihood violence = 4;</code>
    */
   com.google.cloud.vision.v1.Likelihood getViolence();
 }

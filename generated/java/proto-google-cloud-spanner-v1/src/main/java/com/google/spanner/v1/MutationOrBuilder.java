@@ -13,7 +13,7 @@ public interface MutationOrBuilder extends
    * the write or transaction fails with error `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
    */
   com.google.spanner.v1.Mutation.Write getInsert();
   /**
@@ -22,7 +22,7 @@ public interface MutationOrBuilder extends
    * the write or transaction fails with error `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert = 1;</code>
    */
   com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrBuilder();
 
@@ -32,7 +32,7 @@ public interface MutationOrBuilder extends
    * already exist, the transaction fails with error `NOT_FOUND`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
    */
   com.google.spanner.v1.Mutation.Write getUpdate();
   /**
@@ -41,7 +41,7 @@ public interface MutationOrBuilder extends
    * already exist, the transaction fails with error `NOT_FOUND`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write update = 2;</code>
    */
   com.google.spanner.v1.Mutation.WriteOrBuilder getUpdateOrBuilder();
 
@@ -52,7 +52,7 @@ public interface MutationOrBuilder extends
    * column values not explicitly written are preserved.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
    */
   com.google.spanner.v1.Mutation.Write getInsertOrUpdate();
   /**
@@ -62,7 +62,7 @@ public interface MutationOrBuilder extends
    * column values not explicitly written are preserved.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
    */
   com.google.spanner.v1.Mutation.WriteOrBuilder getInsertOrUpdateOrBuilder();
 
@@ -74,7 +74,7 @@ public interface MutationOrBuilder extends
    * explicitly written become `NULL`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
    */
   com.google.spanner.v1.Mutation.Write getReplace();
   /**
@@ -85,7 +85,7 @@ public interface MutationOrBuilder extends
    * explicitly written become `NULL`.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+   * <code>optional .google.spanner.v1.Mutation.Write replace = 4;</code>
    */
   com.google.spanner.v1.Mutation.WriteOrBuilder getReplaceOrBuilder();
 
@@ -95,7 +95,7 @@ public interface MutationOrBuilder extends
    * rows were present.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+   * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
    */
   com.google.spanner.v1.Mutation.Delete getDelete();
   /**
@@ -104,7 +104,7 @@ public interface MutationOrBuilder extends
    * rows were present.
    * </pre>
    *
-   * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+   * <code>optional .google.spanner.v1.Mutation.Delete delete = 5;</code>
    */
   com.google.spanner.v1.Mutation.DeleteOrBuilder getDeleteOrBuilder();
 

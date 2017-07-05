@@ -12,7 +12,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   boolean hasText();
   /**
@@ -20,7 +20,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpan getText();
   /**
@@ -28,7 +28,7 @@ public interface EntityMentionOrBuilder extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1beta2.TextSpanOrBuilder getTextOrBuilder();
 
@@ -37,7 +37,7 @@ public interface EntityMentionOrBuilder extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
    */
   int getTypeValue();
   /**
@@ -45,7 +45,7 @@ public interface EntityMentionOrBuilder extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
    */
   com.google.cloud.language.v1beta2.EntityMention.Type getType();
 
@@ -57,7 +57,7 @@ public interface EntityMentionOrBuilder extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   boolean hasSentiment();
   /**
@@ -68,7 +68,7 @@ public interface EntityMentionOrBuilder extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   com.google.cloud.language.v1beta2.Sentiment getSentiment();
   /**
@@ -79,7 +79,7 @@ public interface EntityMentionOrBuilder extends
    * the entity in the provided document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+   * <code>optional .google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
    */
   com.google.cloud.language.v1beta2.SentimentOrBuilder getSentimentOrBuilder();
 }

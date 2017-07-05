@@ -19,7 +19,7 @@ public interface PointOrBuilder extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   boolean hasInterval();
   /**
@@ -34,7 +34,7 @@ public interface PointOrBuilder extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   com.google.monitoring.v3.TimeInterval getInterval();
   /**
@@ -49,7 +49,7 @@ public interface PointOrBuilder extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder();
 
@@ -58,7 +58,7 @@ public interface PointOrBuilder extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   boolean hasValue();
   /**
@@ -66,7 +66,7 @@ public interface PointOrBuilder extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   com.google.monitoring.v3.TypedValue getValue();
   /**
@@ -74,7 +74,7 @@ public interface PointOrBuilder extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   com.google.monitoring.v3.TypedValueOrBuilder getValueOrBuilder();
 }

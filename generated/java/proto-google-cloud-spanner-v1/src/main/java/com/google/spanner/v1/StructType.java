@@ -97,7 +97,7 @@ public  final class StructType extends
      * multiple fields with the same name.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     java.lang.String getName();
     /**
@@ -111,7 +111,7 @@ public  final class StructType extends
      * multiple fields with the same name.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -121,7 +121,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     boolean hasType();
     /**
@@ -129,7 +129,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     com.google.spanner.v1.Type getType();
     /**
@@ -137,7 +137,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     com.google.spanner.v1.TypeOrBuilder getTypeOrBuilder();
   }
@@ -240,7 +240,7 @@ public  final class StructType extends
      * multiple fields with the same name.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -265,7 +265,7 @@ public  final class StructType extends
      * multiple fields with the same name.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -288,7 +288,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     public boolean hasType() {
       return type_ != null;
@@ -298,7 +298,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     public com.google.spanner.v1.Type getType() {
       return type_ == null ? com.google.spanner.v1.Type.getDefaultInstance() : type_;
@@ -308,7 +308,7 @@ public  final class StructType extends
      * The type of the field.
      * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * <code>optional .google.spanner.v1.Type type = 2;</code>
      */
     public com.google.spanner.v1.TypeOrBuilder getTypeOrBuilder() {
       return getType();
@@ -378,7 +378,7 @@ public  final class StructType extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       if (hasType()) {
@@ -390,17 +390,6 @@ public  final class StructType extends
       return hash;
     }
 
-    public static com.google.spanner.v1.StructType.Field parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.spanner.v1.StructType.Field parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.spanner.v1.StructType.Field parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -640,7 +629,7 @@ public  final class StructType extends
        * multiple fields with the same name.
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -665,7 +654,7 @@ public  final class StructType extends
        * multiple fields with the same name.
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -691,7 +680,7 @@ public  final class StructType extends
        * multiple fields with the same name.
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -714,7 +703,7 @@ public  final class StructType extends
        * multiple fields with the same name.
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder clearName() {
         
@@ -733,7 +722,7 @@ public  final class StructType extends
        * multiple fields with the same name.
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -755,7 +744,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public boolean hasType() {
         return typeBuilder_ != null || type_ != null;
@@ -765,7 +754,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public com.google.spanner.v1.Type getType() {
         if (typeBuilder_ == null) {
@@ -779,7 +768,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public Builder setType(com.google.spanner.v1.Type value) {
         if (typeBuilder_ == null) {
@@ -799,7 +788,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public Builder setType(
           com.google.spanner.v1.Type.Builder builderForValue) {
@@ -817,7 +806,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public Builder mergeType(com.google.spanner.v1.Type value) {
         if (typeBuilder_ == null) {
@@ -839,7 +828,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public Builder clearType() {
         if (typeBuilder_ == null) {
@@ -857,7 +846,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public com.google.spanner.v1.Type.Builder getTypeBuilder() {
         
@@ -869,7 +858,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       public com.google.spanner.v1.TypeOrBuilder getTypeOrBuilder() {
         if (typeBuilder_ != null) {
@@ -884,7 +873,7 @@ public  final class StructType extends
        * The type of the field.
        * </pre>
        *
-       * <code>.google.spanner.v1.Type type = 2;</code>
+       * <code>optional .google.spanner.v1.Type type = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.spanner.v1.Type, com.google.spanner.v1.Type.Builder, com.google.spanner.v1.TypeOrBuilder> 
@@ -1081,7 +1070,7 @@ public  final class StructType extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getFieldsCount() > 0) {
       hash = (37 * hash) + FIELDS_FIELD_NUMBER;
       hash = (53 * hash) + getFieldsList().hashCode();
@@ -1091,17 +1080,6 @@ public  final class StructType extends
     return hash;
   }
 
-  public static com.google.spanner.v1.StructType parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.StructType parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.StructType parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

@@ -12,7 +12,7 @@ public interface GetTraceRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   java.lang.String getProjectId();
   /**
@@ -20,7 +20,7 @@ public interface GetTraceRequestOrBuilder extends
    * ID of the Cloud project where the trace data is stored.
    * </pre>
    *
-   * <code>string project_id = 1;</code>
+   * <code>optional string project_id = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectIdBytes();
@@ -30,7 +30,7 @@ public interface GetTraceRequestOrBuilder extends
    * ID of the trace to return.
    * </pre>
    *
-   * <code>string trace_id = 2;</code>
+   * <code>optional string trace_id = 2;</code>
    */
   java.lang.String getTraceId();
   /**
@@ -38,7 +38,7 @@ public interface GetTraceRequestOrBuilder extends
    * ID of the trace to return.
    * </pre>
    *
-   * <code>string trace_id = 2;</code>
+   * <code>optional string trace_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getTraceIdBytes();

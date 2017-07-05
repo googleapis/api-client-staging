@@ -246,7 +246,8 @@ public enum TypeCode
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.spanner.v1.TypeProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.spanner.v1.TypeProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final TypeCode[] VALUES = values();

@@ -132,7 +132,8 @@ public enum TimedCountAlignment
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.devtools.clouderrorreporting.v1beta1.ErrorStatsServiceProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.devtools.clouderrorreporting.v1beta1.ErrorStatsServiceProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final TimedCountAlignment[] VALUES = values();

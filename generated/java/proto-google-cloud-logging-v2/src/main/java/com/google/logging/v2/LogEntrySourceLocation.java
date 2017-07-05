@@ -98,7 +98,7 @@ public  final class LogEntrySourceLocation extends
    * might be a simple name or a fully-qualified name.
    * </pre>
    *
-   * <code>string file = 1;</code>
+   * <code>optional string file = 1;</code>
    */
   public java.lang.String getFile() {
     java.lang.Object ref = file_;
@@ -118,7 +118,7 @@ public  final class LogEntrySourceLocation extends
    * might be a simple name or a fully-qualified name.
    * </pre>
    *
-   * <code>string file = 1;</code>
+   * <code>optional string file = 1;</code>
    */
   public com.google.protobuf.ByteString
       getFileBytes() {
@@ -142,7 +142,7 @@ public  final class LogEntrySourceLocation extends
    * available.
    * </pre>
    *
-   * <code>int64 line = 2;</code>
+   * <code>optional int64 line = 2;</code>
    */
   public long getLine() {
     return line_;
@@ -160,7 +160,7 @@ public  final class LogEntrySourceLocation extends
    * (Python).
    * </pre>
    *
-   * <code>string function = 3;</code>
+   * <code>optional string function = 3;</code>
    */
   public java.lang.String getFunction() {
     java.lang.Object ref = function_;
@@ -184,7 +184,7 @@ public  final class LogEntrySourceLocation extends
    * (Python).
    * </pre>
    *
-   * <code>string function = 3;</code>
+   * <code>optional string function = 3;</code>
    */
   public com.google.protobuf.ByteString
       getFunctionBytes() {
@@ -269,7 +269,7 @@ public  final class LogEntrySourceLocation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + FILE_FIELD_NUMBER;
     hash = (53 * hash) + getFile().hashCode();
     hash = (37 * hash) + LINE_FIELD_NUMBER;
@@ -282,17 +282,6 @@ public  final class LogEntrySourceLocation extends
     return hash;
   }
 
-  public static com.google.logging.v2.LogEntrySourceLocation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.LogEntrySourceLocation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.LogEntrySourceLocation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -527,7 +516,7 @@ public  final class LogEntrySourceLocation extends
      * might be a simple name or a fully-qualified name.
      * </pre>
      *
-     * <code>string file = 1;</code>
+     * <code>optional string file = 1;</code>
      */
     public java.lang.String getFile() {
       java.lang.Object ref = file_;
@@ -547,7 +536,7 @@ public  final class LogEntrySourceLocation extends
      * might be a simple name or a fully-qualified name.
      * </pre>
      *
-     * <code>string file = 1;</code>
+     * <code>optional string file = 1;</code>
      */
     public com.google.protobuf.ByteString
         getFileBytes() {
@@ -568,7 +557,7 @@ public  final class LogEntrySourceLocation extends
      * might be a simple name or a fully-qualified name.
      * </pre>
      *
-     * <code>string file = 1;</code>
+     * <code>optional string file = 1;</code>
      */
     public Builder setFile(
         java.lang.String value) {
@@ -586,7 +575,7 @@ public  final class LogEntrySourceLocation extends
      * might be a simple name or a fully-qualified name.
      * </pre>
      *
-     * <code>string file = 1;</code>
+     * <code>optional string file = 1;</code>
      */
     public Builder clearFile() {
       
@@ -600,7 +589,7 @@ public  final class LogEntrySourceLocation extends
      * might be a simple name or a fully-qualified name.
      * </pre>
      *
-     * <code>string file = 1;</code>
+     * <code>optional string file = 1;</code>
      */
     public Builder setFileBytes(
         com.google.protobuf.ByteString value) {
@@ -621,7 +610,7 @@ public  final class LogEntrySourceLocation extends
      * available.
      * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * <code>optional int64 line = 2;</code>
      */
     public long getLine() {
       return line_;
@@ -632,7 +621,7 @@ public  final class LogEntrySourceLocation extends
      * available.
      * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * <code>optional int64 line = 2;</code>
      */
     public Builder setLine(long value) {
       
@@ -646,7 +635,7 @@ public  final class LogEntrySourceLocation extends
      * available.
      * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * <code>optional int64 line = 2;</code>
      */
     public Builder clearLine() {
       
@@ -666,7 +655,7 @@ public  final class LogEntrySourceLocation extends
      * (Python).
      * </pre>
      *
-     * <code>string function = 3;</code>
+     * <code>optional string function = 3;</code>
      */
     public java.lang.String getFunction() {
       java.lang.Object ref = function_;
@@ -690,7 +679,7 @@ public  final class LogEntrySourceLocation extends
      * (Python).
      * </pre>
      *
-     * <code>string function = 3;</code>
+     * <code>optional string function = 3;</code>
      */
     public com.google.protobuf.ByteString
         getFunctionBytes() {
@@ -715,7 +704,7 @@ public  final class LogEntrySourceLocation extends
      * (Python).
      * </pre>
      *
-     * <code>string function = 3;</code>
+     * <code>optional string function = 3;</code>
      */
     public Builder setFunction(
         java.lang.String value) {
@@ -737,7 +726,7 @@ public  final class LogEntrySourceLocation extends
      * (Python).
      * </pre>
      *
-     * <code>string function = 3;</code>
+     * <code>optional string function = 3;</code>
      */
     public Builder clearFunction() {
       
@@ -755,7 +744,7 @@ public  final class LogEntrySourceLocation extends
      * (Python).
      * </pre>
      *
-     * <code>string function = 3;</code>
+     * <code>optional string function = 3;</code>
      */
     public Builder setFunctionBytes(
         com.google.protobuf.ByteString value) {

@@ -102,7 +102,7 @@ public  final class LatLongRect extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   public boolean hasMinLatLng() {
     return minLatLng_ != null;
@@ -112,7 +112,7 @@ public  final class LatLongRect extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   public com.google.type.LatLng getMinLatLng() {
     return minLatLng_ == null ? com.google.type.LatLng.getDefaultInstance() : minLatLng_;
@@ -122,7 +122,7 @@ public  final class LatLongRect extends
    * Min lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng min_lat_lng = 1;</code>
+   * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
    */
   public com.google.type.LatLngOrBuilder getMinLatLngOrBuilder() {
     return getMinLatLng();
@@ -135,7 +135,7 @@ public  final class LatLongRect extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   public boolean hasMaxLatLng() {
     return maxLatLng_ != null;
@@ -145,7 +145,7 @@ public  final class LatLongRect extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   public com.google.type.LatLng getMaxLatLng() {
     return maxLatLng_ == null ? com.google.type.LatLng.getDefaultInstance() : maxLatLng_;
@@ -155,7 +155,7 @@ public  final class LatLongRect extends
    * Max lat/long pair.
    * </pre>
    *
-   * <code>.google.type.LatLng max_lat_lng = 2;</code>
+   * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
    */
   public com.google.type.LatLngOrBuilder getMaxLatLngOrBuilder() {
     return getMaxLatLng();
@@ -229,7 +229,7 @@ public  final class LatLongRect extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasMinLatLng()) {
       hash = (37 * hash) + MIN_LAT_LNG_FIELD_NUMBER;
       hash = (53 * hash) + getMinLatLng().hashCode();
@@ -243,17 +243,6 @@ public  final class LatLongRect extends
     return hash;
   }
 
-  public static com.google.cloud.vision.v1.LatLongRect parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.vision.v1.LatLongRect parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.vision.v1.LatLongRect parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -496,7 +485,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public boolean hasMinLatLng() {
       return minLatLngBuilder_ != null || minLatLng_ != null;
@@ -506,7 +495,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public com.google.type.LatLng getMinLatLng() {
       if (minLatLngBuilder_ == null) {
@@ -520,7 +509,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public Builder setMinLatLng(com.google.type.LatLng value) {
       if (minLatLngBuilder_ == null) {
@@ -540,7 +529,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public Builder setMinLatLng(
         com.google.type.LatLng.Builder builderForValue) {
@@ -558,7 +547,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public Builder mergeMinLatLng(com.google.type.LatLng value) {
       if (minLatLngBuilder_ == null) {
@@ -580,7 +569,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public Builder clearMinLatLng() {
       if (minLatLngBuilder_ == null) {
@@ -598,7 +587,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public com.google.type.LatLng.Builder getMinLatLngBuilder() {
       
@@ -610,7 +599,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     public com.google.type.LatLngOrBuilder getMinLatLngOrBuilder() {
       if (minLatLngBuilder_ != null) {
@@ -625,7 +614,7 @@ public  final class LatLongRect extends
      * Min lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * <code>optional .google.type.LatLng min_lat_lng = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.type.LatLng, com.google.type.LatLng.Builder, com.google.type.LatLngOrBuilder> 
@@ -649,7 +638,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public boolean hasMaxLatLng() {
       return maxLatLngBuilder_ != null || maxLatLng_ != null;
@@ -659,7 +648,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public com.google.type.LatLng getMaxLatLng() {
       if (maxLatLngBuilder_ == null) {
@@ -673,7 +662,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public Builder setMaxLatLng(com.google.type.LatLng value) {
       if (maxLatLngBuilder_ == null) {
@@ -693,7 +682,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public Builder setMaxLatLng(
         com.google.type.LatLng.Builder builderForValue) {
@@ -711,7 +700,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public Builder mergeMaxLatLng(com.google.type.LatLng value) {
       if (maxLatLngBuilder_ == null) {
@@ -733,7 +722,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public Builder clearMaxLatLng() {
       if (maxLatLngBuilder_ == null) {
@@ -751,7 +740,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public com.google.type.LatLng.Builder getMaxLatLngBuilder() {
       
@@ -763,7 +752,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     public com.google.type.LatLngOrBuilder getMaxLatLngOrBuilder() {
       if (maxLatLngBuilder_ != null) {
@@ -778,7 +767,7 @@ public  final class LatLongRect extends
      * Max lat/long pair.
      * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * <code>optional .google.type.LatLng max_lat_lng = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.type.LatLng, com.google.type.LatLng.Builder, com.google.type.LatLngOrBuilder> 

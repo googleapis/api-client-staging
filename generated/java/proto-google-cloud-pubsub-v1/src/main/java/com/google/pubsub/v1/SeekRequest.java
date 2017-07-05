@@ -141,7 +141,7 @@ public  final class SeekRequest extends
    * The subscription to affect.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public java.lang.String getSubscription() {
     java.lang.Object ref = subscription_;
@@ -160,7 +160,7 @@ public  final class SeekRequest extends
    * The subscription to affect.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSubscriptionBytes() {
@@ -192,7 +192,7 @@ public  final class SeekRequest extends
    * and already-expunged messages will not be restored.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp time = 2;</code>
    */
   public com.google.protobuf.Timestamp getTime() {
     if (targetCase_ == 2) {
@@ -215,7 +215,7 @@ public  final class SeekRequest extends
    * and already-expunged messages will not be restored.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp time = 2;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
     if (targetCase_ == 2) {
@@ -232,7 +232,7 @@ public  final class SeekRequest extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>string snapshot = 3;</code>
+   * <code>optional string snapshot = 3;</code>
    */
   public java.lang.String getSnapshot() {
     java.lang.Object ref = "";
@@ -258,7 +258,7 @@ public  final class SeekRequest extends
    * Format is `projects/{project}/snapshots/{snap}`.
    * </pre>
    *
-   * <code>string snapshot = 3;</code>
+   * <code>optional string snapshot = 3;</code>
    */
   public com.google.protobuf.ByteString
       getSnapshotBytes() {
@@ -359,7 +359,7 @@ public  final class SeekRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SUBSCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getSubscription().hashCode();
     switch (targetCase_) {
@@ -379,17 +379,6 @@ public  final class SeekRequest extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.SeekRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.SeekRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.SeekRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -652,7 +641,7 @@ public  final class SeekRequest extends
      * The subscription to affect.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public java.lang.String getSubscription() {
       java.lang.Object ref = subscription_;
@@ -671,7 +660,7 @@ public  final class SeekRequest extends
      * The subscription to affect.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSubscriptionBytes() {
@@ -691,7 +680,7 @@ public  final class SeekRequest extends
      * The subscription to affect.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscription(
         java.lang.String value) {
@@ -708,7 +697,7 @@ public  final class SeekRequest extends
      * The subscription to affect.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder clearSubscription() {
       
@@ -721,7 +710,7 @@ public  final class SeekRequest extends
      * The subscription to affect.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -752,7 +741,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public com.google.protobuf.Timestamp getTime() {
       if (timeBuilder_ == null) {
@@ -782,7 +771,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public Builder setTime(com.google.protobuf.Timestamp value) {
       if (timeBuilder_ == null) {
@@ -812,7 +801,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public Builder setTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -840,7 +829,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public Builder mergeTime(com.google.protobuf.Timestamp value) {
       if (timeBuilder_ == null) {
@@ -876,7 +865,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public Builder clearTime() {
       if (timeBuilder_ == null) {
@@ -909,7 +898,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
       return getTimeFieldBuilder().getBuilder();
@@ -929,7 +918,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
       if ((targetCase_ == 2) && (timeBuilder_ != null)) {
@@ -956,7 +945,7 @@ public  final class SeekRequest extends
      * and already-expunged messages will not be restored.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp time = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -984,7 +973,7 @@ public  final class SeekRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * <code>optional string snapshot = 3;</code>
      */
     public java.lang.String getSnapshot() {
       java.lang.Object ref = "";
@@ -1010,7 +999,7 @@ public  final class SeekRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * <code>optional string snapshot = 3;</code>
      */
     public com.google.protobuf.ByteString
         getSnapshotBytes() {
@@ -1037,7 +1026,7 @@ public  final class SeekRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * <code>optional string snapshot = 3;</code>
      */
     public Builder setSnapshot(
         java.lang.String value) {
@@ -1056,7 +1045,7 @@ public  final class SeekRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * <code>optional string snapshot = 3;</code>
      */
     public Builder clearSnapshot() {
       if (targetCase_ == 3) {
@@ -1073,7 +1062,7 @@ public  final class SeekRequest extends
      * Format is `projects/{project}/snapshots/{snap}`.
      * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * <code>optional string snapshot = 3;</code>
      */
     public Builder setSnapshotBytes(
         com.google.protobuf.ByteString value) {

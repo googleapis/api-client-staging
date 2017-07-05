@@ -12,7 +12,7 @@ public interface EntityOrBuilder extends
    * The representative name for the entity.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -20,7 +20,7 @@ public interface EntityOrBuilder extends
    * The representative name for the entity.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -30,7 +30,7 @@ public interface EntityOrBuilder extends
    * The entity type.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Entity.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1.Entity.Type type = 2;</code>
    */
   int getTypeValue();
   /**
@@ -38,7 +38,7 @@ public interface EntityOrBuilder extends
    * The entity type.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Entity.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1.Entity.Type type = 2;</code>
    */
   com.google.cloud.language.v1.Entity.Type getType();
 
@@ -115,7 +115,7 @@ public interface EntityOrBuilder extends
    * salient.
    * </pre>
    *
-   * <code>float salience = 4;</code>
+   * <code>optional float salience = 4;</code>
    */
   float getSalience();
 

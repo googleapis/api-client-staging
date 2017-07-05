@@ -96,7 +96,7 @@ public  final class BeginTransactionRequest extends
    * Required. The session in which the transaction runs.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   public java.lang.String getSession() {
     java.lang.Object ref = session_;
@@ -115,7 +115,7 @@ public  final class BeginTransactionRequest extends
    * Required. The session in which the transaction runs.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSessionBytes() {
@@ -138,7 +138,7 @@ public  final class BeginTransactionRequest extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
    */
   public boolean hasOptions() {
     return options_ != null;
@@ -148,7 +148,7 @@ public  final class BeginTransactionRequest extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
    */
   public com.google.spanner.v1.TransactionOptions getOptions() {
     return options_ == null ? com.google.spanner.v1.TransactionOptions.getDefaultInstance() : options_;
@@ -158,7 +158,7 @@ public  final class BeginTransactionRequest extends
    * Required. Options for the new transaction.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
    */
   public com.google.spanner.v1.TransactionOptionsOrBuilder getOptionsOrBuilder() {
     return getOptions();
@@ -228,7 +228,7 @@ public  final class BeginTransactionRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SESSION_FIELD_NUMBER;
     hash = (53 * hash) + getSession().hashCode();
     if (hasOptions()) {
@@ -240,17 +240,6 @@ public  final class BeginTransactionRequest extends
     return hash;
   }
 
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.BeginTransactionRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -484,7 +473,7 @@ public  final class BeginTransactionRequest extends
      * Required. The session in which the transaction runs.
      * </pre>
      *
-     * <code>string session = 1;</code>
+     * <code>optional string session = 1;</code>
      */
     public java.lang.String getSession() {
       java.lang.Object ref = session_;
@@ -503,7 +492,7 @@ public  final class BeginTransactionRequest extends
      * Required. The session in which the transaction runs.
      * </pre>
      *
-     * <code>string session = 1;</code>
+     * <code>optional string session = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSessionBytes() {
@@ -523,7 +512,7 @@ public  final class BeginTransactionRequest extends
      * Required. The session in which the transaction runs.
      * </pre>
      *
-     * <code>string session = 1;</code>
+     * <code>optional string session = 1;</code>
      */
     public Builder setSession(
         java.lang.String value) {
@@ -540,7 +529,7 @@ public  final class BeginTransactionRequest extends
      * Required. The session in which the transaction runs.
      * </pre>
      *
-     * <code>string session = 1;</code>
+     * <code>optional string session = 1;</code>
      */
     public Builder clearSession() {
       
@@ -553,7 +542,7 @@ public  final class BeginTransactionRequest extends
      * Required. The session in which the transaction runs.
      * </pre>
      *
-     * <code>string session = 1;</code>
+     * <code>optional string session = 1;</code>
      */
     public Builder setSessionBytes(
         com.google.protobuf.ByteString value) {
@@ -575,7 +564,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public boolean hasOptions() {
       return optionsBuilder_ != null || options_ != null;
@@ -585,7 +574,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptions getOptions() {
       if (optionsBuilder_ == null) {
@@ -599,7 +588,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public Builder setOptions(com.google.spanner.v1.TransactionOptions value) {
       if (optionsBuilder_ == null) {
@@ -619,7 +608,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public Builder setOptions(
         com.google.spanner.v1.TransactionOptions.Builder builderForValue) {
@@ -637,7 +626,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public Builder mergeOptions(com.google.spanner.v1.TransactionOptions value) {
       if (optionsBuilder_ == null) {
@@ -659,7 +648,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public Builder clearOptions() {
       if (optionsBuilder_ == null) {
@@ -677,7 +666,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptions.Builder getOptionsBuilder() {
       
@@ -689,7 +678,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptionsOrBuilder getOptionsOrBuilder() {
       if (optionsBuilder_ != null) {
@@ -704,7 +693,7 @@ public  final class BeginTransactionRequest extends
      * Required. Options for the new transaction.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions options = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions, com.google.spanner.v1.TransactionOptions.Builder, com.google.spanner.v1.TransactionOptionsOrBuilder> 

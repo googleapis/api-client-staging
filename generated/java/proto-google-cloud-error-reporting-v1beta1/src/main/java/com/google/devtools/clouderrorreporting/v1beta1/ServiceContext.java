@@ -103,7 +103,7 @@ public  final class ServiceContext extends
    * App Engine logs or `default` if the App Engine default service is used.
    * </pre>
    *
-   * <code>string service = 2;</code>
+   * <code>optional string service = 2;</code>
    */
   public java.lang.String getService() {
     java.lang.Object ref = service_;
@@ -127,7 +127,7 @@ public  final class ServiceContext extends
    * App Engine logs or `default` if the App Engine default service is used.
    * </pre>
    *
-   * <code>string service = 2;</code>
+   * <code>optional string service = 2;</code>
    */
   public com.google.protobuf.ByteString
       getServiceBytes() {
@@ -151,7 +151,7 @@ public  final class ServiceContext extends
    * which could represent a version label or a Git SHA-1 hash, for example.
    * </pre>
    *
-   * <code>string version = 3;</code>
+   * <code>optional string version = 3;</code>
    */
   public java.lang.String getVersion() {
     java.lang.Object ref = version_;
@@ -171,7 +171,7 @@ public  final class ServiceContext extends
    * which could represent a version label or a Git SHA-1 hash, for example.
    * </pre>
    *
-   * <code>string version = 3;</code>
+   * <code>optional string version = 3;</code>
    */
   public com.google.protobuf.ByteString
       getVersionBytes() {
@@ -197,7 +197,7 @@ public  final class ServiceContext extends
    * reporting errors.
    * </pre>
    *
-   * <code>string resource_type = 4;</code>
+   * <code>optional string resource_type = 4;</code>
    */
   public java.lang.String getResourceType() {
     java.lang.Object ref = resourceType_;
@@ -219,7 +219,7 @@ public  final class ServiceContext extends
    * reporting errors.
    * </pre>
    *
-   * <code>string resource_type = 4;</code>
+   * <code>optional string resource_type = 4;</code>
    */
   public com.google.protobuf.ByteString
       getResourceTypeBytes() {
@@ -303,7 +303,7 @@ public  final class ServiceContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SERVICE_FIELD_NUMBER;
     hash = (53 * hash) + getService().hashCode();
     hash = (37 * hash) + VERSION_FIELD_NUMBER;
@@ -315,17 +315,6 @@ public  final class ServiceContext extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContext parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContext parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.ServiceContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -565,7 +554,7 @@ public  final class ServiceContext extends
      * App Engine logs or `default` if the App Engine default service is used.
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public java.lang.String getService() {
       java.lang.Object ref = service_;
@@ -589,7 +578,7 @@ public  final class ServiceContext extends
      * App Engine logs or `default` if the App Engine default service is used.
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public com.google.protobuf.ByteString
         getServiceBytes() {
@@ -614,7 +603,7 @@ public  final class ServiceContext extends
      * App Engine logs or `default` if the App Engine default service is used.
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder setService(
         java.lang.String value) {
@@ -636,7 +625,7 @@ public  final class ServiceContext extends
      * App Engine logs or `default` if the App Engine default service is used.
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder clearService() {
       
@@ -654,7 +643,7 @@ public  final class ServiceContext extends
      * App Engine logs or `default` if the App Engine default service is used.
      * </pre>
      *
-     * <code>string service = 2;</code>
+     * <code>optional string service = 2;</code>
      */
     public Builder setServiceBytes(
         com.google.protobuf.ByteString value) {
@@ -675,7 +664,7 @@ public  final class ServiceContext extends
      * which could represent a version label or a Git SHA-1 hash, for example.
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public java.lang.String getVersion() {
       java.lang.Object ref = version_;
@@ -695,7 +684,7 @@ public  final class ServiceContext extends
      * which could represent a version label or a Git SHA-1 hash, for example.
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public com.google.protobuf.ByteString
         getVersionBytes() {
@@ -716,7 +705,7 @@ public  final class ServiceContext extends
      * which could represent a version label or a Git SHA-1 hash, for example.
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder setVersion(
         java.lang.String value) {
@@ -734,7 +723,7 @@ public  final class ServiceContext extends
      * which could represent a version label or a Git SHA-1 hash, for example.
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder clearVersion() {
       
@@ -748,7 +737,7 @@ public  final class ServiceContext extends
      * which could represent a version label or a Git SHA-1 hash, for example.
      * </pre>
      *
-     * <code>string version = 3;</code>
+     * <code>optional string version = 3;</code>
      */
     public Builder setVersionBytes(
         com.google.protobuf.ByteString value) {
@@ -771,7 +760,7 @@ public  final class ServiceContext extends
      * reporting errors.
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public java.lang.String getResourceType() {
       java.lang.Object ref = resourceType_;
@@ -793,7 +782,7 @@ public  final class ServiceContext extends
      * reporting errors.
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public com.google.protobuf.ByteString
         getResourceTypeBytes() {
@@ -816,7 +805,7 @@ public  final class ServiceContext extends
      * reporting errors.
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder setResourceType(
         java.lang.String value) {
@@ -836,7 +825,7 @@ public  final class ServiceContext extends
      * reporting errors.
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder clearResourceType() {
       
@@ -852,7 +841,7 @@ public  final class ServiceContext extends
      * reporting errors.
      * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * <code>optional string resource_type = 4;</code>
      */
     public Builder setResourceTypeBytes(
         com.google.protobuf.ByteString value) {

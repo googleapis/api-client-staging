@@ -120,7 +120,7 @@ public  final class LogDescriptor extends
    * slash, underscore, hyphen, period [/_-.].
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -142,7 +142,7 @@ public  final class LogDescriptor extends
    * slash, underscore, hyphen, period [/_-.].
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -231,7 +231,7 @@ public  final class LogDescriptor extends
    * the documentation and can contain details.
    * </pre>
    *
-   * <code>string description = 3;</code>
+   * <code>optional string description = 3;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -251,7 +251,7 @@ public  final class LogDescriptor extends
    * the documentation and can contain details.
    * </pre>
    *
-   * <code>string description = 3;</code>
+   * <code>optional string description = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -275,7 +275,7 @@ public  final class LogDescriptor extends
    * the user interface and should be concise.
    * </pre>
    *
-   * <code>string display_name = 4;</code>
+   * <code>optional string display_name = 4;</code>
    */
   public java.lang.String getDisplayName() {
     java.lang.Object ref = displayName_;
@@ -295,7 +295,7 @@ public  final class LogDescriptor extends
    * the user interface and should be concise.
    * </pre>
    *
-   * <code>string display_name = 4;</code>
+   * <code>optional string display_name = 4;</code>
    */
   public com.google.protobuf.ByteString
       getDisplayNameBytes() {
@@ -388,7 +388,7 @@ public  final class LogDescriptor extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     if (getLabelsCount() > 0) {
@@ -404,17 +404,6 @@ public  final class LogDescriptor extends
     return hash;
   }
 
-  public static com.google.api.LogDescriptor parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.LogDescriptor parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.LogDescriptor parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -703,7 +692,7 @@ public  final class LogDescriptor extends
      * slash, underscore, hyphen, period [/_-.].
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -725,7 +714,7 @@ public  final class LogDescriptor extends
      * slash, underscore, hyphen, period [/_-.].
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -748,7 +737,7 @@ public  final class LogDescriptor extends
      * slash, underscore, hyphen, period [/_-.].
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -768,7 +757,7 @@ public  final class LogDescriptor extends
      * slash, underscore, hyphen, period [/_-.].
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -784,7 +773,7 @@ public  final class LogDescriptor extends
      * slash, underscore, hyphen, period [/_-.].
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -1153,7 +1142,7 @@ public  final class LogDescriptor extends
      * the documentation and can contain details.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -1173,7 +1162,7 @@ public  final class LogDescriptor extends
      * the documentation and can contain details.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -1194,7 +1183,7 @@ public  final class LogDescriptor extends
      * the documentation and can contain details.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -1212,7 +1201,7 @@ public  final class LogDescriptor extends
      * the documentation and can contain details.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder clearDescription() {
       
@@ -1226,7 +1215,7 @@ public  final class LogDescriptor extends
      * the documentation and can contain details.
      * </pre>
      *
-     * <code>string description = 3;</code>
+     * <code>optional string description = 3;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -1247,7 +1236,7 @@ public  final class LogDescriptor extends
      * the user interface and should be concise.
      * </pre>
      *
-     * <code>string display_name = 4;</code>
+     * <code>optional string display_name = 4;</code>
      */
     public java.lang.String getDisplayName() {
       java.lang.Object ref = displayName_;
@@ -1267,7 +1256,7 @@ public  final class LogDescriptor extends
      * the user interface and should be concise.
      * </pre>
      *
-     * <code>string display_name = 4;</code>
+     * <code>optional string display_name = 4;</code>
      */
     public com.google.protobuf.ByteString
         getDisplayNameBytes() {
@@ -1288,7 +1277,7 @@ public  final class LogDescriptor extends
      * the user interface and should be concise.
      * </pre>
      *
-     * <code>string display_name = 4;</code>
+     * <code>optional string display_name = 4;</code>
      */
     public Builder setDisplayName(
         java.lang.String value) {
@@ -1306,7 +1295,7 @@ public  final class LogDescriptor extends
      * the user interface and should be concise.
      * </pre>
      *
-     * <code>string display_name = 4;</code>
+     * <code>optional string display_name = 4;</code>
      */
     public Builder clearDisplayName() {
       
@@ -1320,7 +1309,7 @@ public  final class LogDescriptor extends
      * the user interface and should be concise.
      * </pre>
      *
-     * <code>string display_name = 4;</code>
+     * <code>optional string display_name = 4;</code>
      */
     public Builder setDisplayNameBytes(
         com.google.protobuf.ByteString value) {

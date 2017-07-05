@@ -231,7 +231,7 @@ public  final class Database extends
    * identify the database.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -254,7 +254,7 @@ public  final class Database extends
    * identify the database.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -277,7 +277,7 @@ public  final class Database extends
    * Output only. The current database state.
    * </pre>
    *
-   * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+   * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
    */
   public int getStateValue() {
     return state_;
@@ -287,7 +287,7 @@ public  final class Database extends
    * Output only. The current database state.
    * </pre>
    *
-   * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+   * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
    */
   public com.google.spanner.admin.database.v1.Database.State getState() {
     com.google.spanner.admin.database.v1.Database.State result = com.google.spanner.admin.database.v1.Database.State.valueOf(state_);
@@ -354,7 +354,7 @@ public  final class Database extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + STATE_FIELD_NUMBER;
@@ -364,17 +364,6 @@ public  final class Database extends
     return hash;
   }
 
-  public static com.google.spanner.admin.database.v1.Database parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.database.v1.Database parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.database.v1.Database parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -604,7 +593,7 @@ public  final class Database extends
      * identify the database.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -627,7 +616,7 @@ public  final class Database extends
      * identify the database.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -651,7 +640,7 @@ public  final class Database extends
      * identify the database.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -672,7 +661,7 @@ public  final class Database extends
      * identify the database.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -689,7 +678,7 @@ public  final class Database extends
      * identify the database.
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -709,7 +698,7 @@ public  final class Database extends
      * Output only. The current database state.
      * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     public int getStateValue() {
       return state_;
@@ -719,7 +708,7 @@ public  final class Database extends
      * Output only. The current database state.
      * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     public Builder setStateValue(int value) {
       state_ = value;
@@ -731,7 +720,7 @@ public  final class Database extends
      * Output only. The current database state.
      * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     public com.google.spanner.admin.database.v1.Database.State getState() {
       com.google.spanner.admin.database.v1.Database.State result = com.google.spanner.admin.database.v1.Database.State.valueOf(state_);
@@ -742,7 +731,7 @@ public  final class Database extends
      * Output only. The current database state.
      * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     public Builder setState(com.google.spanner.admin.database.v1.Database.State value) {
       if (value == null) {
@@ -758,7 +747,7 @@ public  final class Database extends
      * Output only. The current database state.
      * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * <code>optional .google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     public Builder clearState() {
       

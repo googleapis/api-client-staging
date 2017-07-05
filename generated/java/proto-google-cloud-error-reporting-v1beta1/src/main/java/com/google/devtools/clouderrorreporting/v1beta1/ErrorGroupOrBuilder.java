@@ -13,7 +13,7 @@ public interface ErrorGroupOrBuilder extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface ErrorGroupOrBuilder extends
    * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -33,7 +33,7 @@ public interface ErrorGroupOrBuilder extends
    * occurs in different service contexts, it will receive the same group ID.
    * </pre>
    *
-   * <code>string group_id = 2;</code>
+   * <code>optional string group_id = 2;</code>
    */
   java.lang.String getGroupId();
   /**
@@ -42,7 +42,7 @@ public interface ErrorGroupOrBuilder extends
    * occurs in different service contexts, it will receive the same group ID.
    * </pre>
    *
-   * <code>string group_id = 2;</code>
+   * <code>optional string group_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getGroupIdBytes();

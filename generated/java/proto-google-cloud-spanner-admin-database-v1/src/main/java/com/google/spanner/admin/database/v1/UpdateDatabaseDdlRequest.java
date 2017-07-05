@@ -118,7 +118,7 @@ public  final class UpdateDatabaseDdlRequest extends
    * Required. The database to update.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   public java.lang.String getDatabase() {
     java.lang.Object ref = database_;
@@ -137,7 +137,7 @@ public  final class UpdateDatabaseDdlRequest extends
    * Required. The database to update.
    * </pre>
    *
-   * <code>string database = 1;</code>
+   * <code>optional string database = 1;</code>
    */
   public com.google.protobuf.ByteString
       getDatabaseBytes() {
@@ -221,7 +221,7 @@ public  final class UpdateDatabaseDdlRequest extends
    * `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>string operation_id = 3;</code>
+   * <code>optional string operation_id = 3;</code>
    */
   public java.lang.String getOperationId() {
     java.lang.Object ref = operationId_;
@@ -256,7 +256,7 @@ public  final class UpdateDatabaseDdlRequest extends
    * `ALREADY_EXISTS`.
    * </pre>
    *
-   * <code>string operation_id = 3;</code>
+   * <code>optional string operation_id = 3;</code>
    */
   public com.google.protobuf.ByteString
       getOperationIdBytes() {
@@ -345,7 +345,7 @@ public  final class UpdateDatabaseDdlRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + DATABASE_FIELD_NUMBER;
     hash = (53 * hash) + getDatabase().hashCode();
     if (getStatementsCount() > 0) {
@@ -359,17 +359,6 @@ public  final class UpdateDatabaseDdlRequest extends
     return hash;
   }
 
-  public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -631,7 +620,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * Required. The database to update.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public java.lang.String getDatabase() {
       java.lang.Object ref = database_;
@@ -650,7 +639,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * Required. The database to update.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public com.google.protobuf.ByteString
         getDatabaseBytes() {
@@ -670,7 +659,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * Required. The database to update.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder setDatabase(
         java.lang.String value) {
@@ -687,7 +676,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * Required. The database to update.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder clearDatabase() {
       
@@ -700,7 +689,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * Required. The database to update.
      * </pre>
      *
-     * <code>string database = 1;</code>
+     * <code>optional string database = 1;</code>
      */
     public Builder setDatabaseBytes(
         com.google.protobuf.ByteString value) {
@@ -866,7 +855,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * <code>optional string operation_id = 3;</code>
      */
     public java.lang.String getOperationId() {
       java.lang.Object ref = operationId_;
@@ -901,7 +890,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * <code>optional string operation_id = 3;</code>
      */
     public com.google.protobuf.ByteString
         getOperationIdBytes() {
@@ -937,7 +926,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * <code>optional string operation_id = 3;</code>
      */
     public Builder setOperationId(
         java.lang.String value) {
@@ -970,7 +959,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * <code>optional string operation_id = 3;</code>
      */
     public Builder clearOperationId() {
       
@@ -999,7 +988,7 @@ public  final class UpdateDatabaseDdlRequest extends
      * `ALREADY_EXISTS`.
      * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * <code>optional string operation_id = 3;</code>
      */
     public Builder setOperationIdBytes(
         com.google.protobuf.ByteString value) {

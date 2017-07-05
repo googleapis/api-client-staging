@@ -64,7 +64,7 @@ public interface ListLogEntriesResponseOrBuilder extends
    * or resource type, or to narrow the time range of the search.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -80,7 +80,7 @@ public interface ListLogEntriesResponseOrBuilder extends
    * or resource type, or to narrow the time range of the search.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

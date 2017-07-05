@@ -13,7 +13,7 @@ public interface KeyRangeOrBuilder extends
    * first `len(start_closed)` key columns exactly match `start_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
    */
   com.google.protobuf.ListValue getStartClosed();
   /**
@@ -22,7 +22,7 @@ public interface KeyRangeOrBuilder extends
    * first `len(start_closed)` key columns exactly match `start_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   * <code>optional .google.protobuf.ListValue start_closed = 1;</code>
    */
   com.google.protobuf.ListValueOrBuilder getStartClosedOrBuilder();
 
@@ -32,7 +32,7 @@ public interface KeyRangeOrBuilder extends
    * `len(start_open)` key columns exactly match `start_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   * <code>optional .google.protobuf.ListValue start_open = 2;</code>
    */
   com.google.protobuf.ListValue getStartOpen();
   /**
@@ -41,7 +41,7 @@ public interface KeyRangeOrBuilder extends
    * `len(start_open)` key columns exactly match `start_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   * <code>optional .google.protobuf.ListValue start_open = 2;</code>
    */
   com.google.protobuf.ListValueOrBuilder getStartOpenOrBuilder();
 
@@ -51,7 +51,7 @@ public interface KeyRangeOrBuilder extends
    * first `len(end_closed)` key columns exactly match `end_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
    */
   com.google.protobuf.ListValue getEndClosed();
   /**
@@ -60,7 +60,7 @@ public interface KeyRangeOrBuilder extends
    * first `len(end_closed)` key columns exactly match `end_closed`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   * <code>optional .google.protobuf.ListValue end_closed = 3;</code>
    */
   com.google.protobuf.ListValueOrBuilder getEndClosedOrBuilder();
 
@@ -70,7 +70,7 @@ public interface KeyRangeOrBuilder extends
    * `len(end_open)` key columns exactly match `end_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   * <code>optional .google.protobuf.ListValue end_open = 4;</code>
    */
   com.google.protobuf.ListValue getEndOpen();
   /**
@@ -79,7 +79,7 @@ public interface KeyRangeOrBuilder extends
    * `len(end_open)` key columns exactly match `end_open`.
    * </pre>
    *
-   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   * <code>optional .google.protobuf.ListValue end_open = 4;</code>
    */
   com.google.protobuf.ListValueOrBuilder getEndOpenOrBuilder();
 

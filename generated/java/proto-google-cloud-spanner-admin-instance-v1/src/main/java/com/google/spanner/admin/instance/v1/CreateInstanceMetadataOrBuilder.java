@@ -12,7 +12,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The instance being created.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   boolean hasInstance();
   /**
@@ -20,7 +20,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The instance being created.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   com.google.spanner.admin.instance.v1.Instance getInstance();
   /**
@@ -28,7 +28,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The instance being created.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 1;</code>
    */
   com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder();
 
@@ -39,7 +39,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   boolean hasStartTime();
   /**
@@ -49,7 +49,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.Timestamp getStartTime();
   /**
@@ -59,7 +59,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * received.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder();
 
@@ -70,7 +70,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   boolean hasCancelTime();
   /**
@@ -80,7 +80,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   com.google.protobuf.Timestamp getCancelTime();
   /**
@@ -90,7 +90,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * cannot be cancelled again.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp cancel_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCancelTimeOrBuilder();
 
@@ -99,7 +99,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   boolean hasEndTime();
   /**
@@ -107,7 +107,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   com.google.protobuf.Timestamp getEndTime();
   /**
@@ -115,7 +115,7 @@ public interface CreateInstanceMetadataOrBuilder extends
    * The time at which this operation failed or was completed successfully.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder();
 }

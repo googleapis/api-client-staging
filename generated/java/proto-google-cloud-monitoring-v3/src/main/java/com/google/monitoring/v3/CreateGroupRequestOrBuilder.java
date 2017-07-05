@@ -13,7 +13,7 @@ public interface CreateGroupRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 4;</code>
+   * <code>optional string name = 4;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface CreateGroupRequestOrBuilder extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 4;</code>
+   * <code>optional string name = 4;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -33,7 +33,7 @@ public interface CreateGroupRequestOrBuilder extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   boolean hasGroup();
   /**
@@ -42,7 +42,7 @@ public interface CreateGroupRequestOrBuilder extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   com.google.monitoring.v3.Group getGroup();
   /**
@@ -51,7 +51,7 @@ public interface CreateGroupRequestOrBuilder extends
    * the system assigns the name.
    * </pre>
    *
-   * <code>.google.monitoring.v3.Group group = 2;</code>
+   * <code>optional .google.monitoring.v3.Group group = 2;</code>
    */
   com.google.monitoring.v3.GroupOrBuilder getGroupOrBuilder();
 
@@ -60,7 +60,7 @@ public interface CreateGroupRequestOrBuilder extends
    * If true, validate this request but do not create the group.
    * </pre>
    *
-   * <code>bool validate_only = 3;</code>
+   * <code>optional bool validate_only = 3;</code>
    */
   boolean getValidateOnly();
 }

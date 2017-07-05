@@ -198,7 +198,7 @@ public  final class VideoContext extends
    * defaults to `SHOT_MODE`.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
    */
   public int getLabelDetectionModeValue() {
     return labelDetectionMode_;
@@ -210,7 +210,7 @@ public  final class VideoContext extends
    * defaults to `SHOT_MODE`.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.LabelDetectionMode getLabelDetectionMode() {
     com.google.cloud.videointelligence.v1beta1.LabelDetectionMode result = com.google.cloud.videointelligence.v1beta1.LabelDetectionMode.valueOf(labelDetectionMode_);
@@ -225,7 +225,7 @@ public  final class VideoContext extends
    * When set to true, might improve detection accuracy for moving objects.
    * </pre>
    *
-   * <code>bool stationary_camera = 3;</code>
+   * <code>optional bool stationary_camera = 3;</code>
    */
   public boolean getStationaryCamera() {
     return stationaryCamera_;
@@ -239,7 +239,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string label_detection_model = 4;</code>
+   * <code>optional string label_detection_model = 4;</code>
    */
   public java.lang.String getLabelDetectionModel() {
     java.lang.Object ref = labelDetectionModel_;
@@ -259,7 +259,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string label_detection_model = 4;</code>
+   * <code>optional string label_detection_model = 4;</code>
    */
   public com.google.protobuf.ByteString
       getLabelDetectionModelBytes() {
@@ -283,7 +283,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string face_detection_model = 5;</code>
+   * <code>optional string face_detection_model = 5;</code>
    */
   public java.lang.String getFaceDetectionModel() {
     java.lang.Object ref = faceDetectionModel_;
@@ -303,7 +303,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string face_detection_model = 5;</code>
+   * <code>optional string face_detection_model = 5;</code>
    */
   public com.google.protobuf.ByteString
       getFaceDetectionModelBytes() {
@@ -327,7 +327,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string shot_change_detection_model = 6;</code>
+   * <code>optional string shot_change_detection_model = 6;</code>
    */
   public java.lang.String getShotChangeDetectionModel() {
     java.lang.Object ref = shotChangeDetectionModel_;
@@ -347,7 +347,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string shot_change_detection_model = 6;</code>
+   * <code>optional string shot_change_detection_model = 6;</code>
    */
   public com.google.protobuf.ByteString
       getShotChangeDetectionModelBytes() {
@@ -371,7 +371,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string safe_search_detection_model = 7;</code>
+   * <code>optional string safe_search_detection_model = 7;</code>
    */
   public java.lang.String getSafeSearchDetectionModel() {
     java.lang.Object ref = safeSearchDetectionModel_;
@@ -391,7 +391,7 @@ public  final class VideoContext extends
    * Supported values: "latest" and "stable" (the default).
    * </pre>
    *
-   * <code>string safe_search_detection_model = 7;</code>
+   * <code>optional string safe_search_detection_model = 7;</code>
    */
   public com.google.protobuf.ByteString
       getSafeSearchDetectionModelBytes() {
@@ -509,7 +509,7 @@ public  final class VideoContext extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getSegmentsCount() > 0) {
       hash = (37 * hash) + SEGMENTS_FIELD_NUMBER;
       hash = (53 * hash) + getSegmentsList().hashCode();
@@ -532,17 +532,6 @@ public  final class VideoContext extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.VideoContext parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.VideoContext parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.VideoContext parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1191,7 +1180,7 @@ public  final class VideoContext extends
      * defaults to `SHOT_MODE`.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     public int getLabelDetectionModeValue() {
       return labelDetectionMode_;
@@ -1203,7 +1192,7 @@ public  final class VideoContext extends
      * defaults to `SHOT_MODE`.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     public Builder setLabelDetectionModeValue(int value) {
       labelDetectionMode_ = value;
@@ -1217,7 +1206,7 @@ public  final class VideoContext extends
      * defaults to `SHOT_MODE`.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.LabelDetectionMode getLabelDetectionMode() {
       com.google.cloud.videointelligence.v1beta1.LabelDetectionMode result = com.google.cloud.videointelligence.v1beta1.LabelDetectionMode.valueOf(labelDetectionMode_);
@@ -1230,7 +1219,7 @@ public  final class VideoContext extends
      * defaults to `SHOT_MODE`.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     public Builder setLabelDetectionMode(com.google.cloud.videointelligence.v1beta1.LabelDetectionMode value) {
       if (value == null) {
@@ -1248,7 +1237,7 @@ public  final class VideoContext extends
      * defaults to `SHOT_MODE`.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     public Builder clearLabelDetectionMode() {
       
@@ -1264,7 +1253,7 @@ public  final class VideoContext extends
      * When set to true, might improve detection accuracy for moving objects.
      * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * <code>optional bool stationary_camera = 3;</code>
      */
     public boolean getStationaryCamera() {
       return stationaryCamera_;
@@ -1275,7 +1264,7 @@ public  final class VideoContext extends
      * When set to true, might improve detection accuracy for moving objects.
      * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * <code>optional bool stationary_camera = 3;</code>
      */
     public Builder setStationaryCamera(boolean value) {
       
@@ -1289,7 +1278,7 @@ public  final class VideoContext extends
      * When set to true, might improve detection accuracy for moving objects.
      * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * <code>optional bool stationary_camera = 3;</code>
      */
     public Builder clearStationaryCamera() {
       
@@ -1305,7 +1294,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * <code>optional string label_detection_model = 4;</code>
      */
     public java.lang.String getLabelDetectionModel() {
       java.lang.Object ref = labelDetectionModel_;
@@ -1325,7 +1314,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * <code>optional string label_detection_model = 4;</code>
      */
     public com.google.protobuf.ByteString
         getLabelDetectionModelBytes() {
@@ -1346,7 +1335,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * <code>optional string label_detection_model = 4;</code>
      */
     public Builder setLabelDetectionModel(
         java.lang.String value) {
@@ -1364,7 +1353,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * <code>optional string label_detection_model = 4;</code>
      */
     public Builder clearLabelDetectionModel() {
       
@@ -1378,7 +1367,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * <code>optional string label_detection_model = 4;</code>
      */
     public Builder setLabelDetectionModelBytes(
         com.google.protobuf.ByteString value) {
@@ -1399,7 +1388,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * <code>optional string face_detection_model = 5;</code>
      */
     public java.lang.String getFaceDetectionModel() {
       java.lang.Object ref = faceDetectionModel_;
@@ -1419,7 +1408,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * <code>optional string face_detection_model = 5;</code>
      */
     public com.google.protobuf.ByteString
         getFaceDetectionModelBytes() {
@@ -1440,7 +1429,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * <code>optional string face_detection_model = 5;</code>
      */
     public Builder setFaceDetectionModel(
         java.lang.String value) {
@@ -1458,7 +1447,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * <code>optional string face_detection_model = 5;</code>
      */
     public Builder clearFaceDetectionModel() {
       
@@ -1472,7 +1461,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * <code>optional string face_detection_model = 5;</code>
      */
     public Builder setFaceDetectionModelBytes(
         com.google.protobuf.ByteString value) {
@@ -1493,7 +1482,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * <code>optional string shot_change_detection_model = 6;</code>
      */
     public java.lang.String getShotChangeDetectionModel() {
       java.lang.Object ref = shotChangeDetectionModel_;
@@ -1513,7 +1502,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * <code>optional string shot_change_detection_model = 6;</code>
      */
     public com.google.protobuf.ByteString
         getShotChangeDetectionModelBytes() {
@@ -1534,7 +1523,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * <code>optional string shot_change_detection_model = 6;</code>
      */
     public Builder setShotChangeDetectionModel(
         java.lang.String value) {
@@ -1552,7 +1541,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * <code>optional string shot_change_detection_model = 6;</code>
      */
     public Builder clearShotChangeDetectionModel() {
       
@@ -1566,7 +1555,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * <code>optional string shot_change_detection_model = 6;</code>
      */
     public Builder setShotChangeDetectionModelBytes(
         com.google.protobuf.ByteString value) {
@@ -1587,7 +1576,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * <code>optional string safe_search_detection_model = 7;</code>
      */
     public java.lang.String getSafeSearchDetectionModel() {
       java.lang.Object ref = safeSearchDetectionModel_;
@@ -1607,7 +1596,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * <code>optional string safe_search_detection_model = 7;</code>
      */
     public com.google.protobuf.ByteString
         getSafeSearchDetectionModelBytes() {
@@ -1628,7 +1617,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * <code>optional string safe_search_detection_model = 7;</code>
      */
     public Builder setSafeSearchDetectionModel(
         java.lang.String value) {
@@ -1646,7 +1635,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * <code>optional string safe_search_detection_model = 7;</code>
      */
     public Builder clearSafeSearchDetectionModel() {
       
@@ -1660,7 +1649,7 @@ public  final class VideoContext extends
      * Supported values: "latest" and "stable" (the default).
      * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * <code>optional string safe_search_detection_model = 7;</code>
      */
     public Builder setSafeSearchDetectionModelBytes(
         com.google.protobuf.ByteString value) {

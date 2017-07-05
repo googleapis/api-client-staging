@@ -12,7 +12,7 @@ public interface PlanNodeOrBuilder extends
    * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
    * </pre>
    *
-   * <code>int32 index = 1;</code>
+   * <code>optional int32 index = 1;</code>
    */
   int getIndex();
 
@@ -25,7 +25,7 @@ public interface PlanNodeOrBuilder extends
    * parent.
    * </pre>
    *
-   * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+   * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
    */
   int getKindValue();
   /**
@@ -37,7 +37,7 @@ public interface PlanNodeOrBuilder extends
    * parent.
    * </pre>
    *
-   * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+   * <code>optional .google.spanner.v1.PlanNode.Kind kind = 2;</code>
    */
   com.google.spanner.v1.PlanNode.Kind getKind();
 
@@ -46,7 +46,7 @@ public interface PlanNodeOrBuilder extends
    * The display name for the node.
    * </pre>
    *
-   * <code>string display_name = 3;</code>
+   * <code>optional string display_name = 3;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -54,7 +54,7 @@ public interface PlanNodeOrBuilder extends
    * The display name for the node.
    * </pre>
    *
-   * <code>string display_name = 3;</code>
+   * <code>optional string display_name = 3;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();
@@ -108,7 +108,7 @@ public interface PlanNodeOrBuilder extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   boolean hasShortRepresentation();
   /**
@@ -116,7 +116,7 @@ public interface PlanNodeOrBuilder extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   com.google.spanner.v1.PlanNode.ShortRepresentation getShortRepresentation();
   /**
@@ -124,7 +124,7 @@ public interface PlanNodeOrBuilder extends
    * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
    * </pre>
    *
-   * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+   * <code>optional .google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
    */
   com.google.spanner.v1.PlanNode.ShortRepresentationOrBuilder getShortRepresentationOrBuilder();
 
@@ -139,7 +139,7 @@ public interface PlanNodeOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct metadata = 6;</code>
+   * <code>optional .google.protobuf.Struct metadata = 6;</code>
    */
   boolean hasMetadata();
   /**
@@ -153,7 +153,7 @@ public interface PlanNodeOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct metadata = 6;</code>
+   * <code>optional .google.protobuf.Struct metadata = 6;</code>
    */
   com.google.protobuf.Struct getMetadata();
   /**
@@ -167,7 +167,7 @@ public interface PlanNodeOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct metadata = 6;</code>
+   * <code>optional .google.protobuf.Struct metadata = 6;</code>
    */
   com.google.protobuf.StructOrBuilder getMetadataOrBuilder();
 
@@ -179,7 +179,7 @@ public interface PlanNodeOrBuilder extends
    * execution etc.
    * </pre>
    *
-   * <code>.google.protobuf.Struct execution_stats = 7;</code>
+   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
    */
   boolean hasExecutionStats();
   /**
@@ -190,7 +190,7 @@ public interface PlanNodeOrBuilder extends
    * execution etc.
    * </pre>
    *
-   * <code>.google.protobuf.Struct execution_stats = 7;</code>
+   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
    */
   com.google.protobuf.Struct getExecutionStats();
   /**
@@ -201,7 +201,7 @@ public interface PlanNodeOrBuilder extends
    * execution etc.
    * </pre>
    *
-   * <code>.google.protobuf.Struct execution_stats = 7;</code>
+   * <code>optional .google.protobuf.Struct execution_stats = 7;</code>
    */
   com.google.protobuf.StructOrBuilder getExecutionStatsOrBuilder();
 }

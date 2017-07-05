@@ -160,7 +160,7 @@ public  final class ListGroupMembersResponse extends
    * `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -181,7 +181,7 @@ public  final class ListGroupMembersResponse extends
    * `pageToken` in the next call to this method.
    * </pre>
    *
-   * <code>string next_page_token = 2;</code>
+   * <code>optional string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -204,7 +204,7 @@ public  final class ListGroupMembersResponse extends
    * The total number of elements matching this request.
    * </pre>
    *
-   * <code>int32 total_size = 3;</code>
+   * <code>optional int32 total_size = 3;</code>
    */
   public int getTotalSize() {
     return totalSize_;
@@ -280,7 +280,7 @@ public  final class ListGroupMembersResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getMembersCount() > 0) {
       hash = (37 * hash) + MEMBERS_FIELD_NUMBER;
       hash = (53 * hash) + getMembersList().hashCode();
@@ -294,17 +294,6 @@ public  final class ListGroupMembersResponse extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.ListGroupMembersResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.ListGroupMembersResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.ListGroupMembersResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -890,7 +879,7 @@ public  final class ListGroupMembersResponse extends
      * `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -911,7 +900,7 @@ public  final class ListGroupMembersResponse extends
      * `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -933,7 +922,7 @@ public  final class ListGroupMembersResponse extends
      * `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -952,7 +941,7 @@ public  final class ListGroupMembersResponse extends
      * `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -967,7 +956,7 @@ public  final class ListGroupMembersResponse extends
      * `pageToken` in the next call to this method.
      * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * <code>optional string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {
@@ -987,7 +976,7 @@ public  final class ListGroupMembersResponse extends
      * The total number of elements matching this request.
      * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * <code>optional int32 total_size = 3;</code>
      */
     public int getTotalSize() {
       return totalSize_;
@@ -997,7 +986,7 @@ public  final class ListGroupMembersResponse extends
      * The total number of elements matching this request.
      * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * <code>optional int32 total_size = 3;</code>
      */
     public Builder setTotalSize(int value) {
       
@@ -1010,7 +999,7 @@ public  final class ListGroupMembersResponse extends
      * The total number of elements matching this request.
      * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * <code>optional int32 total_size = 3;</code>
      */
     public Builder clearTotalSize() {
       

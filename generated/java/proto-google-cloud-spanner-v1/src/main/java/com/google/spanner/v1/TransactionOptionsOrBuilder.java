@@ -15,7 +15,7 @@ public interface TransactionOptionsOrBuilder extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
    */
   com.google.spanner.v1.TransactionOptions.ReadWrite getReadWrite();
   /**
@@ -26,7 +26,7 @@ public interface TransactionOptionsOrBuilder extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
    */
   com.google.spanner.v1.TransactionOptions.ReadWriteOrBuilder getReadWriteOrBuilder();
 
@@ -38,7 +38,7 @@ public interface TransactionOptionsOrBuilder extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
   com.google.spanner.v1.TransactionOptions.ReadOnly getReadOnly();
   /**
@@ -49,7 +49,7 @@ public interface TransactionOptionsOrBuilder extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
   com.google.spanner.v1.TransactionOptions.ReadOnlyOrBuilder getReadOnlyOrBuilder();
 

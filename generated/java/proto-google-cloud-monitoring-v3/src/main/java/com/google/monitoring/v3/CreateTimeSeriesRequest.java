@@ -98,7 +98,7 @@ public  final class CreateTimeSeriesRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -118,7 +118,7 @@ public  final class CreateTimeSeriesRequest extends
    * `"projects/{project_id_or_number}"`.
    * </pre>
    *
-   * <code>string name = 3;</code>
+   * <code>optional string name = 3;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -270,7 +270,7 @@ public  final class CreateTimeSeriesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     if (getTimeSeriesCount() > 0) {
@@ -282,17 +282,6 @@ public  final class CreateTimeSeriesRequest extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.CreateTimeSeriesRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.CreateTimeSeriesRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.CreateTimeSeriesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -559,7 +548,7 @@ public  final class CreateTimeSeriesRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -579,7 +568,7 @@ public  final class CreateTimeSeriesRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -600,7 +589,7 @@ public  final class CreateTimeSeriesRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -618,7 +607,7 @@ public  final class CreateTimeSeriesRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder clearName() {
       
@@ -632,7 +621,7 @@ public  final class CreateTimeSeriesRequest extends
      * `"projects/{project_id_or_number}"`.
      * </pre>
      *
-     * <code>string name = 3;</code>
+     * <code>optional string name = 3;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {

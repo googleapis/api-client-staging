@@ -12,7 +12,7 @@ public interface PubsubMessageOrBuilder extends
    * The message payload.
    * </pre>
    *
-   * <code>bytes data = 1;</code>
+   * <code>optional bytes data = 1;</code>
    */
   com.google.protobuf.ByteString getData();
 
@@ -78,7 +78,7 @@ public interface PubsubMessageOrBuilder extends
    * delivery. It must not be populated by the publisher in a `Publish` call.
    * </pre>
    *
-   * <code>string message_id = 3;</code>
+   * <code>optional string message_id = 3;</code>
    */
   java.lang.String getMessageId();
   /**
@@ -89,7 +89,7 @@ public interface PubsubMessageOrBuilder extends
    * delivery. It must not be populated by the publisher in a `Publish` call.
    * </pre>
    *
-   * <code>string message_id = 3;</code>
+   * <code>optional string message_id = 3;</code>
    */
   com.google.protobuf.ByteString
       getMessageIdBytes();
@@ -101,7 +101,7 @@ public interface PubsubMessageOrBuilder extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   boolean hasPublishTime();
   /**
@@ -111,7 +111,7 @@ public interface PubsubMessageOrBuilder extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   com.google.protobuf.Timestamp getPublishTime();
   /**
@@ -121,7 +121,7 @@ public interface PubsubMessageOrBuilder extends
    * publisher in a `Publish` call.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+   * <code>optional .google.protobuf.Timestamp publish_time = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getPublishTimeOrBuilder();
 }

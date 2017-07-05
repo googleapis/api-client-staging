@@ -327,7 +327,7 @@ public  final class AnnotateTextResponse extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   public boolean hasDocumentSentiment() {
     return documentSentiment_ != null;
@@ -338,7 +338,7 @@ public  final class AnnotateTextResponse extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   public com.google.cloud.language.v1.Sentiment getDocumentSentiment() {
     return documentSentiment_ == null ? com.google.cloud.language.v1.Sentiment.getDefaultInstance() : documentSentiment_;
@@ -349,7 +349,7 @@ public  final class AnnotateTextResponse extends
    * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
    */
   public com.google.cloud.language.v1.SentimentOrBuilder getDocumentSentimentOrBuilder() {
     return getDocumentSentiment();
@@ -364,7 +364,7 @@ public  final class AnnotateTextResponse extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 5;</code>
+   * <code>optional string language = 5;</code>
    */
   public java.lang.String getLanguage() {
     java.lang.Object ref = language_;
@@ -385,7 +385,7 @@ public  final class AnnotateTextResponse extends
    * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
    * </pre>
    *
-   * <code>string language = 5;</code>
+   * <code>optional string language = 5;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageBytes() {
@@ -492,7 +492,7 @@ public  final class AnnotateTextResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getSentencesCount() > 0) {
       hash = (37 * hash) + SENTENCES_FIELD_NUMBER;
       hash = (53 * hash) + getSentencesList().hashCode();
@@ -516,17 +516,6 @@ public  final class AnnotateTextResponse extends
     return hash;
   }
 
-  public static com.google.cloud.language.v1.AnnotateTextResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.language.v1.AnnotateTextResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.language.v1.AnnotateTextResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1919,7 +1908,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public boolean hasDocumentSentiment() {
       return documentSentimentBuilder_ != null || documentSentiment_ != null;
@@ -1930,7 +1919,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public com.google.cloud.language.v1.Sentiment getDocumentSentiment() {
       if (documentSentimentBuilder_ == null) {
@@ -1945,7 +1934,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public Builder setDocumentSentiment(com.google.cloud.language.v1.Sentiment value) {
       if (documentSentimentBuilder_ == null) {
@@ -1966,7 +1955,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public Builder setDocumentSentiment(
         com.google.cloud.language.v1.Sentiment.Builder builderForValue) {
@@ -1985,7 +1974,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public Builder mergeDocumentSentiment(com.google.cloud.language.v1.Sentiment value) {
       if (documentSentimentBuilder_ == null) {
@@ -2008,7 +1997,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public Builder clearDocumentSentiment() {
       if (documentSentimentBuilder_ == null) {
@@ -2027,7 +2016,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public com.google.cloud.language.v1.Sentiment.Builder getDocumentSentimentBuilder() {
       
@@ -2040,7 +2029,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     public com.google.cloud.language.v1.SentimentOrBuilder getDocumentSentimentOrBuilder() {
       if (documentSentimentBuilder_ != null) {
@@ -2056,7 +2045,7 @@ public  final class AnnotateTextResponse extends
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_document_sentiment].
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1.Sentiment, com.google.cloud.language.v1.Sentiment.Builder, com.google.cloud.language.v1.SentimentOrBuilder> 
@@ -2080,7 +2069,7 @@ public  final class AnnotateTextResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 5;</code>
+     * <code>optional string language = 5;</code>
      */
     public java.lang.String getLanguage() {
       java.lang.Object ref = language_;
@@ -2101,7 +2090,7 @@ public  final class AnnotateTextResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 5;</code>
+     * <code>optional string language = 5;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageBytes() {
@@ -2123,7 +2112,7 @@ public  final class AnnotateTextResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 5;</code>
+     * <code>optional string language = 5;</code>
      */
     public Builder setLanguage(
         java.lang.String value) {
@@ -2142,7 +2131,7 @@ public  final class AnnotateTextResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 5;</code>
+     * <code>optional string language = 5;</code>
      */
     public Builder clearLanguage() {
       
@@ -2157,7 +2146,7 @@ public  final class AnnotateTextResponse extends
      * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      * </pre>
      *
-     * <code>string language = 5;</code>
+     * <code>optional string language = 5;</code>
      */
     public Builder setLanguageBytes(
         com.google.protobuf.ByteString value) {

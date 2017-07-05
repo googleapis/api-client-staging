@@ -13,7 +13,7 @@ public interface LogEntryOperationOrBuilder extends
    * same identifier are assumed to be part of the same operation.
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   java.lang.String getId();
   /**
@@ -22,7 +22,7 @@ public interface LogEntryOperationOrBuilder extends
    * same identifier are assumed to be part of the same operation.
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   com.google.protobuf.ByteString
       getIdBytes();
@@ -34,7 +34,7 @@ public interface LogEntryOperationOrBuilder extends
    * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
    * </pre>
    *
-   * <code>string producer = 2;</code>
+   * <code>optional string producer = 2;</code>
    */
   java.lang.String getProducer();
   /**
@@ -44,7 +44,7 @@ public interface LogEntryOperationOrBuilder extends
    * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
    * </pre>
    *
-   * <code>string producer = 2;</code>
+   * <code>optional string producer = 2;</code>
    */
   com.google.protobuf.ByteString
       getProducerBytes();
@@ -54,7 +54,7 @@ public interface LogEntryOperationOrBuilder extends
    * Optional. Set this to True if this is the first log entry in the operation.
    * </pre>
    *
-   * <code>bool first = 3;</code>
+   * <code>optional bool first = 3;</code>
    */
   boolean getFirst();
 
@@ -63,7 +63,7 @@ public interface LogEntryOperationOrBuilder extends
    * Optional. Set this to True if this is the last log entry in the operation.
    * </pre>
    *
-   * <code>bool last = 4;</code>
+   * <code>optional bool last = 4;</code>
    */
   boolean getLast();
 }

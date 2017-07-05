@@ -105,7 +105,7 @@ public  final class CreateTimeSeriesError extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   public boolean hasTimeSeries() {
     return timeSeries_ != null;
@@ -118,7 +118,7 @@ public  final class CreateTimeSeriesError extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   public com.google.monitoring.v3.TimeSeries getTimeSeries() {
     return timeSeries_ == null ? com.google.monitoring.v3.TimeSeries.getDefaultInstance() : timeSeries_;
@@ -131,7 +131,7 @@ public  final class CreateTimeSeriesError extends
    * would be needed to retry the operation.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
    */
   public com.google.monitoring.v3.TimeSeriesOrBuilder getTimeSeriesOrBuilder() {
     return getTimeSeries();
@@ -144,7 +144,7 @@ public  final class CreateTimeSeriesError extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public boolean hasStatus() {
     return status_ != null;
@@ -154,7 +154,7 @@ public  final class CreateTimeSeriesError extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public com.google.rpc.Status getStatus() {
     return status_ == null ? com.google.rpc.Status.getDefaultInstance() : status_;
@@ -164,7 +164,7 @@ public  final class CreateTimeSeriesError extends
    * The status of the requested write operation.
    * </pre>
    *
-   * <code>.google.rpc.Status status = 2;</code>
+   * <code>optional .google.rpc.Status status = 2;</code>
    */
   public com.google.rpc.StatusOrBuilder getStatusOrBuilder() {
     return getStatus();
@@ -238,7 +238,7 @@ public  final class CreateTimeSeriesError extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasTimeSeries()) {
       hash = (37 * hash) + TIME_SERIES_FIELD_NUMBER;
       hash = (53 * hash) + getTimeSeries().hashCode();
@@ -252,17 +252,6 @@ public  final class CreateTimeSeriesError extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.CreateTimeSeriesError parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.CreateTimeSeriesError parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.CreateTimeSeriesError parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -508,7 +497,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public boolean hasTimeSeries() {
       return timeSeriesBuilder_ != null || timeSeries_ != null;
@@ -521,7 +510,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public com.google.monitoring.v3.TimeSeries getTimeSeries() {
       if (timeSeriesBuilder_ == null) {
@@ -538,7 +527,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public Builder setTimeSeries(com.google.monitoring.v3.TimeSeries value) {
       if (timeSeriesBuilder_ == null) {
@@ -561,7 +550,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public Builder setTimeSeries(
         com.google.monitoring.v3.TimeSeries.Builder builderForValue) {
@@ -582,7 +571,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public Builder mergeTimeSeries(com.google.monitoring.v3.TimeSeries value) {
       if (timeSeriesBuilder_ == null) {
@@ -607,7 +596,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public Builder clearTimeSeries() {
       if (timeSeriesBuilder_ == null) {
@@ -628,7 +617,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public com.google.monitoring.v3.TimeSeries.Builder getTimeSeriesBuilder() {
       
@@ -643,7 +632,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     public com.google.monitoring.v3.TimeSeriesOrBuilder getTimeSeriesOrBuilder() {
       if (timeSeriesBuilder_ != null) {
@@ -661,7 +650,7 @@ public  final class CreateTimeSeriesError extends
      * would be needed to retry the operation.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.TimeSeries, com.google.monitoring.v3.TimeSeries.Builder, com.google.monitoring.v3.TimeSeriesOrBuilder> 
@@ -685,7 +674,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public boolean hasStatus() {
       return statusBuilder_ != null || status_ != null;
@@ -695,7 +684,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.Status getStatus() {
       if (statusBuilder_ == null) {
@@ -709,7 +698,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder setStatus(com.google.rpc.Status value) {
       if (statusBuilder_ == null) {
@@ -729,7 +718,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder setStatus(
         com.google.rpc.Status.Builder builderForValue) {
@@ -747,7 +736,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder mergeStatus(com.google.rpc.Status value) {
       if (statusBuilder_ == null) {
@@ -769,7 +758,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public Builder clearStatus() {
       if (statusBuilder_ == null) {
@@ -787,7 +776,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.Status.Builder getStatusBuilder() {
       
@@ -799,7 +788,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     public com.google.rpc.StatusOrBuilder getStatusOrBuilder() {
       if (statusBuilder_ != null) {
@@ -814,7 +803,7 @@ public  final class CreateTimeSeriesError extends
      * The status of the requested write operation.
      * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * <code>optional .google.rpc.Status status = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.rpc.Status, com.google.rpc.Status.Builder, com.google.rpc.StatusOrBuilder> 

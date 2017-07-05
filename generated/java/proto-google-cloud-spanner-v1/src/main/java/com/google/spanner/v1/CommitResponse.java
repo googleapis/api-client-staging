@@ -89,7 +89,7 @@ public  final class CommitResponse extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   public boolean hasCommitTimestamp() {
     return commitTimestamp_ != null;
@@ -99,7 +99,7 @@ public  final class CommitResponse extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   public com.google.protobuf.Timestamp getCommitTimestamp() {
     return commitTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : commitTimestamp_;
@@ -109,7 +109,7 @@ public  final class CommitResponse extends
    * The Cloud Spanner timestamp at which the transaction committed.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+   * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getCommitTimestampOrBuilder() {
     return getCommitTimestamp();
@@ -171,7 +171,7 @@ public  final class CommitResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasCommitTimestamp()) {
       hash = (37 * hash) + COMMIT_TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + getCommitTimestamp().hashCode();
@@ -181,17 +181,6 @@ public  final class CommitResponse extends
     return hash;
   }
 
-  public static com.google.spanner.v1.CommitResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.CommitResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.CommitResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -420,7 +409,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public boolean hasCommitTimestamp() {
       return commitTimestampBuilder_ != null || commitTimestamp_ != null;
@@ -430,7 +419,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public com.google.protobuf.Timestamp getCommitTimestamp() {
       if (commitTimestampBuilder_ == null) {
@@ -444,7 +433,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public Builder setCommitTimestamp(com.google.protobuf.Timestamp value) {
       if (commitTimestampBuilder_ == null) {
@@ -464,7 +453,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public Builder setCommitTimestamp(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -482,7 +471,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public Builder mergeCommitTimestamp(com.google.protobuf.Timestamp value) {
       if (commitTimestampBuilder_ == null) {
@@ -504,7 +493,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public Builder clearCommitTimestamp() {
       if (commitTimestampBuilder_ == null) {
@@ -522,7 +511,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public com.google.protobuf.Timestamp.Builder getCommitTimestampBuilder() {
       
@@ -534,7 +523,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getCommitTimestampOrBuilder() {
       if (commitTimestampBuilder_ != null) {
@@ -549,7 +538,7 @@ public  final class CommitResponse extends
      * The Cloud Spanner timestamp at which the transaction committed.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * <code>optional .google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

@@ -97,7 +97,7 @@ public  final class ListTopicsRequest extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>string project = 1;</code>
+   * <code>optional string project = 1;</code>
    */
   public java.lang.String getProject() {
     java.lang.Object ref = project_;
@@ -117,7 +117,7 @@ public  final class ListTopicsRequest extends
    * Format is `projects/{project}`.
    * </pre>
    *
-   * <code>string project = 1;</code>
+   * <code>optional string project = 1;</code>
    */
   public com.google.protobuf.ByteString
       getProjectBytes() {
@@ -140,7 +140,7 @@ public  final class ListTopicsRequest extends
    * Maximum number of topics to return.
    * </pre>
    *
-   * <code>int32 page_size = 2;</code>
+   * <code>optional int32 page_size = 2;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -155,7 +155,7 @@ public  final class ListTopicsRequest extends
    * return the next page of data.
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -176,7 +176,7 @@ public  final class ListTopicsRequest extends
    * return the next page of data.
    * </pre>
    *
-   * <code>string page_token = 3;</code>
+   * <code>optional string page_token = 3;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -261,7 +261,7 @@ public  final class ListTopicsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + PROJECT_FIELD_NUMBER;
     hash = (53 * hash) + getProject().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -273,17 +273,6 @@ public  final class ListTopicsRequest extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.ListTopicsRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.ListTopicsRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.ListTopicsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -517,7 +506,7 @@ public  final class ListTopicsRequest extends
      * Format is `projects/{project}`.
      * </pre>
      *
-     * <code>string project = 1;</code>
+     * <code>optional string project = 1;</code>
      */
     public java.lang.String getProject() {
       java.lang.Object ref = project_;
@@ -537,7 +526,7 @@ public  final class ListTopicsRequest extends
      * Format is `projects/{project}`.
      * </pre>
      *
-     * <code>string project = 1;</code>
+     * <code>optional string project = 1;</code>
      */
     public com.google.protobuf.ByteString
         getProjectBytes() {
@@ -558,7 +547,7 @@ public  final class ListTopicsRequest extends
      * Format is `projects/{project}`.
      * </pre>
      *
-     * <code>string project = 1;</code>
+     * <code>optional string project = 1;</code>
      */
     public Builder setProject(
         java.lang.String value) {
@@ -576,7 +565,7 @@ public  final class ListTopicsRequest extends
      * Format is `projects/{project}`.
      * </pre>
      *
-     * <code>string project = 1;</code>
+     * <code>optional string project = 1;</code>
      */
     public Builder clearProject() {
       
@@ -590,7 +579,7 @@ public  final class ListTopicsRequest extends
      * Format is `projects/{project}`.
      * </pre>
      *
-     * <code>string project = 1;</code>
+     * <code>optional string project = 1;</code>
      */
     public Builder setProjectBytes(
         com.google.protobuf.ByteString value) {
@@ -610,7 +599,7 @@ public  final class ListTopicsRequest extends
      * Maximum number of topics to return.
      * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * <code>optional int32 page_size = 2;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -620,7 +609,7 @@ public  final class ListTopicsRequest extends
      * Maximum number of topics to return.
      * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * <code>optional int32 page_size = 2;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -633,7 +622,7 @@ public  final class ListTopicsRequest extends
      * Maximum number of topics to return.
      * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * <code>optional int32 page_size = 2;</code>
      */
     public Builder clearPageSize() {
       
@@ -650,7 +639,7 @@ public  final class ListTopicsRequest extends
      * return the next page of data.
      * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * <code>optional string page_token = 3;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -671,7 +660,7 @@ public  final class ListTopicsRequest extends
      * return the next page of data.
      * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * <code>optional string page_token = 3;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -693,7 +682,7 @@ public  final class ListTopicsRequest extends
      * return the next page of data.
      * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * <code>optional string page_token = 3;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -712,7 +701,7 @@ public  final class ListTopicsRequest extends
      * return the next page of data.
      * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * <code>optional string page_token = 3;</code>
      */
     public Builder clearPageToken() {
       
@@ -727,7 +716,7 @@ public  final class ListTopicsRequest extends
      * return the next page of data.
      * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * <code>optional string page_token = 3;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {

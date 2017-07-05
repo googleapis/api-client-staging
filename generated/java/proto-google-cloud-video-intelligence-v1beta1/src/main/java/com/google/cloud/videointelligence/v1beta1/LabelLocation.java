@@ -105,7 +105,7 @@ public  final class LabelLocation extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   public boolean hasSegment() {
     return segment_ != null;
@@ -118,7 +118,7 @@ public  final class LabelLocation extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.VideoSegment getSegment() {
     return segment_ == null ? com.google.cloud.videointelligence.v1beta1.VideoSegment.getDefaultInstance() : segment_;
@@ -131,7 +131,7 @@ public  final class LabelLocation extends
    * (if specified) or to shot boundaries (if requested).
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.VideoSegmentOrBuilder getSegmentOrBuilder() {
     return getSegment();
@@ -144,7 +144,7 @@ public  final class LabelLocation extends
    * Confidence that the label is accurate. Range: [0, 1].
    * </pre>
    *
-   * <code>float confidence = 2;</code>
+   * <code>optional float confidence = 2;</code>
    */
   public float getConfidence() {
     return confidence_;
@@ -157,7 +157,7 @@ public  final class LabelLocation extends
    * Label level.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
    */
   public int getLevelValue() {
     return level_;
@@ -167,7 +167,7 @@ public  final class LabelLocation extends
    * Label level.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
    */
   public com.google.cloud.videointelligence.v1beta1.LabelLevel getLevel() {
     com.google.cloud.videointelligence.v1beta1.LabelLevel result = com.google.cloud.videointelligence.v1beta1.LabelLevel.valueOf(level_);
@@ -249,7 +249,7 @@ public  final class LabelLocation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasSegment()) {
       hash = (37 * hash) + SEGMENT_FIELD_NUMBER;
       hash = (53 * hash) + getSegment().hashCode();
@@ -264,17 +264,6 @@ public  final class LabelLocation extends
     return hash;
   }
 
-  public static com.google.cloud.videointelligence.v1beta1.LabelLocation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.videointelligence.v1beta1.LabelLocation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.videointelligence.v1beta1.LabelLocation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -518,7 +507,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public boolean hasSegment() {
       return segmentBuilder_ != null || segment_ != null;
@@ -531,7 +520,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.VideoSegment getSegment() {
       if (segmentBuilder_ == null) {
@@ -548,7 +537,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public Builder setSegment(com.google.cloud.videointelligence.v1beta1.VideoSegment value) {
       if (segmentBuilder_ == null) {
@@ -571,7 +560,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public Builder setSegment(
         com.google.cloud.videointelligence.v1beta1.VideoSegment.Builder builderForValue) {
@@ -592,7 +581,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public Builder mergeSegment(com.google.cloud.videointelligence.v1beta1.VideoSegment value) {
       if (segmentBuilder_ == null) {
@@ -617,7 +606,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public Builder clearSegment() {
       if (segmentBuilder_ == null) {
@@ -638,7 +627,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.VideoSegment.Builder getSegmentBuilder() {
       
@@ -653,7 +642,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.VideoSegmentOrBuilder getSegmentOrBuilder() {
       if (segmentBuilder_ != null) {
@@ -671,7 +660,7 @@ public  final class LabelLocation extends
      * (if specified) or to shot boundaries (if requested).
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.videointelligence.v1beta1.VideoSegment, com.google.cloud.videointelligence.v1beta1.VideoSegment.Builder, com.google.cloud.videointelligence.v1beta1.VideoSegmentOrBuilder> 
@@ -693,7 +682,7 @@ public  final class LabelLocation extends
      * Confidence that the label is accurate. Range: [0, 1].
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public float getConfidence() {
       return confidence_;
@@ -703,7 +692,7 @@ public  final class LabelLocation extends
      * Confidence that the label is accurate. Range: [0, 1].
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public Builder setConfidence(float value) {
       
@@ -716,7 +705,7 @@ public  final class LabelLocation extends
      * Confidence that the label is accurate. Range: [0, 1].
      * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * <code>optional float confidence = 2;</code>
      */
     public Builder clearConfidence() {
       
@@ -731,7 +720,7 @@ public  final class LabelLocation extends
      * Label level.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     public int getLevelValue() {
       return level_;
@@ -741,7 +730,7 @@ public  final class LabelLocation extends
      * Label level.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     public Builder setLevelValue(int value) {
       level_ = value;
@@ -753,7 +742,7 @@ public  final class LabelLocation extends
      * Label level.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     public com.google.cloud.videointelligence.v1beta1.LabelLevel getLevel() {
       com.google.cloud.videointelligence.v1beta1.LabelLevel result = com.google.cloud.videointelligence.v1beta1.LabelLevel.valueOf(level_);
@@ -764,7 +753,7 @@ public  final class LabelLocation extends
      * Label level.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     public Builder setLevel(com.google.cloud.videointelligence.v1beta1.LabelLevel value) {
       if (value == null) {
@@ -780,7 +769,7 @@ public  final class LabelLocation extends
      * Label level.
      * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * <code>optional .google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     public Builder clearLevel() {
       

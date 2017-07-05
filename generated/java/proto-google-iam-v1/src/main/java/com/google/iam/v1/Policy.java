@@ -127,7 +127,7 @@ public  final class Policy extends
    * Version of the `Policy`. The default version is 0.
    * </pre>
    *
-   * <code>int32 version = 1;</code>
+   * <code>optional int32 version = 1;</code>
    */
   public int getVersion() {
     return version_;
@@ -213,7 +213,7 @@ public  final class Policy extends
    * policy is overwritten blindly.
    * </pre>
    *
-   * <code>bytes etag = 3;</code>
+   * <code>optional bytes etag = 3;</code>
    */
   public com.google.protobuf.ByteString getEtag() {
     return etag_;
@@ -290,7 +290,7 @@ public  final class Policy extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + VERSION_FIELD_NUMBER;
     hash = (53 * hash) + getVersion();
     if (getBindingsCount() > 0) {
@@ -304,17 +304,6 @@ public  final class Policy extends
     return hash;
   }
 
-  public static com.google.iam.v1.Policy parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.iam.v1.Policy parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.iam.v1.Policy parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -610,7 +599,7 @@ public  final class Policy extends
      * Version of the `Policy`. The default version is 0.
      * </pre>
      *
-     * <code>int32 version = 1;</code>
+     * <code>optional int32 version = 1;</code>
      */
     public int getVersion() {
       return version_;
@@ -620,7 +609,7 @@ public  final class Policy extends
      * Version of the `Policy`. The default version is 0.
      * </pre>
      *
-     * <code>int32 version = 1;</code>
+     * <code>optional int32 version = 1;</code>
      */
     public Builder setVersion(int value) {
       
@@ -633,7 +622,7 @@ public  final class Policy extends
      * Version of the `Policy`. The default version is 0.
      * </pre>
      *
-     * <code>int32 version = 1;</code>
+     * <code>optional int32 version = 1;</code>
      */
     public Builder clearVersion() {
       
@@ -1004,7 +993,7 @@ public  final class Policy extends
      * policy is overwritten blindly.
      * </pre>
      *
-     * <code>bytes etag = 3;</code>
+     * <code>optional bytes etag = 3;</code>
      */
     public com.google.protobuf.ByteString getEtag() {
       return etag_;
@@ -1022,7 +1011,7 @@ public  final class Policy extends
      * policy is overwritten blindly.
      * </pre>
      *
-     * <code>bytes etag = 3;</code>
+     * <code>optional bytes etag = 3;</code>
      */
     public Builder setEtag(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -1046,7 +1035,7 @@ public  final class Policy extends
      * policy is overwritten blindly.
      * </pre>
      *
-     * <code>bytes etag = 3;</code>
+     * <code>optional bytes etag = 3;</code>
      */
     public Builder clearEtag() {
       

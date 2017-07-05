@@ -12,7 +12,7 @@ public interface GetSessionRequestOrBuilder extends
    * Required. The name of the session to retrieve.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -20,7 +20,7 @@ public interface GetSessionRequestOrBuilder extends
    * Required. The name of the session to retrieve.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

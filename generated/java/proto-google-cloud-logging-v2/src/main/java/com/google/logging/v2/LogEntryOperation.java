@@ -104,7 +104,7 @@ public  final class LogEntryOperation extends
    * same identifier are assumed to be part of the same operation.
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   public java.lang.String getId() {
     java.lang.Object ref = id_;
@@ -124,7 +124,7 @@ public  final class LogEntryOperation extends
    * same identifier are assumed to be part of the same operation.
    * </pre>
    *
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    */
   public com.google.protobuf.ByteString
       getIdBytes() {
@@ -149,7 +149,7 @@ public  final class LogEntryOperation extends
    * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
    * </pre>
    *
-   * <code>string producer = 2;</code>
+   * <code>optional string producer = 2;</code>
    */
   public java.lang.String getProducer() {
     java.lang.Object ref = producer_;
@@ -170,7 +170,7 @@ public  final class LogEntryOperation extends
    * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
    * </pre>
    *
-   * <code>string producer = 2;</code>
+   * <code>optional string producer = 2;</code>
    */
   public com.google.protobuf.ByteString
       getProducerBytes() {
@@ -193,7 +193,7 @@ public  final class LogEntryOperation extends
    * Optional. Set this to True if this is the first log entry in the operation.
    * </pre>
    *
-   * <code>bool first = 3;</code>
+   * <code>optional bool first = 3;</code>
    */
   public boolean getFirst() {
     return first_;
@@ -206,7 +206,7 @@ public  final class LogEntryOperation extends
    * Optional. Set this to True if this is the last log entry in the operation.
    * </pre>
    *
-   * <code>bool last = 4;</code>
+   * <code>optional bool last = 4;</code>
    */
   public boolean getLast() {
     return last_;
@@ -290,7 +290,7 @@ public  final class LogEntryOperation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId().hashCode();
     hash = (37 * hash) + PRODUCER_FIELD_NUMBER;
@@ -306,17 +306,6 @@ public  final class LogEntryOperation extends
     return hash;
   }
 
-  public static com.google.logging.v2.LogEntryOperation parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.LogEntryOperation parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.LogEntryOperation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -557,7 +546,7 @@ public  final class LogEntryOperation extends
      * same identifier are assumed to be part of the same operation.
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public java.lang.String getId() {
       java.lang.Object ref = id_;
@@ -577,7 +566,7 @@ public  final class LogEntryOperation extends
      * same identifier are assumed to be part of the same operation.
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
@@ -598,7 +587,7 @@ public  final class LogEntryOperation extends
      * same identifier are assumed to be part of the same operation.
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder setId(
         java.lang.String value) {
@@ -616,7 +605,7 @@ public  final class LogEntryOperation extends
      * same identifier are assumed to be part of the same operation.
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder clearId() {
       
@@ -630,7 +619,7 @@ public  final class LogEntryOperation extends
      * same identifier are assumed to be part of the same operation.
      * </pre>
      *
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public Builder setIdBytes(
         com.google.protobuf.ByteString value) {
@@ -652,7 +641,7 @@ public  final class LogEntryOperation extends
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      * </pre>
      *
-     * <code>string producer = 2;</code>
+     * <code>optional string producer = 2;</code>
      */
     public java.lang.String getProducer() {
       java.lang.Object ref = producer_;
@@ -673,7 +662,7 @@ public  final class LogEntryOperation extends
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      * </pre>
      *
-     * <code>string producer = 2;</code>
+     * <code>optional string producer = 2;</code>
      */
     public com.google.protobuf.ByteString
         getProducerBytes() {
@@ -695,7 +684,7 @@ public  final class LogEntryOperation extends
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      * </pre>
      *
-     * <code>string producer = 2;</code>
+     * <code>optional string producer = 2;</code>
      */
     public Builder setProducer(
         java.lang.String value) {
@@ -714,7 +703,7 @@ public  final class LogEntryOperation extends
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      * </pre>
      *
-     * <code>string producer = 2;</code>
+     * <code>optional string producer = 2;</code>
      */
     public Builder clearProducer() {
       
@@ -729,7 +718,7 @@ public  final class LogEntryOperation extends
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      * </pre>
      *
-     * <code>string producer = 2;</code>
+     * <code>optional string producer = 2;</code>
      */
     public Builder setProducerBytes(
         com.google.protobuf.ByteString value) {
@@ -749,7 +738,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the first log entry in the operation.
      * </pre>
      *
-     * <code>bool first = 3;</code>
+     * <code>optional bool first = 3;</code>
      */
     public boolean getFirst() {
       return first_;
@@ -759,7 +748,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the first log entry in the operation.
      * </pre>
      *
-     * <code>bool first = 3;</code>
+     * <code>optional bool first = 3;</code>
      */
     public Builder setFirst(boolean value) {
       
@@ -772,7 +761,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the first log entry in the operation.
      * </pre>
      *
-     * <code>bool first = 3;</code>
+     * <code>optional bool first = 3;</code>
      */
     public Builder clearFirst() {
       
@@ -787,7 +776,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the last log entry in the operation.
      * </pre>
      *
-     * <code>bool last = 4;</code>
+     * <code>optional bool last = 4;</code>
      */
     public boolean getLast() {
       return last_;
@@ -797,7 +786,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the last log entry in the operation.
      * </pre>
      *
-     * <code>bool last = 4;</code>
+     * <code>optional bool last = 4;</code>
      */
     public Builder setLast(boolean value) {
       
@@ -810,7 +799,7 @@ public  final class LogEntryOperation extends
      * Optional. Set this to True if this is the last log entry in the operation.
      * </pre>
      *
-     * <code>bool last = 4;</code>
+     * <code>optional bool last = 4;</code>
      */
     public Builder clearLast() {
       

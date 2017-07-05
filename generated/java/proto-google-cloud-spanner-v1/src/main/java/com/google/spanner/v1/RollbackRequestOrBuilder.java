@@ -12,7 +12,7 @@ public interface RollbackRequestOrBuilder extends
    * Required. The session in which the transaction to roll back is running.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   java.lang.String getSession();
   /**
@@ -20,7 +20,7 @@ public interface RollbackRequestOrBuilder extends
    * Required. The session in which the transaction to roll back is running.
    * </pre>
    *
-   * <code>string session = 1;</code>
+   * <code>optional string session = 1;</code>
    */
   com.google.protobuf.ByteString
       getSessionBytes();
@@ -30,7 +30,7 @@ public interface RollbackRequestOrBuilder extends
    * Required. The transaction to roll back.
    * </pre>
    *
-   * <code>bytes transaction_id = 2;</code>
+   * <code>optional bytes transaction_id = 2;</code>
    */
   com.google.protobuf.ByteString getTransactionId();
 }

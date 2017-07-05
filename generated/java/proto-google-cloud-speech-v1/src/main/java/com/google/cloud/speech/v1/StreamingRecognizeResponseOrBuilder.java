@@ -13,7 +13,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   boolean hasError();
   /**
@@ -22,7 +22,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   com.google.rpc.Status getError();
   /**
@@ -31,7 +31,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * specifies the error for the operation.
    * </pre>
    *
-   * <code>.google.rpc.Status error = 1;</code>
+   * <code>optional .google.rpc.Status error = 1;</code>
    */
   com.google.rpc.StatusOrBuilder getErrorOrBuilder();
 
@@ -99,7 +99,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * *Output-only* Indicates the type of speech event.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
+   * <code>optional .google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
    */
   int getSpeechEventTypeValue();
   /**
@@ -107,7 +107,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * *Output-only* Indicates the type of speech event.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
+   * <code>optional .google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
    */
   com.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType getSpeechEventType();
 }

@@ -12,7 +12,7 @@ public interface ColorOrBuilder extends
    * The amount of red in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float red = 1;</code>
+   * <code>optional float red = 1;</code>
    */
   float getRed();
 
@@ -21,7 +21,7 @@ public interface ColorOrBuilder extends
    * The amount of green in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float green = 2;</code>
+   * <code>optional float green = 2;</code>
    */
   float getGreen();
 
@@ -30,7 +30,7 @@ public interface ColorOrBuilder extends
    * The amount of blue in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>float blue = 3;</code>
+   * <code>optional float blue = 3;</code>
    */
   float getBlue();
 
@@ -47,7 +47,7 @@ public interface ColorOrBuilder extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   boolean hasAlpha();
   /**
@@ -63,7 +63,7 @@ public interface ColorOrBuilder extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   com.google.protobuf.FloatValue getAlpha();
   /**
@@ -79,7 +79,7 @@ public interface ColorOrBuilder extends
    * (as if the alpha value had been explicitly given with a value of 1.0).
    * </pre>
    *
-   * <code>.google.protobuf.FloatValue alpha = 4;</code>
+   * <code>optional .google.protobuf.FloatValue alpha = 4;</code>
    */
   com.google.protobuf.FloatValueOrBuilder getAlphaOrBuilder();
 }

@@ -106,7 +106,7 @@ public  final class ResourceInfo extends
    * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
    * </pre>
    *
-   * <code>string resource_type = 1;</code>
+   * <code>optional string resource_type = 1;</code>
    */
   public java.lang.String getResourceType() {
     java.lang.Object ref = resourceType_;
@@ -127,7 +127,7 @@ public  final class ResourceInfo extends
    * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
    * </pre>
    *
-   * <code>string resource_type = 1;</code>
+   * <code>optional string resource_type = 1;</code>
    */
   public com.google.protobuf.ByteString
       getResourceTypeBytes() {
@@ -152,7 +152,7 @@ public  final class ResourceInfo extends
    * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
    * </pre>
    *
-   * <code>string resource_name = 2;</code>
+   * <code>optional string resource_name = 2;</code>
    */
   public java.lang.String getResourceName() {
     java.lang.Object ref = resourceName_;
@@ -173,7 +173,7 @@ public  final class ResourceInfo extends
    * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
    * </pre>
    *
-   * <code>string resource_name = 2;</code>
+   * <code>optional string resource_name = 2;</code>
    */
   public com.google.protobuf.ByteString
       getResourceNameBytes() {
@@ -198,7 +198,7 @@ public  final class ResourceInfo extends
    * id&gt;".
    * </pre>
    *
-   * <code>string owner = 3;</code>
+   * <code>optional string owner = 3;</code>
    */
   public java.lang.String getOwner() {
     java.lang.Object ref = owner_;
@@ -219,7 +219,7 @@ public  final class ResourceInfo extends
    * id&gt;".
    * </pre>
    *
-   * <code>string owner = 3;</code>
+   * <code>optional string owner = 3;</code>
    */
   public com.google.protobuf.ByteString
       getOwnerBytes() {
@@ -244,7 +244,7 @@ public  final class ResourceInfo extends
    * on the developer console project.
    * </pre>
    *
-   * <code>string description = 4;</code>
+   * <code>optional string description = 4;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -265,7 +265,7 @@ public  final class ResourceInfo extends
    * on the developer console project.
    * </pre>
    *
-   * <code>string description = 4;</code>
+   * <code>optional string description = 4;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -357,7 +357,7 @@ public  final class ResourceInfo extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + RESOURCE_TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getResourceType().hashCode();
     hash = (37 * hash) + RESOURCE_NAME_FIELD_NUMBER;
@@ -371,17 +371,6 @@ public  final class ResourceInfo extends
     return hash;
   }
 
-  public static com.google.rpc.ResourceInfo parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.rpc.ResourceInfo parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.rpc.ResourceInfo parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -624,7 +613,7 @@ public  final class ResourceInfo extends
      * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
      * </pre>
      *
-     * <code>string resource_type = 1;</code>
+     * <code>optional string resource_type = 1;</code>
      */
     public java.lang.String getResourceType() {
       java.lang.Object ref = resourceType_;
@@ -645,7 +634,7 @@ public  final class ResourceInfo extends
      * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
      * </pre>
      *
-     * <code>string resource_type = 1;</code>
+     * <code>optional string resource_type = 1;</code>
      */
     public com.google.protobuf.ByteString
         getResourceTypeBytes() {
@@ -667,7 +656,7 @@ public  final class ResourceInfo extends
      * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
      * </pre>
      *
-     * <code>string resource_type = 1;</code>
+     * <code>optional string resource_type = 1;</code>
      */
     public Builder setResourceType(
         java.lang.String value) {
@@ -686,7 +675,7 @@ public  final class ResourceInfo extends
      * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
      * </pre>
      *
-     * <code>string resource_type = 1;</code>
+     * <code>optional string resource_type = 1;</code>
      */
     public Builder clearResourceType() {
       
@@ -701,7 +690,7 @@ public  final class ResourceInfo extends
      * of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
      * </pre>
      *
-     * <code>string resource_type = 1;</code>
+     * <code>optional string resource_type = 1;</code>
      */
     public Builder setResourceTypeBytes(
         com.google.protobuf.ByteString value) {
@@ -723,7 +712,7 @@ public  final class ResourceInfo extends
      * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      * </pre>
      *
-     * <code>string resource_name = 2;</code>
+     * <code>optional string resource_name = 2;</code>
      */
     public java.lang.String getResourceName() {
       java.lang.Object ref = resourceName_;
@@ -744,7 +733,7 @@ public  final class ResourceInfo extends
      * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      * </pre>
      *
-     * <code>string resource_name = 2;</code>
+     * <code>optional string resource_name = 2;</code>
      */
     public com.google.protobuf.ByteString
         getResourceNameBytes() {
@@ -766,7 +755,7 @@ public  final class ResourceInfo extends
      * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      * </pre>
      *
-     * <code>string resource_name = 2;</code>
+     * <code>optional string resource_name = 2;</code>
      */
     public Builder setResourceName(
         java.lang.String value) {
@@ -785,7 +774,7 @@ public  final class ResourceInfo extends
      * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      * </pre>
      *
-     * <code>string resource_name = 2;</code>
+     * <code>optional string resource_name = 2;</code>
      */
     public Builder clearResourceName() {
       
@@ -800,7 +789,7 @@ public  final class ResourceInfo extends
      * error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
      * </pre>
      *
-     * <code>string resource_name = 2;</code>
+     * <code>optional string resource_name = 2;</code>
      */
     public Builder setResourceNameBytes(
         com.google.protobuf.ByteString value) {
@@ -822,7 +811,7 @@ public  final class ResourceInfo extends
      * id&gt;".
      * </pre>
      *
-     * <code>string owner = 3;</code>
+     * <code>optional string owner = 3;</code>
      */
     public java.lang.String getOwner() {
       java.lang.Object ref = owner_;
@@ -843,7 +832,7 @@ public  final class ResourceInfo extends
      * id&gt;".
      * </pre>
      *
-     * <code>string owner = 3;</code>
+     * <code>optional string owner = 3;</code>
      */
     public com.google.protobuf.ByteString
         getOwnerBytes() {
@@ -865,7 +854,7 @@ public  final class ResourceInfo extends
      * id&gt;".
      * </pre>
      *
-     * <code>string owner = 3;</code>
+     * <code>optional string owner = 3;</code>
      */
     public Builder setOwner(
         java.lang.String value) {
@@ -884,7 +873,7 @@ public  final class ResourceInfo extends
      * id&gt;".
      * </pre>
      *
-     * <code>string owner = 3;</code>
+     * <code>optional string owner = 3;</code>
      */
     public Builder clearOwner() {
       
@@ -899,7 +888,7 @@ public  final class ResourceInfo extends
      * id&gt;".
      * </pre>
      *
-     * <code>string owner = 3;</code>
+     * <code>optional string owner = 3;</code>
      */
     public Builder setOwnerBytes(
         com.google.protobuf.ByteString value) {
@@ -921,7 +910,7 @@ public  final class ResourceInfo extends
      * on the developer console project.
      * </pre>
      *
-     * <code>string description = 4;</code>
+     * <code>optional string description = 4;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -942,7 +931,7 @@ public  final class ResourceInfo extends
      * on the developer console project.
      * </pre>
      *
-     * <code>string description = 4;</code>
+     * <code>optional string description = 4;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -964,7 +953,7 @@ public  final class ResourceInfo extends
      * on the developer console project.
      * </pre>
      *
-     * <code>string description = 4;</code>
+     * <code>optional string description = 4;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -983,7 +972,7 @@ public  final class ResourceInfo extends
      * on the developer console project.
      * </pre>
      *
-     * <code>string description = 4;</code>
+     * <code>optional string description = 4;</code>
      */
     public Builder clearDescription() {
       
@@ -998,7 +987,7 @@ public  final class ResourceInfo extends
      * on the developer console project.
      * </pre>
      *
-     * <code>string description = 4;</code>
+     * <code>optional string description = 4;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {

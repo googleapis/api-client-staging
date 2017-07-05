@@ -56,7 +56,7 @@ public interface TextAnnotationOrBuilder extends
    * UTF-8 text detected on the pages.
    * </pre>
    *
-   * <code>string text = 2;</code>
+   * <code>optional string text = 2;</code>
    */
   java.lang.String getText();
   /**
@@ -64,7 +64,7 @@ public interface TextAnnotationOrBuilder extends
    * UTF-8 text detected on the pages.
    * </pre>
    *
-   * <code>string text = 2;</code>
+   * <code>optional string text = 2;</code>
    */
   com.google.protobuf.ByteString
       getTextBytes();

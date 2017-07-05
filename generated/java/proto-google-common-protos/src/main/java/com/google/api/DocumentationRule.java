@@ -102,7 +102,7 @@ public  final class DocumentationRule extends
    * is used.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public java.lang.String getSelector() {
     java.lang.Object ref = selector_;
@@ -126,7 +126,7 @@ public  final class DocumentationRule extends
    * is used.
    * </pre>
    *
-   * <code>string selector = 1;</code>
+   * <code>optional string selector = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSelectorBytes() {
@@ -149,7 +149,7 @@ public  final class DocumentationRule extends
    * Description of the selected API(s).
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   public java.lang.String getDescription() {
     java.lang.Object ref = description_;
@@ -168,7 +168,7 @@ public  final class DocumentationRule extends
    * Description of the selected API(s).
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   public com.google.protobuf.ByteString
       getDescriptionBytes() {
@@ -192,7 +192,7 @@ public  final class DocumentationRule extends
    * element is marked as `deprecated`.
    * </pre>
    *
-   * <code>string deprecation_description = 3;</code>
+   * <code>optional string deprecation_description = 3;</code>
    */
   public java.lang.String getDeprecationDescription() {
     java.lang.Object ref = deprecationDescription_;
@@ -212,7 +212,7 @@ public  final class DocumentationRule extends
    * element is marked as `deprecated`.
    * </pre>
    *
-   * <code>string deprecation_description = 3;</code>
+   * <code>optional string deprecation_description = 3;</code>
    */
   public com.google.protobuf.ByteString
       getDeprecationDescriptionBytes() {
@@ -296,7 +296,7 @@ public  final class DocumentationRule extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SELECTOR_FIELD_NUMBER;
     hash = (53 * hash) + getSelector().hashCode();
     hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
@@ -308,17 +308,6 @@ public  final class DocumentationRule extends
     return hash;
   }
 
-  public static com.google.api.DocumentationRule parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.DocumentationRule parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.DocumentationRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -557,7 +546,7 @@ public  final class DocumentationRule extends
      * is used.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public java.lang.String getSelector() {
       java.lang.Object ref = selector_;
@@ -581,7 +570,7 @@ public  final class DocumentationRule extends
      * is used.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSelectorBytes() {
@@ -606,7 +595,7 @@ public  final class DocumentationRule extends
      * is used.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelector(
         java.lang.String value) {
@@ -628,7 +617,7 @@ public  final class DocumentationRule extends
      * is used.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder clearSelector() {
       
@@ -646,7 +635,7 @@ public  final class DocumentationRule extends
      * is used.
      * </pre>
      *
-     * <code>string selector = 1;</code>
+     * <code>optional string selector = 1;</code>
      */
     public Builder setSelectorBytes(
         com.google.protobuf.ByteString value) {
@@ -666,7 +655,7 @@ public  final class DocumentationRule extends
      * Description of the selected API(s).
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -685,7 +674,7 @@ public  final class DocumentationRule extends
      * Description of the selected API(s).
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -705,7 +694,7 @@ public  final class DocumentationRule extends
      * Description of the selected API(s).
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public Builder setDescription(
         java.lang.String value) {
@@ -722,7 +711,7 @@ public  final class DocumentationRule extends
      * Description of the selected API(s).
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public Builder clearDescription() {
       
@@ -735,7 +724,7 @@ public  final class DocumentationRule extends
      * Description of the selected API(s).
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public Builder setDescriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -756,7 +745,7 @@ public  final class DocumentationRule extends
      * element is marked as `deprecated`.
      * </pre>
      *
-     * <code>string deprecation_description = 3;</code>
+     * <code>optional string deprecation_description = 3;</code>
      */
     public java.lang.String getDeprecationDescription() {
       java.lang.Object ref = deprecationDescription_;
@@ -776,7 +765,7 @@ public  final class DocumentationRule extends
      * element is marked as `deprecated`.
      * </pre>
      *
-     * <code>string deprecation_description = 3;</code>
+     * <code>optional string deprecation_description = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDeprecationDescriptionBytes() {
@@ -797,7 +786,7 @@ public  final class DocumentationRule extends
      * element is marked as `deprecated`.
      * </pre>
      *
-     * <code>string deprecation_description = 3;</code>
+     * <code>optional string deprecation_description = 3;</code>
      */
     public Builder setDeprecationDescription(
         java.lang.String value) {
@@ -815,7 +804,7 @@ public  final class DocumentationRule extends
      * element is marked as `deprecated`.
      * </pre>
      *
-     * <code>string deprecation_description = 3;</code>
+     * <code>optional string deprecation_description = 3;</code>
      */
     public Builder clearDeprecationDescription() {
       
@@ -829,7 +818,7 @@ public  final class DocumentationRule extends
      * element is marked as `deprecated`.
      * </pre>
      *
-     * <code>string deprecation_description = 3;</code>
+     * <code>optional string deprecation_description = 3;</code>
      */
     public Builder setDeprecationDescriptionBytes(
         com.google.protobuf.ByteString value) {

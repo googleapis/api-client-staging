@@ -12,7 +12,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   boolean hasGroup();
   /**
@@ -20,7 +20,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorGroup getGroup();
   /**
@@ -28,7 +28,7 @@ public interface UpdateGroupRequestOrBuilder extends
    * [Required] The group which replaces the resource on the server.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrBuilder getGroupOrBuilder();
 }

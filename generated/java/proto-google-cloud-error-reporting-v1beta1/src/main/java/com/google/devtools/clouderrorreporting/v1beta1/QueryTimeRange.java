@@ -280,7 +280,7 @@ public  final class QueryTimeRange extends
    * Restricts the query to the specified time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
    */
   public int getPeriodValue() {
     return period_;
@@ -290,7 +290,7 @@ public  final class QueryTimeRange extends
    * Restricts the query to the specified time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
    */
   public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period getPeriod() {
     com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period result = com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period.valueOf(period_);
@@ -349,7 +349,7 @@ public  final class QueryTimeRange extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + PERIOD_FIELD_NUMBER;
     hash = (53 * hash) + period_;
     hash = (29 * hash) + unknownFields.hashCode();
@@ -357,17 +357,6 @@ public  final class QueryTimeRange extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -587,7 +576,7 @@ public  final class QueryTimeRange extends
      * Restricts the query to the specified time range.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     public int getPeriodValue() {
       return period_;
@@ -597,7 +586,7 @@ public  final class QueryTimeRange extends
      * Restricts the query to the specified time range.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     public Builder setPeriodValue(int value) {
       period_ = value;
@@ -609,7 +598,7 @@ public  final class QueryTimeRange extends
      * Restricts the query to the specified time range.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     public com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period getPeriod() {
       com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period result = com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period.valueOf(period_);
@@ -620,7 +609,7 @@ public  final class QueryTimeRange extends
      * Restricts the query to the specified time range.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     public Builder setPeriod(com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period value) {
       if (value == null) {
@@ -636,7 +625,7 @@ public  final class QueryTimeRange extends
      * Restricts the query to the specified time range.
      * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     public Builder clearPeriod() {
       

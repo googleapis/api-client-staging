@@ -188,7 +188,7 @@ public  final class GetDatabaseDdlResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getStatementsCount() > 0) {
       hash = (37 * hash) + STATEMENTS_FIELD_NUMBER;
       hash = (53 * hash) + getStatementsList().hashCode();
@@ -198,17 +198,6 @@ public  final class GetDatabaseDdlResponse extends
     return hash;
   }
 
-  public static com.google.spanner.admin.database.v1.GetDatabaseDdlResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.admin.database.v1.GetDatabaseDdlResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.admin.database.v1.GetDatabaseDdlResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

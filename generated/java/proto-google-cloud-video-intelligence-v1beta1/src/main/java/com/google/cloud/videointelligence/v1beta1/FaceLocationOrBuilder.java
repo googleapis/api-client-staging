@@ -12,7 +12,7 @@ public interface FaceLocationOrBuilder extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   boolean hasBoundingBox();
   /**
@@ -20,7 +20,7 @@ public interface FaceLocationOrBuilder extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   com.google.cloud.videointelligence.v1beta1.BoundingBox getBoundingBox();
   /**
@@ -28,7 +28,7 @@ public interface FaceLocationOrBuilder extends
    * Bounding box in a frame.
    * </pre>
    *
-   * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+   * <code>optional .google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
    */
   com.google.cloud.videointelligence.v1beta1.BoundingBoxOrBuilder getBoundingBoxOrBuilder();
 
@@ -37,7 +37,7 @@ public interface FaceLocationOrBuilder extends
    * Video time offset in microseconds.
    * </pre>
    *
-   * <code>int64 time_offset = 2;</code>
+   * <code>optional int64 time_offset = 2;</code>
    */
   long getTimeOffset();
 }

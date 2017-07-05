@@ -12,7 +12,7 @@ public interface ImageContextOrBuilder extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   boolean hasLatLongRect();
   /**
@@ -20,7 +20,7 @@ public interface ImageContextOrBuilder extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   com.google.cloud.vision.v1.LatLongRect getLatLongRect();
   /**
@@ -28,7 +28,7 @@ public interface ImageContextOrBuilder extends
    * lat/long rectangle that specifies the location of the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+   * <code>optional .google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
    */
   com.google.cloud.vision.v1.LatLongRectOrBuilder getLatLongRectOrBuilder();
 
@@ -100,7 +100,7 @@ public interface ImageContextOrBuilder extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   boolean hasCropHintsParams();
   /**
@@ -108,7 +108,7 @@ public interface ImageContextOrBuilder extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   com.google.cloud.vision.v1.CropHintsParams getCropHintsParams();
   /**
@@ -116,7 +116,7 @@ public interface ImageContextOrBuilder extends
    * Parameters for crop hints annotation request.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+   * <code>optional .google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
    */
   com.google.cloud.vision.v1.CropHintsParamsOrBuilder getCropHintsParamsOrBuilder();
 }

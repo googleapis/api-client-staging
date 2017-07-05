@@ -109,7 +109,7 @@ public  final class Point extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   public boolean hasInterval() {
     return interval_ != null;
@@ -126,7 +126,7 @@ public  final class Point extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   public com.google.monitoring.v3.TimeInterval getInterval() {
     return interval_ == null ? com.google.monitoring.v3.TimeInterval.getDefaultInstance() : interval_;
@@ -143,7 +143,7 @@ public  final class Point extends
    * following points.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+   * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
    */
   public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
     return getInterval();
@@ -156,7 +156,7 @@ public  final class Point extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   public boolean hasValue() {
     return value_ != null;
@@ -166,7 +166,7 @@ public  final class Point extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   public com.google.monitoring.v3.TypedValue getValue() {
     return value_ == null ? com.google.monitoring.v3.TypedValue.getDefaultInstance() : value_;
@@ -176,7 +176,7 @@ public  final class Point extends
    * The value of the data point.
    * </pre>
    *
-   * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+   * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
    */
   public com.google.monitoring.v3.TypedValueOrBuilder getValueOrBuilder() {
     return getValue();
@@ -250,7 +250,7 @@ public  final class Point extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasInterval()) {
       hash = (37 * hash) + INTERVAL_FIELD_NUMBER;
       hash = (53 * hash) + getInterval().hashCode();
@@ -264,17 +264,6 @@ public  final class Point extends
     return hash;
   }
 
-  public static com.google.monitoring.v3.Point parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.monitoring.v3.Point parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.monitoring.v3.Point parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -524,7 +513,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public boolean hasInterval() {
       return intervalBuilder_ != null || interval_ != null;
@@ -541,7 +530,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public com.google.monitoring.v3.TimeInterval getInterval() {
       if (intervalBuilder_ == null) {
@@ -562,7 +551,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public Builder setInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -589,7 +578,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public Builder setInterval(
         com.google.monitoring.v3.TimeInterval.Builder builderForValue) {
@@ -614,7 +603,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public Builder mergeInterval(com.google.monitoring.v3.TimeInterval value) {
       if (intervalBuilder_ == null) {
@@ -643,7 +632,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public Builder clearInterval() {
       if (intervalBuilder_ == null) {
@@ -668,7 +657,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public com.google.monitoring.v3.TimeInterval.Builder getIntervalBuilder() {
       
@@ -687,7 +676,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     public com.google.monitoring.v3.TimeIntervalOrBuilder getIntervalOrBuilder() {
       if (intervalBuilder_ != null) {
@@ -709,7 +698,7 @@ public  final class Point extends
      * following points.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * <code>optional .google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.TimeInterval, com.google.monitoring.v3.TimeInterval.Builder, com.google.monitoring.v3.TimeIntervalOrBuilder> 
@@ -733,7 +722,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public boolean hasValue() {
       return valueBuilder_ != null || value_ != null;
@@ -743,7 +732,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public com.google.monitoring.v3.TypedValue getValue() {
       if (valueBuilder_ == null) {
@@ -757,7 +746,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public Builder setValue(com.google.monitoring.v3.TypedValue value) {
       if (valueBuilder_ == null) {
@@ -777,7 +766,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public Builder setValue(
         com.google.monitoring.v3.TypedValue.Builder builderForValue) {
@@ -795,7 +784,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public Builder mergeValue(com.google.monitoring.v3.TypedValue value) {
       if (valueBuilder_ == null) {
@@ -817,7 +806,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public Builder clearValue() {
       if (valueBuilder_ == null) {
@@ -835,7 +824,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public com.google.monitoring.v3.TypedValue.Builder getValueBuilder() {
       
@@ -847,7 +836,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     public com.google.monitoring.v3.TypedValueOrBuilder getValueOrBuilder() {
       if (valueBuilder_ != null) {
@@ -862,7 +851,7 @@ public  final class Point extends
      * The value of the data point.
      * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * <code>optional .google.monitoring.v3.TypedValue value = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.monitoring.v3.TypedValue, com.google.monitoring.v3.TypedValue.Builder, com.google.monitoring.v3.TypedValueOrBuilder> 

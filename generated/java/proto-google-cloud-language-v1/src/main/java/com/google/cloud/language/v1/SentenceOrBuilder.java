@@ -12,7 +12,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   boolean hasText();
   /**
@@ -20,7 +20,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1.TextSpan getText();
   /**
@@ -28,7 +28,7 @@ public interface SentenceOrBuilder extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder();
 
@@ -39,7 +39,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   boolean hasSentiment();
   /**
@@ -49,7 +49,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   com.google.cloud.language.v1.Sentiment getSentiment();
   /**
@@ -59,7 +59,7 @@ public interface SentenceOrBuilder extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder();
 }

@@ -102,7 +102,7 @@ public  final class Sentence extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public boolean hasText() {
     return text_ != null;
@@ -112,7 +112,7 @@ public  final class Sentence extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1.TextSpan getText() {
     return text_ == null ? com.google.cloud.language.v1.TextSpan.getDefaultInstance() : text_;
@@ -122,7 +122,7 @@ public  final class Sentence extends
    * The sentence text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder() {
     return getText();
@@ -137,7 +137,7 @@ public  final class Sentence extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   public boolean hasSentiment() {
     return sentiment_ != null;
@@ -149,7 +149,7 @@ public  final class Sentence extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   public com.google.cloud.language.v1.Sentiment getSentiment() {
     return sentiment_ == null ? com.google.cloud.language.v1.Sentiment.getDefaultInstance() : sentiment_;
@@ -161,7 +161,7 @@ public  final class Sentence extends
    * true, this field will contain the sentiment for the sentence.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+   * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
    */
   public com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder() {
     return getSentiment();
@@ -235,7 +235,7 @@ public  final class Sentence extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasText()) {
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
@@ -249,17 +249,6 @@ public  final class Sentence extends
     return hash;
   }
 
-  public static com.google.cloud.language.v1.Sentence parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.language.v1.Sentence parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.language.v1.Sentence parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -502,7 +491,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public boolean hasText() {
       return textBuilder_ != null || text_ != null;
@@ -512,7 +501,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpan getText() {
       if (textBuilder_ == null) {
@@ -526,7 +515,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder setText(com.google.cloud.language.v1.TextSpan value) {
       if (textBuilder_ == null) {
@@ -546,7 +535,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder setText(
         com.google.cloud.language.v1.TextSpan.Builder builderForValue) {
@@ -564,7 +553,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder mergeText(com.google.cloud.language.v1.TextSpan value) {
       if (textBuilder_ == null) {
@@ -586,7 +575,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder clearText() {
       if (textBuilder_ == null) {
@@ -604,7 +593,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpan.Builder getTextBuilder() {
       
@@ -616,7 +605,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder() {
       if (textBuilder_ != null) {
@@ -631,7 +620,7 @@ public  final class Sentence extends
      * The sentence text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1.TextSpan, com.google.cloud.language.v1.TextSpan.Builder, com.google.cloud.language.v1.TextSpanOrBuilder> 
@@ -657,7 +646,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public boolean hasSentiment() {
       return sentimentBuilder_ != null || sentiment_ != null;
@@ -669,7 +658,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public com.google.cloud.language.v1.Sentiment getSentiment() {
       if (sentimentBuilder_ == null) {
@@ -685,7 +674,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public Builder setSentiment(com.google.cloud.language.v1.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -707,7 +696,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public Builder setSentiment(
         com.google.cloud.language.v1.Sentiment.Builder builderForValue) {
@@ -727,7 +716,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public Builder mergeSentiment(com.google.cloud.language.v1.Sentiment value) {
       if (sentimentBuilder_ == null) {
@@ -751,7 +740,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public Builder clearSentiment() {
       if (sentimentBuilder_ == null) {
@@ -771,7 +760,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public com.google.cloud.language.v1.Sentiment.Builder getSentimentBuilder() {
       
@@ -785,7 +774,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     public com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder() {
       if (sentimentBuilder_ != null) {
@@ -802,7 +791,7 @@ public  final class Sentence extends
      * true, this field will contain the sentiment for the sentence.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
+     * <code>optional .google.cloud.language.v1.Sentiment sentiment = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1.Sentiment, com.google.cloud.language.v1.Sentiment.Builder, com.google.cloud.language.v1.SentimentOrBuilder> 

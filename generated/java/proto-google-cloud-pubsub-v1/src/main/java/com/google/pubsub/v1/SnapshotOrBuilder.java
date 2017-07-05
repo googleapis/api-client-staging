@@ -12,7 +12,7 @@ public interface SnapshotOrBuilder extends
    * The name of the snapshot.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -20,7 +20,7 @@ public interface SnapshotOrBuilder extends
    * The name of the snapshot.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -30,7 +30,7 @@ public interface SnapshotOrBuilder extends
    * The name of the topic from which this snapshot is retaining messages.
    * </pre>
    *
-   * <code>string topic = 2;</code>
+   * <code>optional string topic = 2;</code>
    */
   java.lang.String getTopic();
   /**
@@ -38,7 +38,7 @@ public interface SnapshotOrBuilder extends
    * The name of the topic from which this snapshot is retaining messages.
    * </pre>
    *
-   * <code>string topic = 2;</code>
+   * <code>optional string topic = 2;</code>
    */
   com.google.protobuf.ByteString
       getTopicBytes();
@@ -56,7 +56,7 @@ public interface SnapshotOrBuilder extends
    * exists -- will expire in 4 days.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp expire_time = 3;</code>
    */
   boolean hasExpireTime();
   /**
@@ -72,7 +72,7 @@ public interface SnapshotOrBuilder extends
    * exists -- will expire in 4 days.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp expire_time = 3;</code>
    */
   com.google.protobuf.Timestamp getExpireTime();
   /**
@@ -88,7 +88,7 @@ public interface SnapshotOrBuilder extends
    * exists -- will expire in 4 days.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp expire_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getExpireTimeOrBuilder();
 }

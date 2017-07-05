@@ -97,7 +97,7 @@ public  final class ModifyPushConfigRequest extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public java.lang.String getSubscription() {
     java.lang.Object ref = subscription_;
@@ -117,7 +117,7 @@ public  final class ModifyPushConfigRequest extends
    * Format is `projects/{project}/subscriptions/{sub}`.
    * </pre>
    *
-   * <code>string subscription = 1;</code>
+   * <code>optional string subscription = 1;</code>
    */
   public com.google.protobuf.ByteString
       getSubscriptionBytes() {
@@ -144,7 +144,7 @@ public  final class ModifyPushConfigRequest extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   public boolean hasPushConfig() {
     return pushConfig_ != null;
@@ -158,7 +158,7 @@ public  final class ModifyPushConfigRequest extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   public com.google.pubsub.v1.PushConfig getPushConfig() {
     return pushConfig_ == null ? com.google.pubsub.v1.PushConfig.getDefaultInstance() : pushConfig_;
@@ -172,7 +172,7 @@ public  final class ModifyPushConfigRequest extends
    * the subscription if `Pull` is not called.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
    */
   public com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder() {
     return getPushConfig();
@@ -242,7 +242,7 @@ public  final class ModifyPushConfigRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + SUBSCRIPTION_FIELD_NUMBER;
     hash = (53 * hash) + getSubscription().hashCode();
     if (hasPushConfig()) {
@@ -254,17 +254,6 @@ public  final class ModifyPushConfigRequest extends
     return hash;
   }
 
-  public static com.google.pubsub.v1.ModifyPushConfigRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.pubsub.v1.ModifyPushConfigRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.pubsub.v1.ModifyPushConfigRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -499,7 +488,7 @@ public  final class ModifyPushConfigRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public java.lang.String getSubscription() {
       java.lang.Object ref = subscription_;
@@ -519,7 +508,7 @@ public  final class ModifyPushConfigRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public com.google.protobuf.ByteString
         getSubscriptionBytes() {
@@ -540,7 +529,7 @@ public  final class ModifyPushConfigRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscription(
         java.lang.String value) {
@@ -558,7 +547,7 @@ public  final class ModifyPushConfigRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder clearSubscription() {
       
@@ -572,7 +561,7 @@ public  final class ModifyPushConfigRequest extends
      * Format is `projects/{project}/subscriptions/{sub}`.
      * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * <code>optional string subscription = 1;</code>
      */
     public Builder setSubscriptionBytes(
         com.google.protobuf.ByteString value) {
@@ -598,7 +587,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public boolean hasPushConfig() {
       return pushConfigBuilder_ != null || pushConfig_ != null;
@@ -612,7 +601,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public com.google.pubsub.v1.PushConfig getPushConfig() {
       if (pushConfigBuilder_ == null) {
@@ -630,7 +619,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public Builder setPushConfig(com.google.pubsub.v1.PushConfig value) {
       if (pushConfigBuilder_ == null) {
@@ -654,7 +643,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public Builder setPushConfig(
         com.google.pubsub.v1.PushConfig.Builder builderForValue) {
@@ -676,7 +665,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public Builder mergePushConfig(com.google.pubsub.v1.PushConfig value) {
       if (pushConfigBuilder_ == null) {
@@ -702,7 +691,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public Builder clearPushConfig() {
       if (pushConfigBuilder_ == null) {
@@ -724,7 +713,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public com.google.pubsub.v1.PushConfig.Builder getPushConfigBuilder() {
       
@@ -740,7 +729,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     public com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder() {
       if (pushConfigBuilder_ != null) {
@@ -759,7 +748,7 @@ public  final class ModifyPushConfigRequest extends
      * the subscription if `Pull` is not called.
      * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * <code>optional .google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.pubsub.v1.PushConfig, com.google.pubsub.v1.PushConfig.Builder, com.google.pubsub.v1.PushConfigOrBuilder> 

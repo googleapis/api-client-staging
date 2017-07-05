@@ -377,23 +377,12 @@ public  final class TransactionOptions extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.google.spanner.v1.TransactionOptions.ReadWrite parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.spanner.v1.TransactionOptions.ReadWrite parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.spanner.v1.TransactionOptions.ReadWrite parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -658,7 +647,7 @@ public  final class TransactionOptions extends
      * are visible.
      * </pre>
      *
-     * <code>bool strong = 1;</code>
+     * <code>optional bool strong = 1;</code>
      */
     boolean getStrong();
 
@@ -671,7 +660,7 @@ public  final class TransactionOptions extends
      * Note that this option can only be used in single-use transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
      */
     com.google.protobuf.Timestamp getMinReadTimestamp();
     /**
@@ -683,7 +672,7 @@ public  final class TransactionOptions extends
      * Note that this option can only be used in single-use transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
      */
     com.google.protobuf.TimestampOrBuilder getMinReadTimestampOrBuilder();
 
@@ -702,7 +691,7 @@ public  final class TransactionOptions extends
      * transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
      */
     com.google.protobuf.Duration getMaxStaleness();
     /**
@@ -720,7 +709,7 @@ public  final class TransactionOptions extends
      * transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
      */
     com.google.protobuf.DurationOrBuilder getMaxStalenessOrBuilder();
 
@@ -736,7 +725,7 @@ public  final class TransactionOptions extends
      * data.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
      */
     com.google.protobuf.Timestamp getReadTimestamp();
     /**
@@ -751,7 +740,7 @@ public  final class TransactionOptions extends
      * data.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
      */
     com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder();
 
@@ -768,7 +757,7 @@ public  final class TransactionOptions extends
      * timestamp negotiation overhead of `max_staleness`.
      * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
      */
     com.google.protobuf.Duration getExactStaleness();
     /**
@@ -784,7 +773,7 @@ public  final class TransactionOptions extends
      * timestamp negotiation overhead of `max_staleness`.
      * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
      */
     com.google.protobuf.DurationOrBuilder getExactStalenessOrBuilder();
 
@@ -794,7 +783,7 @@ public  final class TransactionOptions extends
      * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
      * </pre>
      *
-     * <code>bool return_read_timestamp = 6;</code>
+     * <code>optional bool return_read_timestamp = 6;</code>
      */
     boolean getReturnReadTimestamp();
 
@@ -984,7 +973,7 @@ public  final class TransactionOptions extends
      * are visible.
      * </pre>
      *
-     * <code>bool strong = 1;</code>
+     * <code>optional bool strong = 1;</code>
      */
     public boolean getStrong() {
       if (timestampBoundCase_ == 1) {
@@ -1003,7 +992,7 @@ public  final class TransactionOptions extends
      * Note that this option can only be used in single-use transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
      */
     public com.google.protobuf.Timestamp getMinReadTimestamp() {
       if (timestampBoundCase_ == 2) {
@@ -1020,7 +1009,7 @@ public  final class TransactionOptions extends
      * Note that this option can only be used in single-use transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getMinReadTimestampOrBuilder() {
       if (timestampBoundCase_ == 2) {
@@ -1045,7 +1034,7 @@ public  final class TransactionOptions extends
      * transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
      */
     public com.google.protobuf.Duration getMaxStaleness() {
       if (timestampBoundCase_ == 3) {
@@ -1068,7 +1057,7 @@ public  final class TransactionOptions extends
      * transactions.
      * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
      */
     public com.google.protobuf.DurationOrBuilder getMaxStalenessOrBuilder() {
       if (timestampBoundCase_ == 3) {
@@ -1090,7 +1079,7 @@ public  final class TransactionOptions extends
      * data.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
      */
     public com.google.protobuf.Timestamp getReadTimestamp() {
       if (timestampBoundCase_ == 4) {
@@ -1110,7 +1099,7 @@ public  final class TransactionOptions extends
      * data.
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder() {
       if (timestampBoundCase_ == 4) {
@@ -1133,7 +1122,7 @@ public  final class TransactionOptions extends
      * timestamp negotiation overhead of `max_staleness`.
      * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
      */
     public com.google.protobuf.Duration getExactStaleness() {
       if (timestampBoundCase_ == 5) {
@@ -1154,7 +1143,7 @@ public  final class TransactionOptions extends
      * timestamp negotiation overhead of `max_staleness`.
      * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
      */
     public com.google.protobuf.DurationOrBuilder getExactStalenessOrBuilder() {
       if (timestampBoundCase_ == 5) {
@@ -1171,7 +1160,7 @@ public  final class TransactionOptions extends
      * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
      * </pre>
      *
-     * <code>bool return_read_timestamp = 6;</code>
+     * <code>optional bool return_read_timestamp = 6;</code>
      */
     public boolean getReturnReadTimestamp() {
       return returnReadTimestamp_;
@@ -1294,7 +1283,7 @@ public  final class TransactionOptions extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + RETURN_READ_TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getReturnReadTimestamp());
@@ -1328,17 +1317,6 @@ public  final class TransactionOptions extends
       return hash;
     }
 
-    public static com.google.spanner.v1.TransactionOptions.ReadOnly parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.spanner.v1.TransactionOptions.ReadOnly parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.spanner.v1.TransactionOptions.ReadOnly parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1631,7 +1609,7 @@ public  final class TransactionOptions extends
        * are visible.
        * </pre>
        *
-       * <code>bool strong = 1;</code>
+       * <code>optional bool strong = 1;</code>
        */
       public boolean getStrong() {
         if (timestampBoundCase_ == 1) {
@@ -1645,7 +1623,7 @@ public  final class TransactionOptions extends
        * are visible.
        * </pre>
        *
-       * <code>bool strong = 1;</code>
+       * <code>optional bool strong = 1;</code>
        */
       public Builder setStrong(boolean value) {
         timestampBoundCase_ = 1;
@@ -1659,7 +1637,7 @@ public  final class TransactionOptions extends
        * are visible.
        * </pre>
        *
-       * <code>bool strong = 1;</code>
+       * <code>optional bool strong = 1;</code>
        */
       public Builder clearStrong() {
         if (timestampBoundCase_ == 1) {
@@ -1681,7 +1659,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public com.google.protobuf.Timestamp getMinReadTimestamp() {
         if (minReadTimestampBuilder_ == null) {
@@ -1705,7 +1683,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public Builder setMinReadTimestamp(com.google.protobuf.Timestamp value) {
         if (minReadTimestampBuilder_ == null) {
@@ -1729,7 +1707,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public Builder setMinReadTimestamp(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1751,7 +1729,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public Builder mergeMinReadTimestamp(com.google.protobuf.Timestamp value) {
         if (minReadTimestampBuilder_ == null) {
@@ -1781,7 +1759,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public Builder clearMinReadTimestamp() {
         if (minReadTimestampBuilder_ == null) {
@@ -1808,7 +1786,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public com.google.protobuf.Timestamp.Builder getMinReadTimestampBuilder() {
         return getMinReadTimestampFieldBuilder().getBuilder();
@@ -1822,7 +1800,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getMinReadTimestampOrBuilder() {
         if ((timestampBoundCase_ == 2) && (minReadTimestampBuilder_ != null)) {
@@ -1843,7 +1821,7 @@ public  final class TransactionOptions extends
        * Note that this option can only be used in single-use transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+       * <code>optional .google.protobuf.Timestamp min_read_timestamp = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1881,7 +1859,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public com.google.protobuf.Duration getMaxStaleness() {
         if (maxStalenessBuilder_ == null) {
@@ -1911,7 +1889,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public Builder setMaxStaleness(com.google.protobuf.Duration value) {
         if (maxStalenessBuilder_ == null) {
@@ -1941,7 +1919,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public Builder setMaxStaleness(
           com.google.protobuf.Duration.Builder builderForValue) {
@@ -1969,7 +1947,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public Builder mergeMaxStaleness(com.google.protobuf.Duration value) {
         if (maxStalenessBuilder_ == null) {
@@ -2005,7 +1983,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public Builder clearMaxStaleness() {
         if (maxStalenessBuilder_ == null) {
@@ -2038,7 +2016,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public com.google.protobuf.Duration.Builder getMaxStalenessBuilder() {
         return getMaxStalenessFieldBuilder().getBuilder();
@@ -2058,7 +2036,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       public com.google.protobuf.DurationOrBuilder getMaxStalenessOrBuilder() {
         if ((timestampBoundCase_ == 3) && (maxStalenessBuilder_ != null)) {
@@ -2085,7 +2063,7 @@ public  final class TransactionOptions extends
        * transactions.
        * </pre>
        *
-       * <code>.google.protobuf.Duration max_staleness = 3;</code>
+       * <code>optional .google.protobuf.Duration max_staleness = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -2120,7 +2098,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public com.google.protobuf.Timestamp getReadTimestamp() {
         if (readTimestampBuilder_ == null) {
@@ -2147,7 +2125,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public Builder setReadTimestamp(com.google.protobuf.Timestamp value) {
         if (readTimestampBuilder_ == null) {
@@ -2174,7 +2152,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public Builder setReadTimestamp(
           com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -2199,7 +2177,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public Builder mergeReadTimestamp(com.google.protobuf.Timestamp value) {
         if (readTimestampBuilder_ == null) {
@@ -2232,7 +2210,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public Builder clearReadTimestamp() {
         if (readTimestampBuilder_ == null) {
@@ -2262,7 +2240,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public com.google.protobuf.Timestamp.Builder getReadTimestampBuilder() {
         return getReadTimestampFieldBuilder().getBuilder();
@@ -2279,7 +2257,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getReadTimestampOrBuilder() {
         if ((timestampBoundCase_ == 4) && (readTimestampBuilder_ != null)) {
@@ -2303,7 +2281,7 @@ public  final class TransactionOptions extends
        * data.
        * </pre>
        *
-       * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+       * <code>optional .google.protobuf.Timestamp read_timestamp = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -2339,7 +2317,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public com.google.protobuf.Duration getExactStaleness() {
         if (exactStalenessBuilder_ == null) {
@@ -2367,7 +2345,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public Builder setExactStaleness(com.google.protobuf.Duration value) {
         if (exactStalenessBuilder_ == null) {
@@ -2395,7 +2373,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public Builder setExactStaleness(
           com.google.protobuf.Duration.Builder builderForValue) {
@@ -2421,7 +2399,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public Builder mergeExactStaleness(com.google.protobuf.Duration value) {
         if (exactStalenessBuilder_ == null) {
@@ -2455,7 +2433,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public Builder clearExactStaleness() {
         if (exactStalenessBuilder_ == null) {
@@ -2486,7 +2464,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public com.google.protobuf.Duration.Builder getExactStalenessBuilder() {
         return getExactStalenessFieldBuilder().getBuilder();
@@ -2504,7 +2482,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       public com.google.protobuf.DurationOrBuilder getExactStalenessOrBuilder() {
         if ((timestampBoundCase_ == 5) && (exactStalenessBuilder_ != null)) {
@@ -2529,7 +2507,7 @@ public  final class TransactionOptions extends
        * timestamp negotiation overhead of `max_staleness`.
        * </pre>
        *
-       * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+       * <code>optional .google.protobuf.Duration exact_staleness = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -2557,7 +2535,7 @@ public  final class TransactionOptions extends
        * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
        * </pre>
        *
-       * <code>bool return_read_timestamp = 6;</code>
+       * <code>optional bool return_read_timestamp = 6;</code>
        */
       public boolean getReturnReadTimestamp() {
         return returnReadTimestamp_;
@@ -2568,7 +2546,7 @@ public  final class TransactionOptions extends
        * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
        * </pre>
        *
-       * <code>bool return_read_timestamp = 6;</code>
+       * <code>optional bool return_read_timestamp = 6;</code>
        */
       public Builder setReturnReadTimestamp(boolean value) {
         
@@ -2582,7 +2560,7 @@ public  final class TransactionOptions extends
        * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
        * </pre>
        *
-       * <code>bool return_read_timestamp = 6;</code>
+       * <code>optional bool return_read_timestamp = 6;</code>
        */
       public Builder clearReturnReadTimestamp() {
         
@@ -2686,7 +2664,7 @@ public  final class TransactionOptions extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
    */
   public com.google.spanner.v1.TransactionOptions.ReadWrite getReadWrite() {
     if (modeCase_ == 1) {
@@ -2702,7 +2680,7 @@ public  final class TransactionOptions extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
    */
   public com.google.spanner.v1.TransactionOptions.ReadWriteOrBuilder getReadWriteOrBuilder() {
     if (modeCase_ == 1) {
@@ -2720,7 +2698,7 @@ public  final class TransactionOptions extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
   public com.google.spanner.v1.TransactionOptions.ReadOnly getReadOnly() {
     if (modeCase_ == 2) {
@@ -2736,7 +2714,7 @@ public  final class TransactionOptions extends
    * on the `session` resource.
    * </pre>
    *
-   * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+   * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
   public com.google.spanner.v1.TransactionOptions.ReadOnlyOrBuilder getReadOnlyOrBuilder() {
     if (modeCase_ == 2) {
@@ -2818,7 +2796,7 @@ public  final class TransactionOptions extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     switch (modeCase_) {
       case 1:
         hash = (37 * hash) + READ_WRITE_FIELD_NUMBER;
@@ -2836,17 +2814,6 @@ public  final class TransactionOptions extends
     return hash;
   }
 
-  public static com.google.spanner.v1.TransactionOptions parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.spanner.v1.TransactionOptions parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.spanner.v1.TransactionOptions parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3275,7 +3242,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadWrite getReadWrite() {
       if (readWriteBuilder_ == null) {
@@ -3298,7 +3265,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public Builder setReadWrite(com.google.spanner.v1.TransactionOptions.ReadWrite value) {
       if (readWriteBuilder_ == null) {
@@ -3321,7 +3288,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public Builder setReadWrite(
         com.google.spanner.v1.TransactionOptions.ReadWrite.Builder builderForValue) {
@@ -3342,7 +3309,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public Builder mergeReadWrite(com.google.spanner.v1.TransactionOptions.ReadWrite value) {
       if (readWriteBuilder_ == null) {
@@ -3371,7 +3338,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public Builder clearReadWrite() {
       if (readWriteBuilder_ == null) {
@@ -3397,7 +3364,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadWrite.Builder getReadWriteBuilder() {
       return getReadWriteFieldBuilder().getBuilder();
@@ -3410,7 +3377,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadWriteOrBuilder getReadWriteOrBuilder() {
       if ((modeCase_ == 1) && (readWriteBuilder_ != null)) {
@@ -3430,7 +3397,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions.ReadWrite, com.google.spanner.v1.TransactionOptions.ReadWrite.Builder, com.google.spanner.v1.TransactionOptions.ReadWriteOrBuilder> 
@@ -3461,7 +3428,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadOnly getReadOnly() {
       if (readOnlyBuilder_ == null) {
@@ -3484,7 +3451,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public Builder setReadOnly(com.google.spanner.v1.TransactionOptions.ReadOnly value) {
       if (readOnlyBuilder_ == null) {
@@ -3507,7 +3474,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public Builder setReadOnly(
         com.google.spanner.v1.TransactionOptions.ReadOnly.Builder builderForValue) {
@@ -3528,7 +3495,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public Builder mergeReadOnly(com.google.spanner.v1.TransactionOptions.ReadOnly value) {
       if (readOnlyBuilder_ == null) {
@@ -3557,7 +3524,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public Builder clearReadOnly() {
       if (readOnlyBuilder_ == null) {
@@ -3583,7 +3550,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadOnly.Builder getReadOnlyBuilder() {
       return getReadOnlyFieldBuilder().getBuilder();
@@ -3596,7 +3563,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     public com.google.spanner.v1.TransactionOptions.ReadOnlyOrBuilder getReadOnlyOrBuilder() {
       if ((modeCase_ == 2) && (readOnlyBuilder_ != null)) {
@@ -3616,7 +3583,7 @@ public  final class TransactionOptions extends
      * on the `session` resource.
      * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * <code>optional .google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions.ReadOnly, com.google.spanner.v1.TransactionOptions.ReadOnly.Builder, com.google.spanner.v1.TransactionOptions.ReadOnlyOrBuilder> 

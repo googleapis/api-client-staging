@@ -13,7 +13,7 @@ public interface CropHintOrBuilder extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   boolean hasBoundingPoly();
   /**
@@ -22,7 +22,7 @@ public interface CropHintOrBuilder extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   com.google.cloud.vision.v1.BoundingPoly getBoundingPoly();
   /**
@@ -31,7 +31,7 @@ public interface CropHintOrBuilder extends
    * box are in the original image's scale, as returned in `ImageParams`.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+   * <code>optional .google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
    */
   com.google.cloud.vision.v1.BoundingPolyOrBuilder getBoundingPolyOrBuilder();
 
@@ -40,7 +40,7 @@ public interface CropHintOrBuilder extends
    * Confidence of this being a salient region.  Range [0, 1].
    * </pre>
    *
-   * <code>float confidence = 2;</code>
+   * <code>optional float confidence = 2;</code>
    */
   float getConfidence();
 
@@ -50,7 +50,7 @@ public interface CropHintOrBuilder extends
    * image.
    * </pre>
    *
-   * <code>float importance_fraction = 3;</code>
+   * <code>optional float importance_fraction = 3;</code>
    */
   float getImportanceFraction();
 }

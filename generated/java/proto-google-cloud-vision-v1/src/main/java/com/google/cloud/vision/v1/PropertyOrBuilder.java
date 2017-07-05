@@ -12,7 +12,7 @@ public interface PropertyOrBuilder extends
    * Name of the property.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -20,7 +20,7 @@ public interface PropertyOrBuilder extends
    * Name of the property.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -30,7 +30,7 @@ public interface PropertyOrBuilder extends
    * Value of the property.
    * </pre>
    *
-   * <code>string value = 2;</code>
+   * <code>optional string value = 2;</code>
    */
   java.lang.String getValue();
   /**
@@ -38,7 +38,7 @@ public interface PropertyOrBuilder extends
    * Value of the property.
    * </pre>
    *
-   * <code>string value = 2;</code>
+   * <code>optional string value = 2;</code>
    */
   com.google.protobuf.ByteString
       getValueBytes();

@@ -12,7 +12,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * The image to be processed.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Image image = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
    */
   boolean hasImage();
   /**
@@ -20,7 +20,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * The image to be processed.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Image image = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
    */
   com.google.cloud.vision.v1.Image getImage();
   /**
@@ -28,7 +28,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * The image to be processed.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Image image = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Image image = 1;</code>
    */
   com.google.cloud.vision.v1.ImageOrBuilder getImageOrBuilder();
 
@@ -81,7 +81,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   boolean hasImageContext();
   /**
@@ -89,7 +89,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   com.google.cloud.vision.v1.ImageContext getImageContext();
   /**
@@ -97,7 +97,7 @@ public interface AnnotateImageRequestOrBuilder extends
    * Additional context that may accompany the image.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+   * <code>optional .google.cloud.vision.v1.ImageContext image_context = 3;</code>
    */
   com.google.cloud.vision.v1.ImageContextOrBuilder getImageContextOrBuilder();
 }

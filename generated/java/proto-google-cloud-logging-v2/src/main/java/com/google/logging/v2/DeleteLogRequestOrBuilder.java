@@ -21,7 +21,7 @@ public interface DeleteLogRequestOrBuilder extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   java.lang.String getLogName();
   /**
@@ -38,7 +38,7 @@ public interface DeleteLogRequestOrBuilder extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getLogNameBytes();

@@ -110,7 +110,7 @@ public  final class TimedCount extends
    * Approximate number of occurrences in the given time period.
    * </pre>
    *
-   * <code>int64 count = 1;</code>
+   * <code>optional int64 count = 1;</code>
    */
   public long getCount() {
     return count_;
@@ -123,7 +123,7 @@ public  final class TimedCount extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public boolean hasStartTime() {
     return startTime_ != null;
@@ -133,7 +133,7 @@ public  final class TimedCount extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.Timestamp getStartTime() {
     return startTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : startTime_;
@@ -143,7 +143,7 @@ public  final class TimedCount extends
    * Start of the time period to which `count` refers (included).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp start_time = 2;</code>
+   * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
     return getStartTime();
@@ -156,7 +156,7 @@ public  final class TimedCount extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   public boolean hasEndTime() {
     return endTime_ != null;
@@ -166,7 +166,7 @@ public  final class TimedCount extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   public com.google.protobuf.Timestamp getEndTime() {
     return endTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : endTime_;
@@ -176,7 +176,7 @@ public  final class TimedCount extends
    * End of the time period to which `count` refers (excluded).
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp end_time = 3;</code>
+   * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
     return getEndTime();
@@ -259,7 +259,7 @@ public  final class TimedCount extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + COUNT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getCount());
@@ -276,17 +276,6 @@ public  final class TimedCount extends
     return hash;
   }
 
-  public static com.google.devtools.clouderrorreporting.v1beta1.TimedCount parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.clouderrorreporting.v1beta1.TimedCount parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.clouderrorreporting.v1beta1.TimedCount parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -535,7 +524,7 @@ public  final class TimedCount extends
      * Approximate number of occurrences in the given time period.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public long getCount() {
       return count_;
@@ -545,7 +534,7 @@ public  final class TimedCount extends
      * Approximate number of occurrences in the given time period.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public Builder setCount(long value) {
       
@@ -558,7 +547,7 @@ public  final class TimedCount extends
      * Approximate number of occurrences in the given time period.
      * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * <code>optional int64 count = 1;</code>
      */
     public Builder clearCount() {
       
@@ -575,7 +564,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public boolean hasStartTime() {
       return startTimeBuilder_ != null || startTime_ != null;
@@ -585,7 +574,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp getStartTime() {
       if (startTimeBuilder_ == null) {
@@ -599,7 +588,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -619,7 +608,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder setStartTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -637,7 +626,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder mergeStartTime(com.google.protobuf.Timestamp value) {
       if (startTimeBuilder_ == null) {
@@ -659,7 +648,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public Builder clearStartTime() {
       if (startTimeBuilder_ == null) {
@@ -677,7 +666,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
       
@@ -689,7 +678,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getStartTimeOrBuilder() {
       if (startTimeBuilder_ != null) {
@@ -704,7 +693,7 @@ public  final class TimedCount extends
      * Start of the time period to which `count` refers (included).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * <code>optional .google.protobuf.Timestamp start_time = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -728,7 +717,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public boolean hasEndTime() {
       return endTimeBuilder_ != null || endTime_ != null;
@@ -738,7 +727,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public com.google.protobuf.Timestamp getEndTime() {
       if (endTimeBuilder_ == null) {
@@ -752,7 +741,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public Builder setEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -772,7 +761,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public Builder setEndTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -790,7 +779,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public Builder mergeEndTime(com.google.protobuf.Timestamp value) {
       if (endTimeBuilder_ == null) {
@@ -812,7 +801,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public Builder clearEndTime() {
       if (endTimeBuilder_ == null) {
@@ -830,7 +819,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public com.google.protobuf.Timestamp.Builder getEndTimeBuilder() {
       
@@ -842,7 +831,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getEndTimeOrBuilder() {
       if (endTimeBuilder_ != null) {
@@ -857,7 +846,7 @@ public  final class TimedCount extends
      * End of the time period to which `count` refers (excluded).
      * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * <code>optional .google.protobuf.Timestamp end_time = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

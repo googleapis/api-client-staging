@@ -96,7 +96,7 @@ public  final class AnalyzeSentimentRequest extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public boolean hasDocument() {
     return document_ != null;
@@ -106,7 +106,7 @@ public  final class AnalyzeSentimentRequest extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public com.google.cloud.language.v1beta2.Document getDocument() {
     return document_ == null ? com.google.cloud.language.v1beta2.Document.getDefaultInstance() : document_;
@@ -116,7 +116,7 @@ public  final class AnalyzeSentimentRequest extends
    * Input document.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+   * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
    */
   public com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder() {
     return getDocument();
@@ -130,7 +130,7 @@ public  final class AnalyzeSentimentRequest extends
    * sentence sentiment.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
    */
   public int getEncodingTypeValue() {
     return encodingType_;
@@ -141,7 +141,7 @@ public  final class AnalyzeSentimentRequest extends
    * sentence sentiment.
    * </pre>
    *
-   * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+   * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
    */
   public com.google.cloud.language.v1beta2.EncodingType getEncodingType() {
     com.google.cloud.language.v1beta2.EncodingType result = com.google.cloud.language.v1beta2.EncodingType.valueOf(encodingType_);
@@ -212,7 +212,7 @@ public  final class AnalyzeSentimentRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasDocument()) {
       hash = (37 * hash) + DOCUMENT_FIELD_NUMBER;
       hash = (53 * hash) + getDocument().hashCode();
@@ -224,17 +224,6 @@ public  final class AnalyzeSentimentRequest extends
     return hash;
   }
 
-  public static com.google.cloud.language.v1beta2.AnalyzeSentimentRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.language.v1beta2.AnalyzeSentimentRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.language.v1beta2.AnalyzeSentimentRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -469,7 +458,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public boolean hasDocument() {
       return documentBuilder_ != null || document_ != null;
@@ -479,7 +468,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.Document getDocument() {
       if (documentBuilder_ == null) {
@@ -493,7 +482,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder setDocument(com.google.cloud.language.v1beta2.Document value) {
       if (documentBuilder_ == null) {
@@ -513,7 +502,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder setDocument(
         com.google.cloud.language.v1beta2.Document.Builder builderForValue) {
@@ -531,7 +520,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder mergeDocument(com.google.cloud.language.v1beta2.Document value) {
       if (documentBuilder_ == null) {
@@ -553,7 +542,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public Builder clearDocument() {
       if (documentBuilder_ == null) {
@@ -571,7 +560,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.Document.Builder getDocumentBuilder() {
       
@@ -583,7 +572,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     public com.google.cloud.language.v1beta2.DocumentOrBuilder getDocumentOrBuilder() {
       if (documentBuilder_ != null) {
@@ -598,7 +587,7 @@ public  final class AnalyzeSentimentRequest extends
      * Input document.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * <code>optional .google.cloud.language.v1beta2.Document document = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1beta2.Document, com.google.cloud.language.v1beta2.Document.Builder, com.google.cloud.language.v1beta2.DocumentOrBuilder> 
@@ -621,7 +610,7 @@ public  final class AnalyzeSentimentRequest extends
      * sentence sentiment.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     public int getEncodingTypeValue() {
       return encodingType_;
@@ -632,7 +621,7 @@ public  final class AnalyzeSentimentRequest extends
      * sentence sentiment.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     public Builder setEncodingTypeValue(int value) {
       encodingType_ = value;
@@ -645,7 +634,7 @@ public  final class AnalyzeSentimentRequest extends
      * sentence sentiment.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     public com.google.cloud.language.v1beta2.EncodingType getEncodingType() {
       com.google.cloud.language.v1beta2.EncodingType result = com.google.cloud.language.v1beta2.EncodingType.valueOf(encodingType_);
@@ -657,7 +646,7 @@ public  final class AnalyzeSentimentRequest extends
      * sentence sentiment.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     public Builder setEncodingType(com.google.cloud.language.v1beta2.EncodingType value) {
       if (value == null) {
@@ -674,7 +663,7 @@ public  final class AnalyzeSentimentRequest extends
      * sentence sentiment.
      * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * <code>optional .google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     public Builder clearEncodingType() {
       

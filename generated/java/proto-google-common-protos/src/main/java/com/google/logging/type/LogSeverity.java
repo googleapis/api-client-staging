@@ -227,7 +227,8 @@ public enum LogSeverity
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.logging.type.LogSeverityProto.getDescriptor().getEnumTypes().get(0);
+    return com.google.logging.type.LogSeverityProto.getDescriptor()
+        .getEnumTypes().get(0);
   }
 
   private static final LogSeverity[] VALUES = values();

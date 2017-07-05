@@ -229,7 +229,7 @@ public  final class Usage extends
    * documented in https://cloud.google.com/pubsub/docs/overview.
    * </pre>
    *
-   * <code>string producer_notification_channel = 7;</code>
+   * <code>optional string producer_notification_channel = 7;</code>
    */
   public java.lang.String getProducerNotificationChannel() {
     java.lang.Object ref = producerNotificationChannel_;
@@ -254,7 +254,7 @@ public  final class Usage extends
    * documented in https://cloud.google.com/pubsub/docs/overview.
    * </pre>
    *
-   * <code>string producer_notification_channel = 7;</code>
+   * <code>optional string producer_notification_channel = 7;</code>
    */
   public com.google.protobuf.ByteString
       getProducerNotificationChannelBytes() {
@@ -344,7 +344,7 @@ public  final class Usage extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getRequirementsCount() > 0) {
       hash = (37 * hash) + REQUIREMENTS_FIELD_NUMBER;
       hash = (53 * hash) + getRequirementsList().hashCode();
@@ -360,17 +360,6 @@ public  final class Usage extends
     return hash;
   }
 
-  public static com.google.api.Usage parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.api.Usage parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.api.Usage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1137,7 +1126,7 @@ public  final class Usage extends
      * documented in https://cloud.google.com/pubsub/docs/overview.
      * </pre>
      *
-     * <code>string producer_notification_channel = 7;</code>
+     * <code>optional string producer_notification_channel = 7;</code>
      */
     public java.lang.String getProducerNotificationChannel() {
       java.lang.Object ref = producerNotificationChannel_;
@@ -1162,7 +1151,7 @@ public  final class Usage extends
      * documented in https://cloud.google.com/pubsub/docs/overview.
      * </pre>
      *
-     * <code>string producer_notification_channel = 7;</code>
+     * <code>optional string producer_notification_channel = 7;</code>
      */
     public com.google.protobuf.ByteString
         getProducerNotificationChannelBytes() {
@@ -1188,7 +1177,7 @@ public  final class Usage extends
      * documented in https://cloud.google.com/pubsub/docs/overview.
      * </pre>
      *
-     * <code>string producer_notification_channel = 7;</code>
+     * <code>optional string producer_notification_channel = 7;</code>
      */
     public Builder setProducerNotificationChannel(
         java.lang.String value) {
@@ -1211,7 +1200,7 @@ public  final class Usage extends
      * documented in https://cloud.google.com/pubsub/docs/overview.
      * </pre>
      *
-     * <code>string producer_notification_channel = 7;</code>
+     * <code>optional string producer_notification_channel = 7;</code>
      */
     public Builder clearProducerNotificationChannel() {
       
@@ -1230,7 +1219,7 @@ public  final class Usage extends
      * documented in https://cloud.google.com/pubsub/docs/overview.
      * </pre>
      *
-     * <code>string producer_notification_channel = 7;</code>
+     * <code>optional string producer_notification_channel = 7;</code>
      */
     public Builder setProducerNotificationChannelBytes(
         com.google.protobuf.ByteString value) {

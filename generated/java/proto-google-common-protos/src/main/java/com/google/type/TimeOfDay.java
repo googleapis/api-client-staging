@@ -103,7 +103,7 @@ public  final class TimeOfDay extends
    * to allow the value "24:00:00" for scenarios like business closing time.
    * </pre>
    *
-   * <code>int32 hours = 1;</code>
+   * <code>optional int32 hours = 1;</code>
    */
   public int getHours() {
     return hours_;
@@ -116,7 +116,7 @@ public  final class TimeOfDay extends
    * Minutes of hour of day. Must be from 0 to 59.
    * </pre>
    *
-   * <code>int32 minutes = 2;</code>
+   * <code>optional int32 minutes = 2;</code>
    */
   public int getMinutes() {
     return minutes_;
@@ -130,7 +130,7 @@ public  final class TimeOfDay extends
    * allow the value 60 if it allows leap-seconds.
    * </pre>
    *
-   * <code>int32 seconds = 3;</code>
+   * <code>optional int32 seconds = 3;</code>
    */
   public int getSeconds() {
     return seconds_;
@@ -143,7 +143,7 @@ public  final class TimeOfDay extends
    * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
    * </pre>
    *
-   * <code>int32 nanos = 4;</code>
+   * <code>optional int32 nanos = 4;</code>
    */
   public int getNanos() {
     return nanos_;
@@ -229,7 +229,7 @@ public  final class TimeOfDay extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + HOURS_FIELD_NUMBER;
     hash = (53 * hash) + getHours();
     hash = (37 * hash) + MINUTES_FIELD_NUMBER;
@@ -243,17 +243,6 @@ public  final class TimeOfDay extends
     return hash;
   }
 
-  public static com.google.type.TimeOfDay parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.type.TimeOfDay parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.type.TimeOfDay parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -493,7 +482,7 @@ public  final class TimeOfDay extends
      * to allow the value "24:00:00" for scenarios like business closing time.
      * </pre>
      *
-     * <code>int32 hours = 1;</code>
+     * <code>optional int32 hours = 1;</code>
      */
     public int getHours() {
       return hours_;
@@ -504,7 +493,7 @@ public  final class TimeOfDay extends
      * to allow the value "24:00:00" for scenarios like business closing time.
      * </pre>
      *
-     * <code>int32 hours = 1;</code>
+     * <code>optional int32 hours = 1;</code>
      */
     public Builder setHours(int value) {
       
@@ -518,7 +507,7 @@ public  final class TimeOfDay extends
      * to allow the value "24:00:00" for scenarios like business closing time.
      * </pre>
      *
-     * <code>int32 hours = 1;</code>
+     * <code>optional int32 hours = 1;</code>
      */
     public Builder clearHours() {
       
@@ -533,7 +522,7 @@ public  final class TimeOfDay extends
      * Minutes of hour of day. Must be from 0 to 59.
      * </pre>
      *
-     * <code>int32 minutes = 2;</code>
+     * <code>optional int32 minutes = 2;</code>
      */
     public int getMinutes() {
       return minutes_;
@@ -543,7 +532,7 @@ public  final class TimeOfDay extends
      * Minutes of hour of day. Must be from 0 to 59.
      * </pre>
      *
-     * <code>int32 minutes = 2;</code>
+     * <code>optional int32 minutes = 2;</code>
      */
     public Builder setMinutes(int value) {
       
@@ -556,7 +545,7 @@ public  final class TimeOfDay extends
      * Minutes of hour of day. Must be from 0 to 59.
      * </pre>
      *
-     * <code>int32 minutes = 2;</code>
+     * <code>optional int32 minutes = 2;</code>
      */
     public Builder clearMinutes() {
       
@@ -572,7 +561,7 @@ public  final class TimeOfDay extends
      * allow the value 60 if it allows leap-seconds.
      * </pre>
      *
-     * <code>int32 seconds = 3;</code>
+     * <code>optional int32 seconds = 3;</code>
      */
     public int getSeconds() {
       return seconds_;
@@ -583,7 +572,7 @@ public  final class TimeOfDay extends
      * allow the value 60 if it allows leap-seconds.
      * </pre>
      *
-     * <code>int32 seconds = 3;</code>
+     * <code>optional int32 seconds = 3;</code>
      */
     public Builder setSeconds(int value) {
       
@@ -597,7 +586,7 @@ public  final class TimeOfDay extends
      * allow the value 60 if it allows leap-seconds.
      * </pre>
      *
-     * <code>int32 seconds = 3;</code>
+     * <code>optional int32 seconds = 3;</code>
      */
     public Builder clearSeconds() {
       
@@ -612,7 +601,7 @@ public  final class TimeOfDay extends
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      * </pre>
      *
-     * <code>int32 nanos = 4;</code>
+     * <code>optional int32 nanos = 4;</code>
      */
     public int getNanos() {
       return nanos_;
@@ -622,7 +611,7 @@ public  final class TimeOfDay extends
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      * </pre>
      *
-     * <code>int32 nanos = 4;</code>
+     * <code>optional int32 nanos = 4;</code>
      */
     public Builder setNanos(int value) {
       
@@ -635,7 +624,7 @@ public  final class TimeOfDay extends
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      * </pre>
      *
-     * <code>int32 nanos = 4;</code>
+     * <code>optional int32 nanos = 4;</code>
      */
     public Builder clearNanos() {
       

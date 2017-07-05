@@ -92,7 +92,7 @@ public  final class DeleteLogRequest extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   public java.lang.String getLogName() {
     java.lang.Object ref = logName_;
@@ -120,7 +120,7 @@ public  final class DeleteLogRequest extends
    * [LogEntry][google.logging.v2.LogEntry].
    * </pre>
    *
-   * <code>string log_name = 1;</code>
+   * <code>optional string log_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getLogNameBytes() {
@@ -188,7 +188,7 @@ public  final class DeleteLogRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + LOG_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getLogName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -196,17 +196,6 @@ public  final class DeleteLogRequest extends
     return hash;
   }
 
-  public static com.google.logging.v2.DeleteLogRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.DeleteLogRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.DeleteLogRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -435,7 +424,7 @@ public  final class DeleteLogRequest extends
      * [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * <code>optional string log_name = 1;</code>
      */
     public java.lang.String getLogName() {
       java.lang.Object ref = logName_;
@@ -463,7 +452,7 @@ public  final class DeleteLogRequest extends
      * [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * <code>optional string log_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getLogNameBytes() {
@@ -492,7 +481,7 @@ public  final class DeleteLogRequest extends
      * [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * <code>optional string log_name = 1;</code>
      */
     public Builder setLogName(
         java.lang.String value) {
@@ -518,7 +507,7 @@ public  final class DeleteLogRequest extends
      * [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * <code>optional string log_name = 1;</code>
      */
     public Builder clearLogName() {
       
@@ -540,7 +529,7 @@ public  final class DeleteLogRequest extends
      * [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * <code>optional string log_name = 1;</code>
      */
     public Builder setLogNameBytes(
         com.google.protobuf.ByteString value) {

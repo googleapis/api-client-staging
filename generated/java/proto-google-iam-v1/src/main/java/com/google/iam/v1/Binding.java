@@ -99,7 +99,7 @@ public  final class Binding extends
    * Required
    * </pre>
    *
-   * <code>string role = 1;</code>
+   * <code>optional string role = 1;</code>
    */
   public java.lang.String getRole() {
     java.lang.Object ref = role_;
@@ -120,7 +120,7 @@ public  final class Binding extends
    * Required
    * </pre>
    *
-   * <code>string role = 1;</code>
+   * <code>optional string role = 1;</code>
    */
   public com.google.protobuf.ByteString
       getRoleBytes() {
@@ -298,7 +298,7 @@ public  final class Binding extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + ROLE_FIELD_NUMBER;
     hash = (53 * hash) + getRole().hashCode();
     if (getMembersCount() > 0) {
@@ -310,17 +310,6 @@ public  final class Binding extends
     return hash;
   }
 
-  public static com.google.iam.v1.Binding parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.iam.v1.Binding parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.iam.v1.Binding parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -563,7 +552,7 @@ public  final class Binding extends
      * Required
      * </pre>
      *
-     * <code>string role = 1;</code>
+     * <code>optional string role = 1;</code>
      */
     public java.lang.String getRole() {
       java.lang.Object ref = role_;
@@ -584,7 +573,7 @@ public  final class Binding extends
      * Required
      * </pre>
      *
-     * <code>string role = 1;</code>
+     * <code>optional string role = 1;</code>
      */
     public com.google.protobuf.ByteString
         getRoleBytes() {
@@ -606,7 +595,7 @@ public  final class Binding extends
      * Required
      * </pre>
      *
-     * <code>string role = 1;</code>
+     * <code>optional string role = 1;</code>
      */
     public Builder setRole(
         java.lang.String value) {
@@ -625,7 +614,7 @@ public  final class Binding extends
      * Required
      * </pre>
      *
-     * <code>string role = 1;</code>
+     * <code>optional string role = 1;</code>
      */
     public Builder clearRole() {
       
@@ -640,7 +629,7 @@ public  final class Binding extends
      * Required
      * </pre>
      *
-     * <code>string role = 1;</code>
+     * <code>optional string role = 1;</code>
      */
     public Builder setRoleBytes(
         com.google.protobuf.ByteString value) {

@@ -13,7 +13,7 @@ public interface AdviceOrBuilder extends
    * be taken to mitigate any implied risks.
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   java.lang.String getDescription();
   /**
@@ -22,7 +22,7 @@ public interface AdviceOrBuilder extends
    * be taken to mitigate any implied risks.
    * </pre>
    *
-   * <code>string description = 2;</code>
+   * <code>optional string description = 2;</code>
    */
   com.google.protobuf.ByteString
       getDescriptionBytes();

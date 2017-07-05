@@ -94,7 +94,7 @@ public  final class BadRequest extends
      * field. E.g., "field_violations.field" would identify this field.
      * </pre>
      *
-     * <code>string field = 1;</code>
+     * <code>optional string field = 1;</code>
      */
     java.lang.String getField();
     /**
@@ -104,7 +104,7 @@ public  final class BadRequest extends
      * field. E.g., "field_violations.field" would identify this field.
      * </pre>
      *
-     * <code>string field = 1;</code>
+     * <code>optional string field = 1;</code>
      */
     com.google.protobuf.ByteString
         getFieldBytes();
@@ -114,7 +114,7 @@ public  final class BadRequest extends
      * A description of why the request element is bad.
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     java.lang.String getDescription();
     /**
@@ -122,7 +122,7 @@ public  final class BadRequest extends
      * A description of why the request element is bad.
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
@@ -216,7 +216,7 @@ public  final class BadRequest extends
      * field. E.g., "field_violations.field" would identify this field.
      * </pre>
      *
-     * <code>string field = 1;</code>
+     * <code>optional string field = 1;</code>
      */
     public java.lang.String getField() {
       java.lang.Object ref = field_;
@@ -237,7 +237,7 @@ public  final class BadRequest extends
      * field. E.g., "field_violations.field" would identify this field.
      * </pre>
      *
-     * <code>string field = 1;</code>
+     * <code>optional string field = 1;</code>
      */
     public com.google.protobuf.ByteString
         getFieldBytes() {
@@ -260,7 +260,7 @@ public  final class BadRequest extends
      * A description of why the request element is bad.
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -279,7 +279,7 @@ public  final class BadRequest extends
      * A description of why the request element is bad.
      * </pre>
      *
-     * <code>string description = 2;</code>
+     * <code>optional string description = 2;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -355,7 +355,7 @@ public  final class BadRequest extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + FIELD_FIELD_NUMBER;
       hash = (53 * hash) + getField().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
@@ -365,17 +365,6 @@ public  final class BadRequest extends
       return hash;
     }
 
-    public static com.google.rpc.BadRequest.FieldViolation parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.google.rpc.BadRequest.FieldViolation parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
     public static com.google.rpc.BadRequest.FieldViolation parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -604,7 +593,7 @@ public  final class BadRequest extends
        * field. E.g., "field_violations.field" would identify this field.
        * </pre>
        *
-       * <code>string field = 1;</code>
+       * <code>optional string field = 1;</code>
        */
       public java.lang.String getField() {
         java.lang.Object ref = field_;
@@ -625,7 +614,7 @@ public  final class BadRequest extends
        * field. E.g., "field_violations.field" would identify this field.
        * </pre>
        *
-       * <code>string field = 1;</code>
+       * <code>optional string field = 1;</code>
        */
       public com.google.protobuf.ByteString
           getFieldBytes() {
@@ -647,7 +636,7 @@ public  final class BadRequest extends
        * field. E.g., "field_violations.field" would identify this field.
        * </pre>
        *
-       * <code>string field = 1;</code>
+       * <code>optional string field = 1;</code>
        */
       public Builder setField(
           java.lang.String value) {
@@ -666,7 +655,7 @@ public  final class BadRequest extends
        * field. E.g., "field_violations.field" would identify this field.
        * </pre>
        *
-       * <code>string field = 1;</code>
+       * <code>optional string field = 1;</code>
        */
       public Builder clearField() {
         
@@ -681,7 +670,7 @@ public  final class BadRequest extends
        * field. E.g., "field_violations.field" would identify this field.
        * </pre>
        *
-       * <code>string field = 1;</code>
+       * <code>optional string field = 1;</code>
        */
       public Builder setFieldBytes(
           com.google.protobuf.ByteString value) {
@@ -701,7 +690,7 @@ public  final class BadRequest extends
        * A description of why the request element is bad.
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -720,7 +709,7 @@ public  final class BadRequest extends
        * A description of why the request element is bad.
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -740,7 +729,7 @@ public  final class BadRequest extends
        * A description of why the request element is bad.
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -757,7 +746,7 @@ public  final class BadRequest extends
        * A description of why the request element is bad.
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder clearDescription() {
         
@@ -770,7 +759,7 @@ public  final class BadRequest extends
        * A description of why the request element is bad.
        * </pre>
        *
-       * <code>string description = 2;</code>
+       * <code>optional string description = 2;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -940,7 +929,7 @@ public  final class BadRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getFieldViolationsCount() > 0) {
       hash = (37 * hash) + FIELD_VIOLATIONS_FIELD_NUMBER;
       hash = (53 * hash) + getFieldViolationsList().hashCode();
@@ -950,17 +939,6 @@ public  final class BadRequest extends
     return hash;
   }
 
-  public static com.google.rpc.BadRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.rpc.BadRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.rpc.BadRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

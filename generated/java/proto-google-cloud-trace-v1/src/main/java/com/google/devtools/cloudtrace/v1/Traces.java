@@ -190,7 +190,7 @@ public  final class Traces extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (getTracesCount() > 0) {
       hash = (37 * hash) + TRACES_FIELD_NUMBER;
       hash = (53 * hash) + getTracesList().hashCode();
@@ -200,17 +200,6 @@ public  final class Traces extends
     return hash;
   }
 
-  public static com.google.devtools.cloudtrace.v1.Traces parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.devtools.cloudtrace.v1.Traces parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.devtools.cloudtrace.v1.Traces parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {

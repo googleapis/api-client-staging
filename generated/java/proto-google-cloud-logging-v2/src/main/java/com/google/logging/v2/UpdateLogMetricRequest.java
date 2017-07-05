@@ -100,7 +100,7 @@ public  final class UpdateLogMetricRequest extends
    * does not exist in `[PROJECT_ID]`, then a new metric is created.
    * </pre>
    *
-   * <code>string metric_name = 1;</code>
+   * <code>optional string metric_name = 1;</code>
    */
   public java.lang.String getMetricName() {
     java.lang.Object ref = metricName_;
@@ -123,7 +123,7 @@ public  final class UpdateLogMetricRequest extends
    * does not exist in `[PROJECT_ID]`, then a new metric is created.
    * </pre>
    *
-   * <code>string metric_name = 1;</code>
+   * <code>optional string metric_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getMetricNameBytes() {
@@ -146,7 +146,7 @@ public  final class UpdateLogMetricRequest extends
    * The updated metric.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   public boolean hasMetric() {
     return metric_ != null;
@@ -156,7 +156,7 @@ public  final class UpdateLogMetricRequest extends
    * The updated metric.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   public com.google.logging.v2.LogMetric getMetric() {
     return metric_ == null ? com.google.logging.v2.LogMetric.getDefaultInstance() : metric_;
@@ -166,7 +166,7 @@ public  final class UpdateLogMetricRequest extends
    * The updated metric.
    * </pre>
    *
-   * <code>.google.logging.v2.LogMetric metric = 2;</code>
+   * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
    */
   public com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder() {
     return getMetric();
@@ -236,7 +236,7 @@ public  final class UpdateLogMetricRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + METRIC_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getMetricName().hashCode();
     if (hasMetric()) {
@@ -248,17 +248,6 @@ public  final class UpdateLogMetricRequest extends
     return hash;
   }
 
-  public static com.google.logging.v2.UpdateLogMetricRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.logging.v2.UpdateLogMetricRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.logging.v2.UpdateLogMetricRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -496,7 +485,7 @@ public  final class UpdateLogMetricRequest extends
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
      * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * <code>optional string metric_name = 1;</code>
      */
     public java.lang.String getMetricName() {
       java.lang.Object ref = metricName_;
@@ -519,7 +508,7 @@ public  final class UpdateLogMetricRequest extends
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
      * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * <code>optional string metric_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getMetricNameBytes() {
@@ -543,7 +532,7 @@ public  final class UpdateLogMetricRequest extends
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
      * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * <code>optional string metric_name = 1;</code>
      */
     public Builder setMetricName(
         java.lang.String value) {
@@ -564,7 +553,7 @@ public  final class UpdateLogMetricRequest extends
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
      * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * <code>optional string metric_name = 1;</code>
      */
     public Builder clearMetricName() {
       
@@ -581,7 +570,7 @@ public  final class UpdateLogMetricRequest extends
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
      * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * <code>optional string metric_name = 1;</code>
      */
     public Builder setMetricNameBytes(
         com.google.protobuf.ByteString value) {
@@ -603,7 +592,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public boolean hasMetric() {
       return metricBuilder_ != null || metric_ != null;
@@ -613,7 +602,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetric getMetric() {
       if (metricBuilder_ == null) {
@@ -627,7 +616,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder setMetric(com.google.logging.v2.LogMetric value) {
       if (metricBuilder_ == null) {
@@ -647,7 +636,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder setMetric(
         com.google.logging.v2.LogMetric.Builder builderForValue) {
@@ -665,7 +654,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder mergeMetric(com.google.logging.v2.LogMetric value) {
       if (metricBuilder_ == null) {
@@ -687,7 +676,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public Builder clearMetric() {
       if (metricBuilder_ == null) {
@@ -705,7 +694,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetric.Builder getMetricBuilder() {
       
@@ -717,7 +706,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     public com.google.logging.v2.LogMetricOrBuilder getMetricOrBuilder() {
       if (metricBuilder_ != null) {
@@ -732,7 +721,7 @@ public  final class UpdateLogMetricRequest extends
      * The updated metric.
      * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * <code>optional .google.logging.v2.LogMetric metric = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.logging.v2.LogMetric, com.google.logging.v2.LogMetric.Builder, com.google.logging.v2.LogMetricOrBuilder> 

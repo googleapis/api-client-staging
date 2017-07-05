@@ -13,7 +13,7 @@ public interface StreamingRecognitionConfigOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   boolean hasConfig();
   /**
@@ -22,7 +22,7 @@ public interface StreamingRecognitionConfigOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   com.google.cloud.speech.v1beta1.RecognitionConfig getConfig();
   /**
@@ -31,7 +31,7 @@ public interface StreamingRecognitionConfigOrBuilder extends
    * process the request.
    * </pre>
    *
-   * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+   * <code>optional .google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
    */
   com.google.cloud.speech.v1beta1.RecognitionConfigOrBuilder getConfigOrBuilder();
 
@@ -48,7 +48,7 @@ public interface StreamingRecognitionConfigOrBuilder extends
    * one `StreamingRecognitionResult` with the `is_final` flag set to `true`.
    * </pre>
    *
-   * <code>bool single_utterance = 2;</code>
+   * <code>optional bool single_utterance = 2;</code>
    */
   boolean getSingleUtterance();
 
@@ -60,7 +60,7 @@ public interface StreamingRecognitionConfigOrBuilder extends
    * If `false` or omitted, only `is_final=true` result(s) are returned.
    * </pre>
    *
-   * <code>bool interim_results = 3;</code>
+   * <code>optional bool interim_results = 3;</code>
    */
   boolean getInterimResults();
 }

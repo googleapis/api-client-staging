@@ -12,7 +12,7 @@ public interface ResultSetStatsOrBuilder extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   boolean hasQueryPlan();
   /**
@@ -20,7 +20,7 @@ public interface ResultSetStatsOrBuilder extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   com.google.spanner.v1.QueryPlan getQueryPlan();
   /**
@@ -28,7 +28,7 @@ public interface ResultSetStatsOrBuilder extends
    * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
    * </pre>
    *
-   * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+   * <code>optional .google.spanner.v1.QueryPlan query_plan = 1;</code>
    */
   com.google.spanner.v1.QueryPlanOrBuilder getQueryPlanOrBuilder();
 
@@ -44,7 +44,7 @@ public interface ResultSetStatsOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct query_stats = 2;</code>
+   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
    */
   boolean hasQueryStats();
   /**
@@ -59,7 +59,7 @@ public interface ResultSetStatsOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct query_stats = 2;</code>
+   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
    */
   com.google.protobuf.Struct getQueryStats();
   /**
@@ -74,7 +74,7 @@ public interface ResultSetStatsOrBuilder extends
    *     }
    * </pre>
    *
-   * <code>.google.protobuf.Struct query_stats = 2;</code>
+   * <code>optional .google.protobuf.Struct query_stats = 2;</code>
    */
   com.google.protobuf.StructOrBuilder getQueryStatsOrBuilder();
 }

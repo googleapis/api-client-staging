@@ -16,7 +16,7 @@ public interface ListEventsRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>string project_name = 1;</code>
+   * <code>optional string project_name = 1;</code>
    */
   java.lang.String getProjectName();
   /**
@@ -28,7 +28,7 @@ public interface ListEventsRequestOrBuilder extends
    * Example: `projects/my-project-123`.
    * </pre>
    *
-   * <code>string project_name = 1;</code>
+   * <code>optional string project_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getProjectNameBytes();
@@ -38,7 +38,7 @@ public interface ListEventsRequestOrBuilder extends
    * [Required] The group for which events shall be returned.
    * </pre>
    *
-   * <code>string group_id = 2;</code>
+   * <code>optional string group_id = 2;</code>
    */
   java.lang.String getGroupId();
   /**
@@ -46,7 +46,7 @@ public interface ListEventsRequestOrBuilder extends
    * [Required] The group for which events shall be returned.
    * </pre>
    *
-   * <code>string group_id = 2;</code>
+   * <code>optional string group_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getGroupIdBytes();
@@ -58,7 +58,7 @@ public interface ListEventsRequestOrBuilder extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   boolean hasServiceFilter();
   /**
@@ -68,7 +68,7 @@ public interface ListEventsRequestOrBuilder extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter getServiceFilter();
   /**
@@ -78,7 +78,7 @@ public interface ListEventsRequestOrBuilder extends
    * Data for all service contexts is returned if this field is not specified.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilterOrBuilder getServiceFilterOrBuilder();
 
@@ -89,7 +89,7 @@ public interface ListEventsRequestOrBuilder extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   boolean hasTimeRange();
   /**
@@ -99,7 +99,7 @@ public interface ListEventsRequestOrBuilder extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange getTimeRange();
   /**
@@ -109,7 +109,7 @@ public interface ListEventsRequestOrBuilder extends
    * in the response will specify the beginning of this time range.
    * </pre>
    *
-   * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+   * <code>optional .google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
    */
   com.google.devtools.clouderrorreporting.v1beta1.QueryTimeRangeOrBuilder getTimeRangeOrBuilder();
 
@@ -118,7 +118,7 @@ public interface ListEventsRequestOrBuilder extends
    * [Optional] The maximum number of results to return per response.
    * </pre>
    *
-   * <code>int32 page_size = 6;</code>
+   * <code>optional int32 page_size = 6;</code>
    */
   int getPageSize();
 
@@ -127,7 +127,7 @@ public interface ListEventsRequestOrBuilder extends
    * [Optional] A `next_page_token` provided by a previous response.
    * </pre>
    *
-   * <code>string page_token = 7;</code>
+   * <code>optional string page_token = 7;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -135,7 +135,7 @@ public interface ListEventsRequestOrBuilder extends
    * [Optional] A `next_page_token` provided by a previous response.
    * </pre>
    *
-   * <code>string page_token = 7;</code>
+   * <code>optional string page_token = 7;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();

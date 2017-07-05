@@ -15,7 +15,7 @@ public interface InstanceOrBuilder extends
    * segment of the name must be between 6 and 30 characters in length.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -26,7 +26,7 @@ public interface InstanceOrBuilder extends
    * segment of the name must be between 6 and 30 characters in length.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -39,7 +39,7 @@ public interface InstanceOrBuilder extends
    * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
    * </pre>
    *
-   * <code>string config = 2;</code>
+   * <code>optional string config = 2;</code>
    */
   java.lang.String getConfig();
   /**
@@ -50,7 +50,7 @@ public interface InstanceOrBuilder extends
    * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
    * </pre>
    *
-   * <code>string config = 2;</code>
+   * <code>optional string config = 2;</code>
    */
   com.google.protobuf.ByteString
       getConfigBytes();
@@ -61,7 +61,7 @@ public interface InstanceOrBuilder extends
    * Must be unique per project and between 4 and 30 characters in length.
    * </pre>
    *
-   * <code>string display_name = 3;</code>
+   * <code>optional string display_name = 3;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -70,7 +70,7 @@ public interface InstanceOrBuilder extends
    * Must be unique per project and between 4 and 30 characters in length.
    * </pre>
    *
-   * <code>string display_name = 3;</code>
+   * <code>optional string display_name = 3;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();
@@ -80,7 +80,7 @@ public interface InstanceOrBuilder extends
    * Required. The number of nodes allocated to this instance.
    * </pre>
    *
-   * <code>int32 node_count = 5;</code>
+   * <code>optional int32 node_count = 5;</code>
    */
   int getNodeCount();
 
@@ -93,7 +93,7 @@ public interface InstanceOrBuilder extends
    * either omitted or set to `READY`.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
    */
   int getStateValue();
   /**
@@ -105,7 +105,7 @@ public interface InstanceOrBuilder extends
    * either omitted or set to `READY`.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance.State state = 6;</code>
    */
   com.google.spanner.admin.instance.v1.Instance.State getState();
 

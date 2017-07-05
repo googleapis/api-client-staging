@@ -13,7 +13,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * are of the form `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   java.lang.String getParent();
   /**
@@ -22,7 +22,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * are of the form `projects/&lt;project&gt;`.
    * </pre>
    *
-   * <code>string parent = 1;</code>
+   * <code>optional string parent = 1;</code>
    */
   com.google.protobuf.ByteString
       getParentBytes();
@@ -34,7 +34,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * length.
    * </pre>
    *
-   * <code>string instance_id = 2;</code>
+   * <code>optional string instance_id = 2;</code>
    */
   java.lang.String getInstanceId();
   /**
@@ -44,7 +44,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * length.
    * </pre>
    *
-   * <code>string instance_id = 2;</code>
+   * <code>optional string instance_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getInstanceIdBytes();
@@ -55,7 +55,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 3;</code>
    */
   boolean hasInstance();
   /**
@@ -64,7 +64,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 3;</code>
    */
   com.google.spanner.admin.instance.v1.Instance getInstance();
   /**
@@ -73,7 +73,7 @@ public interface CreateInstanceRequestOrBuilder extends
    * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
    * </pre>
    *
-   * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
+   * <code>optional .google.spanner.admin.instance.v1.Instance instance = 3;</code>
    */
   com.google.spanner.admin.instance.v1.InstanceOrBuilder getInstanceOrBuilder();
 }

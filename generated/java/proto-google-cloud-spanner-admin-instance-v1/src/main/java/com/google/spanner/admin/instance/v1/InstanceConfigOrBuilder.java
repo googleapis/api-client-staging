@@ -14,7 +14,7 @@ public interface InstanceConfigOrBuilder extends
    * `projects/&lt;project&gt;/instanceConfigs/[a-z][-a-z0-9]*`
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -24,7 +24,7 @@ public interface InstanceConfigOrBuilder extends
    * `projects/&lt;project&gt;/instanceConfigs/[a-z][-a-z0-9]*`
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -34,7 +34,7 @@ public interface InstanceConfigOrBuilder extends
    * The name of this instance configuration as it appears in UIs.
    * </pre>
    *
-   * <code>string display_name = 2;</code>
+   * <code>optional string display_name = 2;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -42,7 +42,7 @@ public interface InstanceConfigOrBuilder extends
    * The name of this instance configuration as it appears in UIs.
    * </pre>
    *
-   * <code>string display_name = 2;</code>
+   * <code>optional string display_name = 2;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();

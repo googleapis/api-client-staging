@@ -232,7 +232,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public boolean hasText() {
     return text_ != null;
@@ -242,7 +242,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1.TextSpan getText() {
     return text_ == null ? com.google.cloud.language.v1.TextSpan.getDefaultInstance() : text_;
@@ -252,7 +252,7 @@ public  final class EntityMention extends
    * The mention text.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+   * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
    */
   public com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder() {
     return getText();
@@ -265,7 +265,7 @@ public  final class EntityMention extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
    */
   public int getTypeValue() {
     return type_;
@@ -275,7 +275,7 @@ public  final class EntityMention extends
    * The type of the entity mention.
    * </pre>
    *
-   * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+   * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
    */
   public com.google.cloud.language.v1.EntityMention.Type getType() {
     com.google.cloud.language.v1.EntityMention.Type result = com.google.cloud.language.v1.EntityMention.Type.valueOf(type_);
@@ -346,7 +346,7 @@ public  final class EntityMention extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (19 * hash) + getDescriptorForType().hashCode();
     if (hasText()) {
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
@@ -358,17 +358,6 @@ public  final class EntityMention extends
     return hash;
   }
 
-  public static com.google.cloud.language.v1.EntityMention parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static com.google.cloud.language.v1.EntityMention parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
   public static com.google.cloud.language.v1.EntityMention parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -604,7 +593,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public boolean hasText() {
       return textBuilder_ != null || text_ != null;
@@ -614,7 +603,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpan getText() {
       if (textBuilder_ == null) {
@@ -628,7 +617,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder setText(com.google.cloud.language.v1.TextSpan value) {
       if (textBuilder_ == null) {
@@ -648,7 +637,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder setText(
         com.google.cloud.language.v1.TextSpan.Builder builderForValue) {
@@ -666,7 +655,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder mergeText(com.google.cloud.language.v1.TextSpan value) {
       if (textBuilder_ == null) {
@@ -688,7 +677,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public Builder clearText() {
       if (textBuilder_ == null) {
@@ -706,7 +695,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpan.Builder getTextBuilder() {
       
@@ -718,7 +707,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     public com.google.cloud.language.v1.TextSpanOrBuilder getTextOrBuilder() {
       if (textBuilder_ != null) {
@@ -733,7 +722,7 @@ public  final class EntityMention extends
      * The mention text.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.TextSpan text = 1;</code>
+     * <code>optional .google.cloud.language.v1.TextSpan text = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.language.v1.TextSpan, com.google.cloud.language.v1.TextSpan.Builder, com.google.cloud.language.v1.TextSpanOrBuilder> 
@@ -755,7 +744,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+     * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
      */
     public int getTypeValue() {
       return type_;
@@ -765,7 +754,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+     * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
      */
     public Builder setTypeValue(int value) {
       type_ = value;
@@ -777,7 +766,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+     * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
      */
     public com.google.cloud.language.v1.EntityMention.Type getType() {
       com.google.cloud.language.v1.EntityMention.Type result = com.google.cloud.language.v1.EntityMention.Type.valueOf(type_);
@@ -788,7 +777,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+     * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
      */
     public Builder setType(com.google.cloud.language.v1.EntityMention.Type value) {
       if (value == null) {
@@ -804,7 +793,7 @@ public  final class EntityMention extends
      * The type of the entity mention.
      * </pre>
      *
-     * <code>.google.cloud.language.v1.EntityMention.Type type = 2;</code>
+     * <code>optional .google.cloud.language.v1.EntityMention.Type type = 2;</code>
      */
     public Builder clearType() {
       

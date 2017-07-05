@@ -17,7 +17,7 @@ public interface SubscriptionOrBuilder extends
    * in length, and it must not start with `"goog"`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -30,7 +30,7 @@ public interface SubscriptionOrBuilder extends
    * in length, and it must not start with `"goog"`.
    * </pre>
    *
-   * <code>string name = 1;</code>
+   * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -43,7 +43,7 @@ public interface SubscriptionOrBuilder extends
    * deleted.
    * </pre>
    *
-   * <code>string topic = 2;</code>
+   * <code>optional string topic = 2;</code>
    */
   java.lang.String getTopic();
   /**
@@ -54,7 +54,7 @@ public interface SubscriptionOrBuilder extends
    * deleted.
    * </pre>
    *
-   * <code>string topic = 2;</code>
+   * <code>optional string topic = 2;</code>
    */
   com.google.protobuf.ByteString
       getTopicBytes();
@@ -66,7 +66,7 @@ public interface SubscriptionOrBuilder extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   boolean hasPushConfig();
   /**
@@ -76,7 +76,7 @@ public interface SubscriptionOrBuilder extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   com.google.pubsub.v1.PushConfig getPushConfig();
   /**
@@ -86,7 +86,7 @@ public interface SubscriptionOrBuilder extends
    * will pull and ack messages using API methods.
    * </pre>
    *
-   * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+   * <code>optional .google.pubsub.v1.PushConfig push_config = 4;</code>
    */
   com.google.pubsub.v1.PushConfigOrBuilder getPushConfigOrBuilder();
 
@@ -110,7 +110,7 @@ public interface SubscriptionOrBuilder extends
    * system will eventually redeliver the message.
    * </pre>
    *
-   * <code>int32 ack_deadline_seconds = 5;</code>
+   * <code>optional int32 ack_deadline_seconds = 5;</code>
    */
   int getAckDeadlineSeconds();
 
@@ -122,7 +122,7 @@ public interface SubscriptionOrBuilder extends
    * window.
    * </pre>
    *
-   * <code>bool retain_acked_messages = 7;</code>
+   * <code>optional bool retain_acked_messages = 7;</code>
    */
   boolean getRetainAckedMessages();
 
@@ -136,7 +136,7 @@ public interface SubscriptionOrBuilder extends
    * minutes.
    * </pre>
    *
-   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
    */
   boolean hasMessageRetentionDuration();
   /**
@@ -149,7 +149,7 @@ public interface SubscriptionOrBuilder extends
    * minutes.
    * </pre>
    *
-   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
    */
   com.google.protobuf.Duration getMessageRetentionDuration();
   /**
@@ -162,7 +162,7 @@ public interface SubscriptionOrBuilder extends
    * minutes.
    * </pre>
    *
-   * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+   * <code>optional .google.protobuf.Duration message_retention_duration = 8;</code>
    */
   com.google.protobuf.DurationOrBuilder getMessageRetentionDurationOrBuilder();
 }

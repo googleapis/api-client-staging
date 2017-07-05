@@ -12,7 +12,7 @@ public interface FeatureOrBuilder extends
    * The feature type.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
    */
   int getTypeValue();
   /**
@@ -20,7 +20,7 @@ public interface FeatureOrBuilder extends
    * The feature type.
    * </pre>
    *
-   * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+   * <code>optional .google.cloud.vision.v1.Feature.Type type = 1;</code>
    */
   com.google.cloud.vision.v1.Feature.Type getType();
 
@@ -29,7 +29,7 @@ public interface FeatureOrBuilder extends
    * Maximum number of results of this type.
    * </pre>
    *
-   * <code>int32 max_results = 2;</code>
+   * <code>optional int32 max_results = 2;</code>
    */
   int getMaxResults();
 }
