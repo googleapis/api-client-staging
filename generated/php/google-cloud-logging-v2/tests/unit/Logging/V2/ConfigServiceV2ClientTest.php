@@ -25,19 +25,19 @@ namespace Google\Cloud\Tests\Logging\V2;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Logging\V2\ListSinksResponse;
+use Google\Logging\V2\LogSink;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\logging\v2\ListSinksResponse;
-use google\logging\v2\LogSink;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
 use stdClass;
 
 /**
  * @group logging
  * @group grpc
  */
-class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
+class ConfigServiceV2ClientTest extends GeneratedTest
 {
     public function createMockConfigServiceV2Impl($hostname, $opts)
     {
@@ -82,9 +82,7 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $sinks = [$sinksElement];
         $expectedResponse = new ListSinksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($sinks as $elem) {
-            $expectedResponse->addSinks($elem);
-        }
+        $expectedResponse->setSinks($sinks);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -94,7 +92,7 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSinksList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSinks()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -399,7 +397,7 @@ class ConfigServiceV2ClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request

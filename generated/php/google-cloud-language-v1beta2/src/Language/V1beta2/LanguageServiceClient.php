@@ -30,20 +30,12 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
-use google\cloud\language\v1beta2\AnalyzeEntitiesRequest;
-use google\cloud\language\v1beta2\AnalyzeEntitySentimentRequest;
-use google\cloud\language\v1beta2\AnalyzeSentimentRequest;
-use google\cloud\language\v1beta2\AnalyzeSyntaxRequest;
-use google\cloud\language\v1beta2\AnnotateTextRequest;
-use google\cloud\language\v1beta2\AnnotateTextRequest\Features;
-use google\cloud\language\v1beta2\Document;
-use google\cloud\language\v1beta2\EncodingType;
-use google\cloud\language\v1beta2\LanguageServiceGrpcClient;
 
 /**
  * Service Description: Provides text analysis operations such as sentiment analysis and entity
@@ -230,7 +222,7 @@ class LanguageServiceClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets for the
      *          sentence sentiment.
-     *          For allowed values, use constants defined on {@see \google\cloud\language\v1beta2\EncodingType}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -239,7 +231,7 @@ class LanguageServiceClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\language\v1beta2\AnalyzeSentimentResponse
+     * @return \Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -287,7 +279,7 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1beta2\EncodingType}
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -299,7 +291,7 @@ class LanguageServiceClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\language\v1beta2\AnalyzeEntitiesResponse
+     * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -344,7 +336,7 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1beta2\EncodingType}
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -356,7 +348,7 @@ class LanguageServiceClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\language\v1beta2\AnalyzeEntitySentimentResponse
+     * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -402,7 +394,7 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1beta2\EncodingType}
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -414,7 +406,7 @@ class LanguageServiceClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\language\v1beta2\AnalyzeSyntaxResponse
+     * @return \Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -461,7 +453,7 @@ class LanguageServiceClient
      * @param Document $document     Input document.
      * @param Features $features     The enabled features.
      * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \google\cloud\language\v1beta2\EncodingType}
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -473,7 +465,7 @@ class LanguageServiceClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\language\v1beta2\AnnotateTextResponse
+     * @return \Google\Cloud\Language\V1beta2\AnnotateTextResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental

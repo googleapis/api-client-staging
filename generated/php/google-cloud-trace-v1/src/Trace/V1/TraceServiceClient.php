@@ -30,18 +30,18 @@
 
 namespace Google\Cloud\Trace\V1;
 
+use Google\Devtools\Cloudtrace\V1\GetTraceRequest;
+use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
+use Google\Devtools\Cloudtrace\V1\PatchTracesRequest;
+use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
+use Google\Devtools\Cloudtrace\V1\Traces;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
-use google\devtools\cloudtrace\v1\GetTraceRequest;
-use google\devtools\cloudtrace\v1\ListTracesRequest;
-use google\devtools\cloudtrace\v1\PatchTracesRequest;
-use google\devtools\cloudtrace\v1\TraceServiceGrpcClient;
-use google\devtools\cloudtrace\v1\Traces;
-use google\protobuf\Timestamp;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: This file describes an API for collecting and viewing traces and spans
@@ -107,9 +107,10 @@ class TraceServiceClient
     {
         $listTracesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'traces',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTraces',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -316,7 +317,7 @@ class TraceServiceClient
      *          is not set.
      * }
      *
-     * @return \google\devtools\cloudtrace\v1\Trace
+     * @return \Google\Devtools\Cloudtrace\V1\Trace
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -376,7 +377,7 @@ class TraceServiceClient
      *     @type int $view
      *          Type of data returned for traces in the list. Optional. Default is
      *          `MINIMAL`.
-     *          For allowed values, use constants defined on {@see \google\devtools\cloudtrace\v1\ListTracesRequest\ViewType}
+     *          For allowed values, use constants defined on {@see \Google\Devtools\Cloudtrace\V1\ListTracesRequest_ViewType}
      *     @type int $pageSize
      *          Maximum number of traces to return. If not specified or <= 0, the
      *          implementation selects a reasonable value.  The implementation may

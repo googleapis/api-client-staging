@@ -37,19 +37,19 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyGrpcClient;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\pubsub\v1\DeleteTopicRequest;
-use google\pubsub\v1\GetTopicRequest;
-use google\pubsub\v1\ListTopicSubscriptionsRequest;
-use google\pubsub\v1\ListTopicsRequest;
-use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherGrpcClient;
-use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\Topic;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\IAMPolicyGrpcClient;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Pubsub\V1\DeleteTopicRequest;
+use Google\Pubsub\V1\GetTopicRequest;
+use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
+use Google\Pubsub\V1\ListTopicsRequest;
+use Google\Pubsub\V1\PublishRequest;
+use Google\Pubsub\V1\PublisherGrpcClient;
+use Google\Pubsub\V1\PubsubMessage;
+use Google\Pubsub\V1\Topic;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -214,17 +214,21 @@ class PublisherClient
     {
         $listTopicsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'topics',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTopics',
                 ]);
         $listTopicSubscriptionsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'subscriptions',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubscriptions',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -395,7 +399,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Topic
+     * @return \Google\Pubsub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -455,7 +459,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\PublishResponse
+     * @return \Google\Pubsub\V1\PublishResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -464,9 +468,7 @@ class PublisherClient
     {
         $request = new PublishRequest();
         $request->setTopic($topic);
-        foreach ($messages as $elem) {
-            $request->addMessages($elem);
-        }
+        $request->setMessages($messages);
 
         $mergedSettings = $this->defaultCallSettings['publish']->merge(
             new CallSettings($optionalArgs)
@@ -511,7 +513,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Topic
+     * @return \Google\Pubsub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -786,7 +788,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -843,7 +845,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -904,7 +906,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -913,9 +915,7 @@ class PublisherClient
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)

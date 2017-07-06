@@ -23,20 +23,20 @@
 namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse;
-use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group error_reporting
  * @group grpc
  */
-class ReportErrorsServiceClientTest extends PHPUnit_Framework_TestCase
+class ReportErrorsServiceClientTest extends GeneratedTest
 {
     public function createMockReportErrorsServiceImpl($hostname, $opts)
     {

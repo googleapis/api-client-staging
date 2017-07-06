@@ -37,13 +37,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
-use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
-use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
-use google\cloud\speech\v1beta1\RecognitionAudio;
-use google\cloud\speech\v1beta1\RecognitionConfig;
-use google\cloud\speech\v1beta1\SpeechGrpcClient;
-use google\cloud\speech\v1beta1\StreamingRecognizeRequest;
-use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
  * Service Description: Service that implements Google Cloud Speech API.
@@ -112,8 +105,8 @@ class SpeechClient
     {
         return [
             'asyncRecognize' => [
-                'operationReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeResponse',
-                'metadataReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeMetadata',
+                'operationReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse',
+                'metadataReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata',
             ],
         ];
     }
@@ -324,7 +317,7 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\speech\v1beta1\SyncRecognizeResponse
+     * @return \Google\Cloud\Speech\V1beta1\SyncRecognizeResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -416,7 +409,7 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental

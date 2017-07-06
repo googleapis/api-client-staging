@@ -26,25 +26,25 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\Operation;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
+use Google\Spanner\Admin\Database\V1\Database;
+use Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\iam\v1\Policy;
-use google\iam\v1\TestIamPermissionsResponse;
-use google\longrunning\GetOperationRequest;
-use google\longrunning\Operation;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
-use google\spanner\admin\database\v1\Database;
-use google\spanner\admin\database\v1\GetDatabaseDdlResponse;
-use google\spanner\admin\database\v1\ListDatabasesResponse;
 use stdClass;
 
 /**
  * @group database
  * @group grpc
  */
-class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
+class DatabaseAdminClientTest extends GeneratedTest
 {
     public function createMockDatabaseAdminImpl($hostname, $opts)
     {
@@ -94,9 +94,7 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
         $databases = [$databasesElement];
         $expectedResponse = new ListDatabasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($databases as $elem) {
-            $expectedResponse->addDatabases($elem);
-        }
+        $expectedResponse->setDatabases($databases);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -106,7 +104,7 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getDatabasesList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,15 +178,18 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createDatabaseTest')->setDone(false);
+        $incompleteOperation->setName('operations/createDatabaseTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
         $name = 'name3373707';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createDatabaseTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/createDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -252,7 +253,8 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createDatabaseTest')->setDone(false);
+        $incompleteOperation->setName('operations/createDatabaseTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();
@@ -388,13 +390,16 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateDatabaseDdlTest')->setDone(false);
+        $incompleteOperation->setName('operations/updateDatabaseDdlTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateDatabaseDdlTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/updateDatabaseDdlTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -413,7 +418,7 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl', $actualApiFuncCall);
         $this->assertEquals($formattedDatabase, $actualApiRequestObject->getDatabase());
-        $this->assertEquals($statements, $actualApiRequestObject->getStatementsList());
+        $this->assertRepeatedFieldEquals($statements, $actualApiRequestObject->getStatements());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDatabaseDdlTest');
@@ -458,7 +463,8 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateDatabaseDdlTest')->setDone(false);
+        $incompleteOperation->setName('operations/updateDatabaseDdlTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();
@@ -511,7 +517,7 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -813,7 +819,7 @@ class DatabaseAdminClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions', $actualFuncCall);
 
         $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertEquals($permissions, $actualRequestObject->getPermissionsList());
+        $this->assertRepeatedFieldEquals($permissions, $actualRequestObject->getPermissions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

@@ -23,19 +23,19 @@
 namespace Google\Cloud\Tests\Vision\V1;
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\cloud\vision\v1\BatchAnnotateImagesResponse;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group vision
  * @group grpc
  */
-class ImageAnnotatorClientTest extends PHPUnit_Framework_TestCase
+class ImageAnnotatorClientTest extends GeneratedTest
 {
     public function createMockImageAnnotatorImpl($hostname, $opts)
     {
@@ -89,7 +89,7 @@ class ImageAnnotatorClientTest extends PHPUnit_Framework_TestCase
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
 
-        $this->assertEquals($requests, $actualRequestObject->getRequestsList());
+        $this->assertRepeatedFieldEquals($requests, $actualRequestObject->getRequests());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

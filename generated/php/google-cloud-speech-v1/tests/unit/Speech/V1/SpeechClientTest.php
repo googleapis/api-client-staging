@@ -23,30 +23,30 @@
 namespace Google\Cloud\Tests\Speech\V1;
 
 use Google\Cloud\Speech\V1\SpeechClient;
+use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
+use Google\Cloud\Speech\V1\RecognitionAudio;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding as AudioEncoding;
+use Google\Cloud\Speech\V1\RecognizeResponse;
+use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
+use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\Operation;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\cloud\speech\v1\LongRunningRecognizeResponse;
-use google\cloud\speech\v1\RecognitionAudio;
-use google\cloud\speech\v1\RecognitionConfig;
-use google\cloud\speech\v1\RecognitionConfig\AudioEncoding;
-use google\cloud\speech\v1\RecognizeResponse;
-use google\cloud\speech\v1\StreamingRecognizeRequest;
-use google\cloud\speech\v1\StreamingRecognizeResponse;
-use google\longrunning\GetOperationRequest;
-use google\longrunning\Operation;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group speech
  * @group grpc
  */
-class SpeechClientTest extends PHPUnit_Framework_TestCase
+class SpeechClientTest extends GeneratedTest
 {
     public function createMockSpeechImpl($hostname, $opts)
     {
@@ -191,13 +191,16 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/longRunningRecognizeTest')->setDone(false);
+        $incompleteOperation->setName('operations/longRunningRecognizeTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
         $expectedResponse = new LongRunningRecognizeResponse();
         $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serialize());
+        $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/longRunningRecognizeTest')->setDone(true)->setResponse($anyResponse);
+        $completeOperation->setName('operations/longRunningRecognizeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
@@ -269,7 +272,8 @@ class SpeechClientTest extends PHPUnit_Framework_TestCase
 
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/longRunningRecognizeTest')->setDone(false);
+        $incompleteOperation->setName('operations/longRunningRecognizeTest');
+        $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
 
         $status = new stdClass();

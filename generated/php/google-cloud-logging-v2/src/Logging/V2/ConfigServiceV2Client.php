@@ -37,13 +37,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\logging\v2\ConfigServiceV2GrpcClient;
-use google\logging\v2\CreateSinkRequest;
-use google\logging\v2\DeleteSinkRequest;
-use google\logging\v2\GetSinkRequest;
-use google\logging\v2\ListSinksRequest;
-use google\logging\v2\LogSink;
-use google\logging\v2\UpdateSinkRequest;
+use Google\Logging\V2\ConfigServiceV2GrpcClient;
+use Google\Logging\V2\CreateSinkRequest;
+use Google\Logging\V2\DeleteSinkRequest;
+use Google\Logging\V2\GetSinkRequest;
+use Google\Logging\V2\ListSinksRequest;
+use Google\Logging\V2\LogSink;
+use Google\Logging\V2\UpdateSinkRequest;
 
 /**
  * Service Description: Service for configuring sinks used to export log entries outside of
@@ -219,10 +219,12 @@ class ConfigServiceV2Client
     {
         $listSinksPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'sinks',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSinks',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -465,7 +467,7 @@ class ConfigServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogSink
+     * @return \Google\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -543,7 +545,7 @@ class ConfigServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogSink
+     * @return \Google\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -630,7 +632,7 @@ class ConfigServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogSink
+     * @return \Google\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental

@@ -39,22 +39,22 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\protobuf\FieldMask;
-use google\spanner\admin\instance\v1\CreateInstanceMetadata;
-use google\spanner\admin\instance\v1\CreateInstanceRequest;
-use google\spanner\admin\instance\v1\DeleteInstanceRequest;
-use google\spanner\admin\instance\v1\GetInstanceConfigRequest;
-use google\spanner\admin\instance\v1\GetInstanceRequest;
-use google\spanner\admin\instance\v1\Instance;
-use google\spanner\admin\instance\v1\InstanceAdminGrpcClient;
-use google\spanner\admin\instance\v1\ListInstanceConfigsRequest;
-use google\spanner\admin\instance\v1\ListInstancesRequest;
-use google\spanner\admin\instance\v1\UpdateInstanceMetadata;
-use google\spanner\admin\instance\v1\UpdateInstanceRequest;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Protobuf\FieldMask;
+use Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
+use Google\Spanner\Admin\Instance\V1\CreateInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
+use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Spanner\Admin\Instance\V1\ListInstancesRequest;
+use Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
+use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 
 /**
  * Service Description: Cloud Spanner Instance Admin API.
@@ -306,17 +306,21 @@ class InstanceAdminClient
     {
         $listInstanceConfigsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'instance_configs',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstanceConfigs',
                 ]);
         $listInstancesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'instances',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstances',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -331,12 +335,12 @@ class InstanceAdminClient
     {
         return [
             'createInstance' => [
-                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
-                'metadataReturnType' => '\google\spanner\admin\instance\v1\CreateInstanceMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
             ],
             'updateInstance' => [
-                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
-                'metadataReturnType' => '\google\spanner\admin\instance\v1\UpdateInstanceMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
             ],
         ];
     }
@@ -618,7 +622,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\instance\v1\InstanceConfig
+     * @return \Google\Spanner\Admin\Instance\V1\InstanceConfig
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -774,7 +778,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\instance\v1\Instance
+     * @return \Google\Spanner\Admin\Instance\V1\Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -892,7 +896,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1016,7 +1020,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1141,7 +1145,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1200,7 +1204,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1264,7 +1268,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1273,9 +1277,7 @@ class InstanceAdminClient
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)

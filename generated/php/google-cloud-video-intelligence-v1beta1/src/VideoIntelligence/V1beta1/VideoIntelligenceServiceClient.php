@@ -30,6 +30,12 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta1\Feature;
+use Google\Cloud\Videointelligence\V1beta1\VideoContext;
+use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -37,12 +43,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoProgress;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoRequest;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoResponse;
-use google\cloud\videointelligence\v1beta1\Feature;
-use google\cloud\videointelligence\v1beta1\VideoContext;
-use google\cloud\videointelligence\v1beta1\VideoIntelligenceServiceGrpcClient;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -130,8 +130,8 @@ class VideoIntelligenceServiceClient
     {
         return [
             'annotateVideo' => [
-                'operationReturnType' => '\google\cloud\videointelligence\v1beta1\AnnotateVideoResponse',
-                'metadataReturnType' => '\google\cloud\videointelligence\v1beta1\AnnotateVideoProgress',
+                'operationReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse',
+                'metadataReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress',
             ],
         ];
     }
@@ -345,7 +345,7 @@ class VideoIntelligenceServiceClient
      *                             '?' to match 1 character. If unset, the input video should be embedded
      *                             in the request as `input_content`. If set, `input_content` should be unset.
      * @param int[]  $features     Requested video annotation features.
-     *                             For allowed values, use constants defined on {@see \google\cloud\videointelligence\v1beta1\Feature}
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -373,7 +373,7 @@ class VideoIntelligenceServiceClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -382,9 +382,7 @@ class VideoIntelligenceServiceClient
     {
         $request = new AnnotateVideoRequest();
         $request->setInputUri($inputUri);
-        foreach ($features as $elem) {
-            $request->addFeatures($elem);
-        }
+        $request->setFeatures($features);
         if (isset($optionalArgs['inputContent'])) {
             $request->setInputContent($optionalArgs['inputContent']);
         }

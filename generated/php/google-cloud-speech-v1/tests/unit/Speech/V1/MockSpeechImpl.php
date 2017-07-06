@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\Speech\V1;
 
+use Google\Cloud\Speech\V1\SpeechGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\cloud\speech\v1\SpeechGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockSpeechImpl extends SpeechGrpcClient
 {

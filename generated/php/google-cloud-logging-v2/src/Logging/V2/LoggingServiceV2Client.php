@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Logging\V2;
 
+use Google\Api\MonitoredResource;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -37,15 +38,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\api\MonitoredResource;
-use google\logging\v2\DeleteLogRequest;
-use google\logging\v2\ListLogEntriesRequest;
-use google\logging\v2\ListLogsRequest;
-use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
-use google\logging\v2\LogEntry;
-use google\logging\v2\LoggingServiceV2GrpcClient;
-use google\logging\v2\WriteLogEntriesRequest;
-use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
+use Google\Logging\V2\DeleteLogRequest;
+use Google\Logging\V2\ListLogEntriesRequest;
+use Google\Logging\V2\ListLogsRequest;
+use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
+use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LoggingServiceV2GrpcClient;
+use Google\Logging\V2\WriteLogEntriesRequest;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -208,24 +207,30 @@ class LoggingServiceV2Client
     {
         $listLogEntriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'entries',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntries',
                 ]);
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'resource_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceDescriptors',
                 ]);
         $listLogsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'log_names',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLogNames',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -491,7 +496,7 @@ class LoggingServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\WriteLogEntriesResponse
+     * @return \Google\Logging\V2\WriteLogEntriesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -499,9 +504,7 @@ class LoggingServiceV2Client
     public function writeLogEntries($entries, $optionalArgs = [])
     {
         $request = new WriteLogEntriesRequest();
-        foreach ($entries as $elem) {
-            $request->addEntries($elem);
-        }
+        $request->setEntries($entries);
         if (isset($optionalArgs['logName'])) {
             $request->setLogName($optionalArgs['logName']);
         }
@@ -509,9 +512,7 @@ class LoggingServiceV2Client
             $request->setResource($optionalArgs['resource']);
         }
         if (isset($optionalArgs['labels'])) {
-            foreach ($optionalArgs['labels'] as $key => $value) {
-                $request->addLabels((new LabelsEntry())->setKey($key)->setValue($value));
-            }
+            $request->setLabels($optionalArgs['labels']);
         }
         if (isset($optionalArgs['partialSuccess'])) {
             $request->setPartialSuccess($optionalArgs['partialSuccess']);
@@ -619,13 +620,9 @@ class LoggingServiceV2Client
     public function listLogEntries($resourceNames, $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
-        foreach ($resourceNames as $elem) {
-            $request->addResourceNames($elem);
-        }
+        $request->setResourceNames($resourceNames);
         if (isset($optionalArgs['projectIds'])) {
-            foreach ($optionalArgs['projectIds'] as $elem) {
-                $request->addProjectIds($elem);
-            }
+            $request->setProjectIds($optionalArgs['projectIds']);
         }
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);

@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\PubSub\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\protobuf\Any;
-use google\pubsub\v1\SubscriberGrpcClient;
+use Google\Protobuf\Any;
+use Google\Pubsub\V1\SubscriberGrpcClient;
 
 class MockSubscriberImpl extends SubscriberGrpcClient
 {

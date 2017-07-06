@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Spanner\Admin\Instance\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\protobuf\Any;
-use google\spanner\admin\instance\v1\InstanceAdminGrpcClient;
+use Google\Protobuf\Any;
+use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
 
 class MockInstanceAdminImpl extends InstanceAdminGrpcClient
 {

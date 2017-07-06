@@ -23,26 +23,26 @@
 namespace Google\Cloud\Tests\Language\V1beta2;
 
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
+use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
+use Google\Cloud\Language\V1beta2\Document;
+use Google\Cloud\Language\V1beta2\EncodingType;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\cloud\language\v1beta2\AnalyzeEntitiesResponse;
-use google\cloud\language\v1beta2\AnalyzeEntitySentimentResponse;
-use google\cloud\language\v1beta2\AnalyzeSentimentResponse;
-use google\cloud\language\v1beta2\AnalyzeSyntaxResponse;
-use google\cloud\language\v1beta2\AnnotateTextRequest\Features;
-use google\cloud\language\v1beta2\AnnotateTextResponse;
-use google\cloud\language\v1beta2\Document;
-use google\cloud\language\v1beta2\EncodingType;
-use google\protobuf\Any;
 use stdClass;
 
 /**
  * @group language
  * @group grpc
  */
-class LanguageServiceClientTest extends PHPUnit_Framework_TestCase
+class LanguageServiceClientTest extends GeneratedTest
 {
     public function createMockLanguageServiceImpl($hostname, $opts)
     {

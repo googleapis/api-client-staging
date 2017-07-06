@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
 
+use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;
-use google\devtools\clouderrorreporting\v1beta1\ErrorGroupServiceGrpcClient;
-use google\protobuf\Any;
+use Google\Protobuf\Any;
 
 class MockErrorGroupServiceImpl extends ErrorGroupServiceGrpcClient
 {

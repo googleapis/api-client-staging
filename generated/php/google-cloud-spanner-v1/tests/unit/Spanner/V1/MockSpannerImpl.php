@@ -23,8 +23,8 @@
 namespace Google\Cloud\Tests\Spanner\V1;
 
 use Google\GAX\Testing\MockStubTrait;
-use google\protobuf\Any;
-use google\spanner\v1\SpannerGrpcClient;
+use Google\Protobuf\Any;
+use Google\Spanner\V1\SpannerGrpcClient;
 
 class MockSpannerImpl extends SpannerGrpcClient
 {

@@ -1,8 +1,7 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "^0.10",
-        "google/proto-client-php": "^0.14"
+        "google/gax": "^0.20"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
@@ -42,6 +41,23 @@
                 "generated/php/google-cloud-trace-v1/tests/unit",
                 "generated/php/google-cloud-video-intelligence-v1beta1/tests/unit",
                 "generated/php/google-cloud-vision-v1/tests/unit"
+            ],
+            "": [
+                "generated/php/google-cloud-bigtable-admin-v2/proto/src",
+                "generated/php/google-cloud-pubsub-v1/proto/src",
+                "generated/php/google-cloud-error-reporting-v1beta1/proto/src",
+                "generated/php/google-cloud-language-v1/proto/src",
+                "generated/php/google-cloud-language-v1beta2/proto/src",
+                "generated/php/google-cloud-logging-v2/proto/src",
+                "generated/php/google-cloud-monitoring-v3/proto/src",
+                "generated/php/google-cloud-speech-v1beta1/proto/src",
+                "generated/php/google-cloud-speech-v1/proto/src",
+                "generated/php/google-cloud-spanner-v1/proto/src",
+                "generated/php/google-cloud-spanner-admin-database-v1/proto/src",
+                "generated/php/google-cloud-spanner-admin-instance-v1/proto/src",
+                "generated/php/google-cloud-trace-v1/proto/src",
+                "generated/php/google-cloud-video-intelligence-v1beta1/proto/src",
+                "generated/php/google-cloud-vision-v1/proto/src"
             ]
         }
     }

@@ -37,15 +37,15 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\monitoring\v3\CreateGroupRequest;
-use google\monitoring\v3\DeleteGroupRequest;
-use google\monitoring\v3\GetGroupRequest;
-use google\monitoring\v3\Group;
-use google\monitoring\v3\GroupServiceGrpcClient;
-use google\monitoring\v3\ListGroupMembersRequest;
-use google\monitoring\v3\ListGroupsRequest;
-use google\monitoring\v3\TimeInterval;
-use google\monitoring\v3\UpdateGroupRequest;
+use Google\Monitoring\V3\CreateGroupRequest;
+use Google\Monitoring\V3\DeleteGroupRequest;
+use Google\Monitoring\V3\GetGroupRequest;
+use Google\Monitoring\V3\Group;
+use Google\Monitoring\V3\GroupServiceGrpcClient;
+use Google\Monitoring\V3\ListGroupMembersRequest;
+use Google\Monitoring\V3\ListGroupsRequest;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\UpdateGroupRequest;
 
 /**
  * Service Description: The Group API lets you inspect and manage your
@@ -231,17 +231,21 @@ class GroupServiceClient
     {
         $listGroupsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'group',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGroup',
                 ]);
         $listGroupMembersPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'members',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMembers',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -499,7 +503,7 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -557,7 +561,7 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -617,7 +621,7 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental

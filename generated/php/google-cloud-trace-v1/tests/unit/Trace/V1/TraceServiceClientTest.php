@@ -23,22 +23,22 @@
 namespace Google\Cloud\Tests\Trace\V1;
 
 use Google\Cloud\Trace\V1\TraceServiceClient;
+use Google\Devtools\Cloudtrace\V1\ListTracesResponse;
+use Google\Devtools\Cloudtrace\V1\Trace;
+use Google\Devtools\Cloudtrace\V1\Traces;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\devtools\cloudtrace\v1\ListTracesResponse;
-use google\devtools\cloudtrace\v1\Trace;
-use google\devtools\cloudtrace\v1\Traces;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
 use stdClass;
 
 /**
  * @group trace
  * @group grpc
  */
-class TraceServiceClientTest extends PHPUnit_Framework_TestCase
+class TraceServiceClientTest extends GeneratedTest
 {
     public function createMockTraceServiceImpl($hostname, $opts)
     {
@@ -78,7 +78,7 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -230,9 +230,7 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
         $traces = [$tracesElement];
         $expectedResponse = new ListTracesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($traces as $elem) {
-            $expectedResponse->addTraces($elem);
-        }
+        $expectedResponse->setTraces($traces);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -242,7 +240,7 @@ class TraceServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTracesList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getTraces()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

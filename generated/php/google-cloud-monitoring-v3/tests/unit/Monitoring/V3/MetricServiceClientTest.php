@@ -23,27 +23,27 @@
 namespace Google\Cloud\Tests\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Api\MetricDescriptor;
+use Google\Api\MonitoredResourceDescriptor;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\Testing\GeneratedTest;
+use Google\Monitoring\V3\ListMetricDescriptorsResponse;
+use Google\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
+use Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Monitoring\V3\ListTimeSeriesResponse;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\TimeSeries;
+use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
-use google\api\MetricDescriptor;
-use google\api\MonitoredResourceDescriptor;
-use google\monitoring\v3\ListMetricDescriptorsResponse;
-use google\monitoring\v3\ListMonitoredResourceDescriptorsResponse;
-use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
-use google\monitoring\v3\ListTimeSeriesResponse;
-use google\monitoring\v3\TimeInterval;
-use google\monitoring\v3\TimeSeries;
-use google\protobuf\Any;
-use google\protobuf\EmptyC;
 use stdClass;
 
 /**
  * @group monitoring
  * @group grpc
  */
-class MetricServiceClientTest extends PHPUnit_Framework_TestCase
+class MetricServiceClientTest extends GeneratedTest
 {
     public function createMockMetricServiceImpl($hostname, $opts)
     {
@@ -88,9 +88,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $resourceDescriptors = [$resourceDescriptorsElement];
         $expectedResponse = new ListMonitoredResourceDescriptorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($resourceDescriptors as $elem) {
-            $expectedResponse->addResourceDescriptors($elem);
-        }
+        $expectedResponse->setResourceDescriptors($resourceDescriptors);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -100,7 +98,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getResourceDescriptorsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getResourceDescriptors()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -244,9 +242,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $metricDescriptors = [$metricDescriptorsElement];
         $expectedResponse = new ListMetricDescriptorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($metricDescriptors as $elem) {
-            $expectedResponse->addMetricDescriptors($elem);
-        }
+        $expectedResponse->setMetricDescriptors($metricDescriptors);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -256,7 +252,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getMetricDescriptorsList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getMetricDescriptors()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -479,7 +475,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -552,9 +548,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $timeSeries = [$timeSeriesElement];
         $expectedResponse = new ListTimeSeriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        foreach ($timeSeries as $elem) {
-            $expectedResponse->addTimeSeries($elem);
-        }
+        $expectedResponse->setTimeSeries($timeSeries);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -567,7 +561,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTimeSeriesList()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getTimeSeries()[0], $resources[0]);
 
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -635,7 +629,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock response
-        $expectedResponse = new EmptyC();
+        $expectedResponse = new GPBEmpty();
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -650,7 +644,7 @@ class MetricServiceClientTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/google.monitoring.v3.MetricService/CreateTimeSeries', $actualFuncCall);
 
         $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertEquals($timeSeries, $actualRequestObject->getTimeSeriesList());
+        $this->assertRepeatedFieldEquals($timeSeries, $actualRequestObject->getTimeSeries());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
