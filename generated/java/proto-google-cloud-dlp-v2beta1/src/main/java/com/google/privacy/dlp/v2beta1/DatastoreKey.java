@@ -89,7 +89,7 @@ public  final class DatastoreKey extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   public boolean hasEntityKey() {
     return entityKey_ != null;
@@ -99,7 +99,7 @@ public  final class DatastoreKey extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.Key getEntityKey() {
     return entityKey_ == null ? com.google.privacy.dlp.v2beta1.Key.getDefaultInstance() : entityKey_;
@@ -109,7 +109,7 @@ public  final class DatastoreKey extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.KeyOrBuilder getEntityKeyOrBuilder() {
     return getEntityKey();
@@ -171,7 +171,7 @@ public  final class DatastoreKey extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasEntityKey()) {
       hash = (37 * hash) + ENTITY_KEY_FIELD_NUMBER;
       hash = (53 * hash) + getEntityKey().hashCode();
@@ -181,6 +181,17 @@ public  final class DatastoreKey extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.DatastoreKey parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.DatastoreKey parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.DatastoreKey parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -409,7 +420,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public boolean hasEntityKey() {
       return entityKeyBuilder_ != null || entityKey_ != null;
@@ -419,7 +430,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.Key getEntityKey() {
       if (entityKeyBuilder_ == null) {
@@ -433,7 +444,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public Builder setEntityKey(com.google.privacy.dlp.v2beta1.Key value) {
       if (entityKeyBuilder_ == null) {
@@ -453,7 +464,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public Builder setEntityKey(
         com.google.privacy.dlp.v2beta1.Key.Builder builderForValue) {
@@ -471,7 +482,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public Builder mergeEntityKey(com.google.privacy.dlp.v2beta1.Key value) {
       if (entityKeyBuilder_ == null) {
@@ -493,7 +504,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public Builder clearEntityKey() {
       if (entityKeyBuilder_ == null) {
@@ -511,7 +522,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.Key.Builder getEntityKeyBuilder() {
       
@@ -523,7 +534,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.KeyOrBuilder getEntityKeyOrBuilder() {
       if (entityKeyBuilder_ != null) {
@@ -538,7 +549,7 @@ public  final class DatastoreKey extends
      * Datastore entity key.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.Key, com.google.privacy.dlp.v2beta1.Key.Builder, com.google.privacy.dlp.v2beta1.KeyOrBuilder> 

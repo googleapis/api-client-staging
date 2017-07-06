@@ -12,7 +12,7 @@ public interface PartitionIdOrBuilder extends
    * The ID of the project to which the entities belong.
    * </pre>
    *
-   * <code>optional string project_id = 2;</code>
+   * <code>string project_id = 2;</code>
    */
   java.lang.String getProjectId();
   /**
@@ -20,7 +20,7 @@ public interface PartitionIdOrBuilder extends
    * The ID of the project to which the entities belong.
    * </pre>
    *
-   * <code>optional string project_id = 2;</code>
+   * <code>string project_id = 2;</code>
    */
   com.google.protobuf.ByteString
       getProjectIdBytes();
@@ -30,7 +30,7 @@ public interface PartitionIdOrBuilder extends
    * If not empty, the ID of the namespace to which the entities belong.
    * </pre>
    *
-   * <code>optional string namespace_id = 4;</code>
+   * <code>string namespace_id = 4;</code>
    */
   java.lang.String getNamespaceId();
   /**
@@ -38,7 +38,7 @@ public interface PartitionIdOrBuilder extends
    * If not empty, the ID of the namespace to which the entities belong.
    * </pre>
    *
-   * <code>optional string namespace_id = 4;</code>
+   * <code>string namespace_id = 4;</code>
    */
   com.google.protobuf.ByteString
       getNamespaceIdBytes();

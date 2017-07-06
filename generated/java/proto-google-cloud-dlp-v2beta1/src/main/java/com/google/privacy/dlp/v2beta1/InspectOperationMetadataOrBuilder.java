@@ -12,7 +12,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * Total size in bytes that were processed.
    * </pre>
    *
-   * <code>optional int64 processed_bytes = 1;</code>
+   * <code>int64 processed_bytes = 1;</code>
    */
   long getProcessedBytes();
 
@@ -21,7 +21,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * Estimate of the number of bytes to process.
    * </pre>
    *
-   * <code>optional int64 total_estimated_bytes = 4;</code>
+   * <code>int64 total_estimated_bytes = 4;</code>
    */
   long getTotalEstimatedBytes();
 
@@ -54,7 +54,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   boolean hasCreateTime();
   /**
@@ -62,7 +62,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   com.google.protobuf.Timestamp getCreateTime();
   /**
@@ -70,7 +70,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder();
 
@@ -79,7 +79,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   boolean hasRequestInspectConfig();
   /**
@@ -87,7 +87,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfig getRequestInspectConfig();
   /**
@@ -95,7 +95,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getRequestInspectConfigOrBuilder();
 
@@ -104,7 +104,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   boolean hasRequestStorageConfig();
   /**
@@ -112,7 +112,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   com.google.privacy.dlp.v2beta1.StorageConfig getRequestStorageConfig();
   /**
@@ -120,7 +120,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getRequestStorageConfigOrBuilder();
 
@@ -129,7 +129,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   boolean hasRequestOutputConfig();
   /**
@@ -137,7 +137,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   com.google.privacy.dlp.v2beta1.OutputStorageConfig getRequestOutputConfig();
   /**
@@ -145,7 +145,7 @@ public interface InspectOperationMetadataOrBuilder extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getRequestOutputConfigOrBuilder();
 }

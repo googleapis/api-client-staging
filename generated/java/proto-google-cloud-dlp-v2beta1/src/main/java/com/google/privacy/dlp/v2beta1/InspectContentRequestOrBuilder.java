@@ -12,7 +12,7 @@ public interface InspectContentRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   boolean hasInspectConfig();
   /**
@@ -20,7 +20,7 @@ public interface InspectContentRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig();
   /**
@@ -28,7 +28,7 @@ public interface InspectContentRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder();
 

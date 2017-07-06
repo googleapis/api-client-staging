@@ -13,7 +13,7 @@ public interface PropertyReferenceOrBuilder extends
    * If name includes "."s, it may be interpreted as a property name path.
    * </pre>
    *
-   * <code>optional string name = 2;</code>
+   * <code>string name = 2;</code>
    */
   java.lang.String getName();
   /**
@@ -22,7 +22,7 @@ public interface PropertyReferenceOrBuilder extends
    * If name includes "."s, it may be interpreted as a property name path.
    * </pre>
    *
-   * <code>optional string name = 2;</code>
+   * <code>string name = 2;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

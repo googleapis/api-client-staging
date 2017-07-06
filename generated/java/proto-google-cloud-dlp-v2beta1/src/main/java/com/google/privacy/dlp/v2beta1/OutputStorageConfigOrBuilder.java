@@ -12,7 +12,7 @@ public interface OutputStorageConfigOrBuilder extends
    * The path to a Google Cloud Storage location to store output.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStoragePath getStoragePath();
   /**
@@ -20,7 +20,7 @@ public interface OutputStorageConfigOrBuilder extends
    * The path to a Google Cloud Storage location to store output.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStoragePathOrBuilder getStoragePathOrBuilder();
 

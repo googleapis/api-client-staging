@@ -12,7 +12,7 @@ public interface InfoTypeStatisticsOrBuilder extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   boolean hasInfoType();
   /**
@@ -20,7 +20,7 @@ public interface InfoTypeStatisticsOrBuilder extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InfoType getInfoType();
   /**
@@ -28,7 +28,7 @@ public interface InfoTypeStatisticsOrBuilder extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder();
 
@@ -37,7 +37,7 @@ public interface InfoTypeStatisticsOrBuilder extends
    * Number of findings for this info type.
    * </pre>
    *
-   * <code>optional int64 count = 2;</code>
+   * <code>int64 count = 2;</code>
    */
   long getCount();
 }

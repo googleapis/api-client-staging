@@ -110,7 +110,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string kind = 1;</code>
+     * <code>string kind = 1;</code>
      */
     java.lang.String getKind();
     /**
@@ -121,7 +121,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string kind = 1;</code>
+     * <code>string kind = 1;</code>
      */
     com.google.protobuf.ByteString
         getKindBytes();
@@ -133,7 +133,7 @@ public  final class Key extends
      * be supported in the future.
      * </pre>
      *
-     * <code>optional int64 id = 2;</code>
+     * <code>int64 id = 2;</code>
      */
     long getId();
 
@@ -145,7 +145,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     java.lang.String getName();
     /**
@@ -156,7 +156,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -297,7 +297,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string kind = 1;</code>
+     * <code>string kind = 1;</code>
      */
     public java.lang.String getKind() {
       java.lang.Object ref = kind_;
@@ -319,7 +319,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string kind = 1;</code>
+     * <code>string kind = 1;</code>
      */
     public com.google.protobuf.ByteString
         getKindBytes() {
@@ -343,7 +343,7 @@ public  final class Key extends
      * be supported in the future.
      * </pre>
      *
-     * <code>optional int64 id = 2;</code>
+     * <code>int64 id = 2;</code>
      */
     public long getId() {
       if (idTypeCase_ == 2) {
@@ -361,7 +361,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = "";
@@ -388,7 +388,7 @@ public  final class Key extends
      * Cannot be `""`.
      * </pre>
      *
-     * <code>optional string name = 3;</code>
+     * <code>string name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -491,7 +491,7 @@ public  final class Key extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + KIND_FIELD_NUMBER;
       hash = (53 * hash) + getKind().hashCode();
       switch (idTypeCase_) {
@@ -512,6 +512,17 @@ public  final class Key extends
       return hash;
     }
 
+    public static com.google.privacy.dlp.v2beta1.Key.PathElement parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.Key.PathElement parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.privacy.dlp.v2beta1.Key.PathElement parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -775,7 +786,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string kind = 1;</code>
+       * <code>string kind = 1;</code>
        */
       public java.lang.String getKind() {
         java.lang.Object ref = kind_;
@@ -797,7 +808,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string kind = 1;</code>
+       * <code>string kind = 1;</code>
        */
       public com.google.protobuf.ByteString
           getKindBytes() {
@@ -820,7 +831,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string kind = 1;</code>
+       * <code>string kind = 1;</code>
        */
       public Builder setKind(
           java.lang.String value) {
@@ -840,7 +851,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string kind = 1;</code>
+       * <code>string kind = 1;</code>
        */
       public Builder clearKind() {
         
@@ -856,7 +867,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string kind = 1;</code>
+       * <code>string kind = 1;</code>
        */
       public Builder setKindBytes(
           com.google.protobuf.ByteString value) {
@@ -877,7 +888,7 @@ public  final class Key extends
        * be supported in the future.
        * </pre>
        *
-       * <code>optional int64 id = 2;</code>
+       * <code>int64 id = 2;</code>
        */
       public long getId() {
         if (idTypeCase_ == 2) {
@@ -892,7 +903,7 @@ public  final class Key extends
        * be supported in the future.
        * </pre>
        *
-       * <code>optional int64 id = 2;</code>
+       * <code>int64 id = 2;</code>
        */
       public Builder setId(long value) {
         idTypeCase_ = 2;
@@ -907,7 +918,7 @@ public  final class Key extends
        * be supported in the future.
        * </pre>
        *
-       * <code>optional int64 id = 2;</code>
+       * <code>int64 id = 2;</code>
        */
       public Builder clearId() {
         if (idTypeCase_ == 2) {
@@ -926,7 +937,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string name = 3;</code>
+       * <code>string name = 3;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = "";
@@ -953,7 +964,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string name = 3;</code>
+       * <code>string name = 3;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -981,7 +992,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string name = 3;</code>
+       * <code>string name = 3;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -1001,7 +1012,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string name = 3;</code>
+       * <code>string name = 3;</code>
        */
       public Builder clearName() {
         if (idTypeCase_ == 3) {
@@ -1019,7 +1030,7 @@ public  final class Key extends
        * Cannot be `""`.
        * </pre>
        *
-       * <code>optional string name = 3;</code>
+       * <code>string name = 3;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -1091,7 +1102,7 @@ public  final class Key extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public boolean hasPartitionId() {
     return partitionId_ != null;
@@ -1103,7 +1114,7 @@ public  final class Key extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PartitionId getPartitionId() {
     return partitionId_ == null ? com.google.privacy.dlp.v2beta1.PartitionId.getDefaultInstance() : partitionId_;
@@ -1115,7 +1126,7 @@ public  final class Key extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder() {
     return getPartitionId();
@@ -1276,7 +1287,7 @@ public  final class Key extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasPartitionId()) {
       hash = (37 * hash) + PARTITION_ID_FIELD_NUMBER;
       hash = (53 * hash) + getPartitionId().hashCode();
@@ -1290,6 +1301,17 @@ public  final class Key extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Key parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Key parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Key parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1569,7 +1591,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public boolean hasPartitionId() {
       return partitionIdBuilder_ != null || partitionId_ != null;
@@ -1581,7 +1603,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionId getPartitionId() {
       if (partitionIdBuilder_ == null) {
@@ -1597,7 +1619,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder setPartitionId(com.google.privacy.dlp.v2beta1.PartitionId value) {
       if (partitionIdBuilder_ == null) {
@@ -1619,7 +1641,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder setPartitionId(
         com.google.privacy.dlp.v2beta1.PartitionId.Builder builderForValue) {
@@ -1639,7 +1661,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder mergePartitionId(com.google.privacy.dlp.v2beta1.PartitionId value) {
       if (partitionIdBuilder_ == null) {
@@ -1663,7 +1685,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder clearPartitionId() {
       if (partitionIdBuilder_ == null) {
@@ -1683,7 +1705,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionId.Builder getPartitionIdBuilder() {
       
@@ -1697,7 +1719,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder() {
       if (partitionIdBuilder_ != null) {
@@ -1714,7 +1736,7 @@ public  final class Key extends
      * Queries are scoped to a single partition.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.PartitionId, com.google.privacy.dlp.v2beta1.PartitionId.Builder, com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder> 

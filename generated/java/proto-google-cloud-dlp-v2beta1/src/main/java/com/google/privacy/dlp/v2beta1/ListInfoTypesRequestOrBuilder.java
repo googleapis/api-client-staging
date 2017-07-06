@@ -12,7 +12,7 @@ public interface ListInfoTypesRequestOrBuilder extends
    * Category name as returned by ListRootCategories.
    * </pre>
    *
-   * <code>optional string category = 1;</code>
+   * <code>string category = 1;</code>
    */
   java.lang.String getCategory();
   /**
@@ -20,7 +20,7 @@ public interface ListInfoTypesRequestOrBuilder extends
    * Category name as returned by ListRootCategories.
    * </pre>
    *
-   * <code>optional string category = 1;</code>
+   * <code>string category = 1;</code>
    */
   com.google.protobuf.ByteString
       getCategoryBytes();
@@ -32,7 +32,7 @@ public interface ListInfoTypesRequestOrBuilder extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 2;</code>
+   * <code>string language_code = 2;</code>
    */
   java.lang.String getLanguageCode();
   /**
@@ -42,7 +42,7 @@ public interface ListInfoTypesRequestOrBuilder extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 2;</code>
+   * <code>string language_code = 2;</code>
    */
   com.google.protobuf.ByteString
       getLanguageCodeBytes();

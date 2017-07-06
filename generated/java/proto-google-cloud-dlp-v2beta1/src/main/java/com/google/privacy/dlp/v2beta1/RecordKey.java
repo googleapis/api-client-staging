@@ -137,7 +137,7 @@ public  final class RecordKey extends
 
   public static final int CLOUD_STORAGE_KEY_FIELD_NUMBER = 1;
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageKey getCloudStorageKey() {
     if (typeCase_ == 1) {
@@ -146,7 +146,7 @@ public  final class RecordKey extends
     return com.google.privacy.dlp.v2beta1.CloudStorageKey.getDefaultInstance();
   }
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageKeyOrBuilder getCloudStorageKeyOrBuilder() {
     if (typeCase_ == 1) {
@@ -157,7 +157,7 @@ public  final class RecordKey extends
 
   public static final int DATASTORE_KEY_FIELD_NUMBER = 2;
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.DatastoreKey getDatastoreKey() {
     if (typeCase_ == 2) {
@@ -166,7 +166,7 @@ public  final class RecordKey extends
     return com.google.privacy.dlp.v2beta1.DatastoreKey.getDefaultInstance();
   }
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.DatastoreKeyOrBuilder getDatastoreKeyOrBuilder() {
     if (typeCase_ == 2) {
@@ -248,7 +248,7 @@ public  final class RecordKey extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (typeCase_) {
       case 1:
         hash = (37 * hash) + CLOUD_STORAGE_KEY_FIELD_NUMBER;
@@ -266,6 +266,17 @@ public  final class RecordKey extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.RecordKey parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.RecordKey parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.RecordKey parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -520,7 +531,7 @@ public  final class RecordKey extends
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStorageKey, com.google.privacy.dlp.v2beta1.CloudStorageKey.Builder, com.google.privacy.dlp.v2beta1.CloudStorageKeyOrBuilder> cloudStorageKeyBuilder_;
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageKey getCloudStorageKey() {
       if (cloudStorageKeyBuilder_ == null) {
@@ -536,7 +547,7 @@ public  final class RecordKey extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public Builder setCloudStorageKey(com.google.privacy.dlp.v2beta1.CloudStorageKey value) {
       if (cloudStorageKeyBuilder_ == null) {
@@ -552,7 +563,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public Builder setCloudStorageKey(
         com.google.privacy.dlp.v2beta1.CloudStorageKey.Builder builderForValue) {
@@ -566,7 +577,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public Builder mergeCloudStorageKey(com.google.privacy.dlp.v2beta1.CloudStorageKey value) {
       if (cloudStorageKeyBuilder_ == null) {
@@ -588,7 +599,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public Builder clearCloudStorageKey() {
       if (cloudStorageKeyBuilder_ == null) {
@@ -607,13 +618,13 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageKey.Builder getCloudStorageKeyBuilder() {
       return getCloudStorageKeyFieldBuilder().getBuilder();
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageKeyOrBuilder getCloudStorageKeyOrBuilder() {
       if ((typeCase_ == 1) && (cloudStorageKeyBuilder_ != null)) {
@@ -626,7 +637,7 @@ public  final class RecordKey extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStorageKey, com.google.privacy.dlp.v2beta1.CloudStorageKey.Builder, com.google.privacy.dlp.v2beta1.CloudStorageKeyOrBuilder> 
@@ -650,7 +661,7 @@ public  final class RecordKey extends
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.DatastoreKey, com.google.privacy.dlp.v2beta1.DatastoreKey.Builder, com.google.privacy.dlp.v2beta1.DatastoreKeyOrBuilder> datastoreKeyBuilder_;
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreKey getDatastoreKey() {
       if (datastoreKeyBuilder_ == null) {
@@ -666,7 +677,7 @@ public  final class RecordKey extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public Builder setDatastoreKey(com.google.privacy.dlp.v2beta1.DatastoreKey value) {
       if (datastoreKeyBuilder_ == null) {
@@ -682,7 +693,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public Builder setDatastoreKey(
         com.google.privacy.dlp.v2beta1.DatastoreKey.Builder builderForValue) {
@@ -696,7 +707,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public Builder mergeDatastoreKey(com.google.privacy.dlp.v2beta1.DatastoreKey value) {
       if (datastoreKeyBuilder_ == null) {
@@ -718,7 +729,7 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public Builder clearDatastoreKey() {
       if (datastoreKeyBuilder_ == null) {
@@ -737,13 +748,13 @@ public  final class RecordKey extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreKey.Builder getDatastoreKeyBuilder() {
       return getDatastoreKeyFieldBuilder().getBuilder();
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreKeyOrBuilder getDatastoreKeyOrBuilder() {
       if ((typeCase_ == 2) && (datastoreKeyBuilder_ != null)) {
@@ -756,7 +767,7 @@ public  final class RecordKey extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.DatastoreKey, com.google.privacy.dlp.v2beta1.DatastoreKey.Builder, com.google.privacy.dlp.v2beta1.DatastoreKeyOrBuilder> 

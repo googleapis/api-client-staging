@@ -14,7 +14,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * Should be in the format of `inspect/results/{id}.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -24,7 +24,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * Should be in the format of `inspect/results/{id}.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -35,7 +35,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * If 0, the implementation selects a reasonable value.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   int getPageSize();
 
@@ -46,7 +46,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   java.lang.String getPageToken();
   /**
@@ -56,7 +56,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   com.google.protobuf.ByteString
       getPageTokenBytes();
@@ -72,7 +72,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   java.lang.String getFilter();
   /**
@@ -86,7 +86,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   com.google.protobuf.ByteString
       getFilterBytes();

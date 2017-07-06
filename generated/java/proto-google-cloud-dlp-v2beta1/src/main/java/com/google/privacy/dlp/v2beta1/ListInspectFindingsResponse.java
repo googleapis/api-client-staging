@@ -96,7 +96,7 @@ public  final class ListInspectFindingsResponse extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   public boolean hasResult() {
     return result_ != null;
@@ -106,7 +106,7 @@ public  final class ListInspectFindingsResponse extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectResult getResult() {
     return result_ == null ? com.google.privacy.dlp.v2beta1.InspectResult.getDefaultInstance() : result_;
@@ -116,7 +116,7 @@ public  final class ListInspectFindingsResponse extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectResultOrBuilder getResultOrBuilder() {
     return getResult();
@@ -130,7 +130,7 @@ public  final class ListInspectFindingsResponse extends
    * request; this value should be passed in a new `ListInspectFindingsRequest`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public java.lang.String getNextPageToken() {
     java.lang.Object ref = nextPageToken_;
@@ -150,7 +150,7 @@ public  final class ListInspectFindingsResponse extends
    * request; this value should be passed in a new `ListInspectFindingsRequest`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   public com.google.protobuf.ByteString
       getNextPageTokenBytes() {
@@ -230,7 +230,7 @@ public  final class ListInspectFindingsResponse extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasResult()) {
       hash = (37 * hash) + RESULT_FIELD_NUMBER;
       hash = (53 * hash) + getResult().hashCode();
@@ -242,6 +242,17 @@ public  final class ListInspectFindingsResponse extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.ListInspectFindingsResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.ListInspectFindingsResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.ListInspectFindingsResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -477,7 +488,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public boolean hasResult() {
       return resultBuilder_ != null || result_ != null;
@@ -487,7 +498,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectResult getResult() {
       if (resultBuilder_ == null) {
@@ -501,7 +512,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public Builder setResult(com.google.privacy.dlp.v2beta1.InspectResult value) {
       if (resultBuilder_ == null) {
@@ -521,7 +532,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public Builder setResult(
         com.google.privacy.dlp.v2beta1.InspectResult.Builder builderForValue) {
@@ -539,7 +550,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public Builder mergeResult(com.google.privacy.dlp.v2beta1.InspectResult value) {
       if (resultBuilder_ == null) {
@@ -561,7 +572,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public Builder clearResult() {
       if (resultBuilder_ == null) {
@@ -579,7 +590,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectResult.Builder getResultBuilder() {
       
@@ -591,7 +602,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectResultOrBuilder getResultOrBuilder() {
       if (resultBuilder_ != null) {
@@ -606,7 +617,7 @@ public  final class ListInspectFindingsResponse extends
      * The results.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InspectResult, com.google.privacy.dlp.v2beta1.InspectResult.Builder, com.google.privacy.dlp.v2beta1.InspectResultOrBuilder> 
@@ -629,7 +640,7 @@ public  final class ListInspectFindingsResponse extends
      * request; this value should be passed in a new `ListInspectFindingsRequest`.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public java.lang.String getNextPageToken() {
       java.lang.Object ref = nextPageToken_;
@@ -649,7 +660,7 @@ public  final class ListInspectFindingsResponse extends
      * request; this value should be passed in a new `ListInspectFindingsRequest`.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNextPageTokenBytes() {
@@ -670,7 +681,7 @@ public  final class ListInspectFindingsResponse extends
      * request; this value should be passed in a new `ListInspectFindingsRequest`.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageToken(
         java.lang.String value) {
@@ -688,7 +699,7 @@ public  final class ListInspectFindingsResponse extends
      * request; this value should be passed in a new `ListInspectFindingsRequest`.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder clearNextPageToken() {
       
@@ -702,7 +713,7 @@ public  final class ListInspectFindingsResponse extends
      * request; this value should be passed in a new `ListInspectFindingsRequest`.
      * </pre>
      *
-     * <code>optional string next_page_token = 2;</code>
+     * <code>string next_page_token = 2;</code>
      */
     public Builder setNextPageTokenBytes(
         com.google.protobuf.ByteString value) {

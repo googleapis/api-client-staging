@@ -141,7 +141,7 @@ public  final class StorageConfig extends
    * Google Cloud Datastore options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.DatastoreOptions getDatastoreOptions() {
     if (typeCase_ == 2) {
@@ -154,7 +154,7 @@ public  final class StorageConfig extends
    * Google Cloud Datastore options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.DatastoreOptionsOrBuilder getDatastoreOptionsOrBuilder() {
     if (typeCase_ == 2) {
@@ -169,7 +169,7 @@ public  final class StorageConfig extends
    * Google Cloud Storage options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions() {
     if (typeCase_ == 3) {
@@ -182,7 +182,7 @@ public  final class StorageConfig extends
    * Google Cloud Storage options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder getCloudStorageOptionsOrBuilder() {
     if (typeCase_ == 3) {
@@ -264,7 +264,7 @@ public  final class StorageConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (typeCase_) {
       case 2:
         hash = (37 * hash) + DATASTORE_OPTIONS_FIELD_NUMBER;
@@ -282,6 +282,17 @@ public  final class StorageConfig extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.StorageConfig parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.StorageConfig parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.StorageConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -540,7 +551,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreOptions getDatastoreOptions() {
       if (datastoreOptionsBuilder_ == null) {
@@ -560,7 +571,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public Builder setDatastoreOptions(com.google.privacy.dlp.v2beta1.DatastoreOptions value) {
       if (datastoreOptionsBuilder_ == null) {
@@ -580,7 +591,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public Builder setDatastoreOptions(
         com.google.privacy.dlp.v2beta1.DatastoreOptions.Builder builderForValue) {
@@ -598,7 +609,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public Builder mergeDatastoreOptions(com.google.privacy.dlp.v2beta1.DatastoreOptions value) {
       if (datastoreOptionsBuilder_ == null) {
@@ -624,7 +635,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public Builder clearDatastoreOptions() {
       if (datastoreOptionsBuilder_ == null) {
@@ -647,7 +658,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreOptions.Builder getDatastoreOptionsBuilder() {
       return getDatastoreOptionsFieldBuilder().getBuilder();
@@ -657,7 +668,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.DatastoreOptionsOrBuilder getDatastoreOptionsOrBuilder() {
       if ((typeCase_ == 2) && (datastoreOptionsBuilder_ != null)) {
@@ -674,7 +685,7 @@ public  final class StorageConfig extends
      * Google Cloud Datastore options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.DatastoreOptions, com.google.privacy.dlp.v2beta1.DatastoreOptions.Builder, com.google.privacy.dlp.v2beta1.DatastoreOptionsOrBuilder> 
@@ -702,7 +713,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions() {
       if (cloudStorageOptionsBuilder_ == null) {
@@ -722,7 +733,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public Builder setCloudStorageOptions(com.google.privacy.dlp.v2beta1.CloudStorageOptions value) {
       if (cloudStorageOptionsBuilder_ == null) {
@@ -742,7 +753,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public Builder setCloudStorageOptions(
         com.google.privacy.dlp.v2beta1.CloudStorageOptions.Builder builderForValue) {
@@ -760,7 +771,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public Builder mergeCloudStorageOptions(com.google.privacy.dlp.v2beta1.CloudStorageOptions value) {
       if (cloudStorageOptionsBuilder_ == null) {
@@ -786,7 +797,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public Builder clearCloudStorageOptions() {
       if (cloudStorageOptionsBuilder_ == null) {
@@ -809,7 +820,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions.Builder getCloudStorageOptionsBuilder() {
       return getCloudStorageOptionsFieldBuilder().getBuilder();
@@ -819,7 +830,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder getCloudStorageOptionsOrBuilder() {
       if ((typeCase_ == 3) && (cloudStorageOptionsBuilder_ != null)) {
@@ -836,7 +847,7 @@ public  final class StorageConfig extends
      * Google Cloud Storage options specification.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStorageOptions, com.google.privacy.dlp.v2beta1.CloudStorageOptions.Builder, com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder> 

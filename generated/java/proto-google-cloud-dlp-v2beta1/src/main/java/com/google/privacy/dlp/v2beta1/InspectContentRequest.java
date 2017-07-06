@@ -103,7 +103,7 @@ public  final class InspectContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public boolean hasInspectConfig() {
     return inspectConfig_ != null;
@@ -113,7 +113,7 @@ public  final class InspectContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
     return inspectConfig_ == null ? com.google.privacy.dlp.v2beta1.InspectConfig.getDefaultInstance() : inspectConfig_;
@@ -123,7 +123,7 @@ public  final class InspectContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
     return getInspectConfig();
@@ -259,7 +259,7 @@ public  final class InspectContentRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasInspectConfig()) {
       hash = (37 * hash) + INSPECT_CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getInspectConfig().hashCode();
@@ -273,6 +273,17 @@ public  final class InspectContentRequest extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.InspectContentRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.InspectContentRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.InspectContentRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -547,7 +558,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public boolean hasInspectConfig() {
       return inspectConfigBuilder_ != null || inspectConfig_ != null;
@@ -557,7 +568,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -571,7 +582,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -591,7 +602,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(
         com.google.privacy.dlp.v2beta1.InspectConfig.Builder builderForValue) {
@@ -609,7 +620,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder mergeInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -631,7 +642,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder clearInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -649,7 +660,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig.Builder getInspectConfigBuilder() {
       
@@ -661,7 +672,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
       if (inspectConfigBuilder_ != null) {
@@ -676,7 +687,7 @@ public  final class InspectContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InspectConfig, com.google.privacy.dlp.v2beta1.InspectConfig.Builder, com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder> 

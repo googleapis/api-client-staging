@@ -12,7 +12,7 @@ public interface CategoryDescriptionOrBuilder extends
    * Internal name of the category.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -20,7 +20,7 @@ public interface CategoryDescriptionOrBuilder extends
    * Internal name of the category.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
@@ -30,7 +30,7 @@ public interface CategoryDescriptionOrBuilder extends
    * Human readable form of the category name.
    * </pre>
    *
-   * <code>optional string display_name = 2;</code>
+   * <code>string display_name = 2;</code>
    */
   java.lang.String getDisplayName();
   /**
@@ -38,7 +38,7 @@ public interface CategoryDescriptionOrBuilder extends
    * Human readable form of the category name.
    * </pre>
    *
-   * <code>optional string display_name = 2;</code>
+   * <code>string display_name = 2;</code>
    */
   com.google.protobuf.ByteString
       getDisplayNameBytes();

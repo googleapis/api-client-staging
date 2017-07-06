@@ -95,7 +95,7 @@ public  final class InfoTypeStatistics extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   public boolean hasInfoType() {
     return infoType_ != null;
@@ -105,7 +105,7 @@ public  final class InfoTypeStatistics extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
     return infoType_ == null ? com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
@@ -115,7 +115,7 @@ public  final class InfoTypeStatistics extends
    * The type of finding this stat is for.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
     return getInfoType();
@@ -128,7 +128,7 @@ public  final class InfoTypeStatistics extends
    * Number of findings for this info type.
    * </pre>
    *
-   * <code>optional int64 count = 2;</code>
+   * <code>int64 count = 2;</code>
    */
   public long getCount() {
     return count_;
@@ -199,7 +199,7 @@ public  final class InfoTypeStatistics extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasInfoType()) {
       hash = (37 * hash) + INFO_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getInfoType().hashCode();
@@ -212,6 +212,17 @@ public  final class InfoTypeStatistics extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.InfoTypeStatistics parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.InfoTypeStatistics parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.InfoTypeStatistics parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -446,7 +457,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public boolean hasInfoType() {
       return infoTypeBuilder_ != null || infoType_ != null;
@@ -456,7 +467,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
       if (infoTypeBuilder_ == null) {
@@ -470,7 +481,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public Builder setInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
       if (infoTypeBuilder_ == null) {
@@ -490,7 +501,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public Builder setInfoType(
         com.google.privacy.dlp.v2beta1.InfoType.Builder builderForValue) {
@@ -508,7 +519,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public Builder mergeInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
       if (infoTypeBuilder_ == null) {
@@ -530,7 +541,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public Builder clearInfoType() {
       if (infoTypeBuilder_ == null) {
@@ -548,7 +559,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType.Builder getInfoTypeBuilder() {
       
@@ -560,7 +571,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
       if (infoTypeBuilder_ != null) {
@@ -575,7 +586,7 @@ public  final class InfoTypeStatistics extends
      * The type of finding this stat is for.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> 
@@ -597,7 +608,7 @@ public  final class InfoTypeStatistics extends
      * Number of findings for this info type.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public long getCount() {
       return count_;
@@ -607,7 +618,7 @@ public  final class InfoTypeStatistics extends
      * Number of findings for this info type.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public Builder setCount(long value) {
       
@@ -620,7 +631,7 @@ public  final class InfoTypeStatistics extends
      * Number of findings for this info type.
      * </pre>
      *
-     * <code>optional int64 count = 2;</code>
+     * <code>int64 count = 2;</code>
      */
     public Builder clearCount() {
       

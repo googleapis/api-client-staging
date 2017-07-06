@@ -89,7 +89,7 @@ public  final class CloudStorageKey extends
    * Path to the file.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   public java.lang.String getFilePath() {
     java.lang.Object ref = filePath_;
@@ -108,7 +108,7 @@ public  final class CloudStorageKey extends
    * Path to the file.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   public com.google.protobuf.ByteString
       getFilePathBytes() {
@@ -131,7 +131,7 @@ public  final class CloudStorageKey extends
    * Byte offset of the referenced data in the file.
    * </pre>
    *
-   * <code>optional int64 start_offset = 2;</code>
+   * <code>int64 start_offset = 2;</code>
    */
   public long getStartOffset() {
     return startOffset_;
@@ -198,7 +198,7 @@ public  final class CloudStorageKey extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + FILE_PATH_FIELD_NUMBER;
     hash = (53 * hash) + getFilePath().hashCode();
     hash = (37 * hash) + START_OFFSET_FIELD_NUMBER;
@@ -209,6 +209,17 @@ public  final class CloudStorageKey extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.CloudStorageKey parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.CloudStorageKey parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.CloudStorageKey parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -434,7 +445,7 @@ public  final class CloudStorageKey extends
      * Path to the file.
      * </pre>
      *
-     * <code>optional string file_path = 1;</code>
+     * <code>string file_path = 1;</code>
      */
     public java.lang.String getFilePath() {
       java.lang.Object ref = filePath_;
@@ -453,7 +464,7 @@ public  final class CloudStorageKey extends
      * Path to the file.
      * </pre>
      *
-     * <code>optional string file_path = 1;</code>
+     * <code>string file_path = 1;</code>
      */
     public com.google.protobuf.ByteString
         getFilePathBytes() {
@@ -473,7 +484,7 @@ public  final class CloudStorageKey extends
      * Path to the file.
      * </pre>
      *
-     * <code>optional string file_path = 1;</code>
+     * <code>string file_path = 1;</code>
      */
     public Builder setFilePath(
         java.lang.String value) {
@@ -490,7 +501,7 @@ public  final class CloudStorageKey extends
      * Path to the file.
      * </pre>
      *
-     * <code>optional string file_path = 1;</code>
+     * <code>string file_path = 1;</code>
      */
     public Builder clearFilePath() {
       
@@ -503,7 +514,7 @@ public  final class CloudStorageKey extends
      * Path to the file.
      * </pre>
      *
-     * <code>optional string file_path = 1;</code>
+     * <code>string file_path = 1;</code>
      */
     public Builder setFilePathBytes(
         com.google.protobuf.ByteString value) {
@@ -523,7 +534,7 @@ public  final class CloudStorageKey extends
      * Byte offset of the referenced data in the file.
      * </pre>
      *
-     * <code>optional int64 start_offset = 2;</code>
+     * <code>int64 start_offset = 2;</code>
      */
     public long getStartOffset() {
       return startOffset_;
@@ -533,7 +544,7 @@ public  final class CloudStorageKey extends
      * Byte offset of the referenced data in the file.
      * </pre>
      *
-     * <code>optional int64 start_offset = 2;</code>
+     * <code>int64 start_offset = 2;</code>
      */
     public Builder setStartOffset(long value) {
       
@@ -546,7 +557,7 @@ public  final class CloudStorageKey extends
      * Byte offset of the referenced data in the file.
      * </pre>
      *
-     * <code>optional int64 start_offset = 2;</code>
+     * <code>int64 start_offset = 2;</code>
      */
     public Builder clearStartOffset() {
       

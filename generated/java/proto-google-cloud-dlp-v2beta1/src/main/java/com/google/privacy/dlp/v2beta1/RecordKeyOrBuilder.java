@@ -8,20 +8,20 @@ public interface RecordKeyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageKey getCloudStorageKey();
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageKey cloud_storage_key = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageKeyOrBuilder getCloudStorageKeyOrBuilder();
 
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.DatastoreKey getDatastoreKey();
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreKey datastore_key = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.DatastoreKeyOrBuilder getDatastoreKeyOrBuilder();
 

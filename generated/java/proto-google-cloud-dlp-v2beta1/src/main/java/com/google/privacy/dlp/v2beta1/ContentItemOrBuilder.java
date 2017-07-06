@@ -14,7 +14,7 @@ public interface ContentItemOrBuilder extends
    * JPEG images.
    * </pre>
    *
-   * <code>optional string type = 1;</code>
+   * <code>string type = 1;</code>
    */
   java.lang.String getType();
   /**
@@ -24,7 +24,7 @@ public interface ContentItemOrBuilder extends
    * JPEG images.
    * </pre>
    *
-   * <code>optional string type = 1;</code>
+   * <code>string type = 1;</code>
    */
   com.google.protobuf.ByteString
       getTypeBytes();
@@ -34,7 +34,7 @@ public interface ContentItemOrBuilder extends
    * Content data to inspect or redact.
    * </pre>
    *
-   * <code>optional bytes data = 2;</code>
+   * <code>bytes data = 2;</code>
    */
   com.google.protobuf.ByteString getData();
 
@@ -43,7 +43,7 @@ public interface ContentItemOrBuilder extends
    * String data to inspect or redact.
    * </pre>
    *
-   * <code>optional string value = 3;</code>
+   * <code>string value = 3;</code>
    */
   java.lang.String getValue();
   /**
@@ -51,7 +51,7 @@ public interface ContentItemOrBuilder extends
    * String data to inspect or redact.
    * </pre>
    *
-   * <code>optional string value = 3;</code>
+   * <code>string value = 3;</code>
    */
   com.google.protobuf.ByteString
       getValueBytes();

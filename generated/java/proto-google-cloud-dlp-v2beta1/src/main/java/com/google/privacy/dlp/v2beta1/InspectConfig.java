@@ -182,7 +182,7 @@ public  final class InspectConfig extends
    * Only returns findings equal or above this threshold.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
    */
   public int getMinLikelihoodValue() {
     return minLikelihood_;
@@ -192,7 +192,7 @@ public  final class InspectConfig extends
    * Only returns findings equal or above this threshold.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.Likelihood getMinLikelihood() {
     com.google.privacy.dlp.v2beta1.Likelihood result = com.google.privacy.dlp.v2beta1.Likelihood.valueOf(minLikelihood_);
@@ -206,7 +206,7 @@ public  final class InspectConfig extends
    * Limits the number of findings per content item.
    * </pre>
    *
-   * <code>optional int32 max_findings = 3;</code>
+   * <code>int32 max_findings = 3;</code>
    */
   public int getMaxFindings() {
     return maxFindings_;
@@ -220,7 +220,7 @@ public  final class InspectConfig extends
    * included in the response; see Finding.quote.
    * </pre>
    *
-   * <code>optional bool include_quote = 4;</code>
+   * <code>bool include_quote = 4;</code>
    */
   public boolean getIncludeQuote() {
     return includeQuote_;
@@ -233,7 +233,7 @@ public  final class InspectConfig extends
    * When true, excludes type information of the findings.
    * </pre>
    *
-   * <code>optional bool exclude_types = 6;</code>
+   * <code>bool exclude_types = 6;</code>
    */
   public boolean getExcludeTypes() {
     return excludeTypes_;
@@ -327,7 +327,7 @@ public  final class InspectConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getInfoTypesCount() > 0) {
       hash = (37 * hash) + INFO_TYPES_FIELD_NUMBER;
       hash = (53 * hash) + getInfoTypesList().hashCode();
@@ -347,6 +347,17 @@ public  final class InspectConfig extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.InspectConfig parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.InspectConfig parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.InspectConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -979,7 +990,7 @@ public  final class InspectConfig extends
      * Only returns findings equal or above this threshold.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
      */
     public int getMinLikelihoodValue() {
       return minLikelihood_;
@@ -989,7 +1000,7 @@ public  final class InspectConfig extends
      * Only returns findings equal or above this threshold.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
      */
     public Builder setMinLikelihoodValue(int value) {
       minLikelihood_ = value;
@@ -1001,7 +1012,7 @@ public  final class InspectConfig extends
      * Only returns findings equal or above this threshold.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.Likelihood getMinLikelihood() {
       com.google.privacy.dlp.v2beta1.Likelihood result = com.google.privacy.dlp.v2beta1.Likelihood.valueOf(minLikelihood_);
@@ -1012,7 +1023,7 @@ public  final class InspectConfig extends
      * Only returns findings equal or above this threshold.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
      */
     public Builder setMinLikelihood(com.google.privacy.dlp.v2beta1.Likelihood value) {
       if (value == null) {
@@ -1028,7 +1039,7 @@ public  final class InspectConfig extends
      * Only returns findings equal or above this threshold.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
      */
     public Builder clearMinLikelihood() {
       
@@ -1043,7 +1054,7 @@ public  final class InspectConfig extends
      * Limits the number of findings per content item.
      * </pre>
      *
-     * <code>optional int32 max_findings = 3;</code>
+     * <code>int32 max_findings = 3;</code>
      */
     public int getMaxFindings() {
       return maxFindings_;
@@ -1053,7 +1064,7 @@ public  final class InspectConfig extends
      * Limits the number of findings per content item.
      * </pre>
      *
-     * <code>optional int32 max_findings = 3;</code>
+     * <code>int32 max_findings = 3;</code>
      */
     public Builder setMaxFindings(int value) {
       
@@ -1066,7 +1077,7 @@ public  final class InspectConfig extends
      * Limits the number of findings per content item.
      * </pre>
      *
-     * <code>optional int32 max_findings = 3;</code>
+     * <code>int32 max_findings = 3;</code>
      */
     public Builder clearMaxFindings() {
       
@@ -1082,7 +1093,7 @@ public  final class InspectConfig extends
      * included in the response; see Finding.quote.
      * </pre>
      *
-     * <code>optional bool include_quote = 4;</code>
+     * <code>bool include_quote = 4;</code>
      */
     public boolean getIncludeQuote() {
       return includeQuote_;
@@ -1093,7 +1104,7 @@ public  final class InspectConfig extends
      * included in the response; see Finding.quote.
      * </pre>
      *
-     * <code>optional bool include_quote = 4;</code>
+     * <code>bool include_quote = 4;</code>
      */
     public Builder setIncludeQuote(boolean value) {
       
@@ -1107,7 +1118,7 @@ public  final class InspectConfig extends
      * included in the response; see Finding.quote.
      * </pre>
      *
-     * <code>optional bool include_quote = 4;</code>
+     * <code>bool include_quote = 4;</code>
      */
     public Builder clearIncludeQuote() {
       
@@ -1122,7 +1133,7 @@ public  final class InspectConfig extends
      * When true, excludes type information of the findings.
      * </pre>
      *
-     * <code>optional bool exclude_types = 6;</code>
+     * <code>bool exclude_types = 6;</code>
      */
     public boolean getExcludeTypes() {
       return excludeTypes_;
@@ -1132,7 +1143,7 @@ public  final class InspectConfig extends
      * When true, excludes type information of the findings.
      * </pre>
      *
-     * <code>optional bool exclude_types = 6;</code>
+     * <code>bool exclude_types = 6;</code>
      */
     public Builder setExcludeTypes(boolean value) {
       
@@ -1145,7 +1156,7 @@ public  final class InspectConfig extends
      * When true, excludes type information of the findings.
      * </pre>
      *
-     * <code>optional bool exclude_types = 6;</code>
+     * <code>bool exclude_types = 6;</code>
      */
     public Builder clearExcludeTypes() {
       

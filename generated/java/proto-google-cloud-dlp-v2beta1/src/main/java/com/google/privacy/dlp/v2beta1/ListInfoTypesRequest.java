@@ -91,7 +91,7 @@ public  final class ListInfoTypesRequest extends
    * Category name as returned by ListRootCategories.
    * </pre>
    *
-   * <code>optional string category = 1;</code>
+   * <code>string category = 1;</code>
    */
   public java.lang.String getCategory() {
     java.lang.Object ref = category_;
@@ -110,7 +110,7 @@ public  final class ListInfoTypesRequest extends
    * Category name as returned by ListRootCategories.
    * </pre>
    *
-   * <code>optional string category = 1;</code>
+   * <code>string category = 1;</code>
    */
   public com.google.protobuf.ByteString
       getCategoryBytes() {
@@ -135,7 +135,7 @@ public  final class ListInfoTypesRequest extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 2;</code>
+   * <code>string language_code = 2;</code>
    */
   public java.lang.String getLanguageCode() {
     java.lang.Object ref = languageCode_;
@@ -156,7 +156,7 @@ public  final class ListInfoTypesRequest extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 2;</code>
+   * <code>string language_code = 2;</code>
    */
   public com.google.protobuf.ByteString
       getLanguageCodeBytes() {
@@ -232,7 +232,7 @@ public  final class ListInfoTypesRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CATEGORY_FIELD_NUMBER;
     hash = (53 * hash) + getCategory().hashCode();
     hash = (37 * hash) + LANGUAGE_CODE_FIELD_NUMBER;
@@ -242,6 +242,17 @@ public  final class ListInfoTypesRequest extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.ListInfoTypesRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.ListInfoTypesRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.ListInfoTypesRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -469,7 +480,7 @@ public  final class ListInfoTypesRequest extends
      * Category name as returned by ListRootCategories.
      * </pre>
      *
-     * <code>optional string category = 1;</code>
+     * <code>string category = 1;</code>
      */
     public java.lang.String getCategory() {
       java.lang.Object ref = category_;
@@ -488,7 +499,7 @@ public  final class ListInfoTypesRequest extends
      * Category name as returned by ListRootCategories.
      * </pre>
      *
-     * <code>optional string category = 1;</code>
+     * <code>string category = 1;</code>
      */
     public com.google.protobuf.ByteString
         getCategoryBytes() {
@@ -508,7 +519,7 @@ public  final class ListInfoTypesRequest extends
      * Category name as returned by ListRootCategories.
      * </pre>
      *
-     * <code>optional string category = 1;</code>
+     * <code>string category = 1;</code>
      */
     public Builder setCategory(
         java.lang.String value) {
@@ -525,7 +536,7 @@ public  final class ListInfoTypesRequest extends
      * Category name as returned by ListRootCategories.
      * </pre>
      *
-     * <code>optional string category = 1;</code>
+     * <code>string category = 1;</code>
      */
     public Builder clearCategory() {
       
@@ -538,7 +549,7 @@ public  final class ListInfoTypesRequest extends
      * Category name as returned by ListRootCategories.
      * </pre>
      *
-     * <code>optional string category = 1;</code>
+     * <code>string category = 1;</code>
      */
     public Builder setCategoryBytes(
         com.google.protobuf.ByteString value) {
@@ -560,7 +571,7 @@ public  final class ListInfoTypesRequest extends
      * en-US strings will be returned.
      * </pre>
      *
-     * <code>optional string language_code = 2;</code>
+     * <code>string language_code = 2;</code>
      */
     public java.lang.String getLanguageCode() {
       java.lang.Object ref = languageCode_;
@@ -581,7 +592,7 @@ public  final class ListInfoTypesRequest extends
      * en-US strings will be returned.
      * </pre>
      *
-     * <code>optional string language_code = 2;</code>
+     * <code>string language_code = 2;</code>
      */
     public com.google.protobuf.ByteString
         getLanguageCodeBytes() {
@@ -603,7 +614,7 @@ public  final class ListInfoTypesRequest extends
      * en-US strings will be returned.
      * </pre>
      *
-     * <code>optional string language_code = 2;</code>
+     * <code>string language_code = 2;</code>
      */
     public Builder setLanguageCode(
         java.lang.String value) {
@@ -622,7 +633,7 @@ public  final class ListInfoTypesRequest extends
      * en-US strings will be returned.
      * </pre>
      *
-     * <code>optional string language_code = 2;</code>
+     * <code>string language_code = 2;</code>
      */
     public Builder clearLanguageCode() {
       
@@ -637,7 +648,7 @@ public  final class ListInfoTypesRequest extends
      * en-US strings will be returned.
      * </pre>
      *
-     * <code>optional string language_code = 2;</code>
+     * <code>string language_code = 2;</code>
      */
     public Builder setLanguageCodeBytes(
         com.google.protobuf.ByteString value) {

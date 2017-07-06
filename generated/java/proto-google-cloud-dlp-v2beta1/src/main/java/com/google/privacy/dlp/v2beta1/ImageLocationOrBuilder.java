@@ -12,7 +12,7 @@ public interface ImageLocationOrBuilder extends
    * Top coordinate of the bounding box. (0,0) is upper left.
    * </pre>
    *
-   * <code>optional int32 top = 1;</code>
+   * <code>int32 top = 1;</code>
    */
   int getTop();
 
@@ -21,7 +21,7 @@ public interface ImageLocationOrBuilder extends
    * Left coordinate of the bounding box. (0,0) is upper left.
    * </pre>
    *
-   * <code>optional int32 left = 2;</code>
+   * <code>int32 left = 2;</code>
    */
   int getLeft();
 
@@ -30,7 +30,7 @@ public interface ImageLocationOrBuilder extends
    * Width of the bounding box in pixels.
    * </pre>
    *
-   * <code>optional int32 width = 3;</code>
+   * <code>int32 width = 3;</code>
    */
   int getWidth();
 
@@ -39,7 +39,7 @@ public interface ImageLocationOrBuilder extends
    * Height of the bounding box in pixels.
    * </pre>
    *
-   * <code>optional int32 height = 4;</code>
+   * <code>int32 height = 4;</code>
    */
   int getHeight();
 }

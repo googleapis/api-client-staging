@@ -94,7 +94,7 @@ public  final class PartitionId extends
    * The ID of the project to which the entities belong.
    * </pre>
    *
-   * <code>optional string project_id = 2;</code>
+   * <code>string project_id = 2;</code>
    */
   public java.lang.String getProjectId() {
     java.lang.Object ref = projectId_;
@@ -113,7 +113,7 @@ public  final class PartitionId extends
    * The ID of the project to which the entities belong.
    * </pre>
    *
-   * <code>optional string project_id = 2;</code>
+   * <code>string project_id = 2;</code>
    */
   public com.google.protobuf.ByteString
       getProjectIdBytes() {
@@ -136,7 +136,7 @@ public  final class PartitionId extends
    * If not empty, the ID of the namespace to which the entities belong.
    * </pre>
    *
-   * <code>optional string namespace_id = 4;</code>
+   * <code>string namespace_id = 4;</code>
    */
   public java.lang.String getNamespaceId() {
     java.lang.Object ref = namespaceId_;
@@ -155,7 +155,7 @@ public  final class PartitionId extends
    * If not empty, the ID of the namespace to which the entities belong.
    * </pre>
    *
-   * <code>optional string namespace_id = 4;</code>
+   * <code>string namespace_id = 4;</code>
    */
   public com.google.protobuf.ByteString
       getNamespaceIdBytes() {
@@ -231,7 +231,7 @@ public  final class PartitionId extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROJECT_ID_FIELD_NUMBER;
     hash = (53 * hash) + getProjectId().hashCode();
     hash = (37 * hash) + NAMESPACE_ID_FIELD_NUMBER;
@@ -241,6 +241,17 @@ public  final class PartitionId extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.PartitionId parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.PartitionId parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.PartitionId parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -471,7 +482,7 @@ public  final class PartitionId extends
      * The ID of the project to which the entities belong.
      * </pre>
      *
-     * <code>optional string project_id = 2;</code>
+     * <code>string project_id = 2;</code>
      */
     public java.lang.String getProjectId() {
       java.lang.Object ref = projectId_;
@@ -490,7 +501,7 @@ public  final class PartitionId extends
      * The ID of the project to which the entities belong.
      * </pre>
      *
-     * <code>optional string project_id = 2;</code>
+     * <code>string project_id = 2;</code>
      */
     public com.google.protobuf.ByteString
         getProjectIdBytes() {
@@ -510,7 +521,7 @@ public  final class PartitionId extends
      * The ID of the project to which the entities belong.
      * </pre>
      *
-     * <code>optional string project_id = 2;</code>
+     * <code>string project_id = 2;</code>
      */
     public Builder setProjectId(
         java.lang.String value) {
@@ -527,7 +538,7 @@ public  final class PartitionId extends
      * The ID of the project to which the entities belong.
      * </pre>
      *
-     * <code>optional string project_id = 2;</code>
+     * <code>string project_id = 2;</code>
      */
     public Builder clearProjectId() {
       
@@ -540,7 +551,7 @@ public  final class PartitionId extends
      * The ID of the project to which the entities belong.
      * </pre>
      *
-     * <code>optional string project_id = 2;</code>
+     * <code>string project_id = 2;</code>
      */
     public Builder setProjectIdBytes(
         com.google.protobuf.ByteString value) {
@@ -560,7 +571,7 @@ public  final class PartitionId extends
      * If not empty, the ID of the namespace to which the entities belong.
      * </pre>
      *
-     * <code>optional string namespace_id = 4;</code>
+     * <code>string namespace_id = 4;</code>
      */
     public java.lang.String getNamespaceId() {
       java.lang.Object ref = namespaceId_;
@@ -579,7 +590,7 @@ public  final class PartitionId extends
      * If not empty, the ID of the namespace to which the entities belong.
      * </pre>
      *
-     * <code>optional string namespace_id = 4;</code>
+     * <code>string namespace_id = 4;</code>
      */
     public com.google.protobuf.ByteString
         getNamespaceIdBytes() {
@@ -599,7 +610,7 @@ public  final class PartitionId extends
      * If not empty, the ID of the namespace to which the entities belong.
      * </pre>
      *
-     * <code>optional string namespace_id = 4;</code>
+     * <code>string namespace_id = 4;</code>
      */
     public Builder setNamespaceId(
         java.lang.String value) {
@@ -616,7 +627,7 @@ public  final class PartitionId extends
      * If not empty, the ID of the namespace to which the entities belong.
      * </pre>
      *
-     * <code>optional string namespace_id = 4;</code>
+     * <code>string namespace_id = 4;</code>
      */
     public Builder clearNamespaceId() {
       
@@ -629,7 +640,7 @@ public  final class PartitionId extends
      * If not empty, the ID of the namespace to which the entities belong.
      * </pre>
      *
-     * <code>optional string namespace_id = 4;</code>
+     * <code>string namespace_id = 4;</code>
      */
     public Builder setNamespaceIdBytes(
         com.google.protobuf.ByteString value) {

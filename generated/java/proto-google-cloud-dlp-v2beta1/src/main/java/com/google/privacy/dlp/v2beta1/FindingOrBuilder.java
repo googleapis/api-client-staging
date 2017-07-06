@@ -12,7 +12,7 @@ public interface FindingOrBuilder extends
    * The specific string that may be potentially sensitive info.
    * </pre>
    *
-   * <code>optional string quote = 1;</code>
+   * <code>string quote = 1;</code>
    */
   java.lang.String getQuote();
   /**
@@ -20,7 +20,7 @@ public interface FindingOrBuilder extends
    * The specific string that may be potentially sensitive info.
    * </pre>
    *
-   * <code>optional string quote = 1;</code>
+   * <code>string quote = 1;</code>
    */
   com.google.protobuf.ByteString
       getQuoteBytes();
@@ -30,7 +30,7 @@ public interface FindingOrBuilder extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   boolean hasInfoType();
   /**
@@ -38,7 +38,7 @@ public interface FindingOrBuilder extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.InfoType getInfoType();
   /**
@@ -46,7 +46,7 @@ public interface FindingOrBuilder extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder();
 
@@ -55,7 +55,7 @@ public interface FindingOrBuilder extends
    * Estimate of how likely it is that the info_type is correct.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
    */
   int getLikelihoodValue();
   /**
@@ -63,7 +63,7 @@ public interface FindingOrBuilder extends
    * Estimate of how likely it is that the info_type is correct.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.Likelihood getLikelihood();
 
@@ -72,7 +72,7 @@ public interface FindingOrBuilder extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   boolean hasLocation();
   /**
@@ -80,7 +80,7 @@ public interface FindingOrBuilder extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   com.google.privacy.dlp.v2beta1.Location getLocation();
   /**
@@ -88,7 +88,7 @@ public interface FindingOrBuilder extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   com.google.privacy.dlp.v2beta1.LocationOrBuilder getLocationOrBuilder();
 
@@ -97,7 +97,7 @@ public interface FindingOrBuilder extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   boolean hasCreateTime();
   /**
@@ -105,7 +105,7 @@ public interface FindingOrBuilder extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   com.google.protobuf.Timestamp getCreateTime();
   /**
@@ -113,7 +113,7 @@ public interface FindingOrBuilder extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder();
 }

@@ -129,7 +129,7 @@ public  final class Finding extends
    * The specific string that may be potentially sensitive info.
    * </pre>
    *
-   * <code>optional string quote = 1;</code>
+   * <code>string quote = 1;</code>
    */
   public java.lang.String getQuote() {
     java.lang.Object ref = quote_;
@@ -148,7 +148,7 @@ public  final class Finding extends
    * The specific string that may be potentially sensitive info.
    * </pre>
    *
-   * <code>optional string quote = 1;</code>
+   * <code>string quote = 1;</code>
    */
   public com.google.protobuf.ByteString
       getQuoteBytes() {
@@ -171,7 +171,7 @@ public  final class Finding extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   public boolean hasInfoType() {
     return infoType_ != null;
@@ -181,7 +181,7 @@ public  final class Finding extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
     return infoType_ == null ? com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
@@ -191,7 +191,7 @@ public  final class Finding extends
    * The specific type of info the string might be.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
     return getInfoType();
@@ -204,7 +204,7 @@ public  final class Finding extends
    * Estimate of how likely it is that the info_type is correct.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
    */
   public int getLikelihoodValue() {
     return likelihood_;
@@ -214,7 +214,7 @@ public  final class Finding extends
    * Estimate of how likely it is that the info_type is correct.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.Likelihood getLikelihood() {
     com.google.privacy.dlp.v2beta1.Likelihood result = com.google.privacy.dlp.v2beta1.Likelihood.valueOf(likelihood_);
@@ -228,7 +228,7 @@ public  final class Finding extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   public boolean hasLocation() {
     return location_ != null;
@@ -238,7 +238,7 @@ public  final class Finding extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   public com.google.privacy.dlp.v2beta1.Location getLocation() {
     return location_ == null ? com.google.privacy.dlp.v2beta1.Location.getDefaultInstance() : location_;
@@ -248,7 +248,7 @@ public  final class Finding extends
    * Location of the info found.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
    */
   public com.google.privacy.dlp.v2beta1.LocationOrBuilder getLocationOrBuilder() {
     return getLocation();
@@ -261,7 +261,7 @@ public  final class Finding extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   public boolean hasCreateTime() {
     return createTime_ != null;
@@ -271,7 +271,7 @@ public  final class Finding extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   public com.google.protobuf.Timestamp getCreateTime() {
     return createTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createTime_;
@@ -281,7 +281,7 @@ public  final class Finding extends
    * Timestamp when finding was detected.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+   * <code>.google.protobuf.Timestamp create_time = 6;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
     return getCreateTime();
@@ -383,7 +383,7 @@ public  final class Finding extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + QUOTE_FIELD_NUMBER;
     hash = (53 * hash) + getQuote().hashCode();
     if (hasInfoType()) {
@@ -405,6 +405,17 @@ public  final class Finding extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Finding parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Finding parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Finding parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -672,7 +683,7 @@ public  final class Finding extends
      * The specific string that may be potentially sensitive info.
      * </pre>
      *
-     * <code>optional string quote = 1;</code>
+     * <code>string quote = 1;</code>
      */
     public java.lang.String getQuote() {
       java.lang.Object ref = quote_;
@@ -691,7 +702,7 @@ public  final class Finding extends
      * The specific string that may be potentially sensitive info.
      * </pre>
      *
-     * <code>optional string quote = 1;</code>
+     * <code>string quote = 1;</code>
      */
     public com.google.protobuf.ByteString
         getQuoteBytes() {
@@ -711,7 +722,7 @@ public  final class Finding extends
      * The specific string that may be potentially sensitive info.
      * </pre>
      *
-     * <code>optional string quote = 1;</code>
+     * <code>string quote = 1;</code>
      */
     public Builder setQuote(
         java.lang.String value) {
@@ -728,7 +739,7 @@ public  final class Finding extends
      * The specific string that may be potentially sensitive info.
      * </pre>
      *
-     * <code>optional string quote = 1;</code>
+     * <code>string quote = 1;</code>
      */
     public Builder clearQuote() {
       
@@ -741,7 +752,7 @@ public  final class Finding extends
      * The specific string that may be potentially sensitive info.
      * </pre>
      *
-     * <code>optional string quote = 1;</code>
+     * <code>string quote = 1;</code>
      */
     public Builder setQuoteBytes(
         com.google.protobuf.ByteString value) {
@@ -763,7 +774,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public boolean hasInfoType() {
       return infoTypeBuilder_ != null || infoType_ != null;
@@ -773,7 +784,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
       if (infoTypeBuilder_ == null) {
@@ -787,7 +798,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public Builder setInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
       if (infoTypeBuilder_ == null) {
@@ -807,7 +818,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public Builder setInfoType(
         com.google.privacy.dlp.v2beta1.InfoType.Builder builderForValue) {
@@ -825,7 +836,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public Builder mergeInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
       if (infoTypeBuilder_ == null) {
@@ -847,7 +858,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public Builder clearInfoType() {
       if (infoTypeBuilder_ == null) {
@@ -865,7 +876,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType.Builder getInfoTypeBuilder() {
       
@@ -877,7 +888,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
       if (infoTypeBuilder_ != null) {
@@ -892,7 +903,7 @@ public  final class Finding extends
      * The specific type of info the string might be.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> 
@@ -914,7 +925,7 @@ public  final class Finding extends
      * Estimate of how likely it is that the info_type is correct.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
      */
     public int getLikelihoodValue() {
       return likelihood_;
@@ -924,7 +935,7 @@ public  final class Finding extends
      * Estimate of how likely it is that the info_type is correct.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
      */
     public Builder setLikelihoodValue(int value) {
       likelihood_ = value;
@@ -936,7 +947,7 @@ public  final class Finding extends
      * Estimate of how likely it is that the info_type is correct.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.Likelihood getLikelihood() {
       com.google.privacy.dlp.v2beta1.Likelihood result = com.google.privacy.dlp.v2beta1.Likelihood.valueOf(likelihood_);
@@ -947,7 +958,7 @@ public  final class Finding extends
      * Estimate of how likely it is that the info_type is correct.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
      */
     public Builder setLikelihood(com.google.privacy.dlp.v2beta1.Likelihood value) {
       if (value == null) {
@@ -963,7 +974,7 @@ public  final class Finding extends
      * Estimate of how likely it is that the info_type is correct.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Likelihood likelihood = 3;</code>
      */
     public Builder clearLikelihood() {
       
@@ -980,7 +991,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public boolean hasLocation() {
       return locationBuilder_ != null || location_ != null;
@@ -990,7 +1001,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.Location getLocation() {
       if (locationBuilder_ == null) {
@@ -1004,7 +1015,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public Builder setLocation(com.google.privacy.dlp.v2beta1.Location value) {
       if (locationBuilder_ == null) {
@@ -1024,7 +1035,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public Builder setLocation(
         com.google.privacy.dlp.v2beta1.Location.Builder builderForValue) {
@@ -1042,7 +1053,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public Builder mergeLocation(com.google.privacy.dlp.v2beta1.Location value) {
       if (locationBuilder_ == null) {
@@ -1064,7 +1075,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public Builder clearLocation() {
       if (locationBuilder_ == null) {
@@ -1082,7 +1093,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.Location.Builder getLocationBuilder() {
       
@@ -1094,7 +1105,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.LocationOrBuilder getLocationOrBuilder() {
       if (locationBuilder_ != null) {
@@ -1109,7 +1120,7 @@ public  final class Finding extends
      * Location of the info found.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Location location = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.Location location = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.Location, com.google.privacy.dlp.v2beta1.Location.Builder, com.google.privacy.dlp.v2beta1.LocationOrBuilder> 
@@ -1133,7 +1144,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public boolean hasCreateTime() {
       return createTimeBuilder_ != null || createTime_ != null;
@@ -1143,7 +1154,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public com.google.protobuf.Timestamp getCreateTime() {
       if (createTimeBuilder_ == null) {
@@ -1157,7 +1168,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public Builder setCreateTime(com.google.protobuf.Timestamp value) {
       if (createTimeBuilder_ == null) {
@@ -1177,7 +1188,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public Builder setCreateTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1195,7 +1206,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public Builder mergeCreateTime(com.google.protobuf.Timestamp value) {
       if (createTimeBuilder_ == null) {
@@ -1217,7 +1228,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public Builder clearCreateTime() {
       if (createTimeBuilder_ == null) {
@@ -1235,7 +1246,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public com.google.protobuf.Timestamp.Builder getCreateTimeBuilder() {
       
@@ -1247,7 +1258,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
       if (createTimeBuilder_ != null) {
@@ -1262,7 +1273,7 @@ public  final class Finding extends
      * Timestamp when finding was detected.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 6;</code>
+     * <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

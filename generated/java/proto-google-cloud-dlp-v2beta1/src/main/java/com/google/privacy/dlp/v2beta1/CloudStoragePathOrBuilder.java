@@ -12,7 +12,7 @@ public interface CloudStoragePathOrBuilder extends
    * The url, in the format of `gs://bucket/&lt;path&gt;`.
    * </pre>
    *
-   * <code>optional string path = 1;</code>
+   * <code>string path = 1;</code>
    */
   java.lang.String getPath();
   /**
@@ -20,7 +20,7 @@ public interface CloudStoragePathOrBuilder extends
    * The url, in the format of `gs://bucket/&lt;path&gt;`.
    * </pre>
    *
-   * <code>optional string path = 1;</code>
+   * <code>string path = 1;</code>
    */
   com.google.protobuf.ByteString
       getPathBytes();

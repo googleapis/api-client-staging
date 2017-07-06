@@ -134,7 +134,7 @@ public  final class ContentItem extends
    * JPEG images.
    * </pre>
    *
-   * <code>optional string type = 1;</code>
+   * <code>string type = 1;</code>
    */
   public java.lang.String getType() {
     java.lang.Object ref = type_;
@@ -155,7 +155,7 @@ public  final class ContentItem extends
    * JPEG images.
    * </pre>
    *
-   * <code>optional string type = 1;</code>
+   * <code>string type = 1;</code>
    */
   public com.google.protobuf.ByteString
       getTypeBytes() {
@@ -177,7 +177,7 @@ public  final class ContentItem extends
    * Content data to inspect or redact.
    * </pre>
    *
-   * <code>optional bytes data = 2;</code>
+   * <code>bytes data = 2;</code>
    */
   public com.google.protobuf.ByteString getData() {
     if (dataItemCase_ == 2) {
@@ -192,7 +192,7 @@ public  final class ContentItem extends
    * String data to inspect or redact.
    * </pre>
    *
-   * <code>optional string value = 3;</code>
+   * <code>string value = 3;</code>
    */
   public java.lang.String getValue() {
     java.lang.Object ref = "";
@@ -216,7 +216,7 @@ public  final class ContentItem extends
    * String data to inspect or redact.
    * </pre>
    *
-   * <code>optional string value = 3;</code>
+   * <code>string value = 3;</code>
    */
   public com.google.protobuf.ByteString
       getValueBytes() {
@@ -254,7 +254,7 @@ public  final class ContentItem extends
     }
     if (dataItemCase_ == 2) {
       output.writeBytes(
-          2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) dataItem_));
+          2, (com.google.protobuf.ByteString) dataItem_);
     }
     if (dataItemCase_ == 3) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, dataItem_);
@@ -272,7 +272,7 @@ public  final class ContentItem extends
     if (dataItemCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(
-            2, (com.google.protobuf.ByteString)((com.google.protobuf.ByteString) dataItem_));
+            2, (com.google.protobuf.ByteString) dataItem_);
     }
     if (dataItemCase_ == 3) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, dataItem_);
@@ -319,7 +319,7 @@ public  final class ContentItem extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getType().hashCode();
     switch (dataItemCase_) {
@@ -339,6 +339,17 @@ public  final class ContentItem extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.ContentItem parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.ContentItem parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.ContentItem parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -599,7 +610,7 @@ public  final class ContentItem extends
      * JPEG images.
      * </pre>
      *
-     * <code>optional string type = 1;</code>
+     * <code>string type = 1;</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -620,7 +631,7 @@ public  final class ContentItem extends
      * JPEG images.
      * </pre>
      *
-     * <code>optional string type = 1;</code>
+     * <code>string type = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -642,7 +653,7 @@ public  final class ContentItem extends
      * JPEG images.
      * </pre>
      *
-     * <code>optional string type = 1;</code>
+     * <code>string type = 1;</code>
      */
     public Builder setType(
         java.lang.String value) {
@@ -661,7 +672,7 @@ public  final class ContentItem extends
      * JPEG images.
      * </pre>
      *
-     * <code>optional string type = 1;</code>
+     * <code>string type = 1;</code>
      */
     public Builder clearType() {
       
@@ -676,7 +687,7 @@ public  final class ContentItem extends
      * JPEG images.
      * </pre>
      *
-     * <code>optional string type = 1;</code>
+     * <code>string type = 1;</code>
      */
     public Builder setTypeBytes(
         com.google.protobuf.ByteString value) {
@@ -695,7 +706,7 @@ public  final class ContentItem extends
      * Content data to inspect or redact.
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>bytes data = 2;</code>
      */
     public com.google.protobuf.ByteString getData() {
       if (dataItemCase_ == 2) {
@@ -708,7 +719,7 @@ public  final class ContentItem extends
      * Content data to inspect or redact.
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>bytes data = 2;</code>
      */
     public Builder setData(com.google.protobuf.ByteString value) {
       if (value == null) {
@@ -724,7 +735,7 @@ public  final class ContentItem extends
      * Content data to inspect or redact.
      * </pre>
      *
-     * <code>optional bytes data = 2;</code>
+     * <code>bytes data = 2;</code>
      */
     public Builder clearData() {
       if (dataItemCase_ == 2) {
@@ -740,7 +751,7 @@ public  final class ContentItem extends
      * String data to inspect or redact.
      * </pre>
      *
-     * <code>optional string value = 3;</code>
+     * <code>string value = 3;</code>
      */
     public java.lang.String getValue() {
       java.lang.Object ref = "";
@@ -764,7 +775,7 @@ public  final class ContentItem extends
      * String data to inspect or redact.
      * </pre>
      *
-     * <code>optional string value = 3;</code>
+     * <code>string value = 3;</code>
      */
     public com.google.protobuf.ByteString
         getValueBytes() {
@@ -789,7 +800,7 @@ public  final class ContentItem extends
      * String data to inspect or redact.
      * </pre>
      *
-     * <code>optional string value = 3;</code>
+     * <code>string value = 3;</code>
      */
     public Builder setValue(
         java.lang.String value) {
@@ -806,7 +817,7 @@ public  final class ContentItem extends
      * String data to inspect or redact.
      * </pre>
      *
-     * <code>optional string value = 3;</code>
+     * <code>string value = 3;</code>
      */
     public Builder clearValue() {
       if (dataItemCase_ == 3) {
@@ -821,7 +832,7 @@ public  final class ContentItem extends
      * String data to inspect or redact.
      * </pre>
      *
-     * <code>optional string value = 3;</code>
+     * <code>string value = 3;</code>
      */
     public Builder setValueBytes(
         com.google.protobuf.ByteString value) {

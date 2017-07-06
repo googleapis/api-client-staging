@@ -89,7 +89,7 @@ public  final class Projection extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   public boolean hasProperty() {
     return property_ != null;
@@ -99,7 +99,7 @@ public  final class Projection extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PropertyReference getProperty() {
     return property_ == null ? com.google.privacy.dlp.v2beta1.PropertyReference.getDefaultInstance() : property_;
@@ -109,7 +109,7 @@ public  final class Projection extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PropertyReferenceOrBuilder getPropertyOrBuilder() {
     return getProperty();
@@ -171,7 +171,7 @@ public  final class Projection extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasProperty()) {
       hash = (37 * hash) + PROPERTY_FIELD_NUMBER;
       hash = (53 * hash) + getProperty().hashCode();
@@ -181,6 +181,17 @@ public  final class Projection extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Projection parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Projection parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Projection parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -409,7 +420,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public boolean hasProperty() {
       return propertyBuilder_ != null || property_ != null;
@@ -419,7 +430,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PropertyReference getProperty() {
       if (propertyBuilder_ == null) {
@@ -433,7 +444,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public Builder setProperty(com.google.privacy.dlp.v2beta1.PropertyReference value) {
       if (propertyBuilder_ == null) {
@@ -453,7 +464,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public Builder setProperty(
         com.google.privacy.dlp.v2beta1.PropertyReference.Builder builderForValue) {
@@ -471,7 +482,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public Builder mergeProperty(com.google.privacy.dlp.v2beta1.PropertyReference value) {
       if (propertyBuilder_ == null) {
@@ -493,7 +504,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public Builder clearProperty() {
       if (propertyBuilder_ == null) {
@@ -511,7 +522,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PropertyReference.Builder getPropertyBuilder() {
       
@@ -523,7 +534,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PropertyReferenceOrBuilder getPropertyOrBuilder() {
       if (propertyBuilder_ != null) {
@@ -538,7 +549,7 @@ public  final class Projection extends
      * The property to project.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.PropertyReference, com.google.privacy.dlp.v2beta1.PropertyReference.Builder, com.google.privacy.dlp.v2beta1.PropertyReferenceOrBuilder> 

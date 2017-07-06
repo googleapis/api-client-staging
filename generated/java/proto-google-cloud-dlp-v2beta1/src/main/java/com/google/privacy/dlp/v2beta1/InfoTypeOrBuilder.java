@@ -15,7 +15,7 @@ public interface InfoTypeOrBuilder extends
    * and cannot conflict with built-in info type names.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -26,7 +26,7 @@ public interface InfoTypeOrBuilder extends
    * and cannot conflict with built-in info type names.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

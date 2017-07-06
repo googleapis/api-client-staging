@@ -13,7 +13,7 @@ public interface DatastoreOptionsOrBuilder extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   boolean hasPartitionId();
   /**
@@ -22,7 +22,7 @@ public interface DatastoreOptionsOrBuilder extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PartitionId getPartitionId();
   /**
@@ -31,7 +31,7 @@ public interface DatastoreOptionsOrBuilder extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder();
 
@@ -40,7 +40,7 @@ public interface DatastoreOptionsOrBuilder extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   boolean hasKind();
   /**
@@ -48,7 +48,7 @@ public interface DatastoreOptionsOrBuilder extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.KindExpression getKind();
   /**
@@ -56,7 +56,7 @@ public interface DatastoreOptionsOrBuilder extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.KindExpressionOrBuilder getKindOrBuilder();
 

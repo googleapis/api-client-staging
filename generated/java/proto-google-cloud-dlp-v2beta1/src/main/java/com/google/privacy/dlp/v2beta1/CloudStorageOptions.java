@@ -93,7 +93,7 @@ public  final class CloudStorageOptions extends
      * path is allowed.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     java.lang.String getUrl();
     /**
@@ -102,7 +102,7 @@ public  final class CloudStorageOptions extends
      * path is allowed.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     com.google.protobuf.ByteString
         getUrlBytes();
@@ -188,7 +188,7 @@ public  final class CloudStorageOptions extends
      * path is allowed.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
@@ -208,7 +208,7 @@ public  final class CloudStorageOptions extends
      * path is allowed.
      * </pre>
      *
-     * <code>optional string url = 1;</code>
+     * <code>string url = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -276,7 +276,7 @@ public  final class CloudStorageOptions extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + URL_FIELD_NUMBER;
       hash = (53 * hash) + getUrl().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -284,6 +284,17 @@ public  final class CloudStorageOptions extends
       return hash;
     }
 
+    public static com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -504,7 +515,7 @@ public  final class CloudStorageOptions extends
        * path is allowed.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public java.lang.String getUrl() {
         java.lang.Object ref = url_;
@@ -524,7 +535,7 @@ public  final class CloudStorageOptions extends
        * path is allowed.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
@@ -545,7 +556,7 @@ public  final class CloudStorageOptions extends
        * path is allowed.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrl(
           java.lang.String value) {
@@ -563,7 +574,7 @@ public  final class CloudStorageOptions extends
        * path is allowed.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder clearUrl() {
         
@@ -577,7 +588,7 @@ public  final class CloudStorageOptions extends
        * path is allowed.
        * </pre>
        *
-       * <code>optional string url = 1;</code>
+       * <code>string url = 1;</code>
        */
       public Builder setUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -642,19 +653,19 @@ public  final class CloudStorageOptions extends
   public static final int FILE_SET_FIELD_NUMBER = 1;
   private com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet fileSet_;
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   public boolean hasFileSet() {
     return fileSet_ != null;
   }
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet getFileSet() {
     return fileSet_ == null ? com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet.getDefaultInstance() : fileSet_;
   }
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSetOrBuilder getFileSetOrBuilder() {
     return getFileSet();
@@ -716,7 +727,7 @@ public  final class CloudStorageOptions extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasFileSet()) {
       hash = (37 * hash) + FILE_SET_FIELD_NUMBER;
       hash = (53 * hash) + getFileSet().hashCode();
@@ -726,6 +737,17 @@ public  final class CloudStorageOptions extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.CloudStorageOptions parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.CloudStorageOptions parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.CloudStorageOptions parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -951,13 +973,13 @@ public  final class CloudStorageOptions extends
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet, com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet.Builder, com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSetOrBuilder> fileSetBuilder_;
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public boolean hasFileSet() {
       return fileSetBuilder_ != null || fileSet_ != null;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet getFileSet() {
       if (fileSetBuilder_ == null) {
@@ -967,7 +989,7 @@ public  final class CloudStorageOptions extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public Builder setFileSet(com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet value) {
       if (fileSetBuilder_ == null) {
@@ -983,7 +1005,7 @@ public  final class CloudStorageOptions extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public Builder setFileSet(
         com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet.Builder builderForValue) {
@@ -997,7 +1019,7 @@ public  final class CloudStorageOptions extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public Builder mergeFileSet(com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet value) {
       if (fileSetBuilder_ == null) {
@@ -1015,7 +1037,7 @@ public  final class CloudStorageOptions extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public Builder clearFileSet() {
       if (fileSetBuilder_ == null) {
@@ -1029,7 +1051,7 @@ public  final class CloudStorageOptions extends
       return this;
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet.Builder getFileSetBuilder() {
       
@@ -1037,7 +1059,7 @@ public  final class CloudStorageOptions extends
       return getFileSetFieldBuilder().getBuilder();
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSetOrBuilder getFileSetOrBuilder() {
       if (fileSetBuilder_ != null) {
@@ -1048,7 +1070,7 @@ public  final class CloudStorageOptions extends
       }
     }
     /**
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet, com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet.Builder, com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSetOrBuilder> 
