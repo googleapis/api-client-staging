@@ -100,7 +100,7 @@ public  final class ImageLocation extends
    * Top coordinate of the bounding box. (0,0) is upper left.
    * </pre>
    *
-   * <code>optional int32 top = 1;</code>
+   * <code>int32 top = 1;</code>
    */
   public int getTop() {
     return top_;
@@ -113,7 +113,7 @@ public  final class ImageLocation extends
    * Left coordinate of the bounding box. (0,0) is upper left.
    * </pre>
    *
-   * <code>optional int32 left = 2;</code>
+   * <code>int32 left = 2;</code>
    */
   public int getLeft() {
     return left_;
@@ -126,7 +126,7 @@ public  final class ImageLocation extends
    * Width of the bounding box in pixels.
    * </pre>
    *
-   * <code>optional int32 width = 3;</code>
+   * <code>int32 width = 3;</code>
    */
   public int getWidth() {
     return width_;
@@ -139,7 +139,7 @@ public  final class ImageLocation extends
    * Height of the bounding box in pixels.
    * </pre>
    *
-   * <code>optional int32 height = 4;</code>
+   * <code>int32 height = 4;</code>
    */
   public int getHeight() {
     return height_;
@@ -225,7 +225,7 @@ public  final class ImageLocation extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TOP_FIELD_NUMBER;
     hash = (53 * hash) + getTop();
     hash = (37 * hash) + LEFT_FIELD_NUMBER;
@@ -239,6 +239,17 @@ public  final class ImageLocation extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.ImageLocation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.ImageLocation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.ImageLocation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -475,7 +486,7 @@ public  final class ImageLocation extends
      * Top coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 top = 1;</code>
+     * <code>int32 top = 1;</code>
      */
     public int getTop() {
       return top_;
@@ -485,7 +496,7 @@ public  final class ImageLocation extends
      * Top coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 top = 1;</code>
+     * <code>int32 top = 1;</code>
      */
     public Builder setTop(int value) {
       
@@ -498,7 +509,7 @@ public  final class ImageLocation extends
      * Top coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 top = 1;</code>
+     * <code>int32 top = 1;</code>
      */
     public Builder clearTop() {
       
@@ -513,7 +524,7 @@ public  final class ImageLocation extends
      * Left coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 left = 2;</code>
+     * <code>int32 left = 2;</code>
      */
     public int getLeft() {
       return left_;
@@ -523,7 +534,7 @@ public  final class ImageLocation extends
      * Left coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 left = 2;</code>
+     * <code>int32 left = 2;</code>
      */
     public Builder setLeft(int value) {
       
@@ -536,7 +547,7 @@ public  final class ImageLocation extends
      * Left coordinate of the bounding box. (0,0) is upper left.
      * </pre>
      *
-     * <code>optional int32 left = 2;</code>
+     * <code>int32 left = 2;</code>
      */
     public Builder clearLeft() {
       
@@ -551,7 +562,7 @@ public  final class ImageLocation extends
      * Width of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 3;</code>
+     * <code>int32 width = 3;</code>
      */
     public int getWidth() {
       return width_;
@@ -561,7 +572,7 @@ public  final class ImageLocation extends
      * Width of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 3;</code>
+     * <code>int32 width = 3;</code>
      */
     public Builder setWidth(int value) {
       
@@ -574,7 +585,7 @@ public  final class ImageLocation extends
      * Width of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 width = 3;</code>
+     * <code>int32 width = 3;</code>
      */
     public Builder clearWidth() {
       
@@ -589,7 +600,7 @@ public  final class ImageLocation extends
      * Height of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 4;</code>
+     * <code>int32 height = 4;</code>
      */
     public int getHeight() {
       return height_;
@@ -599,7 +610,7 @@ public  final class ImageLocation extends
      * Height of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 4;</code>
+     * <code>int32 height = 4;</code>
      */
     public Builder setHeight(int value) {
       
@@ -612,7 +623,7 @@ public  final class ImageLocation extends
      * Height of the bounding box in pixels.
      * </pre>
      *
-     * <code>optional int32 height = 4;</code>
+     * <code>int32 height = 4;</code>
      */
     public Builder clearHeight() {
       

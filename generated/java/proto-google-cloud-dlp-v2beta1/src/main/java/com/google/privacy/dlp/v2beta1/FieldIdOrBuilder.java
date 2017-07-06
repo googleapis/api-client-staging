@@ -12,7 +12,7 @@ public interface FieldIdOrBuilder extends
    * Column name describing the field.
    * </pre>
    *
-   * <code>optional string column_name = 1;</code>
+   * <code>string column_name = 1;</code>
    */
   java.lang.String getColumnName();
   /**
@@ -20,7 +20,7 @@ public interface FieldIdOrBuilder extends
    * Column name describing the field.
    * </pre>
    *
-   * <code>optional string column_name = 1;</code>
+   * <code>string column_name = 1;</code>
    */
   com.google.protobuf.ByteString
       getColumnNameBytes();

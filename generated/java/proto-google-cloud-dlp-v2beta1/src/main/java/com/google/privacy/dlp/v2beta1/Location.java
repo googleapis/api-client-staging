@@ -142,7 +142,7 @@ public  final class Location extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   public boolean hasByteRange() {
     return byteRange_ != null;
@@ -152,7 +152,7 @@ public  final class Location extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.Range getByteRange() {
     return byteRange_ == null ? com.google.privacy.dlp.v2beta1.Range.getDefaultInstance() : byteRange_;
@@ -162,7 +162,7 @@ public  final class Location extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.RangeOrBuilder getByteRangeOrBuilder() {
     return getByteRange();
@@ -176,7 +176,7 @@ public  final class Location extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   public boolean hasCodepointRange() {
     return codepointRange_ != null;
@@ -187,7 +187,7 @@ public  final class Location extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.Range getCodepointRange() {
     return codepointRange_ == null ? com.google.privacy.dlp.v2beta1.Range.getDefaultInstance() : codepointRange_;
@@ -198,7 +198,7 @@ public  final class Location extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.RangeOrBuilder getCodepointRangeOrBuilder() {
     return getCodepointRange();
@@ -266,7 +266,7 @@ public  final class Location extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   public boolean hasRecordKey() {
     return recordKey_ != null;
@@ -276,7 +276,7 @@ public  final class Location extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   public com.google.privacy.dlp.v2beta1.RecordKey getRecordKey() {
     return recordKey_ == null ? com.google.privacy.dlp.v2beta1.RecordKey.getDefaultInstance() : recordKey_;
@@ -286,7 +286,7 @@ public  final class Location extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   public com.google.privacy.dlp.v2beta1.RecordKeyOrBuilder getRecordKeyOrBuilder() {
     return getRecordKey();
@@ -299,7 +299,7 @@ public  final class Location extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   public boolean hasFieldId() {
     return fieldId_ != null;
@@ -309,7 +309,7 @@ public  final class Location extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   public com.google.privacy.dlp.v2beta1.FieldId getFieldId() {
     return fieldId_ == null ? com.google.privacy.dlp.v2beta1.FieldId.getDefaultInstance() : fieldId_;
@@ -319,7 +319,7 @@ public  final class Location extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   public com.google.privacy.dlp.v2beta1.FieldIdOrBuilder getFieldIdOrBuilder() {
     return getFieldId();
@@ -426,7 +426,7 @@ public  final class Location extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasByteRange()) {
       hash = (37 * hash) + BYTE_RANGE_FIELD_NUMBER;
       hash = (53 * hash) + getByteRange().hashCode();
@@ -452,6 +452,17 @@ public  final class Location extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Location parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Location parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Location parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -768,7 +779,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public boolean hasByteRange() {
       return byteRangeBuilder_ != null || byteRange_ != null;
@@ -778,7 +789,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.Range getByteRange() {
       if (byteRangeBuilder_ == null) {
@@ -792,7 +803,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public Builder setByteRange(com.google.privacy.dlp.v2beta1.Range value) {
       if (byteRangeBuilder_ == null) {
@@ -812,7 +823,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public Builder setByteRange(
         com.google.privacy.dlp.v2beta1.Range.Builder builderForValue) {
@@ -830,7 +841,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public Builder mergeByteRange(com.google.privacy.dlp.v2beta1.Range value) {
       if (byteRangeBuilder_ == null) {
@@ -852,7 +863,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public Builder clearByteRange() {
       if (byteRangeBuilder_ == null) {
@@ -870,7 +881,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.Range.Builder getByteRangeBuilder() {
       
@@ -882,7 +893,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.RangeOrBuilder getByteRangeOrBuilder() {
       if (byteRangeBuilder_ != null) {
@@ -897,7 +908,7 @@ public  final class Location extends
      * Zero-based byte offsets within a content item.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.Range, com.google.privacy.dlp.v2beta1.Range.Builder, com.google.privacy.dlp.v2beta1.RangeOrBuilder> 
@@ -922,7 +933,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public boolean hasCodepointRange() {
       return codepointRangeBuilder_ != null || codepointRange_ != null;
@@ -933,7 +944,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.Range getCodepointRange() {
       if (codepointRangeBuilder_ == null) {
@@ -948,7 +959,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public Builder setCodepointRange(com.google.privacy.dlp.v2beta1.Range value) {
       if (codepointRangeBuilder_ == null) {
@@ -969,7 +980,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public Builder setCodepointRange(
         com.google.privacy.dlp.v2beta1.Range.Builder builderForValue) {
@@ -988,7 +999,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public Builder mergeCodepointRange(com.google.privacy.dlp.v2beta1.Range value) {
       if (codepointRangeBuilder_ == null) {
@@ -1011,7 +1022,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public Builder clearCodepointRange() {
       if (codepointRangeBuilder_ == null) {
@@ -1030,7 +1041,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.Range.Builder getCodepointRangeBuilder() {
       
@@ -1043,7 +1054,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.RangeOrBuilder getCodepointRangeOrBuilder() {
       if (codepointRangeBuilder_ != null) {
@@ -1059,7 +1070,7 @@ public  final class Location extends
      * is a text. Default charset assumed to be UTF-8.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.Range, com.google.privacy.dlp.v2beta1.Range.Builder, com.google.privacy.dlp.v2beta1.RangeOrBuilder> 
@@ -1395,7 +1406,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public boolean hasRecordKey() {
       return recordKeyBuilder_ != null || recordKey_ != null;
@@ -1405,7 +1416,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.RecordKey getRecordKey() {
       if (recordKeyBuilder_ == null) {
@@ -1419,7 +1430,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public Builder setRecordKey(com.google.privacy.dlp.v2beta1.RecordKey value) {
       if (recordKeyBuilder_ == null) {
@@ -1439,7 +1450,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public Builder setRecordKey(
         com.google.privacy.dlp.v2beta1.RecordKey.Builder builderForValue) {
@@ -1457,7 +1468,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public Builder mergeRecordKey(com.google.privacy.dlp.v2beta1.RecordKey value) {
       if (recordKeyBuilder_ == null) {
@@ -1479,7 +1490,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public Builder clearRecordKey() {
       if (recordKeyBuilder_ == null) {
@@ -1497,7 +1508,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.RecordKey.Builder getRecordKeyBuilder() {
       
@@ -1509,7 +1520,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     public com.google.privacy.dlp.v2beta1.RecordKeyOrBuilder getRecordKeyOrBuilder() {
       if (recordKeyBuilder_ != null) {
@@ -1524,7 +1535,7 @@ public  final class Location extends
      * Key of the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+     * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.RecordKey, com.google.privacy.dlp.v2beta1.RecordKey.Builder, com.google.privacy.dlp.v2beta1.RecordKeyOrBuilder> 
@@ -1548,7 +1559,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public boolean hasFieldId() {
       return fieldIdBuilder_ != null || fieldId_ != null;
@@ -1558,7 +1569,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.FieldId getFieldId() {
       if (fieldIdBuilder_ == null) {
@@ -1572,7 +1583,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public Builder setFieldId(com.google.privacy.dlp.v2beta1.FieldId value) {
       if (fieldIdBuilder_ == null) {
@@ -1592,7 +1603,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public Builder setFieldId(
         com.google.privacy.dlp.v2beta1.FieldId.Builder builderForValue) {
@@ -1610,7 +1621,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public Builder mergeFieldId(com.google.privacy.dlp.v2beta1.FieldId value) {
       if (fieldIdBuilder_ == null) {
@@ -1632,7 +1643,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public Builder clearFieldId() {
       if (fieldIdBuilder_ == null) {
@@ -1650,7 +1661,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.FieldId.Builder getFieldIdBuilder() {
       
@@ -1662,7 +1673,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.FieldIdOrBuilder getFieldIdOrBuilder() {
       if (fieldIdBuilder_ != null) {
@@ -1677,7 +1688,7 @@ public  final class Location extends
      * Field id of the field containing the finding.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.FieldId, com.google.privacy.dlp.v2beta1.FieldId.Builder, com.google.privacy.dlp.v2beta1.FieldIdOrBuilder> 

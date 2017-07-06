@@ -12,7 +12,7 @@ public interface LocationOrBuilder extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   boolean hasByteRange();
   /**
@@ -20,7 +20,7 @@ public interface LocationOrBuilder extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.Range getByteRange();
   /**
@@ -28,7 +28,7 @@ public interface LocationOrBuilder extends
    * Zero-based byte offsets within a content item.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range byte_range = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.RangeOrBuilder getByteRangeOrBuilder();
 
@@ -38,7 +38,7 @@ public interface LocationOrBuilder extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   boolean hasCodepointRange();
   /**
@@ -47,7 +47,7 @@ public interface LocationOrBuilder extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.Range getCodepointRange();
   /**
@@ -56,7 +56,7 @@ public interface LocationOrBuilder extends
    * is a text. Default charset assumed to be UTF-8.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Range codepoint_range = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.RangeOrBuilder getCodepointRangeOrBuilder();
 
@@ -109,7 +109,7 @@ public interface LocationOrBuilder extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   boolean hasRecordKey();
   /**
@@ -117,7 +117,7 @@ public interface LocationOrBuilder extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   com.google.privacy.dlp.v2beta1.RecordKey getRecordKey();
   /**
@@ -125,7 +125,7 @@ public interface LocationOrBuilder extends
    * Key of the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
+   * <code>.google.privacy.dlp.v2beta1.RecordKey record_key = 4;</code>
    */
   com.google.privacy.dlp.v2beta1.RecordKeyOrBuilder getRecordKeyOrBuilder();
 
@@ -134,7 +134,7 @@ public interface LocationOrBuilder extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   boolean hasFieldId();
   /**
@@ -142,7 +142,7 @@ public interface LocationOrBuilder extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.FieldId getFieldId();
   /**
@@ -150,7 +150,7 @@ public interface LocationOrBuilder extends
    * Field id of the field containing the finding.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.FieldIdOrBuilder getFieldIdOrBuilder();
 }

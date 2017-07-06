@@ -66,7 +66,7 @@ public interface InspectConfigOrBuilder extends
    * Only returns findings equal or above this threshold.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
    */
   int getMinLikelihoodValue();
   /**
@@ -74,7 +74,7 @@ public interface InspectConfigOrBuilder extends
    * Only returns findings equal or above this threshold.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.Likelihood min_likelihood = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.Likelihood getMinLikelihood();
 
@@ -83,7 +83,7 @@ public interface InspectConfigOrBuilder extends
    * Limits the number of findings per content item.
    * </pre>
    *
-   * <code>optional int32 max_findings = 3;</code>
+   * <code>int32 max_findings = 3;</code>
    */
   int getMaxFindings();
 
@@ -93,7 +93,7 @@ public interface InspectConfigOrBuilder extends
    * included in the response; see Finding.quote.
    * </pre>
    *
-   * <code>optional bool include_quote = 4;</code>
+   * <code>bool include_quote = 4;</code>
    */
   boolean getIncludeQuote();
 
@@ -102,7 +102,7 @@ public interface InspectConfigOrBuilder extends
    * When true, excludes type information of the findings.
    * </pre>
    *
-   * <code>optional bool exclude_types = 6;</code>
+   * <code>bool exclude_types = 6;</code>
    */
   boolean getExcludeTypes();
 }

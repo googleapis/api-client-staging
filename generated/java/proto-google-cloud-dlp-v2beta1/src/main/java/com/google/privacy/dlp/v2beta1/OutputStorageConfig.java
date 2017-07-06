@@ -125,7 +125,7 @@ public  final class OutputStorageConfig extends
    * The path to a Google Cloud Storage location to store output.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStoragePath getStoragePath() {
     if (typeCase_ == 2) {
@@ -138,7 +138,7 @@ public  final class OutputStorageConfig extends
    * The path to a Google Cloud Storage location to store output.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.CloudStoragePathOrBuilder getStoragePathOrBuilder() {
     if (typeCase_ == 2) {
@@ -209,7 +209,7 @@ public  final class OutputStorageConfig extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     switch (typeCase_) {
       case 2:
         hash = (37 * hash) + STORAGE_PATH_FIELD_NUMBER;
@@ -223,6 +223,17 @@ public  final class OutputStorageConfig extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.OutputStorageConfig parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.OutputStorageConfig parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.OutputStorageConfig parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -470,7 +481,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStoragePath getStoragePath() {
       if (storagePathBuilder_ == null) {
@@ -490,7 +501,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public Builder setStoragePath(com.google.privacy.dlp.v2beta1.CloudStoragePath value) {
       if (storagePathBuilder_ == null) {
@@ -510,7 +521,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public Builder setStoragePath(
         com.google.privacy.dlp.v2beta1.CloudStoragePath.Builder builderForValue) {
@@ -528,7 +539,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public Builder mergeStoragePath(com.google.privacy.dlp.v2beta1.CloudStoragePath value) {
       if (storagePathBuilder_ == null) {
@@ -554,7 +565,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public Builder clearStoragePath() {
       if (storagePathBuilder_ == null) {
@@ -577,7 +588,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStoragePath.Builder getStoragePathBuilder() {
       return getStoragePathFieldBuilder().getBuilder();
@@ -587,7 +598,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.CloudStoragePathOrBuilder getStoragePathOrBuilder() {
       if ((typeCase_ == 2) && (storagePathBuilder_ != null)) {
@@ -604,7 +615,7 @@ public  final class OutputStorageConfig extends
      * The path to a Google Cloud Storage location to store output.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStoragePath, com.google.privacy.dlp.v2beta1.CloudStoragePath.Builder, com.google.privacy.dlp.v2beta1.CloudStoragePathOrBuilder> 

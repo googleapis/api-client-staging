@@ -12,7 +12,7 @@ public interface StorageConfigOrBuilder extends
    * Google Cloud Datastore options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.DatastoreOptions getDatastoreOptions();
   /**
@@ -20,7 +20,7 @@ public interface StorageConfigOrBuilder extends
    * Google Cloud Datastore options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.DatastoreOptionsOrBuilder getDatastoreOptionsOrBuilder();
 
@@ -29,7 +29,7 @@ public interface StorageConfigOrBuilder extends
    * Google Cloud Storage options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions();
   /**
@@ -37,7 +37,7 @@ public interface StorageConfigOrBuilder extends
    * Google Cloud Storage options specification.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder getCloudStorageOptionsOrBuilder();
 

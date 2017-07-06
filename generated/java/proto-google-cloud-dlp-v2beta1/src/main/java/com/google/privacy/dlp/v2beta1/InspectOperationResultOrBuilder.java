@@ -14,7 +14,7 @@ public interface InspectOperationResultOrBuilder extends
    * `name` should have the format of `inspect/results/{id}`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
@@ -24,7 +24,7 @@ public interface InspectOperationResultOrBuilder extends
    * `name` should have the format of `inspect/results/{id}`.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();

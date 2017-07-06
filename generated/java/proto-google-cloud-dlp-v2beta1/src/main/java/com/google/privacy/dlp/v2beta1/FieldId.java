@@ -83,7 +83,7 @@ public  final class FieldId extends
    * Column name describing the field.
    * </pre>
    *
-   * <code>optional string column_name = 1;</code>
+   * <code>string column_name = 1;</code>
    */
   public java.lang.String getColumnName() {
     java.lang.Object ref = columnName_;
@@ -102,7 +102,7 @@ public  final class FieldId extends
    * Column name describing the field.
    * </pre>
    *
-   * <code>optional string column_name = 1;</code>
+   * <code>string column_name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getColumnNameBytes() {
@@ -170,7 +170,7 @@ public  final class FieldId extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + COLUMN_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getColumnName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -178,6 +178,17 @@ public  final class FieldId extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.FieldId parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.FieldId parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.FieldId parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -397,7 +408,7 @@ public  final class FieldId extends
      * Column name describing the field.
      * </pre>
      *
-     * <code>optional string column_name = 1;</code>
+     * <code>string column_name = 1;</code>
      */
     public java.lang.String getColumnName() {
       java.lang.Object ref = columnName_;
@@ -416,7 +427,7 @@ public  final class FieldId extends
      * Column name describing the field.
      * </pre>
      *
-     * <code>optional string column_name = 1;</code>
+     * <code>string column_name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getColumnNameBytes() {
@@ -436,7 +447,7 @@ public  final class FieldId extends
      * Column name describing the field.
      * </pre>
      *
-     * <code>optional string column_name = 1;</code>
+     * <code>string column_name = 1;</code>
      */
     public Builder setColumnName(
         java.lang.String value) {
@@ -453,7 +464,7 @@ public  final class FieldId extends
      * Column name describing the field.
      * </pre>
      *
-     * <code>optional string column_name = 1;</code>
+     * <code>string column_name = 1;</code>
      */
     public Builder clearColumnName() {
       
@@ -466,7 +477,7 @@ public  final class FieldId extends
      * Column name describing the field.
      * </pre>
      *
-     * <code>optional string column_name = 1;</code>
+     * <code>string column_name = 1;</code>
      */
     public Builder setColumnNameBytes(
         com.google.protobuf.ByteString value) {

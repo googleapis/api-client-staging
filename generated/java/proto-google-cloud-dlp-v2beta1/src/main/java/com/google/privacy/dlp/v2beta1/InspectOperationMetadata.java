@@ -154,7 +154,7 @@ public  final class InspectOperationMetadata extends
    * Total size in bytes that were processed.
    * </pre>
    *
-   * <code>optional int64 processed_bytes = 1;</code>
+   * <code>int64 processed_bytes = 1;</code>
    */
   public long getProcessedBytes() {
     return processedBytes_;
@@ -167,7 +167,7 @@ public  final class InspectOperationMetadata extends
    * Estimate of the number of bytes to process.
    * </pre>
    *
-   * <code>optional int64 total_estimated_bytes = 4;</code>
+   * <code>int64 total_estimated_bytes = 4;</code>
    */
   public long getTotalEstimatedBytes() {
     return totalEstimatedBytes_;
@@ -215,7 +215,7 @@ public  final class InspectOperationMetadata extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   public boolean hasCreateTime() {
     return createTime_ != null;
@@ -225,7 +225,7 @@ public  final class InspectOperationMetadata extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   public com.google.protobuf.Timestamp getCreateTime() {
     return createTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createTime_;
@@ -235,7 +235,7 @@ public  final class InspectOperationMetadata extends
    * The time which this request was started.
    * </pre>
    *
-   * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
     return getCreateTime();
@@ -248,7 +248,7 @@ public  final class InspectOperationMetadata extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   public boolean hasRequestInspectConfig() {
     return requestInspectConfig_ != null;
@@ -258,7 +258,7 @@ public  final class InspectOperationMetadata extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfig getRequestInspectConfig() {
     return requestInspectConfig_ == null ? com.google.privacy.dlp.v2beta1.InspectConfig.getDefaultInstance() : requestInspectConfig_;
@@ -268,7 +268,7 @@ public  final class InspectOperationMetadata extends
    * The inspect config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getRequestInspectConfigOrBuilder() {
     return getRequestInspectConfig();
@@ -281,7 +281,7 @@ public  final class InspectOperationMetadata extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   public boolean hasRequestStorageConfig() {
     return requestStorageConfig_ != null;
@@ -291,7 +291,7 @@ public  final class InspectOperationMetadata extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   public com.google.privacy.dlp.v2beta1.StorageConfig getRequestStorageConfig() {
     return requestStorageConfig_ == null ? com.google.privacy.dlp.v2beta1.StorageConfig.getDefaultInstance() : requestStorageConfig_;
@@ -301,7 +301,7 @@ public  final class InspectOperationMetadata extends
    * The storage config used to create the Operation.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
    */
   public com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getRequestStorageConfigOrBuilder() {
     return getRequestStorageConfig();
@@ -314,7 +314,7 @@ public  final class InspectOperationMetadata extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   public boolean hasRequestOutputConfig() {
     return requestOutputConfig_ != null;
@@ -324,7 +324,7 @@ public  final class InspectOperationMetadata extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   public com.google.privacy.dlp.v2beta1.OutputStorageConfig getRequestOutputConfig() {
     return requestOutputConfig_ == null ? com.google.privacy.dlp.v2beta1.OutputStorageConfig.getDefaultInstance() : requestOutputConfig_;
@@ -334,7 +334,7 @@ public  final class InspectOperationMetadata extends
    * Optional location to store findings.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
    */
   public com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getRequestOutputConfigOrBuilder() {
     return getRequestOutputConfig();
@@ -459,7 +459,7 @@ public  final class InspectOperationMetadata extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PROCESSED_BYTES_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getProcessedBytes());
@@ -491,6 +491,17 @@ public  final class InspectOperationMetadata extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.InspectOperationMetadata parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.InspectOperationMetadata parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.InspectOperationMetadata parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -817,7 +828,7 @@ public  final class InspectOperationMetadata extends
      * Total size in bytes that were processed.
      * </pre>
      *
-     * <code>optional int64 processed_bytes = 1;</code>
+     * <code>int64 processed_bytes = 1;</code>
      */
     public long getProcessedBytes() {
       return processedBytes_;
@@ -827,7 +838,7 @@ public  final class InspectOperationMetadata extends
      * Total size in bytes that were processed.
      * </pre>
      *
-     * <code>optional int64 processed_bytes = 1;</code>
+     * <code>int64 processed_bytes = 1;</code>
      */
     public Builder setProcessedBytes(long value) {
       
@@ -840,7 +851,7 @@ public  final class InspectOperationMetadata extends
      * Total size in bytes that were processed.
      * </pre>
      *
-     * <code>optional int64 processed_bytes = 1;</code>
+     * <code>int64 processed_bytes = 1;</code>
      */
     public Builder clearProcessedBytes() {
       
@@ -855,7 +866,7 @@ public  final class InspectOperationMetadata extends
      * Estimate of the number of bytes to process.
      * </pre>
      *
-     * <code>optional int64 total_estimated_bytes = 4;</code>
+     * <code>int64 total_estimated_bytes = 4;</code>
      */
     public long getTotalEstimatedBytes() {
       return totalEstimatedBytes_;
@@ -865,7 +876,7 @@ public  final class InspectOperationMetadata extends
      * Estimate of the number of bytes to process.
      * </pre>
      *
-     * <code>optional int64 total_estimated_bytes = 4;</code>
+     * <code>int64 total_estimated_bytes = 4;</code>
      */
     public Builder setTotalEstimatedBytes(long value) {
       
@@ -878,7 +889,7 @@ public  final class InspectOperationMetadata extends
      * Estimate of the number of bytes to process.
      * </pre>
      *
-     * <code>optional int64 total_estimated_bytes = 4;</code>
+     * <code>int64 total_estimated_bytes = 4;</code>
      */
     public Builder clearTotalEstimatedBytes() {
       
@@ -1135,7 +1146,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public boolean hasCreateTime() {
       return createTimeBuilder_ != null || createTime_ != null;
@@ -1145,7 +1156,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public com.google.protobuf.Timestamp getCreateTime() {
       if (createTimeBuilder_ == null) {
@@ -1159,7 +1170,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public Builder setCreateTime(com.google.protobuf.Timestamp value) {
       if (createTimeBuilder_ == null) {
@@ -1179,7 +1190,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public Builder setCreateTime(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1197,7 +1208,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public Builder mergeCreateTime(com.google.protobuf.Timestamp value) {
       if (createTimeBuilder_ == null) {
@@ -1219,7 +1230,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public Builder clearCreateTime() {
       if (createTimeBuilder_ == null) {
@@ -1237,7 +1248,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public com.google.protobuf.Timestamp.Builder getCreateTimeBuilder() {
       
@@ -1249,7 +1260,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
       if (createTimeBuilder_ != null) {
@@ -1264,7 +1275,7 @@ public  final class InspectOperationMetadata extends
      * The time which this request was started.
      * </pre>
      *
-     * <code>optional .google.protobuf.Timestamp create_time = 3;</code>
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
@@ -1288,7 +1299,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public boolean hasRequestInspectConfig() {
       return requestInspectConfigBuilder_ != null || requestInspectConfig_ != null;
@@ -1298,7 +1309,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig getRequestInspectConfig() {
       if (requestInspectConfigBuilder_ == null) {
@@ -1312,7 +1323,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public Builder setRequestInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (requestInspectConfigBuilder_ == null) {
@@ -1332,7 +1343,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public Builder setRequestInspectConfig(
         com.google.privacy.dlp.v2beta1.InspectConfig.Builder builderForValue) {
@@ -1350,7 +1361,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public Builder mergeRequestInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (requestInspectConfigBuilder_ == null) {
@@ -1372,7 +1383,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public Builder clearRequestInspectConfig() {
       if (requestInspectConfigBuilder_ == null) {
@@ -1390,7 +1401,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig.Builder getRequestInspectConfigBuilder() {
       
@@ -1402,7 +1413,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getRequestInspectConfigOrBuilder() {
       if (requestInspectConfigBuilder_ != null) {
@@ -1417,7 +1428,7 @@ public  final class InspectOperationMetadata extends
      * The inspect config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig request_inspect_config = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InspectConfig, com.google.privacy.dlp.v2beta1.InspectConfig.Builder, com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder> 
@@ -1441,7 +1452,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public boolean hasRequestStorageConfig() {
       return requestStorageConfigBuilder_ != null || requestStorageConfig_ != null;
@@ -1451,7 +1462,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfig getRequestStorageConfig() {
       if (requestStorageConfigBuilder_ == null) {
@@ -1465,7 +1476,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public Builder setRequestStorageConfig(com.google.privacy.dlp.v2beta1.StorageConfig value) {
       if (requestStorageConfigBuilder_ == null) {
@@ -1485,7 +1496,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public Builder setRequestStorageConfig(
         com.google.privacy.dlp.v2beta1.StorageConfig.Builder builderForValue) {
@@ -1503,7 +1514,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public Builder mergeRequestStorageConfig(com.google.privacy.dlp.v2beta1.StorageConfig value) {
       if (requestStorageConfigBuilder_ == null) {
@@ -1525,7 +1536,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public Builder clearRequestStorageConfig() {
       if (requestStorageConfigBuilder_ == null) {
@@ -1543,7 +1554,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfig.Builder getRequestStorageConfigBuilder() {
       
@@ -1555,7 +1566,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getRequestStorageConfigOrBuilder() {
       if (requestStorageConfigBuilder_ != null) {
@@ -1570,7 +1581,7 @@ public  final class InspectOperationMetadata extends
      * The storage config used to create the Operation.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig request_storage_config = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.StorageConfig, com.google.privacy.dlp.v2beta1.StorageConfig.Builder, com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder> 
@@ -1594,7 +1605,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public boolean hasRequestOutputConfig() {
       return requestOutputConfigBuilder_ != null || requestOutputConfig_ != null;
@@ -1604,7 +1615,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfig getRequestOutputConfig() {
       if (requestOutputConfigBuilder_ == null) {
@@ -1618,7 +1629,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public Builder setRequestOutputConfig(com.google.privacy.dlp.v2beta1.OutputStorageConfig value) {
       if (requestOutputConfigBuilder_ == null) {
@@ -1638,7 +1649,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public Builder setRequestOutputConfig(
         com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder builderForValue) {
@@ -1656,7 +1667,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public Builder mergeRequestOutputConfig(com.google.privacy.dlp.v2beta1.OutputStorageConfig value) {
       if (requestOutputConfigBuilder_ == null) {
@@ -1678,7 +1689,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public Builder clearRequestOutputConfig() {
       if (requestOutputConfigBuilder_ == null) {
@@ -1696,7 +1707,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder getRequestOutputConfigBuilder() {
       
@@ -1708,7 +1719,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getRequestOutputConfigOrBuilder() {
       if (requestOutputConfigBuilder_ != null) {
@@ -1723,7 +1734,7 @@ public  final class InspectOperationMetadata extends
      * Optional location to store findings.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig request_output_config = 7;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.OutputStorageConfig, com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder, com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder> 

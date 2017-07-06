@@ -12,7 +12,7 @@ public interface DatastoreKeyOrBuilder extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   boolean hasEntityKey();
   /**
@@ -20,7 +20,7 @@ public interface DatastoreKeyOrBuilder extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.Key getEntityKey();
   /**
@@ -28,7 +28,7 @@ public interface DatastoreKeyOrBuilder extends
    * Datastore entity key.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.Key entity_key = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.KeyOrBuilder getEntityKeyOrBuilder();
 }

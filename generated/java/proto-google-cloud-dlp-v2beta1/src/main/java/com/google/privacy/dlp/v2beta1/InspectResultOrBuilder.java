@@ -61,7 +61,7 @@ public interface InspectResultOrBuilder extends
    * smaller batches.
    * </pre>
    *
-   * <code>optional bool findings_truncated = 2;</code>
+   * <code>bool findings_truncated = 2;</code>
    */
   boolean getFindingsTruncated();
 }

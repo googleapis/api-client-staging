@@ -156,7 +156,7 @@ public  final class InspectResult extends
    * smaller batches.
    * </pre>
    *
-   * <code>optional bool findings_truncated = 2;</code>
+   * <code>bool findings_truncated = 2;</code>
    */
   public boolean getFindingsTruncated() {
     return findingsTruncated_;
@@ -224,7 +224,7 @@ public  final class InspectResult extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (getFindingsCount() > 0) {
       hash = (37 * hash) + FINDINGS_FIELD_NUMBER;
       hash = (53 * hash) + getFindingsList().hashCode();
@@ -237,6 +237,17 @@ public  final class InspectResult extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.InspectResult parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.InspectResult parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.InspectResult parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -818,7 +829,7 @@ public  final class InspectResult extends
      * smaller batches.
      * </pre>
      *
-     * <code>optional bool findings_truncated = 2;</code>
+     * <code>bool findings_truncated = 2;</code>
      */
     public boolean getFindingsTruncated() {
       return findingsTruncated_;
@@ -833,7 +844,7 @@ public  final class InspectResult extends
      * smaller batches.
      * </pre>
      *
-     * <code>optional bool findings_truncated = 2;</code>
+     * <code>bool findings_truncated = 2;</code>
      */
     public Builder setFindingsTruncated(boolean value) {
       
@@ -851,7 +862,7 @@ public  final class InspectResult extends
      * smaller batches.
      * </pre>
      *
-     * <code>optional bool findings_truncated = 2;</code>
+     * <code>bool findings_truncated = 2;</code>
      */
     public Builder clearFindingsTruncated() {
       

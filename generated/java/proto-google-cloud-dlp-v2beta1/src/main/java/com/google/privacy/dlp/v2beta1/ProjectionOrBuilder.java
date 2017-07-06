@@ -12,7 +12,7 @@ public interface ProjectionOrBuilder extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   boolean hasProperty();
   /**
@@ -20,7 +20,7 @@ public interface ProjectionOrBuilder extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PropertyReference getProperty();
   /**
@@ -28,7 +28,7 @@ public interface ProjectionOrBuilder extends
    * The property to project.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PropertyReference property = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PropertyReferenceOrBuilder getPropertyOrBuilder();
 }

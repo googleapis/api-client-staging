@@ -88,7 +88,7 @@ public  final class Range extends
    * Index of the first character of the range (inclusive).
    * </pre>
    *
-   * <code>optional int64 start = 1;</code>
+   * <code>int64 start = 1;</code>
    */
   public long getStart() {
     return start_;
@@ -101,7 +101,7 @@ public  final class Range extends
    * Index of the last character of the range (exclusive).
    * </pre>
    *
-   * <code>optional int64 end = 2;</code>
+   * <code>int64 end = 2;</code>
    */
   public long getEnd() {
     return end_;
@@ -169,7 +169,7 @@ public  final class Range extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + START_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getStart());
@@ -181,6 +181,17 @@ public  final class Range extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Range parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Range parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Range parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -405,7 +416,7 @@ public  final class Range extends
      * Index of the first character of the range (inclusive).
      * </pre>
      *
-     * <code>optional int64 start = 1;</code>
+     * <code>int64 start = 1;</code>
      */
     public long getStart() {
       return start_;
@@ -415,7 +426,7 @@ public  final class Range extends
      * Index of the first character of the range (inclusive).
      * </pre>
      *
-     * <code>optional int64 start = 1;</code>
+     * <code>int64 start = 1;</code>
      */
     public Builder setStart(long value) {
       
@@ -428,7 +439,7 @@ public  final class Range extends
      * Index of the first character of the range (inclusive).
      * </pre>
      *
-     * <code>optional int64 start = 1;</code>
+     * <code>int64 start = 1;</code>
      */
     public Builder clearStart() {
       
@@ -443,7 +454,7 @@ public  final class Range extends
      * Index of the last character of the range (exclusive).
      * </pre>
      *
-     * <code>optional int64 end = 2;</code>
+     * <code>int64 end = 2;</code>
      */
     public long getEnd() {
       return end_;
@@ -453,7 +464,7 @@ public  final class Range extends
      * Index of the last character of the range (exclusive).
      * </pre>
      *
-     * <code>optional int64 end = 2;</code>
+     * <code>int64 end = 2;</code>
      */
     public Builder setEnd(long value) {
       
@@ -466,7 +477,7 @@ public  final class Range extends
      * Index of the last character of the range (exclusive).
      * </pre>
      *
-     * <code>optional int64 end = 2;</code>
+     * <code>int64 end = 2;</code>
      */
     public Builder clearEnd() {
       

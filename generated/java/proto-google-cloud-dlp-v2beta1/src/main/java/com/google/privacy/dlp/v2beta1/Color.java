@@ -94,7 +94,7 @@ public  final class Color extends
    * The amount of red in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float red = 1;</code>
+   * <code>float red = 1;</code>
    */
   public float getRed() {
     return red_;
@@ -107,7 +107,7 @@ public  final class Color extends
    * The amount of green in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float green = 2;</code>
+   * <code>float green = 2;</code>
    */
   public float getGreen() {
     return green_;
@@ -120,7 +120,7 @@ public  final class Color extends
    * The amount of blue in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float blue = 3;</code>
+   * <code>float blue = 3;</code>
    */
   public float getBlue() {
     return blue_;
@@ -203,7 +203,7 @@ public  final class Color extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + RED_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getRed());
@@ -218,6 +218,17 @@ public  final class Color extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.Color parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.Color parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.Color parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -448,7 +459,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float red = 1;</code>
+     * <code>float red = 1;</code>
      */
     public float getRed() {
       return red_;
@@ -458,7 +469,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float red = 1;</code>
+     * <code>float red = 1;</code>
      */
     public Builder setRed(float value) {
       
@@ -471,7 +482,7 @@ public  final class Color extends
      * The amount of red in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float red = 1;</code>
+     * <code>float red = 1;</code>
      */
     public Builder clearRed() {
       
@@ -486,7 +497,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float green = 2;</code>
+     * <code>float green = 2;</code>
      */
     public float getGreen() {
       return green_;
@@ -496,7 +507,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float green = 2;</code>
+     * <code>float green = 2;</code>
      */
     public Builder setGreen(float value) {
       
@@ -509,7 +520,7 @@ public  final class Color extends
      * The amount of green in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float green = 2;</code>
+     * <code>float green = 2;</code>
      */
     public Builder clearGreen() {
       
@@ -524,7 +535,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float blue = 3;</code>
+     * <code>float blue = 3;</code>
      */
     public float getBlue() {
       return blue_;
@@ -534,7 +545,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float blue = 3;</code>
+     * <code>float blue = 3;</code>
      */
     public Builder setBlue(float value) {
       
@@ -547,7 +558,7 @@ public  final class Color extends
      * The amount of blue in the color as a value in the interval [0, 1].
      * </pre>
      *
-     * <code>optional float blue = 3;</code>
+     * <code>float blue = 3;</code>
      */
     public Builder clearBlue() {
       

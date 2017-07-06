@@ -14,7 +14,7 @@ public interface ListRootCategoriesRequestOrBuilder extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 1;</code>
+   * <code>string language_code = 1;</code>
    */
   java.lang.String getLanguageCode();
   /**
@@ -24,7 +24,7 @@ public interface ListRootCategoriesRequestOrBuilder extends
    * en-US strings will be returned.
    * </pre>
    *
-   * <code>optional string language_code = 1;</code>
+   * <code>string language_code = 1;</code>
    */
   com.google.protobuf.ByteString
       getLanguageCodeBytes();

@@ -116,7 +116,7 @@ public  final class CreateInspectOperationRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public boolean hasInspectConfig() {
     return inspectConfig_ != null;
@@ -126,7 +126,7 @@ public  final class CreateInspectOperationRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
     return inspectConfig_ == null ? com.google.privacy.dlp.v2beta1.InspectConfig.getDefaultInstance() : inspectConfig_;
@@ -136,7 +136,7 @@ public  final class CreateInspectOperationRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
     return getInspectConfig();
@@ -149,7 +149,7 @@ public  final class CreateInspectOperationRequest extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   public boolean hasStorageConfig() {
     return storageConfig_ != null;
@@ -159,7 +159,7 @@ public  final class CreateInspectOperationRequest extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.StorageConfig getStorageConfig() {
     return storageConfig_ == null ? com.google.privacy.dlp.v2beta1.StorageConfig.getDefaultInstance() : storageConfig_;
@@ -169,7 +169,7 @@ public  final class CreateInspectOperationRequest extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getStorageConfigOrBuilder() {
     return getStorageConfig();
@@ -195,7 +195,7 @@ public  final class CreateInspectOperationRequest extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   public boolean hasOutputConfig() {
     return outputConfig_ != null;
@@ -218,7 +218,7 @@ public  final class CreateInspectOperationRequest extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.OutputStorageConfig getOutputConfig() {
     return outputConfig_ == null ? com.google.privacy.dlp.v2beta1.OutputStorageConfig.getDefaultInstance() : outputConfig_;
@@ -241,7 +241,7 @@ public  final class CreateInspectOperationRequest extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getOutputConfigOrBuilder() {
     return getOutputConfig();
@@ -327,7 +327,7 @@ public  final class CreateInspectOperationRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasInspectConfig()) {
       hash = (37 * hash) + INSPECT_CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getInspectConfig().hashCode();
@@ -345,6 +345,17 @@ public  final class CreateInspectOperationRequest extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -602,7 +613,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public boolean hasInspectConfig() {
       return inspectConfigBuilder_ != null || inspectConfig_ != null;
@@ -612,7 +623,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -626,7 +637,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -646,7 +657,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(
         com.google.privacy.dlp.v2beta1.InspectConfig.Builder builderForValue) {
@@ -664,7 +675,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder mergeInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -686,7 +697,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder clearInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -704,7 +715,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig.Builder getInspectConfigBuilder() {
       
@@ -716,7 +727,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
       if (inspectConfigBuilder_ != null) {
@@ -731,7 +742,7 @@ public  final class CreateInspectOperationRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InspectConfig, com.google.privacy.dlp.v2beta1.InspectConfig.Builder, com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder> 
@@ -755,7 +766,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public boolean hasStorageConfig() {
       return storageConfigBuilder_ != null || storageConfig_ != null;
@@ -765,7 +776,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfig getStorageConfig() {
       if (storageConfigBuilder_ == null) {
@@ -779,7 +790,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public Builder setStorageConfig(com.google.privacy.dlp.v2beta1.StorageConfig value) {
       if (storageConfigBuilder_ == null) {
@@ -799,7 +810,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public Builder setStorageConfig(
         com.google.privacy.dlp.v2beta1.StorageConfig.Builder builderForValue) {
@@ -817,7 +828,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public Builder mergeStorageConfig(com.google.privacy.dlp.v2beta1.StorageConfig value) {
       if (storageConfigBuilder_ == null) {
@@ -839,7 +850,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public Builder clearStorageConfig() {
       if (storageConfigBuilder_ == null) {
@@ -857,7 +868,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfig.Builder getStorageConfigBuilder() {
       
@@ -869,7 +880,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getStorageConfigOrBuilder() {
       if (storageConfigBuilder_ != null) {
@@ -884,7 +895,7 @@ public  final class CreateInspectOperationRequest extends
      * Specification of the data set to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.StorageConfig, com.google.privacy.dlp.v2beta1.StorageConfig.Builder, com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder> 
@@ -921,7 +932,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public boolean hasOutputConfig() {
       return outputConfigBuilder_ != null || outputConfig_ != null;
@@ -944,7 +955,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfig getOutputConfig() {
       if (outputConfigBuilder_ == null) {
@@ -971,7 +982,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public Builder setOutputConfig(com.google.privacy.dlp.v2beta1.OutputStorageConfig value) {
       if (outputConfigBuilder_ == null) {
@@ -1004,7 +1015,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public Builder setOutputConfig(
         com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder builderForValue) {
@@ -1035,7 +1046,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public Builder mergeOutputConfig(com.google.privacy.dlp.v2beta1.OutputStorageConfig value) {
       if (outputConfigBuilder_ == null) {
@@ -1070,7 +1081,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public Builder clearOutputConfig() {
       if (outputConfigBuilder_ == null) {
@@ -1101,7 +1112,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder getOutputConfigBuilder() {
       
@@ -1126,7 +1137,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getOutputConfigOrBuilder() {
       if (outputConfigBuilder_ != null) {
@@ -1154,7 +1165,7 @@ public  final class CreateInspectOperationRequest extends
      * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.OutputStorageConfig, com.google.privacy.dlp.v2beta1.OutputStorageConfig.Builder, com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder> 

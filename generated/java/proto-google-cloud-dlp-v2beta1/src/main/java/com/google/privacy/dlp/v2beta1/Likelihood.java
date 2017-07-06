@@ -148,8 +148,7 @@ public enum Likelihood
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return com.google.privacy.dlp.v2beta1.DlpProto.getDescriptor()
-        .getEnumTypes().get(0);
+    return com.google.privacy.dlp.v2beta1.DlpProto.getDescriptor().getEnumTypes().get(0);
   }
 
   private static final Likelihood[] VALUES = values();

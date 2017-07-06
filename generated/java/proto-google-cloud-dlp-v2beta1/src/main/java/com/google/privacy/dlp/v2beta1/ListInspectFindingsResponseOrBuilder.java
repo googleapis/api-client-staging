@@ -12,7 +12,7 @@ public interface ListInspectFindingsResponseOrBuilder extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   boolean hasResult();
   /**
@@ -20,7 +20,7 @@ public interface ListInspectFindingsResponseOrBuilder extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectResult getResult();
   /**
@@ -28,7 +28,7 @@ public interface ListInspectFindingsResponseOrBuilder extends
    * The results.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectResult result = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectResultOrBuilder getResultOrBuilder();
 
@@ -38,7 +38,7 @@ public interface ListInspectFindingsResponseOrBuilder extends
    * request; this value should be passed in a new `ListInspectFindingsRequest`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   java.lang.String getNextPageToken();
   /**
@@ -47,7 +47,7 @@ public interface ListInspectFindingsResponseOrBuilder extends
    * request; this value should be passed in a new `ListInspectFindingsRequest`.
    * </pre>
    *
-   * <code>optional string next_page_token = 2;</code>
+   * <code>string next_page_token = 2;</code>
    */
   com.google.protobuf.ByteString
       getNextPageTokenBytes();

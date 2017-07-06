@@ -105,7 +105,7 @@ public  final class ListInspectFindingsRequest extends
    * Should be in the format of `inspect/results/{id}.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -126,7 +126,7 @@ public  final class ListInspectFindingsRequest extends
    * Should be in the format of `inspect/results/{id}.
    * </pre>
    *
-   * <code>optional string name = 1;</code>
+   * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -150,7 +150,7 @@ public  final class ListInspectFindingsRequest extends
    * If 0, the implementation selects a reasonable value.
    * </pre>
    *
-   * <code>optional int32 page_size = 2;</code>
+   * <code>int32 page_size = 2;</code>
    */
   public int getPageSize() {
     return pageSize_;
@@ -165,7 +165,7 @@ public  final class ListInspectFindingsRequest extends
    * the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   public java.lang.String getPageToken() {
     java.lang.Object ref = pageToken_;
@@ -186,7 +186,7 @@ public  final class ListInspectFindingsRequest extends
    * the system should return the next page of data.
    * </pre>
    *
-   * <code>optional string page_token = 3;</code>
+   * <code>string page_token = 3;</code>
    */
   public com.google.protobuf.ByteString
       getPageTokenBytes() {
@@ -215,7 +215,7 @@ public  final class ListInspectFindingsRequest extends
    * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   public java.lang.String getFilter() {
     java.lang.Object ref = filter_;
@@ -240,7 +240,7 @@ public  final class ListInspectFindingsRequest extends
    * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
-   * <code>optional string filter = 4;</code>
+   * <code>string filter = 4;</code>
    */
   public com.google.protobuf.ByteString
       getFilterBytes() {
@@ -333,7 +333,7 @@ public  final class ListInspectFindingsRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + PAGE_SIZE_FIELD_NUMBER;
@@ -347,6 +347,17 @@ public  final class ListInspectFindingsRequest extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -588,7 +599,7 @@ public  final class ListInspectFindingsRequest extends
      * Should be in the format of `inspect/results/{id}.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -609,7 +620,7 @@ public  final class ListInspectFindingsRequest extends
      * Should be in the format of `inspect/results/{id}.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -631,7 +642,7 @@ public  final class ListInspectFindingsRequest extends
      * Should be in the format of `inspect/results/{id}.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -650,7 +661,7 @@ public  final class ListInspectFindingsRequest extends
      * Should be in the format of `inspect/results/{id}.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder clearName() {
       
@@ -665,7 +676,7 @@ public  final class ListInspectFindingsRequest extends
      * Should be in the format of `inspect/results/{id}.
      * </pre>
      *
-     * <code>optional string name = 1;</code>
+     * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
@@ -686,7 +697,7 @@ public  final class ListInspectFindingsRequest extends
      * If 0, the implementation selects a reasonable value.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public int getPageSize() {
       return pageSize_;
@@ -697,7 +708,7 @@ public  final class ListInspectFindingsRequest extends
      * If 0, the implementation selects a reasonable value.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public Builder setPageSize(int value) {
       
@@ -711,7 +722,7 @@ public  final class ListInspectFindingsRequest extends
      * If 0, the implementation selects a reasonable value.
      * </pre>
      *
-     * <code>optional int32 page_size = 2;</code>
+     * <code>int32 page_size = 2;</code>
      */
     public Builder clearPageSize() {
       
@@ -728,7 +739,7 @@ public  final class ListInspectFindingsRequest extends
      * the system should return the next page of data.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public java.lang.String getPageToken() {
       java.lang.Object ref = pageToken_;
@@ -749,7 +760,7 @@ public  final class ListInspectFindingsRequest extends
      * the system should return the next page of data.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public com.google.protobuf.ByteString
         getPageTokenBytes() {
@@ -771,7 +782,7 @@ public  final class ListInspectFindingsRequest extends
      * the system should return the next page of data.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder setPageToken(
         java.lang.String value) {
@@ -790,7 +801,7 @@ public  final class ListInspectFindingsRequest extends
      * the system should return the next page of data.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder clearPageToken() {
       
@@ -805,7 +816,7 @@ public  final class ListInspectFindingsRequest extends
      * the system should return the next page of data.
      * </pre>
      *
-     * <code>optional string page_token = 3;</code>
+     * <code>string page_token = 3;</code>
      */
     public Builder setPageTokenBytes(
         com.google.protobuf.ByteString value) {
@@ -831,7 +842,7 @@ public  final class ListInspectFindingsRequest extends
      * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      * </pre>
      *
-     * <code>optional string filter = 4;</code>
+     * <code>string filter = 4;</code>
      */
     public java.lang.String getFilter() {
       java.lang.Object ref = filter_;
@@ -856,7 +867,7 @@ public  final class ListInspectFindingsRequest extends
      * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      * </pre>
      *
-     * <code>optional string filter = 4;</code>
+     * <code>string filter = 4;</code>
      */
     public com.google.protobuf.ByteString
         getFilterBytes() {
@@ -882,7 +893,7 @@ public  final class ListInspectFindingsRequest extends
      * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      * </pre>
      *
-     * <code>optional string filter = 4;</code>
+     * <code>string filter = 4;</code>
      */
     public Builder setFilter(
         java.lang.String value) {
@@ -905,7 +916,7 @@ public  final class ListInspectFindingsRequest extends
      * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      * </pre>
      *
-     * <code>optional string filter = 4;</code>
+     * <code>string filter = 4;</code>
      */
     public Builder clearFilter() {
       
@@ -924,7 +935,7 @@ public  final class ListInspectFindingsRequest extends
      * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
      * </pre>
      *
-     * <code>optional string filter = 4;</code>
+     * <code>string filter = 4;</code>
      */
     public Builder setFilterBytes(
         com.google.protobuf.ByteString value) {

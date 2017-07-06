@@ -83,7 +83,7 @@ public  final class CloudStoragePath extends
    * The url, in the format of `gs://bucket/&lt;path&gt;`.
    * </pre>
    *
-   * <code>optional string path = 1;</code>
+   * <code>string path = 1;</code>
    */
   public java.lang.String getPath() {
     java.lang.Object ref = path_;
@@ -102,7 +102,7 @@ public  final class CloudStoragePath extends
    * The url, in the format of `gs://bucket/&lt;path&gt;`.
    * </pre>
    *
-   * <code>optional string path = 1;</code>
+   * <code>string path = 1;</code>
    */
   public com.google.protobuf.ByteString
       getPathBytes() {
@@ -170,7 +170,7 @@ public  final class CloudStoragePath extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + PATH_FIELD_NUMBER;
     hash = (53 * hash) + getPath().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -178,6 +178,17 @@ public  final class CloudStoragePath extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.CloudStoragePath parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.CloudStoragePath parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.CloudStoragePath parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -397,7 +408,7 @@ public  final class CloudStoragePath extends
      * The url, in the format of `gs://bucket/&lt;path&gt;`.
      * </pre>
      *
-     * <code>optional string path = 1;</code>
+     * <code>string path = 1;</code>
      */
     public java.lang.String getPath() {
       java.lang.Object ref = path_;
@@ -416,7 +427,7 @@ public  final class CloudStoragePath extends
      * The url, in the format of `gs://bucket/&lt;path&gt;`.
      * </pre>
      *
-     * <code>optional string path = 1;</code>
+     * <code>string path = 1;</code>
      */
     public com.google.protobuf.ByteString
         getPathBytes() {
@@ -436,7 +447,7 @@ public  final class CloudStoragePath extends
      * The url, in the format of `gs://bucket/&lt;path&gt;`.
      * </pre>
      *
-     * <code>optional string path = 1;</code>
+     * <code>string path = 1;</code>
      */
     public Builder setPath(
         java.lang.String value) {
@@ -453,7 +464,7 @@ public  final class CloudStoragePath extends
      * The url, in the format of `gs://bucket/&lt;path&gt;`.
      * </pre>
      *
-     * <code>optional string path = 1;</code>
+     * <code>string path = 1;</code>
      */
     public Builder clearPath() {
       
@@ -466,7 +477,7 @@ public  final class CloudStoragePath extends
      * The url, in the format of `gs://bucket/&lt;path&gt;`.
      * </pre>
      *
-     * <code>optional string path = 1;</code>
+     * <code>string path = 1;</code>
      */
     public Builder setPathBytes(
         com.google.protobuf.ByteString value) {

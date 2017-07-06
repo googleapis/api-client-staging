@@ -14,7 +14,7 @@ public interface KeyOrBuilder extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   boolean hasPartitionId();
   /**
@@ -24,7 +24,7 @@ public interface KeyOrBuilder extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PartitionId getPartitionId();
   /**
@@ -34,7 +34,7 @@ public interface KeyOrBuilder extends
    * Queries are scoped to a single partition.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder();
 

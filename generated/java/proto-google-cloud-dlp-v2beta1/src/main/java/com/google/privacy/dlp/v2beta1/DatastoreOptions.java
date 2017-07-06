@@ -117,7 +117,7 @@ public  final class DatastoreOptions extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public boolean hasPartitionId() {
     return partitionId_ != null;
@@ -128,7 +128,7 @@ public  final class DatastoreOptions extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PartitionId getPartitionId() {
     return partitionId_ == null ? com.google.privacy.dlp.v2beta1.PartitionId.getDefaultInstance() : partitionId_;
@@ -139,7 +139,7 @@ public  final class DatastoreOptions extends
    * by project and namespace, however the namespace ID may be empty.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder() {
     return getPartitionId();
@@ -152,7 +152,7 @@ public  final class DatastoreOptions extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   public boolean hasKind() {
     return kind_ != null;
@@ -162,7 +162,7 @@ public  final class DatastoreOptions extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.KindExpression getKind() {
     return kind_ == null ? com.google.privacy.dlp.v2beta1.KindExpression.getDefaultInstance() : kind_;
@@ -172,7 +172,7 @@ public  final class DatastoreOptions extends
    * The kind to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
    */
   public com.google.privacy.dlp.v2beta1.KindExpressionOrBuilder getKindOrBuilder() {
     return getKind();
@@ -315,7 +315,7 @@ public  final class DatastoreOptions extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasPartitionId()) {
       hash = (37 * hash) + PARTITION_ID_FIELD_NUMBER;
       hash = (53 * hash) + getPartitionId().hashCode();
@@ -333,6 +333,17 @@ public  final class DatastoreOptions extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.DatastoreOptions parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.DatastoreOptions parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.DatastoreOptions parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -622,7 +633,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public boolean hasPartitionId() {
       return partitionIdBuilder_ != null || partitionId_ != null;
@@ -633,7 +644,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionId getPartitionId() {
       if (partitionIdBuilder_ == null) {
@@ -648,7 +659,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder setPartitionId(com.google.privacy.dlp.v2beta1.PartitionId value) {
       if (partitionIdBuilder_ == null) {
@@ -669,7 +680,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder setPartitionId(
         com.google.privacy.dlp.v2beta1.PartitionId.Builder builderForValue) {
@@ -688,7 +699,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder mergePartitionId(com.google.privacy.dlp.v2beta1.PartitionId value) {
       if (partitionIdBuilder_ == null) {
@@ -711,7 +722,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public Builder clearPartitionId() {
       if (partitionIdBuilder_ == null) {
@@ -730,7 +741,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionId.Builder getPartitionIdBuilder() {
       
@@ -743,7 +754,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder getPartitionIdOrBuilder() {
       if (partitionIdBuilder_ != null) {
@@ -759,7 +770,7 @@ public  final class DatastoreOptions extends
      * by project and namespace, however the namespace ID may be empty.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.PartitionId partition_id = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.PartitionId, com.google.privacy.dlp.v2beta1.PartitionId.Builder, com.google.privacy.dlp.v2beta1.PartitionIdOrBuilder> 
@@ -783,7 +794,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public boolean hasKind() {
       return kindBuilder_ != null || kind_ != null;
@@ -793,7 +804,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.KindExpression getKind() {
       if (kindBuilder_ == null) {
@@ -807,7 +818,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public Builder setKind(com.google.privacy.dlp.v2beta1.KindExpression value) {
       if (kindBuilder_ == null) {
@@ -827,7 +838,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public Builder setKind(
         com.google.privacy.dlp.v2beta1.KindExpression.Builder builderForValue) {
@@ -845,7 +856,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public Builder mergeKind(com.google.privacy.dlp.v2beta1.KindExpression value) {
       if (kindBuilder_ == null) {
@@ -867,7 +878,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public Builder clearKind() {
       if (kindBuilder_ == null) {
@@ -885,7 +896,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.KindExpression.Builder getKindBuilder() {
       
@@ -897,7 +908,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     public com.google.privacy.dlp.v2beta1.KindExpressionOrBuilder getKindOrBuilder() {
       if (kindBuilder_ != null) {
@@ -912,7 +923,7 @@ public  final class DatastoreOptions extends
      * The kind to process.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
+     * <code>.google.privacy.dlp.v2beta1.KindExpression kind = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.KindExpression, com.google.privacy.dlp.v2beta1.KindExpression.Builder, com.google.privacy.dlp.v2beta1.KindExpressionOrBuilder> 

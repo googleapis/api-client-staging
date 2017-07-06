@@ -12,7 +12,7 @@ public interface RangeOrBuilder extends
    * Index of the first character of the range (inclusive).
    * </pre>
    *
-   * <code>optional int64 start = 1;</code>
+   * <code>int64 start = 1;</code>
    */
   long getStart();
 
@@ -21,7 +21,7 @@ public interface RangeOrBuilder extends
    * Index of the last character of the range (exclusive).
    * </pre>
    *
-   * <code>optional int64 end = 2;</code>
+   * <code>int64 end = 2;</code>
    */
   long getEnd();
 }

@@ -8,15 +8,15 @@ public interface CloudStorageOptionsOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   boolean hasFileSet();
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet getFileSet();
   /**
-   * <code>optional .google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSet file_set = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptions.FileSetOrBuilder getFileSetOrBuilder();
 }

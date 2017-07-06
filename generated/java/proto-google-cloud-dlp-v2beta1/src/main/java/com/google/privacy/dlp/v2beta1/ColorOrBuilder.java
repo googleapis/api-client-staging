@@ -12,7 +12,7 @@ public interface ColorOrBuilder extends
    * The amount of red in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float red = 1;</code>
+   * <code>float red = 1;</code>
    */
   float getRed();
 
@@ -21,7 +21,7 @@ public interface ColorOrBuilder extends
    * The amount of green in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float green = 2;</code>
+   * <code>float green = 2;</code>
    */
   float getGreen();
 
@@ -30,7 +30,7 @@ public interface ColorOrBuilder extends
    * The amount of blue in the color as a value in the interval [0, 1].
    * </pre>
    *
-   * <code>optional float blue = 3;</code>
+   * <code>float blue = 3;</code>
    */
   float getBlue();
 }

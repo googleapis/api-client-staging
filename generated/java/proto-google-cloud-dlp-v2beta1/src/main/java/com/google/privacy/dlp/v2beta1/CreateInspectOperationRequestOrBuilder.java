@@ -12,7 +12,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   boolean hasInspectConfig();
   /**
@@ -20,7 +20,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig();
   /**
@@ -28,7 +28,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder();
 
@@ -37,7 +37,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   boolean hasStorageConfig();
   /**
@@ -45,7 +45,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.StorageConfig getStorageConfig();
   /**
@@ -53,7 +53,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * Specification of the data set to process.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
+   * <code>.google.privacy.dlp.v2beta1.StorageConfig storage_config = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.StorageConfigOrBuilder getStorageConfigOrBuilder();
 
@@ -75,7 +75,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   boolean hasOutputConfig();
   /**
@@ -96,7 +96,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.OutputStorageConfig getOutputConfig();
   /**
@@ -117,7 +117,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
+   * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getOutputConfigOrBuilder();
 }

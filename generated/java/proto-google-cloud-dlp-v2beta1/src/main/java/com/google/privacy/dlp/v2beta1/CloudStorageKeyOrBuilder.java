@@ -12,7 +12,7 @@ public interface CloudStorageKeyOrBuilder extends
    * Path to the file.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   java.lang.String getFilePath();
   /**
@@ -20,7 +20,7 @@ public interface CloudStorageKeyOrBuilder extends
    * Path to the file.
    * </pre>
    *
-   * <code>optional string file_path = 1;</code>
+   * <code>string file_path = 1;</code>
    */
   com.google.protobuf.ByteString
       getFilePathBytes();
@@ -30,7 +30,7 @@ public interface CloudStorageKeyOrBuilder extends
    * Byte offset of the referenced data in the file.
    * </pre>
    *
-   * <code>optional int64 start_offset = 2;</code>
+   * <code>int64 start_offset = 2;</code>
    */
   long getStartOffset();
 }

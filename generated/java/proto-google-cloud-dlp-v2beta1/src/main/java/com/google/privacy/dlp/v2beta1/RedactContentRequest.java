@@ -134,7 +134,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     boolean hasInfoType();
     /**
@@ -145,7 +145,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     com.google.privacy.dlp.v2beta1.InfoType getInfoType();
     /**
@@ -156,7 +156,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder();
 
@@ -165,7 +165,7 @@ public  final class RedactContentRequest extends
      * Content replacing sensitive information of given type. Max 256 chars.
      * </pre>
      *
-     * <code>optional string replace_with = 2;</code>
+     * <code>string replace_with = 2;</code>
      */
     java.lang.String getReplaceWith();
     /**
@@ -173,7 +173,7 @@ public  final class RedactContentRequest extends
      * Content replacing sensitive information of given type. Max 256 chars.
      * </pre>
      *
-     * <code>optional string replace_with = 2;</code>
+     * <code>string replace_with = 2;</code>
      */
     com.google.protobuf.ByteString
         getReplaceWithBytes();
@@ -270,7 +270,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public boolean hasInfoType() {
       return infoType_ != null;
@@ -283,7 +283,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
       return infoType_ == null ? com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
@@ -296,7 +296,7 @@ public  final class RedactContentRequest extends
      * another ReplaceConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
       return getInfoType();
@@ -309,7 +309,7 @@ public  final class RedactContentRequest extends
      * Content replacing sensitive information of given type. Max 256 chars.
      * </pre>
      *
-     * <code>optional string replace_with = 2;</code>
+     * <code>string replace_with = 2;</code>
      */
     public java.lang.String getReplaceWith() {
       java.lang.Object ref = replaceWith_;
@@ -328,7 +328,7 @@ public  final class RedactContentRequest extends
      * Content replacing sensitive information of given type. Max 256 chars.
      * </pre>
      *
-     * <code>optional string replace_with = 2;</code>
+     * <code>string replace_with = 2;</code>
      */
     public com.google.protobuf.ByteString
         getReplaceWithBytes() {
@@ -408,7 +408,7 @@ public  final class RedactContentRequest extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (hasInfoType()) {
         hash = (37 * hash) + INFO_TYPE_FIELD_NUMBER;
         hash = (53 * hash) + getInfoType().hashCode();
@@ -420,6 +420,17 @@ public  final class RedactContentRequest extends
       return hash;
     }
 
+    public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -654,7 +665,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public boolean hasInfoType() {
         return infoTypeBuilder_ != null || infoType_ != null;
@@ -667,7 +678,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
         if (infoTypeBuilder_ == null) {
@@ -684,7 +695,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder setInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
         if (infoTypeBuilder_ == null) {
@@ -707,7 +718,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder setInfoType(
           com.google.privacy.dlp.v2beta1.InfoType.Builder builderForValue) {
@@ -728,7 +739,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder mergeInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
         if (infoTypeBuilder_ == null) {
@@ -753,7 +764,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder clearInfoType() {
         if (infoTypeBuilder_ == null) {
@@ -774,7 +785,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoType.Builder getInfoTypeBuilder() {
         
@@ -789,7 +800,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
         if (infoTypeBuilder_ != null) {
@@ -807,7 +818,7 @@ public  final class RedactContentRequest extends
        * another ReplaceConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> 
@@ -829,7 +840,7 @@ public  final class RedactContentRequest extends
        * Content replacing sensitive information of given type. Max 256 chars.
        * </pre>
        *
-       * <code>optional string replace_with = 2;</code>
+       * <code>string replace_with = 2;</code>
        */
       public java.lang.String getReplaceWith() {
         java.lang.Object ref = replaceWith_;
@@ -848,7 +859,7 @@ public  final class RedactContentRequest extends
        * Content replacing sensitive information of given type. Max 256 chars.
        * </pre>
        *
-       * <code>optional string replace_with = 2;</code>
+       * <code>string replace_with = 2;</code>
        */
       public com.google.protobuf.ByteString
           getReplaceWithBytes() {
@@ -868,7 +879,7 @@ public  final class RedactContentRequest extends
        * Content replacing sensitive information of given type. Max 256 chars.
        * </pre>
        *
-       * <code>optional string replace_with = 2;</code>
+       * <code>string replace_with = 2;</code>
        */
       public Builder setReplaceWith(
           java.lang.String value) {
@@ -885,7 +896,7 @@ public  final class RedactContentRequest extends
        * Content replacing sensitive information of given type. Max 256 chars.
        * </pre>
        *
-       * <code>optional string replace_with = 2;</code>
+       * <code>string replace_with = 2;</code>
        */
       public Builder clearReplaceWith() {
         
@@ -898,7 +909,7 @@ public  final class RedactContentRequest extends
        * Content replacing sensitive information of given type. Max 256 chars.
        * </pre>
        *
-       * <code>optional string replace_with = 2;</code>
+       * <code>string replace_with = 2;</code>
        */
       public Builder setReplaceWithBytes(
           com.google.protobuf.ByteString value) {
@@ -972,7 +983,7 @@ public  final class RedactContentRequest extends
      * specified in another ImageRedactionConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     com.google.privacy.dlp.v2beta1.InfoType getInfoType();
     /**
@@ -983,7 +994,7 @@ public  final class RedactContentRequest extends
      * specified in another ImageRedactionConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder();
 
@@ -993,7 +1004,7 @@ public  final class RedactContentRequest extends
      * info_type, is redacted.
      * </pre>
      *
-     * <code>optional bool redact_all_text = 2;</code>
+     * <code>bool redact_all_text = 2;</code>
      */
     boolean getRedactAllText();
 
@@ -1003,7 +1014,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     boolean hasRedactionColor();
     /**
@@ -1012,7 +1023,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     com.google.privacy.dlp.v2beta1.Color getRedactionColor();
     /**
@@ -1021,7 +1032,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     com.google.privacy.dlp.v2beta1.ColorOrBuilder getRedactionColorOrBuilder();
 
@@ -1172,7 +1183,7 @@ public  final class RedactContentRequest extends
      * specified in another ImageRedactionConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
       if (targetCase_ == 1) {
@@ -1188,7 +1199,7 @@ public  final class RedactContentRequest extends
      * specified in another ImageRedactionConfig.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
       if (targetCase_ == 1) {
@@ -1204,7 +1215,7 @@ public  final class RedactContentRequest extends
      * info_type, is redacted.
      * </pre>
      *
-     * <code>optional bool redact_all_text = 2;</code>
+     * <code>bool redact_all_text = 2;</code>
      */
     public boolean getRedactAllText() {
       if (targetCase_ == 2) {
@@ -1221,7 +1232,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     public boolean hasRedactionColor() {
       return redactionColor_ != null;
@@ -1232,7 +1243,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.Color getRedactionColor() {
       return redactionColor_ == null ? com.google.privacy.dlp.v2beta1.Color.getDefaultInstance() : redactionColor_;
@@ -1243,7 +1254,7 @@ public  final class RedactContentRequest extends
      * the default is black.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+     * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
      */
     public com.google.privacy.dlp.v2beta1.ColorOrBuilder getRedactionColorOrBuilder() {
       return getRedactionColor();
@@ -1336,7 +1347,7 @@ public  final class RedactContentRequest extends
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (hasRedactionColor()) {
         hash = (37 * hash) + REDACTION_COLOR_FIELD_NUMBER;
         hash = (53 * hash) + getRedactionColor().hashCode();
@@ -1359,6 +1370,17 @@ public  final class RedactContentRequest extends
       return hash;
     }
 
+    public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1630,7 +1652,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
         if (infoTypeBuilder_ == null) {
@@ -1653,7 +1675,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder setInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
         if (infoTypeBuilder_ == null) {
@@ -1676,7 +1698,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder setInfoType(
           com.google.privacy.dlp.v2beta1.InfoType.Builder builderForValue) {
@@ -1697,7 +1719,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder mergeInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
         if (infoTypeBuilder_ == null) {
@@ -1726,7 +1748,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public Builder clearInfoType() {
         if (infoTypeBuilder_ == null) {
@@ -1752,7 +1774,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoType.Builder getInfoTypeBuilder() {
         return getInfoTypeFieldBuilder().getBuilder();
@@ -1765,7 +1787,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
         if ((targetCase_ == 1) && (infoTypeBuilder_ != null)) {
@@ -1785,7 +1807,7 @@ public  final class RedactContentRequest extends
        * specified in another ImageRedactionConfig.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> 
@@ -1812,7 +1834,7 @@ public  final class RedactContentRequest extends
        * info_type, is redacted.
        * </pre>
        *
-       * <code>optional bool redact_all_text = 2;</code>
+       * <code>bool redact_all_text = 2;</code>
        */
       public boolean getRedactAllText() {
         if (targetCase_ == 2) {
@@ -1826,7 +1848,7 @@ public  final class RedactContentRequest extends
        * info_type, is redacted.
        * </pre>
        *
-       * <code>optional bool redact_all_text = 2;</code>
+       * <code>bool redact_all_text = 2;</code>
        */
       public Builder setRedactAllText(boolean value) {
         targetCase_ = 2;
@@ -1840,7 +1862,7 @@ public  final class RedactContentRequest extends
        * info_type, is redacted.
        * </pre>
        *
-       * <code>optional bool redact_all_text = 2;</code>
+       * <code>bool redact_all_text = 2;</code>
        */
       public Builder clearRedactAllText() {
         if (targetCase_ == 2) {
@@ -1860,7 +1882,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public boolean hasRedactionColor() {
         return redactionColorBuilder_ != null || redactionColor_ != null;
@@ -1871,7 +1893,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public com.google.privacy.dlp.v2beta1.Color getRedactionColor() {
         if (redactionColorBuilder_ == null) {
@@ -1886,7 +1908,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public Builder setRedactionColor(com.google.privacy.dlp.v2beta1.Color value) {
         if (redactionColorBuilder_ == null) {
@@ -1907,7 +1929,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public Builder setRedactionColor(
           com.google.privacy.dlp.v2beta1.Color.Builder builderForValue) {
@@ -1926,7 +1948,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public Builder mergeRedactionColor(com.google.privacy.dlp.v2beta1.Color value) {
         if (redactionColorBuilder_ == null) {
@@ -1949,7 +1971,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public Builder clearRedactionColor() {
         if (redactionColorBuilder_ == null) {
@@ -1968,7 +1990,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public com.google.privacy.dlp.v2beta1.Color.Builder getRedactionColorBuilder() {
         
@@ -1981,7 +2003,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       public com.google.privacy.dlp.v2beta1.ColorOrBuilder getRedactionColorOrBuilder() {
         if (redactionColorBuilder_ != null) {
@@ -1997,7 +2019,7 @@ public  final class RedactContentRequest extends
        * the default is black.
        * </pre>
        *
-       * <code>optional .google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
+       * <code>.google.privacy.dlp.v2beta1.Color redaction_color = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta1.Color, com.google.privacy.dlp.v2beta1.Color.Builder, com.google.privacy.dlp.v2beta1.ColorOrBuilder> 
@@ -2069,7 +2091,7 @@ public  final class RedactContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public boolean hasInspectConfig() {
     return inspectConfig_ != null;
@@ -2079,7 +2101,7 @@ public  final class RedactContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
     return inspectConfig_ == null ? com.google.privacy.dlp.v2beta1.InspectConfig.getDefaultInstance() : inspectConfig_;
@@ -2089,7 +2111,7 @@ public  final class RedactContentRequest extends
    * Configuration for the inspector.
    * </pre>
    *
-   * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+   * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
    */
   public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
     return getInspectConfig();
@@ -2348,7 +2370,7 @@ public  final class RedactContentRequest extends
       return memoizedHashCode;
     }
     int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (19 * hash) + getDescriptor().hashCode();
     if (hasInspectConfig()) {
       hash = (37 * hash) + INSPECT_CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getInspectConfig().hashCode();
@@ -2370,6 +2392,17 @@ public  final class RedactContentRequest extends
     return hash;
   }
 
+  public static com.google.privacy.dlp.v2beta1.RedactContentRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.privacy.dlp.v2beta1.RedactContentRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.privacy.dlp.v2beta1.RedactContentRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2729,7 +2762,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public boolean hasInspectConfig() {
       return inspectConfigBuilder_ != null || inspectConfig_ != null;
@@ -2739,7 +2772,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig getInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -2753,7 +2786,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -2773,7 +2806,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder setInspectConfig(
         com.google.privacy.dlp.v2beta1.InspectConfig.Builder builderForValue) {
@@ -2791,7 +2824,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder mergeInspectConfig(com.google.privacy.dlp.v2beta1.InspectConfig value) {
       if (inspectConfigBuilder_ == null) {
@@ -2813,7 +2846,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public Builder clearInspectConfig() {
       if (inspectConfigBuilder_ == null) {
@@ -2831,7 +2864,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfig.Builder getInspectConfigBuilder() {
       
@@ -2843,7 +2876,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     public com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder getInspectConfigOrBuilder() {
       if (inspectConfigBuilder_ != null) {
@@ -2858,7 +2891,7 @@ public  final class RedactContentRequest extends
      * Configuration for the inspector.
      * </pre>
      *
-     * <code>optional .google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
+     * <code>.google.privacy.dlp.v2beta1.InspectConfig inspect_config = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InspectConfig, com.google.privacy.dlp.v2beta1.InspectConfig.Builder, com.google.privacy.dlp.v2beta1.InspectConfigOrBuilder> 
