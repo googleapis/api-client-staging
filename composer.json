@@ -10,6 +10,7 @@
         "psr-4": {
             "Google\\Cloud\\": [
                 "generated/php/google-cloud-bigtable-admin-v2/src",
+                "generated/php/google-cloud-dlp-v2beta1/src",
                 "generated/php/google-cloud-pubsub-v1/src",
                 "generated/php/google-cloud-error-reporting-v1beta1/src",
                 "generated/php/google-cloud-language-v1/src",
@@ -27,6 +28,7 @@
             ],
             "Google\\Cloud\\Tests\\": [
                 "generated/php/google-cloud-bigtable-admin-v2/tests/unit",
+                "generated/php/google-cloud-dlp-v2beta1/tests/unit",
                 "generated/php/google-cloud-pubsub-v1/tests/unit",
                 "generated/php/google-cloud-error-reporting-v1beta1/tests/unit",
                 "generated/php/google-cloud-language-v1/tests/unit",
@@ -44,6 +46,7 @@
             ],
             "": [
                 "generated/php/google-cloud-bigtable-admin-v2/proto/src",
+                "generated/php/google-cloud-dlp-v2beta1/proto/src",
                 "generated/php/google-cloud-pubsub-v1/proto/src",
                 "generated/php/google-cloud-error-reporting-v1beta1/proto/src",
                 "generated/php/google-cloud-language-v1/proto/src",
