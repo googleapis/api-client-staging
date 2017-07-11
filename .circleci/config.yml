@@ -163,6 +163,19 @@ jobs:
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
 
+  php5:
+    docker:
+      - image: googleapis/php:5
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 5
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
   sync_to_private:
     docker:
       - image: googleapis/git
@@ -191,6 +204,7 @@ workflows:
       - python34
       - python35
       - python36
+      - php5
       - sync:
           requires:
             - go17
@@ -204,6 +218,7 @@ workflows:
             - python34
             - python35
             - python36
+            - php5
           filters:
             branches:
               only: master
