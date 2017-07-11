@@ -163,22 +163,6 @@ jobs:
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
 
-  php7:
-    docker:
-      - image: php:7
-    steps:
-      - checkout
-      - run:
-          name: Install composer.
-          command: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - run:
-          name: Install PHP library
-          command: composer install
-      - run:
-          name: Run GAPIC unit tests in PHP 7
-          command: ./vendor/bin/phpunit
-    working_directory: /var/code/googleapis/
-
   sync_to_private:
     docker:
       - image: googleapis/git
