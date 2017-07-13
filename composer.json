@@ -1,10 +1,10 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "^0.20"
+        "google/gax": "^0.21.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "4.8.*"
     },
     "autoload": {
         "psr-4": {
