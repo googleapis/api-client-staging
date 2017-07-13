@@ -189,6 +189,32 @@ jobs:
           command: ./vendor/bin/phpunit
     working_directory: /var/code/googleapis/
 
+  php70:
+    docker:
+      - image: googleapis/php:7.0
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 7.0
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
+  php71:
+    docker:
+      - image: googleapis/php:7.1
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 7.1
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
   sync_to_private:
     docker:
       - image: googleapis/git
@@ -219,6 +245,8 @@ workflows:
       - python36
       - php55
       - php56
+      - php70
+      - php71
       - sync:
           requires:
             - go17
@@ -234,6 +262,8 @@ workflows:
             - python36
             - php55
             - php56
+            - php70
+            - php71
           filters:
             branches:
               only: master
