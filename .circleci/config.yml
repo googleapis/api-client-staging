@@ -247,7 +247,7 @@ workflows:
       - php56
       - php70
       - php71
-      - sync:
+      - sync_to_private:
           requires:
             - go17
             - go18
