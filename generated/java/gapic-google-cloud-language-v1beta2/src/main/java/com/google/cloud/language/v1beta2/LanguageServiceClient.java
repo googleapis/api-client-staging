@@ -277,10 +277,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnalyzeEntitiesResponse response = languageServiceClient.analyzeEntities(request);
    * }
@@ -303,10 +301,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnalyzeEntitiesResponse&gt; future = languageServiceClient.analyzeEntitiesCallable().futureCall(request);
    *   // Do something
@@ -361,10 +357,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitySentimentRequest request = AnalyzeEntitySentimentRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnalyzeEntitySentimentResponse response = languageServiceClient.analyzeEntitySentiment(request);
    * }
@@ -389,10 +383,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitySentimentRequest request = AnalyzeEntitySentimentRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnalyzeEntitySentimentResponse&gt; future = languageServiceClient.analyzeEntitySentimentCallable().futureCall(request);
    *   // Do something
@@ -444,10 +436,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnalyzeSyntaxResponse response = languageServiceClient.analyzeSyntax(request);
    * }
@@ -470,10 +460,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnalyzeSyntaxResponse&gt; future = languageServiceClient.analyzeSyntaxCallable().futureCall(request);
    *   // Do something
@@ -527,11 +515,9 @@ public class LanguageServiceClient implements AutoCloseable {
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
    *   AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnnotateTextRequest request = AnnotateTextRequest.newBuilder()
    *     .setDocument(document)
    *     .setFeatures(features)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnnotateTextResponse response = languageServiceClient.annotateText(request);
    * }
@@ -554,11 +540,9 @@ public class LanguageServiceClient implements AutoCloseable {
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
    *   AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnnotateTextRequest request = AnnotateTextRequest.newBuilder()
    *     .setDocument(document)
    *     .setFeatures(features)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnnotateTextResponse&gt; future = languageServiceClient.annotateTextCallable().futureCall(request);
    *   // Do something

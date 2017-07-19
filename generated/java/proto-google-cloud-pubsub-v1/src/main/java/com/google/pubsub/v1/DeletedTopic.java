@@ -31,6 +31,7 @@ public class DeletedTopic implements ResourceName {
     return instance;
   }
 
+  @Override
   public ResourceNameType getType() {
     return DeletedTopicType.instance();
   }

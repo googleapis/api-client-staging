@@ -41,6 +41,7 @@ import com.google.pubsub.v1.PublishResponse;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.Topic;
 import com.google.pubsub.v1.TopicName;
+import com.google.pubsub.v1.UpdateTopicRequest;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
 import java.io.IOException;
@@ -114,6 +115,7 @@ public class TopicAdminClient implements AutoCloseable {
   private final List<AutoCloseable> closeables = new ArrayList<>();
 
   private final UnaryCallable<Topic, Topic> createTopicCallable;
+  private final UnaryCallable<UpdateTopicRequest, Topic> updateTopicCallable;
   private final UnaryCallable<PublishRequest, PublishResponse> publishCallable;
   private final UnaryCallable<GetTopicRequest, Topic> getTopicCallable;
   private final UnaryCallable<ListTopicsRequest, ListTopicsResponse> listTopicsCallable;
@@ -160,6 +162,7 @@ public class TopicAdminClient implements AutoCloseable {
             .build();
 
     this.createTopicCallable = UnaryCallable.create(settings.createTopicSettings(), clientContext);
+    this.updateTopicCallable = UnaryCallable.create(settings.updateTopicSettings(), clientContext);
     this.publishCallable = UnaryCallable.create(settings.publishSettings(), clientContext);
     this.getTopicCallable = UnaryCallable.create(settings.getTopicSettings(), clientContext);
     this.listTopicsCallable = UnaryCallable.create(settings.listTopicsSettings(), clientContext);
@@ -270,6 +273,61 @@ public class TopicAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<Topic, Topic> createTopicCallable() {
     return createTopicCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing topic. Note that certain properties of a topic are not modifiable. Options
+   * settings follow the style guide: NOTE: The style guide requires body: "topic" instead of body:
+   * "&#42;". Keeping the latter for internal consistency in V1, however it should be corrected in
+   * V2. See https://cloud.google.com/apis/design/standard_methods#update for details.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   *   Topic topic = Topic.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateTopicRequest request = UpdateTopicRequest.newBuilder()
+   *     .setTopic(topic)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   Topic response = topicAdminClient.updateTopic(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  /* package-private */ final Topic updateTopic(UpdateTopicRequest request) {
+    return updateTopicCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing topic. Note that certain properties of a topic are not modifiable. Options
+   * settings follow the style guide: NOTE: The style guide requires body: "topic" instead of body:
+   * "&#42;". Keeping the latter for internal consistency in V1, however it should be corrected in
+   * V2. See https://cloud.google.com/apis/design/standard_methods#update for details.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   *   Topic topic = Topic.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateTopicRequest request = UpdateTopicRequest.newBuilder()
+   *     .setTopic(topic)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   ApiFuture&lt;Topic&gt; future = topicAdminClient.updateTopicCallable().futureCall(request);
+   *   // Do something
+   *   Topic response = future.get();
+   * }
+   * </code></pre>
+   */
+  /* package-private */ final UnaryCallable<UpdateTopicRequest, Topic> updateTopicCallable() {
+    return updateTopicCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD

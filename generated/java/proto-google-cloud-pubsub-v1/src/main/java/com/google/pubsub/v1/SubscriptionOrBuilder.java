@@ -165,4 +165,58 @@ public interface SubscriptionOrBuilder extends
    * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
    */
   com.google.protobuf.DurationOrBuilder getMessageRetentionDurationOrBuilder();
+
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+  int getLabelsCount();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+  boolean containsLabels(
+      java.lang.String key);
+  /**
+   * Use {@link #getLabelsMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabels();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabelsMap();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  java.lang.String getLabelsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue);
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  java.lang.String getLabelsOrThrow(
+      java.lang.String key);
 }

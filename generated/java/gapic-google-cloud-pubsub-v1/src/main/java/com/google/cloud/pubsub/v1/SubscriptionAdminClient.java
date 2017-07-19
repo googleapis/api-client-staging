@@ -55,6 +55,7 @@ import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.SubscriptionName;
 import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
+import com.google.pubsub.v1.UpdateSnapshotRequest;
 import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import io.grpc.ManagedChannel;
 import java.io.Closeable;
@@ -150,6 +151,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
   private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
       listSnapshotsPagedCallable;
   private final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable;
+  private final UnaryCallable<UpdateSnapshotRequest, Snapshot> updateSnapshotCallable;
   private final UnaryCallable<DeleteSnapshotRequest, Empty> deleteSnapshotCallable;
   private final UnaryCallable<SeekRequest, SeekResponse> seekCallable;
   private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
@@ -216,6 +218,8 @@ public class SubscriptionAdminClient implements AutoCloseable {
         UnaryCallable.createPagedVariant(settings.listSnapshotsSettings(), clientContext);
     this.createSnapshotCallable =
         UnaryCallable.create(settings.createSnapshotSettings(), clientContext);
+    this.updateSnapshotCallable =
+        UnaryCallable.create(settings.updateSnapshotSettings(), clientContext);
     this.deleteSnapshotCallable =
         UnaryCallable.create(settings.deleteSnapshotSettings(), clientContext);
     this.seekCallable = UnaryCallable.create(settings.seekSettings(), clientContext);
@@ -331,7 +335,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
    *     .setNameWithSubscriptionName(name)
-   *     .setTopicWithTopicName(topic)
+   *     .setTopicWithTopicNameOneof(topic)
    *     .build();
    *   Subscription response = subscriptionAdminClient.createSubscription(request);
    * }
@@ -363,7 +367,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *   TopicNameOneof topic = TopicNameOneof.from(TopicName.create("[PROJECT]", "[TOPIC]"));
    *   Subscription request = Subscription.newBuilder()
    *     .setNameWithSubscriptionName(name)
-   *     .setTopicWithTopicName(topic)
+   *     .setTopicWithTopicNameOneof(topic)
    *     .build();
    *   ApiFuture&lt;Subscription&gt; future = subscriptionAdminClient.createSubscriptionCallable().futureCall(request);
    *   // Do something
@@ -449,7 +453,9 @@ public class SubscriptionAdminClient implements AutoCloseable {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Updates an existing subscription. Note that certain properties of a subscription, such as its
-   * topic, are not modifiable.
+   * topic, are not modifiable. NOTE: The style guide requires body: "subscription" instead of body:
+   * "&#42;". Keeping the latter for internal consistency in V1, however it should be corrected in
+   * V2. See https://cloud.google.com/apis/design/standard_methods#update for details.
    *
    * <p>Sample code:
    *
@@ -475,7 +481,9 @@ public class SubscriptionAdminClient implements AutoCloseable {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Updates an existing subscription. Note that certain properties of a subscription, such as its
-   * topic, are not modifiable.
+   * topic, are not modifiable. NOTE: The style guide requires body: "subscription" instead of body:
+   * "&#42;". Keeping the latter for internal consistency in V1, however it should be corrected in
+   * V2. See https://cloud.google.com/apis/design/standard_methods#update for details.
    *
    * <p>Sample code:
    *
@@ -1328,6 +1336,62 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable() {
     return createSnapshotCallable;
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing snapshot. Note that certain properties of a snapshot are not modifiable.
+   * NOTE: The style guide requires body: "snapshot" instead of body: "&#42;". Keeping the latter
+   * for internal consistency in V1, however it should be corrected in V2. See
+   * https://cloud.google.com/apis/design/standard_methods#update for details.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
+   *   Snapshot snapshot = Snapshot.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateSnapshotRequest request = UpdateSnapshotRequest.newBuilder()
+   *     .setSnapshot(snapshot)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   Snapshot response = subscriptionAdminClient.updateSnapshot(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   */
+  /* package-private */ final Snapshot updateSnapshot(UpdateSnapshotRequest request) {
+    return updateSnapshotCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Updates an existing snapshot. Note that certain properties of a snapshot are not modifiable.
+   * NOTE: The style guide requires body: "snapshot" instead of body: "&#42;". Keeping the latter
+   * for internal consistency in V1, however it should be corrected in V2. See
+   * https://cloud.google.com/apis/design/standard_methods#update for details.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SubscriptionAdminClient subscriptionAdminClient = SubscriptionAdminClient.create()) {
+   *   Snapshot snapshot = Snapshot.newBuilder().build();
+   *   FieldMask updateMask = FieldMask.newBuilder().build();
+   *   UpdateSnapshotRequest request = UpdateSnapshotRequest.newBuilder()
+   *     .setSnapshot(snapshot)
+   *     .setUpdateMask(updateMask)
+   *     .build();
+   *   ApiFuture&lt;Snapshot&gt; future = subscriptionAdminClient.updateSnapshotCallable().futureCall(request);
+   *   // Do something
+   *   Snapshot response = future.get();
+   * }
+   * </code></pre>
+   */
+  /* package-private */ final UnaryCallable<UpdateSnapshotRequest, Snapshot>
+      updateSnapshotCallable() {
+    return updateSnapshotCallable;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD

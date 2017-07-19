@@ -41,6 +41,15 @@ public final class PublisherGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateTopicRequest,
+      com.google.pubsub.v1.Topic> METHOD_UPDATE_TOPIC =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.pubsub.v1.Publisher", "UpdateTopic"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.UpdateTopicRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Topic.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.PublishRequest,
       com.google.pubsub.v1.PublishResponse> METHOD_PUBLISH =
       io.grpc.MethodDescriptor.create(
@@ -129,6 +138,21 @@ public final class PublisherGrpc {
 
     /**
      * <pre>
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public void updateTopic(com.google.pubsub.v1.UpdateTopicRequest request,
+        io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_UPDATE_TOPIC, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
@@ -192,6 +216,13 @@ public final class PublisherGrpc {
                 com.google.pubsub.v1.Topic,
                 com.google.pubsub.v1.Topic>(
                   this, METHODID_CREATE_TOPIC)))
+          .addMethod(
+            METHOD_UPDATE_TOPIC,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.pubsub.v1.UpdateTopicRequest,
+                com.google.pubsub.v1.Topic>(
+                  this, METHODID_UPDATE_TOPIC)))
           .addMethod(
             METHOD_PUBLISH,
             asyncUnaryCall(
@@ -262,6 +293,22 @@ public final class PublisherGrpc {
         io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_CREATE_TOPIC, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public void updateTopic(com.google.pubsub.v1.UpdateTopicRequest request,
+        io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_TOPIC, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -360,6 +407,21 @@ public final class PublisherGrpc {
 
     /**
      * <pre>
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public com.google.pubsub.v1.Topic updateTopic(com.google.pubsub.v1.UpdateTopicRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_UPDATE_TOPIC, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
@@ -450,6 +512,22 @@ public final class PublisherGrpc {
 
     /**
      * <pre>
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Topic> updateTopic(
+        com.google.pubsub.v1.UpdateTopicRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_TOPIC, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
@@ -511,11 +589,12 @@ public final class PublisherGrpc {
   }
 
   private static final int METHODID_CREATE_TOPIC = 0;
-  private static final int METHODID_PUBLISH = 1;
-  private static final int METHODID_GET_TOPIC = 2;
-  private static final int METHODID_LIST_TOPICS = 3;
-  private static final int METHODID_LIST_TOPIC_SUBSCRIPTIONS = 4;
-  private static final int METHODID_DELETE_TOPIC = 5;
+  private static final int METHODID_UPDATE_TOPIC = 1;
+  private static final int METHODID_PUBLISH = 2;
+  private static final int METHODID_GET_TOPIC = 3;
+  private static final int METHODID_LIST_TOPICS = 4;
+  private static final int METHODID_LIST_TOPIC_SUBSCRIPTIONS = 5;
+  private static final int METHODID_DELETE_TOPIC = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -536,6 +615,10 @@ public final class PublisherGrpc {
       switch (methodId) {
         case METHODID_CREATE_TOPIC:
           serviceImpl.createTopic((com.google.pubsub.v1.Topic) request,
+              (io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic>) responseObserver);
+          break;
+        case METHODID_UPDATE_TOPIC:
+          serviceImpl.updateTopic((com.google.pubsub.v1.UpdateTopicRequest) request,
               (io.grpc.stub.StreamObserver<com.google.pubsub.v1.Topic>) responseObserver);
           break;
         case METHODID_PUBLISH:
@@ -592,6 +675,7 @@ public final class PublisherGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new PublisherDescriptorSupplier())
               .addMethod(METHOD_CREATE_TOPIC)
+              .addMethod(METHOD_UPDATE_TOPIC)
               .addMethod(METHOD_PUBLISH)
               .addMethod(METHOD_GET_TOPIC)
               .addMethod(METHOD_LIST_TOPICS)

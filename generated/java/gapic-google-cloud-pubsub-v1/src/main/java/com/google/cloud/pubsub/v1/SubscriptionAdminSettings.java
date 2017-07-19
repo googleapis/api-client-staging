@@ -68,6 +68,7 @@ import com.google.pubsub.v1.Snapshot;
 import com.google.pubsub.v1.StreamingPullRequest;
 import com.google.pubsub.v1.StreamingPullResponse;
 import com.google.pubsub.v1.Subscription;
+import com.google.pubsub.v1.UpdateSnapshotRequest;
 import com.google.pubsub.v1.UpdateSubscriptionRequest;
 import io.grpc.Status;
 import java.io.IOException;
@@ -204,6 +205,13 @@ public class SubscriptionAdminSettings extends ClientSettings {
               "google.pubsub.v1.Subscriber/CreateSnapshot",
               io.grpc.protobuf.ProtoUtils.marshaller(CreateSnapshotRequest.getDefaultInstance()),
               io.grpc.protobuf.ProtoUtils.marshaller(Snapshot.getDefaultInstance()));
+  private static final io.grpc.MethodDescriptor<UpdateSnapshotRequest, Snapshot>
+      METHOD_UPDATE_SNAPSHOT =
+          io.grpc.MethodDescriptor.create(
+              io.grpc.MethodDescriptor.MethodType.UNARY,
+              "google.pubsub.v1.Subscriber/UpdateSnapshot",
+              io.grpc.protobuf.ProtoUtils.marshaller(UpdateSnapshotRequest.getDefaultInstance()),
+              io.grpc.protobuf.ProtoUtils.marshaller(Snapshot.getDefaultInstance()));
   private static final io.grpc.MethodDescriptor<DeleteSnapshotRequest, Empty>
       METHOD_DELETE_SNAPSHOT =
           io.grpc.MethodDescriptor.create(
@@ -258,6 +266,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
           ListSnapshotsRequest, ListSnapshotsResponse, ListSnapshotsPagedResponse>
       listSnapshotsSettings;
   private final SimpleCallSettings<CreateSnapshotRequest, Snapshot> createSnapshotSettings;
+  private final SimpleCallSettings<UpdateSnapshotRequest, Snapshot> updateSnapshotSettings;
   private final SimpleCallSettings<DeleteSnapshotRequest, Empty> deleteSnapshotSettings;
   private final SimpleCallSettings<SeekRequest, SeekResponse> seekSettings;
   private final SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
@@ -327,6 +336,11 @@ public class SubscriptionAdminSettings extends ClientSettings {
   /** Returns the object with the settings used for calls to createSnapshot. */
   public SimpleCallSettings<CreateSnapshotRequest, Snapshot> createSnapshotSettings() {
     return createSnapshotSettings;
+  }
+
+  /** Returns the object with the settings used for calls to updateSnapshot. */
+  public SimpleCallSettings<UpdateSnapshotRequest, Snapshot> updateSnapshotSettings() {
+    return updateSnapshotSettings;
   }
 
   /** Returns the object with the settings used for calls to deleteSnapshot. */
@@ -425,6 +439,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
     modifyPushConfigSettings = settingsBuilder.modifyPushConfigSettings().build();
     listSnapshotsSettings = settingsBuilder.listSnapshotsSettings().build();
     createSnapshotSettings = settingsBuilder.createSnapshotSettings().build();
+    updateSnapshotSettings = settingsBuilder.updateSnapshotSettings().build();
     deleteSnapshotSettings = settingsBuilder.deleteSnapshotSettings().build();
     seekSettings = settingsBuilder.seekSettings().build();
     setIamPolicySettings = settingsBuilder.setIamPolicySettings().build();
@@ -568,6 +583,8 @@ public class SubscriptionAdminSettings extends ClientSettings {
         listSnapshotsSettings;
     private final SimpleCallSettings.Builder<CreateSnapshotRequest, Snapshot>
         createSnapshotSettings;
+    private final SimpleCallSettings.Builder<UpdateSnapshotRequest, Snapshot>
+        updateSnapshotSettings;
     private final SimpleCallSettings.Builder<DeleteSnapshotRequest, Empty> deleteSnapshotSettings;
     private final SimpleCallSettings.Builder<SeekRequest, SeekResponse> seekSettings;
     private final SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
@@ -655,6 +672,8 @@ public class SubscriptionAdminSettings extends ClientSettings {
 
       createSnapshotSettings = SimpleCallSettings.newBuilder(METHOD_CREATE_SNAPSHOT);
 
+      updateSnapshotSettings = SimpleCallSettings.newBuilder(METHOD_UPDATE_SNAPSHOT);
+
       deleteSnapshotSettings = SimpleCallSettings.newBuilder(METHOD_DELETE_SNAPSHOT);
 
       seekSettings = SimpleCallSettings.newBuilder(METHOD_SEEK);
@@ -678,6 +697,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
               modifyPushConfigSettings,
               listSnapshotsSettings,
               createSnapshotSettings,
+              updateSnapshotSettings,
               deleteSnapshotSettings,
               seekSettings,
               setIamPolicySettings,
@@ -744,6 +764,11 @@ public class SubscriptionAdminSettings extends ClientSettings {
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .updateSnapshotSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .deleteSnapshotSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
@@ -786,6 +811,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
       modifyPushConfigSettings = settings.modifyPushConfigSettings.toBuilder();
       listSnapshotsSettings = settings.listSnapshotsSettings.toBuilder();
       createSnapshotSettings = settings.createSnapshotSettings.toBuilder();
+      updateSnapshotSettings = settings.updateSnapshotSettings.toBuilder();
       deleteSnapshotSettings = settings.deleteSnapshotSettings.toBuilder();
       seekSettings = settings.seekSettings.toBuilder();
       setIamPolicySettings = settings.setIamPolicySettings.toBuilder();
@@ -805,6 +831,7 @@ public class SubscriptionAdminSettings extends ClientSettings {
               modifyPushConfigSettings,
               listSnapshotsSettings,
               createSnapshotSettings,
+              updateSnapshotSettings,
               deleteSnapshotSettings,
               seekSettings,
               setIamPolicySettings,
@@ -908,6 +935,11 @@ public class SubscriptionAdminSettings extends ClientSettings {
     /** Returns the builder for the settings used for calls to createSnapshot. */
     public SimpleCallSettings.Builder<CreateSnapshotRequest, Snapshot> createSnapshotSettings() {
       return createSnapshotSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to updateSnapshot. */
+    public SimpleCallSettings.Builder<UpdateSnapshotRequest, Snapshot> updateSnapshotSettings() {
+      return updateSnapshotSettings;
     }
 
     /** Returns the builder for the settings used for calls to deleteSnapshot. */

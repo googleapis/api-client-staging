@@ -98,6 +98,19 @@ public  final class Subscription extends
 
             break;
           }
+          case 74: {
+            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+              labels_ = com.google.protobuf.MapField.newMapField(
+                  LabelsDefaultEntryHolder.defaultEntry);
+              mutable_bitField0_ |= 0x00000040;
+            }
+            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+            labels__ = input.readMessage(
+                LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+            labels_.getMutableMap().put(
+                labels__.getKey(), labels__.getValue());
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -114,6 +127,17 @@ public  final class Subscription extends
     return com.google.pubsub.v1.PubsubProto.internal_static_google_pubsub_v1_Subscription_descriptor;
   }
 
+  @SuppressWarnings({"rawtypes"})
+  protected com.google.protobuf.MapField internalGetMapField(
+      int number) {
+    switch (number) {
+      case 9:
+        return internalGetLabels();
+      default:
+        throw new RuntimeException(
+            "Invalid map field number: " + number);
+    }
+  }
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.google.pubsub.v1.PubsubProto.internal_static_google_pubsub_v1_Subscription_fieldAccessorTable
@@ -121,6 +145,7 @@ public  final class Subscription extends
             com.google.pubsub.v1.Subscription.class, com.google.pubsub.v1.Subscription.Builder.class);
   }
 
+  private int bitField0_;
   public static final int NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object name_;
   /**
@@ -352,6 +377,98 @@ public  final class Subscription extends
     return getMessageRetentionDuration();
   }
 
+  public static final int LABELS_FIELD_NUMBER = 9;
+  private static final class LabelsDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                com.google.pubsub.v1.PubsubProto.internal_static_google_pubsub_v1_Subscription_LabelsEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.String> labels_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  internalGetLabels() {
+    if (labels_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          LabelsDefaultEntryHolder.defaultEntry);
+    }
+    return labels_;
+  }
+
+  public int getLabelsCount() {
+    return internalGetLabels().getMap().size();
+  }
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  public boolean containsLabels(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    return internalGetLabels().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getLabelsMap()} instead.
+   */
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, java.lang.String> getLabels() {
+    return getLabelsMap();
+  }
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
+    return internalGetLabels().getMap();
+  }
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  public java.lang.String getLabelsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabels().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 9;</code>
+   */
+
+  public java.lang.String getLabelsOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabels().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -382,6 +499,12 @@ public  final class Subscription extends
     if (messageRetentionDuration_ != null) {
       output.writeMessage(8, getMessageRetentionDuration());
     }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabels(),
+        LabelsDefaultEntryHolder.defaultEntry,
+        9);
   }
 
   public int getSerializedSize() {
@@ -410,6 +533,16 @@ public  final class Subscription extends
     if (messageRetentionDuration_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(8, getMessageRetentionDuration());
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+         : internalGetLabels().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+      labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, labels__);
     }
     memoizedSize = size;
     return size;
@@ -445,6 +578,8 @@ public  final class Subscription extends
       result = result && getMessageRetentionDuration()
           .equals(other.getMessageRetentionDuration());
     }
+    result = result && internalGetLabels().equals(
+        other.internalGetLabels());
     return result;
   }
 
@@ -471,6 +606,10 @@ public  final class Subscription extends
     if (hasMessageRetentionDuration()) {
       hash = (37 * hash) + MESSAGE_RETENTION_DURATION_FIELD_NUMBER;
       hash = (53 * hash) + getMessageRetentionDuration().hashCode();
+    }
+    if (!internalGetLabels().getMap().isEmpty()) {
+      hash = (37 * hash) + LABELS_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetLabels().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -581,6 +720,28 @@ public  final class Subscription extends
       return com.google.pubsub.v1.PubsubProto.internal_static_google_pubsub_v1_Subscription_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 9:
+          return internalGetLabels();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMutableMapField(
+        int number) {
+      switch (number) {
+        case 9:
+          return internalGetMutableLabels();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.google.pubsub.v1.PubsubProto.internal_static_google_pubsub_v1_Subscription_fieldAccessorTable
@@ -625,6 +786,7 @@ public  final class Subscription extends
         messageRetentionDuration_ = null;
         messageRetentionDurationBuilder_ = null;
       }
+      internalGetMutableLabels().clear();
       return this;
     }
 
@@ -647,6 +809,8 @@ public  final class Subscription extends
 
     public com.google.pubsub.v1.Subscription buildPartial() {
       com.google.pubsub.v1.Subscription result = new com.google.pubsub.v1.Subscription(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.name_ = name_;
       result.topic_ = topic_;
       if (pushConfigBuilder_ == null) {
@@ -661,6 +825,9 @@ public  final class Subscription extends
       } else {
         result.messageRetentionDuration_ = messageRetentionDurationBuilder_.build();
       }
+      result.labels_ = internalGetLabels();
+      result.labels_.makeImmutable();
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -722,6 +889,8 @@ public  final class Subscription extends
       if (other.hasMessageRetentionDuration()) {
         mergeMessageRetentionDuration(other.getMessageRetentionDuration());
       }
+      internalGetMutableLabels().mergeFrom(
+          other.internalGetLabels());
       onChanged();
       return this;
     }
@@ -747,6 +916,7 @@ public  final class Subscription extends
       }
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object name_ = "";
     /**
@@ -1463,6 +1633,157 @@ public  final class Subscription extends
         messageRetentionDuration_ = null;
       }
       return messageRetentionDurationBuilder_;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> labels_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetLabels() {
+      if (labels_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            LabelsDefaultEntryHolder.defaultEntry);
+      }
+      return labels_;
+    }
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetMutableLabels() {
+      onChanged();;
+      if (labels_ == null) {
+        labels_ = com.google.protobuf.MapField.newMapField(
+            LabelsDefaultEntryHolder.defaultEntry);
+      }
+      if (!labels_.isMutable()) {
+        labels_ = labels_.copy();
+      }
+      return labels_;
+    }
+
+    public int getLabelsCount() {
+      return internalGetLabels().getMap().size();
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public boolean containsLabels(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetLabels().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getLabelsMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getLabels() {
+      return getLabelsMap();
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
+      return internalGetLabels().getMap();
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public java.lang.String getLabelsOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabels().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public java.lang.String getLabelsOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabels().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    public Builder clearLabels() {
+      internalGetMutableLabels().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public Builder removeLabels(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabels().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String>
+    getMutableLabels() {
+      return internalGetMutableLabels().getMutableMap();
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+    public Builder putLabels(
+        java.lang.String key,
+        java.lang.String value) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (value == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabels().getMutableMap()
+          .put(key, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * User labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 9;</code>
+     */
+
+    public Builder putAllLabels(
+        java.util.Map<java.lang.String, java.lang.String> values) {
+      internalGetMutableLabels().getMutableMap()
+          .putAll(values);
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
