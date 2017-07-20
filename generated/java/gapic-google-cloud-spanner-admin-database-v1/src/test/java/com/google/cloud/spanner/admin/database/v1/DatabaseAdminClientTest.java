@@ -18,7 +18,8 @@ package com.google.cloud.spanner.admin.database.v1;
 import static com.google.cloud.spanner.admin.database.v1.PagedResponseWrappers.ListDatabasesPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
-import com.google.api.gax.grpc.ApiException;
+import com.google.api.gax.grpc.GrpcApiException;
+import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.common.collect.Lists;
@@ -81,7 +82,10 @@ public class DatabaseAdminClientTest {
     serviceHelper.reset();
     DatabaseAdminSettings settings =
         DatabaseAdminSettings.defaultBuilder()
-            .setChannelProvider(serviceHelper.createChannelProvider())
+            .setTransportProvider(
+                GrpcTransportProvider.newBuilder()
+                    .setChannelProvider(serviceHelper.createChannelProvider())
+                    .build())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
     client = DatabaseAdminClient.create(settings);
@@ -131,8 +135,8 @@ public class DatabaseAdminClientTest {
 
       client.listDatabases(parent);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -176,9 +180,10 @@ public class DatabaseAdminClientTest {
       client.createDatabaseAsync(parent, createStatement).get();
       Assert.fail("No exception raised");
     } catch (ExecutionException e) {
-      Assert.assertEquals(ApiException.class, e.getCause().getClass());
-      ApiException apiException = (ApiException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode());
+      Assert.assertEquals(GrpcApiException.class, e.getCause().getClass());
+      GrpcApiException apiException = (GrpcApiException) e.getCause();
+      Assert.assertEquals(
+          Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode().getCode());
     }
   }
 
@@ -212,8 +217,8 @@ public class DatabaseAdminClientTest {
 
       client.getDatabase(name);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -256,9 +261,10 @@ public class DatabaseAdminClientTest {
       client.updateDatabaseDdlAsync(database, statements).get();
       Assert.fail("No exception raised");
     } catch (ExecutionException e) {
-      Assert.assertEquals(ApiException.class, e.getCause().getClass());
-      ApiException apiException = (ApiException) e.getCause();
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode());
+      Assert.assertEquals(GrpcApiException.class, e.getCause().getClass());
+      GrpcApiException apiException = (GrpcApiException) e.getCause();
+      Assert.assertEquals(
+          Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode().getCode());
     }
   }
 
@@ -290,8 +296,8 @@ public class DatabaseAdminClientTest {
 
       client.dropDatabase(database);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -324,8 +330,8 @@ public class DatabaseAdminClientTest {
 
       client.getDatabaseDdl(database);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -365,8 +371,8 @@ public class DatabaseAdminClientTest {
 
       client.setIamPolicy(formattedResource, policy);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -403,8 +409,8 @@ public class DatabaseAdminClientTest {
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 
@@ -443,8 +449,8 @@ public class DatabaseAdminClientTest {
 
       client.testIamPermissions(formattedResource, permissions);
       Assert.fail("No exception raised");
-    } catch (ApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode());
+    } catch (GrpcApiException e) {
+      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
     }
   }
 }

@@ -15,24 +15,31 @@
  */
 package com.google.cloud.spanner.v1;
 
+import com.google.api.core.ApiFunction;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.CredentialsProvider;
+import com.google.api.gax.core.ExecutorProvider;
 import com.google.api.gax.core.GoogleCredentialsProvider;
+import com.google.api.gax.core.InstantiatingExecutorProvider;
 import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.grpc.ChannelProvider;
-import com.google.api.gax.grpc.ClientSettings;
-import com.google.api.gax.grpc.ExecutorProvider;
+import com.google.api.gax.grpc.GrpcStatusCode;
+import com.google.api.gax.grpc.GrpcTransport;
+import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
-import com.google.api.gax.grpc.InstantiatingExecutorProvider;
-import com.google.api.gax.grpc.SimpleCallSettings;
-import com.google.api.gax.grpc.StreamingCallSettings;
-import com.google.api.gax.grpc.UnaryCallSettings;
 import com.google.api.gax.retrying.RetrySettings;
+import com.google.api.gax.rpc.ClientContext;
+import com.google.api.gax.rpc.ClientSettings;
+import com.google.api.gax.rpc.SimpleCallSettings;
+import com.google.api.gax.rpc.StatusCode;
+import com.google.api.gax.rpc.StreamingCallSettings;
+import com.google.api.gax.rpc.TransportProvider;
+import com.google.api.gax.rpc.UnaryCallSettings;
+import com.google.cloud.spanner.v1.stub.GrpcSpannerStub;
+import com.google.cloud.spanner.v1.stub.SpannerStub;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
 import com.google.spanner.v1.CommitRequest;
@@ -97,71 +104,6 @@ public class SpannerSettings extends ClientSettings {
 
   private static String gapicVersion;
 
-  private static final io.grpc.MethodDescriptor<CreateSessionRequest, Session>
-      METHOD_CREATE_SESSION =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/CreateSession",
-              io.grpc.protobuf.ProtoUtils.marshaller(CreateSessionRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Session.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<GetSessionRequest, Session> METHOD_GET_SESSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/GetSession",
-          io.grpc.protobuf.ProtoUtils.marshaller(GetSessionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Session.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<DeleteSessionRequest, Empty> METHOD_DELETE_SESSION =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/DeleteSession",
-          io.grpc.protobuf.ProtoUtils.marshaller(DeleteSessionRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<ExecuteSqlRequest, ResultSet> METHOD_EXECUTE_SQL =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/ExecuteSql",
-          io.grpc.protobuf.ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<ExecuteSqlRequest, PartialResultSet>
-      METHOD_EXECUTE_STREAMING_SQL =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-              "google.spanner.v1.Spanner/ExecuteStreamingSql",
-              io.grpc.protobuf.ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(PartialResultSet.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<ReadRequest, ResultSet> METHOD_READ =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/Read",
-          io.grpc.protobuf.ProtoUtils.marshaller(ReadRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<ReadRequest, PartialResultSet>
-      METHOD_STREAMING_READ =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-              "google.spanner.v1.Spanner/StreamingRead",
-              io.grpc.protobuf.ProtoUtils.marshaller(ReadRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(PartialResultSet.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<BeginTransactionRequest, Transaction>
-      METHOD_BEGIN_TRANSACTION =
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/BeginTransaction",
-              io.grpc.protobuf.ProtoUtils.marshaller(BeginTransactionRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Transaction.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<CommitRequest, CommitResponse> METHOD_COMMIT =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/Commit",
-          io.grpc.protobuf.ProtoUtils.marshaller(CommitRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(CommitResponse.getDefaultInstance()));
-  private static final io.grpc.MethodDescriptor<RollbackRequest, Empty> METHOD_ROLLBACK =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          "google.spanner.v1.Spanner/Rollback",
-          io.grpc.protobuf.ProtoUtils.marshaller(RollbackRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance()));
-
   private final SimpleCallSettings<CreateSessionRequest, Session> createSessionSettings;
   private final SimpleCallSettings<GetSessionRequest, Session> getSessionSettings;
   private final SimpleCallSettings<DeleteSessionRequest, Empty> deleteSessionSettings;
@@ -224,6 +166,15 @@ public class SpannerSettings extends ClientSettings {
     return rollbackSettings;
   }
 
+  public SpannerStub createStub() throws IOException {
+    if (getTransportProvider().getTransportName().equals(GrpcTransport.getGrpcTransportName())) {
+      return GrpcSpannerStub.create(this);
+    } else {
+      throw new UnsupportedOperationException(
+          "Transport not supported: " + getTransportProvider().getTransportName());
+    }
+  }
+
   /** Returns a builder for the default ExecutorProvider for this service. */
   public static InstantiatingExecutorProvider.Builder defaultExecutorProviderBuilder() {
     return InstantiatingExecutorProvider.newBuilder();
@@ -245,10 +196,20 @@ public class SpannerSettings extends ClientSettings {
   }
 
   /** Returns a builder for the default ChannelProvider for this service. */
-  public static InstantiatingChannelProvider.Builder defaultChannelProviderBuilder() {
+  public static InstantiatingChannelProvider.Builder defaultGrpcChannelProviderBuilder() {
     return InstantiatingChannelProvider.newBuilder()
         .setEndpoint(getDefaultEndpoint())
         .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion());
+  }
+
+  /** Returns a builder for the default ChannelProvider for this service. */
+  public static GrpcTransportProvider.Builder defaultGrpcTransportProviderBuilder() {
+    return GrpcTransportProvider.newBuilder()
+        .setChannelProvider(defaultGrpcChannelProviderBuilder().build());
+  }
+
+  public static TransportProvider defaultTransportProvider() {
+    return defaultGrpcTransportProviderBuilder().build();
   }
 
   private static String getGapicVersion() {
@@ -265,9 +226,22 @@ public class SpannerSettings extends ClientSettings {
     return Builder.createDefault();
   }
 
+  /**
+   * Returns a builder for this class with recommended defaults for API methods, and the given
+   * ClientContext used for executor/transport/credentials.
+   */
+  public static Builder defaultBuilder(ClientContext clientContext) {
+    return new Builder(clientContext);
+  }
+
   /** Returns a new builder for this class. */
   public static Builder newBuilder() {
     return new Builder();
+  }
+
+  /** Returns a new builder for this class. */
+  public static Builder newBuilder(ClientContext clientContext) {
+    return new Builder(clientContext);
   }
 
   /** Returns a builder containing all the values of this settings class. */
@@ -278,8 +252,9 @@ public class SpannerSettings extends ClientSettings {
   private SpannerSettings(Builder settingsBuilder) throws IOException {
     super(
         settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getChannelProvider(),
-        settingsBuilder.getCredentialsProvider());
+        settingsBuilder.getTransportProvider(),
+        settingsBuilder.getCredentialsProvider(),
+        settingsBuilder.getClock());
 
     createSessionSettings = settingsBuilder.createSessionSettings().build();
     getSessionSettings = settingsBuilder.getSessionSettings().build();
@@ -311,25 +286,26 @@ public class SpannerSettings extends ClientSettings {
     private final SimpleCallSettings.Builder<CommitRequest, CommitResponse> commitSettings;
     private final SimpleCallSettings.Builder<RollbackRequest, Empty> rollbackSettings;
 
-    private static final ImmutableMap<String, ImmutableSet<Status.Code>> RETRYABLE_CODE_DEFINITIONS;
+    private static final ImmutableMap<String, ImmutableSet<StatusCode>> RETRYABLE_CODE_DEFINITIONS;
 
     static {
-      ImmutableMap.Builder<String, ImmutableSet<Status.Code>> definitions = ImmutableMap.builder();
+      ImmutableMap.Builder<String, ImmutableSet<StatusCode>> definitions = ImmutableMap.builder();
       definitions.put(
           "idempotent",
-          Sets.immutableEnumSet(
-              Lists.<Status.Code>newArrayList(
-                  Status.Code.DEADLINE_EXCEEDED, Status.Code.UNAVAILABLE)));
-      definitions.put("non_idempotent", Sets.immutableEnumSet(Lists.<Status.Code>newArrayList()));
+          ImmutableSet.copyOf(
+              Lists.<StatusCode>newArrayList(
+                  GrpcStatusCode.of(Status.Code.DEADLINE_EXCEEDED),
+                  GrpcStatusCode.of(Status.Code.UNAVAILABLE))));
+      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode>newArrayList()));
       RETRYABLE_CODE_DEFINITIONS = definitions.build();
     }
 
-    private static final ImmutableMap<String, RetrySettings.Builder> RETRY_PARAM_DEFINITIONS;
+    private static final ImmutableMap<String, RetrySettings> RETRY_PARAM_DEFINITIONS;
 
     static {
-      ImmutableMap.Builder<String, RetrySettings.Builder> definitions = ImmutableMap.builder();
-      RetrySettings.Builder settingsBuilder = null;
-      settingsBuilder =
+      ImmutableMap.Builder<String, RetrySettings> definitions = ImmutableMap.builder();
+      RetrySettings settings = null;
+      settings =
           RetrySettings.newBuilder()
               .setInitialRetryDelay(Duration.ofMillis(1000L))
               .setRetryDelayMultiplier(1.3)
@@ -337,34 +313,38 @@ public class SpannerSettings extends ClientSettings {
               .setInitialRpcTimeout(Duration.ofMillis(60000L))
               .setRpcTimeoutMultiplier(1.0)
               .setMaxRpcTimeout(Duration.ofMillis(60000L))
-              .setTotalTimeout(Duration.ofMillis(600000L));
-      definitions.put("default", settingsBuilder);
+              .setTotalTimeout(Duration.ofMillis(600000L))
+              .build();
+      definitions.put("default", settings);
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }
 
     private Builder() {
-      super(defaultChannelProviderBuilder().build());
-      setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+      this((ClientContext) null);
+    }
 
-      createSessionSettings = SimpleCallSettings.newBuilder(METHOD_CREATE_SESSION);
+    private Builder(ClientContext clientContext) {
+      super(clientContext);
 
-      getSessionSettings = SimpleCallSettings.newBuilder(METHOD_GET_SESSION);
+      createSessionSettings = SimpleCallSettings.newBuilder();
 
-      deleteSessionSettings = SimpleCallSettings.newBuilder(METHOD_DELETE_SESSION);
+      getSessionSettings = SimpleCallSettings.newBuilder();
 
-      executeSqlSettings = SimpleCallSettings.newBuilder(METHOD_EXECUTE_SQL);
+      deleteSessionSettings = SimpleCallSettings.newBuilder();
 
-      executeStreamingSqlSettings = StreamingCallSettings.newBuilder(METHOD_EXECUTE_STREAMING_SQL);
+      executeSqlSettings = SimpleCallSettings.newBuilder();
 
-      readSettings = SimpleCallSettings.newBuilder(METHOD_READ);
+      executeStreamingSqlSettings = StreamingCallSettings.newBuilder();
 
-      streamingReadSettings = StreamingCallSettings.newBuilder(METHOD_STREAMING_READ);
+      readSettings = SimpleCallSettings.newBuilder();
 
-      beginTransactionSettings = SimpleCallSettings.newBuilder(METHOD_BEGIN_TRANSACTION);
+      streamingReadSettings = StreamingCallSettings.newBuilder();
 
-      commitSettings = SimpleCallSettings.newBuilder(METHOD_COMMIT);
+      beginTransactionSettings = SimpleCallSettings.newBuilder();
 
-      rollbackSettings = SimpleCallSettings.newBuilder(METHOD_ROLLBACK);
+      commitSettings = SimpleCallSettings.newBuilder();
+
+      rollbackSettings = SimpleCallSettings.newBuilder();
 
       unaryMethodSettingsBuilders =
           ImmutableList.<UnaryCallSettings.Builder>of(
@@ -376,50 +356,58 @@ public class SpannerSettings extends ClientSettings {
               beginTransactionSettings,
               commitSettings,
               rollbackSettings);
+
+      initDefaults(this);
     }
 
     private static Builder createDefault() {
-      Builder builder = new Builder();
+      Builder builder = new Builder((ClientContext) null);
+      builder.setTransportProvider(defaultTransportProvider());
+      builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+      return initDefaults(builder);
+    }
+
+    private static Builder initDefaults(Builder builder) {
 
       builder
           .createSessionSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .getSessionSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .deleteSessionSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .executeSqlSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .readSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .beginTransactionSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .commitSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
           .rollbackSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
-          .setRetrySettingsBuilder(RETRY_PARAM_DEFINITIONS.get("default"));
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       return builder;
     }
@@ -457,8 +445,8 @@ public class SpannerSettings extends ClientSettings {
     }
 
     @Override
-    public Builder setChannelProvider(ChannelProvider channelProvider) {
-      super.setChannelProvider(channelProvider);
+    public Builder setTransportProvider(TransportProvider transportProvider) {
+      super.setTransportProvider(transportProvider);
       return this;
     }
 
@@ -469,14 +457,13 @@ public class SpannerSettings extends ClientSettings {
     }
 
     /**
-     * Applies the given settings to all of the unary API methods in this service. Only values that
-     * are non-null will be applied, so this method is not capable of un-setting any values.
+     * Applies the given settings updater function to all of the unary API methods in this service.
      *
      * <p>Note: This method does not support applying settings to streaming methods.
      */
-    public Builder applyToAllUnaryMethods(UnaryCallSettings.Builder unaryCallSettings)
-        throws Exception {
-      super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, unaryCallSettings);
+    public Builder applyToAllUnaryMethods(
+        ApiFunction<UnaryCallSettings.Builder, Void> settingsUpdater) throws Exception {
+      super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, settingsUpdater);
       return this;
     }
 
