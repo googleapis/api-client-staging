@@ -29,7 +29,6 @@ use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
 use Google\Cloud\Language\V1\Document;
-use Google\Cloud\Language\V1\EncodingType;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\Testing\GeneratedTest;
@@ -159,9 +158,8 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $encodingType = EncodingType::NONE;
 
-        $response = $client->analyzeEntities($document, $encodingType);
+        $response = $client->analyzeEntities($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -170,7 +168,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeEntities', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
-        $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -199,10 +196,9 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $encodingType = EncodingType::NONE;
 
         try {
-            $client->analyzeEntities($document, $encodingType);
+            $client->analyzeEntities($document);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -233,9 +229,8 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $encodingType = EncodingType::NONE;
 
-        $response = $client->analyzeSyntax($document, $encodingType);
+        $response = $client->analyzeSyntax($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -244,7 +239,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSyntax', $actualFuncCall);
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
-        $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -273,10 +267,9 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $encodingType = EncodingType::NONE;
 
         try {
-            $client->analyzeSyntax($document, $encodingType);
+            $client->analyzeSyntax($document);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -308,9 +301,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $features = new Features();
-        $encodingType = EncodingType::NONE;
 
-        $response = $client->annotateText($document, $features, $encodingType);
+        $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -320,7 +312,6 @@ class LanguageServiceClientTest extends GeneratedTest
 
         $this->assertEquals($document, $actualRequestObject->getDocument());
         $this->assertEquals($features, $actualRequestObject->getFeatures());
-        $this->assertEquals($encodingType, $actualRequestObject->getEncodingType());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -350,10 +341,9 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $features = new Features();
-        $encodingType = EncodingType::NONE;
 
         try {
-            $client->annotateText($document, $features, $encodingType);
+            $client->annotateText($document, $features);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
