@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * This resource represents a long-running operation that is the result of a
  * network API call.
  *
- * Protobuf type <code>Google\Longrunning\Operation</code>
+ * Generated from protobuf message <code>google.longrunning.Operation</code>
  */
 class Operation extends \Google\Protobuf\Internal\Message
 {

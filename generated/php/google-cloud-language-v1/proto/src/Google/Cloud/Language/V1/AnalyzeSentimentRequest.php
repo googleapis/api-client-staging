@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The sentiment analysis request message.
  *
- * Protobuf type <code>Google\Cloud\Language\V1\AnalyzeSentimentRequest</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.AnalyzeSentimentRequest</code>
  */
 class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
 {

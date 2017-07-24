@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Video context and/or feature-specific parameters.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoContext</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.VideoContext</code>
  */
 class VideoContext extends \Google\Protobuf\Internal\Message
 {
@@ -91,7 +91,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * is treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
     {

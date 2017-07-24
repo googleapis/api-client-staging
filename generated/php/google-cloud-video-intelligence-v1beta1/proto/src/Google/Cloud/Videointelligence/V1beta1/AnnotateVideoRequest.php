@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Video annotation request.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.AnnotateVideoRequest</code>
  */
 class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
 {
@@ -155,7 +155,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * Requested video annotation features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.Feature features = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFeatures(&$var)
     {
