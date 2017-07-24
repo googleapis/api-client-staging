@@ -16,17 +16,12 @@
 package com.google.cloud.language.v1;
 
 import com.google.api.core.BetaApi;
-import com.google.api.gax.grpc.ChannelAndExecutor;
-import com.google.api.gax.grpc.ClientContext;
-import com.google.api.gax.grpc.UnaryCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.language.v1.AnnotateTextRequest.Features;
-import io.grpc.ManagedChannel;
-import java.io.Closeable;
+import com.google.cloud.language.v1.stub.LanguageServiceStub;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
@@ -84,20 +79,11 @@ import javax.annotation.Generated;
  * </code>
  * </pre>
  */
-@Generated("by GAPIC")
+@Generated("by GAPIC v0.0.5")
 @BetaApi
-public class LanguageServiceClient implements AutoCloseable {
+public class LanguageServiceClient implements BackgroundResource {
   private final LanguageServiceSettings settings;
-  private final ScheduledExecutorService executor;
-  private final ManagedChannel channel;
-  private final List<AutoCloseable> closeables = new ArrayList<>();
-
-  private final UnaryCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
-      analyzeSentimentCallable;
-  private final UnaryCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
-      analyzeEntitiesCallable;
-  private final UnaryCallable<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse> analyzeSyntaxCallable;
-  private final UnaryCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable;
+  private final LanguageServiceStub stub;
 
   /** Constructs an instance of LanguageServiceClient with default settings. */
   public static final LanguageServiceClient create() throws IOException {
@@ -114,54 +100,34 @@ public class LanguageServiceClient implements AutoCloseable {
   }
 
   /**
+   * Constructs an instance of LanguageServiceClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use LanguageServiceSettings}.
+   */
+  public static final LanguageServiceClient create(LanguageServiceStub stub) {
+    return new LanguageServiceClient(stub);
+  }
+
+  /**
    * Constructs an instance of LanguageServiceClient, using the given settings. This is protected so
-   * that it easy to make a subclass, but otherwise, the static factory methods should be preferred.
+   * that it is easy to make a subclass, but otherwise, the static factory methods should be
+   * preferred.
    */
   protected LanguageServiceClient(LanguageServiceSettings settings) throws IOException {
     this.settings = settings;
-    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
-    this.executor = channelAndExecutor.getExecutor();
-    this.channel = channelAndExecutor.getChannel();
-    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+    this.stub = settings.createStub();
+  }
 
-    ClientContext clientContext =
-        ClientContext.newBuilder()
-            .setExecutor(this.executor)
-            .setChannel(this.channel)
-            .setCredentials(credentials)
-            .build();
-
-    this.analyzeSentimentCallable =
-        UnaryCallable.create(settings.analyzeSentimentSettings(), clientContext);
-    this.analyzeEntitiesCallable =
-        UnaryCallable.create(settings.analyzeEntitiesSettings(), clientContext);
-    this.analyzeSyntaxCallable =
-        UnaryCallable.create(settings.analyzeSyntaxSettings(), clientContext);
-    this.annotateTextCallable =
-        UnaryCallable.create(settings.annotateTextSettings(), clientContext);
-
-    if (settings.getChannelProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              channel.shutdown();
-            }
-          });
-    }
-    if (settings.getExecutorProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              executor.shutdown();
-            }
-          });
-    }
+  protected LanguageServiceClient(LanguageServiceStub stub) {
+    this.settings = null;
+    this.stub = stub;
   }
 
   public final LanguageServiceSettings getSettings() {
     return settings;
+  }
+
+  public LanguageServiceStub getStub() {
+    return stub;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -178,7 +144,7 @@ public class LanguageServiceClient implements AutoCloseable {
    * </code></pre>
    *
    * @param document Input document.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnalyzeSentimentResponse analyzeSentiment(Document document) {
 
@@ -204,7 +170,7 @@ public class LanguageServiceClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final AnalyzeSentimentResponse analyzeSentiment(AnalyzeSentimentRequest request) {
     return analyzeSentimentCallable().call(request);
@@ -230,7 +196,7 @@ public class LanguageServiceClient implements AutoCloseable {
    */
   public final UnaryCallable<AnalyzeSentimentRequest, AnalyzeSentimentResponse>
       analyzeSentimentCallable() {
-    return analyzeSentimentCallable;
+    return stub.analyzeSentimentCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -250,7 +216,7 @@ public class LanguageServiceClient implements AutoCloseable {
    *
    * @param document Input document.
    * @param encodingType The encoding type used by the API to calculate offsets.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnalyzeEntitiesResponse analyzeEntities(
       Document document, EncodingType encodingType) {
@@ -273,17 +239,15 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnalyzeEntitiesResponse response = languageServiceClient.analyzeEntities(request);
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnalyzeEntitiesResponse analyzeEntities(AnalyzeEntitiesRequest request) {
     return analyzeEntitiesCallable().call(request);
@@ -299,10 +263,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeEntitiesRequest request = AnalyzeEntitiesRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnalyzeEntitiesResponse&gt; future = languageServiceClient.analyzeEntitiesCallable().futureCall(request);
    *   // Do something
@@ -312,7 +274,7 @@ public class LanguageServiceClient implements AutoCloseable {
    */
   public final UnaryCallable<AnalyzeEntitiesRequest, AnalyzeEntitiesResponse>
       analyzeEntitiesCallable() {
-    return analyzeEntitiesCallable;
+    return stub.analyzeEntitiesCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -332,7 +294,7 @@ public class LanguageServiceClient implements AutoCloseable {
    *
    * @param document Input document.
    * @param encodingType The encoding type used by the API to calculate offsets.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnalyzeSyntaxResponse analyzeSyntax(Document document, EncodingType encodingType) {
 
@@ -354,17 +316,15 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnalyzeSyntaxResponse response = languageServiceClient.analyzeSyntax(request);
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnalyzeSyntaxResponse analyzeSyntax(AnalyzeSyntaxRequest request) {
     return analyzeSyntaxCallable().call(request);
@@ -380,10 +340,8 @@ public class LanguageServiceClient implements AutoCloseable {
    * <pre><code>
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnalyzeSyntaxRequest request = AnalyzeSyntaxRequest.newBuilder()
    *     .setDocument(document)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnalyzeSyntaxResponse&gt; future = languageServiceClient.analyzeSyntaxCallable().futureCall(request);
    *   // Do something
@@ -392,7 +350,7 @@ public class LanguageServiceClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse> analyzeSyntaxCallable() {
-    return analyzeSyntaxCallable;
+    return stub.analyzeSyntaxCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -414,7 +372,7 @@ public class LanguageServiceClient implements AutoCloseable {
    * @param document Input document.
    * @param features The enabled features.
    * @param encodingType The encoding type used by the API to calculate offsets.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnnotateTextResponse annotateText(
       Document document, AnnotateTextRequest.Features features, EncodingType encodingType) {
@@ -439,18 +397,16 @@ public class LanguageServiceClient implements AutoCloseable {
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
    *   AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnnotateTextRequest request = AnnotateTextRequest.newBuilder()
    *     .setDocument(document)
    *     .setFeatures(features)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   AnnotateTextResponse response = languageServiceClient.annotateText(request);
    * }
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final AnnotateTextResponse annotateText(AnnotateTextRequest request) {
     return annotateTextCallable().call(request);
@@ -467,11 +423,9 @@ public class LanguageServiceClient implements AutoCloseable {
    * try (LanguageServiceClient languageServiceClient = LanguageServiceClient.create()) {
    *   Document document = Document.newBuilder().build();
    *   AnnotateTextRequest.Features features = AnnotateTextRequest.Features.newBuilder().build();
-   *   EncodingType encodingType = EncodingType.NONE;
    *   AnnotateTextRequest request = AnnotateTextRequest.newBuilder()
    *     .setDocument(document)
    *     .setFeatures(features)
-   *     .setEncodingType(encodingType)
    *     .build();
    *   ApiFuture&lt;AnnotateTextResponse&gt; future = languageServiceClient.annotateTextCallable().futureCall(request);
    *   // Do something
@@ -480,17 +434,36 @@ public class LanguageServiceClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<AnnotateTextRequest, AnnotateTextResponse> annotateTextCallable() {
-    return annotateTextCallable;
+    return stub.annotateTextCallable();
   }
 
-  /**
-   * Initiates an orderly shutdown in which preexisting calls continue but new calls are immediately
-   * cancelled.
-   */
   @Override
   public final void close() throws Exception {
-    for (AutoCloseable closeable : closeables) {
-      closeable.close();
-    }
+    stub.close();
+  }
+
+  @Override
+  public void shutdown() {
+    stub.shutdown();
+  }
+
+  @Override
+  public boolean isShutdown() {
+    return stub.isShutdown();
+  }
+
+  @Override
+  public boolean isTerminated() {
+    return stub.isTerminated();
+  }
+
+  @Override
+  public void shutdownNow() {
+    stub.shutdownNow();
+  }
+
+  @Override
+  public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
+    return stub.awaitTermination(duration, unit);
   }
 }
