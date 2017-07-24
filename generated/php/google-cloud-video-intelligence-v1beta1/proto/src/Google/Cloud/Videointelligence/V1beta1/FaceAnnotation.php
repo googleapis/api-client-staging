@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Face annotation.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceAnnotation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.FaceAnnotation</code>
  */
 class FaceAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -83,7 +83,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * (as opposed to across multiple videos).
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
     {
@@ -106,7 +106,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * Face locations at one frame per second.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\FaceLocation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
     {

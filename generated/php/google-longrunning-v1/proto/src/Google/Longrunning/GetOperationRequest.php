@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The request message for [Operations.GetOperation][google.longrunning.Operations.GetOperation].
  *
- * Protobuf type <code>Google\Longrunning\GetOperationRequest</code>
+ * Generated from protobuf message <code>google.longrunning.GetOperationRequest</code>
  */
 class GetOperationRequest extends \Google\Protobuf\Internal\Message
 {

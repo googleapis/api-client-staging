@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations].
  *
- * Protobuf type <code>Google\Longrunning\ListOperationsRequest</code>
+ * Generated from protobuf message <code>google.longrunning.ListOperationsRequest</code>
  */
 class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 {

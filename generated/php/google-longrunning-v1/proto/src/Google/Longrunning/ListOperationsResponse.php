@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations].
  *
- * Protobuf type <code>Google\Longrunning\ListOperationsResponse</code>
+ * Generated from protobuf message <code>google.longrunning.ListOperationsResponse</code>
  */
 class ListOperationsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -48,7 +48,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of operations that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Longrunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setOperations(&$var)
     {

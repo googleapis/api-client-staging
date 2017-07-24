@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Annotation progress for a single video.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoAnnotationProgress</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.VideoAnnotationProgress</code>
  */
 class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 {

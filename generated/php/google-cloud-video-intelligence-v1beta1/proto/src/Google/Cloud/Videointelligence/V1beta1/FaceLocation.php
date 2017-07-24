@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Face location.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceLocation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.FaceLocation</code>
  */
 class FaceLocation extends \Google\Protobuf\Internal\Message
 {

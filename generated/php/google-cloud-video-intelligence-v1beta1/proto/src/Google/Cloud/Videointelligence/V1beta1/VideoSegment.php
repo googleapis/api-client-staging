@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Video segment.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoSegment</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.VideoSegment</code>
  */
 class VideoSegment extends \Google\Protobuf\Internal\Message
 {

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Label annotation.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelAnnotation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.LabelAnnotation</code>
  */
 class LabelAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -100,7 +100,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * Where the label was detected and with what confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\LabelLocation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
     {

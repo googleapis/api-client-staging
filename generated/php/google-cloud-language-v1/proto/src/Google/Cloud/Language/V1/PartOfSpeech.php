@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * are as defined in
  * http://www.lrec-conf.org/proceedings/lrec2012/pdf/274_Paper.pdf
  *
- * Protobuf type <code>Google\Cloud\Language\V1\PartOfSpeech</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.PartOfSpeech</code>
  */
 class PartOfSpeech extends \Google\Protobuf\Internal\Message
 {
