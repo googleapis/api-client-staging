@@ -19,10 +19,10 @@ import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
 import com.google.api.core.BetaApi;
-import com.google.api.gax.grpc.AbstractFixedSizeCollection;
-import com.google.api.gax.grpc.AbstractPage;
-import com.google.api.gax.grpc.AbstractPagedListResponse;
-import com.google.api.gax.grpc.PageContext;
+import com.google.api.gax.paging.AbstractFixedSizeCollection;
+import com.google.api.gax.paging.AbstractPage;
+import com.google.api.gax.paging.AbstractPagedListResponse;
+import com.google.api.gax.rpc.PageContext;
 import com.google.spanner.admin.database.v1.Database;
 import com.google.spanner.admin.database.v1.ListDatabasesRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesResponse;
@@ -86,7 +86,7 @@ public class PagedResponseWrappers {
     }
 
     @Override
-    protected ApiFuture<ListDatabasesPage> createPageAsync(
+    public ApiFuture<ListDatabasesPage> createPageAsync(
         PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> context,
         ApiFuture<ListDatabasesResponse> futureResponse) {
       return super.createPageAsync(context, futureResponse);

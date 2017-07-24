@@ -19,11 +19,10 @@ import static com.google.cloud.pubsub.v1.PagedResponseWrappers.ListSnapshotsPage
 import static com.google.cloud.pubsub.v1.PagedResponseWrappers.ListSubscriptionsPagedResponse;
 
 import com.google.api.core.BetaApi;
-import com.google.api.gax.grpc.ChannelAndExecutor;
-import com.google.api.gax.grpc.ClientContext;
-import com.google.api.gax.grpc.StreamingCallable;
-import com.google.api.gax.grpc.UnaryCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.UnaryCallable;
+import com.google.cloud.pubsub.v1.stub.SubscriberStub;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -57,12 +56,9 @@ import com.google.pubsub.v1.TopicName;
 import com.google.pubsub.v1.TopicNameOneof;
 import com.google.pubsub.v1.UpdateSnapshotRequest;
 import com.google.pubsub.v1.UpdateSubscriptionRequest;
-import io.grpc.ManagedChannel;
-import java.io.Closeable;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
@@ -125,39 +121,11 @@ import javax.annotation.Generated;
  * </code>
  * </pre>
  */
-@Generated("by GAPIC")
+@Generated("by GAPIC v0.0.5")
 @BetaApi
-public class SubscriptionAdminClient implements AutoCloseable {
+public class SubscriptionAdminClient implements BackgroundResource {
   private final SubscriptionAdminSettings settings;
-  private final ScheduledExecutorService executor;
-  private final ManagedChannel channel;
-  private final List<AutoCloseable> closeables = new ArrayList<>();
-
-  private final UnaryCallable<Subscription, Subscription> createSubscriptionCallable;
-  private final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable;
-  private final UnaryCallable<UpdateSubscriptionRequest, Subscription> updateSubscriptionCallable;
-  private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
-      listSubscriptionsCallable;
-  private final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
-      listSubscriptionsPagedCallable;
-  private final UnaryCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable;
-  private final UnaryCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
-  private final UnaryCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
-  private final UnaryCallable<PullRequest, PullResponse> pullCallable;
-  private final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
-      streamingPullCallable;
-  private final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
-  private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable;
-  private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
-      listSnapshotsPagedCallable;
-  private final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable;
-  private final UnaryCallable<UpdateSnapshotRequest, Snapshot> updateSnapshotCallable;
-  private final UnaryCallable<DeleteSnapshotRequest, Empty> deleteSnapshotCallable;
-  private final UnaryCallable<SeekRequest, SeekResponse> seekCallable;
-  private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
-      testIamPermissionsCallable;
+  private final SubscriberStub stub;
 
   /** Constructs an instance of SubscriptionAdminClient with default settings. */
   public static final SubscriptionAdminClient create() throws IOException {
@@ -174,84 +142,34 @@ public class SubscriptionAdminClient implements AutoCloseable {
   }
 
   /**
+   * Constructs an instance of SubscriptionAdminClient, using the given stub for making calls. This
+   * is for advanced usage - prefer to use SubscriptionAdminSettings}.
+   */
+  public static final SubscriptionAdminClient create(SubscriberStub stub) {
+    return new SubscriptionAdminClient(stub);
+  }
+
+  /**
    * Constructs an instance of SubscriptionAdminClient, using the given settings. This is protected
-   * so that it easy to make a subclass, but otherwise, the static factory methods should be
+   * so that it is easy to make a subclass, but otherwise, the static factory methods should be
    * preferred.
    */
   protected SubscriptionAdminClient(SubscriptionAdminSettings settings) throws IOException {
     this.settings = settings;
-    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
-    this.executor = channelAndExecutor.getExecutor();
-    this.channel = channelAndExecutor.getChannel();
-    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+    this.stub = settings.createStub();
+  }
 
-    ClientContext clientContext =
-        ClientContext.newBuilder()
-            .setExecutor(this.executor)
-            .setChannel(this.channel)
-            .setCredentials(credentials)
-            .build();
-
-    this.createSubscriptionCallable =
-        UnaryCallable.create(settings.createSubscriptionSettings(), clientContext);
-    this.getSubscriptionCallable =
-        UnaryCallable.create(settings.getSubscriptionSettings(), clientContext);
-    this.updateSubscriptionCallable =
-        UnaryCallable.create(settings.updateSubscriptionSettings(), clientContext);
-    this.listSubscriptionsCallable =
-        UnaryCallable.create(settings.listSubscriptionsSettings(), clientContext);
-    this.listSubscriptionsPagedCallable =
-        UnaryCallable.createPagedVariant(settings.listSubscriptionsSettings(), clientContext);
-    this.deleteSubscriptionCallable =
-        UnaryCallable.create(settings.deleteSubscriptionSettings(), clientContext);
-    this.modifyAckDeadlineCallable =
-        UnaryCallable.create(settings.modifyAckDeadlineSettings(), clientContext);
-    this.acknowledgeCallable = UnaryCallable.create(settings.acknowledgeSettings(), clientContext);
-    this.pullCallable = UnaryCallable.create(settings.pullSettings(), clientContext);
-    this.streamingPullCallable =
-        StreamingCallable.create(settings.streamingPullSettings(), clientContext);
-    this.modifyPushConfigCallable =
-        UnaryCallable.create(settings.modifyPushConfigSettings(), clientContext);
-    this.listSnapshotsCallable =
-        UnaryCallable.create(settings.listSnapshotsSettings(), clientContext);
-    this.listSnapshotsPagedCallable =
-        UnaryCallable.createPagedVariant(settings.listSnapshotsSettings(), clientContext);
-    this.createSnapshotCallable =
-        UnaryCallable.create(settings.createSnapshotSettings(), clientContext);
-    this.updateSnapshotCallable =
-        UnaryCallable.create(settings.updateSnapshotSettings(), clientContext);
-    this.deleteSnapshotCallable =
-        UnaryCallable.create(settings.deleteSnapshotSettings(), clientContext);
-    this.seekCallable = UnaryCallable.create(settings.seekSettings(), clientContext);
-    this.setIamPolicyCallable =
-        UnaryCallable.create(settings.setIamPolicySettings(), clientContext);
-    this.getIamPolicyCallable =
-        UnaryCallable.create(settings.getIamPolicySettings(), clientContext);
-    this.testIamPermissionsCallable =
-        UnaryCallable.create(settings.testIamPermissionsSettings(), clientContext);
-
-    if (settings.getChannelProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              channel.shutdown();
-            }
-          });
-    }
-    if (settings.getExecutorProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              executor.shutdown();
-            }
-          });
-    }
+  protected SubscriptionAdminClient(SubscriberStub stub) {
+    this.settings = null;
+    this.stub = stub;
   }
 
   public final SubscriptionAdminSettings getSettings() {
     return settings;
+  }
+
+  public SubscriberStub getStub() {
+    return stub;
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -301,7 +219,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     the push endpoint.
    *     <p>If the subscriber never acknowledges the message, the Pub/Sub system will eventually
    *     redeliver the message.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(
       SubscriptionName name, TopicName topic, PushConfig pushConfig, int ackDeadlineSeconds) {
@@ -342,7 +260,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Subscription createSubscription(Subscription request) {
     return createSubscriptionCallable().call(request);
@@ -376,7 +294,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<Subscription, Subscription> createSubscriptionCallable() {
-    return createSubscriptionCallable;
+    return stub.createSubscriptionCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -394,7 +312,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *
    * @param subscription The name of the subscription to get. Format is
    *     `projects/{project}/subscriptions/{sub}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Subscription getSubscription(SubscriptionName subscription) {
 
@@ -422,7 +340,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final Subscription getSubscription(GetSubscriptionRequest request) {
     return getSubscriptionCallable().call(request);
@@ -447,7 +365,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetSubscriptionRequest, Subscription> getSubscriptionCallable() {
-    return getSubscriptionCallable;
+    return stub.getSubscriptionCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -472,7 +390,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final Subscription updateSubscription(UpdateSubscriptionRequest request) {
     return updateSubscriptionCallable().call(request);
@@ -503,7 +421,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   /* package-private */ final UnaryCallable<UpdateSubscriptionRequest, Subscription>
       updateSubscriptionCallable() {
-    return updateSubscriptionCallable;
+    return stub.updateSubscriptionCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -523,7 +441,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *
    * @param project The name of the cloud project that subscriptions belong to. Format is
    *     `projects/{project}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListSubscriptionsPagedResponse listSubscriptions(ProjectName project) {
     ListSubscriptionsRequest request =
@@ -550,7 +468,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListSubscriptionsPagedResponse listSubscriptions(ListSubscriptionsRequest request) {
     return listSubscriptionsPagedCallable().call(request);
@@ -578,7 +496,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsPagedResponse>
       listSubscriptionsPagedCallable() {
-    return listSubscriptionsPagedCallable;
+    return stub.listSubscriptionsPagedCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -610,7 +528,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListSubscriptionsRequest, ListSubscriptionsResponse>
       listSubscriptionsCallable() {
-    return listSubscriptionsCallable;
+    return stub.listSubscriptionsCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -631,7 +549,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *
    * @param subscription The subscription to delete. Format is
    *     `projects/{project}/subscriptions/{sub}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void deleteSubscription(SubscriptionName subscription) {
 
@@ -662,7 +580,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final void deleteSubscription(DeleteSubscriptionRequest request) {
     deleteSubscriptionCallable().call(request);
@@ -690,7 +608,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<DeleteSubscriptionRequest, Empty> deleteSubscriptionCallable() {
-    return deleteSubscriptionCallable;
+    return stub.deleteSubscriptionCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -719,7 +637,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     seconds after the `ModifyAckDeadline` call was made. Specifying zero may immediately make
    *     the message available for another pull request. The minimum deadline you can specify is 0
    *     seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final void modifyAckDeadline(
       SubscriptionName subscription, List<String> ackIds, int ackDeadlineSeconds) {
@@ -757,7 +675,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final void modifyAckDeadline(ModifyAckDeadlineRequest request) {
     modifyAckDeadlineCallable().call(request);
@@ -790,7 +708,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   /* package-private */ final UnaryCallable<ModifyAckDeadlineRequest, Empty>
       modifyAckDeadlineCallable() {
-    return modifyAckDeadlineCallable;
+    return stub.modifyAckDeadlineCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -815,7 +733,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     `projects/{project}/subscriptions/{sub}`.
    * @param ackIds The acknowledgment ID for the messages being acknowledged that was returned by
    *     the Pub/Sub system in the `Pull` response. Must not be empty.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final void acknowledge(SubscriptionName subscription, List<String> ackIds) {
 
@@ -850,7 +768,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final void acknowledge(AcknowledgeRequest request) {
     acknowledgeCallable().call(request);
@@ -881,7 +799,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   /* package-private */ final UnaryCallable<AcknowledgeRequest, Empty> acknowledgeCallable() {
-    return acknowledgeCallable;
+    return stub.acknowledgeCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -910,7 +828,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     any longer for the response.
    * @param maxMessages The maximum number of messages returned for this request. The Pub/Sub system
    *     may return fewer than the number specified.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final PullResponse pull(
       SubscriptionName subscription, boolean returnImmediately, int maxMessages) {
@@ -945,7 +863,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final PullResponse pull(PullRequest request) {
     return pullCallable().call(request);
@@ -974,7 +892,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   /* package-private */ final UnaryCallable<PullRequest, PullResponse> pullCallable() {
-    return pullCallable;
+    return stub.pullCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1027,7 +945,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   /* package-private */ final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
       streamingPullCallable() {
-    return streamingPullCallable;
+    return stub.streamingPullCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1055,7 +973,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     <p>An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages
    *     from the given subscription and allow messages to be pulled and acknowledged - effectively
    *     pausing the subscription if `Pull` is not called.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void modifyPushConfig(SubscriptionName subscription, PushConfig pushConfig) {
 
@@ -1091,7 +1009,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void modifyPushConfig(ModifyPushConfigRequest request) {
     modifyPushConfigCallable().call(request);
@@ -1123,7 +1041,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable() {
-    return modifyPushConfigCallable;
+    return stub.modifyPushConfigCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1143,7 +1061,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *
    * @param project The name of the cloud project that snapshots belong to. Format is
    *     `projects/{project}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListSnapshotsPagedResponse listSnapshots(ProjectName project) {
     ListSnapshotsRequest request =
@@ -1170,7 +1088,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListSnapshotsPagedResponse listSnapshots(ListSnapshotsRequest request) {
     return listSnapshotsPagedCallable().call(request);
@@ -1198,7 +1116,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListSnapshotsRequest, ListSnapshotsPagedResponse>
       listSnapshotsPagedCallable() {
-    return listSnapshotsPagedCallable;
+    return stub.listSnapshotsPagedCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1229,7 +1147,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable() {
-    return listSnapshotsCallable;
+    return stub.listSnapshotsCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1263,7 +1181,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *     unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as:
    *     (b) Any messages published to the subscription's topic following the successful completion
    *     of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Snapshot createSnapshot(SnapshotName name, SubscriptionName subscription) {
 
@@ -1301,7 +1219,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Snapshot createSnapshot(CreateSnapshotRequest request) {
     return createSnapshotCallable().call(request);
@@ -1335,7 +1253,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<CreateSnapshotRequest, Snapshot> createSnapshotCallable() {
-    return createSnapshotCallable;
+    return stub.createSnapshotCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1360,7 +1278,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   /* package-private */ final Snapshot updateSnapshot(UpdateSnapshotRequest request) {
     return updateSnapshotCallable().call(request);
@@ -1391,7 +1309,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   /* package-private */ final UnaryCallable<UpdateSnapshotRequest, Snapshot>
       updateSnapshotCallable() {
-    return updateSnapshotCallable;
+    return stub.updateSnapshotCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1412,7 +1330,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    *
    * @param snapshot The name of the snapshot to delete. Format is
    *     `projects/{project}/snapshots/{snap}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void deleteSnapshot(SnapshotName snapshot) {
 
@@ -1441,7 +1359,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final void deleteSnapshot(DeleteSnapshotRequest request) {
     deleteSnapshotCallable().call(request);
@@ -1469,7 +1387,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<DeleteSnapshotRequest, Empty> deleteSnapshotCallable() {
-    return deleteSnapshotCallable;
+    return stub.deleteSnapshotCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1490,7 +1408,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final SeekResponse seek(SeekRequest request) {
     return seekCallable().call(request);
@@ -1516,7 +1434,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<SeekRequest, SeekResponse> seekCallable() {
-    return seekCallable;
+    return stub.seekCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1539,7 +1457,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * @param policy REQUIRED: The complete policy to be applied to the `resource`. The size of the
    *     policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud
    *     Platform services (such as Projects) might reject them.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
 
@@ -1567,7 +1485,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(SetIamPolicyRequest request) {
     return setIamPolicyCallable().call(request);
@@ -1594,7 +1512,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
-    return setIamPolicyCallable;
+    return stub.setIamPolicyCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1614,7 +1532,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * @param resource REQUIRED: The resource for which the policy is being requested. `resource` is
    *     usually specified as a path. For example, a Project resource is specified as
    *     `projects/{project}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
 
@@ -1640,7 +1558,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final Policy getIamPolicy(GetIamPolicyRequest request) {
     return getIamPolicyCallable().call(request);
@@ -1666,7 +1584,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
-    return getIamPolicyCallable;
+    return stub.getIamPolicyCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1690,7 +1608,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * @param permissions The set of permissions to check for the `resource`. Permissions with
    *     wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more information see
    *     [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final TestIamPermissionsResponse testIamPermissions(
       String resource, List<String> permissions) {
@@ -1723,7 +1641,7 @@ public class SubscriptionAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final TestIamPermissionsResponse testIamPermissions(TestIamPermissionsRequest request) {
     return testIamPermissionsCallable().call(request);
@@ -1752,17 +1670,36 @@ public class SubscriptionAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
-    return testIamPermissionsCallable;
+    return stub.testIamPermissionsCallable();
   }
 
-  /**
-   * Initiates an orderly shutdown in which preexisting calls continue but new calls are immediately
-   * cancelled.
-   */
   @Override
   public final void close() throws Exception {
-    for (AutoCloseable closeable : closeables) {
-      closeable.close();
-    }
+    stub.close();
+  }
+
+  @Override
+  public void shutdown() {
+    stub.shutdown();
+  }
+
+  @Override
+  public boolean isShutdown() {
+    return stub.isShutdown();
+  }
+
+  @Override
+  public boolean isTerminated() {
+    return stub.isTerminated();
+  }
+
+  @Override
+  public void shutdownNow() {
+    stub.shutdownNow();
+  }
+
+  @Override
+  public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
+    return stub.awaitTermination(duration, unit);
   }
 }
