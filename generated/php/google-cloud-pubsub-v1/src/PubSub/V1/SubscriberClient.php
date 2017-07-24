@@ -57,9 +57,11 @@ use Google\Pubsub\V1\ModifyPushConfigRequest;
 use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\SeekRequest;
+use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
+use Google\Pubsub\V1\UpdateSnapshotRequest;
 use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
@@ -453,6 +455,7 @@ class SubscriberClient
             'modifyPushConfig' => $defaultDescriptors,
             'listSnapshots' => $defaultDescriptors,
             'createSnapshot' => $defaultDescriptors,
+            'updateSnapshot' => $defaultDescriptors,
             'deleteSnapshot' => $defaultDescriptors,
             'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
@@ -587,6 +590,8 @@ class SubscriberClient
      *          of acknowledged messages, and thus configures how far back in time a `Seek`
      *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      *          minutes.
+     *     @type array $labels
+     *          User labels.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -616,6 +621,9 @@ class SubscriberClient
         }
         if (isset($optionalArgs['messageRetentionDuration'])) {
             $request->setMessageRetentionDuration($optionalArgs['messageRetentionDuration']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
@@ -690,6 +698,10 @@ class SubscriberClient
     /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      *
      * Sample code:
      * ```
@@ -1373,6 +1385,67 @@ class SubscriberClient
             'CreateSnapshot',
             $mergedSettings,
             $this->descriptors['createSnapshot']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $snapshot = new Snapshot();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Snapshot
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSnapshotRequest();
+        $request->setSnapshot($snapshot);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateSnapshot']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'UpdateSnapshot',
+            $mergedSettings,
+            $this->descriptors['updateSnapshot']
         );
 
         return $callable(

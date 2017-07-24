@@ -29,6 +29,7 @@ use Google\GAX\Testing\GeneratedTest;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\TestIamPermissionsResponse;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Pubsub\V1\ListTopicSubscriptionsResponse;
 use Google\Pubsub\V1\ListTopicsResponse;
@@ -135,6 +136,80 @@ class PublisherClientTest extends GeneratedTest
 
         try {
             $client->createTopic($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateTopicTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new Topic();
+        $expectedResponse->setName($name);
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $topic = new Topic();
+        $updateMask = new FieldMask();
+
+        $response = $client->updateTopic($topic, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Publisher/UpdateTopic', $actualFuncCall);
+
+        $this->assertEquals($topic, $actualRequestObject->getTopic());
+        $this->assertEquals($updateMask, $actualRequestObject->getUpdateMask());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateTopicExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
+        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $topic = new Topic();
+        $updateMask = new FieldMask();
+
+        try {
+            $client->updateTopic($topic, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
