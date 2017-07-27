@@ -21,6 +21,7 @@ public  final class SpeechRecognitionAlternative extends
   private SpeechRecognitionAlternative() {
     transcript_ = "";
     confidence_ = 0F;
+    words_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -59,6 +60,15 @@ public  final class SpeechRecognitionAlternative extends
             confidence_ = input.readFloat();
             break;
           }
+          case 26: {
+            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              words_ = new java.util.ArrayList<com.google.cloud.speech.v1.WordInfo>();
+              mutable_bitField0_ |= 0x00000004;
+            }
+            words_.add(
+                input.readMessage(com.google.cloud.speech.v1.WordInfo.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -67,6 +77,9 @@ public  final class SpeechRecognitionAlternative extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        words_ = java.util.Collections.unmodifiableList(words_);
+      }
       makeExtensionsImmutable();
     }
   }
@@ -82,6 +95,7 @@ public  final class SpeechRecognitionAlternative extends
             com.google.cloud.speech.v1.SpeechRecognitionAlternative.class, com.google.cloud.speech.v1.SpeechRecognitionAlternative.Builder.class);
   }
 
+  private int bitField0_;
   public static final int TRANSCRIPT_FIELD_NUMBER = 1;
   private volatile java.lang.Object transcript_;
   /**
@@ -132,8 +146,7 @@ public  final class SpeechRecognitionAlternative extends
    * indicates an estimated greater likelihood that the recognized words are
    * correct. This field is typically provided only for the top hypothesis, and
    * only for `is_final=true` results. Clients should not rely on the
-   * `confidence` field as it is not guaranteed to be accurate, or even set, in
-   * any of the results.
+   * `confidence` field as it is not guaranteed to be accurate or consistent.
    * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * </pre>
    *
@@ -141,6 +154,61 @@ public  final class SpeechRecognitionAlternative extends
    */
   public float getConfidence() {
     return confidence_;
+  }
+
+  public static final int WORDS_FIELD_NUMBER = 3;
+  private java.util.List<com.google.cloud.speech.v1.WordInfo> words_;
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  public java.util.List<com.google.cloud.speech.v1.WordInfo> getWordsList() {
+    return words_;
+  }
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  public java.util.List<? extends com.google.cloud.speech.v1.WordInfoOrBuilder> 
+      getWordsOrBuilderList() {
+    return words_;
+  }
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  public int getWordsCount() {
+    return words_.size();
+  }
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  public com.google.cloud.speech.v1.WordInfo getWords(int index) {
+    return words_.get(index);
+  }
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  public com.google.cloud.speech.v1.WordInfoOrBuilder getWordsOrBuilder(
+      int index) {
+    return words_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -161,6 +229,9 @@ public  final class SpeechRecognitionAlternative extends
     if (confidence_ != 0F) {
       output.writeFloat(2, confidence_);
     }
+    for (int i = 0; i < words_.size(); i++) {
+      output.writeMessage(3, words_.get(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -174,6 +245,10 @@ public  final class SpeechRecognitionAlternative extends
     if (confidence_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(2, confidence_);
+    }
+    for (int i = 0; i < words_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, words_.get(i));
     }
     memoizedSize = size;
     return size;
@@ -197,6 +272,8 @@ public  final class SpeechRecognitionAlternative extends
         java.lang.Float.floatToIntBits(getConfidence())
         == java.lang.Float.floatToIntBits(
             other.getConfidence()));
+    result = result && getWordsList()
+        .equals(other.getWordsList());
     return result;
   }
 
@@ -212,6 +289,10 @@ public  final class SpeechRecognitionAlternative extends
     hash = (37 * hash) + CONFIDENCE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getConfidence());
+    if (getWordsCount() > 0) {
+      hash = (37 * hash) + WORDS_FIELD_NUMBER;
+      hash = (53 * hash) + getWordsList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -341,6 +422,7 @@ public  final class SpeechRecognitionAlternative extends
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getWordsFieldBuilder();
       }
     }
     public Builder clear() {
@@ -349,6 +431,12 @@ public  final class SpeechRecognitionAlternative extends
 
       confidence_ = 0F;
 
+      if (wordsBuilder_ == null) {
+        words_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+      } else {
+        wordsBuilder_.clear();
+      }
       return this;
     }
 
@@ -371,8 +459,20 @@ public  final class SpeechRecognitionAlternative extends
 
     public com.google.cloud.speech.v1.SpeechRecognitionAlternative buildPartial() {
       com.google.cloud.speech.v1.SpeechRecognitionAlternative result = new com.google.cloud.speech.v1.SpeechRecognitionAlternative(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.transcript_ = transcript_;
       result.confidence_ = confidence_;
+      if (wordsBuilder_ == null) {
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          words_ = java.util.Collections.unmodifiableList(words_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.words_ = words_;
+      } else {
+        result.words_ = wordsBuilder_.build();
+      }
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -421,6 +521,32 @@ public  final class SpeechRecognitionAlternative extends
       if (other.getConfidence() != 0F) {
         setConfidence(other.getConfidence());
       }
+      if (wordsBuilder_ == null) {
+        if (!other.words_.isEmpty()) {
+          if (words_.isEmpty()) {
+            words_ = other.words_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureWordsIsMutable();
+            words_.addAll(other.words_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.words_.isEmpty()) {
+          if (wordsBuilder_.isEmpty()) {
+            wordsBuilder_.dispose();
+            wordsBuilder_ = null;
+            words_ = other.words_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            wordsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getWordsFieldBuilder() : null;
+          } else {
+            wordsBuilder_.addAllMessages(other.words_);
+          }
+        }
+      }
       onChanged();
       return this;
     }
@@ -446,6 +572,7 @@ public  final class SpeechRecognitionAlternative extends
       }
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object transcript_ = "";
     /**
@@ -543,8 +670,7 @@ public  final class SpeechRecognitionAlternative extends
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
      * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate, or even set, in
-     * any of the results.
+     * `confidence` field as it is not guaranteed to be accurate or consistent.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
@@ -559,8 +685,7 @@ public  final class SpeechRecognitionAlternative extends
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
      * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate, or even set, in
-     * any of the results.
+     * `confidence` field as it is not guaranteed to be accurate or consistent.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
@@ -578,8 +703,7 @@ public  final class SpeechRecognitionAlternative extends
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
      * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate, or even set, in
-     * any of the results.
+     * `confidence` field as it is not guaranteed to be accurate or consistent.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      * </pre>
      *
@@ -590,6 +714,318 @@ public  final class SpeechRecognitionAlternative extends
       confidence_ = 0F;
       onChanged();
       return this;
+    }
+
+    private java.util.List<com.google.cloud.speech.v1.WordInfo> words_ =
+      java.util.Collections.emptyList();
+    private void ensureWordsIsMutable() {
+      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        words_ = new java.util.ArrayList<com.google.cloud.speech.v1.WordInfo>(words_);
+        bitField0_ |= 0x00000004;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.speech.v1.WordInfo, com.google.cloud.speech.v1.WordInfo.Builder, com.google.cloud.speech.v1.WordInfoOrBuilder> wordsBuilder_;
+
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public java.util.List<com.google.cloud.speech.v1.WordInfo> getWordsList() {
+      if (wordsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(words_);
+      } else {
+        return wordsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public int getWordsCount() {
+      if (wordsBuilder_ == null) {
+        return words_.size();
+      } else {
+        return wordsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public com.google.cloud.speech.v1.WordInfo getWords(int index) {
+      if (wordsBuilder_ == null) {
+        return words_.get(index);
+      } else {
+        return wordsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder setWords(
+        int index, com.google.cloud.speech.v1.WordInfo value) {
+      if (wordsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureWordsIsMutable();
+        words_.set(index, value);
+        onChanged();
+      } else {
+        wordsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder setWords(
+        int index, com.google.cloud.speech.v1.WordInfo.Builder builderForValue) {
+      if (wordsBuilder_ == null) {
+        ensureWordsIsMutable();
+        words_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        wordsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder addWords(com.google.cloud.speech.v1.WordInfo value) {
+      if (wordsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureWordsIsMutable();
+        words_.add(value);
+        onChanged();
+      } else {
+        wordsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder addWords(
+        int index, com.google.cloud.speech.v1.WordInfo value) {
+      if (wordsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureWordsIsMutable();
+        words_.add(index, value);
+        onChanged();
+      } else {
+        wordsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder addWords(
+        com.google.cloud.speech.v1.WordInfo.Builder builderForValue) {
+      if (wordsBuilder_ == null) {
+        ensureWordsIsMutable();
+        words_.add(builderForValue.build());
+        onChanged();
+      } else {
+        wordsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder addWords(
+        int index, com.google.cloud.speech.v1.WordInfo.Builder builderForValue) {
+      if (wordsBuilder_ == null) {
+        ensureWordsIsMutable();
+        words_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        wordsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder addAllWords(
+        java.lang.Iterable<? extends com.google.cloud.speech.v1.WordInfo> values) {
+      if (wordsBuilder_ == null) {
+        ensureWordsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, words_);
+        onChanged();
+      } else {
+        wordsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder clearWords() {
+      if (wordsBuilder_ == null) {
+        words_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+      } else {
+        wordsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public Builder removeWords(int index) {
+      if (wordsBuilder_ == null) {
+        ensureWordsIsMutable();
+        words_.remove(index);
+        onChanged();
+      } else {
+        wordsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public com.google.cloud.speech.v1.WordInfo.Builder getWordsBuilder(
+        int index) {
+      return getWordsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public com.google.cloud.speech.v1.WordInfoOrBuilder getWordsOrBuilder(
+        int index) {
+      if (wordsBuilder_ == null) {
+        return words_.get(index);  } else {
+        return wordsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public java.util.List<? extends com.google.cloud.speech.v1.WordInfoOrBuilder> 
+         getWordsOrBuilderList() {
+      if (wordsBuilder_ != null) {
+        return wordsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(words_);
+      }
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public com.google.cloud.speech.v1.WordInfo.Builder addWordsBuilder() {
+      return getWordsFieldBuilder().addBuilder(
+          com.google.cloud.speech.v1.WordInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public com.google.cloud.speech.v1.WordInfo.Builder addWordsBuilder(
+        int index) {
+      return getWordsFieldBuilder().addBuilder(
+          index, com.google.cloud.speech.v1.WordInfo.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * *Output-only* A list of word-specific information for each recognized word.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+     */
+    public java.util.List<com.google.cloud.speech.v1.WordInfo.Builder> 
+         getWordsBuilderList() {
+      return getWordsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.speech.v1.WordInfo, com.google.cloud.speech.v1.WordInfo.Builder, com.google.cloud.speech.v1.WordInfoOrBuilder> 
+        getWordsFieldBuilder() {
+      if (wordsBuilder_ == null) {
+        wordsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.cloud.speech.v1.WordInfo, com.google.cloud.speech.v1.WordInfo.Builder, com.google.cloud.speech.v1.WordInfoOrBuilder>(
+                words_,
+                ((bitField0_ & 0x00000004) == 0x00000004),
+                getParentForChildren(),
+                isClean());
+        words_ = null;
+      }
+      return wordsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

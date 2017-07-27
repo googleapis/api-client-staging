@@ -24,7 +24,7 @@ public interface RecognitionAudioOrBuilder extends
    * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
    * supported, which must be specified in the following format:
    * `gs://bucket_name/object_name` (other URI formats return
-   * [google.rpc.Code.INVALID_ARGUMENT][]). For more information, see
+   * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
@@ -37,7 +37,7 @@ public interface RecognitionAudioOrBuilder extends
    * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
    * supported, which must be specified in the following format:
    * `gs://bucket_name/object_name` (other URI formats return
-   * [google.rpc.Code.INVALID_ARGUMENT][]). For more information, see
+   * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
    * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
    * </pre>
    *
