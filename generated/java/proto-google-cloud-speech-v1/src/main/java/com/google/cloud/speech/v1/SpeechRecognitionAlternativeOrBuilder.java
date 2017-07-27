@@ -31,12 +31,55 @@ public interface SpeechRecognitionAlternativeOrBuilder extends
    * indicates an estimated greater likelihood that the recognized words are
    * correct. This field is typically provided only for the top hypothesis, and
    * only for `is_final=true` results. Clients should not rely on the
-   * `confidence` field as it is not guaranteed to be accurate, or even set, in
-   * any of the results.
+   * `confidence` field as it is not guaranteed to be accurate or consistent.
    * The default of 0.0 is a sentinel value indicating `confidence` was not set.
    * </pre>
    *
    * <code>float confidence = 2;</code>
    */
   float getConfidence();
+
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  java.util.List<com.google.cloud.speech.v1.WordInfo> 
+      getWordsList();
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  com.google.cloud.speech.v1.WordInfo getWords(int index);
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  int getWordsCount();
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  java.util.List<? extends com.google.cloud.speech.v1.WordInfoOrBuilder> 
+      getWordsOrBuilderList();
+  /**
+   * <pre>
+   * *Output-only* A list of word-specific information for each recognized word.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.speech.v1.WordInfo words = 3;</code>
+   */
+  com.google.cloud.speech.v1.WordInfoOrBuilder getWordsOrBuilder(
+      int index);
 }

@@ -23,7 +23,7 @@ import java.io.IOException;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class MetricNameOneof implements ResourceName {
+public class MetricNameOneof {
 
   private final ResourceName resourceName;
 
@@ -47,7 +47,6 @@ public class MetricNameOneof implements ResourceName {
     return resourceName;
   }
 
-  @Override
   public ResourceNameType getType() {
     return getResourceName().getType();
   }

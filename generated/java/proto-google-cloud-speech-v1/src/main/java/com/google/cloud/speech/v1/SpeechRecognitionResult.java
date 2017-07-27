@@ -88,6 +88,8 @@ public  final class SpeechRecognitionResult extends
    * <pre>
    * *Output-only* May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
+   * These alternatives are ordered in terms of accuracy, with the top (first)
+   * alternative being the most probable, as ranked by the recognizer.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -99,6 +101,8 @@ public  final class SpeechRecognitionResult extends
    * <pre>
    * *Output-only* May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
+   * These alternatives are ordered in terms of accuracy, with the top (first)
+   * alternative being the most probable, as ranked by the recognizer.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -111,6 +115,8 @@ public  final class SpeechRecognitionResult extends
    * <pre>
    * *Output-only* May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
+   * These alternatives are ordered in terms of accuracy, with the top (first)
+   * alternative being the most probable, as ranked by the recognizer.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -122,6 +128,8 @@ public  final class SpeechRecognitionResult extends
    * <pre>
    * *Output-only* May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
+   * These alternatives are ordered in terms of accuracy, with the top (first)
+   * alternative being the most probable, as ranked by the recognizer.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -133,6 +141,8 @@ public  final class SpeechRecognitionResult extends
    * <pre>
    * *Output-only* May contain one or more recognition hypotheses (up to the
    * maximum specified in `max_alternatives`).
+   * These alternatives are ordered in terms of accuracy, with the top (first)
+   * alternative being the most probable, as ranked by the recognizer.
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -482,6 +492,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -497,6 +509,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -512,6 +526,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -527,6 +543,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -549,6 +567,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -568,6 +588,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -589,6 +611,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -611,6 +635,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -630,6 +656,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -649,6 +677,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -669,6 +699,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -687,6 +719,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -705,6 +739,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -717,6 +753,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -732,6 +770,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -748,6 +788,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -760,6 +802,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
@@ -773,6 +817,8 @@ public  final class SpeechRecognitionResult extends
      * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>

@@ -132,4 +132,16 @@ public interface RecognitionConfigOrBuilder extends
    */
   com.google.cloud.speech.v1.SpeechContextOrBuilder getSpeechContextsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * *Optional* If `true`, the top result includes a list of words and
+   * the start and end time offsets (timestamps) for those words. If
+   * `false`, no word-level time offset information is returned. The default is
+   * `false`.
+   * </pre>
+   *
+   * <code>bool enable_word_time_offsets = 8;</code>
+   */
+  boolean getEnableWordTimeOffsets();
 }

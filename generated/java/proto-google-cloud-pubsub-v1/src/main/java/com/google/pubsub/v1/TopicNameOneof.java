@@ -24,7 +24,7 @@ import java.io.IOException;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class TopicNameOneof implements ResourceName {
+public class TopicNameOneof {
 
   private final ResourceName resourceName;
 
@@ -55,7 +55,6 @@ public class TopicNameOneof implements ResourceName {
     return resourceName;
   }
 
-  @Override
   public ResourceNameType getType() {
     return getResourceName().getType();
   }

@@ -26,7 +26,7 @@ import java.io.IOException;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
-public class ParentNameOneof implements ResourceName {
+public class ParentNameOneof {
 
   private final ResourceName resourceName;
 
@@ -71,7 +71,6 @@ public class ParentNameOneof implements ResourceName {
     return resourceName;
   }
 
-  @Override
   public ResourceNameType getType() {
     return getResourceName().getType();
   }

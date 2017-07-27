@@ -9,7 +9,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
 
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][] message that
+   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
@@ -18,7 +18,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
   boolean hasError();
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][] message that
+   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
@@ -27,7 +27,7 @@ public interface StreamingRecognizeResponseOrBuilder extends
   com.google.rpc.Status getError();
   /**
    * <pre>
-   * *Output-only* If set, returns a [google.rpc.Status][] message that
+   * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
    * specifies the error for the operation.
    * </pre>
    *
