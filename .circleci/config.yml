@@ -184,6 +184,8 @@ jobs:
       - run:
           command: |
             if [ "$CIRCLE_PROJECT_REPONAME"  == "api-client-staging" ]; then
+              echo $CIRCLE_PR_REPONAME
+              echo $CIRCLE_PR_USERNAME
               git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
               git push private HEAD:master
             fi
@@ -193,32 +195,32 @@ workflows:
   version: 2
   tests:
     jobs:
-      - go17
-      - go18
-      - node4
-      - node6
-      - node7
-      - openjdk7
-      - openjdk8
-      - python27
-      - python34
-      - python35
-      - python36
-      - php56
-      - sync:
-          requires:
-            - go17
-            - go18
-            - node4
-            - node6
-            - node7
-            - openjdk7
-            - openjdk8
-            - python27
-            - python34
-            - python35
-            - python36
-            - php56
+      # - go17
+      # - go18
+      # - node4
+      # - node6
+      # - node7
+      # - openjdk7
+      # - openjdk8
+      # - python27
+      # - python34
+      # - python35
+      # - python36
+      # - php56
+      - sync_to_private:
+          # requires:
+          #   - go17
+          #   - go18
+          #   - node4
+          #   - node6
+          #   - node7
+          #   - openjdk7
+          #   - openjdk8
+          #   - python27
+          #   - python34
+          #   - python35
+          #   - python36
+          #   - php56
           filters:
             branches:
               only: master
