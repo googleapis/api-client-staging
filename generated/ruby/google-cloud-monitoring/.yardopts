@@ -1,0 +1,8 @@
+--no-private
+--title=Stackdriver Monitoring API
+--exclude lib/google/cloud/monitoring/v3
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

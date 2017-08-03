@@ -1,0 +1,8 @@
+--no-private
+--title=Stackdriver Debugger API
+--exclude lib/google/cloud/debugger/v2
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

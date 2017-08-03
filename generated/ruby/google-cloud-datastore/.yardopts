@@ -1,0 +1,8 @@
+--no-private
+--title=Google Cloud Datastore API
+--exclude lib/google/cloud/datastore/v1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md
