@@ -19,15 +19,11 @@ import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.L
 import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
 import com.google.api.core.BetaApi;
-import com.google.api.gax.core.FixedCredentialsProvider;
-import com.google.api.gax.grpc.ChannelAndExecutor;
-import com.google.api.gax.grpc.ClientContext;
-import com.google.api.gax.grpc.FixedChannelProvider;
-import com.google.api.gax.grpc.FixedExecutorProvider;
-import com.google.api.gax.grpc.OperationCallable;
-import com.google.api.gax.grpc.OperationFuture;
-import com.google.api.gax.grpc.UnaryCallable;
-import com.google.auth.Credentials;
+import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.rpc.OperationCallable;
+import com.google.api.gax.rpc.OperationFuture;
+import com.google.api.gax.rpc.UnaryCallable;
+import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStub;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -35,7 +31,6 @@ import com.google.iam.v1.TestIamPermissionsRequest;
 import com.google.iam.v1.TestIamPermissionsResponse;
 import com.google.longrunning.Operation;
 import com.google.longrunning.OperationsClient;
-import com.google.longrunning.OperationsSettings;
 import com.google.protobuf.Empty;
 import com.google.protobuf.FieldMask;
 import com.google.spanner.admin.instance.v1.CreateInstanceMetadata;
@@ -54,12 +49,9 @@ import com.google.spanner.admin.instance.v1.ListInstancesResponse;
 import com.google.spanner.admin.instance.v1.ProjectName;
 import com.google.spanner.admin.instance.v1.UpdateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.UpdateInstanceRequest;
-import io.grpc.ManagedChannel;
-import java.io.Closeable;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
 
 // AUTO-GENERATED DOCUMENTATION AND SERVICE
@@ -131,35 +123,12 @@ import javax.annotation.Generated;
  * </code>
  * </pre>
  */
-@Generated("by GAPIC")
+@Generated("by GAPIC v0.0.5")
 @BetaApi
-public class InstanceAdminClient implements AutoCloseable {
+public class InstanceAdminClient implements BackgroundResource {
   private final InstanceAdminSettings settings;
-  private final ScheduledExecutorService executor;
-  private final ManagedChannel channel;
+  private final InstanceAdminStub stub;
   private final OperationsClient operationsClient;
-  private final List<AutoCloseable> closeables = new ArrayList<>();
-
-  private final UnaryCallable<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
-      listInstanceConfigsCallable;
-  private final UnaryCallable<ListInstanceConfigsRequest, ListInstanceConfigsPagedResponse>
-      listInstanceConfigsPagedCallable;
-  private final UnaryCallable<GetInstanceConfigRequest, InstanceConfig> getInstanceConfigCallable;
-  private final UnaryCallable<ListInstancesRequest, ListInstancesResponse> listInstancesCallable;
-  private final UnaryCallable<ListInstancesRequest, ListInstancesPagedResponse>
-      listInstancesPagedCallable;
-  private final UnaryCallable<GetInstanceRequest, Instance> getInstanceCallable;
-  private final UnaryCallable<CreateInstanceRequest, Operation> createInstanceCallable;
-  private final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
-      createInstanceOperationCallable;
-  private final UnaryCallable<UpdateInstanceRequest, Operation> updateInstanceCallable;
-  private final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
-      updateInstanceOperationCallable;
-  private final UnaryCallable<DeleteInstanceRequest, Empty> deleteInstanceCallable;
-  private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
-  private final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable;
-  private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
-      testIamPermissionsCallable;
 
   /** Constructs an instance of InstanceAdminClient with default settings. */
   public static final InstanceAdminClient create() throws IOException {
@@ -176,85 +145,36 @@ public class InstanceAdminClient implements AutoCloseable {
   }
 
   /**
+   * Constructs an instance of InstanceAdminClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use InstanceAdminSettings}.
+   */
+  public static final InstanceAdminClient create(InstanceAdminStub stub) {
+    return new InstanceAdminClient(stub);
+  }
+
+  /**
    * Constructs an instance of InstanceAdminClient, using the given settings. This is protected so
-   * that it easy to make a subclass, but otherwise, the static factory methods should be preferred.
+   * that it is easy to make a subclass, but otherwise, the static factory methods should be
+   * preferred.
    */
   protected InstanceAdminClient(InstanceAdminSettings settings) throws IOException {
     this.settings = settings;
-    ChannelAndExecutor channelAndExecutor = settings.getChannelAndExecutor();
-    this.executor = channelAndExecutor.getExecutor();
-    this.channel = channelAndExecutor.getChannel();
-    Credentials credentials = settings.getCredentialsProvider().getCredentials();
+    this.stub = settings.createStub();
+    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
+  }
 
-    ClientContext clientContext =
-        ClientContext.newBuilder()
-            .setExecutor(this.executor)
-            .setChannel(this.channel)
-            .setCredentials(credentials)
-            .build();
-
-    OperationsSettings operationsSettings =
-        OperationsSettings.defaultBuilder()
-            .setExecutorProvider(FixedExecutorProvider.create(this.executor))
-            .setChannelProvider(FixedChannelProvider.create(this.channel))
-            .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
-            .build();
-    this.operationsClient = OperationsClient.create(operationsSettings);
-
-    this.listInstanceConfigsCallable =
-        UnaryCallable.create(settings.listInstanceConfigsSettings(), clientContext);
-    this.listInstanceConfigsPagedCallable =
-        UnaryCallable.createPagedVariant(settings.listInstanceConfigsSettings(), clientContext);
-    this.getInstanceConfigCallable =
-        UnaryCallable.create(settings.getInstanceConfigSettings(), clientContext);
-    this.listInstancesCallable =
-        UnaryCallable.create(settings.listInstancesSettings(), clientContext);
-    this.listInstancesPagedCallable =
-        UnaryCallable.createPagedVariant(settings.listInstancesSettings(), clientContext);
-    this.getInstanceCallable = UnaryCallable.create(settings.getInstanceSettings(), clientContext);
-    this.createInstanceCallable =
-        UnaryCallable.create(
-            settings.createInstanceSettings().getInitialCallSettings(), clientContext);
-    this.createInstanceOperationCallable =
-        OperationCallable.create(
-            settings.createInstanceSettings(), clientContext, this.operationsClient);
-    this.updateInstanceCallable =
-        UnaryCallable.create(
-            settings.updateInstanceSettings().getInitialCallSettings(), clientContext);
-    this.updateInstanceOperationCallable =
-        OperationCallable.create(
-            settings.updateInstanceSettings(), clientContext, this.operationsClient);
-    this.deleteInstanceCallable =
-        UnaryCallable.create(settings.deleteInstanceSettings(), clientContext);
-    this.setIamPolicyCallable =
-        UnaryCallable.create(settings.setIamPolicySettings(), clientContext);
-    this.getIamPolicyCallable =
-        UnaryCallable.create(settings.getIamPolicySettings(), clientContext);
-    this.testIamPermissionsCallable =
-        UnaryCallable.create(settings.testIamPermissionsSettings(), clientContext);
-
-    if (settings.getChannelProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              channel.shutdown();
-            }
-          });
-    }
-    if (settings.getExecutorProvider().shouldAutoClose()) {
-      closeables.add(
-          new Closeable() {
-            @Override
-            public void close() throws IOException {
-              executor.shutdown();
-            }
-          });
-    }
+  protected InstanceAdminClient(InstanceAdminStub stub) {
+    this.settings = null;
+    this.stub = stub;
+    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 
   public final InstanceAdminSettings getSettings() {
     return settings;
+  }
+
+  public InstanceAdminStub getStub() {
+    return stub;
   }
 
   /**
@@ -282,7 +202,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *
    * @param parent Required. The name of the project for which a list of supported instance
    *     configurations is requested. Values are of the form `projects/&lt;project&gt;`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListInstanceConfigsPagedResponse listInstanceConfigs(ProjectName parent) {
     ListInstanceConfigsRequest request =
@@ -309,7 +229,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final ListInstanceConfigsPagedResponse listInstanceConfigs(
       ListInstanceConfigsRequest request) {
@@ -338,7 +258,7 @@ public class InstanceAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListInstanceConfigsRequest, ListInstanceConfigsPagedResponse>
       listInstanceConfigsPagedCallable() {
-    return listInstanceConfigsPagedCallable;
+    return stub.listInstanceConfigsPagedCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -370,7 +290,7 @@ public class InstanceAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
       listInstanceConfigsCallable() {
-    return listInstanceConfigsCallable;
+    return stub.listInstanceConfigsCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -388,7 +308,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *
    * @param name Required. The name of the requested instance configuration. Values are of the form
    *     `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final InstanceConfig getInstanceConfig(InstanceConfigName name) {
 
@@ -414,7 +334,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final InstanceConfig getInstanceConfig(GetInstanceConfigRequest request) {
     return getInstanceConfigCallable().call(request);
@@ -439,7 +359,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetInstanceConfigRequest, InstanceConfig> getInstanceConfigCallable() {
-    return getInstanceConfigCallable;
+    return stub.getInstanceConfigCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -459,7 +379,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *
    * @param parent Required. The name of the project for which a list of instances is requested.
    *     Values are of the form `projects/&lt;project&gt;`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListInstancesPagedResponse listInstances(ProjectName parent) {
     ListInstancesRequest request =
@@ -486,7 +406,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ListInstancesPagedResponse listInstances(ListInstancesRequest request) {
     return listInstancesPagedCallable().call(request);
@@ -514,7 +434,7 @@ public class InstanceAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<ListInstancesRequest, ListInstancesPagedResponse>
       listInstancesPagedCallable() {
-    return listInstancesPagedCallable;
+    return stub.listInstancesPagedCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -545,7 +465,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<ListInstancesRequest, ListInstancesResponse> listInstancesCallable() {
-    return listInstancesCallable;
+    return stub.listInstancesCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -563,7 +483,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *
    * @param name Required. The name of the requested instance. Values are of the form
    *     `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Instance getInstance(InstanceName name) {
 
@@ -589,7 +509,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final Instance getInstance(GetInstanceRequest request) {
     return getInstanceCallable().call(request);
@@ -614,7 +534,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetInstanceRequest, Instance> getInstanceCallable() {
-    return getInstanceCallable;
+    return stub.getInstanceCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -666,9 +586,9 @@ public class InstanceAdminClient implements AutoCloseable {
    *     `[a-z][-a-z0-9]&#42;[a-z0-9]` and must be between 6 and 30 characters in length.
    * @param instance Required. The instance to create. The name may be omitted, but if specified
    *     must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
+  public final OperationFuture<Instance, CreateInstanceMetadata, Operation> createInstanceAsync(
       ProjectName parent, InstanceName instanceId, Instance instance) {
 
     CreateInstanceRequest request =
@@ -729,9 +649,9 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
+  public final OperationFuture<Instance, CreateInstanceMetadata, Operation> createInstanceAsync(
       CreateInstanceRequest request) {
     return createInstanceOperationCallable().futureCall(request);
   }
@@ -786,9 +706,9 @@ public class InstanceAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+  public final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
       createInstanceOperationCallable() {
-    return createInstanceOperationCallable;
+    return stub.createInstanceOperationCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -842,7 +762,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<CreateInstanceRequest, Operation> createInstanceCallable() {
-    return createInstanceCallable;
+    return stub.createInstanceCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -899,9 +819,9 @@ public class InstanceAdminClient implements AutoCloseable {
    *     field mask must always be specified; this prevents any future fields in
    *     [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients
    *     that do not know about them.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
+  public final OperationFuture<Instance, UpdateInstanceMetadata, Operation> updateInstanceAsync(
       Instance instance, FieldMask fieldMask) {
 
     UpdateInstanceRequest request =
@@ -960,9 +880,9 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
+  public final OperationFuture<Instance, UpdateInstanceMetadata, Operation> updateInstanceAsync(
       UpdateInstanceRequest request) {
     return updateInstanceOperationCallable().futureCall(request);
   }
@@ -1019,9 +939,9 @@ public class InstanceAdminClient implements AutoCloseable {
    * }
    * </code></pre>
    */
-  public final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+  public final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
       updateInstanceOperationCallable() {
-    return updateInstanceOperationCallable;
+    return stub.updateInstanceOperationCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1077,7 +997,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<UpdateInstanceRequest, Operation> updateInstanceCallable() {
-    return updateInstanceCallable;
+    return stub.updateInstanceCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1104,7 +1024,7 @@ public class InstanceAdminClient implements AutoCloseable {
    *
    * @param name Required. The name of the instance to be deleted. Values are of the form
    *     `projects/&lt;project&gt;/instances/&lt;instance&gt;`
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final void deleteInstance(InstanceName name) {
 
@@ -1139,7 +1059,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final void deleteInstance(DeleteInstanceRequest request) {
     deleteInstanceCallable().call(request);
@@ -1173,7 +1093,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<DeleteInstanceRequest, Empty> deleteInstanceCallable() {
-    return deleteInstanceCallable;
+    return stub.deleteInstanceCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1199,7 +1119,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * @param policy REQUIRED: The complete policy to be applied to the `resource`. The size of the
    *     policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud
    *     Platform services (such as Projects) might reject them.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(String resource, Policy policy) {
 
@@ -1230,7 +1150,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy setIamPolicy(SetIamPolicyRequest request) {
     return setIamPolicyCallable().call(request);
@@ -1260,7 +1180,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable() {
-    return setIamPolicyCallable;
+    return stub.setIamPolicyCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1283,7 +1203,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * @param resource REQUIRED: The resource for which the policy is being requested. `resource` is
    *     usually specified as a path. For example, a Project resource is specified as
    *     `projects/{project}`.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final Policy getIamPolicy(String resource) {
 
@@ -1312,7 +1232,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   private final Policy getIamPolicy(GetIamPolicyRequest request) {
     return getIamPolicyCallable().call(request);
@@ -1341,7 +1261,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    */
   public final UnaryCallable<GetIamPolicyRequest, Policy> getIamPolicyCallable() {
-    return getIamPolicyCallable;
+    return stub.getIamPolicyCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -1368,7 +1288,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * @param permissions The set of permissions to check for the `resource`. Permissions with
    *     wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more information see
    *     [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final TestIamPermissionsResponse testIamPermissions(
       String resource, List<String> permissions) {
@@ -1404,7 +1324,7 @@ public class InstanceAdminClient implements AutoCloseable {
    * </code></pre>
    *
    * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.grpc.ApiException if the remote call fails
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final TestIamPermissionsResponse testIamPermissions(TestIamPermissionsRequest request) {
     return testIamPermissionsCallable().call(request);
@@ -1436,17 +1356,36 @@ public class InstanceAdminClient implements AutoCloseable {
    */
   public final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable() {
-    return testIamPermissionsCallable;
+    return stub.testIamPermissionsCallable();
   }
 
-  /**
-   * Initiates an orderly shutdown in which preexisting calls continue but new calls are immediately
-   * cancelled.
-   */
   @Override
   public final void close() throws Exception {
-    for (AutoCloseable closeable : closeables) {
-      closeable.close();
-    }
+    stub.close();
+  }
+
+  @Override
+  public void shutdown() {
+    stub.shutdown();
+  }
+
+  @Override
+  public boolean isShutdown() {
+    return stub.isShutdown();
+  }
+
+  @Override
+  public boolean isTerminated() {
+    return stub.isTerminated();
+  }
+
+  @Override
+  public void shutdownNow() {
+    stub.shutdownNow();
+  }
+
+  @Override
+  public boolean awaitTermination(long duration, TimeUnit unit) throws InterruptedException {
+    return stub.awaitTermination(duration, unit);
   }
 }

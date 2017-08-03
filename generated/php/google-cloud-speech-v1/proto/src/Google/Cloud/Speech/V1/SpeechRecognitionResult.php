@@ -11,13 +11,15 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A speech recognition result corresponding to a portion of the audio.
  *
- * Protobuf type <code>Google\Cloud\Speech\V1\SpeechRecognitionResult</code>
+ * Generated from protobuf message <code>google.cloud.speech.v1.SpeechRecognitionResult</code>
  */
 class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      */
@@ -31,6 +33,8 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     /**
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -43,9 +47,11 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     /**
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
+     * These alternatives are ordered in terms of accuracy, with the top (first)
+     * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAlternatives(&$var)
     {

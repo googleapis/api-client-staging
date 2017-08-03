@@ -163,6 +163,19 @@ jobs:
                 --sessions "unit_tests(python_version='3.6')"
     working_directory: /var/code/googleapis/
 
+  php55:
+    docker:
+      - image: googleapis/php:5.5
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 5.5
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
   php56:
     docker:
       - image: googleapis/php:5
@@ -176,6 +189,32 @@ jobs:
           command: ./vendor/bin/phpunit
     working_directory: /var/code/googleapis/
 
+  php70:
+    docker:
+      - image: googleapis/php:7.0
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 7.0
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
+  php71:
+    docker:
+      - image: googleapis/php:7.1
+    steps:
+      - checkout
+      - run:
+          name: Install PHP library
+          command: composer install
+      - run:
+          name: Run GAPIC unit tests in PHP 7.1
+          command: ./vendor/bin/phpunit
+    working_directory: /var/code/googleapis/
+
   sync_to_private:
     docker:
       - image: googleapis/git
@@ -183,9 +222,7 @@ jobs:
       - checkout
       - run:
           command: |
-            if [ "$CIRCLE_PROJECT_REPONAME"  == "api-client-staging" ]; then
-              echo $CIRCLE_PR_REPONAME
-              echo $CIRCLE_PR_USERNAME
+            if [ "$CIRCLE_PROJECT_USERNAME"  == "googleapis" ]; then
               git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
               git push private HEAD:master
             fi
@@ -195,32 +232,38 @@ workflows:
   version: 2
   tests:
     jobs:
-      # - go17
-      # - go18
-      # - node4
-      # - node6
-      # - node7
-      # - openjdk7
-      # - openjdk8
-      # - python27
-      # - python34
-      # - python35
-      # - python36
-      # - php56
+      - go17
+      - go18
+      - node4
+      - node6
+      - node7
+      - openjdk7
+      - openjdk8
+      - python27
+      - python34
+      - python35
+      - python36
+      - php55
+      - php56
+      - php70
+      - php71
       - sync_to_private:
-          # requires:
-          #   - go17
-          #   - go18
-          #   - node4
-          #   - node6
-          #   - node7
-          #   - openjdk7
-          #   - openjdk8
-          #   - python27
-          #   - python34
-          #   - python35
-          #   - python36
-          #   - php56
+          requires:
+            - go17
+            - go18
+            - node4
+            - node6
+            - node7
+            - openjdk7
+            - openjdk8
+            - python27
+            - python34
+            - python35
+            - python36
+            - php55
+            - php56
+            - php70
+            - php71
           filters:
             branches:
               only: master

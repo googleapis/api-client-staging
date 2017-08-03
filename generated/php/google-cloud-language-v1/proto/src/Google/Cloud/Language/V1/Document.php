@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * ################################################################ #
  * Represents the input to API methods.
  *
- * Protobuf type <code>Google\Cloud\Language\V1\Document</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.Document</code>
  */
 class Document extends \Google\Protobuf\Internal\Message
 {

@@ -140,6 +140,15 @@ public final class SubscriberGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.CreateSnapshotRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Snapshot.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.UpdateSnapshotRequest,
+      com.google.pubsub.v1.Snapshot> METHOD_UPDATE_SNAPSHOT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.pubsub.v1.Subscriber", "UpdateSnapshot"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.UpdateSnapshotRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.pubsub.v1.Snapshot.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.pubsub.v1.DeleteSnapshotRequest,
       com.google.protobuf.Empty> METHOD_DELETE_SNAPSHOT =
       io.grpc.MethodDescriptor.create(
@@ -221,6 +230,10 @@ public final class SubscriberGrpc {
      * <pre>
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      * </pre>
      */
     public void updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request,
@@ -358,6 +371,21 @@ public final class SubscriberGrpc {
 
     /**
      * <pre>
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public void updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_UPDATE_SNAPSHOT, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Removes an existing snapshot. All messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -467,6 +495,13 @@ public final class SubscriberGrpc {
                 com.google.pubsub.v1.Snapshot>(
                   this, METHODID_CREATE_SNAPSHOT)))
           .addMethod(
+            METHOD_UPDATE_SNAPSHOT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.pubsub.v1.UpdateSnapshotRequest,
+                com.google.pubsub.v1.Snapshot>(
+                  this, METHODID_UPDATE_SNAPSHOT)))
+          .addMethod(
             METHOD_DELETE_SNAPSHOT,
             asyncUnaryCall(
               new MethodHandlers<
@@ -540,6 +575,10 @@ public final class SubscriberGrpc {
      * <pre>
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      * </pre>
      */
     public void updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request,
@@ -687,6 +726,22 @@ public final class SubscriberGrpc {
 
     /**
      * <pre>
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public void updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_SNAPSHOT, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Removes an existing snapshot. All messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -766,6 +821,10 @@ public final class SubscriberGrpc {
      * <pre>
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      * </pre>
      */
     public com.google.pubsub.v1.Subscription updateSubscription(com.google.pubsub.v1.UpdateSubscriptionRequest request) {
@@ -883,6 +942,21 @@ public final class SubscriberGrpc {
 
     /**
      * <pre>
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public com.google.pubsub.v1.Snapshot updateSnapshot(com.google.pubsub.v1.UpdateSnapshotRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_UPDATE_SNAPSHOT, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Removes an existing snapshot. All messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -962,6 +1036,10 @@ public final class SubscriberGrpc {
      * <pre>
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Subscription> updateSubscription(
@@ -1088,6 +1166,22 @@ public final class SubscriberGrpc {
 
     /**
      * <pre>
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.pubsub.v1.Snapshot> updateSnapshot(
+        com.google.pubsub.v1.UpdateSnapshotRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_SNAPSHOT, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Removes an existing snapshot. All messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -1124,9 +1218,10 @@ public final class SubscriberGrpc {
   private static final int METHODID_MODIFY_PUSH_CONFIG = 8;
   private static final int METHODID_LIST_SNAPSHOTS = 9;
   private static final int METHODID_CREATE_SNAPSHOT = 10;
-  private static final int METHODID_DELETE_SNAPSHOT = 11;
-  private static final int METHODID_SEEK = 12;
-  private static final int METHODID_STREAMING_PULL = 13;
+  private static final int METHODID_UPDATE_SNAPSHOT = 11;
+  private static final int METHODID_DELETE_SNAPSHOT = 12;
+  private static final int METHODID_SEEK = 13;
+  private static final int METHODID_STREAMING_PULL = 14;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1189,6 +1284,10 @@ public final class SubscriberGrpc {
           serviceImpl.createSnapshot((com.google.pubsub.v1.CreateSnapshotRequest) request,
               (io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot>) responseObserver);
           break;
+        case METHODID_UPDATE_SNAPSHOT:
+          serviceImpl.updateSnapshot((com.google.pubsub.v1.UpdateSnapshotRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.pubsub.v1.Snapshot>) responseObserver);
+          break;
         case METHODID_DELETE_SNAPSHOT:
           serviceImpl.deleteSnapshot((com.google.pubsub.v1.DeleteSnapshotRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
@@ -1245,6 +1344,7 @@ public final class SubscriberGrpc {
               .addMethod(METHOD_MODIFY_PUSH_CONFIG)
               .addMethod(METHOD_LIST_SNAPSHOTS)
               .addMethod(METHOD_CREATE_SNAPSHOT)
+              .addMethod(METHOD_UPDATE_SNAPSHOT)
               .addMethod(METHOD_DELETE_SNAPSHOT)
               .addMethod(METHOD_SEEK)
               .build();

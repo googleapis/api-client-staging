@@ -26,6 +26,7 @@ public  final class RecognitionConfig extends
     maxAlternatives_ = 0;
     profanityFilter_ = false;
     speechContexts_ = java.util.Collections.emptyList();
+    enableWordTimeOffsets_ = false;
   }
 
   @java.lang.Override
@@ -89,6 +90,11 @@ public  final class RecognitionConfig extends
                 input.readMessage(com.google.cloud.speech.v1.SpeechContext.parser(), extensionRegistry));
             break;
           }
+          case 64: {
+
+            enableWordTimeOffsets_ = input.readBool();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -118,9 +124,9 @@ public  final class RecognitionConfig extends
   /**
    * <pre>
    * Audio encoding of the data sent in the audio message. All encodings support
-   * only 1 channel (mono) audio. Only `FLAC` includes a header that describes
-   * the bytes of audio that follow the header. The other encodings are raw
-   * audio bytes with no header.
+   * only 1 channel (mono) audio. Only `FLAC` and `WAV` include a header that
+   * describes the bytes of audio that follow the header. The other encodings
+   * are raw audio bytes with no header.
    * For best results, the audio source should be captured and transmitted using
    * a lossless encoding (`FLAC` or `LINEAR16`). Recognition accuracy may be
    * reduced if lossy codecs, which include the other codecs listed in
@@ -134,7 +140,7 @@ public  final class RecognitionConfig extends
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
+     * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      * </pre>
      *
      * <code>ENCODING_UNSPECIFIED = 0;</code>
@@ -220,7 +226,7 @@ public  final class RecognitionConfig extends
 
     /**
      * <pre>
-     * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
+     * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      * </pre>
      *
      * <code>ENCODING_UNSPECIFIED = 0;</code>
@@ -562,6 +568,22 @@ public  final class RecognitionConfig extends
     return speechContexts_.get(index);
   }
 
+  public static final int ENABLE_WORD_TIME_OFFSETS_FIELD_NUMBER = 8;
+  private boolean enableWordTimeOffsets_;
+  /**
+   * <pre>
+   * *Optional* If `true`, the top result includes a list of words and
+   * the start and end time offsets (timestamps) for those words. If
+   * `false`, no word-level time offset information is returned. The default is
+   * `false`.
+   * </pre>
+   *
+   * <code>bool enable_word_time_offsets = 8;</code>
+   */
+  public boolean getEnableWordTimeOffsets() {
+    return enableWordTimeOffsets_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -591,6 +613,9 @@ public  final class RecognitionConfig extends
     }
     for (int i = 0; i < speechContexts_.size(); i++) {
       output.writeMessage(6, speechContexts_.get(i));
+    }
+    if (enableWordTimeOffsets_ != false) {
+      output.writeBool(8, enableWordTimeOffsets_);
     }
   }
 
@@ -622,6 +647,10 @@ public  final class RecognitionConfig extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, speechContexts_.get(i));
     }
+    if (enableWordTimeOffsets_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(8, enableWordTimeOffsets_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -649,6 +678,8 @@ public  final class RecognitionConfig extends
         == other.getProfanityFilter());
     result = result && getSpeechContextsList()
         .equals(other.getSpeechContextsList());
+    result = result && (getEnableWordTimeOffsets()
+        == other.getEnableWordTimeOffsets());
     return result;
   }
 
@@ -674,6 +705,9 @@ public  final class RecognitionConfig extends
       hash = (37 * hash) + SPEECH_CONTEXTS_FIELD_NUMBER;
       hash = (53 * hash) + getSpeechContextsList().hashCode();
     }
+    hash = (37 * hash) + ENABLE_WORD_TIME_OFFSETS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getEnableWordTimeOffsets());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -825,6 +859,8 @@ public  final class RecognitionConfig extends
       } else {
         speechContextsBuilder_.clear();
       }
+      enableWordTimeOffsets_ = false;
+
       return this;
     }
 
@@ -863,6 +899,7 @@ public  final class RecognitionConfig extends
       } else {
         result.speechContexts_ = speechContextsBuilder_.build();
       }
+      result.enableWordTimeOffsets_ = enableWordTimeOffsets_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -946,6 +983,9 @@ public  final class RecognitionConfig extends
             speechContextsBuilder_.addAllMessages(other.speechContexts_);
           }
         }
+      }
+      if (other.getEnableWordTimeOffsets() != false) {
+        setEnableWordTimeOffsets(other.getEnableWordTimeOffsets());
       }
       onChanged();
       return this;
@@ -1607,6 +1647,53 @@ public  final class RecognitionConfig extends
         speechContexts_ = null;
       }
       return speechContextsBuilder_;
+    }
+
+    private boolean enableWordTimeOffsets_ ;
+    /**
+     * <pre>
+     * *Optional* If `true`, the top result includes a list of words and
+     * the start and end time offsets (timestamps) for those words. If
+     * `false`, no word-level time offset information is returned. The default is
+     * `false`.
+     * </pre>
+     *
+     * <code>bool enable_word_time_offsets = 8;</code>
+     */
+    public boolean getEnableWordTimeOffsets() {
+      return enableWordTimeOffsets_;
+    }
+    /**
+     * <pre>
+     * *Optional* If `true`, the top result includes a list of words and
+     * the start and end time offsets (timestamps) for those words. If
+     * `false`, no word-level time offset information is returned. The default is
+     * `false`.
+     * </pre>
+     *
+     * <code>bool enable_word_time_offsets = 8;</code>
+     */
+    public Builder setEnableWordTimeOffsets(boolean value) {
+      
+      enableWordTimeOffsets_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * *Optional* If `true`, the top result includes a list of words and
+     * the start and end time offsets (timestamps) for those words. If
+     * `false`, no word-level time offset information is returned. The default is
+     * `false`.
+     * </pre>
+     *
+     * <code>bool enable_word_time_offsets = 8;</code>
+     */
+    public Builder clearEnableWordTimeOffsets() {
+      
+      enableWordTimeOffsets_ = false;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

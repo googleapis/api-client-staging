@@ -91,4 +91,58 @@ public interface SnapshotOrBuilder extends
    * <code>.google.protobuf.Timestamp expire_time = 3;</code>
    */
   com.google.protobuf.TimestampOrBuilder getExpireTimeOrBuilder();
+
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 4;</code>
+   */
+  int getLabelsCount();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 4;</code>
+   */
+  boolean containsLabels(
+      java.lang.String key);
+  /**
+   * Use {@link #getLabelsMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabels();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 4;</code>
+   */
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabelsMap();
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 4;</code>
+   */
+
+  java.lang.String getLabelsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue);
+  /**
+   * <pre>
+   * User labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 4;</code>
+   */
+
+  java.lang.String getLabelsOrThrow(
+      java.lang.String key);
 }

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * information on dependency labels, see
  * http://www.aclweb.org/anthology/P13-2017
  *
- * Protobuf type <code>Google\Cloud\Language\V1\DependencyEdge</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.DependencyEdge</code>
  */
 class DependencyEdge extends \Google\Protobuf\Internal\Message
 {

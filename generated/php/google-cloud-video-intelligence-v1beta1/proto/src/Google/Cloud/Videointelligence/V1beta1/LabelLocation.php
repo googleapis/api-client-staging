@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Label location.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelLocation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.LabelLocation</code>
  */
 class LabelLocation extends \Google\Protobuf\Internal\Message
 {

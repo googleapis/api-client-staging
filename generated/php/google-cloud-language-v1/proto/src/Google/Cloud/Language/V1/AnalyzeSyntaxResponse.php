@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The syntax analysis response message.
  *
- * Protobuf type <code>Google\Cloud\Language\V1\AnalyzeSyntaxResponse</code>
+ * Generated from protobuf message <code>google.cloud.language.v1.AnalyzeSyntaxResponse</code>
  */
 class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
 {
@@ -56,7 +56,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Sentences in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Sentence[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)
     {
@@ -79,7 +79,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Tokens, along with their syntactic information, in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Token[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTokens(&$var)
     {

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * have been detected in a frame, the likelihood is set to `UNKNOWN`
  * for all other types of unsafe content.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.SafeSearchAnnotation</code>
  */
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {

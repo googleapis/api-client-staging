@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Annotation results for a single video.
  *
- * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoAnnotationResults</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1beta1.VideoAnnotationResults</code>
  */
 class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
 {
@@ -99,7 +99,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Label annotations. There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelAnnotation label_annotations = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabelAnnotations(&$var)
     {
@@ -122,7 +122,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Face annotations. There is exactly one element for each unique face.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceAnnotation face_annotations = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\FaceAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFaceAnnotations(&$var)
     {
@@ -145,7 +145,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Shot annotations. Each shot is represented as a video segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment shot_annotations = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setShotAnnotations(&$var)
     {
@@ -168,7 +168,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Safe search annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.SafeSearchAnnotation safe_search_annotations = 6;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSafeSearchAnnotations(&$var)
     {
