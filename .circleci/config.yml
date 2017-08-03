@@ -222,7 +222,7 @@ jobs:
       - checkout
       - run:
           command: |
-            if [ "$CIRCLE_PROJECT_REPONAME"  == "api-client-staging" ]; then
+            if [ "$CIRCLE_PROJECT_USERNAME"  == "googleapis" ]; then
               git remote add private https://googleapis-publisher:${GITHUB_TOKEN}@github.com/googleapis/api-client-staging-private.git
               git push private HEAD:master
             fi
@@ -247,7 +247,7 @@ workflows:
       - php56
       - php70
       - php71
-      - sync:
+      - sync_to_private:
           requires:
             - go17
             - go18
