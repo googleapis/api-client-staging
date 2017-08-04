@@ -1,0 +1,48 @@
+require 'bundler/setup'
+
+desc 'Installs each gem and runs tests if found.'
+task :ci do
+  errors = {}
+  gems.each do |gem|
+    Dir.chdir gem do
+      Bundler.with_clean_env do
+        header "RUNNING #{gem}"
+        begin
+          # Install each gem.
+          header("#{gem} install", token: '*')
+          sh 'bundle install'
+          # Run tests if a test directory exists.
+          if Dir.exist? 'test'
+            header("#{gem} test", token: '*')
+            sh 'bundle exec rake test'
+          end
+        rescue Exception => err
+          errors[gem] = err
+        end
+      end
+    end
+  end
+  if errors
+    header 'ERRORS'
+    errors.each do |key, val|
+      puts "Error for #{key}: #{val}"
+    end
+    raise
+  end
+end
+
+task :default => [:ci]
+
+def gems
+  # Sanity check: Do not attempt to test bogus packages.
+  `git ls-files -- */*.gemspec`.split("\n").map { |gem| gem.split("/").first }.sort
+end
+
+def header(str, token: '#')
+  line_length = str.length + 8
+  puts ''
+  puts token * line_length
+  puts "#{token * 3} #{str} #{token * 3}"
+  puts token * line_length
+  puts ''
+end
