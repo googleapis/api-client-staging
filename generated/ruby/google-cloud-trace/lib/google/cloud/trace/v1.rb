@@ -72,8 +72,7 @@ module Google
       #
       # | Class | Description |
       # | ----- | ----------- |
-      # | [TraceServiceClient][] | Send and retrieve trace data from Stackdriver Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Stackdriver Trace for display, reporting, and analysis.
- |
+      # | [TraceServiceClient][] | Send and retrieve trace data from Stackdriver Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Stackdriver Trace for display, reporting, and analysis. |
       # | [Data Types][] | Data types for Google::Cloud::Trace::V1 |
       #
       # [TraceServiceClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-trace/latest/google/devtools/cloudtrace/v1/v1/traceserviceclient

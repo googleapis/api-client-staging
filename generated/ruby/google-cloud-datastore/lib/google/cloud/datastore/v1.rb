@@ -50,8 +50,7 @@ module Google
       #
       # | Class | Description |
       # | ----- | ----------- |
-      # | [DatastoreClient][] | Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.
- |
+      # | [DatastoreClient][] | Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application. |
       # | [Data Types][] | Data types for Google::Cloud::Datastore::V1 |
       #
       # [DatastoreClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-datastore/latest/google/datastore/v1/v1/datastoreclient

@@ -73,10 +73,8 @@ module Google
       #
       # | Class | Description |
       # | ----- | ----------- |
-      # | [GroupServiceClient][] | Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.
- |
-      # | [MetricServiceClient][] | Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.
- |
+      # | [GroupServiceClient][] | Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages. |
+      # | [MetricServiceClient][] | Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages. |
       # | [Data Types][] | Data types for Google::Cloud::Monitoring::V3 |
       #
       # [GroupServiceClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-monitoring/latest/google/monitoring/v3/v3/groupserviceclient

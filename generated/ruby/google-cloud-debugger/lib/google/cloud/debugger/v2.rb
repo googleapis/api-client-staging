@@ -52,12 +52,8 @@ module Google
       #
       # | Class | Description |
       # | ----- | ----------- |
-      # | [Debugger2Client][] | Examines the call stack and variables of a running application
-without stopping or slowing it down.
- |
-      # | [Controller2Client][] | Examines the call stack and variables of a running application
-without stopping or slowing it down.
- |
+      # | [Debugger2Client][] | Examines the call stack and variables of a running application without stopping or slowing it down. |
+      # | [Controller2Client][] | Examines the call stack and variables of a running application without stopping or slowing it down. |
       # | [Data Types][] | Data types for Google::Cloud::Debugger::V2 |
       #
       # [Debugger2Client]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-debugger/latest/google/devtools//v2/debugger2client
