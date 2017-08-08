@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,6 +26,7 @@ require "json"
 require "pathname"
 
 require "google/gax"
+
 require "google/iam/v1/iam_policy_pb"
 require "google/pubsub/v1/pubsub_pb"
 
@@ -40,7 +41,7 @@ module Google
         #   @return [Google::Iam::V1::IAMPolicy::Stub]
         # @!attribute [r] publisher_stub
         #   @return [Google::Pubsub::V1::Publisher::Stub]
-        class PublisherApi
+        class PublisherClient
           attr_reader :iam_policy_stub, :publisher_stub
 
           # The default address of the service.
@@ -48,8 +49,6 @@ module Google
 
           # The default port of the service.
           DEFAULT_SERVICE_PORT = 443
-
-          CODE_GEN_NAME_VERSION = "gapic/0.1.0".freeze
 
           DEFAULT_TIMEOUT = 30
 
@@ -116,27 +115,6 @@ module Google
             )
           end
 
-          # Parses the project from a project resource.
-          # @param project_name [String]
-          # @return [String]
-          def self.match_project_from_project_name project_name
-            PROJECT_PATH_TEMPLATE.match(project_name)["project"]
-          end
-
-          # Parses the project from a topic resource.
-          # @param topic_name [String]
-          # @return [String]
-          def self.match_project_from_topic_name topic_name
-            TOPIC_PATH_TEMPLATE.match(topic_name)["project"]
-          end
-
-          # Parses the topic from a topic resource.
-          # @param topic_name [String]
-          # @return [String]
-          def self.match_topic_from_topic_name topic_name
-            TOPIC_PATH_TEMPLATE.match(topic_name)["topic"]
-          end
-
           # @param service_path [String]
           #   The domain name of the API remote host.
           # @param port [Integer]
@@ -145,6 +123,12 @@ module Google
           #   A Channel object through which to make calls.
           # @param chan_creds [Grpc::ChannelCredentials]
           #   A ChannelCredentials for the setting up the RPC client.
+          # @param updater_proc [Proc]
+          #   A function that transforms the metadata for requests, e.g., to give
+          #   OAuth credentials.
+          # @param scopes [Array<String>]
+          #   The OAuth scopes for this service. This parameter is ignored if
+          #   an updater_proc is supplied.
           # @param client_config[Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
@@ -152,20 +136,19 @@ module Google
           #   or the specified config is missing data points.
           # @param timeout [Numeric]
           #   The default timeout, in seconds, for calls made through this client.
-          # @param app_name [String]
-          #   The codename of the calling service.
-          # @param app_version [String]
-          #   The version of the calling service.
           def initialize \
               service_path: SERVICE_ADDRESS,
               port: DEFAULT_SERVICE_PORT,
               channel: nil,
               chan_creds: nil,
+              updater_proc: nil,
               scopes: ALL_SCOPES,
               client_config: {},
               timeout: DEFAULT_TIMEOUT,
-              app_name: "gax",
-              app_version: Google::Gax::VERSION
+              app_name: nil,
+              app_version: nil,
+              lib_name: nil,
+              lib_version: ""
             # These require statements are intentionally placed here to initialize
             # the gRPC module only when it's required.
             # See https://github.com/googleapis/toolkit/issues/446
@@ -173,9 +156,17 @@ module Google
             require "google/iam/v1/iam_policy_services_pb"
             require "google/pubsub/v1/pubsub_services_pb"
 
-            google_api_client = "#{app_name}/#{app_version} " \
-              "#{CODE_GEN_NAME_VERSION} gax/#{Google::Gax::VERSION} " \
-              "ruby/#{RUBY_VERSION}".freeze
+
+            if app_name || app_version
+              warn "`app_name` and `app_version` are no longer being used in the request headers."
+            end
+
+            google_api_client = "gl-ruby/#{RUBY_VERSION}"
+            google_api_client << " #{lib_name}/#{lib_version}" if lib_name
+            google_api_client << " gapic/0.6.8 gax/#{Google::Gax::VERSION}"
+            google_api_client << " grpc/#{GRPC::VERSION}"
+            google_api_client.freeze
+
             headers = { :"x-goog-api-client" => google_api_client }
             client_config_file = Pathname.new(__dir__).join(
               "publisher_client_config.json"
@@ -198,6 +189,7 @@ module Google
               port,
               chan_creds: chan_creds,
               channel: channel,
+              updater_proc: updater_proc,
               scopes: scopes,
               &Google::Iam::V1::IAMPolicy::Stub.method(:new)
             )
@@ -206,6 +198,7 @@ module Google
               port,
               chan_creds: chan_creds,
               channel: channel,
+              updater_proc: updater_proc,
               scopes: scopes,
               &Google::Pubsub::V1::Publisher::Stub.method(:new)
             )
@@ -225,6 +218,10 @@ module Google
             @create_topic = Google::Gax.create_api_call(
               @publisher_stub.method(:create_topic),
               defaults["create_topic"]
+            )
+            @update_topic = Google::Gax.create_api_call(
+              @publisher_stub.method(:update_topic),
+              defaults["update_topic"]
             )
             @publish = Google::Gax.create_api_call(
               @publisher_stub.method(:publish),
@@ -259,27 +256,71 @@ module Google
           #   underscores (+_+), periods (+.+), tildes (+~+), plus (+++) or percent
           #   signs (+%+). It must be between 3 and 255 characters in length, and it
           #   must not start with +"goog"+.
+          # @param labels [Hash{String => String}]
+          #   User labels.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
           # @return [Google::Pubsub::V1::Topic]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_name = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
-          #   response = publisher_api.create_topic(formatted_name)
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_name = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
+          #   response = publisher_client.create_topic(formatted_name)
 
           def create_topic \
               name,
+              labels: nil,
               options: nil
-            req = Google::Pubsub::V1::Topic.new(
-              name: name
-            )
+            req = {
+              name: name,
+              labels: labels
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::Topic)
             @create_topic.call(req, options)
+          end
+
+          # Updates an existing topic. Note that certain properties of a topic are not
+          # modifiable.  Options settings follow the style guide:
+          # NOTE:  The style guide requires body: "topic" instead of body: "*".
+          # Keeping the latter for internal consistency in V1, however it should be
+          # corrected in V2.  See
+          # https://cloud.google.com/apis/design/standard_methods#update for details.
+          #
+          # @param topic [Google::Pubsub::V1::Topic | Hash]
+          #   The topic to update.
+          #   A hash of the same form as `Google::Pubsub::V1::Topic`
+          #   can also be provided.
+          # @param update_mask [Google::Protobuf::FieldMask | Hash]
+          #   Indicates which fields in the provided topic to update.
+          #   Must be specified and non-empty.
+          #   A hash of the same form as `Google::Protobuf::FieldMask`
+          #   can also be provided.
+          # @param options [Google::Gax::CallOptions]
+          #   Overrides the default settings for this call, e.g, timeout,
+          #   retries, etc.
+          # @return [Google::Pubsub::V1::Topic]
+          # @raise [Google::Gax::GaxError] if the RPC is aborted.
+          # @example
+          #   require "google/cloud/pubsub/v1"
+          #
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   topic = {}
+          #   update_mask = {}
+          #   response = publisher_client.update_topic(topic, update_mask)
+
+          def update_topic \
+              topic,
+              update_mask,
+              options: nil
+            req = {
+              topic: topic,
+              update_mask: update_mask
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::UpdateTopicRequest)
+            @update_topic.call(req, options)
           end
 
           # Adds one or more messages to the topic. Returns +NOT_FOUND+ if the topic
@@ -288,35 +329,35 @@ module Google
           #
           # @param topic [String]
           #   The messages in the request will be published on this topic.
-          # @param messages [Array<Google::Pubsub::V1::PubsubMessage>]
+          #   Format is +projects/{project}/topics/{topic}+.
+          # @param messages [Array<Google::Pubsub::V1::PubsubMessage | Hash>]
           #   The messages to publish.
+          #   A hash of the same form as `Google::Pubsub::V1::PubsubMessage`
+          #   can also be provided.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
           # @return [Google::Pubsub::V1::PublishResponse]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #   PubsubMessage = Google::Pubsub::V1::PubsubMessage
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_topic = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_topic = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
           #   data = ''
-          #   messages_element = PubsubMessage.new
-          #   messages_element.data = data
+          #   messages_element = { data: data }
           #   messages = [messages_element]
-          #   response = publisher_api.publish(formatted_topic, messages)
+          #   response = publisher_client.publish(formatted_topic, messages)
 
           def publish \
               topic,
               messages,
               options: nil
-            req = Google::Pubsub::V1::PublishRequest.new(
+            req = {
               topic: topic,
               messages: messages
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::PublishRequest)
             @publish.call(req, options)
           end
 
@@ -324,26 +365,26 @@ module Google
           #
           # @param topic [String]
           #   The name of the topic to get.
+          #   Format is +projects/{project}/topics/{topic}+.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
           # @return [Google::Pubsub::V1::Topic]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_topic = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
-          #   response = publisher_api.get_topic(formatted_topic)
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_topic = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
+          #   response = publisher_client.get_topic(formatted_topic)
 
           def get_topic \
               topic,
               options: nil
-            req = Google::Pubsub::V1::GetTopicRequest.new(
+            req = {
               topic: topic
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::GetTopicRequest)
             @get_topic.call(req, options)
           end
 
@@ -351,6 +392,7 @@ module Google
           #
           # @param project [String]
           #   The name of the cloud project that topics belong to.
+          #   Format is +projects/{project}+.
           # @param page_size [Integer]
           #   The maximum number of resources contained in the underlying API
           #   response. If page streaming is performed per-resource, this
@@ -367,20 +409,18 @@ module Google
           #   object.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_project = PublisherApi.project_path("[PROJECT]")
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_project = Google::Cloud::Pubsub::V1::PublisherClient.project_path("[PROJECT]")
           #
           #   # Iterate over all results.
-          #   publisher_api.list_topics(formatted_project).each do |element|
+          #   publisher_client.list_topics(formatted_project).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   publisher_api.list_topics(formatted_project).each_page do |page|
+          #   publisher_client.list_topics(formatted_project).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -391,10 +431,11 @@ module Google
               project,
               page_size: nil,
               options: nil
-            req = Google::Pubsub::V1::ListTopicsRequest.new(
-              project: project
-            )
-            req.page_size = page_size unless page_size.nil?
+            req = {
+              project: project,
+              page_size: page_size
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::ListTopicsRequest)
             @list_topics.call(req, options)
           end
 
@@ -402,6 +443,7 @@ module Google
           #
           # @param topic [String]
           #   The name of the topic that subscriptions are attached to.
+          #   Format is +projects/{project}/topics/{topic}+.
           # @param page_size [Integer]
           #   The maximum number of resources contained in the underlying API
           #   response. If page streaming is performed per-resource, this
@@ -418,20 +460,18 @@ module Google
           #   object.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_topic = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_topic = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
           #
           #   # Iterate over all results.
-          #   publisher_api.list_topic_subscriptions(formatted_topic).each do |element|
+          #   publisher_client.list_topic_subscriptions(formatted_topic).each do |element|
           #     # Process element.
           #   end
           #
           #   # Or iterate over results one page at a time.
-          #   publisher_api.list_topic_subscriptions(formatted_topic).each_page do |page|
+          #   publisher_client.list_topic_subscriptions(formatted_topic).each_page do |page|
           #     # Process each page at a time.
           #     page.each do |element|
           #       # Process element.
@@ -442,10 +482,11 @@ module Google
               topic,
               page_size: nil,
               options: nil
-            req = Google::Pubsub::V1::ListTopicSubscriptionsRequest.new(
-              topic: topic
-            )
-            req.page_size = page_size unless page_size.nil?
+            req = {
+              topic: topic,
+              page_size: page_size
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::ListTopicSubscriptionsRequest)
             @list_topic_subscriptions.call(req, options)
           end
 
@@ -457,26 +498,27 @@ module Google
           #
           # @param topic [String]
           #   Name of the topic to delete.
+          #   Format is +projects/{project}/topics/{topic}+.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_topic = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
-          #   publisher_api.delete_topic(formatted_topic)
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_topic = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
+          #   publisher_client.delete_topic(formatted_topic)
 
           def delete_topic \
               topic,
               options: nil
-            req = Google::Pubsub::V1::DeleteTopicRequest.new(
+            req = {
               topic: topic
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Pubsub::V1::DeleteTopicRequest)
             @delete_topic.call(req, options)
+            nil
           end
 
           # Sets the access control policy on the specified resource. Replaces any
@@ -486,35 +528,35 @@ module Google
           #   REQUIRED: The resource for which the policy is being specified.
           #   +resource+ is usually specified as a path. For example, a Project
           #   resource is specified as +projects/{project}+.
-          # @param policy [Google::Iam::V1::Policy]
+          # @param policy [Google::Iam::V1::Policy | Hash]
           #   REQUIRED: The complete policy to be applied to the +resource+. The size of
           #   the policy is limited to a few 10s of KB. An empty policy is a
           #   valid policy but certain Cloud Platform services (such as Projects)
           #   might reject them.
+          #   A hash of the same form as `Google::Iam::V1::Policy`
+          #   can also be provided.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
           # @return [Google::Iam::V1::Policy]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   Policy = Google::Iam::V1::Policy
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_resource = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
-          #   policy = Policy.new
-          #   response = publisher_api.set_iam_policy(formatted_resource, policy)
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_resource = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
+          #   policy = {}
+          #   response = publisher_client.set_iam_policy(formatted_resource, policy)
 
           def set_iam_policy \
               resource,
               policy,
               options: nil
-            req = Google::Iam::V1::SetIamPolicyRequest.new(
+            req = {
               resource: resource,
               policy: policy
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Iam::V1::SetIamPolicyRequest)
             @set_iam_policy.call(req, options)
           end
 
@@ -532,24 +574,25 @@ module Google
           # @return [Google::Iam::V1::Policy]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_resource = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
-          #   response = publisher_api.get_iam_policy(formatted_resource)
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_resource = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
+          #   response = publisher_client.get_iam_policy(formatted_resource)
 
           def get_iam_policy \
               resource,
               options: nil
-            req = Google::Iam::V1::GetIamPolicyRequest.new(
+            req = {
               resource: resource
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Iam::V1::GetIamPolicyRequest)
             @get_iam_policy.call(req, options)
           end
 
           # Returns permissions that a caller has on the specified resource.
+          # If the resource does not exist, this will return an empty set of
+          # permissions, not a NOT_FOUND error.
           #
           # @param resource [String]
           #   REQUIRED: The resource for which the policy detail is being requested.
@@ -566,23 +609,22 @@ module Google
           # @return [Google::Iam::V1::TestIamPermissionsResponse]
           # @raise [Google::Gax::GaxError] if the RPC is aborted.
           # @example
-          #   require "google/cloud/pubsub/v1/publisher_api"
+          #   require "google/cloud/pubsub/v1"
           #
-          #   PublisherApi = Google::Cloud::Pubsub::V1::PublisherApi
-          #
-          #   publisher_api = PublisherApi.new
-          #   formatted_resource = PublisherApi.topic_path("[PROJECT]", "[TOPIC]")
+          #   publisher_client = Google::Cloud::Pubsub::V1::PublisherClient.new
+          #   formatted_resource = Google::Cloud::Pubsub::V1::PublisherClient.topic_path("[PROJECT]", "[TOPIC]")
           #   permissions = []
-          #   response = publisher_api.test_iam_permissions(formatted_resource, permissions)
+          #   response = publisher_client.test_iam_permissions(formatted_resource, permissions)
 
           def test_iam_permissions \
               resource,
               permissions,
               options: nil
-            req = Google::Iam::V1::TestIamPermissionsRequest.new(
+            req = {
               resource: resource,
               permissions: permissions
-            )
+            }.delete_if { |_, v| v.nil? }
+            req = Google::Gax::to_proto(req, Google::Iam::V1::TestIamPermissionsRequest)
             @test_iam_permissions.call(req, options)
           end
         end
