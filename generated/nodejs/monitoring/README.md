@@ -1,45 +1,75 @@
-Stackdriver Monitoring API for Node.js
-=================================================
+# Node.js Clients for Stackdriver Monitoring API ([Beta](https://github.com/GoogleCloudPlatform/google-cloud-node#versioning))
 
-@google-cloud/monitoring uses [Google API extensions][google-gax] to provide an
-easy-to-use client library for the [Stackdriver Monitoring API][] (v3) defined in the [googleapis][] git repository
+[Stackdriver Monitoring API][Product Documentation]: Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.
+
+- [Client Library Documentation][]
+- [Product Documentation][]
+
+## Quick Start
+In order to use this library, you first need to go through the following steps:
+
+1. [Select or create a Cloud Platform project.](https://console.cloud.google.com/project)
+2. [Enable the Stackdriver Monitoring API.](https://console.cloud.google.com/apis/api/monitoring)
+3. [Setup Authentication.](https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/master/guides/authentication)
+
+### Installation
+```
+$ npm install --save @google-cloud/monitoring
+```
+
+### Preview
+#### MetricServiceClient
+```js
+ var monitoring = require('@google-cloud/monitoring');
+
+ var client = monitoring.metric({
+    // optional auth parameters.
+ });
+
+ // Iterate over all elements.
+ var formattedName = client.projectPath(projectId);
+
+ client.listMonitoredResourceDescriptors({name: formattedName}).then(function(responses) {
+     var resources = responses[0];
+     for (var i = 0; i < resources.length; ++i) {
+         // doThingsWith(resources[i])
+     }
+ })
+ .catch(function(err) {
+     console.error(err);
+ });
+
+ // Or obtain the paged response.
+ var formattedName = client.projectPath(projectId);
 
 
-[googleapis]: https://github.com/googleapis/googleapis/tree/master/google/google/monitoring/v3
-[google-gax]: https://github.com/googleapis/gax-nodejs
-[Stackdriver Monitoring API]: https://developers.google.com/apis-explorer/#p/monitoring/v3/
+ var options = {autoPaginate: false};
+ function callback(responses) {
+     // The actual resources in a response.
+     var resources = responses[0];
+     // The next request if the response shows there's more responses.
+     var nextRequest = responses[1];
+     // The actual response object, if necessary.
+     // var rawResponse = responses[2];
+     for (var i = 0; i < resources.length; ++i) {
+         // doThingsWith(resources[i]);
+     }
+     if (nextRequest) {
+         // Fetch the next page.
+         return client.listMonitoredResourceDescriptors(nextRequest, options).then(callback);
+     }
+ }
+ client.listMonitoredResourceDescriptors({name: formattedName}, options)
+     .then(callback)
+     .catch(function(err) {
+         console.error(err);
+     });
+```
 
-Getting started
----------------
+### Next Steps
+- Read the [Client Library Documentation][] for Stackdriver Monitoring API to see other available methods on the client.
+- Read the [Stackdriver Monitoring API Product documentation][Product Documentation] to learn more about the product and see How-to Guides.
+- View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-node/blob/master/README.md) to see the full list of Cloud APIs that we cover.
 
-@google-cloud/monitoring will allow you to connect to the [Stackdriver Monitoring API][] and access all its methods.
-
-In order to do so, you need to set up authentication as well as install the library locally.
-
-
-Setup Authentication
---------------------
-
-To authenticate all your API calls, first install and setup the [Google Cloud SDK][].
-Once done, you can then run the following command in your terminal:
-
-    $ gcloud beta auth application-default login
-
-or
-
-    $ gcloud auth login
-
-Please see [[gcloud beta auth application-default login][] document for the difference between these commands.
-
-[Google Cloud SDK]: https://cloud.google.com/sdk/
-[gcloud beta auth application-default login]: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
-
-Installation
--------------------
-
-Install this library using npm:
-
-    $ npm install @google-cloud/monitoring
-
-At this point you are all set to continue.
+[Client Library Documentation]: https://googlecloudplatform.github.io/google-cloud-node/#/docs/monitoring
+[Product Documentation]: https://cloud.google.com/monitoring
