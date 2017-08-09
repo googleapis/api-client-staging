@@ -1,11 +1,11 @@
 /*
- * Copyright 2016 Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+'use strict';
 
 var assert = require('assert');
-var monitoringV3 = require('../src/').v3();
+var monitoring = require('../src');
 
 var FAKE_STATUS_CODE = 1;
 var error = new Error();
@@ -24,7 +25,8 @@ error.code = FAKE_STATUS_CODE;
 describe('GroupServiceClient', function() {
   describe('listGroups', function() {
     it('invokes listGroups without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -54,7 +56,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes listGroups with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -74,7 +77,8 @@ describe('GroupServiceClient', function() {
 
   describe('getGroup', function() {
     it('invokes getGroup without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -106,7 +110,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes getGroup with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -126,7 +131,8 @@ describe('GroupServiceClient', function() {
 
   describe('createGroup', function() {
     it('invokes createGroup without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var group = {};
@@ -160,7 +166,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes createGroup with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var group = {};
@@ -182,7 +189,8 @@ describe('GroupServiceClient', function() {
 
   describe('updateGroup', function() {
     it('invokes updateGroup without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var group = {};
       var request = {
@@ -214,7 +222,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes updateGroup with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var group = {};
       var request = {
@@ -234,7 +243,8 @@ describe('GroupServiceClient', function() {
 
   describe('deleteGroup', function() {
     it('invokes deleteGroup without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -251,7 +261,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes deleteGroup with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -271,7 +282,8 @@ describe('GroupServiceClient', function() {
 
   describe('listGroupMembers', function() {
     it('invokes listGroupMembers without error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -303,7 +315,8 @@ describe('GroupServiceClient', function() {
     });
 
     it('invokes listGroupMembers with error', function(done) {
-      var client = monitoringV3.groupServiceClient();
+      var client = monitoring.v3.group();
+
       // Mock request
       var formattedName = client.groupPath("[PROJECT]", "[GROUP]");
       var request = {
@@ -325,7 +338,8 @@ describe('GroupServiceClient', function() {
 describe('MetricServiceClient', function() {
   describe('listMonitoredResourceDescriptors', function() {
     it('invokes listMonitoredResourceDescriptors without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -355,7 +369,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes listMonitoredResourceDescriptors with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -375,7 +390,8 @@ describe('MetricServiceClient', function() {
 
   describe('getMonitoredResourceDescriptor', function() {
     it('invokes getMonitoredResourceDescriptor without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.monitoredResourceDescriptorPath("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
       var request = {
@@ -405,7 +421,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes getMonitoredResourceDescriptor with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.monitoredResourceDescriptorPath("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
       var request = {
@@ -425,7 +442,8 @@ describe('MetricServiceClient', function() {
 
   describe('listMetricDescriptors', function() {
     it('invokes listMetricDescriptors without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -455,7 +473,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes listMetricDescriptors with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var request = {
@@ -475,7 +494,8 @@ describe('MetricServiceClient', function() {
 
   describe('getMetricDescriptor', function() {
     it('invokes getMetricDescriptor without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.metricDescriptorPath("[PROJECT]", "[METRIC_DESCRIPTOR]");
       var request = {
@@ -507,7 +527,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes getMetricDescriptor with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.metricDescriptorPath("[PROJECT]", "[METRIC_DESCRIPTOR]");
       var request = {
@@ -527,7 +548,8 @@ describe('MetricServiceClient', function() {
 
   describe('createMetricDescriptor', function() {
     it('invokes createMetricDescriptor without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var metricDescriptor = {};
@@ -561,7 +583,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes createMetricDescriptor with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var metricDescriptor = {};
@@ -583,7 +606,8 @@ describe('MetricServiceClient', function() {
 
   describe('deleteMetricDescriptor', function() {
     it('invokes deleteMetricDescriptor without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.metricDescriptorPath("[PROJECT]", "[METRIC_DESCRIPTOR]");
       var request = {
@@ -600,7 +624,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes deleteMetricDescriptor with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.metricDescriptorPath("[PROJECT]", "[METRIC_DESCRIPTOR]");
       var request = {
@@ -620,12 +645,13 @@ describe('MetricServiceClient', function() {
 
   describe('listTimeSeries', function() {
     it('invokes listTimeSeries without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var filter = 'filter-1274492040';
       var interval = {};
-      var view = monitoringV3.ListTimeSeriesRequest.TimeSeriesView.FULL;
+      var view = monitoring.v3.types.ListTimeSeriesRequest.TimeSeriesView.FULL;
       var request = {
           name : formattedName,
           filter : filter,
@@ -656,12 +682,13 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes listTimeSeries with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var filter = 'filter-1274492040';
       var interval = {};
-      var view = monitoringV3.ListTimeSeriesRequest.TimeSeriesView.FULL;
+      var view = monitoring.v3.types.ListTimeSeriesRequest.TimeSeriesView.FULL;
       var request = {
           name : formattedName,
           filter : filter,
@@ -682,7 +709,8 @@ describe('MetricServiceClient', function() {
 
   describe('createTimeSeries', function() {
     it('invokes createTimeSeries without error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var timeSeries = [];
@@ -701,7 +729,8 @@ describe('MetricServiceClient', function() {
     });
 
     it('invokes createTimeSeries with error', function(done) {
-      var client = monitoringV3.metricServiceClient();
+      var client = monitoring.v3.metric();
+
       // Mock request
       var formattedName = client.projectPath("[PROJECT]");
       var timeSeries = [];
