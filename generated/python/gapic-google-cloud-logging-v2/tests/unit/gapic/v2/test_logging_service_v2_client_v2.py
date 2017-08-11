@@ -19,7 +19,7 @@ import unittest
 from google.gax import errors
 
 from google.api import monitored_resource_pb2
-from google.cloud.gapic.logging.v2 import logging_service_v2_client
+from google.cloud.logging_v2.gapic import logging_service_v2_client
 from google.cloud.proto.logging.v2 import log_entry_pb2
 from google.cloud.proto.logging.v2 import logging_pb2
 from google.protobuf import empty_pb2

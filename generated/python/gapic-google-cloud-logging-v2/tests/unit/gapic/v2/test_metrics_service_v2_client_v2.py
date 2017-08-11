@@ -18,7 +18,7 @@ import unittest
 
 from google.gax import errors
 
-from google.cloud.gapic.logging.v2 import metrics_service_v2_client
+from google.cloud.logging_v2.gapic import metrics_service_v2_client
 from google.cloud.proto.logging.v2 import logging_metrics_pb2
 from google.protobuf import empty_pb2
 

@@ -1,14 +1,13 @@
 {
   "interfaces": {
-    "google.logging.v2.MetricsServiceV2": {
+    "google.logging.v2.ConfigServiceV2": {
       "retry_codes": {
         "idempotent": [
           "DEADLINE_EXCEEDED",
+          "INTERNAL",
           "UNAVAILABLE"
         ],
-        "non_idempotent": [
-          "UNAVAILABLE"
-        ]
+        "non_idempotent": []
       },
       "retry_params": {
         "default": {
@@ -22,27 +21,27 @@
         }
       },
       "methods": {
-        "ListLogMetrics": {
+        "ListSinks": {
           "timeout_millis": 30000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
-        "GetLogMetric": {
+        "GetSink": {
           "timeout_millis": 30000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
-        "CreateLogMetric": {
+        "CreateSink": {
           "timeout_millis": 30000,
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "UpdateLogMetric": {
+        "UpdateSink": {
           "timeout_millis": 30000,
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "DeleteLogMetric": {
+        "DeleteSink": {
           "timeout_millis": 30000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"

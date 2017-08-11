@@ -26,10 +26,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/logging/v2/log_entry.proto',
   package='google.logging.v2',
   syntax='proto3',
-  serialized_pb=_b('\n-google/cloud/proto/logging/v2/log_entry.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a&google/logging/type/http_request.proto\x1a&google/logging/type/log_severity.proto\x1a\x19google/protobuf/any.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf2\x04\n\x08LogEntry\x12\x10\n\x08log_name\x18\x0c \x01(\t\x12/\n\x08resource\x18\x08 \x01(\x0b\x32\x1d.google.api.MonitoredResource\x12-\n\rproto_payload\x18\x02 \x01(\x0b\x32\x14.google.protobuf.AnyH\x00\x12\x16\n\x0ctext_payload\x18\x03 \x01(\tH\x00\x12/\n\x0cjson_payload\x18\x06 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12-\n\ttimestamp\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x08severity\x18\n \x01(\x0e\x32 .google.logging.type.LogSeverity\x12\x11\n\tinsert_id\x18\x04 \x01(\t\x12\x36\n\x0chttp_request\x18\x07 \x01(\x0b\x32 .google.logging.type.HttpRequest\x12\x37\n\x06labels\x18\x0b \x03(\x0b\x32\'.google.logging.v2.LogEntry.LabelsEntry\x12\x37\n\toperation\x18\x0f \x01(\x0b\x32$.google.logging.v2.LogEntryOperation\x12\r\n\x05trace\x18\x16 \x01(\t\x12\x42\n\x0fsource_location\x18\x17 \x01(\x0b\x32).google.logging.v2.LogEntrySourceLocation\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\t\n\x07payload\"N\n\x11LogEntryOperation\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08producer\x18\x02 \x01(\t\x12\r\n\x05\x66irst\x18\x03 \x01(\x08\x12\x0c\n\x04last\x18\x04 \x01(\x08\"F\n\x16LogEntrySourceLocation\x12\x0c\n\x04\x66ile\x18\x01 \x01(\t\x12\x0c\n\x04line\x18\x02 \x01(\x03\x12\x10\n\x08\x66unction\x18\x03 \x01(\tB\x7f\n\x15\x63om.google.logging.v2B\rLogEntryProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xf8\x01\x01\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
+  serialized_pb=_b('\n-google/cloud/proto/logging/v2/log_entry.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a&google/logging/type/http_request.proto\x1a&google/logging/type/log_severity.proto\x1a\x19google/protobuf/any.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa9\x05\n\x08LogEntry\x12\x10\n\x08log_name\x18\x0c \x01(\t\x12/\n\x08resource\x18\x08 \x01(\x0b\x32\x1d.google.api.MonitoredResource\x12-\n\rproto_payload\x18\x02 \x01(\x0b\x32\x14.google.protobuf.AnyH\x00\x12\x16\n\x0ctext_payload\x18\x03 \x01(\tH\x00\x12/\n\x0cjson_payload\x18\x06 \x01(\x0b\x32\x17.google.protobuf.StructH\x00\x12-\n\ttimestamp\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x35\n\x11receive_timestamp\x18\x18 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x08severity\x18\n \x01(\x0e\x32 .google.logging.type.LogSeverity\x12\x11\n\tinsert_id\x18\x04 \x01(\t\x12\x36\n\x0chttp_request\x18\x07 \x01(\x0b\x32 .google.logging.type.HttpRequest\x12\x37\n\x06labels\x18\x0b \x03(\x0b\x32\'.google.logging.v2.LogEntry.LabelsEntry\x12\x37\n\toperation\x18\x0f \x01(\x0b\x32$.google.logging.v2.LogEntryOperation\x12\r\n\x05trace\x18\x16 \x01(\t\x12\x42\n\x0fsource_location\x18\x17 \x01(\x0b\x32).google.logging.v2.LogEntrySourceLocation\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\t\n\x07payload\"N\n\x11LogEntryOperation\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08producer\x18\x02 \x01(\t\x12\r\n\x05\x66irst\x18\x03 \x01(\x08\x12\x0c\n\x04last\x18\x04 \x01(\x08\"F\n\x16LogEntrySourceLocation\x12\x0c\n\x04\x66ile\x18\x01 \x01(\t\x12\x0c\n\x04line\x18\x02 \x01(\x03\x12\x10\n\x08\x66unction\x18\x03 \x01(\tB\x7f\n\x15\x63om.google.logging.v2B\rLogEntryProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xf8\x01\x01\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_monitored__resource__pb2.DESCRIPTOR,google_dot_logging_dot_type_dot_http__request__pb2.DESCRIPTOR,google_dot_logging_dot_type_dot_log__severity__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -67,8 +66,8 @@ _LOGENTRY_LABELSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=876,
-  serialized_end=921,
+  serialized_start=931,
+  serialized_end=976,
 )
 
 _LOGENTRY = _descriptor.Descriptor(
@@ -121,49 +120,56 @@ _LOGENTRY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='severity', full_name='google.logging.v2.LogEntry.severity', index=6,
+      name='receive_timestamp', full_name='google.logging.v2.LogEntry.receive_timestamp', index=6,
+      number=24, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='severity', full_name='google.logging.v2.LogEntry.severity', index=7,
       number=10, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='insert_id', full_name='google.logging.v2.LogEntry.insert_id', index=7,
+      name='insert_id', full_name='google.logging.v2.LogEntry.insert_id', index=8,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='http_request', full_name='google.logging.v2.LogEntry.http_request', index=8,
+      name='http_request', full_name='google.logging.v2.LogEntry.http_request', index=9,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='labels', full_name='google.logging.v2.LogEntry.labels', index=9,
+      name='labels', full_name='google.logging.v2.LogEntry.labels', index=10,
       number=11, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='operation', full_name='google.logging.v2.LogEntry.operation', index=10,
+      name='operation', full_name='google.logging.v2.LogEntry.operation', index=11,
       number=15, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='trace', full_name='google.logging.v2.LogEntry.trace', index=11,
+      name='trace', full_name='google.logging.v2.LogEntry.trace', index=12,
       number=22, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='source_location', full_name='google.logging.v2.LogEntry.source_location', index=12,
+      name='source_location', full_name='google.logging.v2.LogEntry.source_location', index=13,
       number=23, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -185,7 +191,7 @@ _LOGENTRY = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=306,
-  serialized_end=932,
+  serialized_end=987,
 )
 
 
@@ -236,8 +242,8 @@ _LOGENTRYOPERATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=934,
-  serialized_end=1012,
+  serialized_start=989,
+  serialized_end=1067,
 )
 
 
@@ -281,8 +287,8 @@ _LOGENTRYSOURCELOCATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1014,
-  serialized_end=1084,
+  serialized_start=1069,
+  serialized_end=1139,
 )
 
 _LOGENTRY_LABELSENTRY.containing_type = _LOGENTRY
@@ -290,6 +296,7 @@ _LOGENTRY.fields_by_name['resource'].message_type = google_dot_api_dot_monitored
 _LOGENTRY.fields_by_name['proto_payload'].message_type = google_dot_protobuf_dot_any__pb2._ANY
 _LOGENTRY.fields_by_name['json_payload'].message_type = google_dot_protobuf_dot_struct__pb2._STRUCT
 _LOGENTRY.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_LOGENTRY.fields_by_name['receive_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _LOGENTRY.fields_by_name['severity'].enum_type = google_dot_logging_dot_type_dot_log__severity__pb2._LOGSEVERITY
 _LOGENTRY.fields_by_name['http_request'].message_type = google_dot_logging_dot_type_dot_http__request__pb2._HTTPREQUEST
 _LOGENTRY.fields_by_name['labels'].message_type = _LOGENTRY_LABELSENTRY
@@ -307,6 +314,7 @@ _LOGENTRY.fields_by_name['json_payload'].containing_oneof = _LOGENTRY.oneofs_by_
 DESCRIPTOR.message_types_by_name['LogEntry'] = _LOGENTRY
 DESCRIPTOR.message_types_by_name['LogEntryOperation'] = _LOGENTRYOPERATION
 DESCRIPTOR.message_types_by_name['LogEntrySourceLocation'] = _LOGENTRYSOURCELOCATION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 LogEntry = _reflection.GeneratedProtocolMessageType('LogEntry', (_message.Message,), dict(
 
@@ -318,6 +326,87 @@ LogEntry = _reflection.GeneratedProtocolMessageType('LogEntry', (_message.Messag
   ,
   DESCRIPTOR = _LOGENTRY,
   __module__ = 'google.cloud.proto.logging.v2.log_entry_pb2'
+  ,
+  __doc__ = """An individual entry in a log.
+  
+  
+  Attributes:
+      log_name:
+          Required. The resource name of the log to which this log entry
+          belongs:  ::      "projects/[PROJECT_ID]/logs/[LOG_ID]"
+          "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+          "folders/[FOLDER_ID]/logs/[LOG_ID]"  ``[LOG_ID]`` must be URL-
+          encoded within ``log_name``. Example: ``"organizations/1234567
+          890/logs/cloudresourcemanager.googleapis.com%2Factivity"``.
+          ``[LOG_ID]`` must be less than 512 characters long and can
+          only include the following characters: upper and lower case
+          alphanumeric characters, forward-slash, underscore, hyphen,
+          and period.  For backward compatibility, if ``log_name``
+          begins with a forward-slash, such as ``/projects/...``, then
+          the log entry is ingested as usual but the forward-slash is
+          removed. Listing the log entry will not show the leading slash
+          and filtering for a log name with a leading slash will never
+          return any results.
+      resource:
+          Required. The monitored resource associated with this log
+          entry. Example: a log entry that reports a database error
+          would be associated with the monitored resource designating
+          the particular database that reported the error.
+      payload:
+          Optional. The log entry payload, which can be one of multiple
+          types.
+      proto_payload:
+          The log entry payload, represented as a protocol buffer. Some
+          Google Cloud Platform services use this field for their log
+          entry payloads.
+      text_payload:
+          The log entry payload, represented as a Unicode string
+          (UTF-8).
+      json_payload:
+          The log entry payload, represented as a structure that is
+          expressed as a JSON object.
+      timestamp:
+          Optional. The time the event described by the log entry
+          occurred. If omitted in a new log entry, Stackdriver Logging
+          will insert the time the log entry is received. Stackdriver
+          Logging might reject log entries whose time stamps are more
+          than a couple of hours in the future. Log entries with time
+          stamps in the past are accepted.
+      receive_timestamp:
+          Output only. The time the log entry was received by
+          Stackdriver Logging.
+      severity:
+          Optional. The severity of the log entry. The default value is
+          ``LogSeverity.DEFAULT``.
+      insert_id:
+          Optional. A unique identifier for the log entry. If you
+          provide a value, then Stackdriver Logging considers other log
+          entries in the same project, with the same ``timestamp``, and
+          with the same ``insert_id`` to be duplicates which can be
+          removed. If omitted in new log entries, then Stackdriver
+          Logging will insert its own unique identifier. The
+          ``insert_id`` is used to order log entries that have the same
+          ``timestamp`` value.
+      http_request:
+          Optional. Information about the HTTP request associated with
+          this log entry, if applicable.
+      labels:
+          Optional. A set of user-defined (key, value) data that
+          provides additional information about the log entry.
+      operation:
+          Optional. Information about an operation associated with the
+          log entry, if applicable.
+      trace:
+          Optional. Resource name of the trace associated with the log
+          entry, if any. If it contains a relative resource name, the
+          name is assumed to be relative to
+          ``//tracing.googleapis.com``. Example: ``projects/my-
+          projectid/traces/06796866738c859f2f19b7cfb3214824``
+      source_location:
+          Optional. Source code location information associated with the
+          log entry, if any.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.LogEntry)
   ))
 _sym_db.RegisterMessage(LogEntry)
@@ -326,6 +415,28 @@ _sym_db.RegisterMessage(LogEntry.LabelsEntry)
 LogEntryOperation = _reflection.GeneratedProtocolMessageType('LogEntryOperation', (_message.Message,), dict(
   DESCRIPTOR = _LOGENTRYOPERATION,
   __module__ = 'google.cloud.proto.logging.v2.log_entry_pb2'
+  ,
+  __doc__ = """Additional information about a potentially long-running operation with
+  which a log entry is associated.
+  
+  
+  Attributes:
+      id:
+          Optional. An arbitrary operation identifier. Log entries with
+          the same identifier are assumed to be part of the same
+          operation.
+      producer:
+          Optional. An arbitrary producer identifier. The combination of
+          ``id`` and ``producer`` must be globally unique. Examples for
+          ``producer``: ``"MyDivision.MyBigCompany.com"``,
+          ``"github.com/MyProject/MyApplication"``.
+      first:
+          Optional. Set this to True if this is the first log entry in
+          the operation.
+      last:
+          Optional. Set this to True if this is the last log entry in
+          the operation.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.LogEntryOperation)
   ))
 _sym_db.RegisterMessage(LogEntryOperation)
@@ -333,6 +444,28 @@ _sym_db.RegisterMessage(LogEntryOperation)
 LogEntrySourceLocation = _reflection.GeneratedProtocolMessageType('LogEntrySourceLocation', (_message.Message,), dict(
   DESCRIPTOR = _LOGENTRYSOURCELOCATION,
   __module__ = 'google.cloud.proto.logging.v2.log_entry_pb2'
+  ,
+  __doc__ = """Additional information about the source code location that produced the
+  log entry.
+  
+  
+  Attributes:
+      file:
+          Optional. Source file name. Depending on the runtime
+          environment, this might be a simple name or a fully-qualified
+          name.
+      line:
+          Optional. Line within the source file. 1-based; 0 indicates no
+          line number available.
+      function:
+          Optional. Human-readable name of the function or method being
+          invoked, with optional context such as the class or package
+          name. This information may be used in contexts such as the
+          logs viewer, where a file and line number are less meaningful.
+          The format can vary by language. For example:
+          ``qual.if.ied.Class.method`` (Java), ``dir/package.func``
+          (Go), ``function`` (Python).
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.LogEntrySourceLocation)
   ))
 _sym_db.RegisterMessage(LogEntrySourceLocation)
@@ -346,10 +479,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

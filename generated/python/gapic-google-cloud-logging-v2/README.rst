@@ -1,43 +1,28 @@
-GAPIC library for the Stackdriver Logging API
-================================================================================
+Python Client for Stackdriver Logging API (`Beta`_)
+==================================================================================================
 
-gapic-google-cloud-logging-v2 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Stackdriver Logging API`_ (v2) defined in the googleapis_ git repository
+`Stackdriver Logging API`_: The Stackdriver Logging API lets you write log entries and manage your logs, log sinks and logs-based metrics.
 
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/logging/v2
-.. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Stackdriver Logging API`: https://developers.google.com/apis-explorer/?hl=en_US#p/logging/v2
+.. _Beta: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Stackdriver Logging API: https://cloud.google.com/logging
+.. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/logging-usage
+.. _Product Documentation:  https://cloud.google.com/logging
 
-Getting started
----------------
+Quick Start
+-----------
 
-gapic-google-cloud-logging-v2 will allow you to connect to the
-Stackdriver Logging API and access all its methods. In order to do this, you need
-to set up authentication as well as install the library locally.
+In order to use this library, you first need to go through the following steps:
 
+1. `Select or create a Cloud Platform project.`_
+2. `Enable the Stackdriver Logging API.`_
+3. `Setup Authentication.`_
 
-Setup Authentication
-~~~~~~~~~~~~~~~~~~~~
-
-To authenticate all your API calls, first install and setup the `Google Cloud SDK`_.
-Once done, you can then run the following command in your terminal:
-
-.. code-block:: console
-
-    $ gcloud beta auth application-default login
-
-or
-
-.. code-block:: console
-
-    $ gcloud auth login
-
-Please see `gcloud beta auth application-default login`_ document for the difference between these commands.
-
-.. _Google Cloud SDK: https://cloud.google.com/sdk/
-.. _gcloud beta auth application-default login: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable the Stackdriver Logging API.:  https://cloud.google.com/logging
+.. _Setup Authentication.: https://googlecloudplatform.github.io/google-cloud-python/stable/google-cloud-auth
 
 Installation
 ~~~~~~~~~~~~
@@ -54,7 +39,7 @@ dependencies.
 
 
 Mac/Linux
-~~~~~~~~~~
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -65,7 +50,7 @@ Mac/Linux
 
 
 Windows
-~~~~~~~
+^^^^^^^
 
 .. code-block:: console
 
@@ -74,5 +59,28 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install gapic-google-cloud-logging-v2
 
+Preview
+~~~~~~~
 
-At this point you are all set to continue.
+LoggingServiceV2Client
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: py
+
+  from google.cloud.logging_v2.gapic import logging_service_v2_client
+  client = logging_service_v2_client.LoggingServiceV2Client()
+  entries = []
+  response = client.write_log_entries(entries)
+
+Next Steps
+~~~~~~~~~~
+
+-  Read the `Client Library Documentation`_ for Stackdriver Logging API
+   API to see other available methods on the client.
+-  Read the `Stackdriver Logging API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `repository’s main README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Stackdriver Logging API Product documentation:  https://cloud.google.com/logging
+.. _repository’s main README: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst

@@ -1,14 +1,13 @@
 {
   "interfaces": {
-    "google.logging.v2.LoggingServiceV2": {
+    "google.logging.v2.MetricsServiceV2": {
       "retry_codes": {
         "idempotent": [
           "DEADLINE_EXCEEDED",
+          "INTERNAL",
           "UNAVAILABLE"
         ],
-        "non_idempotent": [
-          "UNAVAILABLE"
-        ]
+        "non_idempotent": []
       },
       "retry_params": {
         "default": {
@@ -19,44 +18,30 @@
           "rpc_timeout_multiplier": 1.5,
           "max_rpc_timeout_millis": 30000,
           "total_timeout_millis": 45000
-        },
-        "list": {
-          "initial_retry_delay_millis": 100,
-          "retry_delay_multiplier": 1.2,
-          "max_retry_delay_millis": 1000,
-          "initial_rpc_timeout_millis": 7000,
-          "rpc_timeout_multiplier": 1.5,
-          "max_rpc_timeout_millis": 30000,
-          "total_timeout_millis": 45000
         }
       },
       "methods": {
-        "DeleteLog": {
+        "ListLogMetrics": {
           "timeout_millis": 30000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
-        "WriteLogEntries": {
+        "GetLogMetric": {
+          "timeout_millis": 30000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "CreateLogMetric": {
           "timeout_millis": 30000,
           "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default",
-          "bundling": {
-            "element_count_threshold": 1000,
-            "request_byte_threshold": 1048576,
-            "delay_threshold_millis": 50
-          }
-        },
-        "ListLogEntries": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "list"
-        },
-        "ListMonitoredResourceDescriptors": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
-        "ListLogs": {
+        "UpdateLogMetric": {
+          "timeout_millis": 30000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "DeleteLogMetric": {
           "timeout_millis": 30000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
