@@ -82,6 +82,24 @@ jobs:
             ./runtests.sh
     working_directory: /var/code/googleapis/
 
+  node8:
+    docker:
+      - image: node:8
+    steps:
+      - checkout
+      - run:
+          name: Install modules and dependencies.
+          command: |
+            cd generated/nodejs/
+            npm install
+      - run:
+          name: Run GAPIC unit tests in Node 8.
+          command: |
+            cd generated/nodejs/
+            # Needed to find the right packages when installed from the top.
+            ./runtests.sh
+    working_directory: /var/code/googleapis/
+
   openjdk7:
     docker:
       - image: openjdk:7u111
@@ -240,6 +258,7 @@ workflows:
       - node4
       - node6
       - node7
+      - node8
       - openjdk7
       - openjdk8
       - python27
@@ -257,6 +276,7 @@ workflows:
             - node4
             - node6
             - node7
+            - node8
             - openjdk7
             - openjdk8
             - python27
