@@ -34,7 +34,7 @@ from google.gax import path_template
 import google.gax
 
 from google.api import monitored_resource_pb2
-from google.cloud.gapic.logging.v2 import enums
+from google.cloud.logging_v2.gapic import enums
 from google.cloud.proto.logging.v2 import log_entry_pb2
 from google.cloud.proto.logging.v2 import logging_pb2
 
@@ -244,7 +244,7 @@ class LoggingServiceV2Client(object):
         deleted.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import logging_service_v2_client
           >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> log_name = client.log_path('[PROJECT]', '[LOG]')
           >>> client.delete_log(log_name)
@@ -271,7 +271,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_pb2.DeleteLogRequest(log_name=log_name)
         self._delete_log(request, options)
 
@@ -286,7 +285,7 @@ class LoggingServiceV2Client(object):
         Writes log entries to Stackdriver Logging.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import logging_service_v2_client
           >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> entries = []
           >>> response = client.write_log_entries(entries)
@@ -351,7 +350,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_pb2.WriteLogEntriesRequest(
             entries=entries,
             log_name=log_name,
@@ -373,7 +371,7 @@ class LoggingServiceV2Client(object):
         `Exporting Logs <https://cloud.google.com/logging/docs/export>`_.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> resource_names = []
@@ -437,7 +435,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_pb2.ListLogEntriesRequest(
             resource_names=resource_names,
             project_ids=project_ids,
@@ -453,7 +450,7 @@ class LoggingServiceV2Client(object):
         Logging.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>>
@@ -487,7 +484,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_pb2.ListMonitoredResourceDescriptorsRequest(
             page_size=page_size)
         return self._list_monitored_resource_descriptors(request, options)
@@ -498,7 +494,7 @@ class LoggingServiceV2Client(object):
         Only logs that have entries are listed.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import logging_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import logging_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> client = logging_service_v2_client.LoggingServiceV2Client()
           >>> parent = client.project_path('[PROJECT]')
@@ -541,7 +537,6 @@ class LoggingServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_pb2.ListLogsRequest(
             parent=parent, page_size=page_size)
         return self._list_logs(request, options)

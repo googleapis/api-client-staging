@@ -1,10 +1,10 @@
-# Copyright 2016 Google Inc. All rights reserved.
+# Copyright 2017, Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,21 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Wrappers for protocol buffer enum types."""
-
-
-class LabelDescriptor(object):
-    class ValueType(object):
-        """
-        Value types that can be used as label values.
-
-        Attributes:
-          STRING (int): A variable-length string. This is the default.
-          BOOL (int): Boolean; true or false.
-          INT64 (int): A 64-bit signed integer.
-        """
-        STRING = 0
-        BOOL = 1
-        INT64 = 2
 
 
 class LogSeverity(object):
@@ -54,7 +39,7 @@ class LogSeverity(object):
       DEBUG (int): (100) Debug or trace information.
       INFO (int): (200) Routine information, such as ongoing status or performance.
       NOTICE (int): (300) Normal but significant events, such as start up, shut down, or
-        a configuration change.
+      a configuration change.
       WARNING (int): (400) Warning events might cause problems.
       ERROR (int): (500) Error events are likely to cause problems.
       CRITICAL (int): (600) Critical events cause more severe problems or outages.
@@ -83,6 +68,21 @@ class NullValue(object):
       NULL_VALUE (int): Null value.
     """
     NULL_VALUE = 0
+
+
+class LabelDescriptor(object):
+    class ValueType(object):
+        """
+        Value types that can be used as label values.
+
+        Attributes:
+          STRING (int): A variable-length string. This is the default.
+          BOOL (int): Boolean; true or false.
+          INT64 (int): A 64-bit signed integer.
+        """
+        STRING = 0
+        BOOL = 1
+        INT64 = 2
 
 
 class LogSink(object):

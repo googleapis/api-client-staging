@@ -33,8 +33,11 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.gapic.logging.v2 import enums
+from google.api import monitored_resource_pb2
+from google.cloud.logging_v2.gapic import enums
+from google.cloud.proto.logging.v2 import log_entry_pb2
 from google.cloud.proto.logging.v2 import logging_config_pb2
+from google.cloud.proto.logging.v2 import logging_pb2
 
 _PageDesc = google.gax.PageDescriptor
 
@@ -236,7 +239,7 @@ class ConfigServiceV2Client(object):
         Lists sinks.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import config_service_v2_client
           >>> from google.gax import CallOptions, INITIAL_PAGE
           >>> client = config_service_v2_client.ConfigServiceV2Client()
           >>> parent = client.project_path('[PROJECT]')
@@ -279,7 +282,6 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_config_pb2.ListSinksRequest(
             parent=parent, page_size=page_size)
         return self._list_sinks(request, options)
@@ -289,7 +291,7 @@ class ConfigServiceV2Client(object):
         Gets a sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import config_service_v2_client
           >>> client = config_service_v2_client.ConfigServiceV2Client()
           >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
           >>> response = client.get_sink(sink_name)
@@ -315,7 +317,6 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_config_pb2.GetSinkRequest(sink_name=sink_name)
         return self._get_sink(request, options)
 
@@ -332,7 +333,7 @@ class ConfigServiceV2Client(object):
         export log entries only from the resource owning the sink.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import config_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_config_pb2
           >>> client = config_service_v2_client.ConfigServiceV2Client()
           >>> parent = client.project_path('[PROJECT]')
@@ -373,7 +374,6 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_config_pb2.CreateSinkRequest(
             parent=parent,
             sink=sink,
@@ -396,7 +396,7 @@ class ConfigServiceV2Client(object):
         ``unique_writer_identity`` field.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import config_service_v2_client
           >>> from google.cloud.proto.logging.v2 import logging_config_pb2
           >>> client = config_service_v2_client.ConfigServiceV2Client()
           >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
@@ -443,7 +443,6 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_config_pb2.UpdateSinkRequest(
             sink_name=sink_name,
             sink=sink,
@@ -456,7 +455,7 @@ class ConfigServiceV2Client(object):
         service account is also deleted.
 
         Example:
-          >>> from google.cloud.gapic.logging.v2 import config_service_v2_client
+          >>> from google.cloud.logging_v2.gapic import config_service_v2_client
           >>> client = config_service_v2_client.ConfigServiceV2Client()
           >>> sink_name = client.sink_path('[PROJECT]', '[SINK]')
           >>> client.delete_sink(sink_name)
@@ -480,6 +479,5 @@ class ConfigServiceV2Client(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = logging_config_pb2.DeleteSinkRequest(sink_name=sink_name)
         self._delete_sink(request, options)

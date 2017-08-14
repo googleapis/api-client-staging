@@ -18,7 +18,7 @@ import unittest
 
 from google.gax import errors
 
-from google.cloud.gapic.logging.v2 import config_service_v2_client
+from google.cloud.logging_v2.gapic import config_service_v2_client
 from google.cloud.proto.logging.v2 import logging_config_pb2
 from google.protobuf import empty_pb2
 
@@ -96,11 +96,13 @@ class TestConfigServiceV2Client(unittest.TestCase):
         destination = 'destination-1429847026'
         filter_ = 'filter-1274492040'
         writer_identity = 'writerIdentity775638794'
+        include_children = True
         expected_response = logging_config_pb2.LogSink(
             name=name,
             destination=destination,
             filter=filter_,
-            writer_identity=writer_identity)
+            writer_identity=writer_identity,
+            include_children=include_children)
         grpc_stub.GetSink.return_value = expected_response
 
         response = client.get_sink(sink_name)
@@ -151,11 +153,13 @@ class TestConfigServiceV2Client(unittest.TestCase):
         destination = 'destination-1429847026'
         filter_ = 'filter-1274492040'
         writer_identity = 'writerIdentity775638794'
+        include_children = True
         expected_response = logging_config_pb2.LogSink(
             name=name,
             destination=destination,
             filter=filter_,
-            writer_identity=writer_identity)
+            writer_identity=writer_identity,
+            include_children=include_children)
         grpc_stub.CreateSink.return_value = expected_response
 
         response = client.create_sink(parent, sink)
@@ -207,11 +211,13 @@ class TestConfigServiceV2Client(unittest.TestCase):
         destination = 'destination-1429847026'
         filter_ = 'filter-1274492040'
         writer_identity = 'writerIdentity775638794'
+        include_children = True
         expected_response = logging_config_pb2.LogSink(
             name=name,
             destination=destination,
             filter=filter_,
-            writer_identity=writer_identity)
+            writer_identity=writer_identity,
+            include_children=include_children)
         grpc_stub.UpdateSink.return_value = expected_response
 
         response = client.update_sink(sink_name, sink)
