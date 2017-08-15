@@ -226,6 +226,9 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Pubsub::V1::PublishRequest, request)
         assert_equal(formatted_topic, request.topic)
+        messages = messages.map do |req|
+          Google::Gax::to_proto(req, Google::Pubsub::V1::PubsubMessage)
+        end
         assert_equal(messages, request.messages)
         expected_response
       end
@@ -258,6 +261,9 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Pubsub::V1::PublishRequest, request)
         assert_equal(formatted_topic, request.topic)
+        messages = messages.map do |req|
+          Google::Gax::to_proto(req, Google::Pubsub::V1::PubsubMessage)
+        end
         assert_equal(messages, request.messages)
         raise custom_error
       end

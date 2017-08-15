@@ -83,6 +83,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Datastore::V1::LookupRequest, request)
         assert_equal(project_id, request.project_id)
+        keys = keys.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Key)
+        end
         assert_equal(keys, request.keys)
         expected_response
       end
@@ -113,6 +116,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Datastore::V1::LookupRequest, request)
         assert_equal(project_id, request.project_id)
+        keys = keys.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Key)
+        end
         assert_equal(keys, request.keys)
         raise custom_error
       end
@@ -293,6 +299,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
         assert_instance_of(Google::Datastore::V1::CommitRequest, request)
         assert_equal(project_id, request.project_id)
         assert_equal(mode, request.mode)
+        mutations = mutations.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Mutation)
+        end
         assert_equal(mutations, request.mutations)
         expected_response
       end
@@ -329,6 +338,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
         assert_instance_of(Google::Datastore::V1::CommitRequest, request)
         assert_equal(project_id, request.project_id)
         assert_equal(mode, request.mode)
+        mutations = mutations.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Mutation)
+        end
         assert_equal(mutations, request.mutations)
         raise custom_error
       end
@@ -443,6 +455,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Datastore::V1::AllocateIdsRequest, request)
         assert_equal(project_id, request.project_id)
+        keys = keys.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Key)
+        end
         assert_equal(keys, request.keys)
         expected_response
       end
@@ -473,6 +488,9 @@ describe Google::Cloud::Datastore::V1::DatastoreClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Datastore::V1::AllocateIdsRequest, request)
         assert_equal(project_id, request.project_id)
+        keys = keys.map do |req|
+          Google::Gax::to_proto(req, Google::Datastore::V1::Key)
+        end
         assert_equal(keys, request.keys)
         raise custom_error
       end

@@ -238,15 +238,20 @@ describe Google::Cloud::Speech::V1::SpeechClient do
       end
       mock_stub = MockGrpcClientStub.new(:long_running_recognize, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("long_running_recognize")
+
       Google::Cloud::Speech::V1::Speech::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::Speech.new(version: :v1)
+        Google::Cloud::Speech::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::Speech.new(version: :v1)
 
-        # Call method
-        response = client.long_running_recognize(config, audio)
+          # Call method
+          response = client.long_running_recognize(config, audio)
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 

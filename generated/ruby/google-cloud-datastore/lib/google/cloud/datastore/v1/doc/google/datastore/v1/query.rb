@@ -284,7 +284,7 @@ module Google
           # cursor.
           MORE_RESULTS_AFTER_CURSOR = 4
 
-          # The query has been exhausted.
+          # The query is finished, and there are no more results.
           NO_MORE_RESULTS = 3
         end
       end

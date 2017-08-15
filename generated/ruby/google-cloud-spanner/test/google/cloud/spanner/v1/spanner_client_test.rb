@@ -340,7 +340,6 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       # Create request parameters
       formatted_session = Google::Cloud::Spanner::V1::SpannerClient.session_path("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]")
       sql = ''
-      request = { session: formatted_session, sql: sql }
 
       # Create expected grpc response
       chunked_value = true
@@ -365,7 +364,7 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
           client = Google::Cloud::Spanner.new(version: :v1)
 
           # Call method
-          response = client.execute_streaming_sql(request)
+          response = client.execute_streaming_sql(formatted_session, sql)
 
           # Verify the response
           assert_equal(1, response.count)
@@ -378,7 +377,6 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       # Create request parameters
       formatted_session = Google::Cloud::Spanner::V1::SpannerClient.session_path("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]")
       sql = ''
-      request = { session: formatted_session, sql: sql }
 
       # Mock Grpc layer
       mock_method = proc do |request|
@@ -398,7 +396,7 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
-            client.execute_streaming_sql(request)
+            client.execute_streaming_sql(formatted_session, sql)
           end
 
           # Verify the GaxError wrapped the custom error that was raised.
@@ -505,12 +503,6 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       table = ''
       columns = []
       key_set = {}
-      request = {
-        session: formatted_session,
-        table: table,
-        columns: columns,
-        key_set: key_set
-      }
 
       # Create expected grpc response
       chunked_value = true
@@ -537,7 +529,12 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
           client = Google::Cloud::Spanner.new(version: :v1)
 
           # Call method
-          response = client.streaming_read(request)
+          response = client.streaming_read(
+            formatted_session,
+            table,
+            columns,
+            key_set
+          )
 
           # Verify the response
           assert_equal(1, response.count)
@@ -552,12 +549,6 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       table = ''
       columns = []
       key_set = {}
-      request = {
-        session: formatted_session,
-        table: table,
-        columns: columns,
-        key_set: key_set
-      }
 
       # Mock Grpc layer
       mock_method = proc do |request|
@@ -579,7 +570,12 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
-            client.streaming_read(request)
+            client.streaming_read(
+              formatted_session,
+              table,
+              columns,
+              key_set
+            )
           end
 
           # Verify the GaxError wrapped the custom error that was raised.
@@ -676,6 +672,9 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Spanner::V1::CommitRequest, request)
         assert_equal(formatted_session, request.session)
+        mutations = mutations.map do |req|
+          Google::Gax::to_proto(req, Google::Spanner::V1::Mutation)
+        end
         assert_equal(mutations, request.mutations)
         expected_response
       end
@@ -706,6 +705,9 @@ describe Google::Cloud::Spanner::V1::SpannerClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Spanner::V1::CommitRequest, request)
         assert_equal(formatted_session, request.session)
+        mutations = mutations.map do |req|
+          Google::Gax::to_proto(req, Google::Spanner::V1::Mutation)
+        end
         assert_equal(mutations, request.mutations)
         raise custom_error
       end

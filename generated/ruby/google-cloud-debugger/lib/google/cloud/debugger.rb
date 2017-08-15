@@ -64,9 +64,9 @@ module Google
         # and without modifying its state.  An application may include one or
         # more replicated processes performing the same work.
         #
-        # The application is represented using the Debuggee concept. The Debugger
-        # service provides a way to query for available Debuggees, but does not
-        # provide a way to create one.  A debuggee is created using the Controller
+        # A debugged application is represented using the Debuggee concept. The
+        # Debugger service provides a way to query for available debuggees, but does
+        # not provide a way to create one.  A debuggee is created using the Controller
         # service, usually by running a debugger agent with the application.
         #
         # The Debugger service enables the client to set one or more Breakpoints on a

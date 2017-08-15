@@ -201,6 +201,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Pubsub::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Pubsub::Credentials.new(credentials).updater_proc
             end
@@ -756,7 +757,10 @@ module Google
           #   end
 
           def streaming_pull reqs, options: nil
-            @streaming_pull.call(reqs, options)
+            request_protos = reqs.lazy.map do |req|
+              Google::Gax::to_proto(req, Google::Pubsub::V1::StreamingPullRequest)
+            end
+            @streaming_pull.call(request_protos, options)
           end
 
           # Modifies the +PushConfig+ for a specified subscription.

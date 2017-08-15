@@ -137,6 +137,8 @@ module Google
               warn "`app_name` and `app_version` are no longer being used in the request headers."
             end
 
+            credentials ||= Google::Cloud::Dlp::Credentials.default
+
             @operations_client = Google::Longrunning::OperationsClient.new(
               service_path: service_path,
               port: port,
@@ -150,7 +152,6 @@ module Google
               lib_version: lib_version,
             )
 
-            credentials ||= Google::Cloud::Dlp::Credentials.default
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Dlp::Credentials.new(credentials).updater_proc
             end
@@ -335,11 +336,13 @@ module Google
           #   identifier for the Operation, and the +count+ is a counter used for
           #   tracking the number of files written. <p>The CSV file(s) contain the
           #   following columns regardless of storage type scanned: <li>id <li>info_type
-          #   <li>likelihood <li>byte size of finding <li>quote <li>time_stamp<br/>
+          #   <li>likelihood <li>byte size of finding <li>quote <li>timestamp<br/>
           #   <p>For Cloud Storage the next columns are: <li>file_path
           #   <li>start_offset<br/>
           #   <p>For Cloud Datastore the next columns are: <li>project_id
-          #   <li>namespace_id <li>path <li>column_name <li>offset
+          #   <li>namespace_id <li>path <li>column_name <li>offset<br/>
+          #   <p>For BigQuery the next columns are: <li>row_number <li>project_id
+          #   <li>dataset_id <li>table_id
           #   A hash of the same form as `Google::Privacy::Dlp::V2beta1::OutputStorageConfig`
           #   can also be provided.
           # @param options [Google::Gax::CallOptions]
@@ -409,7 +412,7 @@ module Google
           # @param name [String]
           #   Identifier of the results set returned as metadata of
           #   the longrunning operation created by a call to CreateInspectOperation.
-          #   Should be in the format of +inspect/results/{id}.
+          #   Should be in the format of +inspect/results/{id}+.
           # @param page_size [Integer]
           #   Maximum number of results to return.
           #   If 0, the implementation selects a reasonable value.

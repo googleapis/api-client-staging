@@ -186,6 +186,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Monitoring::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Monitoring::Credentials.new(credentials).updater_proc
             end

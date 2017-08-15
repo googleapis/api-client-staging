@@ -136,6 +136,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Debugger::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Debugger::Credentials.new(credentials).updater_proc
             end
@@ -201,14 +202,14 @@ module Google
 
           # Registers the debuggee with the controller service.
           #
-          # All agents attached to the same application should call this method with
-          # the same request content to get back the same stable +debuggee_id+. Agents
-          # should call this method again whenever +google.rpc.Code.NOT_FOUND+ is
-          # returned from any controller method.
+          # All agents attached to the same application must call this method with
+          # exactly the same request content to get back the same stable +debuggee_id+.
+          # Agents should call this method again whenever +google.rpc.Code.NOT_FOUND+
+          # is returned from any controller method.
           #
-          # This allows the controller service to disable the agent or recover from any
-          # data loss. If the debuggee is disabled by the server, the response will
-          # have +is_disabled+ set to +true+.
+          # This protocol allows the controller service to disable debuggees, recover
+          # from data loss, or change the +debuggee_id+ format. Agents must handle
+          # +debuggee_id+ value changing upon re-registration.
           #
           # @param debuggee [Google::Devtools::Clouddebugger::V2::Debuggee | Hash]
           #   Debuggee information to register.
@@ -240,7 +241,7 @@ module Google
 
           # Returns the list of all active breakpoints for the debuggee.
           #
-          # The breakpoint specification (location, condition, and expression
+          # The breakpoint specification (+location+, +condition+, and +expressions+
           # fields) is semantically immutable, although the field values may
           # change. For example, an agent may update the location line number
           # to reflect the actual line where the breakpoint was set, but this
@@ -255,16 +256,17 @@ module Google
           # @param debuggee_id [String]
           #   Identifies the debuggee.
           # @param wait_token [String]
-          #   A wait token that, if specified, blocks the method call until the list
-          #   of active breakpoints has changed, or a server selected timeout has
-          #   expired.  The value should be set from the last returned response.
+          #   A token that, if specified, blocks the method call until the list
+          #   of active breakpoints has changed, or a server-selected timeout has
+          #   expired. The value should be set from the +next_wait_token+ field in
+          #   the last response. The initial value should be set to +"init"+.
           # @param success_on_timeout [true, false]
-          #   If set to +true+, returns +google.rpc.Code.OK+ status and sets the
-          #   +wait_expired+ response field to +true+ when the server-selected timeout
-          #   has expired (recommended).
+          #   If set to +true+ (recommended), returns +google.rpc.Code.OK+ status and
+          #   sets the +wait_expired+ response field to +true+ when the server-selected
+          #   timeout has expired.
           #
-          #   If set to +false+, returns +google.rpc.Code.ABORTED+ status when the
-          #   server-selected timeout has expired (deprecated).
+          #   If set to +false+ (deprecated), returns +google.rpc.Code.ABORTED+ status
+          #   when the server-selected timeout has expired.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -292,12 +294,11 @@ module Google
           end
 
           # Updates the breakpoint state or mutable fields.
-          # The entire Breakpoint message must be sent back to the controller
-          # service.
+          # The entire Breakpoint message must be sent back to the controller service.
           #
           # Updates to active breakpoint fields are only allowed if the new value
           # does not change the breakpoint specification. Updates to the +location+,
-          # +condition+ and +expression+ fields should not alter the breakpoint
+          # +condition+ and +expressions+ fields should not alter the breakpoint
           # semantics. These may only make changes such as canonicalizing a value
           # or snapping the location to the correct line of code.
           #
@@ -305,7 +306,8 @@ module Google
           #   Identifies the debuggee being debugged.
           # @param breakpoint [Google::Devtools::Clouddebugger::V2::Breakpoint | Hash]
           #   Updated breakpoint information.
-          #   The field 'id' must be set.
+          #   The field +id+ must be set.
+          #   The agent must echo all Breakpoint specification fields in the update.
           #   A hash of the same form as `Google::Devtools::Clouddebugger::V2::Breakpoint`
           #   can also be provided.
           # @param options [Google::Gax::CallOptions]

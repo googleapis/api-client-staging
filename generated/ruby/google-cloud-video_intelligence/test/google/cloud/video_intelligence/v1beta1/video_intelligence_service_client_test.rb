@@ -136,15 +136,20 @@ describe Google::Cloud::VideoIntelligence::V1beta1::VideoIntelligenceServiceClie
       end
       mock_stub = MockGrpcClientStub.new(:annotate_video, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("annotate_video")
+
       Google::Cloud::Videointelligence::V1beta1::VideoIntelligenceService::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::VideoIntelligence.new(version: :v1beta1)
+        Google::Cloud::VideoIntelligence::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::VideoIntelligence.new(version: :v1beta1)
 
-        # Call method
-        response = client.annotate_video(input_uri, features)
+          # Call method
+          response = client.annotate_video(input_uri, features)
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 

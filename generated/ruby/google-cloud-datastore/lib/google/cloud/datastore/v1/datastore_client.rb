@@ -122,6 +122,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Datastore::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Datastore::Credentials.new(credentials).updater_proc
             end
@@ -294,6 +295,10 @@ module Google
           #
           # @param project_id [String]
           #   The ID of the project against which to make the request.
+          # @param transaction_options [Google::Datastore::V1::TransactionOptions | Hash]
+          #   Options for a new transaction.
+          #   A hash of the same form as `Google::Datastore::V1::TransactionOptions`
+          #   can also be provided.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -308,9 +313,11 @@ module Google
 
           def begin_transaction \
               project_id,
+              transaction_options: nil,
               options: nil
             req = {
-              project_id: project_id
+              project_id: project_id,
+              transaction_options: transaction_options
             }.delete_if { |_, v| v.nil? }
             req = Google::Gax::to_proto(req, Google::Datastore::V1::BeginTransactionRequest)
             @begin_transaction.call(req, options)

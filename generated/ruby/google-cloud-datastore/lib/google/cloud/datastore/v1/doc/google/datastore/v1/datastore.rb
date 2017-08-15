@@ -79,6 +79,9 @@ module Google
       # @!attribute [rw] project_id
       #   @return [String]
       #     The ID of the project against which to make the request.
+      # @!attribute [rw] transaction_options
+      #   @return [Google::Datastore::V1::TransactionOptions]
+      #     Options for a new transaction.
       class BeginTransactionRequest; end
 
       # The response for {Google::Datastore::V1::Datastore::BeginTransaction Datastore::BeginTransaction}.
@@ -234,6 +237,24 @@ module Google
           # Eventual consistency.
           EVENTUAL = 2
         end
+      end
+
+      # Options for beginning a new transaction.
+      # @!attribute [rw] read_write
+      #   @return [Google::Datastore::V1::TransactionOptions::ReadWrite]
+      #     The transaction should allow both reads and writes.
+      # @!attribute [rw] read_only
+      #   @return [Google::Datastore::V1::TransactionOptions::ReadOnly]
+      #     The transaction should only allow reads.
+      class TransactionOptions
+        # Options specific to read / write transactions.
+        # @!attribute [rw] previous_transaction
+        #   @return [String]
+        #     The transaction identifier of the transaction being retried.
+        class ReadWrite; end
+
+        # Options specific to read-only transactions.
+        class ReadOnly; end
       end
     end
   end

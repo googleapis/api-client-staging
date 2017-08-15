@@ -178,6 +178,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Pubsub::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Pubsub::Credentials.new(credentials).updater_proc
             end

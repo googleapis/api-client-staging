@@ -81,6 +81,9 @@ describe Google::Cloud::Vision::V1::ImageAnnotatorClient do
       # Mock Grpc layer
       mock_method = proc do |request|
         assert_instance_of(Google::Cloud::Vision::V1::BatchAnnotateImagesRequest, request)
+        requests = requests.map do |req|
+          Google::Gax::to_proto(req, Google::Cloud::Vision::V1::AnnotateImageRequest)
+        end
         assert_equal(requests, request.requests)
         expected_response
       end
@@ -109,6 +112,9 @@ describe Google::Cloud::Vision::V1::ImageAnnotatorClient do
       # Mock Grpc layer
       mock_method = proc do |request|
         assert_instance_of(Google::Cloud::Vision::V1::BatchAnnotateImagesRequest, request)
+        requests = requests.map do |req|
+          Google::Gax::to_proto(req, Google::Cloud::Vision::V1::AnnotateImageRequest)
+        end
         assert_equal(requests, request.requests)
         raise custom_error
       end

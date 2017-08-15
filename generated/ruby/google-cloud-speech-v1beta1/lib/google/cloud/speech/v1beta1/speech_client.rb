@@ -117,6 +117,8 @@ module Google
               warn "`app_name` and `app_version` are no longer being used in the request headers."
             end
 
+            credentials ||= Google::Cloud::Speech::Credentials.default
+
             @operations_client = Google::Longrunning::OperationsClient.new(
               service_path: service_path,
               port: port,
@@ -130,7 +132,6 @@ module Google
               lib_version: lib_version,
             )
 
-            credentials ||= Google::Cloud::Speech::Credentials.default
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Speech::Credentials.new(credentials).updater_proc
             end
@@ -341,7 +342,10 @@ module Google
           #   end
 
           def streaming_recognize reqs, options: nil
-            @streaming_recognize.call(reqs, options)
+            request_protos = reqs.lazy.map do |req|
+              Google::Gax::to_proto(req, Google::Cloud::Speech::V1beta1::StreamingRecognizeRequest)
+            end
+            @streaming_recognize.call(request_protos, options)
           end
         end
       end

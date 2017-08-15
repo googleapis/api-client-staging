@@ -209,15 +209,20 @@ describe Google::Cloud::Spanner::Admin::Database::V1::DatabaseAdminClient do
       end
       mock_stub = MockGrpcClientStub.new(:create_database, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("create_database")
+
       Google::Spanner::Admin::Database::V1::DatabaseAdmin::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::Spanner::Admin::Database.new(version: :v1)
+        Google::Cloud::Spanner::Admin::Database::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::Spanner::Admin::Database.new(version: :v1)
 
-        # Call method
-        response = client.create_database(formatted_parent, create_statement)
+          # Call method
+          response = client.create_database(formatted_parent, create_statement)
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 
@@ -389,15 +394,20 @@ describe Google::Cloud::Spanner::Admin::Database::V1::DatabaseAdminClient do
       end
       mock_stub = MockGrpcClientStub.new(:update_database_ddl, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("update_database_ddl")
+
       Google::Spanner::Admin::Database::V1::DatabaseAdmin::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::Spanner::Admin::Database.new(version: :v1)
+        Google::Cloud::Spanner::Admin::Database::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::Spanner::Admin::Database.new(version: :v1)
 
-        # Call method
-        response = client.update_database_ddl(formatted_database, statements)
+          # Call method
+          response = client.update_database_ddl(formatted_database, statements)
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 

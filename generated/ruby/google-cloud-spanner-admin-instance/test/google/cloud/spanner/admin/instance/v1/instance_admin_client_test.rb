@@ -440,19 +440,24 @@ describe Google::Cloud::Spanner::Admin::Instance::V1::InstanceAdminClient do
       end
       mock_stub = MockGrpcClientStub.new(:create_instance, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("create_instance")
+
       Google::Spanner::Admin::Instance::V1::InstanceAdmin::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::Spanner::Admin::Instance.new(version: :v1)
+        Google::Cloud::Spanner::Admin::Instance::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::Spanner::Admin::Instance.new(version: :v1)
 
-        # Call method
-        response = client.create_instance(
-          formatted_parent,
-          instance_id,
-          instance
-        )
+          # Call method
+          response = client.create_instance(
+            formatted_parent,
+            instance_id,
+            instance
+          )
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 
@@ -572,15 +577,20 @@ describe Google::Cloud::Spanner::Admin::Instance::V1::InstanceAdminClient do
       end
       mock_stub = MockGrpcClientStub.new(:update_instance, mock_method)
 
+      # Mock auth layer
+      mock_credentials = MockCredentialsClass.new("update_instance")
+
       Google::Spanner::Admin::Instance::V1::InstanceAdmin::Stub.stub(:new, mock_stub) do
-        client = Google::Cloud::Spanner::Admin::Instance.new(version: :v1)
+        Google::Cloud::Spanner::Admin::Instance::Credentials.stub(:default, mock_credentials) do
+          client = Google::Cloud::Spanner::Admin::Instance.new(version: :v1)
 
-        # Call method
-        response = client.update_instance(instance, field_mask)
+          # Call method
+          response = client.update_instance(instance, field_mask)
 
-        # Verify the response
-        assert(response.error?)
-        assert_equal(operation_error, response.error)
+          # Verify the response
+          assert(response.error?)
+          assert_equal(operation_error, response.error)
+        end
       end
     end
 

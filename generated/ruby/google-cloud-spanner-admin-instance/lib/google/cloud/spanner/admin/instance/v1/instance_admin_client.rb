@@ -202,6 +202,8 @@ module Google
                   warn "`app_name` and `app_version` are no longer being used in the request headers."
                 end
 
+                credentials ||= Google::Cloud::Spanner::Admin::Instance::Credentials.default
+
                 @operations_client = Google::Longrunning::OperationsClient.new(
                   service_path: service_path,
                   port: port,
@@ -215,7 +217,6 @@ module Google
                   lib_version: lib_version,
                 )
 
-                credentials ||= Google::Cloud::Spanner::Admin::Instance::Credentials.default
                 if credentials.is_a?(String) || credentials.is_a?(Hash)
                   updater_proc = Google::Cloud::Spanner::Admin::Instance::Credentials.new(credentials).updater_proc
                 end

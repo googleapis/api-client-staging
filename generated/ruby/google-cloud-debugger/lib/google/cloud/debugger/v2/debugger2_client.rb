@@ -39,9 +39,9 @@ module Google
         # and without modifying its state.  An application may include one or
         # more replicated processes performing the same work.
         #
-        # The application is represented using the Debuggee concept. The Debugger
-        # service provides a way to query for available Debuggees, but does not
-        # provide a way to create one.  A debuggee is created using the Controller
+        # A debugged application is represented using the Debuggee concept. The
+        # Debugger service provides a way to query for available debuggees, but does
+        # not provide a way to create one.  A debuggee is created using the Controller
         # service, usually by running a debugger agent with the application.
         #
         # The Debugger service enables the client to set one or more Breakpoints on a
@@ -128,6 +128,7 @@ module Google
             end
 
             credentials ||= Google::Cloud::Debugger::Credentials.default
+
             if credentials.is_a?(String) || credentials.is_a?(Hash)
               updater_proc = Google::Cloud::Debugger::Credentials.new(credentials).updater_proc
             end
@@ -205,12 +206,12 @@ module Google
           #   ID of the debuggee where the breakpoint is to be set.
           # @param breakpoint [Google::Devtools::Clouddebugger::V2::Breakpoint | Hash]
           #   Breakpoint specification to set.
-          #   The field 'location' of the breakpoint must be set.
+          #   The field +location+ of the breakpoint must be set.
           #   A hash of the same form as `Google::Devtools::Clouddebugger::V2::Breakpoint`
           #   can also be provided.
           # @param client_version [String]
           #   The client version making the call.
-          #   Following: +domain/type/version+ (e.g., +google.com/intellij/v1+).
+          #   Schema: +domain/type/version+ (e.g., +google.com/intellij/v1+).
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -247,7 +248,7 @@ module Google
           #   ID of the breakpoint to get.
           # @param client_version [String]
           #   The client version making the call.
-          #   Following: +domain/type/version+ (e.g., +google.com/intellij/v1+).
+          #   Schema: +domain/type/version+ (e.g., +google.com/intellij/v1+).
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -284,7 +285,7 @@ module Google
           #   ID of the breakpoint to delete.
           # @param client_version [String]
           #   The client version making the call.
-          #   Following: +domain/type/version+ (e.g., +google.com/intellij/v1+).
+          #   Schema: +domain/type/version+ (e.g., +google.com/intellij/v1+).
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -319,7 +320,7 @@ module Google
           #   ID of the debuggee whose breakpoints to list.
           # @param client_version [String]
           #   The client version making the call.
-          #   Following: +domain/type/version+ (e.g., +google.com/intellij/v1+).
+          #   Schema: +domain/type/version+ (e.g., +google.com/intellij/v1+).
           # @param include_all_users [true, false]
           #   When set to +true+, the response includes the list of breakpoints set by
           #   any user. Otherwise, it includes only breakpoints set by the caller.
@@ -374,13 +375,13 @@ module Google
             @list_breakpoints.call(req, options)
           end
 
-          # Lists all the debuggees that the user can set breakpoints to.
+          # Lists all the debuggees that the user has access to.
           #
           # @param project [String]
           #   Project number of a Google Cloud project whose debuggees to list.
           # @param client_version [String]
           #   The client version making the call.
-          #   Following: +domain/type/version+ (e.g., +google.com/intellij/v1+).
+          #   Schema: +domain/type/version+ (e.g., +google.com/intellij/v1+).
           # @param include_inactive [true, false]
           #   When set to +true+, the result includes all debuggees. Otherwise, the
           #   result includes only debuggees that are active.

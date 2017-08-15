@@ -612,6 +612,9 @@ describe Google::Cloud::Monitoring::V3::MetricServiceClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Monitoring::V3::CreateTimeSeriesRequest, request)
         assert_equal(formatted_name, request.name)
+        time_series = time_series.map do |req|
+          Google::Gax::to_proto(req, Google::Monitoring::V3::TimeSeries)
+        end
         assert_equal(time_series, request.time_series)
         nil
       end
@@ -642,6 +645,9 @@ describe Google::Cloud::Monitoring::V3::MetricServiceClient do
       mock_method = proc do |request|
         assert_instance_of(Google::Monitoring::V3::CreateTimeSeriesRequest, request)
         assert_equal(formatted_name, request.name)
+        time_series = time_series.map do |req|
+          Google::Gax::to_proto(req, Google::Monitoring::V3::TimeSeries)
+        end
         assert_equal(time_series, request.time_series)
         raise custom_error
       end

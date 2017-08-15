@@ -79,9 +79,9 @@ module Google
       #
       # | Class | Description |
       # | ----- | ----------- |
-      # | [ErrorGroupServiceClient][] |  Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
-      # | [ErrorStatsServiceClient][] |  Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
-      # | [ReportErrorsServiceClient][] |  Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
+      # | [ErrorGroupServiceClient][] | Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
+      # | [ErrorStatsServiceClient][] | Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
+      # | [ReportErrorsServiceClient][] | Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors. |
       # | [Data Types][] | Data types for Google::Cloud::ErrorReporting::V1beta1 |
       #
       # [ErrorGroupServiceClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-error_reporting/latest/google/devtools/clouderrorreporting/v1beta1/v1beta1/errorgroupserviceclient

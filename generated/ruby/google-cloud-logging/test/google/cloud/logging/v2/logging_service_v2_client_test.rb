@@ -143,6 +143,9 @@ describe Google::Cloud::Logging::V2::LoggingServiceV2Client do
       # Mock Grpc layer
       mock_method = proc do |request|
         assert_instance_of(Google::Logging::V2::WriteLogEntriesRequest, request)
+        entries = entries.map do |req|
+          Google::Gax::to_proto(req, Google::Logging::V2::LogEntry)
+        end
         assert_equal(entries, request.entries)
         expected_response
       end
@@ -171,6 +174,9 @@ describe Google::Cloud::Logging::V2::LoggingServiceV2Client do
       # Mock Grpc layer
       mock_method = proc do |request|
         assert_instance_of(Google::Logging::V2::WriteLogEntriesRequest, request)
+        entries = entries.map do |req|
+          Google::Gax::to_proto(req, Google::Logging::V2::LogEntry)
+        end
         assert_equal(entries, request.entries)
         raise custom_error
       end

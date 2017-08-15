@@ -22,7 +22,7 @@ task :ci do
       end
     end
   end
-  if errors
+  unless errors.empty?
     header 'ERRORS'
     errors.each do |key, val|
       puts "Error for #{key}: #{val}"
