@@ -236,6 +236,57 @@ jobs:
           command: ./vendor/bin/phpunit
     working_directory: /var/code/googleapis/
 
+  ruby22:
+    docker:
+      - image: ruby:2.2
+    steps:
+      - checkout
+      - run:
+          name: Install Ruby runtime dependencies.
+          command: |
+            cd generated/ruby
+            bundle install
+      - run:
+          name: Install each gem and run GAPIC unit tests if applicable.
+          command: |
+            cd generated/ruby
+            bundle exec rake ci
+    working_directory: /var/code/googleapis/
+
+  ruby23:
+    docker:
+      - image: ruby:2.3
+    steps:
+      - checkout
+      - run:
+          name: Install Ruby runtime dependencies.
+          command: |
+            cd generated/ruby
+            bundle install
+      - run:
+          name: Install each gem and run GAPIC unit tests if applicable.
+          command: |
+            cd generated/ruby
+            bundle exec rake ci
+    working_directory: /var/code/googleapis/
+
+  ruby24:
+    docker:
+      - image: ruby:2.4
+    steps:
+      - checkout
+      - run:
+          name: Install Ruby runtime dependencies.
+          command: |
+            cd generated/ruby
+            bundle install
+      - run:
+          name: Install each gem and run GAPIC unit tests if applicable.
+          command: |
+            cd generated/ruby
+            bundle exec rake ci
+    working_directory: /var/code/googleapis/
+
   sync_to_private:
     docker:
       - image: googleapis/git
@@ -269,6 +320,9 @@ workflows:
       - php56
       - php70
       - php71
+      - ruby22
+      - ruby23
+      - ruby24
       - sync_to_private:
           requires:
             - go17
@@ -287,6 +341,9 @@ workflows:
             - php56
             - php70
             - php71
+            - ruby22
+            - ruby23
+            - ruby24
           filters:
             branches:
               only: master

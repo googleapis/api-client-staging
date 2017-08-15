@@ -1,0 +1,8 @@
+--no-private
+--title=Cloud Spanner Database Admin API
+--exclude lib/google/cloud/spanner/admin/database/v1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

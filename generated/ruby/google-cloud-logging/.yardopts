@@ -1,0 +1,8 @@
+--no-private
+--title=Stackdriver Logging API
+--exclude lib/google/cloud/logging/v2
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

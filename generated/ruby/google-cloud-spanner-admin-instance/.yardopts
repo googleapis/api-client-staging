@@ -1,0 +1,8 @@
+--no-private
+--title=Cloud Spanner Instance Admin API
+--exclude lib/google/cloud/spanner/admin/instance/v1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

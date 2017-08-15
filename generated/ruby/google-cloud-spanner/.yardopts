@@ -1,0 +1,8 @@
+--no-private
+--title=Cloud Spanner API
+--exclude lib/google/cloud/spanner/v1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md
