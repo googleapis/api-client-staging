@@ -29,6 +29,7 @@ task :ci do
     end
     raise
   end
+  header 'SUCCESS'
 end
 
 task :default => [:ci]
