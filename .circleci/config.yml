@@ -320,11 +320,10 @@ workflows:
       - php56
       - php70
       - php71
-      - sync_to_private:
       - ruby22
       - ruby23
       - ruby24
-      - sync:
+      - sync_to_private:
           requires:
             - go17
             - go18
