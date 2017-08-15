@@ -1,0 +1,8 @@
+--no-private
+--title=Stackdriver Error Reporting API
+--exclude lib/google/cloud/error_reporting/v1beta1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md

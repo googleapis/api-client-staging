@@ -1,0 +1,8 @@
+--no-private
+--title=Google Identity and Access Management (IAM) API
+--exclude lib/google/cloud/iam/admin/v1
+--markup markdown
+
+./lib/**/*.rb
+-
+README.md
