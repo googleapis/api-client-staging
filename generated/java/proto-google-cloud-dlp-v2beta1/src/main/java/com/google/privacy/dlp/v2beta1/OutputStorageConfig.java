@@ -46,6 +46,20 @@ public  final class OutputStorageConfig extends
             }
             break;
           }
+          case 10: {
+            com.google.privacy.dlp.v2beta1.BigQueryTable.Builder subBuilder = null;
+            if (typeCase_ == 1) {
+              subBuilder = ((com.google.privacy.dlp.v2beta1.BigQueryTable) type_).toBuilder();
+            }
+            type_ =
+                input.readMessage(com.google.privacy.dlp.v2beta1.BigQueryTable.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.privacy.dlp.v2beta1.BigQueryTable) type_);
+              type_ = subBuilder.buildPartial();
+            }
+            typeCase_ = 1;
+            break;
+          }
           case 18: {
             com.google.privacy.dlp.v2beta1.CloudStoragePath.Builder subBuilder = null;
             if (typeCase_ == 2) {
@@ -87,6 +101,7 @@ public  final class OutputStorageConfig extends
   private java.lang.Object type_;
   public enum TypeCase
       implements com.google.protobuf.Internal.EnumLite {
+    TABLE(1),
     STORAGE_PATH(2),
     TYPE_NOT_SET(0);
     private final int value;
@@ -103,6 +118,7 @@ public  final class OutputStorageConfig extends
 
     public static TypeCase forNumber(int value) {
       switch (value) {
+        case 1: return TABLE;
         case 2: return STORAGE_PATH;
         case 0: return TYPE_NOT_SET;
         default: return null;
@@ -117,6 +133,34 @@ public  final class OutputStorageConfig extends
   getTypeCase() {
     return TypeCase.forNumber(
         typeCase_);
+  }
+
+  public static final int TABLE_FIELD_NUMBER = 1;
+  /**
+   * <pre>
+   * Store findings in a new table in the dataset.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.BigQueryTable getTable() {
+    if (typeCase_ == 1) {
+       return (com.google.privacy.dlp.v2beta1.BigQueryTable) type_;
+    }
+    return com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * Store findings in a new table in the dataset.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder getTableOrBuilder() {
+    if (typeCase_ == 1) {
+       return (com.google.privacy.dlp.v2beta1.BigQueryTable) type_;
+    }
+    return com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
   }
 
   public static final int STORAGE_PATH_FIELD_NUMBER = 2;
@@ -159,6 +203,9 @@ public  final class OutputStorageConfig extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (typeCase_ == 1) {
+      output.writeMessage(1, (com.google.privacy.dlp.v2beta1.BigQueryTable) type_);
+    }
     if (typeCase_ == 2) {
       output.writeMessage(2, (com.google.privacy.dlp.v2beta1.CloudStoragePath) type_);
     }
@@ -169,6 +216,10 @@ public  final class OutputStorageConfig extends
     if (size != -1) return size;
 
     size = 0;
+    if (typeCase_ == 1) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, (com.google.privacy.dlp.v2beta1.BigQueryTable) type_);
+    }
     if (typeCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (com.google.privacy.dlp.v2beta1.CloudStoragePath) type_);
@@ -193,6 +244,10 @@ public  final class OutputStorageConfig extends
         other.getTypeCase());
     if (!result) return false;
     switch (typeCase_) {
+      case 1:
+        result = result && getTable()
+            .equals(other.getTable());
+        break;
       case 2:
         result = result && getStoragePath()
             .equals(other.getStoragePath());
@@ -211,6 +266,10 @@ public  final class OutputStorageConfig extends
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     switch (typeCase_) {
+      case 1:
+        hash = (37 * hash) + TABLE_FIELD_NUMBER;
+        hash = (53 * hash) + getTable().hashCode();
+        break;
       case 2:
         hash = (37 * hash) + STORAGE_PATH_FIELD_NUMBER;
         hash = (53 * hash) + getStoragePath().hashCode();
@@ -375,6 +434,13 @@ public  final class OutputStorageConfig extends
 
     public com.google.privacy.dlp.v2beta1.OutputStorageConfig buildPartial() {
       com.google.privacy.dlp.v2beta1.OutputStorageConfig result = new com.google.privacy.dlp.v2beta1.OutputStorageConfig(this);
+      if (typeCase_ == 1) {
+        if (tableBuilder_ == null) {
+          result.type_ = type_;
+        } else {
+          result.type_ = tableBuilder_.build();
+        }
+      }
       if (typeCase_ == 2) {
         if (storagePathBuilder_ == null) {
           result.type_ = type_;
@@ -425,6 +491,10 @@ public  final class OutputStorageConfig extends
     public Builder mergeFrom(com.google.privacy.dlp.v2beta1.OutputStorageConfig other) {
       if (other == com.google.privacy.dlp.v2beta1.OutputStorageConfig.getDefaultInstance()) return this;
       switch (other.getTypeCase()) {
+        case TABLE: {
+          mergeTable(other.getTable());
+          break;
+        }
         case STORAGE_PATH: {
           mergeStoragePath(other.getStoragePath());
           break;
@@ -473,6 +543,168 @@ public  final class OutputStorageConfig extends
       return this;
     }
 
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.BigQueryTable, com.google.privacy.dlp.v2beta1.BigQueryTable.Builder, com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder> tableBuilder_;
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryTable getTable() {
+      if (tableBuilder_ == null) {
+        if (typeCase_ == 1) {
+          return (com.google.privacy.dlp.v2beta1.BigQueryTable) type_;
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
+      } else {
+        if (typeCase_ == 1) {
+          return tableBuilder_.getMessage();
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public Builder setTable(com.google.privacy.dlp.v2beta1.BigQueryTable value) {
+      if (tableBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        type_ = value;
+        onChanged();
+      } else {
+        tableBuilder_.setMessage(value);
+      }
+      typeCase_ = 1;
+      return this;
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public Builder setTable(
+        com.google.privacy.dlp.v2beta1.BigQueryTable.Builder builderForValue) {
+      if (tableBuilder_ == null) {
+        type_ = builderForValue.build();
+        onChanged();
+      } else {
+        tableBuilder_.setMessage(builderForValue.build());
+      }
+      typeCase_ = 1;
+      return this;
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public Builder mergeTable(com.google.privacy.dlp.v2beta1.BigQueryTable value) {
+      if (tableBuilder_ == null) {
+        if (typeCase_ == 1 &&
+            type_ != com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance()) {
+          type_ = com.google.privacy.dlp.v2beta1.BigQueryTable.newBuilder((com.google.privacy.dlp.v2beta1.BigQueryTable) type_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          type_ = value;
+        }
+        onChanged();
+      } else {
+        if (typeCase_ == 1) {
+          tableBuilder_.mergeFrom(value);
+        }
+        tableBuilder_.setMessage(value);
+      }
+      typeCase_ = 1;
+      return this;
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public Builder clearTable() {
+      if (tableBuilder_ == null) {
+        if (typeCase_ == 1) {
+          typeCase_ = 0;
+          type_ = null;
+          onChanged();
+        }
+      } else {
+        if (typeCase_ == 1) {
+          typeCase_ = 0;
+          type_ = null;
+        }
+        tableBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryTable.Builder getTableBuilder() {
+      return getTableFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder getTableOrBuilder() {
+      if ((typeCase_ == 1) && (tableBuilder_ != null)) {
+        return tableBuilder_.getMessageOrBuilder();
+      } else {
+        if (typeCase_ == 1) {
+          return (com.google.privacy.dlp.v2beta1.BigQueryTable) type_;
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Store findings in a new table in the dataset.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.BigQueryTable, com.google.privacy.dlp.v2beta1.BigQueryTable.Builder, com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder> 
+        getTableFieldBuilder() {
+      if (tableBuilder_ == null) {
+        if (!(typeCase_ == 1)) {
+          type_ = com.google.privacy.dlp.v2beta1.BigQueryTable.getDefaultInstance();
+        }
+        tableBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.BigQueryTable, com.google.privacy.dlp.v2beta1.BigQueryTable.Builder, com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder>(
+                (com.google.privacy.dlp.v2beta1.BigQueryTable) type_,
+                getParentForChildren(),
+                isClean());
+        type_ = null;
+      }
+      typeCase_ = 1;
+      onChanged();;
+      return tableBuilder_;
+    }
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.CloudStoragePath, com.google.privacy.dlp.v2beta1.CloudStoragePath.Builder, com.google.privacy.dlp.v2beta1.CloudStoragePathOrBuilder> storagePathBuilder_;

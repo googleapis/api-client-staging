@@ -20,7 +20,7 @@ import static com.google.cloud.pubsub.v1.PagedResponseWrappers.ListSubscriptions
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -99,7 +99,8 @@ public abstract class SubscriberStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: pullCallable()");
   }
 
-  public StreamingCallable<StreamingPullRequest, StreamingPullResponse> streamingPullCallable() {
+  public BidiStreamingCallable<StreamingPullRequest, StreamingPullResponse>
+      streamingPullCallable() {
     throw new UnsupportedOperationException("Not implemented: streamingPullCallable()");
   }
 

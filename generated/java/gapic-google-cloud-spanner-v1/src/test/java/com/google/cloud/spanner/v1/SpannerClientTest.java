@@ -21,7 +21,7 @@ import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.grpc.testing.MockStreamObserver;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
@@ -215,7 +215,7 @@ public class SpannerClientTest {
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
-    StreamingCallable<ExecuteSqlRequest, PartialResultSet> callable =
+    ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet> callable =
         client.executeStreamingSqlCallable();
     callable.serverStreamingCall(request, responseObserver);
 
@@ -236,7 +236,7 @@ public class SpannerClientTest {
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
-    StreamingCallable<ExecuteSqlRequest, PartialResultSet> callable =
+    ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet> callable =
         client.executeStreamingSqlCallable();
     callable.serverStreamingCall(request, responseObserver);
 
@@ -275,7 +275,8 @@ public class SpannerClientTest {
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
-    StreamingCallable<ReadRequest, PartialResultSet> callable = client.streamingReadCallable();
+    ServerStreamingCallable<ReadRequest, PartialResultSet> callable =
+        client.streamingReadCallable();
     callable.serverStreamingCall(request, responseObserver);
 
     List<PartialResultSet> actualResponses = responseObserver.future().get();
@@ -302,7 +303,8 @@ public class SpannerClientTest {
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
-    StreamingCallable<ReadRequest, PartialResultSet> callable = client.streamingReadCallable();
+    ServerStreamingCallable<ReadRequest, PartialResultSet> callable =
+        client.streamingReadCallable();
     callable.serverStreamingCall(request, responseObserver);
 
     try {

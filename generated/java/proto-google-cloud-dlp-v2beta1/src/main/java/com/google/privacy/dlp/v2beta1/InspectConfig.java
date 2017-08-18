@@ -26,6 +26,7 @@ public  final class InspectConfig extends
     maxFindings_ = 0;
     includeQuote_ = false;
     excludeTypes_ = false;
+    infoTypeLimits_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -83,6 +84,15 @@ public  final class InspectConfig extends
             excludeTypes_ = input.readBool();
             break;
           }
+          case 58: {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              infoTypeLimits_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit>();
+              mutable_bitField0_ |= 0x00000020;
+            }
+            infoTypeLimits_.add(
+                input.readMessage(com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -93,6 +103,9 @@ public  final class InspectConfig extends
     } finally {
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         infoTypes_ = java.util.Collections.unmodifiableList(infoTypes_);
+      }
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+        infoTypeLimits_ = java.util.Collections.unmodifiableList(infoTypeLimits_);
       }
       makeExtensionsImmutable();
     }
@@ -107,6 +120,775 @@ public  final class InspectConfig extends
     return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.google.privacy.dlp.v2beta1.InspectConfig.class, com.google.privacy.dlp.v2beta1.InspectConfig.Builder.class);
+  }
+
+  public interface InfoTypeLimitOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    boolean hasInfoType();
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    com.google.privacy.dlp.v2beta1.InfoType getInfoType();
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder();
+
+    /**
+     * <pre>
+     * Max findings limit for the given infoType.
+     * </pre>
+     *
+     * <code>int32 max_findings = 2;</code>
+     */
+    int getMaxFindings();
+  }
+  /**
+   * <pre>
+   * Max findings configuration per info type, per content item or long running
+   * operation.
+   * </pre>
+   *
+   * Protobuf type {@code google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit}
+   */
+  public  static final class InfoTypeLimit extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)
+      InfoTypeLimitOrBuilder {
+    // Use InfoTypeLimit.newBuilder() to construct.
+    private InfoTypeLimit(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private InfoTypeLimit() {
+      maxFindings_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private InfoTypeLimit(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.privacy.dlp.v2beta1.InfoType.Builder subBuilder = null;
+              if (infoType_ != null) {
+                subBuilder = infoType_.toBuilder();
+              }
+              infoType_ = input.readMessage(com.google.privacy.dlp.v2beta1.InfoType.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(infoType_);
+                infoType_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 16: {
+
+              maxFindings_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_InfoTypeLimit_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_InfoTypeLimit_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.class, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder.class);
+    }
+
+    public static final int INFO_TYPE_FIELD_NUMBER = 1;
+    private com.google.privacy.dlp.v2beta1.InfoType infoType_;
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    public boolean hasInfoType() {
+      return infoType_ != null;
+    }
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
+      return infoType_ == null ? com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
+    }
+    /**
+     * <pre>
+     * Type of information the findings limit applies to. Only one limit per
+     * info_type should be provided. If InfoTypeLimit does not have an
+     * info_type, the DLP API applies the limit against all info_types that are
+     * found but not specified in another InfoTypeLimit.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
+      return getInfoType();
+    }
+
+    public static final int MAX_FINDINGS_FIELD_NUMBER = 2;
+    private int maxFindings_;
+    /**
+     * <pre>
+     * Max findings limit for the given infoType.
+     * </pre>
+     *
+     * <code>int32 max_findings = 2;</code>
+     */
+    public int getMaxFindings() {
+      return maxFindings_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (infoType_ != null) {
+        output.writeMessage(1, getInfoType());
+      }
+      if (maxFindings_ != 0) {
+        output.writeInt32(2, maxFindings_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (infoType_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getInfoType());
+      }
+      if (maxFindings_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, maxFindings_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)) {
+        return super.equals(obj);
+      }
+      com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit other = (com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit) obj;
+
+      boolean result = true;
+      result = result && (hasInfoType() == other.hasInfoType());
+      if (hasInfoType()) {
+        result = result && getInfoType()
+            .equals(other.getInfoType());
+      }
+      result = result && (getMaxFindings()
+          == other.getMaxFindings());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasInfoType()) {
+        hash = (37 * hash) + INFO_TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + getInfoType().hashCode();
+      }
+      hash = (37 * hash) + MAX_FINDINGS_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxFindings();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Max findings configuration per info type, per content item or long running
+     * operation.
+     * </pre>
+     *
+     * Protobuf type {@code google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_InfoTypeLimit_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_InfoTypeLimit_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.class, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder.class);
+      }
+
+      // Construct using com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (infoTypeBuilder_ == null) {
+          infoType_ = null;
+        } else {
+          infoType_ = null;
+          infoTypeBuilder_ = null;
+        }
+        maxFindings_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.google.privacy.dlp.v2beta1.DlpProto.internal_static_google_privacy_dlp_v2beta1_InspectConfig_InfoTypeLimit_descriptor;
+      }
+
+      public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getDefaultInstanceForType() {
+        return com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.getDefaultInstance();
+      }
+
+      public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit build() {
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit buildPartial() {
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit result = new com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit(this);
+        if (infoTypeBuilder_ == null) {
+          result.infoType_ = infoType_;
+        } else {
+          result.infoType_ = infoTypeBuilder_.build();
+        }
+        result.maxFindings_ = maxFindings_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit) {
+          return mergeFrom((com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit other) {
+        if (other == com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.getDefaultInstance()) return this;
+        if (other.hasInfoType()) {
+          mergeInfoType(other.getInfoType());
+        }
+        if (other.getMaxFindings() != 0) {
+          setMaxFindings(other.getMaxFindings());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.privacy.dlp.v2beta1.InfoType infoType_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> infoTypeBuilder_;
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public boolean hasInfoType() {
+        return infoTypeBuilder_ != null || infoType_ != null;
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public com.google.privacy.dlp.v2beta1.InfoType getInfoType() {
+        if (infoTypeBuilder_ == null) {
+          return infoType_ == null ? com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
+        } else {
+          return infoTypeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public Builder setInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
+        if (infoTypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          infoType_ = value;
+          onChanged();
+        } else {
+          infoTypeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public Builder setInfoType(
+          com.google.privacy.dlp.v2beta1.InfoType.Builder builderForValue) {
+        if (infoTypeBuilder_ == null) {
+          infoType_ = builderForValue.build();
+          onChanged();
+        } else {
+          infoTypeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public Builder mergeInfoType(com.google.privacy.dlp.v2beta1.InfoType value) {
+        if (infoTypeBuilder_ == null) {
+          if (infoType_ != null) {
+            infoType_ =
+              com.google.privacy.dlp.v2beta1.InfoType.newBuilder(infoType_).mergeFrom(value).buildPartial();
+          } else {
+            infoType_ = value;
+          }
+          onChanged();
+        } else {
+          infoTypeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public Builder clearInfoType() {
+        if (infoTypeBuilder_ == null) {
+          infoType_ = null;
+          onChanged();
+        } else {
+          infoType_ = null;
+          infoTypeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public com.google.privacy.dlp.v2beta1.InfoType.Builder getInfoTypeBuilder() {
+        
+        onChanged();
+        return getInfoTypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      public com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder getInfoTypeOrBuilder() {
+        if (infoTypeBuilder_ != null) {
+          return infoTypeBuilder_.getMessageOrBuilder();
+        } else {
+          return infoType_ == null ?
+              com.google.privacy.dlp.v2beta1.InfoType.getDefaultInstance() : infoType_;
+        }
+      }
+      /**
+       * <pre>
+       * Type of information the findings limit applies to. Only one limit per
+       * info_type should be provided. If InfoTypeLimit does not have an
+       * info_type, the DLP API applies the limit against all info_types that are
+       * found but not specified in another InfoTypeLimit.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta1.InfoType info_type = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder> 
+          getInfoTypeFieldBuilder() {
+        if (infoTypeBuilder_ == null) {
+          infoTypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.privacy.dlp.v2beta1.InfoType, com.google.privacy.dlp.v2beta1.InfoType.Builder, com.google.privacy.dlp.v2beta1.InfoTypeOrBuilder>(
+                  getInfoType(),
+                  getParentForChildren(),
+                  isClean());
+          infoType_ = null;
+        }
+        return infoTypeBuilder_;
+      }
+
+      private int maxFindings_ ;
+      /**
+       * <pre>
+       * Max findings limit for the given infoType.
+       * </pre>
+       *
+       * <code>int32 max_findings = 2;</code>
+       */
+      public int getMaxFindings() {
+        return maxFindings_;
+      }
+      /**
+       * <pre>
+       * Max findings limit for the given infoType.
+       * </pre>
+       *
+       * <code>int32 max_findings = 2;</code>
+       */
+      public Builder setMaxFindings(int value) {
+        
+        maxFindings_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Max findings limit for the given infoType.
+       * </pre>
+       *
+       * <code>int32 max_findings = 2;</code>
+       */
+      public Builder clearMaxFindings() {
+        
+        maxFindings_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)
+    }
+
+    // @@protoc_insertion_point(class_scope:google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit)
+    private static final com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit();
+    }
+
+    public static com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<InfoTypeLimit>
+        PARSER = new com.google.protobuf.AbstractParser<InfoTypeLimit>() {
+      public InfoTypeLimit parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new InfoTypeLimit(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<InfoTypeLimit> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<InfoTypeLimit> getParserForType() {
+      return PARSER;
+    }
+
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   private int bitField0_;
@@ -203,7 +985,7 @@ public  final class InspectConfig extends
   private int maxFindings_;
   /**
    * <pre>
-   * Limits the number of findings per content item.
+   * Limits the number of findings per content item or long running operation.
    * </pre>
    *
    * <code>int32 max_findings = 3;</code>
@@ -239,6 +1021,61 @@ public  final class InspectConfig extends
     return excludeTypes_;
   }
 
+  public static final int INFO_TYPE_LIMITS_FIELD_NUMBER = 7;
+  private java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> infoTypeLimits_;
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  public java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> getInfoTypeLimitsList() {
+    return infoTypeLimits_;
+  }
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  public java.util.List<? extends com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder> 
+      getInfoTypeLimitsOrBuilderList() {
+    return infoTypeLimits_;
+  }
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  public int getInfoTypeLimitsCount() {
+    return infoTypeLimits_.size();
+  }
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getInfoTypeLimits(int index) {
+    return infoTypeLimits_.get(index);
+  }
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder getInfoTypeLimitsOrBuilder(
+      int index) {
+    return infoTypeLimits_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -265,6 +1102,9 @@ public  final class InspectConfig extends
     }
     if (excludeTypes_ != false) {
       output.writeBool(6, excludeTypes_);
+    }
+    for (int i = 0; i < infoTypeLimits_.size(); i++) {
+      output.writeMessage(7, infoTypeLimits_.get(i));
     }
   }
 
@@ -293,6 +1133,10 @@ public  final class InspectConfig extends
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(6, excludeTypes_);
     }
+    for (int i = 0; i < infoTypeLimits_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, infoTypeLimits_.get(i));
+    }
     memoizedSize = size;
     return size;
   }
@@ -318,6 +1162,8 @@ public  final class InspectConfig extends
         == other.getIncludeQuote());
     result = result && (getExcludeTypes()
         == other.getExcludeTypes());
+    result = result && getInfoTypeLimitsList()
+        .equals(other.getInfoTypeLimitsList());
     return result;
   }
 
@@ -342,6 +1188,10 @@ public  final class InspectConfig extends
     hash = (37 * hash) + EXCLUDE_TYPES_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getExcludeTypes());
+    if (getInfoTypeLimitsCount() > 0) {
+      hash = (37 * hash) + INFO_TYPE_LIMITS_FIELD_NUMBER;
+      hash = (53 * hash) + getInfoTypeLimitsList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -474,6 +1324,7 @@ public  final class InspectConfig extends
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getInfoTypesFieldBuilder();
+        getInfoTypeLimitsFieldBuilder();
       }
     }
     public Builder clear() {
@@ -492,6 +1343,12 @@ public  final class InspectConfig extends
 
       excludeTypes_ = false;
 
+      if (infoTypeLimitsBuilder_ == null) {
+        infoTypeLimits_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+      } else {
+        infoTypeLimitsBuilder_.clear();
+      }
       return this;
     }
 
@@ -529,6 +1386,15 @@ public  final class InspectConfig extends
       result.maxFindings_ = maxFindings_;
       result.includeQuote_ = includeQuote_;
       result.excludeTypes_ = excludeTypes_;
+      if (infoTypeLimitsBuilder_ == null) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          infoTypeLimits_ = java.util.Collections.unmodifiableList(infoTypeLimits_);
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.infoTypeLimits_ = infoTypeLimits_;
+      } else {
+        result.infoTypeLimits_ = infoTypeLimitsBuilder_.build();
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -608,6 +1474,32 @@ public  final class InspectConfig extends
       }
       if (other.getExcludeTypes() != false) {
         setExcludeTypes(other.getExcludeTypes());
+      }
+      if (infoTypeLimitsBuilder_ == null) {
+        if (!other.infoTypeLimits_.isEmpty()) {
+          if (infoTypeLimits_.isEmpty()) {
+            infoTypeLimits_ = other.infoTypeLimits_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureInfoTypeLimitsIsMutable();
+            infoTypeLimits_.addAll(other.infoTypeLimits_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.infoTypeLimits_.isEmpty()) {
+          if (infoTypeLimitsBuilder_.isEmpty()) {
+            infoTypeLimitsBuilder_.dispose();
+            infoTypeLimitsBuilder_ = null;
+            infoTypeLimits_ = other.infoTypeLimits_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+            infoTypeLimitsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getInfoTypeLimitsFieldBuilder() : null;
+          } else {
+            infoTypeLimitsBuilder_.addAllMessages(other.infoTypeLimits_);
+          }
+        }
       }
       onChanged();
       return this;
@@ -1051,7 +1943,7 @@ public  final class InspectConfig extends
     private int maxFindings_ ;
     /**
      * <pre>
-     * Limits the number of findings per content item.
+     * Limits the number of findings per content item or long running operation.
      * </pre>
      *
      * <code>int32 max_findings = 3;</code>
@@ -1061,7 +1953,7 @@ public  final class InspectConfig extends
     }
     /**
      * <pre>
-     * Limits the number of findings per content item.
+     * Limits the number of findings per content item or long running operation.
      * </pre>
      *
      * <code>int32 max_findings = 3;</code>
@@ -1074,7 +1966,7 @@ public  final class InspectConfig extends
     }
     /**
      * <pre>
-     * Limits the number of findings per content item.
+     * Limits the number of findings per content item or long running operation.
      * </pre>
      *
      * <code>int32 max_findings = 3;</code>
@@ -1163,6 +2055,318 @@ public  final class InspectConfig extends
       excludeTypes_ = false;
       onChanged();
       return this;
+    }
+
+    private java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> infoTypeLimits_ =
+      java.util.Collections.emptyList();
+    private void ensureInfoTypeLimitsIsMutable() {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        infoTypeLimits_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit>(infoTypeLimits_);
+        bitField0_ |= 0x00000020;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder> infoTypeLimitsBuilder_;
+
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> getInfoTypeLimitsList() {
+      if (infoTypeLimitsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(infoTypeLimits_);
+      } else {
+        return infoTypeLimitsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public int getInfoTypeLimitsCount() {
+      if (infoTypeLimitsBuilder_ == null) {
+        return infoTypeLimits_.size();
+      } else {
+        return infoTypeLimitsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getInfoTypeLimits(int index) {
+      if (infoTypeLimitsBuilder_ == null) {
+        return infoTypeLimits_.get(index);
+      } else {
+        return infoTypeLimitsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder setInfoTypeLimits(
+        int index, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit value) {
+      if (infoTypeLimitsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.set(index, value);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder setInfoTypeLimits(
+        int index, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder builderForValue) {
+      if (infoTypeLimitsBuilder_ == null) {
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder addInfoTypeLimits(com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit value) {
+      if (infoTypeLimitsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.add(value);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder addInfoTypeLimits(
+        int index, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit value) {
+      if (infoTypeLimitsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.add(index, value);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder addInfoTypeLimits(
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder builderForValue) {
+      if (infoTypeLimitsBuilder_ == null) {
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.add(builderForValue.build());
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder addInfoTypeLimits(
+        int index, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder builderForValue) {
+      if (infoTypeLimitsBuilder_ == null) {
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder addAllInfoTypeLimits(
+        java.lang.Iterable<? extends com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> values) {
+      if (infoTypeLimitsBuilder_ == null) {
+        ensureInfoTypeLimitsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, infoTypeLimits_);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder clearInfoTypeLimits() {
+      if (infoTypeLimitsBuilder_ == null) {
+        infoTypeLimits_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public Builder removeInfoTypeLimits(int index) {
+      if (infoTypeLimitsBuilder_ == null) {
+        ensureInfoTypeLimitsIsMutable();
+        infoTypeLimits_.remove(index);
+        onChanged();
+      } else {
+        infoTypeLimitsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder getInfoTypeLimitsBuilder(
+        int index) {
+      return getInfoTypeLimitsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder getInfoTypeLimitsOrBuilder(
+        int index) {
+      if (infoTypeLimitsBuilder_ == null) {
+        return infoTypeLimits_.get(index);  } else {
+        return infoTypeLimitsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public java.util.List<? extends com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder> 
+         getInfoTypeLimitsOrBuilderList() {
+      if (infoTypeLimitsBuilder_ != null) {
+        return infoTypeLimitsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(infoTypeLimits_);
+      }
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder addInfoTypeLimitsBuilder() {
+      return getInfoTypeLimitsFieldBuilder().addBuilder(
+          com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder addInfoTypeLimitsBuilder(
+        int index) {
+      return getInfoTypeLimitsFieldBuilder().addBuilder(
+          index, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Configuration of findings limit given for specified info types.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+     */
+    public java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder> 
+         getInfoTypeLimitsBuilderList() {
+      return getInfoTypeLimitsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder> 
+        getInfoTypeLimitsFieldBuilder() {
+      if (infoTypeLimitsBuilder_ == null) {
+        infoTypeLimitsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.Builder, com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder>(
+                infoTypeLimits_,
+                ((bitField0_ & 0x00000020) == 0x00000020),
+                getParentForChildren(),
+                isClean());
+        infoTypeLimits_ = null;
+      }
+      return infoTypeLimitsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

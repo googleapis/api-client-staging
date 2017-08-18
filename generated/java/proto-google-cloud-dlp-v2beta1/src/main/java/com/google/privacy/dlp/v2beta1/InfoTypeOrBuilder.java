@@ -9,10 +9,7 @@ public interface InfoTypeOrBuilder extends
 
   /**
    * <pre>
-   * Name of the information type. For built-in info types, this is provided by
-   * the API call ListInfoTypes. For user-defined info types, this is
-   * provided by the user. All user-defined info types must have unique names,
-   * and cannot conflict with built-in info type names.
+   * Name of the information type.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -20,10 +17,7 @@ public interface InfoTypeOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Name of the information type. For built-in info types, this is provided by
-   * the API call ListInfoTypes. For user-defined info types, this is
-   * provided by the user. All user-defined info types must have unique names,
-   * and cannot conflict with built-in info type names.
+   * Name of the information type.
    * </pre>
    *
    * <code>string name = 1;</code>

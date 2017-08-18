@@ -108,6 +108,19 @@ public  final class Location extends
 
             break;
           }
+          case 50: {
+            com.google.privacy.dlp.v2beta1.TableLocation.Builder subBuilder = null;
+            if (tableLocation_ != null) {
+              subBuilder = tableLocation_.toBuilder();
+            }
+            tableLocation_ = input.readMessage(com.google.privacy.dlp.v2beta1.TableLocation.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(tableLocation_);
+              tableLocation_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -325,6 +338,39 @@ public  final class Location extends
     return getFieldId();
   }
 
+  public static final int TABLE_LOCATION_FIELD_NUMBER = 6;
+  private com.google.privacy.dlp.v2beta1.TableLocation tableLocation_;
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  public boolean hasTableLocation() {
+    return tableLocation_ != null;
+  }
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.TableLocation getTableLocation() {
+    return tableLocation_ == null ? com.google.privacy.dlp.v2beta1.TableLocation.getDefaultInstance() : tableLocation_;
+  }
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.TableLocationOrBuilder getTableLocationOrBuilder() {
+    return getTableLocation();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -352,6 +398,9 @@ public  final class Location extends
     if (fieldId_ != null) {
       output.writeMessage(5, getFieldId());
     }
+    if (tableLocation_ != null) {
+      output.writeMessage(6, getTableLocation());
+    }
   }
 
   public int getSerializedSize() {
@@ -378,6 +427,10 @@ public  final class Location extends
     if (fieldId_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, getFieldId());
+    }
+    if (tableLocation_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, getTableLocation());
     }
     memoizedSize = size;
     return size;
@@ -417,6 +470,11 @@ public  final class Location extends
       result = result && getFieldId()
           .equals(other.getFieldId());
     }
+    result = result && (hasTableLocation() == other.hasTableLocation());
+    if (hasTableLocation()) {
+      result = result && getTableLocation()
+          .equals(other.getTableLocation());
+    }
     return result;
   }
 
@@ -446,6 +504,10 @@ public  final class Location extends
     if (hasFieldId()) {
       hash = (37 * hash) + FIELD_ID_FIELD_NUMBER;
       hash = (53 * hash) + getFieldId().hashCode();
+    }
+    if (hasTableLocation()) {
+      hash = (37 * hash) + TABLE_LOCATION_FIELD_NUMBER;
+      hash = (53 * hash) + getTableLocation().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -611,6 +673,12 @@ public  final class Location extends
         fieldId_ = null;
         fieldIdBuilder_ = null;
       }
+      if (tableLocationBuilder_ == null) {
+        tableLocation_ = null;
+      } else {
+        tableLocation_ = null;
+        tableLocationBuilder_ = null;
+      }
       return this;
     }
 
@@ -663,6 +731,11 @@ public  final class Location extends
         result.fieldId_ = fieldId_;
       } else {
         result.fieldId_ = fieldIdBuilder_.build();
+      }
+      if (tableLocationBuilder_ == null) {
+        result.tableLocation_ = tableLocation_;
+      } else {
+        result.tableLocation_ = tableLocationBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -743,6 +816,9 @@ public  final class Location extends
       }
       if (other.hasFieldId()) {
         mergeFieldId(other.getFieldId());
+      }
+      if (other.hasTableLocation()) {
+        mergeTableLocation(other.getTableLocation());
       }
       onChanged();
       return this;
@@ -1702,6 +1778,159 @@ public  final class Location extends
         fieldId_ = null;
       }
       return fieldIdBuilder_;
+    }
+
+    private com.google.privacy.dlp.v2beta1.TableLocation tableLocation_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.TableLocation, com.google.privacy.dlp.v2beta1.TableLocation.Builder, com.google.privacy.dlp.v2beta1.TableLocationOrBuilder> tableLocationBuilder_;
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public boolean hasTableLocation() {
+      return tableLocationBuilder_ != null || tableLocation_ != null;
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.TableLocation getTableLocation() {
+      if (tableLocationBuilder_ == null) {
+        return tableLocation_ == null ? com.google.privacy.dlp.v2beta1.TableLocation.getDefaultInstance() : tableLocation_;
+      } else {
+        return tableLocationBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public Builder setTableLocation(com.google.privacy.dlp.v2beta1.TableLocation value) {
+      if (tableLocationBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        tableLocation_ = value;
+        onChanged();
+      } else {
+        tableLocationBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public Builder setTableLocation(
+        com.google.privacy.dlp.v2beta1.TableLocation.Builder builderForValue) {
+      if (tableLocationBuilder_ == null) {
+        tableLocation_ = builderForValue.build();
+        onChanged();
+      } else {
+        tableLocationBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public Builder mergeTableLocation(com.google.privacy.dlp.v2beta1.TableLocation value) {
+      if (tableLocationBuilder_ == null) {
+        if (tableLocation_ != null) {
+          tableLocation_ =
+            com.google.privacy.dlp.v2beta1.TableLocation.newBuilder(tableLocation_).mergeFrom(value).buildPartial();
+        } else {
+          tableLocation_ = value;
+        }
+        onChanged();
+      } else {
+        tableLocationBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public Builder clearTableLocation() {
+      if (tableLocationBuilder_ == null) {
+        tableLocation_ = null;
+        onChanged();
+      } else {
+        tableLocation_ = null;
+        tableLocationBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.TableLocation.Builder getTableLocationBuilder() {
+      
+      onChanged();
+      return getTableLocationFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.TableLocationOrBuilder getTableLocationOrBuilder() {
+      if (tableLocationBuilder_ != null) {
+        return tableLocationBuilder_.getMessageOrBuilder();
+      } else {
+        return tableLocation_ == null ?
+            com.google.privacy.dlp.v2beta1.TableLocation.getDefaultInstance() : tableLocation_;
+      }
+    }
+    /**
+     * <pre>
+     * Location within a `ContentItem.Table`.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.TableLocation, com.google.privacy.dlp.v2beta1.TableLocation.Builder, com.google.privacy.dlp.v2beta1.TableLocationOrBuilder> 
+        getTableLocationFieldBuilder() {
+      if (tableLocationBuilder_ == null) {
+        tableLocationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.TableLocation, com.google.privacy.dlp.v2beta1.TableLocation.Builder, com.google.privacy.dlp.v2beta1.TableLocationOrBuilder>(
+                getTableLocation(),
+                getParentForChildren(),
+                isClean());
+        tableLocation_ = null;
+      }
+      return tableLocationBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

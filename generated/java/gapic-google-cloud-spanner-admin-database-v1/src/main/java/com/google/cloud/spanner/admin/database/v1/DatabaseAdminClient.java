@@ -94,11 +94,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of DatabaseAdminSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
  *     DatabaseAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * DatabaseAdminClient databaseAdminClient =
+ *     DatabaseAdminClient.create(databaseAdminSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * DatabaseAdminSettings databaseAdminSettings =
+ *     DatabaseAdminSettings.defaultBuilder()
+ *         .setTransportProvider(DatabaseAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(DatabaseAdminSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * DatabaseAdminClient databaseAdminClient =
  *     DatabaseAdminClient.create(databaseAdminSettings);

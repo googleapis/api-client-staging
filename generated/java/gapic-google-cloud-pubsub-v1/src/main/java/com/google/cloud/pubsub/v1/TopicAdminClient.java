@@ -91,11 +91,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of TopicAdminSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * TopicAdminSettings topicAdminSettings =
  *     TopicAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * TopicAdminClient topicAdminClient =
+ *     TopicAdminClient.create(topicAdminSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * TopicAdminSettings topicAdminSettings =
+ *     TopicAdminSettings.defaultBuilder()
+ *         .setTransportProvider(TopicAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(TopicAdminSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * TopicAdminClient topicAdminClient =
  *     TopicAdminClient.create(topicAdminSettings);

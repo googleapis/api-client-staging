@@ -22,8 +22,8 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
 import com.google.api.gax.grpc.GrpcCallableFactory;
+import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.ClientContext;
-import com.google.api.gax.rpc.StreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.pubsub.v1.SubscriptionAdminSettings;
 import com.google.iam.v1.GetIamPolicyRequest;
@@ -133,9 +133,9 @@ public class GrpcSubscriberStub extends SubscriberStub {
               "google.pubsub.v1.Subscriber/Pull",
               io.grpc.protobuf.ProtoUtils.marshaller(PullRequest.getDefaultInstance()),
               io.grpc.protobuf.ProtoUtils.marshaller(PullResponse.getDefaultInstance())));
-  private static final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
+  private static final BidiStreamingCallable<StreamingPullRequest, StreamingPullResponse>
       directStreamingPullCallable =
-          GrpcCallableFactory.createDirectStreamingCallable(
+          GrpcCallableFactory.createDirectBidiStreamingCallable(
               io.grpc.MethodDescriptor.create(
                   io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING,
                   "google.pubsub.v1.Subscriber/StreamingPull",
@@ -226,7 +226,7 @@ public class GrpcSubscriberStub extends SubscriberStub {
   private final UnaryCallable<ModifyAckDeadlineRequest, Empty> modifyAckDeadlineCallable;
   private final UnaryCallable<AcknowledgeRequest, Empty> acknowledgeCallable;
   private final UnaryCallable<PullRequest, PullResponse> pullCallable;
-  private final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
+  private final BidiStreamingCallable<StreamingPullRequest, StreamingPullResponse>
       streamingPullCallable;
   private final UnaryCallable<ModifyPushConfigRequest, Empty> modifyPushConfigCallable;
   private final UnaryCallable<ListSnapshotsRequest, ListSnapshotsResponse> listSnapshotsCallable;
@@ -359,7 +359,8 @@ public class GrpcSubscriberStub extends SubscriberStub {
     return pullCallable;
   }
 
-  public StreamingCallable<StreamingPullRequest, StreamingPullResponse> streamingPullCallable() {
+  public BidiStreamingCallable<StreamingPullRequest, StreamingPullResponse>
+      streamingPullCallable() {
     return streamingPullCallable;
   }
 

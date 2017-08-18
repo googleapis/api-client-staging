@@ -74,6 +74,20 @@ public  final class StorageConfig extends
             typeCase_ = 3;
             break;
           }
+          case 34: {
+            com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder subBuilder = null;
+            if (typeCase_ == 4) {
+              subBuilder = ((com.google.privacy.dlp.v2beta1.BigQueryOptions) type_).toBuilder();
+            }
+            type_ =
+                input.readMessage(com.google.privacy.dlp.v2beta1.BigQueryOptions.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.privacy.dlp.v2beta1.BigQueryOptions) type_);
+              type_ = subBuilder.buildPartial();
+            }
+            typeCase_ = 4;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -103,6 +117,7 @@ public  final class StorageConfig extends
       implements com.google.protobuf.Internal.EnumLite {
     DATASTORE_OPTIONS(2),
     CLOUD_STORAGE_OPTIONS(3),
+    BIG_QUERY_OPTIONS(4),
     TYPE_NOT_SET(0);
     private final int value;
     private TypeCase(int value) {
@@ -120,6 +135,7 @@ public  final class StorageConfig extends
       switch (value) {
         case 2: return DATASTORE_OPTIONS;
         case 3: return CLOUD_STORAGE_OPTIONS;
+        case 4: return BIG_QUERY_OPTIONS;
         case 0: return TYPE_NOT_SET;
         default: return null;
       }
@@ -191,6 +207,34 @@ public  final class StorageConfig extends
     return com.google.privacy.dlp.v2beta1.CloudStorageOptions.getDefaultInstance();
   }
 
+  public static final int BIG_QUERY_OPTIONS_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.BigQueryOptions getBigQueryOptions() {
+    if (typeCase_ == 4) {
+       return (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_;
+    }
+    return com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder getBigQueryOptionsOrBuilder() {
+    if (typeCase_ == 4) {
+       return (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_;
+    }
+    return com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -209,6 +253,9 @@ public  final class StorageConfig extends
     if (typeCase_ == 3) {
       output.writeMessage(3, (com.google.privacy.dlp.v2beta1.CloudStorageOptions) type_);
     }
+    if (typeCase_ == 4) {
+      output.writeMessage(4, (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_);
+    }
   }
 
   public int getSerializedSize() {
@@ -223,6 +270,10 @@ public  final class StorageConfig extends
     if (typeCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (com.google.privacy.dlp.v2beta1.CloudStorageOptions) type_);
+    }
+    if (typeCase_ == 4) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_);
     }
     memoizedSize = size;
     return size;
@@ -252,6 +303,10 @@ public  final class StorageConfig extends
         result = result && getCloudStorageOptions()
             .equals(other.getCloudStorageOptions());
         break;
+      case 4:
+        result = result && getBigQueryOptions()
+            .equals(other.getBigQueryOptions());
+        break;
       case 0:
       default:
     }
@@ -273,6 +328,10 @@ public  final class StorageConfig extends
       case 3:
         hash = (37 * hash) + CLOUD_STORAGE_OPTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getCloudStorageOptions().hashCode();
+        break;
+      case 4:
+        hash = (37 * hash) + BIG_QUERY_OPTIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getBigQueryOptions().hashCode();
         break;
       case 0:
       default:
@@ -448,6 +507,13 @@ public  final class StorageConfig extends
           result.type_ = cloudStorageOptionsBuilder_.build();
         }
       }
+      if (typeCase_ == 4) {
+        if (bigQueryOptionsBuilder_ == null) {
+          result.type_ = type_;
+        } else {
+          result.type_ = bigQueryOptionsBuilder_.build();
+        }
+      }
       result.typeCase_ = typeCase_;
       onBuilt();
       return result;
@@ -497,6 +563,10 @@ public  final class StorageConfig extends
         }
         case CLOUD_STORAGE_OPTIONS: {
           mergeCloudStorageOptions(other.getCloudStorageOptions());
+          break;
+        }
+        case BIG_QUERY_OPTIONS: {
+          mergeBigQueryOptions(other.getBigQueryOptions());
           break;
         }
         case TYPE_NOT_SET: {
@@ -866,6 +936,168 @@ public  final class StorageConfig extends
       typeCase_ = 3;
       onChanged();;
       return cloudStorageOptionsBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.BigQueryOptions, com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder, com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder> bigQueryOptionsBuilder_;
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryOptions getBigQueryOptions() {
+      if (bigQueryOptionsBuilder_ == null) {
+        if (typeCase_ == 4) {
+          return (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_;
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+      } else {
+        if (typeCase_ == 4) {
+          return bigQueryOptionsBuilder_.getMessage();
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public Builder setBigQueryOptions(com.google.privacy.dlp.v2beta1.BigQueryOptions value) {
+      if (bigQueryOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        type_ = value;
+        onChanged();
+      } else {
+        bigQueryOptionsBuilder_.setMessage(value);
+      }
+      typeCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public Builder setBigQueryOptions(
+        com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder builderForValue) {
+      if (bigQueryOptionsBuilder_ == null) {
+        type_ = builderForValue.build();
+        onChanged();
+      } else {
+        bigQueryOptionsBuilder_.setMessage(builderForValue.build());
+      }
+      typeCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public Builder mergeBigQueryOptions(com.google.privacy.dlp.v2beta1.BigQueryOptions value) {
+      if (bigQueryOptionsBuilder_ == null) {
+        if (typeCase_ == 4 &&
+            type_ != com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance()) {
+          type_ = com.google.privacy.dlp.v2beta1.BigQueryOptions.newBuilder((com.google.privacy.dlp.v2beta1.BigQueryOptions) type_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          type_ = value;
+        }
+        onChanged();
+      } else {
+        if (typeCase_ == 4) {
+          bigQueryOptionsBuilder_.mergeFrom(value);
+        }
+        bigQueryOptionsBuilder_.setMessage(value);
+      }
+      typeCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public Builder clearBigQueryOptions() {
+      if (bigQueryOptionsBuilder_ == null) {
+        if (typeCase_ == 4) {
+          typeCase_ = 0;
+          type_ = null;
+          onChanged();
+        }
+      } else {
+        if (typeCase_ == 4) {
+          typeCase_ = 0;
+          type_ = null;
+        }
+        bigQueryOptionsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder getBigQueryOptionsBuilder() {
+      return getBigQueryOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder getBigQueryOptionsOrBuilder() {
+      if ((typeCase_ == 4) && (bigQueryOptionsBuilder_ != null)) {
+        return bigQueryOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        if (typeCase_ == 4) {
+          return (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_;
+        }
+        return com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.BigQueryOptions, com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder, com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder> 
+        getBigQueryOptionsFieldBuilder() {
+      if (bigQueryOptionsBuilder_ == null) {
+        if (!(typeCase_ == 4)) {
+          type_ = com.google.privacy.dlp.v2beta1.BigQueryOptions.getDefaultInstance();
+        }
+        bigQueryOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.BigQueryOptions, com.google.privacy.dlp.v2beta1.BigQueryOptions.Builder, com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder>(
+                (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_,
+                getParentForChildren(),
+                isClean());
+        type_ = null;
+      }
+      typeCase_ = 4;
+      onChanged();;
+      return bigQueryOptionsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

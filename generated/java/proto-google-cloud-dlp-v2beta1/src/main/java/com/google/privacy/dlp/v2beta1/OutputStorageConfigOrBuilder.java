@@ -9,6 +9,23 @@ public interface OutputStorageConfigOrBuilder extends
 
   /**
    * <pre>
+   * Store findings in a new table in the dataset.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+   */
+  com.google.privacy.dlp.v2beta1.BigQueryTable getTable();
+  /**
+   * <pre>
+   * Store findings in a new table in the dataset.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+   */
+  com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder getTableOrBuilder();
+
+  /**
+   * <pre>
    * The path to a Google Cloud Storage location to store output.
    * </pre>
    *
