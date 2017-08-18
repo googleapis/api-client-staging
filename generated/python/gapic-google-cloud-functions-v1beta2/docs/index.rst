@@ -12,7 +12,7 @@ easy-to-use client library for the `Google Cloud Functions API`_ (v1beta2) defin
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/functions/v1beta2
-.. _`Google Cloud Functions API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudfunctions/v1beta2
+.. _`Google Cloud Functions API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudfunctions/v1beta2/
 
 
 APIs

@@ -1,43 +1,29 @@
-GAPIC library for the Stackdriver Error Reporting API
-================================================================================
+Python Client for Stackdriver Error Reporting API (`Alpha`_)
+==================================================================================================
 
-gapic-google-cloud-error-reporting-v1beta1 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Stackdriver Error Reporting API`_ (v1beta1) defined in the googleapis_ git repository
+`Stackdriver Error Reporting API`_: 
+Stackdriver Error Reporting groups and counts similar errors from cloud services. The Stackdriver Error Reporting API provides a way to report new errors and read access to error groups and their associated errors.
 
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouderrorreporting/v1beta1
-.. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
+.. _Alpha: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Stackdriver Error Reporting API: https://cloud.google.com/error-reporting
+.. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/error-reporting-usage
+.. _Product Documentation:  https://cloud.google.com/error-reporting
 
-Getting started
----------------
+Quick Start
+-----------
 
-gapic-google-cloud-error-reporting-v1beta1 will allow you to connect to the
-Stackdriver Error Reporting API and access all its methods. In order to do this, you need
-to set up authentication as well as install the library locally.
+In order to use this library, you first need to go through the following steps:
 
+1. `Select or create a Cloud Platform project.`_
+2. `Enable the Stackdriver Error Reporting API.`_
+3. `Setup Authentication.`_
 
-Setup Authentication
-~~~~~~~~~~~~~~~~~~~~
-
-To authenticate all your API calls, first install and setup the `Google Cloud SDK`_.
-Once done, you can then run the following command in your terminal:
-
-.. code-block:: console
-
-    $ gcloud beta auth application-default login
-
-or
-
-.. code-block:: console
-
-    $ gcloud auth login
-
-Please see `gcloud beta auth application-default login`_ document for the difference between these commands.
-
-.. _Google Cloud SDK: https://cloud.google.com/sdk/
-.. _gcloud beta auth application-default login: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable the Stackdriver Error Reporting API.:  https://cloud.google.com/error-reporting
+.. _Setup Authentication.: https://googlecloudplatform.github.io/google-cloud-python/stable/google-cloud-auth
 
 Installation
 ~~~~~~~~~~~~
@@ -54,7 +40,7 @@ dependencies.
 
 
 Mac/Linux
-~~~~~~~~~~
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -65,7 +51,7 @@ Mac/Linux
 
 
 Windows
-~~~~~~~
+^^^^^^^
 
 .. code-block:: console
 
@@ -74,5 +60,29 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install gapic-google-cloud-error-reporting-v1beta1
 
+Preview
+~~~~~~~
 
-At this point you are all set to continue.
+ReportErrorsServiceClient
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: py
+
+  from google.cloud import errorreporting_v1beta1
+  client = errorreporting_v1beta1.ReportErrorsServiceClient()
+  project_name = client.project_path('[PROJECT]')
+  event = {}
+  response = client.report_error_event(project_name, event)
+
+Next Steps
+~~~~~~~~~~
+
+-  Read the `Client Library Documentation`_ for Stackdriver Error Reporting API
+   API to see other available methods on the client.
+-  Read the `Stackdriver Error Reporting API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `repository’s main README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Stackdriver Error Reporting API Product documentation:  https://cloud.google.com/error-reporting
+.. _repository’s main README: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst

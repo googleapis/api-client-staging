@@ -20,8 +20,8 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.pubsub.v1.publisher_client
-   google.cloud.gapic.pubsub.v1.subscriber_client
+   google.cloud.pubsub_v1.gapic.publisher_client
+   google.cloud.pubsub_v1.gapic.subscriber_client
 
 
 Contents

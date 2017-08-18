@@ -277,9 +277,9 @@ class CloudFunctionsServiceClient(object):
         Returns a list of functions that belong to the requested project.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
+          >>> from google.cloud import functions
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> location = client.location_path('[PROJECT]', '[LOCATION]')
           >>>
           >>> # Iterate over all results
@@ -294,7 +294,7 @@ class CloudFunctionsServiceClient(object):
           >>>         pass
 
         Args:
-          location (string): The project and location from which the function should be listed,
+          location (str): The project and location from which the function should be listed,
             specified in the format ``projects/*/locations/*``
             If you want to list functions in all locations, use \"-\" in place of a
             location.
@@ -316,7 +316,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.ListFunctionsRequest(
             location=location, page_size=page_size)
         return self._list_functions(request, options)
@@ -326,13 +325,13 @@ class CloudFunctionsServiceClient(object):
         Returns a function with the given name from the requested project.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> response = client.get_function(name)
 
         Args:
-          name (string): The name of the function which details should be obtained.
+          name (str): The name of the function which details should be obtained.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -343,7 +342,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.GetFunctionRequest(name=name)
         return self._get_function(request, options)
 
@@ -354,11 +352,10 @@ class CloudFunctionsServiceClient(object):
         ``ALREADY_EXISTS`` error.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> location = client.location_path('[PROJECT]', '[LOCATION]')
-          >>> function = functions_pb2.CloudFunction()
+          >>> function = {}
           >>> response = client.create_function(location, function)
           >>>
           >>> def callback(operation_future):
@@ -371,9 +368,11 @@ class CloudFunctionsServiceClient(object):
           >>> metadata = response.metadata()
 
         Args:
-          location (string): The project and location in which the function should be created, specified
+          location (str): The project and location in which the function should be created, specified
             in the format ``projects/*/locations/*``
-          function (:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`): Function to be created.
+          function (Union[dict|:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`]): Function to be created.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -384,7 +383,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.CreateFunctionRequest(
             location=location, function=function)
         return google.gax._OperationFuture(
@@ -397,11 +395,10 @@ class CloudFunctionsServiceClient(object):
         Updates existing function.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> from google.cloud.proto.functions.v1beta2 import functions_pb2
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
-          >>> function = functions_pb2.CloudFunction()
+          >>> function = {}
           >>> response = client.update_function(name, function)
           >>>
           >>> def callback(operation_future):
@@ -414,8 +411,10 @@ class CloudFunctionsServiceClient(object):
           >>> metadata = response.metadata()
 
         Args:
-          name (string): The name of the function to be updated.
-          function (:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`): New version of the function.
+          name (str): The name of the function to be updated.
+          function (Union[dict|:class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`]): New version of the function.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.functions.v1beta2.functions_pb2.CloudFunction`
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -426,7 +425,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.UpdateFunctionRequest(
             name=name, function=function)
         return google.gax._OperationFuture(
@@ -441,8 +439,8 @@ class CloudFunctionsServiceClient(object):
         remove this function.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> response = client.delete_function(name)
           >>>
@@ -456,7 +454,7 @@ class CloudFunctionsServiceClient(object):
           >>> metadata = response.metadata()
 
         Args:
-          name (string): The name of the function which should be deleted.
+          name (str): The name of the function which should be deleted.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -467,7 +465,6 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.DeleteFunctionRequest(name=name)
         return google.gax._OperationFuture(
             self._delete_function(request, options), self.operations_client,
@@ -479,15 +476,15 @@ class CloudFunctionsServiceClient(object):
         limited traffic allowed.
 
         Example:
-          >>> from google.cloud.functions.v1beta2 import cloud_functions_service_client
-          >>> client = cloud_functions_service_client.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions
+          >>> client = functions.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> data = ''
           >>> response = client.call_function(name, data)
 
         Args:
-          name (string): The name of the function to be called.
-          data (string): Input to be passed to the function.
+          name (str): The name of the function to be called.
+          data (str): Input to be passed to the function.
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -498,6 +495,5 @@ class CloudFunctionsServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = functions_pb2.CallFunctionRequest(name=name, data=data)
         return self._call_function(request, options)

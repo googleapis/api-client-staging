@@ -20,8 +20,8 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.monitoring.v3.group_service_client
-   google.cloud.gapic.monitoring.v3.metric_service_client
+   google.cloud.monitoring_v3.gapic.group_service_client
+   google.cloud.monitoring_v3.gapic.metric_service_client
 
 
 Contents

@@ -22,10 +22,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/logging/v2/logging_config.proto',
   package='google.logging.v2',
   syntax='proto3',
-  serialized_pb=_b('\n2google/cloud/proto/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbd\x02\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\x12\x17\n\x0fwriter_identity\x18\x08 \x01(\t\x12.\n\nstart_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"m\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"p\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\xfe\x04\n\x0f\x43onfigServiceV2\x12}\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v2/{parent=projects/*}/sinks\x12t\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"*\x82\xd3\xe4\x93\x02$\x12\"/v2/{sink_name=projects/*/sinks/*}\x12{\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"+\x82\xd3\xe4\x93\x02%\"\x1d/v2/{parent=projects/*}/sinks:\x04sink\x12\x80\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\x1a\"/v2/{sink_name=projects/*/sinks/*}:\x04sink\x12v\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$*\"/v2/{sink_name=projects/*/sinks/*}B\x81\x01\n\x15\x63om.google.logging.v2B\x12LoggingConfigProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
+  serialized_pb=_b('\n2google/cloud/proto/logging/v2/logging_config.proto\x12\x11google.logging.v2\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd7\x02\n\x07LogSink\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12G\n\x15output_version_format\x18\x06 \x01(\x0e\x32(.google.logging.v2.LogSink.VersionFormat\x12\x17\n\x0fwriter_identity\x18\x08 \x01(\t\x12\x18\n\x10include_children\x18\t \x01(\x08\x12.\n\nstart_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"?\n\rVersionFormat\x12\x1e\n\x1aVERSION_FORMAT_UNSPECIFIED\x10\x00\x12\x06\n\x02V2\x10\x01\x12\x06\n\x02V1\x10\x02\"I\n\x10ListSinksRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x12\n\npage_token\x18\x02 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\"W\n\x11ListSinksResponse\x12)\n\x05sinks\x18\x01 \x03(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"#\n\x0eGetSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\"m\n\x11\x43reateSinkRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"p\n\x11UpdateSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t\x12(\n\x04sink\x18\x02 \x01(\x0b\x32\x1a.google.logging.v2.LogSink\x12\x1e\n\x16unique_writer_identity\x18\x03 \x01(\x08\"&\n\x11\x44\x65leteSinkRequest\x12\x11\n\tsink_name\x18\x01 \x01(\t2\xfe\x04\n\x0f\x43onfigServiceV2\x12}\n\tListSinks\x12#.google.logging.v2.ListSinksRequest\x1a$.google.logging.v2.ListSinksResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v2/{parent=projects/*}/sinks\x12t\n\x07GetSink\x12!.google.logging.v2.GetSinkRequest\x1a\x1a.google.logging.v2.LogSink\"*\x82\xd3\xe4\x93\x02$\x12\"/v2/{sink_name=projects/*/sinks/*}\x12{\n\nCreateSink\x12$.google.logging.v2.CreateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"+\x82\xd3\xe4\x93\x02%\"\x1d/v2/{parent=projects/*}/sinks:\x04sink\x12\x80\x01\n\nUpdateSink\x12$.google.logging.v2.UpdateSinkRequest\x1a\x1a.google.logging.v2.LogSink\"0\x82\xd3\xe4\x93\x02*\x1a\"/v2/{sink_name=projects/*/sinks/*}:\x04sink\x12v\n\nDeleteSink\x12$.google.logging.v2.DeleteSinkRequest\x1a\x16.google.protobuf.Empty\"*\x82\xd3\xe4\x93\x02$*\"/v2/{sink_name=projects/*/sinks/*}B\x81\x01\n\x15\x63om.google.logging.v2B\x12LoggingConfigProtoP\x01Z8google.golang.org/genproto/googleapis/logging/v2;logging\xaa\x02\x17Google.Cloud.Logging.V2b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -50,8 +49,8 @@ _LOGSINK_VERSIONFORMAT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=420,
-  serialized_end=483,
+  serialized_start=446,
+  serialized_end=509,
 )
 _sym_db.RegisterEnumDescriptor(_LOGSINK_VERSIONFORMAT)
 
@@ -99,14 +98,21 @@ _LOGSINK = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='start_time', full_name='google.logging.v2.LogSink.start_time', index=5,
+      name='include_children', full_name='google.logging.v2.LogSink.include_children', index=5,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='start_time', full_name='google.logging.v2.LogSink.start_time', index=6,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='end_time', full_name='google.logging.v2.LogSink.end_time', index=6,
+      name='end_time', full_name='google.logging.v2.LogSink.end_time', index=7,
       number=11, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -126,7 +132,7 @@ _LOGSINK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=166,
-  serialized_end=483,
+  serialized_end=509,
 )
 
 
@@ -170,8 +176,8 @@ _LISTSINKSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=485,
-  serialized_end=558,
+  serialized_start=511,
+  serialized_end=584,
 )
 
 
@@ -208,8 +214,8 @@ _LISTSINKSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=560,
-  serialized_end=647,
+  serialized_start=586,
+  serialized_end=673,
 )
 
 
@@ -239,8 +245,8 @@ _GETSINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=649,
-  serialized_end=684,
+  serialized_start=675,
+  serialized_end=710,
 )
 
 
@@ -284,8 +290,8 @@ _CREATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=686,
-  serialized_end=795,
+  serialized_start=712,
+  serialized_end=821,
 )
 
 
@@ -329,8 +335,8 @@ _UPDATESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=797,
-  serialized_end=909,
+  serialized_start=823,
+  serialized_end=935,
 )
 
 
@@ -360,8 +366,8 @@ _DELETESINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=911,
-  serialized_end=949,
+  serialized_start=937,
+  serialized_end=975,
 )
 
 _LOGSINK.fields_by_name['output_version_format'].enum_type = _LOGSINK_VERSIONFORMAT
@@ -378,10 +384,91 @@ DESCRIPTOR.message_types_by_name['GetSinkRequest'] = _GETSINKREQUEST
 DESCRIPTOR.message_types_by_name['CreateSinkRequest'] = _CREATESINKREQUEST
 DESCRIPTOR.message_types_by_name['UpdateSinkRequest'] = _UPDATESINKREQUEST
 DESCRIPTOR.message_types_by_name['DeleteSinkRequest'] = _DELETESINKREQUEST
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 LogSink = _reflection.GeneratedProtocolMessageType('LogSink', (_message.Message,), dict(
   DESCRIPTOR = _LOGSINK,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """Describes a sink used to export log entries to one of the following
+  destinations in any project: a Cloud Storage bucket, a BigQuery dataset,
+  or a Cloud Pub/Sub topic. A logs filter controls which log entries are
+  exported. The sink must be created within a project, organization,
+  billing account, or folder.
+  
+  
+  Attributes:
+      name:
+          Required. The client-assigned sink identifier, unique within
+          the project. Example: ``"my-syslog-errors-to-pubsub"``. Sink
+          identifiers are limited to 100 characters and can include only
+          the following characters: upper and lower-case alphanumeric
+          characters, underscores, hyphens, and periods.
+      destination:
+          Required. The export destination:  ::
+          "storage.googleapis.com/[GCS_BUCKET]"     "bigquery.googleapis
+          .com/projects/[PROJECT_ID]/datasets/[DATASET]"     "pubsub.goo
+          gleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"  The
+          sink's ``writer_identity``, set when the sink is created, must
+          have permission to write to the destination or else the log
+          entries are not exported. For more information, see `Exporting
+          Logs With Sinks </logging/docs/api/tasks/exporting-logs>`__.
+      filter:
+          Optional. An `advanced logs filter
+          </logging/docs/view/advanced_filters>`__. The only exported
+          log entries are those that are in the resource owning the sink
+          and that match the filter. The filter must use the log entry
+          format specified by the ``output_version_format`` parameter.
+          For example, in the v2 format:  ::
+          logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND
+          severity>=ERROR
+      output_version_format:
+          Optional. The log entry format to use for this sink's exported
+          log entries. The v2 format is used by default. **The v1 format
+          is deprecated** and should be used only as part of a migration
+          effort to v2. See `Migration to the v2 API
+          </logging/docs/api/v2/migration-to-v2>`__.
+      writer_identity:
+          Output only. An IAM identity—a service account or group—under
+          which Stackdriver Logging writes the exported log entries to
+          the sink's destination. This field is set by `sinks.create
+          </logging/docs/api/reference/rest/v2/projects.sinks/create>`__
+          and `sinks.update </logging/docs/api/reference/rest/v2/project
+          s.sinks/update>`__, based on the setting of
+          ``unique_writer_identity`` in those methods.  Until you grant
+          this identity write-access to the destination, log entry
+          exports from this sink will fail. For more information, see
+          `Granting access for a resource </iam/docs/granting-roles-to-
+          service-accounts#granting_access_to_a_service_account_for_a_re
+          source>`__. Consult the destination service's documentation to
+          determine the appropriate IAM roles to assign to the identity.
+      include_children:
+          Optional. This field applies only to sinks owned by
+          organizations and folders. If the field is false, the default,
+          only the logs owned by the sink's parent resource are
+          available for export. If the field is true, then logs from all
+          the projects, folders, and billing accounts contained in the
+          sink's parent resource are also available for export. Whether
+          a particular log entry from the children is exported depends
+          on the sink's filter expression. For example, if this field is
+          true, then the filter ``resource.type=gce_instance`` would
+          export all Compute Engine VM instance log entries from all
+          projects in the sink's parent. To only export entries from
+          certain child projects, filter on the project part of the log
+          name:  ::      logName:("projects/test-project1/" OR
+          "projects/test-project2/") AND     resource.type=gce_instance
+      start_time:
+          Optional. The time at which this sink will begin exporting log
+          entries. Log entries are exported only if their timestamp is
+          not earlier than the start time. The default value of this
+          field is the time the sink is created or updated.
+      end_time:
+          Optional. The time at which this sink will stop exporting log
+          entries. Log entries are exported only if their timestamp is
+          earlier than the end time. If this field is not supplied,
+          there is no end time. If both a start time and an end time are
+          provided, then the end time must be later than the start time.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.LogSink)
   ))
 _sym_db.RegisterMessage(LogSink)
@@ -389,6 +476,29 @@ _sym_db.RegisterMessage(LogSink)
 ListSinksRequest = _reflection.GeneratedProtocolMessageType('ListSinksRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTSINKSREQUEST,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """The parameters to ``ListSinks``.
+  
+  
+  Attributes:
+      parent:
+          Required. The parent resource whose sinks are to be listed:
+          ::      "projects/[PROJECT_ID]"
+          "organizations/[ORGANIZATION_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]"
+          "folders/[FOLDER_ID]"
+      page_token:
+          Optional. If present, then retrieve the next batch of results
+          from the preceding call to this method. ``pageToken`` must be
+          the value of ``nextPageToken`` from the previous response. The
+          values of other method parameters should be identical to those
+          in the previous call.
+      page_size:
+          Optional. The maximum number of results to return from this
+          request. Non-positive values are ignored. The presence of
+          ``nextPageToken`` in the response indicates that more results
+          might be available.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.ListSinksRequest)
   ))
 _sym_db.RegisterMessage(ListSinksRequest)
@@ -396,6 +506,19 @@ _sym_db.RegisterMessage(ListSinksRequest)
 ListSinksResponse = _reflection.GeneratedProtocolMessageType('ListSinksResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTSINKSRESPONSE,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """Result returned from ``ListSinks``.
+  
+  
+  Attributes:
+      sinks:
+          A list of sinks.
+      next_page_token:
+          If there might be more results than appear in this response,
+          then ``nextPageToken`` is included. To get the next set of
+          results, call the same method again using the value of
+          ``nextPageToken`` as ``pageToken``.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.ListSinksResponse)
   ))
 _sym_db.RegisterMessage(ListSinksResponse)
@@ -403,6 +526,19 @@ _sym_db.RegisterMessage(ListSinksResponse)
 GetSinkRequest = _reflection.GeneratedProtocolMessageType('GetSinkRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETSINKREQUEST,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """The parameters to ``GetSink``.
+  
+  
+  Attributes:
+      sink_name:
+          Required. The resource name of the sink:  ::
+          "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+          "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+          "folders/[FOLDER_ID]/sinks/[SINK_ID]"  Example:
+          ``"projects/my-project-id/sinks/my-sink-id"``.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.GetSinkRequest)
   ))
 _sym_db.RegisterMessage(GetSinkRequest)
@@ -410,6 +546,34 @@ _sym_db.RegisterMessage(GetSinkRequest)
 CreateSinkRequest = _reflection.GeneratedProtocolMessageType('CreateSinkRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATESINKREQUEST,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """The parameters to ``CreateSink``.
+  
+  
+  Attributes:
+      parent:
+          Required. The resource in which to create the sink:  ::
+          "projects/[PROJECT_ID]"     "organizations/[ORGANIZATION_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]"
+          "folders/[FOLDER_ID]"  Examples: ``"projects/my-logging-
+          project"``, ``"organizations/123456789"``.
+      sink:
+          Required. The new sink, whose ``name`` parameter is a sink
+          identifier that is not already in use.
+      unique_writer_identity:
+          Optional. Determines the kind of IAM identity returned as
+          ``writer_identity`` in the new sink. If this value is omitted
+          or set to false, and if the sink's parent is a project, then
+          the value returned as ``writer_identity`` is the same group or
+          service account used by Stackdriver Logging before the
+          addition of writer identities to this API. The sink's
+          destination must be in the same project as the sink itself.
+          If this field is set to true, or if the sink is owned by a
+          non-project resource such as an organization, then the value
+          of ``writer_identity`` will be a unique service account used
+          only for exports from the new sink. For more information, see
+          ``writer_identity`` in [LogSink][google.logging.v2.LogSink].
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.CreateSinkRequest)
   ))
 _sym_db.RegisterMessage(CreateSinkRequest)
@@ -417,6 +581,36 @@ _sym_db.RegisterMessage(CreateSinkRequest)
 UpdateSinkRequest = _reflection.GeneratedProtocolMessageType('UpdateSinkRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATESINKREQUEST,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """The parameters to ``UpdateSink``.
+  
+  
+  Attributes:
+      sink_name:
+          Required. The full resource name of the sink to update,
+          including the parent resource and the sink identifier:  ::
+          "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+          "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+          "folders/[FOLDER_ID]/sinks/[SINK_ID]"  Example:
+          ``"projects/my-project-id/sinks/my-sink-id"``.
+      sink:
+          Required. The updated sink, whose name is the same identifier
+          that appears as part of ``sink_name``. If ``sink_name`` does
+          not exist, then this method creates a new sink.
+      unique_writer_identity:
+          Optional. See `sinks.create
+          </logging/docs/api/reference/rest/v2/projects.sinks/create>`__
+          for a description of this field. When updating a sink, the
+          effect of this field on the value of ``writer_identity`` in
+          the updated sink depends on both the old and new values of
+          this field:  -  If the old and new values of this field are
+          both false or both true,    then there is no change to the
+          sink's ``writer_identity``. -  If the old value is false and
+          the new value is true, then    ``writer_identity`` is changed
+          to a unique service account. -  It is an error if the old
+          value is true and the new value is false.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.UpdateSinkRequest)
   ))
 _sym_db.RegisterMessage(UpdateSinkRequest)
@@ -424,6 +618,20 @@ _sym_db.RegisterMessage(UpdateSinkRequest)
 DeleteSinkRequest = _reflection.GeneratedProtocolMessageType('DeleteSinkRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETESINKREQUEST,
   __module__ = 'google.cloud.proto.logging.v2.logging_config_pb2'
+  ,
+  __doc__ = """The parameters to ``DeleteSink``.
+  
+  
+  Attributes:
+      sink_name:
+          Required. The full resource name of the sink to delete,
+          including the parent resource and the sink identifier:  ::
+          "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+          "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+          "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+          "folders/[FOLDER_ID]/sinks/[SINK_ID]"  Example:
+          ``"projects/my-project-id/sinks/my-sink-id"``.
+  """,
   # @@protoc_insertion_point(class_scope:google.logging.v2.DeleteSinkRequest)
   ))
 _sym_db.RegisterMessage(DeleteSinkRequest)
@@ -435,10 +643,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ConfigServiceV2Stub(object):

@@ -7,8 +7,8 @@ APIs
 .. autosummary::
    :toctree:
 
-   google.cloud.gapic.pubsub.v1.publisher_client
-   google.cloud.gapic.pubsub.v1.subscriber_client
+   google.cloud.pubsub_v1.gapic.publisher_client
+   google.cloud.pubsub_v1.gapic.subscriber_client
 
 
 API types
@@ -17,3 +17,5 @@ API types
 .. autosummary::
    :toctree:
 
+   google.cloud.pubsub_v1.__init__
+   google.cloud.pubsub_v1.types

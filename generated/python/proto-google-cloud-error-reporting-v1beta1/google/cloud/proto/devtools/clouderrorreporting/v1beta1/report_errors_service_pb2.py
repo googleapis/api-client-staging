@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nSgoogle/cloud/proto/devtools/clouderrorreporting/v1beta1/report_errors_service.proto\x12+google.devtools.clouderrorreporting.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x44google/cloud/proto/devtools/clouderrorreporting/v1beta1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x7f\n\x17ReportErrorEventRequest\x12\x14\n\x0cproject_name\x18\x01 \x01(\t\x12N\n\x05\x65vent\x18\x02 \x01(\x0b\x32?.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent\"\x1a\n\x18ReportErrorEventResponse\"\xf7\x01\n\x12ReportedErrorEvent\x12.\n\nevent_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12T\n\x0fservice_context\x18\x02 \x01(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.ServiceContext\x12\x0f\n\x07message\x18\x03 \x01(\t\x12J\n\x07\x63ontext\x18\x04 \x01(\x0b\x32\x39.google.devtools.clouderrorreporting.v1beta1.ErrorContext2\xf8\x01\n\x13ReportErrorsService\x12\xe0\x01\n\x10ReportErrorEvent\x12\x44.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest\x1a\x45.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse\"?\x82\xd3\xe4\x93\x02\x39\"0/v1beta1/{project_name=projects/*}/events:report:\x05\x65ventB\xd3\x01\n/com.google.devtools.clouderrorreporting.v1beta1B\x18ReportErrorsServiceProtoP\x01Z^google.golang.org/genproto/googleapis/devtools/clouderrorreporting/v1beta1;clouderrorreporting\xaa\x02#Google.Cloud.ErrorReporting.V1Beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_common__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -150,10 +149,25 @@ _REPORTEDERROREVENT.fields_by_name['context'].message_type = google_dot_cloud_do
 DESCRIPTOR.message_types_by_name['ReportErrorEventRequest'] = _REPORTERROREVENTREQUEST
 DESCRIPTOR.message_types_by_name['ReportErrorEventResponse'] = _REPORTERROREVENTRESPONSE
 DESCRIPTOR.message_types_by_name['ReportedErrorEvent'] = _REPORTEDERROREVENT
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ReportErrorEventRequest = _reflection.GeneratedProtocolMessageType('ReportErrorEventRequest', (_message.Message,), dict(
   DESCRIPTOR = _REPORTERROREVENTREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2'
+  ,
+  __doc__ = """A request for reporting an individual error event.
+  
+  
+  Attributes:
+      project_name:
+          [Required] The resource name of the Google Cloud Platform
+          project. Written as ``projects/`` plus the `Google Cloud
+          Platform project ID
+          <https://support.google.com/cloud/answer/6158840>`__. Example:
+          ``projects/my-project-123``.
+      event:
+          [Required] The error event to be reported.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest)
   ))
 _sym_db.RegisterMessage(ReportErrorEventRequest)
@@ -161,6 +175,10 @@ _sym_db.RegisterMessage(ReportErrorEventRequest)
 ReportErrorEventResponse = _reflection.GeneratedProtocolMessageType('ReportErrorEventResponse', (_message.Message,), dict(
   DESCRIPTOR = _REPORTERROREVENTRESPONSE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2'
+  ,
+  __doc__ = """Response for reporting an individual error event. Data may be added to
+  this message in the future.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse)
   ))
 _sym_db.RegisterMessage(ReportErrorEventResponse)
@@ -168,6 +186,28 @@ _sym_db.RegisterMessage(ReportErrorEventResponse)
 ReportedErrorEvent = _reflection.GeneratedProtocolMessageType('ReportedErrorEvent', (_message.Message,), dict(
   DESCRIPTOR = _REPORTEDERROREVENT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.report_errors_service_pb2'
+  ,
+  __doc__ = """An error event which is reported to the Error Reporting system.
+  
+  
+  Attributes:
+      event_time:
+          [Optional] Time when the event occurred. If not provided, the
+          time when the event was received by the Error Reporting system
+          will be used.
+      service_context:
+          [Required] The service context in which this error has
+          occurred.
+      message:
+          [Required] A message describing the error. The message can
+          contain an exception stack in one of the supported programming
+          languages and formats. In that case, the message is parsed and
+          detailed exception information is returned when retrieving the
+          error event again.
+      context:
+          [Optional] A description of the context in which the error
+          occurred.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent)
   ))
 _sym_db.RegisterMessage(ReportedErrorEvent)
@@ -179,10 +219,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ReportErrorsServiceStub(object):

@@ -32,7 +32,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n+google/cloud/proto/spanner/v1/spanner.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(google/cloud/proto/spanner/v1/keys.proto\x1a,google/cloud/proto/spanner/v1/mutation.proto\x1a.google/cloud/proto/spanner/v1/result_set.proto\x1a/google/cloud/proto/spanner/v1/transaction.proto\x1a(google/cloud/proto/spanner/v1/type.proto\"(\n\x14\x43reateSessionRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\"\x17\n\x07Session\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x11GetSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x14\x44\x65leteSessionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xb8\x03\n\x11\x45xecuteSqlRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\x0b\n\x03sql\x18\x03 \x01(\t\x12\'\n\x06params\x18\x04 \x01(\x0b\x32\x17.google.protobuf.Struct\x12I\n\x0bparam_types\x18\x05 \x03(\x0b\x32\x34.google.spanner.v1.ExecuteSqlRequest.ParamTypesEntry\x12\x14\n\x0cresume_token\x18\x06 \x01(\x0c\x12\x42\n\nquery_mode\x18\x07 \x01(\x0e\x32..google.spanner.v1.ExecuteSqlRequest.QueryMode\x1aJ\n\x0fParamTypesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12&\n\x05value\x18\x02 \x01(\x0b\x32\x17.google.spanner.v1.Type:\x02\x38\x01\".\n\tQueryMode\x12\n\n\x06NORMAL\x10\x00\x12\x08\n\x04PLAN\x10\x01\x12\x0b\n\x07PROFILE\x10\x02\"\xdb\x01\n\x0bReadRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12;\n\x0btransaction\x18\x02 \x01(\x0b\x32&.google.spanner.v1.TransactionSelector\x12\r\n\x05table\x18\x03 \x01(\t\x12\r\n\x05index\x18\x04 \x01(\t\x12\x0f\n\x07\x63olumns\x18\x05 \x03(\t\x12*\n\x07key_set\x18\x06 \x01(\x0b\x32\x19.google.spanner.v1.KeySet\x12\r\n\x05limit\x18\x08 \x01(\x03\x12\x14\n\x0cresume_token\x18\t \x01(\x0c\"b\n\x17\x42\x65ginTransactionRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x36\n\x07options\x18\x02 \x01(\x0b\x32%.google.spanner.v1.TransactionOptions\"\xc2\x01\n\rCommitRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x18\n\x0etransaction_id\x18\x02 \x01(\x0cH\x00\x12G\n\x16single_use_transaction\x18\x03 \x01(\x0b\x32%.google.spanner.v1.TransactionOptionsH\x00\x12.\n\tmutations\x18\x04 \x03(\x0b\x32\x1b.google.spanner.v1.MutationB\r\n\x0btransaction\"F\n\x0e\x43ommitResponse\x12\x34\n\x10\x63ommit_timestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x0fRollbackRequest\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\x0c\x32\xe9\x0c\n\x07Spanner\x12\x98\x01\n\rCreateSession\x12\'.google.spanner.v1.CreateSessionRequest\x1a\x1a.google.spanner.v1.Session\"B\x82\xd3\xe4\x93\x02<\":/v1/{database=projects/*/instances/*/databases/*}/sessions\x12\x90\x01\n\nGetSession\x12$.google.spanner.v1.GetSessionRequest\x1a\x1a.google.spanner.v1.Session\"@\x82\xd3\xe4\x93\x02:\x12\x38/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\x92\x01\n\rDeleteSession\x12\'.google.spanner.v1.DeleteSessionRequest\x1a\x16.google.protobuf.Empty\"@\x82\xd3\xe4\x93\x02:*8/v1/{name=projects/*/instances/*/databases/*/sessions/*}\x12\xa3\x01\n\nExecuteSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a\x1c.google.spanner.v1.ResultSet\"Q\x82\xd3\xe4\x93\x02K\"F/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeSql:\x01*\x12\xbe\x01\n\x13\x45xecuteStreamingSql\x12$.google.spanner.v1.ExecuteSqlRequest\x1a#.google.spanner.v1.PartialResultSet\"Z\x82\xd3\xe4\x93\x02T\"O/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeStreamingSql:\x01*0\x01\x12\x91\x01\n\x04Read\x12\x1e.google.spanner.v1.ReadRequest\x1a\x1c.google.spanner.v1.ResultSet\"K\x82\xd3\xe4\x93\x02\x45\"@/v1/{session=projects/*/instances/*/databases/*/sessions/*}:read:\x01*\x12\xac\x01\n\rStreamingRead\x12\x1e.google.spanner.v1.ReadRequest\x1a#.google.spanner.v1.PartialResultSet\"T\x82\xd3\xe4\x93\x02N\"I/v1/{session=projects/*/instances/*/databases/*/sessions/*}:streamingRead:\x01*0\x01\x12\xb7\x01\n\x10\x42\x65ginTransaction\x12*.google.spanner.v1.BeginTransactionRequest\x1a\x1e.google.spanner.v1.Transaction\"W\x82\xd3\xe4\x93\x02Q\"L/v1/{session=projects/*/instances/*/databases/*/sessions/*}:beginTransaction:\x01*\x12\x9c\x01\n\x06\x43ommit\x12 .google.spanner.v1.CommitRequest\x1a!.google.spanner.v1.CommitResponse\"M\x82\xd3\xe4\x93\x02G\"B/v1/{session=projects/*/instances/*/databases/*/sessions/*}:commit:\x01*\x12\x97\x01\n\x08Rollback\x12\".google.spanner.v1.RollbackRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\"D/v1/{session=projects/*/instances/*/databases/*/sessions/*}:rollback:\x01*B{\n\x15\x63om.google.spanner.v1B\x0cSpannerProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_keys__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_mutation__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_result__set__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_transaction__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -568,10 +567,20 @@ DESCRIPTOR.message_types_by_name['BeginTransactionRequest'] = _BEGINTRANSACTIONR
 DESCRIPTOR.message_types_by_name['CommitRequest'] = _COMMITREQUEST
 DESCRIPTOR.message_types_by_name['CommitResponse'] = _COMMITRESPONSE
 DESCRIPTOR.message_types_by_name['RollbackRequest'] = _ROLLBACKREQUEST
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CreateSessionRequest = _reflection.GeneratedProtocolMessageType('CreateSessionRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATESESSIONREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for
+  [CreateSession][google.spanner.v1.Spanner.CreateSession].
+  
+  
+  Attributes:
+      database:
+          Required. The database in which the new session is created.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.CreateSessionRequest)
   ))
 _sym_db.RegisterMessage(CreateSessionRequest)
@@ -579,6 +588,14 @@ _sym_db.RegisterMessage(CreateSessionRequest)
 Session = _reflection.GeneratedProtocolMessageType('Session', (_message.Message,), dict(
   DESCRIPTOR = _SESSION,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """A session in the Cloud Spanner API.
+  
+  
+  Attributes:
+      name:
+          Required. The name of the session.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.Session)
   ))
 _sym_db.RegisterMessage(Session)
@@ -586,6 +603,14 @@ _sym_db.RegisterMessage(Session)
 GetSessionRequest = _reflection.GeneratedProtocolMessageType('GetSessionRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETSESSIONREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for [GetSession][google.spanner.v1.Spanner.GetSession].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the session to retrieve.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.GetSessionRequest)
   ))
 _sym_db.RegisterMessage(GetSessionRequest)
@@ -593,6 +618,15 @@ _sym_db.RegisterMessage(GetSessionRequest)
 DeleteSessionRequest = _reflection.GeneratedProtocolMessageType('DeleteSessionRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETESESSIONREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for
+  [DeleteSession][google.spanner.v1.Spanner.DeleteSession].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the session to delete.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.DeleteSessionRequest)
   ))
 _sym_db.RegisterMessage(DeleteSessionRequest)
@@ -607,6 +641,54 @@ ExecuteSqlRequest = _reflection.GeneratedProtocolMessageType('ExecuteSqlRequest'
   ,
   DESCRIPTOR = _EXECUTESQLREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+  [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql].
+  
+  
+  Attributes:
+      session:
+          Required. The session in which the SQL query should be
+          performed.
+      transaction:
+          The transaction to use. If none is provided, the default is a
+          temporary read-only transaction with strong concurrency.
+      sql:
+          Required. The SQL query string.
+      params:
+          The SQL query string can contain parameter placeholders. A
+          parameter placeholder consists of ``'@'`` followed by the
+          parameter name. Parameter names consist of any combination of
+          letters, numbers, and underscores.  Parameters can appear
+          anywhere that a literal value is expected. The same parameter
+          name can be used more than once, for example: ``"WHERE id >
+          @msg_id AND id < @msg_id + 100"``  It is an error to execute
+          an SQL query with unbound parameters.  Parameter values are
+          specified using ``params``, which is a JSON object whose keys
+          are parameter names, and whose values are the corresponding
+          parameter values.
+      param_types:
+          It is not always possible for Cloud Spanner to infer the right
+          SQL type from a JSON value. For example, values of type
+          ``BYTES`` and values of type ``STRING`` both appear in
+          [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON
+          strings.  In these cases, ``param_types`` can be used to
+          specify the exact SQL type for some or all of the SQL query
+          parameters. See the definition of
+          [Type][google.spanner.v1.Type] for more information about SQL
+          types.
+      resume_token:
+          If this request is resuming a previously interrupted SQL query
+          execution, ``resume_token`` should be copied from the last
+          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded
+          before the interruption. Doing this enables the new SQL query
+          execution to resume where the last one left off. The rest of
+          the request parameters must exactly match the request that
+          yielded this token.
+      query_mode:
+          Used to control the amount of debugging information returned
+          in [ResultSetStats][google.spanner.v1.ResultSetStats].
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.ExecuteSqlRequest)
   ))
 _sym_db.RegisterMessage(ExecuteSqlRequest)
@@ -615,6 +697,59 @@ _sym_db.RegisterMessage(ExecuteSqlRequest.ParamTypesEntry)
 ReadRequest = _reflection.GeneratedProtocolMessageType('ReadRequest', (_message.Message,), dict(
   DESCRIPTOR = _READREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for [Read][google.spanner.v1.Spanner.Read] and
+  [StreamingRead][google.spanner.v1.Spanner.StreamingRead].
+  
+  
+  Attributes:
+      session:
+          Required. The session in which the read should be performed.
+      transaction:
+          The transaction to use. If none is provided, the default is a
+          temporary read-only transaction with strong concurrency.
+      table:
+          Required. The name of the table in the database to be read.
+      index:
+          If non-empty, the name of an index on
+          [table][google.spanner.v1.ReadRequest.table]. This index is
+          used instead of the table primary key when interpreting
+          [key\_set][google.spanner.v1.ReadRequest.key\_set] and sorting
+          result rows. See
+          [key\_set][google.spanner.v1.ReadRequest.key\_set] for further
+          information.
+      columns:
+          The columns of [table][google.spanner.v1.ReadRequest.table] to
+          be returned for each row matching this request.
+      key_set:
+          Required. ``key_set`` identifies the rows to be yielded.
+          ``key_set`` names the primary keys of the rows in
+          [table][google.spanner.v1.ReadRequest.table] to be yielded,
+          unless [index][google.spanner.v1.ReadRequest.index] is
+          present. If [index][google.spanner.v1.ReadRequest.index] is
+          present, then
+          [key\_set][google.spanner.v1.ReadRequest.key\_set] instead
+          names index keys in
+          [index][google.spanner.v1.ReadRequest.index].  Rows are
+          yielded in table primary key order (if
+          [index][google.spanner.v1.ReadRequest.index] is empty) or
+          index key order (if
+          [index][google.spanner.v1.ReadRequest.index] is non-empty).
+          It is not an error for the ``key_set`` to name rows that do
+          not exist in the database. Read yields nothing for nonexistent
+          rows.
+      limit:
+          If greater than zero, only the first ``limit`` rows are
+          yielded. If ``limit`` is zero, the default is no limit.
+      resume_token:
+          If this request is resuming a previously interrupted read,
+          ``resume_token`` should be copied from the last
+          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded
+          before the interruption. Doing this enables the new read to
+          resume where the last read left off. The rest of the request
+          parameters must exactly match the request that yielded this
+          token.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.ReadRequest)
   ))
 _sym_db.RegisterMessage(ReadRequest)
@@ -622,6 +757,17 @@ _sym_db.RegisterMessage(ReadRequest)
 BeginTransactionRequest = _reflection.GeneratedProtocolMessageType('BeginTransactionRequest', (_message.Message,), dict(
   DESCRIPTOR = _BEGINTRANSACTIONREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for
+  [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
+  
+  
+  Attributes:
+      session:
+          Required. The session in which the transaction runs.
+      options:
+          Required. Options for the new transaction.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.BeginTransactionRequest)
   ))
 _sym_db.RegisterMessage(BeginTransactionRequest)
@@ -629,6 +775,33 @@ _sym_db.RegisterMessage(BeginTransactionRequest)
 CommitRequest = _reflection.GeneratedProtocolMessageType('CommitRequest', (_message.Message,), dict(
   DESCRIPTOR = _COMMITREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for [Commit][google.spanner.v1.Spanner.Commit].
+  
+  
+  Attributes:
+      session:
+          Required. The session in which the transaction to be committed
+          is running.
+      transaction:
+          Required. The transaction in which to commit.
+      transaction_id:
+          Commit a previously-started transaction.
+      single_use_transaction:
+          Execute mutations in a temporary transaction. Note that unlike
+          commit of a previously-started transaction, commit with a
+          temporary transaction is non-idempotent. That is, if the
+          ``CommitRequest`` is sent to Cloud Spanner more than once (for
+          instance, due to retries in the application, or in the
+          transport library), it is possible that the mutations are
+          executed more than once. If this is undesirable, use
+          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction]
+          and [Commit][google.spanner.v1.Spanner.Commit] instead.
+      mutations:
+          The mutations to be executed when this transaction commits.
+          All mutations are applied atomically, in the order they appear
+          in this list.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.CommitRequest)
   ))
 _sym_db.RegisterMessage(CommitRequest)
@@ -636,6 +809,15 @@ _sym_db.RegisterMessage(CommitRequest)
 CommitResponse = _reflection.GeneratedProtocolMessageType('CommitResponse', (_message.Message,), dict(
   DESCRIPTOR = _COMMITRESPONSE,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The response for [Commit][google.spanner.v1.Spanner.Commit].
+  
+  
+  Attributes:
+      commit_timestamp:
+          The Cloud Spanner timestamp at which the transaction
+          committed.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.CommitResponse)
   ))
 _sym_db.RegisterMessage(CommitResponse)
@@ -643,6 +825,17 @@ _sym_db.RegisterMessage(CommitResponse)
 RollbackRequest = _reflection.GeneratedProtocolMessageType('RollbackRequest', (_message.Message,), dict(
   DESCRIPTOR = _ROLLBACKREQUEST,
   __module__ = 'google.cloud.proto.spanner.v1.spanner_pb2'
+  ,
+  __doc__ = """The request for [Rollback][google.spanner.v1.Spanner.Rollback].
+  
+  
+  Attributes:
+      session:
+          Required. The session in which the transaction to roll back is
+          running.
+      transaction_id:
+          Required. The transaction to roll back.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.RollbackRequest)
   ))
 _sym_db.RegisterMessage(RollbackRequest)
@@ -656,10 +849,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class SpannerStub(object):

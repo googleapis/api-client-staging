@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n5google/cloud/proto/functions/v1beta2/operations.proto\x12\x1egoogle.cloud.functions.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/protobuf/any.proto\"\x8e\x01\n\x18OperationMetadataV1Beta2\x12\x0e\n\x06target\x18\x01 \x01(\t\x12;\n\x04type\x18\x02 \x01(\x0e\x32-.google.cloud.functions.v1beta2.OperationType\x12%\n\x07request\x18\x03 \x01(\x0b\x32\x14.google.protobuf.Any*i\n\rOperationType\x12\x19\n\x15OPERATION_UNSPECIFIED\x10\x00\x12\x13\n\x0f\x43REATE_FUNCTION\x10\x01\x12\x13\n\x0fUPDATE_FUNCTION\x10\x02\x12\x13\n\x0f\x44\x45LETE_FUNCTION\x10\x03\x42\x89\x01\n\"com.google.cloud.functions.v1beta2B\x18\x46unctionsOperationsProtoP\x01ZGgoogle.golang.org/genproto/googleapis/cloud/functions/v1beta2;functionsb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_any__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _OPERATIONTYPE = _descriptor.EnumDescriptor(
   name='OperationType',
@@ -113,10 +112,24 @@ _OPERATIONMETADATAV1BETA2.fields_by_name['type'].enum_type = _OPERATIONTYPE
 _OPERATIONMETADATAV1BETA2.fields_by_name['request'].message_type = google_dot_protobuf_dot_any__pb2._ANY
 DESCRIPTOR.message_types_by_name['OperationMetadataV1Beta2'] = _OPERATIONMETADATAV1BETA2
 DESCRIPTOR.enum_types_by_name['OperationType'] = _OPERATIONTYPE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 OperationMetadataV1Beta2 = _reflection.GeneratedProtocolMessageType('OperationMetadataV1Beta2', (_message.Message,), dict(
   DESCRIPTOR = _OPERATIONMETADATAV1BETA2,
   __module__ = 'google.cloud.proto.functions.v1beta2.operations_pb2'
+  ,
+  __doc__ = """Metadata describing an [Operation][google.longrunning.Operation]
+  
+  
+  Attributes:
+      target:
+          Target of the operation - for example
+          projects/project-1/locations/region-1/functions/function-1
+      type:
+          Type of operation.
+      request:
+          The original request that started the operation.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.OperationMetadataV1Beta2)
   ))
 _sym_db.RegisterMessage(OperationMetadataV1Beta2)
@@ -128,10 +141,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

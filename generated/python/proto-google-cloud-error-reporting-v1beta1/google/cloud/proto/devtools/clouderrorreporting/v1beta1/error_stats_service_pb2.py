@@ -27,7 +27,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nQgoogle/cloud/proto/devtools/clouderrorreporting/v1beta1/error_stats_service.proto\x12+google.devtools.clouderrorreporting.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x44google/cloud/proto/devtools/clouderrorreporting/v1beta1/common.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa1\x04\n\x15ListGroupStatsRequest\x12\x14\n\x0cproject_name\x18\x01 \x01(\t\x12\x10\n\x08group_id\x18\x02 \x03(\t\x12Y\n\x0eservice_filter\x18\x03 \x01(\x0b\x32\x41.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter\x12O\n\ntime_range\x18\x05 \x01(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange\x12\x37\n\x14timed_count_duration\x18\x06 \x01(\x0b\x32\x19.google.protobuf.Duration\x12S\n\talignment\x18\x07 \x01(\x0e\x32@.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment\x12\x32\n\x0e\x61lignment_time\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12K\n\x05order\x18\t \x01(\x0e\x32<.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder\x12\x11\n\tpage_size\x18\x0b \x01(\x05\x12\x12\n\npage_token\x18\x0c \x01(\t\"\xc0\x01\n\x16ListGroupStatsResponse\x12W\n\x11\x65rror_group_stats\x18\x01 \x03(\x0b\x32<.google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x34\n\x10time_range_begin\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x86\x04\n\x0f\x45rrorGroupStats\x12\x46\n\x05group\x18\x01 \x01(\x0b\x32\x37.google.devtools.clouderrorreporting.v1beta1.ErrorGroup\x12\r\n\x05\x63ount\x18\x02 \x01(\x03\x12\x1c\n\x14\x61\x66\x66\x65\x63ted_users_count\x18\x03 \x01(\x03\x12M\n\x0ctimed_counts\x18\x04 \x03(\x0b\x32\x37.google.devtools.clouderrorreporting.v1beta1.TimedCount\x12\x33\n\x0f\x66irst_seen_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0elast_seen_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12V\n\x11\x61\x66\x66\x65\x63ted_services\x18\x07 \x03(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.ServiceContext\x12\x1d\n\x15num_affected_services\x18\x08 \x01(\x05\x12O\n\x0erepresentative\x18\t \x01(\x0b\x32\x37.google.devtools.clouderrorreporting.v1beta1.ErrorEvent\"y\n\nTimedCount\x12\r\n\x05\x63ount\x18\x01 \x01(\x03\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8e\x02\n\x11ListEventsRequest\x12\x14\n\x0cproject_name\x18\x01 \x01(\t\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12Y\n\x0eservice_filter\x18\x03 \x01(\x0b\x32\x41.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter\x12O\n\ntime_range\x18\x04 \x01(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange\x12\x11\n\tpage_size\x18\x06 \x01(\x05\x12\x12\n\npage_token\x18\x07 \x01(\t\"\xb2\x01\n\x12ListEventsResponse\x12M\n\x0c\x65rror_events\x18\x01 \x03(\x0b\x32\x37.google.devtools.clouderrorreporting.v1beta1.ErrorEvent\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x34\n\x10time_range_begin\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xe7\x01\n\x0eQueryTimeRange\x12R\n\x06period\x18\x01 \x01(\x0e\x32\x42.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period\"\x80\x01\n\x06Period\x12\x16\n\x12PERIOD_UNSPECIFIED\x10\x00\x12\x11\n\rPERIOD_1_HOUR\x10\x01\x12\x12\n\x0ePERIOD_6_HOURS\x10\x02\x12\x10\n\x0cPERIOD_1_DAY\x10\x03\x12\x11\n\rPERIOD_1_WEEK\x10\x04\x12\x12\n\x0ePERIOD_30_DAYS\x10\x05\"O\n\x14ServiceContextFilter\x12\x0f\n\x07service\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x15\n\rresource_type\x18\x04 \x01(\t\"+\n\x13\x44\x65leteEventsRequest\x12\x14\n\x0cproject_name\x18\x01 \x01(\t\"\x16\n\x14\x44\x65leteEventsResponse*u\n\x13TimedCountAlignment\x12%\n!ERROR_COUNT_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x1b\n\x17\x41LIGNMENT_EQUAL_ROUNDED\x10\x01\x12\x1a\n\x16\x41LIGNMENT_EQUAL_AT_END\x10\x02*}\n\x0f\x45rrorGroupOrder\x12\x1b\n\x17GROUP_ORDER_UNSPECIFIED\x10\x00\x12\x0e\n\nCOUNT_DESC\x10\x01\x12\x12\n\x0eLAST_SEEN_DESC\x10\x02\x12\x10\n\x0c\x43REATED_DESC\x10\x03\x12\x17\n\x13\x41\x46\x46\x45\x43TED_USERS_DESC\x10\x04\x32\xf2\x04\n\x11\x45rrorStatsService\x12\xd0\x01\n\x0eListGroupStats\x12\x42.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest\x1a\x43.google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse\"5\x82\xd3\xe4\x93\x02/\x12-/v1beta1/{project_name=projects/*}/groupStats\x12\xc0\x01\n\nListEvents\x12>.google.devtools.clouderrorreporting.v1beta1.ListEventsRequest\x1a?.google.devtools.clouderrorreporting.v1beta1.ListEventsResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v1beta1/{project_name=projects/*}/events\x12\xc6\x01\n\x0c\x44\x65leteEvents\x12@.google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest\x1a\x41.google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse\"1\x82\xd3\xe4\x93\x02+*)/v1beta1/{project_name=projects/*}/eventsB\xd1\x01\n/com.google.devtools.clouderrorreporting.v1beta1B\x16\x45rrorStatsServiceProtoP\x01Z^google.golang.org/genproto/googleapis/devtools/clouderrorreporting/v1beta1;clouderrorreporting\xaa\x02#Google.Cloud.ErrorReporting.V1Beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_common__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _TIMEDCOUNTALIGNMENT = _descriptor.EnumDescriptor(
   name='TimedCountAlignment',
@@ -687,10 +686,54 @@ DESCRIPTOR.message_types_by_name['DeleteEventsRequest'] = _DELETEEVENTSREQUEST
 DESCRIPTOR.message_types_by_name['DeleteEventsResponse'] = _DELETEEVENTSRESPONSE
 DESCRIPTOR.enum_types_by_name['TimedCountAlignment'] = _TIMEDCOUNTALIGNMENT
 DESCRIPTOR.enum_types_by_name['ErrorGroupOrder'] = _ERRORGROUPORDER
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ListGroupStatsRequest = _reflection.GeneratedProtocolMessageType('ListGroupStatsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPSTATSREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Specifies a set of ``ErrorGroupStats`` to return.
+  
+  
+  Attributes:
+      project_name:
+          [Required] The resource name of the Google Cloud Platform
+          project. Written as projects/ plus the Google Cloud Platform
+          project ID.  Example: projects/my-project-123.
+      group_id:
+          [Optional] List all ErrorGroupStats with these IDs.
+      service_filter:
+          [Optional] List only ErrorGroupStats which belong to a service
+          context that matches the filter. Data for all service contexts
+          is returned if this field is not specified.
+      time_range:
+          [Optional] List data for the given time range. If not set a
+          default time range is used. The field time\_range\_begin in
+          the response will specify the beginning of this time range.
+          Only ErrorGroupStats with a non-zero count in the given time
+          range are returned, unless the request contains an explicit
+          group\_id list. If a group\_id list is given, also
+          ErrorGroupStats with zero occurrences are returned.
+      timed_count_duration:
+          [Optional] The preferred duration for a single returned
+          ``TimedCount``. If not set, no timed counts are returned.
+      alignment:
+          [Optional] The alignment of the timed counts to be returned.
+          Default is ``ALIGNMENT_EQUAL_AT_END``.
+      alignment_time:
+          [Optional] Time where the timed counts shall be aligned if
+          rounded alignment is chosen. Default is 00:00 UTC.
+      order:
+          [Optional] The sort order in which the results are returned.
+          Default is ``COUNT_DESC``.
+      page_size:
+          [Optional] The maximum number of results to return per
+          response. Default is 20.
+      page_token:
+          [Optional] A ``next_page_token`` provided by a previous
+          response. To view additional results, pass this token along
+          with the identical query parameters as the first request.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest)
   ))
 _sym_db.RegisterMessage(ListGroupStatsRequest)
@@ -698,6 +741,24 @@ _sym_db.RegisterMessage(ListGroupStatsRequest)
 ListGroupStatsResponse = _reflection.GeneratedProtocolMessageType('ListGroupStatsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPSTATSRESPONSE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Contains a set of requested error group stats.
+  
+  
+  Attributes:
+      error_group_stats:
+          The error group stats which match the given request.
+      next_page_token:
+          If non-empty, more results are available. Pass this token,
+          along with the same query parameters as the first request, to
+          view the next page of results.
+      time_range_begin:
+          The timestamp specifies the start time to which the request
+          was restricted. The start time is set based on the requested
+          time range. It may be adjusted to a later time if a project
+          has exceeded the storage quota and older data has been
+          deleted.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse)
   ))
 _sym_db.RegisterMessage(ListGroupStatsResponse)
@@ -705,6 +766,58 @@ _sym_db.RegisterMessage(ListGroupStatsResponse)
 ErrorGroupStats = _reflection.GeneratedProtocolMessageType('ErrorGroupStats', (_message.Message,), dict(
   DESCRIPTOR = _ERRORGROUPSTATS,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Data extracted for a specific group based on certain filter criteria,
+  such as a given time period and/or service filter.
+  
+  
+  Attributes:
+      group:
+          Group data that is independent of the filter criteria.
+      count:
+          Approximate total number of events in the given group that
+          match the filter criteria.
+      affected_users_count:
+          Approximate number of affected users in the given group that
+          match the filter criteria. Users are distinguished by data in
+          the ``ErrorContext`` of the individual error events, such as
+          their login name or their remote IP address in case of HTTP
+          requests. The number of affected users can be zero even if the
+          number of errors is non-zero if no data was provided from
+          which the affected user could be deduced. Users are counted
+          based on data in the request context that was provided in the
+          error report. If more users are implicitly affected, such as
+          due to a crash of the whole service, this is not reflected
+          here.
+      timed_counts:
+          Approximate number of occurrences over time. Timed counts
+          returned by ListGroups are guaranteed to be:  -  Inside the
+          requested time interval -  Non-overlapping, and -  Ordered by
+          ascending time.
+      first_seen_time:
+          Approximate first occurrence that was ever seen for this group
+          and which matches the given filter criteria, ignoring the
+          time\_range that was specified in the request.
+      last_seen_time:
+          Approximate last occurrence that was ever seen for this group
+          and which matches the given filter criteria, ignoring the
+          time\_range that was specified in the request.
+      affected_services:
+          Service contexts with a non-zero error count for the given
+          filter criteria. This list can be truncated if multiple
+          services are affected. Refer to ``num_affected_services`` for
+          the total count.
+      num_affected_services:
+          The total number of services with a non-zero error count for
+          the given filter criteria.
+      representative:
+          An arbitrary event that is chosen as representative for the
+          whole group. The representative event is intended to be used
+          as a quick preview for the whole group. Events in the group
+          are usually sufficiently similar to each other such that
+          showing an arbitrary representative provides insight into the
+          characteristics of the group as a whole.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats)
   ))
 _sym_db.RegisterMessage(ErrorGroupStats)
@@ -712,6 +825,19 @@ _sym_db.RegisterMessage(ErrorGroupStats)
 TimedCount = _reflection.GeneratedProtocolMessageType('TimedCount', (_message.Message,), dict(
   DESCRIPTOR = _TIMEDCOUNT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """The number of errors in a given time period. All numbers are approximate
+  since the error events are sampled before counting them.
+  
+  
+  Attributes:
+      count:
+          Approximate number of occurrences in the given time period.
+      start_time:
+          Start of the time period to which ``count`` refers (included).
+      end_time:
+          End of the time period to which ``count`` refers (excluded).
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.TimedCount)
   ))
 _sym_db.RegisterMessage(TimedCount)
@@ -719,6 +845,34 @@ _sym_db.RegisterMessage(TimedCount)
 ListEventsRequest = _reflection.GeneratedProtocolMessageType('ListEventsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTEVENTSREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Specifies a set of error events to return.
+  
+  
+  Attributes:
+      project_name:
+          [Required] The resource name of the Google Cloud Platform
+          project. Written as ``projects/`` plus the `Google Cloud
+          Platform project ID
+          <https://support.google.com/cloud/answer/6158840>`__. Example:
+          ``projects/my-project-123``.
+      group_id:
+          [Required] The group for which events shall be returned.
+      service_filter:
+          [Optional] List only ErrorGroups which belong to a service
+          context that matches the filter. Data for all service contexts
+          is returned if this field is not specified.
+      time_range:
+          [Optional] List only data for the given time range. If not set
+          a default time range is used. The field time\_range\_begin in
+          the response will specify the beginning of this time range.
+      page_size:
+          [Optional] The maximum number of results to return per
+          response.
+      page_token:
+          [Optional] A ``next_page_token`` provided by a previous
+          response.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ListEventsRequest)
   ))
 _sym_db.RegisterMessage(ListEventsRequest)
@@ -726,6 +880,21 @@ _sym_db.RegisterMessage(ListEventsRequest)
 ListEventsResponse = _reflection.GeneratedProtocolMessageType('ListEventsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTEVENTSRESPONSE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Contains a set of requested error events.
+  
+  
+  Attributes:
+      error_events:
+          The error events which match the given request.
+      next_page_token:
+          If non-empty, more results are available. Pass this token,
+          along with the same query parameters as the first request, to
+          view the next page of results.
+      time_range_begin:
+          The timestamp specifies the start time to which the request
+          was restricted.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ListEventsResponse)
   ))
 _sym_db.RegisterMessage(ListEventsResponse)
@@ -733,6 +902,15 @@ _sym_db.RegisterMessage(ListEventsResponse)
 QueryTimeRange = _reflection.GeneratedProtocolMessageType('QueryTimeRange', (_message.Message,), dict(
   DESCRIPTOR = _QUERYTIMERANGE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Requests might be rejected or the resulting timed count durations might
+  be adjusted for lower durations.
+  
+  
+  Attributes:
+      period:
+          Restricts the query to the specified time range.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.QueryTimeRange)
   ))
 _sym_db.RegisterMessage(QueryTimeRange)
@@ -740,6 +918,27 @@ _sym_db.RegisterMessage(QueryTimeRange)
 ServiceContextFilter = _reflection.GeneratedProtocolMessageType('ServiceContextFilter', (_message.Message,), dict(
   DESCRIPTOR = _SERVICECONTEXTFILTER,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Specifies criteria for filtering a subset of service contexts. The
+  fields in the filter correspond to the fields in ``ServiceContext``.
+  Only exact, case-sensitive matches are supported. If a field is unset or
+  empty, it matches arbitrary values.
+  
+  
+  Attributes:
+      service:
+          [Optional] The exact value to match against
+          ```ServiceContext.service`` </error-reporting/reference/rest/v
+          1beta1/ServiceContext#FIELDS.service>`__.
+      version:
+          [Optional] The exact value to match against
+          ```ServiceContext.version`` </error-reporting/reference/rest/v
+          1beta1/ServiceContext#FIELDS.version>`__.
+      resource_type:
+          [Optional] The exact value to match against
+          ```ServiceContext.resource_type`` </error-reporting/reference/
+          rest/v1beta1/ServiceContext#FIELDS.resource_type>`__.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter)
   ))
 _sym_db.RegisterMessage(ServiceContextFilter)
@@ -747,6 +946,18 @@ _sym_db.RegisterMessage(ServiceContextFilter)
 DeleteEventsRequest = _reflection.GeneratedProtocolMessageType('DeleteEventsRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEEVENTSREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Deletes all events in the project.
+  
+  
+  Attributes:
+      project_name:
+          [Required] The resource name of the Google Cloud Platform
+          project. Written as ``projects/`` plus the `Google Cloud
+          Platform project ID
+          <https://support.google.com/cloud/answer/6158840>`__. Example:
+          ``projects/my-project-123``.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest)
   ))
 _sym_db.RegisterMessage(DeleteEventsRequest)
@@ -754,6 +965,9 @@ _sym_db.RegisterMessage(DeleteEventsRequest)
 DeleteEventsResponse = _reflection.GeneratedProtocolMessageType('DeleteEventsResponse', (_message.Message,), dict(
   DESCRIPTOR = _DELETEEVENTSRESPONSE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_stats_service_pb2'
+  ,
+  __doc__ = """Response message for deleting error events.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse)
   ))
 _sym_db.RegisterMessage(DeleteEventsResponse)
@@ -765,10 +979,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ErrorStatsServiceStub(object):

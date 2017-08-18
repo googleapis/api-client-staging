@@ -22,10 +22,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/cloud/proto/datastore/v1/datastore.proto',
   package='google.datastore.v1',
   syntax='proto3',
-  serialized_pb=_b('\n/google/cloud/proto/datastore/v1/datastore.proto\x12\x13google.datastore.v1\x1a\x1cgoogle/api/annotations.proto\x1a,google/cloud/proto/datastore/v1/entity.proto\x1a+google/cloud/proto/datastore/v1/query.proto\"\x83\x01\n\rLookupRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x36\n\x0cread_options\x18\x01 \x01(\x0b\x32 .google.datastore.v1.ReadOptions\x12&\n\x04keys\x18\x03 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\xa2\x01\n\x0eLookupResponse\x12\x30\n\x05\x66ound\x18\x01 \x03(\x0b\x32!.google.datastore.v1.EntityResult\x12\x32\n\x07missing\x18\x02 \x03(\x0b\x32!.google.datastore.v1.EntityResult\x12*\n\x08\x64\x65\x66\x65rred\x18\x03 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\x84\x02\n\x0fRunQueryRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x36\n\x0cpartition_id\x18\x02 \x01(\x0b\x32 .google.datastore.v1.PartitionId\x12\x36\n\x0cread_options\x18\x01 \x01(\x0b\x32 .google.datastore.v1.ReadOptions\x12+\n\x05query\x18\x03 \x01(\x0b\x32\x1a.google.datastore.v1.QueryH\x00\x12\x32\n\tgql_query\x18\x07 \x01(\x0b\x32\x1d.google.datastore.v1.GqlQueryH\x00\x42\x0c\n\nquery_type\"s\n\x10RunQueryResponse\x12\x34\n\x05\x62\x61tch\x18\x01 \x01(\x0b\x32%.google.datastore.v1.QueryResultBatch\x12)\n\x05query\x18\x02 \x01(\x0b\x32\x1a.google.datastore.v1.Query\"-\n\x17\x42\x65ginTransactionRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\"/\n\x18\x42\x65ginTransactionResponse\x12\x13\n\x0btransaction\x18\x01 \x01(\x0c\":\n\x0fRollbackRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x13\n\x0btransaction\x18\x01 \x01(\x0c\"\x12\n\x10RollbackResponse\"\x83\x02\n\rCommitRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x35\n\x04mode\x18\x05 \x01(\x0e\x32\'.google.datastore.v1.CommitRequest.Mode\x12\x15\n\x0btransaction\x18\x01 \x01(\x0cH\x00\x12\x30\n\tmutations\x18\x06 \x03(\x0b\x32\x1d.google.datastore.v1.Mutation\"F\n\x04Mode\x12\x14\n\x10MODE_UNSPECIFIED\x10\x00\x12\x11\n\rTRANSACTIONAL\x10\x01\x12\x15\n\x11NON_TRANSACTIONAL\x10\x02\x42\x16\n\x14transaction_selector\"f\n\x0e\x43ommitResponse\x12=\n\x10mutation_results\x18\x03 \x03(\x0b\x32#.google.datastore.v1.MutationResult\x12\x15\n\rindex_updates\x18\x04 \x01(\x05\"P\n\x12\x41llocateIdsRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12&\n\x04keys\x18\x01 \x03(\x0b\x32\x18.google.datastore.v1.Key\"=\n\x13\x41llocateIdsResponse\x12&\n\x04keys\x18\x01 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\x87\x02\n\x08Mutation\x12-\n\x06insert\x18\x04 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12-\n\x06update\x18\x05 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12-\n\x06upsert\x18\x06 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12*\n\x06\x64\x65lete\x18\x07 \x01(\x0b\x32\x18.google.datastore.v1.KeyH\x00\x12\x16\n\x0c\x62\x61se_version\x18\x08 \x01(\x03H\x01\x42\x0b\n\toperationB\x1d\n\x1b\x63onflict_detection_strategy\"c\n\x0eMutationResult\x12%\n\x03key\x18\x03 \x01(\x0b\x32\x18.google.datastore.v1.Key\x12\x0f\n\x07version\x18\x04 \x01(\x03\x12\x19\n\x11\x63onflict_detected\x18\x05 \x01(\x08\"\xd5\x01\n\x0bReadOptions\x12L\n\x10read_consistency\x18\x01 \x01(\x0e\x32\x30.google.datastore.v1.ReadOptions.ReadConsistencyH\x00\x12\x15\n\x0btransaction\x18\x02 \x01(\x0cH\x00\"M\n\x0fReadConsistency\x12 \n\x1cREAD_CONSISTENCY_UNSPECIFIED\x10\x00\x12\n\n\x06STRONG\x10\x01\x12\x0c\n\x08\x45VENTUAL\x10\x02\x42\x12\n\x10\x63onsistency_type2\xdb\x06\n\tDatastore\x12~\n\x06Lookup\x12\".google.datastore.v1.LookupRequest\x1a#.google.datastore.v1.LookupResponse\"+\x82\xd3\xe4\x93\x02%\" /v1/projects/{project_id}:lookup:\x01*\x12\x86\x01\n\x08RunQuery\x12$.google.datastore.v1.RunQueryRequest\x1a%.google.datastore.v1.RunQueryResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/projects/{project_id}:runQuery:\x01*\x12\xa6\x01\n\x10\x42\x65ginTransaction\x12,.google.datastore.v1.BeginTransactionRequest\x1a-.google.datastore.v1.BeginTransactionResponse\"5\x82\xd3\xe4\x93\x02/\"*/v1/projects/{project_id}:beginTransaction:\x01*\x12~\n\x06\x43ommit\x12\".google.datastore.v1.CommitRequest\x1a#.google.datastore.v1.CommitResponse\"+\x82\xd3\xe4\x93\x02%\" /v1/projects/{project_id}:commit:\x01*\x12\x86\x01\n\x08Rollback\x12$.google.datastore.v1.RollbackRequest\x1a%.google.datastore.v1.RollbackResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/projects/{project_id}:rollback:\x01*\x12\x92\x01\n\x0b\x41llocateIds\x12\'.google.datastore.v1.AllocateIdsRequest\x1a(.google.datastore.v1.AllocateIdsResponse\"0\x82\xd3\xe4\x93\x02*\"%/v1/projects/{project_id}:allocateIds:\x01*B\x85\x01\n\x17\x63om.google.datastore.v1B\x0e\x44\x61tastoreProtoP\x01Z<google.golang.org/genproto/googleapis/datastore/v1;datastore\xaa\x02\x19Google.Cloud.Datastore.V1b\x06proto3')
+  serialized_pb=_b('\n/google/cloud/proto/datastore/v1/datastore.proto\x12\x13google.datastore.v1\x1a\x1cgoogle/api/annotations.proto\x1a,google/cloud/proto/datastore/v1/entity.proto\x1a+google/cloud/proto/datastore/v1/query.proto\"\x83\x01\n\rLookupRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x36\n\x0cread_options\x18\x01 \x01(\x0b\x32 .google.datastore.v1.ReadOptions\x12&\n\x04keys\x18\x03 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\xa2\x01\n\x0eLookupResponse\x12\x30\n\x05\x66ound\x18\x01 \x03(\x0b\x32!.google.datastore.v1.EntityResult\x12\x32\n\x07missing\x18\x02 \x03(\x0b\x32!.google.datastore.v1.EntityResult\x12*\n\x08\x64\x65\x66\x65rred\x18\x03 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\x84\x02\n\x0fRunQueryRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x36\n\x0cpartition_id\x18\x02 \x01(\x0b\x32 .google.datastore.v1.PartitionId\x12\x36\n\x0cread_options\x18\x01 \x01(\x0b\x32 .google.datastore.v1.ReadOptions\x12+\n\x05query\x18\x03 \x01(\x0b\x32\x1a.google.datastore.v1.QueryH\x00\x12\x32\n\tgql_query\x18\x07 \x01(\x0b\x32\x1d.google.datastore.v1.GqlQueryH\x00\x42\x0c\n\nquery_type\"s\n\x10RunQueryResponse\x12\x34\n\x05\x62\x61tch\x18\x01 \x01(\x0b\x32%.google.datastore.v1.QueryResultBatch\x12)\n\x05query\x18\x02 \x01(\x0b\x32\x1a.google.datastore.v1.Query\"s\n\x17\x42\x65ginTransactionRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x44\n\x13transaction_options\x18\n \x01(\x0b\x32\'.google.datastore.v1.TransactionOptions\"/\n\x18\x42\x65ginTransactionResponse\x12\x13\n\x0btransaction\x18\x01 \x01(\x0c\":\n\x0fRollbackRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x13\n\x0btransaction\x18\x01 \x01(\x0c\"\x12\n\x10RollbackResponse\"\x83\x02\n\rCommitRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12\x35\n\x04mode\x18\x05 \x01(\x0e\x32\'.google.datastore.v1.CommitRequest.Mode\x12\x15\n\x0btransaction\x18\x01 \x01(\x0cH\x00\x12\x30\n\tmutations\x18\x06 \x03(\x0b\x32\x1d.google.datastore.v1.Mutation\"F\n\x04Mode\x12\x14\n\x10MODE_UNSPECIFIED\x10\x00\x12\x11\n\rTRANSACTIONAL\x10\x01\x12\x15\n\x11NON_TRANSACTIONAL\x10\x02\x42\x16\n\x14transaction_selector\"f\n\x0e\x43ommitResponse\x12=\n\x10mutation_results\x18\x03 \x03(\x0b\x32#.google.datastore.v1.MutationResult\x12\x15\n\rindex_updates\x18\x04 \x01(\x05\"P\n\x12\x41llocateIdsRequest\x12\x12\n\nproject_id\x18\x08 \x01(\t\x12&\n\x04keys\x18\x01 \x03(\x0b\x32\x18.google.datastore.v1.Key\"=\n\x13\x41llocateIdsResponse\x12&\n\x04keys\x18\x01 \x03(\x0b\x32\x18.google.datastore.v1.Key\"\x87\x02\n\x08Mutation\x12-\n\x06insert\x18\x04 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12-\n\x06update\x18\x05 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12-\n\x06upsert\x18\x06 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12*\n\x06\x64\x65lete\x18\x07 \x01(\x0b\x32\x18.google.datastore.v1.KeyH\x00\x12\x16\n\x0c\x62\x61se_version\x18\x08 \x01(\x03H\x01\x42\x0b\n\toperationB\x1d\n\x1b\x63onflict_detection_strategy\"c\n\x0eMutationResult\x12%\n\x03key\x18\x03 \x01(\x0b\x32\x18.google.datastore.v1.Key\x12\x0f\n\x07version\x18\x04 \x01(\x03\x12\x19\n\x11\x63onflict_detected\x18\x05 \x01(\x08\"\xd5\x01\n\x0bReadOptions\x12L\n\x10read_consistency\x18\x01 \x01(\x0e\x32\x30.google.datastore.v1.ReadOptions.ReadConsistencyH\x00\x12\x15\n\x0btransaction\x18\x02 \x01(\x0cH\x00\"M\n\x0fReadConsistency\x12 \n\x1cREAD_CONSISTENCY_UNSPECIFIED\x10\x00\x12\n\n\x06STRONG\x10\x01\x12\x0c\n\x08\x45VENTUAL\x10\x02\x42\x12\n\x10\x63onsistency_type\"\xe3\x01\n\x12TransactionOptions\x12G\n\nread_write\x18\x01 \x01(\x0b\x32\x31.google.datastore.v1.TransactionOptions.ReadWriteH\x00\x12\x45\n\tread_only\x18\x02 \x01(\x0b\x32\x30.google.datastore.v1.TransactionOptions.ReadOnlyH\x00\x1a)\n\tReadWrite\x12\x1c\n\x14previous_transaction\x18\x01 \x01(\x0c\x1a\n\n\x08ReadOnlyB\x06\n\x04mode2\xdb\x06\n\tDatastore\x12~\n\x06Lookup\x12\".google.datastore.v1.LookupRequest\x1a#.google.datastore.v1.LookupResponse\"+\x82\xd3\xe4\x93\x02%\" /v1/projects/{project_id}:lookup:\x01*\x12\x86\x01\n\x08RunQuery\x12$.google.datastore.v1.RunQueryRequest\x1a%.google.datastore.v1.RunQueryResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/projects/{project_id}:runQuery:\x01*\x12\xa6\x01\n\x10\x42\x65ginTransaction\x12,.google.datastore.v1.BeginTransactionRequest\x1a-.google.datastore.v1.BeginTransactionResponse\"5\x82\xd3\xe4\x93\x02/\"*/v1/projects/{project_id}:beginTransaction:\x01*\x12~\n\x06\x43ommit\x12\".google.datastore.v1.CommitRequest\x1a#.google.datastore.v1.CommitResponse\"+\x82\xd3\xe4\x93\x02%\" /v1/projects/{project_id}:commit:\x01*\x12\x86\x01\n\x08Rollback\x12$.google.datastore.v1.RollbackRequest\x1a%.google.datastore.v1.RollbackResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/projects/{project_id}:rollback:\x01*\x12\x92\x01\n\x0b\x41llocateIds\x12\'.google.datastore.v1.AllocateIdsRequest\x1a(.google.datastore.v1.AllocateIdsResponse\"0\x82\xd3\xe4\x93\x02*\"%/v1/projects/{project_id}:allocateIds:\x01*B\x85\x01\n\x17\x63om.google.datastore.v1B\x0e\x44\x61tastoreProtoP\x01Z<google.golang.org/genproto/googleapis/datastore/v1;datastore\xaa\x02\x19Google.Cloud.Datastore.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_datastore_dot_v1_dot_entity__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_datastore_dot_v1_dot_query__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -50,8 +49,8 @@ _COMMITREQUEST_MODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1214,
-  serialized_end=1284,
+  serialized_start=1284,
+  serialized_end=1354,
 )
 _sym_db.RegisterEnumDescriptor(_COMMITREQUEST_MODE)
 
@@ -76,8 +75,8 @@ _READOPTIONS_READCONSISTENCY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2043,
-  serialized_end=2120,
+  serialized_start=2113,
+  serialized_end=2190,
 )
 _sym_db.RegisterEnumDescriptor(_READOPTIONS_READCONSISTENCY)
 
@@ -286,6 +285,13 @@ _BEGINTRANSACTIONREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='transaction_options', full_name='google.datastore.v1.BeginTransactionRequest.transaction_options', index=1,
+      number=10, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -299,7 +305,7 @@ _BEGINTRANSACTIONREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=872,
-  serialized_end=917,
+  serialized_end=987,
 )
 
 
@@ -329,8 +335,8 @@ _BEGINTRANSACTIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=919,
-  serialized_end=966,
+  serialized_start=989,
+  serialized_end=1036,
 )
 
 
@@ -367,8 +373,8 @@ _ROLLBACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=968,
-  serialized_end=1026,
+  serialized_start=1038,
+  serialized_end=1096,
 )
 
 
@@ -391,8 +397,8 @@ _ROLLBACKRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1028,
-  serialized_end=1046,
+  serialized_start=1098,
+  serialized_end=1116,
 )
 
 
@@ -447,8 +453,8 @@ _COMMITREQUEST = _descriptor.Descriptor(
       name='transaction_selector', full_name='google.datastore.v1.CommitRequest.transaction_selector',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1049,
-  serialized_end=1308,
+  serialized_start=1119,
+  serialized_end=1378,
 )
 
 
@@ -485,8 +491,8 @@ _COMMITRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1310,
-  serialized_end=1412,
+  serialized_start=1380,
+  serialized_end=1482,
 )
 
 
@@ -523,8 +529,8 @@ _ALLOCATEIDSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1414,
-  serialized_end=1494,
+  serialized_start=1484,
+  serialized_end=1564,
 )
 
 
@@ -554,8 +560,8 @@ _ALLOCATEIDSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1496,
-  serialized_end=1557,
+  serialized_start=1566,
+  serialized_end=1627,
 )
 
 
@@ -619,8 +625,8 @@ _MUTATION = _descriptor.Descriptor(
       name='conflict_detection_strategy', full_name='google.datastore.v1.Mutation.conflict_detection_strategy',
       index=1, containing_type=None, fields=[]),
   ],
-  serialized_start=1560,
-  serialized_end=1823,
+  serialized_start=1630,
+  serialized_end=1893,
 )
 
 
@@ -664,8 +670,8 @@ _MUTATIONRESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1825,
-  serialized_end=1924,
+  serialized_start=1895,
+  serialized_end=1994,
 )
 
 
@@ -706,8 +712,102 @@ _READOPTIONS = _descriptor.Descriptor(
       name='consistency_type', full_name='google.datastore.v1.ReadOptions.consistency_type',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=1927,
-  serialized_end=2140,
+  serialized_start=1997,
+  serialized_end=2210,
+)
+
+
+_TRANSACTIONOPTIONS_READWRITE = _descriptor.Descriptor(
+  name='ReadWrite',
+  full_name='google.datastore.v1.TransactionOptions.ReadWrite',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='previous_transaction', full_name='google.datastore.v1.TransactionOptions.ReadWrite.previous_transaction', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2379,
+  serialized_end=2420,
+)
+
+_TRANSACTIONOPTIONS_READONLY = _descriptor.Descriptor(
+  name='ReadOnly',
+  full_name='google.datastore.v1.TransactionOptions.ReadOnly',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2422,
+  serialized_end=2432,
+)
+
+_TRANSACTIONOPTIONS = _descriptor.Descriptor(
+  name='TransactionOptions',
+  full_name='google.datastore.v1.TransactionOptions',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='read_write', full_name='google.datastore.v1.TransactionOptions.read_write', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='read_only', full_name='google.datastore.v1.TransactionOptions.read_only', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[_TRANSACTIONOPTIONS_READWRITE, _TRANSACTIONOPTIONS_READONLY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='mode', full_name='google.datastore.v1.TransactionOptions.mode',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=2213,
+  serialized_end=2440,
 )
 
 _LOOKUPREQUEST.fields_by_name['read_options'].message_type = _READOPTIONS
@@ -727,6 +827,7 @@ _RUNQUERYREQUEST.oneofs_by_name['query_type'].fields.append(
 _RUNQUERYREQUEST.fields_by_name['gql_query'].containing_oneof = _RUNQUERYREQUEST.oneofs_by_name['query_type']
 _RUNQUERYRESPONSE.fields_by_name['batch'].message_type = google_dot_cloud_dot_proto_dot_datastore_dot_v1_dot_query__pb2._QUERYRESULTBATCH
 _RUNQUERYRESPONSE.fields_by_name['query'].message_type = google_dot_cloud_dot_proto_dot_datastore_dot_v1_dot_query__pb2._QUERY
+_BEGINTRANSACTIONREQUEST.fields_by_name['transaction_options'].message_type = _TRANSACTIONOPTIONS
 _COMMITREQUEST.fields_by_name['mode'].enum_type = _COMMITREQUEST_MODE
 _COMMITREQUEST.fields_by_name['mutations'].message_type = _MUTATION
 _COMMITREQUEST_MODE.containing_type = _COMMITREQUEST
@@ -764,6 +865,16 @@ _READOPTIONS.fields_by_name['read_consistency'].containing_oneof = _READOPTIONS.
 _READOPTIONS.oneofs_by_name['consistency_type'].fields.append(
   _READOPTIONS.fields_by_name['transaction'])
 _READOPTIONS.fields_by_name['transaction'].containing_oneof = _READOPTIONS.oneofs_by_name['consistency_type']
+_TRANSACTIONOPTIONS_READWRITE.containing_type = _TRANSACTIONOPTIONS
+_TRANSACTIONOPTIONS_READONLY.containing_type = _TRANSACTIONOPTIONS
+_TRANSACTIONOPTIONS.fields_by_name['read_write'].message_type = _TRANSACTIONOPTIONS_READWRITE
+_TRANSACTIONOPTIONS.fields_by_name['read_only'].message_type = _TRANSACTIONOPTIONS_READONLY
+_TRANSACTIONOPTIONS.oneofs_by_name['mode'].fields.append(
+  _TRANSACTIONOPTIONS.fields_by_name['read_write'])
+_TRANSACTIONOPTIONS.fields_by_name['read_write'].containing_oneof = _TRANSACTIONOPTIONS.oneofs_by_name['mode']
+_TRANSACTIONOPTIONS.oneofs_by_name['mode'].fields.append(
+  _TRANSACTIONOPTIONS.fields_by_name['read_only'])
+_TRANSACTIONOPTIONS.fields_by_name['read_only'].containing_oneof = _TRANSACTIONOPTIONS.oneofs_by_name['mode']
 DESCRIPTOR.message_types_by_name['LookupRequest'] = _LOOKUPREQUEST
 DESCRIPTOR.message_types_by_name['LookupResponse'] = _LOOKUPRESPONSE
 DESCRIPTOR.message_types_by_name['RunQueryRequest'] = _RUNQUERYREQUEST
@@ -779,10 +890,25 @@ DESCRIPTOR.message_types_by_name['AllocateIdsResponse'] = _ALLOCATEIDSRESPONSE
 DESCRIPTOR.message_types_by_name['Mutation'] = _MUTATION
 DESCRIPTOR.message_types_by_name['MutationResult'] = _MUTATIONRESULT
 DESCRIPTOR.message_types_by_name['ReadOptions'] = _READOPTIONS
+DESCRIPTOR.message_types_by_name['TransactionOptions'] = _TRANSACTIONOPTIONS
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 LookupRequest = _reflection.GeneratedProtocolMessageType('LookupRequest', (_message.Message,), dict(
   DESCRIPTOR = _LOOKUPREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.Lookup][google.datastore.v1.Datastore.Lookup].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      read_options:
+          The options for this lookup request.
+      keys:
+          Keys of entities to look up.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.LookupRequest)
   ))
 _sym_db.RegisterMessage(LookupRequest)
@@ -790,6 +916,25 @@ _sym_db.RegisterMessage(LookupRequest)
 LookupResponse = _reflection.GeneratedProtocolMessageType('LookupResponse', (_message.Message,), dict(
   DESCRIPTOR = _LOOKUPRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.Lookup][google.datastore.v1.Datastore.Lookup].
+  
+  
+  Attributes:
+      found:
+          Entities found as ``ResultType.FULL`` entities. The order of
+          results in this field is undefined and has no relation to the
+          order of the keys in the input.
+      missing:
+          Entities not found as ``ResultType.KEY_ONLY`` entities. The
+          order of results in this field is undefined and has no
+          relation to the order of the keys in the input.
+      deferred:
+          A list of keys that were not looked up due to resource
+          constraints. The order of results in this field is undefined
+          and has no relation to the order of the keys in the input.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.LookupResponse)
   ))
 _sym_db.RegisterMessage(LookupResponse)
@@ -797,6 +942,28 @@ _sym_db.RegisterMessage(LookupResponse)
 RunQueryRequest = _reflection.GeneratedProtocolMessageType('RunQueryRequest', (_message.Message,), dict(
   DESCRIPTOR = _RUNQUERYREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.RunQuery][google.datastore.v1.Datastore.RunQuery].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      partition_id:
+          Entities are partitioned into subsets, identified by a
+          partition ID. Queries are scoped to a single partition. This
+          partition ID is normalized with the standard default context
+          partition ID.
+      read_options:
+          The options for this query.
+      query_type:
+          The type of query.
+      query:
+          The query to run.
+      gql_query:
+          The GQL query to run.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.RunQueryRequest)
   ))
 _sym_db.RegisterMessage(RunQueryRequest)
@@ -804,6 +971,18 @@ _sym_db.RegisterMessage(RunQueryRequest)
 RunQueryResponse = _reflection.GeneratedProtocolMessageType('RunQueryResponse', (_message.Message,), dict(
   DESCRIPTOR = _RUNQUERYRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.RunQuery][google.datastore.v1.Datastore.RunQuery].
+  
+  
+  Attributes:
+      batch:
+          A batch of query results (always present).
+      query:
+          The parsed form of the ``GqlQuery`` from the request, if it
+          was set.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.RunQueryResponse)
   ))
 _sym_db.RegisterMessage(RunQueryResponse)
@@ -811,6 +990,17 @@ _sym_db.RegisterMessage(RunQueryResponse)
 BeginTransactionRequest = _reflection.GeneratedProtocolMessageType('BeginTransactionRequest', (_message.Message,), dict(
   DESCRIPTOR = _BEGINTRANSACTIONREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      transaction_options:
+          Options for a new transaction.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.BeginTransactionRequest)
   ))
 _sym_db.RegisterMessage(BeginTransactionRequest)
@@ -818,6 +1008,15 @@ _sym_db.RegisterMessage(BeginTransactionRequest)
 BeginTransactionResponse = _reflection.GeneratedProtocolMessageType('BeginTransactionResponse', (_message.Message,), dict(
   DESCRIPTOR = _BEGINTRANSACTIONRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+  
+  
+  Attributes:
+      transaction:
+          The transaction identifier (always present).
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.BeginTransactionResponse)
   ))
 _sym_db.RegisterMessage(BeginTransactionResponse)
@@ -825,6 +1024,19 @@ _sym_db.RegisterMessage(BeginTransactionResponse)
 RollbackRequest = _reflection.GeneratedProtocolMessageType('RollbackRequest', (_message.Message,), dict(
   DESCRIPTOR = _ROLLBACKREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.Rollback][google.datastore.v1.Datastore.Rollback].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      transaction:
+          The transaction identifier, returned by a call to [Datastore.B
+          eginTransaction][google.datastore.v1.Datastore.BeginTransactio
+          n].
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.RollbackRequest)
   ))
 _sym_db.RegisterMessage(RollbackRequest)
@@ -832,6 +1044,11 @@ _sym_db.RegisterMessage(RollbackRequest)
 RollbackResponse = _reflection.GeneratedProtocolMessageType('RollbackResponse', (_message.Message,), dict(
   DESCRIPTOR = _ROLLBACKRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.Rollback][google.datastore.v1.Datastore.Rollback]. (an empty
+  message).
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.RollbackResponse)
   ))
 _sym_db.RegisterMessage(RollbackResponse)
@@ -839,6 +1056,33 @@ _sym_db.RegisterMessage(RollbackResponse)
 CommitRequest = _reflection.GeneratedProtocolMessageType('CommitRequest', (_message.Message,), dict(
   DESCRIPTOR = _COMMITREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.Commit][google.datastore.v1.Datastore.Commit].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      mode:
+          The type of commit to perform. Defaults to ``TRANSACTIONAL``.
+      transaction_selector:
+          Must be set when mode is ``TRANSACTIONAL``.
+      transaction:
+          The identifier of the transaction associated with the commit.
+          A transaction identifier is returned by a call to [Datastore.B
+          eginTransaction][google.datastore.v1.Datastore.BeginTransactio
+          n].
+      mutations:
+          The mutations to perform.  When mode is ``TRANSACTIONAL``,
+          mutations affecting a single entity are applied in order. The
+          following sequences of mutations affecting a single entity are
+          not permitted in a single ``Commit`` request:  -  ``insert``
+          followed by ``insert`` -  ``update`` followed by ``insert`` -
+          ``upsert`` followed by ``insert`` -  ``delete`` followed by
+          ``update``  When mode is ``NON_TRANSACTIONAL``, no two
+          mutations may affect a single entity.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.CommitRequest)
   ))
 _sym_db.RegisterMessage(CommitRequest)
@@ -846,6 +1090,19 @@ _sym_db.RegisterMessage(CommitRequest)
 CommitResponse = _reflection.GeneratedProtocolMessageType('CommitResponse', (_message.Message,), dict(
   DESCRIPTOR = _COMMITRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.Commit][google.datastore.v1.Datastore.Commit].
+  
+  
+  Attributes:
+      mutation_results:
+          The result of performing the mutations. The i-th mutation
+          result corresponds to the i-th mutation in the request.
+      index_updates:
+          The number of index entries updated during the commit, or zero
+          if none were updated.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.CommitResponse)
   ))
 _sym_db.RegisterMessage(CommitResponse)
@@ -853,6 +1110,18 @@ _sym_db.RegisterMessage(CommitResponse)
 AllocateIdsRequest = _reflection.GeneratedProtocolMessageType('AllocateIdsRequest', (_message.Message,), dict(
   DESCRIPTOR = _ALLOCATEIDSREQUEST,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The request for
+  [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project against which to make the request.
+      keys:
+          A list of keys with incomplete key paths for which to allocate
+          IDs. No key may be reserved/read-only.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.AllocateIdsRequest)
   ))
 _sym_db.RegisterMessage(AllocateIdsRequest)
@@ -860,6 +1129,16 @@ _sym_db.RegisterMessage(AllocateIdsRequest)
 AllocateIdsResponse = _reflection.GeneratedProtocolMessageType('AllocateIdsResponse', (_message.Message,), dict(
   DESCRIPTOR = _ALLOCATEIDSRESPONSE,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The response for
+  [Datastore.AllocateIds][google.datastore.v1.Datastore.AllocateIds].
+  
+  
+  Attributes:
+      keys:
+          The keys specified in the request (in the same order), each
+          with its key path completed with a newly allocated ID.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.AllocateIdsResponse)
   ))
 _sym_db.RegisterMessage(AllocateIdsResponse)
@@ -867,6 +1146,41 @@ _sym_db.RegisterMessage(AllocateIdsResponse)
 Mutation = _reflection.GeneratedProtocolMessageType('Mutation', (_message.Message,), dict(
   DESCRIPTOR = _MUTATION,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """A mutation to apply to an entity.
+  
+  
+  Attributes:
+      operation:
+          The mutation operation.  For ``insert``, ``update``, and
+          ``upsert``: - The entity's key must not be reserved/read-only.
+          - No property in the entity may have a reserved name, not even
+          a property in an entity in a value. - No value in the entity
+          may have meaning 18, not even a value in an entity in another
+          value.
+      insert:
+          The entity to insert. The entity must not already exist. The
+          entity key's final path element may be incomplete.
+      update:
+          The entity to update. The entity must already exist. Must have
+          a complete key path.
+      upsert:
+          The entity to upsert. The entity may or may not already exist.
+          The entity key's final path element may be incomplete.
+      delete:
+          The key of the entity to delete. The entity may or may not
+          already exist. Must have a complete key path and must not be
+          reserved/read-only.
+      conflict_detection_strategy:
+          When set, the server will detect whether or not this mutation
+          conflicts with the current version of the entity on the
+          server. Conflicting mutations are not applied, and are marked
+          as such in MutationResult.
+      base_version:
+          The version of the entity that this mutation is being applied
+          to. If this does not match the current version on the server,
+          the mutation conflicts.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Mutation)
   ))
 _sym_db.RegisterMessage(Mutation)
@@ -874,6 +1188,26 @@ _sym_db.RegisterMessage(Mutation)
 MutationResult = _reflection.GeneratedProtocolMessageType('MutationResult', (_message.Message,), dict(
   DESCRIPTOR = _MUTATIONRESULT,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The result of applying a mutation.
+  
+  
+  Attributes:
+      key:
+          The automatically allocated key. Set only when the mutation
+          allocated a key.
+      version:
+          The version of the entity on the server after processing the
+          mutation. If the mutation doesn't change anything on the
+          server, then the version will be the version of the current
+          entity or, if no entity is present, a version that is strictly
+          greater than the version of any previous entity and less than
+          the version of any possible future entity.
+      conflict_detected:
+          Whether a conflict was detected for this mutation. Always
+          false when a conflict detection strategy field is not set in
+          the mutation.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.MutationResult)
   ))
 _sym_db.RegisterMessage(MutationResult)
@@ -881,9 +1215,71 @@ _sym_db.RegisterMessage(MutationResult)
 ReadOptions = _reflection.GeneratedProtocolMessageType('ReadOptions', (_message.Message,), dict(
   DESCRIPTOR = _READOPTIONS,
   __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """The options shared by read requests.
+  
+  
+  Attributes:
+      consistency_type:
+          If not specified, lookups and ancestor queries default to
+          ``read_consistency``\ =\ ``STRONG``, global queries default to
+          ``read_consistency``\ =\ ``EVENTUAL``.
+      read_consistency:
+          The non-transactional read consistency to use. Cannot be set
+          to ``STRONG`` for global queries.
+      transaction:
+          The identifier of the transaction in which to read. A
+          transaction identifier is returned by a call to [Datastore.Beg
+          inTransaction][google.datastore.v1.Datastore.BeginTransaction]
+          .
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.ReadOptions)
   ))
 _sym_db.RegisterMessage(ReadOptions)
+
+TransactionOptions = _reflection.GeneratedProtocolMessageType('TransactionOptions', (_message.Message,), dict(
+
+  ReadWrite = _reflection.GeneratedProtocolMessageType('ReadWrite', (_message.Message,), dict(
+    DESCRIPTOR = _TRANSACTIONOPTIONS_READWRITE,
+    __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+    ,
+    __doc__ = """Options specific to read / write transactions.
+    """,
+    # @@protoc_insertion_point(class_scope:google.datastore.v1.TransactionOptions.ReadWrite)
+    ))
+  ,
+
+  ReadOnly = _reflection.GeneratedProtocolMessageType('ReadOnly', (_message.Message,), dict(
+    DESCRIPTOR = _TRANSACTIONOPTIONS_READONLY,
+    __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+    ,
+    __doc__ = """Options specific to read-only transactions.
+    """,
+    # @@protoc_insertion_point(class_scope:google.datastore.v1.TransactionOptions.ReadOnly)
+    ))
+  ,
+  DESCRIPTOR = _TRANSACTIONOPTIONS,
+  __module__ = 'google.cloud.proto.datastore.v1.datastore_pb2'
+  ,
+  __doc__ = """Options for beginning a new transaction.
+  
+  
+  Attributes:
+      previous_transaction:
+          The transaction identifier of the transaction being retried.
+      mode:
+          The ``mode`` of the transaction, indicating whether write
+          operations are supported.
+      read_write:
+          The transaction should allow both reads and writes.
+      read_only:
+          The transaction should only allow reads.
+  """,
+  # @@protoc_insertion_point(class_scope:google.datastore.v1.TransactionOptions)
+  ))
+_sym_db.RegisterMessage(TransactionOptions)
+_sym_db.RegisterMessage(TransactionOptions.ReadWrite)
+_sym_db.RegisterMessage(TransactionOptions.ReadOnly)
 
 
 DESCRIPTOR.has_options = True
@@ -892,10 +1288,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class DatastoreStub(object):

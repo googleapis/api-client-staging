@@ -16,4 +16,6 @@ API types
 .. autosummary::
    :toctree:
 
+   google.cloud.functions.__init__
+   google.cloud.functions.types
    google.cloud.functions.v1beta2.enums

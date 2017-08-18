@@ -12,7 +12,7 @@ easy-to-use client library for the `Cloud Spanner Database Admin API`_ (v1) defi
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/spanner/admin/database/v1
-.. _`Cloud Spanner Database Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1
+.. _`Cloud Spanner Database Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1/
 
 
 APIs
@@ -20,7 +20,7 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.spanner_admin_database.v1.database_admin_client
+   google.cloud.spanner_admin_database_v1.gapic.database_admin_client
 
 
 Contents

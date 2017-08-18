@@ -24,7 +24,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n.google/cloud/proto/spanner/v1/query_plan.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xf8\x04\n\x08PlanNode\x12\r\n\x05index\x18\x01 \x01(\x05\x12.\n\x04kind\x18\x02 \x01(\x0e\x32 .google.spanner.v1.PlanNode.Kind\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12:\n\x0b\x63hild_links\x18\x04 \x03(\x0b\x32%.google.spanner.v1.PlanNode.ChildLink\x12M\n\x14short_representation\x18\x05 \x01(\x0b\x32/.google.spanner.v1.PlanNode.ShortRepresentation\x12)\n\x08metadata\x18\x06 \x01(\x0b\x32\x17.google.protobuf.Struct\x12\x30\n\x0f\x65xecution_stats\x18\x07 \x01(\x0b\x32\x17.google.protobuf.Struct\x1a@\n\tChildLink\x12\x13\n\x0b\x63hild_index\x18\x01 \x01(\x05\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x10\n\x08variable\x18\x03 \x01(\t\x1a\xb2\x01\n\x13ShortRepresentation\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12S\n\nsubqueries\x18\x02 \x03(\x0b\x32?.google.spanner.v1.PlanNode.ShortRepresentation.SubqueriesEntry\x1a\x31\n\x0fSubqueriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"8\n\x04Kind\x12\x14\n\x10KIND_UNSPECIFIED\x10\x00\x12\x0e\n\nRELATIONAL\x10\x01\x12\n\n\x06SCALAR\x10\x02\"<\n\tQueryPlan\x12/\n\nplan_nodes\x18\x01 \x03(\x0b\x32\x1b.google.spanner.v1.PlanNodeB}\n\x15\x63om.google.spanner.v1B\x0eQueryPlanProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -290,12 +289,17 @@ _PLANNODE_KIND.containing_type = _PLANNODE
 _QUERYPLAN.fields_by_name['plan_nodes'].message_type = _PLANNODE
 DESCRIPTOR.message_types_by_name['PlanNode'] = _PLANNODE
 DESCRIPTOR.message_types_by_name['QueryPlan'] = _QUERYPLAN
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PlanNode = _reflection.GeneratedProtocolMessageType('PlanNode', (_message.Message,), dict(
 
   ChildLink = _reflection.GeneratedProtocolMessageType('ChildLink', (_message.Message,), dict(
     DESCRIPTOR = _PLANNODE_CHILDLINK,
     __module__ = 'google.cloud.proto.spanner.v1.query_plan_pb2'
+    ,
+    __doc__ = """Metadata associated with a parent-child relationship appearing in a
+    [PlanNode][google.spanner.v1.PlanNode].
+    """,
     # @@protoc_insertion_point(class_scope:google.spanner.v1.PlanNode.ChildLink)
     ))
   ,
@@ -310,11 +314,77 @@ PlanNode = _reflection.GeneratedProtocolMessageType('PlanNode', (_message.Messag
     ,
     DESCRIPTOR = _PLANNODE_SHORTREPRESENTATION,
     __module__ = 'google.cloud.proto.spanner.v1.query_plan_pb2'
+    ,
+    __doc__ = """Condensed representation of a node and its subtree. Only present for
+    ``SCALAR`` [PlanNode(s)][google.spanner.v1.PlanNode].
+    """,
     # @@protoc_insertion_point(class_scope:google.spanner.v1.PlanNode.ShortRepresentation)
     ))
   ,
   DESCRIPTOR = _PLANNODE,
   __module__ = 'google.cloud.proto.spanner.v1.query_plan_pb2'
+  ,
+  __doc__ = """Node information for nodes appearing in a
+  [QueryPlan.plan\_nodes][google.spanner.v1.QueryPlan.plan\_nodes].
+  
+  
+  Attributes:
+      child_index:
+          The node to which the link points.
+      type:
+          The type of the link. For example, in Hash Joins this could be
+          used to distinguish between the build child and the probe
+          child, or in the case of the child being an output variable,
+          to represent the tag associated with the output variable.
+      variable:
+          Only present if the child node is
+          [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and
+          corresponds to an output variable of the parent node. The
+          field carries the name of the output variable. For example, a
+          ``TableScan`` operator that reads rows from a table will have
+          child links to the ``SCALAR`` nodes representing the output
+          variables created for each column that is read by the
+          operator. The corresponding ``variable`` fields will be set to
+          the variable names assigned to the columns.
+      description:
+          A string representation of the expression subtree rooted at
+          this node.
+      subqueries:
+          A mapping of (subquery variable name) -> (subquery node id)
+          for cases where the ``description`` string of this node
+          references a ``SCALAR`` subquery contained in the expression
+          subtree rooted at this node. The referenced ``SCALAR``
+          subquery may not necessarily be a direct child of this node.
+      index:
+          The ``PlanNode``'s index in [node
+          list][google.spanner.v1.QueryPlan.plan\_nodes].
+      kind:
+          Used to determine the type of node. May be needed for
+          visualizing different kinds of nodes differently. For example,
+          If the node is a
+          [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will
+          have a condensed representation which can be used to directly
+          embed a description of the node in its parent.
+      display_name:
+          The display name for the node.
+      child_links:
+          List of child node ``index``\ es and their relationship to
+          this parent.
+      short_representation:
+          Condensed representation for
+          [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
+      metadata:
+          Attributes relevant to the node contained in a group of key-
+          value pairs. For example, a Parameter Reference node could
+          have the following information in its metadata:  ::      {
+          "parameter_reference": "param1",       "parameter_type":
+          "array"     }
+      execution_stats:
+          The execution statistics associated with the node, contained
+          in a group of key-value pairs. Only present if the plan was
+          returned as a result of a profile query. For example, number
+          of executions, number of rows/time per execution etc.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.PlanNode)
   ))
 _sym_db.RegisterMessage(PlanNode)
@@ -325,6 +395,17 @@ _sym_db.RegisterMessage(PlanNode.ShortRepresentation.SubqueriesEntry)
 QueryPlan = _reflection.GeneratedProtocolMessageType('QueryPlan', (_message.Message,), dict(
   DESCRIPTOR = _QUERYPLAN,
   __module__ = 'google.cloud.proto.spanner.v1.query_plan_pb2'
+  ,
+  __doc__ = """Contains an ordered list of nodes appearing in the query plan.
+  
+  
+  Attributes:
+      plan_nodes:
+          The nodes in the query plan. Plan nodes are returned in pre-
+          order starting with the plan root. Each
+          [PlanNode][google.spanner.v1.PlanNode]'s ``id`` corresponds to
+          its index in ``plan_nodes``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.QueryPlan)
   ))
 _sym_db.RegisterMessage(QueryPlan)
@@ -338,10 +419,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

@@ -1,43 +1,29 @@
-GAPIC library for the Stackdriver Monitoring API
-================================================================================
+Python Client for Stackdriver Monitoring API (`Alpha`_)
+==================================================================================================
 
-gapic-google-cloud-monitoring-v3 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Stackdriver Monitoring API`_ (v3) defined in the googleapis_ git repository
-
-
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/monitoring/v3
-.. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Stackdriver Monitoring API`: https://developers.google.com/apis-explorer/?hl=en_US#p/monitoring/v3
-
-Getting started
----------------
-
-gapic-google-cloud-monitoring-v3 will allow you to connect to the
-Stackdriver Monitoring API and access all its methods. In order to do this, you need
-to set up authentication as well as install the library locally.
+`Stackdriver Monitoring API`_: Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.
 
 
-Setup Authentication
-~~~~~~~~~~~~~~~~~~~~
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-To authenticate all your API calls, first install and setup the `Google Cloud SDK`_.
-Once done, you can then run the following command in your terminal:
+.. _Alpha: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Stackdriver Monitoring API: https://cloud.google.com/monitoring
+.. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/monitoring-usage
+.. _Product Documentation:  https://cloud.google.com/monitoring
 
-.. code-block:: console
+Quick Start
+-----------
 
-    $ gcloud beta auth application-default login
+In order to use this library, you first need to go through the following steps:
 
-or
+1. `Select or create a Cloud Platform project.`_
+2. `Enable the Stackdriver Monitoring API.`_
+3. `Setup Authentication.`_
 
-.. code-block:: console
-
-    $ gcloud auth login
-
-Please see `gcloud beta auth application-default login`_ document for the difference between these commands.
-
-.. _Google Cloud SDK: https://cloud.google.com/sdk/
-.. _gcloud beta auth application-default login: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable the Stackdriver Monitoring API.:  https://cloud.google.com/monitoring
+.. _Setup Authentication.: https://googlecloudplatform.github.io/google-cloud-python/stable/google-cloud-auth
 
 Installation
 ~~~~~~~~~~~~
@@ -54,7 +40,7 @@ dependencies.
 
 
 Mac/Linux
-~~~~~~~~~~
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -65,7 +51,7 @@ Mac/Linux
 
 
 Windows
-~~~~~~~
+^^^^^^^
 
 .. code-block:: console
 
@@ -74,5 +60,39 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install gapic-google-cloud-monitoring-v3
 
+Preview
+~~~~~~~
 
-At this point you are all set to continue.
+MetricServiceClient
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: py
+
+  from google.cloud import monitoring_v3
+  from google.gax import CallOptions, INITIAL_PAGE
+  client = monitoring_v3.MetricServiceClient()
+  name = client.project_path('[PROJECT]')
+
+  # Iterate over all results
+  for element in client.list_monitored_resource_descriptors(name):
+      # process element
+      pass
+
+  # Or iterate over results one page at a time
+  for page in client.list_monitored_resource_descriptors(name, options=CallOptions(page_token=INITIAL_PAGE)):
+      for element in page:
+          # process element
+          pass
+
+Next Steps
+~~~~~~~~~~
+
+-  Read the `Client Library Documentation`_ for Stackdriver Monitoring API
+   API to see other available methods on the client.
+-  Read the `Stackdriver Monitoring API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `repository’s main README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Stackdriver Monitoring API Product documentation:  https://cloud.google.com/monitoring
+.. _repository’s main README: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst

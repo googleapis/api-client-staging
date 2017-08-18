@@ -39,5 +39,5 @@ setup(
     install_requires=install_requires,
     license='Apache-2.0',
     packages=find_packages(),
-    namespace_packages=['google', 'google.cloud', 'google.cloud.functions'],
+    namespace_packages=['google', 'google.cloud'],
     url='https://github.com/googleapis/googleapis')

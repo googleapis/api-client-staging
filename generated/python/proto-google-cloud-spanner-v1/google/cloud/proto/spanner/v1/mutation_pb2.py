@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n,google/cloud/proto/spanner/v1/mutation.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a(google/cloud/proto/spanner/v1/keys.proto\"\xc6\x03\n\x08Mutation\x12\x33\n\x06insert\x18\x01 \x01(\x0b\x32!.google.spanner.v1.Mutation.WriteH\x00\x12\x33\n\x06update\x18\x02 \x01(\x0b\x32!.google.spanner.v1.Mutation.WriteH\x00\x12=\n\x10insert_or_update\x18\x03 \x01(\x0b\x32!.google.spanner.v1.Mutation.WriteH\x00\x12\x34\n\x07replace\x18\x04 \x01(\x0b\x32!.google.spanner.v1.Mutation.WriteH\x00\x12\x34\n\x06\x64\x65lete\x18\x05 \x01(\x0b\x32\".google.spanner.v1.Mutation.DeleteH\x00\x1aS\n\x05Write\x12\r\n\x05table\x18\x01 \x01(\t\x12\x0f\n\x07\x63olumns\x18\x02 \x03(\t\x12*\n\x06values\x18\x03 \x03(\x0b\x32\x1a.google.protobuf.ListValue\x1a\x43\n\x06\x44\x65lete\x12\r\n\x05table\x18\x01 \x01(\t\x12*\n\x07key_set\x18\x02 \x01(\x0b\x32\x19.google.spanner.v1.KeySetB\x0b\n\toperationB|\n\x15\x63om.google.spanner.v1B\rMutationProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_keys__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -197,12 +196,19 @@ _MUTATION.oneofs_by_name['operation'].fields.append(
   _MUTATION.fields_by_name['delete'])
 _MUTATION.fields_by_name['delete'].containing_oneof = _MUTATION.oneofs_by_name['operation']
 DESCRIPTOR.message_types_by_name['Mutation'] = _MUTATION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Mutation = _reflection.GeneratedProtocolMessageType('Mutation', (_message.Message,), dict(
 
   Write = _reflection.GeneratedProtocolMessageType('Write', (_message.Message,), dict(
     DESCRIPTOR = _MUTATION_WRITE,
     __module__ = 'google.cloud.proto.spanner.v1.mutation_pb2'
+    ,
+    __doc__ = """Arguments to [insert][google.spanner.v1.Mutation.insert],
+    [update][google.spanner.v1.Mutation.update],
+    [insert\_or\_update][google.spanner.v1.Mutation.insert\_or\_update], and
+    [replace][google.spanner.v1.Mutation.replace] operations.
+    """,
     # @@protoc_insertion_point(class_scope:google.spanner.v1.Mutation.Write)
     ))
   ,
@@ -210,11 +216,67 @@ Mutation = _reflection.GeneratedProtocolMessageType('Mutation', (_message.Messag
   Delete = _reflection.GeneratedProtocolMessageType('Delete', (_message.Message,), dict(
     DESCRIPTOR = _MUTATION_DELETE,
     __module__ = 'google.cloud.proto.spanner.v1.mutation_pb2'
+    ,
+    __doc__ = """Arguments to [delete][google.spanner.v1.Mutation.delete] operations.
+    """,
     # @@protoc_insertion_point(class_scope:google.spanner.v1.Mutation.Delete)
     ))
   ,
   DESCRIPTOR = _MUTATION,
   __module__ = 'google.cloud.proto.spanner.v1.mutation_pb2'
+  ,
+  __doc__ = """A modification to one or more Cloud Spanner rows. Mutations can be
+  applied to a Cloud Spanner database by sending them in a
+  [Commit][google.spanner.v1.Spanner.Commit] call.
+  
+  
+  Attributes:
+      table:
+          Required. The table whose rows will be deleted.
+      columns:
+          The names of the columns in
+          [table][google.spanner.v1.Mutation.Write.table] to be written.
+          The list of columns must contain enough columns to allow Cloud
+          Spanner to derive values for all primary key columns in the
+          row(s) to be modified.
+      values:
+          The values to be written. ``values`` can contain more than one
+          list of values. If it does, then multiple rows are written,
+          one for each entry in ``values``. Each list in ``values`` must
+          have exactly as many entries as there are entries in
+          [columns][google.spanner.v1.Mutation.Write.columns] above.
+          Sending multiple lists is equivalent to sending multiple
+          ``Mutation``\ s, each containing one ``values`` entry and
+          repeating [table][google.spanner.v1.Mutation.Write.table] and
+          [columns][google.spanner.v1.Mutation.Write.columns].
+          Individual values in each list are encoded as described
+          [here][google.spanner.v1.TypeCode].
+      key_set:
+          Required. The primary keys of the rows within
+          [table][google.spanner.v1.Mutation.Delete.table] to delete.
+      operation:
+          Required. The operation to perform.
+      insert:
+          Insert new rows in a table. If any of the rows already exist,
+          the write or transaction fails with error ``ALREADY_EXISTS``.
+      update:
+          Update existing rows in a table. If any of the rows does not
+          already exist, the transaction fails with error ``NOT_FOUND``.
+      insert_or_update:
+          Like [insert][google.spanner.v1.Mutation.insert], except that
+          if the row already exists, then its column values are
+          overwritten with the ones provided. Any column values not
+          explicitly written are preserved.
+      replace:
+          Like [insert][google.spanner.v1.Mutation.insert], except that
+          if the row already exists, it is deleted, and the column
+          values provided are inserted instead. Unlike [insert\_or\_upda
+          te][google.spanner.v1.Mutation.insert\_or\_update], this means
+          any values not explicitly written become ``NULL``.
+      delete:
+          Delete rows from a table. Succeeds whether or not the named
+          rows were present.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.Mutation)
   ))
 _sym_db.RegisterMessage(Mutation)
@@ -228,10 +290,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

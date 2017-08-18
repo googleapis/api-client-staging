@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n-google/cloud/proto/monitoring/v3/metric.proto\x12\x14google.monitoring.v3\x1a\x17google/api/metric.proto\x1a#google/api/monitored_resource.proto\x1a-google/cloud/proto/monitoring/v3/common.proto\"n\n\x05Point\x12\x34\n\x08interval\x18\x01 \x01(\x0b\x32\".google.monitoring.v3.TimeInterval\x12/\n\x05value\x18\x02 \x01(\x0b\x32 .google.monitoring.v3.TypedValue\"\x88\x02\n\nTimeSeries\x12\"\n\x06metric\x18\x01 \x01(\x0b\x32\x12.google.api.Metric\x12/\n\x08resource\x18\x02 \x01(\x0b\x32\x1d.google.api.MonitoredResource\x12<\n\x0bmetric_kind\x18\x03 \x01(\x0e\x32\'.google.api.MetricDescriptor.MetricKind\x12:\n\nvalue_type\x18\x04 \x01(\x0e\x32&.google.api.MetricDescriptor.ValueType\x12+\n\x06points\x18\x05 \x03(\x0b\x32\x1b.google.monitoring.v3.PointB\x86\x01\n\x18\x63om.google.monitoring.v3B\x0bMetricProtoP\x01Z>google.golang.org/genproto/googleapis/monitoring/v3;monitoring\xaa\x02\x1aGoogle.Cloud.Monitoring.V3b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_metric__pb2.DESCRIPTOR,google_dot_api_dot_monitored__resource__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_common__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -135,10 +134,30 @@ _TIMESERIES.fields_by_name['value_type'].enum_type = google_dot_api_dot_metric__
 _TIMESERIES.fields_by_name['points'].message_type = _POINT
 DESCRIPTOR.message_types_by_name['Point'] = _POINT
 DESCRIPTOR.message_types_by_name['TimeSeries'] = _TIMESERIES
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Point = _reflection.GeneratedProtocolMessageType('Point', (_message.Message,), dict(
   DESCRIPTOR = _POINT,
   __module__ = 'google.cloud.proto.monitoring.v3.metric_pb2'
+  ,
+  __doc__ = """A single data point in a time series.
+  
+  
+  Attributes:
+      interval:
+          The time interval to which the data point applies. For GAUGE
+          metrics, only the end time of the interval is used. For DELTA
+          metrics, the start and end time should specify a non-zero
+          interval, with subsequent points specifying contiguous and
+          non-overlapping intervals. For CUMULATIVE metrics, the start
+          and end time should specify a non-zero interval, with
+          subsequent points specifying the same start time and
+          increasing end times, until an event resets the cumulative
+          value to zero and sets a new start time for the following
+          points.
+      value:
+          The value of the data point.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.Point)
   ))
 _sym_db.RegisterMessage(Point)
@@ -146,6 +165,47 @@ _sym_db.RegisterMessage(Point)
 TimeSeries = _reflection.GeneratedProtocolMessageType('TimeSeries', (_message.Message,), dict(
   DESCRIPTOR = _TIMESERIES,
   __module__ = 'google.cloud.proto.monitoring.v3.metric_pb2'
+  ,
+  __doc__ = """A collection of data points that describes the time-varying values of a
+  metric. A time series is identified by a combination of a
+  fully-specified monitored resource and a fully-specified metric. This
+  type is used for both listing and creating time series.
+  
+  
+  Attributes:
+      metric:
+          The associated metric. A fully-specified metric used to
+          identify the time series.
+      resource:
+          The associated resource. A fully-specified monitored resource
+          used to identify the time series.
+      metric_kind:
+          The metric kind of the time series. When listing time series,
+          this metric kind might be different from the metric kind of
+          the associated metric if this time series is an alignment or
+          reduction of other time series.  When creating a time series,
+          this field is optional. If present, it must be the same as the
+          metric kind of the associated metric. If the associated
+          metric's descriptor must be auto-created, then this field
+          specifies the metric kind of the new descriptor and must be
+          either ``GAUGE`` (the default) or ``CUMULATIVE``.
+      value_type:
+          The value type of the time series. When listing time series,
+          this value type might be different from the value type of the
+          associated metric if this time series is an alignment or
+          reduction of other time series.  When creating a time series,
+          this field is optional. If present, it must be the same as the
+          type of the data in the ``points`` field.
+      points:
+          The data points of this time series. When listing time series,
+          the order of the points is specified by the list method.  When
+          creating a time series, this field must contain exactly one
+          point and the point's type must be the same as the value type
+          of the associated metric. If the associated metric's
+          descriptor must be auto-created, then the value type of the
+          descriptor is determined by the point's type, which must be
+          ``BOOL``, ``INT64``, ``DOUBLE``, or ``DISTRIBUTION``.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.TimeSeries)
   ))
 _sym_db.RegisterMessage(TimeSeries)
@@ -157,10 +217,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

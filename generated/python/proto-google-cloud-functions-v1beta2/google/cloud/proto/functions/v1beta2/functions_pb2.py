@@ -29,7 +29,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n4google/cloud/proto/functions/v1beta2/functions.proto\x12\x1egoogle.cloud.functions.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x35google/cloud/proto/functions/v1beta2/operations.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x04\n\rCloudFunction\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x1c\n\x12source_archive_url\x18\x0e \x01(\tH\x00\x12M\n\x11source_repository\x18\x03 \x01(\x0b\x32\x30.google.cloud.functions.v1beta2.SourceRepositoryH\x00\x12\x45\n\rhttps_trigger\x18\x06 \x01(\x0b\x32,.google.cloud.functions.v1beta2.HTTPSTriggerH\x01\x12\x45\n\revent_trigger\x18\x0c \x01(\x0b\x32,.google.cloud.functions.v1beta2.EventTriggerH\x01\x12\x43\n\x06status\x18\x07 \x01(\x0e\x32\x33.google.cloud.functions.v1beta2.CloudFunctionStatus\x12\x18\n\x10latest_operation\x18\x08 \x01(\t\x12\x13\n\x0b\x65ntry_point\x18\t \x01(\t\x12*\n\x07timeout\x18\n \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x1b\n\x13\x61vailable_memory_mb\x18\x0b \x01(\x05\x12\x17\n\x0fservice_account\x18\r \x01(\t\x12/\n\x0bupdate_time\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.TimestampB\r\n\x0bsource_codeB\t\n\x07trigger\"\x1b\n\x0cHTTPSTrigger\x12\x0b\n\x03url\x18\x01 \x01(\t\"4\n\x0c\x45ventTrigger\x12\x12\n\nevent_type\x18\x01 \x01(\t\x12\x10\n\x08resource\x18\x02 \x01(\t\"\x9a\x01\n\x10SourceRepository\x12\x16\n\x0erepository_url\x18\x01 \x01(\t\x12\x13\n\x0bsource_path\x18\x02 \x01(\t\x12\x10\n\x06\x62ranch\x18\x03 \x01(\tH\x00\x12\r\n\x03tag\x18\x04 \x01(\tH\x00\x12\x12\n\x08revision\x18\x05 \x01(\tH\x00\x12\x19\n\x11\x64\x65ployed_revision\x18\x06 \x01(\tB\t\n\x07version\"j\n\x15\x43reateFunctionRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"f\n\x15UpdateFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x08\x66unction\x18\x02 \x01(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\"\"\n\x12GetFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"O\n\x14ListFunctionsRequest\x12\x10\n\x08location\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"r\n\x15ListFunctionsResponse\x12@\n\tfunctions\x18\x01 \x03(\x0b\x32-.google.cloud.functions.v1beta2.CloudFunction\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"%\n\x15\x44\x65leteFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"1\n\x13\x43\x61llFunctionRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"K\n\x14\x43\x61llFunctionResponse\x12\x14\n\x0c\x65xecution_id\x18\x01 \x01(\t\x12\x0e\n\x06result\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t*a\n\x13\x43loudFunctionStatus\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\t\n\x05READY\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x12\r\n\tDEPLOYING\x10\x03\x12\x0c\n\x08\x44\x45LETING\x10\x04\x32\xc8\x08\n\x15\x43loudFunctionsService\x12\xba\x01\n\rListFunctions\x12\x34.google.cloud.functions.v1beta2.ListFunctionsRequest\x1a\x35.google.cloud.functions.v1beta2.ListFunctionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/v1beta2/{location=projects/*/locations/*}/functions\x12\xac\x01\n\x0bGetFunction\x12\x32.google.cloud.functions.v1beta2.GetFunctionRequest\x1a-.google.cloud.functions.v1beta2.CloudFunction\":\x82\xd3\xe4\x93\x02\x34\x12\x32/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xae\x01\n\x0e\x43reateFunction\x12\x35.google.cloud.functions.v1beta2.CreateFunctionRequest\x1a\x1d.google.longrunning.Operation\"F\x82\xd3\xe4\x93\x02@\"4/v1beta2/{location=projects/*/locations/*}/functions:\x08\x66unction\x12\xac\x01\n\x0eUpdateFunction\x12\x35.google.cloud.functions.v1beta2.UpdateFunctionRequest\x1a\x1d.google.longrunning.Operation\"D\x82\xd3\xe4\x93\x02>\x1a\x32/v1beta2/{name=projects/*/locations/*/functions/*}:\x08\x66unction\x12\xa2\x01\n\x0e\x44\x65leteFunction\x12\x35.google.cloud.functions.v1beta2.DeleteFunctionRequest\x1a\x1d.google.longrunning.Operation\":\x82\xd3\xe4\x93\x02\x34*2/v1beta2/{name=projects/*/locations/*/functions/*}\x12\xbd\x01\n\x0c\x43\x61llFunction\x12\x33.google.cloud.functions.v1beta2.CallFunctionRequest\x1a\x34.google.cloud.functions.v1beta2.CallFunctionResponse\"B\x82\xd3\xe4\x93\x02<\"7/v1beta2/{name=projects/*/locations/*/functions/*}:call:\x01*B\x85\x01\n\"com.google.cloud.functions.v1beta2B\x0e\x46unctionsProtoP\x01ZGgoogle.golang.org/genproto/googleapis/cloud/functions/v1beta2;functions\xa2\x02\x03GCFb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_functions_dot_v1beta2_dot_operations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _CLOUDFUNCTIONSTATUS = _descriptor.EnumDescriptor(
   name='CloudFunctionStatus',
@@ -672,10 +671,62 @@ DESCRIPTOR.message_types_by_name['DeleteFunctionRequest'] = _DELETEFUNCTIONREQUE
 DESCRIPTOR.message_types_by_name['CallFunctionRequest'] = _CALLFUNCTIONREQUEST
 DESCRIPTOR.message_types_by_name['CallFunctionResponse'] = _CALLFUNCTIONRESPONSE
 DESCRIPTOR.enum_types_by_name['CloudFunctionStatus'] = _CLOUDFUNCTIONSTATUS
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CloudFunction = _reflection.GeneratedProtocolMessageType('CloudFunction', (_message.Message,), dict(
   DESCRIPTOR = _CLOUDFUNCTION,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Describes a Cloud Function that contains user computation executed in
+  response to an event. It encapsulate function and triggers
+  configurations.
+  
+  
+  Attributes:
+      name:
+          A user-defined name of the function. Function names must be
+          unique globally and match pattern
+          ``projects/*/locations/*/functions/*``
+      source_code:
+          The location of the function source code.
+      source_archive_url:
+          The URL, starting with gs://, pointing to the zip archive
+          which contains the function.
+      source_repository:
+          The hosted repository where the function is defined.
+      trigger:
+          An event that triggers the function.
+      https_trigger:
+          An HTTPS endpoint type of source that can be triggered via
+          URL.
+      event_trigger:
+          A source that fires events in response to a condition in
+          another service.
+      status:
+          Output only. Status of the function deployment.
+      latest_operation:
+          Output only. Name of the most recent operation modifying the
+          function. If the function status is ``DEPLOYING`` or
+          ``DELETING``, then it points to the active operation.
+      entry_point:
+          The name of the function (as defined in source code) that will
+          be executed. Defaults to the resource name suffix, if not
+          specified. For backward compatibility, if function with given
+          name is not found, then the system will try to use function
+          named "function". For Node.js this is name of a function
+          exported by the module specified in ``source_location``.
+      timeout:
+          The function execution timeout. Execution is considered failed
+          and can be terminated if the function is not completed at the
+          end of the timeout period. Defaults to 60 seconds.
+      available_memory_mb:
+          The amount of memory in MB available for a function. Defaults
+          to 256MB.
+      service_account:
+          Output only. The service account of the function.
+      update_time:
+          Output only. The last update timestamp of a Cloud Function.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.CloudFunction)
   ))
 _sym_db.RegisterMessage(CloudFunction)
@@ -683,6 +734,14 @@ _sym_db.RegisterMessage(CloudFunction)
 HTTPSTrigger = _reflection.GeneratedProtocolMessageType('HTTPSTrigger', (_message.Message,), dict(
   DESCRIPTOR = _HTTPSTRIGGER,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Describes HTTPSTrigger, could be used to connect web hooks to function.
+  
+  
+  Attributes:
+      url:
+          Output only. The deployed url for the function.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.HTTPSTrigger)
   ))
 _sym_db.RegisterMessage(HTTPSTrigger)
@@ -690,6 +749,30 @@ _sym_db.RegisterMessage(HTTPSTrigger)
 EventTrigger = _reflection.GeneratedProtocolMessageType('EventTrigger', (_message.Message,), dict(
   DESCRIPTOR = _EVENTTRIGGER,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Describes EventTrigger, used to request events be sent from another
+  service.
+  
+  
+  Attributes:
+      event_type:
+          ``event_type`` names contain the service that is sending an
+          event and the kind of event that was fired. Must be of the
+          form ``providers/*/eventTypes/*`` e.g. Directly handle a
+          Message published to Google Cloud Pub/Sub
+          ``providers/cloud.pubsub/eventTypes/topic.publish``  ::
+          Handle an object changing in Google Cloud Storage
+          `providers/cloud.storage/eventTypes/object.change`
+          Handle a write to the Firebase Realtime Database
+          `providers/firebase.database/eventTypes/data.write`
+      resource:
+          Which instance of the source's service should send events.
+          E.g. for Pub/Sub this would be a Pub/Sub topic at
+          ``projects/*/topics/*``. For Google Cloud Storage this would
+          be a bucket at ``projects/*/buckets/*``. For any source that
+          only supports one instance per-project, this should be the
+          name of the project (``projects/*``)
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.EventTrigger)
   ))
 _sym_db.RegisterMessage(EventTrigger)
@@ -697,6 +780,40 @@ _sym_db.RegisterMessage(EventTrigger)
 SourceRepository = _reflection.GeneratedProtocolMessageType('SourceRepository', (_message.Message,), dict(
   DESCRIPTOR = _SOURCEREPOSITORY,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Describes the location of the function source in a remote repository.
+  
+  
+  Attributes:
+      repository_url:
+          URL to the hosted repository where the function is defined.
+          Only paths in https://source.developers.google.com domain are
+          supported. The path should contain the name of the repository.
+      source_path:
+          The path within the repository where the function is defined.
+          The path should point to the directory where Cloud Functions
+          files are located. Use "/" if the function is defined directly
+          in the root directory of a repository.
+      version:
+          The version of a function. Defaults to the latest version of
+          the master branch.
+      branch:
+          The name of the branch from which the function should be
+          fetched.
+      tag:
+          The name of the tag that captures the state of the repository
+          from which the function should be fetched.
+      revision:
+          The id of the revision that captures the state of the
+          repository from which the function should be fetched.
+      deployed_revision:
+          Output only. The id of the revision that was resolved at the
+          moment of function creation or update. For example when a user
+          deployed from a branch, it will be the revision id of the
+          latest change on this branch at that time. If user deployed
+          from revision then this value will be always equal to the
+          revision specified by the user.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.SourceRepository)
   ))
 _sym_db.RegisterMessage(SourceRepository)
@@ -704,6 +821,17 @@ _sym_db.RegisterMessage(SourceRepository)
 CreateFunctionRequest = _reflection.GeneratedProtocolMessageType('CreateFunctionRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEFUNCTIONREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``CreateFunction`` method.
+  
+  
+  Attributes:
+      location:
+          The project and location in which the function should be
+          created, specified in the format ``projects/*/locations/*``
+      function:
+          Function to be created.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.CreateFunctionRequest)
   ))
 _sym_db.RegisterMessage(CreateFunctionRequest)
@@ -711,6 +839,16 @@ _sym_db.RegisterMessage(CreateFunctionRequest)
 UpdateFunctionRequest = _reflection.GeneratedProtocolMessageType('UpdateFunctionRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEFUNCTIONREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``UpdateFunction`` method.
+  
+  
+  Attributes:
+      name:
+          The name of the function to be updated.
+      function:
+          New version of the function.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.UpdateFunctionRequest)
   ))
 _sym_db.RegisterMessage(UpdateFunctionRequest)
@@ -718,6 +856,14 @@ _sym_db.RegisterMessage(UpdateFunctionRequest)
 GetFunctionRequest = _reflection.GeneratedProtocolMessageType('GetFunctionRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETFUNCTIONREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``GetFunction`` method.
+  
+  
+  Attributes:
+      name:
+          The name of the function which details should be obtained.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.GetFunctionRequest)
   ))
 _sym_db.RegisterMessage(GetFunctionRequest)
@@ -725,6 +871,24 @@ _sym_db.RegisterMessage(GetFunctionRequest)
 ListFunctionsRequest = _reflection.GeneratedProtocolMessageType('ListFunctionsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTFUNCTIONSREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``ListFunctions`` method.
+  
+  
+  Attributes:
+      location:
+          The project and location from which the function should be
+          listed, specified in the format ``projects/*/locations/*`` If
+          you want to list functions in all locations, use "-" in place
+          of a location.
+      page_size:
+          Maximum number of functions to return per call.
+      page_token:
+          The value returned by the last ``ListFunctionsResponse``;
+          indicates that this is a continuation of a prior
+          ``ListFunctions`` call, and that the system should return the
+          next page of data.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.ListFunctionsRequest)
   ))
 _sym_db.RegisterMessage(ListFunctionsRequest)
@@ -732,6 +896,19 @@ _sym_db.RegisterMessage(ListFunctionsRequest)
 ListFunctionsResponse = _reflection.GeneratedProtocolMessageType('ListFunctionsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTFUNCTIONSRESPONSE,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Response for the ``ListFunctions`` method.
+  
+  
+  Attributes:
+      functions:
+          The functions that match the request.
+      next_page_token:
+          If not empty, indicates that there may be more functions that
+          match the request; this value should be passed in a new
+          [google.cloud.functions.v1beta2.ListFunctionsRequest][] to get
+          more functions.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.ListFunctionsResponse)
   ))
 _sym_db.RegisterMessage(ListFunctionsResponse)
@@ -739,6 +916,14 @@ _sym_db.RegisterMessage(ListFunctionsResponse)
 DeleteFunctionRequest = _reflection.GeneratedProtocolMessageType('DeleteFunctionRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEFUNCTIONREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``DeleteFunction`` method.
+  
+  
+  Attributes:
+      name:
+          The name of the function which should be deleted.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.DeleteFunctionRequest)
   ))
 _sym_db.RegisterMessage(DeleteFunctionRequest)
@@ -746,6 +931,16 @@ _sym_db.RegisterMessage(DeleteFunctionRequest)
 CallFunctionRequest = _reflection.GeneratedProtocolMessageType('CallFunctionRequest', (_message.Message,), dict(
   DESCRIPTOR = _CALLFUNCTIONREQUEST,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Request for the ``CallFunction`` method.
+  
+  
+  Attributes:
+      name:
+          The name of the function to be called.
+      data:
+          Input to be passed to the function.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.CallFunctionRequest)
   ))
 _sym_db.RegisterMessage(CallFunctionRequest)
@@ -753,6 +948,21 @@ _sym_db.RegisterMessage(CallFunctionRequest)
 CallFunctionResponse = _reflection.GeneratedProtocolMessageType('CallFunctionResponse', (_message.Message,), dict(
   DESCRIPTOR = _CALLFUNCTIONRESPONSE,
   __module__ = 'google.cloud.proto.functions.v1beta2.functions_pb2'
+  ,
+  __doc__ = """Response of ``CallFunction`` method.
+  
+  
+  Attributes:
+      execution_id:
+          Execution id of function invocation.
+      result:
+          Result populated for successful execution of synchronous
+          function. Will not be populated if function does not return a
+          result through context.
+      error:
+          Either system or user-function generated error. Set if
+          execution was not successful.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.functions.v1beta2.CallFunctionResponse)
   ))
 _sym_db.RegisterMessage(CallFunctionResponse)
@@ -764,10 +974,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class CloudFunctionsServiceStub(object):

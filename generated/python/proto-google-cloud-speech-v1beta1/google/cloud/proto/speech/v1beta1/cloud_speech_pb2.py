@@ -27,7 +27,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n4google/cloud/proto/speech/v1beta1/cloud_speech.proto\x12\x1bgoogle.cloud.speech.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/longrunning/operations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"\x94\x01\n\x14SyncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x95\x01\n\x15\x41syncRecognizeRequest\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12<\n\x05\x61udio\x18\x02 \x01(\x0b\x32-.google.cloud.speech.v1beta1.RecognitionAudio\"\x9e\x01\n\x19StreamingRecognizeRequest\x12S\n\x10streaming_config\x18\x01 \x01(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionConfigH\x00\x12\x17\n\raudio_content\x18\x02 \x01(\x0cH\x00\x42\x13\n\x11streaming_request\"\x8f\x01\n\x1aStreamingRecognitionConfig\x12>\n\x06\x63onfig\x18\x01 \x01(\x0b\x32..google.cloud.speech.v1beta1.RecognitionConfig\x12\x18\n\x10single_utterance\x18\x02 \x01(\x08\x12\x17\n\x0finterim_results\x18\x03 \x01(\x08\"\xea\x02\n\x11RecognitionConfig\x12N\n\x08\x65ncoding\x18\x01 \x01(\x0e\x32<.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding\x12\x13\n\x0bsample_rate\x18\x02 \x01(\x05\x12\x15\n\rlanguage_code\x18\x03 \x01(\t\x12\x18\n\x10max_alternatives\x18\x04 \x01(\x05\x12\x18\n\x10profanity_filter\x18\x05 \x01(\x08\x12\x42\n\x0espeech_context\x18\x06 \x01(\x0b\x32*.google.cloud.speech.v1beta1.SpeechContext\"a\n\rAudioEncoding\x12\x18\n\x14\x45NCODING_UNSPECIFIED\x10\x00\x12\x0c\n\x08LINEAR16\x10\x01\x12\x08\n\x04\x46LAC\x10\x02\x12\t\n\x05MULAW\x10\x03\x12\x07\n\x03\x41MR\x10\x04\x12\n\n\x06\x41MR_WB\x10\x05\" \n\rSpeechContext\x12\x0f\n\x07phrases\x18\x01 \x03(\t\"D\n\x10RecognitionAudio\x12\x11\n\x07\x63ontent\x18\x01 \x01(\x0cH\x00\x12\r\n\x03uri\x18\x02 \x01(\tH\x00\x42\x0e\n\x0c\x61udio_source\"^\n\x15SyncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"_\n\x16\x41syncRecognizeResponse\x12\x45\n\x07results\x18\x02 \x03(\x0b\x32\x34.google.cloud.speech.v1beta1.SpeechRecognitionResult\"\x98\x01\n\x16\x41syncRecognizeMetadata\x12\x18\n\x10progress_percent\x18\x01 \x01(\x05\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x34\n\x10last_update_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x85\x03\n\x1aStreamingRecognizeResponse\x12!\n\x05\x65rror\x18\x01 \x01(\x0b\x32\x12.google.rpc.Status\x12H\n\x07results\x18\x02 \x03(\x0b\x32\x37.google.cloud.speech.v1beta1.StreamingRecognitionResult\x12\x14\n\x0cresult_index\x18\x03 \x01(\x05\x12_\n\x0f\x65ndpointer_type\x18\x04 \x01(\x0e\x32\x46.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType\"\x82\x01\n\x0e\x45ndpointerType\x12 \n\x1c\x45NDPOINTER_EVENT_UNSPECIFIED\x10\x00\x12\x13\n\x0fSTART_OF_SPEECH\x10\x01\x12\x11\n\rEND_OF_SPEECH\x10\x02\x12\x10\n\x0c\x45ND_OF_AUDIO\x10\x03\x12\x14\n\x10\x45ND_OF_UTTERANCE\x10\x04\"\x92\x01\n\x1aStreamingRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\x12\x10\n\x08is_final\x18\x02 \x01(\x08\x12\x11\n\tstability\x18\x03 \x01(\x02\"j\n\x17SpeechRecognitionResult\x12O\n\x0c\x61lternatives\x18\x01 \x03(\x0b\x32\x39.google.cloud.speech.v1beta1.SpeechRecognitionAlternative\"F\n\x1cSpeechRecognitionAlternative\x12\x12\n\ntranscript\x18\x01 \x01(\t\x12\x12\n\nconfidence\x18\x02 \x01(\x02\x32\xc8\x03\n\x06Speech\x12\xa0\x01\n\rSyncRecognize\x12\x31.google.cloud.speech.v1beta1.SyncRecognizeRequest\x1a\x32.google.cloud.speech.v1beta1.SyncRecognizeResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1beta1/speech:syncrecognize:\x01*\x12\x8e\x01\n\x0e\x41syncRecognize\x12\x32.google.cloud.speech.v1beta1.AsyncRecognizeRequest\x1a\x1d.google.longrunning.Operation\")\x82\xd3\xe4\x93\x02#\"\x1e/v1beta1/speech:asyncrecognize:\x01*\x12\x89\x01\n\x12StreamingRecognize\x12\x36.google.cloud.speech.v1beta1.StreamingRecognizeRequest\x1a\x37.google.cloud.speech.v1beta1.StreamingRecognizeResponse(\x01\x30\x01\x42s\n\x1f\x63om.google.cloud.speech.v1beta1B\x0bSpeechProtoP\x01ZAgoogle.golang.org/genproto/googleapis/cloud/speech/v1beta1;speechb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -723,10 +722,23 @@ DESCRIPTOR.message_types_by_name['StreamingRecognizeResponse'] = _STREAMINGRECOG
 DESCRIPTOR.message_types_by_name['StreamingRecognitionResult'] = _STREAMINGRECOGNITIONRESULT
 DESCRIPTOR.message_types_by_name['SpeechRecognitionResult'] = _SPEECHRECOGNITIONRESULT
 DESCRIPTOR.message_types_by_name['SpeechRecognitionAlternative'] = _SPEECHRECOGNITIONALTERNATIVE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SyncRecognizeRequest = _reflection.GeneratedProtocolMessageType('SyncRecognizeRequest', (_message.Message,), dict(
   DESCRIPTOR = _SYNCRECOGNIZEREQUEST,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """The top-level message sent by the client for the ``SyncRecognize``
+  method.
+  
+  
+  Attributes:
+      config:
+          *Required* Provides information to the recognizer that
+          specifies how to process the request.
+      audio:
+          *Required* The audio data to be recognized.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.SyncRecognizeRequest)
   ))
 _sym_db.RegisterMessage(SyncRecognizeRequest)
@@ -734,6 +746,18 @@ _sym_db.RegisterMessage(SyncRecognizeRequest)
 AsyncRecognizeRequest = _reflection.GeneratedProtocolMessageType('AsyncRecognizeRequest', (_message.Message,), dict(
   DESCRIPTOR = _ASYNCRECOGNIZEREQUEST,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """The top-level message sent by the client for the ``AsyncRecognize``
+  method.
+  
+  
+  Attributes:
+      config:
+          *Required* Provides information to the recognizer that
+          specifies how to process the request.
+      audio:
+          *Required* The audio data to be recognized.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.AsyncRecognizeRequest)
   ))
 _sym_db.RegisterMessage(AsyncRecognizeRequest)
@@ -741,6 +765,31 @@ _sym_db.RegisterMessage(AsyncRecognizeRequest)
 StreamingRecognizeRequest = _reflection.GeneratedProtocolMessageType('StreamingRecognizeRequest', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGRECOGNIZEREQUEST,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """The top-level message sent by the client for the ``StreamingRecognize``
+  method. Multiple ``StreamingRecognizeRequest`` messages are sent. The
+  first message must contain a ``streaming_config`` message and must not
+  contain ``audio`` data. All subsequent messages must contain ``audio``
+  data and must not contain a ``streaming_config`` message.
+  
+  
+  Attributes:
+      streaming_config:
+          Provides information to the recognizer that specifies how to
+          process the request. The first ``StreamingRecognizeRequest``
+          message must contain a ``streaming_config`` message.
+      audio_content:
+          The audio data to be recognized. Sequential chunks of audio
+          data are sent in sequential ``StreamingRecognizeRequest``
+          messages. The first ``StreamingRecognizeRequest`` message must
+          not contain ``audio_content`` data and all subsequent
+          ``StreamingRecognizeRequest`` messages must contain
+          ``audio_content`` data. The audio bytes must be encoded as
+          specified in ``RecognitionConfig``. Note: as with all bytes
+          fields, protobuffers use a pure binary representation (not
+          base64). See `audio limits
+          <https://cloud.google.com/speech/limits#content>`__.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.StreamingRecognizeRequest)
   ))
 _sym_db.RegisterMessage(StreamingRecognizeRequest)
@@ -748,6 +797,35 @@ _sym_db.RegisterMessage(StreamingRecognizeRequest)
 StreamingRecognitionConfig = _reflection.GeneratedProtocolMessageType('StreamingRecognitionConfig', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGRECOGNITIONCONFIG,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Provides information to the recognizer that specifies how to process the
+  request.
+  
+  
+  Attributes:
+      config:
+          *Required* Provides information to the recognizer that
+          specifies how to process the request.
+      single_utterance:
+          *Optional* If ``false`` or omitted, the recognizer will
+          perform continuous recognition (continuing to wait for and
+          process audio even if the user pauses speaking) until the
+          client closes the input stream (gRPC API) or until the maximum
+          time limit has been reached. May return multiple
+          ``StreamingRecognitionResult``\ s with the ``is_final`` flag
+          set to ``true``.  If ``true``, the recognizer will detect a
+          single spoken utterance. When it detects that the user has
+          paused or stopped speaking, it will return an
+          ``END_OF_UTTERANCE`` event and cease recognition. It will
+          return no more than one ``StreamingRecognitionResult`` with
+          the ``is_final`` flag set to ``true``.
+      interim_results:
+          *Optional* If ``true``, interim results (tentative hypotheses)
+          may be returned as they become available (these interim
+          results are indicated with the ``is_final=false`` flag). If
+          ``false`` or omitted, only ``is_final=true`` result(s) are
+          returned.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.StreamingRecognitionConfig)
   ))
 _sym_db.RegisterMessage(StreamingRecognitionConfig)
@@ -755,6 +833,47 @@ _sym_db.RegisterMessage(StreamingRecognitionConfig)
 RecognitionConfig = _reflection.GeneratedProtocolMessageType('RecognitionConfig', (_message.Message,), dict(
   DESCRIPTOR = _RECOGNITIONCONFIG,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Provides information to the recognizer that specifies how to process the
+  request.
+  
+  
+  Attributes:
+      encoding:
+          *Required* Encoding of audio data sent in all
+          ``RecognitionAudio`` messages.
+      sample_rate:
+          *Required* Sample rate in Hertz of the audio data sent in all
+          ``RecognitionAudio`` messages. Valid values are: 8000-48000.
+          16000 is optimal. For best results, set the sampling rate of
+          the audio source to 16000 Hz. If that's not possible, use the
+          native sample rate of the audio source (instead of re-
+          sampling).
+      language_code:
+          *Optional* The language of the supplied audio as a BCP-47
+          language tag. Example: "en-GB" https://www.rfc-
+          editor.org/rfc/bcp/bcp47.txt If omitted, defaults to "en-US".
+          See `Language Support
+          <https://cloud.google.com/speech/docs/languages>`__ for a list
+          of the currently supported language codes.
+      max_alternatives:
+          *Optional* Maximum number of recognition hypotheses to be
+          returned. Specifically, the maximum number of
+          ``SpeechRecognitionAlternative`` messages within each
+          ``SpeechRecognitionResult``. The server may return fewer than
+          ``max_alternatives``. Valid values are ``0``-``30``. A value
+          of ``0`` or ``1`` will return a maximum of one. If omitted,
+          will return a maximum of one.
+      profanity_filter:
+          *Optional* If set to ``true``, the server will attempt to
+          filter out profanities, replacing all but the initial
+          character in each filtered word with asterisks, e.g.
+          "f\*\*\*". If set to ``false`` or omitted, profanities won't
+          be filtered out.
+      speech_context:
+          *Optional* A means to provide context to assist the speech
+          recognition.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.RecognitionConfig)
   ))
 _sym_db.RegisterMessage(RecognitionConfig)
@@ -762,6 +881,22 @@ _sym_db.RegisterMessage(RecognitionConfig)
 SpeechContext = _reflection.GeneratedProtocolMessageType('SpeechContext', (_message.Message,), dict(
   DESCRIPTOR = _SPEECHCONTEXT,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Provides "hints" to the speech recognizer to favor specific words and
+  phrases in the results.
+  
+  
+  Attributes:
+      phrases:
+          *Optional* A list of strings containing words and phrases
+          "hints" so that the speech recognition is more likely to
+          recognize them. This can be used to improve the accuracy for
+          specific words and phrases, for example, if specific commands
+          are typically spoken by the user. This can also be used to add
+          additional words to the vocabulary of the recognizer. See
+          `usage limits
+          <https://cloud.google.com/speech/limits#content>`__.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.SpeechContext)
   ))
 _sym_db.RegisterMessage(SpeechContext)
@@ -769,6 +904,30 @@ _sym_db.RegisterMessage(SpeechContext)
 RecognitionAudio = _reflection.GeneratedProtocolMessageType('RecognitionAudio', (_message.Message,), dict(
   DESCRIPTOR = _RECOGNITIONAUDIO,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Contains audio data in the encoding specified in the
+  ``RecognitionConfig``. Either ``content`` or ``uri`` must be supplied.
+  Supplying both or neither returns
+  [google.rpc.Code.INVALID\_ARGUMENT][google.rpc.Code.INVALID\_ARGUMENT].
+  See `audio limits <https://cloud.google.com/speech/limits#content>`__.
+  
+  
+  Attributes:
+      content:
+          The audio data bytes encoded as specified in
+          ``RecognitionConfig``. Note: as with all bytes fields,
+          protobuffers use a pure binary representation, whereas JSON
+          representations use base64.
+      uri:
+          URI that points to a file that contains audio data bytes as
+          specified in ``RecognitionConfig``. Currently, only Google
+          Cloud Storage URIs are supported, which must be specified in
+          the following format: ``gs://bucket_name/object_name`` (other
+          URI formats return [google.rpc.Code.INVALID\_ARGUMENT][google.
+          rpc.Code.INVALID\_ARGUMENT]). For more information, see
+          `Request URIs
+          <https://cloud.google.com/storage/docs/reference-uris>`__.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.RecognitionAudio)
   ))
 _sym_db.RegisterMessage(RecognitionAudio)
@@ -776,6 +935,17 @@ _sym_db.RegisterMessage(RecognitionAudio)
 SyncRecognizeResponse = _reflection.GeneratedProtocolMessageType('SyncRecognizeResponse', (_message.Message,), dict(
   DESCRIPTOR = _SYNCRECOGNIZERESPONSE,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """The only message returned to the client by ``SyncRecognize``. It
+  contains the result as zero or more sequential
+  ``SpeechRecognitionResult`` messages.
+  
+  
+  Attributes:
+      results:
+          *Output-only* Sequential list of transcription results
+          corresponding to sequential portions of audio.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.SyncRecognizeResponse)
   ))
 _sym_db.RegisterMessage(SyncRecognizeResponse)
@@ -783,6 +953,20 @@ _sym_db.RegisterMessage(SyncRecognizeResponse)
 AsyncRecognizeResponse = _reflection.GeneratedProtocolMessageType('AsyncRecognizeResponse', (_message.Message,), dict(
   DESCRIPTOR = _ASYNCRECOGNIZERESPONSE,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """The only message returned to the client by ``AsyncRecognize``. It
+  contains the result as zero or more sequential
+  ``SpeechRecognitionResult`` messages. It is included in the
+  ``result.response`` field of the ``Operation`` returned by the
+  ``GetOperation`` call of the ``google::longrunning::Operations``
+  service.
+  
+  
+  Attributes:
+      results:
+          *Output-only* Sequential list of transcription results
+          corresponding to sequential portions of audio.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.AsyncRecognizeResponse)
   ))
 _sym_db.RegisterMessage(AsyncRecognizeResponse)
@@ -790,6 +974,23 @@ _sym_db.RegisterMessage(AsyncRecognizeResponse)
 AsyncRecognizeMetadata = _reflection.GeneratedProtocolMessageType('AsyncRecognizeMetadata', (_message.Message,), dict(
   DESCRIPTOR = _ASYNCRECOGNIZEMETADATA,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Describes the progress of a long-running ``AsyncRecognize`` call. It is
+  included in the ``metadata`` field of the ``Operation`` returned by the
+  ``GetOperation`` call of the ``google::longrunning::Operations``
+  service.
+  
+  
+  Attributes:
+      progress_percent:
+          Approximate percentage of audio processed thus far. Guaranteed
+          to be 100 when the audio is fully processed and the results
+          are available.
+      start_time:
+          Time when the request was received.
+      last_update_time:
+          Time of the most recent processing update.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.AsyncRecognizeMetadata)
   ))
 _sym_db.RegisterMessage(AsyncRecognizeMetadata)
@@ -797,6 +998,86 @@ _sym_db.RegisterMessage(AsyncRecognizeMetadata)
 StreamingRecognizeResponse = _reflection.GeneratedProtocolMessageType('StreamingRecognizeResponse', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGRECOGNIZERESPONSE,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """``StreamingRecognizeResponse`` is the only message returned to the
+  client by ``StreamingRecognize``. A series of one or more
+  ``StreamingRecognizeResponse`` messages are streamed back to the client.
+  
+  Here's an example of a series of ten ``StreamingRecognizeResponse``\ s
+  that might be returned while processing audio:
+  
+  1.  endpointer\_type: START\_OF\_SPEECH
+  
+  2.  results { alternatives { transcript: "tube" } stability: 0.01 }
+      result\_index: 0
+  
+  3.  results { alternatives { transcript: "to be a" } stability: 0.01 }
+      result\_index: 0
+  
+  4.  results { alternatives { transcript: "to be" } stability: 0.9 }
+      results { alternatives { transcript: " or not to be" } stability:
+      0.01 } result\_index: 0
+  
+  5.  results { alternatives { transcript: "to be or not to be"
+      confidence: 0.92 } alternatives { transcript: "to bee or not to bee"
+      } is\_final: true } result\_index: 0
+  
+  6.  results { alternatives { transcript: " that's" } stability: 0.01 }
+      result\_index: 1
+  
+  7.  results { alternatives { transcript: " that is" } stability: 0.9 }
+      results { alternatives { transcript: " the question" } stability:
+      0.01 } result\_index: 1
+  
+  8.  endpointer\_type: END\_OF\_SPEECH
+  
+  9.  results { alternatives { transcript: " that is the question"
+      confidence: 0.98 } alternatives { transcript: " that was the
+      question" } is\_final: true } result\_index: 1
+  
+  10. endpointer\_type: END\_OF\_AUDIO
+  
+  Notes:
+  
+  -  Only two of the above responses #5 and #9 contain final results, they
+     are indicated by ``is_final: true``. Concatenating these together
+     generates the full transcript: "to be or not to be that is the
+     question".
+  
+  -  The others contain interim ``results``. #4 and #7 contain two interim
+     ``results``, the first portion has a high stability and is less
+     likely to change, the second portion has a low stability and is very
+     likely to change. A UI designer might choose to show only high
+     stability ``results``.
+  
+  -  The specific ``stability`` and ``confidence`` values shown above are
+     only for illustrative purposes. Actual values may vary.
+  
+  -  The ``result_index`` indicates the portion of audio that has had
+     final results returned, and is no longer being processed. For
+     example, the ``results`` in #6 and later correspond to the portion of
+     audio after "to be or not to be".
+  
+  
+  Attributes:
+      error:
+          *Output-only* If set, returns a
+          [google.rpc.Status][google.rpc.Status] message that specifies
+          the error for the operation.
+      results:
+          *Output-only* This repeated list contains zero or more results
+          that correspond to consecutive portions of the audio currently
+          being processed. It contains zero or one ``is_final=true``
+          result (the newly settled portion), followed by zero or more
+          ``is_final=false`` results.
+      result_index:
+          *Output-only* Indicates the lowest index in the ``results``
+          array that has changed. The repeated
+          ``StreamingRecognitionResult`` results overwrite past results
+          at this index and higher.
+      endpointer_type:
+          *Output-only* Indicates the type of endpointer event.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.StreamingRecognizeResponse)
   ))
 _sym_db.RegisterMessage(StreamingRecognizeResponse)
@@ -804,6 +1085,31 @@ _sym_db.RegisterMessage(StreamingRecognizeResponse)
 StreamingRecognitionResult = _reflection.GeneratedProtocolMessageType('StreamingRecognitionResult', (_message.Message,), dict(
   DESCRIPTOR = _STREAMINGRECOGNITIONRESULT,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """A streaming speech recognition result corresponding to a portion of the
+  audio that is currently being processed.
+  
+  
+  Attributes:
+      alternatives:
+          *Output-only* May contain one or more recognition hypotheses
+          (up to the maximum specified in ``max_alternatives``).
+      is_final:
+          *Output-only* If ``false``, this
+          ``StreamingRecognitionResult`` represents an interim result
+          that may change. If ``true``, this is the final time the
+          speech service will return this particular
+          ``StreamingRecognitionResult``, the recognizer will not return
+          any further hypotheses for this portion of the transcript and
+          corresponding audio.
+      stability:
+          *Output-only* An estimate of the likelihood that the
+          recognizer will not change its guess about this interim
+          result. Values range from 0.0 (completely unstable) to 1.0
+          (completely stable). This field is only provided for interim
+          results (``is_final=false``). The default of 0.0 is a sentinel
+          value indicating ``stability`` was not set.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.StreamingRecognitionResult)
   ))
 _sym_db.RegisterMessage(StreamingRecognitionResult)
@@ -811,6 +1117,15 @@ _sym_db.RegisterMessage(StreamingRecognitionResult)
 SpeechRecognitionResult = _reflection.GeneratedProtocolMessageType('SpeechRecognitionResult', (_message.Message,), dict(
   DESCRIPTOR = _SPEECHRECOGNITIONRESULT,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """A speech recognition result corresponding to a portion of the audio.
+  
+  
+  Attributes:
+      alternatives:
+          *Output-only* May contain one or more recognition hypotheses
+          (up to the maximum specified in ``max_alternatives``).
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.SpeechRecognitionResult)
   ))
 _sym_db.RegisterMessage(SpeechRecognitionResult)
@@ -818,6 +1133,24 @@ _sym_db.RegisterMessage(SpeechRecognitionResult)
 SpeechRecognitionAlternative = _reflection.GeneratedProtocolMessageType('SpeechRecognitionAlternative', (_message.Message,), dict(
   DESCRIPTOR = _SPEECHRECOGNITIONALTERNATIVE,
   __module__ = 'google.cloud.proto.speech.v1beta1.cloud_speech_pb2'
+  ,
+  __doc__ = """Alternative hypotheses (a.k.a. n-best list).
+  
+  
+  Attributes:
+      transcript:
+          *Output-only* Transcript text representing the words that the
+          user spoke.
+      confidence:
+          *Output-only* The confidence estimate between 0.0 and 1.0. A
+          higher number indicates an estimated greater likelihood that
+          the recognized words are correct. This field is typically
+          provided only for the top hypothesis, and only for
+          ``is_final=true`` results. Clients should not rely on the
+          ``confidence`` field as it is not guaranteed to be accurate,
+          or even set, in any of the results. The default of 0.0 is a
+          sentinel value indicating ``confidence`` was not set.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.speech.v1beta1.SpeechRecognitionAlternative)
   ))
 _sym_db.RegisterMessage(SpeechRecognitionAlternative)
@@ -829,10 +1162,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class SpeechStub(object):

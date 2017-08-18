@@ -3,7 +3,7 @@ Getting started
 
 gapic-google-cloud-spanner-admin-database-v1 will allow you to connect to the `Cloud Spanner Database Admin API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Cloud Spanner Database Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1
+.. _`Cloud Spanner Database Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1/
 
 
 Installation

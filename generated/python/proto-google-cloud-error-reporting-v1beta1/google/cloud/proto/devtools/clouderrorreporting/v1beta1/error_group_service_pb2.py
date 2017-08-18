@@ -24,7 +24,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nQgoogle/cloud/proto/devtools/clouderrorreporting/v1beta1/error_group_service.proto\x12+google.devtools.clouderrorreporting.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x44google/cloud/proto/devtools/clouderrorreporting/v1beta1/common.proto\"%\n\x0fGetGroupRequest\x12\x12\n\ngroup_name\x18\x01 \x01(\t\"\\\n\x12UpdateGroupRequest\x12\x46\n\x05group\x18\x01 \x01(\x0b\x32\x37.google.devtools.clouderrorreporting.v1beta1.ErrorGroup2\x8e\x03\n\x11\x45rrorGroupService\x12\xb4\x01\n\x08GetGroup\x12<.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest\x1a\x37.google.devtools.clouderrorreporting.v1beta1.ErrorGroup\"1\x82\xd3\xe4\x93\x02+\x12)/v1beta1/{group_name=projects/*/groups/*}\x12\xc1\x01\n\x0bUpdateGroup\x12?.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest\x1a\x37.google.devtools.clouderrorreporting.v1beta1.ErrorGroup\"8\x82\xd3\xe4\x93\x02\x32\x1a)/v1beta1/{group.name=projects/*/groups/*}:\x05groupB\xd1\x01\n/com.google.devtools.clouderrorreporting.v1beta1B\x16\x45rrorGroupServiceProtoP\x01Z^google.golang.org/genproto/googleapis/devtools/clouderrorreporting/v1beta1;clouderrorreporting\xaa\x02#Google.Cloud.ErrorReporting.V1Beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_common__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -93,10 +92,22 @@ _UPDATEGROUPREQUEST = _descriptor.Descriptor(
 _UPDATEGROUPREQUEST.fields_by_name['group'].message_type = google_dot_cloud_dot_proto_dot_devtools_dot_clouderrorreporting_dot_v1beta1_dot_common__pb2._ERRORGROUP
 DESCRIPTOR.message_types_by_name['GetGroupRequest'] = _GETGROUPREQUEST
 DESCRIPTOR.message_types_by_name['UpdateGroupRequest'] = _UPDATEGROUPREQUEST
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 GetGroupRequest = _reflection.GeneratedProtocolMessageType('GetGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETGROUPREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_group_service_pb2'
+  ,
+  __doc__ = """A request to return an individual group.
+  
+  
+  Attributes:
+      group_name:
+          [Required] The group resource name. Written as
+          projects/projectID/groups/group\_name. Call groupStats.list to
+          return a list of groups belonging to this project.  Example:
+          projects/my-project-123/groups/my-group
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.GetGroupRequest)
   ))
 _sym_db.RegisterMessage(GetGroupRequest)
@@ -104,6 +115,15 @@ _sym_db.RegisterMessage(GetGroupRequest)
 UpdateGroupRequest = _reflection.GeneratedProtocolMessageType('UpdateGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEGROUPREQUEST,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.error_group_service_pb2'
+  ,
+  __doc__ = """A request to replace the existing data for the given group.
+  
+  
+  Attributes:
+      group:
+          [Required] The group which replaces the resource on the
+          server.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest)
   ))
 _sym_db.RegisterMessage(UpdateGroupRequest)
@@ -115,10 +135,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ErrorGroupServiceStub(object):

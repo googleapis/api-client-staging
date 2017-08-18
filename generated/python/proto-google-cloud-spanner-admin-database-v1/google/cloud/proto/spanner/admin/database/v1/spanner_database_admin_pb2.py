@@ -29,7 +29,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nIgoogle/cloud/proto/spanner/admin/database/v1/spanner_database_admin.proto\x12 google.spanner.admin.database.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x1egoogle/iam/v1/iam_policy.proto\x1a\x1agoogle/iam/v1/policy.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x92\x01\n\x08\x44\x61tabase\x12\x0c\n\x04name\x18\x01 \x01(\t\x12?\n\x05state\x18\x02 \x01(\x0e\x32\x30.google.spanner.admin.database.v1.Database.State\"7\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x43REATING\x10\x01\x12\t\n\x05READY\x10\x02\"M\n\x14ListDatabasesRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\x12\x12\n\npage_token\x18\x04 \x01(\t\"o\n\x15ListDatabasesResponse\x12=\n\tdatabases\x18\x01 \x03(\x0b\x32*.google.spanner.admin.database.v1.Database\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"[\n\x15\x43reateDatabaseRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x18\n\x10\x63reate_statement\x18\x02 \x01(\t\x12\x18\n\x10\x65xtra_statements\x18\x03 \x03(\t\"*\n\x16\x43reateDatabaseMetadata\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\"\"\n\x12GetDatabaseRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"V\n\x18UpdateDatabaseDdlRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\x12\n\nstatements\x18\x02 \x03(\t\x12\x14\n\x0coperation_id\x18\x03 \x01(\t\"x\n\x19UpdateDatabaseDdlMetadata\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\x12\n\nstatements\x18\x02 \x03(\t\x12\x35\n\x11\x63ommit_timestamps\x18\x03 \x03(\x0b\x32\x1a.google.protobuf.Timestamp\"\'\n\x13\x44ropDatabaseRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\")\n\x15GetDatabaseDdlRequest\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\",\n\x16GetDatabaseDdlResponse\x12\x12\n\nstatements\x18\x01 \x03(\t2\x95\x0c\n\rDatabaseAdmin\x12\xb7\x01\n\rListDatabases\x12\x36.google.spanner.admin.database.v1.ListDatabasesRequest\x1a\x37.google.spanner.admin.database.v1.ListDatabasesResponse\"5\x82\xd3\xe4\x93\x02/\x12-/v1/{parent=projects/*/instances/*}/databases\x12\xa2\x01\n\x0e\x43reateDatabase\x12\x37.google.spanner.admin.database.v1.CreateDatabaseRequest\x1a\x1d.google.longrunning.Operation\"8\x82\xd3\xe4\x93\x02\x32\"-/v1/{parent=projects/*/instances/*}/databases:\x01*\x12\xa6\x01\n\x0bGetDatabase\x12\x34.google.spanner.admin.database.v1.GetDatabaseRequest\x1a*.google.spanner.admin.database.v1.Database\"5\x82\xd3\xe4\x93\x02/\x12-/v1/{name=projects/*/instances/*/databases/*}\x12\xb0\x01\n\x11UpdateDatabaseDdl\x12:.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest\x1a\x1d.google.longrunning.Operation\"@\x82\xd3\xe4\x93\x02:25/v1/{database=projects/*/instances/*/databases/*}/ddl:\x01*\x12\x98\x01\n\x0c\x44ropDatabase\x12\x35.google.spanner.admin.database.v1.DropDatabaseRequest\x1a\x16.google.protobuf.Empty\"9\x82\xd3\xe4\x93\x02\x33*1/v1/{database=projects/*/instances/*/databases/*}\x12\xc2\x01\n\x0eGetDatabaseDdl\x12\x37.google.spanner.admin.database.v1.GetDatabaseDdlRequest\x1a\x38.google.spanner.admin.database.v1.GetDatabaseDdlResponse\"=\x82\xd3\xe4\x93\x02\x37\x12\x35/v1/{database=projects/*/instances/*/databases/*}/ddl\x12\x94\x01\n\x0cSetIamPolicy\x12\".google.iam.v1.SetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\"I\x82\xd3\xe4\x93\x02\x43\">/v1/{resource=projects/*/instances/*/databases/*}:setIamPolicy:\x01*\x12\x94\x01\n\x0cGetIamPolicy\x12\".google.iam.v1.GetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\"I\x82\xd3\xe4\x93\x02\x43\">/v1/{resource=projects/*/instances/*/databases/*}:getIamPolicy:\x01*\x12\xba\x01\n\x12TestIamPermissions\x12(.google.iam.v1.TestIamPermissionsRequest\x1a).google.iam.v1.TestIamPermissionsResponse\"O\x82\xd3\xe4\x93\x02I\"D/v1/{resource=projects/*/instances/*/databases/*}:testIamPermissions:\x01*B\xb6\x01\n$com.google.spanner.admin.database.v1B\x19SpannerDatabaseAdminProtoP\x01ZHgoogle.golang.org/genproto/googleapis/spanner/admin/database/v1;database\xaa\x02&Google.Cloud.Spanner.Admin.Database.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_iam_dot_v1_dot_iam__policy__pb2.DESCRIPTOR,google_dot_iam_dot_v1_dot_policy__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -486,10 +485,25 @@ DESCRIPTOR.message_types_by_name['UpdateDatabaseDdlMetadata'] = _UPDATEDATABASED
 DESCRIPTOR.message_types_by_name['DropDatabaseRequest'] = _DROPDATABASEREQUEST
 DESCRIPTOR.message_types_by_name['GetDatabaseDdlRequest'] = _GETDATABASEDDLREQUEST
 DESCRIPTOR.message_types_by_name['GetDatabaseDdlResponse'] = _GETDATABASEDDLRESPONSE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Database = _reflection.GeneratedProtocolMessageType('Database', (_message.Message,), dict(
   DESCRIPTOR = _DATABASE,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """A Cloud Spanner database.
+  
+  
+  Attributes:
+      name:
+          Required. The name of the database. Values are of the form ``p
+          rojects/<project>/instances/<instance>/databases/<database>``,
+          where ``<database>`` is as specified in the ``CREATE
+          DATABASE`` statement. This name can be passed to other API
+          methods to identify the database.
+      state:
+          Output only. The current database state.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.Database)
   ))
 _sym_db.RegisterMessage(Database)
@@ -497,6 +511,25 @@ _sym_db.RegisterMessage(Database)
 ListDatabasesRequest = _reflection.GeneratedProtocolMessageType('ListDatabasesRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTDATABASESREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
+  
+  
+  Attributes:
+      parent:
+          Required. The instance whose databases should be listed.
+          Values are of the form
+          ``projects/<project>/instances/<instance>``.
+      page_size:
+          Number of databases to be returned in the response. If 0 or
+          less, defaults to the server's maximum allowed page size.
+      page_token:
+          If non-empty, ``page_token`` should contain a [next\_page\_tok
+          en][google.spanner.admin.database.v1.ListDatabasesResponse.nex
+          t\_page\_token] from a previous [ListDatabasesResponse][google
+          .spanner.admin.database.v1.ListDatabasesResponse].
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.ListDatabasesRequest)
   ))
 _sym_db.RegisterMessage(ListDatabasesRequest)
@@ -504,6 +537,19 @@ _sym_db.RegisterMessage(ListDatabasesRequest)
 ListDatabasesResponse = _reflection.GeneratedProtocolMessageType('ListDatabasesResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTDATABASESRESPONSE,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The response for
+  [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
+  
+  
+  Attributes:
+      databases:
+          Databases that matched the request.
+      next_page_token:
+          ``next_page_token`` can be sent in a subsequent [ListDatabases
+          ][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases
+          ] call to fetch more of the matching databases.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.ListDatabasesResponse)
   ))
 _sym_db.RegisterMessage(ListDatabasesResponse)
@@ -511,6 +557,28 @@ _sym_db.RegisterMessage(ListDatabasesResponse)
 CreateDatabaseRequest = _reflection.GeneratedProtocolMessageType('CreateDatabaseRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEDATABASEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
+  
+  
+  Attributes:
+      parent:
+          Required. The name of the instance that will serve the new
+          database. Values are of the form
+          ``projects/<project>/instances/<instance>``.
+      create_statement:
+          Required. A ``CREATE DATABASE`` statement, which specifies the
+          ID of the new database. The database ID must conform to the
+          regular expression ``[a-z][a-z0-9_\-]*[a-z0-9]`` and be
+          between 2 and 30 characters in length.
+      extra_statements:
+          An optional list of DDL statements to run inside the newly
+          created database. Statements can create tables, indexes, etc.
+          These statements execute atomically with the creation of the
+          database: if there is an error in any statement, the database
+          is not created.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.CreateDatabaseRequest)
   ))
 _sym_db.RegisterMessage(CreateDatabaseRequest)
@@ -518,6 +586,15 @@ _sym_db.RegisterMessage(CreateDatabaseRequest)
 CreateDatabaseMetadata = _reflection.GeneratedProtocolMessageType('CreateDatabaseMetadata', (_message.Message,), dict(
   DESCRIPTOR = _CREATEDATABASEMETADATA,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """Metadata type for the operation returned by
+  [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
+  
+  
+  Attributes:
+      database:
+          The database being created.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.CreateDatabaseMetadata)
   ))
 _sym_db.RegisterMessage(CreateDatabaseMetadata)
@@ -525,6 +602,17 @@ _sym_db.RegisterMessage(CreateDatabaseMetadata)
 GetDatabaseRequest = _reflection.GeneratedProtocolMessageType('GetDatabaseRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETDATABASEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [GetDatabase][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabase].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the requested database. Values are of
+          the form ``projects/<project>/instances/<instance>/databases/<
+          database>``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.GetDatabaseRequest)
   ))
 _sym_db.RegisterMessage(GetDatabaseRequest)
@@ -532,6 +620,52 @@ _sym_db.RegisterMessage(GetDatabaseRequest)
 UpdateDatabaseDdlRequest = _reflection.GeneratedProtocolMessageType('UpdateDatabaseDdlRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEDATABASEDDLREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """Enqueues the given DDL statements to be applied, in order but not
+  necessarily all at once, to the database schema at some point (or
+  points) in the future. The server checks that the statements are
+  executable (syntactically valid, name tables that exist, etc.) before
+  enqueueing them, but they may still fail upon later execution (e.g., if
+  a statement from another batch of statements is applied first and it
+  conflicts in some way, or if there is some data-related problem like a
+  ``NULL`` value in a column to which ``NOT NULL`` would be added). If a
+  statement fails, all subsequent statements in the batch are
+  automatically cancelled.
+  
+  Each batch of statements is assigned a name which can be used with the
+  [Operations][google.longrunning.Operations] API to monitor progress. See
+  the
+  [operation\_id][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.operation\_id]
+  field for more details.
+  
+  
+  Attributes:
+      database:
+          Required. The database to update.
+      statements:
+          DDL statements to be applied to the database.
+      operation_id:
+          If empty, the new update request is assigned an automatically-
+          generated operation ID. Otherwise, ``operation_id`` is used to
+          construct the name of the resulting
+          [Operation][google.longrunning.Operation].  Specifying an
+          explicit operation ID simplifies determining whether the
+          statements were executed in the event that the [UpdateDatabase
+          Ddl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateData
+          baseDdl] call is replayed, or the return value is otherwise
+          lost: the [database][google.spanner.admin.database.v1.UpdateDa
+          tabaseDdlRequest.database] and ``operation_id`` fields can be
+          combined to form the [name][google.longrunning.Operation.name]
+          of the resulting
+          [longrunning.Operation][google.longrunning.Operation]:
+          ``<database>/operations/<operation_id>``.  ``operation_id``
+          should be unique within the database, and must be a valid
+          identifier: ``[a-z][a-z0-9_]*``. Note that automatically-
+          generated operation IDs always begin with an underscore. If
+          the named operation already exists, [UpdateDatabaseDdl][google
+          .spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+          returns ``ALREADY_EXISTS``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.UpdateDatabaseDdlRequest)
   ))
 _sym_db.RegisterMessage(UpdateDatabaseDdlRequest)
@@ -539,6 +673,22 @@ _sym_db.RegisterMessage(UpdateDatabaseDdlRequest)
 UpdateDatabaseDdlMetadata = _reflection.GeneratedProtocolMessageType('UpdateDatabaseDdlMetadata', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEDATABASEDDLMETADATA,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """Metadata type for the operation returned by
+  [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
+  
+  
+  Attributes:
+      database:
+          The database being modified.
+      statements:
+          For an update this list contains all the statements. For an
+          individual statement, this list contains only that statement.
+      commit_timestamps:
+          Reports the commit timestamps of all statements that have
+          succeeded so far, where ``commit_timestamps[i]`` is the commit
+          timestamp for the statement ``statements[i]``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata)
   ))
 _sym_db.RegisterMessage(UpdateDatabaseDdlMetadata)
@@ -546,6 +696,15 @@ _sym_db.RegisterMessage(UpdateDatabaseDdlMetadata)
 DropDatabaseRequest = _reflection.GeneratedProtocolMessageType('DropDatabaseRequest', (_message.Message,), dict(
   DESCRIPTOR = _DROPDATABASEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
+  
+  
+  Attributes:
+      database:
+          Required. The database to be dropped.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.DropDatabaseRequest)
   ))
 _sym_db.RegisterMessage(DropDatabaseRequest)
@@ -553,6 +712,15 @@ _sym_db.RegisterMessage(DropDatabaseRequest)
 GetDatabaseDdlRequest = _reflection.GeneratedProtocolMessageType('GetDatabaseDdlRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETDATABASEDDLREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
+  
+  
+  Attributes:
+      database:
+          Required. The database whose schema we wish to get.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.GetDatabaseDdlRequest)
   ))
 _sym_db.RegisterMessage(GetDatabaseDdlRequest)
@@ -560,6 +728,16 @@ _sym_db.RegisterMessage(GetDatabaseDdlRequest)
 GetDatabaseDdlResponse = _reflection.GeneratedProtocolMessageType('GetDatabaseDdlResponse', (_message.Message,), dict(
   DESCRIPTOR = _GETDATABASEDDLRESPONSE,
   __module__ = 'google.cloud.proto.spanner.admin.database.v1.spanner_database_admin_pb2'
+  ,
+  __doc__ = """The response for
+  [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
+  
+  
+  Attributes:
+      statements:
+          A list of formatted DDL statements defining the schema of the
+          database specified in the request.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.database.v1.GetDatabaseDdlResponse)
   ))
 _sym_db.RegisterMessage(GetDatabaseDdlResponse)
@@ -571,10 +749,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class DatabaseAdminStub(object):

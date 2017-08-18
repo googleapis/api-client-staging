@@ -30,7 +30,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nIgoogle/cloud/proto/spanner/admin/instance/v1/spanner_instance_admin.proto\x12 google.spanner.admin.instance.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/auth.proto\x1a\x1egoogle/iam/v1/iam_policy.proto\x1a\x1agoogle/iam/v1/policy.proto\x1a#google/longrunning/operations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"4\n\x0eInstanceConfig\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x02 \x01(\t\"\xc3\x02\n\x08Instance\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x63onfig\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x12\n\nnode_count\x18\x05 \x01(\x05\x12?\n\x05state\x18\x06 \x01(\x0e\x32\x30.google.spanner.admin.instance.v1.Instance.State\x12\x46\n\x06labels\x18\x07 \x03(\x0b\x32\x36.google.spanner.admin.instance.v1.Instance.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"7\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x43REATING\x10\x01\x12\t\n\x05READY\x10\x02\"S\n\x1aListInstanceConfigsRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\"\x82\x01\n\x1bListInstanceConfigsResponse\x12J\n\x10instance_configs\x18\x01 \x03(\x0b\x32\x30.google.spanner.admin.instance.v1.InstanceConfig\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"(\n\x18GetInstanceConfigRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\"\n\x12GetInstanceRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"z\n\x15\x43reateInstanceRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x13\n\x0binstance_id\x18\x02 \x01(\t\x12<\n\x08instance\x18\x03 \x01(\x0b\x32*.google.spanner.admin.instance.v1.Instance\"]\n\x14ListInstancesRequest\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x11\n\tpage_size\x18\x02 \x01(\x05\x12\x12\n\npage_token\x18\x03 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x04 \x01(\t\"o\n\x15ListInstancesResponse\x12=\n\tinstances\x18\x01 \x03(\x0b\x32*.google.spanner.admin.instance.v1.Instance\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\x85\x01\n\x15UpdateInstanceRequest\x12<\n\x08instance\x18\x01 \x01(\x0b\x32*.google.spanner.admin.instance.v1.Instance\x12.\n\nfield_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMask\"%\n\x15\x44\x65leteInstanceRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xe5\x01\n\x16\x43reateInstanceMetadata\x12<\n\x08instance\x18\x01 \x01(\x0b\x32*.google.spanner.admin.instance.v1.Instance\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12/\n\x0b\x63\x61ncel_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xe5\x01\n\x16UpdateInstanceMetadata\x12<\n\x08instance\x18\x01 \x01(\x0b\x32*.google.spanner.admin.instance.v1.Instance\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12/\n\x0b\x63\x61ncel_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp2\xe6\x0c\n\rInstanceAdmin\x12\xc3\x01\n\x13ListInstanceConfigs\x12<.google.spanner.admin.instance.v1.ListInstanceConfigsRequest\x1a=.google.spanner.admin.instance.v1.ListInstanceConfigsResponse\"/\x82\xd3\xe4\x93\x02)\x12\'/v1/{parent=projects/*}/instanceConfigs\x12\xb2\x01\n\x11GetInstanceConfig\x12:.google.spanner.admin.instance.v1.GetInstanceConfigRequest\x1a\x30.google.spanner.admin.instance.v1.InstanceConfig\"/\x82\xd3\xe4\x93\x02)\x12\'/v1/{name=projects/*/instanceConfigs/*}\x12\xab\x01\n\rListInstances\x12\x36.google.spanner.admin.instance.v1.ListInstancesRequest\x1a\x37.google.spanner.admin.instance.v1.ListInstancesResponse\")\x82\xd3\xe4\x93\x02#\x12!/v1/{parent=projects/*}/instances\x12\x9a\x01\n\x0bGetInstance\x12\x34.google.spanner.admin.instance.v1.GetInstanceRequest\x1a*.google.spanner.admin.instance.v1.Instance\")\x82\xd3\xe4\x93\x02#\x12!/v1/{name=projects/*/instances/*}\x12\x96\x01\n\x0e\x43reateInstance\x12\x37.google.spanner.admin.instance.v1.CreateInstanceRequest\x1a\x1d.google.longrunning.Operation\",\x82\xd3\xe4\x93\x02&\"!/v1/{parent=projects/*}/instances:\x01*\x12\x9f\x01\n\x0eUpdateInstance\x12\x37.google.spanner.admin.instance.v1.UpdateInstanceRequest\x1a\x1d.google.longrunning.Operation\"5\x82\xd3\xe4\x93\x02/2*/v1/{instance.name=projects/*/instances/*}:\x01*\x12\x8c\x01\n\x0e\x44\x65leteInstance\x12\x37.google.spanner.admin.instance.v1.DeleteInstanceRequest\x1a\x16.google.protobuf.Empty\")\x82\xd3\xe4\x93\x02#*!/v1/{name=projects/*/instances/*}\x12\x88\x01\n\x0cSetIamPolicy\x12\".google.iam.v1.SetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\"=\x82\xd3\xe4\x93\x02\x37\"2/v1/{resource=projects/*/instances/*}:setIamPolicy:\x01*\x12\x88\x01\n\x0cGetIamPolicy\x12\".google.iam.v1.GetIamPolicyRequest\x1a\x15.google.iam.v1.Policy\"=\x82\xd3\xe4\x93\x02\x37\"2/v1/{resource=projects/*/instances/*}:getIamPolicy:\x01*\x12\xae\x01\n\x12TestIamPermissions\x12(.google.iam.v1.TestIamPermissionsRequest\x1a).google.iam.v1.TestIamPermissionsResponse\"C\x82\xd3\xe4\x93\x02=\"8/v1/{resource=projects/*/instances/*}:testIamPermissions:\x01*B\xb6\x01\n$com.google.spanner.admin.instance.v1B\x19SpannerInstanceAdminProtoP\x01ZHgoogle.golang.org/genproto/googleapis/spanner/admin/instance/v1;instance\xaa\x02&Google.Cloud.Spanner.Admin.Instance.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_auth__pb2.DESCRIPTOR,google_dot_iam_dot_v1_dot_iam__policy__pb2.DESCRIPTOR,google_dot_iam_dot_v1_dot_policy__pb2.DESCRIPTOR,google_dot_longrunning_dot_operations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_field__mask__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -685,10 +684,24 @@ DESCRIPTOR.message_types_by_name['UpdateInstanceRequest'] = _UPDATEINSTANCEREQUE
 DESCRIPTOR.message_types_by_name['DeleteInstanceRequest'] = _DELETEINSTANCEREQUEST
 DESCRIPTOR.message_types_by_name['CreateInstanceMetadata'] = _CREATEINSTANCEMETADATA
 DESCRIPTOR.message_types_by_name['UpdateInstanceMetadata'] = _UPDATEINSTANCEMETADATA
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 InstanceConfig = _reflection.GeneratedProtocolMessageType('InstanceConfig', (_message.Message,), dict(
   DESCRIPTOR = _INSTANCECONFIG,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """A possible configuration for a Cloud Spanner instance. Configurations
+  define the geographic placement of nodes and their replication.
+  
+  
+  Attributes:
+      name:
+          A unique identifier for the instance configuration. Values are
+          of the form
+          ``projects/<project>/instanceConfigs/[a-z][-a-z0-9]*``
+      display_name:
+          The name of this instance configuration as it appears in UIs.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.InstanceConfig)
   ))
 _sym_db.RegisterMessage(InstanceConfig)
@@ -703,6 +716,61 @@ Instance = _reflection.GeneratedProtocolMessageType('Instance', (_message.Messag
   ,
   DESCRIPTOR = _INSTANCE,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """An isolated set of Cloud Spanner resources on which databases can be
+  hosted.
+  
+  
+  Attributes:
+      name:
+          Required. A unique identifier for the instance, which cannot
+          be changed after the instance is created. Values are of the
+          form ``projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]``.
+          The final segment of the name must be between 6 and 30
+          characters in length.
+      config:
+          Required. The name of the instance's configuration. Values are
+          of the form
+          ``projects/<project>/instanceConfigs/<configuration>``. See
+          also [InstanceConfig][google.spanner.admin.instance.v1.Instanc
+          eConfig] and [ListInstanceConfigs][google.spanner.admin.instan
+          ce.v1.InstanceAdmin.ListInstanceConfigs].
+      display_name:
+          Required. The descriptive name for this instance as it appears
+          in UIs. Must be unique per project and between 4 and 30
+          characters in length.
+      node_count:
+          Required. The number of nodes allocated to this instance.
+      state:
+          Output only. The current instance state. For [CreateInstance][
+          google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance]
+          , the state must be either omitted or set to ``CREATING``. For
+          [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmi
+          n.UpdateInstance], the state must be either omitted or set to
+          ``READY``.
+      labels:
+          Cloud Labels are a flexible and lightweight mechanism for
+          organizing cloud resources into groups that reflect a
+          customer's organizational needs and deployment strategies.
+          Cloud Labels can be used to filter collections of resources.
+          They can be used to control how resource metrics are
+          aggregated. And they can be used as arguments to policy
+          management rules (e.g. route, firewall, load balancing, etc.).
+          -  Label keys must be between 1 and 63 characters long and
+          must conform    to the following regular expression:
+          ``[a-z]([-a-z0-9]*[a-z0-9])?``. -  Label values must be
+          between 0 and 63 characters long and must    conform to the
+          regular expression ``([a-z]([-a-z0-9]*[a-z0-9])?)?``. -  No
+          more than 64 labels can be associated with a given resource.
+          See https://goo.gl/xmQnxf for more information on and examples
+          of labels.  If you plan to use labels in your own code, please
+          note that additional characters may be allowed in the future.
+          And so you are advised to use an internal label
+          representation, such as JSON, which doesn't rely upon specific
+          characters being disallowed. For example, representing labels
+          as the string: name + "*" + value would prove problematic if
+          we were to allow "*" in a future release.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.Instance)
   ))
 _sym_db.RegisterMessage(Instance)
@@ -711,6 +779,27 @@ _sym_db.RegisterMessage(Instance.LabelsEntry)
 ListInstanceConfigsRequest = _reflection.GeneratedProtocolMessageType('ListInstanceConfigsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTINSTANCECONFIGSREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
+  
+  
+  Attributes:
+      parent:
+          Required. The name of the project for which a list of
+          supported instance configurations is requested. Values are of
+          the form ``projects/<project>``.
+      page_size:
+          Number of instance configurations to be returned in the
+          response. If 0 or less, defaults to the server's maximum
+          allowed page size.
+      page_token:
+          If non-empty, ``page_token`` should contain a [next\_page\_tok
+          en][google.spanner.admin.instance.v1.ListInstanceConfigsRespon
+          se.next\_page\_token] from a previous [ListInstanceConfigsResp
+          onse][google.spanner.admin.instance.v1.ListInstanceConfigsResp
+          onse].
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.ListInstanceConfigsRequest)
   ))
 _sym_db.RegisterMessage(ListInstanceConfigsRequest)
@@ -718,6 +807,20 @@ _sym_db.RegisterMessage(ListInstanceConfigsRequest)
 ListInstanceConfigsResponse = _reflection.GeneratedProtocolMessageType('ListInstanceConfigsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTINSTANCECONFIGSRESPONSE,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The response for
+  [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
+  
+  
+  Attributes:
+      instance_configs:
+          The list of requested instance configurations.
+      next_page_token:
+          ``next_page_token`` can be sent in a subsequent [ListInstanceC
+          onfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListIns
+          tanceConfigs] call to fetch more of the matching instance
+          configurations.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.ListInstanceConfigsResponse)
   ))
 _sym_db.RegisterMessage(ListInstanceConfigsResponse)
@@ -725,6 +828,17 @@ _sym_db.RegisterMessage(ListInstanceConfigsResponse)
 GetInstanceConfigRequest = _reflection.GeneratedProtocolMessageType('GetInstanceConfigRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETINSTANCECONFIGREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [GetInstanceConfigRequest][google.spanner.admin.instance.v1.InstanceAdmin.GetInstanceConfig].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the requested instance configuration.
+          Values are of the form
+          ``projects/<project>/instanceConfigs/<config>``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.GetInstanceConfigRequest)
   ))
 _sym_db.RegisterMessage(GetInstanceConfigRequest)
@@ -732,6 +846,16 @@ _sym_db.RegisterMessage(GetInstanceConfigRequest)
 GetInstanceRequest = _reflection.GeneratedProtocolMessageType('GetInstanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETINSTANCEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the requested instance. Values are of
+          the form ``projects/<project>/instances/<instance>``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.GetInstanceRequest)
   ))
 _sym_db.RegisterMessage(GetInstanceRequest)
@@ -739,6 +863,23 @@ _sym_db.RegisterMessage(GetInstanceRequest)
 CreateInstanceRequest = _reflection.GeneratedProtocolMessageType('CreateInstanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEINSTANCEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance].
+  
+  
+  Attributes:
+      parent:
+          Required. The name of the project in which to create the
+          instance. Values are of the form ``projects/<project>``.
+      instance_id:
+          Required. The ID of the instance to create. Valid identifiers
+          are of the form ``[a-z][-a-z0-9]*[a-z0-9]`` and must be
+          between 6 and 30 characters in length.
+      instance:
+          Required. The instance to create. The name may be omitted, but
+          if specified must be ``<parent>/instances/<instance_id>``.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.CreateInstanceRequest)
   ))
 _sym_db.RegisterMessage(CreateInstanceRequest)
@@ -746,6 +887,38 @@ _sym_db.RegisterMessage(CreateInstanceRequest)
 ListInstancesRequest = _reflection.GeneratedProtocolMessageType('ListInstancesRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTINSTANCESREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
+  
+  
+  Attributes:
+      parent:
+          Required. The name of the project for which a list of
+          instances is requested. Values are of the form
+          ``projects/<project>``.
+      page_size:
+          Number of instances to be returned in the response. If 0 or
+          less, defaults to the server's maximum allowed page size.
+      page_token:
+          If non-empty, ``page_token`` should contain a [next\_page\_tok
+          en][google.spanner.admin.instance.v1.ListInstancesResponse.nex
+          t\_page\_token] from a previous [ListInstancesResponse][google
+          .spanner.admin.instance.v1.ListInstancesResponse].
+      filter:
+          An expression for filtering the results of the request. Filter
+          rules are case insensitive. The fields eligible for filtering
+          are:  -  name -  display\_name -  labels.key where key is the
+          name of a label  Some examples of using filters are:  -
+          name:\* --> The instance has a name. -  name:Howl --> The
+          instance's name contains the string "howl". -  name:HOWL -->
+          Equivalent to above. -  NAME:howl --> Equivalent to above. -
+          labels.env:\* --> The instance has the label "env". -
+          labels.env:dev --> The instance has the label "env" and the
+          value of    the label contains the string "dev". -  name:howl
+          labels.env:dev --> The instance's name contains "howl" and
+          it has the label "env" with its value containing "dev".
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.ListInstancesRequest)
   ))
 _sym_db.RegisterMessage(ListInstancesRequest)
@@ -753,6 +926,19 @@ _sym_db.RegisterMessage(ListInstancesRequest)
 ListInstancesResponse = _reflection.GeneratedProtocolMessageType('ListInstancesResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTINSTANCESRESPONSE,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The response for
+  [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
+  
+  
+  Attributes:
+      instances:
+          The list of requested instances.
+      next_page_token:
+          ``next_page_token`` can be sent in a subsequent [ListInstances
+          ][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances
+          ] call to fetch more of the matching instances.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.ListInstancesResponse)
   ))
 _sym_db.RegisterMessage(ListInstancesResponse)
@@ -760,6 +946,25 @@ _sym_db.RegisterMessage(ListInstancesResponse)
 UpdateInstanceRequest = _reflection.GeneratedProtocolMessageType('UpdateInstanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEINSTANCEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
+  
+  
+  Attributes:
+      instance:
+          Required. The instance to update, which must always include
+          the instance name. Otherwise, only fields mentioned in [][goog
+          le.spanner.admin.instance.v1.UpdateInstanceRequest.field\_mask
+          ] need be included.
+      field_mask:
+          Required. A mask specifying which fields in [][google.spanner.
+          admin.instance.v1.UpdateInstanceRequest.instance] should be
+          updated. The field mask must always be specified; this
+          prevents any future fields in
+          [][google.spanner.admin.instance.v1.Instance] from being
+          erased accidentally by clients that do not know about them.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.UpdateInstanceRequest)
   ))
 _sym_db.RegisterMessage(UpdateInstanceRequest)
@@ -767,6 +972,16 @@ _sym_db.RegisterMessage(UpdateInstanceRequest)
 DeleteInstanceRequest = _reflection.GeneratedProtocolMessageType('DeleteInstanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEINSTANCEREQUEST,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """The request for
+  [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
+  
+  
+  Attributes:
+      name:
+          Required. The name of the instance to be deleted. Values are
+          of the form ``projects/<project>/instances/<instance>``
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.DeleteInstanceRequest)
   ))
 _sym_db.RegisterMessage(DeleteInstanceRequest)
@@ -774,6 +989,25 @@ _sym_db.RegisterMessage(DeleteInstanceRequest)
 CreateInstanceMetadata = _reflection.GeneratedProtocolMessageType('CreateInstanceMetadata', (_message.Message,), dict(
   DESCRIPTOR = _CREATEINSTANCEMETADATA,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """Metadata type for the operation returned by
+  [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance].
+  
+  
+  Attributes:
+      instance:
+          The instance being created.
+      start_time:
+          The time at which the [CreateInstance][google.spanner.admin.in
+          stance.v1.InstanceAdmin.CreateInstance] request was received.
+      cancel_time:
+          The time at which this operation was cancelled. If set, this
+          operation is in the process of undoing itself (which is
+          guaranteed to succeed) and cannot be cancelled again.
+      end_time:
+          The time at which this operation failed or was completed
+          successfully.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.CreateInstanceMetadata)
   ))
 _sym_db.RegisterMessage(CreateInstanceMetadata)
@@ -781,6 +1015,25 @@ _sym_db.RegisterMessage(CreateInstanceMetadata)
 UpdateInstanceMetadata = _reflection.GeneratedProtocolMessageType('UpdateInstanceMetadata', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEINSTANCEMETADATA,
   __module__ = 'google.cloud.proto.spanner.admin.instance.v1.spanner_instance_admin_pb2'
+  ,
+  __doc__ = """Metadata type for the operation returned by
+  [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
+  
+  
+  Attributes:
+      instance:
+          The desired end state of the update.
+      start_time:
+          The time at which [UpdateInstance][google.spanner.admin.instan
+          ce.v1.InstanceAdmin.UpdateInstance] request was received.
+      cancel_time:
+          The time at which this operation was cancelled. If set, this
+          operation is in the process of undoing itself (which is
+          guaranteed to succeed) and cannot be cancelled again.
+      end_time:
+          The time at which this operation failed or was completed
+          successfully.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.admin.instance.v1.UpdateInstanceMetadata)
   ))
 _sym_db.RegisterMessage(UpdateInstanceMetadata)
@@ -794,10 +1047,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class InstanceAdminStub(object):
