@@ -9,7 +9,7 @@ public interface FieldIdOrBuilder extends
 
   /**
    * <pre>
-   * Column name describing the field.
+   * Name describing the field.
    * </pre>
    *
    * <code>string column_name = 1;</code>
@@ -17,7 +17,7 @@ public interface FieldIdOrBuilder extends
   java.lang.String getColumnName();
   /**
    * <pre>
-   * Column name describing the field.
+   * Name describing the field.
    * </pre>
    *
    * <code>string column_name = 1;</code>

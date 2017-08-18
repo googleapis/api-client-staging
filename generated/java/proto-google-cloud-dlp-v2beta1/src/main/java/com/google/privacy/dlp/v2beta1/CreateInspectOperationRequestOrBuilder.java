@@ -68,11 +68,13 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -89,11 +91,13 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -110,14 +114,41 @@ public interface CreateInspectOperationRequestOrBuilder extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getOutputConfigOrBuilder();
+
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  boolean hasOperationConfig();
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  com.google.privacy.dlp.v2beta1.OperationConfig getOperationConfig();
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder getOperationConfigOrBuilder();
 }

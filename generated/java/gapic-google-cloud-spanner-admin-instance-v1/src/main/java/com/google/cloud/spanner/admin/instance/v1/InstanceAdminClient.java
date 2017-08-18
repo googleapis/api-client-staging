@@ -112,11 +112,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of InstanceAdminSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
  *     InstanceAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * InstanceAdminClient instanceAdminClient =
+ *     InstanceAdminClient.create(instanceAdminSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * InstanceAdminSettings instanceAdminSettings =
+ *     InstanceAdminSettings.defaultBuilder()
+ *         .setTransportProvider(InstanceAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(InstanceAdminSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * InstanceAdminClient instanceAdminClient =
  *     InstanceAdminClient.create(instanceAdminSettings);

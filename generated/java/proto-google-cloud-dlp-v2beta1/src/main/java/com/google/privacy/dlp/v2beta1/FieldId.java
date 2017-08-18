@@ -80,7 +80,7 @@ public  final class FieldId extends
   private volatile java.lang.Object columnName_;
   /**
    * <pre>
-   * Column name describing the field.
+   * Name describing the field.
    * </pre>
    *
    * <code>string column_name = 1;</code>
@@ -99,7 +99,7 @@ public  final class FieldId extends
   }
   /**
    * <pre>
-   * Column name describing the field.
+   * Name describing the field.
    * </pre>
    *
    * <code>string column_name = 1;</code>
@@ -405,7 +405,7 @@ public  final class FieldId extends
     private java.lang.Object columnName_ = "";
     /**
      * <pre>
-     * Column name describing the field.
+     * Name describing the field.
      * </pre>
      *
      * <code>string column_name = 1;</code>
@@ -424,7 +424,7 @@ public  final class FieldId extends
     }
     /**
      * <pre>
-     * Column name describing the field.
+     * Name describing the field.
      * </pre>
      *
      * <code>string column_name = 1;</code>
@@ -444,7 +444,7 @@ public  final class FieldId extends
     }
     /**
      * <pre>
-     * Column name describing the field.
+     * Name describing the field.
      * </pre>
      *
      * <code>string column_name = 1;</code>
@@ -461,7 +461,7 @@ public  final class FieldId extends
     }
     /**
      * <pre>
-     * Column name describing the field.
+     * Name describing the field.
      * </pre>
      *
      * <code>string column_name = 1;</code>
@@ -474,7 +474,7 @@ public  final class FieldId extends
     }
     /**
      * <pre>
-     * Column name describing the field.
+     * Name describing the field.
      * </pre>
      *
      * <code>string column_name = 1;</code>

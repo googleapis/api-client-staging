@@ -20,7 +20,7 @@ import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.SpannerSettings;
 import com.google.protobuf.Empty;
@@ -78,9 +78,9 @@ public class GrpcSpannerStub extends SpannerStub {
               "google.spanner.v1.Spanner/ExecuteSql",
               io.grpc.protobuf.ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()),
               io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance())));
-  private static final StreamingCallable<ExecuteSqlRequest, PartialResultSet>
+  private static final ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
       directExecuteStreamingSqlCallable =
-          GrpcCallableFactory.createDirectStreamingCallable(
+          GrpcCallableFactory.createDirectServerStreamingCallable(
               io.grpc.MethodDescriptor.create(
                   io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
                   "google.spanner.v1.Spanner/ExecuteStreamingSql",
@@ -93,9 +93,9 @@ public class GrpcSpannerStub extends SpannerStub {
               "google.spanner.v1.Spanner/Read",
               io.grpc.protobuf.ProtoUtils.marshaller(ReadRequest.getDefaultInstance()),
               io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance())));
-  private static final StreamingCallable<ReadRequest, PartialResultSet>
+  private static final ServerStreamingCallable<ReadRequest, PartialResultSet>
       directStreamingReadCallable =
-          GrpcCallableFactory.createDirectStreamingCallable(
+          GrpcCallableFactory.createDirectServerStreamingCallable(
               io.grpc.MethodDescriptor.create(
                   io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
                   "google.spanner.v1.Spanner/StreamingRead",
@@ -131,9 +131,10 @@ public class GrpcSpannerStub extends SpannerStub {
   private final UnaryCallable<GetSessionRequest, Session> getSessionCallable;
   private final UnaryCallable<DeleteSessionRequest, Empty> deleteSessionCallable;
   private final UnaryCallable<ExecuteSqlRequest, ResultSet> executeSqlCallable;
-  private final StreamingCallable<ExecuteSqlRequest, PartialResultSet> executeStreamingSqlCallable;
+  private final ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
+      executeStreamingSqlCallable;
   private final UnaryCallable<ReadRequest, ResultSet> readCallable;
-  private final StreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable;
+  private final ServerStreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable;
   private final UnaryCallable<BeginTransactionRequest, Transaction> beginTransactionCallable;
   private final UnaryCallable<CommitRequest, CommitResponse> commitCallable;
   private final UnaryCallable<RollbackRequest, Empty> rollbackCallable;
@@ -203,7 +204,8 @@ public class GrpcSpannerStub extends SpannerStub {
     return executeSqlCallable;
   }
 
-  public StreamingCallable<ExecuteSqlRequest, PartialResultSet> executeStreamingSqlCallable() {
+  public ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
+      executeStreamingSqlCallable() {
     return executeStreamingSqlCallable;
   }
 
@@ -211,7 +213,7 @@ public class GrpcSpannerStub extends SpannerStub {
     return readCallable;
   }
 
-  public StreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
+  public ServerStreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
     return streamingReadCallable;
   }
 

@@ -68,11 +68,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of LanguageServiceSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * LanguageServiceSettings languageServiceSettings =
  *     LanguageServiceSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * LanguageServiceClient languageServiceClient =
+ *     LanguageServiceClient.create(languageServiceSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * LanguageServiceSettings languageServiceSettings =
+ *     LanguageServiceSettings.defaultBuilder()
+ *         .setTransportProvider(LanguageServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(LanguageServiceSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * LanguageServiceClient languageServiceClient =
  *     LanguageServiceClient.create(languageServiceSettings);

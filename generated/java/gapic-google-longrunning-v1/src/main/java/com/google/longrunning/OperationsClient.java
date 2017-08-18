@@ -89,11 +89,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of OperationsSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * OperationsSettings operationsSettings =
  *     OperationsSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * OperationsClient operationsClient =
+ *     OperationsClient.create(operationsSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * OperationsSettings operationsSettings =
+ *     OperationsSettings.defaultBuilder()
+ *         .setTransportProvider(OperationsSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(OperationsSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * OperationsClient operationsClient =
  *     OperationsClient.create(operationsSettings);

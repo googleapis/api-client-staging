@@ -153,4 +153,29 @@ public interface LocationOrBuilder extends
    * <code>.google.privacy.dlp.v2beta1.FieldId field_id = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.FieldIdOrBuilder getFieldIdOrBuilder();
+
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  boolean hasTableLocation();
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  com.google.privacy.dlp.v2beta1.TableLocation getTableLocation();
+  /**
+   * <pre>
+   * Location within a `ContentItem.Table`.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.TableLocation table_location = 6;</code>
+   */
+  com.google.privacy.dlp.v2beta1.TableLocationOrBuilder getTableLocationOrBuilder();
 }

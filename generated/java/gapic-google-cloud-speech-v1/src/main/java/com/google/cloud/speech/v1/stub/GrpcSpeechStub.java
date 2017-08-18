@@ -118,6 +118,7 @@ public class GrpcSpeechStub extends SpeechStub {
     this.streamingRecognizeCallable =
         GrpcCallableFactory.create(
             directStreamingRecognizeCallable, settings.streamingRecognizeSettings(), clientContext);
+
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }
 

@@ -11,7 +11,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * <pre>
    * Identifier of the results set returned as metadata of
    * the longrunning operation created by a call to CreateInspectOperation.
-   * Should be in the format of `inspect/results/{id}.
+   * Should be in the format of `inspect/results/{id}`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -21,7 +21,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
    * <pre>
    * Identifier of the results set returned as metadata of
    * the longrunning operation created by a call to CreateInspectOperation.
-   * Should be in the format of `inspect/results/{id}.
+   * Should be in the format of `inspect/results/{id}`.
    * </pre>
    *
    * <code>string name = 1;</code>

@@ -64,6 +64,20 @@ public  final class ContentItem extends
             dataItem_ = s;
             break;
           }
+          case 34: {
+            com.google.privacy.dlp.v2beta1.Table.Builder subBuilder = null;
+            if (dataItemCase_ == 4) {
+              subBuilder = ((com.google.privacy.dlp.v2beta1.Table) dataItem_).toBuilder();
+            }
+            dataItem_ =
+                input.readMessage(com.google.privacy.dlp.v2beta1.Table.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.privacy.dlp.v2beta1.Table) dataItem_);
+              dataItem_ = subBuilder.buildPartial();
+            }
+            dataItemCase_ = 4;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -93,6 +107,7 @@ public  final class ContentItem extends
       implements com.google.protobuf.Internal.EnumLite {
     DATA(2),
     VALUE(3),
+    TABLE(4),
     DATAITEM_NOT_SET(0);
     private final int value;
     private DataItemCase(int value) {
@@ -110,6 +125,7 @@ public  final class ContentItem extends
       switch (value) {
         case 2: return DATA;
         case 3: return VALUE;
+        case 4: return TABLE;
         case 0: return DATAITEM_NOT_SET;
         default: return null;
       }
@@ -237,6 +253,34 @@ public  final class ContentItem extends
     }
   }
 
+  public static final int TABLE_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Structured content for inspection.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.Table getTable() {
+    if (dataItemCase_ == 4) {
+       return (com.google.privacy.dlp.v2beta1.Table) dataItem_;
+    }
+    return com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * Structured content for inspection.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.TableOrBuilder getTableOrBuilder() {
+    if (dataItemCase_ == 4) {
+       return (com.google.privacy.dlp.v2beta1.Table) dataItem_;
+    }
+    return com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -259,6 +303,9 @@ public  final class ContentItem extends
     if (dataItemCase_ == 3) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, dataItem_);
     }
+    if (dataItemCase_ == 4) {
+      output.writeMessage(4, (com.google.privacy.dlp.v2beta1.Table) dataItem_);
+    }
   }
 
   public int getSerializedSize() {
@@ -276,6 +323,10 @@ public  final class ContentItem extends
     }
     if (dataItemCase_ == 3) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, dataItem_);
+    }
+    if (dataItemCase_ == 4) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, (com.google.privacy.dlp.v2beta1.Table) dataItem_);
     }
     memoizedSize = size;
     return size;
@@ -307,6 +358,10 @@ public  final class ContentItem extends
         result = result && getValue()
             .equals(other.getValue());
         break;
+      case 4:
+        result = result && getTable()
+            .equals(other.getTable());
+        break;
       case 0:
       default:
     }
@@ -330,6 +385,10 @@ public  final class ContentItem extends
       case 3:
         hash = (37 * hash) + VALUE_FIELD_NUMBER;
         hash = (53 * hash) + getValue().hashCode();
+        break;
+      case 4:
+        hash = (37 * hash) + TABLE_FIELD_NUMBER;
+        hash = (53 * hash) + getTable().hashCode();
         break;
       case 0:
       default:
@@ -500,6 +559,13 @@ public  final class ContentItem extends
       if (dataItemCase_ == 3) {
         result.dataItem_ = dataItem_;
       }
+      if (dataItemCase_ == 4) {
+        if (tableBuilder_ == null) {
+          result.dataItem_ = dataItem_;
+        } else {
+          result.dataItem_ = tableBuilder_.build();
+        }
+      }
       result.dataItemCase_ = dataItemCase_;
       onBuilt();
       return result;
@@ -555,6 +621,10 @@ public  final class ContentItem extends
           dataItemCase_ = 3;
           dataItem_ = other.dataItem_;
           onChanged();
+          break;
+        }
+        case TABLE: {
+          mergeTable(other.getTable());
           break;
         }
         case DATAITEM_NOT_SET: {
@@ -844,6 +914,168 @@ public  final class ContentItem extends
       dataItem_ = value;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.Table, com.google.privacy.dlp.v2beta1.Table.Builder, com.google.privacy.dlp.v2beta1.TableOrBuilder> tableBuilder_;
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.Table getTable() {
+      if (tableBuilder_ == null) {
+        if (dataItemCase_ == 4) {
+          return (com.google.privacy.dlp.v2beta1.Table) dataItem_;
+        }
+        return com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+      } else {
+        if (dataItemCase_ == 4) {
+          return tableBuilder_.getMessage();
+        }
+        return com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public Builder setTable(com.google.privacy.dlp.v2beta1.Table value) {
+      if (tableBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        dataItem_ = value;
+        onChanged();
+      } else {
+        tableBuilder_.setMessage(value);
+      }
+      dataItemCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public Builder setTable(
+        com.google.privacy.dlp.v2beta1.Table.Builder builderForValue) {
+      if (tableBuilder_ == null) {
+        dataItem_ = builderForValue.build();
+        onChanged();
+      } else {
+        tableBuilder_.setMessage(builderForValue.build());
+      }
+      dataItemCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public Builder mergeTable(com.google.privacy.dlp.v2beta1.Table value) {
+      if (tableBuilder_ == null) {
+        if (dataItemCase_ == 4 &&
+            dataItem_ != com.google.privacy.dlp.v2beta1.Table.getDefaultInstance()) {
+          dataItem_ = com.google.privacy.dlp.v2beta1.Table.newBuilder((com.google.privacy.dlp.v2beta1.Table) dataItem_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          dataItem_ = value;
+        }
+        onChanged();
+      } else {
+        if (dataItemCase_ == 4) {
+          tableBuilder_.mergeFrom(value);
+        }
+        tableBuilder_.setMessage(value);
+      }
+      dataItemCase_ = 4;
+      return this;
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public Builder clearTable() {
+      if (tableBuilder_ == null) {
+        if (dataItemCase_ == 4) {
+          dataItemCase_ = 0;
+          dataItem_ = null;
+          onChanged();
+        }
+      } else {
+        if (dataItemCase_ == 4) {
+          dataItemCase_ = 0;
+          dataItem_ = null;
+        }
+        tableBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.Table.Builder getTableBuilder() {
+      return getTableFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.TableOrBuilder getTableOrBuilder() {
+      if ((dataItemCase_ == 4) && (tableBuilder_ != null)) {
+        return tableBuilder_.getMessageOrBuilder();
+      } else {
+        if (dataItemCase_ == 4) {
+          return (com.google.privacy.dlp.v2beta1.Table) dataItem_;
+        }
+        return com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * Structured content for inspection.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.Table, com.google.privacy.dlp.v2beta1.Table.Builder, com.google.privacy.dlp.v2beta1.TableOrBuilder> 
+        getTableFieldBuilder() {
+      if (tableBuilder_ == null) {
+        if (!(dataItemCase_ == 4)) {
+          dataItem_ = com.google.privacy.dlp.v2beta1.Table.getDefaultInstance();
+        }
+        tableBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.Table, com.google.privacy.dlp.v2beta1.Table.Builder, com.google.privacy.dlp.v2beta1.TableOrBuilder>(
+                (com.google.privacy.dlp.v2beta1.Table) dataItem_,
+                getParentForChildren(),
+                isClean());
+        dataItem_ = null;
+      }
+      dataItemCase_ = 4;
+      onChanged();;
+      return tableBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

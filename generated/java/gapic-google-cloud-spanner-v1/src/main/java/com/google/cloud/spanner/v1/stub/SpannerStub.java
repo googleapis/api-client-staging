@@ -17,7 +17,7 @@ package com.google.cloud.spanner.v1.stub;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.protobuf.Empty;
 import com.google.spanner.v1.BeginTransactionRequest;
@@ -61,7 +61,8 @@ public abstract class SpannerStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: executeSqlCallable()");
   }
 
-  public StreamingCallable<ExecuteSqlRequest, PartialResultSet> executeStreamingSqlCallable() {
+  public ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
+      executeStreamingSqlCallable() {
     throw new UnsupportedOperationException("Not implemented: executeStreamingSqlCallable()");
   }
 
@@ -69,7 +70,7 @@ public abstract class SpannerStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: readCallable()");
   }
 
-  public StreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
+  public ServerStreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
     throw new UnsupportedOperationException("Not implemented: streamingReadCallable()");
   }
 

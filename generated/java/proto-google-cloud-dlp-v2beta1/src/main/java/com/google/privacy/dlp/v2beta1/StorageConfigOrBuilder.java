@@ -41,5 +41,22 @@ public interface StorageConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder getCloudStorageOptionsOrBuilder();
 
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  com.google.privacy.dlp.v2beta1.BigQueryOptions getBigQueryOptions();
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  com.google.privacy.dlp.v2beta1.BigQueryOptionsOrBuilder getBigQueryOptionsOrBuilder();
+
   public com.google.privacy.dlp.v2beta1.StorageConfig.TypeCase getTypeCase();
 }

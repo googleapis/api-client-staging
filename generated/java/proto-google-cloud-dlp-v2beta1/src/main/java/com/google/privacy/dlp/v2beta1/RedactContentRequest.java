@@ -978,7 +978,7 @@ public  final class RedactContentRequest extends
     /**
      * <pre>
      * Only one per info_type should be provided per request. If not
-     * specified, and redact_all_text is false, the DLP API will redacts all
+     * specified, and redact_all_text is false, the DLP API will redact all
      * text that it matches against all info_types that are found, but not
      * specified in another ImageRedactionConfig.
      * </pre>
@@ -989,7 +989,7 @@ public  final class RedactContentRequest extends
     /**
      * <pre>
      * Only one per info_type should be provided per request. If not
-     * specified, and redact_all_text is false, the DLP API will redacts all
+     * specified, and redact_all_text is false, the DLP API will redact all
      * text that it matches against all info_types that are found, but not
      * specified in another ImageRedactionConfig.
      * </pre>
@@ -1000,7 +1000,7 @@ public  final class RedactContentRequest extends
 
     /**
      * <pre>
-     * If true, all text found in the image, regardless if it matches an
+     * If true, all text found in the image, regardless whether it matches an
      * info_type, is redacted.
      * </pre>
      *
@@ -1178,7 +1178,7 @@ public  final class RedactContentRequest extends
     /**
      * <pre>
      * Only one per info_type should be provided per request. If not
-     * specified, and redact_all_text is false, the DLP API will redacts all
+     * specified, and redact_all_text is false, the DLP API will redact all
      * text that it matches against all info_types that are found, but not
      * specified in another ImageRedactionConfig.
      * </pre>
@@ -1194,7 +1194,7 @@ public  final class RedactContentRequest extends
     /**
      * <pre>
      * Only one per info_type should be provided per request. If not
-     * specified, and redact_all_text is false, the DLP API will redacts all
+     * specified, and redact_all_text is false, the DLP API will redact all
      * text that it matches against all info_types that are found, but not
      * specified in another ImageRedactionConfig.
      * </pre>
@@ -1211,7 +1211,7 @@ public  final class RedactContentRequest extends
     public static final int REDACT_ALL_TEXT_FIELD_NUMBER = 2;
     /**
      * <pre>
-     * If true, all text found in the image, regardless if it matches an
+     * If true, all text found in the image, regardless whether it matches an
      * info_type, is redacted.
      * </pre>
      *
@@ -1647,7 +1647,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1670,7 +1670,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1693,7 +1693,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1714,7 +1714,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1743,7 +1743,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1769,7 +1769,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1782,7 +1782,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1802,7 +1802,7 @@ public  final class RedactContentRequest extends
       /**
        * <pre>
        * Only one per info_type should be provided per request. If not
-       * specified, and redact_all_text is false, the DLP API will redacts all
+       * specified, and redact_all_text is false, the DLP API will redact all
        * text that it matches against all info_types that are found, but not
        * specified in another ImageRedactionConfig.
        * </pre>
@@ -1830,7 +1830,7 @@ public  final class RedactContentRequest extends
 
       /**
        * <pre>
-       * If true, all text found in the image, regardless if it matches an
+       * If true, all text found in the image, regardless whether it matches an
        * info_type, is redacted.
        * </pre>
        *
@@ -1844,7 +1844,7 @@ public  final class RedactContentRequest extends
       }
       /**
        * <pre>
-       * If true, all text found in the image, regardless if it matches an
+       * If true, all text found in the image, regardless whether it matches an
        * info_type, is redacted.
        * </pre>
        *
@@ -1858,7 +1858,7 @@ public  final class RedactContentRequest extends
       }
       /**
        * <pre>
-       * If true, all text found in the image, regardless if it matches an
+       * If true, all text found in the image, regardless whether it matches an
        * info_type, is redacted.
        * </pre>
        *

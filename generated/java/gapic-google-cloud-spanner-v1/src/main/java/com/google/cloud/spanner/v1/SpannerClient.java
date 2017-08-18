@@ -17,7 +17,7 @@ package com.google.cloud.spanner.v1;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.stub.SpannerStub;
 import com.google.protobuf.ByteString;
@@ -89,11 +89,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of SpannerSettings to create().
  * For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * SpannerSettings spannerSettings =
  *     SpannerSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * SpannerClient spannerClient =
+ *     SpannerClient.create(spannerSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * SpannerSettings spannerSettings =
+ *     SpannerSettings.defaultBuilder()
+ *         .setTransportProvider(SpannerSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(SpannerSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * SpannerClient spannerClient =
  *     SpannerClient.create(spannerSettings);
@@ -504,7 +523,7 @@ public class SpannerClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final StreamingCallable<ExecuteSqlRequest, PartialResultSet>
+  public final ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
       executeStreamingSqlCallable() {
     return stub.executeStreamingSqlCallable();
   }
@@ -630,7 +649,7 @@ public class SpannerClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final StreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
+  public final ServerStreamingCallable<ReadRequest, PartialResultSet> streamingReadCallable() {
     return stub.streamingReadCallable();
   }
 

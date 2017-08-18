@@ -20,7 +20,7 @@ import static com.google.cloud.pubsub.v1.PagedResponseWrappers.ListSubscriptions
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
-import com.google.api.gax.rpc.StreamingCallable;
+import com.google.api.gax.rpc.BidiStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.pubsub.v1.stub.SubscriberStub;
 import com.google.iam.v1.GetIamPolicyRequest;
@@ -110,11 +110,30 @@ import javax.annotation.Generated;
  * <p>This class can be customized by passing in a custom instance of SubscriptionAdminSettings to
  * create(). For example:
  *
+ * <p>To customize credentials:
+ *
  * <pre>
  * <code>
  * SubscriptionAdminSettings subscriptionAdminSettings =
  *     SubscriptionAdminSettings.defaultBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .build();
+ * SubscriptionAdminClient subscriptionAdminClient =
+ *     SubscriptionAdminClient.create(subscriptionAdminSettings);
+ * </code>
+ * </pre>
+ *
+ * To customize the endpoint:
+ *
+ * <pre>
+ * <code>
+ * SubscriptionAdminSettings subscriptionAdminSettings =
+ *     SubscriptionAdminSettings.defaultBuilder()
+ *         .setTransportProvider(SubscriptionAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setChannelProvider(SubscriptionAdminSettings.defaultGrpcChannelProviderBuilder()
+ *                 .setEndpoint(myEndpoint)
+ *                 .build())
+ *             .build())
  *         .build();
  * SubscriptionAdminClient subscriptionAdminClient =
  *     SubscriptionAdminClient.create(subscriptionAdminSettings);
@@ -943,7 +962,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  /* package-private */ final StreamingCallable<StreamingPullRequest, StreamingPullResponse>
+  /* package-private */ final BidiStreamingCallable<StreamingPullRequest, StreamingPullResponse>
       streamingPullCallable() {
     return stub.streamingPullCallable();
   }

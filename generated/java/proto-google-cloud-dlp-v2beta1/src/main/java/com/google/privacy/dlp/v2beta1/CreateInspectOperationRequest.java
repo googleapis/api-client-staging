@@ -86,6 +86,19 @@ public  final class CreateInspectOperationRequest extends
 
             break;
           }
+          case 42: {
+            com.google.privacy.dlp.v2beta1.OperationConfig.Builder subBuilder = null;
+            if (operationConfig_ != null) {
+              subBuilder = operationConfig_.toBuilder();
+            }
+            operationConfig_ = input.readMessage(com.google.privacy.dlp.v2beta1.OperationConfig.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(operationConfig_);
+              operationConfig_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -188,11 +201,13 @@ public  final class CreateInspectOperationRequest extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -211,11 +226,13 @@ public  final class CreateInspectOperationRequest extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -234,17 +251,52 @@ public  final class CreateInspectOperationRequest extends
    * identifier for the Operation, and the `count` is a counter used for
    * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
    * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
    * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
    * &lt;li&gt;start_offset&lt;br/&gt;
    * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+   * &lt;li&gt;dataset_id &lt;li&gt;table_id
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
    */
   public com.google.privacy.dlp.v2beta1.OutputStorageConfigOrBuilder getOutputConfigOrBuilder() {
     return getOutputConfig();
+  }
+
+  public static final int OPERATION_CONFIG_FIELD_NUMBER = 5;
+  private com.google.privacy.dlp.v2beta1.OperationConfig operationConfig_;
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  public boolean hasOperationConfig() {
+    return operationConfig_ != null;
+  }
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.OperationConfig getOperationConfig() {
+    return operationConfig_ == null ? com.google.privacy.dlp.v2beta1.OperationConfig.getDefaultInstance() : operationConfig_;
+  }
+  /**
+   * <pre>
+   * Additional configuration settings for long running operations.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder getOperationConfigOrBuilder() {
+    return getOperationConfig();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -268,6 +320,9 @@ public  final class CreateInspectOperationRequest extends
     if (outputConfig_ != null) {
       output.writeMessage(3, getOutputConfig());
     }
+    if (operationConfig_ != null) {
+      output.writeMessage(5, getOperationConfig());
+    }
   }
 
   public int getSerializedSize() {
@@ -286,6 +341,10 @@ public  final class CreateInspectOperationRequest extends
     if (outputConfig_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getOutputConfig());
+    }
+    if (operationConfig_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, getOperationConfig());
     }
     memoizedSize = size;
     return size;
@@ -318,6 +377,11 @@ public  final class CreateInspectOperationRequest extends
       result = result && getOutputConfig()
           .equals(other.getOutputConfig());
     }
+    result = result && (hasOperationConfig() == other.hasOperationConfig());
+    if (hasOperationConfig()) {
+      result = result && getOperationConfig()
+          .equals(other.getOperationConfig());
+    }
     return result;
   }
 
@@ -339,6 +403,10 @@ public  final class CreateInspectOperationRequest extends
     if (hasOutputConfig()) {
       hash = (37 * hash) + OUTPUT_CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getOutputConfig().hashCode();
+    }
+    if (hasOperationConfig()) {
+      hash = (37 * hash) + OPERATION_CONFIG_FIELD_NUMBER;
+      hash = (53 * hash) + getOperationConfig().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -492,6 +560,12 @@ public  final class CreateInspectOperationRequest extends
         outputConfig_ = null;
         outputConfigBuilder_ = null;
       }
+      if (operationConfigBuilder_ == null) {
+        operationConfig_ = null;
+      } else {
+        operationConfig_ = null;
+        operationConfigBuilder_ = null;
+      }
       return this;
     }
 
@@ -528,6 +602,11 @@ public  final class CreateInspectOperationRequest extends
         result.outputConfig_ = outputConfig_;
       } else {
         result.outputConfig_ = outputConfigBuilder_.build();
+      }
+      if (operationConfigBuilder_ == null) {
+        result.operationConfig_ = operationConfig_;
+      } else {
+        result.operationConfig_ = operationConfigBuilder_.build();
       }
       onBuilt();
       return result;
@@ -578,6 +657,9 @@ public  final class CreateInspectOperationRequest extends
       }
       if (other.hasOutputConfig()) {
         mergeOutputConfig(other.getOutputConfig());
+      }
+      if (other.hasOperationConfig()) {
+        mergeOperationConfig(other.getOperationConfig());
       }
       onChanged();
       return this;
@@ -925,11 +1007,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -948,11 +1032,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -975,11 +1061,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1008,11 +1096,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1039,11 +1129,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1074,11 +1166,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1105,11 +1199,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1130,11 +1226,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1158,11 +1256,13 @@ public  final class CreateInspectOperationRequest extends
      * identifier for the Operation, and the `count` is a counter used for
      * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
      * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;time_stamp&lt;br/&gt;
+     * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
      * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
      * &lt;li&gt;start_offset&lt;br/&gt;
      * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset
+     * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
+     * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
+     * &lt;li&gt;dataset_id &lt;li&gt;table_id
      * </pre>
      *
      * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -1179,6 +1279,159 @@ public  final class CreateInspectOperationRequest extends
         outputConfig_ = null;
       }
       return outputConfigBuilder_;
+    }
+
+    private com.google.privacy.dlp.v2beta1.OperationConfig operationConfig_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.OperationConfig, com.google.privacy.dlp.v2beta1.OperationConfig.Builder, com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder> operationConfigBuilder_;
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public boolean hasOperationConfig() {
+      return operationConfigBuilder_ != null || operationConfig_ != null;
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.OperationConfig getOperationConfig() {
+      if (operationConfigBuilder_ == null) {
+        return operationConfig_ == null ? com.google.privacy.dlp.v2beta1.OperationConfig.getDefaultInstance() : operationConfig_;
+      } else {
+        return operationConfigBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public Builder setOperationConfig(com.google.privacy.dlp.v2beta1.OperationConfig value) {
+      if (operationConfigBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        operationConfig_ = value;
+        onChanged();
+      } else {
+        operationConfigBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public Builder setOperationConfig(
+        com.google.privacy.dlp.v2beta1.OperationConfig.Builder builderForValue) {
+      if (operationConfigBuilder_ == null) {
+        operationConfig_ = builderForValue.build();
+        onChanged();
+      } else {
+        operationConfigBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public Builder mergeOperationConfig(com.google.privacy.dlp.v2beta1.OperationConfig value) {
+      if (operationConfigBuilder_ == null) {
+        if (operationConfig_ != null) {
+          operationConfig_ =
+            com.google.privacy.dlp.v2beta1.OperationConfig.newBuilder(operationConfig_).mergeFrom(value).buildPartial();
+        } else {
+          operationConfig_ = value;
+        }
+        onChanged();
+      } else {
+        operationConfigBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public Builder clearOperationConfig() {
+      if (operationConfigBuilder_ == null) {
+        operationConfig_ = null;
+        onChanged();
+      } else {
+        operationConfig_ = null;
+        operationConfigBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.OperationConfig.Builder getOperationConfigBuilder() {
+      
+      onChanged();
+      return getOperationConfigFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder getOperationConfigOrBuilder() {
+      if (operationConfigBuilder_ != null) {
+        return operationConfigBuilder_.getMessageOrBuilder();
+      } else {
+        return operationConfig_ == null ?
+            com.google.privacy.dlp.v2beta1.OperationConfig.getDefaultInstance() : operationConfig_;
+      }
+    }
+    /**
+     * <pre>
+     * Additional configuration settings for long running operations.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.OperationConfig operation_config = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.OperationConfig, com.google.privacy.dlp.v2beta1.OperationConfig.Builder, com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder> 
+        getOperationConfigFieldBuilder() {
+      if (operationConfigBuilder_ == null) {
+        operationConfigBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.OperationConfig, com.google.privacy.dlp.v2beta1.OperationConfig.Builder, com.google.privacy.dlp.v2beta1.OperationConfigOrBuilder>(
+                getOperationConfig(),
+                getParentForChildren(),
+                isClean());
+        operationConfig_ = null;
+      }
+      return operationConfigBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

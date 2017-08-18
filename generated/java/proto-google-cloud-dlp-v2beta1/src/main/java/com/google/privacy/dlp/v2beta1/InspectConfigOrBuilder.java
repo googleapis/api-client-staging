@@ -80,7 +80,7 @@ public interface InspectConfigOrBuilder extends
 
   /**
    * <pre>
-   * Limits the number of findings per content item.
+   * Limits the number of findings per content item or long running operation.
    * </pre>
    *
    * <code>int32 max_findings = 3;</code>
@@ -105,4 +105,48 @@ public interface InspectConfigOrBuilder extends
    * <code>bool exclude_types = 6;</code>
    */
   boolean getExcludeTypes();
+
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  java.util.List<com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit> 
+      getInfoTypeLimitsList();
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit getInfoTypeLimits(int index);
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  int getInfoTypeLimitsCount();
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  java.util.List<? extends com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder> 
+      getInfoTypeLimitsOrBuilderList();
+  /**
+   * <pre>
+   * Configuration of findings limit given for specified info types.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit info_type_limits = 7;</code>
+   */
+  com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder getInfoTypeLimitsOrBuilder(
+      int index);
 }

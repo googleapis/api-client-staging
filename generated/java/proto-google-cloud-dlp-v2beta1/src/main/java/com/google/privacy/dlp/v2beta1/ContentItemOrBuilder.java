@@ -56,5 +56,22 @@ public interface ContentItemOrBuilder extends
   com.google.protobuf.ByteString
       getValueBytes();
 
+  /**
+   * <pre>
+   * Structured content for inspection.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+   */
+  com.google.privacy.dlp.v2beta1.Table getTable();
+  /**
+   * <pre>
+   * Structured content for inspection.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.Table table = 4;</code>
+   */
+  com.google.privacy.dlp.v2beta1.TableOrBuilder getTableOrBuilder();
+
   public com.google.privacy.dlp.v2beta1.ContentItem.DataItemCase getDataItemCase();
 }
