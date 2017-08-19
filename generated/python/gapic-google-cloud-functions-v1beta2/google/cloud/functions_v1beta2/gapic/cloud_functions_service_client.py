@@ -34,7 +34,7 @@ from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.functions.v1beta2 import enums
+from google.cloud.functions_v1beta2.gapic import enums
 from google.cloud.proto.functions.v1beta2 import functions_pb2
 from google.cloud.proto.functions.v1beta2 import operations_pb2
 from google.protobuf import empty_pb2
@@ -277,9 +277,9 @@ class CloudFunctionsServiceClient(object):
         Returns a list of functions that belong to the requested project.
 
         Example:
-          >>> from google.cloud import functions
+          >>> from google.cloud import functions_v1beta2
           >>> from google.gax import CallOptions, INITIAL_PAGE
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> location = client.location_path('[PROJECT]', '[LOCATION]')
           >>>
           >>> # Iterate over all results
@@ -325,8 +325,8 @@ class CloudFunctionsServiceClient(object):
         Returns a function with the given name from the requested project.
 
         Example:
-          >>> from google.cloud import functions
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions_v1beta2
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> response = client.get_function(name)
 
@@ -352,8 +352,8 @@ class CloudFunctionsServiceClient(object):
         ``ALREADY_EXISTS`` error.
 
         Example:
-          >>> from google.cloud import functions
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions_v1beta2
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> location = client.location_path('[PROJECT]', '[LOCATION]')
           >>> function = {}
           >>> response = client.create_function(location, function)
@@ -395,8 +395,8 @@ class CloudFunctionsServiceClient(object):
         Updates existing function.
 
         Example:
-          >>> from google.cloud import functions
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions_v1beta2
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> function = {}
           >>> response = client.update_function(name, function)
@@ -439,8 +439,8 @@ class CloudFunctionsServiceClient(object):
         remove this function.
 
         Example:
-          >>> from google.cloud import functions
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions_v1beta2
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> response = client.delete_function(name)
           >>>
@@ -476,8 +476,8 @@ class CloudFunctionsServiceClient(object):
         limited traffic allowed.
 
         Example:
-          >>> from google.cloud import functions
-          >>> client = functions.CloudFunctionsServiceClient()
+          >>> from google.cloud import functions_v1beta2
+          >>> client = functions_v1beta2.CloudFunctionsServiceClient()
           >>> name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
           >>> data = ''
           >>> response = client.call_function(name, data)

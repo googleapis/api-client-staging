@@ -14,9 +14,9 @@
 
 from __future__ import absolute_import
 
-from google.cloud.functions import types
-from google.cloud.functions.v1beta2 import cloud_functions_service_client
-from google.cloud.functions.v1beta2 import enums
+from google.cloud.functions_v1beta2 import types
+from google.cloud.functions_v1beta2.gapic import cloud_functions_service_client
+from google.cloud.functions_v1beta2.gapic import enums
 
 
 class CloudFunctionsServiceClient(

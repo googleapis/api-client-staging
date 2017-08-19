@@ -19,7 +19,7 @@ import unittest
 from google.gax import errors
 from google.rpc import status_pb2
 
-from google.cloud import functions
+from google.cloud import functions_v1beta2
 from google.cloud.proto.functions.v1beta2 import functions_pb2
 from google.longrunning import operations_pb2
 from google.protobuf import empty_pb2
@@ -36,7 +36,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         location = client.location_path('[PROJECT]', '[LOCATION]')
@@ -76,7 +76,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         location = client.location_path('[PROJECT]', '[LOCATION]')
@@ -93,7 +93,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -136,7 +136,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -152,7 +152,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         location = client.location_path('[PROJECT]', '[LOCATION]')
@@ -199,7 +199,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         location = client.location_path('[PROJECT]', '[LOCATION]')
@@ -221,7 +221,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -268,7 +268,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -290,7 +290,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -322,7 +322,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -343,7 +343,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')
@@ -383,7 +383,7 @@ class TestCloudFunctionsServiceClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = functions.CloudFunctionsServiceClient()
+        client = functions_v1beta2.CloudFunctionsServiceClient()
 
         # Mock request
         name = client.function_path('[PROJECT]', '[LOCATION]', '[FUNCTION]')

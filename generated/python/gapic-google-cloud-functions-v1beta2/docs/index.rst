@@ -20,7 +20,7 @@ APIs
 
 .. autosummary::
 
-   google.cloud.functions.v1beta2.cloud_functions_service_client
+   google.cloud.functions_v1beta2.gapic.cloud_functions_service_client
 
 
 Contents

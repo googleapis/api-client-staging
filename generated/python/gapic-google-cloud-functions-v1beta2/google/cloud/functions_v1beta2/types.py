@@ -34,7 +34,7 @@ for module in (auth_pb2, http_pb2, functions_pb2, v1beta2_operations_pb2,
                longrunning_operations_pb2, any_pb2, descriptor_pb2,
                duration_pb2, empty_pb2, timestamp_pb2, status_pb2, ):
     for name, message in get_messages(module).items():
-        message.__module__ = 'google.cloud.functions.types'
+        message.__module__ = 'google.cloud.functions_v1beta2.types'
         setattr(sys.modules[__name__], name, message)
         names.append(name)
 
