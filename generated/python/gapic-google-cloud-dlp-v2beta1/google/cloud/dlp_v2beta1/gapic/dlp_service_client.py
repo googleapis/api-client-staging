@@ -28,12 +28,13 @@ import os
 import pkg_resources
 import platform
 
+from google.gapic.longrunning import operations_client
 from google.gax import api_callable
 from google.gax import config
 from google.gax import path_template
 import google.gax
 
-from google.cloud.gapic.privacy.dlp.v2beta1 import enums
+from google.cloud.dlp_v2beta1.gapic import enums
 from google.cloud.proto.privacy.dlp.v2beta1 import dlp_pb2
 from google.cloud.proto.privacy.dlp.v2beta1 import storage_pb2
 
@@ -64,7 +65,9 @@ class DlpServiceClient(object):
     @classmethod
     def result_path(cls, result):
         """Returns a fully-qualified result resource name string."""
-        return cls._RESULT_PATH_TEMPLATE.render({'result': result, })
+        return cls._RESULT_PATH_TEMPLATE.render({
+            'result': result,
+        })
 
     @classmethod
     def match_result_from_result_name(cls, result_name):
@@ -172,6 +175,16 @@ class DlpServiceClient(object):
             scopes=scopes,
             ssl_credentials=ssl_credentials)
 
+        self.operations_client = operations_client.OperationsClient(
+            service_path=service_path,
+            port=port,
+            channel=channel,
+            credentials=credentials,
+            ssl_credentials=ssl_credentials,
+            scopes=scopes,
+            client_config=client_config,
+            metrics_headers=metrics_headers, )
+
         self._inspect_content = api_callable.create_api_call(
             self.dlp_service_stub.InspectContent,
             settings=defaults['inspect_content'])
@@ -194,22 +207,25 @@ class DlpServiceClient(object):
     # Service calls
     def inspect_content(self, inspect_config, items, options=None):
         """
-        Find potentially sensitive info in a list of strings.
+        Finds potentially sensitive info in a list of strings.
         This method has limits on input size, processing time, and output size.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> from google.cloud.proto.privacy.dlp.v2beta1 import dlp_pb2
-          >>> client = dlp_service_client.DlpServiceClient()
-          >>> inspect_config = dlp_pb2.InspectConfig()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
+          >>> inspect_config = {}
           >>> items = []
           >>> response = client.inspect_content(inspect_config, items)
 
         Args:
-          inspect_config (:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`): Configuration for the inspector.
-          items (list[:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`]): The list of items to inspect. Items in a single request are
+          inspect_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`]): Configuration for the inspector.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`
+          items (list[Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`]]): The list of items to inspect. Items in a single request are
             considered \"related\" unless inspect_config.independent_inputs is true.
             Up to 100 are allowed per request.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -220,7 +236,6 @@ class DlpServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.InspectContentRequest(
             inspect_config=inspect_config, items=items)
         return self._inspect_content(request, options)
@@ -229,24 +244,34 @@ class DlpServiceClient(object):
                        inspect_config,
                        items,
                        replace_configs,
+                       image_redaction_configs=None,
                        options=None):
         """
-        Redact potentially sensitive info from a list of strings.
+        Redacts potentially sensitive info from a list of strings.
         This method has limits on input size, processing time, and output size.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> from google.cloud.proto.privacy.dlp.v2beta1 import dlp_pb2
-          >>> client = dlp_service_client.DlpServiceClient()
-          >>> inspect_config = dlp_pb2.InspectConfig()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
+          >>> inspect_config = {}
           >>> items = []
           >>> replace_configs = []
           >>> response = client.redact_content(inspect_config, items, replace_configs)
 
         Args:
-          inspect_config (:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`): Configuration for the inspector.
-          items (list[:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`]): The list of items to inspect. Up to 100 are allowed per request.
-          replace_configs (list[:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.RedactContentRequest.ReplaceConfig`]): The strings to replace findings with. Must specify at least one.
+          inspect_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`]): Configuration for the inspector.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`
+          items (list[Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`]]): The list of items to inspect. Up to 100 are allowed per request.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.ContentItem`
+          replace_configs (list[Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.RedactContentRequest.ReplaceConfig`]]): The strings to replace findings text findings with. Must specify at least
+            one of these or one ImageRedactionConfig if redacting images.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.RedactContentRequest.ReplaceConfig`
+          image_redaction_configs (list[Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.RedactContentRequest.ImageRedactionConfig`]]): The configuration for specifying what content to redact from images.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.RedactContentRequest.ImageRedactionConfig`
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -257,88 +282,119 @@ class DlpServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.RedactContentRequest(
             inspect_config=inspect_config,
             items=items,
-            replace_configs=replace_configs)
+            replace_configs=replace_configs,
+            image_redaction_configs=image_redaction_configs)
         return self._redact_content(request, options)
 
     def create_inspect_operation(self,
                                  inspect_config,
                                  storage_config,
                                  output_config,
+                                 operation_config=None,
                                  options=None):
         """
-        Schedule a job scanning content in a Google Cloud Platform data repository.
+        Schedules a job scanning content in a Google Cloud Platform data
+        repository.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> from google.cloud.proto.privacy.dlp.v2beta1 import dlp_pb2
-          >>> from google.cloud.proto.privacy.dlp.v2beta1 import storage_pb2
-          >>> client = dlp_service_client.DlpServiceClient()
-          >>> inspect_config = dlp_pb2.InspectConfig()
-          >>> storage_config = storage_pb2.StorageConfig()
-          >>> output_config = dlp_pb2.OutputStorageConfig()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
+          >>> inspect_config = {}
+          >>> storage_config = {}
+          >>> output_config = {}
           >>> response = client.create_inspect_operation(inspect_config, storage_config, output_config)
+          >>>
+          >>> def callback(operation_future):
+          >>>     # Handle result.
+          >>>     result = operation_future.result()
+          >>>
+          >>> response.add_done_callback(callback)
+          >>>
+          >>> # Handle metadata.
+          >>> metadata = response.metadata()
 
         Args:
-          inspect_config (:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`): Configuration for the inspector.
-          storage_config (:class:`google.cloud.proto.privacy.dlp.v2beta1.storage_pb2.StorageConfig`): Specification of the data set to process.
-          output_config (:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.OutputStorageConfig`): Optional location to store findings. The bucket must already exist and
+          inspect_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`]): Configuration for the inspector.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.InspectConfig`
+          storage_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.storage_pb2.StorageConfig`]): Specification of the data set to process.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.storage_pb2.StorageConfig`
+          output_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.OutputStorageConfig`]): Optional location to store findings. The bucket must already exist and
             the Google APIs service account for DLP must have write permission to
             write to the given bucket.
-            Results will be split over multiple csv files with each file name matching
-            the pattern \"[operation_id] + [count].csv\".
-            The operation_id will match the identifier for the Operation,
-            and the [count] is a counter used for tracking the number of files written.
-            The CSV file(s) contain the following columns regardless of storage type
-            scanned: id, info_type, likelihood, byte size of finding, quote, time_stamp
-            For cloud storage the next two columns are: file_path, start_offset
-            For datastore the next two columns are: project_id, namespace_id, path,
-            ::
-
-                column_name, offset.
+            <p>Results are split over multiple csv files with each file name matching
+            the pattern \"[operation_id]_[count].csv\", for example
+            ``3094877188788974909_1.csv``. The ``operation_id`` matches the
+            identifier for the Operation, and the ``count`` is a counter used for
+            tracking the number of files written. <p>The CSV file(s) contain the
+            following columns regardless of storage type scanned: <li>id <li>info_type
+            <li>likelihood <li>byte size of finding <li>quote <li>timestamp<br/>
+            <p>For Cloud Storage the next columns are: <li>file_path
+            <li>start_offset<br/>
+            <p>For Cloud Datastore the next columns are: <li>project_id
+            <li>namespace_id <li>path <li>column_name <li>offset<br/>
+            <p>For BigQuery the next columns are: <li>row_number <li>project_id
+            <li>dataset_id <li>table_id
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.OutputStorageConfig`
+          operation_config (Union[dict|:class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.OperationConfig`]): Additional configuration settings for long running operations.
+            If a dict is provided, it must be of the same form as the protobuf
+            message :class:`google.cloud.proto.privacy.dlp.v2beta1.dlp_pb2.OperationConfig`
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
         Returns:
-          A :class:`google.longrunning.operations_pb2.Operation` instance.
+          A :class:`google.gax._OperationFuture` instance.
 
         Raises:
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.CreateInspectOperationRequest(
             inspect_config=inspect_config,
             storage_config=storage_config,
-            output_config=output_config)
-        return self._create_inspect_operation(request, options)
+            output_config=output_config,
+            operation_config=operation_config)
+        return google.gax._OperationFuture(
+            self._create_inspect_operation(request, options),
+            self.operations_client, dlp_pb2.InspectOperationResult,
+            dlp_pb2.InspectOperationMetadata, options)
 
     def list_inspect_findings(self,
                               name,
                               page_size=None,
                               page_token=None,
+                              filter_=None,
                               options=None):
         """
         Returns list of results for given inspect operation result set id.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> client = dlp_service_client.DlpServiceClient()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
           >>> name = client.result_path('[RESULT]')
           >>> response = client.list_inspect_findings(name)
 
         Args:
-          name (string): Identifier of the results set returned as metadata of
+          name (str): Identifier of the results set returned as metadata of
             the longrunning operation created by a call to CreateInspectOperation.
-            Should be in the format of ``inspect/results/{id}.
+            Should be in the format of ``inspect/results/{id}``.
           page_size (int): Maximum number of results to return.
-            If 0, the implementation will select a reasonable value.
-          page_token (string): The value returned by the last ``ListInspectFindingsResponse``; indicates
+            If 0, the implementation selects a reasonable value.
+          page_token (str): The value returned by the last ``ListInspectFindingsResponse``; indicates
             that this is a continuation of a prior ``ListInspectFindings`` call, and that
             the system should return the next page of data.
+          filter_ (str): Restricts findings to items that match. Supports info_type and likelihood.
+            <p>Examples:<br/>
+            <li>info_type=EMAIL_ADDRESS
+            <li>info_type=PHONE_NUMBER,EMAIL_ADDRESS
+            <li>likelihood=VERY_LIKELY
+            <li>likelihood=VERY_LIKELY,LIKELY
+            <li>info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
           options (:class:`google.gax.CallOptions`): Overrides the default
             settings for this call, e.g, timeout, retries etc.
 
@@ -349,9 +405,11 @@ class DlpServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.ListInspectFindingsRequest(
-            name=name, page_size=page_size, page_token=page_token)
+            name=name,
+            page_size=page_size,
+            page_token=page_token,
+            filter=filter_)
         return self._list_inspect_findings(request, options)
 
     def list_info_types(self, category, language_code, options=None):
@@ -359,15 +417,15 @@ class DlpServiceClient(object):
         Returns sensitive information types for given category.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> client = dlp_service_client.DlpServiceClient()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
           >>> category = ''
           >>> language_code = ''
           >>> response = client.list_info_types(category, language_code)
 
         Args:
-          category (string): Category name as returned by ListRootCategories.
-          language_code (string): Optional BCP-47 language code for localized info type friendly
+          category (str): Category name as returned by ListRootCategories.
+          language_code (str): Optional BCP-47 language code for localized info type friendly
             names. If omitted, or if localized strings are not available,
             en-US strings will be returned.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -380,7 +438,6 @@ class DlpServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.ListInfoTypesRequest(
             category=category, language_code=language_code)
         return self._list_info_types(request, options)
@@ -390,13 +447,13 @@ class DlpServiceClient(object):
         Returns the list of root categories of sensitive information.
 
         Example:
-          >>> from google.cloud.gapic.privacy.dlp.v2beta1 import dlp_service_client
-          >>> client = dlp_service_client.DlpServiceClient()
+          >>> from google.cloud import dlp_v2beta1
+          >>> client = dlp_v2beta1.DlpServiceClient()
           >>> language_code = ''
           >>> response = client.list_root_categories(language_code)
 
         Args:
-          language_code (string): Optional language code for localized friendly category names.
+          language_code (str): Optional language code for localized friendly category names.
             If omitted or if localized strings are not available,
             en-US strings will be returned.
           options (:class:`google.gax.CallOptions`): Overrides the default
@@ -409,7 +466,6 @@ class DlpServiceClient(object):
           :exc:`google.gax.errors.GaxError` if the RPC is aborted.
           :exc:`ValueError` if the parameters are invalid.
         """
-        # Create the request object.
         request = dlp_pb2.ListRootCategoriesRequest(
             language_code=language_code)
         return self._list_root_categories(request, options)
