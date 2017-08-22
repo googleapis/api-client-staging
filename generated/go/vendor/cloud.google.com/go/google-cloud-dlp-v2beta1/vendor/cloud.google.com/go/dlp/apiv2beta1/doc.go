@@ -15,12 +15,12 @@
 // AUTO-GENERATED CODE. DO NOT EDIT.
 
 // Package dlp is an experimental, auto-generated package for the
-// dlp API.
+// DLP API.
 //
 // The Google Data Loss Prevention API provides methods for detection of
 // privacy-sensitive fragments in text, images, and Google Cloud Platform
 // storage repositories.
-package dlp // import "cloud.google.com/go/privacy/dlp/apiv2beta1"
+package dlp // import "cloud.google.com/go/dlp/apiv2beta1"
 
 import (
 	"golang.org/x/net/context"
@@ -34,6 +34,7 @@ func insertXGoog(ctx context.Context, val []string) context.Context {
 	return metadata.NewOutgoingContext(ctx, md)
 }
 
+// DefaultAuthScopes reports the default set of authentication scopes to use with this package.
 func DefaultAuthScopes() []string {
 	return []string{
 		"https://www.googleapis.com/auth/cloud-platform",

@@ -39,6 +39,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
+	gstatus "google.golang.org/grpc/status"
 )
 
 var _ = io.EOF
@@ -198,7 +199,7 @@ func TestDlpServiceInspectContent(t *testing.T) {
 
 func TestDlpServiceInspectContentError(t *testing.T) {
 	errCode := codes.PermissionDenied
-	mockDlp.err = grpc.Errorf(errCode, "test error")
+	mockDlp.err = gstatus.Error(errCode, "test error")
 
 	var inspectConfig *dlppb.InspectConfig = &dlppb.InspectConfig{}
 	var items []*dlppb.ContentItem = nil
@@ -214,7 +215,9 @@ func TestDlpServiceInspectContentError(t *testing.T) {
 
 	resp, err := c.InspectContent(context.Background(), request)
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
@@ -258,7 +261,7 @@ func TestDlpServiceRedactContent(t *testing.T) {
 
 func TestDlpServiceRedactContentError(t *testing.T) {
 	errCode := codes.PermissionDenied
-	mockDlp.err = grpc.Errorf(errCode, "test error")
+	mockDlp.err = gstatus.Error(errCode, "test error")
 
 	var inspectConfig *dlppb.InspectConfig = &dlppb.InspectConfig{}
 	var items []*dlppb.ContentItem = nil
@@ -276,7 +279,9 @@ func TestDlpServiceRedactContentError(t *testing.T) {
 
 	resp, err := c.RedactContent(context.Background(), request)
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
@@ -367,7 +372,9 @@ func TestDlpServiceCreateInspectOperationError(t *testing.T) {
 	}
 	resp, err := respLRO.Wait(context.Background())
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
@@ -383,7 +390,7 @@ func TestDlpServiceListInspectFindings(t *testing.T) {
 
 	mockDlp.resps = append(mockDlp.resps[:0], expectedResponse)
 
-	var formattedName string = DlpResultPath("[RESULT]")
+	var formattedName string = ResultPath("[RESULT]")
 	var request = &dlppb.ListInspectFindingsRequest{
 		Name: formattedName,
 	}
@@ -410,9 +417,9 @@ func TestDlpServiceListInspectFindings(t *testing.T) {
 
 func TestDlpServiceListInspectFindingsError(t *testing.T) {
 	errCode := codes.PermissionDenied
-	mockDlp.err = grpc.Errorf(errCode, "test error")
+	mockDlp.err = gstatus.Error(errCode, "test error")
 
-	var formattedName string = DlpResultPath("[RESULT]")
+	var formattedName string = ResultPath("[RESULT]")
 	var request = &dlppb.ListInspectFindingsRequest{
 		Name: formattedName,
 	}
@@ -424,7 +431,9 @@ func TestDlpServiceListInspectFindingsError(t *testing.T) {
 
 	resp, err := c.ListInspectFindings(context.Background(), request)
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
@@ -466,7 +475,7 @@ func TestDlpServiceListInfoTypes(t *testing.T) {
 
 func TestDlpServiceListInfoTypesError(t *testing.T) {
 	errCode := codes.PermissionDenied
-	mockDlp.err = grpc.Errorf(errCode, "test error")
+	mockDlp.err = gstatus.Error(errCode, "test error")
 
 	var category string = "category50511102"
 	var languageCode string = "languageCode-412800396"
@@ -482,7 +491,9 @@ func TestDlpServiceListInfoTypesError(t *testing.T) {
 
 	resp, err := c.ListInfoTypes(context.Background(), request)
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
@@ -522,7 +533,7 @@ func TestDlpServiceListRootCategories(t *testing.T) {
 
 func TestDlpServiceListRootCategoriesError(t *testing.T) {
 	errCode := codes.PermissionDenied
-	mockDlp.err = grpc.Errorf(errCode, "test error")
+	mockDlp.err = gstatus.Error(errCode, "test error")
 
 	var languageCode string = "languageCode-412800396"
 	var request = &dlppb.ListRootCategoriesRequest{
@@ -536,7 +547,9 @@ func TestDlpServiceListRootCategoriesError(t *testing.T) {
 
 	resp, err := c.ListRootCategories(context.Background(), request)
 
-	if c := grpc.Code(err); c != errCode {
+	if st, ok := gstatus.FromError(err); !ok {
+		t.Errorf("got error %v, expected grpc error", err)
+	} else if c := st.Code(); c != errCode {
 		t.Errorf("got error code %q, want %q", c, errCode)
 	}
 	_ = resp
