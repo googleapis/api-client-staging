@@ -19,10 +19,11 @@ import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.L
 import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
-import com.google.api.gax.grpc.GrpcApiException;
+import com.google.api.gax.grpc.GrpcStatusCode;
 import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
+import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -140,8 +141,8 @@ public class InstanceAdminClientTest {
 
       client.listInstanceConfigs(parent);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -180,8 +181,8 @@ public class InstanceAdminClientTest {
 
       client.getInstanceConfig(name);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -224,8 +225,8 @@ public class InstanceAdminClientTest {
 
       client.listInstances(parent);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -268,8 +269,8 @@ public class InstanceAdminClientTest {
 
       client.getInstance(name);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -325,10 +326,11 @@ public class InstanceAdminClientTest {
       client.createInstanceAsync(parent, instanceId, instance).get();
       Assert.fail("No exception raised");
     } catch (ExecutionException e) {
-      Assert.assertEquals(GrpcApiException.class, e.getCause().getClass());
-      GrpcApiException apiException = (GrpcApiException) e.getCause();
+      Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
       Assert.assertEquals(
-          Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode().getCode());
+          Status.INVALID_ARGUMENT.getCode(),
+          ((GrpcStatusCode) apiException.getStatusCode()).getCode());
     }
   }
 
@@ -381,10 +383,11 @@ public class InstanceAdminClientTest {
       client.updateInstanceAsync(instance, fieldMask).get();
       Assert.fail("No exception raised");
     } catch (ExecutionException e) {
-      Assert.assertEquals(GrpcApiException.class, e.getCause().getClass());
-      GrpcApiException apiException = (GrpcApiException) e.getCause();
+      Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
+      InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
       Assert.assertEquals(
-          Status.INVALID_ARGUMENT.getCode(), apiException.getStatusCode().getCode());
+          Status.INVALID_ARGUMENT.getCode(),
+          ((GrpcStatusCode) apiException.getStatusCode()).getCode());
     }
   }
 
@@ -416,8 +419,8 @@ public class InstanceAdminClientTest {
 
       client.deleteInstance(name);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -455,8 +458,8 @@ public class InstanceAdminClientTest {
 
       client.setIamPolicy(formattedResource, policy);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -491,8 +494,8 @@ public class InstanceAdminClientTest {
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 
@@ -529,8 +532,8 @@ public class InstanceAdminClientTest {
 
       client.testIamPermissions(formattedResource, permissions);
       Assert.fail("No exception raised");
-    } catch (GrpcApiException e) {
-      Assert.assertEquals(Status.INVALID_ARGUMENT.getCode(), e.getStatusCode().getCode());
+    } catch (InvalidArgumentException e) {
+      // Expected exception
     }
   }
 }
