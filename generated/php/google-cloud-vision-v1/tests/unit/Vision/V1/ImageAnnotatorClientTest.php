@@ -44,13 +44,13 @@ class ImageAnnotatorClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => ImageAnnotatorClient::SERVICE_ADDRESS,
+            'port' => ImageAnnotatorClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            ImageAnnotatorClient::SERVICE_ADDRESS,
-            ImageAnnotatorClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -89,7 +89,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
 
-        $this->assertRepeatedFieldEquals($requests, $actualRequestObject->getRequests());
+        $this->assertProtobufEquals($requests, $actualRequestObject->getRequests());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

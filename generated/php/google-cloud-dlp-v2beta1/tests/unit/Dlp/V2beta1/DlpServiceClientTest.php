@@ -30,6 +30,10 @@ use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
+use Google\Privacy\Dlp\V2beta1\CloudStorageOptions;
+use Google\Privacy\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
+use Google\Privacy\Dlp\V2beta1\ContentItem;
+use Google\Privacy\Dlp\V2beta1\InfoType;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
 use Google\Privacy\Dlp\V2beta1\InspectContentResponse;
 use Google\Privacy\Dlp\V2beta1\InspectOperationResult;
@@ -37,6 +41,7 @@ use Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse;
 use Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
+use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentResponse;
 use Google\Privacy\Dlp\V2beta1\StorageConfig;
 use Google\Protobuf\Any;
@@ -61,13 +66,13 @@ class DlpServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => DlpServiceClient::SERVICE_ADDRESS,
+            'port' => DlpServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            DlpServiceClient::SERVICE_ADDRESS,
-            DlpServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -96,8 +101,18 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
-        $items = [];
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
 
         $response = $client->inspectContent($inspectConfig, $items);
         $this->assertEquals($expectedResponse, $response);
@@ -107,8 +122,8 @@ class DlpServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/InspectContent', $actualFuncCall);
 
-        $this->assertEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertRepeatedFieldEquals($items, $actualRequestObject->getItems());
+        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -136,8 +151,18 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
-        $items = [];
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
 
         try {
             $client->inspectContent($inspectConfig, $items);
@@ -168,9 +193,26 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
-        $items = [];
-        $replaceConfigs = [];
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
         $response = $client->redactContent($inspectConfig, $items, $replaceConfigs);
         $this->assertEquals($expectedResponse, $response);
@@ -180,9 +222,9 @@ class DlpServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/RedactContent', $actualFuncCall);
 
-        $this->assertEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertRepeatedFieldEquals($items, $actualRequestObject->getItems());
-        $this->assertRepeatedFieldEquals($replaceConfigs, $actualRequestObject->getReplaceConfigs());
+        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+        $this->assertProtobufEquals($replaceConfigs, $actualRequestObject->getReplaceConfigs());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -210,9 +252,26 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
-        $items = [];
-        $replaceConfigs = [];
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
 
         try {
             $client->redactContent($inspectConfig, $items, $replaceConfigs);
@@ -254,9 +313,9 @@ class DlpServiceClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/createInspectOperationTest');
         $incompleteOperation->setDone(false);
         $grpcStub->addResponse($incompleteOperation);
-        $name = 'name3373707';
+        $name2 = 'name2-1052831874';
         $expectedResponse = new InspectOperationResult();
-        $expectedResponse->setName($name);
+        $expectedResponse->setName($name2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -266,8 +325,19 @@ class DlpServiceClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $url = 'gs://example_bucket/example_file.png';
+        $fileSet = new FileSet();
+        $fileSet->setUrl($url);
+        $cloudStorageOptions = new CloudStorageOptions();
+        $cloudStorageOptions->setFileSet($fileSet);
         $storageConfig = new StorageConfig();
+        $storageConfig->setCloudStorageOptions($cloudStorageOptions);
         $outputConfig = new OutputStorageConfig();
 
         $response = $client->createInspectOperation($inspectConfig, $storageConfig, $outputConfig);
@@ -281,9 +351,9 @@ class DlpServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/CreateInspectOperation', $actualApiFuncCall);
-        $this->assertEquals($inspectConfig, $actualApiRequestObject->getInspectConfig());
-        $this->assertEquals($storageConfig, $actualApiRequestObject->getStorageConfig());
-        $this->assertEquals($outputConfig, $actualApiRequestObject->getOutputConfig());
+        $this->assertProtobufEquals($inspectConfig, $actualApiRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($storageConfig, $actualApiRequestObject->getStorageConfig());
+        $this->assertProtobufEquals($outputConfig, $actualApiRequestObject->getOutputConfig());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInspectOperationTest');
@@ -345,8 +415,19 @@ class DlpServiceClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
         $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $url = 'gs://example_bucket/example_file.png';
+        $fileSet = new FileSet();
+        $fileSet->setUrl($url);
+        $cloudStorageOptions = new CloudStorageOptions();
+        $cloudStorageOptions->setFileSet($fileSet);
         $storageConfig = new StorageConfig();
+        $storageConfig->setCloudStorageOptions($cloudStorageOptions);
         $outputConfig = new OutputStorageConfig();
 
         $response = $client->createInspectOperation($inspectConfig, $storageConfig, $outputConfig);
@@ -399,7 +480,7 @@ class DlpServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListInspectFindings', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -458,8 +539,8 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $category = 'category50511102';
-        $languageCode = 'languageCode-412800396';
+        $category = 'PII';
+        $languageCode = 'en';
 
         $response = $client->listInfoTypes($category, $languageCode);
         $this->assertEquals($expectedResponse, $response);
@@ -469,8 +550,8 @@ class DlpServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListInfoTypes', $actualFuncCall);
 
-        $this->assertEquals($category, $actualRequestObject->getCategory());
-        $this->assertEquals($languageCode, $actualRequestObject->getLanguageCode());
+        $this->assertProtobufEquals($category, $actualRequestObject->getCategory());
+        $this->assertProtobufEquals($languageCode, $actualRequestObject->getLanguageCode());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -498,8 +579,8 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $category = 'category50511102';
-        $languageCode = 'languageCode-412800396';
+        $category = 'PII';
+        $languageCode = 'en';
 
         try {
             $client->listInfoTypes($category, $languageCode);
@@ -530,7 +611,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $languageCode = 'languageCode-412800396';
+        $languageCode = 'en';
 
         $response = $client->listRootCategories($languageCode);
         $this->assertEquals($expectedResponse, $response);
@@ -540,7 +621,7 @@ class DlpServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/ListRootCategories', $actualFuncCall);
 
-        $this->assertEquals($languageCode, $actualRequestObject->getLanguageCode());
+        $this->assertProtobufEquals($languageCode, $actualRequestObject->getLanguageCode());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -568,7 +649,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $languageCode = 'languageCode-412800396';
+        $languageCode = 'en';
 
         try {
             $client->listRootCategories($languageCode);

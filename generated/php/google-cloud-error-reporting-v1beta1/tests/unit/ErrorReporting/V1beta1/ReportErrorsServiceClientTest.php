@@ -45,13 +45,13 @@ class ReportErrorsServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => ReportErrorsServiceClient::SERVICE_ADDRESS,
+            'port' => ReportErrorsServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            ReportErrorsServiceClient::SERVICE_ADDRESS,
-            ReportErrorsServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -91,8 +91,8 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
 
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertEquals($event, $actualRequestObject->getEvent());
+        $this->assertProtobufEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertProtobufEquals($event, $actualRequestObject->getEvent());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

@@ -61,13 +61,13 @@ class OperationsClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => 'unknown-service-address',
+            'port' => OperationsClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            'unknown-service-address',
-            OperationsClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -112,7 +112,7 @@ class OperationsClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualFuncCall);
 
-        $this->assertEquals($name, $actualRequestObject->getName());
+        $this->assertProtobufEquals($name, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -191,8 +191,8 @@ class OperationsClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/ListOperations', $actualFuncCall);
 
-        $this->assertEquals($name, $actualRequestObject->getName());
-        $this->assertEquals($filter, $actualRequestObject->getFilter());
+        $this->assertProtobufEquals($name, $actualRequestObject->getName());
+        $this->assertProtobufEquals($filter, $actualRequestObject->getFilter());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -260,7 +260,7 @@ class OperationsClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/CancelOperation', $actualFuncCall);
 
-        $this->assertEquals($name, $actualRequestObject->getName());
+        $this->assertProtobufEquals($name, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -328,7 +328,7 @@ class OperationsClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/DeleteOperation', $actualFuncCall);
 
-        $this->assertEquals($name, $actualRequestObject->getName());
+        $this->assertProtobufEquals($name, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

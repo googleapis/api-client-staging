@@ -1,7 +1,7 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "^0.21.1"
+        "google/gax": "^0.22"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
@@ -24,7 +24,12 @@
                 "generated/php/google-cloud-spanner-admin-instance-v1/src",
                 "generated/php/google-cloud-trace-v1/src",
                 "generated/php/google-cloud-video-intelligence-v1beta1/src",
+                "generated/php/google-cloud-video-intelligence-v1beta2/src",
                 "generated/php/google-cloud-vision-v1/src"
+            ],
+            "Google\\": [
+                "generated/php/google-longrunning-v1/src",
+                "generated/php/google-longrunning-v1/proto/src"
             ],
             "Google\\Cloud\\Tests\\": [
                 "generated/php/google-cloud-bigtable-admin-v2/tests/unit",
@@ -42,7 +47,11 @@
                 "generated/php/google-cloud-spanner-admin-instance-v1/tests/unit",
                 "generated/php/google-cloud-trace-v1/tests/unit",
                 "generated/php/google-cloud-video-intelligence-v1beta1/tests/unit",
+                "generated/php/google-cloud-video-intelligence-v1beta2/tests/unit",
                 "generated/php/google-cloud-vision-v1/tests/unit"
+            ],
+            "Google\\Tests\\": [
+                "generated/php/google-longrunning-v1/tests/unit"
             ],
             "": [
                 "generated/php/google-cloud-bigtable-admin-v2/proto/src",
@@ -60,7 +69,11 @@
                 "generated/php/google-cloud-spanner-admin-instance-v1/proto/src",
                 "generated/php/google-cloud-trace-v1/proto/src",
                 "generated/php/google-cloud-video-intelligence-v1beta1/proto/src",
-                "generated/php/google-cloud-vision-v1/proto/src"
+                "generated/php/google-cloud-video-intelligence-v1beta2/proto/src",
+                "generated/php/google-cloud-vision-v1/proto/src",
+                "generated/php/google-common-protos/src",
+                "generated/php/google-iam-v1/src",
+                "generated/php/google-longrunning-v1/proto/src"
             ]
         }
     }

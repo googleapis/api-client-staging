@@ -52,13 +52,13 @@ class MetricServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => MetricServiceClient::SERVICE_ADDRESS,
+            'port' => MetricServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            MetricServiceClient::SERVICE_ADDRESS,
-            MetricServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -106,7 +106,7 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -182,7 +182,7 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -260,7 +260,7 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/ListMetricDescriptors', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -338,7 +338,7 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/GetMetricDescriptor', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -418,8 +418,8 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/CreateMetricDescriptor', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertEquals($metricDescriptor, $actualRequestObject->getMetricDescriptor());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($metricDescriptor, $actualRequestObject->getMetricDescriptor());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -488,7 +488,7 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/DeleteMetricDescriptor', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -569,10 +569,10 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/ListTimeSeries', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertEquals($filter, $actualRequestObject->getFilter());
-        $this->assertEquals($interval, $actualRequestObject->getInterval());
-        $this->assertEquals($view, $actualRequestObject->getView());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($filter, $actualRequestObject->getFilter());
+        $this->assertProtobufEquals($interval, $actualRequestObject->getInterval());
+        $this->assertProtobufEquals($view, $actualRequestObject->getView());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -643,8 +643,8 @@ class MetricServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.MetricService/CreateTimeSeries', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertRepeatedFieldEquals($timeSeries, $actualRequestObject->getTimeSeries());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($timeSeries, $actualRequestObject->getTimeSeries());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

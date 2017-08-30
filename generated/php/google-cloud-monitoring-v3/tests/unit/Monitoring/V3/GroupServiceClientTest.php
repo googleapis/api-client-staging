@@ -48,13 +48,13 @@ class GroupServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => GroupServiceClient::SERVICE_ADDRESS,
+            'port' => GroupServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            GroupServiceClient::SERVICE_ADDRESS,
-            GroupServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -102,7 +102,7 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroups', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -180,7 +180,7 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/GetGroup', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -260,8 +260,8 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
-        $this->assertEquals($group, $actualRequestObject->getGroup());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -341,7 +341,7 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/UpdateGroup', $actualFuncCall);
 
-        $this->assertEquals($group, $actualRequestObject->getGroup());
+        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -409,7 +409,7 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/DeleteGroup', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -489,7 +489,7 @@ class GroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
         $this->assertTrue($grpcStub->isExhausted());
     }
 

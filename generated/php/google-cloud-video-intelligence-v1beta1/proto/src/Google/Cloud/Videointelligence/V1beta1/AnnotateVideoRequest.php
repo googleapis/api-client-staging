@@ -108,11 +108,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setInputUri($var)
     {
         GPBUtil::checkString($var, True);
         $this->input_uri = $var;
+
+        return $this;
     }
 
     /**
@@ -133,11 +136,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_content = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setInputContent($var)
     {
         GPBUtil::checkString($var, True);
         $this->input_content = $var;
+
+        return $this;
     }
 
     /**
@@ -156,11 +162,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.Feature features = 2;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFeatures(&$var)
+    public function setFeatures($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Videointelligence\V1beta1\Feature::class);
         $this->features = $arr;
+
+        return $this;
     }
 
     /**
@@ -179,11 +188,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\VideoContext $var
+     * @return $this
      */
-    public function setVideoContext(&$var)
+    public function setVideoContext($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Videointelligence\V1beta1\VideoContext::class);
         $this->video_context = $var;
+
+        return $this;
     }
 
     /**
@@ -212,11 +224,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setOutputUri($var)
     {
         GPBUtil::checkString($var, True);
         $this->output_uri = $var;
+
+        return $this;
     }
 
     /**
@@ -239,11 +254,14 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setLocationId($var)
     {
         GPBUtil::checkString($var, True);
         $this->location_id = $var;
+
+        return $this;
     }
 
 }

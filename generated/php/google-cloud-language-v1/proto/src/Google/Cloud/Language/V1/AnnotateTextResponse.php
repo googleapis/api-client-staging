@@ -77,11 +77,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
      * @param \Google\Cloud\Language\V1\Sentence[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSentences(&$var)
+    public function setSentences($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\Sentence::class);
         $this->sentences = $arr;
+
+        return $this;
     }
 
     /**
@@ -104,11 +107,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
      * @param \Google\Cloud\Language\V1\Token[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setTokens(&$var)
+    public function setTokens($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\Token::class);
         $this->tokens = $arr;
+
+        return $this;
     }
 
     /**
@@ -131,11 +137,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Entity entities = 3;</code>
      * @param \Google\Cloud\Language\V1\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setEntities(&$var)
+    public function setEntities($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\Entity::class);
         $this->entities = $arr;
+
+        return $this;
     }
 
     /**
@@ -156,11 +165,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      * @param \Google\Cloud\Language\V1\Sentiment $var
+     * @return $this
      */
-    public function setDocumentSentiment(&$var)
+    public function setDocumentSentiment($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\Sentiment::class);
         $this->document_sentiment = $var;
+
+        return $this;
     }
 
     /**
@@ -183,11 +195,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setLanguage($var)
     {
         GPBUtil::checkString($var, True);
         $this->language = $var;
+
+        return $this;
     }
 
 }

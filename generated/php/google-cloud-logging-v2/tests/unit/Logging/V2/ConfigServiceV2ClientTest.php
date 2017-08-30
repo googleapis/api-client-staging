@@ -46,13 +46,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => ConfigServiceV2Client::SERVICE_ADDRESS,
+            'port' => ConfigServiceV2Client::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            ConfigServiceV2Client::SERVICE_ADDRESS,
-            ConfigServiceV2Client::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -100,7 +100,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListSinks', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -178,7 +178,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSink', $actualFuncCall);
 
-        $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
+        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -258,8 +258,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateSink', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertEquals($sink, $actualRequestObject->getSink());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($sink, $actualRequestObject->getSink());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -340,8 +340,8 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSink', $actualFuncCall);
 
-        $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
-        $this->assertEquals($sink, $actualRequestObject->getSink());
+        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
+        $this->assertProtobufEquals($sink, $actualRequestObject->getSink());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -410,7 +410,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteSink', $actualFuncCall);
 
-        $this->assertEquals($formattedSinkName, $actualRequestObject->getSinkName());
+        $this->assertProtobufEquals($formattedSinkName, $actualRequestObject->getSinkName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

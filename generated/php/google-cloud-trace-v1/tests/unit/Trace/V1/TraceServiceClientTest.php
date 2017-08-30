@@ -47,13 +47,13 @@ class TraceServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => TraceServiceClient::SERVICE_ADDRESS,
+            'port' => TraceServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            TraceServiceClient::SERVICE_ADDRESS,
-            TraceServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -92,8 +92,8 @@ class TraceServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/PatchTraces', $actualFuncCall);
 
-        $this->assertEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertEquals($traces, $actualRequestObject->getTraces());
+        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
+        $this->assertProtobufEquals($traces, $actualRequestObject->getTraces());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -168,8 +168,8 @@ class TraceServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/GetTrace', $actualFuncCall);
 
-        $this->assertEquals($projectId, $actualRequestObject->getProjectId());
-        $this->assertEquals($traceId, $actualRequestObject->getTraceId());
+        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
+        $this->assertProtobufEquals($traceId, $actualRequestObject->getTraceId());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -248,7 +248,7 @@ class TraceServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudtrace.v1.TraceService/ListTraces', $actualFuncCall);
 
-        $this->assertEquals($projectId, $actualRequestObject->getProjectId());
+        $this->assertProtobufEquals($projectId, $actualRequestObject->getProjectId());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
