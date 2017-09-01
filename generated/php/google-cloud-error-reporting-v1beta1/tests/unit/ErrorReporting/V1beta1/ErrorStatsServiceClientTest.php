@@ -49,13 +49,13 @@ class ErrorStatsServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => ErrorStatsServiceClient::SERVICE_ADDRESS,
+            'port' => ErrorStatsServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            ErrorStatsServiceClient::SERVICE_ADDRESS,
-            ErrorStatsServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -104,8 +104,8 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
 
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertEquals($timeRange, $actualRequestObject->getTimeRange());
+        $this->assertProtobufEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertProtobufEquals($timeRange, $actualRequestObject->getTimeRange());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -184,8 +184,8 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents', $actualFuncCall);
 
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
-        $this->assertEquals($groupId, $actualRequestObject->getGroupId());
+        $this->assertProtobufEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertProtobufEquals($groupId, $actualRequestObject->getGroupId());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -254,7 +254,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
 
-        $this->assertEquals($formattedProjectName, $actualRequestObject->getProjectName());
+        $this->assertProtobufEquals($formattedProjectName, $actualRequestObject->getProjectName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

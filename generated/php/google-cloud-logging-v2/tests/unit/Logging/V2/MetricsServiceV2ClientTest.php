@@ -46,13 +46,13 @@ class MetricsServiceV2ClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => MetricsServiceV2Client::SERVICE_ADDRESS,
+            'port' => MetricsServiceV2Client::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            MetricsServiceV2Client::SERVICE_ADDRESS,
-            MetricsServiceV2Client::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -100,7 +100,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/ListLogMetrics', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -174,7 +174,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/GetLogMetric', $actualFuncCall);
 
-        $this->assertEquals($formattedMetricName, $actualRequestObject->getMetricName());
+        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -250,8 +250,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/CreateLogMetric', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
-        $this->assertEquals($metric, $actualRequestObject->getMetric());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($metric, $actualRequestObject->getMetric());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -328,8 +328,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/UpdateLogMetric', $actualFuncCall);
 
-        $this->assertEquals($formattedMetricName, $actualRequestObject->getMetricName());
-        $this->assertEquals($metric, $actualRequestObject->getMetric());
+        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
+        $this->assertProtobufEquals($metric, $actualRequestObject->getMetric());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -398,7 +398,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/DeleteLogMetric', $actualFuncCall);
 
-        $this->assertEquals($formattedMetricName, $actualRequestObject->getMetricName());
+        $this->assertProtobufEquals($formattedMetricName, $actualRequestObject->getMetricName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

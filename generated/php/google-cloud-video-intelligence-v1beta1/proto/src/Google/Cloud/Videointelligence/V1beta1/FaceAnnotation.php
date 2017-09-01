@@ -57,11 +57,14 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string thumbnail = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setThumbnail($var)
     {
         GPBUtil::checkString($var, True);
         $this->thumbnail = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSegments(&$var)
+    public function setSegments($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\VideoSegment::class);
         $this->segments = $arr;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\FaceLocation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLocations(&$var)
+    public function setLocations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\FaceLocation::class);
         $this->locations = $arr;
+
+        return $this;
     }
 
 }

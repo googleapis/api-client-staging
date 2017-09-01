@@ -49,11 +49,14 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1;</code>
      * @param \Google\Cloud\Language\V1\Document $var
+     * @return $this
      */
-    public function setDocument(&$var)
+    public function setDocument($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\Document::class);
         $this->document = $var;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.EncodingType encoding_type = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setEncodingType($var)
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\EncodingType::class);
         $this->encoding_type = $var;
+
+        return $this;
     }
 
 }

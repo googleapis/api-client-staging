@@ -61,11 +61,14 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document.Type type = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Language\V1\Document_Type::class);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setContent($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
@@ -113,11 +119,14 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_content_uri = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setGcsContentUri($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
@@ -150,11 +159,14 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setLanguage($var)
     {
         GPBUtil::checkString($var, True);
         $this->language = $var;
+
+        return $this;
     }
 
     /**

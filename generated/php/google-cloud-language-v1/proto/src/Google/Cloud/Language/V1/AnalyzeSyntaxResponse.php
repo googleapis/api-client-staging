@@ -57,11 +57,14 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
      * @param \Google\Cloud\Language\V1\Sentence[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSentences(&$var)
+    public function setSentences($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\Sentence::class);
         $this->sentences = $arr;
+
+        return $this;
     }
 
     /**
@@ -80,11 +83,14 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
      * @param \Google\Cloud\Language\V1\Token[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setTokens(&$var)
+    public function setTokens($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\Token::class);
         $this->tokens = $arr;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setLanguage($var)
     {
         GPBUtil::checkString($var, True);
         $this->language = $var;
+
+        return $this;
     }
 
 }

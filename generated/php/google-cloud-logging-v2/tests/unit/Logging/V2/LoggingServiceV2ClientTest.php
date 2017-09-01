@@ -50,13 +50,13 @@ class LoggingServiceV2ClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => LoggingServiceV2Client::SERVICE_ADDRESS,
+            'port' => LoggingServiceV2Client::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            LoggingServiceV2Client::SERVICE_ADDRESS,
-            LoggingServiceV2Client::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -94,7 +94,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/DeleteLog', $actualFuncCall);
 
-        $this->assertEquals($formattedLogName, $actualRequestObject->getLogName());
+        $this->assertProtobufEquals($formattedLogName, $actualRequestObject->getLogName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -163,7 +163,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/WriteLogEntries', $actualFuncCall);
 
-        $this->assertRepeatedFieldEquals($entries, $actualRequestObject->getEntries());
+        $this->assertProtobufEquals($entries, $actualRequestObject->getEntries());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -241,7 +241,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/ListLogEntries', $actualFuncCall);
 
-        $this->assertRepeatedFieldEquals($resourceNames, $actualRequestObject->getResourceNames());
+        $this->assertProtobufEquals($resourceNames, $actualRequestObject->getResourceNames());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -388,7 +388,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/ListLogs', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 

@@ -77,11 +77,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setInputUri($var)
     {
         GPBUtil::checkString($var, True);
         $this->input_uri = $var;
+
+        return $this;
     }
 
     /**
@@ -100,11 +103,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelAnnotation label_annotations = 2;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLabelAnnotations(&$var)
+    public function setLabelAnnotations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\LabelAnnotation::class);
         $this->label_annotations = $arr;
+
+        return $this;
     }
 
     /**
@@ -123,11 +129,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceAnnotation face_annotations = 3;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\FaceAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFaceAnnotations(&$var)
+    public function setFaceAnnotations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\FaceAnnotation::class);
         $this->face_annotations = $arr;
+
+        return $this;
     }
 
     /**
@@ -146,11 +155,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment shot_annotations = 4;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setShotAnnotations(&$var)
+    public function setShotAnnotations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\VideoSegment::class);
         $this->shot_annotations = $arr;
+
+        return $this;
     }
 
     /**
@@ -169,11 +181,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.SafeSearchAnnotation safe_search_annotations = 6;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSafeSearchAnnotations(&$var)
+    public function setSafeSearchAnnotations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation::class);
         $this->safe_search_annotations = $arr;
+
+        return $this;
     }
 
     /**
@@ -194,11 +209,14 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5;</code>
      * @param \Google\Rpc\Status $var
+     * @return $this
      */
-    public function setError(&$var)
+    public function setError($var)
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
     }
 
 }

@@ -52,13 +52,13 @@ class SpannerClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => SpannerClient::SERVICE_ADDRESS,
+            'port' => SpannerClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            SpannerClient::SERVICE_ADDRESS,
-            SpannerClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -99,7 +99,7 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/CreateSession', $actualFuncCall);
 
-        $this->assertEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -170,7 +170,7 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/GetSession', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -238,7 +238,7 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/DeleteSession', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -308,8 +308,8 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteSql', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($sql, $actualRequestObject->getSql());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($sql, $actualRequestObject->getSql());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -405,8 +405,8 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteStreamingSql', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($sql, $actualRequestObject->getSql());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($sql, $actualRequestObject->getSql());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -483,10 +483,10 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Read', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($table, $actualRequestObject->getTable());
-        $this->assertRepeatedFieldEquals($columns, $actualRequestObject->getColumns());
-        $this->assertEquals($keySet, $actualRequestObject->getKeySet());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($table, $actualRequestObject->getTable());
+        $this->assertProtobufEquals($columns, $actualRequestObject->getColumns());
+        $this->assertProtobufEquals($keySet, $actualRequestObject->getKeySet());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -586,10 +586,10 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/StreamingRead', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($table, $actualRequestObject->getTable());
-        $this->assertRepeatedFieldEquals($columns, $actualRequestObject->getColumns());
-        $this->assertEquals($keySet, $actualRequestObject->getKeySet());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($table, $actualRequestObject->getTable());
+        $this->assertProtobufEquals($columns, $actualRequestObject->getColumns());
+        $this->assertProtobufEquals($keySet, $actualRequestObject->getKeySet());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -668,8 +668,8 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/BeginTransaction', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($options, $actualRequestObject->getOptions());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($options, $actualRequestObject->getOptions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -740,8 +740,8 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Commit', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertRepeatedFieldEquals($mutations, $actualRequestObject->getMutations());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($mutations, $actualRequestObject->getMutations());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -811,8 +811,8 @@ class SpannerClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Rollback', $actualFuncCall);
 
-        $this->assertEquals($formattedSession, $actualRequestObject->getSession());
-        $this->assertEquals($transactionId, $actualRequestObject->getTransactionId());
+        $this->assertProtobufEquals($formattedSession, $actualRequestObject->getSession());
+        $this->assertProtobufEquals($transactionId, $actualRequestObject->getTransactionId());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

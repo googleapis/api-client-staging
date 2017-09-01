@@ -44,13 +44,13 @@ class ErrorGroupServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => ErrorGroupServiceClient::SERVICE_ADDRESS,
+            'port' => ErrorGroupServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            ErrorGroupServiceClient::SERVICE_ADDRESS,
-            ErrorGroupServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -93,7 +93,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup', $actualFuncCall);
 
-        $this->assertEquals($formattedGroupName, $actualRequestObject->getGroupName());
+        $this->assertProtobufEquals($formattedGroupName, $actualRequestObject->getGroupName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -166,7 +166,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup', $actualFuncCall);
 
-        $this->assertEquals($group, $actualRequestObject->getGroup());
+        $this->assertProtobufEquals($group, $actualRequestObject->getGroup());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

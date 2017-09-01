@@ -29,6 +29,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
+use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
@@ -50,13 +51,13 @@ class LanguageServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => LanguageServiceClient::SERVICE_ADDRESS,
+            'port' => LanguageServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            LanguageServiceClient::SERVICE_ADDRESS,
-            LanguageServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -97,7 +98,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSentiment', $actualFuncCall);
 
-        $this->assertEquals($document, $actualRequestObject->getDocument());
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -168,7 +169,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntities', $actualFuncCall);
 
-        $this->assertEquals($document, $actualRequestObject->getDocument());
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -239,7 +240,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntitySentiment', $actualFuncCall);
 
-        $this->assertEquals($document, $actualRequestObject->getDocument());
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -310,7 +311,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSyntax', $actualFuncCall);
 
-        $this->assertEquals($document, $actualRequestObject->getDocument());
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -357,6 +358,75 @@ class LanguageServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function classifyTextTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new ClassifyTextResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $document = new Document();
+
+        $response = $client->classifyText($document);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1beta2.LanguageService/ClassifyText', $actualFuncCall);
+
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function classifyTextExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+
+        try {
+            $client->classifyText($document);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function annotateTextTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
@@ -382,8 +452,8 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnnotateText', $actualFuncCall);
 
-        $this->assertEquals($document, $actualRequestObject->getDocument());
-        $this->assertEquals($features, $actualRequestObject->getFeatures());
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+        $this->assertProtobufEquals($features, $actualRequestObject->getFeatures());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

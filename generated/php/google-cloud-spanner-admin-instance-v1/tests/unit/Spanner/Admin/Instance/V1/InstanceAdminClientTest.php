@@ -60,13 +60,13 @@ class InstanceAdminClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => InstanceAdminClient::SERVICE_ADDRESS,
+            'port' => InstanceAdminClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            InstanceAdminClient::SERVICE_ADDRESS,
-            InstanceAdminClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -114,7 +114,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -186,7 +186,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -264,7 +264,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstances', $actualFuncCall);
 
-        $this->assertEquals($formattedParent, $actualRequestObject->getParent());
+        $this->assertProtobufEquals($formattedParent, $actualRequestObject->getParent());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -340,7 +340,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstance', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -443,9 +443,9 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance', $actualApiFuncCall);
-        $this->assertEquals($formattedParent, $actualApiRequestObject->getParent());
-        $this->assertEquals($instanceId, $actualApiRequestObject->getInstanceId());
-        $this->assertEquals($instance, $actualApiRequestObject->getInstance());
+        $this->assertProtobufEquals($formattedParent, $actualApiRequestObject->getParent());
+        $this->assertProtobufEquals($instanceId, $actualApiRequestObject->getInstanceId());
+        $this->assertProtobufEquals($instance, $actualApiRequestObject->getInstance());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
@@ -592,8 +592,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance', $actualApiFuncCall);
-        $this->assertEquals($instance, $actualApiRequestObject->getInstance());
-        $this->assertEquals($fieldMask, $actualApiRequestObject->getFieldMask());
+        $this->assertProtobufEquals($instance, $actualApiRequestObject->getInstance());
+        $this->assertProtobufEquals($fieldMask, $actualApiRequestObject->getFieldMask());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
@@ -705,7 +705,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance', $actualFuncCall);
 
-        $this->assertEquals($formattedName, $actualRequestObject->getName());
+        $this->assertProtobufEquals($formattedName, $actualRequestObject->getName());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -779,8 +779,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/SetIamPolicy', $actualFuncCall);
 
-        $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertEquals($policy, $actualRequestObject->getPolicy());
+        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $this->assertProtobufEquals($policy, $actualRequestObject->getPolicy());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -854,7 +854,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetIamPolicy', $actualFuncCall);
 
-        $this->assertEquals($formattedResource, $actualRequestObject->getResource());
+        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -924,8 +924,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions', $actualFuncCall);
 
-        $this->assertEquals($formattedResource, $actualRequestObject->getResource());
-        $this->assertRepeatedFieldEquals($permissions, $actualRequestObject->getPermissions());
+        $this->assertProtobufEquals($formattedResource, $actualRequestObject->getResource());
+        $this->assertProtobufEquals($permissions, $actualRequestObject->getPermissions());
 
         $this->assertTrue($grpcStub->isExhausted());
     }

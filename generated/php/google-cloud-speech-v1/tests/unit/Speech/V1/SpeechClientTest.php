@@ -60,13 +60,13 @@ class SpeechClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => SpeechClient::SERVICE_ADDRESS,
+            'port' => SpeechClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            SpeechClient::SERVICE_ADDRESS,
-            SpeechClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -114,8 +114,8 @@ class SpeechClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/Recognize', $actualFuncCall);
 
-        $this->assertEquals($config, $actualRequestObject->getConfig());
-        $this->assertEquals($audio, $actualRequestObject->getAudio());
+        $this->assertProtobufEquals($config, $actualRequestObject->getConfig());
+        $this->assertProtobufEquals($audio, $actualRequestObject->getAudio());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -226,8 +226,8 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/LongRunningRecognize', $actualApiFuncCall);
-        $this->assertEquals($config, $actualApiRequestObject->getConfig());
-        $this->assertEquals($audio, $actualApiRequestObject->getAudio());
+        $this->assertProtobufEquals($config, $actualApiRequestObject->getConfig());
+        $this->assertProtobufEquals($audio, $actualApiRequestObject->getAudio());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/longRunningRecognizeTest');

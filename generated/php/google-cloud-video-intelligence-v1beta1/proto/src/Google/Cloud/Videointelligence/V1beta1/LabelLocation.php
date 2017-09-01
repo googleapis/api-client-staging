@@ -64,11 +64,14 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      * @param \Google\Cloud\Videointelligence\V1beta1\VideoSegment $var
+     * @return $this
      */
-    public function setSegment(&$var)
+    public function setSegment($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Videointelligence\V1beta1\VideoSegment::class);
         $this->segment = $var;
+
+        return $this;
     }
 
     /**
@@ -87,11 +90,14 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setConfidence($var)
     {
         GPBUtil::checkFloat($var);
         $this->confidence = $var;
+
+        return $this;
     }
 
     /**
@@ -110,11 +116,14 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      * @param int $var
+     * @return $this
      */
     public function setLevel($var)
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Videointelligence\V1beta1\LabelLevel::class);
         $this->level = $var;
+
+        return $this;
     }
 
 }

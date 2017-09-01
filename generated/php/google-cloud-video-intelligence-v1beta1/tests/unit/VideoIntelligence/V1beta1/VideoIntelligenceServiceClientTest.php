@@ -53,13 +53,13 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
 
     private function createStub($createGrpcStub)
     {
-        $grpcCredentialsHelper = new GrpcCredentialsHelper([]);
+        $grpcCredentialsHelper = new GrpcCredentialsHelper([
+            'serviceAddress' => VideoIntelligenceServiceClient::SERVICE_ADDRESS,
+            'port' => VideoIntelligenceServiceClient::DEFAULT_SERVICE_PORT,
+            'scopes' => ['unknown-service-scopes'],
+        ]);
 
-        return $grpcCredentialsHelper->createStub(
-            $createGrpcStub,
-            VideoIntelligenceServiceClient::SERVICE_ADDRESS,
-            VideoIntelligenceServiceClient::DEFAULT_SERVICE_PORT
-        );
+        return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
     /**
@@ -123,8 +123,8 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.videointelligence.v1beta1.VideoIntelligenceService/AnnotateVideo', $actualApiFuncCall);
-        $this->assertEquals($inputUri, $actualApiRequestObject->getInputUri());
-        $this->assertRepeatedFieldEquals($features, $actualApiRequestObject->getFeatures());
+        $this->assertProtobufEquals($inputUri, $actualApiRequestObject->getInputUri());
+        $this->assertProtobufEquals($features, $actualApiRequestObject->getFeatures());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/annotateVideoTest');
