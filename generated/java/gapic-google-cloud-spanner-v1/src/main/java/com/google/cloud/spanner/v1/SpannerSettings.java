@@ -328,7 +328,7 @@ public class SpannerSettings extends ClientSettings {
               .setInitialRpcTimeout(Duration.ofMillis(3600000L))
               .setRpcTimeoutMultiplier(1.0)
               .setMaxRpcTimeout(Duration.ofMillis(3600000L))
-              .setTotalTimeout(Duration.ofMillis(36000000L))
+              .setTotalTimeout(Duration.ofMillis(3600000L))
               .build();
       definitions.put("long_running", settings);
       RETRY_PARAM_DEFINITIONS = definitions.build();

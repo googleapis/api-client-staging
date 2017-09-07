@@ -60,8 +60,21 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
- *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
- *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+ *   String name = "EMAIL_ADDRESS";
+ *   InfoType infoTypesElement = InfoType.newBuilder()
+ *     .setName(name)
+ *     .build();
+ *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+ *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+ *     .addAllInfoTypes(infoTypes)
+ *     .build();
+ *   String type = "text/plain";
+ *   String value = "My email is example{@literal @}example.com.";
+ *   ContentItem itemsElement = ContentItem.newBuilder()
+ *     .setType(type)
+ *     .setValue(value)
+ *     .build();
+ *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
  *   InspectContentResponse response = dlpServiceClient.inspectContent(inspectConfig, items);
  * }
  * </code>
@@ -192,8 +205,21 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
    *   InspectContentResponse response = dlpServiceClient.inspectContent(inspectConfig, items);
    * }
    * </code></pre>
@@ -223,8 +249,21 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
    *   InspectContentRequest request = InspectContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
@@ -249,8 +288,21 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
    *   InspectContentRequest request = InspectContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
@@ -275,9 +327,31 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+   *   String name2 = "EMAIL_ADDRESS";
+   *   InfoType infoType = InfoType.newBuilder()
+   *     .setName(name2)
+   *     .build();
+   *   String replaceWith = "REDACTED";
+   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
+   *     .setInfoType(infoType)
+   *     .setReplaceWith(replaceWith)
+   *     .build();
+   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentResponse response = dlpServiceClient.redactContent(inspectConfig, items, replaceConfigs);
    * }
    * </code></pre>
@@ -311,9 +385,31 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+   *   String name2 = "EMAIL_ADDRESS";
+   *   InfoType infoType = InfoType.newBuilder()
+   *     .setName(name2)
+   *     .build();
+   *   String replaceWith = "REDACTED";
+   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
+   *     .setInfoType(infoType)
+   *     .setReplaceWith(replaceWith)
+   *     .build();
+   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
@@ -339,9 +435,31 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = new ArrayList&lt;&gt;();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+   *   String name2 = "EMAIL_ADDRESS";
+   *   InfoType infoType = InfoType.newBuilder()
+   *     .setName(name2)
+   *     .build();
+   *   String replaceWith = "REDACTED";
+   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
+   *     .setInfoType(infoType)
+   *     .setReplaceWith(replaceWith)
+   *     .build();
+   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
@@ -365,8 +483,24 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   StorageConfig storageConfig = StorageConfig.newBuilder().build();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String url = "gs://example_bucket/example_file.png";
+   *   CloudStorageOptions.FileSet fileSet = CloudStorageOptions.FileSet.newBuilder()
+   *     .setUrl(url)
+   *     .build();
+   *   CloudStorageOptions cloudStorageOptions = CloudStorageOptions.newBuilder()
+   *     .setFileSet(fileSet)
+   *     .build();
+   *   StorageConfig storageConfig = StorageConfig.newBuilder()
+   *     .setCloudStorageOptions(cloudStorageOptions)
+   *     .build();
    *   OutputStorageConfig outputConfig = OutputStorageConfig.newBuilder().build();
    *   InspectOperationResult response = dlpServiceClient.createInspectOperationAsync(inspectConfig, storageConfig, outputConfig).get();
    * }
@@ -412,8 +546,24 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   StorageConfig storageConfig = StorageConfig.newBuilder().build();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String url = "gs://example_bucket/example_file.png";
+   *   CloudStorageOptions.FileSet fileSet = CloudStorageOptions.FileSet.newBuilder()
+   *     .setUrl(url)
+   *     .build();
+   *   CloudStorageOptions cloudStorageOptions = CloudStorageOptions.newBuilder()
+   *     .setFileSet(fileSet)
+   *     .build();
+   *   StorageConfig storageConfig = StorageConfig.newBuilder()
+   *     .setCloudStorageOptions(cloudStorageOptions)
+   *     .build();
    *   OutputStorageConfig outputConfig = OutputStorageConfig.newBuilder().build();
    *   CreateInspectOperationRequest request = CreateInspectOperationRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
@@ -440,8 +590,24 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   StorageConfig storageConfig = StorageConfig.newBuilder().build();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String url = "gs://example_bucket/example_file.png";
+   *   CloudStorageOptions.FileSet fileSet = CloudStorageOptions.FileSet.newBuilder()
+   *     .setUrl(url)
+   *     .build();
+   *   CloudStorageOptions cloudStorageOptions = CloudStorageOptions.newBuilder()
+   *     .setFileSet(fileSet)
+   *     .build();
+   *   StorageConfig storageConfig = StorageConfig.newBuilder()
+   *     .setCloudStorageOptions(cloudStorageOptions)
+   *     .build();
    *   OutputStorageConfig outputConfig = OutputStorageConfig.newBuilder().build();
    *   CreateInspectOperationRequest request = CreateInspectOperationRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
@@ -469,8 +635,24 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   StorageConfig storageConfig = StorageConfig.newBuilder().build();
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
+   *     .build();
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
+   *     .build();
+   *   String url = "gs://example_bucket/example_file.png";
+   *   CloudStorageOptions.FileSet fileSet = CloudStorageOptions.FileSet.newBuilder()
+   *     .setUrl(url)
+   *     .build();
+   *   CloudStorageOptions cloudStorageOptions = CloudStorageOptions.newBuilder()
+   *     .setFileSet(fileSet)
+   *     .build();
+   *   StorageConfig storageConfig = StorageConfig.newBuilder()
+   *     .setCloudStorageOptions(cloudStorageOptions)
+   *     .build();
    *   OutputStorageConfig outputConfig = OutputStorageConfig.newBuilder().build();
    *   CreateInspectOperationRequest request = CreateInspectOperationRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
@@ -567,8 +749,8 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String category = "";
-   *   String languageCode = "";
+   *   String category = "PII";
+   *   String languageCode = "en";
    *   ListInfoTypesResponse response = dlpServiceClient.listInfoTypes(category, languageCode);
    * }
    * </code></pre>
@@ -596,8 +778,8 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String category = "";
-   *   String languageCode = "";
+   *   String category = "PII";
+   *   String languageCode = "en";
    *   ListInfoTypesRequest request = ListInfoTypesRequest.newBuilder()
    *     .setCategory(category)
    *     .setLanguageCode(languageCode)
@@ -621,8 +803,8 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String category = "";
-   *   String languageCode = "";
+   *   String category = "PII";
+   *   String languageCode = "en";
    *   ListInfoTypesRequest request = ListInfoTypesRequest.newBuilder()
    *     .setCategory(category)
    *     .setLanguageCode(languageCode)
@@ -645,7 +827,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String languageCode = "";
+   *   String languageCode = "en";
    *   ListRootCategoriesResponse response = dlpServiceClient.listRootCategories(languageCode);
    * }
    * </code></pre>
@@ -669,7 +851,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String languageCode = "";
+   *   String languageCode = "en";
    *   ListRootCategoriesRequest request = ListRootCategoriesRequest.newBuilder()
    *     .setLanguageCode(languageCode)
    *     .build();
@@ -692,7 +874,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String languageCode = "";
+   *   String languageCode = "en";
    *   ListRootCategoriesRequest request = ListRootCategoriesRequest.newBuilder()
    *     .setLanguageCode(languageCode)
    *     .build();

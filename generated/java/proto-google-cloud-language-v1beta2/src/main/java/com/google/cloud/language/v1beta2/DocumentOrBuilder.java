@@ -73,7 +73,7 @@ public interface DocumentOrBuilder extends
    * The language of the document (if not specified, the language is
    * automatically detected). Both ISO and BCP-47 language codes are
    * accepted.&lt;br&gt;
-   * [Language Support](https://cloud.google.com/natural-language/docs/languages)
+   * [Language Support](/natural-language/docs/languages)
    * lists currently supported languages for each API method.
    * If the language (either specified by the caller or automatically detected)
    * is not supported by the called API method, an `INVALID_ARGUMENT` error
@@ -88,7 +88,7 @@ public interface DocumentOrBuilder extends
    * The language of the document (if not specified, the language is
    * automatically detected). Both ISO and BCP-47 language codes are
    * accepted.&lt;br&gt;
-   * [Language Support](https://cloud.google.com/natural-language/docs/languages)
+   * [Language Support](/natural-language/docs/languages)
    * lists currently supported languages for each API method.
    * If the language (either specified by the caller or automatically detected)
    * is not supported by the called API method, an `INVALID_ARGUMENT` error

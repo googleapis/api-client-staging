@@ -68,6 +68,15 @@ public final class LanguageServiceGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1beta2.AnalyzeSyntaxRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1beta2.AnalyzeSyntaxResponse.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.cloud.language.v1beta2.ClassifyTextRequest,
+      com.google.cloud.language.v1beta2.ClassifyTextResponse> METHOD_CLASSIFY_TEXT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.cloud.language.v1beta2.LanguageService", "ClassifyText"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1beta2.ClassifyTextRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1beta2.ClassifyTextResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.cloud.language.v1beta2.AnnotateTextRequest,
       com.google.cloud.language.v1beta2.AnnotateTextResponse> METHOD_ANNOTATE_TEXT =
       io.grpc.MethodDescriptor.create(
@@ -155,8 +164,18 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
-     * A convenience method that provides all syntax, sentiment, and entity
-     * features in one call.
+     * Classifies a document into categories.
+     * </pre>
+     */
+    public void classifyText(com.google.cloud.language.v1beta2.ClassifyTextRequest request,
+        io.grpc.stub.StreamObserver<com.google.cloud.language.v1beta2.ClassifyTextResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CLASSIFY_TEXT, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * A convenience method that provides all syntax, sentiment, entity, and
+     * classification features in one call.
      * </pre>
      */
     public void annotateText(com.google.cloud.language.v1beta2.AnnotateTextRequest request,
@@ -194,6 +213,13 @@ public final class LanguageServiceGrpc {
                 com.google.cloud.language.v1beta2.AnalyzeSyntaxRequest,
                 com.google.cloud.language.v1beta2.AnalyzeSyntaxResponse>(
                   this, METHODID_ANALYZE_SYNTAX)))
+          .addMethod(
+            METHOD_CLASSIFY_TEXT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.cloud.language.v1beta2.ClassifyTextRequest,
+                com.google.cloud.language.v1beta2.ClassifyTextResponse>(
+                  this, METHODID_CLASSIFY_TEXT)))
           .addMethod(
             METHOD_ANNOTATE_TEXT,
             asyncUnaryCall(
@@ -278,8 +304,19 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
-     * A convenience method that provides all syntax, sentiment, and entity
-     * features in one call.
+     * Classifies a document into categories.
+     * </pre>
+     */
+    public void classifyText(com.google.cloud.language.v1beta2.ClassifyTextRequest request,
+        io.grpc.stub.StreamObserver<com.google.cloud.language.v1beta2.ClassifyTextResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CLASSIFY_TEXT, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * A convenience method that provides all syntax, sentiment, entity, and
+     * classification features in one call.
      * </pre>
      */
     public void annotateText(com.google.cloud.language.v1beta2.AnnotateTextRequest request,
@@ -358,8 +395,18 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
-     * A convenience method that provides all syntax, sentiment, and entity
-     * features in one call.
+     * Classifies a document into categories.
+     * </pre>
+     */
+    public com.google.cloud.language.v1beta2.ClassifyTextResponse classifyText(com.google.cloud.language.v1beta2.ClassifyTextRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CLASSIFY_TEXT, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * A convenience method that provides all syntax, sentiment, entity, and
+     * classification features in one call.
      * </pre>
      */
     public com.google.cloud.language.v1beta2.AnnotateTextResponse annotateText(com.google.cloud.language.v1beta2.AnnotateTextRequest request) {
@@ -441,8 +488,19 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
-     * A convenience method that provides all syntax, sentiment, and entity
-     * features in one call.
+     * Classifies a document into categories.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.language.v1beta2.ClassifyTextResponse> classifyText(
+        com.google.cloud.language.v1beta2.ClassifyTextRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CLASSIFY_TEXT, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * A convenience method that provides all syntax, sentiment, entity, and
+     * classification features in one call.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.language.v1beta2.AnnotateTextResponse> annotateText(
@@ -456,7 +514,8 @@ public final class LanguageServiceGrpc {
   private static final int METHODID_ANALYZE_ENTITIES = 1;
   private static final int METHODID_ANALYZE_ENTITY_SENTIMENT = 2;
   private static final int METHODID_ANALYZE_SYNTAX = 3;
-  private static final int METHODID_ANNOTATE_TEXT = 4;
+  private static final int METHODID_CLASSIFY_TEXT = 4;
+  private static final int METHODID_ANNOTATE_TEXT = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -490,6 +549,10 @@ public final class LanguageServiceGrpc {
         case METHODID_ANALYZE_SYNTAX:
           serviceImpl.analyzeSyntax((com.google.cloud.language.v1beta2.AnalyzeSyntaxRequest) request,
               (io.grpc.stub.StreamObserver<com.google.cloud.language.v1beta2.AnalyzeSyntaxResponse>) responseObserver);
+          break;
+        case METHODID_CLASSIFY_TEXT:
+          serviceImpl.classifyText((com.google.cloud.language.v1beta2.ClassifyTextRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.cloud.language.v1beta2.ClassifyTextResponse>) responseObserver);
           break;
         case METHODID_ANNOTATE_TEXT:
           serviceImpl.annotateText((com.google.cloud.language.v1beta2.AnnotateTextRequest) request,
@@ -532,6 +595,7 @@ public final class LanguageServiceGrpc {
               .addMethod(METHOD_ANALYZE_ENTITIES)
               .addMethod(METHOD_ANALYZE_ENTITY_SENTIMENT)
               .addMethod(METHOD_ANALYZE_SYNTAX)
+              .addMethod(METHOD_CLASSIFY_TEXT)
               .addMethod(METHOD_ANNOTATE_TEXT)
               .build();
         }
