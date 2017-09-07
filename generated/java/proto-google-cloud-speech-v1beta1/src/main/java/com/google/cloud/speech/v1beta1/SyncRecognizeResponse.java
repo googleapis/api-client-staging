@@ -5,7 +5,7 @@ package com.google.cloud.speech.v1beta1;
 
 /**
  * <pre>
- * The only message returned to the client by `SyncRecognize`. It
+ * The only message returned to the client by `SyncRecognize`. method. It
  * contains the result as zero or more sequential `SpeechRecognitionResult`
  * messages.
  * </pre>
@@ -297,7 +297,7 @@ public  final class SyncRecognizeResponse extends
   }
   /**
    * <pre>
-   * The only message returned to the client by `SyncRecognize`. It
+   * The only message returned to the client by `SyncRecognize`. method. It
    * contains the result as zero or more sequential `SpeechRecognitionResult`
    * messages.
    * </pre>

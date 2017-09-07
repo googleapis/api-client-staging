@@ -94,6 +94,7 @@ public class LanguageServiceSettings extends ClientSettings {
       analyzeEntitySentimentSettings;
   private final SimpleCallSettings<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
       analyzeSyntaxSettings;
+  private final SimpleCallSettings<ClassifyTextRequest, ClassifyTextResponse> classifyTextSettings;
   private final SimpleCallSettings<AnnotateTextRequest, AnnotateTextResponse> annotateTextSettings;
 
   /** Returns the object with the settings used for calls to analyzeSentiment. */
@@ -117,6 +118,11 @@ public class LanguageServiceSettings extends ClientSettings {
   /** Returns the object with the settings used for calls to analyzeSyntax. */
   public SimpleCallSettings<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse> analyzeSyntaxSettings() {
     return analyzeSyntaxSettings;
+  }
+
+  /** Returns the object with the settings used for calls to classifyText. */
+  public SimpleCallSettings<ClassifyTextRequest, ClassifyTextResponse> classifyTextSettings() {
+    return classifyTextSettings;
   }
 
   /** Returns the object with the settings used for calls to annotateText. */
@@ -219,6 +225,7 @@ public class LanguageServiceSettings extends ClientSettings {
     analyzeEntitiesSettings = settingsBuilder.analyzeEntitiesSettings().build();
     analyzeEntitySentimentSettings = settingsBuilder.analyzeEntitySentimentSettings().build();
     analyzeSyntaxSettings = settingsBuilder.analyzeSyntaxSettings().build();
+    classifyTextSettings = settingsBuilder.classifyTextSettings().build();
     annotateTextSettings = settingsBuilder.annotateTextSettings().build();
   }
 
@@ -235,6 +242,8 @@ public class LanguageServiceSettings extends ClientSettings {
         analyzeEntitySentimentSettings;
     private final SimpleCallSettings.Builder<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
         analyzeSyntaxSettings;
+    private final SimpleCallSettings.Builder<ClassifyTextRequest, ClassifyTextResponse>
+        classifyTextSettings;
     private final SimpleCallSettings.Builder<AnnotateTextRequest, AnnotateTextResponse>
         annotateTextSettings;
 
@@ -286,6 +295,8 @@ public class LanguageServiceSettings extends ClientSettings {
 
       analyzeSyntaxSettings = SimpleCallSettings.newBuilder();
 
+      classifyTextSettings = SimpleCallSettings.newBuilder();
+
       annotateTextSettings = SimpleCallSettings.newBuilder();
 
       unaryMethodSettingsBuilders =
@@ -294,6 +305,7 @@ public class LanguageServiceSettings extends ClientSettings {
               analyzeEntitiesSettings,
               analyzeEntitySentimentSettings,
               analyzeSyntaxSettings,
+              classifyTextSettings,
               annotateTextSettings);
 
       initDefaults(this);
@@ -329,6 +341,11 @@ public class LanguageServiceSettings extends ClientSettings {
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .classifyTextSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .annotateTextSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
@@ -343,6 +360,7 @@ public class LanguageServiceSettings extends ClientSettings {
       analyzeEntitiesSettings = settings.analyzeEntitiesSettings.toBuilder();
       analyzeEntitySentimentSettings = settings.analyzeEntitySentimentSettings.toBuilder();
       analyzeSyntaxSettings = settings.analyzeSyntaxSettings.toBuilder();
+      classifyTextSettings = settings.classifyTextSettings.toBuilder();
       annotateTextSettings = settings.annotateTextSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
@@ -351,6 +369,7 @@ public class LanguageServiceSettings extends ClientSettings {
               analyzeEntitiesSettings,
               analyzeEntitySentimentSettings,
               analyzeSyntaxSettings,
+              classifyTextSettings,
               annotateTextSettings);
     }
 
@@ -405,6 +424,12 @@ public class LanguageServiceSettings extends ClientSettings {
     public SimpleCallSettings.Builder<AnalyzeSyntaxRequest, AnalyzeSyntaxResponse>
         analyzeSyntaxSettings() {
       return analyzeSyntaxSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to classifyText. */
+    public SimpleCallSettings.Builder<ClassifyTextRequest, ClassifyTextResponse>
+        classifyTextSettings() {
+      return classifyTextSettings;
     }
 
     /** Returns the builder for the settings used for calls to annotateText. */
