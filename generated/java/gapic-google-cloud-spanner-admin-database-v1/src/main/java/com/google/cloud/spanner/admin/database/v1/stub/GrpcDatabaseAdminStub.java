@@ -161,7 +161,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
   }
 
   public static final GrpcDatabaseAdminStub create(ClientContext clientContext) throws IOException {
-    return new GrpcDatabaseAdminStub(DatabaseAdminSettings.defaultBuilder().build(), clientContext);
+    return new GrpcDatabaseAdminStub(DatabaseAdminSettings.newBuilder().build(), clientContext);
   }
 
   /**

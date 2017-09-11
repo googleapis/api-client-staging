@@ -177,7 +177,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
   }
 
   public static final GrpcInstanceAdminStub create(ClientContext clientContext) throws IOException {
-    return new GrpcInstanceAdminStub(InstanceAdminSettings.defaultBuilder().build(), clientContext);
+    return new GrpcInstanceAdminStub(InstanceAdminSettings.newBuilder().build(), clientContext);
   }
 
   /**

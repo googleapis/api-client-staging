@@ -79,7 +79,7 @@ public class SpannerClientTest {
   public void setUp() throws IOException {
     serviceHelper.reset();
     SpannerSettings settings =
-        SpannerSettings.defaultBuilder()
+        SpannerSettings.newBuilder()
             .setTransportProvider(
                 GrpcTransportProvider.newBuilder()
                     .setChannelProvider(serviceHelper.createChannelProvider())

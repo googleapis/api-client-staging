@@ -117,7 +117,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
- *     InstanceAdminSettings.defaultBuilder()
+ *     InstanceAdminSettings.newBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
  * InstanceAdminClient instanceAdminClient =
@@ -130,7 +130,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
- *     InstanceAdminSettings.defaultBuilder()
+ *     InstanceAdminSettings.newBuilder()
  *         .setTransportProvider(InstanceAdminSettings.defaultGrpcTransportProviderBuilder()
  *             .setChannelProvider(InstanceAdminSettings.defaultGrpcChannelProviderBuilder()
  *                 .setEndpoint(myEndpoint)
@@ -151,7 +151,7 @@ public class InstanceAdminClient implements BackgroundResource {
 
   /** Constructs an instance of InstanceAdminClient with default settings. */
   public static final InstanceAdminClient create() throws IOException {
-    return create(InstanceAdminSettings.defaultBuilder().build());
+    return create(InstanceAdminSettings.newBuilder().build());
   }
 
   /**
@@ -192,6 +192,7 @@ public class InstanceAdminClient implements BackgroundResource {
     return settings;
   }
 
+  @BetaApi
   public InstanceAdminStub getStub() {
     return stub;
   }

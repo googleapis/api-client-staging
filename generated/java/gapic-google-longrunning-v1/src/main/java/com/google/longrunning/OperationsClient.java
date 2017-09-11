@@ -94,7 +94,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * OperationsSettings operationsSettings =
- *     OperationsSettings.defaultBuilder()
+ *     OperationsSettings.newBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
  * OperationsClient operationsClient =
@@ -107,7 +107,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * OperationsSettings operationsSettings =
- *     OperationsSettings.defaultBuilder()
+ *     OperationsSettings.newBuilder()
  *         .setTransportProvider(OperationsSettings.defaultGrpcTransportProviderBuilder()
  *             .setChannelProvider(OperationsSettings.defaultGrpcChannelProviderBuilder()
  *                 .setEndpoint(myEndpoint)
@@ -159,6 +159,7 @@ public class OperationsClient implements BackgroundResource {
     return settings;
   }
 
+  @BetaApi
   public OperationsStub getStub() {
     return stub;
   }

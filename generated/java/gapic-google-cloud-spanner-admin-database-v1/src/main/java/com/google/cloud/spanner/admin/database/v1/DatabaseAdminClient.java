@@ -99,7 +99,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
- *     DatabaseAdminSettings.defaultBuilder()
+ *     DatabaseAdminSettings.newBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
  * DatabaseAdminClient databaseAdminClient =
@@ -112,7 +112,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
- *     DatabaseAdminSettings.defaultBuilder()
+ *     DatabaseAdminSettings.newBuilder()
  *         .setTransportProvider(DatabaseAdminSettings.defaultGrpcTransportProviderBuilder()
  *             .setChannelProvider(DatabaseAdminSettings.defaultGrpcChannelProviderBuilder()
  *                 .setEndpoint(myEndpoint)
@@ -133,7 +133,7 @@ public class DatabaseAdminClient implements BackgroundResource {
 
   /** Constructs an instance of DatabaseAdminClient with default settings. */
   public static final DatabaseAdminClient create() throws IOException {
-    return create(DatabaseAdminSettings.defaultBuilder().build());
+    return create(DatabaseAdminSettings.newBuilder().build());
   }
 
   /**
@@ -174,6 +174,7 @@ public class DatabaseAdminClient implements BackgroundResource {
     return settings;
   }
 
+  @BetaApi
   public DatabaseAdminStub getStub() {
     return stub;
   }
