@@ -82,7 +82,7 @@ public class DatabaseAdminClientTest {
   public void setUp() throws IOException {
     serviceHelper.reset();
     DatabaseAdminSettings settings =
-        DatabaseAdminSettings.defaultBuilder()
+        DatabaseAdminSettings.newBuilder()
             .setTransportProvider(
                 GrpcTransportProvider.newBuilder()
                     .setChannelProvider(serviceHelper.createChannelProvider())

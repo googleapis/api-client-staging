@@ -96,7 +96,7 @@ import org.threeten.bp.Duration;
  * <pre>
  * <code>
  * InstanceAdminSettings.Builder instanceAdminSettingsBuilder =
- *     InstanceAdminSettings.defaultBuilder();
+ *     InstanceAdminSettings.newBuilder();
  * instanceAdminSettingsBuilder.getInstanceConfigSettings().getRetrySettingsBuilder()
  *     .setTotalTimeout(Duration.ofSeconds(30));
  * InstanceAdminSettings instanceAdminSettings = instanceAdminSettingsBuilder.build();
@@ -256,6 +256,7 @@ public class InstanceAdminSettings extends ClientSettings {
   }
 
   /** Returns a builder for this class with recommended defaults. */
+  @Deprecated
   public static Builder defaultBuilder() {
     return Builder.createDefault();
   }
@@ -264,13 +265,14 @@ public class InstanceAdminSettings extends ClientSettings {
    * Returns a builder for this class with recommended defaults for API methods, and the given
    * ClientContext used for executor/transport/credentials.
    */
+  @Deprecated
   public static Builder defaultBuilder(ClientContext clientContext) {
     return new Builder(clientContext);
   }
 
   /** Returns a new builder for this class. */
   public static Builder newBuilder() {
-    return new Builder();
+    return Builder.createDefault();
   }
 
   /** Returns a new builder for this class. */

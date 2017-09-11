@@ -39,8 +39,8 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * <pre>
    * *Output-only* This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
-   * It contains zero or one `is_final=true` result (the newly settled portion),
-   * followed by zero or more `is_final=false` results.
+   * It contains zero or more `is_final=false` results followed by zero or one
+   * `is_final=true` result (the newly settled portion).
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
@@ -51,8 +51,8 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * <pre>
    * *Output-only* This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
-   * It contains zero or one `is_final=true` result (the newly settled portion),
-   * followed by zero or more `is_final=false` results.
+   * It contains zero or more `is_final=false` results followed by zero or one
+   * `is_final=true` result (the newly settled portion).
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
@@ -62,8 +62,8 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * <pre>
    * *Output-only* This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
-   * It contains zero or one `is_final=true` result (the newly settled portion),
-   * followed by zero or more `is_final=false` results.
+   * It contains zero or more `is_final=false` results followed by zero or one
+   * `is_final=true` result (the newly settled portion).
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
@@ -73,8 +73,8 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * <pre>
    * *Output-only* This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
-   * It contains zero or one `is_final=true` result (the newly settled portion),
-   * followed by zero or more `is_final=false` results.
+   * It contains zero or more `is_final=false` results followed by zero or one
+   * `is_final=true` result (the newly settled portion).
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
@@ -85,8 +85,8 @@ public interface StreamingRecognizeResponseOrBuilder extends
    * <pre>
    * *Output-only* This repeated list contains zero or more results that
    * correspond to consecutive portions of the audio currently being processed.
-   * It contains zero or one `is_final=true` result (the newly settled portion),
-   * followed by zero or more `is_final=false` results.
+   * It contains zero or more `is_final=false` results followed by zero or one
+   * `is_final=true` result (the newly settled portion).
    * </pre>
    *
    * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>

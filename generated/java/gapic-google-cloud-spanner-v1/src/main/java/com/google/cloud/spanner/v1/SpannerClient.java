@@ -94,7 +94,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * SpannerSettings spannerSettings =
- *     SpannerSettings.defaultBuilder()
+ *     SpannerSettings.newBuilder()
  *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
  *         .build();
  * SpannerClient spannerClient =
@@ -107,7 +107,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * SpannerSettings spannerSettings =
- *     SpannerSettings.defaultBuilder()
+ *     SpannerSettings.newBuilder()
  *         .setTransportProvider(SpannerSettings.defaultGrpcTransportProviderBuilder()
  *             .setChannelProvider(SpannerSettings.defaultGrpcChannelProviderBuilder()
  *                 .setEndpoint(myEndpoint)
@@ -127,7 +127,7 @@ public class SpannerClient implements BackgroundResource {
 
   /** Constructs an instance of SpannerClient with default settings. */
   public static final SpannerClient create() throws IOException {
-    return create(SpannerSettings.defaultBuilder().build());
+    return create(SpannerSettings.newBuilder().build());
   }
 
   /**
@@ -164,6 +164,7 @@ public class SpannerClient implements BackgroundResource {
     return settings;
   }
 
+  @BetaApi
   public SpannerStub getStub() {
     return stub;
   }

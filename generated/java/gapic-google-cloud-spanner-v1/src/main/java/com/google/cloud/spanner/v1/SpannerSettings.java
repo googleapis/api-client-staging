@@ -79,7 +79,7 @@ import org.threeten.bp.Duration;
  * <pre>
  * <code>
  * SpannerSettings.Builder spannerSettingsBuilder =
- *     SpannerSettings.defaultBuilder();
+ *     SpannerSettings.newBuilder();
  * spannerSettingsBuilder.createSessionSettings().getRetrySettingsBuilder()
  *     .setTotalTimeout(Duration.ofSeconds(30));
  * SpannerSettings spannerSettings = spannerSettingsBuilder.build();
@@ -222,6 +222,7 @@ public class SpannerSettings extends ClientSettings {
   }
 
   /** Returns a builder for this class with recommended defaults. */
+  @Deprecated
   public static Builder defaultBuilder() {
     return Builder.createDefault();
   }
@@ -230,13 +231,14 @@ public class SpannerSettings extends ClientSettings {
    * Returns a builder for this class with recommended defaults for API methods, and the given
    * ClientContext used for executor/transport/credentials.
    */
+  @Deprecated
   public static Builder defaultBuilder(ClientContext clientContext) {
     return new Builder(clientContext);
   }
 
   /** Returns a new builder for this class. */
   public static Builder newBuilder() {
-    return new Builder();
+    return Builder.createDefault();
   }
 
   /** Returns a new builder for this class. */
@@ -328,7 +330,7 @@ public class SpannerSettings extends ClientSettings {
               .setInitialRpcTimeout(Duration.ofMillis(3600000L))
               .setRpcTimeoutMultiplier(1.0)
               .setMaxRpcTimeout(Duration.ofMillis(3600000L))
-              .setTotalTimeout(Duration.ofMillis(36000000L))
+              .setTotalTimeout(Duration.ofMillis(3600000L))
               .build();
       definitions.put("long_running", settings);
       RETRY_PARAM_DEFINITIONS = definitions.build();

@@ -87,7 +87,7 @@ public class InstanceAdminClientTest {
   public void setUp() throws IOException {
     serviceHelper.reset();
     InstanceAdminSettings settings =
-        InstanceAdminSettings.defaultBuilder()
+        InstanceAdminSettings.newBuilder()
             .setTransportProvider(
                 GrpcTransportProvider.newBuilder()
                     .setChannelProvider(serviceHelper.createChannelProvider())
