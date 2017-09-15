@@ -167,4 +167,38 @@ public interface EntityOrBuilder extends
    */
   com.google.cloud.language.v1.EntityMentionOrBuilder getMentionsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  boolean hasSentiment();
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  com.google.cloud.language.v1.Sentiment getSentiment();
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder();
 }

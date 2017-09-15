@@ -50,6 +50,15 @@ public final class LanguageServiceGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1.AnalyzeEntitiesRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1.AnalyzeEntitiesResponse.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.cloud.language.v1.AnalyzeEntitySentimentRequest,
+      com.google.cloud.language.v1.AnalyzeEntitySentimentResponse> METHOD_ANALYZE_ENTITY_SENTIMENT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.cloud.language.v1.LanguageService", "AnalyzeEntitySentiment"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1.AnalyzeEntitySentimentRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.cloud.language.v1.AnalyzeEntitySentimentResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.cloud.language.v1.AnalyzeSyntaxRequest,
       com.google.cloud.language.v1.AnalyzeSyntaxResponse> METHOD_ANALYZE_SYNTAX =
       io.grpc.MethodDescriptor.create(
@@ -123,6 +132,17 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     * </pre>
+     */
+    public void analyzeEntitySentiment(com.google.cloud.language.v1.AnalyzeEntitySentimentRequest request,
+        io.grpc.stub.StreamObserver<com.google.cloud.language.v1.AnalyzeEntitySentimentResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_ANALYZE_ENTITY_SENTIMENT, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Analyzes the syntax of the text and provides sentence boundaries and
      * tokenization along with part of speech tags, dependency trees, and other
      * properties.
@@ -160,6 +180,13 @@ public final class LanguageServiceGrpc {
                 com.google.cloud.language.v1.AnalyzeEntitiesRequest,
                 com.google.cloud.language.v1.AnalyzeEntitiesResponse>(
                   this, METHODID_ANALYZE_ENTITIES)))
+          .addMethod(
+            METHOD_ANALYZE_ENTITY_SENTIMENT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.cloud.language.v1.AnalyzeEntitySentimentRequest,
+                com.google.cloud.language.v1.AnalyzeEntitySentimentResponse>(
+                  this, METHODID_ANALYZE_ENTITY_SENTIMENT)))
           .addMethod(
             METHOD_ANALYZE_SYNTAX,
             asyncUnaryCall(
@@ -222,6 +249,18 @@ public final class LanguageServiceGrpc {
         io.grpc.stub.StreamObserver<com.google.cloud.language.v1.AnalyzeEntitiesResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_ANALYZE_ENTITIES, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     * </pre>
+     */
+    public void analyzeEntitySentiment(com.google.cloud.language.v1.AnalyzeEntitySentimentRequest request,
+        io.grpc.stub.StreamObserver<com.google.cloud.language.v1.AnalyzeEntitySentimentResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_ANALYZE_ENTITY_SENTIMENT, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -296,6 +335,17 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     * </pre>
+     */
+    public com.google.cloud.language.v1.AnalyzeEntitySentimentResponse analyzeEntitySentiment(com.google.cloud.language.v1.AnalyzeEntitySentimentRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_ANALYZE_ENTITY_SENTIMENT, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Analyzes the syntax of the text and provides sentence boundaries and
      * tokenization along with part of speech tags, dependency trees, and other
      * properties.
@@ -366,6 +416,18 @@ public final class LanguageServiceGrpc {
 
     /**
      * <pre>
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.cloud.language.v1.AnalyzeEntitySentimentResponse> analyzeEntitySentiment(
+        com.google.cloud.language.v1.AnalyzeEntitySentimentRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_ANALYZE_ENTITY_SENTIMENT, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Analyzes the syntax of the text and provides sentence boundaries and
      * tokenization along with part of speech tags, dependency trees, and other
      * properties.
@@ -392,8 +454,9 @@ public final class LanguageServiceGrpc {
 
   private static final int METHODID_ANALYZE_SENTIMENT = 0;
   private static final int METHODID_ANALYZE_ENTITIES = 1;
-  private static final int METHODID_ANALYZE_SYNTAX = 2;
-  private static final int METHODID_ANNOTATE_TEXT = 3;
+  private static final int METHODID_ANALYZE_ENTITY_SENTIMENT = 2;
+  private static final int METHODID_ANALYZE_SYNTAX = 3;
+  private static final int METHODID_ANNOTATE_TEXT = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -419,6 +482,10 @@ public final class LanguageServiceGrpc {
         case METHODID_ANALYZE_ENTITIES:
           serviceImpl.analyzeEntities((com.google.cloud.language.v1.AnalyzeEntitiesRequest) request,
               (io.grpc.stub.StreamObserver<com.google.cloud.language.v1.AnalyzeEntitiesResponse>) responseObserver);
+          break;
+        case METHODID_ANALYZE_ENTITY_SENTIMENT:
+          serviceImpl.analyzeEntitySentiment((com.google.cloud.language.v1.AnalyzeEntitySentimentRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.cloud.language.v1.AnalyzeEntitySentimentResponse>) responseObserver);
           break;
         case METHODID_ANALYZE_SYNTAX:
           serviceImpl.analyzeSyntax((com.google.cloud.language.v1.AnalyzeSyntaxRequest) request,
@@ -463,6 +530,7 @@ public final class LanguageServiceGrpc {
               .setSchemaDescriptor(new LanguageServiceDescriptorSupplier())
               .addMethod(METHOD_ANALYZE_SENTIMENT)
               .addMethod(METHOD_ANALYZE_ENTITIES)
+              .addMethod(METHOD_ANALYZE_ENTITY_SENTIMENT)
               .addMethod(METHOD_ANALYZE_SYNTAX)
               .addMethod(METHOD_ANNOTATE_TEXT)
               .build();
