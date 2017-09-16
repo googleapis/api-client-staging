@@ -31,6 +31,7 @@
 namespace Google\Cloud\Language\V1\Gapic;
 
 use Google\Cloud\Language\V1\AnalyzeEntitiesRequest;
+use Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1\AnnotateTextRequest;
@@ -174,6 +175,7 @@ class LanguageServiceGapicClient
         $this->descriptors = [
             'analyzeSentiment' => $defaultDescriptors,
             'analyzeEntities' => $defaultDescriptors,
+            'analyzeEntitySentiment' => $defaultDescriptors,
             'analyzeSyntax' => $defaultDescriptors,
             'annotateText' => $defaultDescriptors,
         ];
@@ -316,6 +318,65 @@ class LanguageServiceGapicClient
             'AnalyzeEntities',
             $mergedSettings,
             $this->descriptors['analyzeEntities']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $languageServiceClient = new LanguageServiceClient();
+     *     $document = new Document();
+     *     $response = $languageServiceClient->analyzeEntitySentiment($document);
+     * } finally {
+     *     $languageServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Document $document     Input document.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type int $encodingType
+     *          The encoding type used by the API to calculate offsets.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function analyzeEntitySentiment($document, $optionalArgs = [])
+    {
+        $request = new AnalyzeEntitySentimentRequest();
+        $request->setDocument($document);
+        if (isset($optionalArgs['encodingType'])) {
+            $request->setEncodingType($optionalArgs['encodingType']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['analyzeEntitySentiment']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->languageServiceStub,
+            'AnalyzeEntitySentiment',
+            $mergedSettings,
+            $this->descriptors['analyzeEntitySentiment']
         );
 
         return $callable(

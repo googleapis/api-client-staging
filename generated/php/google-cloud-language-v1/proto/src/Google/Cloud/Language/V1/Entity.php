@@ -54,6 +54,15 @@ class Entity extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.EntityMention mentions = 5;</code>
      */
     private $mentions;
+    /**
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    private $sentiment = null;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Language\V1\LanguageService::initOnce();
@@ -200,6 +209,38 @@ class Entity extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\EntityMention::class);
         $this->mentions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     * @return \Google\Cloud\Language\V1\Sentiment
+     */
+    public function getSentiment()
+    {
+        return $this->sentiment;
+    }
+
+    /**
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     * @param \Google\Cloud\Language\V1\Sentiment $var
+     * @return $this
+     */
+    public function setSentiment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\Sentiment::class);
+        $this->sentiment = $var;
 
         return $this;
     }

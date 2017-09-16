@@ -64,6 +64,21 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
+     * @param \Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function AnalyzeEntitySentiment(\Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.language.v1.LanguageService/AnalyzeEntitySentiment',
+        $argument,
+        ['\Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Analyzes the syntax of the text and provides sentence boundaries and
      * tokenization along with part of speech tags, dependency trees, and other
      * properties.

@@ -157,10 +157,12 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $filter = 'filter-1274492040';
+        $valueExtractor = 'valueExtractor2047672534';
         $expectedResponse = new LogMetric();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setValueExtractor($valueExtractor);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -232,10 +234,12 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $filter = 'filter-1274492040';
+        $valueExtractor = 'valueExtractor2047672534';
         $expectedResponse = new LogMetric();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setValueExtractor($valueExtractor);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
@@ -310,10 +314,12 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $filter = 'filter-1274492040';
+        $valueExtractor = 'valueExtractor2047672534';
         $expectedResponse = new LogMetric();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
+        $expectedResponse->setValueExtractor($valueExtractor);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
