@@ -38,7 +38,6 @@ use Google\Devtools\Cloudtrace\V1\Traces;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\Protobuf\Timestamp;
@@ -97,6 +96,9 @@ class TraceServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $traceServiceStub;
     private $scopes;
@@ -122,13 +124,16 @@ class TraceServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
     }
 
     /**
@@ -155,15 +160,18 @@ class TraceServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Trace API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -181,6 +189,7 @@ class TraceServiceGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/trace_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -203,15 +212,13 @@ class TraceServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/trace_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.devtools.cloudtrace.v1.TraceService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -255,12 +262,11 @@ class TraceServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -308,12 +314,11 @@ class TraceServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Devtools\Cloudtrace\V1\Trace
@@ -408,12 +413,11 @@ class TraceServiceGapicClient
      *          (for example, `name desc`).
      *
      *          Only one sort field is permitted.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse

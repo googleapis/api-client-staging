@@ -80,7 +80,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProjectName = ReportErrorsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
 
         $response = $client->reportErrorEvent($formattedProjectName, $event);
@@ -120,7 +120,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProjectName = ReportErrorsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
 
         try {

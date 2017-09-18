@@ -86,7 +86,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listLogMetrics($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -127,7 +127,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listLogMetrics($formattedParent);
@@ -166,7 +166,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $response = $client->getLogMetric($formattedMetricName);
         $this->assertEquals($expectedResponse, $response);
@@ -204,7 +204,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->getLogMetric($formattedMetricName);
@@ -243,7 +243,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $metric = new LogMetric();
 
         $response = $client->createLogMetric($formattedParent, $metric);
@@ -283,7 +283,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $metric = new LogMetric();
 
         try {
@@ -323,7 +323,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         $response = $client->updateLogMetric($formattedMetricName, $metric);
@@ -363,7 +363,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         try {
@@ -395,7 +395,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $client->deleteLogMetric($formattedMetricName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -432,7 +432,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->deleteLogMetric($formattedMetricName);

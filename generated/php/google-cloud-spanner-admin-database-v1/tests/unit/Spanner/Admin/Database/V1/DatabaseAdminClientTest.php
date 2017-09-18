@@ -98,7 +98,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = DatabaseAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         $response = $client->listDatabases($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -139,7 +139,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = DatabaseAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         try {
             $client->listDatabases($formattedParent);
@@ -193,7 +193,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = DatabaseAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $createStatement = 'createStatement552974828';
 
         $response = $client->createDatabase($formattedParent, $createStatement);
@@ -270,7 +270,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = DatabaseAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $createStatement = 'createStatement552974828';
 
         $response = $client->createDatabase($formattedParent, $createStatement);
@@ -313,7 +313,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getDatabase($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -351,7 +351,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedName = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
             $client->getDatabase($formattedName);
@@ -403,7 +403,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $statements = [];
 
         $response = $client->updateDatabaseDdl($formattedDatabase, $statements);
@@ -480,7 +480,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $statements = [];
 
         $response = $client->updateDatabaseDdl($formattedDatabase, $statements);
@@ -521,7 +521,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $client->dropDatabase($formattedDatabase);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -558,7 +558,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
             $client->dropDatabase($formattedDatabase);
@@ -589,7 +589,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getDatabaseDdl($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
@@ -627,7 +627,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
             $client->getDatabaseDdl($formattedDatabase);
@@ -662,7 +662,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $policy = new Policy();
 
         $response = $client->setIamPolicy($formattedResource, $policy);
@@ -702,7 +702,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $policy = new Policy();
 
         try {
@@ -738,7 +738,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
@@ -776,7 +776,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
             $client->getIamPolicy($formattedResource);
@@ -807,7 +807,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $permissions = [];
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
@@ -847,7 +847,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = DatabaseAdminClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $permissions = [];
 
         try {
