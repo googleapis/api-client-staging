@@ -34,6 +34,12 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool extract_document_sentiment = 3;</code>
      */
     private $extract_document_sentiment = false;
+    /**
+     * Extract entities and their associated sentiment.
+     *
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
+     */
+    private $extract_entity_sentiment = false;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Language\V1\LanguageService::initOnce();
@@ -114,6 +120,32 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->extract_document_sentiment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Extract entities and their associated sentiment.
+     *
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
+     * @return bool
+     */
+    public function getExtractEntitySentiment()
+    {
+        return $this->extract_entity_sentiment;
+    }
+
+    /**
+     * Extract entities and their associated sentiment.
+     *
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExtractEntitySentiment($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->extract_entity_sentiment = $var;
 
         return $this;
     }
