@@ -133,6 +133,15 @@ public  final class AnnotateTextRequest extends
      * <code>bool extract_document_sentiment = 3;</code>
      */
     boolean getExtractDocumentSentiment();
+
+    /**
+     * <pre>
+     * Extract entities and their associated sentiment.
+     * </pre>
+     *
+     * <code>bool extract_entity_sentiment = 4;</code>
+     */
+    boolean getExtractEntitySentiment();
   }
   /**
    * <pre>
@@ -154,6 +163,7 @@ public  final class AnnotateTextRequest extends
       extractSyntax_ = false;
       extractEntities_ = false;
       extractDocumentSentiment_ = false;
+      extractEntitySentiment_ = false;
     }
 
     @java.lang.Override
@@ -194,6 +204,11 @@ public  final class AnnotateTextRequest extends
             case 24: {
 
               extractDocumentSentiment_ = input.readBool();
+              break;
+            }
+            case 32: {
+
+              extractEntitySentiment_ = input.readBool();
               break;
             }
           }
@@ -258,6 +273,19 @@ public  final class AnnotateTextRequest extends
       return extractDocumentSentiment_;
     }
 
+    public static final int EXTRACT_ENTITY_SENTIMENT_FIELD_NUMBER = 4;
+    private boolean extractEntitySentiment_;
+    /**
+     * <pre>
+     * Extract entities and their associated sentiment.
+     * </pre>
+     *
+     * <code>bool extract_entity_sentiment = 4;</code>
+     */
+    public boolean getExtractEntitySentiment() {
+      return extractEntitySentiment_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -279,6 +307,9 @@ public  final class AnnotateTextRequest extends
       if (extractDocumentSentiment_ != false) {
         output.writeBool(3, extractDocumentSentiment_);
       }
+      if (extractEntitySentiment_ != false) {
+        output.writeBool(4, extractEntitySentiment_);
+      }
     }
 
     public int getSerializedSize() {
@@ -297,6 +328,10 @@ public  final class AnnotateTextRequest extends
       if (extractDocumentSentiment_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, extractDocumentSentiment_);
+      }
+      if (extractEntitySentiment_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, extractEntitySentiment_);
       }
       memoizedSize = size;
       return size;
@@ -320,6 +355,8 @@ public  final class AnnotateTextRequest extends
           == other.getExtractEntities());
       result = result && (getExtractDocumentSentiment()
           == other.getExtractDocumentSentiment());
+      result = result && (getExtractEntitySentiment()
+          == other.getExtractEntitySentiment());
       return result;
     }
 
@@ -339,6 +376,9 @@ public  final class AnnotateTextRequest extends
       hash = (37 * hash) + EXTRACT_DOCUMENT_SENTIMENT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getExtractDocumentSentiment());
+      hash = (37 * hash) + EXTRACT_ENTITY_SENTIMENT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getExtractEntitySentiment());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -479,6 +519,8 @@ public  final class AnnotateTextRequest extends
 
         extractDocumentSentiment_ = false;
 
+        extractEntitySentiment_ = false;
+
         return this;
       }
 
@@ -504,6 +546,7 @@ public  final class AnnotateTextRequest extends
         result.extractSyntax_ = extractSyntax_;
         result.extractEntities_ = extractEntities_;
         result.extractDocumentSentiment_ = extractDocumentSentiment_;
+        result.extractEntitySentiment_ = extractEntitySentiment_;
         onBuilt();
         return result;
       }
@@ -553,6 +596,9 @@ public  final class AnnotateTextRequest extends
         }
         if (other.getExtractDocumentSentiment() != false) {
           setExtractDocumentSentiment(other.getExtractDocumentSentiment());
+        }
+        if (other.getExtractEntitySentiment() != false) {
+          setExtractEntitySentiment(other.getExtractEntitySentiment());
         }
         onChanged();
         return this;
@@ -690,6 +736,44 @@ public  final class AnnotateTextRequest extends
       public Builder clearExtractDocumentSentiment() {
         
         extractDocumentSentiment_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean extractEntitySentiment_ ;
+      /**
+       * <pre>
+       * Extract entities and their associated sentiment.
+       * </pre>
+       *
+       * <code>bool extract_entity_sentiment = 4;</code>
+       */
+      public boolean getExtractEntitySentiment() {
+        return extractEntitySentiment_;
+      }
+      /**
+       * <pre>
+       * Extract entities and their associated sentiment.
+       * </pre>
+       *
+       * <code>bool extract_entity_sentiment = 4;</code>
+       */
+      public Builder setExtractEntitySentiment(boolean value) {
+        
+        extractEntitySentiment_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Extract entities and their associated sentiment.
+       * </pre>
+       *
+       * <code>bool extract_entity_sentiment = 4;</code>
+       */
+      public Builder clearExtractEntitySentiment() {
+        
+        extractEntitySentiment_ = false;
         onChanged();
         return this;
       }

@@ -91,6 +91,19 @@ public  final class Entity extends
                 input.readMessage(com.google.cloud.language.v1.EntityMention.parser(), extensionRegistry));
             break;
           }
+          case 50: {
+            com.google.cloud.language.v1.Sentiment.Builder subBuilder = null;
+            if (sentiment_ != null) {
+              subBuilder = sentiment_.toBuilder();
+            }
+            sentiment_ = input.readMessage(com.google.cloud.language.v1.Sentiment.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(sentiment_);
+              sentiment_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -592,6 +605,48 @@ public  final class Entity extends
     return mentions_.get(index);
   }
 
+  public static final int SENTIMENT_FIELD_NUMBER = 6;
+  private com.google.cloud.language.v1.Sentiment sentiment_;
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  public boolean hasSentiment() {
+    return sentiment_ != null;
+  }
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  public com.google.cloud.language.v1.Sentiment getSentiment() {
+    return sentiment_ == null ? com.google.cloud.language.v1.Sentiment.getDefaultInstance() : sentiment_;
+  }
+  /**
+   * <pre>
+   * For calls to [AnalyzeEntitySentiment][] or if
+   * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+   * true, this field will contain the aggregate sentiment expressed for this
+   * entity in the provided document.
+   * </pre>
+   *
+   * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+   */
+  public com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder() {
+    return getSentiment();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -621,6 +676,9 @@ public  final class Entity extends
     }
     for (int i = 0; i < mentions_.size(); i++) {
       output.writeMessage(5, mentions_.get(i));
+    }
+    if (sentiment_ != null) {
+      output.writeMessage(6, getSentiment());
     }
   }
 
@@ -654,6 +712,10 @@ public  final class Entity extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, mentions_.get(i));
     }
+    if (sentiment_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, getSentiment());
+    }
     memoizedSize = size;
     return size;
   }
@@ -681,6 +743,11 @@ public  final class Entity extends
             other.getSalience()));
     result = result && getMentionsList()
         .equals(other.getMentionsList());
+    result = result && (hasSentiment() == other.hasSentiment());
+    if (hasSentiment()) {
+      result = result && getSentiment()
+          .equals(other.getSentiment());
+    }
     return result;
   }
 
@@ -705,6 +772,10 @@ public  final class Entity extends
     if (getMentionsCount() > 0) {
       hash = (37 * hash) + MENTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getMentionsList().hashCode();
+    }
+    if (hasSentiment()) {
+      hash = (37 * hash) + SENTIMENT_FIELD_NUMBER;
+      hash = (53 * hash) + getSentiment().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -877,6 +948,12 @@ public  final class Entity extends
       } else {
         mentionsBuilder_.clear();
       }
+      if (sentimentBuilder_ == null) {
+        sentiment_ = null;
+      } else {
+        sentiment_ = null;
+        sentimentBuilder_ = null;
+      }
       return this;
     }
 
@@ -914,6 +991,11 @@ public  final class Entity extends
         result.mentions_ = mentions_;
       } else {
         result.mentions_ = mentionsBuilder_.build();
+      }
+      if (sentimentBuilder_ == null) {
+        result.sentiment_ = sentiment_;
+      } else {
+        result.sentiment_ = sentimentBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -994,6 +1076,9 @@ public  final class Entity extends
             mentionsBuilder_.addAllMessages(other.mentions_);
           }
         }
+      }
+      if (other.hasSentiment()) {
+        mergeSentiment(other.getSentiment());
       }
       onChanged();
       return this;
@@ -1718,6 +1803,186 @@ public  final class Entity extends
         mentions_ = null;
       }
       return mentionsBuilder_;
+    }
+
+    private com.google.cloud.language.v1.Sentiment sentiment_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.language.v1.Sentiment, com.google.cloud.language.v1.Sentiment.Builder, com.google.cloud.language.v1.SentimentOrBuilder> sentimentBuilder_;
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public boolean hasSentiment() {
+      return sentimentBuilder_ != null || sentiment_ != null;
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public com.google.cloud.language.v1.Sentiment getSentiment() {
+      if (sentimentBuilder_ == null) {
+        return sentiment_ == null ? com.google.cloud.language.v1.Sentiment.getDefaultInstance() : sentiment_;
+      } else {
+        return sentimentBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public Builder setSentiment(com.google.cloud.language.v1.Sentiment value) {
+      if (sentimentBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        sentiment_ = value;
+        onChanged();
+      } else {
+        sentimentBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public Builder setSentiment(
+        com.google.cloud.language.v1.Sentiment.Builder builderForValue) {
+      if (sentimentBuilder_ == null) {
+        sentiment_ = builderForValue.build();
+        onChanged();
+      } else {
+        sentimentBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public Builder mergeSentiment(com.google.cloud.language.v1.Sentiment value) {
+      if (sentimentBuilder_ == null) {
+        if (sentiment_ != null) {
+          sentiment_ =
+            com.google.cloud.language.v1.Sentiment.newBuilder(sentiment_).mergeFrom(value).buildPartial();
+        } else {
+          sentiment_ = value;
+        }
+        onChanged();
+      } else {
+        sentimentBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public Builder clearSentiment() {
+      if (sentimentBuilder_ == null) {
+        sentiment_ = null;
+        onChanged();
+      } else {
+        sentiment_ = null;
+        sentimentBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public com.google.cloud.language.v1.Sentiment.Builder getSentimentBuilder() {
+      
+      onChanged();
+      return getSentimentFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    public com.google.cloud.language.v1.SentimentOrBuilder getSentimentOrBuilder() {
+      if (sentimentBuilder_ != null) {
+        return sentimentBuilder_.getMessageOrBuilder();
+      } else {
+        return sentiment_ == null ?
+            com.google.cloud.language.v1.Sentiment.getDefaultInstance() : sentiment_;
+      }
+    }
+    /**
+     * <pre>
+     * For calls to [AnalyzeEntitySentiment][] or if
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
+     * </pre>
+     *
+     * <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.cloud.language.v1.Sentiment, com.google.cloud.language.v1.Sentiment.Builder, com.google.cloud.language.v1.SentimentOrBuilder> 
+        getSentimentFieldBuilder() {
+      if (sentimentBuilder_ == null) {
+        sentimentBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.cloud.language.v1.Sentiment, com.google.cloud.language.v1.Sentiment.Builder, com.google.cloud.language.v1.SentimentOrBuilder>(
+                getSentiment(),
+                getParentForChildren(),
+                isClean());
+        sentiment_ = null;
+      }
+      return sentimentBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -707,6 +707,54 @@ public  final class DependencyEdge extends
      * <code>DISLOCATED = 76;</code>
      */
     DISLOCATED(76),
+    /**
+     * <pre>
+     * Aspect marker
+     * </pre>
+     *
+     * <code>ASP = 77;</code>
+     */
+    ASP(77),
+    /**
+     * <pre>
+     * Genitive modifier
+     * </pre>
+     *
+     * <code>GMOD = 78;</code>
+     */
+    GMOD(78),
+    /**
+     * <pre>
+     * Genitive object
+     * </pre>
+     *
+     * <code>GOBJ = 79;</code>
+     */
+    GOBJ(79),
+    /**
+     * <pre>
+     * Infinitival modifier
+     * </pre>
+     *
+     * <code>INFMOD = 80;</code>
+     */
+    INFMOD(80),
+    /**
+     * <pre>
+     * Measure
+     * </pre>
+     *
+     * <code>MES = 81;</code>
+     */
+    MES(81),
+    /**
+     * <pre>
+     * Nominal complement of a noun
+     * </pre>
+     *
+     * <code>NCOMP = 82;</code>
+     */
+    NCOMP(82),
     UNRECOGNIZED(-1),
     ;
 
@@ -1326,6 +1374,54 @@ public  final class DependencyEdge extends
      * <code>DISLOCATED = 76;</code>
      */
     public static final int DISLOCATED_VALUE = 76;
+    /**
+     * <pre>
+     * Aspect marker
+     * </pre>
+     *
+     * <code>ASP = 77;</code>
+     */
+    public static final int ASP_VALUE = 77;
+    /**
+     * <pre>
+     * Genitive modifier
+     * </pre>
+     *
+     * <code>GMOD = 78;</code>
+     */
+    public static final int GMOD_VALUE = 78;
+    /**
+     * <pre>
+     * Genitive object
+     * </pre>
+     *
+     * <code>GOBJ = 79;</code>
+     */
+    public static final int GOBJ_VALUE = 79;
+    /**
+     * <pre>
+     * Infinitival modifier
+     * </pre>
+     *
+     * <code>INFMOD = 80;</code>
+     */
+    public static final int INFMOD_VALUE = 80;
+    /**
+     * <pre>
+     * Measure
+     * </pre>
+     *
+     * <code>MES = 81;</code>
+     */
+    public static final int MES_VALUE = 81;
+    /**
+     * <pre>
+     * Nominal complement of a noun
+     * </pre>
+     *
+     * <code>NCOMP = 82;</code>
+     */
+    public static final int NCOMP_VALUE = 82;
 
 
     public final int getNumber() {
@@ -1423,6 +1519,12 @@ public  final class DependencyEdge extends
         case 74: return NUMC;
         case 75: return COP;
         case 76: return DISLOCATED;
+        case 77: return ASP;
+        case 78: return GMOD;
+        case 79: return GOBJ;
+        case 80: return INFMOD;
+        case 81: return MES;
+        case 82: return NCOMP;
         default: return null;
       }
     }
