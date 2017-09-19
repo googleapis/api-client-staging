@@ -44,6 +44,7 @@
 
 namespace Google\GAX\LongRunning\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -142,8 +143,8 @@ class OperationsGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }

@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Trace\V1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Devtools\Cloudtrace\V1\GetTraceRequest;
 use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
 use Google\Devtools\Cloudtrace\V1\PatchTracesRequest;
@@ -122,8 +123,8 @@ class TraceServiceGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }

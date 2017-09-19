@@ -39,6 +39,7 @@ use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1\Document;
 use Google\Cloud\Language\V1\EncodingType;
 use Google\Cloud\Language\V1\LanguageServiceGrpcClient;
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -103,8 +104,8 @@ class LanguageServiceGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
