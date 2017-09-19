@@ -253,9 +253,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeSentiment']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeSentiment'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeSentiment',
@@ -312,9 +316,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeEntities']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeEntities'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeEntities',
@@ -370,9 +378,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeEntitySentiment']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeEntitySentiment'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeEntitySentiment',
@@ -429,9 +441,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeSyntax']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeSyntax'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeSyntax',
@@ -490,9 +506,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['annotateText']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['annotateText'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnnotateText',

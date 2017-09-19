@@ -275,9 +275,13 @@ class TraceServiceGapicClient
         $request->setProjectId($projectId);
         $request->setTraces($traces);
 
-        $mergedSettings = $this->defaultCallSettings['patchTraces']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['patchTraces'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->traceServiceStub,
             'PatchTraces',
@@ -329,9 +333,13 @@ class TraceServiceGapicClient
         $request->setProjectId($projectId);
         $request->setTraceId($traceId);
 
-        $mergedSettings = $this->defaultCallSettings['getTrace']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getTrace'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->traceServiceStub,
             'GetTrace',
@@ -448,9 +456,13 @@ class TraceServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTraces']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listTraces'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->traceServiceStub,
             'ListTraces',
