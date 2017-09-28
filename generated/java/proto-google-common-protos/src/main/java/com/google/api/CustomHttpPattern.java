@@ -14,6 +14,7 @@ public  final class CustomHttpPattern extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.api.CustomHttpPattern)
     CustomHttpPatternOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use CustomHttpPattern.newBuilder() to construct.
   private CustomHttpPattern(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,14 +27,19 @@ public  final class CustomHttpPattern extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private CustomHttpPattern(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,7 +49,8 @@ public  final class CustomHttpPattern extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -68,6 +75,7 @@ public  final class CustomHttpPattern extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -185,6 +193,7 @@ public  final class CustomHttpPattern extends
     if (!getPathBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -198,11 +207,11 @@ public  final class CustomHttpPattern extends
     if (!getPathBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -218,6 +227,7 @@ public  final class CustomHttpPattern extends
         .equals(other.getKind());
     result = result && getPath()
         .equals(other.getPath());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -237,6 +247,17 @@ public  final class CustomHttpPattern extends
     return hash;
   }
 
+  public static com.google.api.CustomHttpPattern parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.api.CustomHttpPattern parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.api.CustomHttpPattern parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -391,7 +412,7 @@ public  final class CustomHttpPattern extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -404,12 +425,12 @@ public  final class CustomHttpPattern extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -431,6 +452,7 @@ public  final class CustomHttpPattern extends
         path_ = other.path_;
         onChanged();
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -636,12 +658,12 @@ public  final class CustomHttpPattern extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -664,7 +686,7 @@ public  final class CustomHttpPattern extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CustomHttpPattern(input, extensionRegistry);
+      return new CustomHttpPattern(input, extensionRegistry);
     }
   };
 

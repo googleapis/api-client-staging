@@ -176,6 +176,7 @@ public  final class HttpRule extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.api.HttpRule)
     HttpRuleOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use HttpRule.newBuilder() to construct.
   private HttpRule(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -189,14 +190,19 @@ public  final class HttpRule extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private HttpRule(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -206,7 +212,8 @@ public  final class HttpRule extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -287,6 +294,7 @@ public  final class HttpRule extends
       if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
         additionalBindings_ = java.util.Collections.unmodifiableList(additionalBindings_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -656,6 +664,16 @@ public  final class HttpRule extends
    *
    * <code>.google.api.CustomHttpPattern custom = 8;</code>
    */
+  public boolean hasCustom() {
+    return patternCase_ == 8;
+  }
+  /**
+   * <pre>
+   * Custom pattern is used for defining custom verbs.
+   * </pre>
+   *
+   * <code>.google.api.CustomHttpPattern custom = 8;</code>
+   */
   public com.google.api.CustomHttpPattern getCustom() {
     if (patternCase_ == 8) {
        return (com.google.api.CustomHttpPattern) pattern_;
@@ -828,6 +846,7 @@ public  final class HttpRule extends
     for (int i = 0; i < additionalBindings_.size(); i++) {
       output.writeMessage(11, additionalBindings_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -864,11 +883,11 @@ public  final class HttpRule extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, additionalBindings_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -917,6 +936,7 @@ public  final class HttpRule extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -968,6 +988,17 @@ public  final class HttpRule extends
     return hash;
   }
 
+  public static com.google.api.HttpRule parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.api.HttpRule parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.api.HttpRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1328,7 +1359,7 @@ public  final class HttpRule extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1341,12 +1372,12 @@ public  final class HttpRule extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1433,6 +1464,7 @@ public  final class HttpRule extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2078,6 +2110,16 @@ public  final class HttpRule extends
      *
      * <code>.google.api.CustomHttpPattern custom = 8;</code>
      */
+    public boolean hasCustom() {
+      return patternCase_ == 8;
+    }
+    /**
+     * <pre>
+     * Custom pattern is used for defining custom verbs.
+     * </pre>
+     *
+     * <code>.google.api.CustomHttpPattern custom = 8;</code>
+     */
     public com.google.api.CustomHttpPattern getCustom() {
       if (customBuilder_ == null) {
         if (patternCase_ == 8) {
@@ -2684,12 +2726,12 @@ public  final class HttpRule extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -2712,7 +2754,7 @@ public  final class HttpRule extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new HttpRule(input, extensionRegistry);
+      return new HttpRule(input, extensionRegistry);
     }
   };
 

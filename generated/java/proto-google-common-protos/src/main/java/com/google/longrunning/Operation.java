@@ -15,6 +15,7 @@ public  final class Operation extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.longrunning.Operation)
     OperationOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Operation.newBuilder() to construct.
   private Operation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,14 +28,19 @@ public  final class Operation extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Operation(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +50,8 @@ public  final class Operation extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -109,6 +116,7 @@ public  final class Operation extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -273,6 +281,16 @@ public  final class Operation extends
    *
    * <code>.google.rpc.Status error = 4;</code>
    */
+  public boolean hasError() {
+    return resultCase_ == 4;
+  }
+  /**
+   * <pre>
+   * The error result of the operation in case of failure or cancellation.
+   * </pre>
+   *
+   * <code>.google.rpc.Status error = 4;</code>
+   */
   public com.google.rpc.Status getError() {
     if (resultCase_ == 4) {
        return (com.google.rpc.Status) result_;
@@ -294,6 +312,23 @@ public  final class Operation extends
   }
 
   public static final int RESPONSE_FIELD_NUMBER = 5;
+  /**
+   * <pre>
+   * The normal response of the operation in case of success.  If the original
+   * method returns no data on success, such as `Delete`, the response is
+   * `google.protobuf.Empty`.  If the original method is standard
+   * `Get`/`Create`/`Update`, the response should be the resource.  For other
+   * methods, the response should have the type `XxxResponse`, where `Xxx`
+   * is the original method name.  For example, if the original method name
+   * is `TakeSnapshot()`, the inferred response type is
+   * `TakeSnapshotResponse`.
+   * </pre>
+   *
+   * <code>.google.protobuf.Any response = 5;</code>
+   */
+  public boolean hasResponse() {
+    return resultCase_ == 5;
+  }
   /**
    * <pre>
    * The normal response of the operation in case of success.  If the original
@@ -362,6 +397,7 @@ public  final class Operation extends
     if (resultCase_ == 5) {
       output.writeMessage(5, (com.google.protobuf.Any) result_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -388,11 +424,11 @@ public  final class Operation extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, (com.google.protobuf.Any) result_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -428,6 +464,7 @@ public  final class Operation extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -464,6 +501,17 @@ public  final class Operation extends
     return hash;
   }
 
+  public static com.google.longrunning.Operation parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.longrunning.Operation parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.longrunning.Operation parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -647,7 +695,7 @@ public  final class Operation extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -660,12 +708,12 @@ public  final class Operation extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -702,6 +750,7 @@ public  final class Operation extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1075,6 +1124,16 @@ public  final class Operation extends
      *
      * <code>.google.rpc.Status error = 4;</code>
      */
+    public boolean hasError() {
+      return resultCase_ == 4;
+    }
+    /**
+     * <pre>
+     * The error result of the operation in case of failure or cancellation.
+     * </pre>
+     *
+     * <code>.google.rpc.Status error = 4;</code>
+     */
     public com.google.rpc.Status getError() {
       if (errorBuilder_ == null) {
         if (resultCase_ == 4) {
@@ -1230,6 +1289,23 @@ public  final class Operation extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> responseBuilder_;
+    /**
+     * <pre>
+     * The normal response of the operation in case of success.  If the original
+     * method returns no data on success, such as `Delete`, the response is
+     * `google.protobuf.Empty`.  If the original method is standard
+     * `Get`/`Create`/`Update`, the response should be the resource.  For other
+     * methods, the response should have the type `XxxResponse`, where `Xxx`
+     * is the original method name.  For example, if the original method name
+     * is `TakeSnapshot()`, the inferred response type is
+     * `TakeSnapshotResponse`.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any response = 5;</code>
+     */
+    public boolean hasResponse() {
+      return resultCase_ == 5;
+    }
     /**
      * <pre>
      * The normal response of the operation in case of success.  If the original
@@ -1447,12 +1523,12 @@ public  final class Operation extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -1475,7 +1551,7 @@ public  final class Operation extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Operation(input, extensionRegistry);
+      return new Operation(input, extensionRegistry);
     }
   };
 

@@ -15,6 +15,7 @@ public  final class SystemParameterRule extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.api.SystemParameterRule)
     SystemParameterRuleOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use SystemParameterRule.newBuilder() to construct.
   private SystemParameterRule(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,14 +28,19 @@ public  final class SystemParameterRule extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private SystemParameterRule(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +50,8 @@ public  final class SystemParameterRule extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -75,6 +82,7 @@ public  final class SystemParameterRule extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         parameters_ = java.util.Collections.unmodifiableList(parameters_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -230,6 +238,7 @@ public  final class SystemParameterRule extends
     for (int i = 0; i < parameters_.size(); i++) {
       output.writeMessage(2, parameters_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -244,11 +253,11 @@ public  final class SystemParameterRule extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, parameters_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -264,6 +273,7 @@ public  final class SystemParameterRule extends
         .equals(other.getSelector());
     result = result && getParametersList()
         .equals(other.getParametersList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -285,6 +295,17 @@ public  final class SystemParameterRule extends
     return hash;
   }
 
+  public static com.google.api.SystemParameterRule parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.api.SystemParameterRule parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.api.SystemParameterRule parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -456,7 +477,7 @@ public  final class SystemParameterRule extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -469,12 +490,12 @@ public  final class SystemParameterRule extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -518,6 +539,7 @@ public  final class SystemParameterRule extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1029,12 +1051,12 @@ public  final class SystemParameterRule extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -1057,7 +1079,7 @@ public  final class SystemParameterRule extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SystemParameterRule(input, extensionRegistry);
+      return new SystemParameterRule(input, extensionRegistry);
     }
   };
 

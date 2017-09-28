@@ -48,6 +48,7 @@ public  final class Monitoring extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.api.Monitoring)
     MonitoringOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Monitoring.newBuilder() to construct.
   private Monitoring(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -60,14 +61,19 @@ public  final class Monitoring extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Monitoring(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -77,7 +83,8 @@ public  final class Monitoring extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -114,6 +121,7 @@ public  final class Monitoring extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         consumerDestinations_ = java.util.Collections.unmodifiableList(consumerDestinations_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -204,6 +212,7 @@ public  final class Monitoring extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.api.Monitoring.MonitoringDestination)
       MonitoringDestinationOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use MonitoringDestination.newBuilder() to construct.
     private MonitoringDestination(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -216,14 +225,19 @@ public  final class Monitoring extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private MonitoringDestination(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -233,7 +247,8 @@ public  final class Monitoring extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -264,6 +279,7 @@ public  final class Monitoring extends
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           metrics_ = metrics_.getUnmodifiableView();
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -391,6 +407,7 @@ public  final class Monitoring extends
       for (int i = 0; i < metrics_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, metrics_.getRaw(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -409,11 +426,11 @@ public  final class Monitoring extends
         size += dataSize;
         size += 1 * getMetricsList().size();
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -429,6 +446,7 @@ public  final class Monitoring extends
           .equals(other.getMonitoredResource());
       result = result && getMetricsList()
           .equals(other.getMetricsList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -450,6 +468,17 @@ public  final class Monitoring extends
       return hash;
     }
 
+    public static com.google.api.Monitoring.MonitoringDestination parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.google.api.Monitoring.MonitoringDestination parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static com.google.api.Monitoring.MonitoringDestination parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -612,7 +641,7 @@ public  final class Monitoring extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -625,12 +654,12 @@ public  final class Monitoring extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -658,6 +687,7 @@ public  final class Monitoring extends
           }
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -919,12 +949,12 @@ public  final class Monitoring extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -947,7 +977,7 @@ public  final class Monitoring extends
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new MonitoringDestination(input, extensionRegistry);
+        return new MonitoringDestination(input, extensionRegistry);
       }
     };
 
@@ -1124,6 +1154,7 @@ public  final class Monitoring extends
     for (int i = 0; i < consumerDestinations_.size(); i++) {
       output.writeMessage(2, consumerDestinations_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1139,11 +1170,11 @@ public  final class Monitoring extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, consumerDestinations_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -1159,6 +1190,7 @@ public  final class Monitoring extends
         .equals(other.getProducerDestinationsList());
     result = result && getConsumerDestinationsList()
         .equals(other.getConsumerDestinationsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1182,6 +1214,17 @@ public  final class Monitoring extends
     return hash;
   }
 
+  public static com.google.api.Monitoring parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.google.api.Monitoring parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.google.api.Monitoring parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1397,7 +1440,7 @@ public  final class Monitoring extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1410,12 +1453,12 @@ public  final class Monitoring extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1481,6 +1524,7 @@ public  final class Monitoring extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2241,12 +2285,12 @@ public  final class Monitoring extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -2269,7 +2313,7 @@ public  final class Monitoring extends
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Monitoring(input, extensionRegistry);
+      return new Monitoring(input, extensionRegistry);
     }
   };
 
