@@ -124,14 +124,6 @@ public interface HttpRuleOrBuilder extends
    *
    * <code>.google.api.CustomHttpPattern custom = 8;</code>
    */
-  boolean hasCustom();
-  /**
-   * <pre>
-   * Custom pattern is used for defining custom verbs.
-   * </pre>
-   *
-   * <code>.google.api.CustomHttpPattern custom = 8;</code>
-   */
   com.google.api.CustomHttpPattern getCustom();
   /**
    * <pre>
