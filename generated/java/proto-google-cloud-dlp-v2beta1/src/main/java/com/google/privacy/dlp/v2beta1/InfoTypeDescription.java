@@ -5,7 +5,7 @@ package com.google.privacy.dlp.v2beta1;
 
 /**
  * <pre>
- * Info type description.
+ * Description of the information type (infoType).
  * </pre>
  *
  * Protobuf type {@code google.privacy.dlp.v2beta1.InfoTypeDescription}
@@ -101,7 +101,7 @@ public  final class InfoTypeDescription extends
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * Internal name of the info type.
+   * Internal name of the infoType.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -120,7 +120,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * Internal name of the info type.
+   * Internal name of the infoType.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -143,7 +143,7 @@ public  final class InfoTypeDescription extends
   private volatile java.lang.Object displayName_;
   /**
    * <pre>
-   * Human readable form of the info type name.
+   * Human readable form of the infoType name.
    * </pre>
    *
    * <code>string display_name = 2;</code>
@@ -162,7 +162,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * Human readable form of the info type name.
+   * Human readable form of the infoType name.
    * </pre>
    *
    * <code>string display_name = 2;</code>
@@ -185,7 +185,7 @@ public  final class InfoTypeDescription extends
   private java.util.List<com.google.privacy.dlp.v2beta1.CategoryDescription> categories_;
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -195,7 +195,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -206,7 +206,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -216,7 +216,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -226,7 +226,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -409,7 +409,7 @@ public  final class InfoTypeDescription extends
   }
   /**
    * <pre>
-   * Info type description.
+   * Description of the information type (infoType).
    * </pre>
    *
    * Protobuf type {@code google.privacy.dlp.v2beta1.InfoTypeDescription}
@@ -599,7 +599,7 @@ public  final class InfoTypeDescription extends
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * Internal name of the info type.
+     * Internal name of the infoType.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -618,7 +618,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Internal name of the info type.
+     * Internal name of the infoType.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -638,7 +638,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Internal name of the info type.
+     * Internal name of the infoType.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -655,7 +655,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Internal name of the info type.
+     * Internal name of the infoType.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -668,7 +668,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Internal name of the info type.
+     * Internal name of the infoType.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -688,7 +688,7 @@ public  final class InfoTypeDescription extends
     private java.lang.Object displayName_ = "";
     /**
      * <pre>
-     * Human readable form of the info type name.
+     * Human readable form of the infoType name.
      * </pre>
      *
      * <code>string display_name = 2;</code>
@@ -707,7 +707,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Human readable form of the info type name.
+     * Human readable form of the infoType name.
      * </pre>
      *
      * <code>string display_name = 2;</code>
@@ -727,7 +727,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Human readable form of the info type name.
+     * Human readable form of the infoType name.
      * </pre>
      *
      * <code>string display_name = 2;</code>
@@ -744,7 +744,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Human readable form of the info type name.
+     * Human readable form of the infoType name.
      * </pre>
      *
      * <code>string display_name = 2;</code>
@@ -757,7 +757,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * Human readable form of the info type name.
+     * Human readable form of the infoType name.
      * </pre>
      *
      * <code>string display_name = 2;</code>
@@ -788,7 +788,7 @@ public  final class InfoTypeDescription extends
 
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -802,7 +802,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -816,7 +816,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -830,7 +830,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -851,7 +851,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -869,7 +869,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -889,7 +889,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -910,7 +910,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -928,7 +928,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -946,7 +946,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -965,7 +965,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -982,7 +982,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -999,7 +999,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -1010,7 +1010,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -1024,7 +1024,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -1039,7 +1039,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -1050,7 +1050,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -1062,7 +1062,7 @@ public  final class InfoTypeDescription extends
     }
     /**
      * <pre>
-     * List of categories this info type belongs to.
+     * List of categories this infoType belongs to.
      * </pre>
      *
      * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>

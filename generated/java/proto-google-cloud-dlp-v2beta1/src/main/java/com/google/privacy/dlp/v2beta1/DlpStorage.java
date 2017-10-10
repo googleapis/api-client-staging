@@ -104,6 +104,11 @@ public final class DlpStorage {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_google_privacy_dlp_v2beta1_BigQueryTable_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_google_privacy_dlp_v2beta1_EntityId_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_google_privacy_dlp_v2beta1_EntityId_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -156,10 +161,12 @@ public final class DlpStorage {
       "(\0132(.google.privacy.dlp.v2beta1.Datastor" +
       "eKeyH\000B\006\n\004type\"I\n\rBigQueryTable\022\022\n\nproje" +
       "ct_id\030\001 \001(\t\022\022\n\ndataset_id\030\002 \001(\t\022\020\n\010table" +
-      "_id\030\003 \001(\tB\210\001\n\036com.google.privacy.dlp.v2b" +
-      "eta1B\nDlpStorageP\001Z=google.golang.org/ge" +
-      "nproto/googleapis/privacy/dlp/v2beta1;dl" +
-      "p\252\002\030Google.Cloud.Dlp.V2Beta1b\006proto3"
+      "_id\030\003 \001(\t\">\n\010EntityId\0222\n\005field\030\001 \001(\0132#.g" +
+      "oogle.privacy.dlp.v2beta1.FieldIdB\210\001\n\036co" +
+      "m.google.privacy.dlp.v2beta1B\nDlpStorage" +
+      "P\001Z=google.golang.org/genproto/googleapi" +
+      "s/privacy/dlp/v2beta1;dlp\252\002\030Google.Cloud" +
+      ".Dlp.V2Beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -283,6 +290,12 @@ public final class DlpStorage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_privacy_dlp_v2beta1_BigQueryTable_descriptor,
         new java.lang.String[] { "ProjectId", "DatasetId", "TableId", });
+    internal_static_google_privacy_dlp_v2beta1_EntityId_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_google_privacy_dlp_v2beta1_EntityId_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_google_privacy_dlp_v2beta1_EntityId_descriptor,
+        new java.lang.String[] { "Field", });
     com.google.api.AnnotationsProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }

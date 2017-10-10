@@ -10,7 +10,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
   /**
    * <pre>
    * Identifier of the results set returned as metadata of
-   * the longrunning operation created by a call to CreateInspectOperation.
+   * the longrunning operation created by a call to InspectDataSource.
    * Should be in the format of `inspect/results/{id}`.
    * </pre>
    *
@@ -20,7 +20,7 @@ public interface ListInspectFindingsRequestOrBuilder extends
   /**
    * <pre>
    * Identifier of the results set returned as metadata of
-   * the longrunning operation created by a call to CreateInspectOperation.
+   * the longrunning operation created by a call to InspectDataSource.
    * Should be in the format of `inspect/results/{id}`.
    * </pre>
    *
@@ -64,12 +64,12 @@ public interface ListInspectFindingsRequestOrBuilder extends
   /**
    * <pre>
    * Restricts findings to items that match. Supports info_type and likelihood.
-   * &lt;p&gt;Examples:&lt;br/&gt;
-   * &lt;li&gt;info_type=EMAIL_ADDRESS
-   * &lt;li&gt;info_type=PHONE_NUMBER,EMAIL_ADDRESS
-   * &lt;li&gt;likelihood=VERY_LIKELY
-   * &lt;li&gt;likelihood=VERY_LIKELY,LIKELY
-   * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
+   * Examples:
+   * - info_type=EMAIL_ADDRESS
+   * - info_type=PHONE_NUMBER,EMAIL_ADDRESS
+   * - likelihood=VERY_LIKELY
+   * - likelihood=VERY_LIKELY,LIKELY
+   * - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
    * <code>string filter = 4;</code>
@@ -78,12 +78,12 @@ public interface ListInspectFindingsRequestOrBuilder extends
   /**
    * <pre>
    * Restricts findings to items that match. Supports info_type and likelihood.
-   * &lt;p&gt;Examples:&lt;br/&gt;
-   * &lt;li&gt;info_type=EMAIL_ADDRESS
-   * &lt;li&gt;info_type=PHONE_NUMBER,EMAIL_ADDRESS
-   * &lt;li&gt;likelihood=VERY_LIKELY
-   * &lt;li&gt;likelihood=VERY_LIKELY,LIKELY
-   * &lt;li&gt;info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
+   * Examples:
+   * - info_type=EMAIL_ADDRESS
+   * - info_type=PHONE_NUMBER,EMAIL_ADDRESS
+   * - likelihood=VERY_LIKELY
+   * - likelihood=VERY_LIKELY,LIKELY
+   * - info_type=EMAIL_ADDRESS,likelihood=VERY_LIKELY,LIKELY
    * </pre>
    *
    * <code>string filter = 4;</code>
