@@ -1,6 +1,6 @@
 --no-private
 --title=Google Cloud Pub/Sub API
---exclude lib/google/cloud/pubsub/v1
+--exclude _pb\.rb$
 --markup markdown
 
 ./lib/**/*.rb

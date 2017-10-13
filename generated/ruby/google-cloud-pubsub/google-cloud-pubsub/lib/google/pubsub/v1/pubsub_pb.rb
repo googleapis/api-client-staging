@@ -124,6 +124,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "google.pubsub.v1.CreateSnapshotRequest" do
     optional :name, :string, 1
     optional :subscription, :string, 2
+    map :labels, :string, :string, 3
   end
   add_message "google.pubsub.v1.UpdateSnapshotRequest" do
     optional :snapshot, :message, 1, "google.pubsub.v1.Snapshot"

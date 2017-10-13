@@ -14,6 +14,19 @@
 
 module Google
   module Pubsub
+    ##
+    # # Google Cloud Pub/Sub API Contents
+    #
+    # | Class | Description |
+    # | ----- | ----------- |
+    # | [PublisherClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
+    # | [SubscriberClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
+    # | [Data Types][] | Data types for Google::Cloud::Pubsub::V1 |
+    #
+    # [PublisherClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/publisherclient
+    # [SubscriberClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/subscriberclient
+    # [Data Types]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/datatypes
+    #
     module V1
       # A topic resource.
       # @!attribute [rw] name
@@ -174,7 +187,8 @@ module Google
       #     For pull subscriptions, this value is used as the initial value for the ack
       #     deadline. To override this value for a given message, call
       #     +ModifyAckDeadline+ with the corresponding +ack_id+ if using
-      #     pull.
+      #     non-streaming pull or send the +ack_id+ in a
+      #     +StreamingModifyAckDeadlineRequest+ if using streaming pull.
       #     The minimum custom deadline you can specify is 10 seconds.
       #     The maximum custom deadline you can specify is 600 seconds (10 minutes).
       #     If this parameter is 0, a default value of 10 seconds is used.
@@ -304,7 +318,7 @@ module Google
       #     An empty +pushConfig+ indicates that the Pub/Sub system should
       #     stop pushing messages from the given subscription and allow
       #     messages to be pulled and acknowledged - effectively pausing
-      #     the subscription if +Pull+ is not called.
+      #     the subscription if +Pull+ or +StreamingPull+ is not called.
       class ModifyPushConfigRequest; end
 
       # Request for the +Pull+ method.
@@ -435,6 +449,9 @@ module Google
       #      (b) Any messages published to the subscription's topic following the
       #          successful completion of the CreateSnapshot request.
       #     Format is +projects/{project}/subscriptions/{sub}+.
+      # @!attribute [rw] labels
+      #   @return [Hash{String => String}]
+      #     User labels.
       class CreateSnapshotRequest; end
 
       # Request for the UpdateSnapshot method.
@@ -464,7 +481,8 @@ module Google
       #     For example, consider a subscription whose oldest unacked message is 3 days
       #     old. If a snapshot is created from this subscription, the snapshot -- which
       #     will always capture this 3-day-old backlog as long as the snapshot
-      #     exists -- will expire in 4 days.
+      #     exists -- will expire in 4 days. The service will refuse to create a
+      #     snapshot that would expire in less than 1 hour after creation.
       # @!attribute [rw] labels
       #   @return [Hash{String => String}]
       #     User labels.

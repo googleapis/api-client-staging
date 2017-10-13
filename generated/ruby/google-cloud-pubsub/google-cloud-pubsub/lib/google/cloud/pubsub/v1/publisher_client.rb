@@ -116,12 +116,7 @@ module Google
             )
           end
 
-          # @param service_path [String]
-          #   The domain name of the API remote host.
-          # @param port [Integer]
-          #   The port on which to connect to the remote host.
-          # @param credentials
-          #   [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
+          # @param credentials [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
           #   Provides the means for authenticating requests made by the client. This parameter can
           #   be many types.
           #   A `Google::Gax::Credentials` uses a the properties of its represented keyfile for
@@ -138,7 +133,7 @@ module Google
           # @param scopes [Array<String>]
           #   The OAuth scopes for this service. This parameter is ignored if
           #   an updater_proc is supplied.
-          # @param client_config[Hash]
+          # @param client_config [Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
           #   this data. Falls back to the default config if not specified
@@ -155,8 +150,6 @@ module Google
               scopes: ALL_SCOPES,
               client_config: {},
               timeout: DEFAULT_TIMEOUT,
-              app_name: nil,
-              app_version: nil,
               lib_name: nil,
               lib_version: ""
             # These require statements are intentionally placed here to initialize
@@ -173,8 +166,8 @@ module Google
               credentials ||= chan_creds
               credentials ||= updater_proc
             end
-            if app_name || app_version
-              warn "`app_name` and `app_version` are no longer being used in the request headers."
+            if service_path != SERVICE_ADDRESS || port != DEFAULT_SERVICE_PORT
+              warn "`service_path` and `port` parameters are deprecated and will be removed"
             end
 
             credentials ||= Google::Cloud::Pubsub::Credentials.default
@@ -316,12 +309,8 @@ module Google
             @create_topic.call(req, options)
           end
 
-          # Updates an existing topic. Note that certain properties of a topic are not
-          # modifiable.  Options settings follow the style guide:
-          # NOTE:  The style guide requires body: "topic" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
+          # Updates an existing topic. Note that certain properties of a
+          # topic are not modifiable.
           #
           # @param topic [Google::Pubsub::V1::Topic | Hash]
           #   The topic to update.

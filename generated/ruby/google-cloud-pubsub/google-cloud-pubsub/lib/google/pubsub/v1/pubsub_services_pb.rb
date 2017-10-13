@@ -24,7 +24,8 @@ module Google
     module V1
       module Subscriber
         # The service that an application uses to manipulate subscriptions and to
-        # consume messages from a subscription via the `Pull` method.
+        # consume messages from a subscription via the `Pull` method or by
+        # establishing a bi-directional stream using the `StreamingPull` method.
         class Service
 
           include GRPC::GenericService
@@ -48,10 +49,6 @@ module Google
           rpc :GetSubscription, GetSubscriptionRequest, Subscription
           # Updates an existing subscription. Note that certain properties of a
           # subscription, such as its topic, are not modifiable.
-          # NOTE:  The style guide requires body: "subscription" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
           rpc :UpdateSubscription, UpdateSubscriptionRequest, Subscription
           # Lists matching subscriptions.
           rpc :ListSubscriptions, ListSubscriptionsRequest, ListSubscriptionsResponse
@@ -80,10 +77,6 @@ module Google
           # there are too many concurrent pull requests pending for the given
           # subscription.
           rpc :Pull, PullRequest, PullResponse
-          # (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
-          # respond with UNIMPLEMENTED errors unless you have been invited to test
-          # this feature. Contact cloud-pubsub@google.com with any questions.
-          #
           # Establishes a stream with the server, which sends messages down to the
           # client. The client streams acknowledgements and ack deadline modifications
           # back to the server. The server will close the stream and return the status
@@ -105,20 +98,20 @@ module Google
           # Creates a snapshot from the requested subscription.
           # If the snapshot already exists, returns `ALREADY_EXISTS`.
           # If the requested subscription doesn't exist, returns `NOT_FOUND`.
+          # If the backlog in the subscription is too old -- and the resulting snapshot
+          # would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
+          # See also the `Snapshot.expire_time` field.
           #
           # If the name is not provided in the request, the server will assign a random
           # name for this snapshot on the same project as the subscription, conforming
           # to the
-          # [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
-          # The generated name is populated in the returned Snapshot object.
-          # Note that for REST API requests, you must specify a name in the request.
+          # [resource name
+          # format](https://cloud.google.com/pubsub/docs/overview#names). The generated
+          # name is populated in the returned Snapshot object. Note that for REST API
+          # requests, you must specify a name in the request.
           rpc :CreateSnapshot, CreateSnapshotRequest, Snapshot
-          # Updates an existing snapshot. Note that certain properties of a snapshot
-          # are not modifiable.
-          # NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
+          # Updates an existing snapshot. Note that certain properties of a
+          # snapshot are not modifiable.
           rpc :UpdateSnapshot, UpdateSnapshotRequest, Snapshot
           # Removes an existing snapshot. All messages retained in the snapshot
           # are immediately dropped. After a snapshot is deleted, a new one may be
@@ -145,12 +138,8 @@ module Google
 
           # Creates the given topic with the given name.
           rpc :CreateTopic, Topic, Topic
-          # Updates an existing topic. Note that certain properties of a topic are not
-          # modifiable.  Options settings follow the style guide:
-          # NOTE:  The style guide requires body: "topic" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
+          # Updates an existing topic. Note that certain properties of a
+          # topic are not modifiable.
           rpc :UpdateTopic, UpdateTopicRequest, Topic
           # Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
           # does not exist. The message payload must not be empty; it must contain

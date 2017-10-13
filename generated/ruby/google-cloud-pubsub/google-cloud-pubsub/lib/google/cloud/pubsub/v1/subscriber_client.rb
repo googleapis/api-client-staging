@@ -36,7 +36,8 @@ module Google
     module Pubsub
       module V1
         # The service that an application uses to manipulate subscriptions and to
-        # consume messages from a subscription via the +Pull+ method.
+        # consume messages from a subscription via the +Pull+ method or by
+        # establishing a bi-directional stream using the +StreamingPull+ method.
         #
         # @!attribute [r] iam_policy_stub
         #   @return [Google::Iam::V1::IAMPolicy::Stub]
@@ -139,12 +140,7 @@ module Google
             )
           end
 
-          # @param service_path [String]
-          #   The domain name of the API remote host.
-          # @param port [Integer]
-          #   The port on which to connect to the remote host.
-          # @param credentials
-          #   [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
+          # @param credentials [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
           #   Provides the means for authenticating requests made by the client. This parameter can
           #   be many types.
           #   A `Google::Gax::Credentials` uses a the properties of its represented keyfile for
@@ -161,7 +157,7 @@ module Google
           # @param scopes [Array<String>]
           #   The OAuth scopes for this service. This parameter is ignored if
           #   an updater_proc is supplied.
-          # @param client_config[Hash]
+          # @param client_config [Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
           #   this data. Falls back to the default config if not specified
@@ -178,8 +174,6 @@ module Google
               scopes: ALL_SCOPES,
               client_config: {},
               timeout: DEFAULT_TIMEOUT,
-              app_name: nil,
-              app_version: nil,
               lib_name: nil,
               lib_version: ""
             # These require statements are intentionally placed here to initialize
@@ -196,8 +190,8 @@ module Google
               credentials ||= chan_creds
               credentials ||= updater_proc
             end
-            if app_name || app_version
-              warn "`app_name` and `app_version` are no longer being used in the request headers."
+            if service_path != SERVICE_ADDRESS || port != DEFAULT_SERVICE_PORT
+              warn "`service_path` and `port` parameters are deprecated and will be removed"
             end
 
             credentials ||= Google::Cloud::Pubsub::Credentials.default
@@ -374,7 +368,8 @@ module Google
           #   For pull subscriptions, this value is used as the initial value for the ack
           #   deadline. To override this value for a given message, call
           #   +ModifyAckDeadline+ with the corresponding +ack_id+ if using
-          #   pull.
+          #   non-streaming pull or send the +ack_id+ in a
+          #   +StreamingModifyAckDeadlineRequest+ if using streaming pull.
           #   The minimum custom deadline you can specify is 10 seconds.
           #   The maximum custom deadline you can specify is 600 seconds (10 minutes).
           #   If this parameter is 0, a default value of 10 seconds is used.
@@ -464,10 +459,6 @@ module Google
 
           # Updates an existing subscription. Note that certain properties of a
           # subscription, such as its topic, are not modifiable.
-          # NOTE:  The style guide requires body: "subscription" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
           #
           # @param subscription [Google::Pubsub::V1::Subscription | Hash]
           #   The updated subscription object.
@@ -716,10 +707,6 @@ module Google
             @pull.call(req, options)
           end
 
-          # (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
-          # respond with UNIMPLEMENTED errors unless you have been invited to test
-          # this feature. Contact cloud-pubsub@google.com with any questions.
-          #
           # Establishes a stream with the server, which sends messages down to the
           # client. The client streams acknowledgements and ack deadline modifications
           # back to the server. The server will close the stream and return the status
@@ -779,7 +766,7 @@ module Google
           #   An empty +pushConfig+ indicates that the Pub/Sub system should
           #   stop pushing messages from the given subscription and allow
           #   messages to be pulled and acknowledged - effectively pausing
-          #   the subscription if +Pull+ is not called.
+          #   the subscription if +Pull+ or +StreamingPull+ is not called.
           #   A hash of the same form as `Google::Pubsub::V1::PushConfig`
           #   can also be provided.
           # @param options [Google::Gax::CallOptions]
@@ -861,13 +848,17 @@ module Google
           # Creates a snapshot from the requested subscription.
           # If the snapshot already exists, returns +ALREADY_EXISTS+.
           # If the requested subscription doesn't exist, returns +NOT_FOUND+.
+          # If the backlog in the subscription is too old -- and the resulting snapshot
+          # would expire in less than 1 hour -- then +FAILED_PRECONDITION+ is returned.
+          # See also the +Snapshot.expire_time+ field.
           #
           # If the name is not provided in the request, the server will assign a random
           # name for this snapshot on the same project as the subscription, conforming
           # to the
-          # [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
-          # The generated name is populated in the returned Snapshot object.
-          # Note that for REST API requests, you must specify a name in the request.
+          # [resource name
+          # format](https://cloud.google.com/pubsub/docs/overview#names). The generated
+          # name is populated in the returned Snapshot object. Note that for REST API
+          # requests, you must specify a name in the request.
           #
           # @param name [String]
           #   Optional user-provided name for this snapshot.
@@ -885,6 +876,8 @@ module Google
           #    (b) Any messages published to the subscription's topic following the
           #        successful completion of the CreateSnapshot request.
           #   Format is +projects/{project}/subscriptions/{sub}+.
+          # @param labels [Hash{String => String}]
+          #   User labels.
           # @param options [Google::Gax::CallOptions]
           #   Overrides the default settings for this call, e.g, timeout,
           #   retries, etc.
@@ -901,21 +894,19 @@ module Google
           def create_snapshot \
               name,
               subscription,
+              labels: nil,
               options: nil
             req = {
               name: name,
-              subscription: subscription
+              subscription: subscription,
+              labels: labels
             }.delete_if { |_, v| v.nil? }
             req = Google::Gax::to_proto(req, Google::Pubsub::V1::CreateSnapshotRequest)
             @create_snapshot.call(req, options)
           end
 
-          # Updates an existing snapshot. Note that certain properties of a snapshot
-          # are not modifiable.
-          # NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-          # Keeping the latter for internal consistency in V1, however it should be
-          # corrected in V2.  See
-          # https://cloud.google.com/apis/design/standard_methods#update for details.
+          # Updates an existing snapshot. Note that certain properties of a
+          # snapshot are not modifiable.
           #
           # @param snapshot [Google::Pubsub::V1::Snapshot | Hash]
           #   The updated snpashot object.
