@@ -54,6 +54,15 @@ public final class DlpServiceGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.RedactContentRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.RedactContentResponse.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta1.DeidentifyContentRequest,
+      com.google.privacy.dlp.v2beta1.DeidentifyContentResponse> METHOD_DEIDENTIFY_CONTENT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.privacy.dlp.v2beta1.DlpService", "DeidentifyContent"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.DeidentifyContentRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.DeidentifyContentResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest,
       com.google.longrunning.Operation> METHOD_CREATE_INSPECT_OPERATION =
       io.grpc.MethodDescriptor.create(
@@ -61,6 +70,15 @@ public final class DlpServiceGrpc {
           generateFullMethodName(
               "google.privacy.dlp.v2beta1.DlpService", "CreateInspectOperation"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest,
+      com.google.longrunning.Operation> METHOD_ANALYZE_DATA_SOURCE_RISK =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.privacy.dlp.v2beta1.DlpService", "AnalyzeDataSourceRisk"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.privacy.dlp.v2beta1.ListInspectFindingsRequest,
@@ -149,6 +167,17 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
+     * De-identifies potentially sensitive info from a list of strings.
+     * This method has limits on input size and output size.
+     * </pre>
+     */
+    public void deidentifyContent(com.google.privacy.dlp.v2beta1.DeidentifyContentRequest request,
+        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta1.DeidentifyContentResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_DEIDENTIFY_CONTENT, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Schedules a job scanning content in a Google Cloud Platform data
      * repository.
      * </pre>
@@ -156,6 +185,17 @@ public final class DlpServiceGrpc {
     public void createInspectOperation(com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest request,
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_CREATE_INSPECT_OPERATION, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Schedules a job to compute risk analysis metrics over content in a Google
+     * Cloud Platform repository.
+     * </pre>
+     */
+    public void analyzeDataSourceRisk(com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_ANALYZE_DATA_SOURCE_RISK, responseObserver);
     }
 
     /**
@@ -205,12 +245,26 @@ public final class DlpServiceGrpc {
                 com.google.privacy.dlp.v2beta1.RedactContentResponse>(
                   this, METHODID_REDACT_CONTENT)))
           .addMethod(
+            METHOD_DEIDENTIFY_CONTENT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.privacy.dlp.v2beta1.DeidentifyContentRequest,
+                com.google.privacy.dlp.v2beta1.DeidentifyContentResponse>(
+                  this, METHODID_DEIDENTIFY_CONTENT)))
+          .addMethod(
             METHOD_CREATE_INSPECT_OPERATION,
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest,
                 com.google.longrunning.Operation>(
                   this, METHODID_CREATE_INSPECT_OPERATION)))
+          .addMethod(
+            METHOD_ANALYZE_DATA_SOURCE_RISK,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest,
+                com.google.longrunning.Operation>(
+                  this, METHODID_ANALYZE_DATA_SOURCE_RISK)))
           .addMethod(
             METHOD_LIST_INSPECT_FINDINGS,
             asyncUnaryCall(
@@ -288,6 +342,18 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
+     * De-identifies potentially sensitive info from a list of strings.
+     * This method has limits on input size and output size.
+     * </pre>
+     */
+    public void deidentifyContent(com.google.privacy.dlp.v2beta1.DeidentifyContentRequest request,
+        io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta1.DeidentifyContentResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_DEIDENTIFY_CONTENT, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Schedules a job scanning content in a Google Cloud Platform data
      * repository.
      * </pre>
@@ -296,6 +362,18 @@ public final class DlpServiceGrpc {
         io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_CREATE_INSPECT_OPERATION, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Schedules a job to compute risk analysis metrics over content in a Google
+     * Cloud Platform repository.
+     * </pre>
+     */
+    public void analyzeDataSourceRisk(com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_ANALYZE_DATA_SOURCE_RISK, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -382,6 +460,17 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
+     * De-identifies potentially sensitive info from a list of strings.
+     * This method has limits on input size and output size.
+     * </pre>
+     */
+    public com.google.privacy.dlp.v2beta1.DeidentifyContentResponse deidentifyContent(com.google.privacy.dlp.v2beta1.DeidentifyContentRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_DEIDENTIFY_CONTENT, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Schedules a job scanning content in a Google Cloud Platform data
      * repository.
      * </pre>
@@ -389,6 +478,17 @@ public final class DlpServiceGrpc {
     public com.google.longrunning.Operation createInspectOperation(com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_CREATE_INSPECT_OPERATION, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Schedules a job to compute risk analysis metrics over content in a Google
+     * Cloud Platform repository.
+     * </pre>
+     */
+    public com.google.longrunning.Operation analyzeDataSourceRisk(com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_ANALYZE_DATA_SOURCE_RISK, getCallOptions(), request);
     }
 
     /**
@@ -474,6 +574,18 @@ public final class DlpServiceGrpc {
 
     /**
      * <pre>
+     * De-identifies potentially sensitive info from a list of strings.
+     * This method has limits on input size and output size.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.privacy.dlp.v2beta1.DeidentifyContentResponse> deidentifyContent(
+        com.google.privacy.dlp.v2beta1.DeidentifyContentRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_DEIDENTIFY_CONTENT, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Schedules a job scanning content in a Google Cloud Platform data
      * repository.
      * </pre>
@@ -482,6 +594,18 @@ public final class DlpServiceGrpc {
         com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_CREATE_INSPECT_OPERATION, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Schedules a job to compute risk analysis metrics over content in a Google
+     * Cloud Platform repository.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> analyzeDataSourceRisk(
+        com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_ANALYZE_DATA_SOURCE_RISK, getCallOptions()), request);
     }
 
     /**
@@ -520,10 +644,12 @@ public final class DlpServiceGrpc {
 
   private static final int METHODID_INSPECT_CONTENT = 0;
   private static final int METHODID_REDACT_CONTENT = 1;
-  private static final int METHODID_CREATE_INSPECT_OPERATION = 2;
-  private static final int METHODID_LIST_INSPECT_FINDINGS = 3;
-  private static final int METHODID_LIST_INFO_TYPES = 4;
-  private static final int METHODID_LIST_ROOT_CATEGORIES = 5;
+  private static final int METHODID_DEIDENTIFY_CONTENT = 2;
+  private static final int METHODID_CREATE_INSPECT_OPERATION = 3;
+  private static final int METHODID_ANALYZE_DATA_SOURCE_RISK = 4;
+  private static final int METHODID_LIST_INSPECT_FINDINGS = 5;
+  private static final int METHODID_LIST_INFO_TYPES = 6;
+  private static final int METHODID_LIST_ROOT_CATEGORIES = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -550,8 +676,16 @@ public final class DlpServiceGrpc {
           serviceImpl.redactContent((com.google.privacy.dlp.v2beta1.RedactContentRequest) request,
               (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta1.RedactContentResponse>) responseObserver);
           break;
+        case METHODID_DEIDENTIFY_CONTENT:
+          serviceImpl.deidentifyContent((com.google.privacy.dlp.v2beta1.DeidentifyContentRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.privacy.dlp.v2beta1.DeidentifyContentResponse>) responseObserver);
+          break;
         case METHODID_CREATE_INSPECT_OPERATION:
           serviceImpl.createInspectOperation((com.google.privacy.dlp.v2beta1.CreateInspectOperationRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
+          break;
+        case METHODID_ANALYZE_DATA_SOURCE_RISK:
+          serviceImpl.analyzeDataSourceRisk((com.google.privacy.dlp.v2beta1.AnalyzeDataSourceRiskRequest) request,
               (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
           break;
         case METHODID_LIST_INSPECT_FINDINGS:
@@ -601,7 +735,9 @@ public final class DlpServiceGrpc {
               .setSchemaDescriptor(new DlpServiceDescriptorSupplier())
               .addMethod(METHOD_INSPECT_CONTENT)
               .addMethod(METHOD_REDACT_CONTENT)
+              .addMethod(METHOD_DEIDENTIFY_CONTENT)
               .addMethod(METHOD_CREATE_INSPECT_OPERATION)
+              .addMethod(METHOD_ANALYZE_DATA_SOURCE_RISK)
               .addMethod(METHOD_LIST_INSPECT_FINDINGS)
               .addMethod(METHOD_LIST_INFO_TYPES)
               .addMethod(METHOD_LIST_ROOT_CATEGORIES)

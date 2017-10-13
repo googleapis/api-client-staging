@@ -59,22 +59,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
 
   /**
    * <pre>
-   * Optional location to store findings. The bucket must already exist and
-   * the Google APIs service account for DLP must have write permission to
-   * write to the given bucket.
-   * &lt;p&gt;Results are split over multiple csv files with each file name matching
-   * the pattern "[operation_id]_[count].csv", for example
-   * `3094877188788974909_1.csv`. The `operation_id` matches the
-   * identifier for the Operation, and the `count` is a counter used for
-   * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
-   * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
-   * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
-   * &lt;li&gt;start_offset&lt;br/&gt;
-   * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
-   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
-   * &lt;li&gt;dataset_id &lt;li&gt;table_id
+   * Optional location to store findings.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -82,22 +67,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
   boolean hasOutputConfig();
   /**
    * <pre>
-   * Optional location to store findings. The bucket must already exist and
-   * the Google APIs service account for DLP must have write permission to
-   * write to the given bucket.
-   * &lt;p&gt;Results are split over multiple csv files with each file name matching
-   * the pattern "[operation_id]_[count].csv", for example
-   * `3094877188788974909_1.csv`. The `operation_id` matches the
-   * identifier for the Operation, and the `count` is a counter used for
-   * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
-   * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
-   * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
-   * &lt;li&gt;start_offset&lt;br/&gt;
-   * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
-   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
-   * &lt;li&gt;dataset_id &lt;li&gt;table_id
+   * Optional location to store findings.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>
@@ -105,22 +75,7 @@ public interface CreateInspectOperationRequestOrBuilder extends
   com.google.privacy.dlp.v2beta1.OutputStorageConfig getOutputConfig();
   /**
    * <pre>
-   * Optional location to store findings. The bucket must already exist and
-   * the Google APIs service account for DLP must have write permission to
-   * write to the given bucket.
-   * &lt;p&gt;Results are split over multiple csv files with each file name matching
-   * the pattern "[operation_id]_[count].csv", for example
-   * `3094877188788974909_1.csv`. The `operation_id` matches the
-   * identifier for the Operation, and the `count` is a counter used for
-   * tracking the number of files written. &lt;p&gt;The CSV file(s) contain the
-   * following columns regardless of storage type scanned: &lt;li&gt;id &lt;li&gt;info_type
-   * &lt;li&gt;likelihood &lt;li&gt;byte size of finding &lt;li&gt;quote &lt;li&gt;timestamp&lt;br/&gt;
-   * &lt;p&gt;For Cloud Storage the next columns are: &lt;li&gt;file_path
-   * &lt;li&gt;start_offset&lt;br/&gt;
-   * &lt;p&gt;For Cloud Datastore the next columns are: &lt;li&gt;project_id
-   * &lt;li&gt;namespace_id &lt;li&gt;path &lt;li&gt;column_name &lt;li&gt;offset&lt;br/&gt;
-   * &lt;p&gt;For BigQuery the next columns are: &lt;li&gt;row_number &lt;li&gt;project_id
-   * &lt;li&gt;dataset_id &lt;li&gt;table_id
+   * Optional location to store findings.
    * </pre>
    *
    * <code>.google.privacy.dlp.v2beta1.OutputStorageConfig output_config = 3;</code>

@@ -9,7 +9,7 @@ public interface InfoTypeDescriptionOrBuilder extends
 
   /**
    * <pre>
-   * Internal name of the info type.
+   * Internal name of the infoType.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -17,7 +17,7 @@ public interface InfoTypeDescriptionOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Internal name of the info type.
+   * Internal name of the infoType.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -27,7 +27,7 @@ public interface InfoTypeDescriptionOrBuilder extends
 
   /**
    * <pre>
-   * Human readable form of the info type name.
+   * Human readable form of the infoType name.
    * </pre>
    *
    * <code>string display_name = 2;</code>
@@ -35,7 +35,7 @@ public interface InfoTypeDescriptionOrBuilder extends
   java.lang.String getDisplayName();
   /**
    * <pre>
-   * Human readable form of the info type name.
+   * Human readable form of the infoType name.
    * </pre>
    *
    * <code>string display_name = 2;</code>
@@ -45,7 +45,7 @@ public interface InfoTypeDescriptionOrBuilder extends
 
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -54,7 +54,7 @@ public interface InfoTypeDescriptionOrBuilder extends
       getCategoriesList();
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -62,7 +62,7 @@ public interface InfoTypeDescriptionOrBuilder extends
   com.google.privacy.dlp.v2beta1.CategoryDescription getCategories(int index);
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -70,7 +70,7 @@ public interface InfoTypeDescriptionOrBuilder extends
   int getCategoriesCount();
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
@@ -79,7 +79,7 @@ public interface InfoTypeDescriptionOrBuilder extends
       getCategoriesOrBuilderList();
   /**
    * <pre>
-   * List of categories this info type belongs to.
+   * List of categories this infoType belongs to.
    * </pre>
    *
    * <code>repeated .google.privacy.dlp.v2beta1.CategoryDescription categories = 3;</code>
