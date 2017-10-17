@@ -85,7 +85,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedLogName = LoggingServiceV2Client::formatLogName('[PROJECT]', '[LOG]');
+        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
 
         $client->deleteLog($formattedLogName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -122,7 +122,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedLogName = LoggingServiceV2Client::formatLogName('[PROJECT]', '[LOG]');
+        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
 
         try {
             $client->deleteLog($formattedLogName);
@@ -374,7 +374,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = LoggingServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listLogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -415,7 +415,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = LoggingServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listLogs($formattedParent);

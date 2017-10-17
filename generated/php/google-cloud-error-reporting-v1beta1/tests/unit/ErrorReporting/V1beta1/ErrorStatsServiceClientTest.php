@@ -89,7 +89,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $timeRange = new QueryTimeRange();
 
         $response = $client->listGroupStats($formattedProjectName, $timeRange);
@@ -132,7 +132,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $timeRange = new QueryTimeRange();
 
         try {
@@ -169,7 +169,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
 
         $response = $client->listEvents($formattedProjectName, $groupId);
@@ -212,7 +212,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
 
         try {
@@ -244,7 +244,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
 
         $response = $client->deleteEvents($formattedProjectName);
         $this->assertEquals($expectedResponse, $response);
@@ -282,7 +282,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProjectName = ErrorStatsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
 
         try {
             $client->deleteEvents($formattedProjectName);

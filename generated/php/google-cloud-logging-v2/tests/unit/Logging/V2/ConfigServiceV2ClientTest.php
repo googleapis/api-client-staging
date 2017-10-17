@@ -86,7 +86,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listSinks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -127,7 +127,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listSinks($formattedParent);
@@ -168,7 +168,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         $response = $client->getSink($formattedSinkName);
         $this->assertEquals($expectedResponse, $response);
@@ -206,7 +206,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         try {
             $client->getSink($formattedSinkName);
@@ -247,7 +247,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $sink = new LogSink();
 
         $response = $client->createSink($formattedParent, $sink);
@@ -287,7 +287,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = ConfigServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $sink = new LogSink();
 
         try {
@@ -329,7 +329,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
         $sink = new LogSink();
 
         $response = $client->updateSink($formattedSinkName, $sink);
@@ -369,7 +369,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
         $sink = new LogSink();
 
         try {
@@ -401,7 +401,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         $client->deleteSink($formattedSinkName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -438,7 +438,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSinkName = ConfigServiceV2Client::formatSinkName('[PROJECT]', '[SINK]');
+        $formattedSinkName = $client->sinkName('[PROJECT]', '[SINK]');
 
         try {
             $client->deleteSink($formattedSinkName);

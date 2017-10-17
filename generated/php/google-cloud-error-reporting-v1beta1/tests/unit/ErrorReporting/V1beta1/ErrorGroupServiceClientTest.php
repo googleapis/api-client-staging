@@ -83,7 +83,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedGroupName);
         $this->assertEquals($expectedResponse, $response);
@@ -121,7 +121,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->getGroup($formattedGroupName);

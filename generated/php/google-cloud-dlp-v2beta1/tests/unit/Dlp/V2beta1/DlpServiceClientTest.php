@@ -470,7 +470,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = DlpServiceClient::formatResultName('[RESULT]');
+        $formattedName = $client->resultName('[RESULT]');
 
         $response = $client->listInspectFindings($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -508,7 +508,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = DlpServiceClient::formatResultName('[RESULT]');
+        $formattedName = $client->resultName('[RESULT]');
 
         try {
             $client->listInspectFindings($formattedName);

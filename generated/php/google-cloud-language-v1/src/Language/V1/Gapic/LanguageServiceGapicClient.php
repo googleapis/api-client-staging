@@ -39,10 +39,10 @@ use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1\Document;
 use Google\Cloud\Language\V1\EncodingType;
 use Google\Cloud\Language\V1\LanguageServiceGrpcClient;
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 
 /**
@@ -81,11 +81,6 @@ class LanguageServiceGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -95,6 +90,9 @@ class LanguageServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $languageServiceStub;
     private $scopes;
@@ -103,13 +101,16 @@ class LanguageServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
     }
 
     /**
@@ -136,15 +137,20 @@ class LanguageServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Natural Language API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -157,9 +163,9 @@ class LanguageServiceGapicClient
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -180,15 +186,13 @@ class LanguageServiceGapicClient
             'annotateText' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/language_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.language.v1.LanguageService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -229,12 +233,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate sentence offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSentimentResponse
@@ -250,9 +253,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeSentiment']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeSentiment'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeSentiment',
@@ -289,12 +296,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitiesResponse
@@ -310,9 +316,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeEntities']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeEntities'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeEntities',
@@ -348,12 +358,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse
@@ -369,9 +378,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeEntitySentiment']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeEntitySentiment'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeEntitySentiment',
@@ -408,12 +421,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSyntaxResponse
@@ -429,9 +441,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['analyzeSyntax']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['analyzeSyntax'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnalyzeSyntax',
@@ -469,12 +485,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnnotateTextResponse
@@ -491,9 +506,13 @@ class LanguageServiceGapicClient
             $request->setEncodingType($optionalArgs['encodingType']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['annotateText']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['annotateText'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->languageServiceStub,
             'AnnotateText',
