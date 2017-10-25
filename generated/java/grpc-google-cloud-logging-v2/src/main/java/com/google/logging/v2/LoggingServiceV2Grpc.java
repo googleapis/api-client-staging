@@ -121,7 +121,12 @@ public final class LoggingServiceV2Grpc {
 
     /**
      * <pre>
-     * Writes log entries to Stackdriver Logging.
+     * ## Log entry resources
+     * Writes log entries to Stackdriver Logging. This API method is the
+     * only way to send log entries to Stackdriver Logging. This method
+     * is used, directly or indirectly, by the Stackdriver Logging agent
+     * (fluentd) and all logging libraries configured to use Stackdriver
+     * Logging.
      * </pre>
      */
     public void writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request,
@@ -241,7 +246,12 @@ public final class LoggingServiceV2Grpc {
 
     /**
      * <pre>
-     * Writes log entries to Stackdriver Logging.
+     * ## Log entry resources
+     * Writes log entries to Stackdriver Logging. This API method is the
+     * only way to send log entries to Stackdriver Logging. This method
+     * is used, directly or indirectly, by the Stackdriver Logging agent
+     * (fluentd) and all logging libraries configured to use Stackdriver
+     * Logging.
      * </pre>
      */
     public void writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request,
@@ -324,7 +334,12 @@ public final class LoggingServiceV2Grpc {
 
     /**
      * <pre>
-     * Writes log entries to Stackdriver Logging.
+     * ## Log entry resources
+     * Writes log entries to Stackdriver Logging. This API method is the
+     * only way to send log entries to Stackdriver Logging. This method
+     * is used, directly or indirectly, by the Stackdriver Logging agent
+     * (fluentd) and all logging libraries configured to use Stackdriver
+     * Logging.
      * </pre>
      */
     public com.google.logging.v2.WriteLogEntriesResponse writeLogEntries(com.google.logging.v2.WriteLogEntriesRequest request) {
@@ -404,7 +419,12 @@ public final class LoggingServiceV2Grpc {
 
     /**
      * <pre>
-     * Writes log entries to Stackdriver Logging.
+     * ## Log entry resources
+     * Writes log entries to Stackdriver Logging. This API method is the
+     * only way to send log entries to Stackdriver Logging. This method
+     * is used, directly or indirectly, by the Stackdriver Logging agent
+     * (fluentd) and all logging libraries configured to use Stackdriver
+     * Logging.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.WriteLogEntriesResponse> writeLogEntries(

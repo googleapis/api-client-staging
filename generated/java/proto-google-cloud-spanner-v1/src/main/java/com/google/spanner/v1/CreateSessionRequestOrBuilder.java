@@ -24,4 +24,29 @@ public interface CreateSessionRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getDatabaseBytes();
+
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  boolean hasSession();
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  com.google.spanner.v1.Session getSession();
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  com.google.spanner.v1.SessionOrBuilder getSessionOrBuilder();
 }

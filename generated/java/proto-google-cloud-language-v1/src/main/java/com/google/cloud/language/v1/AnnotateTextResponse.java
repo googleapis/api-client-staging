@@ -23,6 +23,7 @@ public  final class AnnotateTextResponse extends
     tokens_ = java.util.Collections.emptyList();
     entities_ = java.util.Collections.emptyList();
     language_ = "";
+    categories_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -96,6 +97,15 @@ public  final class AnnotateTextResponse extends
             language_ = s;
             break;
           }
+          case 50: {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              categories_ = new java.util.ArrayList<com.google.cloud.language.v1.ClassificationCategory>();
+              mutable_bitField0_ |= 0x00000020;
+            }
+            categories_.add(
+                input.readMessage(com.google.cloud.language.v1.ClassificationCategory.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -112,6 +122,9 @@ public  final class AnnotateTextResponse extends
       }
       if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
         entities_ = java.util.Collections.unmodifiableList(entities_);
+      }
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+        categories_ = java.util.Collections.unmodifiableList(categories_);
       }
       makeExtensionsImmutable();
     }
@@ -401,6 +414,61 @@ public  final class AnnotateTextResponse extends
     }
   }
 
+  public static final int CATEGORIES_FIELD_NUMBER = 6;
+  private java.util.List<com.google.cloud.language.v1.ClassificationCategory> categories_;
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  public java.util.List<com.google.cloud.language.v1.ClassificationCategory> getCategoriesList() {
+    return categories_;
+  }
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  public java.util.List<? extends com.google.cloud.language.v1.ClassificationCategoryOrBuilder> 
+      getCategoriesOrBuilderList() {
+    return categories_;
+  }
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  public int getCategoriesCount() {
+    return categories_.size();
+  }
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  public com.google.cloud.language.v1.ClassificationCategory getCategories(int index) {
+    return categories_.get(index);
+  }
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  public com.google.cloud.language.v1.ClassificationCategoryOrBuilder getCategoriesOrBuilder(
+      int index) {
+    return categories_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -428,6 +496,9 @@ public  final class AnnotateTextResponse extends
     if (!getLanguageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, language_);
     }
+    for (int i = 0; i < categories_.size(); i++) {
+      output.writeMessage(6, categories_.get(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -453,6 +524,10 @@ public  final class AnnotateTextResponse extends
     }
     if (!getLanguageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, language_);
+    }
+    for (int i = 0; i < categories_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, categories_.get(i));
     }
     memoizedSize = size;
     return size;
@@ -483,6 +558,8 @@ public  final class AnnotateTextResponse extends
     }
     result = result && getLanguage()
         .equals(other.getLanguage());
+    result = result && getCategoriesList()
+        .equals(other.getCategoriesList());
     return result;
   }
 
@@ -511,6 +588,10 @@ public  final class AnnotateTextResponse extends
     }
     hash = (37 * hash) + LANGUAGE_FIELD_NUMBER;
     hash = (53 * hash) + getLanguage().hashCode();
+    if (getCategoriesCount() > 0) {
+      hash = (37 * hash) + CATEGORIES_FIELD_NUMBER;
+      hash = (53 * hash) + getCategoriesList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -643,6 +724,7 @@ public  final class AnnotateTextResponse extends
         getSentencesFieldBuilder();
         getTokensFieldBuilder();
         getEntitiesFieldBuilder();
+        getCategoriesFieldBuilder();
       }
     }
     public Builder clear() {
@@ -673,6 +755,12 @@ public  final class AnnotateTextResponse extends
       }
       language_ = "";
 
+      if (categoriesBuilder_ == null) {
+        categories_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+      } else {
+        categoriesBuilder_.clear();
+      }
       return this;
     }
 
@@ -730,6 +818,15 @@ public  final class AnnotateTextResponse extends
         result.documentSentiment_ = documentSentimentBuilder_.build();
       }
       result.language_ = language_;
+      if (categoriesBuilder_ == null) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          categories_ = java.util.Collections.unmodifiableList(categories_);
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.categories_ = categories_;
+      } else {
+        result.categories_ = categoriesBuilder_.build();
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -856,6 +953,32 @@ public  final class AnnotateTextResponse extends
       if (!other.getLanguage().isEmpty()) {
         language_ = other.language_;
         onChanged();
+      }
+      if (categoriesBuilder_ == null) {
+        if (!other.categories_.isEmpty()) {
+          if (categories_.isEmpty()) {
+            categories_ = other.categories_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureCategoriesIsMutable();
+            categories_.addAll(other.categories_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.categories_.isEmpty()) {
+          if (categoriesBuilder_.isEmpty()) {
+            categoriesBuilder_.dispose();
+            categoriesBuilder_ = null;
+            categories_ = other.categories_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+            categoriesBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getCategoriesFieldBuilder() : null;
+          } else {
+            categoriesBuilder_.addAllMessages(other.categories_);
+          }
+        }
       }
       onChanged();
       return this;
@@ -2169,6 +2292,318 @@ public  final class AnnotateTextResponse extends
       language_ = value;
       onChanged();
       return this;
+    }
+
+    private java.util.List<com.google.cloud.language.v1.ClassificationCategory> categories_ =
+      java.util.Collections.emptyList();
+    private void ensureCategoriesIsMutable() {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+        categories_ = new java.util.ArrayList<com.google.cloud.language.v1.ClassificationCategory>(categories_);
+        bitField0_ |= 0x00000020;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.language.v1.ClassificationCategory, com.google.cloud.language.v1.ClassificationCategory.Builder, com.google.cloud.language.v1.ClassificationCategoryOrBuilder> categoriesBuilder_;
+
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public java.util.List<com.google.cloud.language.v1.ClassificationCategory> getCategoriesList() {
+      if (categoriesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(categories_);
+      } else {
+        return categoriesBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public int getCategoriesCount() {
+      if (categoriesBuilder_ == null) {
+        return categories_.size();
+      } else {
+        return categoriesBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public com.google.cloud.language.v1.ClassificationCategory getCategories(int index) {
+      if (categoriesBuilder_ == null) {
+        return categories_.get(index);
+      } else {
+        return categoriesBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder setCategories(
+        int index, com.google.cloud.language.v1.ClassificationCategory value) {
+      if (categoriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCategoriesIsMutable();
+        categories_.set(index, value);
+        onChanged();
+      } else {
+        categoriesBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder setCategories(
+        int index, com.google.cloud.language.v1.ClassificationCategory.Builder builderForValue) {
+      if (categoriesBuilder_ == null) {
+        ensureCategoriesIsMutable();
+        categories_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        categoriesBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder addCategories(com.google.cloud.language.v1.ClassificationCategory value) {
+      if (categoriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCategoriesIsMutable();
+        categories_.add(value);
+        onChanged();
+      } else {
+        categoriesBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder addCategories(
+        int index, com.google.cloud.language.v1.ClassificationCategory value) {
+      if (categoriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCategoriesIsMutable();
+        categories_.add(index, value);
+        onChanged();
+      } else {
+        categoriesBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder addCategories(
+        com.google.cloud.language.v1.ClassificationCategory.Builder builderForValue) {
+      if (categoriesBuilder_ == null) {
+        ensureCategoriesIsMutable();
+        categories_.add(builderForValue.build());
+        onChanged();
+      } else {
+        categoriesBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder addCategories(
+        int index, com.google.cloud.language.v1.ClassificationCategory.Builder builderForValue) {
+      if (categoriesBuilder_ == null) {
+        ensureCategoriesIsMutable();
+        categories_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        categoriesBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder addAllCategories(
+        java.lang.Iterable<? extends com.google.cloud.language.v1.ClassificationCategory> values) {
+      if (categoriesBuilder_ == null) {
+        ensureCategoriesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, categories_);
+        onChanged();
+      } else {
+        categoriesBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder clearCategories() {
+      if (categoriesBuilder_ == null) {
+        categories_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+      } else {
+        categoriesBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public Builder removeCategories(int index) {
+      if (categoriesBuilder_ == null) {
+        ensureCategoriesIsMutable();
+        categories_.remove(index);
+        onChanged();
+      } else {
+        categoriesBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public com.google.cloud.language.v1.ClassificationCategory.Builder getCategoriesBuilder(
+        int index) {
+      return getCategoriesFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public com.google.cloud.language.v1.ClassificationCategoryOrBuilder getCategoriesOrBuilder(
+        int index) {
+      if (categoriesBuilder_ == null) {
+        return categories_.get(index);  } else {
+        return categoriesBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public java.util.List<? extends com.google.cloud.language.v1.ClassificationCategoryOrBuilder> 
+         getCategoriesOrBuilderList() {
+      if (categoriesBuilder_ != null) {
+        return categoriesBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(categories_);
+      }
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public com.google.cloud.language.v1.ClassificationCategory.Builder addCategoriesBuilder() {
+      return getCategoriesFieldBuilder().addBuilder(
+          com.google.cloud.language.v1.ClassificationCategory.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public com.google.cloud.language.v1.ClassificationCategory.Builder addCategoriesBuilder(
+        int index) {
+      return getCategoriesFieldBuilder().addBuilder(
+          index, com.google.cloud.language.v1.ClassificationCategory.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Categories identified in the input document.
+     * </pre>
+     *
+     * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    public java.util.List<com.google.cloud.language.v1.ClassificationCategory.Builder> 
+         getCategoriesBuilderList() {
+      return getCategoriesFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.cloud.language.v1.ClassificationCategory, com.google.cloud.language.v1.ClassificationCategory.Builder, com.google.cloud.language.v1.ClassificationCategoryOrBuilder> 
+        getCategoriesFieldBuilder() {
+      if (categoriesBuilder_ == null) {
+        categoriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.cloud.language.v1.ClassificationCategory, com.google.cloud.language.v1.ClassificationCategory.Builder, com.google.cloud.language.v1.ClassificationCategoryOrBuilder>(
+                categories_,
+                ((bitField0_ & 0x00000020) == 0x00000020),
+                getParentForChildren(),
+                isClean());
+        categories_ = null;
+      }
+      return categoriesBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

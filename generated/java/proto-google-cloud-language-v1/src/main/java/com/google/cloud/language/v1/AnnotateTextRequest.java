@@ -142,6 +142,15 @@ public  final class AnnotateTextRequest extends
      * <code>bool extract_entity_sentiment = 4;</code>
      */
     boolean getExtractEntitySentiment();
+
+    /**
+     * <pre>
+     * Classify the full document into categories.
+     * </pre>
+     *
+     * <code>bool classify_text = 6;</code>
+     */
+    boolean getClassifyText();
   }
   /**
    * <pre>
@@ -164,6 +173,7 @@ public  final class AnnotateTextRequest extends
       extractEntities_ = false;
       extractDocumentSentiment_ = false;
       extractEntitySentiment_ = false;
+      classifyText_ = false;
     }
 
     @java.lang.Override
@@ -209,6 +219,11 @@ public  final class AnnotateTextRequest extends
             case 32: {
 
               extractEntitySentiment_ = input.readBool();
+              break;
+            }
+            case 48: {
+
+              classifyText_ = input.readBool();
               break;
             }
           }
@@ -286,6 +301,19 @@ public  final class AnnotateTextRequest extends
       return extractEntitySentiment_;
     }
 
+    public static final int CLASSIFY_TEXT_FIELD_NUMBER = 6;
+    private boolean classifyText_;
+    /**
+     * <pre>
+     * Classify the full document into categories.
+     * </pre>
+     *
+     * <code>bool classify_text = 6;</code>
+     */
+    public boolean getClassifyText() {
+      return classifyText_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -310,6 +338,9 @@ public  final class AnnotateTextRequest extends
       if (extractEntitySentiment_ != false) {
         output.writeBool(4, extractEntitySentiment_);
       }
+      if (classifyText_ != false) {
+        output.writeBool(6, classifyText_);
+      }
     }
 
     public int getSerializedSize() {
@@ -332,6 +363,10 @@ public  final class AnnotateTextRequest extends
       if (extractEntitySentiment_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, extractEntitySentiment_);
+      }
+      if (classifyText_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, classifyText_);
       }
       memoizedSize = size;
       return size;
@@ -357,6 +392,8 @@ public  final class AnnotateTextRequest extends
           == other.getExtractDocumentSentiment());
       result = result && (getExtractEntitySentiment()
           == other.getExtractEntitySentiment());
+      result = result && (getClassifyText()
+          == other.getClassifyText());
       return result;
     }
 
@@ -379,6 +416,9 @@ public  final class AnnotateTextRequest extends
       hash = (37 * hash) + EXTRACT_ENTITY_SENTIMENT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getExtractEntitySentiment());
+      hash = (37 * hash) + CLASSIFY_TEXT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getClassifyText());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -521,6 +561,8 @@ public  final class AnnotateTextRequest extends
 
         extractEntitySentiment_ = false;
 
+        classifyText_ = false;
+
         return this;
       }
 
@@ -547,6 +589,7 @@ public  final class AnnotateTextRequest extends
         result.extractEntities_ = extractEntities_;
         result.extractDocumentSentiment_ = extractDocumentSentiment_;
         result.extractEntitySentiment_ = extractEntitySentiment_;
+        result.classifyText_ = classifyText_;
         onBuilt();
         return result;
       }
@@ -599,6 +642,9 @@ public  final class AnnotateTextRequest extends
         }
         if (other.getExtractEntitySentiment() != false) {
           setExtractEntitySentiment(other.getExtractEntitySentiment());
+        }
+        if (other.getClassifyText() != false) {
+          setClassifyText(other.getClassifyText());
         }
         onChanged();
         return this;
@@ -774,6 +820,44 @@ public  final class AnnotateTextRequest extends
       public Builder clearExtractEntitySentiment() {
         
         extractEntitySentiment_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean classifyText_ ;
+      /**
+       * <pre>
+       * Classify the full document into categories.
+       * </pre>
+       *
+       * <code>bool classify_text = 6;</code>
+       */
+      public boolean getClassifyText() {
+        return classifyText_;
+      }
+      /**
+       * <pre>
+       * Classify the full document into categories.
+       * </pre>
+       *
+       * <code>bool classify_text = 6;</code>
+       */
+      public Builder setClassifyText(boolean value) {
+        
+        classifyText_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Classify the full document into categories.
+       * </pre>
+       *
+       * <code>bool classify_text = 6;</code>
+       */
+      public Builder clearClassifyText() {
+        
+        classifyText_ = false;
         onChanged();
         return this;
       }

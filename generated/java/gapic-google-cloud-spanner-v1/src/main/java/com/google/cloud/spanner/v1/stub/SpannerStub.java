@@ -15,6 +15,8 @@
  */
 package com.google.cloud.spanner.v1.stub;
 
+import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.ServerStreamingCallable;
@@ -27,6 +29,8 @@ import com.google.spanner.v1.CreateSessionRequest;
 import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
@@ -51,6 +55,14 @@ public abstract class SpannerStub implements BackgroundResource {
 
   public UnaryCallable<GetSessionRequest, Session> getSessionCallable() {
     throw new UnsupportedOperationException("Not implemented: getSessionCallable()");
+  }
+
+  public UnaryCallable<ListSessionsRequest, ListSessionsPagedResponse> listSessionsPagedCallable() {
+    throw new UnsupportedOperationException("Not implemented: listSessionsPagedCallable()");
+  }
+
+  public UnaryCallable<ListSessionsRequest, ListSessionsResponse> listSessionsCallable() {
+    throw new UnsupportedOperationException("Not implemented: listSessionsCallable()");
   }
 
   public UnaryCallable<DeleteSessionRequest, Empty> deleteSessionCallable() {

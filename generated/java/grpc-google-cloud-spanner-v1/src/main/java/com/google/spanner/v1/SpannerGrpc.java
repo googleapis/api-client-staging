@@ -51,6 +51,15 @@ public final class SpannerGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.GetSessionRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.Session.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.spanner.v1.ListSessionsRequest,
+      com.google.spanner.v1.ListSessionsResponse> METHOD_LIST_SESSIONS =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.spanner.v1.Spanner", "ListSessions"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.ListSessionsRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.spanner.v1.ListSessionsResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.spanner.v1.DeleteSessionRequest,
       com.google.protobuf.Empty> METHOD_DELETE_SESSION =
       io.grpc.MethodDescriptor.create(
@@ -194,6 +203,16 @@ public final class SpannerGrpc {
 
     /**
      * <pre>
+     * Lists all sessions in a given database.
+     * </pre>
+     */
+    public void listSessions(com.google.spanner.v1.ListSessionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.ListSessionsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LIST_SESSIONS, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Ends a session, releasing server resources associated with it.
      * </pre>
      */
@@ -330,6 +349,13 @@ public final class SpannerGrpc {
                 com.google.spanner.v1.Session>(
                   this, METHODID_GET_SESSION)))
           .addMethod(
+            METHOD_LIST_SESSIONS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.spanner.v1.ListSessionsRequest,
+                com.google.spanner.v1.ListSessionsResponse>(
+                  this, METHODID_LIST_SESSIONS)))
+          .addMethod(
             METHOD_DELETE_SESSION,
             asyncUnaryCall(
               new MethodHandlers<
@@ -449,6 +475,17 @@ public final class SpannerGrpc {
         io.grpc.stub.StreamObserver<com.google.spanner.v1.Session> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_SESSION, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Lists all sessions in a given database.
+     * </pre>
+     */
+    public void listSessions(com.google.spanner.v1.ListSessionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.spanner.v1.ListSessionsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LIST_SESSIONS, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -643,6 +680,16 @@ public final class SpannerGrpc {
 
     /**
      * <pre>
+     * Lists all sessions in a given database.
+     * </pre>
+     */
+    public com.google.spanner.v1.ListSessionsResponse listSessions(com.google.spanner.v1.ListSessionsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LIST_SESSIONS, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Ends a session, releasing server resources associated with it.
      * </pre>
      */
@@ -829,6 +876,17 @@ public final class SpannerGrpc {
 
     /**
      * <pre>
+     * Lists all sessions in a given database.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.spanner.v1.ListSessionsResponse> listSessions(
+        com.google.spanner.v1.ListSessionsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LIST_SESSIONS, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Ends a session, releasing server resources associated with it.
      * </pre>
      */
@@ -929,14 +987,15 @@ public final class SpannerGrpc {
 
   private static final int METHODID_CREATE_SESSION = 0;
   private static final int METHODID_GET_SESSION = 1;
-  private static final int METHODID_DELETE_SESSION = 2;
-  private static final int METHODID_EXECUTE_SQL = 3;
-  private static final int METHODID_EXECUTE_STREAMING_SQL = 4;
-  private static final int METHODID_READ = 5;
-  private static final int METHODID_STREAMING_READ = 6;
-  private static final int METHODID_BEGIN_TRANSACTION = 7;
-  private static final int METHODID_COMMIT = 8;
-  private static final int METHODID_ROLLBACK = 9;
+  private static final int METHODID_LIST_SESSIONS = 2;
+  private static final int METHODID_DELETE_SESSION = 3;
+  private static final int METHODID_EXECUTE_SQL = 4;
+  private static final int METHODID_EXECUTE_STREAMING_SQL = 5;
+  private static final int METHODID_READ = 6;
+  private static final int METHODID_STREAMING_READ = 7;
+  private static final int METHODID_BEGIN_TRANSACTION = 8;
+  private static final int METHODID_COMMIT = 9;
+  private static final int METHODID_ROLLBACK = 10;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -962,6 +1021,10 @@ public final class SpannerGrpc {
         case METHODID_GET_SESSION:
           serviceImpl.getSession((com.google.spanner.v1.GetSessionRequest) request,
               (io.grpc.stub.StreamObserver<com.google.spanner.v1.Session>) responseObserver);
+          break;
+        case METHODID_LIST_SESSIONS:
+          serviceImpl.listSessions((com.google.spanner.v1.ListSessionsRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.spanner.v1.ListSessionsResponse>) responseObserver);
           break;
         case METHODID_DELETE_SESSION:
           serviceImpl.deleteSession((com.google.spanner.v1.DeleteSessionRequest) request,
@@ -1030,6 +1093,7 @@ public final class SpannerGrpc {
               .setSchemaDescriptor(new SpannerDescriptorSupplier())
               .addMethod(METHOD_CREATE_SESSION)
               .addMethod(METHOD_GET_SESSION)
+              .addMethod(METHOD_LIST_SESSIONS)
               .addMethod(METHOD_DELETE_SESSION)
               .addMethod(METHOD_EXECUTE_SQL)
               .addMethod(METHOD_EXECUTE_STREAMING_SQL)

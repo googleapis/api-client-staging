@@ -76,6 +76,51 @@ public final class ConfigServiceV2Grpc {
               "google.logging.v2.ConfigServiceV2", "DeleteSink"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.DeleteSinkRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.logging.v2.ListExclusionsRequest,
+      com.google.logging.v2.ListExclusionsResponse> METHOD_LIST_EXCLUSIONS =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.logging.v2.ConfigServiceV2", "ListExclusions"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListExclusionsRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.ListExclusionsResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.logging.v2.GetExclusionRequest,
+      com.google.logging.v2.LogExclusion> METHOD_GET_EXCLUSION =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.logging.v2.ConfigServiceV2", "GetExclusion"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.GetExclusionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.logging.v2.CreateExclusionRequest,
+      com.google.logging.v2.LogExclusion> METHOD_CREATE_EXCLUSION =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.logging.v2.ConfigServiceV2", "CreateExclusion"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.CreateExclusionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.logging.v2.UpdateExclusionRequest,
+      com.google.logging.v2.LogExclusion> METHOD_UPDATE_EXCLUSION =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.logging.v2.ConfigServiceV2", "UpdateExclusion"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.UpdateExclusionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.LogExclusion.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.logging.v2.DeleteExclusionRequest,
+      com.google.protobuf.Empty> METHOD_DELETE_EXCLUSION =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.logging.v2.ConfigServiceV2", "DeleteExclusion"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.logging.v2.DeleteExclusionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -144,13 +189,10 @@ public final class ConfigServiceV2Grpc {
 
     /**
      * <pre>
-     * Updates a sink. If the named sink doesn't exist, then this method is
-     * identical to
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
-     * If the named sink does exist, then this method replaces the following
-     * fields in the existing sink with values from the new sink: `destination`,
-     * `filter`, `output_version_format`, `start_time`, and `end_time`.
-     * The updated filter might also have a new `writer_identity`; see the
+     * Updates a sink.  This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, `filter`,
+     * `output_version_format`, `start_time`, and `end_time`.
+     * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
      */
@@ -168,6 +210,58 @@ public final class ConfigServiceV2Grpc {
     public void deleteSink(com.google.logging.v2.DeleteSinkRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_DELETE_SINK, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Lists all the exclusions in a parent resource.
+     * </pre>
+     */
+    public void listExclusions(com.google.logging.v2.ListExclusionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.ListExclusionsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LIST_EXCLUSIONS, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Gets the description of an exclusion.
+     * </pre>
+     */
+    public void getExclusion(com.google.logging.v2.GetExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_EXCLUSION, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     * </pre>
+     */
+    public void createExclusion(com.google.logging.v2.CreateExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CREATE_EXCLUSION, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Changes one or more properties of an existing exclusion.
+     * </pre>
+     */
+    public void updateExclusion(com.google.logging.v2.UpdateExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_UPDATE_EXCLUSION, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Deletes an exclusion.
+     * </pre>
+     */
+    public void deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_DELETE_EXCLUSION, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -207,6 +301,41 @@ public final class ConfigServiceV2Grpc {
                 com.google.logging.v2.DeleteSinkRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_SINK)))
+          .addMethod(
+            METHOD_LIST_EXCLUSIONS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.logging.v2.ListExclusionsRequest,
+                com.google.logging.v2.ListExclusionsResponse>(
+                  this, METHODID_LIST_EXCLUSIONS)))
+          .addMethod(
+            METHOD_GET_EXCLUSION,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.logging.v2.GetExclusionRequest,
+                com.google.logging.v2.LogExclusion>(
+                  this, METHODID_GET_EXCLUSION)))
+          .addMethod(
+            METHOD_CREATE_EXCLUSION,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.logging.v2.CreateExclusionRequest,
+                com.google.logging.v2.LogExclusion>(
+                  this, METHODID_CREATE_EXCLUSION)))
+          .addMethod(
+            METHOD_UPDATE_EXCLUSION,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.logging.v2.UpdateExclusionRequest,
+                com.google.logging.v2.LogExclusion>(
+                  this, METHODID_UPDATE_EXCLUSION)))
+          .addMethod(
+            METHOD_DELETE_EXCLUSION,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.logging.v2.DeleteExclusionRequest,
+                com.google.protobuf.Empty>(
+                  this, METHODID_DELETE_EXCLUSION)))
           .build();
     }
   }
@@ -272,13 +401,10 @@ public final class ConfigServiceV2Grpc {
 
     /**
      * <pre>
-     * Updates a sink. If the named sink doesn't exist, then this method is
-     * identical to
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
-     * If the named sink does exist, then this method replaces the following
-     * fields in the existing sink with values from the new sink: `destination`,
-     * `filter`, `output_version_format`, `start_time`, and `end_time`.
-     * The updated filter might also have a new `writer_identity`; see the
+     * Updates a sink.  This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, `filter`,
+     * `output_version_format`, `start_time`, and `end_time`.
+     * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
      */
@@ -298,6 +424,63 @@ public final class ConfigServiceV2Grpc {
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_DELETE_SINK, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Lists all the exclusions in a parent resource.
+     * </pre>
+     */
+    public void listExclusions(com.google.logging.v2.ListExclusionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.ListExclusionsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LIST_EXCLUSIONS, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Gets the description of an exclusion.
+     * </pre>
+     */
+    public void getExclusion(com.google.logging.v2.GetExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_EXCLUSION, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     * </pre>
+     */
+    public void createExclusion(com.google.logging.v2.CreateExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CREATE_EXCLUSION, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Changes one or more properties of an existing exclusion.
+     * </pre>
+     */
+    public void updateExclusion(com.google.logging.v2.UpdateExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_EXCLUSION, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Deletes an exclusion.
+     * </pre>
+     */
+    public void deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_DELETE_EXCLUSION, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -359,13 +542,10 @@ public final class ConfigServiceV2Grpc {
 
     /**
      * <pre>
-     * Updates a sink. If the named sink doesn't exist, then this method is
-     * identical to
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
-     * If the named sink does exist, then this method replaces the following
-     * fields in the existing sink with values from the new sink: `destination`,
-     * `filter`, `output_version_format`, `start_time`, and `end_time`.
-     * The updated filter might also have a new `writer_identity`; see the
+     * Updates a sink.  This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, `filter`,
+     * `output_version_format`, `start_time`, and `end_time`.
+     * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
      */
@@ -383,6 +563,58 @@ public final class ConfigServiceV2Grpc {
     public com.google.protobuf.Empty deleteSink(com.google.logging.v2.DeleteSinkRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_DELETE_SINK, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Lists all the exclusions in a parent resource.
+     * </pre>
+     */
+    public com.google.logging.v2.ListExclusionsResponse listExclusions(com.google.logging.v2.ListExclusionsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LIST_EXCLUSIONS, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Gets the description of an exclusion.
+     * </pre>
+     */
+    public com.google.logging.v2.LogExclusion getExclusion(com.google.logging.v2.GetExclusionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_EXCLUSION, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     * </pre>
+     */
+    public com.google.logging.v2.LogExclusion createExclusion(com.google.logging.v2.CreateExclusionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CREATE_EXCLUSION, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Changes one or more properties of an existing exclusion.
+     * </pre>
+     */
+    public com.google.logging.v2.LogExclusion updateExclusion(com.google.logging.v2.UpdateExclusionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_UPDATE_EXCLUSION, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Deletes an exclusion.
+     * </pre>
+     */
+    public com.google.protobuf.Empty deleteExclusion(com.google.logging.v2.DeleteExclusionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_DELETE_EXCLUSION, getCallOptions(), request);
     }
   }
 
@@ -447,13 +679,10 @@ public final class ConfigServiceV2Grpc {
 
     /**
      * <pre>
-     * Updates a sink. If the named sink doesn't exist, then this method is
-     * identical to
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
-     * If the named sink does exist, then this method replaces the following
-     * fields in the existing sink with values from the new sink: `destination`,
-     * `filter`, `output_version_format`, `start_time`, and `end_time`.
-     * The updated filter might also have a new `writer_identity`; see the
+     * Updates a sink.  This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, `filter`,
+     * `output_version_format`, `start_time`, and `end_time`.
+     * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
      */
@@ -474,6 +703,63 @@ public final class ConfigServiceV2Grpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_DELETE_SINK, getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Lists all the exclusions in a parent resource.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.ListExclusionsResponse> listExclusions(
+        com.google.logging.v2.ListExclusionsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LIST_EXCLUSIONS, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Gets the description of an exclusion.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> getExclusion(
+        com.google.logging.v2.GetExclusionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_EXCLUSION, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Creates a new exclusion in a specified parent resource.
+     * Only log entries belonging to that resource can be excluded.
+     * You can have up to 10 exclusions in a resource.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> createExclusion(
+        com.google.logging.v2.CreateExclusionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CREATE_EXCLUSION, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Changes one or more properties of an existing exclusion.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.logging.v2.LogExclusion> updateExclusion(
+        com.google.logging.v2.UpdateExclusionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_EXCLUSION, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Deletes an exclusion.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteExclusion(
+        com.google.logging.v2.DeleteExclusionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_DELETE_EXCLUSION, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_LIST_SINKS = 0;
@@ -481,6 +767,11 @@ public final class ConfigServiceV2Grpc {
   private static final int METHODID_CREATE_SINK = 2;
   private static final int METHODID_UPDATE_SINK = 3;
   private static final int METHODID_DELETE_SINK = 4;
+  private static final int METHODID_LIST_EXCLUSIONS = 5;
+  private static final int METHODID_GET_EXCLUSION = 6;
+  private static final int METHODID_CREATE_EXCLUSION = 7;
+  private static final int METHODID_UPDATE_EXCLUSION = 8;
+  private static final int METHODID_DELETE_EXCLUSION = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -517,6 +808,26 @@ public final class ConfigServiceV2Grpc {
           break;
         case METHODID_DELETE_SINK:
           serviceImpl.deleteSink((com.google.logging.v2.DeleteSinkRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_LIST_EXCLUSIONS:
+          serviceImpl.listExclusions((com.google.logging.v2.ListExclusionsRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.logging.v2.ListExclusionsResponse>) responseObserver);
+          break;
+        case METHODID_GET_EXCLUSION:
+          serviceImpl.getExclusion((com.google.logging.v2.GetExclusionRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion>) responseObserver);
+          break;
+        case METHODID_CREATE_EXCLUSION:
+          serviceImpl.createExclusion((com.google.logging.v2.CreateExclusionRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion>) responseObserver);
+          break;
+        case METHODID_UPDATE_EXCLUSION:
+          serviceImpl.updateExclusion((com.google.logging.v2.UpdateExclusionRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.logging.v2.LogExclusion>) responseObserver);
+          break;
+        case METHODID_DELETE_EXCLUSION:
+          serviceImpl.deleteExclusion((com.google.logging.v2.DeleteExclusionRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -557,6 +868,11 @@ public final class ConfigServiceV2Grpc {
               .addMethod(METHOD_CREATE_SINK)
               .addMethod(METHOD_UPDATE_SINK)
               .addMethod(METHOD_DELETE_SINK)
+              .addMethod(METHOD_LIST_EXCLUSIONS)
+              .addMethod(METHOD_GET_EXCLUSION)
+              .addMethod(METHOD_CREATE_EXCLUSION)
+              .addMethod(METHOD_UPDATE_EXCLUSION)
+              .addMethod(METHOD_DELETE_EXCLUSION)
               .build();
         }
       }

@@ -53,6 +53,45 @@ public  final class Session extends
             name_ = s;
             break;
           }
+          case 18: {
+            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              labels_ = com.google.protobuf.MapField.newMapField(
+                  LabelsDefaultEntryHolder.defaultEntry);
+              mutable_bitField0_ |= 0x00000002;
+            }
+            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+            labels__ = input.readMessage(
+                LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+            labels_.getMutableMap().put(
+                labels__.getKey(), labels__.getValue());
+            break;
+          }
+          case 26: {
+            com.google.protobuf.Timestamp.Builder subBuilder = null;
+            if (createTime_ != null) {
+              subBuilder = createTime_.toBuilder();
+            }
+            createTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(createTime_);
+              createTime_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 34: {
+            com.google.protobuf.Timestamp.Builder subBuilder = null;
+            if (approximateLastUseTime_ != null) {
+              subBuilder = approximateLastUseTime_.toBuilder();
+            }
+            approximateLastUseTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(approximateLastUseTime_);
+              approximateLastUseTime_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -69,6 +108,17 @@ public  final class Session extends
     return com.google.spanner.v1.SpannerProto.internal_static_google_spanner_v1_Session_descriptor;
   }
 
+  @SuppressWarnings({"rawtypes"})
+  protected com.google.protobuf.MapField internalGetMapField(
+      int number) {
+    switch (number) {
+      case 2:
+        return internalGetLabels();
+      default:
+        throw new RuntimeException(
+            "Invalid map field number: " + number);
+    }
+  }
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.google.spanner.v1.SpannerProto.internal_static_google_spanner_v1_Session_fieldAccessorTable
@@ -76,11 +126,12 @@ public  final class Session extends
             com.google.spanner.v1.Session.class, com.google.spanner.v1.Session.Builder.class);
   }
 
+  private int bitField0_;
   public static final int NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * Required. The name of the session.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -99,7 +150,7 @@ public  final class Session extends
   }
   /**
    * <pre>
-   * Required. The name of the session.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -118,6 +169,191 @@ public  final class Session extends
     }
   }
 
+  public static final int LABELS_FIELD_NUMBER = 2;
+  private static final class LabelsDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                com.google.spanner.v1.SpannerProto.internal_static_google_spanner_v1_Session_LabelsEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.String> labels_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  internalGetLabels() {
+    if (labels_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          LabelsDefaultEntryHolder.defaultEntry);
+    }
+    return labels_;
+  }
+
+  public int getLabelsCount() {
+    return internalGetLabels().getMap().size();
+  }
+  /**
+   * <pre>
+   * The labels for the session.
+   *  * Label keys must be between 1 and 63 characters long and must conform to
+   *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+   *  * Label values must be between 0 and 63 characters long and must conform
+   *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+   *  * No more than 64 labels can be associated with a given session.
+   * See https://goo.gl/xmQnxf for more information on and examples of labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 2;</code>
+   */
+
+  public boolean containsLabels(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    return internalGetLabels().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getLabelsMap()} instead.
+   */
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, java.lang.String> getLabels() {
+    return getLabelsMap();
+  }
+  /**
+   * <pre>
+   * The labels for the session.
+   *  * Label keys must be between 1 and 63 characters long and must conform to
+   *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+   *  * Label values must be between 0 and 63 characters long and must conform
+   *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+   *  * No more than 64 labels can be associated with a given session.
+   * See https://goo.gl/xmQnxf for more information on and examples of labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 2;</code>
+   */
+
+  public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
+    return internalGetLabels().getMap();
+  }
+  /**
+   * <pre>
+   * The labels for the session.
+   *  * Label keys must be between 1 and 63 characters long and must conform to
+   *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+   *  * Label values must be between 0 and 63 characters long and must conform
+   *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+   *  * No more than 64 labels can be associated with a given session.
+   * See https://goo.gl/xmQnxf for more information on and examples of labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 2;</code>
+   */
+
+  public java.lang.String getLabelsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabels().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <pre>
+   * The labels for the session.
+   *  * Label keys must be between 1 and 63 characters long and must conform to
+   *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+   *  * Label values must be between 0 and 63 characters long and must conform
+   *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+   *  * No more than 64 labels can be associated with a given session.
+   * See https://goo.gl/xmQnxf for more information on and examples of labels.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 2;</code>
+   */
+
+  public java.lang.String getLabelsOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabels().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
+  }
+
+  public static final int CREATE_TIME_FIELD_NUMBER = 3;
+  private com.google.protobuf.Timestamp createTime_;
+  /**
+   * <pre>
+   * Output only. The timestamp when the session is created.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
+   */
+  public boolean hasCreateTime() {
+    return createTime_ != null;
+  }
+  /**
+   * <pre>
+   * Output only. The timestamp when the session is created.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
+   */
+  public com.google.protobuf.Timestamp getCreateTime() {
+    return createTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createTime_;
+  }
+  /**
+   * <pre>
+   * Output only. The timestamp when the session is created.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp create_time = 3;</code>
+   */
+  public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
+    return getCreateTime();
+  }
+
+  public static final int APPROXIMATE_LAST_USE_TIME_FIELD_NUMBER = 4;
+  private com.google.protobuf.Timestamp approximateLastUseTime_;
+  /**
+   * <pre>
+   * Output only. The approximate timestamp when the session is last used. It is
+   * typically earlier than the actual last use time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+   */
+  public boolean hasApproximateLastUseTime() {
+    return approximateLastUseTime_ != null;
+  }
+  /**
+   * <pre>
+   * Output only. The approximate timestamp when the session is last used. It is
+   * typically earlier than the actual last use time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+   */
+  public com.google.protobuf.Timestamp getApproximateLastUseTime() {
+    return approximateLastUseTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : approximateLastUseTime_;
+  }
+  /**
+   * <pre>
+   * Output only. The approximate timestamp when the session is last used. It is
+   * typically earlier than the actual last use time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+   */
+  public com.google.protobuf.TimestampOrBuilder getApproximateLastUseTimeOrBuilder() {
+    return getApproximateLastUseTime();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -133,6 +369,18 @@ public  final class Session extends
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
     }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabels(),
+        LabelsDefaultEntryHolder.defaultEntry,
+        2);
+    if (createTime_ != null) {
+      output.writeMessage(3, getCreateTime());
+    }
+    if (approximateLastUseTime_ != null) {
+      output.writeMessage(4, getApproximateLastUseTime());
+    }
   }
 
   public int getSerializedSize() {
@@ -142,6 +390,24 @@ public  final class Session extends
     size = 0;
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+         : internalGetLabels().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+      labels__ = LabelsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, labels__);
+    }
+    if (createTime_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getCreateTime());
+    }
+    if (approximateLastUseTime_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getApproximateLastUseTime());
     }
     memoizedSize = size;
     return size;
@@ -161,6 +427,18 @@ public  final class Session extends
     boolean result = true;
     result = result && getName()
         .equals(other.getName());
+    result = result && internalGetLabels().equals(
+        other.internalGetLabels());
+    result = result && (hasCreateTime() == other.hasCreateTime());
+    if (hasCreateTime()) {
+      result = result && getCreateTime()
+          .equals(other.getCreateTime());
+    }
+    result = result && (hasApproximateLastUseTime() == other.hasApproximateLastUseTime());
+    if (hasApproximateLastUseTime()) {
+      result = result && getApproximateLastUseTime()
+          .equals(other.getApproximateLastUseTime());
+    }
     return result;
   }
 
@@ -173,6 +451,18 @@ public  final class Session extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
+    if (!internalGetLabels().getMap().isEmpty()) {
+      hash = (37 * hash) + LABELS_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetLabels().hashCode();
+    }
+    if (hasCreateTime()) {
+      hash = (37 * hash) + CREATE_TIME_FIELD_NUMBER;
+      hash = (53 * hash) + getCreateTime().hashCode();
+    }
+    if (hasApproximateLastUseTime()) {
+      hash = (37 * hash) + APPROXIMATE_LAST_USE_TIME_FIELD_NUMBER;
+      hash = (53 * hash) + getApproximateLastUseTime().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -282,6 +572,28 @@ public  final class Session extends
       return com.google.spanner.v1.SpannerProto.internal_static_google_spanner_v1_Session_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 2:
+          return internalGetLabels();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMutableMapField(
+        int number) {
+      switch (number) {
+        case 2:
+          return internalGetMutableLabels();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.google.spanner.v1.SpannerProto.internal_static_google_spanner_v1_Session_fieldAccessorTable
@@ -308,6 +620,19 @@ public  final class Session extends
       super.clear();
       name_ = "";
 
+      internalGetMutableLabels().clear();
+      if (createTimeBuilder_ == null) {
+        createTime_ = null;
+      } else {
+        createTime_ = null;
+        createTimeBuilder_ = null;
+      }
+      if (approximateLastUseTimeBuilder_ == null) {
+        approximateLastUseTime_ = null;
+      } else {
+        approximateLastUseTime_ = null;
+        approximateLastUseTimeBuilder_ = null;
+      }
       return this;
     }
 
@@ -330,7 +655,22 @@ public  final class Session extends
 
     public com.google.spanner.v1.Session buildPartial() {
       com.google.spanner.v1.Session result = new com.google.spanner.v1.Session(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.name_ = name_;
+      result.labels_ = internalGetLabels();
+      result.labels_.makeImmutable();
+      if (createTimeBuilder_ == null) {
+        result.createTime_ = createTime_;
+      } else {
+        result.createTime_ = createTimeBuilder_.build();
+      }
+      if (approximateLastUseTimeBuilder_ == null) {
+        result.approximateLastUseTime_ = approximateLastUseTime_;
+      } else {
+        result.approximateLastUseTime_ = approximateLastUseTimeBuilder_.build();
+      }
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -376,6 +716,14 @@ public  final class Session extends
         name_ = other.name_;
         onChanged();
       }
+      internalGetMutableLabels().mergeFrom(
+          other.internalGetLabels());
+      if (other.hasCreateTime()) {
+        mergeCreateTime(other.getCreateTime());
+      }
+      if (other.hasApproximateLastUseTime()) {
+        mergeApproximateLastUseTime(other.getApproximateLastUseTime());
+      }
       onChanged();
       return this;
     }
@@ -401,11 +749,12 @@ public  final class Session extends
       }
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * Required. The name of the session.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -424,7 +773,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * Required. The name of the session.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -444,7 +793,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * Required. The name of the session.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -461,7 +810,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * Required. The name of the session.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -474,7 +823,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * Required. The name of the session.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -489,6 +838,514 @@ public  final class Session extends
       name_ = value;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> labels_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetLabels() {
+      if (labels_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            LabelsDefaultEntryHolder.defaultEntry);
+      }
+      return labels_;
+    }
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetMutableLabels() {
+      onChanged();;
+      if (labels_ == null) {
+        labels_ = com.google.protobuf.MapField.newMapField(
+            LabelsDefaultEntryHolder.defaultEntry);
+      }
+      if (!labels_.isMutable()) {
+        labels_ = labels_.copy();
+      }
+      return labels_;
+    }
+
+    public int getLabelsCount() {
+      return internalGetLabels().getMap().size();
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public boolean containsLabels(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetLabels().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getLabelsMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getLabels() {
+      return getLabelsMap();
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getLabelsMap() {
+      return internalGetLabels().getMap();
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public java.lang.String getLabelsOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabels().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public java.lang.String getLabelsOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabels().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    public Builder clearLabels() {
+      internalGetMutableLabels().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public Builder removeLabels(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabels().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String>
+    getMutableLabels() {
+      return internalGetMutableLabels().getMutableMap();
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+    public Builder putLabels(
+        java.lang.String key,
+        java.lang.String value) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (value == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabels().getMutableMap()
+          .put(key, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * The labels for the session.
+     *  * Label keys must be between 1 and 63 characters long and must conform to
+     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *  * Label values must be between 0 and 63 characters long and must conform
+     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *  * No more than 64 labels can be associated with a given session.
+     * See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; labels = 2;</code>
+     */
+
+    public Builder putAllLabels(
+        java.util.Map<java.lang.String, java.lang.String> values) {
+      internalGetMutableLabels().getMutableMap()
+          .putAll(values);
+      return this;
+    }
+
+    private com.google.protobuf.Timestamp createTime_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> createTimeBuilder_;
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public boolean hasCreateTime() {
+      return createTimeBuilder_ != null || createTime_ != null;
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public com.google.protobuf.Timestamp getCreateTime() {
+      if (createTimeBuilder_ == null) {
+        return createTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : createTime_;
+      } else {
+        return createTimeBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public Builder setCreateTime(com.google.protobuf.Timestamp value) {
+      if (createTimeBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        createTime_ = value;
+        onChanged();
+      } else {
+        createTimeBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public Builder setCreateTime(
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (createTimeBuilder_ == null) {
+        createTime_ = builderForValue.build();
+        onChanged();
+      } else {
+        createTimeBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public Builder mergeCreateTime(com.google.protobuf.Timestamp value) {
+      if (createTimeBuilder_ == null) {
+        if (createTime_ != null) {
+          createTime_ =
+            com.google.protobuf.Timestamp.newBuilder(createTime_).mergeFrom(value).buildPartial();
+        } else {
+          createTime_ = value;
+        }
+        onChanged();
+      } else {
+        createTimeBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public Builder clearCreateTime() {
+      if (createTimeBuilder_ == null) {
+        createTime_ = null;
+        onChanged();
+      } else {
+        createTime_ = null;
+        createTimeBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public com.google.protobuf.Timestamp.Builder getCreateTimeBuilder() {
+      
+      onChanged();
+      return getCreateTimeFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getCreateTimeOrBuilder() {
+      if (createTimeBuilder_ != null) {
+        return createTimeBuilder_.getMessageOrBuilder();
+      } else {
+        return createTime_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : createTime_;
+      }
+    }
+    /**
+     * <pre>
+     * Output only. The timestamp when the session is created.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp create_time = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        getCreateTimeFieldBuilder() {
+      if (createTimeBuilder_ == null) {
+        createTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                getCreateTime(),
+                getParentForChildren(),
+                isClean());
+        createTime_ = null;
+      }
+      return createTimeBuilder_;
+    }
+
+    private com.google.protobuf.Timestamp approximateLastUseTime_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> approximateLastUseTimeBuilder_;
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public boolean hasApproximateLastUseTime() {
+      return approximateLastUseTimeBuilder_ != null || approximateLastUseTime_ != null;
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public com.google.protobuf.Timestamp getApproximateLastUseTime() {
+      if (approximateLastUseTimeBuilder_ == null) {
+        return approximateLastUseTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : approximateLastUseTime_;
+      } else {
+        return approximateLastUseTimeBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public Builder setApproximateLastUseTime(com.google.protobuf.Timestamp value) {
+      if (approximateLastUseTimeBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        approximateLastUseTime_ = value;
+        onChanged();
+      } else {
+        approximateLastUseTimeBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public Builder setApproximateLastUseTime(
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (approximateLastUseTimeBuilder_ == null) {
+        approximateLastUseTime_ = builderForValue.build();
+        onChanged();
+      } else {
+        approximateLastUseTimeBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public Builder mergeApproximateLastUseTime(com.google.protobuf.Timestamp value) {
+      if (approximateLastUseTimeBuilder_ == null) {
+        if (approximateLastUseTime_ != null) {
+          approximateLastUseTime_ =
+            com.google.protobuf.Timestamp.newBuilder(approximateLastUseTime_).mergeFrom(value).buildPartial();
+        } else {
+          approximateLastUseTime_ = value;
+        }
+        onChanged();
+      } else {
+        approximateLastUseTimeBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public Builder clearApproximateLastUseTime() {
+      if (approximateLastUseTimeBuilder_ == null) {
+        approximateLastUseTime_ = null;
+        onChanged();
+      } else {
+        approximateLastUseTime_ = null;
+        approximateLastUseTimeBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public com.google.protobuf.Timestamp.Builder getApproximateLastUseTimeBuilder() {
+      
+      onChanged();
+      return getApproximateLastUseTimeFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getApproximateLastUseTimeOrBuilder() {
+      if (approximateLastUseTimeBuilder_ != null) {
+        return approximateLastUseTimeBuilder_.getMessageOrBuilder();
+      } else {
+        return approximateLastUseTime_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : approximateLastUseTime_;
+      }
+    }
+    /**
+     * <pre>
+     * Output only. The approximate timestamp when the session is last used. It is
+     * typically earlier than the actual last use time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        getApproximateLastUseTimeFieldBuilder() {
+      if (approximateLastUseTimeBuilder_ == null) {
+        approximateLastUseTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                getApproximateLastUseTime(),
+                getParentForChildren(),
+                isClean());
+        approximateLastUseTime_ = null;
+      }
+      return approximateLastUseTimeBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

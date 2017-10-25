@@ -32,6 +32,8 @@ public interface CreateDatabaseRequestOrBuilder extends
    * Required. A `CREATE DATABASE` statement, which specifies the ID of the
    * new database.  The database ID must conform to the regular expression
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
+   * If the database ID is a reserved word or if it contains a hyphen, the
+   * database ID must be enclosed in backticks (`` ` ``).
    * </pre>
    *
    * <code>string create_statement = 2;</code>
@@ -42,6 +44,8 @@ public interface CreateDatabaseRequestOrBuilder extends
    * Required. A `CREATE DATABASE` statement, which specifies the ID of the
    * new database.  The database ID must conform to the regular expression
    * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
+   * If the database ID is a reserved word or if it contains a hyphen, the
+   * database ID must be enclosed in backticks (`` ` ``).
    * </pre>
    *
    * <code>string create_statement = 2;</code>

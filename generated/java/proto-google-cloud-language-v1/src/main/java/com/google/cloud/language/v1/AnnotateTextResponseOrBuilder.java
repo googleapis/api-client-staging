@@ -213,4 +213,48 @@ public interface AnnotateTextResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getLanguageBytes();
+
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  java.util.List<com.google.cloud.language.v1.ClassificationCategory> 
+      getCategoriesList();
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  com.google.cloud.language.v1.ClassificationCategory getCategories(int index);
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  int getCategoriesCount();
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  java.util.List<? extends com.google.cloud.language.v1.ClassificationCategoryOrBuilder> 
+      getCategoriesOrBuilderList();
+  /**
+   * <pre>
+   * Categories identified in the input document.
+   * </pre>
+   *
+   * <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+   */
+  com.google.cloud.language.v1.ClassificationCategoryOrBuilder getCategoriesOrBuilder(
+      int index);
 }
