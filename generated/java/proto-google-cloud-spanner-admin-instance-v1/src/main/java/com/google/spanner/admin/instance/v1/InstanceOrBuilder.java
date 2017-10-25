@@ -77,7 +77,10 @@ public interface InstanceOrBuilder extends
 
   /**
    * <pre>
-   * Required. The number of nodes allocated to this instance.
+   * Required. The number of nodes allocated to this instance. This may be zero
+   * in API responses for instances that are not yet in state `READY`.
+   * See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+   * for more information about nodes.
    * </pre>
    *
    * <code>int32 node_count = 5;</code>

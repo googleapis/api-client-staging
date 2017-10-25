@@ -439,11 +439,8 @@ public  final class LogSink extends
   private int outputVersionFormat_;
   /**
    * <pre>
-   * Optional. The log entry format to use for this sink's exported log
-   * entries.  The v2 format is used by default.
-   * **The v1 format is deprecated** and should be used only as part of a
-   * migration effort to v2.
-   * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+   * Deprecated. The log entry format to use for this sink's exported log
+   * entries.  The v2 format is used by default and cannot be changed.
    * </pre>
    *
    * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -453,11 +450,8 @@ public  final class LogSink extends
   }
   /**
    * <pre>
-   * Optional. The log entry format to use for this sink's exported log
-   * entries.  The v2 format is used by default.
-   * **The v1 format is deprecated** and should be used only as part of a
-   * migration effort to v2.
-   * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+   * Deprecated. The log entry format to use for this sink's exported log
+   * entries.  The v2 format is used by default and cannot be changed.
    * </pre>
    *
    * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -1427,11 +1421,8 @@ public  final class LogSink extends
     private int outputVersionFormat_ = 0;
     /**
      * <pre>
-     * Optional. The log entry format to use for this sink's exported log
-     * entries.  The v2 format is used by default.
-     * **The v1 format is deprecated** and should be used only as part of a
-     * migration effort to v2.
-     * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+     * Deprecated. The log entry format to use for this sink's exported log
+     * entries.  The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -1441,11 +1432,8 @@ public  final class LogSink extends
     }
     /**
      * <pre>
-     * Optional. The log entry format to use for this sink's exported log
-     * entries.  The v2 format is used by default.
-     * **The v1 format is deprecated** and should be used only as part of a
-     * migration effort to v2.
-     * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+     * Deprecated. The log entry format to use for this sink's exported log
+     * entries.  The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -1457,11 +1445,8 @@ public  final class LogSink extends
     }
     /**
      * <pre>
-     * Optional. The log entry format to use for this sink's exported log
-     * entries.  The v2 format is used by default.
-     * **The v1 format is deprecated** and should be used only as part of a
-     * migration effort to v2.
-     * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+     * Deprecated. The log entry format to use for this sink's exported log
+     * entries.  The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -1472,11 +1457,8 @@ public  final class LogSink extends
     }
     /**
      * <pre>
-     * Optional. The log entry format to use for this sink's exported log
-     * entries.  The v2 format is used by default.
-     * **The v1 format is deprecated** and should be used only as part of a
-     * migration effort to v2.
-     * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+     * Deprecated. The log entry format to use for this sink's exported log
+     * entries.  The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
@@ -1492,11 +1474,8 @@ public  final class LogSink extends
     }
     /**
      * <pre>
-     * Optional. The log entry format to use for this sink's exported log
-     * entries.  The v2 format is used by default.
-     * **The v1 format is deprecated** and should be used only as part of a
-     * migration effort to v2.
-     * See [Migration to the v2 API](/logging/docs/api/v2/migration-to-v2).
+     * Deprecated. The log entry format to use for this sink's exported log
+     * entries.  The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>

@@ -154,8 +154,7 @@ public  final class UpdateSinkRequest extends
   /**
    * <pre>
    * Required. The updated sink, whose name is the same identifier that appears
-   * as part of `sink_name`.  If `sink_name` does not exist, then
-   * this method creates a new sink.
+   * as part of `sink_name`.
    * </pre>
    *
    * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -166,8 +165,7 @@ public  final class UpdateSinkRequest extends
   /**
    * <pre>
    * Required. The updated sink, whose name is the same identifier that appears
-   * as part of `sink_name`.  If `sink_name` does not exist, then
-   * this method creates a new sink.
+   * as part of `sink_name`.
    * </pre>
    *
    * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -178,8 +176,7 @@ public  final class UpdateSinkRequest extends
   /**
    * <pre>
    * Required. The updated sink, whose name is the same identifier that appears
-   * as part of `sink_name`.  If `sink_name` does not exist, then
-   * this method creates a new sink.
+   * as part of `sink_name`.
    * </pre>
    *
    * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -201,7 +198,8 @@ public  final class UpdateSinkRequest extends
    *     then there is no change to the sink's `writer_identity`.
    * +   If the old value is false and the new value is true, then
    *     `writer_identity` is changed to a unique service account.
-   * +   It is an error if the old value is true and the new value is false.
+   * +   It is an error if the old value is true and the new value is
+   *     set to false or defaulted to false.
    * </pre>
    *
    * <code>bool unique_writer_identity = 3;</code>
@@ -667,8 +665,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -679,8 +676,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -695,8 +691,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -717,8 +712,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -737,8 +731,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -761,8 +754,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -781,8 +773,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -795,8 +786,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -812,8 +802,7 @@ public  final class UpdateSinkRequest extends
     /**
      * <pre>
      * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.  If `sink_name` does not exist, then
-     * this method creates a new sink.
+     * as part of `sink_name`.
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
@@ -844,7 +833,8 @@ public  final class UpdateSinkRequest extends
      *     then there is no change to the sink's `writer_identity`.
      * +   If the old value is false and the new value is true, then
      *     `writer_identity` is changed to a unique service account.
-     * +   It is an error if the old value is true and the new value is false.
+     * +   It is an error if the old value is true and the new value is
+     *     set to false or defaulted to false.
      * </pre>
      *
      * <code>bool unique_writer_identity = 3;</code>
@@ -863,7 +853,8 @@ public  final class UpdateSinkRequest extends
      *     then there is no change to the sink's `writer_identity`.
      * +   If the old value is false and the new value is true, then
      *     `writer_identity` is changed to a unique service account.
-     * +   It is an error if the old value is true and the new value is false.
+     * +   It is an error if the old value is true and the new value is
+     *     set to false or defaulted to false.
      * </pre>
      *
      * <code>bool unique_writer_identity = 3;</code>
@@ -885,7 +876,8 @@ public  final class UpdateSinkRequest extends
      *     then there is no change to the sink's `writer_identity`.
      * +   If the old value is false and the new value is true, then
      *     `writer_identity` is changed to a unique service account.
-     * +   It is an error if the old value is true and the new value is false.
+     * +   It is an error if the old value is true and the new value is
+     *     set to false or defaulted to false.
      * </pre>
      *
      * <code>bool unique_writer_identity = 3;</code>

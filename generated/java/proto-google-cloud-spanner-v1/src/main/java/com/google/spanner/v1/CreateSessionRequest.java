@@ -53,6 +53,19 @@ public  final class CreateSessionRequest extends
             database_ = s;
             break;
           }
+          case 18: {
+            com.google.spanner.v1.Session.Builder subBuilder = null;
+            if (session_ != null) {
+              subBuilder = session_.toBuilder();
+            }
+            session_ = input.readMessage(com.google.spanner.v1.Session.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(session_);
+              session_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -118,6 +131,39 @@ public  final class CreateSessionRequest extends
     }
   }
 
+  public static final int SESSION_FIELD_NUMBER = 2;
+  private com.google.spanner.v1.Session session_;
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  public boolean hasSession() {
+    return session_ != null;
+  }
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  public com.google.spanner.v1.Session getSession() {
+    return session_ == null ? com.google.spanner.v1.Session.getDefaultInstance() : session_;
+  }
+  /**
+   * <pre>
+   * The session to create.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.Session session = 2;</code>
+   */
+  public com.google.spanner.v1.SessionOrBuilder getSessionOrBuilder() {
+    return getSession();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -133,6 +179,9 @@ public  final class CreateSessionRequest extends
     if (!getDatabaseBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, database_);
     }
+    if (session_ != null) {
+      output.writeMessage(2, getSession());
+    }
   }
 
   public int getSerializedSize() {
@@ -142,6 +191,10 @@ public  final class CreateSessionRequest extends
     size = 0;
     if (!getDatabaseBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, database_);
+    }
+    if (session_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getSession());
     }
     memoizedSize = size;
     return size;
@@ -161,6 +214,11 @@ public  final class CreateSessionRequest extends
     boolean result = true;
     result = result && getDatabase()
         .equals(other.getDatabase());
+    result = result && (hasSession() == other.hasSession());
+    if (hasSession()) {
+      result = result && getSession()
+          .equals(other.getSession());
+    }
     return result;
   }
 
@@ -173,6 +231,10 @@ public  final class CreateSessionRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + DATABASE_FIELD_NUMBER;
     hash = (53 * hash) + getDatabase().hashCode();
+    if (hasSession()) {
+      hash = (37 * hash) + SESSION_FIELD_NUMBER;
+      hash = (53 * hash) + getSession().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,6 +370,12 @@ public  final class CreateSessionRequest extends
       super.clear();
       database_ = "";
 
+      if (sessionBuilder_ == null) {
+        session_ = null;
+      } else {
+        session_ = null;
+        sessionBuilder_ = null;
+      }
       return this;
     }
 
@@ -331,6 +399,11 @@ public  final class CreateSessionRequest extends
     public com.google.spanner.v1.CreateSessionRequest buildPartial() {
       com.google.spanner.v1.CreateSessionRequest result = new com.google.spanner.v1.CreateSessionRequest(this);
       result.database_ = database_;
+      if (sessionBuilder_ == null) {
+        result.session_ = session_;
+      } else {
+        result.session_ = sessionBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -375,6 +448,9 @@ public  final class CreateSessionRequest extends
       if (!other.getDatabase().isEmpty()) {
         database_ = other.database_;
         onChanged();
+      }
+      if (other.hasSession()) {
+        mergeSession(other.getSession());
       }
       onChanged();
       return this;
@@ -489,6 +565,159 @@ public  final class CreateSessionRequest extends
       database_ = value;
       onChanged();
       return this;
+    }
+
+    private com.google.spanner.v1.Session session_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.spanner.v1.Session, com.google.spanner.v1.Session.Builder, com.google.spanner.v1.SessionOrBuilder> sessionBuilder_;
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public boolean hasSession() {
+      return sessionBuilder_ != null || session_ != null;
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public com.google.spanner.v1.Session getSession() {
+      if (sessionBuilder_ == null) {
+        return session_ == null ? com.google.spanner.v1.Session.getDefaultInstance() : session_;
+      } else {
+        return sessionBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public Builder setSession(com.google.spanner.v1.Session value) {
+      if (sessionBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        session_ = value;
+        onChanged();
+      } else {
+        sessionBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public Builder setSession(
+        com.google.spanner.v1.Session.Builder builderForValue) {
+      if (sessionBuilder_ == null) {
+        session_ = builderForValue.build();
+        onChanged();
+      } else {
+        sessionBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public Builder mergeSession(com.google.spanner.v1.Session value) {
+      if (sessionBuilder_ == null) {
+        if (session_ != null) {
+          session_ =
+            com.google.spanner.v1.Session.newBuilder(session_).mergeFrom(value).buildPartial();
+        } else {
+          session_ = value;
+        }
+        onChanged();
+      } else {
+        sessionBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public Builder clearSession() {
+      if (sessionBuilder_ == null) {
+        session_ = null;
+        onChanged();
+      } else {
+        session_ = null;
+        sessionBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public com.google.spanner.v1.Session.Builder getSessionBuilder() {
+      
+      onChanged();
+      return getSessionFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    public com.google.spanner.v1.SessionOrBuilder getSessionOrBuilder() {
+      if (sessionBuilder_ != null) {
+        return sessionBuilder_.getMessageOrBuilder();
+      } else {
+        return session_ == null ?
+            com.google.spanner.v1.Session.getDefaultInstance() : session_;
+      }
+    }
+    /**
+     * <pre>
+     * The session to create.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.Session session = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.spanner.v1.Session, com.google.spanner.v1.Session.Builder, com.google.spanner.v1.SessionOrBuilder> 
+        getSessionFieldBuilder() {
+      if (sessionBuilder_ == null) {
+        sessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.spanner.v1.Session, com.google.spanner.v1.Session.Builder, com.google.spanner.v1.SessionOrBuilder>(
+                getSession(),
+                getParentForChildren(),
+                isClean());
+        session_ = null;
+      }
+      return sessionBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

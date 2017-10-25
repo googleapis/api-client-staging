@@ -15,6 +15,8 @@
  */
 package com.google.cloud.spanner.v1;
 
+import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.ServerStreamingCallable;
@@ -30,6 +32,8 @@ import com.google.spanner.v1.DatabaseName;
 import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.Mutation;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
@@ -347,6 +351,110 @@ public class SpannerClient implements BackgroundResource {
    */
   public final UnaryCallable<GetSessionRequest, Session> getSessionCallable() {
     return stub.getSessionCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists all sessions in a given database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   for (Session element : spannerClient.listSessions(formattedDatabase).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param database Required. The database in which to list sessions.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListSessionsPagedResponse listSessions(String database) {
+    ListSessionsRequest request = ListSessionsRequest.newBuilder().setDatabase(database).build();
+    return listSessions(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists all sessions in a given database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
+   *     .setDatabase(formattedDatabase)
+   *     .build();
+   *   for (Session element : spannerClient.listSessions(request).iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final ListSessionsPagedResponse listSessions(ListSessionsRequest request) {
+    return listSessionsPagedCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists all sessions in a given database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
+   *     .setDatabase(formattedDatabase)
+   *     .build();
+   *   ApiFuture&lt;ListSessionsPagedResponse&gt; future = spannerClient.listSessionsPagedCallable().futureCall(request);
+   *   // Do something
+   *   for (Session element : future.get().iterateAll()) {
+   *     // doThingsWith(element);
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListSessionsRequest, ListSessionsPagedResponse>
+      listSessionsPagedCallable() {
+    return stub.listSessionsPagedCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Lists all sessions in a given database.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+   *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
+   *     .setDatabase(formattedDatabase)
+   *     .build();
+   *   while (true) {
+   *     ListSessionsResponse response = spannerClient.listSessionsCallable().call(request);
+   *     for (Session element : response.getSessionsList()) {
+   *       // doThingsWith(element);
+   *     }
+   *     String nextPageToken = response.getNextPageToken();
+   *     if (!Strings.isNullOrEmpty(nextPageToken)) {
+   *       request = request.toBuilder().setPageToken(nextPageToken).build();
+   *     } else {
+   *       break;
+   *     }
+   *   }
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<ListSessionsRequest, ListSessionsResponse> listSessionsCallable() {
+    return stub.listSessionsCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD

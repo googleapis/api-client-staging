@@ -15,6 +15,8 @@
  */
 package com.google.cloud.spanner.v1.stub;
 
+import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
@@ -31,6 +33,8 @@ import com.google.spanner.v1.CreateSessionRequest;
 import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
@@ -64,6 +68,15 @@ public class GrpcSpannerStub extends SpannerStub {
               "google.spanner.v1.Spanner/GetSession",
               io.grpc.protobuf.ProtoUtils.marshaller(GetSessionRequest.getDefaultInstance()),
               io.grpc.protobuf.ProtoUtils.marshaller(Session.getDefaultInstance())));
+  private static final UnaryCallable<ListSessionsRequest, ListSessionsResponse>
+      directListSessionsCallable =
+          GrpcCallableFactory.createDirectCallable(
+              io.grpc.MethodDescriptor.create(
+                  io.grpc.MethodDescriptor.MethodType.UNARY,
+                  "google.spanner.v1.Spanner/ListSessions",
+                  io.grpc.protobuf.ProtoUtils.marshaller(ListSessionsRequest.getDefaultInstance()),
+                  io.grpc.protobuf.ProtoUtils.marshaller(
+                      ListSessionsResponse.getDefaultInstance())));
   private static final UnaryCallable<DeleteSessionRequest, Empty> directDeleteSessionCallable =
       GrpcCallableFactory.createDirectCallable(
           io.grpc.MethodDescriptor.create(
@@ -129,6 +142,9 @@ public class GrpcSpannerStub extends SpannerStub {
 
   private final UnaryCallable<CreateSessionRequest, Session> createSessionCallable;
   private final UnaryCallable<GetSessionRequest, Session> getSessionCallable;
+  private final UnaryCallable<ListSessionsRequest, ListSessionsResponse> listSessionsCallable;
+  private final UnaryCallable<ListSessionsRequest, ListSessionsPagedResponse>
+      listSessionsPagedCallable;
   private final UnaryCallable<DeleteSessionRequest, Empty> deleteSessionCallable;
   private final UnaryCallable<ExecuteSqlRequest, ResultSet> executeSqlCallable;
   private final ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
@@ -160,6 +176,12 @@ public class GrpcSpannerStub extends SpannerStub {
     this.getSessionCallable =
         GrpcCallableFactory.create(
             directGetSessionCallable, settings.getSessionSettings(), clientContext);
+    this.listSessionsCallable =
+        GrpcCallableFactory.create(
+            directListSessionsCallable, settings.listSessionsSettings(), clientContext);
+    this.listSessionsPagedCallable =
+        GrpcCallableFactory.createPagedVariant(
+            directListSessionsCallable, settings.listSessionsSettings(), clientContext);
     this.deleteSessionCallable =
         GrpcCallableFactory.create(
             directDeleteSessionCallable, settings.deleteSessionSettings(), clientContext);
@@ -194,6 +216,14 @@ public class GrpcSpannerStub extends SpannerStub {
 
   public UnaryCallable<GetSessionRequest, Session> getSessionCallable() {
     return getSessionCallable;
+  }
+
+  public UnaryCallable<ListSessionsRequest, ListSessionsPagedResponse> listSessionsPagedCallable() {
+    return listSessionsPagedCallable;
+  }
+
+  public UnaryCallable<ListSessionsRequest, ListSessionsResponse> listSessionsCallable() {
+    return listSessionsCallable;
   }
 
   public UnaryCallable<DeleteSessionRequest, Empty> deleteSessionCallable() {

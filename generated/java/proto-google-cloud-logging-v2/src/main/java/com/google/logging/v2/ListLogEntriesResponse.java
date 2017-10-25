@@ -94,7 +94,9 @@ public  final class ListLogEntriesResponse extends
   private java.util.List<com.google.logging.v2.LogEntry> entries_;
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -104,7 +106,9 @@ public  final class ListLogEntriesResponse extends
   }
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -115,7 +119,9 @@ public  final class ListLogEntriesResponse extends
   }
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -125,7 +131,9 @@ public  final class ListLogEntriesResponse extends
   }
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -135,7 +143,9 @@ public  final class ListLogEntriesResponse extends
   }
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -560,7 +570,9 @@ public  final class ListLogEntriesResponse extends
 
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -574,7 +586,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -588,7 +602,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -602,7 +618,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -623,7 +641,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -641,7 +661,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -661,7 +683,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -682,7 +706,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -700,7 +726,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -718,7 +746,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -737,7 +767,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -754,7 +786,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -771,7 +805,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -782,7 +818,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -796,7 +834,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -811,7 +851,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -822,7 +864,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -834,7 +878,9 @@ public  final class ListLogEntriesResponse extends
     }
     /**
      * <pre>
-     * A list of log entries.
+     * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+     * returned, indicating that more entries may exist.  See `nextPageToken` for
+     * more information.
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
