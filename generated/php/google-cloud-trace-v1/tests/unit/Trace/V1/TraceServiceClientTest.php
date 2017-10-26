@@ -20,18 +20,29 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Trace\V1;
+namespace Google\Cloud\Tests\Unit\Trace\V1;
 
 use Google\Cloud\Trace\V1\TraceServiceClient;
+use Google\Devtools\Cloudtrace\V1\GetTraceRequest;
+use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
 use Google\Devtools\Cloudtrace\V1\ListTracesResponse;
+use Google\Devtools\Cloudtrace\V1\PatchTracesRequest;
 use Google\Devtools\Cloudtrace\V1\Trace;
+use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
 use Google\Devtools\Cloudtrace\V1\Traces;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -52,7 +63,6 @@ class TraceServiceClientTest extends GeneratedTest
             'port' => TraceServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 

@@ -44,12 +44,14 @@
 
 namespace Google\GAX\LongRunning\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
+use Google\GAX\PathTemplate;
 use Google\GAX\ValidationException;
 use Google\Longrunning\CancelOperationRequest;
 use Google\Longrunning\DeleteOperationRequest;
@@ -82,7 +84,7 @@ use Google\Longrunning\OperationsGrpcClient;
  *         'scopes' => ['my-service-scope'],
  *     ];
  *     $operationsClient = new OperationsClient($options);
- *     $name = "";
+ *     $name = '';
  *     $response = $operationsClient->getOperation($name);
  * } finally {
  *     if (isset($operationsClient)) {
@@ -95,15 +97,11 @@ use Google\Longrunning\OperationsGrpcClient;
  */
 class OperationsGapicClient
 {
+
     /**
      * The default port of the service.
      */
     const DEFAULT_SERVICE_PORT = 443;
-
-    /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
 
     /**
      * The name of the code generator, to be included in the agent header.
@@ -115,11 +113,16 @@ class OperationsGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $operationsStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+
 
     private static function getPageStreamingDescriptors()
     {
@@ -140,23 +143,30 @@ class OperationsGapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+        return self::$gapicVersion;
     }
+
+
+
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Required. Options for configuring the service API wrapper. Those options
-     *                       that must be provided are marked as Required.
+     *     Required. Options for configuring the service API wrapper. Those options
+     *     that must be provided are marked as Required.
      *
      *     @type string $serviceAddress Required. The domain name of the API remote host.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
@@ -174,17 +184,21 @@ class OperationsGapicClient
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes Required. A string array of scopes to use when acquiring credentials.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
-     *
      * @throws ValidationException Throws a ValidationException if required arguments are missing
      *                             from the $options array.
      * @experimental
@@ -200,11 +214,12 @@ class OperationsGapicClient
         $defaultOptions = [
             'port' => self::DEFAULT_SERVICE_PORT,
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__ . '/../resources/operations_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -226,15 +241,13 @@ class OperationsGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/operations_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.longrunning.Operations',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -267,7 +280,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $response = $operationsClient->getOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -276,16 +289,14 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The name of the operation resource.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Longrunning\Operation
@@ -298,9 +309,13 @@ class OperationsGapicClient
         $request = new GetOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'GetOperation',
@@ -329,16 +344,16 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
-     *     $filter = "";
+     *     $name = '';
+     *     $filter = '';
      *     // Iterate through all elements
      *     $pagedResponse = $operationsClient->listOperations($name, $filter);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $operationsClient->listOperations($name, $filter, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $operationsClient->listOperations($name, $filter);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -351,11 +366,10 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation collection.
-     * @param string $filter       The standard list filter.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The name of the operation collection.
+     * @param string $filter The standard list filter.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -365,12 +379,11 @@ class OperationsGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -390,9 +403,13 @@ class OperationsGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listOperations']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listOperations'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'ListOperations',
@@ -426,7 +443,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $operationsClient->cancelOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -435,16 +452,14 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource to be cancelled.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The name of the operation resource to be cancelled.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -455,9 +470,13 @@ class OperationsGapicClient
         $request = new CancelOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['cancelOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['cancelOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'CancelOperation',
@@ -485,7 +504,7 @@ class OperationsGapicClient
      *         'scopes' => ['my-service-scope'],
      *     ];
      *     $operationsClient = new OperationsClient($options);
-     *     $name = "";
+     *     $name = '';
      *     $operationsClient->deleteOperation($name);
      * } finally {
      *     if (isset($operationsClient)) {
@@ -494,16 +513,14 @@ class OperationsGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the operation resource to be deleted.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The name of the operation resource to be deleted.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -514,9 +531,13 @@ class OperationsGapicClient
         $request = new DeleteOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'DeleteOperation',
@@ -533,7 +554,6 @@ class OperationsGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

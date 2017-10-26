@@ -20,19 +20,33 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Monitoring\V3;
+namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
 use Google\Api\MonitoredResource;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\GetOperationRequest;
+use Google\Monitoring\V3\CreateGroupRequest;
+use Google\Monitoring\V3\DeleteGroupRequest;
+use Google\Monitoring\V3\GetGroupRequest;
 use Google\Monitoring\V3\Group;
+use Google\Monitoring\V3\GroupServiceGrpcClient;
+use Google\Monitoring\V3\ListGroupMembersRequest;
 use Google\Monitoring\V3\ListGroupMembersResponse;
+use Google\Monitoring\V3\ListGroupsRequest;
 use Google\Monitoring\V3\ListGroupsResponse;
+use Google\Monitoring\V3\UpdateGroupRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -46,6 +60,11 @@ class GroupServiceClientTest extends GeneratedTest
         return new MockGroupServiceImpl($hostname, $opts);
     }
 
+    public function createMockMetricServiceImpl($hostname, $opts)
+    {
+        return new MockMetricServiceImpl($hostname, $opts);
+    }
+
     private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([
@@ -53,7 +72,6 @@ class GroupServiceClientTest extends GeneratedTest
             'port' => GroupServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -88,7 +106,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         $response = $client->listGroups($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -129,7 +147,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         try {
             $client->listGroups($formattedName);
@@ -170,7 +188,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -208,7 +226,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->getGroup($formattedName);
@@ -249,7 +267,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $group = new Group();
 
         $response = $client->createGroup($formattedName, $group);
@@ -289,7 +307,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $group = new Group();
 
         try {
@@ -400,7 +418,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $client->deleteGroup($formattedName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -437,7 +455,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->deleteGroup($formattedName);
@@ -475,7 +493,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->listGroupMembers($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -516,7 +534,7 @@ class GroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = GroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->listGroupMembers($formattedName);

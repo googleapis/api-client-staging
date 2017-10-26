@@ -20,19 +20,27 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\VideoIntelligence\V1beta1;
+namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta1;
 
 use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta1\Feature;
+use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -58,7 +66,6 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'port' => VideoIntelligenceServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -84,11 +91,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
         $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -109,8 +116,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
 
         $response = $client->annotateVideo($inputUri, $features);
         $this->assertFalse($response->isDone());
@@ -157,11 +165,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
         $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -186,8 +194,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
 
         $response = $client->annotateVideo($inputUri, $features);
         $this->assertFalse($response->isDone());

@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\PubSub\V1\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -37,13 +38,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Google\Pubsub\V1\AcknowledgeRequest;
 use Google\Pubsub\V1\CreateSnapshotRequest;
@@ -57,12 +58,10 @@ use Google\Pubsub\V1\ModifyPushConfigRequest;
 use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\SeekRequest;
-use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
-use Google\Pubsub\V1\UpdateSnapshotRequest;
-use Google\Pubsub\V1\UpdateSubscriptionRequest;
+use Google\Pubsub\V1\Subscription_LabelsEntry as LabelsEntry;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -78,8 +77,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  * ```
  * try {
  *     $subscriberClient = new SubscriberClient();
- *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
- *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+ *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
  *     $subscriberClient->close();
@@ -88,9 +87,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
- *
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  * @experimental
  */
 class SubscriberGapicClient
@@ -106,11 +104,6 @@ class SubscriberGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -124,6 +117,9 @@ class SubscriberGapicClient
     private static $snapshotNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
+    private static $pathTemplateMap;
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $iamPolicyStub;
@@ -131,174 +127,6 @@ class SubscriberGapicClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a snapshot resource.
-     *
-     * @param string $project
-     * @param string $snapshot
-     *
-     * @return string The formatted snapshot resource.
-     * @experimental
-     */
-    public static function formatSnapshotName($project, $snapshot)
-    {
-        return self::getSnapshotNameTemplate()->render([
-            'project' => $project,
-            'snapshot' => $snapshot,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a subscription resource.
-     *
-     * @param string $project
-     * @param string $subscription
-     *
-     * @return string The formatted subscription resource.
-     * @experimental
-     */
-    public static function formatSubscriptionName($project, $subscription)
-    {
-        return self::getSubscriptionNameTemplate()->render([
-            'project' => $project,
-            'subscription' => $subscription,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
-     *
-     * @param string $project
-     * @param string $topic
-     *
-     * @return string The formatted topic resource.
-     * @experimental
-     */
-    public static function formatTopicName($project, $topic)
-    {
-        return self::getTopicNameTemplate()->render([
-            'project' => $project,
-            'topic' => $topic,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a snapshot resource.
-     *
-     * @param string $snapshotName The fully-qualified snapshot resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSnapshotName($snapshotName)
-    {
-        return self::getSnapshotNameTemplate()->match($snapshotName)['project'];
-    }
-
-    /**
-     * Parses the snapshot from the given fully-qualified path which
-     * represents a snapshot resource.
-     *
-     * @param string $snapshotName The fully-qualified snapshot resource.
-     *
-     * @return string The extracted snapshot value.
-     * @experimental
-     */
-    public static function parseSnapshotFromSnapshotName($snapshotName)
-    {
-        return self::getSnapshotNameTemplate()->match($snapshotName)['snapshot'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a subscription resource.
-     *
-     * @param string $subscriptionName The fully-qualified subscription resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSubscriptionName($subscriptionName)
-    {
-        return self::getSubscriptionNameTemplate()->match($subscriptionName)['project'];
-    }
-
-    /**
-     * Parses the subscription from the given fully-qualified path which
-     * represents a subscription resource.
-     *
-     * @param string $subscriptionName The fully-qualified subscription resource.
-     *
-     * @return string The extracted subscription value.
-     * @experimental
-     */
-    public static function parseSubscriptionFromSubscriptionName($subscriptionName)
-    {
-        return self::getSubscriptionNameTemplate()->match($subscriptionName)['subscription'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
-    }
-
-    /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted topic value.
-     * @experimental
-     */
-    public static function parseTopicFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -336,6 +164,18 @@ class SubscriberGapicClient
         return self::$topicNameTemplate;
     }
 
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
+                'snapshot' => self::getSnapshotNameTemplate(),
+                'subscription' => self::getSubscriptionNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
+            ];
+        }
+        return self::$pathTemplateMap;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listSubscriptionsPageStreamingDescriptor =
@@ -365,6 +205,7 @@ class SubscriberGapicClient
         return $pageStreamingDescriptors;
     }
 
+
     private static function getGrpcStreamingDescriptors()
     {
         return [
@@ -377,20 +218,132 @@ class SubscriberGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+        return self::$gapicVersion;
     }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     * @return string The formatted snapshot resource.
+     * @experimental
+     */
+    public static function snapshotName($project, $snapshot)
+    {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a subscription resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     * @return string The formatted subscription resource.
+     * @experimental
+     */
+    public static function subscriptionName($project, $subscription)
+    {
+        return self::getSubscriptionNameTemplate()->render([
+            'project' => $project,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     * @return string The formatted topic resource.
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - project: projects/{project}
+     * - snapshot: projects/{project}/snapshots/{snapshot}
+     * - subscription: projects/{project}/subscriptions/{subscription}
+     * - topic: projects/{project}/topics/{topic}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template Optional name of template to match
+     * @return array An associative array from name component IDs to component values.
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
+
+
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
@@ -410,15 +363,20 @@ class SubscriberGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -432,11 +390,12 @@ class SubscriberGapicClient
                 'https://www.googleapis.com/auth/pubsub',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__ . '/../resources/subscriber_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -450,7 +409,6 @@ class SubscriberGapicClient
         $this->descriptors = [
             'createSubscription' => $defaultDescriptors,
             'getSubscription' => $defaultDescriptors,
-            'updateSubscription' => $defaultDescriptors,
             'listSubscriptions' => $defaultDescriptors,
             'deleteSubscription' => $defaultDescriptors,
             'modifyAckDeadline' => $defaultDescriptors,
@@ -460,7 +418,6 @@ class SubscriberGapicClient
             'modifyPushConfig' => $defaultDescriptors,
             'listSnapshots' => $defaultDescriptors,
             'createSnapshot' => $defaultDescriptors,
-            'updateSnapshot' => $defaultDescriptors,
             'deleteSnapshot' => $defaultDescriptors,
             'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
@@ -476,15 +433,13 @@ class SubscriberGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/subscriber_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.pubsub.v1.Subscriber',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -527,27 +482,26 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+     *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the subscription. It must have the format
-     *                             `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-     *                             start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *                             in length, and it must not start with `"goog"`.
-     * @param string $topic        The name of the topic from which this subscription is receiving messages.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     *                             The value of this field will be `_deleted-topic_` if the topic has been
-     *                             deleted.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The name of the subscription. It must have the format
+     * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+     * start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
+     * in length, and it must not start with `"goog"`.
+     * @param string $topic The name of the topic from which this subscription is receiving messages.
+     * Format is `projects/{project}/topics/{topic}`.
+     * The value of this field will be `_deleted-topic_` if the topic has been
+     * deleted.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type PushConfig $pushConfig
      *          If push delivery is used with this subscription, this field is
      *          used to configure it. An empty `pushConfig` signifies that the subscriber
@@ -586,12 +540,11 @@ class SubscriberGapicClient
      *          minutes.
      *     @type array $labels
      *          User labels.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\Subscription
@@ -620,9 +573,13 @@ class SubscriberGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'CreateSubscription',
@@ -643,7 +600,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -651,16 +608,14 @@ class SubscriberGapicClient
      * ```
      *
      * @param string $subscription The name of the subscription to get.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\Subscription
@@ -673,75 +628,18 @@ class SubscriberGapicClient
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['getSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Updates an existing subscription. Note that certain properties of a
-     * subscription, such as its topic, are not modifiable.
-     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $subscriberClient = new SubscriberClient();
-     *     $subscription = new Subscription();
-     *     $updateMask = new FieldMask();
-     *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
-     * } finally {
-     *     $subscriberClient->close();
-     * }
-     * ```
-     *
-     * @param Subscription $subscription The updated subscription object.
-     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
-     *                                   Must be specified and non-empty.
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return \Google\Pubsub\V1\Subscription
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateSubscriptionRequest();
-        $request->setSubscription($subscription);
-        $request->setUpdateMask($updateMask);
-
-        $mergedSettings = $this->defaultCallSettings['updateSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
-            'UpdateSubscription',
-            $mergedSettings,
-            $this->descriptors['updateSubscription']
         );
 
         return $callable(
@@ -757,15 +655,15 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -776,11 +674,10 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that subscriptions belong to.
-     *                             Format is `projects/{project}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $project The name of the cloud project that subscriptions belong to.
+     * Format is `projects/{project}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -790,12 +687,11 @@ class SubscriberGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -814,9 +710,13 @@ class SubscriberGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listSubscriptions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listSubscriptions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ListSubscriptions',
@@ -841,7 +741,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -849,16 +749,14 @@ class SubscriberGapicClient
      * ```
      *
      * @param string $subscription The subscription to delete.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -869,9 +767,13 @@ class SubscriberGapicClient
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['deleteSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'DeleteSubscription',
@@ -896,7 +798,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
      *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
@@ -905,25 +807,23 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription       The name of the subscription.
-     *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             List of acknowledgment IDs.
-     * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
-     *                                     the Pub/Sub system. For example, if the value is 10, the new
-     *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
-     *                                     was made. Specifying zero may immediately make the message available for
-     *                                     another pull request.
-     *                                     The minimum deadline you can specify is 0 seconds.
-     *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
-     * @param array    $optionalArgs       {
-     *                                     Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $subscription The name of the subscription.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param string[] $ackIds List of acknowledgment IDs.
+     * @param int $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
+     * the Pub/Sub system. For example, if the value is 10, the new
+     * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
+     * was made. Specifying zero may immediately make the message available for
+     * another pull request.
+     * The minimum deadline you can specify is 0 seconds.
+     * The maximum deadline you can specify is 600 seconds (10 minutes).
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -936,9 +836,13 @@ class SubscriberGapicClient
         $request->setAckIds($ackIds);
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
-        $mergedSettings = $this->defaultCallSettings['modifyAckDeadline']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['modifyAckDeadline'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ModifyAckDeadline',
@@ -965,7 +869,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
@@ -973,19 +877,17 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $subscription The subscription whose message is being acknowledged.
-     *                               Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
-     *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $subscription The subscription whose message is being acknowledged.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param string[] $ackIds The acknowledgment ID for the messages being acknowledged that was returned
+     * by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -997,9 +899,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setAckIds($ackIds);
 
-        $mergedSettings = $this->defaultCallSettings['acknowledge']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['acknowledge'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Acknowledge',
@@ -1023,7 +929,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
@@ -1032,12 +938,11 @@ class SubscriberGapicClient
      * ```
      *
      * @param string $subscription The subscription from which messages should be pulled.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
-     *                             system may return fewer than the number specified.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param int $maxMessages The maximum number of messages returned for this request. The Pub/Sub
+     * system may return fewer than the number specified.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type bool $returnImmediately
      *          If this field set to true, the system will respond immediately even if
      *          it there are no messages available to return in the `Pull` response.
@@ -1045,12 +950,11 @@ class SubscriberGapicClient
      *          least one message is available, rather than returning no messages. The
      *          client may cancel the request if it does not wish to wait any longer for
      *          the response.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\PullResponse
@@ -1067,9 +971,13 @@ class SubscriberGapicClient
             $request->setReturnImmediately($optionalArgs['returnImmediately']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['pull']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['pull'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Pull',
@@ -1101,7 +1009,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
      *     $request->setSubscription($formattedSubscription);
@@ -1138,8 +1046,7 @@ class SubscriberGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional.
-     *
+     *     Optional.
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -1151,9 +1058,20 @@ class SubscriberGapicClient
      */
     public function streamingPull($optionalArgs = [])
     {
-        $mergedSettings = $this->defaultCallSettings['streamingPull']->merge(
-            new CallSettings($optionalArgs)
-        );
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+            ];
+        }
+
+        $defaultCallSettings = $this->defaultCallSettings['streamingPull'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'StreamingPull',
@@ -1179,7 +1097,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
@@ -1187,23 +1105,21 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string     $subscription The name of the subscription.
-     *                                 Format is `projects/{project}/subscriptions/{sub}`.
-     * @param PushConfig $pushConfig   The push configuration for future deliveries.
+     * @param string $subscription The name of the subscription.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param PushConfig $pushConfig The push configuration for future deliveries.
      *
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
      * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -1215,9 +1131,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setPushConfig($pushConfig);
 
-        $mergedSettings = $this->defaultCallSettings['modifyPushConfig']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['modifyPushConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ModifyPushConfig',
@@ -1238,15 +1158,15 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1257,11 +1177,10 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that snapshots belong to.
-     *                             Format is `projects/{project}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $project The name of the cloud project that snapshots belong to.
+     * Format is `projects/{project}`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -1271,12 +1190,11 @@ class SubscriberGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -1295,9 +1213,13 @@ class SubscriberGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listSnapshots']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listSnapshots'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ListSnapshots',
@@ -1327,37 +1249,35 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedName = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $name         Optional user-provided name for this snapshot.
-     *                             If the name is not provided in the request, the server will assign a random
-     *                             name for this snapshot on the same project as the subscription.
-     *                             Note that for REST API requests, you must specify a name.
-     *                             Format is `projects/{project}/snapshots/{snap}`.
+     * @param string $name Optional user-provided name for this snapshot.
+     * If the name is not provided in the request, the server will assign a random
+     * name for this snapshot on the same project as the subscription.
+     * Note that for REST API requests, you must specify a name.
+     * Format is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription The subscription whose backlog the snapshot retains.
-     *                             Specifically, the created snapshot is guaranteed to retain:
-     *                             (a) The existing backlog on the subscription. More precisely, this is
-     *                             defined as the messages in the subscription's backlog that are
-     *                             unacknowledged upon the successful completion of the
-     *                             `CreateSnapshot` request; as well as:
-     *                             (b) Any messages published to the subscription's topic following the
-     *                             successful completion of the CreateSnapshot request.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * Specifically, the created snapshot is guaranteed to retain:
+     *  (a) The existing backlog on the subscription. More precisely, this is
+     *      defined as the messages in the subscription's backlog that are
+     *      unacknowledged upon the successful completion of the
+     *      `CreateSnapshot` request; as well as:
+     *  (b) Any messages published to the subscription's topic following the
+     *      successful completion of the CreateSnapshot request.
+     * Format is `projects/{project}/subscriptions/{sub}`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\Snapshot
@@ -1371,75 +1291,18 @@ class SubscriberGapicClient
         $request->setName($name);
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['createSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'CreateSnapshot',
             $mergedSettings,
             $this->descriptors['createSnapshot']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Updates an existing snapshot. Note that certain properties of a snapshot
-     * are not modifiable.
-     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $subscriberClient = new SubscriberClient();
-     *     $snapshot = new Snapshot();
-     *     $updateMask = new FieldMask();
-     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
-     * } finally {
-     *     $subscriberClient->close();
-     * }
-     * ```
-     *
-     * @param Snapshot  $snapshot     The updated snpashot object.
-     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
-     *                                Must be specified and non-empty.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return \Google\Pubsub\V1\Snapshot
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateSnapshotRequest();
-        $request->setSnapshot($snapshot);
-        $request->setUpdateMask($updateMask);
-
-        $mergedSettings = $this->defaultCallSettings['updateSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->subscriberStub,
-            'UpdateSnapshot',
-            $mergedSettings,
-            $this->descriptors['updateSnapshot']
         );
 
         return $callable(
@@ -1458,24 +1321,22 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSnapshot = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
      *     $subscriberClient->deleteSnapshot($formattedSnapshot);
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $snapshot     The name of the snapshot to delete.
-     *                             Format is `projects/{project}/snapshots/{snap}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $snapshot The name of the snapshot to delete.
+     * Format is `projects/{project}/snapshots/{snap}`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -1486,9 +1347,13 @@ class SubscriberGapicClient
         $request = new DeleteSnapshotRequest();
         $request->setSnapshot($snapshot);
 
-        $mergedSettings = $this->defaultCallSettings['deleteSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'DeleteSnapshot',
@@ -1510,7 +1375,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->seek($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -1518,9 +1383,8 @@ class SubscriberGapicClient
      * ```
      *
      * @param string $subscription The subscription to affect.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type Timestamp $time
      *          The time to seek to.
      *          Messages retained in the subscription that were published before this
@@ -1537,12 +1401,11 @@ class SubscriberGapicClient
      *          The snapshot to seek to. The snapshot's topic must be the same as that of
      *          the provided subscription.
      *          Format is `projects/{project}/snapshots/{snap}`.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\SeekResponse
@@ -1561,9 +1424,13 @@ class SubscriberGapicClient
             $request->setSnapshot($optionalArgs['snapshot']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['seek']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['seek'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Seek',
@@ -1585,7 +1452,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1593,22 +1460,20 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $resource REQUIRED: The resource for which the policy is being specified.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param Policy $policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+     * the policy is limited to a few 10s of KB. An empty policy is a
+     * valid policy but certain Cloud Platform services (such as Projects)
+     * might reject them.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -1622,9 +1487,13 @@ class SubscriberGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'SetIamPolicy',
@@ -1647,25 +1516,23 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $resource REQUIRED: The resource for which the policy is being requested.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -1678,9 +1545,13 @@ class SubscriberGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'GetIamPolicy',
@@ -1703,7 +1574,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1711,22 +1582,20 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               `resource` is usually specified as a path. For example, a Project
-     *                               resource is specified as `projects/{project}`.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $resource REQUIRED: The resource for which the policy detail is being requested.
+     * `resource` is usually specified as a path. For example, a Project
+     * resource is specified as `projects/{project}`.
+     * @param string[] $permissions The set of permissions to check for the `resource`. Permissions with
+     * wildcards (such as '*' or 'storage.*') are not allowed. For more
+     * information see
+     * [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\TestIamPermissionsResponse
@@ -1740,9 +1609,13 @@ class SubscriberGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'TestIamPermissions',
@@ -1759,7 +1632,6 @@ class SubscriberGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

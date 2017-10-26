@@ -20,22 +20,37 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Language\V1beta2;
+namespace Google\Cloud\Tests\Unit\Language\V1beta2;
 
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
+use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
+use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
+use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
+use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -56,7 +71,6 @@ class LanguageServiceClientTest extends GeneratedTest
             'port' => LanguageServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 

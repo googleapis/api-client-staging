@@ -20,26 +20,41 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Spanner\Admin\Instance\V1;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin\Instance\V1;
 
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Spanner\Admin\Instance\V1\CreateInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
 use Google\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -65,7 +80,6 @@ class InstanceAdminClientTest extends GeneratedTest
             'port' => InstanceAdminClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -100,7 +114,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listInstanceConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -141,7 +155,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listInstanceConfigs($formattedParent);
@@ -176,7 +190,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $formattedName = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
 
         $response = $client->getInstanceConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -214,7 +228,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $formattedName = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
 
         try {
             $client->getInstanceConfig($formattedName);
@@ -250,7 +264,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listInstances($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -291,7 +305,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listInstances($formattedParent);
@@ -330,7 +344,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         $response = $client->getInstance($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -368,7 +382,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         try {
             $client->getInstance($formattedName);
@@ -395,11 +409,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -428,7 +442,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
 
@@ -478,11 +492,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -507,7 +521,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = InstanceAdminClient::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
 
@@ -545,11 +559,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -626,11 +640,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -696,7 +710,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         $client->deleteInstance($formattedName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -733,7 +747,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         try {
             $client->deleteInstance($formattedName);
@@ -768,7 +782,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $policy = new Policy();
 
         $response = $client->setIamPolicy($formattedResource, $policy);
@@ -808,7 +822,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $policy = new Policy();
 
         try {
@@ -844,7 +858,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
@@ -882,7 +896,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         try {
             $client->getIamPolicy($formattedResource);
@@ -913,7 +927,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $permissions = [];
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
@@ -953,7 +967,7 @@ class InstanceAdminClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = InstanceAdminClient::formatInstanceName('[PROJECT]', '[INSTANCE]');
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $permissions = [];
 
         try {

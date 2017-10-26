@@ -34,18 +34,27 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Tests\GAX\LongRunning;
+namespace Google\Tests\Unit\GAX\LongRunning;
 
-use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\CancelOperationRequest;
+use Google\Longrunning\DeleteOperationRequest;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\ListOperationsRequest;
 use Google\Longrunning\ListOperationsResponse;
 use Google\Longrunning\Operation;
+use Google\Longrunning\OperationsGrpcClient;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -66,7 +75,6 @@ class OperationsClientTest extends GeneratedTest
             'port' => OperationsClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 

@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta2\Gapic;
 
+use Google\Cloud\Version;
 use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoProgress;
 use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoRequest;
 use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoResponse;
@@ -43,6 +44,8 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
+use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -57,9 +60,8 @@ use Google\GAX\OperationResponse;
  * ```
  * try {
  *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
- *     $inputUri = "";
- *     $features = [];
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *       $result = $operationResponse->getResult();
@@ -70,7 +72,7 @@ use Google\GAX\OperationResponse;
  *     }
  *
  *     // OR start the operation, keep the operation name, and resume later
- *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
@@ -105,11 +107,6 @@ class VideoIntelligenceServiceGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -119,12 +116,18 @@ class VideoIntelligenceServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $videoIntelligenceServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
+
+
 
     private static function getLongRunningDescriptors()
     {
@@ -136,16 +139,20 @@ class VideoIntelligenceServiceGapicClient
         ];
     }
 
+
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+        return self::$gapicVersion;
     }
+
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -166,14 +173,13 @@ class VideoIntelligenceServiceGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
+     * @param string $methodName The name of the method used to start the operation
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
+        $lroDescriptors = VideoIntelligenceServiceGapicClient::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -181,7 +187,6 @@ class VideoIntelligenceServiceGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
-
         return $operation;
     }
 
@@ -189,7 +194,7 @@ class VideoIntelligenceServiceGapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'videointelligence.googleapis.com'.
@@ -209,15 +214,20 @@ class VideoIntelligenceServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Video Intelligence API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -230,9 +240,9 @@ class VideoIntelligenceServiceGapicClient
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__ . '/../resources/video_intelligence_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -240,8 +250,8 @@ class VideoIntelligenceServiceGapicClient
             $this->operationsClient = $options['operationsClient'];
         } else {
             $operationsClientOptions = $options;
-            unset($operationsClientOptions['timeoutMillis']);
             unset($operationsClientOptions['retryingOverride']);
+            unset($operationsClientOptions['clientConfigPath']);
             $this->operationsClient = new OperationsClient($operationsClientOptions);
         }
 
@@ -262,15 +272,13 @@ class VideoIntelligenceServiceGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/video_intelligence_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.videointelligence.v1beta2.VideoIntelligenceService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -300,9 +308,8 @@ class VideoIntelligenceServiceGapicClient
      * ```
      * try {
      *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-     *     $inputUri = "";
-     *     $features = [];
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+     *
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -313,7 +320,7 @@ class VideoIntelligenceServiceGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
@@ -333,24 +340,25 @@ class VideoIntelligenceServiceGapicClient
      * }
      * ```
      *
-     * @param string $inputUri     Input video location. Currently, only
-     *                             [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
-     *                             supported, which must be specified in the following format:
-     *                             `gs://bucket-id/object-id` (other URI formats return
-     *                             [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
-     *                             [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     *                             A video URI may include wildcards in `object-id`, and thus identify
-     *                             multiple videos. Supported wildcards: '*' to match 0 or more characters;
-     *                             '?' to match 1 character. If unset, the input video should be embedded
-     *                             in the request as `input_content`. If set, `input_content` should be unset.
-     * @param int[]  $features     Requested video annotation features.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta2\Feature}
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type string $inputUri
+     *          Input video location. Currently, only
+     *          [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *          supported, which must be specified in the following format:
+     *          `gs://bucket-id/object-id` (other URI formats return
+     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *          [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *          A video URI may include wildcards in `object-id`, and thus identify
+     *          multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *          '?' to match 1 character. If unset, the input video should be embedded
+     *          in the request as `input_content`. If set, `input_content` should be unset.
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)
      *          should be specified via `input_uri`. If set, `input_uri` should be unset.
+     *     @type int[] $features
+     *          Requested video annotation features.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta2\Feature}
      *     @type VideoContext $videoContext
      *          Additional video context and/or feature-specific parameters.
      *     @type string $outputUri
@@ -364,12 +372,11 @@ class VideoIntelligenceServiceGapicClient
      *          Optional cloud region where annotation should take place. Supported cloud
      *          regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      *          is specified, a region will be determined based on video file location.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -377,13 +384,17 @@ class VideoIntelligenceServiceGapicClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function annotateVideo($inputUri, $features, $optionalArgs = [])
+    public function annotateVideo($optionalArgs = [])
     {
         $request = new AnnotateVideoRequest();
-        $request->setInputUri($inputUri);
-        $request->setFeatures($features);
+        if (isset($optionalArgs['inputUri'])) {
+            $request->setInputUri($optionalArgs['inputUri']);
+        }
         if (isset($optionalArgs['inputContent'])) {
             $request->setInputContent($optionalArgs['inputContent']);
+        }
+        if (isset($optionalArgs['features'])) {
+            $request->setFeatures($optionalArgs['features']);
         }
         if (isset($optionalArgs['videoContext'])) {
             $request->setVideoContext($optionalArgs['videoContext']);
@@ -395,9 +406,13 @@ class VideoIntelligenceServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['annotateVideo']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['annotateVideo'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->videoIntelligenceServiceStub,
             'AnnotateVideo',
@@ -414,7 +429,6 @@ class VideoIntelligenceServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

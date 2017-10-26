@@ -20,15 +20,26 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
+namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
+use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -42,6 +53,16 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         return new MockErrorGroupServiceImpl($hostname, $opts);
     }
 
+    public function createMockErrorStatsServiceImpl($hostname, $opts)
+    {
+        return new MockErrorStatsServiceImpl($hostname, $opts);
+    }
+
+    public function createMockReportErrorsServiceImpl($hostname, $opts)
+    {
+        return new MockReportErrorsServiceImpl($hostname, $opts);
+    }
+
     private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([
@@ -49,7 +70,6 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'port' => ErrorGroupServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -83,7 +103,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedGroupName);
         $this->assertEquals($expectedResponse, $response);
@@ -121,7 +141,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->getGroup($formattedGroupName);

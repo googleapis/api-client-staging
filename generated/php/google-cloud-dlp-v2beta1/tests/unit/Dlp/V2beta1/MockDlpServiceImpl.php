@@ -20,11 +20,23 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Dlp\V2beta1;
+namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
+use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
+use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
+use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\GAX\Testing\MockStubTrait;
+use Google\Longrunning\GetOperationRequest;
 use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
+use Grpc;
+use PHPUnit_Framework_TestCase;
+use stdClass;
 
 class MockDlpServiceImpl extends DlpServiceGrpcClient
 {

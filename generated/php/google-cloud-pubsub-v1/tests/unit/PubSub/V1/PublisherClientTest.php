@@ -20,23 +20,39 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\PubSub\V1;
+namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Pubsub\V1\DeleteTopicRequest;
+use Google\Pubsub\V1\GetTopicRequest;
+use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsResponse;
+use Google\Pubsub\V1\ListTopicsRequest;
 use Google\Pubsub\V1\ListTopicsResponse;
+use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublishResponse;
+use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -55,6 +71,11 @@ class PublisherClientTest extends GeneratedTest
         return new MockIAMPolicyImpl($hostname, $opts);
     }
 
+    public function createMockSubscriberImpl($hostname, $opts)
+    {
+        return new MockSubscriberImpl($hostname, $opts);
+    }
+
     private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([
@@ -62,7 +83,6 @@ class PublisherClientTest extends GeneratedTest
             'port' => PublisherClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -94,7 +114,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedName = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->createTopic($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -132,84 +152,10 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedName = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->createTopic($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateTopicTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $expectedResponse = new Topic();
-        $expectedResponse->setName($name);
-        $grpcStub->addResponse($expectedResponse);
-
-        // Mock request
-        $topic = new Topic();
-        $updateMask = new FieldMask();
-
-        $response = $client->updateTopic($topic, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.pubsub.v1.Publisher/UpdateTopic', $actualFuncCall);
-
-        $this->assertProtobufEquals($topic, $actualRequestObject->getTopic());
-        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
-
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateTopicExceptionTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockPublisherImpl']);
-        $client = $this->createClient('createPublisherStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Grpc\STATUS_DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Grpc\STATUS_DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
-
-        // Mock request
-        $topic = new Topic();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->updateTopic($topic, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -240,7 +186,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
         $data = '-86';
         $messagesElement = new PubsubMessage();
         $messagesElement->setData($data);
@@ -283,7 +229,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
         $data = '-86';
         $messagesElement = new PubsubMessage();
         $messagesElement->setData($data);
@@ -320,7 +266,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getTopic($formattedTopic);
         $this->assertEquals($expectedResponse, $response);
@@ -358,7 +304,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->getTopic($formattedTopic);
@@ -394,7 +340,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProject = PublisherClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         $response = $client->listTopics($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -435,7 +381,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProject = PublisherClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         try {
             $client->listTopics($formattedProject);
@@ -471,7 +417,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->listTopicSubscriptions($formattedTopic);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -512,7 +458,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->listTopicSubscriptions($formattedTopic);
@@ -543,7 +489,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $client->deleteTopic($formattedTopic);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -580,7 +526,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedTopic = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->deleteTopic($formattedTopic);
@@ -615,7 +561,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
         $policy = new Policy();
 
         $response = $client->setIamPolicy($formattedResource, $policy);
@@ -655,7 +601,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
         $policy = new Policy();
 
         try {
@@ -691,7 +637,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
@@ -729,7 +675,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->getIamPolicy($formattedResource);
@@ -760,7 +706,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
         $permissions = [];
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
@@ -800,7 +746,7 @@ class PublisherClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = PublisherClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedResource = $client->topicName('[PROJECT]', '[TOPIC]');
         $permissions = [];
 
         try {

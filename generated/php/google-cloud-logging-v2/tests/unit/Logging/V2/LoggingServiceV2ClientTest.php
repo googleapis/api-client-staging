@@ -20,21 +20,34 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Logging\V2;
+namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Api\MonitoredResourceDescriptor;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
+use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
+use Google\Logging\V2\DeleteLogRequest;
+use Google\Logging\V2\ListLogEntriesRequest;
 use Google\Logging\V2\ListLogEntriesResponse;
+use Google\Logging\V2\ListLogsRequest;
 use Google\Logging\V2\ListLogsResponse;
+use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
 use Google\Logging\V2\ListMonitoredResourceDescriptorsResponse;
 use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LoggingServiceV2GrpcClient;
+use Google\Logging\V2\WriteLogEntriesRequest;
 use Google\Logging\V2\WriteLogEntriesResponse;
+use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -48,6 +61,16 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         return new MockLoggingServiceV2Impl($hostname, $opts);
     }
 
+    public function createMockConfigServiceV2Impl($hostname, $opts)
+    {
+        return new MockConfigServiceV2Impl($hostname, $opts);
+    }
+
+    public function createMockMetricsServiceV2Impl($hostname, $opts)
+    {
+        return new MockMetricsServiceV2Impl($hostname, $opts);
+    }
+
     private function createStub($createGrpcStub)
     {
         $grpcCredentialsHelper = new GrpcCredentialsHelper([
@@ -55,7 +78,6 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'port' => LoggingServiceV2Client::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -85,7 +107,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedLogName = LoggingServiceV2Client::formatLogName('[PROJECT]', '[LOG]');
+        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
 
         $client->deleteLog($formattedLogName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -122,7 +144,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedLogName = LoggingServiceV2Client::formatLogName('[PROJECT]', '[LOG]');
+        $formattedLogName = $client->logName('[PROJECT]', '[LOG]');
 
         try {
             $client->deleteLog($formattedLogName);
@@ -374,7 +396,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = LoggingServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listLogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -415,7 +437,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = LoggingServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listLogs($formattedParent);

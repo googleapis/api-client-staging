@@ -20,19 +20,26 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\VideoIntelligence\V1beta2;
+namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta2;
 
 use Google\Cloud\VideoIntelligence\V1beta2\VideoIntelligenceServiceClient;
+use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoRequest;
 use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -58,7 +65,6 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'port' => VideoIntelligenceServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -84,11 +90,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
         $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -108,11 +114,7 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsStub->addResponse($completeOperation);
 
-        // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
-
-        $response = $client->annotateVideo($inputUri, $features);
+        $response = $client->annotateVideo();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $grpcStub->popReceivedCalls();
@@ -123,8 +125,6 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.videointelligence.v1beta2.VideoIntelligenceService/AnnotateVideo', $actualApiFuncCall);
-        $this->assertProtobufEquals($inputUri, $actualApiRequestObject->getInputUri());
-        $this->assertProtobufEquals($features, $actualApiRequestObject->getFeatures());
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/annotateVideoTest');
@@ -157,11 +157,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockVideoIntelligenceServiceImpl']);
         $client = $this->createClient('createVideoIntelligenceServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -185,11 +185,7 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsStub->addResponse(null, $status);
 
-        // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
-
-        $response = $client->annotateVideo($inputUri, $features);
+        $response = $client->annotateVideo();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

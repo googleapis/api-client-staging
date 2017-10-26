@@ -31,6 +31,7 @@
 namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\Api\MetricDescriptor;
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -38,6 +39,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Monitoring\V3\Aggregation;
 use Google\Monitoring\V3\CreateMetricDescriptorRequest;
 use Google\Monitoring\V3\CreateTimeSeriesRequest;
@@ -66,15 +68,15 @@ use Google\Monitoring\V3\TimeSeries;
  * ```
  * try {
  *     $metricServiceClient = new MetricServiceClient();
- *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+ *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -87,9 +89,8 @@ use Google\Monitoring\V3\TimeSeries;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
- *
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  * @experimental
  */
 class MetricServiceGapicClient
@@ -105,11 +106,6 @@ class MetricServiceGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -122,134 +118,15 @@ class MetricServiceGapicClient
     private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
+    private static $pathTemplateMap;
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $metricServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a metric_descriptor resource.
-     *
-     * @param string $project
-     * @param string $metricDescriptor
-     *
-     * @return string The formatted metric_descriptor resource.
-     * @experimental
-     */
-    public static function formatMetricDescriptorName($project, $metricDescriptor)
-    {
-        return self::getMetricDescriptorNameTemplate()->render([
-            'project' => $project,
-            'metric_descriptor' => $metricDescriptor,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a monitored_resource_descriptor resource.
-     *
-     * @param string $project
-     * @param string $monitoredResourceDescriptor
-     *
-     * @return string The formatted monitored_resource_descriptor resource.
-     * @experimental
-     */
-    public static function formatMonitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->render([
-            'project' => $project,
-            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a metric_descriptor resource.
-     *
-     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromMetricDescriptorName($metricDescriptorName)
-    {
-        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['project'];
-    }
-
-    /**
-     * Parses the metric_descriptor from the given fully-qualified path which
-     * represents a metric_descriptor resource.
-     *
-     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
-     *
-     * @return string The extracted metric_descriptor value.
-     * @experimental
-     */
-    public static function parseMetricDescriptorFromMetricDescriptorName($metricDescriptorName)
-    {
-        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['metric_descriptor'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a monitored_resource_descriptor resource.
-     *
-     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->match($monitoredResourceDescriptorName)['project'];
-    }
-
-    /**
-     * Parses the monitored_resource_descriptor from the given fully-qualified path which
-     * represents a monitored_resource_descriptor resource.
-     *
-     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
-     *
-     * @return string The extracted monitored_resource_descriptor value.
-     * @experimental
-     */
-    public static function parseMonitoredResourceDescriptorFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->match($monitoredResourceDescriptorName)['monitored_resource_descriptor'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -278,6 +155,17 @@ class MetricServiceGapicClient
         return self::$monitoredResourceDescriptorNameTemplate;
     }
 
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
+                'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
+                'monitoredResourceDescriptor' => self::getMonitoredResourceDescriptorNameTemplate(),
+            ];
+        }
+        return self::$pathTemplateMap;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
@@ -317,22 +205,118 @@ class MetricServiceGapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__ . '/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+        return self::$gapicVersion;
     }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a metric_descriptor resource.
+     *
+     * @param string $project
+     * @param string $metricDescriptor
+     * @return string The formatted metric_descriptor resource.
+     * @experimental
+     */
+    public static function metricDescriptorName($project, $metricDescriptor)
+    {
+        return self::getMetricDescriptorNameTemplate()->render([
+            'project' => $project,
+            'metric_descriptor' => $metricDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a monitored_resource_descriptor resource.
+     *
+     * @param string $project
+     * @param string $monitoredResourceDescriptor
+     * @return string The formatted monitored_resource_descriptor resource.
+     * @experimental
+     */
+    public static function monitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
+    {
+        return self::getMonitoredResourceDescriptorNameTemplate()->render([
+            'project' => $project,
+            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - project: projects/{project}
+     * - metricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
+     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template Optional name of template to match
+     * @return array An associative array from name component IDs to component values.
+     * @throws ValidationException If $formattedName could not be matched.
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
+
+
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
@@ -352,15 +336,20 @@ class MetricServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -376,11 +365,12 @@ class MetricServiceGapicClient
                 'https://www.googleapis.com/auth/monitoring.write',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__ . '/../resources/metric_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -406,15 +396,13 @@ class MetricServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/metric_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.monitoring.v3.MetricService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -441,15 +429,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -460,11 +448,10 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $filter
      *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      *          the descriptors to be returned.  The filter can reference
@@ -482,12 +469,11 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -509,9 +495,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListMonitoredResourceDescriptors',
@@ -532,26 +522,24 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The monitored resource descriptor to get.  The format is
-     *                             `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     *                             The `{resource_type}` is a predefined type, such as
-     *                             `cloudsql_database`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The monitored resource descriptor to get.  The format is
+     * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
+     * The `{resource_type}` is a predefined type, such as
+     * `cloudsql_database`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Api\MonitoredResourceDescriptor
@@ -564,9 +552,13 @@ class MetricServiceGapicClient
         $request = new GetMonitoredResourceDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getMonitoredResourceDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getMonitoredResourceDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'GetMonitoredResourceDescriptor',
@@ -587,15 +579,15 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -606,11 +598,10 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $filter
      *          If this field is empty, all custom and
      *          system-defined metric descriptors are returned.
@@ -629,12 +620,11 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -656,9 +646,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listMetricDescriptors']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listMetricDescriptors'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListMetricDescriptors',
@@ -679,26 +673,24 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example value of `{metric_id}` is
-     *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The metric descriptor on which to execute the request. The format is
+     * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     * An example value of `{metric_id}` is
+     * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Api\MetricDescriptor
@@ -711,9 +703,13 @@ class MetricServiceGapicClient
         $request = new GetMetricDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'GetMetricDescriptor',
@@ -736,7 +732,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
@@ -744,19 +740,17 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string           $name             The project on which to execute the request. The format is
-     *                                           `"projects/{project_id_or_number}"`.
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
      * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *                                           descriptor.
-     * @param array            $optionalArgs     {
-     *                                           Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * descriptor.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Api\MetricDescriptor
@@ -770,9 +764,13 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setMetricDescriptor($metricDescriptor);
 
-        $mergedSettings = $this->defaultCallSettings['createMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'CreateMetricDescriptor',
@@ -794,26 +792,24 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example of `{metric_id}` is:
-     *                             `"custom.googleapis.com/my_test_metric"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The metric descriptor on which to execute the request. The format is
+     * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
+     * An example of `{metric_id}` is:
+     * `"custom.googleapis.com/my_test_metric"`.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -824,9 +820,13 @@ class MetricServiceGapicClient
         $request = new DeleteMetricDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'DeleteMetricDescriptor',
@@ -847,8 +847,8 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
-     *     $filter = "";
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $filter = '';
      *     $interval = new TimeInterval();
      *     $view = TimeSeriesView::FULL;
      *     // Iterate through all elements
@@ -857,8 +857,8 @@ class MetricServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -869,23 +869,22 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name   The project on which to execute the request. The format is
-     *                       "projects/{project_id_or_number}".
+     * @param string $name The project on which to execute the request. The format is
+     * "projects/{project_id_or_number}".
      * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
-     *                       series should be returned.  The filter must specify a single metric type,
-     *                       and can additionally specify metric labels and other information. For
-     *                       example:
+     * series should be returned.  The filter must specify a single metric type,
+     * and can additionally specify metric labels and other information. For
+     * example:
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
-     *                                   that contain data points in the specified interval are included
-     *                                   in the response.
-     * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
+     * @param TimeInterval $interval The time interval for which results should be returned. Only time series
+     * that contain data points in the specified interval are included
+     * in the response.
+     * @param int $view Specifies which information is returned about the time series.
+     * For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type Aggregation $aggregation
      *          By default, the raw time series data is returned.
      *          Use this field to combine multiple time series for different
@@ -903,12 +902,11 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -936,9 +934,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTimeSeries']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listTimeSeries'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListTimeSeries',
@@ -962,7 +964,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
      * } finally {
@@ -970,22 +972,20 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         The project on which to execute the request. The format is
-     *                                   `"projects/{project_id_or_number}"`.
-     * @param TimeSeries[] $timeSeries   The new data to be added to a list of time series.
-     *                                   Adds at most one data point to each of several time series.  The new data
-     *                                   point must be more recent than any other point in its time series.  Each
-     *                                   `TimeSeries` value must fully specify a unique time series by supplying
-     *                                   all label values for the metric and the monitored resource.
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     * @param string $name The project on which to execute the request. The format is
+     * `"projects/{project_id_or_number}"`.
+     * @param TimeSeries[] $timeSeries The new data to be added to a list of time series.
+     * Adds at most one data point to each of several time series.  The new data
+     * point must be more recent than any other point in its time series.  Each
+     * `TimeSeries` value must fully specify a unique time series by supplying
+     * all label values for the metric and the monitored resource.
+     * @param array $optionalArgs {
+     *     Optional.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -997,9 +997,13 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setTimeSeries($timeSeries);
 
-        $mergedSettings = $this->defaultCallSettings['createTimeSeries']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createTimeSeries'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'CreateTimeSeries',
@@ -1016,7 +1020,6 @@ class MetricServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()
