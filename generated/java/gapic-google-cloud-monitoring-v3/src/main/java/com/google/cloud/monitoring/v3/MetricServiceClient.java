@@ -97,10 +97,10 @@ import javax.annotation.Generated;
  * <code>
  * MetricServiceSettings metricServiceSettings =
  *     MetricServiceSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * MetricServiceClient metricServiceClient =
- *     MetricServiceClient.create(metricServiceSettings);
+ *     MetricServiceClient.of(metricServiceSettings);
  * </code>
  * </pre>
  *
@@ -110,14 +110,12 @@ import javax.annotation.Generated;
  * <code>
  * MetricServiceSettings metricServiceSettings =
  *     MetricServiceSettings.newBuilder()
- *         .setTransportProvider(MetricServiceSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(MetricServiceSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(MetricServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * MetricServiceClient metricServiceClient =
- *     MetricServiceClient.create(metricServiceSettings);
+ *     MetricServiceClient.of(metricServiceSettings);
  * </code>
  * </pre>
  */
@@ -127,17 +125,54 @@ public class MetricServiceClient implements BackgroundResource {
   private final MetricServiceSettings settings;
   private final MetricServiceStub stub;
 
-  /** Constructs an instance of MetricServiceClient with default settings. */
+  /**
+   * Constructs an instance of MetricServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final MetricServiceClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of MetricServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final MetricServiceClient of() throws IOException {
     return create(MetricServiceSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of MetricServiceClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(MetricServiceSettings) instead.
    */
+  @Deprecated
   public static final MetricServiceClient create(MetricServiceSettings settings)
       throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of MetricServiceClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use MetricServiceSettings}.
+   *
+   * @deprecated Use of(MetricServiceStub) instead.
+   */
+  @Deprecated
+  public static final MetricServiceClient create(MetricServiceStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of MetricServiceClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final MetricServiceClient of(MetricServiceSettings settings) throws IOException {
     return new MetricServiceClient(settings);
   }
 
@@ -145,7 +180,8 @@ public class MetricServiceClient implements BackgroundResource {
    * Constructs an instance of MetricServiceClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use MetricServiceSettings}.
    */
-  public static final MetricServiceClient create(MetricServiceStub stub) {
+  @BetaApi
+  public static final MetricServiceClient of(MetricServiceStub stub) {
     return new MetricServiceClient(stub);
   }
 

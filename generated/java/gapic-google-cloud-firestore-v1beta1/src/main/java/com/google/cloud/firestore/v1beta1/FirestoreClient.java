@@ -116,10 +116,10 @@ import javax.annotation.Generated;
  * <code>
  * FirestoreSettings firestoreSettings =
  *     FirestoreSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * FirestoreClient firestoreClient =
- *     FirestoreClient.create(firestoreSettings);
+ *     FirestoreClient.of(firestoreSettings);
  * </code>
  * </pre>
  *
@@ -129,14 +129,12 @@ import javax.annotation.Generated;
  * <code>
  * FirestoreSettings firestoreSettings =
  *     FirestoreSettings.newBuilder()
- *         .setTransportProvider(FirestoreSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(FirestoreSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(FirestoreSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * FirestoreClient firestoreClient =
- *     FirestoreClient.create(firestoreSettings);
+ *     FirestoreClient.of(firestoreSettings);
  * </code>
  * </pre>
  */
@@ -277,16 +275,53 @@ public class FirestoreClient implements BackgroundResource {
     return ANY_PATH_PATH_TEMPLATE.parse(anyPathName).get("any_path");
   }
 
-  /** Constructs an instance of FirestoreClient with default settings. */
+  /**
+   * Constructs an instance of FirestoreClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final FirestoreClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of FirestoreClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final FirestoreClient of() throws IOException {
     return create(FirestoreSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of FirestoreClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(FirestoreSettings) instead.
    */
+  @Deprecated
   public static final FirestoreClient create(FirestoreSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of FirestoreClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use FirestoreSettings}.
+   *
+   * @deprecated Use of(FirestoreStub) instead.
+   */
+  @Deprecated
+  public static final FirestoreClient create(FirestoreStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of FirestoreClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final FirestoreClient of(FirestoreSettings settings) throws IOException {
     return new FirestoreClient(settings);
   }
 
@@ -294,7 +329,8 @@ public class FirestoreClient implements BackgroundResource {
    * Constructs an instance of FirestoreClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use FirestoreSettings}.
    */
-  public static final FirestoreClient create(FirestoreStub stub) {
+  @BetaApi
+  public static final FirestoreClient of(FirestoreStub stub) {
     return new FirestoreClient(stub);
   }
 

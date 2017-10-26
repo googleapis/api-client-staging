@@ -21,6 +21,7 @@ import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.L
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
+import com.google.api.gax.grpc.GrpcCallSettings;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.OperationCallable;
@@ -47,6 +48,8 @@ import com.google.spanner.admin.instance.v1.ListInstancesRequest;
 import com.google.spanner.admin.instance.v1.ListInstancesResponse;
 import com.google.spanner.admin.instance.v1.UpdateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.UpdateInstanceRequest;
+import io.grpc.MethodDescriptor;
+import io.grpc.protobuf.ProtoUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
@@ -60,90 +63,96 @@ import javax.annotation.Generated;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class GrpcInstanceAdminStub extends InstanceAdminStub {
-  private static final UnaryCallable<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
-      directListInstanceConfigsCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      ListInstanceConfigsRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      ListInstanceConfigsResponse.getDefaultInstance())));
-  private static final UnaryCallable<GetInstanceConfigRequest, InstanceConfig>
-      directGetInstanceConfigCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      GetInstanceConfigRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(InstanceConfig.getDefaultInstance())));
-  private static final UnaryCallable<ListInstancesRequest, ListInstancesResponse>
-      directListInstancesCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/ListInstances",
-                  io.grpc.protobuf.ProtoUtils.marshaller(ListInstancesRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      ListInstancesResponse.getDefaultInstance())));
-  private static final UnaryCallable<GetInstanceRequest, Instance> directGetInstanceCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.instance.v1.InstanceAdmin/GetInstance",
-              io.grpc.protobuf.ProtoUtils.marshaller(GetInstanceRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Instance.getDefaultInstance())));
-  private static final UnaryCallable<CreateInstanceRequest, Operation>
-      directCreateInstanceCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      CreateInstanceRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(Operation.getDefaultInstance())));
-  private static final UnaryCallable<UpdateInstanceRequest, Operation>
-      directUpdateInstanceCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      UpdateInstanceRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(Operation.getDefaultInstance())));
-  private static final UnaryCallable<DeleteInstanceRequest, Empty> directDeleteInstanceCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance",
-              io.grpc.protobuf.ProtoUtils.marshaller(DeleteInstanceRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance())));
-  private static final UnaryCallable<SetIamPolicyRequest, Policy> directSetIamPolicyCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.instance.v1.InstanceAdmin/SetIamPolicy",
-              io.grpc.protobuf.ProtoUtils.marshaller(SetIamPolicyRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance())));
-  private static final UnaryCallable<GetIamPolicyRequest, Policy> directGetIamPolicyCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.instance.v1.InstanceAdmin/GetIamPolicy",
-              io.grpc.protobuf.ProtoUtils.marshaller(GetIamPolicyRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance())));
-  private static final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
-      directTestIamPermissionsCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      TestIamPermissionsRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      TestIamPermissionsResponse.getDefaultInstance())));
+
+  private static final MethodDescriptor<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
+      listInstanceConfigsMethodDescriptor =
+          MethodDescriptor.<ListInstanceConfigsRequest, ListInstanceConfigsResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(
+                  "google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(ListInstanceConfigsRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(ListInstanceConfigsResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<GetInstanceConfigRequest, InstanceConfig>
+      getInstanceConfigMethodDescriptor =
+          MethodDescriptor.<GetInstanceConfigRequest, InstanceConfig>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(GetInstanceConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(InstanceConfig.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<ListInstancesRequest, ListInstancesResponse>
+      listInstancesMethodDescriptor =
+          MethodDescriptor.<ListInstancesRequest, ListInstancesResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/ListInstances")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(ListInstancesRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(ListInstancesResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<GetInstanceRequest, Instance> getInstanceMethodDescriptor =
+      MethodDescriptor.<GetInstanceRequest, Instance>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/GetInstance")
+          .setRequestMarshaller(ProtoUtils.marshaller(GetInstanceRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Instance.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<CreateInstanceRequest, Operation>
+      createInstanceMethodDescriptor =
+          MethodDescriptor.<CreateInstanceRequest, Operation>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(CreateInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Operation.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<UpdateInstanceRequest, Operation>
+      updateInstanceMethodDescriptor =
+          MethodDescriptor.<UpdateInstanceRequest, Operation>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(UpdateInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Operation.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<DeleteInstanceRequest, Empty>
+      deleteInstanceMethodDescriptor =
+          MethodDescriptor.<DeleteInstanceRequest, Empty>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(DeleteInstanceRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<SetIamPolicyRequest, Policy> setIamPolicyMethodDescriptor =
+      MethodDescriptor.<SetIamPolicyRequest, Policy>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/SetIamPolicy")
+          .setRequestMarshaller(ProtoUtils.marshaller(SetIamPolicyRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Policy.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<GetIamPolicyRequest, Policy> getIamPolicyMethodDescriptor =
+      MethodDescriptor.<GetIamPolicyRequest, Policy>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.instance.v1.InstanceAdmin/GetIamPolicy")
+          .setRequestMarshaller(ProtoUtils.marshaller(GetIamPolicyRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Policy.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<TestIamPermissionsRequest, TestIamPermissionsResponse>
+      testIamPermissionsMethodDescriptor =
+          MethodDescriptor.<TestIamPermissionsRequest, TestIamPermissionsResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(
+                  "google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(TestIamPermissionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(TestIamPermissionsResponse.getDefaultInstance()))
+              .build();
 
   private final BackgroundResource backgroundResources;
   private final GrpcOperationsStub operationsStub;
@@ -158,12 +167,10 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
       listInstancesPagedCallable;
   private final UnaryCallable<GetInstanceRequest, Instance> getInstanceCallable;
   private final UnaryCallable<CreateInstanceRequest, Operation> createInstanceCallable;
-  private final OperationCallable<
-          CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
+  private final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
       createInstanceOperationCallable;
   private final UnaryCallable<UpdateInstanceRequest, Operation> updateInstanceCallable;
-  private final OperationCallable<
-          UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
+  private final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
       updateInstanceOperationCallable;
   private final UnaryCallable<DeleteInstanceRequest, Empty> deleteInstanceCallable;
   private final UnaryCallable<SetIamPolicyRequest, Policy> setIamPolicyCallable;
@@ -171,12 +178,24 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
   private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
+  /** @deprecated Use of(InstanceAdminSettings) instead. */
+  @Deprecated
   public static final GrpcInstanceAdminStub create(InstanceAdminSettings settings)
       throws IOException {
+    return of(settings);
+  }
+
+  /** @deprecated Use of(ClientContext) instead. */
+  @Deprecated
+  public static final GrpcInstanceAdminStub create(ClientContext clientContext) throws IOException {
+    return of(clientContext);
+  }
+
+  public static final GrpcInstanceAdminStub of(InstanceAdminSettings settings) throws IOException {
     return new GrpcInstanceAdminStub(settings, ClientContext.create(settings));
   }
 
-  public static final GrpcInstanceAdminStub create(ClientContext clientContext) throws IOException {
+  public static final GrpcInstanceAdminStub of(ClientContext clientContext) throws IOException {
     return new GrpcInstanceAdminStub(InstanceAdminSettings.newBuilder().build(), clientContext);
   }
 
@@ -189,62 +208,105 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
       throws IOException {
     this.operationsStub = GrpcOperationsStub.create(clientContext);
 
+    GrpcCallSettings<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
+        listInstanceConfigsTransportSettings =
+            GrpcCallSettings.<ListInstanceConfigsRequest, ListInstanceConfigsResponse>newBuilder()
+                .setMethodDescriptor(listInstanceConfigsMethodDescriptor)
+                .build();
+    GrpcCallSettings<GetInstanceConfigRequest, InstanceConfig> getInstanceConfigTransportSettings =
+        GrpcCallSettings.<GetInstanceConfigRequest, InstanceConfig>newBuilder()
+            .setMethodDescriptor(getInstanceConfigMethodDescriptor)
+            .build();
+    GrpcCallSettings<ListInstancesRequest, ListInstancesResponse> listInstancesTransportSettings =
+        GrpcCallSettings.<ListInstancesRequest, ListInstancesResponse>newBuilder()
+            .setMethodDescriptor(listInstancesMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetInstanceRequest, Instance> getInstanceTransportSettings =
+        GrpcCallSettings.<GetInstanceRequest, Instance>newBuilder()
+            .setMethodDescriptor(getInstanceMethodDescriptor)
+            .build();
+    GrpcCallSettings<CreateInstanceRequest, Operation> createInstanceTransportSettings =
+        GrpcCallSettings.<CreateInstanceRequest, Operation>newBuilder()
+            .setMethodDescriptor(createInstanceMethodDescriptor)
+            .build();
+    GrpcCallSettings<UpdateInstanceRequest, Operation> updateInstanceTransportSettings =
+        GrpcCallSettings.<UpdateInstanceRequest, Operation>newBuilder()
+            .setMethodDescriptor(updateInstanceMethodDescriptor)
+            .build();
+    GrpcCallSettings<DeleteInstanceRequest, Empty> deleteInstanceTransportSettings =
+        GrpcCallSettings.<DeleteInstanceRequest, Empty>newBuilder()
+            .setMethodDescriptor(deleteInstanceMethodDescriptor)
+            .build();
+    GrpcCallSettings<SetIamPolicyRequest, Policy> setIamPolicyTransportSettings =
+        GrpcCallSettings.<SetIamPolicyRequest, Policy>newBuilder()
+            .setMethodDescriptor(setIamPolicyMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetIamPolicyRequest, Policy> getIamPolicyTransportSettings =
+        GrpcCallSettings.<GetIamPolicyRequest, Policy>newBuilder()
+            .setMethodDescriptor(getIamPolicyMethodDescriptor)
+            .build();
+    GrpcCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+        testIamPermissionsTransportSettings =
+            GrpcCallSettings.<TestIamPermissionsRequest, TestIamPermissionsResponse>newBuilder()
+                .setMethodDescriptor(testIamPermissionsMethodDescriptor)
+                .build();
+
     this.listInstanceConfigsCallable =
-        GrpcCallableFactory.create(
-            directListInstanceConfigsCallable,
+        GrpcCallableFactory.createUnaryCallable(
+            listInstanceConfigsTransportSettings,
             settings.listInstanceConfigsSettings(),
             clientContext);
     this.listInstanceConfigsPagedCallable =
-        GrpcCallableFactory.createPagedVariant(
-            directListInstanceConfigsCallable,
+        GrpcCallableFactory.createPagedCallable(
+            listInstanceConfigsTransportSettings,
             settings.listInstanceConfigsSettings(),
             clientContext);
     this.getInstanceConfigCallable =
-        GrpcCallableFactory.create(
-            directGetInstanceConfigCallable, settings.getInstanceConfigSettings(), clientContext);
-    this.listInstancesCallable =
-        GrpcCallableFactory.create(
-            directListInstancesCallable, settings.listInstancesSettings(), clientContext);
-    this.listInstancesPagedCallable =
-        GrpcCallableFactory.createPagedVariant(
-            directListInstancesCallable, settings.listInstancesSettings(), clientContext);
-    this.getInstanceCallable =
-        GrpcCallableFactory.create(
-            directGetInstanceCallable, settings.getInstanceSettings(), clientContext);
-    this.createInstanceCallable =
-        GrpcCallableFactory.create(
-            directCreateInstanceCallable,
-            settings.createInstanceSettings().getInitialCallSettings(),
+        GrpcCallableFactory.createUnaryCallable(
+            getInstanceConfigTransportSettings,
+            settings.getInstanceConfigSettings(),
             clientContext);
+    this.listInstancesCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            listInstancesTransportSettings, settings.listInstancesSettings(), clientContext);
+    this.listInstancesPagedCallable =
+        GrpcCallableFactory.createPagedCallable(
+            listInstancesTransportSettings, settings.listInstancesSettings(), clientContext);
+    this.getInstanceCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            getInstanceTransportSettings, settings.getInstanceSettings(), clientContext);
+    this.createInstanceCallable =
+        GrpcCallableFactory.createUnaryCallable(
+            createInstanceTransportSettings, settings.createInstanceSettings(), clientContext);
     this.createInstanceOperationCallable =
-        GrpcCallableFactory.create(
-            directCreateInstanceCallable,
-            settings.createInstanceSettings(),
+        GrpcCallableFactory.createOperationCallable(
+            createInstanceTransportSettings,
+            settings.createInstanceOperationSettings(),
             clientContext,
             this.operationsStub);
     this.updateInstanceCallable =
-        GrpcCallableFactory.create(
-            directUpdateInstanceCallable,
-            settings.updateInstanceSettings().getInitialCallSettings(),
-            clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            updateInstanceTransportSettings, settings.updateInstanceSettings(), clientContext);
     this.updateInstanceOperationCallable =
-        GrpcCallableFactory.create(
-            directUpdateInstanceCallable,
-            settings.updateInstanceSettings(),
+        GrpcCallableFactory.createOperationCallable(
+            updateInstanceTransportSettings,
+            settings.updateInstanceOperationSettings(),
             clientContext,
             this.operationsStub);
     this.deleteInstanceCallable =
-        GrpcCallableFactory.create(
-            directDeleteInstanceCallable, settings.deleteInstanceSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            deleteInstanceTransportSettings, settings.deleteInstanceSettings(), clientContext);
     this.setIamPolicyCallable =
-        GrpcCallableFactory.create(
-            directSetIamPolicyCallable, settings.setIamPolicySettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            setIamPolicyTransportSettings, settings.setIamPolicySettings(), clientContext);
     this.getIamPolicyCallable =
-        GrpcCallableFactory.create(
-            directGetIamPolicyCallable, settings.getIamPolicySettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            getIamPolicyTransportSettings, settings.getIamPolicySettings(), clientContext);
     this.testIamPermissionsCallable =
-        GrpcCallableFactory.create(
-            directTestIamPermissionsCallable, settings.testIamPermissionsSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            testIamPermissionsTransportSettings,
+            settings.testIamPermissionsSettings(),
+            clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }
@@ -280,7 +342,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
     return getInstanceCallable;
   }
 
-  public OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
+  public OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
       createInstanceOperationCallable() {
     return createInstanceOperationCallable;
   }
@@ -289,7 +351,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
     return createInstanceCallable;
   }
 
-  public OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
+  public OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
       updateInstanceOperationCallable() {
     return updateInstanceOperationCallable;
   }

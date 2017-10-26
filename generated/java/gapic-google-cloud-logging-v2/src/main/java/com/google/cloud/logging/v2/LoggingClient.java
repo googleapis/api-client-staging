@@ -91,10 +91,10 @@ import javax.annotation.Generated;
  * <code>
  * LoggingSettings loggingSettings =
  *     LoggingSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * LoggingClient loggingClient =
- *     LoggingClient.create(loggingSettings);
+ *     LoggingClient.of(loggingSettings);
  * </code>
  * </pre>
  *
@@ -104,14 +104,12 @@ import javax.annotation.Generated;
  * <code>
  * LoggingSettings loggingSettings =
  *     LoggingSettings.newBuilder()
- *         .setTransportProvider(LoggingSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(LoggingSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(LoggingSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * LoggingClient loggingClient =
- *     LoggingClient.create(loggingSettings);
+ *     LoggingClient.of(loggingSettings);
  * </code>
  * </pre>
  */
@@ -121,16 +119,53 @@ public class LoggingClient implements BackgroundResource {
   private final LoggingSettings settings;
   private final LoggingServiceV2Stub stub;
 
-  /** Constructs an instance of LoggingClient with default settings. */
+  /**
+   * Constructs an instance of LoggingClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final LoggingClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of LoggingClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final LoggingClient of() throws IOException {
     return create(LoggingSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of LoggingClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(LoggingSettings) instead.
    */
+  @Deprecated
   public static final LoggingClient create(LoggingSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of LoggingClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use LoggingSettings}.
+   *
+   * @deprecated Use of(LoggingServiceV2Stub) instead.
+   */
+  @Deprecated
+  public static final LoggingClient create(LoggingServiceV2Stub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of LoggingClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final LoggingClient of(LoggingSettings settings) throws IOException {
     return new LoggingClient(settings);
   }
 
@@ -138,7 +173,8 @@ public class LoggingClient implements BackgroundResource {
    * Constructs an instance of LoggingClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use LoggingSettings}.
    */
-  public static final LoggingClient create(LoggingServiceV2Stub stub) {
+  @BetaApi
+  public static final LoggingClient of(LoggingServiceV2Stub stub) {
     return new LoggingClient(stub);
   }
 

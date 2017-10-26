@@ -65,7 +65,7 @@ public abstract class DatabaseAdminStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: listDatabasesCallable()");
   }
 
-  public OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
+  public OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
       createDatabaseOperationCallable() {
     throw new UnsupportedOperationException("Not implemented: createDatabaseOperationCallable()");
   }
@@ -78,7 +78,7 @@ public abstract class DatabaseAdminStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: getDatabaseCallable()");
   }
 
-  public OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+  public OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable() {
     throw new UnsupportedOperationException(
         "Not implemented: updateDatabaseDdlOperationCallable()");

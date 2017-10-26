@@ -19,11 +19,10 @@ import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.L
 import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.ListInstancesPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
-import com.google.api.gax.grpc.GrpcStatusCode;
-import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.rpc.InvalidArgumentException;
+import com.google.api.gax.rpc.StatusCode;
 import com.google.common.collect.Lists;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
@@ -88,10 +87,7 @@ public class InstanceAdminClientTest {
     serviceHelper.reset();
     InstanceAdminSettings settings =
         InstanceAdminSettings.newBuilder()
-            .setTransportProvider(
-                GrpcTransportProvider.newBuilder()
-                    .setChannelProvider(serviceHelper.createChannelProvider())
-                    .build())
+            .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
     client = InstanceAdminClient.create(settings);
@@ -328,9 +324,7 @@ public class InstanceAdminClientTest {
     } catch (ExecutionException e) {
       Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
       InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
-      Assert.assertEquals(
-          Status.INVALID_ARGUMENT.getCode(),
-          ((GrpcStatusCode) apiException.getStatusCode()).getCode());
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 
@@ -385,9 +379,7 @@ public class InstanceAdminClientTest {
     } catch (ExecutionException e) {
       Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
       InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
-      Assert.assertEquals(
-          Status.INVALID_ARGUMENT.getCode(),
-          ((GrpcStatusCode) apiException.getStatusCode()).getCode());
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 

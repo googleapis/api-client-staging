@@ -95,10 +95,10 @@ import javax.annotation.Generated;
  * <code>
  * OperationsSettings operationsSettings =
  *     OperationsSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * OperationsClient operationsClient =
- *     OperationsClient.create(operationsSettings);
+ *     OperationsClient.of(operationsSettings);
  * </code>
  * </pre>
  *
@@ -108,14 +108,12 @@ import javax.annotation.Generated;
  * <code>
  * OperationsSettings operationsSettings =
  *     OperationsSettings.newBuilder()
- *         .setTransportProvider(OperationsSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(OperationsSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(OperationsSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * OperationsClient operationsClient =
- *     OperationsClient.create(operationsSettings);
+ *     OperationsClient.of(operationsSettings);
  * </code>
  * </pre>
  */
@@ -128,8 +126,30 @@ public class OperationsClient implements BackgroundResource {
   /**
    * Constructs an instance of OperationsClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(OperationsSettings) instead.
    */
+  @Deprecated
   public static final OperationsClient create(OperationsSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of OperationsClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use OperationsSettings}.
+   *
+   * @deprecated Use of(OperationsStub) instead.
+   */
+  @Deprecated
+  public static final OperationsClient create(OperationsStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of OperationsClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final OperationsClient of(OperationsSettings settings) throws IOException {
     return new OperationsClient(settings);
   }
 
@@ -137,7 +157,8 @@ public class OperationsClient implements BackgroundResource {
    * Constructs an instance of OperationsClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use OperationsSettings}.
    */
-  public static final OperationsClient create(OperationsStub stub) {
+  @BetaApi
+  public static final OperationsClient of(OperationsStub stub) {
     return new OperationsClient(stub);
   }
 

@@ -26,23 +26,25 @@ import com.google.api.gax.core.ExecutorProvider;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
 import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.grpc.GrpcStatusCode;
-import com.google.api.gax.grpc.GrpcTransport;
-import com.google.api.gax.grpc.GrpcTransportProvider;
-import com.google.api.gax.grpc.InstantiatingChannelProvider;
-import com.google.api.gax.grpc.OperationTimedPollAlgorithm;
+import com.google.api.gax.grpc.GrpcExtraHeaderData;
+import com.google.api.gax.grpc.GrpcTransportChannel;
+import com.google.api.gax.grpc.InstantiatingGrpcChannelProvider;
+import com.google.api.gax.grpc.ProtoOperationTransformers;
+import com.google.api.gax.longrunning.OperationSnapshot;
+import com.google.api.gax.longrunning.OperationTimedPollAlgorithm;
 import com.google.api.gax.retrying.RetrySettings;
 import com.google.api.gax.rpc.ApiCallContext;
+import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
+import com.google.api.gax.rpc.HeaderProvider;
 import com.google.api.gax.rpc.OperationCallSettings;
 import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.PagedCallSettings;
 import com.google.api.gax.rpc.PagedListDescriptor;
 import com.google.api.gax.rpc.PagedListResponseFactory;
-import com.google.api.gax.rpc.SimpleCallSettings;
 import com.google.api.gax.rpc.StatusCode;
-import com.google.api.gax.rpc.TransportProvider;
+import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.instance.v1.stub.GrpcInstanceAdminStub;
@@ -71,7 +73,6 @@ import com.google.spanner.admin.instance.v1.ListInstancesRequest;
 import com.google.spanner.admin.instance.v1.ListInstancesResponse;
 import com.google.spanner.admin.instance.v1.UpdateInstanceMetadata;
 import com.google.spanner.admin.instance.v1.UpdateInstanceRequest;
-import io.grpc.Status;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Generated;
@@ -125,22 +126,22 @@ public class InstanceAdminSettings extends ClientSettings {
   private final PagedCallSettings<
           ListInstanceConfigsRequest, ListInstanceConfigsResponse, ListInstanceConfigsPagedResponse>
       listInstanceConfigsSettings;
-  private final SimpleCallSettings<GetInstanceConfigRequest, InstanceConfig>
+  private final UnaryCallSettings<GetInstanceConfigRequest, InstanceConfig>
       getInstanceConfigSettings;
   private final PagedCallSettings<
           ListInstancesRequest, ListInstancesResponse, ListInstancesPagedResponse>
       listInstancesSettings;
-  private final SimpleCallSettings<GetInstanceRequest, Instance> getInstanceSettings;
-  private final OperationCallSettings<
-          CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
-      createInstanceSettings;
-  private final OperationCallSettings<
-          UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
-      updateInstanceSettings;
-  private final SimpleCallSettings<DeleteInstanceRequest, Empty> deleteInstanceSettings;
-  private final SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
-  private final SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
-  private final SimpleCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryCallSettings<GetInstanceRequest, Instance> getInstanceSettings;
+  private final UnaryCallSettings<CreateInstanceRequest, Operation> createInstanceSettings;
+  private final OperationCallSettings<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+      createInstanceOperationSettings;
+  private final UnaryCallSettings<UpdateInstanceRequest, Operation> updateInstanceSettings;
+  private final OperationCallSettings<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+      updateInstanceOperationSettings;
+  private final UnaryCallSettings<DeleteInstanceRequest, Empty> deleteInstanceSettings;
+  private final UnaryCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
+  private final UnaryCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
+  private final UnaryCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsSettings;
 
   /** Returns the object with the settings used for calls to listInstanceConfigs. */
@@ -151,7 +152,7 @@ public class InstanceAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to getInstanceConfig. */
-  public SimpleCallSettings<GetInstanceConfigRequest, InstanceConfig> getInstanceConfigSettings() {
+  public UnaryCallSettings<GetInstanceConfigRequest, InstanceConfig> getInstanceConfigSettings() {
     return getInstanceConfigSettings;
   }
 
@@ -162,49 +163,61 @@ public class InstanceAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to getInstance. */
-  public SimpleCallSettings<GetInstanceRequest, Instance> getInstanceSettings() {
+  public UnaryCallSettings<GetInstanceRequest, Instance> getInstanceSettings() {
     return getInstanceSettings;
   }
 
   /** Returns the object with the settings used for calls to createInstance. */
-  public OperationCallSettings<CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
-      createInstanceSettings() {
+  public UnaryCallSettings<CreateInstanceRequest, Operation> createInstanceSettings() {
     return createInstanceSettings;
   }
 
+  /** Returns the object with the settings used for calls to createInstance. */
+  public OperationCallSettings<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+      createInstanceOperationSettings() {
+    return createInstanceOperationSettings;
+  }
+
   /** Returns the object with the settings used for calls to updateInstance. */
-  public OperationCallSettings<UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
-      updateInstanceSettings() {
+  public UnaryCallSettings<UpdateInstanceRequest, Operation> updateInstanceSettings() {
     return updateInstanceSettings;
   }
 
+  /** Returns the object with the settings used for calls to updateInstance. */
+  public OperationCallSettings<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+      updateInstanceOperationSettings() {
+    return updateInstanceOperationSettings;
+  }
+
   /** Returns the object with the settings used for calls to deleteInstance. */
-  public SimpleCallSettings<DeleteInstanceRequest, Empty> deleteInstanceSettings() {
+  public UnaryCallSettings<DeleteInstanceRequest, Empty> deleteInstanceSettings() {
     return deleteInstanceSettings;
   }
 
   /** Returns the object with the settings used for calls to setIamPolicy. */
-  public SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings() {
+  public UnaryCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings() {
     return setIamPolicySettings;
   }
 
   /** Returns the object with the settings used for calls to getIamPolicy. */
-  public SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings() {
+  public UnaryCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings() {
     return getIamPolicySettings;
   }
 
   /** Returns the object with the settings used for calls to testIamPermissions. */
-  public SimpleCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public UnaryCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsSettings() {
     return testIamPermissionsSettings;
   }
 
   public InstanceAdminStub createStub() throws IOException {
-    if (getTransportProvider().getTransportName().equals(GrpcTransport.getGrpcTransportName())) {
-      return GrpcInstanceAdminStub.create(this);
+    if (getTransportChannelProvider()
+        .getTransportName()
+        .equals(GrpcTransportChannel.getGrpcTransportName())) {
+      return GrpcInstanceAdminStub.of(this);
     } else {
       throw new UnsupportedOperationException(
-          "Transport not supported: " + getTransportProvider().getTransportName());
+          "Transport not supported: " + getTransportChannelProvider().getTransportName());
     }
   }
 
@@ -229,20 +242,19 @@ public class InstanceAdminSettings extends ClientSettings {
   }
 
   /** Returns a builder for the default ChannelProvider for this service. */
-  public static InstantiatingChannelProvider.Builder defaultGrpcChannelProviderBuilder() {
-    return InstantiatingChannelProvider.newBuilder()
-        .setEndpoint(getDefaultEndpoint())
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion());
+  public static InstantiatingGrpcChannelProvider.Builder defaultGrpcTransportProviderBuilder() {
+    return InstantiatingGrpcChannelProvider.newBuilder().setEndpoint(getDefaultEndpoint());
   }
 
-  /** Returns a builder for the default ChannelProvider for this service. */
-  public static GrpcTransportProvider.Builder defaultGrpcTransportProviderBuilder() {
-    return GrpcTransportProvider.newBuilder()
-        .setChannelProvider(defaultGrpcChannelProviderBuilder().build());
-  }
-
-  public static TransportProvider defaultTransportProvider() {
+  public static TransportChannelProvider defaultTransportChannelProvider() {
     return defaultGrpcTransportProviderBuilder().build();
+  }
+
+  public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
+    return ApiClientHeaderProvider.newBuilder()
+        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
+        .setApiClientHeaderLineKey("x-goog-api-client")
+        .addApiClientHeaderLineData(GrpcExtraHeaderData.getXGoogApiClientData());
   }
 
   private static String getGapicVersion() {
@@ -288,8 +300,9 @@ public class InstanceAdminSettings extends ClientSettings {
   private InstanceAdminSettings(Builder settingsBuilder) throws IOException {
     super(
         settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getTransportProvider(),
+        settingsBuilder.getTransportChannelProvider(),
         settingsBuilder.getCredentialsProvider(),
+        settingsBuilder.getHeaderProvider(),
         settingsBuilder.getClock());
 
     listInstanceConfigsSettings = settingsBuilder.listInstanceConfigsSettings().build();
@@ -297,7 +310,9 @@ public class InstanceAdminSettings extends ClientSettings {
     listInstancesSettings = settingsBuilder.listInstancesSettings().build();
     getInstanceSettings = settingsBuilder.getInstanceSettings().build();
     createInstanceSettings = settingsBuilder.createInstanceSettings().build();
+    createInstanceOperationSettings = settingsBuilder.createInstanceOperationSettings().build();
     updateInstanceSettings = settingsBuilder.updateInstanceSettings().build();
+    updateInstanceOperationSettings = settingsBuilder.updateInstanceOperationSettings().build();
     deleteInstanceSettings = settingsBuilder.deleteInstanceSettings().build();
     setIamPolicySettings = settingsBuilder.setIamPolicySettings().build();
     getIamPolicySettings = settingsBuilder.getIamPolicySettings().build();
@@ -390,7 +405,7 @@ public class InstanceAdminSettings extends ClientSettings {
                 ApiFuture<ListInstanceConfigsResponse> futureResponse) {
               PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
                   pageContext =
-                      PageContext.create(
+                      PageContext.of(
                           callable, LIST_INSTANCE_CONFIGS_PAGE_STR_DESC, request, context);
               return ListInstanceConfigsPagedResponse.createAsync(pageContext, futureResponse);
             }
@@ -408,48 +423,53 @@ public class InstanceAdminSettings extends ClientSettings {
                 ApiCallContext context,
                 ApiFuture<ListInstancesResponse> futureResponse) {
               PageContext<ListInstancesRequest, ListInstancesResponse, Instance> pageContext =
-                  PageContext.create(callable, LIST_INSTANCES_PAGE_STR_DESC, request, context);
+                  PageContext.of(callable, LIST_INSTANCES_PAGE_STR_DESC, request, context);
               return ListInstancesPagedResponse.createAsync(pageContext, futureResponse);
             }
           };
 
   /** Builder for InstanceAdminSettings. */
   public static class Builder extends ClientSettings.Builder {
-    private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
+    private final ImmutableList<UnaryCallSettings.Builder<?, ?>> unaryMethodSettingsBuilders;
 
     private final PagedCallSettings.Builder<
             ListInstanceConfigsRequest, ListInstanceConfigsResponse,
             ListInstanceConfigsPagedResponse>
         listInstanceConfigsSettings;
-    private final SimpleCallSettings.Builder<GetInstanceConfigRequest, InstanceConfig>
+    private final UnaryCallSettings.Builder<GetInstanceConfigRequest, InstanceConfig>
         getInstanceConfigSettings;
     private final PagedCallSettings.Builder<
             ListInstancesRequest, ListInstancesResponse, ListInstancesPagedResponse>
         listInstancesSettings;
-    private final SimpleCallSettings.Builder<GetInstanceRequest, Instance> getInstanceSettings;
-    private final OperationCallSettings.Builder<
-            CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
+    private final UnaryCallSettings.Builder<GetInstanceRequest, Instance> getInstanceSettings;
+    private final UnaryCallSettings.Builder<CreateInstanceRequest, Operation>
         createInstanceSettings;
     private final OperationCallSettings.Builder<
-            UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
+            CreateInstanceRequest, Instance, CreateInstanceMetadata>
+        createInstanceOperationSettings;
+    private final UnaryCallSettings.Builder<UpdateInstanceRequest, Operation>
         updateInstanceSettings;
-    private final SimpleCallSettings.Builder<DeleteInstanceRequest, Empty> deleteInstanceSettings;
-    private final SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
-    private final SimpleCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings;
-    private final SimpleCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
+    private final OperationCallSettings.Builder<
+            UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+        updateInstanceOperationSettings;
+    private final UnaryCallSettings.Builder<DeleteInstanceRequest, Empty> deleteInstanceSettings;
+    private final UnaryCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
+    private final UnaryCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings;
+    private final UnaryCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
         testIamPermissionsSettings;
 
-    private static final ImmutableMap<String, ImmutableSet<StatusCode>> RETRYABLE_CODE_DEFINITIONS;
+    private static final ImmutableMap<String, ImmutableSet<StatusCode.Code>>
+        RETRYABLE_CODE_DEFINITIONS;
 
     static {
-      ImmutableMap.Builder<String, ImmutableSet<StatusCode>> definitions = ImmutableMap.builder();
+      ImmutableMap.Builder<String, ImmutableSet<StatusCode.Code>> definitions =
+          ImmutableMap.builder();
       definitions.put(
           "idempotent",
           ImmutableSet.copyOf(
-              Lists.<StatusCode>newArrayList(
-                  GrpcStatusCode.of(Status.Code.DEADLINE_EXCEEDED),
-                  GrpcStatusCode.of(Status.Code.UNAVAILABLE))));
-      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode>newArrayList()));
+              Lists.<StatusCode.Code>newArrayList(
+                  StatusCode.Code.DEADLINE_EXCEEDED, StatusCode.Code.UNAVAILABLE)));
+      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode.Code>newArrayList()));
       RETRYABLE_CODE_DEFINITIONS = definitions.build();
     }
 
@@ -482,30 +502,36 @@ public class InstanceAdminSettings extends ClientSettings {
       listInstanceConfigsSettings =
           PagedCallSettings.newBuilder(LIST_INSTANCE_CONFIGS_PAGE_STR_FACT);
 
-      getInstanceConfigSettings = SimpleCallSettings.newBuilder();
+      getInstanceConfigSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
       listInstancesSettings = PagedCallSettings.newBuilder(LIST_INSTANCES_PAGE_STR_FACT);
 
-      getInstanceSettings = SimpleCallSettings.newBuilder();
+      getInstanceSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      createInstanceSettings = OperationCallSettings.newBuilder();
+      createInstanceSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      updateInstanceSettings = OperationCallSettings.newBuilder();
+      createInstanceOperationSettings = OperationCallSettings.newBuilder();
 
-      deleteInstanceSettings = SimpleCallSettings.newBuilder();
+      updateInstanceSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      setIamPolicySettings = SimpleCallSettings.newBuilder();
+      updateInstanceOperationSettings = OperationCallSettings.newBuilder();
 
-      getIamPolicySettings = SimpleCallSettings.newBuilder();
+      deleteInstanceSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      testIamPermissionsSettings = SimpleCallSettings.newBuilder();
+      setIamPolicySettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
+
+      getIamPolicySettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
+
+      testIamPermissionsSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
               listInstanceConfigsSettings,
               getInstanceConfigSettings,
               listInstancesSettings,
               getInstanceSettings,
+              createInstanceSettings,
+              updateInstanceSettings,
               deleteInstanceSettings,
               setIamPolicySettings,
               getIamPolicySettings,
@@ -516,8 +542,9 @@ public class InstanceAdminSettings extends ClientSettings {
 
     private static Builder createDefault() {
       Builder builder = new Builder((ClientContext) null);
-      builder.setTransportProvider(defaultTransportProvider());
+      builder.setTransportChannelProvider(defaultTransportChannelProvider());
       builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+      builder.setHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
       return initDefaults(builder);
     }
 
@@ -544,6 +571,16 @@ public class InstanceAdminSettings extends ClientSettings {
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .createInstanceSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .updateInstanceSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .deleteInstanceSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
@@ -563,16 +600,18 @@ public class InstanceAdminSettings extends ClientSettings {
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
       builder
-          .createInstanceSettings()
+          .createInstanceOperationSettings()
           .setInitialCallSettings(
-              SimpleCallSettings.<CreateInstanceRequest, Operation>newBuilder()
+              UnaryCallSettings
+                  .<CreateInstanceRequest, OperationSnapshot>newUnaryCallSettingsBuilder()
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseClass(Instance.class)
-          .setMetadataClass(CreateInstanceMetadata.class)
+          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Instance.class))
+          .setMetadataTransformer(
+              ProtoOperationTransformers.MetadataTransformer.of(CreateInstanceMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.create(
+              OperationTimedPollAlgorithm.of(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)
@@ -583,16 +622,18 @@ public class InstanceAdminSettings extends ClientSettings {
                       .setTotalTimeout(Duration.ofMillis(86400000L))
                       .build()));
       builder
-          .updateInstanceSettings()
+          .updateInstanceOperationSettings()
           .setInitialCallSettings(
-              SimpleCallSettings.<UpdateInstanceRequest, Operation>newBuilder()
+              UnaryCallSettings
+                  .<UpdateInstanceRequest, OperationSnapshot>newUnaryCallSettingsBuilder()
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseClass(Instance.class)
-          .setMetadataClass(UpdateInstanceMetadata.class)
+          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Instance.class))
+          .setMetadataTransformer(
+              ProtoOperationTransformers.MetadataTransformer.of(UpdateInstanceMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.create(
+              OperationTimedPollAlgorithm.of(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)
@@ -614,18 +655,22 @@ public class InstanceAdminSettings extends ClientSettings {
       listInstancesSettings = settings.listInstancesSettings.toBuilder();
       getInstanceSettings = settings.getInstanceSettings.toBuilder();
       createInstanceSettings = settings.createInstanceSettings.toBuilder();
+      createInstanceOperationSettings = settings.createInstanceOperationSettings.toBuilder();
       updateInstanceSettings = settings.updateInstanceSettings.toBuilder();
+      updateInstanceOperationSettings = settings.updateInstanceOperationSettings.toBuilder();
       deleteInstanceSettings = settings.deleteInstanceSettings.toBuilder();
       setIamPolicySettings = settings.setIamPolicySettings.toBuilder();
       getIamPolicySettings = settings.getIamPolicySettings.toBuilder();
       testIamPermissionsSettings = settings.testIamPermissionsSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
               listInstanceConfigsSettings,
               getInstanceConfigSettings,
               listInstancesSettings,
               getInstanceSettings,
+              createInstanceSettings,
+              updateInstanceSettings,
               deleteInstanceSettings,
               setIamPolicySettings,
               getIamPolicySettings,
@@ -639,8 +684,14 @@ public class InstanceAdminSettings extends ClientSettings {
     }
 
     @Override
-    public Builder setTransportProvider(TransportProvider transportProvider) {
-      super.setTransportProvider(transportProvider);
+    public Builder setTransportChannelProvider(TransportChannelProvider transportProvider) {
+      super.setTransportChannelProvider(transportProvider);
+      return this;
+    }
+
+    @Override
+    public Builder setHeaderProvider(HeaderProvider headerProvider) {
+      super.setHeaderProvider(headerProvider);
       return this;
     }
 
@@ -656,7 +707,7 @@ public class InstanceAdminSettings extends ClientSettings {
      * <p>Note: This method does not support applying settings to streaming methods.
      */
     public Builder applyToAllUnaryMethods(
-        ApiFunction<UnaryCallSettings.Builder, Void> settingsUpdater) throws Exception {
+        ApiFunction<UnaryCallSettings.Builder<?, ?>, Void> settingsUpdater) throws Exception {
       super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, settingsUpdater);
       return this;
     }
@@ -670,7 +721,7 @@ public class InstanceAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to getInstanceConfig. */
-    public SimpleCallSettings.Builder<GetInstanceConfigRequest, InstanceConfig>
+    public UnaryCallSettings.Builder<GetInstanceConfigRequest, InstanceConfig>
         getInstanceConfigSettings() {
       return getInstanceConfigSettings;
     }
@@ -683,41 +734,49 @@ public class InstanceAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to getInstance. */
-    public SimpleCallSettings.Builder<GetInstanceRequest, Instance> getInstanceSettings() {
+    public UnaryCallSettings.Builder<GetInstanceRequest, Instance> getInstanceSettings() {
       return getInstanceSettings;
     }
 
     /** Returns the builder for the settings used for calls to createInstance. */
-    public OperationCallSettings.Builder<
-            CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
-        createInstanceSettings() {
+    public UnaryCallSettings.Builder<CreateInstanceRequest, Operation> createInstanceSettings() {
       return createInstanceSettings;
     }
 
+    /** Returns the builder for the settings used for calls to createInstance. */
+    public OperationCallSettings.Builder<CreateInstanceRequest, Instance, CreateInstanceMetadata>
+        createInstanceOperationSettings() {
+      return createInstanceOperationSettings;
+    }
+
     /** Returns the builder for the settings used for calls to updateInstance. */
-    public OperationCallSettings.Builder<
-            UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
-        updateInstanceSettings() {
+    public UnaryCallSettings.Builder<UpdateInstanceRequest, Operation> updateInstanceSettings() {
       return updateInstanceSettings;
     }
 
+    /** Returns the builder for the settings used for calls to updateInstance. */
+    public OperationCallSettings.Builder<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
+        updateInstanceOperationSettings() {
+      return updateInstanceOperationSettings;
+    }
+
     /** Returns the builder for the settings used for calls to deleteInstance. */
-    public SimpleCallSettings.Builder<DeleteInstanceRequest, Empty> deleteInstanceSettings() {
+    public UnaryCallSettings.Builder<DeleteInstanceRequest, Empty> deleteInstanceSettings() {
       return deleteInstanceSettings;
     }
 
     /** Returns the builder for the settings used for calls to setIamPolicy. */
-    public SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings() {
+    public UnaryCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings() {
       return setIamPolicySettings;
     }
 
     /** Returns the builder for the settings used for calls to getIamPolicy. */
-    public SimpleCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings() {
+    public UnaryCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings() {
       return getIamPolicySettings;
     }
 
     /** Returns the builder for the settings used for calls to testIamPermissions. */
-    public SimpleCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
+    public UnaryCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
         testIamPermissionsSettings() {
       return testIamPermissionsSettings;
     }

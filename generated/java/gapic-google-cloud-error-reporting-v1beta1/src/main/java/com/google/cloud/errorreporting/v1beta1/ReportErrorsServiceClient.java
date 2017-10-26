@@ -77,10 +77,10 @@ import javax.annotation.Generated;
  * <code>
  * ReportErrorsServiceSettings reportErrorsServiceSettings =
  *     ReportErrorsServiceSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * ReportErrorsServiceClient reportErrorsServiceClient =
- *     ReportErrorsServiceClient.create(reportErrorsServiceSettings);
+ *     ReportErrorsServiceClient.of(reportErrorsServiceSettings);
  * </code>
  * </pre>
  *
@@ -90,14 +90,12 @@ import javax.annotation.Generated;
  * <code>
  * ReportErrorsServiceSettings reportErrorsServiceSettings =
  *     ReportErrorsServiceSettings.newBuilder()
- *         .setTransportProvider(ReportErrorsServiceSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(ReportErrorsServiceSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(ReportErrorsServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * ReportErrorsServiceClient reportErrorsServiceClient =
- *     ReportErrorsServiceClient.create(reportErrorsServiceSettings);
+ *     ReportErrorsServiceClient.of(reportErrorsServiceSettings);
  * </code>
  * </pre>
  */
@@ -107,16 +105,54 @@ public class ReportErrorsServiceClient implements BackgroundResource {
   private final ReportErrorsServiceSettings settings;
   private final ReportErrorsServiceStub stub;
 
-  /** Constructs an instance of ReportErrorsServiceClient with default settings. */
+  /**
+   * Constructs an instance of ReportErrorsServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final ReportErrorsServiceClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of ReportErrorsServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final ReportErrorsServiceClient of() throws IOException {
     return create(ReportErrorsServiceSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of ReportErrorsServiceClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(ReportErrorsServiceSettings) instead.
    */
+  @Deprecated
   public static final ReportErrorsServiceClient create(ReportErrorsServiceSettings settings)
+      throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of ReportErrorsServiceClient, using the given stub for making calls.
+   * This is for advanced usage - prefer to use ReportErrorsServiceSettings}.
+   *
+   * @deprecated Use of(ReportErrorsServiceStub) instead.
+   */
+  @Deprecated
+  public static final ReportErrorsServiceClient create(ReportErrorsServiceStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of ReportErrorsServiceClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final ReportErrorsServiceClient of(ReportErrorsServiceSettings settings)
       throws IOException {
     return new ReportErrorsServiceClient(settings);
   }
@@ -125,7 +161,8 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    * Constructs an instance of ReportErrorsServiceClient, using the given stub for making calls.
    * This is for advanced usage - prefer to use ReportErrorsServiceSettings}.
    */
-  public static final ReportErrorsServiceClient create(ReportErrorsServiceStub stub) {
+  @BetaApi
+  public static final ReportErrorsServiceClient of(ReportErrorsServiceStub stub) {
     return new ReportErrorsServiceClient(stub);
   }
 

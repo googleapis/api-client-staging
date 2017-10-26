@@ -74,10 +74,10 @@ import javax.annotation.Generated;
  * <code>
  * LanguageServiceSettings languageServiceSettings =
  *     LanguageServiceSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * LanguageServiceClient languageServiceClient =
- *     LanguageServiceClient.create(languageServiceSettings);
+ *     LanguageServiceClient.of(languageServiceSettings);
  * </code>
  * </pre>
  *
@@ -87,14 +87,12 @@ import javax.annotation.Generated;
  * <code>
  * LanguageServiceSettings languageServiceSettings =
  *     LanguageServiceSettings.newBuilder()
- *         .setTransportProvider(LanguageServiceSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(LanguageServiceSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(LanguageServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * LanguageServiceClient languageServiceClient =
- *     LanguageServiceClient.create(languageServiceSettings);
+ *     LanguageServiceClient.of(languageServiceSettings);
  * </code>
  * </pre>
  */
@@ -104,16 +102,54 @@ public class LanguageServiceClient implements BackgroundResource {
   private final LanguageServiceSettings settings;
   private final LanguageServiceStub stub;
 
-  /** Constructs an instance of LanguageServiceClient with default settings. */
+  /**
+   * Constructs an instance of LanguageServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final LanguageServiceClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of LanguageServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final LanguageServiceClient of() throws IOException {
     return create(LanguageServiceSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of LanguageServiceClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(LanguageServiceSettings) instead.
    */
+  @Deprecated
   public static final LanguageServiceClient create(LanguageServiceSettings settings)
+      throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of LanguageServiceClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use LanguageServiceSettings}.
+   *
+   * @deprecated Use of(LanguageServiceStub) instead.
+   */
+  @Deprecated
+  public static final LanguageServiceClient create(LanguageServiceStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of LanguageServiceClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final LanguageServiceClient of(LanguageServiceSettings settings)
       throws IOException {
     return new LanguageServiceClient(settings);
   }
@@ -122,7 +158,8 @@ public class LanguageServiceClient implements BackgroundResource {
    * Constructs an instance of LanguageServiceClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use LanguageServiceSettings}.
    */
-  public static final LanguageServiceClient create(LanguageServiceStub stub) {
+  @BetaApi
+  public static final LanguageServiceClient of(LanguageServiceStub stub) {
     return new LanguageServiceClient(stub);
   }
 

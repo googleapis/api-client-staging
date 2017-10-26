@@ -19,8 +19,8 @@ import static com.google.cloud.spanner.admin.database.v1.PagedResponseWrappers.L
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.rpc.OperationCallable;
-import com.google.api.gax.rpc.OperationFuture;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.database.v1.stub.DatabaseAdminStub;
 import com.google.iam.v1.GetIamPolicyRequest;
@@ -100,10 +100,10 @@ import javax.annotation.Generated;
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
  *     DatabaseAdminSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * DatabaseAdminClient databaseAdminClient =
- *     DatabaseAdminClient.create(databaseAdminSettings);
+ *     DatabaseAdminClient.of(databaseAdminSettings);
  * </code>
  * </pre>
  *
@@ -113,14 +113,12 @@ import javax.annotation.Generated;
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
  *     DatabaseAdminSettings.newBuilder()
- *         .setTransportProvider(DatabaseAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(DatabaseAdminSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(DatabaseAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * DatabaseAdminClient databaseAdminClient =
- *     DatabaseAdminClient.create(databaseAdminSettings);
+ *     DatabaseAdminClient.of(databaseAdminSettings);
  * </code>
  * </pre>
  */
@@ -131,17 +129,54 @@ public class DatabaseAdminClient implements BackgroundResource {
   private final DatabaseAdminStub stub;
   private final OperationsClient operationsClient;
 
-  /** Constructs an instance of DatabaseAdminClient with default settings. */
+  /**
+   * Constructs an instance of DatabaseAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final DatabaseAdminClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of DatabaseAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final DatabaseAdminClient of() throws IOException {
     return create(DatabaseAdminSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of DatabaseAdminClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(DatabaseAdminSettings) instead.
    */
+  @Deprecated
   public static final DatabaseAdminClient create(DatabaseAdminSettings settings)
       throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of DatabaseAdminClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use DatabaseAdminSettings}.
+   *
+   * @deprecated Use of(DatabaseAdminStub) instead.
+   */
+  @Deprecated
+  public static final DatabaseAdminClient create(DatabaseAdminStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of DatabaseAdminClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final DatabaseAdminClient of(DatabaseAdminSettings settings) throws IOException {
     return new DatabaseAdminClient(settings);
   }
 
@@ -149,7 +184,8 @@ public class DatabaseAdminClient implements BackgroundResource {
    * Constructs an instance of DatabaseAdminClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use DatabaseAdminSettings}.
    */
-  public static final DatabaseAdminClient create(DatabaseAdminStub stub) {
+  @BetaApi
+  public static final DatabaseAdminClient of(DatabaseAdminStub stub) {
     return new DatabaseAdminClient(stub);
   }
 
@@ -161,13 +197,13 @@ public class DatabaseAdminClient implements BackgroundResource {
   protected DatabaseAdminClient(DatabaseAdminSettings settings) throws IOException {
     this.settings = settings;
     this.stub = settings.createStub();
-    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
+    this.operationsClient = OperationsClient.of(this.stub.getOperationsStub());
   }
 
   protected DatabaseAdminClient(DatabaseAdminStub stub) {
     this.settings = null;
     this.stub = stub;
-    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
+    this.operationsClient = OperationsClient.of(this.stub.getOperationsStub());
   }
 
   public final DatabaseAdminSettings getSettings() {
@@ -322,7 +358,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    *     in backticks (`` ` ``).
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Database, CreateDatabaseMetadata, Operation> createDatabaseAsync(
+  public final OperationFuture<Database, CreateDatabaseMetadata> createDatabaseAsync(
       InstanceName parent, String createStatement) {
 
     CreateDatabaseRequest request =
@@ -360,7 +396,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Database, CreateDatabaseMetadata, Operation> createDatabaseAsync(
+  public final OperationFuture<Database, CreateDatabaseMetadata> createDatabaseAsync(
       CreateDatabaseRequest request) {
     return createDatabaseOperationCallable().futureCall(request);
   }
@@ -391,7 +427,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
+  public final OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
       createDatabaseOperationCallable() {
     return stub.createDatabaseOperationCallable();
   }
@@ -519,7 +555,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * @param statements DDL statements to be applied to the database.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata, Operation> updateDatabaseDdlAsync(
+  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata> updateDatabaseDdlAsync(
       DatabaseName database, List<String> statements) {
 
     UpdateDatabaseDdlRequest request =
@@ -557,7 +593,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata, Operation> updateDatabaseDdlAsync(
+  public final OperationFuture<Empty, UpdateDatabaseDdlMetadata> updateDatabaseDdlAsync(
       UpdateDatabaseDdlRequest request) {
     return updateDatabaseDdlOperationCallable().futureCall(request);
   }
@@ -588,8 +624,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final OperationCallable<
-          UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+  public final OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable() {
     return stub.updateDatabaseDdlOperationCallable();
   }

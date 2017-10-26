@@ -20,8 +20,8 @@ import static com.google.cloud.spanner.admin.instance.v1.PagedResponseWrappers.L
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
+import com.google.api.gax.longrunning.OperationFuture;
 import com.google.api.gax.rpc.OperationCallable;
-import com.google.api.gax.rpc.OperationFuture;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.instance.v1.stub.InstanceAdminStub;
 import com.google.iam.v1.GetIamPolicyRequest;
@@ -118,10 +118,10 @@ import javax.annotation.Generated;
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
  *     InstanceAdminSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * InstanceAdminClient instanceAdminClient =
- *     InstanceAdminClient.create(instanceAdminSettings);
+ *     InstanceAdminClient.of(instanceAdminSettings);
  * </code>
  * </pre>
  *
@@ -131,14 +131,12 @@ import javax.annotation.Generated;
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
  *     InstanceAdminSettings.newBuilder()
- *         .setTransportProvider(InstanceAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(InstanceAdminSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(InstanceAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * InstanceAdminClient instanceAdminClient =
- *     InstanceAdminClient.create(instanceAdminSettings);
+ *     InstanceAdminClient.of(instanceAdminSettings);
  * </code>
  * </pre>
  */
@@ -149,17 +147,54 @@ public class InstanceAdminClient implements BackgroundResource {
   private final InstanceAdminStub stub;
   private final OperationsClient operationsClient;
 
-  /** Constructs an instance of InstanceAdminClient with default settings. */
+  /**
+   * Constructs an instance of InstanceAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final InstanceAdminClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of InstanceAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final InstanceAdminClient of() throws IOException {
     return create(InstanceAdminSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of InstanceAdminClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(InstanceAdminSettings) instead.
    */
+  @Deprecated
   public static final InstanceAdminClient create(InstanceAdminSettings settings)
       throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of InstanceAdminClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use InstanceAdminSettings}.
+   *
+   * @deprecated Use of(InstanceAdminStub) instead.
+   */
+  @Deprecated
+  public static final InstanceAdminClient create(InstanceAdminStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of InstanceAdminClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final InstanceAdminClient of(InstanceAdminSettings settings) throws IOException {
     return new InstanceAdminClient(settings);
   }
 
@@ -167,7 +202,8 @@ public class InstanceAdminClient implements BackgroundResource {
    * Constructs an instance of InstanceAdminClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use InstanceAdminSettings}.
    */
-  public static final InstanceAdminClient create(InstanceAdminStub stub) {
+  @BetaApi
+  public static final InstanceAdminClient of(InstanceAdminStub stub) {
     return new InstanceAdminClient(stub);
   }
 
@@ -179,13 +215,13 @@ public class InstanceAdminClient implements BackgroundResource {
   protected InstanceAdminClient(InstanceAdminSettings settings) throws IOException {
     this.settings = settings;
     this.stub = settings.createStub();
-    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
+    this.operationsClient = OperationsClient.of(this.stub.getOperationsStub());
   }
 
   protected InstanceAdminClient(InstanceAdminStub stub) {
     this.settings = null;
     this.stub = stub;
-    this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
+    this.operationsClient = OperationsClient.of(this.stub.getOperationsStub());
   }
 
   public final InstanceAdminSettings getSettings() {
@@ -608,7 +644,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *     must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, CreateInstanceMetadata, Operation> createInstanceAsync(
+  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
       ProjectName parent, InstanceName instanceId, Instance instance) {
 
     CreateInstanceRequest request =
@@ -671,7 +707,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, CreateInstanceMetadata, Operation> createInstanceAsync(
+  public final OperationFuture<Instance, CreateInstanceMetadata> createInstanceAsync(
       CreateInstanceRequest request) {
     return createInstanceOperationCallable().futureCall(request);
   }
@@ -726,7 +762,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
+  public final OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
       createInstanceOperationCallable() {
     return stub.createInstanceOperationCallable();
   }
@@ -841,7 +877,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *     that do not know about them.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata, Operation> updateInstanceAsync(
+  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
       Instance instance, FieldMask fieldMask) {
 
     UpdateInstanceRequest request =
@@ -902,7 +938,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * @param request The request object containing all of the parameters for the API call.
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
-  public final OperationFuture<Instance, UpdateInstanceMetadata, Operation> updateInstanceAsync(
+  public final OperationFuture<Instance, UpdateInstanceMetadata> updateInstanceAsync(
       UpdateInstanceRequest request) {
     return updateInstanceOperationCallable().futureCall(request);
   }
@@ -959,7 +995,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * }
    * </code></pre>
    */
-  public final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
+  public final OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
       updateInstanceOperationCallable() {
     return stub.updateInstanceOperationCallable();
   }

@@ -94,10 +94,10 @@ import javax.annotation.Generated;
  * <code>
  * GroupServiceSettings groupServiceSettings =
  *     GroupServiceSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * GroupServiceClient groupServiceClient =
- *     GroupServiceClient.create(groupServiceSettings);
+ *     GroupServiceClient.of(groupServiceSettings);
  * </code>
  * </pre>
  *
@@ -107,14 +107,12 @@ import javax.annotation.Generated;
  * <code>
  * GroupServiceSettings groupServiceSettings =
  *     GroupServiceSettings.newBuilder()
- *         .setTransportProvider(GroupServiceSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(GroupServiceSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(GroupServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * GroupServiceClient groupServiceClient =
- *     GroupServiceClient.create(groupServiceSettings);
+ *     GroupServiceClient.of(groupServiceSettings);
  * </code>
  * </pre>
  */
@@ -124,16 +122,53 @@ public class GroupServiceClient implements BackgroundResource {
   private final GroupServiceSettings settings;
   private final GroupServiceStub stub;
 
-  /** Constructs an instance of GroupServiceClient with default settings. */
+  /**
+   * Constructs an instance of GroupServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final GroupServiceClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of GroupServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final GroupServiceClient of() throws IOException {
     return create(GroupServiceSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of GroupServiceClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(GroupServiceSettings) instead.
    */
+  @Deprecated
   public static final GroupServiceClient create(GroupServiceSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of GroupServiceClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use GroupServiceSettings}.
+   *
+   * @deprecated Use of(GroupServiceStub) instead.
+   */
+  @Deprecated
+  public static final GroupServiceClient create(GroupServiceStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of GroupServiceClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final GroupServiceClient of(GroupServiceSettings settings) throws IOException {
     return new GroupServiceClient(settings);
   }
 
@@ -141,7 +176,8 @@ public class GroupServiceClient implements BackgroundResource {
    * Constructs an instance of GroupServiceClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use GroupServiceSettings}.
    */
-  public static final GroupServiceClient create(GroupServiceStub stub) {
+  @BetaApi
+  public static final GroupServiceClient of(GroupServiceStub stub) {
     return new GroupServiceClient(stub);
   }
 

@@ -116,10 +116,10 @@ import javax.annotation.Generated;
  * <code>
  * SubscriptionAdminSettings subscriptionAdminSettings =
  *     SubscriptionAdminSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * SubscriptionAdminClient subscriptionAdminClient =
- *     SubscriptionAdminClient.create(subscriptionAdminSettings);
+ *     SubscriptionAdminClient.of(subscriptionAdminSettings);
  * </code>
  * </pre>
  *
@@ -129,14 +129,12 @@ import javax.annotation.Generated;
  * <code>
  * SubscriptionAdminSettings subscriptionAdminSettings =
  *     SubscriptionAdminSettings.newBuilder()
- *         .setTransportProvider(SubscriptionAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(SubscriptionAdminSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(SubscriptionAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * SubscriptionAdminClient subscriptionAdminClient =
- *     SubscriptionAdminClient.create(subscriptionAdminSettings);
+ *     SubscriptionAdminClient.of(subscriptionAdminSettings);
  * </code>
  * </pre>
  */
@@ -146,16 +144,54 @@ public class SubscriptionAdminClient implements BackgroundResource {
   private final SubscriptionAdminSettings settings;
   private final SubscriberStub stub;
 
-  /** Constructs an instance of SubscriptionAdminClient with default settings. */
+  /**
+   * Constructs an instance of SubscriptionAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final SubscriptionAdminClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of SubscriptionAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final SubscriptionAdminClient of() throws IOException {
     return create(SubscriptionAdminSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of SubscriptionAdminClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(SubscriptionAdminSettings) instead.
    */
+  @Deprecated
   public static final SubscriptionAdminClient create(SubscriptionAdminSettings settings)
+      throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of SubscriptionAdminClient, using the given stub for making calls. This
+   * is for advanced usage - prefer to use SubscriptionAdminSettings}.
+   *
+   * @deprecated Use of(SubscriberStub) instead.
+   */
+  @Deprecated
+  public static final SubscriptionAdminClient create(SubscriberStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of SubscriptionAdminClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final SubscriptionAdminClient of(SubscriptionAdminSettings settings)
       throws IOException {
     return new SubscriptionAdminClient(settings);
   }
@@ -164,7 +200,8 @@ public class SubscriptionAdminClient implements BackgroundResource {
    * Constructs an instance of SubscriptionAdminClient, using the given stub for making calls. This
    * is for advanced usage - prefer to use SubscriptionAdminSettings}.
    */
-  public static final SubscriptionAdminClient create(SubscriberStub stub) {
+  @BetaApi
+  public static final SubscriptionAdminClient of(SubscriberStub stub) {
     return new SubscriptionAdminClient(stub);
   }
 

@@ -84,10 +84,10 @@ import javax.annotation.Generated;
  * <code>
  * TraceServiceSettings traceServiceSettings =
  *     TraceServiceSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * TraceServiceClient traceServiceClient =
- *     TraceServiceClient.create(traceServiceSettings);
+ *     TraceServiceClient.of(traceServiceSettings);
  * </code>
  * </pre>
  *
@@ -97,14 +97,12 @@ import javax.annotation.Generated;
  * <code>
  * TraceServiceSettings traceServiceSettings =
  *     TraceServiceSettings.newBuilder()
- *         .setTransportProvider(TraceServiceSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(TraceServiceSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(TraceServiceSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * TraceServiceClient traceServiceClient =
- *     TraceServiceClient.create(traceServiceSettings);
+ *     TraceServiceClient.of(traceServiceSettings);
  * </code>
  * </pre>
  */
@@ -114,16 +112,53 @@ public class TraceServiceClient implements BackgroundResource {
   private final TraceServiceSettings settings;
   private final TraceServiceStub stub;
 
-  /** Constructs an instance of TraceServiceClient with default settings. */
+  /**
+   * Constructs an instance of TraceServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final TraceServiceClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of TraceServiceClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final TraceServiceClient of() throws IOException {
     return create(TraceServiceSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of TraceServiceClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(TraceServiceSettings) instead.
    */
+  @Deprecated
   public static final TraceServiceClient create(TraceServiceSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of TraceServiceClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use TraceServiceSettings}.
+   *
+   * @deprecated Use of(TraceServiceStub) instead.
+   */
+  @Deprecated
+  public static final TraceServiceClient create(TraceServiceStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of TraceServiceClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final TraceServiceClient of(TraceServiceSettings settings) throws IOException {
     return new TraceServiceClient(settings);
   }
 
@@ -131,7 +166,8 @@ public class TraceServiceClient implements BackgroundResource {
    * Constructs an instance of TraceServiceClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use TraceServiceSettings}.
    */
-  public static final TraceServiceClient create(TraceServiceStub stub) {
+  @BetaApi
+  public static final TraceServiceClient of(TraceServiceStub stub) {
     return new TraceServiceClient(stub);
   }
 

@@ -99,10 +99,10 @@ import javax.annotation.Generated;
  * <code>
  * SpannerSettings spannerSettings =
  *     SpannerSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * SpannerClient spannerClient =
- *     SpannerClient.create(spannerSettings);
+ *     SpannerClient.of(spannerSettings);
  * </code>
  * </pre>
  *
@@ -112,14 +112,12 @@ import javax.annotation.Generated;
  * <code>
  * SpannerSettings spannerSettings =
  *     SpannerSettings.newBuilder()
- *         .setTransportProvider(SpannerSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(SpannerSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(SpannerSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * SpannerClient spannerClient =
- *     SpannerClient.create(spannerSettings);
+ *     SpannerClient.of(spannerSettings);
  * </code>
  * </pre>
  */
@@ -129,16 +127,53 @@ public class SpannerClient implements BackgroundResource {
   private final SpannerSettings settings;
   private final SpannerStub stub;
 
-  /** Constructs an instance of SpannerClient with default settings. */
+  /**
+   * Constructs an instance of SpannerClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final SpannerClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of SpannerClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final SpannerClient of() throws IOException {
     return create(SpannerSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of SpannerClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(SpannerSettings) instead.
    */
+  @Deprecated
   public static final SpannerClient create(SpannerSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of SpannerClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use SpannerSettings}.
+   *
+   * @deprecated Use of(SpannerStub) instead.
+   */
+  @Deprecated
+  public static final SpannerClient create(SpannerStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of SpannerClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final SpannerClient of(SpannerSettings settings) throws IOException {
     return new SpannerClient(settings);
   }
 
@@ -146,7 +181,8 @@ public class SpannerClient implements BackgroundResource {
    * Constructs an instance of SpannerClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use SpannerSettings}.
    */
-  public static final SpannerClient create(SpannerStub stub) {
+  @BetaApi
+  public static final SpannerClient of(SpannerStub stub) {
     return new SpannerClient(stub);
   }
 

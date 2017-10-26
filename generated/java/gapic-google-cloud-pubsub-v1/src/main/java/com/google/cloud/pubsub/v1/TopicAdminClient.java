@@ -97,10 +97,10 @@ import javax.annotation.Generated;
  * <code>
  * TopicAdminSettings topicAdminSettings =
  *     TopicAdminSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * TopicAdminClient topicAdminClient =
- *     TopicAdminClient.create(topicAdminSettings);
+ *     TopicAdminClient.of(topicAdminSettings);
  * </code>
  * </pre>
  *
@@ -110,14 +110,12 @@ import javax.annotation.Generated;
  * <code>
  * TopicAdminSettings topicAdminSettings =
  *     TopicAdminSettings.newBuilder()
- *         .setTransportProvider(TopicAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(TopicAdminSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(TopicAdminSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * TopicAdminClient topicAdminClient =
- *     TopicAdminClient.create(topicAdminSettings);
+ *     TopicAdminClient.of(topicAdminSettings);
  * </code>
  * </pre>
  */
@@ -127,16 +125,53 @@ public class TopicAdminClient implements BackgroundResource {
   private final TopicAdminSettings settings;
   private final PublisherStub stub;
 
-  /** Constructs an instance of TopicAdminClient with default settings. */
+  /**
+   * Constructs an instance of TopicAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final TopicAdminClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of TopicAdminClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final TopicAdminClient of() throws IOException {
     return create(TopicAdminSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of TopicAdminClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(TopicAdminSettings) instead.
    */
+  @Deprecated
   public static final TopicAdminClient create(TopicAdminSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of TopicAdminClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use TopicAdminSettings}.
+   *
+   * @deprecated Use of(PublisherStub) instead.
+   */
+  @Deprecated
+  public static final TopicAdminClient create(PublisherStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of TopicAdminClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final TopicAdminClient of(TopicAdminSettings settings) throws IOException {
     return new TopicAdminClient(settings);
   }
 
@@ -144,7 +179,8 @@ public class TopicAdminClient implements BackgroundResource {
    * Constructs an instance of TopicAdminClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use TopicAdminSettings}.
    */
-  public static final TopicAdminClient create(PublisherStub stub) {
+  @BetaApi
+  public static final TopicAdminClient of(PublisherStub stub) {
     return new TopicAdminClient(stub);
   }
 

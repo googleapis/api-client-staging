@@ -86,7 +86,7 @@ public abstract class InstanceAdminStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: getInstanceCallable()");
   }
 
-  public OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata, Operation>
+  public OperationCallable<CreateInstanceRequest, Instance, CreateInstanceMetadata>
       createInstanceOperationCallable() {
     throw new UnsupportedOperationException("Not implemented: createInstanceOperationCallable()");
   }
@@ -95,7 +95,7 @@ public abstract class InstanceAdminStub implements BackgroundResource {
     throw new UnsupportedOperationException("Not implemented: createInstanceCallable()");
   }
 
-  public OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata, Operation>
+  public OperationCallable<UpdateInstanceRequest, Instance, UpdateInstanceMetadata>
       updateInstanceOperationCallable() {
     throw new UnsupportedOperationException("Not implemented: updateInstanceOperationCallable()");
   }

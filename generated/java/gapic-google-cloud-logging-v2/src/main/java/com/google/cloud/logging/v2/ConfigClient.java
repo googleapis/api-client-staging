@@ -94,10 +94,10 @@ import javax.annotation.Generated;
  * <code>
  * ConfigSettings configSettings =
  *     ConfigSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * ConfigClient configClient =
- *     ConfigClient.create(configSettings);
+ *     ConfigClient.of(configSettings);
  * </code>
  * </pre>
  *
@@ -107,14 +107,12 @@ import javax.annotation.Generated;
  * <code>
  * ConfigSettings configSettings =
  *     ConfigSettings.newBuilder()
- *         .setTransportProvider(ConfigSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(ConfigSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(ConfigSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * ConfigClient configClient =
- *     ConfigClient.create(configSettings);
+ *     ConfigClient.of(configSettings);
  * </code>
  * </pre>
  */
@@ -124,16 +122,53 @@ public class ConfigClient implements BackgroundResource {
   private final ConfigSettings settings;
   private final ConfigServiceV2Stub stub;
 
-  /** Constructs an instance of ConfigClient with default settings. */
+  /**
+   * Constructs an instance of ConfigClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final ConfigClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of ConfigClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final ConfigClient of() throws IOException {
     return create(ConfigSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of ConfigClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(ConfigSettings) instead.
    */
+  @Deprecated
   public static final ConfigClient create(ConfigSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of ConfigClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use ConfigSettings}.
+   *
+   * @deprecated Use of(ConfigServiceV2Stub) instead.
+   */
+  @Deprecated
+  public static final ConfigClient create(ConfigServiceV2Stub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of ConfigClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final ConfigClient of(ConfigSettings settings) throws IOException {
     return new ConfigClient(settings);
   }
 
@@ -141,7 +176,8 @@ public class ConfigClient implements BackgroundResource {
    * Constructs an instance of ConfigClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use ConfigSettings}.
    */
-  public static final ConfigClient create(ConfigServiceV2Stub stub) {
+  @BetaApi
+  public static final ConfigClient of(ConfigServiceV2Stub stub) {
     return new ConfigClient(stub);
   }
 

@@ -74,10 +74,10 @@ import javax.annotation.Generated;
  * <code>
  * ImageAnnotatorSettings imageAnnotatorSettings =
  *     ImageAnnotatorSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * ImageAnnotatorClient imageAnnotatorClient =
- *     ImageAnnotatorClient.create(imageAnnotatorSettings);
+ *     ImageAnnotatorClient.of(imageAnnotatorSettings);
  * </code>
  * </pre>
  *
@@ -87,14 +87,12 @@ import javax.annotation.Generated;
  * <code>
  * ImageAnnotatorSettings imageAnnotatorSettings =
  *     ImageAnnotatorSettings.newBuilder()
- *         .setTransportProvider(ImageAnnotatorSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(ImageAnnotatorSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(ImageAnnotatorSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * ImageAnnotatorClient imageAnnotatorClient =
- *     ImageAnnotatorClient.create(imageAnnotatorSettings);
+ *     ImageAnnotatorClient.of(imageAnnotatorSettings);
  * </code>
  * </pre>
  */
@@ -104,17 +102,54 @@ public class ImageAnnotatorClient implements BackgroundResource {
   private final ImageAnnotatorSettings settings;
   private final ImageAnnotatorStub stub;
 
-  /** Constructs an instance of ImageAnnotatorClient with default settings. */
+  /**
+   * Constructs an instance of ImageAnnotatorClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final ImageAnnotatorClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of ImageAnnotatorClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final ImageAnnotatorClient of() throws IOException {
     return create(ImageAnnotatorSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of ImageAnnotatorClient, using the given settings. The channels are
    * created based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(ImageAnnotatorSettings) instead.
    */
+  @Deprecated
   public static final ImageAnnotatorClient create(ImageAnnotatorSettings settings)
       throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of ImageAnnotatorClient, using the given stub for making calls. This is
+   * for advanced usage - prefer to use ImageAnnotatorSettings}.
+   *
+   * @deprecated Use of(ImageAnnotatorStub) instead.
+   */
+  @Deprecated
+  public static final ImageAnnotatorClient create(ImageAnnotatorStub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of ImageAnnotatorClient, using the given settings. The channels are
+   * created based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final ImageAnnotatorClient of(ImageAnnotatorSettings settings) throws IOException {
     return new ImageAnnotatorClient(settings);
   }
 
@@ -122,7 +157,8 @@ public class ImageAnnotatorClient implements BackgroundResource {
    * Constructs an instance of ImageAnnotatorClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use ImageAnnotatorSettings}.
    */
-  public static final ImageAnnotatorClient create(ImageAnnotatorStub stub) {
+  @BetaApi
+  public static final ImageAnnotatorClient of(ImageAnnotatorStub stub) {
     return new ImageAnnotatorClient(stub);
   }
 

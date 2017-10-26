@@ -83,10 +83,10 @@ import javax.annotation.Generated;
  * <code>
  * MetricsSettings metricsSettings =
  *     MetricsSettings.newBuilder()
- *         .setCredentialsProvider(FixedCredentialsProvider.create(myCredentials))
+ *         .setCredentialsProvider(FixedCredentialsProvider.of(myCredentials))
  *         .build();
  * MetricsClient metricsClient =
- *     MetricsClient.create(metricsSettings);
+ *     MetricsClient.of(metricsSettings);
  * </code>
  * </pre>
  *
@@ -96,14 +96,12 @@ import javax.annotation.Generated;
  * <code>
  * MetricsSettings metricsSettings =
  *     MetricsSettings.newBuilder()
- *         .setTransportProvider(MetricsSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(MetricsSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
+ *         .setTransportChannelProvider(MetricsSettings.defaultGrpcTransportProviderBuilder()
+ *             .setEndpoint(myEndpoint)
  *             .build())
  *         .build();
  * MetricsClient metricsClient =
- *     MetricsClient.create(metricsSettings);
+ *     MetricsClient.of(metricsSettings);
  * </code>
  * </pre>
  */
@@ -113,16 +111,53 @@ public class MetricsClient implements BackgroundResource {
   private final MetricsSettings settings;
   private final MetricsServiceV2Stub stub;
 
-  /** Constructs an instance of MetricsClient with default settings. */
+  /**
+   * Constructs an instance of MetricsClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
   public static final MetricsClient create() throws IOException {
+    return of();
+  }
+
+  /**
+   * Constructs an instance of MetricsClient with default settings.
+   *
+   * @deprecated Use of() instead.
+   */
+  @Deprecated
+  public static final MetricsClient of() throws IOException {
     return create(MetricsSettings.newBuilder().build());
   }
 
   /**
    * Constructs an instance of MetricsClient, using the given settings. The channels are created
    * based on the settings passed in, or defaults for any settings that are not set.
+   *
+   * @deprecated Use of(MetricsSettings) instead.
    */
+  @Deprecated
   public static final MetricsClient create(MetricsSettings settings) throws IOException {
+    return of(settings);
+  }
+
+  /**
+   * Constructs an instance of MetricsClient, using the given stub for making calls. This is for
+   * advanced usage - prefer to use MetricsSettings}.
+   *
+   * @deprecated Use of(MetricsServiceV2Stub) instead.
+   */
+  @Deprecated
+  public static final MetricsClient create(MetricsServiceV2Stub stub) {
+    return of(stub);
+  }
+
+  /**
+   * Constructs an instance of MetricsClient, using the given settings. The channels are created
+   * based on the settings passed in, or defaults for any settings that are not set.
+   */
+  public static final MetricsClient of(MetricsSettings settings) throws IOException {
     return new MetricsClient(settings);
   }
 
@@ -130,7 +165,8 @@ public class MetricsClient implements BackgroundResource {
    * Constructs an instance of MetricsClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use MetricsSettings}.
    */
-  public static final MetricsClient create(MetricsServiceV2Stub stub) {
+  @BetaApi
+  public static final MetricsClient of(MetricsServiceV2Stub stub) {
     return new MetricsClient(stub);
   }
 
