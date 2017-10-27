@@ -131,8 +131,7 @@ public  final class Session extends
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * The name of the session. This is always system-assigned; values provided
-   * when creating a session are ignored.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -151,8 +150,7 @@ public  final class Session extends
   }
   /**
    * <pre>
-   * The name of the session. This is always system-assigned; values provided
-   * when creating a session are ignored.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -756,8 +754,7 @@ public  final class Session extends
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -776,8 +773,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -797,8 +793,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -815,8 +810,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -829,8 +823,7 @@ public  final class Session extends
     }
     /**
      * <pre>
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * The name of the session.
      * </pre>
      *
      * <code>string name = 1;</code>

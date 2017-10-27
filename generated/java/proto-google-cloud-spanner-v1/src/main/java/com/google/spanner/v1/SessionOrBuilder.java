@@ -9,8 +9,7 @@ public interface SessionOrBuilder extends
 
   /**
    * <pre>
-   * The name of the session. This is always system-assigned; values provided
-   * when creating a session are ignored.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -18,8 +17,7 @@ public interface SessionOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * The name of the session. This is always system-assigned; values provided
-   * when creating a session are ignored.
+   * The name of the session.
    * </pre>
    *
    * <code>string name = 1;</code>
