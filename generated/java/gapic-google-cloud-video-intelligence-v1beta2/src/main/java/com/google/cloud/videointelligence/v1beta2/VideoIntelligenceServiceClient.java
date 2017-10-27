@@ -37,7 +37,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
+ * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.of()) {
  *   String inputUri = "gs://demomaker/cat.mp4";
  *   Feature featuresElement = Feature.LABEL_DETECTION;
  *   List&lt;Feature&gt; features = Arrays.asList(featuresElement);
@@ -71,7 +71,7 @@ import javax.annotation.Generated;
  * method to extract the individual identifiers contained within names that are returned.
  *
  * <p>This class can be customized by passing in a custom instance of
- * VideoIntelligenceServiceSettings to create(). For example:
+ * VideoIntelligenceServiceSettings to of(). For example:
  *
  * <p>To customize credentials:
  *
@@ -125,7 +125,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    */
   @Deprecated
   public static final VideoIntelligenceServiceClient of() throws IOException {
-    return create(VideoIntelligenceServiceSettings.newBuilder().build());
+    return of(VideoIntelligenceServiceSettings.newBuilder().build());
   }
 
   /**
@@ -216,7 +216,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
+   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.of()) {
    *   String inputUri = "gs://demomaker/cat.mp4";
    *   Feature featuresElement = Feature.LABEL_DETECTION;
    *   List&lt;Feature&gt; features = Arrays.asList(featuresElement);
@@ -253,7 +253,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
+   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.of()) {
    *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
    *   AnnotateVideoResponse response = videoIntelligenceServiceClient.annotateVideoAsync(request).get();
    * }
@@ -277,7 +277,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
+   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.of()) {
    *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
    *   OperationFuture&lt;Operation&gt; future = videoIntelligenceServiceClient.annotateVideoOperationCallable().futureCall(request);
    *   // Do something
@@ -300,7 +300,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
+   * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.of()) {
    *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
    *   ApiFuture&lt;Operation&gt; future = videoIntelligenceServiceClient.annotateVideoCallable().futureCall(request);
    *   // Do something

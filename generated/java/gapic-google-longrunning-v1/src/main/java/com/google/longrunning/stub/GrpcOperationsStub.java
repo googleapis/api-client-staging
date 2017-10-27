@@ -121,7 +121,7 @@ public class GrpcOperationsStub extends OperationsStub {
   }
 
   public static final GrpcOperationsStub of(OperationsSettings settings) throws IOException {
-    return new GrpcOperationsStub(settings, ClientContext.create(settings));
+    return new GrpcOperationsStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcOperationsStub of(ClientContext clientContext) throws IOException {

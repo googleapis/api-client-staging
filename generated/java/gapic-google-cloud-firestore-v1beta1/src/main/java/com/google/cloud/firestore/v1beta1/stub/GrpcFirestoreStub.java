@@ -214,7 +214,7 @@ public class GrpcFirestoreStub extends FirestoreStub {
   }
 
   public static final GrpcFirestoreStub of(FirestoreSettings settings) throws IOException {
-    return new GrpcFirestoreStub(settings, ClientContext.create(settings));
+    return new GrpcFirestoreStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcFirestoreStub of(ClientContext clientContext) throws IOException {

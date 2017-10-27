@@ -80,7 +80,7 @@ public class ErrorStatsServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = ErrorStatsServiceClient.create(settings);
+    client = ErrorStatsServiceClient.of(settings);
   }
 
   @After

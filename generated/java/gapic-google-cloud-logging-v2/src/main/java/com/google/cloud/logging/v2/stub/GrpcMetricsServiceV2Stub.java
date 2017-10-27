@@ -119,7 +119,7 @@ public class GrpcMetricsServiceV2Stub extends MetricsServiceV2Stub {
   }
 
   public static final GrpcMetricsServiceV2Stub of(MetricsSettings settings) throws IOException {
-    return new GrpcMetricsServiceV2Stub(settings, ClientContext.create(settings));
+    return new GrpcMetricsServiceV2Stub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcMetricsServiceV2Stub of(ClientContext clientContext) throws IOException {

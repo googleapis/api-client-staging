@@ -60,7 +60,7 @@ public class ImageAnnotatorClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = ImageAnnotatorClient.create(settings);
+    client = ImageAnnotatorClient.of(settings);
   }
 
   @After

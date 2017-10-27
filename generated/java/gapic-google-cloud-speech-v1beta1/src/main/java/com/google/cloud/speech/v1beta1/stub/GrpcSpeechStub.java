@@ -104,7 +104,7 @@ public class GrpcSpeechStub extends SpeechStub {
   }
 
   public static final GrpcSpeechStub of(SpeechSettings settings) throws IOException {
-    return new GrpcSpeechStub(settings, ClientContext.create(settings));
+    return new GrpcSpeechStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcSpeechStub of(ClientContext clientContext) throws IOException {
@@ -117,7 +117,7 @@ public class GrpcSpeechStub extends SpeechStub {
    */
   protected GrpcSpeechStub(SpeechSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.create(clientContext);
+    this.operationsStub = GrpcOperationsStub.of(clientContext);
 
     GrpcCallSettings<SyncRecognizeRequest, SyncRecognizeResponse> syncRecognizeTransportSettings =
         GrpcCallSettings.<SyncRecognizeRequest, SyncRecognizeResponse>newBuilder()

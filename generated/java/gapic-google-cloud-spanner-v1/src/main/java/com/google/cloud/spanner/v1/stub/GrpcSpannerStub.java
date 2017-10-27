@@ -174,7 +174,7 @@ public class GrpcSpannerStub extends SpannerStub {
   }
 
   public static final GrpcSpannerStub of(SpannerSettings settings) throws IOException {
-    return new GrpcSpannerStub(settings, ClientContext.create(settings));
+    return new GrpcSpannerStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcSpannerStub of(ClientContext clientContext) throws IOException {

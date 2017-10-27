@@ -58,7 +58,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+ * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
  *   TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
  *   Topic response = topicAdminClient.createTopic(name);
  * }
@@ -88,8 +88,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of TopicAdminSettings to
- * create(). For example:
+ * <p>This class can be customized by passing in a custom instance of TopicAdminSettings to of().
+ * For example:
  *
  * <p>To customize credentials:
  *
@@ -142,7 +142,7 @@ public class TopicAdminClient implements BackgroundResource {
    */
   @Deprecated
   public static final TopicAdminClient of() throws IOException {
-    return create(TopicAdminSettings.newBuilder().build());
+    return of(TopicAdminSettings.newBuilder().build());
   }
 
   /**
@@ -214,7 +214,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
    *   Topic response = topicAdminClient.createTopic(name);
    * }
@@ -240,7 +240,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
    *   Topic request = Topic.newBuilder()
    *     .setNameWithTopicName(name)
@@ -263,7 +263,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName name = TopicName.create("[PROJECT]", "[TOPIC]");
    *   Topic request = Topic.newBuilder()
    *     .setNameWithTopicName(name)
@@ -288,7 +288,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   Topic topic = Topic.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
    *   UpdateTopicRequest request = UpdateTopicRequest.newBuilder()
@@ -316,7 +316,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   Topic topic = Topic.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
    *   UpdateTopicRequest request = UpdateTopicRequest.newBuilder()
@@ -342,7 +342,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ByteString data = ByteString.copyFromUtf8("");
    *   PubsubMessage messagesElement = PubsubMessage.newBuilder()
@@ -375,7 +375,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ByteString data = ByteString.copyFromUtf8("");
    *   PubsubMessage messagesElement = PubsubMessage.newBuilder()
@@ -406,7 +406,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ByteString data = ByteString.copyFromUtf8("");
    *   PubsubMessage messagesElement = PubsubMessage.newBuilder()
@@ -434,7 +434,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   Topic response = topicAdminClient.getTopic(topic);
    * }
@@ -456,7 +456,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   GetTopicRequest request = GetTopicRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -479,7 +479,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   GetTopicRequest request = GetTopicRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -501,7 +501,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   ProjectName project = ProjectName.create("[PROJECT]");
    *   for (Topic element : topicAdminClient.listTopics(project).iterateAll()) {
    *     // doThingsWith(element);
@@ -526,7 +526,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListTopicsRequest request = ListTopicsRequest.newBuilder()
    *     .setProjectWithProjectName(project)
@@ -551,7 +551,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListTopicsRequest request = ListTopicsRequest.newBuilder()
    *     .setProjectWithProjectName(project)
@@ -575,7 +575,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   ProjectName project = ProjectName.create("[PROJECT]");
    *   ListTopicsRequest request = ListTopicsRequest.newBuilder()
    *     .setProjectWithProjectName(project)
@@ -606,7 +606,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   for (SubscriptionName element : topicAdminClient.listTopicSubscriptions(topic).iterateAllAsSubscriptionName()) {
    *     // doThingsWith(element);
@@ -631,7 +631,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ListTopicSubscriptionsRequest request = ListTopicSubscriptionsRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -657,7 +657,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ListTopicSubscriptionsRequest request = ListTopicSubscriptionsRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -682,7 +682,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   ListTopicSubscriptionsRequest request = ListTopicSubscriptionsRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -717,7 +717,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   topicAdminClient.deleteTopic(topic);
    * }
@@ -743,7 +743,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   DeleteTopicRequest request = DeleteTopicRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -769,7 +769,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   TopicName topic = TopicName.create("[PROJECT]", "[TOPIC]");
    *   DeleteTopicRequest request = DeleteTopicRequest.newBuilder()
    *     .setTopicWithTopicName(topic)
@@ -791,7 +791,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   Policy policy = Policy.newBuilder().build();
    *   Policy response = topicAdminClient.setIamPolicy(formattedResource, policy);
@@ -820,7 +820,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   Policy policy = Policy.newBuilder().build();
    *   SetIamPolicyRequest request = SetIamPolicyRequest.newBuilder()
@@ -845,7 +845,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   Policy policy = Policy.newBuilder().build();
    *   SetIamPolicyRequest request = SetIamPolicyRequest.newBuilder()
@@ -870,7 +870,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   Policy response = topicAdminClient.getIamPolicy(formattedResource);
    * }
@@ -895,7 +895,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
@@ -919,7 +919,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
@@ -942,7 +942,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsResponse response = topicAdminClient.testIamPermissions(formattedResource, permissions);
@@ -976,7 +976,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsRequest request = TestIamPermissionsRequest.newBuilder()
@@ -1002,7 +1002,7 @@ public class TopicAdminClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TopicAdminClient topicAdminClient = TopicAdminClient.create()) {
+   * try (TopicAdminClient topicAdminClient = TopicAdminClient.of()) {
    *   String formattedResource = TopicName.create("[PROJECT]", "[TOPIC]").toString();
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsRequest request = TestIamPermissionsRequest.newBuilder()

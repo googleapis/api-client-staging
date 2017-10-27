@@ -173,7 +173,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
   }
 
   public static final GrpcDatabaseAdminStub of(DatabaseAdminSettings settings) throws IOException {
-    return new GrpcDatabaseAdminStub(settings, ClientContext.create(settings));
+    return new GrpcDatabaseAdminStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcDatabaseAdminStub of(ClientContext clientContext) throws IOException {
@@ -187,7 +187,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
    */
   protected GrpcDatabaseAdminStub(DatabaseAdminSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.create(clientContext);
+    this.operationsStub = GrpcOperationsStub.of(clientContext);
 
     GrpcCallSettings<ListDatabasesRequest, ListDatabasesResponse> listDatabasesTransportSettings =
         GrpcCallSettings.<ListDatabasesRequest, ListDatabasesResponse>newBuilder()

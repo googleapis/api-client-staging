@@ -268,7 +268,7 @@ public class GrpcSubscriberStub extends SubscriberStub {
   }
 
   public static final GrpcSubscriberStub of(SubscriptionAdminSettings settings) throws IOException {
-    return new GrpcSubscriberStub(settings, ClientContext.create(settings));
+    return new GrpcSubscriberStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcSubscriberStub of(ClientContext clientContext) throws IOException {

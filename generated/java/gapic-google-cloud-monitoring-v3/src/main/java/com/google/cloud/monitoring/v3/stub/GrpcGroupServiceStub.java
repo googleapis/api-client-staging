@@ -126,7 +126,7 @@ public class GrpcGroupServiceStub extends GroupServiceStub {
   }
 
   public static final GrpcGroupServiceStub of(GroupServiceSettings settings) throws IOException {
-    return new GrpcGroupServiceStub(settings, ClientContext.create(settings));
+    return new GrpcGroupServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcGroupServiceStub of(ClientContext clientContext) throws IOException {

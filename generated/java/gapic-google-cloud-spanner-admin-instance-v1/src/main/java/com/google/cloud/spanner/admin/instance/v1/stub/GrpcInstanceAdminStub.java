@@ -192,7 +192,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
   }
 
   public static final GrpcInstanceAdminStub of(InstanceAdminSettings settings) throws IOException {
-    return new GrpcInstanceAdminStub(settings, ClientContext.create(settings));
+    return new GrpcInstanceAdminStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcInstanceAdminStub of(ClientContext clientContext) throws IOException {
@@ -206,7 +206,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
    */
   protected GrpcInstanceAdminStub(InstanceAdminSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.create(clientContext);
+    this.operationsStub = GrpcOperationsStub.of(clientContext);
 
     GrpcCallSettings<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
         listInstanceConfigsTransportSettings =

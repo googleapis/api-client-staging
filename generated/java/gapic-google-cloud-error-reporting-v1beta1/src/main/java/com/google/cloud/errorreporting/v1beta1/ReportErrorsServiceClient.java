@@ -36,7 +36,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.create()) {
+ * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.of()) {
  *   ProjectName projectName = ProjectName.create("[PROJECT]");
  *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
  *   ReportErrorEventResponse response = reportErrorsServiceClient.reportErrorEvent(projectName, event);
@@ -69,7 +69,7 @@ import javax.annotation.Generated;
  * method to extract the individual identifiers contained within names that are returned.
  *
  * <p>This class can be customized by passing in a custom instance of ReportErrorsServiceSettings to
- * create(). For example:
+ * of(). For example:
  *
  * <p>To customize credentials:
  *
@@ -122,7 +122,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    */
   @Deprecated
   public static final ReportErrorsServiceClient of() throws IOException {
-    return create(ReportErrorsServiceSettings.newBuilder().build());
+    return of(ReportErrorsServiceSettings.newBuilder().build());
   }
 
   /**
@@ -204,7 +204,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.create()) {
+   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.of()) {
    *   ProjectName projectName = ProjectName.create("[PROJECT]");
    *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
    *   ReportErrorEventResponse response = reportErrorsServiceClient.reportErrorEvent(projectName, event);
@@ -242,7 +242,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.create()) {
+   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.of()) {
    *   ProjectName projectName = ProjectName.create("[PROJECT]");
    *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
    *   ReportErrorEventRequest request = ReportErrorEventRequest.newBuilder()
@@ -274,7 +274,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.create()) {
+   * try (ReportErrorsServiceClient reportErrorsServiceClient = ReportErrorsServiceClient.of()) {
    *   ProjectName projectName = ProjectName.create("[PROJECT]");
    *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
    *   ReportErrorEventRequest request = ReportErrorEventRequest.newBuilder()

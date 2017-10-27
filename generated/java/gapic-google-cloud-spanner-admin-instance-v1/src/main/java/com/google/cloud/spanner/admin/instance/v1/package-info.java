@@ -43,7 +43,7 @@
  *
  * <pre>
  * <code>
- * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
+ * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.of()) {
  *   InstanceConfigName name = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
  *   InstanceConfig response = instanceAdminClient.getInstanceConfig(name);
  * }

@@ -175,7 +175,7 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
   }
 
   public static final GrpcDlpServiceStub of(DlpServiceSettings settings) throws IOException {
-    return new GrpcDlpServiceStub(settings, ClientContext.create(settings));
+    return new GrpcDlpServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcDlpServiceStub of(ClientContext clientContext) throws IOException {
@@ -189,7 +189,7 @@ public class GrpcDlpServiceStub extends DlpServiceStub {
    */
   protected GrpcDlpServiceStub(DlpServiceSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.create(clientContext);
+    this.operationsStub = GrpcOperationsStub.of(clientContext);
 
     GrpcCallSettings<DeidentifyContentRequest, DeidentifyContentResponse>
         deidentifyContentTransportSettings =

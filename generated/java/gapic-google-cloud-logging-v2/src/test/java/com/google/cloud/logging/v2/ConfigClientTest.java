@@ -93,7 +93,7 @@ public class ConfigClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = ConfigClient.create(settings);
+    client = ConfigClient.of(settings);
   }
 
   @After

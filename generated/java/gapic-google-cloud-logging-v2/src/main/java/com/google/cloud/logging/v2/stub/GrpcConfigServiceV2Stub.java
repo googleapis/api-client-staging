@@ -169,7 +169,7 @@ public class GrpcConfigServiceV2Stub extends ConfigServiceV2Stub {
   }
 
   public static final GrpcConfigServiceV2Stub of(ConfigSettings settings) throws IOException {
-    return new GrpcConfigServiceV2Stub(settings, ClientContext.create(settings));
+    return new GrpcConfigServiceV2Stub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcConfigServiceV2Stub of(ClientContext clientContext) throws IOException {

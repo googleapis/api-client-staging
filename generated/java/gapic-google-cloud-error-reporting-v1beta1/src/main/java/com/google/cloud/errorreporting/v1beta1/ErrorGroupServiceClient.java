@@ -36,7 +36,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+ * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
  *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
  *   ErrorGroup response = errorGroupServiceClient.getGroup(groupName);
  * }
@@ -68,7 +68,7 @@ import javax.annotation.Generated;
  * method to extract the individual identifiers contained within names that are returned.
  *
  * <p>This class can be customized by passing in a custom instance of ErrorGroupServiceSettings to
- * create(). For example:
+ * of(). For example:
  *
  * <p>To customize credentials:
  *
@@ -121,7 +121,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    */
   @Deprecated
   public static final ErrorGroupServiceClient of() throws IOException {
-    return create(ErrorGroupServiceSettings.newBuilder().build());
+    return of(ErrorGroupServiceSettings.newBuilder().build());
   }
 
   /**
@@ -196,7 +196,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
    *   ErrorGroup response = errorGroupServiceClient.getGroup(groupName);
    * }
@@ -224,7 +224,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
    *     .setGroupNameWithGroupName(groupName)
@@ -247,7 +247,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
    *     .setGroupNameWithGroupName(groupName)
@@ -269,7 +269,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   ErrorGroup group = ErrorGroup.newBuilder().build();
    *   ErrorGroup response = errorGroupServiceClient.updateGroup(group);
    * }
@@ -291,7 +291,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   ErrorGroup group = ErrorGroup.newBuilder().build();
    *   UpdateGroupRequest request = UpdateGroupRequest.newBuilder()
    *     .setGroup(group)
@@ -314,7 +314,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
+   * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.of()) {
    *   ErrorGroup group = ErrorGroup.newBuilder().build();
    *   UpdateGroupRequest request = UpdateGroupRequest.newBuilder()
    *     .setGroup(group)

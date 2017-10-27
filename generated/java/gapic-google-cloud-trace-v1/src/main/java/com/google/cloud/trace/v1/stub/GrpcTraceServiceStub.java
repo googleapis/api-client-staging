@@ -91,7 +91,7 @@ public class GrpcTraceServiceStub extends TraceServiceStub {
   }
 
   public static final GrpcTraceServiceStub of(TraceServiceSettings settings) throws IOException {
-    return new GrpcTraceServiceStub(settings, ClientContext.create(settings));
+    return new GrpcTraceServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcTraceServiceStub of(ClientContext clientContext) throws IOException {

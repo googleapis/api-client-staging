@@ -60,7 +60,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (SpannerClient spannerClient = SpannerClient.create()) {
+ * try (SpannerClient spannerClient = SpannerClient.of()) {
  *   DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *   Session response = spannerClient.createSession(database);
  * }
@@ -90,8 +90,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of SpannerSettings to create().
- * For example:
+ * <p>This class can be customized by passing in a custom instance of SpannerSettings to of(). For
+ * example:
  *
  * <p>To customize credentials:
  *
@@ -144,7 +144,7 @@ public class SpannerClient implements BackgroundResource {
    */
   @Deprecated
   public static final SpannerClient of() throws IOException {
-    return create(SpannerSettings.newBuilder().build());
+    return of(SpannerSettings.newBuilder().build());
   }
 
   /**
@@ -230,7 +230,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   Session response = spannerClient.createSession(database);
    * }
@@ -267,7 +267,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   CreateSessionRequest request = CreateSessionRequest.newBuilder()
    *     .setDatabaseWithDatabaseName(database)
@@ -304,7 +304,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
    *   CreateSessionRequest request = CreateSessionRequest.newBuilder()
    *     .setDatabaseWithDatabaseName(database)
@@ -327,7 +327,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   Session response = spannerClient.getSession(name);
    * }
@@ -350,7 +350,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   GetSessionRequest request = GetSessionRequest.newBuilder()
    *     .setNameWithSessionName(name)
@@ -374,7 +374,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   GetSessionRequest request = GetSessionRequest.newBuilder()
    *     .setNameWithSessionName(name)
@@ -396,7 +396,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
    *   for (Session element : spannerClient.listSessions(formattedDatabase).iterateAll()) {
    *     // doThingsWith(element);
@@ -419,7 +419,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
@@ -444,7 +444,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
@@ -469,7 +469,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   String formattedDatabase = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
    *   ListSessionsRequest request = ListSessionsRequest.newBuilder()
    *     .setDatabase(formattedDatabase)
@@ -500,7 +500,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   spannerClient.deleteSession(name);
    * }
@@ -523,7 +523,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   DeleteSessionRequest request = DeleteSessionRequest.newBuilder()
    *     .setNameWithSessionName(name)
@@ -546,7 +546,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   DeleteSessionRequest request = DeleteSessionRequest.newBuilder()
    *     .setNameWithSessionName(name)
@@ -577,7 +577,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String sql = "";
    *   ExecuteSqlRequest request = ExecuteSqlRequest.newBuilder()
@@ -611,7 +611,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String sql = "";
    *   ExecuteSqlRequest request = ExecuteSqlRequest.newBuilder()
@@ -638,7 +638,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   ApiStreamObserver&lt;PartialResultSet&gt; responseObserver =
    *       new ApiStreamObserver&lt;PartialResultSet&gt;() {
    *         {@literal @}Override
@@ -690,7 +690,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String table = "";
    *   List&lt;String&gt; columns = new ArrayList&lt;&gt;();
@@ -729,7 +729,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   String table = "";
    *   List&lt;String&gt; columns = new ArrayList&lt;&gt;();
@@ -760,7 +760,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   ApiStreamObserver&lt;PartialResultSet&gt; responseObserver =
    *       new ApiStreamObserver&lt;PartialResultSet&gt;() {
    *         {@literal @}Override
@@ -807,7 +807,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions options = TransactionOptions.newBuilder().build();
    *   Transaction response = spannerClient.beginTransaction(session, options);
@@ -837,7 +837,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions options = TransactionOptions.newBuilder().build();
    *   BeginTransactionRequest request = BeginTransactionRequest.newBuilder()
@@ -864,7 +864,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions options = TransactionOptions.newBuilder().build();
    *   BeginTransactionRequest request = BeginTransactionRequest.newBuilder()
@@ -894,7 +894,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
@@ -933,7 +933,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   TransactionOptions singleUseTransaction = TransactionOptions.newBuilder().build();
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
@@ -978,7 +978,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   CommitRequest request = CommitRequest.newBuilder()
@@ -1009,7 +1009,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   CommitRequest request = CommitRequest.newBuilder()
@@ -1039,7 +1039,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   spannerClient.rollback(session, transactionId);
@@ -1073,7 +1073,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   RollbackRequest request = RollbackRequest.newBuilder()
@@ -1104,7 +1104,7 @@ public class SpannerClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpannerClient spannerClient = SpannerClient.create()) {
+   * try (SpannerClient spannerClient = SpannerClient.of()) {
    *   SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
    *   ByteString transactionId = ByteString.copyFromUtf8("");
    *   RollbackRequest request = RollbackRequest.newBuilder()

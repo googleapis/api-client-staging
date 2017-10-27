@@ -67,7 +67,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+ * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
  *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
  *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
  *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
@@ -99,8 +99,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of DlpServiceSettings to
- * create(). For example:
+ * <p>This class can be customized by passing in a custom instance of DlpServiceSettings to of().
+ * For example:
  *
  * <p>To customize credentials:
  *
@@ -154,7 +154,7 @@ public class DlpServiceClient implements BackgroundResource {
    */
   @Deprecated
   public static final DlpServiceClient of() throws IOException {
-    return create(DlpServiceSettings.newBuilder().build());
+    return of(DlpServiceSettings.newBuilder().build());
   }
 
   /**
@@ -237,7 +237,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
    *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
    *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
@@ -271,7 +271,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
    *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
    *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
@@ -299,7 +299,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
    *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
    *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
@@ -327,7 +327,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
    *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
    *   RiskAnalysisOperationResult response = dlpServiceClient.analyzeDataSourceRiskAsync(privacyMetric, sourceTable).get();
@@ -357,7 +357,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
    *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
    *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
@@ -384,7 +384,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
    *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
    *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
@@ -411,7 +411,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
    *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
    *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
@@ -437,7 +437,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -481,7 +481,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -520,7 +520,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -559,7 +559,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -617,7 +617,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -667,7 +667,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -715,7 +715,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -766,7 +766,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -810,7 +810,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -854,7 +854,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String name = "EMAIL_ADDRESS";
    *   InfoType infoTypesElement = InfoType.newBuilder()
    *     .setName(name)
@@ -897,7 +897,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   ResultName name = ResultName.create("[RESULT]");
    *   ListInspectFindingsResponse response = dlpServiceClient.listInspectFindings(name);
    * }
@@ -921,7 +921,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   ResultName name = ResultName.create("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
    *     .setNameWithResultName(name)
@@ -944,7 +944,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   ResultName name = ResultName.create("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
    *     .setNameWithResultName(name)
@@ -967,7 +967,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String category = "PII";
    *   String languageCode = "en";
    *   ListInfoTypesResponse response = dlpServiceClient.listInfoTypes(category, languageCode);
@@ -996,7 +996,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String category = "PII";
    *   String languageCode = "en";
    *   ListInfoTypesRequest request = ListInfoTypesRequest.newBuilder()
@@ -1021,7 +1021,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String category = "PII";
    *   String languageCode = "en";
    *   ListInfoTypesRequest request = ListInfoTypesRequest.newBuilder()
@@ -1045,7 +1045,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String languageCode = "en";
    *   ListRootCategoriesResponse response = dlpServiceClient.listRootCategories(languageCode);
    * }
@@ -1069,7 +1069,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String languageCode = "en";
    *   ListRootCategoriesRequest request = ListRootCategoriesRequest.newBuilder()
    *     .setLanguageCode(languageCode)
@@ -1092,7 +1092,7 @@ public class DlpServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.of()) {
    *   String languageCode = "en";
    *   ListRootCategoriesRequest request = ListRootCategoriesRequest.newBuilder()
    *     .setLanguageCode(languageCode)

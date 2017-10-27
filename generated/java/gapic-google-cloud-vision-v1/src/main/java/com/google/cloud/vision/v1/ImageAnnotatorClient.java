@@ -35,7 +35,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.create()) {
+ * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.of()) {
  *   List&lt;AnnotateImageRequest&gt; requests = new ArrayList&lt;&gt;();
  *   BatchAnnotateImagesResponse response = imageAnnotatorClient.batchAnnotateImages(requests);
  * }
@@ -66,7 +66,7 @@ import javax.annotation.Generated;
  * method to extract the individual identifiers contained within names that are returned.
  *
  * <p>This class can be customized by passing in a custom instance of ImageAnnotatorSettings to
- * create(). For example:
+ * of(). For example:
  *
  * <p>To customize credentials:
  *
@@ -119,7 +119,7 @@ public class ImageAnnotatorClient implements BackgroundResource {
    */
   @Deprecated
   public static final ImageAnnotatorClient of() throws IOException {
-    return create(ImageAnnotatorSettings.newBuilder().build());
+    return of(ImageAnnotatorSettings.newBuilder().build());
   }
 
   /**
@@ -193,7 +193,7 @@ public class ImageAnnotatorClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.create()) {
+   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.of()) {
    *   List&lt;AnnotateImageRequest&gt; requests = new ArrayList&lt;&gt;();
    *   BatchAnnotateImagesResponse response = imageAnnotatorClient.batchAnnotateImages(requests);
    * }
@@ -217,7 +217,7 @@ public class ImageAnnotatorClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.create()) {
+   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.of()) {
    *   List&lt;AnnotateImageRequest&gt; requests = new ArrayList&lt;&gt;();
    *   BatchAnnotateImagesRequest request = BatchAnnotateImagesRequest.newBuilder()
    *     .addAllRequests(requests)
@@ -241,7 +241,7 @@ public class ImageAnnotatorClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.create()) {
+   * try (ImageAnnotatorClient imageAnnotatorClient = ImageAnnotatorClient.of()) {
    *   List&lt;AnnotateImageRequest&gt; requests = new ArrayList&lt;&gt;();
    *   BatchAnnotateImagesRequest request = BatchAnnotateImagesRequest.newBuilder()
    *     .addAllRequests(requests)

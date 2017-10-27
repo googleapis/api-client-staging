@@ -30,7 +30,7 @@
  *
  * <pre>
  * <code>
- * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.create()) {
+ * try (DatabaseAdminClient databaseAdminClient = DatabaseAdminClient.of()) {
  *   DatabaseName name = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *   Database response = databaseAdminClient.getDatabase(name);
  * }

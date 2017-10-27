@@ -136,7 +136,7 @@ public class GrpcLoggingServiceV2Stub extends LoggingServiceV2Stub {
   }
 
   public static final GrpcLoggingServiceV2Stub of(LoggingSettings settings) throws IOException {
-    return new GrpcLoggingServiceV2Stub(settings, ClientContext.create(settings));
+    return new GrpcLoggingServiceV2Stub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcLoggingServiceV2Stub of(ClientContext clientContext) throws IOException {

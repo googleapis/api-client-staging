@@ -69,7 +69,7 @@ public class TraceServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = TraceServiceClient.create(settings);
+    client = TraceServiceClient.of(settings);
   }
 
   @After

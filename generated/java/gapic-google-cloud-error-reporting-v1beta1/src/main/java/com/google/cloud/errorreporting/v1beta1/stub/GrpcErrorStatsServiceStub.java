@@ -104,7 +104,7 @@ public class GrpcErrorStatsServiceStub extends ErrorStatsServiceStub {
 
   public static final GrpcErrorStatsServiceStub of(ErrorStatsServiceSettings settings)
       throws IOException {
-    return new GrpcErrorStatsServiceStub(settings, ClientContext.create(settings));
+    return new GrpcErrorStatsServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcErrorStatsServiceStub of(ClientContext clientContext) throws IOException {

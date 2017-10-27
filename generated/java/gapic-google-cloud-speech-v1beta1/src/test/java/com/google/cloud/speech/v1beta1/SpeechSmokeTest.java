@@ -36,7 +36,7 @@ public class SpeechSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (SpeechClient client = SpeechClient.create()) {
+    try (SpeechClient client = SpeechClient.of()) {
       String languageCode = "en-US";
       int sampleRate = 44100;
       RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;

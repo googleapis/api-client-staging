@@ -88,7 +88,7 @@ public class MetricServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = MetricServiceClient.create(settings);
+    client = MetricServiceClient.of(settings);
   }
 
   @After

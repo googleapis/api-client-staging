@@ -70,7 +70,7 @@ public class ReportErrorsServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = ReportErrorsServiceClient.create(settings);
+    client = ReportErrorsServiceClient.of(settings);
   }
 
   @After

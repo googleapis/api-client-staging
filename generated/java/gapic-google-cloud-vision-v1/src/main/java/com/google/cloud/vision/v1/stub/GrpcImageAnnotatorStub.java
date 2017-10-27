@@ -73,7 +73,7 @@ public class GrpcImageAnnotatorStub extends ImageAnnotatorStub {
 
   public static final GrpcImageAnnotatorStub of(ImageAnnotatorSettings settings)
       throws IOException {
-    return new GrpcImageAnnotatorStub(settings, ClientContext.create(settings));
+    return new GrpcImageAnnotatorStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcImageAnnotatorStub of(ClientContext clientContext) throws IOException {

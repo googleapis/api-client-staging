@@ -87,7 +87,7 @@ public class LoggingClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = LoggingClient.create(settings);
+    client = LoggingClient.of(settings);
   }
 
   @After

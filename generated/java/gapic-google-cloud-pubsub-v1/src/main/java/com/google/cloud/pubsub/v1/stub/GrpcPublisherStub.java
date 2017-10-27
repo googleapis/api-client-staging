@@ -169,7 +169,7 @@ public class GrpcPublisherStub extends PublisherStub {
   }
 
   public static final GrpcPublisherStub of(TopicAdminSettings settings) throws IOException {
-    return new GrpcPublisherStub(settings, ClientContext.create(settings));
+    return new GrpcPublisherStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcPublisherStub of(ClientContext clientContext) throws IOException {

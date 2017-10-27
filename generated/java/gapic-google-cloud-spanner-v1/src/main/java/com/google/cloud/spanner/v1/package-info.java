@@ -30,7 +30,7 @@
  *
  * <pre>
  * <code>
- * try (SpannerClient spannerClient = SpannerClient.create()) {
+ * try (SpannerClient spannerClient = SpannerClient.of()) {
  *   DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *   Session response = spannerClient.createSession(database);
  * }

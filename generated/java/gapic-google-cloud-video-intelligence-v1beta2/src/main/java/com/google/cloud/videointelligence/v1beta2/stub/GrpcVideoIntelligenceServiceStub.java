@@ -80,7 +80,7 @@ public class GrpcVideoIntelligenceServiceStub extends VideoIntelligenceServiceSt
 
   public static final GrpcVideoIntelligenceServiceStub of(VideoIntelligenceServiceSettings settings)
       throws IOException {
-    return new GrpcVideoIntelligenceServiceStub(settings, ClientContext.create(settings));
+    return new GrpcVideoIntelligenceServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcVideoIntelligenceServiceStub of(ClientContext clientContext)
@@ -96,7 +96,7 @@ public class GrpcVideoIntelligenceServiceStub extends VideoIntelligenceServiceSt
    */
   protected GrpcVideoIntelligenceServiceStub(
       VideoIntelligenceServiceSettings settings, ClientContext clientContext) throws IOException {
-    this.operationsStub = GrpcOperationsStub.create(clientContext);
+    this.operationsStub = GrpcOperationsStub.of(clientContext);
 
     GrpcCallSettings<AnnotateVideoRequest, Operation> annotateVideoTransportSettings =
         GrpcCallSettings.<AnnotateVideoRequest, Operation>newBuilder()

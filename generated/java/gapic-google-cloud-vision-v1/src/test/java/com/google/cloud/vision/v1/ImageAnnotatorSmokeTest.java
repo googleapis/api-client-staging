@@ -38,7 +38,7 @@ public class ImageAnnotatorSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
+    try (ImageAnnotatorClient client = ImageAnnotatorClient.of()) {
       String gcsImageUri = "gs://gapic-toolkit/President_Barack_Obama.jpg";
       ImageSource source = ImageSource.newBuilder().setGcsImageUri(gcsImageUri).build();
       Image image = Image.newBuilder().setSource(source).build();

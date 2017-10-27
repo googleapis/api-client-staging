@@ -37,7 +37,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (SpeechClient speechClient = SpeechClient.create()) {
+ * try (SpeechClient speechClient = SpeechClient.of()) {
  *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
  *   int sampleRateHertz = 44100;
  *   String languageCode = "en-US";
@@ -78,8 +78,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of SpeechSettings to create().
- * For example:
+ * <p>This class can be customized by passing in a custom instance of SpeechSettings to of(). For
+ * example:
  *
  * <p>To customize credentials:
  *
@@ -133,7 +133,7 @@ public class SpeechClient implements BackgroundResource {
    */
   @Deprecated
   public static final SpeechClient of() throws IOException {
-    return create(SpeechSettings.newBuilder().build());
+    return of(SpeechSettings.newBuilder().build());
   }
 
   /**
@@ -216,7 +216,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -253,7 +253,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -289,7 +289,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -325,7 +325,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -364,7 +364,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -402,7 +402,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -440,7 +440,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   RecognitionConfig.AudioEncoding encoding = RecognitionConfig.AudioEncoding.FLAC;
    *   int sampleRateHertz = 44100;
    *   String languageCode = "en-US";
@@ -476,7 +476,7 @@ public class SpeechClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (SpeechClient speechClient = SpeechClient.create()) {
+   * try (SpeechClient speechClient = SpeechClient.of()) {
    *   ApiStreamObserver&lt;StreamingRecognizeResponse&gt; responseObserver =
    *       new ApiStreamObserver&lt;StreamingRecognizeResponse&gt;() {
    *         {@literal @}Override

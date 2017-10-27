@@ -60,7 +60,7 @@ public class LanguageServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = LanguageServiceClient.create(settings);
+    client = LanguageServiceClient.of(settings);
   }
 
   @After

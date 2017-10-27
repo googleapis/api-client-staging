@@ -70,7 +70,7 @@ public class ErrorGroupServiceClientTest {
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
             .setCredentialsProvider(new NoCredentialsProvider())
             .build();
-    client = ErrorGroupServiceClient.create(settings);
+    client = ErrorGroupServiceClient.of(settings);
   }
 
   @After

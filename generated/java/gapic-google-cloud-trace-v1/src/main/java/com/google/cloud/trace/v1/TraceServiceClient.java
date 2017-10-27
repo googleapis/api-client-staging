@@ -44,7 +44,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+ * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
  *   String projectId = "";
  *   Traces traces = Traces.newBuilder().build();
  *   traceServiceClient.patchTraces(projectId, traces);
@@ -75,8 +75,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of TraceServiceSettings to
- * create(). For example:
+ * <p>This class can be customized by passing in a custom instance of TraceServiceSettings to of().
+ * For example:
  *
  * <p>To customize credentials:
  *
@@ -129,7 +129,7 @@ public class TraceServiceClient implements BackgroundResource {
    */
   @Deprecated
   public static final TraceServiceClient of() throws IOException {
-    return create(TraceServiceSettings.newBuilder().build());
+    return of(TraceServiceSettings.newBuilder().build());
   }
 
   /**
@@ -205,7 +205,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   Traces traces = Traces.newBuilder().build();
    *   traceServiceClient.patchTraces(projectId, traces);
@@ -233,7 +233,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   Traces traces = Traces.newBuilder().build();
    *   PatchTracesRequest request = PatchTracesRequest.newBuilder()
@@ -261,7 +261,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   Traces traces = Traces.newBuilder().build();
    *   PatchTracesRequest request = PatchTracesRequest.newBuilder()
@@ -285,7 +285,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   String traceId = "";
    *   Trace response = traceServiceClient.getTrace(projectId, traceId);
@@ -310,7 +310,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   String traceId = "";
    *   GetTraceRequest request = GetTraceRequest.newBuilder()
@@ -335,7 +335,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   String traceId = "";
    *   GetTraceRequest request = GetTraceRequest.newBuilder()
@@ -359,7 +359,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   for (Trace element : traceServiceClient.listTraces(projectId).iterateAll()) {
    *     // doThingsWith(element);
@@ -382,7 +382,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   ListTracesRequest request = ListTracesRequest.newBuilder()
    *     .setProjectId(projectId)
@@ -407,7 +407,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   ListTracesRequest request = ListTracesRequest.newBuilder()
    *     .setProjectId(projectId)
@@ -431,7 +431,7 @@ public class TraceServiceClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (TraceServiceClient traceServiceClient = TraceServiceClient.create()) {
+   * try (TraceServiceClient traceServiceClient = TraceServiceClient.of()) {
    *   String projectId = "";
    *   ListTracesRequest request = ListTracesRequest.newBuilder()
    *     .setProjectId(projectId)

@@ -74,7 +74,7 @@ public class GrpcReportErrorsServiceStub extends ReportErrorsServiceStub {
 
   public static final GrpcReportErrorsServiceStub of(ReportErrorsServiceSettings settings)
       throws IOException {
-    return new GrpcReportErrorsServiceStub(settings, ClientContext.create(settings));
+    return new GrpcReportErrorsServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcReportErrorsServiceStub of(ClientContext clientContext)

@@ -141,7 +141,7 @@ public class GrpcLanguageServiceStub extends LanguageServiceStub {
 
   public static final GrpcLanguageServiceStub of(LanguageServiceSettings settings)
       throws IOException {
-    return new GrpcLanguageServiceStub(settings, ClientContext.create(settings));
+    return new GrpcLanguageServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcLanguageServiceStub of(ClientContext clientContext) throws IOException {

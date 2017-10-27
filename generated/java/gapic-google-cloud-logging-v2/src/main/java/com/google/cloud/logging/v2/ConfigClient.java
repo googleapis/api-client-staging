@@ -55,7 +55,7 @@ import javax.annotation.Generated;
  *
  * <pre>
  * <code>
- * try (ConfigClient configClient = ConfigClient.create()) {
+ * try (ConfigClient configClient = ConfigClient.of()) {
  *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
  *   LogSink response = configClient.getSink(sinkName);
  * }
@@ -85,8 +85,8 @@ import javax.annotation.Generated;
  * these names, this class includes a format method for each type of name, and additionally a parse
  * method to extract the individual identifiers contained within names that are returned.
  *
- * <p>This class can be customized by passing in a custom instance of ConfigSettings to create().
- * For example:
+ * <p>This class can be customized by passing in a custom instance of ConfigSettings to of(). For
+ * example:
  *
  * <p>To customize credentials:
  *
@@ -139,7 +139,7 @@ public class ConfigClient implements BackgroundResource {
    */
   @Deprecated
   public static final ConfigClient of() throws IOException {
-    return create(ConfigSettings.newBuilder().build());
+    return of(ConfigSettings.newBuilder().build());
   }
 
   /**
@@ -211,7 +211,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   for (LogSink element : configClient.listSinks(parent).iterateAll()) {
    *     // doThingsWith(element);
@@ -237,7 +237,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -262,7 +262,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -286,7 +286,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListSinksRequest request = ListSinksRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -317,7 +317,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink response = configClient.getSink(sinkName);
    * }
@@ -345,7 +345,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -368,7 +368,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   GetSinkRequest request = GetSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -393,7 +393,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configClient.createSink(parent, sink);
@@ -425,7 +425,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
@@ -453,7 +453,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   CreateSinkRequest request = CreateSinkRequest.newBuilder()
@@ -480,7 +480,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   LogSink response = configClient.updateSink(sinkName, sink);
@@ -515,7 +515,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
@@ -543,7 +543,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   LogSink sink = LogSink.newBuilder().build();
    *   UpdateSinkRequest request = UpdateSinkRequest.newBuilder()
@@ -568,7 +568,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   configClient.deleteSink(sinkName);
    * }
@@ -598,7 +598,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -622,7 +622,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   SinkNameOneof sinkName = SinkNameOneof.from(SinkName.create("[PROJECT]", "[SINK]"));
    *   DeleteSinkRequest request = DeleteSinkRequest.newBuilder()
    *     .setSinkNameWithSinkNameOneof(sinkName)
@@ -644,7 +644,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   for (LogExclusion element : configClient.listExclusions(parent).iterateAll()) {
    *     // doThingsWith(element);
@@ -670,7 +670,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -695,7 +695,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -720,7 +720,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   ListExclusionsRequest request = ListExclusionsRequest.newBuilder()
    *     .setParentWithParentNameOneof(parent)
@@ -752,7 +752,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   LogExclusion response = configClient.getExclusion(name);
    * }
@@ -780,7 +780,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   GetExclusionRequest request = GetExclusionRequest.newBuilder()
    *     .setNameWithExclusionNameOneof(name)
@@ -803,7 +803,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   GetExclusionRequest request = GetExclusionRequest.newBuilder()
    *     .setNameWithExclusionNameOneof(name)
@@ -826,7 +826,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   LogExclusion response = configClient.createExclusion(parent, exclusion);
@@ -859,7 +859,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   CreateExclusionRequest request = CreateExclusionRequest.newBuilder()
@@ -885,7 +885,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   CreateExclusionRequest request = CreateExclusionRequest.newBuilder()
@@ -909,7 +909,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
@@ -952,7 +952,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
@@ -979,7 +979,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   LogExclusion exclusion = LogExclusion.newBuilder().build();
    *   FieldMask updateMask = FieldMask.newBuilder().build();
@@ -1005,7 +1005,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   configClient.deleteExclusion(name);
    * }
@@ -1033,7 +1033,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   DeleteExclusionRequest request = DeleteExclusionRequest.newBuilder()
    *     .setNameWithExclusionNameOneof(name)
@@ -1056,7 +1056,7 @@ public class ConfigClient implements BackgroundResource {
    * <p>Sample code:
    *
    * <pre><code>
-   * try (ConfigClient configClient = ConfigClient.create()) {
+   * try (ConfigClient configClient = ConfigClient.of()) {
    *   ExclusionNameOneof name = ExclusionNameOneof.from(ExclusionName.create("[PROJECT]", "[EXCLUSION]"));
    *   DeleteExclusionRequest request = DeleteExclusionRequest.newBuilder()
    *     .setNameWithExclusionNameOneof(name)

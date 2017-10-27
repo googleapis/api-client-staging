@@ -181,7 +181,7 @@ public class GrpcMetricServiceStub extends MetricServiceStub {
   }
 
   public static final GrpcMetricServiceStub of(MetricServiceSettings settings) throws IOException {
-    return new GrpcMetricServiceStub(settings, ClientContext.create(settings));
+    return new GrpcMetricServiceStub(settings, ClientContext.of(settings));
   }
 
   public static final GrpcMetricServiceStub of(ClientContext clientContext) throws IOException {
