@@ -115,12 +115,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of ReportErrorsServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of ReportErrorsServiceClient with default settings. */
   public static final ReportErrorsServiceClient of() throws IOException {
     return of(ReportErrorsServiceSettings.newBuilder().build());
   }

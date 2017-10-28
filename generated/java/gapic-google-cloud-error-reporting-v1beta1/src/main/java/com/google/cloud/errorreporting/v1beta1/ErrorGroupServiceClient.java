@@ -114,12 +114,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of ErrorGroupServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of ErrorGroupServiceClient with default settings. */
   public static final ErrorGroupServiceClient of() throws IOException {
     return of(ErrorGroupServiceSettings.newBuilder().build());
   }

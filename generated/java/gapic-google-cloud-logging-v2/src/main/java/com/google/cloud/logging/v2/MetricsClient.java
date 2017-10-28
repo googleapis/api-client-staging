@@ -121,12 +121,7 @@ public class MetricsClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of MetricsClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of MetricsClient with default settings. */
   public static final MetricsClient of() throws IOException {
     return of(MetricsSettings.newBuilder().build());
   }

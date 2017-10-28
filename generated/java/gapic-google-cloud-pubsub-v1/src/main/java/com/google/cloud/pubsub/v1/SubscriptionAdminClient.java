@@ -154,12 +154,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of SubscriptionAdminClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of SubscriptionAdminClient with default settings. */
   public static final SubscriptionAdminClient of() throws IOException {
     return of(SubscriptionAdminSettings.newBuilder().build());
   }

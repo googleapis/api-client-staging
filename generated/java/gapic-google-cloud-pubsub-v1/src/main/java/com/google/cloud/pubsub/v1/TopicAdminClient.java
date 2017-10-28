@@ -135,12 +135,7 @@ public class TopicAdminClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of TopicAdminClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of TopicAdminClient with default settings. */
   public static final TopicAdminClient of() throws IOException {
     return of(TopicAdminSettings.newBuilder().build());
   }

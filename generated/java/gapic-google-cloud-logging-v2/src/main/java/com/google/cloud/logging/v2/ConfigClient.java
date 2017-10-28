@@ -132,12 +132,7 @@ public class ConfigClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of ConfigClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of ConfigClient with default settings. */
   public static final ConfigClient of() throws IOException {
     return of(ConfigSettings.newBuilder().build());
   }

@@ -124,12 +124,7 @@ public class SpeechClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of SpeechClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of SpeechClient with default settings. */
   public static final SpeechClient of() throws IOException {
     return of(SpeechSettings.newBuilder().build());
   }

@@ -122,12 +122,7 @@ public class ErrorStatsServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of ErrorStatsServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of ErrorStatsServiceClient with default settings. */
   public static final ErrorStatsServiceClient of() throws IOException {
     return of(ErrorStatsServiceSettings.newBuilder().build());
   }

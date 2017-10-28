@@ -129,12 +129,7 @@ public class LoggingClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of LoggingClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of LoggingClient with default settings. */
   public static final LoggingClient of() throws IOException {
     return of(LoggingSettings.newBuilder().build());
   }

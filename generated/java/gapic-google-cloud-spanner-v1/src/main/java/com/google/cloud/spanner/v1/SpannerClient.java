@@ -137,12 +137,7 @@ public class SpannerClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of SpannerClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of SpannerClient with default settings. */
   public static final SpannerClient of() throws IOException {
     return of(SpannerSettings.newBuilder().build());
   }

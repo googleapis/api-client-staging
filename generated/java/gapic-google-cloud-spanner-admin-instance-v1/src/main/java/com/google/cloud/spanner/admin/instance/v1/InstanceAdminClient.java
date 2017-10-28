@@ -157,12 +157,7 @@ public class InstanceAdminClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of InstanceAdminClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of InstanceAdminClient with default settings. */
   public static final InstanceAdminClient of() throws IOException {
     return of(InstanceAdminSettings.newBuilder().build());
   }

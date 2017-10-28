@@ -122,12 +122,7 @@ public class TraceServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of TraceServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of TraceServiceClient with default settings. */
   public static final TraceServiceClient of() throws IOException {
     return of(TraceServiceSettings.newBuilder().build());
   }

@@ -139,12 +139,7 @@ public class DatabaseAdminClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of DatabaseAdminClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of DatabaseAdminClient with default settings. */
   public static final DatabaseAdminClient of() throws IOException {
     return of(DatabaseAdminSettings.newBuilder().build());
   }

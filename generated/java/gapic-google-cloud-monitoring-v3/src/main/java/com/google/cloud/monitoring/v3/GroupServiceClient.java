@@ -132,12 +132,7 @@ public class GroupServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of GroupServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of GroupServiceClient with default settings. */
   public static final GroupServiceClient of() throws IOException {
     return of(GroupServiceSettings.newBuilder().build());
   }

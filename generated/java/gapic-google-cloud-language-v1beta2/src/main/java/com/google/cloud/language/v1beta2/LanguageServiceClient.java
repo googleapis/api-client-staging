@@ -112,12 +112,7 @@ public class LanguageServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of LanguageServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of LanguageServiceClient with default settings. */
   public static final LanguageServiceClient of() throws IOException {
     return of(LanguageServiceSettings.newBuilder().build());
   }

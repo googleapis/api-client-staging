@@ -118,12 +118,7 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of VideoIntelligenceServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of VideoIntelligenceServiceClient with default settings. */
   public static final VideoIntelligenceServiceClient of() throws IOException {
     return of(VideoIntelligenceServiceSettings.newBuilder().build());
   }

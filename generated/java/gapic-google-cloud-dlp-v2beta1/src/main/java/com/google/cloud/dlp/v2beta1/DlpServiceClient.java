@@ -147,12 +147,7 @@ public class DlpServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of DlpServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of DlpServiceClient with default settings. */
   public static final DlpServiceClient of() throws IOException {
     return of(DlpServiceSettings.newBuilder().build());
   }

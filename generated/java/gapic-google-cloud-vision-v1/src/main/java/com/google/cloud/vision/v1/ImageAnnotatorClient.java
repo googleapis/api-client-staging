@@ -112,12 +112,7 @@ public class ImageAnnotatorClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of ImageAnnotatorClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of ImageAnnotatorClient with default settings. */
   public static final ImageAnnotatorClient of() throws IOException {
     return of(ImageAnnotatorSettings.newBuilder().build());
   }

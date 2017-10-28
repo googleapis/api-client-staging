@@ -285,12 +285,7 @@ public class FirestoreClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of FirestoreClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of FirestoreClient with default settings. */
   public static final FirestoreClient of() throws IOException {
     return of(FirestoreSettings.newBuilder().build());
   }

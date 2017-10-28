@@ -135,12 +135,7 @@ public class MetricServiceClient implements BackgroundResource {
     return of();
   }
 
-  /**
-   * Constructs an instance of MetricServiceClient with default settings.
-   *
-   * @deprecated Use of() instead.
-   */
-  @Deprecated
+  /** Constructs an instance of MetricServiceClient with default settings. */
   public static final MetricServiceClient of() throws IOException {
     return of(MetricServiceSettings.newBuilder().build());
   }
