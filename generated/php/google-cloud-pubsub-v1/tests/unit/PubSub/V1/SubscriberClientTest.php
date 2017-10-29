@@ -26,44 +26,22 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Pubsub\V1\AcknowledgeRequest;
-use Google\Pubsub\V1\CreateSnapshotRequest;
-use Google\Pubsub\V1\DeleteSnapshotRequest;
-use Google\Pubsub\V1\DeleteSubscriptionRequest;
-use Google\Pubsub\V1\GetSubscriptionRequest;
-use Google\Pubsub\V1\ListSnapshotsRequest;
 use Google\Pubsub\V1\ListSnapshotsResponse;
-use Google\Pubsub\V1\ListSubscriptionsRequest;
 use Google\Pubsub\V1\ListSubscriptionsResponse;
-use Google\Pubsub\V1\ModifyAckDeadlineRequest;
-use Google\Pubsub\V1\ModifyPushConfigRequest;
-use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PullResponse;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\ReceivedMessage;
-use Google\Pubsub\V1\SeekRequest;
 use Google\Pubsub\V1\SeekResponse;
 use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\StreamingPullResponse;
-use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -94,6 +72,7 @@ class SubscriberClientTest extends GeneratedTest
             'port' => SubscriberClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -108,6 +87,7 @@ class SubscriberClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

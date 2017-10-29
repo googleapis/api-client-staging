@@ -24,47 +24,33 @@ namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
 use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
-use Google\Privacy\Dlp\V2beta1\AnalyzeDataSourceRiskRequest;
 use Google\Privacy\Dlp\V2beta1\BigQueryTable;
 use Google\Privacy\Dlp\V2beta1\CloudStorageOptions;
 use Google\Privacy\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
 use Google\Privacy\Dlp\V2beta1\ContentItem;
-use Google\Privacy\Dlp\V2beta1\CreateInspectOperationRequest;
 use Google\Privacy\Dlp\V2beta1\DeidentifyConfig;
-use Google\Privacy\Dlp\V2beta1\DeidentifyContentRequest;
 use Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse;
-use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;
 use Google\Privacy\Dlp\V2beta1\InfoType;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
-use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
 use Google\Privacy\Dlp\V2beta1\InspectContentResponse;
 use Google\Privacy\Dlp\V2beta1\InspectOperationResult;
-use Google\Privacy\Dlp\V2beta1\ListInfoTypesRequest;
 use Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse;
-use Google\Privacy\Dlp\V2beta1\ListInspectFindingsRequest;
 use Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse;
-use Google\Privacy\Dlp\V2beta1\ListRootCategoriesRequest;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
 use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
-use Google\Privacy\Dlp\V2beta1\RedactContentRequest;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentResponse;
 use Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Privacy\Dlp\V2beta1\StorageConfig;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -90,6 +76,7 @@ class DlpServiceClientTest extends GeneratedTest
             'port' => DlpServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -104,6 +91,7 @@ class DlpServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -190,11 +178,11 @@ class DlpServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
         $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -263,11 +251,11 @@ class DlpServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
         $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -530,11 +518,11 @@ class DlpServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
         $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -618,11 +606,11 @@ class DlpServiceClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
         $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());

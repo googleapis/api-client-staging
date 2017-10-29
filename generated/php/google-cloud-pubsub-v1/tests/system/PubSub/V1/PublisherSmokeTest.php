@@ -24,9 +24,6 @@ namespace Google\Cloud\Tests\System\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\GAX\Testing\GeneratedTest;
-use Google\Pubsub\V1\ListTopicsRequest;
-use Google\Pubsub\V1\ListTopicsResponse;
-use Google\Pubsub\V1\Topic;
 
 /**
  * @group pub_sub

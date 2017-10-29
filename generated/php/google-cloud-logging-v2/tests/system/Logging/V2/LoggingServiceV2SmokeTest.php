@@ -25,9 +25,6 @@ namespace Google\Cloud\Tests\System\Logging\V2;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Api\MonitoredResource;
 use Google\GAX\Testing\GeneratedTest;
-use Google\Logging\V2\LogEntry;
-use Google\Logging\V2\WriteLogEntriesRequest;
-use Google\Logging\V2\WriteLogEntriesResponse;
 
 /**
  * @group logging
@@ -43,7 +40,7 @@ class LoggingServiceV2SmokeTest extends GeneratedTest
         $projectId = getenv('PROJECT_ID');
 
         $loggingServiceV2Client = new LoggingServiceV2Client();
-        $formattedLogName = $loggingServiceV2Client->logName($projectId, 'test-'. time());
+        $formattedLogName = $loggingServiceV2Client->logName($projectId, 'test-'.time());
         $resource = new MonitoredResource();
         $labels = [];
         $entries = [];

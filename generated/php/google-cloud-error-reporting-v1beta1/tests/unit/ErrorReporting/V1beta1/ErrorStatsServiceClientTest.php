@@ -23,29 +23,17 @@
 namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorEvent;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupStats;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsResponse;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsResponse;
 use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -76,6 +64,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             'port' => ErrorStatsServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -90,6 +79,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

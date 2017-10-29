@@ -24,26 +24,13 @@ namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Logging\V2\CreateLogMetricRequest;
-use Google\Logging\V2\DeleteLogMetricRequest;
-use Google\Logging\V2\GetLogMetricRequest;
-use Google\Logging\V2\ListLogMetricsRequest;
 use Google\Logging\V2\ListLogMetricsResponse;
 use Google\Logging\V2\LogMetric;
-use Google\Logging\V2\MetricsServiceV2GrpcClient;
-use Google\Logging\V2\UpdateLogMetricRequest;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -74,6 +61,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'port' => MetricsServiceV2Client::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -88,6 +76,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

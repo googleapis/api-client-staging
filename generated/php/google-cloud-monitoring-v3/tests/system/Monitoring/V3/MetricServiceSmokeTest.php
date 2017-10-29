@@ -23,10 +23,7 @@
 namespace Google\Cloud\Tests\System\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\MetricServiceClient;
-use Google\Api\MonitoredResourceDescriptor;
 use Google\GAX\Testing\GeneratedTest;
-use Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
-use Google\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 
 /**
  * @group monitoring

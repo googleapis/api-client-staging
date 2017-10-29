@@ -24,8 +24,6 @@ namespace Google\Cloud\Tests\System\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorContext;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse;
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContext;
 use Google\Devtools\Clouderrorreporting\V1beta1\SourceLocation;

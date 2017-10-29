@@ -23,8 +23,6 @@
 namespace Google\Cloud\Tests\System\Language\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceClient;
-use Google\Cloud\Language\V1\AnalyzeSentimentRequest;
-use Google\Cloud\Language\V1\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1\Document;
 use Google\Cloud\Language\V1\Document_Type as Type;
 use Google\GAX\Testing\GeneratedTest;
@@ -40,7 +38,6 @@ class LanguageServiceSmokeTest extends GeneratedTest
      */
     public function analyzeSentimentTest()
     {
-
         $languageServiceClient = new LanguageServiceClient();
         $content = 'Hello, world!';
         $type = Type::PLAIN_TEXT;

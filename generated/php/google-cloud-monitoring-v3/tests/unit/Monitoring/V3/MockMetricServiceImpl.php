@@ -22,21 +22,9 @@
 
 namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Monitoring\V3\MetricServiceGrpcClient;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
-use Grpc;
-use PHPUnit_Framework_TestCase;
-use stdClass;
 
 class MockMetricServiceImpl extends MetricServiceGrpcClient
 {

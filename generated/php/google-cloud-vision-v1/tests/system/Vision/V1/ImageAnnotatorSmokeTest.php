@@ -24,8 +24,6 @@ namespace Google\Cloud\Tests\System\Vision\V1;
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
-use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
-use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Feature;
 use Google\Cloud\Vision\V1\Feature_Type as Type;
 use Google\Cloud\Vision\V1\Image;
@@ -43,7 +41,6 @@ class ImageAnnotatorSmokeTest extends GeneratedTest
      */
     public function batchAnnotateImagesTest()
     {
-
         $imageAnnotatorClient = new ImageAnnotatorClient();
         $gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
         $source = new ImageSource();

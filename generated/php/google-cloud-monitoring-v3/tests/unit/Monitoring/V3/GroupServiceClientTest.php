@@ -25,28 +25,14 @@ namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
 use Google\Api\MonitoredResource;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
-use Google\Monitoring\V3\CreateGroupRequest;
-use Google\Monitoring\V3\DeleteGroupRequest;
-use Google\Monitoring\V3\GetGroupRequest;
 use Google\Monitoring\V3\Group;
-use Google\Monitoring\V3\GroupServiceGrpcClient;
-use Google\Monitoring\V3\ListGroupMembersRequest;
 use Google\Monitoring\V3\ListGroupMembersResponse;
-use Google\Monitoring\V3\ListGroupsRequest;
 use Google\Monitoring\V3\ListGroupsResponse;
-use Google\Monitoring\V3\UpdateGroupRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -72,6 +58,7 @@ class GroupServiceClientTest extends GeneratedTest
             'port' => GroupServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -86,6 +73,7 @@ class GroupServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

@@ -23,20 +23,8 @@
 namespace Google\Cloud\Tests\Unit\Speech\V1;
 
 use Google\Cloud\Speech\V1\SpeechGrpcClient;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
-use Grpc;
-use PHPUnit_Framework_TestCase;
-use stdClass;
 
 class MockSpeechImpl extends SpeechGrpcClient
 {

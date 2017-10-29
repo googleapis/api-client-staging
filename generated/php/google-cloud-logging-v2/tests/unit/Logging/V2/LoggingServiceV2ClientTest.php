@@ -25,29 +25,16 @@ namespace Google\Cloud\Tests\Unit\Logging\V2;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Api\MonitoredResourceDescriptor;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Logging\V2\DeleteLogRequest;
-use Google\Logging\V2\ListLogEntriesRequest;
 use Google\Logging\V2\ListLogEntriesResponse;
-use Google\Logging\V2\ListLogsRequest;
 use Google\Logging\V2\ListLogsResponse;
-use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
 use Google\Logging\V2\ListMonitoredResourceDescriptorsResponse;
 use Google\Logging\V2\LogEntry;
-use Google\Logging\V2\LoggingServiceV2GrpcClient;
-use Google\Logging\V2\WriteLogEntriesRequest;
 use Google\Logging\V2\WriteLogEntriesResponse;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -78,6 +65,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'port' => LoggingServiceV2Client::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -92,6 +80,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

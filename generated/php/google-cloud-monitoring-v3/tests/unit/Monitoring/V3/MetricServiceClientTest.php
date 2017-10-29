@@ -26,33 +26,17 @@ use Google\Cloud\Monitoring\V3\MetricServiceClient;
 use Google\Api\MetricDescriptor;
 use Google\Api\MonitoredResourceDescriptor;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
-use Google\Monitoring\V3\CreateMetricDescriptorRequest;
-use Google\Monitoring\V3\CreateTimeSeriesRequest;
-use Google\Monitoring\V3\DeleteMetricDescriptorRequest;
-use Google\Monitoring\V3\GetMetricDescriptorRequest;
-use Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
-use Google\Monitoring\V3\ListMetricDescriptorsRequest;
 use Google\Monitoring\V3\ListMetricDescriptorsResponse;
-use Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
-use Google\Monitoring\V3\ListTimeSeriesRequest;
 use Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
 use Google\Monitoring\V3\ListTimeSeriesResponse;
-use Google\Monitoring\V3\MetricServiceGrpcClient;
 use Google\Monitoring\V3\TimeInterval;
 use Google\Monitoring\V3\TimeSeries;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -78,6 +62,7 @@ class MetricServiceClientTest extends GeneratedTest
             'port' => MetricServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -92,6 +77,7 @@ class MetricServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

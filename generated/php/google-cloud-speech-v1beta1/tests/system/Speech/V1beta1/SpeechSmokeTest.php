@@ -26,8 +26,6 @@ use Google\Cloud\Speech\V1beta1\SpeechClient;
 use Google\Cloud\Speech\V1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding as AudioEncoding;
-use Google\Cloud\Speech\V1beta1\SyncRecognizeRequest;
-use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
 use Google\GAX\Testing\GeneratedTest;
 
 /**
@@ -41,7 +39,6 @@ class SpeechSmokeTest extends GeneratedTest
      */
     public function syncRecognizeTest()
     {
-
         $speechClient = new SpeechClient();
         $languageCode = 'en-US';
         $sampleRate = 44100;

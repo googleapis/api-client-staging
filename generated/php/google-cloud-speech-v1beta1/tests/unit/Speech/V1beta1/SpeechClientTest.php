@@ -23,30 +23,23 @@
 namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechClient;
-use Google\Cloud\Speech\V1beta1\AsyncRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
 use Google\Cloud\Speech\V1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding as AudioEncoding;
-use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse;
-use Google\Cloud\Speech\V1beta1\SyncRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -72,6 +65,7 @@ class SpeechClientTest extends GeneratedTest
             'port' => SpeechClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -86,6 +80,7 @@ class SpeechClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -181,11 +176,11 @@ class SpeechClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
         $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -260,11 +255,11 @@ class SpeechClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockSpeechImpl']);
         $client = $this->createClient('createSpeechStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());

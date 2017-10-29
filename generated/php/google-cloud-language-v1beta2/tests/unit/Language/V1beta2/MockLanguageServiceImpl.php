@@ -23,20 +23,8 @@
 namespace Google\Cloud\Tests\Unit\Language\V1beta2;
 
 use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
-use Grpc;
-use PHPUnit_Framework_TestCase;
-use stdClass;
 
 class MockLanguageServiceImpl extends LanguageServiceGrpcClient
 {

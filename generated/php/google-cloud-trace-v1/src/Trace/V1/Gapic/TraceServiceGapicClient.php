@@ -33,18 +33,14 @@ namespace Google\Cloud\Trace\V1\Gapic;
 use Google\Cloud\Version;
 use Google\Devtools\Cloudtrace\V1\GetTraceRequest;
 use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
-use Google\Devtools\Cloudtrace\V1\ListTracesRequest_ViewType as ViewType;
 use Google\Devtools\Cloudtrace\V1\PatchTracesRequest;
 use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
 use Google\Devtools\Cloudtrace\V1\Traces;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 use Google\Protobuf\Timestamp;
 
 /**
@@ -96,7 +92,6 @@ class TraceServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
-
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -105,7 +100,6 @@ class TraceServiceGapicClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
 
     private static function getPageStreamingDescriptors()
     {
@@ -124,29 +118,25 @@ class TraceServiceGapicClient
         return $pageStreamingDescriptors;
     }
 
-
-
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
                 self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
-
-
-
 
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'cloudtrace.googleapis.com'.
@@ -196,10 +186,9 @@ class TraceServiceGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/trace_service_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/trace_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -265,10 +254,11 @@ class TraceServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectId ID of the Cloud project where the trace data is stored.
-     * @param Traces $traces The body of the message.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    ID of the Cloud project where the trace data is stored
+     * @param Traces $traces       the body of the message
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -320,10 +310,11 @@ class TraceServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectId ID of the Cloud project where the trace data is stored.
-     * @param string $traceId ID of the trace to return.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    ID of the Cloud project where the trace data is stored
+     * @param string $traceId      ID of the trace to return
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -388,9 +379,10 @@ class TraceServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectId ID of the Cloud project where the trace data is stored.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $projectId    ID of the Cloud project where the trace data is stored
+     * @param array  $optionalArgs {
+     *                             Optional
+     *
      *     @type int $view
      *          Type of data returned for traces in the list. Optional. Default is
      *          `MINIMAL`.
@@ -487,6 +479,7 @@ class TraceServiceGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

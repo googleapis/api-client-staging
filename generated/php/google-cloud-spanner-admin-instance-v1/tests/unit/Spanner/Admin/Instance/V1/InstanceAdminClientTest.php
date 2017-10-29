@@ -24,37 +24,22 @@ namespace Google\Cloud\Tests\Unit\Spanner\Admin\Instance\V1;
 
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\Admin\Instance\V1\CreateInstanceRequest;
-use Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
-use Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
-use Google\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
 use Google\Spanner\Admin\Instance\V1\InstanceConfig;
-use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
-use Google\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Spanner\Admin\Instance\V1\ListInstancesResponse;
-use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -80,6 +65,7 @@ class InstanceAdminClientTest extends GeneratedTest
             'port' => InstanceAdminClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -94,6 +80,7 @@ class InstanceAdminClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -409,11 +396,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -492,11 +479,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -559,11 +546,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -640,11 +627,11 @@ class InstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockInstanceAdminImpl']);
         $client = $this->createClient('createInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());

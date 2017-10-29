@@ -24,35 +24,18 @@ namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Pubsub\V1\DeleteTopicRequest;
-use Google\Pubsub\V1\GetTopicRequest;
-use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsResponse;
-use Google\Pubsub\V1\ListTopicsRequest;
 use Google\Pubsub\V1\ListTopicsResponse;
-use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublishResponse;
-use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -83,6 +66,7 @@ class PublisherClientTest extends GeneratedTest
             'port' => PublisherClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -97,6 +81,7 @@ class PublisherClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

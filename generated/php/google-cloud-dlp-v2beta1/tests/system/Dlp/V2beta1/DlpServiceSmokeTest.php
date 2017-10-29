@@ -26,8 +26,6 @@ use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
 use Google\GAX\Testing\GeneratedTest;
 use Google\Privacy\Dlp\V2beta1\ContentItem;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
-use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
-use Google\Privacy\Dlp\V2beta1\InspectContentResponse;
 use Google\Privacy\Dlp\V2beta1\Likelihood;
 
 /**
@@ -41,7 +39,6 @@ class DlpServiceSmokeTest extends GeneratedTest
      */
     public function inspectContentTest()
     {
-
         $dlpServiceClient = new DlpServiceClient();
         $minLikelihood = Likelihood::POSSIBLE;
         $inspectConfig = new InspectConfig();

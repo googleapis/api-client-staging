@@ -24,37 +24,20 @@ namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\V1\BeginTransactionRequest;
-use Google\Spanner\V1\CommitRequest;
 use Google\Spanner\V1\CommitResponse;
-use Google\Spanner\V1\CreateSessionRequest;
-use Google\Spanner\V1\DeleteSessionRequest;
-use Google\Spanner\V1\ExecuteSqlRequest;
-use Google\Spanner\V1\GetSessionRequest;
 use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\ListSessionsRequest;
 use Google\Spanner\V1\ListSessionsResponse;
-use Google\Spanner\V1\Mutation;
 use Google\Spanner\V1\PartialResultSet;
-use Google\Spanner\V1\ReadRequest;
 use Google\Spanner\V1\ResultSet;
-use Google\Spanner\V1\RollbackRequest;
 use Google\Spanner\V1\Session;
-use Google\Spanner\V1\SpannerGrpcClient;
 use Google\Spanner\V1\Transaction;
 use Google\Spanner\V1\TransactionOptions;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -75,6 +58,7 @@ class SpannerClientTest extends GeneratedTest
             'port' => SpannerClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -89,6 +73,7 @@ class SpannerClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

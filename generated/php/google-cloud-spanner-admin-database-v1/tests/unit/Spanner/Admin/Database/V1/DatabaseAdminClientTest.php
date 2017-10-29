@@ -24,34 +24,20 @@ namespace Google\Cloud\Tests\Unit\Spanner\Admin\Database\V1;
 
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Iam\V1\TestIamPermissionsResponse;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Spanner\Admin\Database\V1\Database;
-use Google\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
-use Google\Spanner\Admin\Database\V1\DropDatabaseRequest;
-use Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
-use Google\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Spanner\Admin\Database\V1\ListDatabasesResponse;
-use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -77,6 +63,7 @@ class DatabaseAdminClientTest extends GeneratedTest
             'port' => DatabaseAdminClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -91,6 +78,7 @@ class DatabaseAdminClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -179,11 +167,11 @@ class DatabaseAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
         $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -254,11 +242,11 @@ class DatabaseAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
         $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -391,11 +379,11 @@ class DatabaseAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
         $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -464,11 +452,11 @@ class DatabaseAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            }
+            },
         ]);
         $grpcStub = $this->createStub([$this, 'createMockDatabaseAdminImpl']);
         $client = $this->createClient('createDatabaseAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient
+            'operationsClient' => $operationsClient,
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());

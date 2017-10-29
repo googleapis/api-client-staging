@@ -24,22 +24,11 @@ namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -70,6 +59,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'port' => ErrorGroupServiceClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -84,6 +74,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

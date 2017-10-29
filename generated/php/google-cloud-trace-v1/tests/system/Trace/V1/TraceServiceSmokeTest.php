@@ -23,8 +23,6 @@
 namespace Google\Cloud\Tests\System\Trace\V1;
 
 use Google\Cloud\Trace\V1\TraceServiceClient;
-use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
-use Google\Devtools\Cloudtrace\V1\ListTracesResponse;
 use Google\Devtools\Cloudtrace\V1\Trace;
 use Google\GAX\Testing\GeneratedTest;
 
@@ -39,7 +37,6 @@ class TraceServiceSmokeTest extends GeneratedTest
      */
     public function listTracesTest()
     {
-
         $traceServiceClient = new TraceServiceClient();
         $projectId2 = projectId;
         $traceServiceClient->listTraces($projectId2);
