@@ -83,7 +83,7 @@ public class DatabaseAdminClientTest {
     DatabaseAdminSettings settings =
         DatabaseAdminSettings.newBuilder()
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
-            .setCredentialsProvider(new NoCredentialsProvider())
+            .setCredentialsProvider(NoCredentialsProvider.of())
             .build();
     client = DatabaseAdminClient.of(settings);
   }

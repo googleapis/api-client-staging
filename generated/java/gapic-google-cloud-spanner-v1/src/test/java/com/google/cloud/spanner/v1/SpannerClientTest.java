@@ -85,7 +85,7 @@ public class SpannerClientTest {
     SpannerSettings settings =
         SpannerSettings.newBuilder()
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
-            .setCredentialsProvider(new NoCredentialsProvider())
+            .setCredentialsProvider(NoCredentialsProvider.of())
             .build();
     client = SpannerClient.of(settings);
   }
