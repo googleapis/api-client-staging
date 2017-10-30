@@ -28,10 +28,10 @@
  * <pre>
  * <code>
  * try (BigtableClient bigtableClient = BigtableClient.create()) {
- *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+ *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
  *   ByteString rowKey = ByteString.copyFromUtf8("");
  *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
- *   MutateRowResponse response = bigtableClient.mutateRow(formattedTableName, rowKey, mutations);
+ *   MutateRowResponse response = bigtableClient.mutateRow(tableName, rowKey, mutations);
  * }
  * </code>
  * </pre>

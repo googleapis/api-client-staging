@@ -19,7 +19,6 @@ import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.api.gax.rpc.UnaryCallable;
-import com.google.api.pathtemplate.PathTemplate;
 import com.google.bigtable.v2.CheckAndMutateRowRequest;
 import com.google.bigtable.v2.CheckAndMutateRowResponse;
 import com.google.bigtable.v2.MutateRowRequest;
@@ -32,8 +31,10 @@ import com.google.bigtable.v2.ReadModifyWriteRowResponse;
 import com.google.bigtable.v2.ReadModifyWriteRule;
 import com.google.bigtable.v2.ReadRowsRequest;
 import com.google.bigtable.v2.ReadRowsResponse;
+import com.google.bigtable.v2.RowFilter;
 import com.google.bigtable.v2.SampleRowKeysRequest;
 import com.google.bigtable.v2.SampleRowKeysResponse;
+import com.google.bigtable.v2.TableName;
 import com.google.cloud.bigtable.v2.stub.BigtableStub;
 import com.google.protobuf.ByteString;
 import java.io.IOException;
@@ -51,10 +52,10 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (BigtableClient bigtableClient = BigtableClient.create()) {
- *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+ *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
  *   ByteString rowKey = ByteString.copyFromUtf8("");
  *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
- *   MutateRowResponse response = bigtableClient.mutateRow(formattedTableName, rowKey, mutations);
+ *   MutateRowResponse response = bigtableClient.mutateRow(tableName, rowKey, mutations);
  * }
  * </code>
  * </pre>
@@ -120,33 +121,6 @@ import javax.annotation.Generated;
 public class BigtableClient implements BackgroundResource {
   private final BigtableSettings settings;
   private final BigtableStub stub;
-
-  private static final PathTemplate TABLE_PATH_TEMPLATE =
-      PathTemplate.createWithoutUrlEncoding(
-          "projects/{project}/instances/{instance}/tables/{table}");
-
-  /** Formats a string containing the fully-qualified path to represent a table resource. */
-  public static final String formatTableName(String project, String instance, String table) {
-    return TABLE_PATH_TEMPLATE.instantiate(
-        "project", project,
-        "instance", instance,
-        "table", table);
-  }
-
-  /** Parses the project from the given fully-qualified path which represents a table resource. */
-  public static final String parseProjectFromTableName(String tableName) {
-    return TABLE_PATH_TEMPLATE.parse(tableName).get("project");
-  }
-
-  /** Parses the instance from the given fully-qualified path which represents a table resource. */
-  public static final String parseInstanceFromTableName(String tableName) {
-    return TABLE_PATH_TEMPLATE.parse(tableName).get("instance");
-  }
-
-  /** Parses the table from the given fully-qualified path which represents a table resource. */
-  public static final String parseTableFromTableName(String tableName) {
-    return TABLE_PATH_TEMPLATE.parse(tableName).get("table");
-  }
 
   /** Constructs an instance of BigtableClient with default settings. */
   public static final BigtableClient create() throws IOException {
@@ -221,9 +195,9 @@ public class BigtableClient implements BackgroundResource {
    *         }
    *       };
    *
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ReadRowsRequest request = ReadRowsRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .build();
    *
    *   bigtableClient.readRowsCallable().serverStreamingCall(request, responseObserver));
@@ -262,9 +236,9 @@ public class BigtableClient implements BackgroundResource {
    *         }
    *       };
    *
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   SampleRowKeysRequest request = SampleRowKeysRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .build();
    *
    *   bigtableClient.sampleRowKeysCallable().serverStreamingCall(request, responseObserver));
@@ -285,10 +259,10 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
-   *   MutateRowResponse response = bigtableClient.mutateRow(formattedTableName, rowKey, mutations);
+   *   MutateRowResponse response = bigtableClient.mutateRow(tableName, rowKey, mutations);
    * }
    * </code></pre>
    *
@@ -301,11 +275,11 @@ public class BigtableClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final MutateRowResponse mutateRow(
-      String tableName, ByteString rowKey, List<Mutation> mutations) {
-    TABLE_PATH_TEMPLATE.validate(tableName, "mutateRow");
+      TableName tableName, ByteString rowKey, List<Mutation> mutations) {
+
     MutateRowRequest request =
         MutateRowRequest.newBuilder()
-            .setTableName(tableName)
+            .setTableNameWithTableName(tableName)
             .setRowKey(rowKey)
             .addAllMutations(mutations)
             .build();
@@ -321,11 +295,11 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   MutateRowRequest request = MutateRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .addAllMutations(mutations)
    *     .build();
@@ -349,11 +323,11 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
    *   MutateRowRequest request = MutateRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .addAllMutations(mutations)
    *     .build();
@@ -394,10 +368,10 @@ public class BigtableClient implements BackgroundResource {
    *         }
    *       };
    *
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   List&lt;MutateRowsRequest.Entry&gt; entries = new ArrayList&lt;&gt;();
    *   MutateRowsRequest request = MutateRowsRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .addAllEntries(entries)
    *     .build();
    *
@@ -417,11 +391,12 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
+   *   RowFilter predicateFilter = RowFilter.newBuilder().build();
    *   List&lt;Mutation&gt; trueMutations = new ArrayList&lt;&gt;();
    *   List&lt;Mutation&gt; falseMutations = new ArrayList&lt;&gt;();
-   *   CheckAndMutateRowResponse response = bigtableClient.checkAndMutateRow(formattedTableName, rowKey, trueMutations, falseMutations);
+   *   CheckAndMutateRowResponse response = bigtableClient.checkAndMutateRow(tableName, rowKey, predicateFilter, trueMutations, falseMutations);
    * }
    * </code></pre>
    *
@@ -429,6 +404,9 @@ public class BigtableClient implements BackgroundResource {
    *     applied. Values are of the form
    *     `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
    * @param rowKey The key of the row to which the conditional mutation should be applied.
+   * @param predicateFilter The filter to be applied to the contents of the specified row. Depending
+   *     on whether or not any results are yielded, either `true_mutations` or `false_mutations`
+   *     will be executed. If unset, checks that the row contains any values at all.
    * @param trueMutations Changes to be atomically applied to the specified row if
    *     `predicate_filter` yields at least one cell when applied to `row_key`. Entries are applied
    *     in order, meaning that earlier mutations can be masked by later ones. Must contain at least
@@ -440,15 +418,17 @@ public class BigtableClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final CheckAndMutateRowResponse checkAndMutateRow(
-      String tableName,
+      TableName tableName,
       ByteString rowKey,
+      RowFilter predicateFilter,
       List<Mutation> trueMutations,
       List<Mutation> falseMutations) {
-    TABLE_PATH_TEMPLATE.validate(tableName, "checkAndMutateRow");
+
     CheckAndMutateRowRequest request =
         CheckAndMutateRowRequest.newBuilder()
-            .setTableName(tableName)
+            .setTableNameWithTableName(tableName)
             .setRowKey(rowKey)
+            .setPredicateFilter(predicateFilter)
             .addAllTrueMutations(trueMutations)
             .addAllFalseMutations(falseMutations)
             .build();
@@ -463,10 +443,10 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   CheckAndMutateRowRequest request = CheckAndMutateRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .build();
    *   CheckAndMutateRowResponse response = bigtableClient.checkAndMutateRow(request);
@@ -488,10 +468,10 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   CheckAndMutateRowRequest request = CheckAndMutateRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .build();
    *   ApiFuture&lt;CheckAndMutateRowResponse&gt; future = bigtableClient.checkAndMutateRowCallable().futureCall(request);
@@ -516,10 +496,10 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;ReadModifyWriteRule&gt; rules = new ArrayList&lt;&gt;();
-   *   ReadModifyWriteRowResponse response = bigtableClient.readModifyWriteRow(formattedTableName, rowKey, rules);
+   *   ReadModifyWriteRowResponse response = bigtableClient.readModifyWriteRow(tableName, rowKey, rules);
    * }
    * </code></pre>
    *
@@ -533,11 +513,11 @@ public class BigtableClient implements BackgroundResource {
    * @throws com.google.api.gax.rpc.ApiException if the remote call fails
    */
   public final ReadModifyWriteRowResponse readModifyWriteRow(
-      String tableName, ByteString rowKey, List<ReadModifyWriteRule> rules) {
-    TABLE_PATH_TEMPLATE.validate(tableName, "readModifyWriteRow");
+      TableName tableName, ByteString rowKey, List<ReadModifyWriteRule> rules) {
+
     ReadModifyWriteRowRequest request =
         ReadModifyWriteRowRequest.newBuilder()
-            .setTableName(tableName)
+            .setTableNameWithTableName(tableName)
             .setRowKey(rowKey)
             .addAllRules(rules)
             .build();
@@ -555,11 +535,11 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;ReadModifyWriteRule&gt; rules = new ArrayList&lt;&gt;();
    *   ReadModifyWriteRowRequest request = ReadModifyWriteRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .addAllRules(rules)
    *     .build();
@@ -585,11 +565,11 @@ public class BigtableClient implements BackgroundResource {
    *
    * <pre><code>
    * try (BigtableClient bigtableClient = BigtableClient.create()) {
-   *   String formattedTableName = BigtableClient.formatTableName("[PROJECT]", "[INSTANCE]", "[TABLE]");
+   *   TableName tableName = TableName.create("[PROJECT]", "[INSTANCE]", "[TABLE]");
    *   ByteString rowKey = ByteString.copyFromUtf8("");
    *   List&lt;ReadModifyWriteRule&gt; rules = new ArrayList&lt;&gt;();
    *   ReadModifyWriteRowRequest request = ReadModifyWriteRowRequest.newBuilder()
-   *     .setTableName(formattedTableName)
+   *     .setTableNameWithTableName(tableName)
    *     .setRowKey(rowKey)
    *     .addAllRules(rules)
    *     .build();
