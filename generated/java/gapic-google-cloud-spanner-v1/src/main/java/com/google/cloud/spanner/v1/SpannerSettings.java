@@ -15,7 +15,10 @@
  */
 package com.google.cloud.spanner.v1;
 
+import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+
 import com.google.api.core.ApiFunction;
+import com.google.api.core.ApiFuture;
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.ExecutorProvider;
@@ -27,13 +30,19 @@ import com.google.api.gax.grpc.GrpcTransport;
 import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.InstantiatingChannelProvider;
 import com.google.api.gax.retrying.RetrySettings;
+import com.google.api.gax.rpc.ApiCallContext;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
+import com.google.api.gax.rpc.PageContext;
+import com.google.api.gax.rpc.PagedCallSettings;
+import com.google.api.gax.rpc.PagedListDescriptor;
+import com.google.api.gax.rpc.PagedListResponseFactory;
 import com.google.api.gax.rpc.SimpleCallSettings;
 import com.google.api.gax.rpc.StatusCode;
 import com.google.api.gax.rpc.StreamingCallSettings;
 import com.google.api.gax.rpc.TransportProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
+import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.v1.stub.GrpcSpannerStub;
 import com.google.cloud.spanner.v1.stub.SpannerStub;
 import com.google.common.collect.ImmutableList;
@@ -48,6 +57,8 @@ import com.google.spanner.v1.CreateSessionRequest;
 import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
@@ -106,6 +117,9 @@ public class SpannerSettings extends ClientSettings {
 
   private final SimpleCallSettings<CreateSessionRequest, Session> createSessionSettings;
   private final SimpleCallSettings<GetSessionRequest, Session> getSessionSettings;
+  private final PagedCallSettings<
+          ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>
+      listSessionsSettings;
   private final SimpleCallSettings<DeleteSessionRequest, Empty> deleteSessionSettings;
   private final SimpleCallSettings<ExecuteSqlRequest, ResultSet> executeSqlSettings;
   private final StreamingCallSettings<ExecuteSqlRequest, PartialResultSet>
@@ -124,6 +138,12 @@ public class SpannerSettings extends ClientSettings {
   /** Returns the object with the settings used for calls to getSession. */
   public SimpleCallSettings<GetSessionRequest, Session> getSessionSettings() {
     return getSessionSettings;
+  }
+
+  /** Returns the object with the settings used for calls to listSessions. */
+  public PagedCallSettings<ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>
+      listSessionsSettings() {
+    return listSessionsSettings;
   }
 
   /** Returns the object with the settings used for calls to deleteSession. */
@@ -260,6 +280,7 @@ public class SpannerSettings extends ClientSettings {
 
     createSessionSettings = settingsBuilder.createSessionSettings().build();
     getSessionSettings = settingsBuilder.getSessionSettings().build();
+    listSessionsSettings = settingsBuilder.listSessionsSettings().build();
     deleteSessionSettings = settingsBuilder.deleteSessionSettings().build();
     executeSqlSettings = settingsBuilder.executeSqlSettings().build();
     executeStreamingSqlSettings = settingsBuilder.executeStreamingSqlSettings().build();
@@ -270,12 +291,66 @@ public class SpannerSettings extends ClientSettings {
     rollbackSettings = settingsBuilder.rollbackSettings().build();
   }
 
+  private static final PagedListDescriptor<ListSessionsRequest, ListSessionsResponse, Session>
+      LIST_SESSIONS_PAGE_STR_DESC =
+          new PagedListDescriptor<ListSessionsRequest, ListSessionsResponse, Session>() {
+            @Override
+            public String emptyToken() {
+              return "";
+            }
+
+            @Override
+            public ListSessionsRequest injectToken(ListSessionsRequest payload, String token) {
+              return ListSessionsRequest.newBuilder(payload).setPageToken(token).build();
+            }
+
+            @Override
+            public ListSessionsRequest injectPageSize(ListSessionsRequest payload, int pageSize) {
+              return ListSessionsRequest.newBuilder(payload).setPageSize(pageSize).build();
+            }
+
+            @Override
+            public Integer extractPageSize(ListSessionsRequest payload) {
+              return payload.getPageSize();
+            }
+
+            @Override
+            public String extractNextToken(ListSessionsResponse payload) {
+              return payload.getNextPageToken();
+            }
+
+            @Override
+            public Iterable<Session> extractResources(ListSessionsResponse payload) {
+              return payload.getSessionsList();
+            }
+          };
+
+  private static final PagedListResponseFactory<
+          ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>
+      LIST_SESSIONS_PAGE_STR_FACT =
+          new PagedListResponseFactory<
+              ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>() {
+            @Override
+            public ApiFuture<ListSessionsPagedResponse> getFuturePagedResponse(
+                UnaryCallable<ListSessionsRequest, ListSessionsResponse> callable,
+                ListSessionsRequest request,
+                ApiCallContext context,
+                ApiFuture<ListSessionsResponse> futureResponse) {
+              PageContext<ListSessionsRequest, ListSessionsResponse, Session> pageContext =
+                  PageContext.create(callable, LIST_SESSIONS_PAGE_STR_DESC, request, context);
+              return ListSessionsPagedResponse.createAsync(pageContext, futureResponse);
+            }
+          };
+
   /** Builder for SpannerSettings. */
   public static class Builder extends ClientSettings.Builder {
     private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
 
     private final SimpleCallSettings.Builder<CreateSessionRequest, Session> createSessionSettings;
     private final SimpleCallSettings.Builder<GetSessionRequest, Session> getSessionSettings;
+    private final PagedCallSettings.Builder<
+            ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>
+        listSessionsSettings;
     private final SimpleCallSettings.Builder<DeleteSessionRequest, Empty> deleteSessionSettings;
     private final SimpleCallSettings.Builder<ExecuteSqlRequest, ResultSet> executeSqlSettings;
     private final StreamingCallSettings.Builder<ExecuteSqlRequest, PartialResultSet>
@@ -347,6 +422,8 @@ public class SpannerSettings extends ClientSettings {
 
       getSessionSettings = SimpleCallSettings.newBuilder();
 
+      listSessionsSettings = PagedCallSettings.newBuilder(LIST_SESSIONS_PAGE_STR_FACT);
+
       deleteSessionSettings = SimpleCallSettings.newBuilder();
 
       executeSqlSettings = SimpleCallSettings.newBuilder();
@@ -367,6 +444,7 @@ public class SpannerSettings extends ClientSettings {
           ImmutableList.<UnaryCallSettings.Builder>of(
               createSessionSettings,
               getSessionSettings,
+              listSessionsSettings,
               deleteSessionSettings,
               executeSqlSettings,
               readSettings,
@@ -393,6 +471,11 @@ public class SpannerSettings extends ClientSettings {
 
       builder
           .getSessionSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .listSessionsSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
@@ -434,6 +517,7 @@ public class SpannerSettings extends ClientSettings {
 
       createSessionSettings = settings.createSessionSettings.toBuilder();
       getSessionSettings = settings.getSessionSettings.toBuilder();
+      listSessionsSettings = settings.listSessionsSettings.toBuilder();
       deleteSessionSettings = settings.deleteSessionSettings.toBuilder();
       executeSqlSettings = settings.executeSqlSettings.toBuilder();
       executeStreamingSqlSettings = settings.executeStreamingSqlSettings.toBuilder();
@@ -447,6 +531,7 @@ public class SpannerSettings extends ClientSettings {
           ImmutableList.<UnaryCallSettings.Builder>of(
               createSessionSettings,
               getSessionSettings,
+              listSessionsSettings,
               deleteSessionSettings,
               executeSqlSettings,
               readSettings,
@@ -492,6 +577,13 @@ public class SpannerSettings extends ClientSettings {
     /** Returns the builder for the settings used for calls to getSession. */
     public SimpleCallSettings.Builder<GetSessionRequest, Session> getSessionSettings() {
       return getSessionSettings;
+    }
+
+    /** Returns the builder for the settings used for calls to listSessions. */
+    public PagedCallSettings.Builder<
+            ListSessionsRequest, ListSessionsResponse, ListSessionsPagedResponse>
+        listSessionsSettings() {
+      return listSessionsSettings;
     }
 
     /** Returns the builder for the settings used for calls to deleteSession. */

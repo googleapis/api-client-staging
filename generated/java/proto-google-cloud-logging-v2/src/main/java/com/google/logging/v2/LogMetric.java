@@ -7,6 +7,10 @@ package com.google.logging.v2;
  * <pre>
  * Describes a logs-based metric.  The value of the metric is the
  * number of log entries that match a logs filter in a given time interval.
+ * A logs-based metric can also be used to extract values from logs and create a
+ * a distribution of the values. The distribution records the statistics of the
+ * extracted values along with an optional histogram of the values as specified
+ * by the bucket options.
  * </pre>
  *
  * Protobuf type {@code google.logging.v2.LogMetric}
@@ -23,6 +27,7 @@ public  final class LogMetric extends
     name_ = "";
     description_ = "";
     filter_ = "";
+    valueExtractor_ = "";
     version_ = 0;
   }
 
@@ -75,6 +80,51 @@ public  final class LogMetric extends
             version_ = rawValue;
             break;
           }
+          case 42: {
+            com.google.api.MetricDescriptor.Builder subBuilder = null;
+            if (metricDescriptor_ != null) {
+              subBuilder = metricDescriptor_.toBuilder();
+            }
+            metricDescriptor_ = input.readMessage(com.google.api.MetricDescriptor.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(metricDescriptor_);
+              metricDescriptor_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 50: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            valueExtractor_ = s;
+            break;
+          }
+          case 58: {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+              labelExtractors_ = com.google.protobuf.MapField.newMapField(
+                  LabelExtractorsDefaultEntryHolder.defaultEntry);
+              mutable_bitField0_ |= 0x00000020;
+            }
+            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+            labelExtractors__ = input.readMessage(
+                LabelExtractorsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+            labelExtractors_.getMutableMap().put(
+                labelExtractors__.getKey(), labelExtractors__.getValue());
+            break;
+          }
+          case 66: {
+            com.google.api.Distribution.BucketOptions.Builder subBuilder = null;
+            if (bucketOptions_ != null) {
+              subBuilder = bucketOptions_.toBuilder();
+            }
+            bucketOptions_ = input.readMessage(com.google.api.Distribution.BucketOptions.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(bucketOptions_);
+              bucketOptions_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -91,6 +141,17 @@ public  final class LogMetric extends
     return com.google.logging.v2.LoggingMetricsProto.internal_static_google_logging_v2_LogMetric_descriptor;
   }
 
+  @SuppressWarnings({"rawtypes"})
+  protected com.google.protobuf.MapField internalGetMapField(
+      int number) {
+    switch (number) {
+      case 7:
+        return internalGetLabelExtractors();
+      default:
+        throw new RuntimeException(
+            "Invalid map field number: " + number);
+    }
+  }
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.google.logging.v2.LoggingMetricsProto.internal_static_google_logging_v2_LogMetric_fieldAccessorTable
@@ -216,6 +277,7 @@ public  final class LogMetric extends
     // @@protoc_insertion_point(enum_scope:google.logging.v2.LogMetric.ApiVersion)
   }
 
+  private int bitField0_;
   public static final int NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object name_;
   /**
@@ -374,13 +436,342 @@ public  final class LogMetric extends
     }
   }
 
+  public static final int METRIC_DESCRIPTOR_FIELD_NUMBER = 5;
+  private com.google.api.MetricDescriptor metricDescriptor_;
+  /**
+   * <pre>
+   * Optional. The metric descriptor associated with the logs-based metric.
+   * If unspecified, it uses a default metric descriptor with a DELTA metric
+   * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+   * counts the number of log entries matching the `filter` expression.
+   * The `name`, `type`, and `description` fields in the `metric_descriptor`
+   * are output only, and is constructed using the `name` and `description`
+   * field in the LogMetric.
+   * To create a logs-based metric that records a distribution of log values, a
+   * DELTA metric kind with a DISTRIBUTION value type must be used along with
+   * a `value_extractor` expression in the LogMetric.
+   * Each label in the metric descriptor must have a matching label
+   * name as the key and an extractor expression as the value in the
+   * `label_extractors` map.
+   * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+   * be updated once initially configured. New labels can be added in the
+   * `metric_descriptor`, but existing labels cannot be modified except for
+   * their description.
+   * </pre>
+   *
+   * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+   */
+  public boolean hasMetricDescriptor() {
+    return metricDescriptor_ != null;
+  }
+  /**
+   * <pre>
+   * Optional. The metric descriptor associated with the logs-based metric.
+   * If unspecified, it uses a default metric descriptor with a DELTA metric
+   * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+   * counts the number of log entries matching the `filter` expression.
+   * The `name`, `type`, and `description` fields in the `metric_descriptor`
+   * are output only, and is constructed using the `name` and `description`
+   * field in the LogMetric.
+   * To create a logs-based metric that records a distribution of log values, a
+   * DELTA metric kind with a DISTRIBUTION value type must be used along with
+   * a `value_extractor` expression in the LogMetric.
+   * Each label in the metric descriptor must have a matching label
+   * name as the key and an extractor expression as the value in the
+   * `label_extractors` map.
+   * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+   * be updated once initially configured. New labels can be added in the
+   * `metric_descriptor`, but existing labels cannot be modified except for
+   * their description.
+   * </pre>
+   *
+   * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+   */
+  public com.google.api.MetricDescriptor getMetricDescriptor() {
+    return metricDescriptor_ == null ? com.google.api.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
+  }
+  /**
+   * <pre>
+   * Optional. The metric descriptor associated with the logs-based metric.
+   * If unspecified, it uses a default metric descriptor with a DELTA metric
+   * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+   * counts the number of log entries matching the `filter` expression.
+   * The `name`, `type`, and `description` fields in the `metric_descriptor`
+   * are output only, and is constructed using the `name` and `description`
+   * field in the LogMetric.
+   * To create a logs-based metric that records a distribution of log values, a
+   * DELTA metric kind with a DISTRIBUTION value type must be used along with
+   * a `value_extractor` expression in the LogMetric.
+   * Each label in the metric descriptor must have a matching label
+   * name as the key and an extractor expression as the value in the
+   * `label_extractors` map.
+   * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+   * be updated once initially configured. New labels can be added in the
+   * `metric_descriptor`, but existing labels cannot be modified except for
+   * their description.
+   * </pre>
+   *
+   * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+   */
+  public com.google.api.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
+    return getMetricDescriptor();
+  }
+
+  public static final int VALUE_EXTRACTOR_FIELD_NUMBER = 6;
+  private volatile java.lang.Object valueExtractor_;
+  /**
+   * <pre>
+   * Optional. A `value_extractor` is required when using a distribution
+   * logs-based metric to extract the values to record from a log entry.
+   * Two functions are supported for value extraction: `EXTRACT(field)` or
+   * `REGEXP_EXTRACT(field, regex)`. The argument are:
+   *   1. field: The name of the log entry field from which the value is to be
+   *      extracted.
+   *   2. regex: A regular expression using the Google RE2 syntax
+   *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+   *      group to extract data from the specified log entry field. The value
+   *      of the field is converted to a string before applying the regex.
+   *      It is an error to specify a regex that does not include exactly one
+   *      capture group.
+   * The result of the extraction must be convertible to a double type, as the
+   * distribution always records double values. If either the extraction or
+   * the conversion to double fails, then those values are not recorded in the
+   * distribution.
+   * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+   * </pre>
+   *
+   * <code>string value_extractor = 6;</code>
+   */
+  public java.lang.String getValueExtractor() {
+    java.lang.Object ref = valueExtractor_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      valueExtractor_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Optional. A `value_extractor` is required when using a distribution
+   * logs-based metric to extract the values to record from a log entry.
+   * Two functions are supported for value extraction: `EXTRACT(field)` or
+   * `REGEXP_EXTRACT(field, regex)`. The argument are:
+   *   1. field: The name of the log entry field from which the value is to be
+   *      extracted.
+   *   2. regex: A regular expression using the Google RE2 syntax
+   *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+   *      group to extract data from the specified log entry field. The value
+   *      of the field is converted to a string before applying the regex.
+   *      It is an error to specify a regex that does not include exactly one
+   *      capture group.
+   * The result of the extraction must be convertible to a double type, as the
+   * distribution always records double values. If either the extraction or
+   * the conversion to double fails, then those values are not recorded in the
+   * distribution.
+   * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+   * </pre>
+   *
+   * <code>string value_extractor = 6;</code>
+   */
+  public com.google.protobuf.ByteString
+      getValueExtractorBytes() {
+    java.lang.Object ref = valueExtractor_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      valueExtractor_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int LABEL_EXTRACTORS_FIELD_NUMBER = 7;
+  private static final class LabelExtractorsDefaultEntryHolder {
+    static final com.google.protobuf.MapEntry<
+        java.lang.String, java.lang.String> defaultEntry =
+            com.google.protobuf.MapEntry
+            .<java.lang.String, java.lang.String>newDefaultInstance(
+                com.google.logging.v2.LoggingMetricsProto.internal_static_google_logging_v2_LogMetric_LabelExtractorsEntry_descriptor, 
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "",
+                com.google.protobuf.WireFormat.FieldType.STRING,
+                "");
+  }
+  private com.google.protobuf.MapField<
+      java.lang.String, java.lang.String> labelExtractors_;
+  private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+  internalGetLabelExtractors() {
+    if (labelExtractors_ == null) {
+      return com.google.protobuf.MapField.emptyMapField(
+          LabelExtractorsDefaultEntryHolder.defaultEntry);
+    }
+    return labelExtractors_;
+  }
+
+  public int getLabelExtractorsCount() {
+    return internalGetLabelExtractors().getMap().size();
+  }
+  /**
+   * <pre>
+   * Optional. A map from a label key string to an extractor expression which is
+   * used to extract data from a log entry field and assign as the label value.
+   * Each label key specified in the LabelDescriptor must have an associated
+   * extractor expression in this map. The syntax of the extractor expression
+   * is the same as for the `value_extractor` field.
+   * The extracted value is converted to the type defined in the label
+   * descriptor. If the either the extraction or the type conversion fails,
+   * the label will have a default value. The default value for a string
+   * label is an empty string, for an integer label its 0, and for a boolean
+   * label its `false`.
+   * Note that there are upper bounds on the maximum number of labels and the
+   * number of active time series that are allowed in a project.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+   */
+
+  public boolean containsLabelExtractors(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    return internalGetLabelExtractors().getMap().containsKey(key);
+  }
+  /**
+   * Use {@link #getLabelExtractorsMap()} instead.
+   */
+  @java.lang.Deprecated
+  public java.util.Map<java.lang.String, java.lang.String> getLabelExtractors() {
+    return getLabelExtractorsMap();
+  }
+  /**
+   * <pre>
+   * Optional. A map from a label key string to an extractor expression which is
+   * used to extract data from a log entry field and assign as the label value.
+   * Each label key specified in the LabelDescriptor must have an associated
+   * extractor expression in this map. The syntax of the extractor expression
+   * is the same as for the `value_extractor` field.
+   * The extracted value is converted to the type defined in the label
+   * descriptor. If the either the extraction or the type conversion fails,
+   * the label will have a default value. The default value for a string
+   * label is an empty string, for an integer label its 0, and for a boolean
+   * label its `false`.
+   * Note that there are upper bounds on the maximum number of labels and the
+   * number of active time series that are allowed in a project.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+   */
+
+  public java.util.Map<java.lang.String, java.lang.String> getLabelExtractorsMap() {
+    return internalGetLabelExtractors().getMap();
+  }
+  /**
+   * <pre>
+   * Optional. A map from a label key string to an extractor expression which is
+   * used to extract data from a log entry field and assign as the label value.
+   * Each label key specified in the LabelDescriptor must have an associated
+   * extractor expression in this map. The syntax of the extractor expression
+   * is the same as for the `value_extractor` field.
+   * The extracted value is converted to the type defined in the label
+   * descriptor. If the either the extraction or the type conversion fails,
+   * the label will have a default value. The default value for a string
+   * label is an empty string, for an integer label its 0, and for a boolean
+   * label its `false`.
+   * Note that there are upper bounds on the maximum number of labels and the
+   * number of active time series that are allowed in a project.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+   */
+
+  public java.lang.String getLabelExtractorsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabelExtractors().getMap();
+    return map.containsKey(key) ? map.get(key) : defaultValue;
+  }
+  /**
+   * <pre>
+   * Optional. A map from a label key string to an extractor expression which is
+   * used to extract data from a log entry field and assign as the label value.
+   * Each label key specified in the LabelDescriptor must have an associated
+   * extractor expression in this map. The syntax of the extractor expression
+   * is the same as for the `value_extractor` field.
+   * The extracted value is converted to the type defined in the label
+   * descriptor. If the either the extraction or the type conversion fails,
+   * the label will have a default value. The default value for a string
+   * label is an empty string, for an integer label its 0, and for a boolean
+   * label its `false`.
+   * Note that there are upper bounds on the maximum number of labels and the
+   * number of active time series that are allowed in a project.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+   */
+
+  public java.lang.String getLabelExtractorsOrThrow(
+      java.lang.String key) {
+    if (key == null) { throw new java.lang.NullPointerException(); }
+    java.util.Map<java.lang.String, java.lang.String> map =
+        internalGetLabelExtractors().getMap();
+    if (!map.containsKey(key)) {
+      throw new java.lang.IllegalArgumentException();
+    }
+    return map.get(key);
+  }
+
+  public static final int BUCKET_OPTIONS_FIELD_NUMBER = 8;
+  private com.google.api.Distribution.BucketOptions bucketOptions_;
+  /**
+   * <pre>
+   * Optional. The `bucket_options` are required when the logs-based metric is
+   * using a DISTRIBUTION value type and it describes the bucket boundaries
+   * used to create a histogram of the extracted values.
+   * </pre>
+   *
+   * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+   */
+  public boolean hasBucketOptions() {
+    return bucketOptions_ != null;
+  }
+  /**
+   * <pre>
+   * Optional. The `bucket_options` are required when the logs-based metric is
+   * using a DISTRIBUTION value type and it describes the bucket boundaries
+   * used to create a histogram of the extracted values.
+   * </pre>
+   *
+   * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+   */
+  public com.google.api.Distribution.BucketOptions getBucketOptions() {
+    return bucketOptions_ == null ? com.google.api.Distribution.BucketOptions.getDefaultInstance() : bucketOptions_;
+  }
+  /**
+   * <pre>
+   * Optional. The `bucket_options` are required when the logs-based metric is
+   * using a DISTRIBUTION value type and it describes the bucket boundaries
+   * used to create a histogram of the extracted values.
+   * </pre>
+   *
+   * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+   */
+  public com.google.api.Distribution.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
+    return getBucketOptions();
+  }
+
   public static final int VERSION_FIELD_NUMBER = 4;
   private int version_;
   /**
    * <pre>
-   * Output only. The API version that created or updated this metric.
-   * The version also dictates the syntax of the filter expression. When a value
-   * for this field is missing, the default value of V2 should be assumed.
+   * Deprecated. The API version that created or updated this metric.
+   * The v2 format is used by default and cannot be changed.
    * </pre>
    *
    * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -390,9 +781,8 @@ public  final class LogMetric extends
   }
   /**
    * <pre>
-   * Output only. The API version that created or updated this metric.
-   * The version also dictates the syntax of the filter expression. When a value
-   * for this field is missing, the default value of V2 should be assumed.
+   * Deprecated. The API version that created or updated this metric.
+   * The v2 format is used by default and cannot be changed.
    * </pre>
    *
    * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -426,6 +816,21 @@ public  final class LogMetric extends
     if (version_ != com.google.logging.v2.LogMetric.ApiVersion.V2.getNumber()) {
       output.writeEnum(4, version_);
     }
+    if (metricDescriptor_ != null) {
+      output.writeMessage(5, getMetricDescriptor());
+    }
+    if (!getValueExtractorBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, valueExtractor_);
+    }
+    com.google.protobuf.GeneratedMessageV3
+      .serializeStringMapTo(
+        output,
+        internalGetLabelExtractors(),
+        LabelExtractorsDefaultEntryHolder.defaultEntry,
+        7);
+    if (bucketOptions_ != null) {
+      output.writeMessage(8, getBucketOptions());
+    }
   }
 
   public int getSerializedSize() {
@@ -445,6 +850,27 @@ public  final class LogMetric extends
     if (version_ != com.google.logging.v2.LogMetric.ApiVersion.V2.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(4, version_);
+    }
+    if (metricDescriptor_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, getMetricDescriptor());
+    }
+    if (!getValueExtractorBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, valueExtractor_);
+    }
+    for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+         : internalGetLabelExtractors().getMap().entrySet()) {
+      com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+      labelExtractors__ = LabelExtractorsDefaultEntryHolder.defaultEntry.newBuilderForType()
+          .setKey(entry.getKey())
+          .setValue(entry.getValue())
+          .build();
+      size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, labelExtractors__);
+    }
+    if (bucketOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getBucketOptions());
     }
     memoizedSize = size;
     return size;
@@ -468,6 +894,20 @@ public  final class LogMetric extends
         .equals(other.getDescription());
     result = result && getFilter()
         .equals(other.getFilter());
+    result = result && (hasMetricDescriptor() == other.hasMetricDescriptor());
+    if (hasMetricDescriptor()) {
+      result = result && getMetricDescriptor()
+          .equals(other.getMetricDescriptor());
+    }
+    result = result && getValueExtractor()
+        .equals(other.getValueExtractor());
+    result = result && internalGetLabelExtractors().equals(
+        other.internalGetLabelExtractors());
+    result = result && (hasBucketOptions() == other.hasBucketOptions());
+    if (hasBucketOptions()) {
+      result = result && getBucketOptions()
+          .equals(other.getBucketOptions());
+    }
     result = result && version_ == other.version_;
     return result;
   }
@@ -485,6 +925,20 @@ public  final class LogMetric extends
     hash = (53 * hash) + getDescription().hashCode();
     hash = (37 * hash) + FILTER_FIELD_NUMBER;
     hash = (53 * hash) + getFilter().hashCode();
+    if (hasMetricDescriptor()) {
+      hash = (37 * hash) + METRIC_DESCRIPTOR_FIELD_NUMBER;
+      hash = (53 * hash) + getMetricDescriptor().hashCode();
+    }
+    hash = (37 * hash) + VALUE_EXTRACTOR_FIELD_NUMBER;
+    hash = (53 * hash) + getValueExtractor().hashCode();
+    if (!internalGetLabelExtractors().getMap().isEmpty()) {
+      hash = (37 * hash) + LABEL_EXTRACTORS_FIELD_NUMBER;
+      hash = (53 * hash) + internalGetLabelExtractors().hashCode();
+    }
+    if (hasBucketOptions()) {
+      hash = (37 * hash) + BUCKET_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getBucketOptions().hashCode();
+    }
     hash = (37 * hash) + VERSION_FIELD_NUMBER;
     hash = (53 * hash) + version_;
     hash = (29 * hash) + unknownFields.hashCode();
@@ -584,6 +1038,10 @@ public  final class LogMetric extends
    * <pre>
    * Describes a logs-based metric.  The value of the metric is the
    * number of log entries that match a logs filter in a given time interval.
+   * A logs-based metric can also be used to extract values from logs and create a
+   * a distribution of the values. The distribution records the statistics of the
+   * extracted values along with an optional histogram of the values as specified
+   * by the bucket options.
    * </pre>
    *
    * Protobuf type {@code google.logging.v2.LogMetric}
@@ -597,6 +1055,28 @@ public  final class LogMetric extends
       return com.google.logging.v2.LoggingMetricsProto.internal_static_google_logging_v2_LogMetric_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 7:
+          return internalGetLabelExtractors();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMutableMapField(
+        int number) {
+      switch (number) {
+        case 7:
+          return internalGetMutableLabelExtractors();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.google.logging.v2.LoggingMetricsProto.internal_static_google_logging_v2_LogMetric_fieldAccessorTable
@@ -627,6 +1107,21 @@ public  final class LogMetric extends
 
       filter_ = "";
 
+      if (metricDescriptorBuilder_ == null) {
+        metricDescriptor_ = null;
+      } else {
+        metricDescriptor_ = null;
+        metricDescriptorBuilder_ = null;
+      }
+      valueExtractor_ = "";
+
+      internalGetMutableLabelExtractors().clear();
+      if (bucketOptionsBuilder_ == null) {
+        bucketOptions_ = null;
+      } else {
+        bucketOptions_ = null;
+        bucketOptionsBuilder_ = null;
+      }
       version_ = 0;
 
       return this;
@@ -651,10 +1146,26 @@ public  final class LogMetric extends
 
     public com.google.logging.v2.LogMetric buildPartial() {
       com.google.logging.v2.LogMetric result = new com.google.logging.v2.LogMetric(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.name_ = name_;
       result.description_ = description_;
       result.filter_ = filter_;
+      if (metricDescriptorBuilder_ == null) {
+        result.metricDescriptor_ = metricDescriptor_;
+      } else {
+        result.metricDescriptor_ = metricDescriptorBuilder_.build();
+      }
+      result.valueExtractor_ = valueExtractor_;
+      result.labelExtractors_ = internalGetLabelExtractors();
+      result.labelExtractors_.makeImmutable();
+      if (bucketOptionsBuilder_ == null) {
+        result.bucketOptions_ = bucketOptions_;
+      } else {
+        result.bucketOptions_ = bucketOptionsBuilder_.build();
+      }
       result.version_ = version_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -708,6 +1219,18 @@ public  final class LogMetric extends
         filter_ = other.filter_;
         onChanged();
       }
+      if (other.hasMetricDescriptor()) {
+        mergeMetricDescriptor(other.getMetricDescriptor());
+      }
+      if (!other.getValueExtractor().isEmpty()) {
+        valueExtractor_ = other.valueExtractor_;
+        onChanged();
+      }
+      internalGetMutableLabelExtractors().mergeFrom(
+          other.internalGetLabelExtractors());
+      if (other.hasBucketOptions()) {
+        mergeBucketOptions(other.getBucketOptions());
+      }
       if (other.version_ != 0) {
         setVersionValue(other.getVersionValue());
       }
@@ -736,6 +1259,7 @@ public  final class LogMetric extends
       }
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object name_ = "";
     /**
@@ -1084,12 +1608,876 @@ public  final class LogMetric extends
       return this;
     }
 
+    private com.google.api.MetricDescriptor metricDescriptor_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.api.MetricDescriptor, com.google.api.MetricDescriptor.Builder, com.google.api.MetricDescriptorOrBuilder> metricDescriptorBuilder_;
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public boolean hasMetricDescriptor() {
+      return metricDescriptorBuilder_ != null || metricDescriptor_ != null;
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public com.google.api.MetricDescriptor getMetricDescriptor() {
+      if (metricDescriptorBuilder_ == null) {
+        return metricDescriptor_ == null ? com.google.api.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
+      } else {
+        return metricDescriptorBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public Builder setMetricDescriptor(com.google.api.MetricDescriptor value) {
+      if (metricDescriptorBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        metricDescriptor_ = value;
+        onChanged();
+      } else {
+        metricDescriptorBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public Builder setMetricDescriptor(
+        com.google.api.MetricDescriptor.Builder builderForValue) {
+      if (metricDescriptorBuilder_ == null) {
+        metricDescriptor_ = builderForValue.build();
+        onChanged();
+      } else {
+        metricDescriptorBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public Builder mergeMetricDescriptor(com.google.api.MetricDescriptor value) {
+      if (metricDescriptorBuilder_ == null) {
+        if (metricDescriptor_ != null) {
+          metricDescriptor_ =
+            com.google.api.MetricDescriptor.newBuilder(metricDescriptor_).mergeFrom(value).buildPartial();
+        } else {
+          metricDescriptor_ = value;
+        }
+        onChanged();
+      } else {
+        metricDescriptorBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public Builder clearMetricDescriptor() {
+      if (metricDescriptorBuilder_ == null) {
+        metricDescriptor_ = null;
+        onChanged();
+      } else {
+        metricDescriptor_ = null;
+        metricDescriptorBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public com.google.api.MetricDescriptor.Builder getMetricDescriptorBuilder() {
+      
+      onChanged();
+      return getMetricDescriptorFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    public com.google.api.MetricDescriptorOrBuilder getMetricDescriptorOrBuilder() {
+      if (metricDescriptorBuilder_ != null) {
+        return metricDescriptorBuilder_.getMessageOrBuilder();
+      } else {
+        return metricDescriptor_ == null ?
+            com.google.api.MetricDescriptor.getDefaultInstance() : metricDescriptor_;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. The metric descriptor associated with the logs-based metric.
+     * If unspecified, it uses a default metric descriptor with a DELTA metric
+     * kind, INT64 value type, with no labels and a unit of "1". Such a metric
+     * counts the number of log entries matching the `filter` expression.
+     * The `name`, `type`, and `description` fields in the `metric_descriptor`
+     * are output only, and is constructed using the `name` and `description`
+     * field in the LogMetric.
+     * To create a logs-based metric that records a distribution of log values, a
+     * DELTA metric kind with a DISTRIBUTION value type must be used along with
+     * a `value_extractor` expression in the LogMetric.
+     * Each label in the metric descriptor must have a matching label
+     * name as the key and an extractor expression as the value in the
+     * `label_extractors` map.
+     * The `metric_kind` and `value_type` fields in the `metric_descriptor` cannot
+     * be updated once initially configured. New labels can be added in the
+     * `metric_descriptor`, but existing labels cannot be modified except for
+     * their description.
+     * </pre>
+     *
+     * <code>.google.api.MetricDescriptor metric_descriptor = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.api.MetricDescriptor, com.google.api.MetricDescriptor.Builder, com.google.api.MetricDescriptorOrBuilder> 
+        getMetricDescriptorFieldBuilder() {
+      if (metricDescriptorBuilder_ == null) {
+        metricDescriptorBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.api.MetricDescriptor, com.google.api.MetricDescriptor.Builder, com.google.api.MetricDescriptorOrBuilder>(
+                getMetricDescriptor(),
+                getParentForChildren(),
+                isClean());
+        metricDescriptor_ = null;
+      }
+      return metricDescriptorBuilder_;
+    }
+
+    private java.lang.Object valueExtractor_ = "";
+    /**
+     * <pre>
+     * Optional. A `value_extractor` is required when using a distribution
+     * logs-based metric to extract the values to record from a log entry.
+     * Two functions are supported for value extraction: `EXTRACT(field)` or
+     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *   1. field: The name of the log entry field from which the value is to be
+     *      extracted.
+     *   2. regex: A regular expression using the Google RE2 syntax
+     *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+     *      group to extract data from the specified log entry field. The value
+     *      of the field is converted to a string before applying the regex.
+     *      It is an error to specify a regex that does not include exactly one
+     *      capture group.
+     * The result of the extraction must be convertible to a double type, as the
+     * distribution always records double values. If either the extraction or
+     * the conversion to double fails, then those values are not recorded in the
+     * distribution.
+     * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+     * </pre>
+     *
+     * <code>string value_extractor = 6;</code>
+     */
+    public java.lang.String getValueExtractor() {
+      java.lang.Object ref = valueExtractor_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        valueExtractor_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. A `value_extractor` is required when using a distribution
+     * logs-based metric to extract the values to record from a log entry.
+     * Two functions are supported for value extraction: `EXTRACT(field)` or
+     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *   1. field: The name of the log entry field from which the value is to be
+     *      extracted.
+     *   2. regex: A regular expression using the Google RE2 syntax
+     *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+     *      group to extract data from the specified log entry field. The value
+     *      of the field is converted to a string before applying the regex.
+     *      It is an error to specify a regex that does not include exactly one
+     *      capture group.
+     * The result of the extraction must be convertible to a double type, as the
+     * distribution always records double values. If either the extraction or
+     * the conversion to double fails, then those values are not recorded in the
+     * distribution.
+     * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+     * </pre>
+     *
+     * <code>string value_extractor = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getValueExtractorBytes() {
+      java.lang.Object ref = valueExtractor_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        valueExtractor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. A `value_extractor` is required when using a distribution
+     * logs-based metric to extract the values to record from a log entry.
+     * Two functions are supported for value extraction: `EXTRACT(field)` or
+     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *   1. field: The name of the log entry field from which the value is to be
+     *      extracted.
+     *   2. regex: A regular expression using the Google RE2 syntax
+     *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+     *      group to extract data from the specified log entry field. The value
+     *      of the field is converted to a string before applying the regex.
+     *      It is an error to specify a regex that does not include exactly one
+     *      capture group.
+     * The result of the extraction must be convertible to a double type, as the
+     * distribution always records double values. If either the extraction or
+     * the conversion to double fails, then those values are not recorded in the
+     * distribution.
+     * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+     * </pre>
+     *
+     * <code>string value_extractor = 6;</code>
+     */
+    public Builder setValueExtractor(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      valueExtractor_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. A `value_extractor` is required when using a distribution
+     * logs-based metric to extract the values to record from a log entry.
+     * Two functions are supported for value extraction: `EXTRACT(field)` or
+     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *   1. field: The name of the log entry field from which the value is to be
+     *      extracted.
+     *   2. regex: A regular expression using the Google RE2 syntax
+     *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+     *      group to extract data from the specified log entry field. The value
+     *      of the field is converted to a string before applying the regex.
+     *      It is an error to specify a regex that does not include exactly one
+     *      capture group.
+     * The result of the extraction must be convertible to a double type, as the
+     * distribution always records double values. If either the extraction or
+     * the conversion to double fails, then those values are not recorded in the
+     * distribution.
+     * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+     * </pre>
+     *
+     * <code>string value_extractor = 6;</code>
+     */
+    public Builder clearValueExtractor() {
+      
+      valueExtractor_ = getDefaultInstance().getValueExtractor();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. A `value_extractor` is required when using a distribution
+     * logs-based metric to extract the values to record from a log entry.
+     * Two functions are supported for value extraction: `EXTRACT(field)` or
+     * `REGEXP_EXTRACT(field, regex)`. The argument are:
+     *   1. field: The name of the log entry field from which the value is to be
+     *      extracted.
+     *   2. regex: A regular expression using the Google RE2 syntax
+     *      (https://github.com/google/re2/wiki/Syntax) with a single capture
+     *      group to extract data from the specified log entry field. The value
+     *      of the field is converted to a string before applying the regex.
+     *      It is an error to specify a regex that does not include exactly one
+     *      capture group.
+     * The result of the extraction must be convertible to a double type, as the
+     * distribution always records double values. If either the extraction or
+     * the conversion to double fails, then those values are not recorded in the
+     * distribution.
+     * Example: `REGEXP_EXTRACT(jsonPayload.request, ".*quantity=(&#92;d+).*")`
+     * </pre>
+     *
+     * <code>string value_extractor = 6;</code>
+     */
+    public Builder setValueExtractorBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      valueExtractor_ = value;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> labelExtractors_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetLabelExtractors() {
+      if (labelExtractors_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            LabelExtractorsDefaultEntryHolder.defaultEntry);
+      }
+      return labelExtractors_;
+    }
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetMutableLabelExtractors() {
+      onChanged();;
+      if (labelExtractors_ == null) {
+        labelExtractors_ = com.google.protobuf.MapField.newMapField(
+            LabelExtractorsDefaultEntryHolder.defaultEntry);
+      }
+      if (!labelExtractors_.isMutable()) {
+        labelExtractors_ = labelExtractors_.copy();
+      }
+      return labelExtractors_;
+    }
+
+    public int getLabelExtractorsCount() {
+      return internalGetLabelExtractors().getMap().size();
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public boolean containsLabelExtractors(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetLabelExtractors().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getLabelExtractorsMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getLabelExtractors() {
+      return getLabelExtractorsMap();
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getLabelExtractorsMap() {
+      return internalGetLabelExtractors().getMap();
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public java.lang.String getLabelExtractorsOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabelExtractors().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public java.lang.String getLabelExtractorsOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetLabelExtractors().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    public Builder clearLabelExtractors() {
+      internalGetMutableLabelExtractors().getMutableMap()
+          .clear();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public Builder removeLabelExtractors(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabelExtractors().getMutableMap()
+          .remove(key);
+      return this;
+    }
+    /**
+     * Use alternate mutation accessors instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String>
+    getMutableLabelExtractors() {
+      return internalGetMutableLabelExtractors().getMutableMap();
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+    public Builder putLabelExtractors(
+        java.lang.String key,
+        java.lang.String value) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (value == null) { throw new java.lang.NullPointerException(); }
+      internalGetMutableLabelExtractors().getMutableMap()
+          .put(key, value);
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. A map from a label key string to an extractor expression which is
+     * used to extract data from a log entry field and assign as the label value.
+     * Each label key specified in the LabelDescriptor must have an associated
+     * extractor expression in this map. The syntax of the extractor expression
+     * is the same as for the `value_extractor` field.
+     * The extracted value is converted to the type defined in the label
+     * descriptor. If the either the extraction or the type conversion fails,
+     * the label will have a default value. The default value for a string
+     * label is an empty string, for an integer label its 0, and for a boolean
+     * label its `false`.
+     * Note that there are upper bounds on the maximum number of labels and the
+     * number of active time series that are allowed in a project.
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; label_extractors = 7;</code>
+     */
+
+    public Builder putAllLabelExtractors(
+        java.util.Map<java.lang.String, java.lang.String> values) {
+      internalGetMutableLabelExtractors().getMutableMap()
+          .putAll(values);
+      return this;
+    }
+
+    private com.google.api.Distribution.BucketOptions bucketOptions_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.api.Distribution.BucketOptions, com.google.api.Distribution.BucketOptions.Builder, com.google.api.Distribution.BucketOptionsOrBuilder> bucketOptionsBuilder_;
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public boolean hasBucketOptions() {
+      return bucketOptionsBuilder_ != null || bucketOptions_ != null;
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public com.google.api.Distribution.BucketOptions getBucketOptions() {
+      if (bucketOptionsBuilder_ == null) {
+        return bucketOptions_ == null ? com.google.api.Distribution.BucketOptions.getDefaultInstance() : bucketOptions_;
+      } else {
+        return bucketOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public Builder setBucketOptions(com.google.api.Distribution.BucketOptions value) {
+      if (bucketOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bucketOptions_ = value;
+        onChanged();
+      } else {
+        bucketOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public Builder setBucketOptions(
+        com.google.api.Distribution.BucketOptions.Builder builderForValue) {
+      if (bucketOptionsBuilder_ == null) {
+        bucketOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        bucketOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public Builder mergeBucketOptions(com.google.api.Distribution.BucketOptions value) {
+      if (bucketOptionsBuilder_ == null) {
+        if (bucketOptions_ != null) {
+          bucketOptions_ =
+            com.google.api.Distribution.BucketOptions.newBuilder(bucketOptions_).mergeFrom(value).buildPartial();
+        } else {
+          bucketOptions_ = value;
+        }
+        onChanged();
+      } else {
+        bucketOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public Builder clearBucketOptions() {
+      if (bucketOptionsBuilder_ == null) {
+        bucketOptions_ = null;
+        onChanged();
+      } else {
+        bucketOptions_ = null;
+        bucketOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public com.google.api.Distribution.BucketOptions.Builder getBucketOptionsBuilder() {
+      
+      onChanged();
+      return getBucketOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    public com.google.api.Distribution.BucketOptionsOrBuilder getBucketOptionsOrBuilder() {
+      if (bucketOptionsBuilder_ != null) {
+        return bucketOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return bucketOptions_ == null ?
+            com.google.api.Distribution.BucketOptions.getDefaultInstance() : bucketOptions_;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. The `bucket_options` are required when the logs-based metric is
+     * using a DISTRIBUTION value type and it describes the bucket boundaries
+     * used to create a histogram of the extracted values.
+     * </pre>
+     *
+     * <code>.google.api.Distribution.BucketOptions bucket_options = 8;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.api.Distribution.BucketOptions, com.google.api.Distribution.BucketOptions.Builder, com.google.api.Distribution.BucketOptionsOrBuilder> 
+        getBucketOptionsFieldBuilder() {
+      if (bucketOptionsBuilder_ == null) {
+        bucketOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.api.Distribution.BucketOptions, com.google.api.Distribution.BucketOptions.Builder, com.google.api.Distribution.BucketOptionsOrBuilder>(
+                getBucketOptions(),
+                getParentForChildren(),
+                isClean());
+        bucketOptions_ = null;
+      }
+      return bucketOptionsBuilder_;
+    }
+
     private int version_ = 0;
     /**
      * <pre>
-     * Output only. The API version that created or updated this metric.
-     * The version also dictates the syntax of the filter expression. When a value
-     * for this field is missing, the default value of V2 should be assumed.
+     * Deprecated. The API version that created or updated this metric.
+     * The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -1099,9 +2487,8 @@ public  final class LogMetric extends
     }
     /**
      * <pre>
-     * Output only. The API version that created or updated this metric.
-     * The version also dictates the syntax of the filter expression. When a value
-     * for this field is missing, the default value of V2 should be assumed.
+     * Deprecated. The API version that created or updated this metric.
+     * The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -1113,9 +2500,8 @@ public  final class LogMetric extends
     }
     /**
      * <pre>
-     * Output only. The API version that created or updated this metric.
-     * The version also dictates the syntax of the filter expression. When a value
-     * for this field is missing, the default value of V2 should be assumed.
+     * Deprecated. The API version that created or updated this metric.
+     * The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -1126,9 +2512,8 @@ public  final class LogMetric extends
     }
     /**
      * <pre>
-     * Output only. The API version that created or updated this metric.
-     * The version also dictates the syntax of the filter expression. When a value
-     * for this field is missing, the default value of V2 should be assumed.
+     * Deprecated. The API version that created or updated this metric.
+     * The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
@@ -1144,9 +2529,8 @@ public  final class LogMetric extends
     }
     /**
      * <pre>
-     * Output only. The API version that created or updated this metric.
-     * The version also dictates the syntax of the filter expression. When a value
-     * for this field is missing, the default value of V2 should be assumed.
+     * Deprecated. The API version that created or updated this metric.
+     * The v2 format is used by default and cannot be changed.
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>

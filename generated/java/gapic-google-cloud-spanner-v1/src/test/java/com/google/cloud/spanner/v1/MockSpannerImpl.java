@@ -24,6 +24,8 @@ import com.google.spanner.v1.CreateSessionRequest;
 import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
 import com.google.spanner.v1.ResultSet;
@@ -89,6 +91,21 @@ public class MockSpannerImpl extends SpannerImplBase {
     if (response instanceof Session) {
       requests.add(request);
       responseObserver.onNext((Session) response);
+      responseObserver.onCompleted();
+    } else if (response instanceof Exception) {
+      responseObserver.onError((Exception) response);
+    } else {
+      responseObserver.onError(new IllegalArgumentException("Unrecognized response type"));
+    }
+  }
+
+  @Override
+  public void listSessions(
+      ListSessionsRequest request, StreamObserver<ListSessionsResponse> responseObserver) {
+    Object response = responses.remove();
+    if (response instanceof ListSessionsResponse) {
+      requests.add(request);
+      responseObserver.onNext((ListSessionsResponse) response);
       responseObserver.onCompleted();
     } else if (response instanceof Exception) {
       responseObserver.onError((Exception) response);

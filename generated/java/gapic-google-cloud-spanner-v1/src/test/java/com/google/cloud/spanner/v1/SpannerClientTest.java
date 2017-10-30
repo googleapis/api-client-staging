@@ -15,6 +15,8 @@
  */
 package com.google.cloud.spanner.v1;
 
+import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
+
 import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
@@ -22,6 +24,7 @@ import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.grpc.testing.MockStreamObserver;
 import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.api.gax.rpc.ServerStreamingCallable;
+import com.google.common.collect.Lists;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 import com.google.protobuf.GeneratedMessageV3;
@@ -34,6 +37,8 @@ import com.google.spanner.v1.DeleteSessionRequest;
 import com.google.spanner.v1.ExecuteSqlRequest;
 import com.google.spanner.v1.GetSessionRequest;
 import com.google.spanner.v1.KeySet;
+import com.google.spanner.v1.ListSessionsRequest;
+import com.google.spanner.v1.ListSessionsResponse;
 import com.google.spanner.v1.Mutation;
 import com.google.spanner.v1.PartialResultSet;
 import com.google.spanner.v1.ReadRequest;
@@ -158,6 +163,52 @@ public class SpannerClientTest {
       SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
 
       client.getSession(name);
+      Assert.fail("No exception raised");
+    } catch (InvalidArgumentException e) {
+      // Expected exception
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listSessionsTest() {
+    String nextPageToken = "";
+    Session sessionsElement = Session.newBuilder().build();
+    List<Session> sessions = Arrays.asList(sessionsElement);
+    ListSessionsResponse expectedResponse =
+        ListSessionsResponse.newBuilder()
+            .setNextPageToken(nextPageToken)
+            .addAllSessions(sessions)
+            .build();
+    mockSpanner.addResponse(expectedResponse);
+
+    String formattedDatabase =
+        DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+
+    ListSessionsPagedResponse pagedListResponse = client.listSessions(formattedDatabase);
+
+    List<Session> resources = Lists.newArrayList(pagedListResponse.iterateAll());
+    Assert.assertEquals(1, resources.size());
+    Assert.assertEquals(expectedResponse.getSessionsList().get(0), resources.get(0));
+
+    List<GeneratedMessageV3> actualRequests = mockSpanner.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    ListSessionsRequest actualRequest = (ListSessionsRequest) actualRequests.get(0);
+
+    Assert.assertEquals(formattedDatabase, actualRequest.getDatabase());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void listSessionsExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
+    mockSpanner.addException(exception);
+
+    try {
+      String formattedDatabase =
+          DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+
+      client.listSessions(formattedDatabase);
       Assert.fail("No exception raised");
     } catch (InvalidArgumentException e) {
       // Expected exception

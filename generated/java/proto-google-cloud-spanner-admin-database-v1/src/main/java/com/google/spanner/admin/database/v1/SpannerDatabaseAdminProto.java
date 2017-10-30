@@ -81,76 +81,76 @@ public final class SpannerDatabaseAdminProto {
       "\n=google/spanner/admin/database/v1/spann" +
       "er_database_admin.proto\022 google.spanner." +
       "admin.database.v1\032\034google/api/annotation" +
-      "s.proto\032\025google/api/auth.proto\032\036google/i" +
-      "am/v1/iam_policy.proto\032\032google/iam/v1/po" +
-      "licy.proto\032#google/longrunning/operation" +
-      "s.proto\032\033google/protobuf/empty.proto\032\037go" +
-      "ogle/protobuf/timestamp.proto\"\222\001\n\010Databa" +
-      "se\022\014\n\004name\030\001 \001(\t\022?\n\005state\030\002 \001(\01620.google" +
-      ".spanner.admin.database.v1.Database.Stat",
-      "e\"7\n\005State\022\025\n\021STATE_UNSPECIFIED\020\000\022\014\n\010CRE" +
-      "ATING\020\001\022\t\n\005READY\020\002\"M\n\024ListDatabasesReque" +
-      "st\022\016\n\006parent\030\001 \001(\t\022\021\n\tpage_size\030\003 \001(\005\022\022\n" +
-      "\npage_token\030\004 \001(\t\"o\n\025ListDatabasesRespon" +
-      "se\022=\n\tdatabases\030\001 \003(\0132*.google.spanner.a" +
-      "dmin.database.v1.Database\022\027\n\017next_page_t" +
-      "oken\030\002 \001(\t\"[\n\025CreateDatabaseRequest\022\016\n\006p" +
-      "arent\030\001 \001(\t\022\030\n\020create_statement\030\002 \001(\t\022\030\n" +
-      "\020extra_statements\030\003 \003(\t\"*\n\026CreateDatabas" +
-      "eMetadata\022\020\n\010database\030\001 \001(\t\"\"\n\022GetDataba",
-      "seRequest\022\014\n\004name\030\001 \001(\t\"V\n\030UpdateDatabas" +
-      "eDdlRequest\022\020\n\010database\030\001 \001(\t\022\022\n\nstateme" +
-      "nts\030\002 \003(\t\022\024\n\014operation_id\030\003 \001(\t\"x\n\031Updat" +
-      "eDatabaseDdlMetadata\022\020\n\010database\030\001 \001(\t\022\022" +
-      "\n\nstatements\030\002 \003(\t\0225\n\021commit_timestamps\030" +
-      "\003 \003(\0132\032.google.protobuf.Timestamp\"\'\n\023Dro" +
-      "pDatabaseRequest\022\020\n\010database\030\001 \001(\t\")\n\025Ge" +
-      "tDatabaseDdlRequest\022\020\n\010database\030\001 \001(\t\",\n" +
-      "\026GetDatabaseDdlResponse\022\022\n\nstatements\030\001 " +
-      "\003(\t2\225\014\n\rDatabaseAdmin\022\267\001\n\rListDatabases\022",
-      "6.google.spanner.admin.database.v1.ListD" +
-      "atabasesRequest\0327.google.spanner.admin.d" +
-      "atabase.v1.ListDatabasesResponse\"5\202\323\344\223\002/" +
-      "\022-/v1/{parent=projects/*/instances/*}/da" +
-      "tabases\022\242\001\n\016CreateDatabase\0227.google.span" +
-      "ner.admin.database.v1.CreateDatabaseRequ" +
-      "est\032\035.google.longrunning.Operation\"8\202\323\344\223" +
-      "\0022\"-/v1/{parent=projects/*/instances/*}/" +
-      "databases:\001*\022\246\001\n\013GetDatabase\0224.google.sp" +
-      "anner.admin.database.v1.GetDatabaseReque",
-      "st\032*.google.spanner.admin.database.v1.Da" +
-      "tabase\"5\202\323\344\223\002/\022-/v1/{name=projects/*/ins" +
-      "tances/*/databases/*}\022\260\001\n\021UpdateDatabase" +
-      "Ddl\022:.google.spanner.admin.database.v1.U" +
-      "pdateDatabaseDdlRequest\032\035.google.longrun" +
-      "ning.Operation\"@\202\323\344\223\002:25/v1/{database=pr" +
-      "ojects/*/instances/*/databases/*}/ddl:\001*" +
-      "\022\230\001\n\014DropDatabase\0225.google.spanner.admin" +
-      ".database.v1.DropDatabaseRequest\032\026.googl" +
-      "e.protobuf.Empty\"9\202\323\344\223\0023*1/v1/{database=",
-      "projects/*/instances/*/databases/*}\022\302\001\n\016" +
-      "GetDatabaseDdl\0227.google.spanner.admin.da" +
-      "tabase.v1.GetDatabaseDdlRequest\0328.google" +
+      "s.proto\032\036google/iam/v1/iam_policy.proto\032" +
+      "\032google/iam/v1/policy.proto\032#google/long" +
+      "running/operations.proto\032\033google/protobu" +
+      "f/empty.proto\032\037google/protobuf/timestamp" +
+      ".proto\"\222\001\n\010Database\022\014\n\004name\030\001 \001(\t\022?\n\005sta" +
+      "te\030\002 \001(\01620.google.spanner.admin.database" +
+      ".v1.Database.State\"7\n\005State\022\025\n\021STATE_UNS",
+      "PECIFIED\020\000\022\014\n\010CREATING\020\001\022\t\n\005READY\020\002\"M\n\024L" +
+      "istDatabasesRequest\022\016\n\006parent\030\001 \001(\t\022\021\n\tp" +
+      "age_size\030\003 \001(\005\022\022\n\npage_token\030\004 \001(\t\"o\n\025Li" +
+      "stDatabasesResponse\022=\n\tdatabases\030\001 \003(\0132*" +
+      ".google.spanner.admin.database.v1.Databa" +
+      "se\022\027\n\017next_page_token\030\002 \001(\t\"[\n\025CreateDat" +
+      "abaseRequest\022\016\n\006parent\030\001 \001(\t\022\030\n\020create_s" +
+      "tatement\030\002 \001(\t\022\030\n\020extra_statements\030\003 \003(\t" +
+      "\"*\n\026CreateDatabaseMetadata\022\020\n\010database\030\001" +
+      " \001(\t\"\"\n\022GetDatabaseRequest\022\014\n\004name\030\001 \001(\t",
+      "\"V\n\030UpdateDatabaseDdlRequest\022\020\n\010database" +
+      "\030\001 \001(\t\022\022\n\nstatements\030\002 \003(\t\022\024\n\014operation_" +
+      "id\030\003 \001(\t\"x\n\031UpdateDatabaseDdlMetadata\022\020\n" +
+      "\010database\030\001 \001(\t\022\022\n\nstatements\030\002 \003(\t\0225\n\021c" +
+      "ommit_timestamps\030\003 \003(\0132\032.google.protobuf" +
+      ".Timestamp\"\'\n\023DropDatabaseRequest\022\020\n\010dat" +
+      "abase\030\001 \001(\t\")\n\025GetDatabaseDdlRequest\022\020\n\010" +
+      "database\030\001 \001(\t\",\n\026GetDatabaseDdlResponse" +
+      "\022\022\n\nstatements\030\001 \003(\t2\225\014\n\rDatabaseAdmin\022\267" +
+      "\001\n\rListDatabases\0226.google.spanner.admin.",
+      "database.v1.ListDatabasesRequest\0327.googl" +
+      "e.spanner.admin.database.v1.ListDatabase" +
+      "sResponse\"5\202\323\344\223\002/\022-/v1/{parent=projects/" +
+      "*/instances/*}/databases\022\242\001\n\016CreateDatab" +
+      "ase\0227.google.spanner.admin.database.v1.C" +
+      "reateDatabaseRequest\032\035.google.longrunnin" +
+      "g.Operation\"8\202\323\344\223\0022\"-/v1/{parent=project" +
+      "s/*/instances/*}/databases:\001*\022\246\001\n\013GetDat" +
+      "abase\0224.google.spanner.admin.database.v1" +
+      ".GetDatabaseRequest\032*.google.spanner.adm",
+      "in.database.v1.Database\"5\202\323\344\223\002/\022-/v1/{na" +
+      "me=projects/*/instances/*/databases/*}\022\260" +
+      "\001\n\021UpdateDatabaseDdl\022:.google.spanner.ad" +
+      "min.database.v1.UpdateDatabaseDdlRequest" +
+      "\032\035.google.longrunning.Operation\"@\202\323\344\223\002:2" +
+      "5/v1/{database=projects/*/instances/*/da" +
+      "tabases/*}/ddl:\001*\022\230\001\n\014DropDatabase\0225.goo" +
+      "gle.spanner.admin.database.v1.DropDataba" +
+      "seRequest\032\026.google.protobuf.Empty\"9\202\323\344\223\002" +
+      "3*1/v1/{database=projects/*/instances/*/",
+      "databases/*}\022\302\001\n\016GetDatabaseDdl\0227.google" +
       ".spanner.admin.database.v1.GetDatabaseDd" +
-      "lResponse\"=\202\323\344\223\0027\0225/v1/{database=project" +
-      "s/*/instances/*/databases/*}/ddl\022\224\001\n\014Set" +
-      "IamPolicy\022\".google.iam.v1.SetIamPolicyRe" +
-      "quest\032\025.google.iam.v1.Policy\"I\202\323\344\223\002C\">/v" +
-      "1/{resource=projects/*/instances/*/datab" +
-      "ases/*}:setIamPolicy:\001*\022\224\001\n\014GetIamPolicy",
-      "\022\".google.iam.v1.GetIamPolicyRequest\032\025.g" +
-      "oogle.iam.v1.Policy\"I\202\323\344\223\002C\">/v1/{resour" +
-      "ce=projects/*/instances/*/databases/*}:g" +
-      "etIamPolicy:\001*\022\272\001\n\022TestIamPermissions\022(." +
-      "google.iam.v1.TestIamPermissionsRequest\032" +
-      ").google.iam.v1.TestIamPermissionsRespon" +
-      "se\"O\202\323\344\223\002I\"D/v1/{resource=projects/*/ins" +
-      "tances/*/databases/*}:testIamPermissions" +
-      ":\001*B\266\001\n$com.google.spanner.admin.databas" +
-      "e.v1B\031SpannerDatabaseAdminProtoP\001ZHgoogl",
-      "e.golang.org/genproto/googleapis/spanner" +
-      "/admin/database/v1;database\252\002&Google.Clo" +
-      "ud.Spanner.Admin.Database.V1b\006proto3"
+      "lRequest\0328.google.spanner.admin.database" +
+      ".v1.GetDatabaseDdlResponse\"=\202\323\344\223\0027\0225/v1/" +
+      "{database=projects/*/instances/*/databas" +
+      "es/*}/ddl\022\224\001\n\014SetIamPolicy\022\".google.iam." +
+      "v1.SetIamPolicyRequest\032\025.google.iam.v1.P" +
+      "olicy\"I\202\323\344\223\002C\">/v1/{resource=projects/*/" +
+      "instances/*/databases/*}:setIamPolicy:\001*" +
+      "\022\224\001\n\014GetIamPolicy\022\".google.iam.v1.GetIam",
+      "PolicyRequest\032\025.google.iam.v1.Policy\"I\202\323" +
+      "\344\223\002C\">/v1/{resource=projects/*/instances" +
+      "/*/databases/*}:getIamPolicy:\001*\022\272\001\n\022Test" +
+      "IamPermissions\022(.google.iam.v1.TestIamPe" +
+      "rmissionsRequest\032).google.iam.v1.TestIam" +
+      "PermissionsResponse\"O\202\323\344\223\002I\"D/v1/{resour" +
+      "ce=projects/*/instances/*/databases/*}:t" +
+      "estIamPermissions:\001*B\266\001\n$com.google.span" +
+      "ner.admin.database.v1B\031SpannerDatabaseAd" +
+      "minProtoP\001ZHgoogle.golang.org/genproto/g",
+      "oogleapis/spanner/admin/database/v1;data" +
+      "base\252\002&Google.Cloud.Spanner.Admin.Databa" +
+      "se.V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -164,7 +164,6 @@ public final class SpannerDatabaseAdminProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.api.AnnotationsProto.getDescriptor(),
-          com.google.api.AuthProto.getDescriptor(),
           com.google.iam.v1.IamPolicyProto.getDescriptor(),
           com.google.iam.v1.PolicyProto.getDescriptor(),
           com.google.longrunning.OperationsProto.getDescriptor(),
@@ -243,7 +242,6 @@ public final class SpannerDatabaseAdminProto {
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     com.google.api.AnnotationsProto.getDescriptor();
-    com.google.api.AuthProto.getDescriptor();
     com.google.iam.v1.IamPolicyProto.getDescriptor();
     com.google.iam.v1.PolicyProto.getDescriptor();
     com.google.longrunning.OperationsProto.getDescriptor();

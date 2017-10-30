@@ -229,6 +229,40 @@ public class LanguageServiceClientTest {
 
   @Test
   @SuppressWarnings("all")
+  public void classifyTextTest() {
+    ClassifyTextResponse expectedResponse = ClassifyTextResponse.newBuilder().build();
+    mockLanguageService.addResponse(expectedResponse);
+
+    Document document = Document.newBuilder().build();
+
+    ClassifyTextResponse actualResponse = client.classifyText(document);
+    Assert.assertEquals(expectedResponse, actualResponse);
+
+    List<GeneratedMessageV3> actualRequests = mockLanguageService.getRequests();
+    Assert.assertEquals(1, actualRequests.size());
+    ClassifyTextRequest actualRequest = (ClassifyTextRequest) actualRequests.get(0);
+
+    Assert.assertEquals(document, actualRequest.getDocument());
+  }
+
+  @Test
+  @SuppressWarnings("all")
+  public void classifyTextExceptionTest() throws Exception {
+    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
+    mockLanguageService.addException(exception);
+
+    try {
+      Document document = Document.newBuilder().build();
+
+      client.classifyText(document);
+      Assert.fail("No exception raised");
+    } catch (InvalidArgumentException e) {
+      // Expected exception
+    }
+  }
+
+  @Test
+  @SuppressWarnings("all")
   public void annotateTextTest() {
     String language = "language-1613589672";
     AnnotateTextResponse expectedResponse =

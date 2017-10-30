@@ -9,7 +9,9 @@ public interface ListLogEntriesResponseOrBuilder extends
 
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -18,7 +20,9 @@ public interface ListLogEntriesResponseOrBuilder extends
       getEntriesList();
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -26,7 +30,9 @@ public interface ListLogEntriesResponseOrBuilder extends
   com.google.logging.v2.LogEntry getEntries(int index);
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -34,7 +40,9 @@ public interface ListLogEntriesResponseOrBuilder extends
   int getEntriesCount();
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
@@ -43,7 +51,9 @@ public interface ListLogEntriesResponseOrBuilder extends
       getEntriesOrBuilderList();
   /**
    * <pre>
-   * A list of log entries.
+   * A list of log entries.  If `entries` is empty, `nextPageToken` may still be
+   * returned, indicating that more entries may exist.  See `nextPageToken` for
+   * more information.
    * </pre>
    *
    * <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
