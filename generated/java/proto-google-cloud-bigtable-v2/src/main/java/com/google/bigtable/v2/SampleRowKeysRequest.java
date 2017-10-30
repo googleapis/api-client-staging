@@ -515,9 +515,30 @@ public  final class SampleRowKeysRequest extends
     }
 
 
+    public final Builder setTableNameWithTableName(com.google.bigtable.v2.TableName value) {
+      if (value == null) {
+        return setTableName("");
+      }
+      return setTableName(value.toString());
+    }
+    
+    public final com.google.bigtable.v2.TableName getTableNameAsTableName() {
+      java.lang.String str = getTableName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.bigtable.v2.TableName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.v2.SampleRowKeysRequest)
   }
 
+  public final com.google.bigtable.v2.TableName getTableNameAsTableName() {
+    java.lang.String str = getTableName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.bigtable.v2.TableName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.bigtable.v2.SampleRowKeysRequest)
   private static final com.google.bigtable.v2.SampleRowKeysRequest DEFAULT_INSTANCE;
   static {
