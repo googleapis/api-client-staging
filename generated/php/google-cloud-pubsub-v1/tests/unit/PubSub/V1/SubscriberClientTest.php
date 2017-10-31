@@ -30,6 +30,7 @@ use Google\GAX\Testing\GeneratedTest;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\TestIamPermissionsResponse;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Pubsub\V1\ListSnapshotsResponse;
 use Google\Pubsub\V1\ListSubscriptionsResponse;
@@ -233,6 +234,86 @@ class SubscriberClientTest extends GeneratedTest
 
         try {
             $client->getSubscription($formattedSubscription);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSubscriptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
+        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $topic = 'topic110546223';
+        $ackDeadlineSeconds = 2135351438;
+        $retainAckedMessages = false;
+        $expectedResponse = new Subscription();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTopic($topic);
+        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $subscription = new Subscription();
+        $updateMask = new FieldMask();
+
+        $response = $client->updateSubscription($subscription, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSubscription', $actualFuncCall);
+
+        $this->assertProtobufEquals($subscription, $actualRequestObject->getSubscription());
+        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSubscriptionExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
+        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $subscription = new Subscription();
+        $updateMask = new FieldMask();
+
+        try {
+            $client->updateSubscription($subscription, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -942,6 +1023,82 @@ class SubscriberClientTest extends GeneratedTest
 
         try {
             $client->createSnapshot($formattedName, $formattedSubscription);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSnapshotTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
+        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $topic = 'topic110546223';
+        $expectedResponse = new Snapshot();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTopic($topic);
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $snapshot = new Snapshot();
+        $updateMask = new FieldMask();
+
+        $response = $client->updateSnapshot($snapshot, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSnapshot', $actualFuncCall);
+
+        $this->assertProtobufEquals($snapshot, $actualRequestObject->getSnapshot());
+        $this->assertProtobufEquals($updateMask, $actualRequestObject->getUpdateMask());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSnapshotExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSubscriberImpl']);
+        $client = $this->createClient('createSubscriberStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $snapshot = new Snapshot();
+        $updateMask = new FieldMask();
+
+        try {
+            $client->updateSnapshot($snapshot, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
