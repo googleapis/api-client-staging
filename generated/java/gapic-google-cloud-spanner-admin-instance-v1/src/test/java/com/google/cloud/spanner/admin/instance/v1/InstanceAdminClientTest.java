@@ -88,9 +88,9 @@ public class InstanceAdminClientTest {
     InstanceAdminSettings settings =
         InstanceAdminSettings.newBuilder()
             .setTransportChannelProvider(serviceHelper.createChannelProvider())
-            .setCredentialsProvider(NoCredentialsProvider.of())
+            .setCredentialsProvider(NoCredentialsProvider.create())
             .build();
-    client = InstanceAdminClient.of(settings);
+    client = InstanceAdminClient.create(settings);
   }
 
   @After

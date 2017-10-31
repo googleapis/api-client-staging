@@ -161,23 +161,11 @@ public class GrpcSpannerStub extends SpannerStub {
   private final UnaryCallable<CommitRequest, CommitResponse> commitCallable;
   private final UnaryCallable<RollbackRequest, Empty> rollbackCallable;
 
-  /** @deprecated Use of(SpannerSettings) instead. */
-  @Deprecated
   public static final GrpcSpannerStub create(SpannerSettings settings) throws IOException {
-    return of(settings);
+    return new GrpcSpannerStub(settings, ClientContext.create(settings));
   }
 
-  /** @deprecated Use of(ClientContext) instead. */
-  @Deprecated
   public static final GrpcSpannerStub create(ClientContext clientContext) throws IOException {
-    return of(clientContext);
-  }
-
-  public static final GrpcSpannerStub of(SpannerSettings settings) throws IOException {
-    return new GrpcSpannerStub(settings, ClientContext.of(settings));
-  }
-
-  public static final GrpcSpannerStub of(ClientContext clientContext) throws IOException {
     return new GrpcSpannerStub(SpannerSettings.newBuilder().build(), clientContext);
   }
 

@@ -201,7 +201,7 @@ public class DatabaseAdminSettings extends ClientSettings {
     if (getTransportChannelProvider()
         .getTransportName()
         .equals(GrpcTransportChannel.getGrpcTransportName())) {
-      return GrpcDatabaseAdminStub.of(this);
+      return GrpcDatabaseAdminStub.create(this);
     } else {
       throw new UnsupportedOperationException(
           "Transport not supported: " + getTransportChannelProvider().getTransportName());
@@ -352,7 +352,7 @@ public class DatabaseAdminSettings extends ClientSettings {
                 ApiCallContext context,
                 ApiFuture<ListDatabasesResponse> futureResponse) {
               PageContext<ListDatabasesRequest, ListDatabasesResponse, Database> pageContext =
-                  PageContext.of(callable, LIST_DATABASES_PAGE_STR_DESC, request, context);
+                  PageContext.create(callable, LIST_DATABASES_PAGE_STR_DESC, request, context);
               return ListDatabasesPagedResponse.createAsync(pageContext, futureResponse);
             }
           };
@@ -523,11 +523,12 @@ public class DatabaseAdminSettings extends ClientSettings {
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Database.class))
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Database.class))
           .setMetadataTransformer(
-              ProtoOperationTransformers.MetadataTransformer.of(CreateDatabaseMetadata.class))
+              ProtoOperationTransformers.MetadataTransformer.create(CreateDatabaseMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.of(
+              OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)
@@ -545,11 +546,13 @@ public class DatabaseAdminSettings extends ClientSettings {
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Empty.class))
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Empty.class))
           .setMetadataTransformer(
-              ProtoOperationTransformers.MetadataTransformer.of(UpdateDatabaseDdlMetadata.class))
+              ProtoOperationTransformers.MetadataTransformer.create(
+                  UpdateDatabaseDdlMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.of(
+              OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)

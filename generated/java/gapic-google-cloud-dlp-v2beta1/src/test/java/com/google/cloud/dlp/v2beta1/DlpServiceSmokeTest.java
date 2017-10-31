@@ -41,7 +41,7 @@ public class DlpServiceSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (DlpServiceClient client = DlpServiceClient.of()) {
+    try (DlpServiceClient client = DlpServiceClient.create()) {
       Likelihood minLikelihood = Likelihood.POSSIBLE;
       InspectConfig inspectConfig =
           InspectConfig.newBuilder().setMinLikelihood(minLikelihood).build();

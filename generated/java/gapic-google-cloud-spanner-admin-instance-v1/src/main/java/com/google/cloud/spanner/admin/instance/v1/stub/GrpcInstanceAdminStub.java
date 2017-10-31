@@ -178,24 +178,12 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
   private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
-  /** @deprecated Use of(InstanceAdminSettings) instead. */
-  @Deprecated
   public static final GrpcInstanceAdminStub create(InstanceAdminSettings settings)
       throws IOException {
-    return of(settings);
+    return new GrpcInstanceAdminStub(settings, ClientContext.create(settings));
   }
 
-  /** @deprecated Use of(ClientContext) instead. */
-  @Deprecated
   public static final GrpcInstanceAdminStub create(ClientContext clientContext) throws IOException {
-    return of(clientContext);
-  }
-
-  public static final GrpcInstanceAdminStub of(InstanceAdminSettings settings) throws IOException {
-    return new GrpcInstanceAdminStub(settings, ClientContext.of(settings));
-  }
-
-  public static final GrpcInstanceAdminStub of(ClientContext clientContext) throws IOException {
     return new GrpcInstanceAdminStub(InstanceAdminSettings.newBuilder().build(), clientContext);
   }
 
@@ -206,7 +194,7 @@ public class GrpcInstanceAdminStub extends InstanceAdminStub {
    */
   protected GrpcInstanceAdminStub(InstanceAdminSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.of(clientContext);
+    this.operationsStub = GrpcOperationsStub.create(clientContext);
 
     GrpcCallSettings<ListInstanceConfigsRequest, ListInstanceConfigsResponse>
         listInstanceConfigsTransportSettings =

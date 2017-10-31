@@ -214,7 +214,7 @@ public class InstanceAdminSettings extends ClientSettings {
     if (getTransportChannelProvider()
         .getTransportName()
         .equals(GrpcTransportChannel.getGrpcTransportName())) {
-      return GrpcInstanceAdminStub.of(this);
+      return GrpcInstanceAdminStub.create(this);
     } else {
       throw new UnsupportedOperationException(
           "Transport not supported: " + getTransportChannelProvider().getTransportName());
@@ -405,7 +405,7 @@ public class InstanceAdminSettings extends ClientSettings {
                 ApiFuture<ListInstanceConfigsResponse> futureResponse) {
               PageContext<ListInstanceConfigsRequest, ListInstanceConfigsResponse, InstanceConfig>
                   pageContext =
-                      PageContext.of(
+                      PageContext.create(
                           callable, LIST_INSTANCE_CONFIGS_PAGE_STR_DESC, request, context);
               return ListInstanceConfigsPagedResponse.createAsync(pageContext, futureResponse);
             }
@@ -423,7 +423,7 @@ public class InstanceAdminSettings extends ClientSettings {
                 ApiCallContext context,
                 ApiFuture<ListInstancesResponse> futureResponse) {
               PageContext<ListInstancesRequest, ListInstancesResponse, Instance> pageContext =
-                  PageContext.of(callable, LIST_INSTANCES_PAGE_STR_DESC, request, context);
+                  PageContext.create(callable, LIST_INSTANCES_PAGE_STR_DESC, request, context);
               return ListInstancesPagedResponse.createAsync(pageContext, futureResponse);
             }
           };
@@ -607,11 +607,12 @@ public class InstanceAdminSettings extends ClientSettings {
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Instance.class))
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Instance.class))
           .setMetadataTransformer(
-              ProtoOperationTransformers.MetadataTransformer.of(CreateInstanceMetadata.class))
+              ProtoOperationTransformers.MetadataTransformer.create(CreateInstanceMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.of(
+              OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)
@@ -629,11 +630,12 @@ public class InstanceAdminSettings extends ClientSettings {
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseTransformer(ProtoOperationTransformers.ResponseTransformer.of(Instance.class))
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Instance.class))
           .setMetadataTransformer(
-              ProtoOperationTransformers.MetadataTransformer.of(UpdateInstanceMetadata.class))
+              ProtoOperationTransformers.MetadataTransformer.create(UpdateInstanceMetadata.class))
           .setPollingAlgorithm(
-              OperationTimedPollAlgorithm.of(
+              OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
                       .setInitialRetryDelay(Duration.ofMillis(20000L))
                       .setRetryDelayMultiplier(1.5)

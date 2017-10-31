@@ -56,7 +56,7 @@ public class TraceServiceSmokeTest {
   }
 
   public static void executeNoCatch(String projectId) throws Exception {
-    try (TraceServiceClient client = TraceServiceClient.of()) {
+    try (TraceServiceClient client = TraceServiceClient.create()) {
       String projectId2 = projectId;
 
       ListTracesPagedResponse pagedResponse = client.listTraces(projectId2);

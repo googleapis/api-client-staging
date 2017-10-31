@@ -189,7 +189,7 @@ public class SpannerSettings extends ClientSettings {
     if (getTransportChannelProvider()
         .getTransportName()
         .equals(GrpcTransportChannel.getGrpcTransportName())) {
-      return GrpcSpannerStub.of(this);
+      return GrpcSpannerStub.create(this);
     } else {
       throw new UnsupportedOperationException(
           "Transport not supported: " + getTransportChannelProvider().getTransportName());
@@ -338,7 +338,7 @@ public class SpannerSettings extends ClientSettings {
                 ApiCallContext context,
                 ApiFuture<ListSessionsResponse> futureResponse) {
               PageContext<ListSessionsRequest, ListSessionsResponse, Session> pageContext =
-                  PageContext.of(callable, LIST_SESSIONS_PAGE_STR_DESC, request, context);
+                  PageContext.create(callable, LIST_SESSIONS_PAGE_STR_DESC, request, context);
               return ListSessionsPagedResponse.createAsync(pageContext, futureResponse);
             }
           };

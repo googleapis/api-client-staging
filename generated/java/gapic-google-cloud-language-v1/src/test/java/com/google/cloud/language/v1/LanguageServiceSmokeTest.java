@@ -36,7 +36,7 @@ public class LanguageServiceSmokeTest {
   }
 
   public static void executeNoCatch() throws Exception {
-    try (LanguageServiceClient client = LanguageServiceClient.of()) {
+    try (LanguageServiceClient client = LanguageServiceClient.create()) {
       String content = "Hello, world!";
       Document.Type type = Document.Type.PLAIN_TEXT;
       Document document = Document.newBuilder().setContent(content).setType(type).build();

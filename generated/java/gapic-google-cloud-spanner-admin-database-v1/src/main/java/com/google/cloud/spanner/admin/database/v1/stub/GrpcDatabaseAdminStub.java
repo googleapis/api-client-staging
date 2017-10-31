@@ -159,24 +159,12 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
   private final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsCallable;
 
-  /** @deprecated Use of(DatabaseAdminSettings) instead. */
-  @Deprecated
   public static final GrpcDatabaseAdminStub create(DatabaseAdminSettings settings)
       throws IOException {
-    return of(settings);
+    return new GrpcDatabaseAdminStub(settings, ClientContext.create(settings));
   }
 
-  /** @deprecated Use of(ClientContext) instead. */
-  @Deprecated
   public static final GrpcDatabaseAdminStub create(ClientContext clientContext) throws IOException {
-    return of(clientContext);
-  }
-
-  public static final GrpcDatabaseAdminStub of(DatabaseAdminSettings settings) throws IOException {
-    return new GrpcDatabaseAdminStub(settings, ClientContext.of(settings));
-  }
-
-  public static final GrpcDatabaseAdminStub of(ClientContext clientContext) throws IOException {
     return new GrpcDatabaseAdminStub(DatabaseAdminSettings.newBuilder().build(), clientContext);
   }
 
@@ -187,7 +175,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
    */
   protected GrpcDatabaseAdminStub(DatabaseAdminSettings settings, ClientContext clientContext)
       throws IOException {
-    this.operationsStub = GrpcOperationsStub.of(clientContext);
+    this.operationsStub = GrpcOperationsStub.create(clientContext);
 
     GrpcCallSettings<ListDatabasesRequest, ListDatabasesResponse> listDatabasesTransportSettings =
         GrpcCallSettings.<ListDatabasesRequest, ListDatabasesResponse>newBuilder()
