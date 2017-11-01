@@ -20,6 +20,7 @@ import static com.google.cloud.spanner.admin.database.v1.PagedResponseWrappers.L
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
+import com.google.api.gax.grpc.GrpcCallSettings;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.OperationCallable;
@@ -44,6 +45,8 @@ import com.google.spanner.admin.database.v1.ListDatabasesRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesResponse;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest;
+import io.grpc.MethodDescriptor;
+import io.grpc.protobuf.ProtoUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
@@ -57,81 +60,84 @@ import javax.annotation.Generated;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
-  private static final UnaryCallable<ListDatabasesRequest, ListDatabasesResponse>
-      directListDatabasesCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases",
-                  io.grpc.protobuf.ProtoUtils.marshaller(ListDatabasesRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      ListDatabasesResponse.getDefaultInstance())));
-  private static final UnaryCallable<CreateDatabaseRequest, Operation>
-      directCreateDatabaseCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      CreateDatabaseRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(Operation.getDefaultInstance())));
-  private static final UnaryCallable<GetDatabaseRequest, Database> directGetDatabaseCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase",
-              io.grpc.protobuf.ProtoUtils.marshaller(GetDatabaseRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Database.getDefaultInstance())));
-  private static final UnaryCallable<UpdateDatabaseDdlRequest, Operation>
-      directUpdateDatabaseDdlCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      UpdateDatabaseDdlRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(Operation.getDefaultInstance())));
-  private static final UnaryCallable<DropDatabaseRequest, Empty> directDropDatabaseCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase",
-              io.grpc.protobuf.ProtoUtils.marshaller(DropDatabaseRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance())));
-  private static final UnaryCallable<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
-      directGetDatabaseDdlCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      GetDatabaseDdlRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      GetDatabaseDdlResponse.getDefaultInstance())));
-  private static final UnaryCallable<SetIamPolicyRequest, Policy> directSetIamPolicyCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy",
-              io.grpc.protobuf.ProtoUtils.marshaller(SetIamPolicyRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance())));
-  private static final UnaryCallable<GetIamPolicyRequest, Policy> directGetIamPolicyCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy",
-              io.grpc.protobuf.ProtoUtils.marshaller(GetIamPolicyRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Policy.getDefaultInstance())));
-  private static final UnaryCallable<TestIamPermissionsRequest, TestIamPermissionsResponse>
-      directTestIamPermissionsCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      TestIamPermissionsRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      TestIamPermissionsResponse.getDefaultInstance())));
+
+  private static final MethodDescriptor<ListDatabasesRequest, ListDatabasesResponse>
+      listDatabasesMethodDescriptor =
+          MethodDescriptor.<ListDatabasesRequest, ListDatabasesResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(ListDatabasesRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(ListDatabasesResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<CreateDatabaseRequest, Operation>
+      createDatabaseMethodDescriptor =
+          MethodDescriptor.<CreateDatabaseRequest, Operation>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(CreateDatabaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Operation.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<GetDatabaseRequest, Database> getDatabaseMethodDescriptor =
+      MethodDescriptor.<GetDatabaseRequest, Database>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase")
+          .setRequestMarshaller(ProtoUtils.marshaller(GetDatabaseRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Database.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<UpdateDatabaseDdlRequest, Operation>
+      updateDatabaseDdlMethodDescriptor =
+          MethodDescriptor.<UpdateDatabaseDdlRequest, Operation>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(UpdateDatabaseDdlRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Operation.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<DropDatabaseRequest, Empty> dropDatabaseMethodDescriptor =
+      MethodDescriptor.<DropDatabaseRequest, Empty>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase")
+          .setRequestMarshaller(ProtoUtils.marshaller(DropDatabaseRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
+      getDatabaseDdlMethodDescriptor =
+          MethodDescriptor.<GetDatabaseDdlRequest, GetDatabaseDdlResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(GetDatabaseDdlRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(GetDatabaseDdlResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<SetIamPolicyRequest, Policy> setIamPolicyMethodDescriptor =
+      MethodDescriptor.<SetIamPolicyRequest, Policy>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy")
+          .setRequestMarshaller(ProtoUtils.marshaller(SetIamPolicyRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Policy.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<GetIamPolicyRequest, Policy> getIamPolicyMethodDescriptor =
+      MethodDescriptor.<GetIamPolicyRequest, Policy>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy")
+          .setRequestMarshaller(ProtoUtils.marshaller(GetIamPolicyRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Policy.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<TestIamPermissionsRequest, TestIamPermissionsResponse>
+      testIamPermissionsMethodDescriptor =
+          MethodDescriptor.<TestIamPermissionsRequest, TestIamPermissionsResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(
+                  "google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(TestIamPermissionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(TestIamPermissionsResponse.getDefaultInstance()))
+              .build();
 
   private final BackgroundResource backgroundResources;
   private final GrpcOperationsStub operationsStub;
@@ -140,13 +146,11 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
   private final UnaryCallable<ListDatabasesRequest, ListDatabasesPagedResponse>
       listDatabasesPagedCallable;
   private final UnaryCallable<CreateDatabaseRequest, Operation> createDatabaseCallable;
-  private final OperationCallable<
-          CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
+  private final OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
       createDatabaseOperationCallable;
   private final UnaryCallable<GetDatabaseRequest, Database> getDatabaseCallable;
   private final UnaryCallable<UpdateDatabaseDdlRequest, Operation> updateDatabaseDdlCallable;
-  private final OperationCallable<
-          UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+  private final OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable;
   private final UnaryCallable<DropDatabaseRequest, Empty> dropDatabaseCallable;
   private final UnaryCallable<GetDatabaseDdlRequest, GetDatabaseDdlResponse> getDatabaseDdlCallable;
@@ -173,52 +177,91 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
       throws IOException {
     this.operationsStub = GrpcOperationsStub.create(clientContext);
 
+    GrpcCallSettings<ListDatabasesRequest, ListDatabasesResponse> listDatabasesTransportSettings =
+        GrpcCallSettings.<ListDatabasesRequest, ListDatabasesResponse>newBuilder()
+            .setMethodDescriptor(listDatabasesMethodDescriptor)
+            .build();
+    GrpcCallSettings<CreateDatabaseRequest, Operation> createDatabaseTransportSettings =
+        GrpcCallSettings.<CreateDatabaseRequest, Operation>newBuilder()
+            .setMethodDescriptor(createDatabaseMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetDatabaseRequest, Database> getDatabaseTransportSettings =
+        GrpcCallSettings.<GetDatabaseRequest, Database>newBuilder()
+            .setMethodDescriptor(getDatabaseMethodDescriptor)
+            .build();
+    GrpcCallSettings<UpdateDatabaseDdlRequest, Operation> updateDatabaseDdlTransportSettings =
+        GrpcCallSettings.<UpdateDatabaseDdlRequest, Operation>newBuilder()
+            .setMethodDescriptor(updateDatabaseDdlMethodDescriptor)
+            .build();
+    GrpcCallSettings<DropDatabaseRequest, Empty> dropDatabaseTransportSettings =
+        GrpcCallSettings.<DropDatabaseRequest, Empty>newBuilder()
+            .setMethodDescriptor(dropDatabaseMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
+        getDatabaseDdlTransportSettings =
+            GrpcCallSettings.<GetDatabaseDdlRequest, GetDatabaseDdlResponse>newBuilder()
+                .setMethodDescriptor(getDatabaseDdlMethodDescriptor)
+                .build();
+    GrpcCallSettings<SetIamPolicyRequest, Policy> setIamPolicyTransportSettings =
+        GrpcCallSettings.<SetIamPolicyRequest, Policy>newBuilder()
+            .setMethodDescriptor(setIamPolicyMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetIamPolicyRequest, Policy> getIamPolicyTransportSettings =
+        GrpcCallSettings.<GetIamPolicyRequest, Policy>newBuilder()
+            .setMethodDescriptor(getIamPolicyMethodDescriptor)
+            .build();
+    GrpcCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+        testIamPermissionsTransportSettings =
+            GrpcCallSettings.<TestIamPermissionsRequest, TestIamPermissionsResponse>newBuilder()
+                .setMethodDescriptor(testIamPermissionsMethodDescriptor)
+                .build();
+
     this.listDatabasesCallable =
-        GrpcCallableFactory.create(
-            directListDatabasesCallable, settings.listDatabasesSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            listDatabasesTransportSettings, settings.listDatabasesSettings(), clientContext);
     this.listDatabasesPagedCallable =
-        GrpcCallableFactory.createPagedVariant(
-            directListDatabasesCallable, settings.listDatabasesSettings(), clientContext);
+        GrpcCallableFactory.createPagedCallable(
+            listDatabasesTransportSettings, settings.listDatabasesSettings(), clientContext);
     this.createDatabaseCallable =
-        GrpcCallableFactory.create(
-            directCreateDatabaseCallable,
-            settings.createDatabaseSettings().getInitialCallSettings(),
-            clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            createDatabaseTransportSettings, settings.createDatabaseSettings(), clientContext);
     this.createDatabaseOperationCallable =
-        GrpcCallableFactory.create(
-            directCreateDatabaseCallable,
-            settings.createDatabaseSettings(),
+        GrpcCallableFactory.createOperationCallable(
+            createDatabaseTransportSettings,
+            settings.createDatabaseOperationSettings(),
             clientContext,
             this.operationsStub);
     this.getDatabaseCallable =
-        GrpcCallableFactory.create(
-            directGetDatabaseCallable, settings.getDatabaseSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            getDatabaseTransportSettings, settings.getDatabaseSettings(), clientContext);
     this.updateDatabaseDdlCallable =
-        GrpcCallableFactory.create(
-            directUpdateDatabaseDdlCallable,
-            settings.updateDatabaseDdlSettings().getInitialCallSettings(),
+        GrpcCallableFactory.createUnaryCallable(
+            updateDatabaseDdlTransportSettings,
+            settings.updateDatabaseDdlSettings(),
             clientContext);
     this.updateDatabaseDdlOperationCallable =
-        GrpcCallableFactory.create(
-            directUpdateDatabaseDdlCallable,
-            settings.updateDatabaseDdlSettings(),
+        GrpcCallableFactory.createOperationCallable(
+            updateDatabaseDdlTransportSettings,
+            settings.updateDatabaseDdlOperationSettings(),
             clientContext,
             this.operationsStub);
     this.dropDatabaseCallable =
-        GrpcCallableFactory.create(
-            directDropDatabaseCallable, settings.dropDatabaseSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            dropDatabaseTransportSettings, settings.dropDatabaseSettings(), clientContext);
     this.getDatabaseDdlCallable =
-        GrpcCallableFactory.create(
-            directGetDatabaseDdlCallable, settings.getDatabaseDdlSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            getDatabaseDdlTransportSettings, settings.getDatabaseDdlSettings(), clientContext);
     this.setIamPolicyCallable =
-        GrpcCallableFactory.create(
-            directSetIamPolicyCallable, settings.setIamPolicySettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            setIamPolicyTransportSettings, settings.setIamPolicySettings(), clientContext);
     this.getIamPolicyCallable =
-        GrpcCallableFactory.create(
-            directGetIamPolicyCallable, settings.getIamPolicySettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            getIamPolicyTransportSettings, settings.getIamPolicySettings(), clientContext);
     this.testIamPermissionsCallable =
-        GrpcCallableFactory.create(
-            directTestIamPermissionsCallable, settings.testIamPermissionsSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            testIamPermissionsTransportSettings,
+            settings.testIamPermissionsSettings(),
+            clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }
@@ -236,7 +279,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
     return listDatabasesCallable;
   }
 
-  public OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
+  public OperationCallable<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
       createDatabaseOperationCallable() {
     return createDatabaseOperationCallable;
   }
@@ -249,7 +292,7 @@ public class GrpcDatabaseAdminStub extends DatabaseAdminStub {
     return getDatabaseCallable;
   }
 
-  public OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+  public OperationCallable<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
       updateDatabaseDdlOperationCallable() {
     return updateDatabaseDdlOperationCallable;
   }

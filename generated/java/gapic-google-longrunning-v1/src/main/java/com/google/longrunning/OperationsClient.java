@@ -101,23 +101,6 @@ import javax.annotation.Generated;
  *     OperationsClient.create(operationsSettings);
  * </code>
  * </pre>
- *
- * To customize the endpoint:
- *
- * <pre>
- * <code>
- * OperationsSettings operationsSettings =
- *     OperationsSettings.newBuilder()
- *         .setTransportProvider(OperationsSettings.defaultGrpcTransportProviderBuilder()
- *             .setChannelProvider(OperationsSettings.defaultGrpcChannelProviderBuilder()
- *                 .setEndpoint(myEndpoint)
- *                 .build())
- *             .build())
- *         .build();
- * OperationsClient operationsClient =
- *     OperationsClient.create(operationsSettings);
- * </code>
- * </pre>
  */
 @Generated("by GAPIC v0.0.5")
 @BetaApi
@@ -137,6 +120,7 @@ public class OperationsClient implements BackgroundResource {
    * Constructs an instance of OperationsClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use OperationsSettings}.
    */
+  @BetaApi
   public static final OperationsClient create(OperationsStub stub) {
     return new OperationsClient(stub);
   }

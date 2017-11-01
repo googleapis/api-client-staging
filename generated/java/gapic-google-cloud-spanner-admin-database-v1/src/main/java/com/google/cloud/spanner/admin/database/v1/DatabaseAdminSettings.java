@@ -25,23 +25,25 @@ import com.google.api.gax.core.ExecutorProvider;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
 import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.grpc.GrpcStatusCode;
-import com.google.api.gax.grpc.GrpcTransport;
-import com.google.api.gax.grpc.GrpcTransportProvider;
-import com.google.api.gax.grpc.InstantiatingChannelProvider;
-import com.google.api.gax.grpc.OperationTimedPollAlgorithm;
+import com.google.api.gax.grpc.GrpcExtraHeaderData;
+import com.google.api.gax.grpc.GrpcTransportChannel;
+import com.google.api.gax.grpc.InstantiatingGrpcChannelProvider;
+import com.google.api.gax.grpc.ProtoOperationTransformers;
+import com.google.api.gax.longrunning.OperationSnapshot;
+import com.google.api.gax.longrunning.OperationTimedPollAlgorithm;
 import com.google.api.gax.retrying.RetrySettings;
 import com.google.api.gax.rpc.ApiCallContext;
+import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
+import com.google.api.gax.rpc.HeaderProvider;
 import com.google.api.gax.rpc.OperationCallSettings;
 import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.PagedCallSettings;
 import com.google.api.gax.rpc.PagedListDescriptor;
 import com.google.api.gax.rpc.PagedListResponseFactory;
-import com.google.api.gax.rpc.SimpleCallSettings;
 import com.google.api.gax.rpc.StatusCode;
-import com.google.api.gax.rpc.TransportProvider;
+import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
 import com.google.api.gax.rpc.UnaryCallable;
 import com.google.cloud.spanner.admin.database.v1.stub.DatabaseAdminStub;
@@ -68,7 +70,6 @@ import com.google.spanner.admin.database.v1.ListDatabasesRequest;
 import com.google.spanner.admin.database.v1.ListDatabasesResponse;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata;
 import com.google.spanner.admin.database.v1.UpdateDatabaseDdlRequest;
-import io.grpc.Status;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Generated;
@@ -122,19 +123,19 @@ public class DatabaseAdminSettings extends ClientSettings {
   private final PagedCallSettings<
           ListDatabasesRequest, ListDatabasesResponse, ListDatabasesPagedResponse>
       listDatabasesSettings;
-  private final OperationCallSettings<
-          CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
-      createDatabaseSettings;
-  private final SimpleCallSettings<GetDatabaseRequest, Database> getDatabaseSettings;
-  private final OperationCallSettings<
-          UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
-      updateDatabaseDdlSettings;
-  private final SimpleCallSettings<DropDatabaseRequest, Empty> dropDatabaseSettings;
-  private final SimpleCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
+  private final UnaryCallSettings<CreateDatabaseRequest, Operation> createDatabaseSettings;
+  private final OperationCallSettings<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+      createDatabaseOperationSettings;
+  private final UnaryCallSettings<GetDatabaseRequest, Database> getDatabaseSettings;
+  private final UnaryCallSettings<UpdateDatabaseDdlRequest, Operation> updateDatabaseDdlSettings;
+  private final OperationCallSettings<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+      updateDatabaseDdlOperationSettings;
+  private final UnaryCallSettings<DropDatabaseRequest, Empty> dropDatabaseSettings;
+  private final UnaryCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
       getDatabaseDdlSettings;
-  private final SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
-  private final SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
-  private final SimpleCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  private final UnaryCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings;
+  private final UnaryCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings;
+  private final UnaryCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsSettings;
 
   /** Returns the object with the settings used for calls to listDatabases. */
@@ -144,56 +145,66 @@ public class DatabaseAdminSettings extends ClientSettings {
   }
 
   /** Returns the object with the settings used for calls to createDatabase. */
-  public OperationCallSettings<CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
-      createDatabaseSettings() {
+  public UnaryCallSettings<CreateDatabaseRequest, Operation> createDatabaseSettings() {
     return createDatabaseSettings;
   }
 
+  /** Returns the object with the settings used for calls to createDatabase. */
+  public OperationCallSettings<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+      createDatabaseOperationSettings() {
+    return createDatabaseOperationSettings;
+  }
+
   /** Returns the object with the settings used for calls to getDatabase. */
-  public SimpleCallSettings<GetDatabaseRequest, Database> getDatabaseSettings() {
+  public UnaryCallSettings<GetDatabaseRequest, Database> getDatabaseSettings() {
     return getDatabaseSettings;
   }
 
   /** Returns the object with the settings used for calls to updateDatabaseDdl. */
-  public OperationCallSettings<
-          UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
-      updateDatabaseDdlSettings() {
+  public UnaryCallSettings<UpdateDatabaseDdlRequest, Operation> updateDatabaseDdlSettings() {
     return updateDatabaseDdlSettings;
   }
 
+  /** Returns the object with the settings used for calls to updateDatabaseDdl. */
+  public OperationCallSettings<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+      updateDatabaseDdlOperationSettings() {
+    return updateDatabaseDdlOperationSettings;
+  }
+
   /** Returns the object with the settings used for calls to dropDatabase. */
-  public SimpleCallSettings<DropDatabaseRequest, Empty> dropDatabaseSettings() {
+  public UnaryCallSettings<DropDatabaseRequest, Empty> dropDatabaseSettings() {
     return dropDatabaseSettings;
   }
 
   /** Returns the object with the settings used for calls to getDatabaseDdl. */
-  public SimpleCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
-      getDatabaseDdlSettings() {
+  public UnaryCallSettings<GetDatabaseDdlRequest, GetDatabaseDdlResponse> getDatabaseDdlSettings() {
     return getDatabaseDdlSettings;
   }
 
   /** Returns the object with the settings used for calls to setIamPolicy. */
-  public SimpleCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings() {
+  public UnaryCallSettings<SetIamPolicyRequest, Policy> setIamPolicySettings() {
     return setIamPolicySettings;
   }
 
   /** Returns the object with the settings used for calls to getIamPolicy. */
-  public SimpleCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings() {
+  public UnaryCallSettings<GetIamPolicyRequest, Policy> getIamPolicySettings() {
     return getIamPolicySettings;
   }
 
   /** Returns the object with the settings used for calls to testIamPermissions. */
-  public SimpleCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
+  public UnaryCallSettings<TestIamPermissionsRequest, TestIamPermissionsResponse>
       testIamPermissionsSettings() {
     return testIamPermissionsSettings;
   }
 
   public DatabaseAdminStub createStub() throws IOException {
-    if (getTransportProvider().getTransportName().equals(GrpcTransport.getGrpcTransportName())) {
+    if (getTransportChannelProvider()
+        .getTransportName()
+        .equals(GrpcTransportChannel.getGrpcTransportName())) {
       return GrpcDatabaseAdminStub.create(this);
     } else {
       throw new UnsupportedOperationException(
-          "Transport not supported: " + getTransportProvider().getTransportName());
+          "Transport not supported: " + getTransportChannelProvider().getTransportName());
     }
   }
 
@@ -218,20 +229,19 @@ public class DatabaseAdminSettings extends ClientSettings {
   }
 
   /** Returns a builder for the default ChannelProvider for this service. */
-  public static InstantiatingChannelProvider.Builder defaultGrpcChannelProviderBuilder() {
-    return InstantiatingChannelProvider.newBuilder()
-        .setEndpoint(getDefaultEndpoint())
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion());
+  public static InstantiatingGrpcChannelProvider.Builder defaultGrpcTransportProviderBuilder() {
+    return InstantiatingGrpcChannelProvider.newBuilder().setEndpoint(getDefaultEndpoint());
   }
 
-  /** Returns a builder for the default ChannelProvider for this service. */
-  public static GrpcTransportProvider.Builder defaultGrpcTransportProviderBuilder() {
-    return GrpcTransportProvider.newBuilder()
-        .setChannelProvider(defaultGrpcChannelProviderBuilder().build());
-  }
-
-  public static TransportProvider defaultTransportProvider() {
+  public static TransportChannelProvider defaultTransportChannelProvider() {
     return defaultGrpcTransportProviderBuilder().build();
+  }
+
+  public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
+    return ApiClientHeaderProvider.newBuilder()
+        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
+        .setApiClientHeaderLineKey("x-goog-api-client")
+        .addApiClientHeaderLineData(GrpcExtraHeaderData.getXGoogApiClientData());
   }
 
   private static String getGapicVersion() {
@@ -277,14 +287,18 @@ public class DatabaseAdminSettings extends ClientSettings {
   private DatabaseAdminSettings(Builder settingsBuilder) throws IOException {
     super(
         settingsBuilder.getExecutorProvider(),
-        settingsBuilder.getTransportProvider(),
+        settingsBuilder.getTransportChannelProvider(),
         settingsBuilder.getCredentialsProvider(),
+        settingsBuilder.getHeaderProvider(),
         settingsBuilder.getClock());
 
     listDatabasesSettings = settingsBuilder.listDatabasesSettings().build();
     createDatabaseSettings = settingsBuilder.createDatabaseSettings().build();
+    createDatabaseOperationSettings = settingsBuilder.createDatabaseOperationSettings().build();
     getDatabaseSettings = settingsBuilder.getDatabaseSettings().build();
     updateDatabaseDdlSettings = settingsBuilder.updateDatabaseDdlSettings().build();
+    updateDatabaseDdlOperationSettings =
+        settingsBuilder.updateDatabaseDdlOperationSettings().build();
     dropDatabaseSettings = settingsBuilder.dropDatabaseSettings().build();
     getDatabaseDdlSettings = settingsBuilder.getDatabaseDdlSettings().build();
     setIamPolicySettings = settingsBuilder.setIamPolicySettings().build();
@@ -345,37 +359,42 @@ public class DatabaseAdminSettings extends ClientSettings {
 
   /** Builder for DatabaseAdminSettings. */
   public static class Builder extends ClientSettings.Builder {
-    private final ImmutableList<UnaryCallSettings.Builder> unaryMethodSettingsBuilders;
+    private final ImmutableList<UnaryCallSettings.Builder<?, ?>> unaryMethodSettingsBuilders;
 
     private final PagedCallSettings.Builder<
             ListDatabasesRequest, ListDatabasesResponse, ListDatabasesPagedResponse>
         listDatabasesSettings;
-    private final OperationCallSettings.Builder<
-            CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
+    private final UnaryCallSettings.Builder<CreateDatabaseRequest, Operation>
         createDatabaseSettings;
-    private final SimpleCallSettings.Builder<GetDatabaseRequest, Database> getDatabaseSettings;
     private final OperationCallSettings.Builder<
-            UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+            CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+        createDatabaseOperationSettings;
+    private final UnaryCallSettings.Builder<GetDatabaseRequest, Database> getDatabaseSettings;
+    private final UnaryCallSettings.Builder<UpdateDatabaseDdlRequest, Operation>
         updateDatabaseDdlSettings;
-    private final SimpleCallSettings.Builder<DropDatabaseRequest, Empty> dropDatabaseSettings;
-    private final SimpleCallSettings.Builder<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
+    private final OperationCallSettings.Builder<
+            UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+        updateDatabaseDdlOperationSettings;
+    private final UnaryCallSettings.Builder<DropDatabaseRequest, Empty> dropDatabaseSettings;
+    private final UnaryCallSettings.Builder<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
         getDatabaseDdlSettings;
-    private final SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
-    private final SimpleCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings;
-    private final SimpleCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
+    private final UnaryCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings;
+    private final UnaryCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings;
+    private final UnaryCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
         testIamPermissionsSettings;
 
-    private static final ImmutableMap<String, ImmutableSet<StatusCode>> RETRYABLE_CODE_DEFINITIONS;
+    private static final ImmutableMap<String, ImmutableSet<StatusCode.Code>>
+        RETRYABLE_CODE_DEFINITIONS;
 
     static {
-      ImmutableMap.Builder<String, ImmutableSet<StatusCode>> definitions = ImmutableMap.builder();
+      ImmutableMap.Builder<String, ImmutableSet<StatusCode.Code>> definitions =
+          ImmutableMap.builder();
       definitions.put(
           "idempotent",
           ImmutableSet.copyOf(
-              Lists.<StatusCode>newArrayList(
-                  GrpcStatusCode.of(Status.Code.DEADLINE_EXCEEDED),
-                  GrpcStatusCode.of(Status.Code.UNAVAILABLE))));
-      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode>newArrayList()));
+              Lists.<StatusCode.Code>newArrayList(
+                  StatusCode.Code.DEADLINE_EXCEEDED, StatusCode.Code.UNAVAILABLE)));
+      definitions.put("non_idempotent", ImmutableSet.copyOf(Lists.<StatusCode.Code>newArrayList()));
       RETRYABLE_CODE_DEFINITIONS = definitions.build();
     }
 
@@ -407,26 +426,32 @@ public class DatabaseAdminSettings extends ClientSettings {
 
       listDatabasesSettings = PagedCallSettings.newBuilder(LIST_DATABASES_PAGE_STR_FACT);
 
-      createDatabaseSettings = OperationCallSettings.newBuilder();
+      createDatabaseSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      getDatabaseSettings = SimpleCallSettings.newBuilder();
+      createDatabaseOperationSettings = OperationCallSettings.newBuilder();
 
-      updateDatabaseDdlSettings = OperationCallSettings.newBuilder();
+      getDatabaseSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      dropDatabaseSettings = SimpleCallSettings.newBuilder();
+      updateDatabaseDdlSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      getDatabaseDdlSettings = SimpleCallSettings.newBuilder();
+      updateDatabaseDdlOperationSettings = OperationCallSettings.newBuilder();
 
-      setIamPolicySettings = SimpleCallSettings.newBuilder();
+      dropDatabaseSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      getIamPolicySettings = SimpleCallSettings.newBuilder();
+      getDatabaseDdlSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      testIamPermissionsSettings = SimpleCallSettings.newBuilder();
+      setIamPolicySettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
+
+      getIamPolicySettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
+
+      testIamPermissionsSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
               listDatabasesSettings,
+              createDatabaseSettings,
               getDatabaseSettings,
+              updateDatabaseDdlSettings,
               dropDatabaseSettings,
               getDatabaseDdlSettings,
               setIamPolicySettings,
@@ -438,8 +463,9 @@ public class DatabaseAdminSettings extends ClientSettings {
 
     private static Builder createDefault() {
       Builder builder = new Builder((ClientContext) null);
-      builder.setTransportProvider(defaultTransportProvider());
+      builder.setTransportChannelProvider(defaultTransportChannelProvider());
       builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
+      builder.setHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
       return initDefaults(builder);
     }
 
@@ -451,7 +477,17 @@ public class DatabaseAdminSettings extends ClientSettings {
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
       builder
+          .createDatabaseSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
           .getDatabaseSettings()
+          .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
+          .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
+
+      builder
+          .updateDatabaseDdlSettings()
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
 
@@ -480,14 +516,17 @@ public class DatabaseAdminSettings extends ClientSettings {
           .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("non_idempotent"))
           .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"));
       builder
-          .createDatabaseSettings()
+          .createDatabaseOperationSettings()
           .setInitialCallSettings(
-              SimpleCallSettings.<CreateDatabaseRequest, Operation>newBuilder()
+              UnaryCallSettings
+                  .<CreateDatabaseRequest, OperationSnapshot>newUnaryCallSettingsBuilder()
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseClass(Database.class)
-          .setMetadataClass(CreateDatabaseMetadata.class)
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Database.class))
+          .setMetadataTransformer(
+              ProtoOperationTransformers.MetadataTransformer.create(CreateDatabaseMetadata.class))
           .setPollingAlgorithm(
               OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
@@ -500,14 +539,18 @@ public class DatabaseAdminSettings extends ClientSettings {
                       .setTotalTimeout(Duration.ofMillis(86400000L))
                       .build()));
       builder
-          .updateDatabaseDdlSettings()
+          .updateDatabaseDdlOperationSettings()
           .setInitialCallSettings(
-              SimpleCallSettings.<UpdateDatabaseDdlRequest, Operation>newBuilder()
+              UnaryCallSettings
+                  .<UpdateDatabaseDdlRequest, OperationSnapshot>newUnaryCallSettingsBuilder()
                   .setRetryableCodes(RETRYABLE_CODE_DEFINITIONS.get("idempotent"))
                   .setRetrySettings(RETRY_PARAM_DEFINITIONS.get("default"))
                   .build())
-          .setResponseClass(Empty.class)
-          .setMetadataClass(UpdateDatabaseDdlMetadata.class)
+          .setResponseTransformer(
+              ProtoOperationTransformers.ResponseTransformer.create(Empty.class))
+          .setMetadataTransformer(
+              ProtoOperationTransformers.MetadataTransformer.create(
+                  UpdateDatabaseDdlMetadata.class))
           .setPollingAlgorithm(
               OperationTimedPollAlgorithm.create(
                   RetrySettings.newBuilder()
@@ -528,8 +571,10 @@ public class DatabaseAdminSettings extends ClientSettings {
 
       listDatabasesSettings = settings.listDatabasesSettings.toBuilder();
       createDatabaseSettings = settings.createDatabaseSettings.toBuilder();
+      createDatabaseOperationSettings = settings.createDatabaseOperationSettings.toBuilder();
       getDatabaseSettings = settings.getDatabaseSettings.toBuilder();
       updateDatabaseDdlSettings = settings.updateDatabaseDdlSettings.toBuilder();
+      updateDatabaseDdlOperationSettings = settings.updateDatabaseDdlOperationSettings.toBuilder();
       dropDatabaseSettings = settings.dropDatabaseSettings.toBuilder();
       getDatabaseDdlSettings = settings.getDatabaseDdlSettings.toBuilder();
       setIamPolicySettings = settings.setIamPolicySettings.toBuilder();
@@ -537,9 +582,11 @@ public class DatabaseAdminSettings extends ClientSettings {
       testIamPermissionsSettings = settings.testIamPermissionsSettings.toBuilder();
 
       unaryMethodSettingsBuilders =
-          ImmutableList.<UnaryCallSettings.Builder>of(
+          ImmutableList.<UnaryCallSettings.Builder<?, ?>>of(
               listDatabasesSettings,
+              createDatabaseSettings,
               getDatabaseSettings,
+              updateDatabaseDdlSettings,
               dropDatabaseSettings,
               getDatabaseDdlSettings,
               setIamPolicySettings,
@@ -554,8 +601,14 @@ public class DatabaseAdminSettings extends ClientSettings {
     }
 
     @Override
-    public Builder setTransportProvider(TransportProvider transportProvider) {
-      super.setTransportProvider(transportProvider);
+    public Builder setTransportChannelProvider(TransportChannelProvider transportProvider) {
+      super.setTransportChannelProvider(transportProvider);
+      return this;
+    }
+
+    @Override
+    public Builder setHeaderProvider(HeaderProvider headerProvider) {
+      super.setHeaderProvider(headerProvider);
       return this;
     }
 
@@ -571,7 +624,7 @@ public class DatabaseAdminSettings extends ClientSettings {
      * <p>Note: This method does not support applying settings to streaming methods.
      */
     public Builder applyToAllUnaryMethods(
-        ApiFunction<UnaryCallSettings.Builder, Void> settingsUpdater) throws Exception {
+        ApiFunction<UnaryCallSettings.Builder<?, ?>, Void> settingsUpdater) throws Exception {
       super.applyToAllUnaryMethods(unaryMethodSettingsBuilders, settingsUpdater);
       return this;
     }
@@ -584,47 +637,56 @@ public class DatabaseAdminSettings extends ClientSettings {
     }
 
     /** Returns the builder for the settings used for calls to createDatabase. */
-    public OperationCallSettings.Builder<
-            CreateDatabaseRequest, Database, CreateDatabaseMetadata, Operation>
-        createDatabaseSettings() {
+    public UnaryCallSettings.Builder<CreateDatabaseRequest, Operation> createDatabaseSettings() {
       return createDatabaseSettings;
     }
 
+    /** Returns the builder for the settings used for calls to createDatabase. */
+    public OperationCallSettings.Builder<CreateDatabaseRequest, Database, CreateDatabaseMetadata>
+        createDatabaseOperationSettings() {
+      return createDatabaseOperationSettings;
+    }
+
     /** Returns the builder for the settings used for calls to getDatabase. */
-    public SimpleCallSettings.Builder<GetDatabaseRequest, Database> getDatabaseSettings() {
+    public UnaryCallSettings.Builder<GetDatabaseRequest, Database> getDatabaseSettings() {
       return getDatabaseSettings;
     }
 
     /** Returns the builder for the settings used for calls to updateDatabaseDdl. */
-    public OperationCallSettings.Builder<
-            UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata, Operation>
+    public UnaryCallSettings.Builder<UpdateDatabaseDdlRequest, Operation>
         updateDatabaseDdlSettings() {
       return updateDatabaseDdlSettings;
     }
 
+    /** Returns the builder for the settings used for calls to updateDatabaseDdl. */
+    public OperationCallSettings.Builder<UpdateDatabaseDdlRequest, Empty, UpdateDatabaseDdlMetadata>
+        updateDatabaseDdlOperationSettings() {
+      return updateDatabaseDdlOperationSettings;
+    }
+
     /** Returns the builder for the settings used for calls to dropDatabase. */
-    public SimpleCallSettings.Builder<DropDatabaseRequest, Empty> dropDatabaseSettings() {
+    public UnaryCallSettings.Builder<DropDatabaseRequest, Empty> dropDatabaseSettings() {
       return dropDatabaseSettings;
     }
 
     /** Returns the builder for the settings used for calls to getDatabaseDdl. */
-    public SimpleCallSettings.Builder<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
+    public UnaryCallSettings.Builder<GetDatabaseDdlRequest, GetDatabaseDdlResponse>
         getDatabaseDdlSettings() {
       return getDatabaseDdlSettings;
     }
 
     /** Returns the builder for the settings used for calls to setIamPolicy. */
-    public SimpleCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings() {
+    public UnaryCallSettings.Builder<SetIamPolicyRequest, Policy> setIamPolicySettings() {
       return setIamPolicySettings;
     }
 
     /** Returns the builder for the settings used for calls to getIamPolicy. */
-    public SimpleCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings() {
+    public UnaryCallSettings.Builder<GetIamPolicyRequest, Policy> getIamPolicySettings() {
       return getIamPolicySettings;
     }
 
     /** Returns the builder for the settings used for calls to testIamPermissions. */
-    public SimpleCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
+    public UnaryCallSettings.Builder<TestIamPermissionsRequest, TestIamPermissionsResponse>
         testIamPermissionsSettings() {
       return testIamPermissionsSettings;
     }
