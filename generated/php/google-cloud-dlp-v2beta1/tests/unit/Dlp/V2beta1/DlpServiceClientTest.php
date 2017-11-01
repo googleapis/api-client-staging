@@ -95,6 +95,207 @@ class DlpServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function inspectContentTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new InspectContentResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
+        $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+
+        $response = $client->inspectContent($inspectConfig, $items);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/InspectContent', $actualFuncCall);
+
+        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function inspectContentExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
+        $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+
+        try {
+            $client->inspectContent($inspectConfig, $items);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function redactContentTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new RedactContentResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
+        $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
+
+        $response = $client->redactContent($inspectConfig, $items, $replaceConfigs);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/RedactContent', $actualFuncCall);
+
+        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+        $this->assertProtobufEquals($replaceConfigs, $actualRequestObject->getReplaceConfigs());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function redactContentExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $name = 'EMAIL_ADDRESS';
+        $infoTypesElement = new InfoType();
+        $infoTypesElement->setName($name);
+        $infoTypes = [$infoTypesElement];
+        $inspectConfig = new InspectConfig();
+        $inspectConfig->setInfoTypes($infoTypes);
+        $type = 'text/plain';
+        $value = 'My email is example@example.com.';
+        $itemsElement = new ContentItem();
+        $itemsElement->setType($type);
+        $itemsElement->setValue($value);
+        $items = [$itemsElement];
+        $name2 = 'EMAIL_ADDRESS';
+        $infoType = new InfoType();
+        $infoType->setName($name2);
+        $replaceWith = 'REDACTED';
+        $replaceConfigsElement = new ReplaceConfig();
+        $replaceConfigsElement->setInfoType($infoType);
+        $replaceConfigsElement->setReplaceWith($replaceWith);
+        $replaceConfigs = [$replaceConfigsElement];
+
+        try {
+            $client->redactContent($inspectConfig, $items, $replaceConfigs);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deidentifyContentTest()
     {
         $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
@@ -304,207 +505,6 @@ class DlpServiceClientTest extends GeneratedTest
         $operationsStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
         $this->assertTrue($operationsStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function inspectContentTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        // Mock response
-        $expectedResponse = new InspectContentResponse();
-        $grpcStub->addResponse($expectedResponse);
-
-        // Mock request
-        $name = 'EMAIL_ADDRESS';
-        $infoTypesElement = new InfoType();
-        $infoTypesElement->setName($name);
-        $infoTypes = [$infoTypesElement];
-        $inspectConfig = new InspectConfig();
-        $inspectConfig->setInfoTypes($infoTypes);
-        $type = 'text/plain';
-        $value = 'My email is example@example.com.';
-        $itemsElement = new ContentItem();
-        $itemsElement->setType($type);
-        $itemsElement->setValue($value);
-        $items = [$itemsElement];
-
-        $response = $client->inspectContent($inspectConfig, $items);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/InspectContent', $actualFuncCall);
-
-        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
-
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function inspectContentExceptionTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Grpc\STATUS_DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Grpc\STATUS_DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
-
-        // Mock request
-        $name = 'EMAIL_ADDRESS';
-        $infoTypesElement = new InfoType();
-        $infoTypesElement->setName($name);
-        $infoTypes = [$infoTypesElement];
-        $inspectConfig = new InspectConfig();
-        $inspectConfig->setInfoTypes($infoTypes);
-        $type = 'text/plain';
-        $value = 'My email is example@example.com.';
-        $itemsElement = new ContentItem();
-        $itemsElement->setType($type);
-        $itemsElement->setValue($value);
-        $items = [$itemsElement];
-
-        try {
-            $client->inspectContent($inspectConfig, $items);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function redactContentTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        // Mock response
-        $expectedResponse = new RedactContentResponse();
-        $grpcStub->addResponse($expectedResponse);
-
-        // Mock request
-        $name = 'EMAIL_ADDRESS';
-        $infoTypesElement = new InfoType();
-        $infoTypesElement->setName($name);
-        $infoTypes = [$infoTypesElement];
-        $inspectConfig = new InspectConfig();
-        $inspectConfig->setInfoTypes($infoTypes);
-        $type = 'text/plain';
-        $value = 'My email is example@example.com.';
-        $itemsElement = new ContentItem();
-        $itemsElement->setType($type);
-        $itemsElement->setValue($value);
-        $items = [$itemsElement];
-        $name2 = 'EMAIL_ADDRESS';
-        $infoType = new InfoType();
-        $infoType->setName($name2);
-        $replaceWith = 'REDACTED';
-        $replaceConfigsElement = new ReplaceConfig();
-        $replaceConfigsElement->setInfoType($infoType);
-        $replaceConfigsElement->setReplaceWith($replaceWith);
-        $replaceConfigs = [$replaceConfigsElement];
-
-        $response = $client->redactContent($inspectConfig, $items, $replaceConfigs);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $grpcStub->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/RedactContent', $actualFuncCall);
-
-        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
-        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
-        $this->assertProtobufEquals($replaceConfigs, $actualRequestObject->getReplaceConfigs());
-
-        $this->assertTrue($grpcStub->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function redactContentExceptionTest()
-    {
-        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
-        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
-
-        $this->assertTrue($grpcStub->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Grpc\STATUS_DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Grpc\STATUS_DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $grpcStub->addResponse(null, $status);
-
-        // Mock request
-        $name = 'EMAIL_ADDRESS';
-        $infoTypesElement = new InfoType();
-        $infoTypesElement->setName($name);
-        $infoTypes = [$infoTypesElement];
-        $inspectConfig = new InspectConfig();
-        $inspectConfig->setInfoTypes($infoTypes);
-        $type = 'text/plain';
-        $value = 'My email is example@example.com.';
-        $itemsElement = new ContentItem();
-        $itemsElement->setType($type);
-        $itemsElement->setValue($value);
-        $items = [$itemsElement];
-        $name2 = 'EMAIL_ADDRESS';
-        $infoType = new InfoType();
-        $infoType->setName($name2);
-        $replaceWith = 'REDACTED';
-        $replaceConfigsElement = new ReplaceConfig();
-        $replaceConfigsElement->setInfoType($infoType);
-        $replaceConfigsElement->setReplaceWith($replaceWith);
-        $replaceConfigs = [$replaceConfigsElement];
-
-        try {
-            $client->redactContent($inspectConfig, $items, $replaceConfigs);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $grpcStub->popReceivedCalls();
-        $this->assertTrue($grpcStub->isExhausted());
     }
 
     /**
