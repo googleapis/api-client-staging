@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Monitoring\V3;
+namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\MetricServiceClient;
 use Google\Api\MetricDescriptor;
@@ -45,6 +45,11 @@ use stdClass;
  */
 class MetricServiceClientTest extends GeneratedTest
 {
+    public function createMockGroupServiceImpl($hostname, $opts)
+    {
+        return new MockGroupServiceImpl($hostname, $opts);
+    }
+
     public function createMockMetricServiceImpl($hostname, $opts)
     {
         return new MockMetricServiceImpl($hostname, $opts);
@@ -72,6 +77,7 @@ class MetricServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -92,7 +98,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         $response = $client->listMonitoredResourceDescriptors($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -133,7 +139,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         try {
             $client->listMonitoredResourceDescriptors($formattedName);
@@ -172,7 +178,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
 
         $response = $client->getMonitoredResourceDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -210,7 +216,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
 
         try {
             $client->getMonitoredResourceDescriptor($formattedName);
@@ -246,7 +252,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         $response = $client->listMetricDescriptors($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -287,7 +293,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
 
         try {
             $client->listMetricDescriptors($formattedName);
@@ -328,7 +334,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         $response = $client->getMetricDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -366,7 +372,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         try {
             $client->getMetricDescriptor($formattedName);
@@ -407,7 +413,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $metricDescriptor = new MetricDescriptor();
 
         $response = $client->createMetricDescriptor($formattedName, $metricDescriptor);
@@ -447,7 +453,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $metricDescriptor = new MetricDescriptor();
 
         try {
@@ -479,7 +485,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         $client->deleteMetricDescriptor($formattedName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -516,7 +522,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatMetricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
 
         try {
             $client->deleteMetricDescriptor($formattedName);
@@ -552,7 +558,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
         $view = TimeSeriesView::FULL;
@@ -599,7 +605,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
         $view = TimeSeriesView::FULL;
@@ -633,7 +639,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $timeSeries = [];
 
         $client->createTimeSeries($formattedName, $timeSeries);
@@ -672,7 +678,7 @@ class MetricServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = MetricServiceClient::formatProjectName('[PROJECT]');
+        $formattedName = $client->projectName('[PROJECT]');
         $timeSeries = [];
 
         try {

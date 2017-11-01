@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\PubSub\V1;
+namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\GAX\ApiException;
@@ -51,14 +51,19 @@ use stdClass;
  */
 class SubscriberClientTest extends GeneratedTest
 {
-    public function createMockSubscriberImpl($hostname, $opts)
+    public function createMockPublisherImpl($hostname, $opts)
     {
-        return new MockSubscriberImpl($hostname, $opts);
+        return new MockPublisherImpl($hostname, $opts);
     }
 
     public function createMockIAMPolicyImpl($hostname, $opts)
     {
         return new MockIAMPolicyImpl($hostname, $opts);
+    }
+
+    public function createMockSubscriberImpl($hostname, $opts)
+    {
+        return new MockSubscriberImpl($hostname, $opts);
     }
 
     private function createStub($createGrpcStub)
@@ -83,6 +88,7 @@ class SubscriberClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -106,8 +112,8 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = SubscriberClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         $response = $client->createSubscription($formattedName, $formattedTopic);
         $this->assertEquals($expectedResponse, $response);
@@ -146,8 +152,8 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $formattedTopic = SubscriberClient::formatTopicName('[PROJECT]', '[TOPIC]');
+        $formattedName = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
 
         try {
             $client->createSubscription($formattedName, $formattedTopic);
@@ -186,7 +192,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->getSubscription($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
@@ -224,7 +230,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->getSubscription($formattedSubscription);
@@ -340,7 +346,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProject = SubscriberClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         $response = $client->listSubscriptions($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -381,7 +387,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProject = SubscriberClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         try {
             $client->listSubscriptions($formattedProject);
@@ -412,7 +418,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $client->deleteSubscription($formattedSubscription);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -449,7 +455,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->deleteSubscription($formattedSubscription);
@@ -480,7 +486,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
 
@@ -521,7 +527,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
 
@@ -554,7 +560,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
 
         $client->acknowledge($formattedSubscription, $ackIds);
@@ -593,7 +599,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
 
         try {
@@ -625,7 +631,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
 
         $response = $client->pull($formattedSubscription, $maxMessages);
@@ -665,7 +671,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
 
         try {
@@ -710,17 +716,17 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds = 1875467245;
         $request = new StreamingPullRequest();
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
-        $formattedSubscription2 = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription2 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds2 = -1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
-        $formattedSubscription3 = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription3 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds3 = -1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
@@ -820,7 +826,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $pushConfig = new PushConfig();
 
         $client->modifyPushConfig($formattedSubscription, $pushConfig);
@@ -859,7 +865,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $pushConfig = new PushConfig();
 
         try {
@@ -896,7 +902,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProject = SubscriberClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         $response = $client->listSnapshots($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -937,7 +943,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProject = SubscriberClient::formatProjectName('[PROJECT]');
+        $formattedProject = $client->projectName('[PROJECT]');
 
         try {
             $client->listSnapshots($formattedProject);
@@ -972,8 +978,8 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = SubscriberClient::formatSnapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->createSnapshot($formattedName, $formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
@@ -1012,8 +1018,8 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = SubscriberClient::formatSnapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->createSnapshot($formattedName, $formattedSubscription);
@@ -1120,7 +1126,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSnapshot = SubscriberClient::formatSnapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
 
         $client->deleteSnapshot($formattedSnapshot);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -1157,7 +1163,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSnapshot = SubscriberClient::formatSnapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
 
         try {
             $client->deleteSnapshot($formattedSnapshot);
@@ -1188,7 +1194,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->seek($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
@@ -1226,7 +1232,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSubscription = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->seek($formattedSubscription);
@@ -1261,7 +1267,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $policy = new Policy();
 
         $response = $client->setIamPolicy($formattedResource, $policy);
@@ -1301,7 +1307,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $policy = new Policy();
 
         try {
@@ -1337,7 +1343,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
@@ -1375,7 +1381,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
 
         try {
             $client->getIamPolicy($formattedResource);
@@ -1406,7 +1412,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $permissions = [];
 
         $response = $client->testIamPermissions($formattedResource, $permissions);
@@ -1446,7 +1452,7 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = SubscriberClient::formatSubscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedResource = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $permissions = [];
 
         try {

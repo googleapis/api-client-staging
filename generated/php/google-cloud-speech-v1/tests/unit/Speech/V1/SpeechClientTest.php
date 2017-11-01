@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Speech\V1;
+namespace Google\Cloud\Tests\Unit\Speech\V1;
 
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
@@ -80,6 +80,7 @@ class SpeechClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

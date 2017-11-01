@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
@@ -39,10 +40,10 @@ use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp;
 
@@ -60,7 +61,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * try {
  *     $errorStatsServiceClient = new ErrorStatsServiceClient();
- *     $formattedProjectName = ErrorStatsServiceClient::formatProjectName("[PROJECT]");
+ *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
  *     $timeRange = new QueryTimeRange();
  *     // Iterate through all elements
  *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -68,8 +69,8 @@ use Google\Protobuf\Timestamp;
  *         // doSomethingWith($element);
  *     }
  *
- *     // OR iterate over pages of elements, with the maximum page size set to 5
- *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+ *     // OR iterate over pages of elements
+ *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -82,8 +83,8 @@ use Google\Protobuf\Timestamp;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -100,11 +101,6 @@ class ErrorStatsServiceGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -115,42 +111,15 @@ class ErrorStatsServiceGapicClient
     const CODEGEN_VERSION = '0.0.5';
 
     private static $projectNameTemplate;
+    private static $pathTemplateMap;
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $errorStatsServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -159,6 +128,17 @@ class ErrorStatsServiceGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
     }
 
     private static function getPageStreamingDescriptors()
@@ -192,13 +172,73 @@ class ErrorStatsServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string the formatted project resource
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - project: projects/{project}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array an associative array from name component IDs to component values
+     *
+     * @throws ValidationException if $formattedName could not be matched
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -225,15 +265,20 @@ class ErrorStatsServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Error Reporting API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -246,9 +291,9 @@ class ErrorStatsServiceGapicClient
                 'https://www.googleapis.com/auth/cloud-platform',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/error_stats_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -271,15 +316,13 @@ class ErrorStatsServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/error_stats_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.devtools.clouderrorreporting.v1beta1.ErrorStatsService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -306,7 +349,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = ErrorStatsServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $timeRange = new QueryTimeRange();
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
@@ -314,8 +357,8 @@ class ErrorStatsServiceGapicClient
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName, $timeRange);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -340,7 +383,7 @@ class ErrorStatsServiceGapicClient
      *                                     If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      *                                     occurrences are returned.
      * @param array          $optionalArgs {
-     *                                     Optional.
+     *                                     Optional
      *
      *     @type string[] $groupId
      *          [Optional] List all <code>ErrorGroupStats</code> with these IDs.
@@ -371,12 +414,11 @@ class ErrorStatsServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -414,9 +456,13 @@ class ErrorStatsServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listGroupStats']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listGroupStats'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'ListGroupStats',
@@ -437,16 +483,16 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = ErrorStatsServiceClient::formatProjectName("[PROJECT]");
-     *     $groupId = "";
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
+     *     $groupId = '';
      *     // Iterate through all elements
      *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR iterate over pages of elements, with the maximum page size set to 5
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId, ['pageSize' => 5]);
+     *     // OR iterate over pages of elements
+     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -462,9 +508,9 @@ class ErrorStatsServiceGapicClient
      *                             [Google Cloud Platform project
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
-     * @param string $groupId      [Required] The group for which events shall be returned.
+     * @param string $groupId      [Required] The group for which events shall be returned
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
      *     @type ServiceContextFilter $serviceFilter
      *          [Optional] List only ErrorGroups which belong to a service context that
@@ -483,12 +529,11 @@ class ErrorStatsServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -514,9 +559,13 @@ class ErrorStatsServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listEvents']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listEvents'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'ListEvents',
@@ -537,7 +586,7 @@ class ErrorStatsServiceGapicClient
      * ```
      * try {
      *     $errorStatsServiceClient = new ErrorStatsServiceClient();
-     *     $formattedProjectName = ErrorStatsServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
      * } finally {
      *     $errorStatsServiceClient->close();
@@ -550,14 +599,13 @@ class ErrorStatsServiceGapicClient
      *                             ID](https://support.google.com/cloud/answer/6158840).
      *                             Example: `projects/my-project-123`.
      * @param array  $optionalArgs {
-     *                             Optional.
+     *                             Optional
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse
@@ -570,9 +618,13 @@ class ErrorStatsServiceGapicClient
         $request = new DeleteEventsRequest();
         $request->setProjectName($projectName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteEvents']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteEvents'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'DeleteEvents',

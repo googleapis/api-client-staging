@@ -40,6 +40,12 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
      */
     private $extract_entity_sentiment = false;
+    /**
+     * Classify the full document into categories.
+     *
+     * Generated from protobuf field <code>bool classify_text = 6;</code>
+     */
+    private $classify_text = false;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Language\V1\LanguageService::initOnce();
@@ -146,6 +152,32 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->extract_entity_sentiment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Classify the full document into categories.
+     *
+     * Generated from protobuf field <code>bool classify_text = 6;</code>
+     * @return bool
+     */
+    public function getClassifyText()
+    {
+        return $this->classify_text;
+    }
+
+    /**
+     * Classify the full document into categories.
+     *
+     * Generated from protobuf field <code>bool classify_text = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClassifyText($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->classify_text = $var;
 
         return $this;
     }

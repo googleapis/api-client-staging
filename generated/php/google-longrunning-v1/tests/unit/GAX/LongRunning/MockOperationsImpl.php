@@ -34,7 +34,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Tests\GAX\LongRunning;
+namespace Google\Tests\Unit\GAX\LongRunning;
 
 use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
