@@ -257,7 +257,7 @@ class FirestoreGapicClient
      * @param string $project
      * @param string $database
      *
-     * @return string the formatted database_root resource
+     * @return string The formatted database_root resource.
      * @experimental
      */
     public static function databaseRootName($project, $database)
@@ -275,7 +275,7 @@ class FirestoreGapicClient
      * @param string $project
      * @param string $database
      *
-     * @return string the formatted document_root resource
+     * @return string The formatted document_root resource.
      * @experimental
      */
     public static function documentRootName($project, $database)
@@ -294,7 +294,7 @@ class FirestoreGapicClient
      * @param string $database
      * @param string $documentPath
      *
-     * @return string the formatted document_path resource
+     * @return string The formatted document_path resource.
      * @experimental
      */
     public static function documentPathName($project, $database, $documentPath)
@@ -315,7 +315,7 @@ class FirestoreGapicClient
      * @param string $document
      * @param string $anyPath
      *
-     * @return string the formatted any_path resource
+     * @return string The formatted any_path resource.
      * @experimental
      */
     public static function anyPathName($project, $database, $document, $anyPath)
@@ -345,9 +345,9 @@ class FirestoreGapicClient
      * @param string $formattedName The formatted name string
      * @param string $template      Optional name of template to match
      *
-     * @return array an associative array from name component IDs to component values
+     * @return array An associative array from name component IDs to component values.
      *
-     * @throws ValidationException if $formattedName could not be matched
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
     public static function parseName($formattedName, $template = null)
@@ -505,7 +505,7 @@ class FirestoreGapicClient
      * @param string $name         The resource name of the Document to get. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
@@ -599,7 +599,7 @@ class FirestoreGapicClient
      * @param string $collectionId The collection ID, relative to `parent`, to list. For example: `chatrooms`
      *                             or `messages`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -715,7 +715,7 @@ class FirestoreGapicClient
      * Optional. If not specified, an ID will be assigned by the service.
      * @param Document $document     The document to create. `name` must not be set.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
@@ -790,7 +790,7 @@ class FirestoreGapicClient
      * Fields referenced in the mask, but not present in the input document, are
      * deleted from the document on the server.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
@@ -861,7 +861,7 @@ class FirestoreGapicClient
      * @param string $name         The resource name of the Document to delete. In the format:
      *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
@@ -933,7 +933,7 @@ class FirestoreGapicClient
      *                               The request will fail if any of the document is not a child resource of the
      *                               given `database`. Duplicate names will be elided.
      * @param array    $optionalArgs {
-     *                               Optional
+     *                               Optional.
      *
      *     @type DocumentMask $mask
      *          The fields to return. If not set, returns all fields.
@@ -1021,7 +1021,7 @@ class FirestoreGapicClient
      * @param string $database     The database name. In the format:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type TransactionOptions $options
      *          The options for the transaction.
@@ -1087,7 +1087,7 @@ class FirestoreGapicClient
      *
      * Always executed atomically and in order.
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type string $transaction
      *          If set, applies all writes in this transaction, and commits it.
@@ -1149,9 +1149,9 @@ class FirestoreGapicClient
      *
      * @param string $database     The database name. In the format:
      *                             `projects/{project_id}/databases/{database_id}`.
-     * @param string $transaction  the transaction to roll back
+     * @param string $transaction  The transaction to roll back.
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1214,7 +1214,7 @@ class FirestoreGapicClient
      *                             `projects/my-project/databases/my-database/documents` or
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type StructuredQuery $structuredQuery
      *          A structured query.
@@ -1323,7 +1323,7 @@ class FirestoreGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
@@ -1405,7 +1405,7 @@ class FirestoreGapicClient
      * ```
      *
      * @param array $optionalArgs {
-     *                            Optional
+     *                            Optional.
      *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
@@ -1476,7 +1476,7 @@ class FirestoreGapicClient
      *                             For example:
      *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param array  $optionalArgs {
-     *                             Optional
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
