@@ -22,21 +22,17 @@ module Google
     ##
     # # Ruby Client for Google Cloud Pub/Sub API ([Alpha](https://github.com/GoogleCloudPlatform/google-cloud-ruby#versioning))
     #
-    # [Google Cloud Pub/Sub API][Product Documentation]: Provides reliable, many-to-many, asynchronous messaging between applications.
-    #
+    # [Google Cloud Pub/Sub API][Product Documentation]:
+    # Provides reliable, many-to-many, asynchronous messaging between applications.
     # - [Product Documentation][]
     #
     # ## Quick Start
-    # In order to use this library, you first need to go through the following steps:
+    # In order to use this library, you first need to go through the following
+    # steps:
     #
     # 1. [Select or create a Cloud Platform project.](https://console.cloud.google.com/project)
     # 2. [Enable the Google Cloud Pub/Sub API.](https://console.cloud.google.com/apis/api/pubsub)
     # 3. [Setup Authentication.](https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud/master/guides/authentication)
-    #
-    # ### Installation
-    # ```
-    # $ gem install google-cloud-pubsub
-    # ```
     #
     # ### Preview
     # #### PublisherClient
@@ -61,26 +57,15 @@ module Google
     # ```
     #
     # ### Next Steps
-    # - Read the [Google Cloud Pub/Sub API Product documentation][Product Documentation] to learn more about the product and see How-to Guides.
-    # - View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-ruby/blob/master/README.md) to see the full list of Cloud APIs that we cover.
+    # - Read the [Google Cloud Pub/Sub API Product documentation][Product Documentation]
+    #   to learn more about the product and see How-to Guides.
+    # - View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-ruby/blob/master/README.md)
+    #   to see the full list of Cloud APIs that we cover.
     #
     # [Product Documentation]: https://cloud.google.com/pubsub
     #
     #
     module Pubsub
-      ##
-      # # Google Cloud Pub/Sub API Contents
-      #
-      # | Class | Description |
-      # | ----- | ----------- |
-      # | [PublisherClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
-      # | [SubscriberClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
-      # | [Data Types][] | Data types for Google::Cloud::Pubsub::V1 |
-      #
-      # [PublisherClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/publisherclient
-      # [SubscriberClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/subscriberclient
-      # [Data Types]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/v1/datatypes
-      #
       module V1
         # rubocop:enable LineLength
 
@@ -89,15 +74,10 @@ module Google
           # The service that an application uses to manipulate topics, and to send
           # messages to a topic.
           #
-          # @param service_path [String]
-          #   The domain name of the API remote host.
-          # @param port [Integer]
-          #   The port on which to connect to the remote host.
-          # @param credentials
-          #   [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
+          # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
           #   Provides the means for authenticating requests made by the client. This parameter can
           #   be many types.
-          #   A `Google::Gax::Credentials` uses a the properties of its represented keyfile for
+          #   A `Google::Auth::Credentials` uses a the properties of its represented keyfile for
           #   authenticating requests made by this client.
           #   A `String` will be treated as the path to the keyfile to be used for the construction of
           #   credentials for this client.
@@ -111,15 +91,39 @@ module Google
           # @param scopes [Array<String>]
           #   The OAuth scopes for this service. This parameter is ignored if
           #   an updater_proc is supplied.
-          # @param client_config[Hash]
+          # @param client_config [Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
           #   this data. Falls back to the default config if not specified
           #   or the specified config is missing data points.
           # @param timeout [Numeric]
           #   The default timeout, in seconds, for calls made through this client.
-          def self.new(*args, **kwargs)
-            Google::Cloud::Pubsub::V1::PublisherClient.new(*args, **kwargs)
+          def self.new \
+              service_path: nil,
+              port: nil,
+              channel: nil,
+              chan_creds: nil,
+              updater_proc: nil,
+              credentials: nil,
+              scopes: nil,
+              client_config: nil,
+              timeout: nil,
+              lib_name: nil,
+              lib_version: nil
+            kwargs = {
+              service_path: service_path,
+              port: port,
+              channel: channel,
+              chan_creds: chan_creds,
+              updater_proc: updater_proc,
+              credentials: credentials,
+              scopes: scopes,
+              client_config: client_config,
+              timeout: timeout,
+              lib_name: lib_name,
+              lib_version: lib_version
+            }.select { |_, v| v != nil }
+            Google::Cloud::Pubsub::V1::PublisherClient.new(**kwargs)
           end
         end
 
@@ -128,15 +132,10 @@ module Google
           # The service that an application uses to manipulate subscriptions and to
           # consume messages from a subscription via the +Pull+ method.
           #
-          # @param service_path [String]
-          #   The domain name of the API remote host.
-          # @param port [Integer]
-          #   The port on which to connect to the remote host.
-          # @param credentials
-          #   [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
+          # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
           #   Provides the means for authenticating requests made by the client. This parameter can
           #   be many types.
-          #   A `Google::Gax::Credentials` uses a the properties of its represented keyfile for
+          #   A `Google::Auth::Credentials` uses a the properties of its represented keyfile for
           #   authenticating requests made by this client.
           #   A `String` will be treated as the path to the keyfile to be used for the construction of
           #   credentials for this client.
@@ -150,15 +149,39 @@ module Google
           # @param scopes [Array<String>]
           #   The OAuth scopes for this service. This parameter is ignored if
           #   an updater_proc is supplied.
-          # @param client_config[Hash]
+          # @param client_config [Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
           #   this data. Falls back to the default config if not specified
           #   or the specified config is missing data points.
           # @param timeout [Numeric]
           #   The default timeout, in seconds, for calls made through this client.
-          def self.new(*args, **kwargs)
-            Google::Cloud::Pubsub::V1::SubscriberClient.new(*args, **kwargs)
+          def self.new \
+              service_path: nil,
+              port: nil,
+              channel: nil,
+              chan_creds: nil,
+              updater_proc: nil,
+              credentials: nil,
+              scopes: nil,
+              client_config: nil,
+              timeout: nil,
+              lib_name: nil,
+              lib_version: nil
+            kwargs = {
+              service_path: service_path,
+              port: port,
+              channel: channel,
+              chan_creds: chan_creds,
+              updater_proc: updater_proc,
+              credentials: credentials,
+              scopes: scopes,
+              client_config: client_config,
+              timeout: timeout,
+              lib_name: lib_name,
+              lib_version: lib_version
+            }.select { |_, v| v != nil }
+            Google::Cloud::Pubsub::V1::SubscriberClient.new(**kwargs)
           end
         end
       end

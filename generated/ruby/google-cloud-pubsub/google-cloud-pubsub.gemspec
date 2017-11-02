@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = "google-cloud-pubsub"
-  gem.version       = "0.6.8"
+  gem.version       = "0.1.0"
 
   gem.authors       = ["Google Inc"]
   gem.email         = "googleapis-packages@google.com"
@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "google-gax", "~> 0.8.6"
   gem.add_dependency "googleapis-common-protos", "~> 1.3.1"
+  gem.add_dependency "googleauth", "~> 0.6.1"
   gem.add_dependency "grpc-google-iam-v1", "~> 0.6.8"
 
   gem.add_development_dependency "minitest", "~> 5.10"
