@@ -14,7 +14,7 @@
 #
 # EDITING INSTRUCTIONS
 # This file was generated from the file
-# https://github.com/googleapis/googleapis/blob/master/google/pubsub/v1/pubsub.proto,
+# https://github.com/googleapis/googleapis/blob/master/pubsub.proto,
 # and updates to that file get reflected here through a refresh process.
 # For the short term, the refresh process will only be runnable by Google
 # engineers.
@@ -28,7 +28,7 @@ require "pathname"
 require "google/gax"
 
 require "google/iam/v1/iam_policy_pb"
-require "google/pubsub/v1/pubsub_pb"
+require "pubsub_pb"
 require "google/cloud/pubsub/credentials"
 
 module Google
@@ -116,15 +116,10 @@ module Google
             )
           end
 
-          # @param service_path [String]
-          #   The domain name of the API remote host.
-          # @param port [Integer]
-          #   The port on which to connect to the remote host.
-          # @param credentials
-          #   [Google::Gax::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
+          # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
           #   Provides the means for authenticating requests made by the client. This parameter can
           #   be many types.
-          #   A `Google::Gax::Credentials` uses a the properties of its represented keyfile for
+          #   A `Google::Auth::Credentials` uses a the properties of its represented keyfile for
           #   authenticating requests made by this client.
           #   A `String` will be treated as the path to the keyfile to be used for the construction of
           #   credentials for this client.
@@ -138,7 +133,7 @@ module Google
           # @param scopes [Array<String>]
           #   The OAuth scopes for this service. This parameter is ignored if
           #   an updater_proc is supplied.
-          # @param client_config[Hash]
+          # @param client_config [Hash]
           #   A Hash for call options for each method. See
           #   Google::Gax#construct_settings for the structure of
           #   this data. Falls back to the default config if not specified
@@ -155,8 +150,6 @@ module Google
               scopes: ALL_SCOPES,
               client_config: {},
               timeout: DEFAULT_TIMEOUT,
-              app_name: nil,
-              app_version: nil,
               lib_name: nil,
               lib_version: ""
             # These require statements are intentionally placed here to initialize
@@ -164,7 +157,7 @@ module Google
             # See https://github.com/googleapis/toolkit/issues/446
             require "google/gax/grpc"
             require "google/iam/v1/iam_policy_services_pb"
-            require "google/pubsub/v1/pubsub_services_pb"
+            require "pubsub_services_pb"
 
             if channel || chan_creds || updater_proc
               warn "The `channel`, `chan_creds`, and `updater_proc` parameters will be removed " \
@@ -173,8 +166,8 @@ module Google
               credentials ||= chan_creds
               credentials ||= updater_proc
             end
-            if app_name || app_version
-              warn "`app_name` and `app_version` are no longer being used in the request headers."
+            if service_path != SERVICE_ADDRESS || port != DEFAULT_SERVICE_PORT
+              warn "`service_path` and `port` parameters are deprecated and will be removed"
             end
 
             credentials ||= Google::Cloud::Pubsub::Credentials.default
@@ -191,13 +184,13 @@ module Google
             if credentials.is_a?(Proc)
               updater_proc = credentials
             end
-            if credentials.is_a?(Google::Gax::Credentials)
+            if credentials.is_a?(Google::Auth::Credentials)
               updater_proc = credentials.updater_proc
             end
 
             google_api_client = "gl-ruby/#{RUBY_VERSION}"
             google_api_client << " #{lib_name}/#{lib_version}" if lib_name
-            google_api_client << " gapic/0.6.8 gax/#{Google::Gax::VERSION}"
+            google_api_client << " gapic/0.1.0 gax/#{Google::Gax::VERSION}"
             google_api_client << " grpc/#{GRPC::VERSION}"
             google_api_client.freeze
 
