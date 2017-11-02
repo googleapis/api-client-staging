@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Spanner\V1;
+namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
@@ -31,6 +31,7 @@ use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Spanner\V1\CommitResponse;
 use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\ListSessionsResponse;
 use Google\Spanner\V1\PartialResultSet;
 use Google\Spanner\V1\ResultSet;
 use Google\Spanner\V1\Session;
@@ -72,6 +73,7 @@ class SpannerClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -89,7 +91,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedDatabase = SpannerClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         $response = $client->createSession($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
@@ -127,7 +129,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedDatabase = SpannerClient::formatDatabaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
             $client->createSession($formattedDatabase);
@@ -160,7 +162,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         $response = $client->getSession($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -198,10 +200,87 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         try {
             $client->getSession($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSessionsTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
+        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $sessionsElement = new Session();
+        $sessions = [$sessionsElement];
+        $expectedResponse = new ListSessionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSessions($sessions);
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+
+        $response = $client->listSessions($formattedDatabase);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSessions()[0], $resources[0]);
+
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.v1.Spanner/ListSessions', $actualFuncCall);
+
+        $this->assertProtobufEquals($formattedDatabase, $actualRequestObject->getDatabase());
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSessionsExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockSpannerImpl']);
+        $client = $this->createClient('createSpannerStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+
+        try {
+            $client->listSessions($formattedDatabase);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -229,7 +308,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         $client->deleteSession($formattedName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -266,7 +345,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
 
         try {
             $client->deleteSession($formattedName);
@@ -297,7 +376,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
 
         $response = $client->executeSql($formattedSession, $sql);
@@ -337,7 +416,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
 
         try {
@@ -385,7 +464,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
 
         $serverStream = $client->executeStreamingSql($formattedSession, $sql);
@@ -435,7 +514,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $sql = 'sql114126';
 
         $serverStream = $client->executeStreamingSql($formattedSession, $sql);
@@ -470,7 +549,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $table = 'table110115790';
         $columns = [];
         $keySet = new KeySet();
@@ -514,7 +593,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $table = 'table110115790';
         $columns = [];
         $keySet = new KeySet();
@@ -564,7 +643,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse3);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $table = 'table110115790';
         $columns = [];
         $keySet = new KeySet();
@@ -618,7 +697,7 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($grpcStub->isExhausted());
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $table = 'table110115790';
         $columns = [];
         $keySet = new KeySet();
@@ -657,7 +736,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $options = new TransactionOptions();
 
         $response = $client->beginTransaction($formattedSession, $options);
@@ -697,7 +776,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $options = new TransactionOptions();
 
         try {
@@ -729,7 +808,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
 
         $response = $client->commit($formattedSession, $mutations);
@@ -769,7 +848,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
 
         try {
@@ -801,7 +880,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $transactionId = '28';
 
         $client->rollback($formattedSession, $transactionId);
@@ -840,7 +919,7 @@ class SpannerClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedSession = SpannerClient::formatSessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $transactionId = '28';
 
         try {

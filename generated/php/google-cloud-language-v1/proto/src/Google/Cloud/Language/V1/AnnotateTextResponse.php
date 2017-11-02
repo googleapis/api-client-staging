@@ -53,6 +53,12 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language = 5;</code>
      */
     private $language = '';
+    /**
+     * Categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     */
+    private $categories;
 
     public function __construct() {
         \GPBMetadata\Google\Cloud\Language\V1\LanguageService::initOnce();
@@ -201,6 +207,32 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language = $var;
+
+        return $this;
+    }
+
+    /**
+     * Categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Categories identified in the input document.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
+     * @param \Google\Cloud\Language\V1\ClassificationCategory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCategories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Language\V1\ClassificationCategory::class);
+        $this->categories = $arr;
 
         return $this;
     }

@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Logging\V2;
+namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\GAX\Testing\MockStubTrait;
 use Google\Logging\V2\MetricsServiceV2GrpcClient;

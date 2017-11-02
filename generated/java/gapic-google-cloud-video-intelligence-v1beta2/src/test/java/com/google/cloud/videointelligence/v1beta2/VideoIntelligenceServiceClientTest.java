@@ -16,11 +16,10 @@
 package com.google.cloud.videointelligence.v1beta2;
 
 import com.google.api.gax.core.NoCredentialsProvider;
-import com.google.api.gax.grpc.GrpcStatusCode;
-import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.rpc.InvalidArgumentException;
+import com.google.api.gax.rpc.StatusCode;
 import com.google.longrunning.Operation;
 import com.google.protobuf.Any;
 import com.google.protobuf.GeneratedMessageV3;
@@ -62,11 +61,8 @@ public class VideoIntelligenceServiceClientTest {
     serviceHelper.reset();
     VideoIntelligenceServiceSettings settings =
         VideoIntelligenceServiceSettings.newBuilder()
-            .setTransportProvider(
-                GrpcTransportProvider.newBuilder()
-                    .setChannelProvider(serviceHelper.createChannelProvider())
-                    .build())
-            .setCredentialsProvider(new NoCredentialsProvider())
+            .setTransportChannelProvider(serviceHelper.createChannelProvider())
+            .setCredentialsProvider(NoCredentialsProvider.create())
             .build();
     client = VideoIntelligenceServiceClient.create(settings);
   }
@@ -119,9 +115,7 @@ public class VideoIntelligenceServiceClientTest {
     } catch (ExecutionException e) {
       Assert.assertEquals(InvalidArgumentException.class, e.getCause().getClass());
       InvalidArgumentException apiException = (InvalidArgumentException) e.getCause();
-      Assert.assertEquals(
-          Status.INVALID_ARGUMENT.getCode(),
-          ((GrpcStatusCode) apiException.getStatusCode()).getCode());
+      Assert.assertEquals(StatusCode.Code.INVALID_ARGUMENT, apiException.getStatusCode().getCode());
     }
   }
 }

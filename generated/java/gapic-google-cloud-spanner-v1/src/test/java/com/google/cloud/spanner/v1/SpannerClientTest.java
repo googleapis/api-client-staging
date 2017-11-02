@@ -18,7 +18,6 @@ package com.google.cloud.spanner.v1;
 import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
-import com.google.api.gax.grpc.GrpcTransportProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.grpc.testing.MockStreamObserver;
@@ -85,11 +84,8 @@ public class SpannerClientTest {
     serviceHelper.reset();
     SpannerSettings settings =
         SpannerSettings.newBuilder()
-            .setTransportProvider(
-                GrpcTransportProvider.newBuilder()
-                    .setChannelProvider(serviceHelper.createChannelProvider())
-                    .build())
-            .setCredentialsProvider(new NoCredentialsProvider())
+            .setTransportChannelProvider(serviceHelper.createChannelProvider())
+            .setCredentialsProvider(NoCredentialsProvider.create())
             .build();
     client = SpannerClient.create(settings);
   }

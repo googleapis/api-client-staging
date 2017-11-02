@@ -1,7 +1,7 @@
 {
     "name": "google/api-client-staging",
     "require": {
-        "google/gax": "^0.23"
+        "google/gax": "^0.25"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
@@ -11,6 +11,7 @@
             "Google\\Cloud\\": [
                 "generated/php/google-cloud-bigtable-admin-v2/src",
                 "generated/php/google-cloud-dlp-v2beta1/src",
+                "generated/php/google-cloud-firestore-v1beta1/src",
                 "generated/php/google-cloud-pubsub-v1/src",
                 "generated/php/google-cloud-error-reporting-v1beta1/src",
                 "generated/php/google-cloud-language-v1/src",
@@ -31,9 +32,10 @@
                 "generated/php/google-longrunning-v1/src",
                 "generated/php/google-longrunning-v1/proto/src"
             ],
-            "Google\\Cloud\\Tests\\": [
+            "Google\\Cloud\\Tests\\Unit\\": [
                 "generated/php/google-cloud-bigtable-admin-v2/tests/unit",
                 "generated/php/google-cloud-dlp-v2beta1/tests/unit",
+                "generated/php/google-cloud-firestore-v1beta1/tests/unit",
                 "generated/php/google-cloud-pubsub-v1/tests/unit",
                 "generated/php/google-cloud-error-reporting-v1beta1/tests/unit",
                 "generated/php/google-cloud-language-v1/tests/unit",
@@ -50,12 +52,13 @@
                 "generated/php/google-cloud-video-intelligence-v1beta2/tests/unit",
                 "generated/php/google-cloud-vision-v1/tests/unit"
             ],
-            "Google\\Tests\\": [
+            "Google\\Tests\\Unit\\": [
                 "generated/php/google-longrunning-v1/tests/unit"
             ],
             "": [
                 "generated/php/google-cloud-bigtable-admin-v2/proto/src",
                 "generated/php/google-cloud-dlp-v2beta1/proto/src",
+                "generated/php/google-cloud-firestore-v1beta1/proto/src",
                 "generated/php/google-cloud-pubsub-v1/proto/src",
                 "generated/php/google-cloud-error-reporting-v1beta1/proto/src",
                 "generated/php/google-cloud-language-v1/proto/src",

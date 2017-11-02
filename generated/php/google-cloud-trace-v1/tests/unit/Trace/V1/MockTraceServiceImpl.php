@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Trace\V1;
+namespace Google\Cloud\Tests\Unit\Trace\V1;
 
 use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;

@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Spanner\V1;
+namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
 use Google\GAX\Testing\MockStubTrait;
 use Google\Protobuf\Any;

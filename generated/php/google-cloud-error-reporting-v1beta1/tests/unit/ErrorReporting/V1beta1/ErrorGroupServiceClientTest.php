@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
+namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupServiceClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
@@ -40,6 +40,16 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     public function createMockErrorGroupServiceImpl($hostname, $opts)
     {
         return new MockErrorGroupServiceImpl($hostname, $opts);
+    }
+
+    public function createMockErrorStatsServiceImpl($hostname, $opts)
+    {
+        return new MockErrorStatsServiceImpl($hostname, $opts);
+    }
+
+    public function createMockReportErrorsServiceImpl($hostname, $opts)
+    {
+        return new MockReportErrorsServiceImpl($hostname, $opts);
     }
 
     private function createStub($createGrpcStub)
@@ -64,6 +74,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -83,7 +94,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         $response = $client->getGroup($formattedGroupName);
         $this->assertEquals($expectedResponse, $response);
@@ -121,7 +132,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedGroupName = ErrorGroupServiceClient::formatGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $client->groupName('[PROJECT]', '[GROUP]');
 
         try {
             $client->getGroup($formattedGroupName);

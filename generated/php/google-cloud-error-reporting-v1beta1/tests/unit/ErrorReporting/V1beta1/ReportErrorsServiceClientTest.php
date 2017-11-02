@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
+namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse;
@@ -38,6 +38,16 @@ use stdClass;
  */
 class ReportErrorsServiceClientTest extends GeneratedTest
 {
+    public function createMockErrorGroupServiceImpl($hostname, $opts)
+    {
+        return new MockErrorGroupServiceImpl($hostname, $opts);
+    }
+
+    public function createMockErrorStatsServiceImpl($hostname, $opts)
+    {
+        return new MockErrorStatsServiceImpl($hostname, $opts);
+    }
+
     public function createMockReportErrorsServiceImpl($hostname, $opts)
     {
         return new MockReportErrorsServiceImpl($hostname, $opts);
@@ -65,6 +75,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -80,7 +91,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedProjectName = ReportErrorsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
 
         $response = $client->reportErrorEvent($formattedProjectName, $event);
@@ -120,7 +131,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedProjectName = ReportErrorsServiceClient::formatProjectName('[PROJECT]');
+        $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
 
         try {

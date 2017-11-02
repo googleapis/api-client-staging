@@ -20,6 +20,7 @@ import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPage
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
 import com.google.api.gax.core.BackgroundResourceAggregation;
+import com.google.api.gax.grpc.GrpcCallSettings;
 import com.google.api.gax.grpc.GrpcCallableFactory;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ServerStreamingCallable;
@@ -41,6 +42,8 @@ import com.google.spanner.v1.ResultSet;
 import com.google.spanner.v1.RollbackRequest;
 import com.google.spanner.v1.Session;
 import com.google.spanner.v1.Transaction;
+import io.grpc.MethodDescriptor;
+import io.grpc.protobuf.ProtoUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Generated;
@@ -54,89 +57,92 @@ import javax.annotation.Generated;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class GrpcSpannerStub extends SpannerStub {
-  private static final UnaryCallable<CreateSessionRequest, Session> directCreateSessionCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/CreateSession",
-              io.grpc.protobuf.ProtoUtils.marshaller(CreateSessionRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Session.getDefaultInstance())));
-  private static final UnaryCallable<GetSessionRequest, Session> directGetSessionCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/GetSession",
-              io.grpc.protobuf.ProtoUtils.marshaller(GetSessionRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Session.getDefaultInstance())));
-  private static final UnaryCallable<ListSessionsRequest, ListSessionsResponse>
-      directListSessionsCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.v1.Spanner/ListSessions",
-                  io.grpc.protobuf.ProtoUtils.marshaller(ListSessionsRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      ListSessionsResponse.getDefaultInstance())));
-  private static final UnaryCallable<DeleteSessionRequest, Empty> directDeleteSessionCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/DeleteSession",
-              io.grpc.protobuf.ProtoUtils.marshaller(DeleteSessionRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance())));
-  private static final UnaryCallable<ExecuteSqlRequest, ResultSet> directExecuteSqlCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/ExecuteSql",
-              io.grpc.protobuf.ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance())));
-  private static final ServerStreamingCallable<ExecuteSqlRequest, PartialResultSet>
-      directExecuteStreamingSqlCallable =
-          GrpcCallableFactory.createDirectServerStreamingCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-                  "google.spanner.v1.Spanner/ExecuteStreamingSql",
-                  io.grpc.protobuf.ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(PartialResultSet.getDefaultInstance())));
-  private static final UnaryCallable<ReadRequest, ResultSet> directReadCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/Read",
-              io.grpc.protobuf.ProtoUtils.marshaller(ReadRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(ResultSet.getDefaultInstance())));
-  private static final ServerStreamingCallable<ReadRequest, PartialResultSet>
-      directStreamingReadCallable =
-          GrpcCallableFactory.createDirectServerStreamingCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-                  "google.spanner.v1.Spanner/StreamingRead",
-                  io.grpc.protobuf.ProtoUtils.marshaller(ReadRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(PartialResultSet.getDefaultInstance())));
-  private static final UnaryCallable<BeginTransactionRequest, Transaction>
-      directBeginTransactionCallable =
-          GrpcCallableFactory.createDirectCallable(
-              io.grpc.MethodDescriptor.create(
-                  io.grpc.MethodDescriptor.MethodType.UNARY,
-                  "google.spanner.v1.Spanner/BeginTransaction",
-                  io.grpc.protobuf.ProtoUtils.marshaller(
-                      BeginTransactionRequest.getDefaultInstance()),
-                  io.grpc.protobuf.ProtoUtils.marshaller(Transaction.getDefaultInstance())));
-  private static final UnaryCallable<CommitRequest, CommitResponse> directCommitCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/Commit",
-              io.grpc.protobuf.ProtoUtils.marshaller(CommitRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(CommitResponse.getDefaultInstance())));
-  private static final UnaryCallable<RollbackRequest, Empty> directRollbackCallable =
-      GrpcCallableFactory.createDirectCallable(
-          io.grpc.MethodDescriptor.create(
-              io.grpc.MethodDescriptor.MethodType.UNARY,
-              "google.spanner.v1.Spanner/Rollback",
-              io.grpc.protobuf.ProtoUtils.marshaller(RollbackRequest.getDefaultInstance()),
-              io.grpc.protobuf.ProtoUtils.marshaller(Empty.getDefaultInstance())));
+
+  private static final MethodDescriptor<CreateSessionRequest, Session>
+      createSessionMethodDescriptor =
+          MethodDescriptor.<CreateSessionRequest, Session>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.v1.Spanner/CreateSession")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(CreateSessionRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Session.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<GetSessionRequest, Session> getSessionMethodDescriptor =
+      MethodDescriptor.<GetSessionRequest, Session>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/GetSession")
+          .setRequestMarshaller(ProtoUtils.marshaller(GetSessionRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Session.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<ListSessionsRequest, ListSessionsResponse>
+      listSessionsMethodDescriptor =
+          MethodDescriptor.<ListSessionsRequest, ListSessionsResponse>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.v1.Spanner/ListSessions")
+              .setRequestMarshaller(ProtoUtils.marshaller(ListSessionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(
+                  ProtoUtils.marshaller(ListSessionsResponse.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<DeleteSessionRequest, Empty> deleteSessionMethodDescriptor =
+      MethodDescriptor.<DeleteSessionRequest, Empty>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/DeleteSession")
+          .setRequestMarshaller(ProtoUtils.marshaller(DeleteSessionRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<ExecuteSqlRequest, ResultSet> executeSqlMethodDescriptor =
+      MethodDescriptor.<ExecuteSqlRequest, ResultSet>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/ExecuteSql")
+          .setRequestMarshaller(ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(ResultSet.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<ExecuteSqlRequest, PartialResultSet>
+      executeStreamingSqlMethodDescriptor =
+          MethodDescriptor.<ExecuteSqlRequest, PartialResultSet>newBuilder()
+              .setType(MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName("google.spanner.v1.Spanner/ExecuteStreamingSql")
+              .setRequestMarshaller(ProtoUtils.marshaller(ExecuteSqlRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(PartialResultSet.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<ReadRequest, ResultSet> readMethodDescriptor =
+      MethodDescriptor.<ReadRequest, ResultSet>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/Read")
+          .setRequestMarshaller(ProtoUtils.marshaller(ReadRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(ResultSet.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<ReadRequest, PartialResultSet>
+      streamingReadMethodDescriptor =
+          MethodDescriptor.<ReadRequest, PartialResultSet>newBuilder()
+              .setType(MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName("google.spanner.v1.Spanner/StreamingRead")
+              .setRequestMarshaller(ProtoUtils.marshaller(ReadRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(PartialResultSet.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<BeginTransactionRequest, Transaction>
+      beginTransactionMethodDescriptor =
+          MethodDescriptor.<BeginTransactionRequest, Transaction>newBuilder()
+              .setType(MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName("google.spanner.v1.Spanner/BeginTransaction")
+              .setRequestMarshaller(
+                  ProtoUtils.marshaller(BeginTransactionRequest.getDefaultInstance()))
+              .setResponseMarshaller(ProtoUtils.marshaller(Transaction.getDefaultInstance()))
+              .build();
+  private static final MethodDescriptor<CommitRequest, CommitResponse> commitMethodDescriptor =
+      MethodDescriptor.<CommitRequest, CommitResponse>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/Commit")
+          .setRequestMarshaller(ProtoUtils.marshaller(CommitRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(CommitResponse.getDefaultInstance()))
+          .build();
+  private static final MethodDescriptor<RollbackRequest, Empty> rollbackMethodDescriptor =
+      MethodDescriptor.<RollbackRequest, Empty>newBuilder()
+          .setType(MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName("google.spanner.v1.Spanner/Rollback")
+          .setRequestMarshaller(ProtoUtils.marshaller(RollbackRequest.getDefaultInstance()))
+          .setResponseMarshaller(ProtoUtils.marshaller(Empty.getDefaultInstance()))
+          .build();
 
   private final BackgroundResource backgroundResources;
 
@@ -170,42 +176,89 @@ public class GrpcSpannerStub extends SpannerStub {
   protected GrpcSpannerStub(SpannerSettings settings, ClientContext clientContext)
       throws IOException {
 
+    GrpcCallSettings<CreateSessionRequest, Session> createSessionTransportSettings =
+        GrpcCallSettings.<CreateSessionRequest, Session>newBuilder()
+            .setMethodDescriptor(createSessionMethodDescriptor)
+            .build();
+    GrpcCallSettings<GetSessionRequest, Session> getSessionTransportSettings =
+        GrpcCallSettings.<GetSessionRequest, Session>newBuilder()
+            .setMethodDescriptor(getSessionMethodDescriptor)
+            .build();
+    GrpcCallSettings<ListSessionsRequest, ListSessionsResponse> listSessionsTransportSettings =
+        GrpcCallSettings.<ListSessionsRequest, ListSessionsResponse>newBuilder()
+            .setMethodDescriptor(listSessionsMethodDescriptor)
+            .build();
+    GrpcCallSettings<DeleteSessionRequest, Empty> deleteSessionTransportSettings =
+        GrpcCallSettings.<DeleteSessionRequest, Empty>newBuilder()
+            .setMethodDescriptor(deleteSessionMethodDescriptor)
+            .build();
+    GrpcCallSettings<ExecuteSqlRequest, ResultSet> executeSqlTransportSettings =
+        GrpcCallSettings.<ExecuteSqlRequest, ResultSet>newBuilder()
+            .setMethodDescriptor(executeSqlMethodDescriptor)
+            .build();
+    GrpcCallSettings<ExecuteSqlRequest, PartialResultSet> executeStreamingSqlTransportSettings =
+        GrpcCallSettings.<ExecuteSqlRequest, PartialResultSet>newBuilder()
+            .setMethodDescriptor(executeStreamingSqlMethodDescriptor)
+            .build();
+    GrpcCallSettings<ReadRequest, ResultSet> readTransportSettings =
+        GrpcCallSettings.<ReadRequest, ResultSet>newBuilder()
+            .setMethodDescriptor(readMethodDescriptor)
+            .build();
+    GrpcCallSettings<ReadRequest, PartialResultSet> streamingReadTransportSettings =
+        GrpcCallSettings.<ReadRequest, PartialResultSet>newBuilder()
+            .setMethodDescriptor(streamingReadMethodDescriptor)
+            .build();
+    GrpcCallSettings<BeginTransactionRequest, Transaction> beginTransactionTransportSettings =
+        GrpcCallSettings.<BeginTransactionRequest, Transaction>newBuilder()
+            .setMethodDescriptor(beginTransactionMethodDescriptor)
+            .build();
+    GrpcCallSettings<CommitRequest, CommitResponse> commitTransportSettings =
+        GrpcCallSettings.<CommitRequest, CommitResponse>newBuilder()
+            .setMethodDescriptor(commitMethodDescriptor)
+            .build();
+    GrpcCallSettings<RollbackRequest, Empty> rollbackTransportSettings =
+        GrpcCallSettings.<RollbackRequest, Empty>newBuilder()
+            .setMethodDescriptor(rollbackMethodDescriptor)
+            .build();
+
     this.createSessionCallable =
-        GrpcCallableFactory.create(
-            directCreateSessionCallable, settings.createSessionSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            createSessionTransportSettings, settings.createSessionSettings(), clientContext);
     this.getSessionCallable =
-        GrpcCallableFactory.create(
-            directGetSessionCallable, settings.getSessionSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            getSessionTransportSettings, settings.getSessionSettings(), clientContext);
     this.listSessionsCallable =
-        GrpcCallableFactory.create(
-            directListSessionsCallable, settings.listSessionsSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            listSessionsTransportSettings, settings.listSessionsSettings(), clientContext);
     this.listSessionsPagedCallable =
-        GrpcCallableFactory.createPagedVariant(
-            directListSessionsCallable, settings.listSessionsSettings(), clientContext);
+        GrpcCallableFactory.createPagedCallable(
+            listSessionsTransportSettings, settings.listSessionsSettings(), clientContext);
     this.deleteSessionCallable =
-        GrpcCallableFactory.create(
-            directDeleteSessionCallable, settings.deleteSessionSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            deleteSessionTransportSettings, settings.deleteSessionSettings(), clientContext);
     this.executeSqlCallable =
-        GrpcCallableFactory.create(
-            directExecuteSqlCallable, settings.executeSqlSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            executeSqlTransportSettings, settings.executeSqlSettings(), clientContext);
     this.executeStreamingSqlCallable =
-        GrpcCallableFactory.create(
-            directExecuteStreamingSqlCallable,
+        GrpcCallableFactory.createServerStreamingCallable(
+            executeStreamingSqlTransportSettings,
             settings.executeStreamingSqlSettings(),
             clientContext);
     this.readCallable =
-        GrpcCallableFactory.create(directReadCallable, settings.readSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            readTransportSettings, settings.readSettings(), clientContext);
     this.streamingReadCallable =
-        GrpcCallableFactory.create(
-            directStreamingReadCallable, settings.streamingReadSettings(), clientContext);
+        GrpcCallableFactory.createServerStreamingCallable(
+            streamingReadTransportSettings, settings.streamingReadSettings(), clientContext);
     this.beginTransactionCallable =
-        GrpcCallableFactory.create(
-            directBeginTransactionCallable, settings.beginTransactionSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            beginTransactionTransportSettings, settings.beginTransactionSettings(), clientContext);
     this.commitCallable =
-        GrpcCallableFactory.create(directCommitCallable, settings.commitSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            commitTransportSettings, settings.commitSettings(), clientContext);
     this.rollbackCallable =
-        GrpcCallableFactory.create(
-            directRollbackCallable, settings.rollbackSettings(), clientContext);
+        GrpcCallableFactory.createUnaryCallable(
+            rollbackTransportSettings, settings.rollbackSettings(), clientContext);
 
     backgroundResources = new BackgroundResourceAggregation(clientContext.getBackgroundResources());
   }

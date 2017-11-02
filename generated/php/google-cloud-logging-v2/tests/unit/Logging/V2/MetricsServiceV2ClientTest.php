@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Logging\V2;
+namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\GAX\ApiException;
@@ -39,6 +39,16 @@ use stdClass;
  */
 class MetricsServiceV2ClientTest extends GeneratedTest
 {
+    public function createMockLoggingServiceV2Impl($hostname, $opts)
+    {
+        return new MockLoggingServiceV2Impl($hostname, $opts);
+    }
+
+    public function createMockConfigServiceV2Impl($hostname, $opts)
+    {
+        return new MockConfigServiceV2Impl($hostname, $opts);
+    }
+
     public function createMockMetricsServiceV2Impl($hostname, $opts)
     {
         return new MockMetricsServiceV2Impl($hostname, $opts);
@@ -66,6 +76,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -86,7 +97,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         $response = $client->listLogMetrics($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -127,7 +138,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
 
         try {
             $client->listLogMetrics($formattedParent);
@@ -166,7 +177,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $response = $client->getLogMetric($formattedMetricName);
         $this->assertEquals($expectedResponse, $response);
@@ -204,7 +215,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->getLogMetric($formattedMetricName);
@@ -243,7 +254,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $metric = new LogMetric();
 
         $response = $client->createLogMetric($formattedParent, $metric);
@@ -283,7 +294,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = MetricsServiceV2Client::formatProjectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $metric = new LogMetric();
 
         try {
@@ -323,7 +334,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         $response = $client->updateLogMetric($formattedMetricName, $metric);
@@ -363,7 +374,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
         $metric = new LogMetric();
 
         try {
@@ -395,7 +406,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         $client->deleteLogMetric($formattedMetricName);
         $actualRequests = $grpcStub->popReceivedCalls();
@@ -432,7 +443,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedMetricName = MetricsServiceV2Client::formatMetricName('[PROJECT]', '[METRIC]');
+        $formattedMetricName = $client->metricName('[PROJECT]', '[METRIC]');
 
         try {
             $client->deleteLogMetric($formattedMetricName);
