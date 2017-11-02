@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Language\V1;
+namespace Google\Cloud\Tests\Unit\Language\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceClient;
 use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
@@ -29,6 +29,7 @@ use Google\Cloud\Language\V1\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1\AnnotateTextRequest_Features as Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
+use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
@@ -70,6 +71,7 @@ class LanguageServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -342,6 +344,75 @@ class LanguageServiceClientTest extends GeneratedTest
 
         try {
             $client->analyzeSyntax($document);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function classifyTextTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new ClassifyTextResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $document = new Document();
+
+        $response = $client->classifyText($document);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/ClassifyText', $actualFuncCall);
+
+        $this->assertProtobufEquals($document, $actualRequestObject->getDocument());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function classifyTextExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockLanguageServiceImpl']);
+        $client = $this->createClient('createLanguageServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $document = new Document();
+
+        try {
+            $client->classifyText($document);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

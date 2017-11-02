@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\VideoIntelligence\V1beta2;
+namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta2;
 
 use Google\Cloud\Videointelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;

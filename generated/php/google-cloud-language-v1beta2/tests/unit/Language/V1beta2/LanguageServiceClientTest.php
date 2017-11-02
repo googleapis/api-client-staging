@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Language\V1beta2;
+namespace Google\Cloud\Tests\Unit\Language\V1beta2;
 
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
@@ -71,6 +71,7 @@ class LanguageServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

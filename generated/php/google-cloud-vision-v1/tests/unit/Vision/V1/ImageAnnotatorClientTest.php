@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Vision\V1;
+namespace Google\Cloud\Tests\Unit\Vision\V1;
 
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
@@ -64,6 +64,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */

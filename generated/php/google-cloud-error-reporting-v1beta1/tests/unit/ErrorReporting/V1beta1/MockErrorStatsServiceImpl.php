@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\ErrorReporting\V1beta1;
+namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;

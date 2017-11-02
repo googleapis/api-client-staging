@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Dlp\V2beta1;
+namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
 use Google\GAX\Testing\MockStubTrait;
 use Google\Privacy\Dlp\V2beta1\DlpServiceGrpcClient;

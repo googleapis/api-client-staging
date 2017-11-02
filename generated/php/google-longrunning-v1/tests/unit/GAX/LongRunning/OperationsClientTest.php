@@ -34,11 +34,11 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Tests\GAX\LongRunning;
+namespace Google\Tests\Unit\GAX\LongRunning;
 
-use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\Longrunning\ListOperationsResponse;
@@ -83,6 +83,7 @@ class OperationsClientTest extends GeneratedTest
             'scopes' => ['unknown-service-scopes'],
         ]);
     }
+
     /**
      * @test
      */

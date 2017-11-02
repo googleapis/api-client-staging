@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Dlp\V2beta1;
+namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
 use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
 use Google\GAX\ApiException;
@@ -30,9 +30,12 @@ use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
+use Google\Privacy\Dlp\V2beta1\BigQueryTable;
 use Google\Privacy\Dlp\V2beta1\CloudStorageOptions;
 use Google\Privacy\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
 use Google\Privacy\Dlp\V2beta1\ContentItem;
+use Google\Privacy\Dlp\V2beta1\DeidentifyConfig;
+use Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse;
 use Google\Privacy\Dlp\V2beta1\InfoType;
 use Google\Privacy\Dlp\V2beta1\InspectConfig;
 use Google\Privacy\Dlp\V2beta1\InspectContentResponse;
@@ -41,8 +44,10 @@ use Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse;
 use Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
+use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentResponse;
+use Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Privacy\Dlp\V2beta1\StorageConfig;
 use Google\Protobuf\Any;
 use Grpc;
@@ -86,6 +91,7 @@ class DlpServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -290,6 +296,220 @@ class DlpServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deidentifyContentTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        // Mock response
+        $expectedResponse = new DeidentifyContentResponse();
+        $grpcStub->addResponse($expectedResponse);
+
+        // Mock request
+        $deidentifyConfig = new DeidentifyConfig();
+        $inspectConfig = new InspectConfig();
+        $items = [];
+
+        $response = $client->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/DeidentifyContent', $actualFuncCall);
+
+        $this->assertProtobufEquals($deidentifyConfig, $actualRequestObject->getDeidentifyConfig());
+        $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
+        $this->assertProtobufEquals($items, $actualRequestObject->getItems());
+
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deidentifyContentExceptionTest()
+    {
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub);
+
+        $this->assertTrue($grpcStub->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $grpcStub->addResponse(null, $status);
+
+        // Mock request
+        $deidentifyConfig = new DeidentifyConfig();
+        $inspectConfig = new InspectConfig();
+        $items = [];
+
+        try {
+            $client->deidentifyContent($deidentifyConfig, $inspectConfig, $items);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $grpcStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeDataSourceRiskTest()
+    {
+        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'scopes' => [],
+            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
+                return $operationsStub;
+            },
+        ]);
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/analyzeDataSourceRiskTest');
+        $incompleteOperation->setDone(false);
+        $grpcStub->addResponse($incompleteOperation);
+        $expectedResponse = new RiskAnalysisOperationResult();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/analyzeDataSourceRiskTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsStub->addResponse($completeOperation);
+
+        // Mock request
+        $privacyMetric = new PrivacyMetric();
+        $sourceTable = new BigQueryTable();
+
+        $response = $client->analyzeDataSourceRisk($privacyMetric, $sourceTable);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $grpcStub->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsStub->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.privacy.dlp.v2beta1.DlpService/AnalyzeDataSourceRisk', $actualApiFuncCall);
+        $this->assertProtobufEquals($privacyMetric, $actualApiRequestObject->getPrivacyMetric());
+        $this->assertProtobufEquals($sourceTable, $actualApiRequestObject->getSourceTable());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/analyzeDataSourceRiskTest');
+
+        $response->pollUntilComplete();
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $grpcStub->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsStub->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeDataSourceRiskExceptionTest()
+    {
+        $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'scopes' => [],
+            'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
+                return $operationsStub;
+            },
+        ]);
+        $grpcStub = $this->createStub([$this, 'createMockDlpServiceImpl']);
+        $client = $this->createClient('createDlpServiceStubFunction', $grpcStub, [
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/analyzeDataSourceRiskTest');
+        $incompleteOperation->setDone(false);
+        $grpcStub->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Grpc\STATUS_DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Grpc\STATUS_DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsStub->addResponse(null, $status);
+
+        // Mock request
+        $privacyMetric = new PrivacyMetric();
+        $sourceTable = new BigQueryTable();
+
+        $response = $client->analyzeDataSourceRisk($privacyMetric, $sourceTable);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/analyzeDataSourceRiskTest');
+
+        try {
+            $response->pollUntilComplete();
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $grpcStub->popReceivedCalls();
+        $operationsStub->popReceivedCalls();
+        $this->assertTrue($grpcStub->isExhausted());
+        $this->assertTrue($operationsStub->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createInspectOperationTest()
     {
         $operationsStub = $this->createStub([$this, 'createMockOperationsStub']);
@@ -470,7 +690,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = DlpServiceClient::formatResultName('[RESULT]');
+        $formattedName = $client->resultName('[RESULT]');
 
         $response = $client->listInspectFindings($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -508,7 +728,7 @@ class DlpServiceClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
-        $formattedName = DlpServiceClient::formatResultName('[RESULT]');
+        $formattedName = $client->resultName('[RESULT]');
 
         try {
             $client->listInspectFindings($formattedName);

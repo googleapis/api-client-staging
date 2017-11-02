@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Speech\V1beta1;
+namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
 use Google\GAX\Testing\MockStubTrait;

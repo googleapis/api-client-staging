@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Language\V1;
+namespace Google\Cloud\Tests\Unit\Language\V1;
 
 use Google\Cloud\Language\V1\LanguageServiceGrpcClient;
 use Google\GAX\Testing\MockStubTrait;

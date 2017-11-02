@@ -20,10 +20,11 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\VideoIntelligence\V1beta1;
+namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta1;
 
 use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta1\Feature;
 use Google\GAX\ApiException;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
@@ -73,6 +74,7 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -109,8 +111,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsStub->addResponse($completeOperation);
 
         // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
 
         $response = $client->annotateVideo($inputUri, $features);
         $this->assertFalse($response->isDone());
@@ -186,8 +189,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsStub->addResponse(null, $status);
 
         // Mock request
-        $inputUri = 'inputUri1707300727';
-        $features = [];
+        $inputUri = 'gs://demomaker/cat.mp4';
+        $featuresElement = Feature::LABEL_DETECTION;
+        $features = [$featuresElement];
 
         $response = $client->annotateVideo($inputUri, $features);
         $this->assertFalse($response->isDone());

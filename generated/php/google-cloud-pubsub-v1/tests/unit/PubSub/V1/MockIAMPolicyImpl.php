@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\PubSub\V1;
+namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\GAX\Testing\MockStubTrait;
 use Google\Iam\V1\IAMPolicyGrpcClient;
