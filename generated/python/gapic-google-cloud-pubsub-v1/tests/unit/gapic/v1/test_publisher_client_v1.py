@@ -18,11 +18,12 @@ import unittest
 
 from google.gax import errors
 
-from google.cloud.gapic.pubsub.v1 import publisher_client
-from google.cloud.proto.pubsub.v1 import pubsub_pb2
+from google.cloud import pubsub_v1
+from google.cloud.pubsub_v1.proto import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
 from google.protobuf import empty_pb2
+from google.protobuf import field_mask_pb2
 
 
 class CustomException(Exception):
@@ -36,14 +37,15 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         name = client.topic_path('[PROJECT]', '[TOPIC]')
 
         # Mock response
         name_2 = 'name2-1052831874'
-        expected_response = pubsub_pb2.Topic(name=name_2)
+        expected_response = {'name': name_2}
+        expected_response = pubsub_pb2.Topic(**expected_response)
         grpc_stub.CreateTopic.return_value = expected_response
 
         response = client.create_topic(name)
@@ -66,7 +68,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         name = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -77,23 +79,75 @@ class TestPublisherClient(unittest.TestCase):
         self.assertRaises(errors.GaxError, client.create_topic, name)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
+    def test_update_topic(self, mock_create_stub):
+        # Mock gRPC layer
+        grpc_stub = mock.Mock()
+        mock_create_stub.return_value = grpc_stub
+
+        client = pubsub_v1.PublisherClient()
+
+        # Mock request
+        topic = {}
+        update_mask = {}
+
+        # Mock response
+        name = 'name3373707'
+        expected_response = {'name': name}
+        expected_response = pubsub_pb2.Topic(**expected_response)
+        grpc_stub.UpdateTopic.return_value = expected_response
+
+        response = client.update_topic(topic, update_mask)
+        self.assertEqual(expected_response, response)
+
+        grpc_stub.UpdateTopic.assert_called_once()
+        args, kwargs = grpc_stub.UpdateTopic.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
+
+        expected_request = pubsub_pb2.UpdateTopicRequest(
+            topic=topic, update_mask=update_mask)
+        self.assertEqual(expected_request, actual_request)
+
+    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
+    @mock.patch('google.gax.config.create_stub', spec=True)
+    def test_update_topic_exception(self, mock_create_stub):
+        # Mock gRPC layer
+        grpc_stub = mock.Mock()
+        mock_create_stub.return_value = grpc_stub
+
+        client = pubsub_v1.PublisherClient()
+
+        # Mock request
+        topic = {}
+        update_mask = {}
+
+        # Mock exception response
+        grpc_stub.UpdateTopic.side_effect = CustomException()
+
+        self.assertRaises(errors.GaxError, client.update_topic, topic,
+                          update_mask)
+
+    @mock.patch('google.gax.config.create_stub', spec=True)
     def test_publish(self, mock_create_stub):
         # Mock gRPC layer
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
         data = b'-86'
-        messages_element = pubsub_pb2.PubsubMessage(data=data)
+        messages_element = {'data': data}
         messages = [messages_element]
 
         # Mock response
         message_ids_element = 'messageIdsElement-744837059'
         message_ids = [message_ids_element]
-        expected_response = pubsub_pb2.PublishResponse(message_ids=message_ids)
+        expected_response = {'message_ids': message_ids}
+        expected_response = pubsub_pb2.PublishResponse(**expected_response)
         grpc_stub.Publish.return_value = expected_response
 
         response = client.publish(topic, messages)
@@ -117,12 +171,12 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
         data = b'-86'
-        messages_element = pubsub_pb2.PubsubMessage(data=data)
+        messages_element = {'data': data}
         messages = [messages_element]
 
         # Mock exception response
@@ -136,14 +190,15 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
 
         # Mock response
         name = 'name3373707'
-        expected_response = pubsub_pb2.Topic(name=name)
+        expected_response = {'name': name}
+        expected_response = pubsub_pb2.Topic(**expected_response)
         grpc_stub.GetTopic.return_value = expected_response
 
         response = client.get_topic(topic)
@@ -166,7 +221,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -182,17 +237,20 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
 
         # Mock response
         next_page_token = ''
-        topics_element = pubsub_pb2.Topic()
+        topics_element = {}
         topics = [topics_element]
-        expected_response = pubsub_pb2.ListTopicsResponse(
-            next_page_token=next_page_token, topics=topics)
+        expected_response = {
+            'next_page_token': next_page_token,
+            'topics': topics
+        }
+        expected_response = pubsub_pb2.ListTopicsResponse(**expected_response)
         grpc_stub.ListTopics.return_value = expected_response
 
         paged_list_response = client.list_topics(project)
@@ -217,7 +275,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
@@ -234,7 +292,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -243,8 +301,12 @@ class TestPublisherClient(unittest.TestCase):
         next_page_token = ''
         subscriptions_element = 'subscriptionsElement1698708147'
         subscriptions = [subscriptions_element]
+        expected_response = {
+            'next_page_token': next_page_token,
+            'subscriptions': subscriptions
+        }
         expected_response = pubsub_pb2.ListTopicSubscriptionsResponse(
-            next_page_token=next_page_token, subscriptions=subscriptions)
+            **expected_response)
         grpc_stub.ListTopicSubscriptions.return_value = expected_response
 
         paged_list_response = client.list_topic_subscriptions(topic)
@@ -270,7 +332,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -287,7 +349,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -311,7 +373,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         topic = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -327,16 +389,17 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')
-        policy = policy_pb2.Policy()
+        policy = {}
 
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = {'version': version, 'etag': etag}
+        expected_response = policy_pb2.Policy(**expected_response)
         grpc_stub.SetIamPolicy.return_value = expected_response
 
         response = client.set_iam_policy(resource, policy)
@@ -360,11 +423,11 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')
-        policy = policy_pb2.Policy()
+        policy = {}
 
         # Mock exception response
         grpc_stub.SetIamPolicy.side_effect = CustomException()
@@ -378,7 +441,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -386,7 +449,8 @@ class TestPublisherClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = {'version': version, 'etag': etag}
+        expected_response = policy_pb2.Policy(**expected_response)
         grpc_stub.GetIamPolicy.return_value = expected_response
 
         response = client.get_iam_policy(resource)
@@ -410,7 +474,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')
@@ -426,14 +490,16 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')
         permissions = []
 
         # Mock response
-        expected_response = iam_policy_pb2.TestIamPermissionsResponse()
+        expected_response = {}
+        expected_response = iam_policy_pb2.TestIamPermissionsResponse(
+            **expected_response)
         grpc_stub.TestIamPermissions.return_value = expected_response
 
         response = client.test_iam_permissions(resource, permissions)
@@ -457,7 +523,7 @@ class TestPublisherClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = publisher_client.PublisherClient()
+        client = pubsub_v1.PublisherClient()
 
         # Mock request
         resource = client.topic_path('[PROJECT]', '[TOPIC]')

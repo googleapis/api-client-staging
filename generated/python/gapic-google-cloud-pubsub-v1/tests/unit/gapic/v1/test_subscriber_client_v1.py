@@ -18,8 +18,8 @@ import unittest
 
 from google.gax import errors
 
-from google.cloud.gapic.pubsub.v1 import subscriber_client
-from google.cloud.proto.pubsub.v1 import pubsub_pb2
+from google.cloud import pubsub_v1
+from google.cloud.pubsub_v1.proto import pubsub_pb2
 from google.iam.v1 import iam_policy_pb2
 from google.iam.v1 import policy_pb2
 from google.protobuf import empty_pb2
@@ -37,7 +37,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         name = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -48,11 +48,13 @@ class TestSubscriberClient(unittest.TestCase):
         topic_2 = 'topic2-1139259102'
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
-        expected_response = pubsub_pb2.Subscription(
-            name=name_2,
-            topic=topic_2,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+        expected_response = {
+            'name': name_2,
+            'topic': topic_2,
+            'ack_deadline_seconds': ack_deadline_seconds,
+            'retain_acked_messages': retain_acked_messages
+        }
+        expected_response = pubsub_pb2.Subscription(**expected_response)
         grpc_stub.CreateSubscription.return_value = expected_response
 
         response = client.create_subscription(name, topic)
@@ -75,7 +77,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         name = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -93,7 +95,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -103,11 +105,13 @@ class TestSubscriberClient(unittest.TestCase):
         topic = 'topic110546223'
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
-        expected_response = pubsub_pb2.Subscription(
-            name=name,
-            topic=topic,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+        expected_response = {
+            'name': name,
+            'topic': topic,
+            'ack_deadline_seconds': ack_deadline_seconds,
+            'retain_acked_messages': retain_acked_messages
+        }
+        expected_response = pubsub_pb2.Subscription(**expected_response)
         grpc_stub.GetSubscription.return_value = expected_response
 
         response = client.get_subscription(subscription)
@@ -131,7 +135,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -148,22 +152,24 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
-        subscription = pubsub_pb2.Subscription()
-        update_mask = field_mask_pb2.FieldMask()
+        subscription = {}
+        update_mask = {}
 
         # Mock response
         name = 'name3373707'
         topic = 'topic110546223'
         ack_deadline_seconds = 2135351438
         retain_acked_messages = False
-        expected_response = pubsub_pb2.Subscription(
-            name=name,
-            topic=topic,
-            ack_deadline_seconds=ack_deadline_seconds,
-            retain_acked_messages=retain_acked_messages)
+        expected_response = {
+            'name': name,
+            'topic': topic,
+            'ack_deadline_seconds': ack_deadline_seconds,
+            'retain_acked_messages': retain_acked_messages
+        }
+        expected_response = pubsub_pb2.Subscription(**expected_response)
         grpc_stub.UpdateSubscription.return_value = expected_response
 
         response = client.update_subscription(subscription, update_mask)
@@ -187,11 +193,11 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
-        subscription = pubsub_pb2.Subscription()
-        update_mask = field_mask_pb2.FieldMask()
+        subscription = {}
+        update_mask = {}
 
         # Mock exception response
         grpc_stub.UpdateSubscription.side_effect = CustomException()
@@ -205,17 +211,21 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
 
         # Mock response
         next_page_token = ''
-        subscriptions_element = pubsub_pb2.Subscription()
+        subscriptions_element = {}
         subscriptions = [subscriptions_element]
+        expected_response = {
+            'next_page_token': next_page_token,
+            'subscriptions': subscriptions
+        }
         expected_response = pubsub_pb2.ListSubscriptionsResponse(
-            next_page_token=next_page_token, subscriptions=subscriptions)
+            **expected_response)
         grpc_stub.ListSubscriptions.return_value = expected_response
 
         paged_list_response = client.list_subscriptions(project)
@@ -240,7 +250,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
@@ -257,7 +267,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -282,7 +292,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -299,7 +309,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -328,7 +338,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -347,7 +357,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -373,7 +383,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -391,14 +401,15 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
         max_messages = 496131527
 
         # Mock response
-        expected_response = pubsub_pb2.PullResponse()
+        expected_response = {}
+        expected_response = pubsub_pb2.PullResponse(**expected_response)
         grpc_stub.Pull.return_value = expected_response
 
         response = client.pull(subscription, max_messages)
@@ -422,7 +433,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -440,18 +451,23 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
         stream_ack_deadline_seconds = 1875467245
-        request = pubsub_pb2.StreamingPullRequest(
-            subscription=subscription,
-            stream_ack_deadline_seconds=stream_ack_deadline_seconds)
+        request = {
+            'subscription': subscription,
+            'stream_ack_deadline_seconds': stream_ack_deadline_seconds
+        }
         requests = [request]
 
         # Mock response
-        expected_response = pubsub_pb2.StreamingPullResponse()
+        received_messages_element = {}
+        received_messages = [received_messages_element]
+        expected_response = {'received_messages': received_messages}
+        expected_response = pubsub_pb2.StreamingPullResponse(
+            **expected_response)
         grpc_stub.StreamingPull.return_value = iter([expected_response])
 
         response = client.streaming_pull(requests)
@@ -476,14 +492,15 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
         stream_ack_deadline_seconds = 1875467245
-        request = pubsub_pb2.StreamingPullRequest(
-            subscription=subscription,
-            stream_ack_deadline_seconds=stream_ack_deadline_seconds)
+        request = {
+            'subscription': subscription,
+            'stream_ack_deadline_seconds': stream_ack_deadline_seconds
+        }
         requests = [request]
 
         # Mock exception response
@@ -497,11 +514,11 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        push_config = pubsub_pb2.PushConfig()
+        push_config = {}
 
         client.modify_push_config(subscription, push_config)
 
@@ -523,11 +540,11 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        push_config = pubsub_pb2.PushConfig()
+        push_config = {}
 
         # Mock exception response
         grpc_stub.ModifyPushConfig.side_effect = CustomException()
@@ -541,17 +558,21 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
 
         # Mock response
         next_page_token = ''
-        snapshots_element = pubsub_pb2.Snapshot()
+        snapshots_element = {}
         snapshots = [snapshots_element]
+        expected_response = {
+            'next_page_token': next_page_token,
+            'snapshots': snapshots
+        }
         expected_response = pubsub_pb2.ListSnapshotsResponse(
-            next_page_token=next_page_token, snapshots=snapshots)
+            **expected_response)
         grpc_stub.ListSnapshots.return_value = expected_response
 
         paged_list_response = client.list_snapshots(project)
@@ -576,7 +597,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         project = client.project_path('[PROJECT]')
@@ -593,7 +614,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         name = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
@@ -602,7 +623,8 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock response
         name_2 = 'name2-1052831874'
         topic = 'topic110546223'
-        expected_response = pubsub_pb2.Snapshot(name=name_2, topic=topic)
+        expected_response = {'name': name_2, 'topic': topic}
+        expected_response = pubsub_pb2.Snapshot(**expected_response)
         grpc_stub.CreateSnapshot.return_value = expected_response
 
         response = client.create_snapshot(name, subscription)
@@ -626,7 +648,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         name = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
@@ -639,12 +661,64 @@ class TestSubscriberClient(unittest.TestCase):
                           subscription)
 
     @mock.patch('google.gax.config.create_stub', spec=True)
+    def test_update_snapshot(self, mock_create_stub):
+        # Mock gRPC layer
+        grpc_stub = mock.Mock()
+        mock_create_stub.return_value = grpc_stub
+
+        client = pubsub_v1.SubscriberClient()
+
+        # Mock request
+        snapshot = {}
+        update_mask = {}
+
+        # Mock response
+        name = 'name3373707'
+        topic = 'topic110546223'
+        expected_response = {'name': name, 'topic': topic}
+        expected_response = pubsub_pb2.Snapshot(**expected_response)
+        grpc_stub.UpdateSnapshot.return_value = expected_response
+
+        response = client.update_snapshot(snapshot, update_mask)
+        self.assertEqual(expected_response, response)
+
+        grpc_stub.UpdateSnapshot.assert_called_once()
+        args, kwargs = grpc_stub.UpdateSnapshot.call_args
+        self.assertEqual(len(args), 2)
+        self.assertEqual(len(kwargs), 1)
+        self.assertIn('metadata', kwargs)
+        actual_request = args[0]
+
+        expected_request = pubsub_pb2.UpdateSnapshotRequest(
+            snapshot=snapshot, update_mask=update_mask)
+        self.assertEqual(expected_request, actual_request)
+
+    @mock.patch('google.gax.config.API_ERRORS', (CustomException, ))
+    @mock.patch('google.gax.config.create_stub', spec=True)
+    def test_update_snapshot_exception(self, mock_create_stub):
+        # Mock gRPC layer
+        grpc_stub = mock.Mock()
+        mock_create_stub.return_value = grpc_stub
+
+        client = pubsub_v1.SubscriberClient()
+
+        # Mock request
+        snapshot = {}
+        update_mask = {}
+
+        # Mock exception response
+        grpc_stub.UpdateSnapshot.side_effect = CustomException()
+
+        self.assertRaises(errors.GaxError, client.update_snapshot, snapshot,
+                          update_mask)
+
+    @mock.patch('google.gax.config.create_stub', spec=True)
     def test_delete_snapshot(self, mock_create_stub):
         # Mock gRPC layer
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         snapshot = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
@@ -668,7 +742,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         snapshot = client.snapshot_path('[PROJECT]', '[SNAPSHOT]')
@@ -684,13 +758,14 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
 
         # Mock response
-        expected_response = pubsub_pb2.SeekResponse()
+        expected_response = {}
+        expected_response = pubsub_pb2.SeekResponse(**expected_response)
         grpc_stub.Seek.return_value = expected_response
 
         response = client.seek(subscription)
@@ -713,7 +788,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         subscription = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -729,16 +804,17 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        policy = policy_pb2.Policy()
+        policy = {}
 
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = {'version': version, 'etag': etag}
+        expected_response = policy_pb2.Policy(**expected_response)
         grpc_stub.SetIamPolicy.return_value = expected_response
 
         response = client.set_iam_policy(resource, policy)
@@ -762,11 +838,11 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
-        policy = policy_pb2.Policy()
+        policy = {}
 
         # Mock exception response
         grpc_stub.SetIamPolicy.side_effect = CustomException()
@@ -780,7 +856,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -788,7 +864,8 @@ class TestSubscriberClient(unittest.TestCase):
         # Mock response
         version = 351608024
         etag = b'21'
-        expected_response = policy_pb2.Policy(version=version, etag=etag)
+        expected_response = {'version': version, 'etag': etag}
+        expected_response = policy_pb2.Policy(**expected_response)
         grpc_stub.GetIamPolicy.return_value = expected_response
 
         response = client.get_iam_policy(resource)
@@ -812,7 +889,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
@@ -828,14 +905,16 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')
         permissions = []
 
         # Mock response
-        expected_response = iam_policy_pb2.TestIamPermissionsResponse()
+        expected_response = {}
+        expected_response = iam_policy_pb2.TestIamPermissionsResponse(
+            **expected_response)
         grpc_stub.TestIamPermissions.return_value = expected_response
 
         response = client.test_iam_permissions(resource, permissions)
@@ -859,7 +938,7 @@ class TestSubscriberClient(unittest.TestCase):
         grpc_stub = mock.Mock()
         mock_create_stub.return_value = grpc_stub
 
-        client = subscriber_client.SubscriberClient()
+        client = pubsub_v1.SubscriberClient()
 
         # Mock request
         resource = client.subscription_path('[PROJECT]', '[SUBSCRIPTION]')

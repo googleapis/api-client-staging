@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# gapic-google-cloud-pubsub-v1 documentation build configuration file
+# google-cloud-pubsub documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -59,7 +59,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'gapic-google-cloud-pubsub-v1'
+project = u'google-cloud-pubsub'
 copyright = u'2017, Google'
 author = u'Google APIs'
 
@@ -212,7 +212,7 @@ html_theme = 'sphinx_rtd_theme'
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'gapic-google-cloud-pubsub-v1-doc'
+htmlhelp_basename = 'google-cloud-pubsub-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -234,8 +234,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'gapic-google-cloud-pubsub-v1.tex',
-     u'gapic-google-cloud-pubsub-v1 Documentation', author, 'manual'),
+    (master_doc, 'google-cloud-pubsub.tex',
+     u'google-cloud-pubsub Documentation', author, 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -262,8 +262,8 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, 'gapic-google-cloud-pubsub-v1',
-              u'gapic-google-cloud-pubsub-v1 Documentation', [author], 1)]
+man_pages = [(master_doc, 'google-cloud-pubsub',
+              u'google-cloud-pubsub Documentation', [author], 1)]
 
 # If true, show URL addresses after external links.
 #man_show_urls = False
@@ -274,9 +274,8 @@ man_pages = [(master_doc, 'gapic-google-cloud-pubsub-v1',
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'gapic-google-cloud-pubsub-v1',
-     u'gapic-google-cloud-pubsub-v1 Documentation', author,
-     'gapic-google-cloud-pubsub-v1',
+    (master_doc, 'google-cloud-pubsub', u'google-cloud-pubsub Documentation',
+     author, 'google-cloud-pubsub',
      'GAPIC library for the {metadata.shortName} v1 service', 'APIs'),
 ]
 
