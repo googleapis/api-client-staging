@@ -1,12 +1,13 @@
 # Ruby Client for Google Cloud Pub/Sub API ([Alpha](https://github.com/GoogleCloudPlatform/google-cloud-ruby#versioning))
 
-[Google Cloud Pub/Sub API][Product Documentation]: Provides reliable, many-to-many, asynchronous messaging between applications.
-
+[Google Cloud Pub/Sub API][Product Documentation]:
+Provides reliable, many-to-many, asynchronous messaging between applications.
 - [Client Library Documentation][]
 - [Product Documentation][]
 
 ## Quick Start
-In order to use this library, you first need to go through the following steps:
+In order to use this library, you first need to go through the following
+steps:
 
 1. [Select or create a Cloud Platform project.](https://console.cloud.google.com/project)
 2. [Enable the Google Cloud Pub/Sub API.](https://console.cloud.google.com/apis/api/pubsub)
@@ -40,9 +41,12 @@ end
 ```
 
 ### Next Steps
-- Read the [Client Library Documentation][] for Google Cloud Pub/Sub API to see other available methods on the client.
-- Read the [Google Cloud Pub/Sub API Product documentation][Product Documentation] to learn more about the product and see How-to Guides.
-- View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-ruby/blob/master/README.md) to see the full list of Cloud APIs that we cover.
+- Read the [Client Library Documentation][] for Google Cloud Pub/Sub API
+  to see other available methods on the client.
+- Read the [Google Cloud Pub/Sub API Product documentation][Product Documentation]
+  to learn more about the product and see How-to Guides.
+- View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-ruby/blob/master/README.md)
+  to see the full list of Cloud APIs that we cover.
 
-[Client Library Documentation]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1
+[Client Library Documentation]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/../usr/local/google/home/cbao/GitRepo/googleapis/google/pubsub/v1
 [Product Documentation]: https://cloud.google.com/pubsub
