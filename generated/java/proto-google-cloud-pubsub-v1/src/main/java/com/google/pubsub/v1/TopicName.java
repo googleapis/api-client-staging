@@ -52,17 +52,25 @@ public class TopicName implements ResourceName {
     topic = Preconditions.checkNotNull(builder.getTopic());
   }
 
-  public static TopicName create(String project, String topic) {
+  public static TopicName of(String project, String topic) {
     return newBuilder()
       .setProject(project)
       .setTopic(topic)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static TopicName create(String project, String topic) {
+    return of(project, topic);
+  }
+
   public static TopicName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "TopicName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("topic"));
+    return of(matchMap.get("project"), matchMap.get("topic"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

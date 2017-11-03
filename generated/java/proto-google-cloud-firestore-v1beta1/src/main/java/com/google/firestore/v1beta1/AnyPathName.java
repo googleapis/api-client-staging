@@ -64,7 +64,7 @@ public class AnyPathName implements ResourceName {
     anyPath = Preconditions.checkNotNull(builder.getAnyPath());
   }
 
-  public static AnyPathName create(String project, String database, String document, String anyPath) {
+  public static AnyPathName of(String project, String database, String document, String anyPath) {
     return newBuilder()
       .setProject(project)
       .setDatabase(database)
@@ -73,10 +73,18 @@ public class AnyPathName implements ResourceName {
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String, String, String)} instead.
+   */
+  @Deprecated
+  public static AnyPathName create(String project, String database, String document, String anyPath) {
+    return of(project, database, document, anyPath);
+  }
+
   public static AnyPathName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "AnyPathName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("database"), matchMap.get("document"), matchMap.get("any_path"));
+    return of(matchMap.get("project"), matchMap.get("database"), matchMap.get("document"), matchMap.get("any_path"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

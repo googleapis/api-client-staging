@@ -106,7 +106,7 @@ public  final class FaceAnnotation extends
   private com.google.protobuf.ByteString thumbnail_;
   /**
    * <pre>
-   * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
+   * Thumbnail of a representative face view (in JPEG format).
    * </pre>
    *
    * <code>bytes thumbnail = 1;</code>
@@ -626,7 +626,7 @@ public  final class FaceAnnotation extends
     private com.google.protobuf.ByteString thumbnail_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
+     * Thumbnail of a representative face view (in JPEG format).
      * </pre>
      *
      * <code>bytes thumbnail = 1;</code>
@@ -636,7 +636,7 @@ public  final class FaceAnnotation extends
     }
     /**
      * <pre>
-     * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
+     * Thumbnail of a representative face view (in JPEG format).
      * </pre>
      *
      * <code>bytes thumbnail = 1;</code>
@@ -652,7 +652,7 @@ public  final class FaceAnnotation extends
     }
     /**
      * <pre>
-     * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
+     * Thumbnail of a representative face view (in JPEG format).
      * </pre>
      *
      * <code>bytes thumbnail = 1;</code>

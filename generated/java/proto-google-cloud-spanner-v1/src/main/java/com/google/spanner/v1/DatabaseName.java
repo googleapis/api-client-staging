@@ -58,7 +58,7 @@ public class DatabaseName implements ResourceName {
     database = Preconditions.checkNotNull(builder.getDatabase());
   }
 
-  public static DatabaseName create(String project, String instance, String database) {
+  public static DatabaseName of(String project, String instance, String database) {
     return newBuilder()
       .setProject(project)
       .setInstance(instance)
@@ -66,10 +66,18 @@ public class DatabaseName implements ResourceName {
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String, String)} instead.
+   */
+  @Deprecated
+  public static DatabaseName create(String project, String instance, String database) {
+    return of(project, instance, database);
+  }
+
   public static DatabaseName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "DatabaseName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("instance"), matchMap.get("database"));
+    return of(matchMap.get("project"), matchMap.get("instance"), matchMap.get("database"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

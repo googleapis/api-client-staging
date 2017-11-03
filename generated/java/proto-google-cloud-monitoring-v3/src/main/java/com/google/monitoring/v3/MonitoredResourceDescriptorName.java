@@ -52,17 +52,25 @@ public class MonitoredResourceDescriptorName implements ResourceName {
     monitoredResourceDescriptor = Preconditions.checkNotNull(builder.getMonitoredResourceDescriptor());
   }
 
-  public static MonitoredResourceDescriptorName create(String project, String monitoredResourceDescriptor) {
+  public static MonitoredResourceDescriptorName of(String project, String monitoredResourceDescriptor) {
     return newBuilder()
       .setProject(project)
       .setMonitoredResourceDescriptor(monitoredResourceDescriptor)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static MonitoredResourceDescriptorName create(String project, String monitoredResourceDescriptor) {
+    return of(project, monitoredResourceDescriptor);
+  }
+
   public static MonitoredResourceDescriptorName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "MonitoredResourceDescriptorName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("monitored_resource_descriptor"));
+    return of(matchMap.get("project"), matchMap.get("monitored_resource_descriptor"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

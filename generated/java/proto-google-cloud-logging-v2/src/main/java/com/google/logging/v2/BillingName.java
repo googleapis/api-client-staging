@@ -46,16 +46,24 @@ public class BillingName implements ResourceName {
     billingAccount = Preconditions.checkNotNull(builder.getBillingAccount());
   }
 
-  public static BillingName create(String billingAccount) {
+  public static BillingName of(String billingAccount) {
     return newBuilder()
       .setBillingAccount(billingAccount)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String)} instead.
+   */
+  @Deprecated
+  public static BillingName create(String billingAccount) {
+    return of(billingAccount);
+  }
+
   public static BillingName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "BillingName.parse: formattedString not in valid format");
-    return create(matchMap.get("billing_account"));
+    return of(matchMap.get("billing_account"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

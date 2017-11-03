@@ -52,17 +52,25 @@ public class MetricDescriptorName implements ResourceName {
     metricDescriptor = Preconditions.checkNotNull(builder.getMetricDescriptor());
   }
 
-  public static MetricDescriptorName create(String project, String metricDescriptor) {
+  public static MetricDescriptorName of(String project, String metricDescriptor) {
     return newBuilder()
       .setProject(project)
       .setMetricDescriptor(metricDescriptor)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static MetricDescriptorName create(String project, String metricDescriptor) {
+    return of(project, metricDescriptor);
+  }
+
   public static MetricDescriptorName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "MetricDescriptorName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("metric_descriptor"));
+    return of(matchMap.get("project"), matchMap.get("metric_descriptor"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

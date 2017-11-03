@@ -52,17 +52,25 @@ public class BillingLogName implements ResourceName {
     log = Preconditions.checkNotNull(builder.getLog());
   }
 
-  public static BillingLogName create(String billingAccount, String log) {
+  public static BillingLogName of(String billingAccount, String log) {
     return newBuilder()
       .setBillingAccount(billingAccount)
       .setLog(log)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static BillingLogName create(String billingAccount, String log) {
+    return of(billingAccount, log);
+  }
+
   public static BillingLogName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "BillingLogName.parse: formattedString not in valid format");
-    return create(matchMap.get("billing_account"), matchMap.get("log"));
+    return of(matchMap.get("billing_account"), matchMap.get("log"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

@@ -52,17 +52,25 @@ public class GroupName implements ResourceName {
     group = Preconditions.checkNotNull(builder.getGroup());
   }
 
-  public static GroupName create(String project, String group) {
+  public static GroupName of(String project, String group) {
     return newBuilder()
       .setProject(project)
       .setGroup(group)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static GroupName create(String project, String group) {
+    return of(project, group);
+  }
+
   public static GroupName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "GroupName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("group"));
+    return of(matchMap.get("project"), matchMap.get("group"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

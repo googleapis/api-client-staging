@@ -46,16 +46,24 @@ public class OrganizationName implements ResourceName {
     organization = Preconditions.checkNotNull(builder.getOrganization());
   }
 
-  public static OrganizationName create(String organization) {
+  public static OrganizationName of(String organization) {
     return newBuilder()
       .setOrganization(organization)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String)} instead.
+   */
+  @Deprecated
+  public static OrganizationName create(String organization) {
+    return of(organization);
+  }
+
   public static OrganizationName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "OrganizationName.parse: formattedString not in valid format");
-    return create(matchMap.get("organization"));
+    return of(matchMap.get("organization"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

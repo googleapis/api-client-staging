@@ -52,17 +52,25 @@ public class SubscriptionName implements ResourceName {
     subscription = Preconditions.checkNotNull(builder.getSubscription());
   }
 
-  public static SubscriptionName create(String project, String subscription) {
+  public static SubscriptionName of(String project, String subscription) {
     return newBuilder()
       .setProject(project)
       .setSubscription(subscription)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static SubscriptionName create(String project, String subscription) {
+    return of(project, subscription);
+  }
+
   public static SubscriptionName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "SubscriptionName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("subscription"));
+    return of(matchMap.get("project"), matchMap.get("subscription"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

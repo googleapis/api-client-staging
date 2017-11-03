@@ -9,7 +9,7 @@ public interface FaceAnnotationOrBuilder extends
 
   /**
    * <pre>
-   * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
+   * Thumbnail of a representative face view (in JPEG format).
    * </pre>
    *
    * <code>bytes thumbnail = 1;</code>

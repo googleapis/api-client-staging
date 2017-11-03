@@ -64,7 +64,7 @@ public class SessionName implements ResourceName {
     session = Preconditions.checkNotNull(builder.getSession());
   }
 
-  public static SessionName create(String project, String instance, String database, String session) {
+  public static SessionName of(String project, String instance, String database, String session) {
     return newBuilder()
       .setProject(project)
       .setInstance(instance)
@@ -73,10 +73,18 @@ public class SessionName implements ResourceName {
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String, String, String)} instead.
+   */
+  @Deprecated
+  public static SessionName create(String project, String instance, String database, String session) {
+    return of(project, instance, database, session);
+  }
+
   public static SessionName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "SessionName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("instance"), matchMap.get("database"), matchMap.get("session"));
+    return of(matchMap.get("project"), matchMap.get("instance"), matchMap.get("database"), matchMap.get("session"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

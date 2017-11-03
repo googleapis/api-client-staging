@@ -241,7 +241,7 @@ public final class VideoIntelligenceServiceProto {
       "ntelligenceServiceProtoP\001ZWgoogle.golang" +
       ".org/genproto/googleapis/cloud/videointe" +
       "lligence/v1beta2;videointelligence\252\002&Goo" +
-      "gle.Cloud.VideoIntelligence.V1beta2b\006pro" +
+      "gle.Cloud.VideoIntelligence.V1Beta2b\006pro" +
       "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =

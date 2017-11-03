@@ -52,17 +52,25 @@ public class FolderSinkName implements ResourceName {
     sink = Preconditions.checkNotNull(builder.getSink());
   }
 
-  public static FolderSinkName create(String folder, String sink) {
+  public static FolderSinkName of(String folder, String sink) {
     return newBuilder()
       .setFolder(folder)
       .setSink(sink)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static FolderSinkName create(String folder, String sink) {
+    return of(folder, sink);
+  }
+
   public static FolderSinkName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderSinkName.parse: formattedString not in valid format");
-    return create(matchMap.get("folder"), matchMap.get("sink"));
+    return of(matchMap.get("folder"), matchMap.get("sink"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

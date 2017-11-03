@@ -52,17 +52,25 @@ public class InstanceName implements ResourceName {
     instance = Preconditions.checkNotNull(builder.getInstance());
   }
 
-  public static InstanceName create(String project, String instance) {
+  public static InstanceName of(String project, String instance) {
     return newBuilder()
       .setProject(project)
       .setInstance(instance)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static InstanceName create(String project, String instance) {
+    return of(project, instance);
+  }
+
   public static InstanceName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "InstanceName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("instance"));
+    return of(matchMap.get("project"), matchMap.get("instance"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

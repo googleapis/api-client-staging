@@ -46,16 +46,24 @@ public class FolderName implements ResourceName {
     folder = Preconditions.checkNotNull(builder.getFolder());
   }
 
-  public static FolderName create(String folder) {
+  public static FolderName of(String folder) {
     return newBuilder()
       .setFolder(folder)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String)} instead.
+   */
+  @Deprecated
+  public static FolderName create(String folder) {
+    return of(folder);
+  }
+
   public static FolderName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderName.parse: formattedString not in valid format");
-    return create(matchMap.get("folder"));
+    return of(matchMap.get("folder"));
   }
 
   public static boolean isParsableFrom(String formattedString) {
