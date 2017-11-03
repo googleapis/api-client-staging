@@ -5,8 +5,8 @@
   "url": "https://github.com/googleapis/googleapis",
   "description": "Cloud Bigtable Admin API client for PHP",
   "require": {
-    "google/gax": "^0.23.0",
-    "google/protobuf": "^3.3.2",
+    "google/gax": "^0.25.0",
+    "google/protobuf": "^3.4.0",
     "php" : "^5.5 || ^7.0"
   },
   "require-dev": {
