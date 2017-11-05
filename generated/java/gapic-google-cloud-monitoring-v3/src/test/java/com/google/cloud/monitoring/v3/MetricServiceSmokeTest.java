@@ -58,7 +58,7 @@ public class MetricServiceSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (MetricServiceClient client = MetricServiceClient.create()) {
-      ProjectName name = ProjectName.create(projectId);
+      ProjectName name = ProjectName.of(projectId);
 
       ListMonitoredResourceDescriptorsPagedResponse pagedResponse =
           client.listMonitoredResourceDescriptors(name);

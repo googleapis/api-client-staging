@@ -84,7 +84,7 @@ public class ReportErrorsServiceClientTest {
     ReportErrorEventResponse expectedResponse = ReportErrorEventResponse.newBuilder().build();
     mockReportErrorsService.addResponse(expectedResponse);
 
-    ProjectName projectName = ProjectName.create("[PROJECT]");
+    ProjectName projectName = ProjectName.of("[PROJECT]");
     ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
 
     ReportErrorEventResponse actualResponse = client.reportErrorEvent(projectName, event);
@@ -105,7 +105,7 @@ public class ReportErrorsServiceClientTest {
     mockReportErrorsService.addException(exception);
 
     try {
-      ProjectName projectName = ProjectName.create("[PROJECT]");
+      ProjectName projectName = ProjectName.of("[PROJECT]");
       ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
 
       client.reportErrorEvent(projectName, event);

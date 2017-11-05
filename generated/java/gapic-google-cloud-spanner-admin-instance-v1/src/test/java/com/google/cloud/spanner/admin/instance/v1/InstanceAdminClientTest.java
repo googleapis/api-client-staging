@@ -111,7 +111,7 @@ public class InstanceAdminClientTest {
             .build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    ProjectName parent = ProjectName.create("[PROJECT]");
+    ProjectName parent = ProjectName.of("[PROJECT]");
 
     ListInstanceConfigsPagedResponse pagedListResponse = client.listInstanceConfigs(parent);
 
@@ -133,7 +133,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      ProjectName parent = ProjectName.create("[PROJECT]");
+      ProjectName parent = ProjectName.of("[PROJECT]");
 
       client.listInstanceConfigs(parent);
       Assert.fail("No exception raised");
@@ -145,7 +145,7 @@ public class InstanceAdminClientTest {
   @Test
   @SuppressWarnings("all")
   public void getInstanceConfigTest() {
-    InstanceConfigName name2 = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+    InstanceConfigName name2 = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
     String displayName = "displayName1615086568";
     InstanceConfig expectedResponse =
         InstanceConfig.newBuilder()
@@ -154,7 +154,7 @@ public class InstanceAdminClientTest {
             .build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    InstanceConfigName name = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+    InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
 
     InstanceConfig actualResponse = client.getInstanceConfig(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -173,7 +173,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      InstanceConfigName name = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+      InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
 
       client.getInstanceConfig(name);
       Assert.fail("No exception raised");
@@ -195,7 +195,7 @@ public class InstanceAdminClientTest {
             .build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    ProjectName parent = ProjectName.create("[PROJECT]");
+    ProjectName parent = ProjectName.of("[PROJECT]");
 
     ListInstancesPagedResponse pagedListResponse = client.listInstances(parent);
 
@@ -217,7 +217,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      ProjectName parent = ProjectName.create("[PROJECT]");
+      ProjectName parent = ProjectName.of("[PROJECT]");
 
       client.listInstances(parent);
       Assert.fail("No exception raised");
@@ -229,8 +229,8 @@ public class InstanceAdminClientTest {
   @Test
   @SuppressWarnings("all")
   public void getInstanceTest() {
-    InstanceName name2 = InstanceName.create("[PROJECT]", "[INSTANCE]");
-    InstanceConfigName config = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+    InstanceName name2 = InstanceName.of("[PROJECT]", "[INSTANCE]");
+    InstanceConfigName config = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
     String displayName = "displayName1615086568";
     int nodeCount = 1539922066;
     Instance expectedResponse =
@@ -242,7 +242,7 @@ public class InstanceAdminClientTest {
             .build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
+    InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
     Instance actualResponse = client.getInstance(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -261,7 +261,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
+      InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
       client.getInstance(name);
       Assert.fail("No exception raised");
@@ -273,8 +273,8 @@ public class InstanceAdminClientTest {
   @Test
   @SuppressWarnings("all")
   public void createInstanceTest() throws Exception {
-    InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
-    InstanceConfigName config = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+    InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+    InstanceConfigName config = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
     String displayName = "displayName1615086568";
     int nodeCount = 1539922066;
     Instance expectedResponse =
@@ -292,8 +292,8 @@ public class InstanceAdminClientTest {
             .build();
     mockInstanceAdmin.addResponse(resultOperation);
 
-    ProjectName parent = ProjectName.create("[PROJECT]");
-    InstanceName instanceId = InstanceName.create("[PROJECT]", "[INSTANCE]");
+    ProjectName parent = ProjectName.of("[PROJECT]");
+    InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
     Instance instance = Instance.newBuilder().build();
 
     Instance actualResponse = client.createInstanceAsync(parent, instanceId, instance).get();
@@ -315,8 +315,8 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      ProjectName parent = ProjectName.create("[PROJECT]");
-      InstanceName instanceId = InstanceName.create("[PROJECT]", "[INSTANCE]");
+      ProjectName parent = ProjectName.of("[PROJECT]");
+      InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
       Instance instance = Instance.newBuilder().build();
 
       client.createInstanceAsync(parent, instanceId, instance).get();
@@ -331,8 +331,8 @@ public class InstanceAdminClientTest {
   @Test
   @SuppressWarnings("all")
   public void updateInstanceTest() throws Exception {
-    InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
-    InstanceConfigName config = InstanceConfigName.create("[PROJECT]", "[INSTANCE_CONFIG]");
+    InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
+    InstanceConfigName config = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
     String displayName = "displayName1615086568";
     int nodeCount = 1539922066;
     Instance expectedResponse =
@@ -389,7 +389,7 @@ public class InstanceAdminClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
+    InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
     client.deleteInstance(name);
 
@@ -407,7 +407,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
+      InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
       client.deleteInstance(name);
       Assert.fail("No exception raised");
@@ -424,7 +424,7 @@ public class InstanceAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -445,7 +445,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -463,7 +463,7 @@ public class InstanceAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -482,7 +482,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -497,7 +497,7 @@ public class InstanceAdminClientTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockInstanceAdmin.addResponse(expectedResponse);
 
-    String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+    String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -519,7 +519,7 @@ public class InstanceAdminClientTest {
     mockInstanceAdmin.addException(exception);
 
     try {
-      String formattedResource = InstanceName.create("[PROJECT]", "[INSTANCE]").toString();
+      String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);

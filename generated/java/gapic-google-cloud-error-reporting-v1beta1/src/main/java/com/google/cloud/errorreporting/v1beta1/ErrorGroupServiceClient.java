@@ -37,7 +37,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
- *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
+ *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
  *   ErrorGroup response = errorGroupServiceClient.getGroup(groupName);
  * }
  * </code>
@@ -159,7 +159,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
-   *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
+   *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   ErrorGroup response = errorGroupServiceClient.getGroup(groupName);
    * }
    * </code></pre>
@@ -187,7 +187,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
-   *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
+   *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
    *     .setGroupNameWithGroupName(groupName)
    *     .build();
@@ -210,7 +210,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
-   *   GroupName groupName = GroupName.create("[PROJECT]", "[GROUP]");
+   *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
    *     .setGroupNameWithGroupName(groupName)
    *     .build();

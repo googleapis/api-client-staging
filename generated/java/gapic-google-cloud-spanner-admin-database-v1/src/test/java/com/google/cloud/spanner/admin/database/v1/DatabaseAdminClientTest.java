@@ -106,7 +106,7 @@ public class DatabaseAdminClientTest {
             .build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    InstanceName parent = InstanceName.create("[PROJECT]", "[INSTANCE]");
+    InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
     ListDatabasesPagedResponse pagedListResponse = client.listDatabases(parent);
 
@@ -128,7 +128,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      InstanceName parent = InstanceName.create("[PROJECT]", "[INSTANCE]");
+      InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
 
       client.listDatabases(parent);
       Assert.fail("No exception raised");
@@ -150,7 +150,7 @@ public class DatabaseAdminClientTest {
             .build();
     mockDatabaseAdmin.addResponse(resultOperation);
 
-    InstanceName parent = InstanceName.create("[PROJECT]", "[INSTANCE]");
+    InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
     String createStatement = "createStatement552974828";
 
     Database actualResponse = client.createDatabaseAsync(parent, createStatement).get();
@@ -171,7 +171,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      InstanceName parent = InstanceName.create("[PROJECT]", "[INSTANCE]");
+      InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
       String createStatement = "createStatement552974828";
 
       client.createDatabaseAsync(parent, createStatement).get();
@@ -190,7 +190,7 @@ public class DatabaseAdminClientTest {
     Database expectedResponse = Database.newBuilder().setName(name2).build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    DatabaseName name = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+    DatabaseName name = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     Database actualResponse = client.getDatabase(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -209,7 +209,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      DatabaseName name = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+      DatabaseName name = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.getDatabase(name);
       Assert.fail("No exception raised");
@@ -230,7 +230,7 @@ public class DatabaseAdminClientTest {
             .build();
     mockDatabaseAdmin.addResponse(resultOperation);
 
-    DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+    DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
     List<String> statements = new ArrayList<>();
 
     Empty actualResponse = client.updateDatabaseDdlAsync(database, statements).get();
@@ -251,7 +251,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+      DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
       List<String> statements = new ArrayList<>();
 
       client.updateDatabaseDdlAsync(database, statements).get();
@@ -269,7 +269,7 @@ public class DatabaseAdminClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+    DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     client.dropDatabase(database);
 
@@ -287,7 +287,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+      DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.dropDatabase(database);
       Assert.fail("No exception raised");
@@ -302,7 +302,7 @@ public class DatabaseAdminClientTest {
     GetDatabaseDdlResponse expectedResponse = GetDatabaseDdlResponse.newBuilder().build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+    DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     GetDatabaseDdlResponse actualResponse = client.getDatabaseDdl(database);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -321,7 +321,7 @@ public class DatabaseAdminClientTest {
     mockDatabaseAdmin.addException(exception);
 
     try {
-      DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+      DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.getDatabaseDdl(database);
       Assert.fail("No exception raised");
@@ -338,8 +338,7 @@ public class DatabaseAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource =
-        DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
     Policy policy = Policy.newBuilder().build();
 
     Policy actualResponse = client.setIamPolicy(formattedResource, policy);
@@ -361,7 +360,7 @@ public class DatabaseAdminClientTest {
 
     try {
       String formattedResource =
-          DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
       Policy policy = Policy.newBuilder().build();
 
       client.setIamPolicy(formattedResource, policy);
@@ -379,8 +378,7 @@ public class DatabaseAdminClientTest {
     Policy expectedResponse = Policy.newBuilder().setVersion(version).setEtag(etag).build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource =
-        DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
 
     Policy actualResponse = client.getIamPolicy(formattedResource);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -400,7 +398,7 @@ public class DatabaseAdminClientTest {
 
     try {
       String formattedResource =
-          DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
 
       client.getIamPolicy(formattedResource);
       Assert.fail("No exception raised");
@@ -415,8 +413,7 @@ public class DatabaseAdminClientTest {
     TestIamPermissionsResponse expectedResponse = TestIamPermissionsResponse.newBuilder().build();
     mockDatabaseAdmin.addResponse(expectedResponse);
 
-    String formattedResource =
-        DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedResource = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
     List<String> permissions = new ArrayList<>();
 
     TestIamPermissionsResponse actualResponse =
@@ -439,7 +436,7 @@ public class DatabaseAdminClientTest {
 
     try {
       String formattedResource =
-          DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
       List<String> permissions = new ArrayList<>();
 
       client.testIamPermissions(formattedResource, permissions);

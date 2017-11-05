@@ -36,7 +36,7 @@
  * <pre>
  * <code>
  * try (GroupServiceClient groupServiceClient = GroupServiceClient.create()) {
- *   GroupName name = GroupName.create("[PROJECT]", "[GROUP]");
+ *   GroupName name = GroupName.of("[PROJECT]", "[GROUP]");
  *   Group response = groupServiceClient.getGroup(name);
  * }
  * </code>
@@ -52,7 +52,7 @@
  * <pre>
  * <code>
  * try (MetricServiceClient metricServiceClient = MetricServiceClient.create()) {
- *   MonitoredResourceDescriptorName name = MonitoredResourceDescriptorName.create("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+ *   MonitoredResourceDescriptorName name = MonitoredResourceDescriptorName.of("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
  *   MonitoredResourceDescriptor response = metricServiceClient.getMonitoredResourceDescriptor(name);
  * }
  * </code>
