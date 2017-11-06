@@ -52,17 +52,25 @@ public class LocationName implements ResourceName {
     location = Preconditions.checkNotNull(builder.getLocation());
   }
 
-  public static LocationName create(String project, String location) {
+  public static LocationName of(String project, String location) {
     return newBuilder()
       .setProject(project)
       .setLocation(location)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static LocationName create(String project, String location) {
+    return of(project, location);
+  }
+
   public static LocationName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "LocationName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("location"));
+    return of(matchMap.get("project"), matchMap.get("location"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

@@ -58,7 +58,7 @@ public class TableName implements ResourceName {
     table = Preconditions.checkNotNull(builder.getTable());
   }
 
-  public static TableName create(String project, String instance, String table) {
+  public static TableName of(String project, String instance, String table) {
     return newBuilder()
       .setProject(project)
       .setInstance(instance)
@@ -66,10 +66,18 @@ public class TableName implements ResourceName {
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String, String)} instead.
+   */
+  @Deprecated
+  public static TableName create(String project, String instance, String table) {
+    return of(project, instance, table);
+  }
+
   public static TableName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "TableName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("instance"), matchMap.get("table"));
+    return of(matchMap.get("project"), matchMap.get("instance"), matchMap.get("table"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

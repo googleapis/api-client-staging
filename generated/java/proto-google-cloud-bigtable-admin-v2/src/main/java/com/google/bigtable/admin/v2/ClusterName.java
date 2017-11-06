@@ -58,7 +58,7 @@ public class ClusterName implements ResourceName {
     cluster = Preconditions.checkNotNull(builder.getCluster());
   }
 
-  public static ClusterName create(String project, String instance, String cluster) {
+  public static ClusterName of(String project, String instance, String cluster) {
     return newBuilder()
       .setProject(project)
       .setInstance(instance)
@@ -66,10 +66,18 @@ public class ClusterName implements ResourceName {
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String, String)} instead.
+   */
+  @Deprecated
+  public static ClusterName create(String project, String instance, String cluster) {
+    return of(project, instance, cluster);
+  }
+
   public static ClusterName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "ClusterName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("instance"), matchMap.get("cluster"));
+    return of(matchMap.get("project"), matchMap.get("instance"), matchMap.get("cluster"));
   }
 
   public static boolean isParsableFrom(String formattedString) {
