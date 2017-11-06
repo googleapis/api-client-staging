@@ -20,7 +20,7 @@ require "google/gax"
 require "google/cloud/pubsub"
 require "google/cloud/pubsub/v1/publisher_client"
 require "google/iam/v1/iam_policy_services_pb"
-require "google/pubsub/v1/pubsub_services_pb"
+require "pubsub_services_pb"
 
 class CustomTestError < StandardError; end
 
@@ -53,7 +53,7 @@ class MockGrpcClientStub
   end
 end
 
-class MockCredentialsClass < Google::Cloud::Pubsub::Credentials
+class MockPublisherCredentials < Google::Cloud::Pubsub::Credentials
   def initialize(method_name)
     @method_name = method_name
   end
@@ -89,7 +89,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:create_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_topic")
+      mock_credentials = MockPublisherCredentials.new("create_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -117,7 +117,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:create_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_topic")
+      mock_credentials = MockPublisherCredentials.new("create_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -158,7 +158,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:update_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_topic")
+      mock_credentials = MockPublisherCredentials.new("update_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -188,7 +188,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:update_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_topic")
+      mock_credentials = MockPublisherCredentials.new("update_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -235,7 +235,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:publish, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("publish")
+      mock_credentials = MockPublisherCredentials.new("publish")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -270,7 +270,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:publish, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("publish")
+      mock_credentials = MockPublisherCredentials.new("publish")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -309,7 +309,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:get_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_topic")
+      mock_credentials = MockPublisherCredentials.new("get_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -337,7 +337,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:get_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_topic")
+      mock_credentials = MockPublisherCredentials.new("get_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -378,7 +378,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:list_topics, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_topics")
+      mock_credentials = MockPublisherCredentials.new("list_topics")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -409,7 +409,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:list_topics, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_topics")
+      mock_credentials = MockPublisherCredentials.new("list_topics")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -450,7 +450,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:list_topic_subscriptions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_topic_subscriptions")
+      mock_credentials = MockPublisherCredentials.new("list_topic_subscriptions")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -481,7 +481,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:list_topic_subscriptions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_topic_subscriptions")
+      mock_credentials = MockPublisherCredentials.new("list_topic_subscriptions")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -515,7 +515,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:delete_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_topic")
+      mock_credentials = MockPublisherCredentials.new("delete_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -543,7 +543,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:delete_topic, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_topic")
+      mock_credentials = MockPublisherCredentials.new("delete_topic")
 
       Google::Pubsub::V1::Publisher::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -585,7 +585,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:set_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("set_iam_policy")
+      mock_credentials = MockPublisherCredentials.new("set_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -615,7 +615,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:set_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("set_iam_policy")
+      mock_credentials = MockPublisherCredentials.new("set_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -655,7 +655,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:get_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_iam_policy")
+      mock_credentials = MockPublisherCredentials.new("get_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -683,7 +683,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:get_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_iam_policy")
+      mock_credentials = MockPublisherCredentials.new("get_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -723,7 +723,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:test_iam_permissions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("test_iam_permissions")
+      mock_credentials = MockPublisherCredentials.new("test_iam_permissions")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -753,7 +753,7 @@ describe Google::Cloud::Pubsub::V1::PublisherClient do
       mock_stub = MockGrpcClientStub.new(:test_iam_permissions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("test_iam_permissions")
+      mock_credentials = MockPublisherCredentials.new("test_iam_permissions")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
