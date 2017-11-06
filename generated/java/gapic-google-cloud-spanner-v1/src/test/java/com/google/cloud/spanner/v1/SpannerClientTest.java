@@ -98,11 +98,11 @@ public class SpannerClientTest {
   @Test
   @SuppressWarnings("all")
   public void createSessionTest() {
-    SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     Session expectedResponse = Session.newBuilder().setNameWithSessionName(name).build();
     mockSpanner.addResponse(expectedResponse);
 
-    DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+    DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     Session actualResponse = client.createSession(database);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -121,7 +121,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      DatabaseName database = DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+      DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.createSession(database);
       Assert.fail("No exception raised");
@@ -133,11 +133,11 @@ public class SpannerClientTest {
   @Test
   @SuppressWarnings("all")
   public void getSessionTest() {
-    SessionName name2 = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName name2 = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     Session expectedResponse = Session.newBuilder().setNameWithSessionName(name2).build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
 
     Session actualResponse = client.getSession(name);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -156,7 +156,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
 
       client.getSession(name);
       Assert.fail("No exception raised");
@@ -178,8 +178,7 @@ public class SpannerClientTest {
             .build();
     mockSpanner.addResponse(expectedResponse);
 
-    String formattedDatabase =
-        DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
 
     ListSessionsPagedResponse pagedListResponse = client.listSessions(formattedDatabase);
 
@@ -202,7 +201,7 @@ public class SpannerClientTest {
 
     try {
       String formattedDatabase =
-          DatabaseName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
 
       client.listSessions(formattedDatabase);
       Assert.fail("No exception raised");
@@ -217,7 +216,7 @@ public class SpannerClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
 
     client.deleteSession(name);
 
@@ -235,7 +234,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName name = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
 
       client.deleteSession(name);
       Assert.fail("No exception raised");
@@ -255,7 +254,7 @@ public class SpannerClientTest {
             .setResumeToken(resumeToken)
             .build();
     mockSpanner.addResponse(expectedResponse);
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String sql = "sql114126";
     ExecuteSqlRequest request =
         ExecuteSqlRequest.newBuilder().setSessionWithSessionName(session).setSql(sql).build();
@@ -276,7 +275,7 @@ public class SpannerClientTest {
   public void executeStreamingSqlExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockSpanner.addException(exception);
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String sql = "sql114126";
     ExecuteSqlRequest request =
         ExecuteSqlRequest.newBuilder().setSessionWithSessionName(session).setSql(sql).build();
@@ -308,7 +307,7 @@ public class SpannerClientTest {
             .setResumeToken(resumeToken)
             .build();
     mockSpanner.addResponse(expectedResponse);
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String table = "table110115790";
     List<String> columns = new ArrayList<>();
     KeySet keySet = KeySet.newBuilder().build();
@@ -336,7 +335,7 @@ public class SpannerClientTest {
   public void streamingReadExceptionTest() throws Exception {
     StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
     mockSpanner.addException(exception);
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String table = "table110115790";
     List<String> columns = new ArrayList<>();
     KeySet keySet = KeySet.newBuilder().build();
@@ -371,7 +370,7 @@ public class SpannerClientTest {
     Transaction expectedResponse = Transaction.newBuilder().setId(id).build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     TransactionOptions options = TransactionOptions.newBuilder().build();
 
     Transaction actualResponse = client.beginTransaction(session, options);
@@ -392,8 +391,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName session =
-          SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
       TransactionOptions options = TransactionOptions.newBuilder().build();
 
       client.beginTransaction(session, options);
@@ -409,7 +407,7 @@ public class SpannerClientTest {
     CommitResponse expectedResponse = CommitResponse.newBuilder().build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     ByteString transactionId = ByteString.copyFromUtf8("28");
     List<Mutation> mutations = new ArrayList<>();
 
@@ -432,8 +430,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName session =
-          SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
       ByteString transactionId = ByteString.copyFromUtf8("28");
       List<Mutation> mutations = new ArrayList<>();
 
@@ -450,7 +447,7 @@ public class SpannerClientTest {
     CommitResponse expectedResponse = CommitResponse.newBuilder().build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     TransactionOptions singleUseTransaction = TransactionOptions.newBuilder().build();
     List<Mutation> mutations = new ArrayList<>();
 
@@ -473,8 +470,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName session =
-          SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
       TransactionOptions singleUseTransaction = TransactionOptions.newBuilder().build();
       List<Mutation> mutations = new ArrayList<>();
 
@@ -491,7 +487,7 @@ public class SpannerClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockSpanner.addResponse(expectedResponse);
 
-    SessionName session = SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+    SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     ByteString transactionId = ByteString.copyFromUtf8("28");
 
     client.rollback(session, transactionId);
@@ -511,8 +507,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      SessionName session =
-          SessionName.create("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+      SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
       ByteString transactionId = ByteString.copyFromUtf8("28");
 
       client.rollback(session, transactionId);

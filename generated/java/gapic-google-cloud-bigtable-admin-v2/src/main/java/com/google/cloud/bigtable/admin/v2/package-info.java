@@ -30,7 +30,7 @@
  * <pre>
  * <code>
  * try (BigtableInstanceAdminClient bigtableInstanceAdminClient = BigtableInstanceAdminClient.create()) {
- *   InstanceName name = InstanceName.create("[PROJECT]", "[INSTANCE]");
+ *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
  *   Instance response = bigtableInstanceAdminClient.getInstance(name);
  * }
  * </code>
@@ -47,7 +47,7 @@
  * <pre>
  * <code>
  * try (BigtableTableAdminClient bigtableTableAdminClient = BigtableTableAdminClient.create()) {
- *   InstanceName parent = InstanceName.create("[PROJECT]", "[INSTANCE]");
+ *   InstanceName parent = InstanceName.of("[PROJECT]", "[INSTANCE]");
  *   String tableId = "";
  *   Table table = Table.newBuilder().build();
  *   Table response = bigtableTableAdminClient.createTable(parent, tableId, table);

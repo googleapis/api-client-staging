@@ -101,7 +101,7 @@ public class ErrorStatsServiceClientTest {
             .build();
     mockErrorStatsService.addResponse(expectedResponse);
 
-    ProjectName projectName = ProjectName.create("[PROJECT]");
+    ProjectName projectName = ProjectName.of("[PROJECT]");
     QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
 
     ListGroupStatsPagedResponse pagedListResponse = client.listGroupStats(projectName, timeRange);
@@ -125,7 +125,7 @@ public class ErrorStatsServiceClientTest {
     mockErrorStatsService.addException(exception);
 
     try {
-      ProjectName projectName = ProjectName.create("[PROJECT]");
+      ProjectName projectName = ProjectName.of("[PROJECT]");
       QueryTimeRange timeRange = QueryTimeRange.newBuilder().build();
 
       client.listGroupStats(projectName, timeRange);
@@ -148,7 +148,7 @@ public class ErrorStatsServiceClientTest {
             .build();
     mockErrorStatsService.addResponse(expectedResponse);
 
-    ProjectName projectName = ProjectName.create("[PROJECT]");
+    ProjectName projectName = ProjectName.of("[PROJECT]");
     String groupId = "groupId506361563";
 
     ListEventsPagedResponse pagedListResponse = client.listEvents(projectName, groupId);
@@ -172,7 +172,7 @@ public class ErrorStatsServiceClientTest {
     mockErrorStatsService.addException(exception);
 
     try {
-      ProjectName projectName = ProjectName.create("[PROJECT]");
+      ProjectName projectName = ProjectName.of("[PROJECT]");
       String groupId = "groupId506361563";
 
       client.listEvents(projectName, groupId);
@@ -188,7 +188,7 @@ public class ErrorStatsServiceClientTest {
     DeleteEventsResponse expectedResponse = DeleteEventsResponse.newBuilder().build();
     mockErrorStatsService.addResponse(expectedResponse);
 
-    ProjectName projectName = ProjectName.create("[PROJECT]");
+    ProjectName projectName = ProjectName.of("[PROJECT]");
 
     DeleteEventsResponse actualResponse = client.deleteEvents(projectName);
     Assert.assertEquals(expectedResponse, actualResponse);
@@ -207,7 +207,7 @@ public class ErrorStatsServiceClientTest {
     mockErrorStatsService.addException(exception);
 
     try {
-      ProjectName projectName = ProjectName.create("[PROJECT]");
+      ProjectName projectName = ProjectName.of("[PROJECT]");
 
       client.deleteEvents(projectName);
       Assert.fail("No exception raised");

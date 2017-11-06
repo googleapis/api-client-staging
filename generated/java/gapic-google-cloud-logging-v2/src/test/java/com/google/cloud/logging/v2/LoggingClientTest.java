@@ -101,7 +101,7 @@ public class LoggingClientTest {
     Empty expectedResponse = Empty.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+    LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
 
     client.deleteLog(logName);
 
@@ -119,7 +119,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+      LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
 
       client.deleteLog(logName);
       Assert.fail("No exception raised");
@@ -134,7 +134,7 @@ public class LoggingClientTest {
     WriteLogEntriesResponse expectedResponse = WriteLogEntriesResponse.newBuilder().build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+    LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
     MonitoredResource resource = MonitoredResource.newBuilder().build();
     Map<String, String> labels = new HashMap<>();
     List<LogEntry> entries = new ArrayList<>();
@@ -160,7 +160,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      LogNameOneof logName = LogNameOneof.from(LogName.create("[PROJECT]", "[LOG]"));
+      LogNameOneof logName = LogNameOneof.from(LogName.of("[PROJECT]", "[LOG]"));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();
@@ -236,7 +236,7 @@ public class LoggingClientTest {
             .build();
     mockLoggingServiceV2.addResponse(expectedResponse);
 
-    ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
+    ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
 
     ListLogsPagedResponse pagedListResponse = client.listLogs(parent);
 
@@ -258,7 +258,7 @@ public class LoggingClientTest {
     mockLoggingServiceV2.addException(exception);
 
     try {
-      ParentNameOneof parent = ParentNameOneof.from(ProjectName.create("[PROJECT]"));
+      ParentNameOneof parent = ParentNameOneof.from(ProjectName.of("[PROJECT]"));
 
       client.listLogs(parent);
       Assert.fail("No exception raised");

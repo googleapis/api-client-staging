@@ -62,7 +62,7 @@ public class ReportErrorsServiceSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (ReportErrorsServiceClient client = ReportErrorsServiceClient.create()) {
-      ProjectName projectName = ProjectName.create(projectId);
+      ProjectName projectName = ProjectName.of(projectId);
       String message = "[MESSAGE]";
       String service = "[SERVICE]";
       ServiceContext serviceContext = ServiceContext.newBuilder().setService(service).build();

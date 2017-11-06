@@ -66,7 +66,7 @@ public class LoggingSmokeTest {
   public static void executeNoCatch(String projectId) throws Exception {
     try (LoggingClient client = LoggingClient.create()) {
       LogNameOneof logName =
-          LogNameOneof.from(LogName.create(projectId, "test-" + System.currentTimeMillis()));
+          LogNameOneof.from(LogName.of(projectId, "test-" + System.currentTimeMillis()));
       MonitoredResource resource = MonitoredResource.newBuilder().build();
       Map<String, String> labels = new HashMap<>();
       List<LogEntry> entries = new ArrayList<>();

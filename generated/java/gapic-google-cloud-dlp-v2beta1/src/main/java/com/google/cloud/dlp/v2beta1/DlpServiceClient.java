@@ -861,7 +861,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   ResultName name = ResultName.create("[RESULT]");
+   *   ResultName name = ResultName.of("[RESULT]");
    *   ListInspectFindingsResponse response = dlpServiceClient.listInspectFindings(name);
    * }
    * </code></pre>
@@ -885,7 +885,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   ResultName name = ResultName.create("[RESULT]");
+   *   ResultName name = ResultName.of("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
    *     .setNameWithResultName(name)
    *     .build();
@@ -908,7 +908,7 @@ public class DlpServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   ResultName name = ResultName.create("[RESULT]");
+   *   ResultName name = ResultName.of("[RESULT]");
    *   ListInspectFindingsRequest request = ListInspectFindingsRequest.newBuilder()
    *     .setNameWithResultName(name)
    *     .build();

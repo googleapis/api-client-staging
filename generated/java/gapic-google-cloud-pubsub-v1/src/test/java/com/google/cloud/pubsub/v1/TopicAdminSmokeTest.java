@@ -58,7 +58,7 @@ public class TopicAdminSmokeTest {
 
   public static void executeNoCatch(String projectId) throws Exception {
     try (TopicAdminClient client = TopicAdminClient.create()) {
-      ProjectName project = ProjectName.create(projectId);
+      ProjectName project = ProjectName.of(projectId);
 
       ListTopicsPagedResponse pagedResponse = client.listTopics(project);
       System.out.println(ReflectionToStringBuilder.toString(pagedResponse));
