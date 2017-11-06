@@ -120,7 +120,7 @@ public class OperationsClient implements BackgroundResource {
    * Constructs an instance of OperationsClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use OperationsSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final OperationsClient create(OperationsStub stub) {
     return new OperationsClient(stub);
   }
@@ -134,6 +134,7 @@ public class OperationsClient implements BackgroundResource {
     this.stub = settings.createStub();
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected OperationsClient(OperationsStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -143,7 +144,7 @@ public class OperationsClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public OperationsStub getStub() {
     return stub;
   }

@@ -113,11 +113,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * BigtableInstanceAdminSettings bigtableInstanceAdminSettings =
- *     BigtableInstanceAdminSettings.newBuilder()
- *         .setTransportChannelProvider(BigtableInstanceAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setEndpoint(myEndpoint)
- *             .build())
- *         .build();
+ *     BigtableInstanceAdminSettings.newBuilder().setEndpoint(myEndpoint).build();
  * BigtableInstanceAdminClient bigtableInstanceAdminClient =
  *     BigtableInstanceAdminClient.create(bigtableInstanceAdminSettings);
  * </code>
@@ -148,7 +144,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
    * Constructs an instance of BigtableInstanceAdminClient, using the given stub for making calls.
    * This is for advanced usage - prefer to use BigtableInstanceAdminSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final BigtableInstanceAdminClient create(BigtableInstanceAdminStub stub) {
     return new BigtableInstanceAdminClient(stub);
   }
@@ -164,6 +160,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
     this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected BigtableInstanceAdminClient(BigtableInstanceAdminStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -174,7 +171,7 @@ public class BigtableInstanceAdminClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public BigtableInstanceAdminStub getStub() {
     return stub;
   }

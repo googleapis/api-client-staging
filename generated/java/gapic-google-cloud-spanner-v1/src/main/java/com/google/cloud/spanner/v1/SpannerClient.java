@@ -111,11 +111,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * SpannerSettings spannerSettings =
- *     SpannerSettings.newBuilder()
- *         .setTransportChannelProvider(SpannerSettings.defaultGrpcTransportProviderBuilder()
- *             .setEndpoint(myEndpoint)
- *             .build())
- *         .build();
+ *     SpannerSettings.newBuilder().setEndpoint(myEndpoint).build();
  * SpannerClient spannerClient =
  *     SpannerClient.create(spannerSettings);
  * </code>
@@ -144,7 +140,7 @@ public class SpannerClient implements BackgroundResource {
    * Constructs an instance of SpannerClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use SpannerSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final SpannerClient create(SpannerStub stub) {
     return new SpannerClient(stub);
   }
@@ -158,6 +154,7 @@ public class SpannerClient implements BackgroundResource {
     this.stub = settings.createStub();
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected SpannerClient(SpannerStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -167,7 +164,7 @@ public class SpannerClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public SpannerStub getStub() {
     return stub;
   }

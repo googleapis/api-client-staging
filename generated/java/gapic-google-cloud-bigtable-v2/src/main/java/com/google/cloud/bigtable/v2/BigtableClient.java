@@ -104,11 +104,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * BigtableSettings bigtableSettings =
- *     BigtableSettings.newBuilder()
- *         .setTransportChannelProvider(BigtableSettings.defaultGrpcTransportProviderBuilder()
- *             .setEndpoint(myEndpoint)
- *             .build())
- *         .build();
+ *     BigtableSettings.newBuilder().setEndpoint(myEndpoint).build();
  * BigtableClient bigtableClient =
  *     BigtableClient.create(bigtableSettings);
  * </code>
@@ -137,7 +133,7 @@ public class BigtableClient implements BackgroundResource {
    * Constructs an instance of BigtableClient, using the given stub for making calls. This is for
    * advanced usage - prefer to use BigtableSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final BigtableClient create(BigtableStub stub) {
     return new BigtableClient(stub);
   }
@@ -151,6 +147,7 @@ public class BigtableClient implements BackgroundResource {
     this.stub = settings.createStub();
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected BigtableClient(BigtableStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -160,7 +157,7 @@ public class BigtableClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public BigtableStub getStub() {
     return stub;
   }
