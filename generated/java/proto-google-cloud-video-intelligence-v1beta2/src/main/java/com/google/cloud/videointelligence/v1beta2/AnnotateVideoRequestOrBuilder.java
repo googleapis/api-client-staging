@@ -45,8 +45,9 @@ public interface AnnotateVideoRequestOrBuilder extends
 
   /**
    * <pre>
-   * The video data bytes. Encoding: base64. If unset, the input video(s)
-   * should be specified via `input_uri`. If set, `input_uri` should be unset.
+   * The video data bytes.
+   * If unset, the input video(s) should be specified via `input_uri`.
+   * If set, `input_uri` should be unset.
    * </pre>
    *
    * <code>bytes input_content = 6;</code>

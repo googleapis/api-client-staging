@@ -52,17 +52,25 @@ public class OrganizationLogName implements ResourceName {
     log = Preconditions.checkNotNull(builder.getLog());
   }
 
-  public static OrganizationLogName create(String organization, String log) {
+  public static OrganizationLogName of(String organization, String log) {
     return newBuilder()
       .setOrganization(organization)
       .setLog(log)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static OrganizationLogName create(String organization, String log) {
+    return of(organization, log);
+  }
+
   public static OrganizationLogName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "OrganizationLogName.parse: formattedString not in valid format");
-    return create(matchMap.get("organization"), matchMap.get("log"));
+    return of(matchMap.get("organization"), matchMap.get("log"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

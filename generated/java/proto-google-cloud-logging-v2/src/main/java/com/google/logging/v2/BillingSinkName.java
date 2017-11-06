@@ -52,17 +52,25 @@ public class BillingSinkName implements ResourceName {
     sink = Preconditions.checkNotNull(builder.getSink());
   }
 
-  public static BillingSinkName create(String billingAccount, String sink) {
+  public static BillingSinkName of(String billingAccount, String sink) {
     return newBuilder()
       .setBillingAccount(billingAccount)
       .setSink(sink)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static BillingSinkName create(String billingAccount, String sink) {
+    return of(billingAccount, sink);
+  }
+
   public static BillingSinkName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "BillingSinkName.parse: formattedString not in valid format");
-    return create(matchMap.get("billing_account"), matchMap.get("sink"));
+    return of(matchMap.get("billing_account"), matchMap.get("sink"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

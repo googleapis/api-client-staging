@@ -52,17 +52,25 @@ public class SnapshotName implements ResourceName {
     snapshot = Preconditions.checkNotNull(builder.getSnapshot());
   }
 
-  public static SnapshotName create(String project, String snapshot) {
+  public static SnapshotName of(String project, String snapshot) {
     return newBuilder()
       .setProject(project)
       .setSnapshot(snapshot)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static SnapshotName create(String project, String snapshot) {
+    return of(project, snapshot);
+  }
+
   public static SnapshotName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "SnapshotName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("snapshot"));
+    return of(matchMap.get("project"), matchMap.get("snapshot"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

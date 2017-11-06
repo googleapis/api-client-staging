@@ -46,16 +46,24 @@ public class ResultName implements ResourceName {
     result = Preconditions.checkNotNull(builder.getResult());
   }
 
-  public static ResultName create(String result) {
+  public static ResultName of(String result) {
     return newBuilder()
       .setResult(result)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String)} instead.
+   */
+  @Deprecated
+  public static ResultName create(String result) {
+    return of(result);
+  }
+
   public static ResultName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "ResultName.parse: formattedString not in valid format");
-    return create(matchMap.get("result"));
+    return of(matchMap.get("result"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

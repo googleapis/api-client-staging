@@ -52,17 +52,25 @@ public class MetricName implements ResourceName {
     metric = Preconditions.checkNotNull(builder.getMetric());
   }
 
-  public static MetricName create(String project, String metric) {
+  public static MetricName of(String project, String metric) {
     return newBuilder()
       .setProject(project)
       .setMetric(metric)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static MetricName create(String project, String metric) {
+    return of(project, metric);
+  }
+
   public static MetricName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "MetricName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("metric"));
+    return of(matchMap.get("project"), matchMap.get("metric"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

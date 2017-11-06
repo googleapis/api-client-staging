@@ -52,17 +52,25 @@ public class FolderExclusionName implements ResourceName {
     exclusion = Preconditions.checkNotNull(builder.getExclusion());
   }
 
-  public static FolderExclusionName create(String folder, String exclusion) {
+  public static FolderExclusionName of(String folder, String exclusion) {
     return newBuilder()
       .setFolder(folder)
       .setExclusion(exclusion)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static FolderExclusionName create(String folder, String exclusion) {
+    return of(folder, exclusion);
+  }
+
   public static FolderExclusionName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderExclusionName.parse: formattedString not in valid format");
-    return create(matchMap.get("folder"), matchMap.get("exclusion"));
+    return of(matchMap.get("folder"), matchMap.get("exclusion"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

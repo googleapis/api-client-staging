@@ -40,8 +40,9 @@ public interface TraceSpanOrBuilder extends
 
   /**
    * <pre>
-   * Name of the trace. The trace name is sanitized and displayed in the
-   * Stackdriver Trace tool in the Google Developers Console.
+   * Name of the span. Must be less than 128 bytes. The span name is sanitized
+   * and displayed in the Stackdriver Trace tool in the
+   * {% dynamic print site_values.console_name %}.
    * The name may be a method name or some other per-call site name.
    * For the same executable and the same call point, a best practice is
    * to use a consistent name, which makes it easier to correlate
@@ -53,8 +54,9 @@ public interface TraceSpanOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Name of the trace. The trace name is sanitized and displayed in the
-   * Stackdriver Trace tool in the Google Developers Console.
+   * Name of the span. Must be less than 128 bytes. The span name is sanitized
+   * and displayed in the Stackdriver Trace tool in the
+   * {% dynamic print site_values.console_name %}.
    * The name may be a method name or some other per-call site name.
    * For the same executable and the same call point, a best practice is
    * to use a consistent name, which makes it easier to correlate
@@ -127,7 +129,35 @@ public interface TraceSpanOrBuilder extends
 
   /**
    * <pre>
-   * Collection of labels associated with the span.
+   * Collection of labels associated with the span. Label keys must be less than
+   * 128 bytes. Label values must be less than 16 kilobytes (10MB for
+   * `/stacktrace` values).
+   * Some predefined label keys exist, or you may create your own. When creating
+   * your own, we recommend the following formats:
+   * * `/category/product/key` for agents of well-known products (e.g.
+   *   `/db/mongodb/read_size`).
+   * * `short_host/path/key` for domain-specific keys (e.g.
+   *   `foo.com/myproduct/bar`)
+   * Predefined labels include:
+   * *   `/agent`
+   * *   `/component`
+   * *   `/error/message`
+   * *   `/error/name`
+   * *   `/http/client_city`
+   * *   `/http/client_country`
+   * *   `/http/client_protocol`
+   * *   `/http/client_region`
+   * *   `/http/host`
+   * *   `/http/method`
+   * *   `/http/redirected_url`
+   * *   `/http/request/size`
+   * *   `/http/response/size`
+   * *   `/http/status_code`
+   * *   `/http/url`
+   * *   `/http/user_agent`
+   * *   `/pid`
+   * *   `/stacktrace`
+   * *   `/tid`
    * </pre>
    *
    * <code>map&lt;string, string&gt; labels = 7;</code>
@@ -135,7 +165,35 @@ public interface TraceSpanOrBuilder extends
   int getLabelsCount();
   /**
    * <pre>
-   * Collection of labels associated with the span.
+   * Collection of labels associated with the span. Label keys must be less than
+   * 128 bytes. Label values must be less than 16 kilobytes (10MB for
+   * `/stacktrace` values).
+   * Some predefined label keys exist, or you may create your own. When creating
+   * your own, we recommend the following formats:
+   * * `/category/product/key` for agents of well-known products (e.g.
+   *   `/db/mongodb/read_size`).
+   * * `short_host/path/key` for domain-specific keys (e.g.
+   *   `foo.com/myproduct/bar`)
+   * Predefined labels include:
+   * *   `/agent`
+   * *   `/component`
+   * *   `/error/message`
+   * *   `/error/name`
+   * *   `/http/client_city`
+   * *   `/http/client_country`
+   * *   `/http/client_protocol`
+   * *   `/http/client_region`
+   * *   `/http/host`
+   * *   `/http/method`
+   * *   `/http/redirected_url`
+   * *   `/http/request/size`
+   * *   `/http/response/size`
+   * *   `/http/status_code`
+   * *   `/http/url`
+   * *   `/http/user_agent`
+   * *   `/pid`
+   * *   `/stacktrace`
+   * *   `/tid`
    * </pre>
    *
    * <code>map&lt;string, string&gt; labels = 7;</code>
@@ -150,7 +208,35 @@ public interface TraceSpanOrBuilder extends
   getLabels();
   /**
    * <pre>
-   * Collection of labels associated with the span.
+   * Collection of labels associated with the span. Label keys must be less than
+   * 128 bytes. Label values must be less than 16 kilobytes (10MB for
+   * `/stacktrace` values).
+   * Some predefined label keys exist, or you may create your own. When creating
+   * your own, we recommend the following formats:
+   * * `/category/product/key` for agents of well-known products (e.g.
+   *   `/db/mongodb/read_size`).
+   * * `short_host/path/key` for domain-specific keys (e.g.
+   *   `foo.com/myproduct/bar`)
+   * Predefined labels include:
+   * *   `/agent`
+   * *   `/component`
+   * *   `/error/message`
+   * *   `/error/name`
+   * *   `/http/client_city`
+   * *   `/http/client_country`
+   * *   `/http/client_protocol`
+   * *   `/http/client_region`
+   * *   `/http/host`
+   * *   `/http/method`
+   * *   `/http/redirected_url`
+   * *   `/http/request/size`
+   * *   `/http/response/size`
+   * *   `/http/status_code`
+   * *   `/http/url`
+   * *   `/http/user_agent`
+   * *   `/pid`
+   * *   `/stacktrace`
+   * *   `/tid`
    * </pre>
    *
    * <code>map&lt;string, string&gt; labels = 7;</code>
@@ -159,7 +245,35 @@ public interface TraceSpanOrBuilder extends
   getLabelsMap();
   /**
    * <pre>
-   * Collection of labels associated with the span.
+   * Collection of labels associated with the span. Label keys must be less than
+   * 128 bytes. Label values must be less than 16 kilobytes (10MB for
+   * `/stacktrace` values).
+   * Some predefined label keys exist, or you may create your own. When creating
+   * your own, we recommend the following formats:
+   * * `/category/product/key` for agents of well-known products (e.g.
+   *   `/db/mongodb/read_size`).
+   * * `short_host/path/key` for domain-specific keys (e.g.
+   *   `foo.com/myproduct/bar`)
+   * Predefined labels include:
+   * *   `/agent`
+   * *   `/component`
+   * *   `/error/message`
+   * *   `/error/name`
+   * *   `/http/client_city`
+   * *   `/http/client_country`
+   * *   `/http/client_protocol`
+   * *   `/http/client_region`
+   * *   `/http/host`
+   * *   `/http/method`
+   * *   `/http/redirected_url`
+   * *   `/http/request/size`
+   * *   `/http/response/size`
+   * *   `/http/status_code`
+   * *   `/http/url`
+   * *   `/http/user_agent`
+   * *   `/pid`
+   * *   `/stacktrace`
+   * *   `/tid`
    * </pre>
    *
    * <code>map&lt;string, string&gt; labels = 7;</code>
@@ -170,7 +284,35 @@ public interface TraceSpanOrBuilder extends
       java.lang.String defaultValue);
   /**
    * <pre>
-   * Collection of labels associated with the span.
+   * Collection of labels associated with the span. Label keys must be less than
+   * 128 bytes. Label values must be less than 16 kilobytes (10MB for
+   * `/stacktrace` values).
+   * Some predefined label keys exist, or you may create your own. When creating
+   * your own, we recommend the following formats:
+   * * `/category/product/key` for agents of well-known products (e.g.
+   *   `/db/mongodb/read_size`).
+   * * `short_host/path/key` for domain-specific keys (e.g.
+   *   `foo.com/myproduct/bar`)
+   * Predefined labels include:
+   * *   `/agent`
+   * *   `/component`
+   * *   `/error/message`
+   * *   `/error/name`
+   * *   `/http/client_city`
+   * *   `/http/client_country`
+   * *   `/http/client_protocol`
+   * *   `/http/client_region`
+   * *   `/http/host`
+   * *   `/http/method`
+   * *   `/http/redirected_url`
+   * *   `/http/request/size`
+   * *   `/http/response/size`
+   * *   `/http/status_code`
+   * *   `/http/url`
+   * *   `/http/user_agent`
+   * *   `/pid`
+   * *   `/stacktrace`
+   * *   `/tid`
    * </pre>
    *
    * <code>map&lt;string, string&gt; labels = 7;</code>

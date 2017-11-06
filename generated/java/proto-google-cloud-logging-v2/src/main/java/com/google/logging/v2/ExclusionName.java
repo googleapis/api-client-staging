@@ -52,17 +52,25 @@ public class ExclusionName implements ResourceName {
     exclusion = Preconditions.checkNotNull(builder.getExclusion());
   }
 
-  public static ExclusionName create(String project, String exclusion) {
+  public static ExclusionName of(String project, String exclusion) {
     return newBuilder()
       .setProject(project)
       .setExclusion(exclusion)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static ExclusionName create(String project, String exclusion) {
+    return of(project, exclusion);
+  }
+
   public static ExclusionName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "ExclusionName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("exclusion"));
+    return of(matchMap.get("project"), matchMap.get("exclusion"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

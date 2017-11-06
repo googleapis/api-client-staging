@@ -52,17 +52,25 @@ public class DocumentRootName implements ResourceName {
     database = Preconditions.checkNotNull(builder.getDatabase());
   }
 
-  public static DocumentRootName create(String project, String database) {
+  public static DocumentRootName of(String project, String database) {
     return newBuilder()
       .setProject(project)
       .setDatabase(database)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static DocumentRootName create(String project, String database) {
+    return of(project, database);
+  }
+
   public static DocumentRootName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "DocumentRootName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("database"));
+    return of(matchMap.get("project"), matchMap.get("database"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

@@ -52,17 +52,25 @@ public class FolderLogName implements ResourceName {
     log = Preconditions.checkNotNull(builder.getLog());
   }
 
-  public static FolderLogName create(String folder, String log) {
+  public static FolderLogName of(String folder, String log) {
     return newBuilder()
       .setFolder(folder)
       .setLog(log)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static FolderLogName create(String folder, String log) {
+    return of(folder, log);
+  }
+
   public static FolderLogName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderLogName.parse: formattedString not in valid format");
-    return create(matchMap.get("folder"), matchMap.get("log"));
+    return of(matchMap.get("folder"), matchMap.get("log"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

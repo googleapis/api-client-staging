@@ -52,17 +52,25 @@ public class LogName implements ResourceName {
     log = Preconditions.checkNotNull(builder.getLog());
   }
 
-  public static LogName create(String project, String log) {
+  public static LogName of(String project, String log) {
     return newBuilder()
       .setProject(project)
       .setLog(log)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static LogName create(String project, String log) {
+    return of(project, log);
+  }
+
   public static LogName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "LogName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("log"));
+    return of(matchMap.get("project"), matchMap.get("log"));
   }
 
   public static boolean isParsableFrom(String formattedString) {

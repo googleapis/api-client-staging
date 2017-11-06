@@ -52,17 +52,25 @@ public class SinkName implements ResourceName {
     sink = Preconditions.checkNotNull(builder.getSink());
   }
 
-  public static SinkName create(String project, String sink) {
+  public static SinkName of(String project, String sink) {
     return newBuilder()
       .setProject(project)
       .setSink(sink)
       .build();
   }
 
+  /**
+   * @deprecated Use {@link #of(String, String)} instead.
+   */
+  @Deprecated
+  public static SinkName create(String project, String sink) {
+    return of(project, sink);
+  }
+
   public static SinkName parse(String formattedString) {
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "SinkName.parse: formattedString not in valid format");
-    return create(matchMap.get("project"), matchMap.get("sink"));
+    return of(matchMap.get("project"), matchMap.get("sink"));
   }
 
   public static boolean isParsableFrom(String formattedString) {
