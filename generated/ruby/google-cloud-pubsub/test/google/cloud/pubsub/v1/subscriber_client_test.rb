@@ -20,7 +20,7 @@ require "google/gax"
 require "google/cloud/pubsub"
 require "google/cloud/pubsub/v1/subscriber_client"
 require "google/iam/v1/iam_policy_services_pb"
-require "google/pubsub/v1/pubsub_services_pb"
+require "pubsub_services_pb"
 
 class CustomTestError < StandardError; end
 
@@ -53,7 +53,7 @@ class MockGrpcClientStub
   end
 end
 
-class MockCredentialsClass < Google::Cloud::Pubsub::Credentials
+class MockSubscriberCredentials < Google::Cloud::Pubsub::Credentials
   def initialize(method_name)
     @method_name = method_name
   end
@@ -99,7 +99,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:create_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_subscription")
+      mock_credentials = MockSubscriberCredentials.new("create_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -129,7 +129,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:create_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_subscription")
+      mock_credentials = MockSubscriberCredentials.new("create_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -176,7 +176,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:get_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_subscription")
+      mock_credentials = MockSubscriberCredentials.new("get_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -204,7 +204,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:get_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_subscription")
+      mock_credentials = MockSubscriberCredentials.new("get_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -253,7 +253,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:update_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_subscription")
+      mock_credentials = MockSubscriberCredentials.new("update_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -283,7 +283,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:update_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_subscription")
+      mock_credentials = MockSubscriberCredentials.new("update_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -324,7 +324,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:list_subscriptions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_subscriptions")
+      mock_credentials = MockSubscriberCredentials.new("list_subscriptions")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -355,7 +355,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:list_subscriptions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_subscriptions")
+      mock_credentials = MockSubscriberCredentials.new("list_subscriptions")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -389,7 +389,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:delete_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_subscription")
+      mock_credentials = MockSubscriberCredentials.new("delete_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -417,7 +417,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:delete_subscription, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_subscription")
+      mock_credentials = MockSubscriberCredentials.new("delete_subscription")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -455,7 +455,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:modify_ack_deadline, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("modify_ack_deadline")
+      mock_credentials = MockSubscriberCredentials.new("modify_ack_deadline")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -491,7 +491,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:modify_ack_deadline, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("modify_ack_deadline")
+      mock_credentials = MockSubscriberCredentials.new("modify_ack_deadline")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -531,7 +531,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:acknowledge, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("acknowledge")
+      mock_credentials = MockSubscriberCredentials.new("acknowledge")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -561,7 +561,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:acknowledge, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("acknowledge")
+      mock_credentials = MockSubscriberCredentials.new("acknowledge")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -601,7 +601,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:pull, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("pull")
+      mock_credentials = MockSubscriberCredentials.new("pull")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -631,7 +631,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:pull, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("pull")
+      mock_credentials = MockSubscriberCredentials.new("pull")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -675,7 +675,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:streaming_pull, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("streaming_pull")
+      mock_credentials = MockSubscriberCredentials.new("streaming_pull")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -708,7 +708,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:streaming_pull, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("streaming_pull")
+      mock_credentials = MockSubscriberCredentials.new("streaming_pull")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -744,7 +744,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:modify_push_config, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("modify_push_config")
+      mock_credentials = MockSubscriberCredentials.new("modify_push_config")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -774,7 +774,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:modify_push_config, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("modify_push_config")
+      mock_credentials = MockSubscriberCredentials.new("modify_push_config")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -815,7 +815,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:list_snapshots, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_snapshots")
+      mock_credentials = MockSubscriberCredentials.new("list_snapshots")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -846,7 +846,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:list_snapshots, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("list_snapshots")
+      mock_credentials = MockSubscriberCredentials.new("list_snapshots")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -888,7 +888,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:create_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("create_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -918,7 +918,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:create_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("create_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("create_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -960,7 +960,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:update_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("update_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -990,7 +990,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:update_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("update_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("update_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1024,7 +1024,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:delete_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("delete_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1052,7 +1052,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:delete_snapshot, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("delete_snapshot")
+      mock_credentials = MockSubscriberCredentials.new("delete_snapshot")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1090,7 +1090,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:seek, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("seek")
+      mock_credentials = MockSubscriberCredentials.new("seek")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1118,7 +1118,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:seek, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("seek")
+      mock_credentials = MockSubscriberCredentials.new("seek")
 
       Google::Pubsub::V1::Subscriber::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1160,7 +1160,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:set_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("set_iam_policy")
+      mock_credentials = MockSubscriberCredentials.new("set_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1190,7 +1190,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:set_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("set_iam_policy")
+      mock_credentials = MockSubscriberCredentials.new("set_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1230,7 +1230,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:get_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_iam_policy")
+      mock_credentials = MockSubscriberCredentials.new("get_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1258,7 +1258,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:get_iam_policy, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("get_iam_policy")
+      mock_credentials = MockSubscriberCredentials.new("get_iam_policy")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1298,7 +1298,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:test_iam_permissions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("test_iam_permissions")
+      mock_credentials = MockSubscriberCredentials.new("test_iam_permissions")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do
@@ -1328,7 +1328,7 @@ describe Google::Cloud::Pubsub::V1::SubscriberClient do
       mock_stub = MockGrpcClientStub.new(:test_iam_permissions, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("test_iam_permissions")
+      mock_credentials = MockSubscriberCredentials.new("test_iam_permissions")
 
       Google::Iam::V1::IAMPolicy::Stub.stub(:new, mock_stub) do
         Google::Cloud::Pubsub::Credentials.stub(:default, mock_credentials) do

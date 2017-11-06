@@ -14,6 +14,19 @@
 
 module Google
   module Pubsub
+    ##
+    # # Google Cloud Pub/Sub API Contents
+    #
+    # | Class | Description |
+    # | ----- | ----------- |
+    # | [PublisherClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
+    # | [SubscriberClient][] | Provides reliable, many-to-many, asynchronous messaging between applications. |
+    # | [Data Types][] | Data types for Google::Cloud::Pubsub::V1 |
+    #
+    # [PublisherClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/publisherclient
+    # [SubscriberClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/subscriberclient
+    # [Data Types]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-pubsub/latest/google/pubsub/v1/datatypes
+    #
     module V1
       # A topic resource.
       # @!attribute [rw] name
