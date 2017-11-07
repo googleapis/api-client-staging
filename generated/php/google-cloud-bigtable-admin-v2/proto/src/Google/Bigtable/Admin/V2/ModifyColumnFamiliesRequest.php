@@ -9,34 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies][google.bigtable.admin.v2.BigtableTableAdmin.ModifyColumnFamilies]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest</code>
  */
 class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
      */
     private $modifications;
 
@@ -46,13 +40,12 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -60,29 +53,30 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table whose families should be modified.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getModifications()
     {
@@ -90,19 +84,21 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Modifications to be atomically applied to the specified table's families.
      * Entries are applied in order, meaning that earlier modifications can be
      * masked by later ones (in the case of repeated updates to the same family,
      * for example).
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2;</code>
+     * @param \Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setModifications(&$var)
+    public function setModifications($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification::class);
         $this->modifications = $arr;
+
+        return $this;
     }
 
 }

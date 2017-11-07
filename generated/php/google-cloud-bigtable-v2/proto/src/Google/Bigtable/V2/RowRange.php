@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies a contiguous range of rows.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.RowRange</code>
+ * Generated from protobuf message <code>google.bigtable.v2.RowRange</code>
  */
 class RowRange extends \Google\Protobuf\Internal\Message
 {
@@ -26,11 +24,10 @@ class RowRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_key_closed = 1;</code>
+     * Generated from protobuf field <code>bytes start_key_closed = 1;</code>
+     * @return string
      */
     public function getStartKeyClosed()
     {
@@ -38,24 +35,25 @@ class RowRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_key_closed = 1;</code>
+     * Generated from protobuf field <code>bytes start_key_closed = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartKeyClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_key_open = 2;</code>
+     * Generated from protobuf field <code>bytes start_key_open = 2;</code>
+     * @return string
      */
     public function getStartKeyOpen()
     {
@@ -63,24 +61,25 @@ class RowRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_key_open = 2;</code>
+     * Generated from protobuf field <code>bytes start_key_open = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartKeyOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_key_open = 3;</code>
+     * Generated from protobuf field <code>bytes end_key_open = 3;</code>
+     * @return string
      */
     public function getEndKeyOpen()
     {
@@ -88,24 +87,25 @@ class RowRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_key_open = 3;</code>
+     * Generated from protobuf field <code>bytes end_key_open = 3;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndKeyOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_key_closed = 4;</code>
+     * Generated from protobuf field <code>bytes end_key_closed = 4;</code>
+     * @return string
      */
     public function getEndKeyClosed()
     {
@@ -113,23 +113,31 @@ class RowRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_key_closed = 4;</code>
+     * Generated from protobuf field <code>bytes end_key_closed = 4;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndKeyClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStartKey()
     {
         return $this->whichOneof("start_key");
     }
 
+    /**
+     * @return string
+     */
     public function getEndKey()
     {
         return $this->whichOneof("end_key");

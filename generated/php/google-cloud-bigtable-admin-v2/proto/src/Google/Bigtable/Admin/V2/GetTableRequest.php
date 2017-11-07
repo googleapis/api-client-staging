@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.GetTable][google.bigtable.admin.v2.BigtableTableAdmin.GetTable]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.GetTableRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.GetTableRequest</code>
  */
 class GetTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the requested table.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The view to be applied to the returned table's fields.
      * Defaults to `SCHEMA_VIEW` if unspecified.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      */
     private $view = 0;
 
@@ -44,13 +38,12 @@ class GetTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the requested table.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -58,27 +51,28 @@ class GetTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the requested table.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The view to be applied to the returned table's fields.
      * Defaults to `SCHEMA_VIEW` if unspecified.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * @return int
      */
     public function getView()
     {
@@ -86,17 +80,19 @@ class GetTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The view to be applied to the returned table's fields.
      * Defaults to `SCHEMA_VIEW` if unspecified.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * @param int $var
+     * @return $this
      */
     public function setView($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Table_View::class);
         $this->view = $var;
+
+        return $this;
     }
 
 }

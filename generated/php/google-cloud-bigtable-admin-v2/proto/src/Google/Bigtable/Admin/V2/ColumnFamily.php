@@ -9,24 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A set of columns within a table which share a common configuration.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ColumnFamily</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ColumnFamily</code>
  */
 class ColumnFamily extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Garbage collection rule specified as a protobuf.
      * Must serialize to at most 500 bytes.
      * NOTE: Garbage collection executes opportunistically in the background, and
      * so it's possible for reads to return a cell even if it matches the active
      * GC expression for its family.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
      */
     private $gc_rule = null;
 
@@ -36,15 +32,14 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Garbage collection rule specified as a protobuf.
      * Must serialize to at most 500 bytes.
      * NOTE: Garbage collection executes opportunistically in the background, and
      * so it's possible for reads to return a cell even if it matches the active
      * GC expression for its family.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
+     * @return \Google\Bigtable\Admin\V2\GcRule
      */
     public function getGcRule()
     {
@@ -52,20 +47,22 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Garbage collection rule specified as a protobuf.
      * Must serialize to at most 500 bytes.
      * NOTE: Garbage collection executes opportunistically in the background, and
      * so it's possible for reads to return a cell even if it matches the active
      * GC expression for its family.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
+     * @param \Google\Bigtable\Admin\V2\GcRule $var
+     * @return $this
      */
-    public function setGcRule(&$var)
+    public function setGcRule($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\GcRule::class);
         $this->gc_rule = $var;
+
+        return $this;
     }
 
 }

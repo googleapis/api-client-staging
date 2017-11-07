@@ -9,20 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for Bigtable.ReadRows.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.ReadRowsResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.ReadRowsResponse</code>
  */
 class ReadRowsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
      */
     private $chunks;
     /**
-     * <pre>
      * Optionally the server might return the row key of the last row it
      * has scanned.  The client can use this to construct a more
      * efficient retry request if needed: any row keys or portions of
@@ -30,9 +27,8 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * This is primarily useful for cases where the server has read a
      * lot of data that was filtered out since the last committed row
      * key, allowing the client to skip that work on a retry.
-     * </pre>
      *
-     * <code>bytes last_scanned_row_key = 2;</code>
+     * Generated from protobuf field <code>bytes last_scanned_row_key = 2;</code>
      */
     private $last_scanned_row_key = '';
 
@@ -42,7 +38,8 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getChunks()
     {
@@ -50,16 +47,19 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
+     * @param \Google\Bigtable\V2\ReadRowsResponse_CellChunk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setChunks(&$var)
+    public function setChunks($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\ReadRowsResponse_CellChunk::class);
         $this->chunks = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Optionally the server might return the row key of the last row it
      * has scanned.  The client can use this to construct a more
      * efficient retry request if needed: any row keys or portions of
@@ -67,9 +67,9 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * This is primarily useful for cases where the server has read a
      * lot of data that was filtered out since the last committed row
      * key, allowing the client to skip that work on a retry.
-     * </pre>
      *
-     * <code>bytes last_scanned_row_key = 2;</code>
+     * Generated from protobuf field <code>bytes last_scanned_row_key = 2;</code>
+     * @return string
      */
     public function getLastScannedRowKey()
     {
@@ -77,7 +77,6 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optionally the server might return the row key of the last row it
      * has scanned.  The client can use this to construct a more
      * efficient retry request if needed: any row keys or portions of
@@ -85,14 +84,17 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * This is primarily useful for cases where the server has read a
      * lot of data that was filtered out since the last committed row
      * key, allowing the client to skip that work on a retry.
-     * </pre>
      *
-     * <code>bytes last_scanned_row_key = 2;</code>
+     * Generated from protobuf field <code>bytes last_scanned_row_key = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setLastScannedRowKey($var)
     {
         GPBUtil::checkString($var, False);
         $this->last_scanned_row_key = $var;
+
+        return $this;
     }
 
 }

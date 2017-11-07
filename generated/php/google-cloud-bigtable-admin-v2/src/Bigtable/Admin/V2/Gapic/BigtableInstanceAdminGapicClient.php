@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,11 @@ namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
 use Google\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
 use Google\Bigtable\Admin\V2\Cluster;
+use Google\Bigtable\Admin\V2\CreateClusterMetadata;
 use Google\Bigtable\Admin\V2\CreateClusterRequest;
+use Google\Bigtable\Admin\V2\CreateInstanceMetadata;
 use Google\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Bigtable\Admin\V2\CreateInstanceRequest_ClustersEntry as ClustersEntry;
 use Google\Bigtable\Admin\V2\DeleteClusterRequest;
 use Google\Bigtable\Admin\V2\DeleteInstanceRequest;
 use Google\Bigtable\Admin\V2\GetClusterRequest;
@@ -44,10 +47,12 @@ use Google\Bigtable\Admin\V2\Instance_Type as Type;
 use Google\Bigtable\Admin\V2\ListClustersRequest;
 use Google\Bigtable\Admin\V2\ListInstancesRequest;
 use Google\Bigtable\Admin\V2\StorageType;
+use Google\Bigtable\Admin\V2\UpdateClusterMetadata;
 use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
@@ -108,7 +113,6 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class BigtableInstanceAdminGapicClient
@@ -194,7 +198,6 @@ class BigtableInstanceAdminGapicClient
                 'location' => self::getLocationNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
 
@@ -216,17 +219,17 @@ class BigtableInstanceAdminGapicClient
         ];
     }
 
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
+              self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -235,7 +238,6 @@ class BigtableInstanceAdminGapicClient
      * a project resource.
      *
      * @param string $project
-     *
      * @return string The formatted project resource.
      * @experimental
      */
@@ -252,7 +254,6 @@ class BigtableInstanceAdminGapicClient
      *
      * @param string $project
      * @param string $instance
-     *
      * @return string The formatted instance resource.
      * @experimental
      */
@@ -271,7 +272,6 @@ class BigtableInstanceAdminGapicClient
      * @param string $project
      * @param string $instance
      * @param string $cluster
-     *
      * @return string The formatted cluster resource.
      * @experimental
      */
@@ -290,7 +290,6 @@ class BigtableInstanceAdminGapicClient
      *
      * @param string $project
      * @param string $location
-     *
      * @return string The formatted location resource.
      * @experimental
      */
@@ -309,7 +308,7 @@ class BigtableInstanceAdminGapicClient
      * - project: projects/{project}
      * - instance: projects/{project}/instances/{instance}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
-     * - location: projects/{project}/locations/{location}.
+     * - location: projects/{project}/locations/{location}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -317,10 +316,8 @@ class BigtableInstanceAdminGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -332,7 +329,6 @@ class BigtableInstanceAdminGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -345,6 +341,7 @@ class BigtableInstanceAdminGapicClient
         }
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
+
 
     /**
      * Return an OperationsClient object with the same endpoint as $this.
@@ -365,14 +362,13 @@ class BigtableInstanceAdminGapicClient
      * final response.
      *
      * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
+     * @param string $methodName The name of the method used to start the operation
      * @return \Google\GAX\OperationResponse
      * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $lroDescriptors = self::getLongRunningDescriptors();
+        $lroDescriptors = BigtableInstanceAdminGapicClient::getLongRunningDescriptors();
         if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
             $options = $lroDescriptors[$methodName];
         } else {
@@ -380,7 +376,6 @@ class BigtableInstanceAdminGapicClient
         }
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
-
         return $operation;
     }
 
@@ -388,7 +383,7 @@ class BigtableInstanceAdminGapicClient
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtableadmin.googleapis.com'.
@@ -444,7 +439,7 @@ class BigtableInstanceAdminGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/bigtable_instance_admin_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -486,11 +481,9 @@ class BigtableInstanceAdminGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.bigtable.admin.v2.BigtableInstanceAdmin',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
+                CallSettings::load('google.bigtable.admin.v2.BigtableInstanceAdmin',
+                                   $clientConfig,
+                                   $options['retryingOverride']);
 
         $this->scopes = $options['scopes'];
 
@@ -551,21 +544,20 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string   $parent       The unique name of the project in which to create the new instance.
-     *                               Values are of the form `projects/<project>`.
-     * @param string   $instanceId   The ID to be used when referring to the new instance within its project,
-     *                               e.g., just `myinstance` rather than
-     *                               `projects/myproject/instances/myinstance`.
-     * @param Instance $instance     The instance to create.
-     *                               Fields marked `OutputOnly` must be left blank.
-     * @param array    $clusters     The clusters to be created within the instance, mapped by desired
-     *                               cluster ID, e.g., just `mycluster` rather than
-     *                               `projects/myproject/instances/myinstance/clusters/mycluster`.
-     *                               Fields marked `OutputOnly` must be left blank.
-     *                               Currently exactly one cluster must be specified.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
+     * @param string $parent The unique name of the project in which to create the new instance.
+     * Values are of the form `projects/<project>`.
+     * @param string $instanceId The ID to be used when referring to the new instance within its project,
+     * e.g., just `myinstance` rather than
+     * `projects/myproject/instances/myinstance`.
+     * @param Instance $instance The instance to create.
+     * Fields marked `OutputOnly` must be left blank.
+     * @param array $clusters The clusters to be created within the instance, mapped by desired
+     * cluster ID, e.g., just `mycluster` rather than
+     * `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * Fields marked `OutputOnly` must be left blank.
+     * Currently exactly one cluster must be specified.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -594,11 +586,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'CreateInstance',
-            $mergedSettings,
-            $this->descriptors['createInstance']
-        );
+            $this->bigtableInstanceAdminStub, 'CreateInstance', $mergedSettings, $this->descriptors['createInstance']);
 
         return $callable(
             $request,
@@ -620,11 +608,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested instance. Values are of the form
-     *                             `projects/<project>/instances/<instance>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the requested instance. Values are of the form
+     * `projects/<project>/instances/<instance>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -650,11 +637,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'GetInstance',
-            $mergedSettings,
-            $this->descriptors['getInstance']
-        );
+            $this->bigtableInstanceAdminStub, 'GetInstance', $mergedSettings, $this->descriptors['getInstance']);
 
         return $callable(
             $request,
@@ -676,11 +659,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the project for which a list of instances is requested.
-     *                             Values are of the form `projects/<project>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The unique name of the project for which a list of instances is requested.
+     * Values are of the form `projects/<project>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $pageToken
      *          The value of `next_page_token` returned by a previous call.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -711,11 +693,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'ListInstances',
-            $mergedSettings,
-            $this->descriptors['listInstances']
-        );
+            $this->bigtableInstanceAdminStub, 'ListInstances', $mergedSettings, $this->descriptors['listInstances']);
 
         return $callable(
             $request,
@@ -739,17 +717,16 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         (`OutputOnly`)
-     *                             The unique name of the instance. Values are of the form
-     *                             `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
-     * @param string $displayName  The descriptive name for this instance as it appears in UIs.
-     *                             Can be changed at any time, but should be kept globally unique
-     *                             to avoid confusion.
-     * @param int    $type         The type of the instance. Defaults to `PRODUCTION`.
-     *                             For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Instance_Type}
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name (`OutputOnly`)
+     * The unique name of the instance. Values are of the form
+     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * @param string $displayName The descriptive name for this instance as it appears in UIs.
+     * Can be changed at any time, but should be kept globally unique
+     * to avoid confusion.
+     * @param int $type The type of the instance. Defaults to `PRODUCTION`.
+     * For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\Instance_Type}
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the instance.
@@ -784,11 +761,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'UpdateInstance',
-            $mergedSettings,
-            $this->descriptors['updateInstance']
-        );
+            $this->bigtableInstanceAdminStub, 'UpdateInstance', $mergedSettings, $this->descriptors['updateInstance']);
 
         return $callable(
             $request,
@@ -810,11 +783,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the instance to be deleted.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the instance to be deleted.
+     * Values are of the form `projects/<project>/instances/<instance>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -838,11 +810,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'DeleteInstance',
-            $mergedSettings,
-            $this->descriptors['deleteInstance']
-        );
+            $this->bigtableInstanceAdminStub, 'DeleteInstance', $mergedSettings, $this->descriptors['deleteInstance']);
 
         return $callable(
             $request,
@@ -891,17 +859,16 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string  $parent       The unique name of the instance in which to create the new cluster.
-     *                              Values are of the form
-     *                              `projects/<project>/instances/<instance>`.
-     * @param string  $clusterId    The ID to be used when referring to the new cluster within its instance,
-     *                              e.g., just `mycluster` rather than
-     *                              `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * @param Cluster $cluster      The cluster to be created.
-     *                              Fields marked `OutputOnly` must be left blank.
-     * @param array   $optionalArgs {
-     *                              Optional.
-     *
+     * @param string $parent The unique name of the instance in which to create the new cluster.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>`.
+     * @param string $clusterId The ID to be used when referring to the new cluster within its instance,
+     * e.g., just `mycluster` rather than
+     * `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * @param Cluster $cluster The cluster to be created.
+     * Fields marked `OutputOnly` must be left blank.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -929,11 +896,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'CreateCluster',
-            $mergedSettings,
-            $this->descriptors['createCluster']
-        );
+            $this->bigtableInstanceAdminStub, 'CreateCluster', $mergedSettings, $this->descriptors['createCluster']);
 
         return $callable(
             $request,
@@ -955,11 +918,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested cluster. Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the requested cluster. Values are of the form
+     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -985,11 +947,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'GetCluster',
-            $mergedSettings,
-            $this->descriptors['getCluster']
-        );
+            $this->bigtableInstanceAdminStub, 'GetCluster', $mergedSettings, $this->descriptors['getCluster']);
 
         return $callable(
             $request,
@@ -1011,13 +969,12 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance for which a list of clusters is requested.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     *                             Use `<instance> = '-'` to list Clusters for all Instances in a project,
-     *                             e.g., `projects/myproject/instances/-`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The unique name of the instance for which a list of clusters is requested.
+     * Values are of the form `projects/<project>/instances/<instance>`.
+     * Use `<instance> = '-'` to list Clusters for all Instances in a project,
+     * e.g., `projects/myproject/instances/-`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $pageToken
      *          The value of `next_page_token` returned by a previous call.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
@@ -1048,11 +1005,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'ListClusters',
-            $mergedSettings,
-            $this->descriptors['listClusters']
-        );
+            $this->bigtableInstanceAdminStub, 'ListClusters', $mergedSettings, $this->descriptors['listClusters']);
 
         return $callable(
             $request,
@@ -1102,23 +1055,22 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name               (`OutputOnly`)
-     *                                   The unique name of the cluster. Values are of the form
-     *                                   `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
-     * @param string $location           (`CreationOnly`)
-     *                                   The location where this cluster's nodes and storage reside. For best
-     *                                   performance, clients should be located as close as possible to this cluster.
-     *                                   Currently only zones are supported, so values should be of the form
-     *                                   `projects/<project>/locations/<zone>`.
-     * @param int    $serveNodes         The number of nodes allocated to this cluster. More nodes enable higher
-     *                                   throughput and more consistent performance.
-     * @param int    $defaultStorageType (`CreationOnly`)
-     *                                   The type of storage used by this cluster to serve its
-     *                                   parent instance's tables, unless explicitly overridden.
-     *                                   For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\StorageType}
-     * @param array  $optionalArgs       {
-     *                                   Optional.
-     *
+     * @param string $name (`OutputOnly`)
+     * The unique name of the cluster. Values are of the form
+     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
+     * @param string $location (`CreationOnly`)
+     * The location where this cluster's nodes and storage reside. For best
+     * performance, clients should be located as close as possible to this cluster.
+     * Currently only zones are supported, so values should be of the form
+     * `projects/<project>/locations/<zone>`.
+     * @param int $serveNodes The number of nodes allocated to this cluster. More nodes enable higher
+     * throughput and more consistent performance.
+     * @param int $defaultStorageType (`CreationOnly`)
+     * The type of storage used by this cluster to serve its
+     * parent instance's tables, unless explicitly overridden.
+     * For allowed values, use constants defined on {@see \Google\Bigtable\Admin\V2\StorageType}
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $state
      *          (`OutputOnly`)
      *          The current state of the cluster.
@@ -1154,11 +1106,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'UpdateCluster',
-            $mergedSettings,
-            $this->descriptors['updateCluster']
-        );
+            $this->bigtableInstanceAdminStub, 'UpdateCluster', $mergedSettings, $this->descriptors['updateCluster']);
 
         return $callable(
             $request,
@@ -1180,11 +1128,10 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the cluster to be deleted. Values are of the form
-     *                             `projects/<project>/instances/<instance>/clusters/<cluster>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the cluster to be deleted. Values are of the form
+     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -1208,11 +1155,7 @@ class BigtableInstanceAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableInstanceAdminStub,
-            'DeleteCluster',
-            $mergedSettings,
-            $this->descriptors['deleteCluster']
-        );
+            $this->bigtableInstanceAdminStub, 'DeleteCluster', $mergedSettings, $this->descriptors['deleteCluster']);
 
         return $callable(
             $request,
@@ -1223,7 +1166,6 @@ class BigtableInstanceAdminGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

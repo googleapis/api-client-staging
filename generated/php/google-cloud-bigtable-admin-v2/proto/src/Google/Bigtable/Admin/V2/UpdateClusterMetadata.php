@@ -9,36 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The metadata for the Operation returned by UpdateCluster.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.UpdateClusterMetadata</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.UpdateClusterMetadata</code>
  */
 class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The request that prompted the initiation of this UpdateCluster operation.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
      */
     private $original_request = null;
     /**
-     * <pre>
      * The time at which the original request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp request_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
      */
     private $request_time = null;
     /**
-     * <pre>
      * The time at which the operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp finish_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
      */
     private $finish_time = null;
 
@@ -48,11 +40,10 @@ class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The request that prompted the initiation of this UpdateCluster operation.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
+     * @return \Google\Bigtable\Admin\V2\Cluster
      */
     public function getOriginalRequest()
     {
@@ -60,24 +51,25 @@ class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The request that prompted the initiation of this UpdateCluster operation.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster original_request = 1;</code>
+     * @param \Google\Bigtable\Admin\V2\Cluster $var
+     * @return $this
      */
-    public function setOriginalRequest(&$var)
+    public function setOriginalRequest($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\Cluster::class);
         $this->original_request = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The time at which the original request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp request_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
+     * @return \Google\Protobuf\Timestamp
      */
     public function getRequestTime()
     {
@@ -85,24 +77,25 @@ class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which the original request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp request_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
      */
-    public function setRequestTime(&$var)
+    public function setRequestTime($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->request_time = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The time at which the operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp finish_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
+     * @return \Google\Protobuf\Timestamp
      */
     public function getFinishTime()
     {
@@ -110,16 +103,18 @@ class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which the operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp finish_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
      */
-    public function setFinishTime(&$var)
+    public function setFinishTime($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->finish_time = $var;
+
+        return $this;
     }
 
 }

@@ -9,52 +9,42 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A collection of Bigtable [Tables][google.bigtable.admin.v2.Table] and
  * the resources that serve them.
  * All tables in an instance are served from a single
  * [Cluster][google.bigtable.admin.v2.Cluster].
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.Instance</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.Instance</code>
  */
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][a-z0-9&#92;&#92;-]+[a-z0-9]`.
-     * </pre>
+     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the instance.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
      */
     private $state = 0;
     /**
-     * <pre>
      * The type of the instance. Defaults to `PRODUCTION`.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
      */
     private $type = 0;
 
@@ -64,13 +54,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][a-z0-9&#92;&#92;-]+[a-z0-9]`.
-     * </pre>
+     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -78,28 +67,29 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the instance. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][a-z0-9&#92;&#92;-]+[a-z0-9]`.
-     * </pre>
+     * `projects/<project>/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
+     * @return string
      */
     public function getDisplayName()
     {
@@ -107,27 +97,28 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The descriptive name for this instance as it appears in UIs.
      * Can be changed at any time, but should be kept globally unique
      * to avoid confusion.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the instance.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * @return int
      */
     public function getState()
     {
@@ -135,25 +126,26 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the instance.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * @param int $var
+     * @return $this
      */
     public function setState($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Instance_State::class);
         $this->state = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The type of the instance. Defaults to `PRODUCTION`.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
+     * @return int
      */
     public function getType()
     {
@@ -161,16 +153,18 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of the instance. Defaults to `PRODUCTION`.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
+     * @param int $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Instance_Type::class);
         $this->type = $var;
+
+        return $this;
     }
 
 }

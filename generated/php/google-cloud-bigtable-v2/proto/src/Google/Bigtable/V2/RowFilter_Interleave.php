@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A RowFilter which sends each row to each of several component
  * RowFilters and interleaves the results.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.RowFilter.Interleave</code>
+ * Generated from protobuf message <code>google.bigtable.v2.RowFilter.Interleave</code>
  */
 class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The elements of "filters" all process a copy of the input row, and the
      * results are pooled, sorted, and combined into a single output row.
      * If multiple cells are produced with the same column and timestamp,
@@ -43,9 +40,8 @@ class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
      *     5:                      far,blah,5,x   // identical to #6
      *     6:                      far,blah,5,x   // identical to #5
      * All interleaved filters are executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
      */
     private $filters;
 
@@ -55,7 +51,6 @@ class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The elements of "filters" all process a copy of the input row, and the
      * results are pooled, sorted, and combined into a single output row.
      * If multiple cells are produced with the same column and timestamp,
@@ -79,9 +74,9 @@ class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
      *     5:                      far,blah,5,x   // identical to #6
      *     6:                      far,blah,5,x   // identical to #5
      * All interleaved filters are executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFilters()
     {
@@ -89,7 +84,6 @@ class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The elements of "filters" all process a copy of the input row, and the
      * results are pooled, sorted, and combined into a single output row.
      * If multiple cells are produced with the same column and timestamp,
@@ -113,14 +107,17 @@ class RowFilter_Interleave extends \Google\Protobuf\Internal\Message
      *     5:                      far,blah,5,x   // identical to #6
      *     6:                      far,blah,5,x   // identical to #5
      * All interleaved filters are executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * @param \Google\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFilters(&$var)
+    public function setFilters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\RowFilter::class);
         $this->filters = $arr;
+
+        return $this;
     }
 
 }

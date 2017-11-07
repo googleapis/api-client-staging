@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A GcRule which deletes cells matching all of the given rules.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.GcRule.Intersection</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.GcRule.Intersection</code>
  */
 class GcRule_Intersection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Only delete cells which would be deleted by every element of `rules`.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
      */
     private $rules;
 
@@ -32,11 +28,10 @@ class GcRule_Intersection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Only delete cells which would be deleted by every element of `rules`.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRules()
     {
@@ -44,16 +39,18 @@ class GcRule_Intersection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Only delete cells which would be deleted by every element of `rules`.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
+     * @param \Google\Bigtable\Admin\V2\GcRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\GcRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

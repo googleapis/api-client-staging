@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for BigtableService.MutateRows.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.MutateRowsResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.MutateRowsResponse</code>
  */
 class MutateRowsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * One or more results for Entries from the batch request.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
      */
     private $entries;
 
@@ -32,11 +28,10 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * One or more results for Entries from the batch request.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntries()
     {
@@ -44,16 +39,18 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * One or more results for Entries from the batch request.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
+     * @param \Google\Bigtable\V2\MutateRowsResponse_Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setEntries(&$var)
+    public function setEntries($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\MutateRowsResponse_Entry::class);
         $this->entries = $arr;
+
+        return $this;
     }
 
 }

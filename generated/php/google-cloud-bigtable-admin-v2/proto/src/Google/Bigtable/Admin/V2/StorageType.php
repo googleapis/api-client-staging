@@ -5,36 +5,28 @@
 namespace Google\Bigtable\Admin\V2;
 
 /**
- * <pre>
  * Storage media types for persisting Bigtable data.
- * </pre>
  *
- * Protobuf enum <code>google.bigtable.admin.v2.StorageType</code>
+ * Protobuf enum <code>Google\Bigtable\Admin\V2\StorageType</code>
  */
 class StorageType
 {
     /**
-     * <pre>
      * The user did not specify a storage type.
-     * </pre>
      *
-     * <code>STORAGE_TYPE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>STORAGE_TYPE_UNSPECIFIED = 0;</code>
      */
     const STORAGE_TYPE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Flash (SSD) storage should be used.
-     * </pre>
      *
-     * <code>SSD = 1;</code>
+     * Generated from protobuf enum <code>SSD = 1;</code>
      */
     const SSD = 1;
     /**
-     * <pre>
      * Magnetic drive (HDD) storage should be used.
-     * </pre>
      *
-     * <code>HDD = 2;</code>
+     * Generated from protobuf enum <code>HDD = 2;</code>
      */
     const HDD = 2;
 }

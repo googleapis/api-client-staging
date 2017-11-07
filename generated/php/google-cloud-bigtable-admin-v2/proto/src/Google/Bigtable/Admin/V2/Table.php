@@ -9,46 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A collection of user data indexed by row, column, and timestamp.
  * Each table is served using the resources of its parent cluster.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.Table</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.Table</code>
  */
 class Table extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>map&lt;string, .google.bigtable.admin.v2.ColumnFamily&gt; column_families = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
      */
     private $column_families;
     /**
-     * <pre>
      * (`CreationOnly`)
      * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
      */
     private $granularity = 0;
 
@@ -58,14 +50,13 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -73,29 +64,30 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the table. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>map&lt;string, .google.bigtable.admin.v2.ColumnFamily&gt; column_families = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getColumnFamilies()
     {
@@ -103,30 +95,31 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>map&lt;string, .google.bigtable.admin.v2.ColumnFamily&gt; column_families = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.ColumnFamily> column_families = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
      */
-    public function setColumnFamilies(&$var)
+    public function setColumnFamilies($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\ColumnFamily::class);
         $this->column_families = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * @return int
      */
     public function getGranularity()
     {
@@ -134,20 +127,22 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The granularity (e.g. `MILLIS`, `MICROS`) at which timestamps are stored in
      * this table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * @param int $var
+     * @return $this
      */
     public function setGranularity($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Table_TimestampGranularity::class);
         $this->granularity = $var;
+
+        return $this;
     }
 
 }

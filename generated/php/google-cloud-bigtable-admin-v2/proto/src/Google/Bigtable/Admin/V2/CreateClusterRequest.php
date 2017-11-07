@@ -9,41 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for BigtableInstanceAdmin.CreateCluster.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.CreateClusterRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.CreateClusterRequest</code>
  */
 class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * </pre>
      *
-     * <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2;</code>
      */
     private $cluster_id = '';
     /**
-     * <pre>
      * The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
      */
     private $cluster = null;
 
@@ -53,13 +45,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -67,28 +58,29 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance in which to create the new cluster.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setParent($var)
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * </pre>
      *
-     * <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2;</code>
+     * @return string
      */
     public function getClusterId()
     {
@@ -96,27 +88,28 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The ID to be used when referring to the new cluster within its instance,
      * e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * </pre>
      *
-     * <code>string cluster_id = 2;</code>
+     * Generated from protobuf field <code>string cluster_id = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setClusterId($var)
     {
         GPBUtil::checkString($var, True);
         $this->cluster_id = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * @return \Google\Bigtable\Admin\V2\Cluster
      */
     public function getCluster()
     {
@@ -124,17 +117,19 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3;</code>
+     * @param \Google\Bigtable\Admin\V2\Cluster $var
+     * @return $this
      */
-    public function setCluster(&$var)
+    public function setCluster($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\Cluster::class);
         $this->cluster = $var;
+
+        return $this;
     }
 
 }

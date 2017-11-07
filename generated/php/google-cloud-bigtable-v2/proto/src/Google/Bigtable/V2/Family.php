@@ -9,34 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies (some of) the contents of a single row/column family intersection
  * of a table.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Family</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Family</code>
  */
 class Family extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique key which identifies this family within its row. This is the
      * same key that's used to identify the family in, for example, a RowFilter
      * which sets its "family_name_regex_filter" field.
      * Must match `[-_.a-zA-Z0-9]+`, except that AggregatingRowProcessors may
      * produce cells in a sentinel family with an empty name.
      * Must be no greater than 64 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Must not be empty. Sorted in order of increasing "qualifier".
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Column columns = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
      */
     private $columns;
 
@@ -46,16 +40,15 @@ class Family extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique key which identifies this family within its row. This is the
      * same key that's used to identify the family in, for example, a RowFilter
      * which sets its "family_name_regex_filter" field.
      * Must match `[-_.a-zA-Z0-9]+`, except that AggregatingRowProcessors may
      * produce cells in a sentinel family with an empty name.
      * Must be no greater than 64 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -63,29 +56,30 @@ class Family extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique key which identifies this family within its row. This is the
      * same key that's used to identify the family in, for example, a RowFilter
      * which sets its "family_name_regex_filter" field.
      * Must match `[-_.a-zA-Z0-9]+`, except that AggregatingRowProcessors may
      * produce cells in a sentinel family with an empty name.
      * Must be no greater than 64 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Must not be empty. Sorted in order of increasing "qualifier".
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Column columns = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
     {
@@ -93,16 +87,18 @@ class Family extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Must not be empty. Sorted in order of increasing "qualifier".
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Column columns = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
+     * @param \Google\Bigtable\V2\Column[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setColumns(&$var)
+    public function setColumns($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\Column::class);
         $this->columns = $arr;
+
+        return $this;
     }
 
 }

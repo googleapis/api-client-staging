@@ -9,41 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for BigtableInstanceAdmin.ListClusters.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ListClustersResponse</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ListClustersResponse</code>
  */
 class ListClustersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The list of requested clusters.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
      */
     private $clusters;
     /**
-     * <pre>
      * Locations from which Cluster information could not be retrieved,
      * due to an outage or some other transient condition.
      * Clusters from these locations may be missing from `clusters`,
      * or may only have partial information returned.
-     * </pre>
      *
-     * <code>repeated string failed_locations = 2;</code>
+     * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
      */
     private $failed_locations;
     /**
-     * <pre>
      * Set if not all clusters could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
     private $next_page_token = '';
 
@@ -53,11 +45,10 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of requested clusters.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getClusters()
     {
@@ -65,27 +56,28 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of requested clusters.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
+     * @param \Google\Bigtable\Admin\V2\Cluster[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setClusters(&$var)
+    public function setClusters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\Cluster::class);
         $this->clusters = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Locations from which Cluster information could not be retrieved,
      * due to an outage or some other transient condition.
      * Clusters from these locations may be missing from `clusters`,
      * or may only have partial information returned.
-     * </pre>
      *
-     * <code>repeated string failed_locations = 2;</code>
+     * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFailedLocations()
     {
@@ -93,29 +85,30 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Locations from which Cluster information could not be retrieved,
      * due to an outage or some other transient condition.
      * Clusters from these locations may be missing from `clusters`,
      * or may only have partial information returned.
-     * </pre>
      *
-     * <code>repeated string failed_locations = 2;</code>
+     * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFailedLocations(&$var)
+    public function setFailedLocations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->failed_locations = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Set if not all clusters could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -123,18 +116,20 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Set if not all clusters could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 3;</code>
+     * Generated from protobuf field <code>string next_page_token = 3;</code>
+     * @param string $var
+     * @return $this
      */
     public function setNextPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
     }
 
 }

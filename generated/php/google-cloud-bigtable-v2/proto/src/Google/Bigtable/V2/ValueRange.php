@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies a contiguous range of raw byte values.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.ValueRange</code>
+ * Generated from protobuf message <code>google.bigtable.v2.ValueRange</code>
  */
 class ValueRange extends \Google\Protobuf\Internal\Message
 {
@@ -26,11 +24,10 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_value_closed = 1;</code>
+     * Generated from protobuf field <code>bytes start_value_closed = 1;</code>
+     * @return string
      */
     public function getStartValueClosed()
     {
@@ -38,24 +35,25 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_value_closed = 1;</code>
+     * Generated from protobuf field <code>bytes start_value_closed = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartValueClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_value_open = 2;</code>
+     * Generated from protobuf field <code>bytes start_value_open = 2;</code>
+     * @return string
      */
     public function getStartValueOpen()
     {
@@ -63,24 +61,25 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_value_open = 2;</code>
+     * Generated from protobuf field <code>bytes start_value_open = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartValueOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_value_closed = 3;</code>
+     * Generated from protobuf field <code>bytes end_value_closed = 3;</code>
+     * @return string
      */
     public function getEndValueClosed()
     {
@@ -88,24 +87,25 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_value_closed = 3;</code>
+     * Generated from protobuf field <code>bytes end_value_closed = 3;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndValueClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_value_open = 4;</code>
+     * Generated from protobuf field <code>bytes end_value_open = 4;</code>
+     * @return string
      */
     public function getEndValueOpen()
     {
@@ -113,23 +113,31 @@ class ValueRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_value_open = 4;</code>
+     * Generated from protobuf field <code>bytes end_value_open = 4;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndValueOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStartValue()
     {
         return $this->whichOneof("start_value");
     }
 
+    /**
+     * @return string
+     */
     public function getEndValue()
     {
         return $this->whichOneof("end_value");

@@ -9,28 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Protobuf type <code>google.bigtable.v2.MutateRowsResponse.Entry</code>
+ * Generated from protobuf message <code>google.bigtable.v2.MutateRowsResponse.Entry</code>
  */
 class MutateRowsResponse_Entry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The index into the original request's `entries` list of the Entry
      * for which a result is being reported.
-     * </pre>
      *
-     * <code>int64 index = 1;</code>
+     * Generated from protobuf field <code>int64 index = 1;</code>
      */
     private $index = 0;
     /**
-     * <pre>
      * The result of the request Entry identified by `index`.
      * Depending on how requests are batched during execution, it is possible
      * for one Entry to fail due to an error with another Entry. In the event
      * that this occurs, the same error will be reported for both entries.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
     private $status = null;
 
@@ -40,12 +36,11 @@ class MutateRowsResponse_Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The index into the original request's `entries` list of the Entry
      * for which a result is being reported.
-     * </pre>
      *
-     * <code>int64 index = 1;</code>
+     * Generated from protobuf field <code>int64 index = 1;</code>
+     * @return int|string
      */
     public function getIndex()
     {
@@ -53,28 +48,29 @@ class MutateRowsResponse_Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The index into the original request's `entries` list of the Entry
      * for which a result is being reported.
-     * </pre>
      *
-     * <code>int64 index = 1;</code>
+     * Generated from protobuf field <code>int64 index = 1;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setIndex($var)
     {
         GPBUtil::checkInt64($var);
         $this->index = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The result of the request Entry identified by `index`.
      * Depending on how requests are batched during execution, it is possible
      * for one Entry to fail due to an error with another Entry. In the event
      * that this occurs, the same error will be reported for both entries.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
+     * @return \Google\Rpc\Status
      */
     public function getStatus()
     {
@@ -82,19 +78,21 @@ class MutateRowsResponse_Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The result of the request Entry identified by `index`.
      * Depending on how requests are batched during execution, it is possible
      * for one Entry to fail due to an error with another Entry. In the event
      * that this occurs, the same error will be reported for both entries.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
      */
-    public function setStatus(&$var)
+    public function setStatus($var)
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->status = $var;
+
+        return $this;
     }
 
 }

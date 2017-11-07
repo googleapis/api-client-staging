@@ -9,22 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for Bigtable.SampleRowKeys.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.SampleRowKeysRequest</code>
+ * Generated from protobuf message <code>google.bigtable.v2.SampleRowKeysRequest</code>
  */
 class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the table from which to sample row keys.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
      */
     private $table_name = '';
 
@@ -34,13 +30,12 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table from which to sample row keys.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
+     * @return string
      */
     public function getTableName()
     {
@@ -48,18 +43,20 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table from which to sample row keys.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setTableName($var)
     {
         GPBUtil::checkString($var, True);
         $this->table_name = $var;
+
+        return $this;
     }
 
 }

@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.DeleteTable]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.DeleteTableRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteTableRequest</code>
  */
 class DeleteTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the table to be deleted.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -35,13 +31,12 @@ class DeleteTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table to be deleted.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -49,18 +44,20 @@ class DeleteTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table to be deleted.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
 }

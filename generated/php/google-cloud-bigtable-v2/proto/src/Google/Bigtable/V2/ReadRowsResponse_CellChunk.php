@@ -9,53 +9,44 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies a piece of a row's contents returned as part of the read
  * response stream.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.ReadRowsResponse.CellChunk</code>
+ * Generated from protobuf message <code>google.bigtable.v2.ReadRowsResponse.CellChunk</code>
  */
 class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The row key for this chunk of data.  If the row key is empty,
      * this CellChunk is a continuation of the same row as the previous
      * CellChunk in the response stream, even if that CellChunk was in a
      * previous ReadRowsResponse message.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
      */
     private $row_key = '';
     /**
-     * <pre>
      * The column family name for this chunk of data.  If this message
      * is not present this CellChunk is a continuation of the same column
      * family as the previous CellChunk.  The empty string can occur as a
      * column family name in a response so clients must check
      * explicitly for the presence of this message, not just for
      * `family_name.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.StringValue family_name = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
      */
     private $family_name = null;
     /**
-     * <pre>
      * The column qualifier for this chunk of data.  If this message
      * is not present, this CellChunk is a continuation of the same column
      * as the previous CellChunk.  Column qualifiers may be empty so
      * clients must check for the presence of this message, not just
      * for `qualifier.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
      */
     private $qualifier = null;
     /**
-     * <pre>
      * The cell's stored timestamp, which also uniquely identifies it
      * within its column.  Values are always expressed in
      * microseconds, but individual tables may set a coarser
@@ -64,42 +55,35 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
      * only allow values of `timestamp_micros` which are multiples of
      * 1000.  Timestamps are only set in the first CellChunk per cell
      * (for cells split into multiple chunks).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 4;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 4;</code>
      */
     private $timestamp_micros = 0;
     /**
-     * <pre>
      * Labels applied to the cell by a
      * [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
      * on the first CellChunk per cell.
-     * </pre>
      *
-     * <code>repeated string labels = 5;</code>
+     * Generated from protobuf field <code>repeated string labels = 5;</code>
      */
     private $labels;
     /**
-     * <pre>
      * The value stored in the cell.  Cell values can be split across
      * multiple CellChunks.  In that case only the value field will be
      * set in CellChunks after the first: the timestamp and labels
      * will only be present in the first CellChunk, even if the first
      * CellChunk came in a previous ReadRowsResponse.
-     * </pre>
      *
-     * <code>bytes value = 6;</code>
+     * Generated from protobuf field <code>bytes value = 6;</code>
      */
     private $value = '';
     /**
-     * <pre>
      * If this CellChunk is part of a chunked cell value and this is
      * not the final chunk of that cell, value_size will be set to the
      * total length of the cell value.  The client can use this size
      * to pre-allocate memory to hold the full cell value.
-     * </pre>
      *
-     * <code>int32 value_size = 7;</code>
+     * Generated from protobuf field <code>int32 value_size = 7;</code>
      */
     private $value_size = 0;
     protected $row_status;
@@ -110,14 +94,13 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The row key for this chunk of data.  If the row key is empty,
      * this CellChunk is a continuation of the same row as the previous
      * CellChunk in the response stream, even if that CellChunk was in a
      * previous ReadRowsResponse message.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
+     * @return string
      */
     public function getRowKey()
     {
@@ -125,32 +108,33 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The row key for this chunk of data.  If the row key is empty,
      * this CellChunk is a continuation of the same row as the previous
      * CellChunk in the response stream, even if that CellChunk was in a
      * previous ReadRowsResponse message.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setRowKey($var)
     {
         GPBUtil::checkString($var, False);
         $this->row_key = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The column family name for this chunk of data.  If this message
      * is not present this CellChunk is a continuation of the same column
      * family as the previous CellChunk.  The empty string can occur as a
      * column family name in a response so clients must check
      * explicitly for the presence of this message, not just for
      * `family_name.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.StringValue family_name = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
+     * @return \Google\Protobuf\StringValue
      */
     public function getFamilyName()
     {
@@ -158,33 +142,34 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The column family name for this chunk of data.  If this message
      * is not present this CellChunk is a continuation of the same column
      * family as the previous CellChunk.  The empty string can occur as a
      * column family name in a response so clients must check
      * explicitly for the presence of this message, not just for
      * `family_name.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.StringValue family_name = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
+     * @param \Google\Protobuf\StringValue $var
+     * @return $this
      */
-    public function setFamilyName(&$var)
+    public function setFamilyName($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\StringValue::class);
         $this->family_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The column qualifier for this chunk of data.  If this message
      * is not present, this CellChunk is a continuation of the same column
      * as the previous CellChunk.  Column qualifiers may be empty so
      * clients must check for the presence of this message, not just
      * for `qualifier.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * @return \Google\Protobuf\BytesValue
      */
     public function getQualifier()
     {
@@ -192,24 +177,25 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The column qualifier for this chunk of data.  If this message
      * is not present, this CellChunk is a continuation of the same column
      * as the previous CellChunk.  Column qualifiers may be empty so
      * clients must check for the presence of this message, not just
      * for `qualifier.value` being non-empty.
-     * </pre>
      *
-     * <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * @param \Google\Protobuf\BytesValue $var
+     * @return $this
      */
-    public function setQualifier(&$var)
+    public function setQualifier($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\BytesValue::class);
         $this->qualifier = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The cell's stored timestamp, which also uniquely identifies it
      * within its column.  Values are always expressed in
      * microseconds, but individual tables may set a coarser
@@ -218,9 +204,9 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
      * only allow values of `timestamp_micros` which are multiples of
      * 1000.  Timestamps are only set in the first CellChunk per cell
      * (for cells split into multiple chunks).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 4;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 4;</code>
+     * @return int|string
      */
     public function getTimestampMicros()
     {
@@ -228,7 +214,6 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The cell's stored timestamp, which also uniquely identifies it
      * within its column.  Values are always expressed in
      * microseconds, but individual tables may set a coarser
@@ -237,24 +222,26 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
      * only allow values of `timestamp_micros` which are multiples of
      * 1000.  Timestamps are only set in the first CellChunk per cell
      * (for cells split into multiple chunks).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 4;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 4;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setTimestampMicros($var)
     {
         GPBUtil::checkInt64($var);
         $this->timestamp_micros = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Labels applied to the cell by a
      * [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
      * on the first CellChunk per cell.
-     * </pre>
      *
-     * <code>repeated string labels = 5;</code>
+     * Generated from protobuf field <code>repeated string labels = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
     {
@@ -262,30 +249,31 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Labels applied to the cell by a
      * [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
      * on the first CellChunk per cell.
-     * </pre>
      *
-     * <code>repeated string labels = 5;</code>
+     * Generated from protobuf field <code>repeated string labels = 5;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLabels(&$var)
+    public function setLabels($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The value stored in the cell.  Cell values can be split across
      * multiple CellChunks.  In that case only the value field will be
      * set in CellChunks after the first: the timestamp and labels
      * will only be present in the first CellChunk, even if the first
      * CellChunk came in a previous ReadRowsResponse.
-     * </pre>
      *
-     * <code>bytes value = 6;</code>
+     * Generated from protobuf field <code>bytes value = 6;</code>
+     * @return string
      */
     public function getValue()
     {
@@ -293,31 +281,32 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value stored in the cell.  Cell values can be split across
      * multiple CellChunks.  In that case only the value field will be
      * set in CellChunks after the first: the timestamp and labels
      * will only be present in the first CellChunk, even if the first
      * CellChunk came in a previous ReadRowsResponse.
-     * </pre>
      *
-     * <code>bytes value = 6;</code>
+     * Generated from protobuf field <code>bytes value = 6;</code>
+     * @param string $var
+     * @return $this
      */
     public function setValue($var)
     {
         GPBUtil::checkString($var, False);
         $this->value = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * If this CellChunk is part of a chunked cell value and this is
      * not the final chunk of that cell, value_size will be set to the
      * total length of the cell value.  The client can use this size
      * to pre-allocate memory to hold the full cell value.
-     * </pre>
      *
-     * <code>int32 value_size = 7;</code>
+     * Generated from protobuf field <code>int32 value_size = 7;</code>
+     * @return int
      */
     public function getValueSize()
     {
@@ -325,28 +314,29 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this CellChunk is part of a chunked cell value and this is
      * not the final chunk of that cell, value_size will be set to the
      * total length of the cell value.  The client can use this size
      * to pre-allocate memory to hold the full cell value.
-     * </pre>
      *
-     * <code>int32 value_size = 7;</code>
+     * Generated from protobuf field <code>int32 value_size = 7;</code>
+     * @param int $var
+     * @return $this
      */
     public function setValueSize($var)
     {
         GPBUtil::checkInt32($var);
         $this->value_size = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Indicates that the client should drop all previous chunks for
      * `row_key`, as it will be re-read from the beginning.
-     * </pre>
      *
-     * <code>bool reset_row = 8;</code>
+     * Generated from protobuf field <code>bool reset_row = 8;</code>
+     * @return bool
      */
     public function getResetRow()
     {
@@ -354,26 +344,27 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Indicates that the client should drop all previous chunks for
      * `row_key`, as it will be re-read from the beginning.
-     * </pre>
      *
-     * <code>bool reset_row = 8;</code>
+     * Generated from protobuf field <code>bool reset_row = 8;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setResetRow($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(8, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Indicates that the client can safely process all previous chunks for
      * `row_key`, as its data has been fully read.
-     * </pre>
      *
-     * <code>bool commit_row = 9;</code>
+     * Generated from protobuf field <code>bool commit_row = 9;</code>
+     * @return bool
      */
     public function getCommitRow()
     {
@@ -381,19 +372,24 @@ class ReadRowsResponse_CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Indicates that the client can safely process all previous chunks for
      * `row_key`, as its data has been fully read.
-     * </pre>
      *
-     * <code>bool commit_row = 9;</code>
+     * Generated from protobuf field <code>bool commit_row = 9;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setCommitRow($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(9, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getRowStatus()
     {
         return $this->whichOneof("row_status");

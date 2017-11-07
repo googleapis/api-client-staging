@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
@@ -80,7 +81,6 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
  * @experimental
  */
 class BigtableTableAdminGapicClient
@@ -143,10 +143,8 @@ class BigtableTableAdminGapicClient
                 'table' => self::getTableNameTemplate(),
             ];
         }
-
         return self::$pathTemplateMap;
     }
-
     private static function getPageStreamingDescriptors()
     {
         $listTablesPageStreamingDescriptor =
@@ -164,17 +162,18 @@ class BigtableTableAdminGapicClient
         return $pageStreamingDescriptors;
     }
 
+
+
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__.'/../VERSION')) {
-                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            if (file_exists(__DIR__ . '/../VERSION')) {
+              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
             } elseif (class_exists(Version::class)) {
-                self::$gapicVersion = Version::VERSION;
+              self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
-
         return self::$gapicVersion;
     }
 
@@ -184,7 +183,6 @@ class BigtableTableAdminGapicClient
      *
      * @param string $project
      * @param string $instance
-     *
      * @return string The formatted instance resource.
      * @experimental
      */
@@ -203,7 +201,6 @@ class BigtableTableAdminGapicClient
      * @param string $project
      * @param string $instance
      * @param string $table
-     *
      * @return string The formatted table resource.
      * @experimental
      */
@@ -221,7 +218,7 @@ class BigtableTableAdminGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - instance: projects/{project}/instances/{instance}
-     * - table: projects/{project}/instances/{instance}/tables/{table}.
+     * - table: projects/{project}/instances/{instance}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -229,10 +226,8 @@ class BigtableTableAdminGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
+     * @param string $template Optional name of template to match
      * @return array An associative array from name component IDs to component values.
-     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -244,7 +239,6 @@ class BigtableTableAdminGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
-
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -258,11 +252,14 @@ class BigtableTableAdminGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
+
+
+
     /**
      * Constructor.
      *
      * @param array $options {
-     *                       Optional. Options for configuring the service API wrapper.
+     *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtableadmin.googleapis.com'.
@@ -318,9 +315,10 @@ class BigtableTableAdminGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__.'/../resources/bigtable_table_admin_client_config.json',
+            'clientConfigPath' => __DIR__ . '/../resources/bigtable_table_admin_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
+
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -347,11 +345,9 @@ class BigtableTableAdminGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load(
-                    'google.bigtable.admin.v2.BigtableTableAdmin',
-                    $clientConfig,
-                    $options['retryingOverride']
-                );
+                CallSettings::load('google.bigtable.admin.v2.BigtableTableAdmin',
+                                   $clientConfig,
+                                   $options['retryingOverride']);
 
         $this->scopes = $options['scopes'];
 
@@ -388,14 +384,13 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance in which to create the table.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     * @param string $tableId      The name by which the new table should be referred to within the parent
-     *                             instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
-     * @param Table  $table        The Table to create.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The unique name of the instance in which to create the table.
+     * Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $tableId The name by which the new table should be referred to within the parent
+     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
+     * @param Table $table The Table to create.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type Split[] $initialSplits
      *          The optional list of row keys that will be used to initially split the
      *          table into several tablets (tablets are similar to HBase regions).
@@ -443,11 +438,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'CreateTable',
-            $mergedSettings,
-            $this->descriptors['createTable']
-        );
+            $this->bigtableTableAdminStub, 'CreateTable', $mergedSettings, $this->descriptors['createTable']);
 
         return $callable(
             $request,
@@ -481,11 +472,10 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       The unique name of the instance for which tables should be listed.
-     *                             Values are of the form `projects/<project>/instances/<instance>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $parent The unique name of the instance for which tables should be listed.
+     * Values are of the form `projects/<project>/instances/<instance>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $view
      *          The view to be applied to the returned tables' fields.
      *          Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
@@ -526,11 +516,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'ListTables',
-            $mergedSettings,
-            $this->descriptors['listTables']
-        );
+            $this->bigtableTableAdminStub, 'ListTables', $mergedSettings, $this->descriptors['listTables']);
 
         return $callable(
             $request,
@@ -552,12 +538,11 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the requested table.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the requested table.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type int $view
      *          The view to be applied to the returned table's fields.
      *          Defaults to `SCHEMA_VIEW` if unspecified.
@@ -590,11 +575,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'GetTable',
-            $mergedSettings,
-            $this->descriptors['getTable']
-        );
+            $this->bigtableTableAdminStub, 'GetTable', $mergedSettings, $this->descriptors['getTable']);
 
         return $callable(
             $request,
@@ -616,12 +597,11 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the table to be deleted.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the table to be deleted.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -645,11 +625,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'DeleteTable',
-            $mergedSettings,
-            $this->descriptors['deleteTable']
-        );
+            $this->bigtableTableAdminStub, 'DeleteTable', $mergedSettings, $this->descriptors['deleteTable']);
 
         return $callable(
             $request,
@@ -675,16 +651,15 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string         $name          The unique name of the table whose families should be modified.
-     *                                      Values are of the form
-     *                                      `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $name The unique name of the table whose families should be modified.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      * @param Modification[] $modifications Modifications to be atomically applied to the specified table's families.
-     *                                      Entries are applied in order, meaning that earlier modifications can be
-     *                                      masked by later ones (in the case of repeated updates to the same family,
-     *                                      for example).
-     * @param array          $optionalArgs  {
-     *                                      Optional.
-     *
+     * Entries are applied in order, meaning that earlier modifications can be
+     * masked by later ones (in the case of repeated updates to the same family,
+     * for example).
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type \Google\GAX\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\GAX\RetrySettings} object, or an associative array
@@ -711,11 +686,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'ModifyColumnFamilies',
-            $mergedSettings,
-            $this->descriptors['modifyColumnFamilies']
-        );
+            $this->bigtableTableAdminStub, 'ModifyColumnFamilies', $mergedSettings, $this->descriptors['modifyColumnFamilies']);
 
         return $callable(
             $request,
@@ -739,12 +710,11 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique name of the table on which to drop a range of rows.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
+     * @param string $name The unique name of the table on which to drop a range of rows.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param array $optionalArgs {
+     *     Optional.
      *     @type string $rowKeyPrefix
      *          Delete all rows that start with this row key prefix. Prefix cannot be
      *          zero length.
@@ -779,11 +749,7 @@ class BigtableTableAdminGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableTableAdminStub,
-            'DropRowRange',
-            $mergedSettings,
-            $this->descriptors['dropRowRange']
-        );
+            $this->bigtableTableAdminStub, 'DropRowRange', $mergedSettings, $this->descriptors['dropRowRange']);
 
         return $callable(
             $request,
@@ -794,7 +760,6 @@ class BigtableTableAdminGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
-     *
      * @experimental
      */
     public function close()

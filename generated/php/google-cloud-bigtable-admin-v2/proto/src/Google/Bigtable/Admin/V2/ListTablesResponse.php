@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.ListTables][google.bigtable.admin.v2.BigtableTableAdmin.ListTables]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ListTablesResponse</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ListTablesResponse</code>
  */
 class ListTablesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The tables present in the requested instance.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
      */
     private $tables;
     /**
-     * <pre>
      * Set if not all tables could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -43,11 +37,10 @@ class ListTablesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The tables present in the requested instance.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTables()
     {
@@ -55,26 +48,27 @@ class ListTablesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The tables present in the requested instance.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Table tables = 1;</code>
+     * @param \Google\Bigtable\Admin\V2\Table[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setTables(&$var)
+    public function setTables($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\Table::class);
         $this->tables = $arr;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Set if not all tables could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -82,18 +76,20 @@ class ListTablesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Set if not all tables could be returned in a single response.
      * Pass this value to `page_token` in another request to get the next
      * page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setNextPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
     }
 
 }

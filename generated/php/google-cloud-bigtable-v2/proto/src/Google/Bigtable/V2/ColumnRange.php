@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies a contiguous range of columns within a single column family.
- * The range spans from &amp;lt;column_family&amp;gt;:&amp;lt;start_qualifier&amp;gt; to
- * &amp;lt;column_family&amp;gt;:&amp;lt;end_qualifier&amp;gt;, where both bounds can be either
+ * The range spans from &lt;column_family&gt;:&lt;start_qualifier&gt; to
+ * &lt;column_family&gt;:&lt;end_qualifier&gt;, where both bounds can be either
  * inclusive or exclusive.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.ColumnRange</code>
+ * Generated from protobuf message <code>google.bigtable.v2.ColumnRange</code>
  */
 class ColumnRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the column family within which this range falls.
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
      */
     private $family_name = '';
     protected $start_qualifier;
@@ -37,11 +33,10 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the column family within which this range falls.
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @return string
      */
     public function getFamilyName()
     {
@@ -49,24 +44,25 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the column family within which this range falls.
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setFamilyName($var)
     {
         GPBUtil::checkString($var, True);
         $this->family_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_qualifier_closed = 2;</code>
+     * Generated from protobuf field <code>bytes start_qualifier_closed = 2;</code>
+     * @return string
      */
     public function getStartQualifierClosed()
     {
@@ -74,24 +70,25 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_qualifier_closed = 2;</code>
+     * Generated from protobuf field <code>bytes start_qualifier_closed = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartQualifierClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_qualifier_open = 3;</code>
+     * Generated from protobuf field <code>bytes start_qualifier_open = 3;</code>
+     * @return string
      */
     public function getStartQualifierOpen()
     {
@@ -99,24 +96,25 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive lower bound for the range.
-     * </pre>
      *
-     * <code>bytes start_qualifier_open = 3;</code>
+     * Generated from protobuf field <code>bytes start_qualifier_open = 3;</code>
+     * @param string $var
+     * @return $this
      */
     public function setStartQualifierOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_qualifier_closed = 4;</code>
+     * Generated from protobuf field <code>bytes end_qualifier_closed = 4;</code>
+     * @return string
      */
     public function getEndQualifierClosed()
     {
@@ -124,24 +122,25 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an inclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_qualifier_closed = 4;</code>
+     * Generated from protobuf field <code>bytes end_qualifier_closed = 4;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndQualifierClosed($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_qualifier_open = 5;</code>
+     * Generated from protobuf field <code>bytes end_qualifier_open = 5;</code>
+     * @return string
      */
     public function getEndQualifierOpen()
     {
@@ -149,23 +148,31 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used when giving an exclusive upper bound for the range.
-     * </pre>
      *
-     * <code>bytes end_qualifier_open = 5;</code>
+     * Generated from protobuf field <code>bytes end_qualifier_open = 5;</code>
+     * @param string $var
+     * @return $this
      */
     public function setEndQualifierOpen($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(5, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStartQualifier()
     {
         return $this->whichOneof("start_qualifier");
     }
 
+    /**
+     * @return string
+     */
     public function getEndQualifier()
     {
         return $this->whichOneof("end_qualifier");

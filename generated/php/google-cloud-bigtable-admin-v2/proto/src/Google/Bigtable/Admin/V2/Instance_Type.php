@@ -5,35 +5,28 @@
 namespace Google\Bigtable\Admin\V2;
 
 /**
- * <pre>
  * The type of the instance.
- * </pre>
  *
- * Protobuf enum <code>google.bigtable.admin.v2.Instance.Type</code>
+ * Protobuf enum <code>Google\Bigtable\Admin\V2\Instance\Type</code>
  */
 class Instance_Type
 {
     /**
-     * <pre>
      * The type of the instance is unspecified. If set when creating an
      * instance, a `PRODUCTION` instance will be created. If set when updating
      * an instance, the type will be left unchanged.
-     * </pre>
      *
-     * <code>TYPE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * An instance meant for production use. `serve_nodes` must be set
      * on the cluster.
-     * </pre>
      *
-     * <code>PRODUCTION = 1;</code>
+     * Generated from protobuf enum <code>PRODUCTION = 1;</code>
      */
     const PRODUCTION = 1;
     /**
-     * <pre>
      * The instance is meant for development and testing purposes only; it has
      * no performance or uptime guarantees and is not covered by SLA.
      * After a development instance is created, it can be upgraded by
@@ -41,9 +34,8 @@ class Instance_Type
      * as a production instance cannot be changed to a development instance.
      * When creating a development instance, `serve_nodes` on the cluster must
      * not be set.
-     * </pre>
      *
-     * <code>DEVELOPMENT = 2;</code>
+     * Generated from protobuf enum <code>DEVELOPMENT = 2;</code>
      */
     const DEVELOPMENT = 2;
 }
