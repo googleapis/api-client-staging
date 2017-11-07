@@ -112,11 +112,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * DatabaseAdminSettings databaseAdminSettings =
- *     DatabaseAdminSettings.newBuilder()
- *         .setTransportChannelProvider(DatabaseAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setEndpoint(myEndpoint)
- *             .build())
- *         .build();
+ *     DatabaseAdminSettings.newBuilder().setEndpoint(myEndpoint).build();
  * DatabaseAdminClient databaseAdminClient =
  *     DatabaseAdminClient.create(databaseAdminSettings);
  * </code>
@@ -147,7 +143,7 @@ public class DatabaseAdminClient implements BackgroundResource {
    * Constructs an instance of DatabaseAdminClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use DatabaseAdminSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final DatabaseAdminClient create(DatabaseAdminStub stub) {
     return new DatabaseAdminClient(stub);
   }
@@ -163,6 +159,7 @@ public class DatabaseAdminClient implements BackgroundResource {
     this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected DatabaseAdminClient(DatabaseAdminStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -173,7 +170,7 @@ public class DatabaseAdminClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public DatabaseAdminStub getStub() {
     return stub;
   }

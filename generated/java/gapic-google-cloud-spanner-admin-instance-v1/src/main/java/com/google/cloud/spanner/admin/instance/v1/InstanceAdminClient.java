@@ -130,11 +130,7 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * InstanceAdminSettings instanceAdminSettings =
- *     InstanceAdminSettings.newBuilder()
- *         .setTransportChannelProvider(InstanceAdminSettings.defaultGrpcTransportProviderBuilder()
- *             .setEndpoint(myEndpoint)
- *             .build())
- *         .build();
+ *     InstanceAdminSettings.newBuilder().setEndpoint(myEndpoint).build();
  * InstanceAdminClient instanceAdminClient =
  *     InstanceAdminClient.create(instanceAdminSettings);
  * </code>
@@ -165,7 +161,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * Constructs an instance of InstanceAdminClient, using the given stub for making calls. This is
    * for advanced usage - prefer to use InstanceAdminSettings}.
    */
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public static final InstanceAdminClient create(InstanceAdminStub stub) {
     return new InstanceAdminClient(stub);
   }
@@ -181,6 +177,7 @@ public class InstanceAdminClient implements BackgroundResource {
     this.operationsClient = OperationsClient.create(this.stub.getOperationsStub());
   }
 
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   protected InstanceAdminClient(InstanceAdminStub stub) {
     this.settings = null;
     this.stub = stub;
@@ -191,7 +188,7 @@ public class InstanceAdminClient implements BackgroundResource {
     return settings;
   }
 
-  @BetaApi
+  @BetaApi("A restructuring of stub classes is planned, so this may break in the future")
   public InstanceAdminStub getStub() {
     return stub;
   }
