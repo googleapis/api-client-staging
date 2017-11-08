@@ -15,6 +15,7 @@
  */
 package com.google.cloud.spanner.admin.instance.v1;
 
+import com.google.api.core.BetaApi;
 import com.google.iam.v1.GetIamPolicyRequest;
 import com.google.iam.v1.Policy;
 import com.google.iam.v1.SetIamPolicyRequest;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.Queue;
 
 @javax.annotation.Generated("by GAPIC")
+@BetaApi
 public class MockInstanceAdminImpl extends InstanceAdminImplBase {
   private ArrayList<GeneratedMessageV3> requests;
   private Queue<Object> responses;
