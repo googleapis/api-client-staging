@@ -9,50 +9,40 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A Mutation which sets the value of the specified cell.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Mutation.SetCell</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Mutation.SetCell</code>
  */
 class Mutation_SetCell extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the family into which new data should be written.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
      */
     private $family_name = '';
     /**
-     * <pre>
      * The qualifier of the column into which new data should be written.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
      */
     private $column_qualifier = '';
     /**
-     * <pre>
      * The timestamp of the cell into which new data should be written.
      * Use -1 for current Bigtable server time.
      * Otherwise, the client should set this value itself, noting that the
      * default value is a timestamp of zero if the field is left unspecified.
      * Values must match the granularity of the table (e.g. micros, millis).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 3;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 3;</code>
      */
     private $timestamp_micros = 0;
     /**
-     * <pre>
      * The value to be written into the specified cell.
-     * </pre>
      *
-     * <code>bytes value = 4;</code>
+     * Generated from protobuf field <code>bytes value = 4;</code>
      */
     private $value = '';
 
@@ -62,12 +52,11 @@ class Mutation_SetCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family into which new data should be written.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @return string
      */
     public function getFamilyName()
     {
@@ -75,26 +64,27 @@ class Mutation_SetCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family into which new data should be written.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setFamilyName($var)
     {
         GPBUtil::checkString($var, True);
         $this->family_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The qualifier of the column into which new data should be written.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
+     * @return string
      */
     public function getColumnQualifier()
     {
@@ -102,29 +92,30 @@ class Mutation_SetCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The qualifier of the column into which new data should be written.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setColumnQualifier($var)
     {
         GPBUtil::checkString($var, False);
         $this->column_qualifier = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The timestamp of the cell into which new data should be written.
      * Use -1 for current Bigtable server time.
      * Otherwise, the client should set this value itself, noting that the
      * default value is a timestamp of zero if the field is left unspecified.
      * Values must match the granularity of the table (e.g. micros, millis).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 3;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 3;</code>
+     * @return int|string
      */
     public function getTimestampMicros()
     {
@@ -132,28 +123,29 @@ class Mutation_SetCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The timestamp of the cell into which new data should be written.
      * Use -1 for current Bigtable server time.
      * Otherwise, the client should set this value itself, noting that the
      * default value is a timestamp of zero if the field is left unspecified.
      * Values must match the granularity of the table (e.g. micros, millis).
-     * </pre>
      *
-     * <code>int64 timestamp_micros = 3;</code>
+     * Generated from protobuf field <code>int64 timestamp_micros = 3;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setTimestampMicros($var)
     {
         GPBUtil::checkInt64($var);
         $this->timestamp_micros = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The value to be written into the specified cell.
-     * </pre>
      *
-     * <code>bytes value = 4;</code>
+     * Generated from protobuf field <code>bytes value = 4;</code>
+     * @return string
      */
     public function getValue()
     {
@@ -161,16 +153,18 @@ class Mutation_SetCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value to be written into the specified cell.
-     * </pre>
      *
-     * <code>bytes value = 4;</code>
+     * Generated from protobuf field <code>bytes value = 4;</code>
+     * @param string $var
+     * @return $this
      */
     public function setValue($var)
     {
         GPBUtil::checkString($var, False);
         $this->value = $var;
+
+        return $this;
     }
 
 }

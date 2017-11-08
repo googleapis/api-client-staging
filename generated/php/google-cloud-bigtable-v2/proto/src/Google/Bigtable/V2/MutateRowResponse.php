@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for Bigtable.MutateRow.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.MutateRowResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.MutateRowResponse</code>
  */
 class MutateRowResponse extends \Google\Protobuf\Internal\Message
 {

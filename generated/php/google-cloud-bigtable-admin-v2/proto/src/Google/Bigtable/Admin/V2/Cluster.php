@@ -9,64 +9,52 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A resizable group of nodes in a particular cloud location, capable
  * of serving all [Tables][google.bigtable.admin.v2.Table] in the parent
  * [Instance][google.bigtable.admin.v2.Instance].
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.Cluster</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.Cluster</code>
  */
 class Cluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/[a-z][-a-z0-9]*`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this cluster.
      * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
-     * </pre>
+     * `projects/<project>/locations/<zone>`.
      *
-     * <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2;</code>
      */
     private $location = '';
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the cluster.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
      */
     private $state = 0;
     /**
-     * <pre>
      * The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
-     * </pre>
      *
-     * <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      */
     private $serve_nodes = 0;
     /**
-     * <pre>
      * (`CreationOnly`)
      * The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
      */
     private $default_storage_type = 0;
 
@@ -76,13 +64,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/[a-z][-a-z0-9]*`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -90,30 +77,31 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The unique name of the cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/[a-z][-a-z0-9]*`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/[a-z][-a-z0-9]*`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this cluster.
      * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
-     * </pre>
+     * `projects/<project>/locations/<zone>`.
      *
-     * <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2;</code>
+     * @return string
      */
     public function getLocation()
     {
@@ -121,29 +109,30 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
      * performance, clients should be located as close as possible to this cluster.
      * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
-     * </pre>
+     * `projects/<project>/locations/<zone>`.
      *
-     * <code>string location = 2;</code>
+     * Generated from protobuf field <code>string location = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setLocation($var)
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the cluster.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * @return int
      */
     public function getState()
     {
@@ -151,26 +140,27 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`OutputOnly`)
      * The current state of the cluster.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3;</code>
+     * @param int $var
+     * @return $this
      */
     public function setState($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Cluster_State::class);
         $this->state = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
-     * </pre>
      *
-     * <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
+     * @return int
      */
     public function getServeNodes()
     {
@@ -178,27 +168,28 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
-     * </pre>
      *
-     * <code>int32 serve_nodes = 4;</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
+     * @param int $var
+     * @return $this
      */
     public function setServeNodes($var)
     {
         GPBUtil::checkInt32($var);
         $this->serve_nodes = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * @return int
      */
     public function getDefaultStorageType()
     {
@@ -206,18 +197,20 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * (`CreationOnly`)
      * The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
+     * @param int $var
+     * @return $this
      */
     public function setDefaultStorageType($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\StorageType::class);
         $this->default_storage_type = $var;
+
+        return $this;
     }
 
 }

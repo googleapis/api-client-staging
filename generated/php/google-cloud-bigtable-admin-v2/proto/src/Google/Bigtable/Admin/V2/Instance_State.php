@@ -5,38 +5,30 @@
 namespace Google\Bigtable\Admin\V2;
 
 /**
- * <pre>
  * Possible states of an instance.
- * </pre>
  *
- * Protobuf enum <code>google.bigtable.admin.v2.Instance.State</code>
+ * Protobuf enum <code>Google\Bigtable\Admin\V2\Instance\State</code>
  */
 class Instance_State
 {
     /**
-     * <pre>
      * The state of the instance could not be determined.
-     * </pre>
      *
-     * <code>STATE_NOT_KNOWN = 0;</code>
+     * Generated from protobuf enum <code>STATE_NOT_KNOWN = 0;</code>
      */
     const STATE_NOT_KNOWN = 0;
     /**
-     * <pre>
      * The instance has been successfully created and can serve requests
      * to its tables.
-     * </pre>
      *
-     * <code>READY = 1;</code>
+     * Generated from protobuf enum <code>READY = 1;</code>
      */
     const READY = 1;
     /**
-     * <pre>
      * The instance is currently being created, and may be destroyed
      * if the creation process encounters an error.
-     * </pre>
      *
-     * <code>CREATING = 2;</code>
+     * Generated from protobuf enum <code>CREATING = 2;</code>
      */
     const CREATING = 2;
 }

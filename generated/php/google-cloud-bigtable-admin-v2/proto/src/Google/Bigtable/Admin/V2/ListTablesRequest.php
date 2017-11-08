@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.ListTables][google.bigtable.admin.v2.BigtableTableAdmin.ListTables]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ListTablesRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ListTablesRequest</code>
  */
 class ListTablesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * The view to be applied to the returned tables' fields.
      * Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
      */
     private $view = 0;
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
 
@@ -51,12 +43,11 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -64,26 +55,27 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance for which tables should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setParent($var)
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The view to be applied to the returned tables' fields.
      * Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * @return int
      */
     public function getView()
     {
@@ -91,25 +83,26 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The view to be applied to the returned tables' fields.
      * Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.View view = 2;</code>
+     * @param int $var
+     * @return $this
      */
     public function setView($var)
     {
         GPBUtil::checkEnum($var, \Google\Bigtable\Admin\V2\Table_View::class);
         $this->view = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -117,16 +110,18 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @param string $var
+     * @return $this
      */
     public function setPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
     }
 
 }

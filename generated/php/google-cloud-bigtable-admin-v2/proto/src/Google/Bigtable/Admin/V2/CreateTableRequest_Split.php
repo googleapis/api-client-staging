@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * An initial split point for a newly created table.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.CreateTableRequest.Split</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.CreateTableRequest.Split</code>
  */
 class CreateTableRequest_Split extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Row key to use as an initial tablet boundary.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
      */
     private $key = '';
 
@@ -32,11 +28,10 @@ class CreateTableRequest_Split extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Row key to use as an initial tablet boundary.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
+     * @return string
      */
     public function getKey()
     {
@@ -44,16 +39,18 @@ class CreateTableRequest_Split extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Row key to use as an initial tablet boundary.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setKey($var)
     {
         GPBUtil::checkString($var, False);
         $this->key = $var;
+
+        return $this;
     }
 
 }

@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for BigtableService.MutateRows.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.MutateRowsRequest</code>
+ * Generated from protobuf message <code>google.bigtable.v2.MutateRowsRequest</code>
  */
 class MutateRowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the table to which the mutations should be applied.
-     * </pre>
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
      */
     private $table_name = '';
     /**
-     * <pre>
      * The row keys and corresponding mutations to be applied in bulk.
      * Each entry is applied as an atomic mutation, but the entries may be
      * applied in arbitrary order (even between entries for the same row).
      * At least one entry must be specified, and in total the entries can
      * contain at most 100000 mutations.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
      */
     private $entries;
 
@@ -44,11 +38,10 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table to which the mutations should be applied.
-     * </pre>
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
+     * @return string
      */
     public function getTableName()
     {
@@ -56,28 +49,29 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table to which the mutations should be applied.
-     * </pre>
      *
-     * <code>string table_name = 1;</code>
+     * Generated from protobuf field <code>string table_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setTableName($var)
     {
         GPBUtil::checkString($var, True);
         $this->table_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The row keys and corresponding mutations to be applied in bulk.
      * Each entry is applied as an atomic mutation, but the entries may be
      * applied in arbitrary order (even between entries for the same row).
      * At least one entry must be specified, and in total the entries can
      * contain at most 100000 mutations.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntries()
     {
@@ -85,20 +79,22 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The row keys and corresponding mutations to be applied in bulk.
      * Each entry is applied as an atomic mutation, but the entries may be
      * applied in arbitrary order (even between entries for the same row).
      * At least one entry must be specified, and in total the entries can
      * contain at most 100000 mutations.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2;</code>
+     * @param \Google\Bigtable\V2\MutateRowsRequest_Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setEntries(&$var)
+    public function setEntries($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\MutateRowsRequest_Entry::class);
         $this->entries = $arr;
+
+        return $this;
     }
 
 }

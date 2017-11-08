@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies the complete (requested) contents of a single row of a table.
  * Rows which exceed 256MiB in size cannot be read in full.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Row</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Row</code>
  */
 class Row extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique key which identifies this row within its table. This is the same
      * key that's used to identify the row in, for example, a MutateRowRequest.
      * May contain any non-empty byte string up to 4KiB in length.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
      */
     private $key = '';
     /**
-     * <pre>
      * May be empty, but only if the entire row is empty.
      * The mutual ordering of column families is not specified.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Family families = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Family families = 2;</code>
      */
     private $families;
 
@@ -44,13 +38,12 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique key which identifies this row within its table. This is the same
      * key that's used to identify the row in, for example, a MutateRowRequest.
      * May contain any non-empty byte string up to 4KiB in length.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
+     * @return string
      */
     public function getKey()
     {
@@ -58,27 +51,28 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique key which identifies this row within its table. This is the same
      * key that's used to identify the row in, for example, a MutateRowRequest.
      * May contain any non-empty byte string up to 4KiB in length.
-     * </pre>
      *
-     * <code>bytes key = 1;</code>
+     * Generated from protobuf field <code>bytes key = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setKey($var)
     {
         GPBUtil::checkString($var, False);
         $this->key = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * May be empty, but only if the entire row is empty.
      * The mutual ordering of column families is not specified.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Family families = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Family families = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFamilies()
     {
@@ -86,17 +80,19 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * May be empty, but only if the entire row is empty.
      * The mutual ordering of column families is not specified.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.Family families = 2;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.Family families = 2;</code>
+     * @param \Google\Bigtable\V2\Family[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFamilies(&$var)
+    public function setFamilies($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\Family::class);
         $this->families = $arr;
+
+        return $this;
     }
 
 }

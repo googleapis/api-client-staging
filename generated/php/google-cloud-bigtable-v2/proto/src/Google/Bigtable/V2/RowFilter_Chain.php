@@ -9,22 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A RowFilter which sends rows through several RowFilters in sequence.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.RowFilter.Chain</code>
+ * Generated from protobuf message <code>google.bigtable.v2.RowFilter.Chain</code>
  */
 class RowFilter_Chain extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The elements of "filters" are chained together to process the input row:
-     * in row -&gt; f(0) -&gt; intermediate row -&gt; f(1) -&gt; ... -&gt; f(N) -&gt; out row
+     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
      * The full chain is executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
      */
     private $filters;
 
@@ -34,13 +30,12 @@ class RowFilter_Chain extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The elements of "filters" are chained together to process the input row:
-     * in row -&gt; f(0) -&gt; intermediate row -&gt; f(1) -&gt; ... -&gt; f(N) -&gt; out row
+     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
      * The full chain is executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFilters()
     {
@@ -48,18 +43,20 @@ class RowFilter_Chain extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The elements of "filters" are chained together to process the input row:
-     * in row -&gt; f(0) -&gt; intermediate row -&gt; f(1) -&gt; ... -&gt; f(N) -&gt; out row
+     * in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
      * The full chain is executed atomically.
-     * </pre>
      *
-     * <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
+     * @param \Google\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFilters(&$var)
+    public function setFilters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\V2\RowFilter::class);
         $this->filters = $arr;
+
+        return $this;
     }
 
 }

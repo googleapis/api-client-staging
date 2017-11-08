@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A Mutation which deletes all cells from the specified column family.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Mutation.DeleteFromFamily</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromFamily</code>
  */
 class Mutation_DeleteFromFamily extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
      */
     private $family_name = '';
 
@@ -33,12 +29,11 @@ class Mutation_DeleteFromFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @return string
      */
     public function getFamilyName()
     {
@@ -46,17 +41,19 @@ class Mutation_DeleteFromFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setFamilyName($var)
     {
         GPBUtil::checkString($var, True);
         $this->family_name = $var;
+
+        return $this;
     }
 
 }

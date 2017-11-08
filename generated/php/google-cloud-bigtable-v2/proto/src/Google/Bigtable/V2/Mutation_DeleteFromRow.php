@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A Mutation which deletes all cells from the containing row.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Mutation.DeleteFromRow</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromRow</code>
  */
 class Mutation_DeleteFromRow extends \Google\Protobuf\Internal\Message
 {

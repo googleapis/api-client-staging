@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for Bigtable.SampleRowKeys.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.SampleRowKeysResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.SampleRowKeysResponse</code>
  */
 class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Sorted streamed sequence of sample row keys in the table. The table might
      * have contents before the first row key in the list and after the last one,
      * but a key containing the empty string indicates "end of table" and will be
@@ -26,20 +23,17 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
      * Note that row keys in this list may not have ever been written to or read
      * from, and users should therefore not make any assumptions about the row key
      * structure that are specific to their use case.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
      */
     private $row_key = '';
     /**
-     * <pre>
      * Approximate total storage space used by all rows in the table which precede
      * `row_key`. Buffering the contents of all rows between two subsequent
      * samples would require space roughly equal to the difference in their
      * `offset_bytes` fields.
-     * </pre>
      *
-     * <code>int64 offset_bytes = 2;</code>
+     * Generated from protobuf field <code>int64 offset_bytes = 2;</code>
      */
     private $offset_bytes = 0;
 
@@ -49,7 +43,6 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sorted streamed sequence of sample row keys in the table. The table might
      * have contents before the first row key in the list and after the last one,
      * but a key containing the empty string indicates "end of table" and will be
@@ -57,9 +50,9 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
      * Note that row keys in this list may not have ever been written to or read
      * from, and users should therefore not make any assumptions about the row key
      * structure that are specific to their use case.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
+     * @return string
      */
     public function getRowKey()
     {
@@ -67,7 +60,6 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sorted streamed sequence of sample row keys in the table. The table might
      * have contents before the first row key in the list and after the last one,
      * but a key containing the empty string indicates "end of table" and will be
@@ -75,25 +67,27 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
      * Note that row keys in this list may not have ever been written to or read
      * from, and users should therefore not make any assumptions about the row key
      * structure that are specific to their use case.
-     * </pre>
      *
-     * <code>bytes row_key = 1;</code>
+     * Generated from protobuf field <code>bytes row_key = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setRowKey($var)
     {
         GPBUtil::checkString($var, False);
         $this->row_key = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Approximate total storage space used by all rows in the table which precede
      * `row_key`. Buffering the contents of all rows between two subsequent
      * samples would require space roughly equal to the difference in their
      * `offset_bytes` fields.
-     * </pre>
      *
-     * <code>int64 offset_bytes = 2;</code>
+     * Generated from protobuf field <code>int64 offset_bytes = 2;</code>
+     * @return int|string
      */
     public function getOffsetBytes()
     {
@@ -101,19 +95,21 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate total storage space used by all rows in the table which precede
      * `row_key`. Buffering the contents of all rows between two subsequent
      * samples would require space roughly equal to the difference in their
      * `offset_bytes` fields.
-     * </pre>
      *
-     * <code>int64 offset_bytes = 2;</code>
+     * Generated from protobuf field <code>int64 offset_bytes = 2;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setOffsetBytes($var)
     {
         GPBUtil::checkInt64($var);
         $this->offset_bytes = $var;
+
+        return $this;
     }
 
 }

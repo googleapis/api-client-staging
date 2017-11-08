@@ -9,45 +9,37 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A RowFilter which evaluates one of two possible RowFilters, depending on
  * whether or not a predicate RowFilter outputs any cells from the input row.
  * IMPORTANT NOTE: The predicate filter does not execute atomically with the
  * true and false filters, which may lead to inconsistent or unexpected
  * results. Additionally, Condition filters have poor performance, especially
  * when filters are set for the false condition.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.RowFilter.Condition</code>
+ * Generated from protobuf message <code>google.bigtable.v2.RowFilter.Condition</code>
  */
 class RowFilter_Condition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * If `predicate_filter` outputs any cells, then `true_filter` will be
      * evaluated on the input row. Otherwise, `false_filter` will be evaluated.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
      */
     private $predicate_filter = null;
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` returns any
      * results. If not provided, no results will be returned in the true case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
      */
     private $true_filter = null;
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` does not
      * return any results. If not provided, no results will be returned in the
      * false case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
      */
     private $false_filter = null;
 
@@ -57,12 +49,11 @@ class RowFilter_Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If `predicate_filter` outputs any cells, then `true_filter` will be
      * evaluated on the input row. Otherwise, `false_filter` will be evaluated.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
+     * @return \Google\Bigtable\V2\RowFilter
      */
     public function getPredicateFilter()
     {
@@ -70,26 +61,27 @@ class RowFilter_Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If `predicate_filter` outputs any cells, then `true_filter` will be
      * evaluated on the input row. Otherwise, `false_filter` will be evaluated.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
+     * @param \Google\Bigtable\V2\RowFilter $var
+     * @return $this
      */
-    public function setPredicateFilter(&$var)
+    public function setPredicateFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter::class);
         $this->predicate_filter = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` returns any
      * results. If not provided, no results will be returned in the true case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
+     * @return \Google\Bigtable\V2\RowFilter
      */
     public function getTrueFilter()
     {
@@ -97,27 +89,28 @@ class RowFilter_Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` returns any
      * results. If not provided, no results will be returned in the true case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
+     * @param \Google\Bigtable\V2\RowFilter $var
+     * @return $this
      */
-    public function setTrueFilter(&$var)
+    public function setTrueFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter::class);
         $this->true_filter = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` does not
      * return any results. If not provided, no results will be returned in the
      * false case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
+     * @return \Google\Bigtable\V2\RowFilter
      */
     public function getFalseFilter()
     {
@@ -125,18 +118,20 @@ class RowFilter_Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The filter to apply to the input row if `predicate_filter` does not
      * return any results. If not provided, no results will be returned in the
      * false case.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
+     * @param \Google\Bigtable\V2\RowFilter $var
+     * @return $this
      */
-    public function setFalseFilter(&$var)
+    public function setFalseFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter::class);
         $this->false_filter = $var;
+
+        return $this;
     }
 
 }

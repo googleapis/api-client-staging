@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for Bigtable.ReadModifyWriteRow.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.ReadModifyWriteRowResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.ReadModifyWriteRowResponse</code>
  */
 class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A Row containing the new contents of all cells modified by the request.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.Row row = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.Row row = 1;</code>
      */
     private $row = null;
 
@@ -32,11 +28,10 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A Row containing the new contents of all cells modified by the request.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.Row row = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.Row row = 1;</code>
+     * @return \Google\Bigtable\V2\Row
      */
     public function getRow()
     {
@@ -44,16 +39,18 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A Row containing the new contents of all cells modified by the request.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.Row row = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.Row row = 1;</code>
+     * @param \Google\Bigtable\V2\Row $var
+     * @return $this
      */
-    public function setRow(&$var)
+    public function setRow($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\Row::class);
         $this->row = $var;
+
+        return $this;
     }
 
 }

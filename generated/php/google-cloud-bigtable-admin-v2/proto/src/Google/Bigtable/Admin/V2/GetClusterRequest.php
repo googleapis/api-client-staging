@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for BigtableInstanceAdmin.GetCluster.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.GetClusterRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.GetClusterRequest</code>
  */
 class GetClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the requested cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -33,12 +29,11 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the requested cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -46,17 +41,19 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the requested cluster. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/&lt;cluster&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/clusters/<cluster>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
 }

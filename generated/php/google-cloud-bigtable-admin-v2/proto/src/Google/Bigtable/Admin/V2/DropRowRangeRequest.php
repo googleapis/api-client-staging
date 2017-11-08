@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange][google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.DropRowRangeRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.DropRowRangeRequest</code>
  */
 class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the table on which to drop a range of rows.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     protected $target;
@@ -36,13 +32,12 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table on which to drop a range of rows.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -50,27 +45,28 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the table on which to drop a range of rows.
      * Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`.
-     * </pre>
+     * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Delete all rows that start with this row key prefix. Prefix cannot be
      * zero length.
-     * </pre>
      *
-     * <code>bytes row_key_prefix = 2;</code>
+     * Generated from protobuf field <code>bytes row_key_prefix = 2;</code>
+     * @return string
      */
     public function getRowKeyPrefix()
     {
@@ -78,25 +74,26 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Delete all rows that start with this row key prefix. Prefix cannot be
      * zero length.
-     * </pre>
      *
-     * <code>bytes row_key_prefix = 2;</code>
+     * Generated from protobuf field <code>bytes row_key_prefix = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setRowKeyPrefix($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Delete all rows in the table. Setting this to false is a no-op.
-     * </pre>
      *
-     * <code>bool delete_all_data_from_table = 3;</code>
+     * Generated from protobuf field <code>bool delete_all_data_from_table = 3;</code>
+     * @return bool
      */
     public function getDeleteAllDataFromTable()
     {
@@ -104,18 +101,23 @@ class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Delete all rows in the table. Setting this to false is a no-op.
-     * </pre>
      *
-     * <code>bool delete_all_data_from_table = 3;</code>
+     * Generated from protobuf field <code>bool delete_all_data_from_table = 3;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setDeleteAllDataFromTable($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTarget()
     {
         return $this->whichOneof("target");

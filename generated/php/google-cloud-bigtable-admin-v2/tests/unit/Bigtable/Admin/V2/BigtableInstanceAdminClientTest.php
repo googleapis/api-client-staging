@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,22 +23,35 @@
 namespace Google\Cloud\Tests\Unit\Bigtable\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
+use Google\Bigtable\Admin\V2\BigtableInstanceAdminGrpcClient;
 use Google\Bigtable\Admin\V2\Cluster;
+use Google\Bigtable\Admin\V2\CreateClusterRequest;
+use Google\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Bigtable\Admin\V2\DeleteClusterRequest;
+use Google\Bigtable\Admin\V2\DeleteInstanceRequest;
+use Google\Bigtable\Admin\V2\GetClusterRequest;
+use Google\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Bigtable\Admin\V2\Instance;
 use Google\Bigtable\Admin\V2\Instance_Type as Type;
+use Google\Bigtable\Admin\V2\ListClustersRequest;
 use Google\Bigtable\Admin\V2\ListClustersResponse;
+use Google\Bigtable\Admin\V2\ListInstancesRequest;
 use Google\Bigtable\Admin\V2\ListInstancesResponse;
 use Google\Bigtable\Admin\V2\StorageType;
 use Google\GAX\ApiException;
+use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
 use Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use Google\GAX\Testing\MockStubTrait;
 use Google\Longrunning\GetOperationRequest;
 use Google\Longrunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
+use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -69,7 +82,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'port' => BigtableInstanceAdminClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
-
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -84,7 +96,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             },
         ]);
     }
-
     /**
      * @test
      */
@@ -96,11 +107,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -177,11 +188,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -536,11 +547,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -617,11 +628,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -830,11 +841,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -913,11 +924,11 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'scopes' => [],
             'createOperationsStubFunction' => function ($hostname, $opts) use ($operationsStub) {
                 return $operationsStub;
-            },
+            }
         ]);
         $grpcStub = $this->createStub([$this, 'createMockBigtableInstanceAdminImpl']);
         $client = $this->createClient('createBigtableInstanceAdminStubFunction', $grpcStub, [
-            'operationsClient' => $operationsClient,
+            'operationsClient' => $operationsClient
         ]);
 
         $this->assertTrue($grpcStub->isExhausted());
@@ -1037,4 +1048,5 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
+
 }

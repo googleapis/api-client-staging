@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for BigtableInstanceAdmin.ListInstances.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ListInstancesRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ListInstancesRequest</code>
  */
 class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/&lt;project&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
 
@@ -41,12 +35,11 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/&lt;project&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -54,25 +47,26 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the project for which a list of instances is requested.
-     * Values are of the form `projects/&lt;project&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setParent($var)
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -80,16 +74,18 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value of `next_page_token` returned by a previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
     }
 
 }

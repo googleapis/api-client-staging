@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Takes a row as input and produces an alternate view of the row based on
  * specified rules. For example, a RowFilter might trim down a row to include
  * just the cells from columns matching a given regular expression, or might
@@ -26,9 +25,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * regex true filters use RE2 syntax (https://github.com/google/re2/wiki/Syntax)
  * in raw byte mode (RE2::Latin1), and are evaluated as full matches. An
  * important point to keep in mind is that `RE2(.)` is equivalent by default to
- * `RE2([^&#92;n])`, meaning that it does not match newlines. When attempting to
- * match an arbitrary byte, you should therefore use the escape sequence `&#92;C`,
- * which may need to be further escaped as `&#92;&#92;C` in your client language.
+ * `RE2([^\n])`, meaning that it does not match newlines. When attempting to
+ * match an arbitrary byte, you should therefore use the escape sequence `\C`,
+ * which may need to be further escaped as `\\C` in your client language.
  * * Transformers alter the input row by changing the values of some of its
  * cells in the output, without excluding them completely. Currently, the only
  * supported transformer is the `strip_value_transformer`, which replaces every
@@ -38,9 +37,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * The total serialized size of a RowFilter message must not
  * exceed 4096 bytes, and RowFilters may not be nested within each other
  * (in Chains or Interleaves) to a depth of more than 20.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.RowFilter</code>
+ * Generated from protobuf message <code>google.bigtable.v2.RowFilter</code>
  */
 class RowFilter extends \Google\Protobuf\Internal\Message
 {
@@ -52,12 +50,11 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Applies several RowFilters to the data in sequence, progressively
      * narrowing the results.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
+     * @return \Google\Bigtable\V2\RowFilter_Chain
      */
     public function getChain()
     {
@@ -65,26 +62,27 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Applies several RowFilters to the data in sequence, progressively
      * narrowing the results.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
+     * @param \Google\Bigtable\V2\RowFilter_Chain $var
+     * @return $this
      */
-    public function setChain(&$var)
+    public function setChain($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter_Chain::class);
         $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Applies several RowFilters to the data in parallel and combines the
      * results.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
+     * @return \Google\Bigtable\V2\RowFilter_Interleave
      */
     public function getInterleave()
     {
@@ -92,26 +90,27 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Applies several RowFilters to the data in parallel and combines the
      * results.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
+     * @param \Google\Bigtable\V2\RowFilter_Interleave $var
+     * @return $this
      */
-    public function setInterleave(&$var)
+    public function setInterleave($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter_Interleave::class);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Applies one of two possible RowFilters to the data based on the output of
      * a predicate RowFilter.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
+     * @return \Google\Bigtable\V2\RowFilter_Condition
      */
     public function getCondition()
     {
@@ -119,21 +118,22 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Applies one of two possible RowFilters to the data based on the output of
      * a predicate RowFilter.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
+     * @param \Google\Bigtable\V2\RowFilter_Condition $var
+     * @return $this
      */
-    public function setCondition(&$var)
+    public function setCondition($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\RowFilter_Condition::class);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * ADVANCED USE ONLY.
      * Hook for introspection into the RowFilter. Outputs all cells directly to
      * the output of the read rather than to any parent filter. Consider the
@@ -188,9 +188,9 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * while the other does not.
      * Cannot be used within the `predicate_filter`, `true_filter`, or
      * `false_filter` of a [Condition][google.bigtable.v2.RowFilter.Condition].
-     * </pre>
      *
-     * <code>bool sink = 16;</code>
+     * Generated from protobuf field <code>bool sink = 16;</code>
+     * @return bool
      */
     public function getSink()
     {
@@ -198,7 +198,6 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * ADVANCED USE ONLY.
      * Hook for introspection into the RowFilter. Outputs all cells directly to
      * the output of the read rather than to any parent filter. Consider the
@@ -253,23 +252,25 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * while the other does not.
      * Cannot be used within the `predicate_filter`, `true_filter`, or
      * `false_filter` of a [Condition][google.bigtable.v2.RowFilter.Condition].
-     * </pre>
      *
-     * <code>bool sink = 16;</code>
+     * Generated from protobuf field <code>bool sink = 16;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setSink($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(16, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches all cells, regardless of input. Functionally equivalent to
      * leaving `filter` unset, but included for completeness.
-     * </pre>
      *
-     * <code>bool pass_all_filter = 17;</code>
+     * Generated from protobuf field <code>bool pass_all_filter = 17;</code>
+     * @return bool
      */
     public function getPassAllFilter()
     {
@@ -277,26 +278,27 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches all cells, regardless of input. Functionally equivalent to
      * leaving `filter` unset, but included for completeness.
-     * </pre>
      *
-     * <code>bool pass_all_filter = 17;</code>
+     * Generated from protobuf field <code>bool pass_all_filter = 17;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setPassAllFilter($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(17, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Does not match any cells, regardless of input. Useful for temporarily
      * disabling just part of a filter.
-     * </pre>
      *
-     * <code>bool block_all_filter = 18;</code>
+     * Generated from protobuf field <code>bool block_all_filter = 18;</code>
+     * @return bool
      */
     public function getBlockAllFilter()
     {
@@ -304,31 +306,32 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Does not match any cells, regardless of input. Useful for temporarily
      * disabling just part of a filter.
-     * </pre>
      *
-     * <code>bool block_all_filter = 18;</code>
+     * Generated from protobuf field <code>bool block_all_filter = 18;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setBlockAllFilter($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(18, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells from rows whose keys satisfy the given RE2 regex. In
      * other words, passes through the entire row when the key matches, and
      * otherwise produces an empty row.
-     * Note that, since row keys can contain arbitrary bytes, the `&#92;C` escape
+     * Note that, since row keys can contain arbitrary bytes, the `\C` escape
      * sequence must be used if a true wildcard is desired. The `.` character
-     * will not match the new line character `&#92;n`, which may be present in a
+     * will not match the new line character `\n`, which may be present in a
      * binary key.
-     * </pre>
      *
-     * <code>bytes row_key_regex_filter = 4;</code>
+     * Generated from protobuf field <code>bytes row_key_regex_filter = 4;</code>
+     * @return string
      */
     public function getRowKeyRegexFilter()
     {
@@ -336,31 +339,32 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells from rows whose keys satisfy the given RE2 regex. In
      * other words, passes through the entire row when the key matches, and
      * otherwise produces an empty row.
-     * Note that, since row keys can contain arbitrary bytes, the `&#92;C` escape
+     * Note that, since row keys can contain arbitrary bytes, the `\C` escape
      * sequence must be used if a true wildcard is desired. The `.` character
-     * will not match the new line character `&#92;n`, which may be present in a
+     * will not match the new line character `\n`, which may be present in a
      * binary key.
-     * </pre>
      *
-     * <code>bytes row_key_regex_filter = 4;</code>
+     * Generated from protobuf field <code>bytes row_key_regex_filter = 4;</code>
+     * @param string $var
+     * @return $this
      */
     public function setRowKeyRegexFilter($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches all cells from a row with probability p, and matches no cells
      * from the row with probability 1-p.
-     * </pre>
      *
-     * <code>double row_sample_filter = 14;</code>
+     * Generated from protobuf field <code>double row_sample_filter = 14;</code>
+     * @return float
      */
     public function getRowSampleFilter()
     {
@@ -368,30 +372,31 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches all cells from a row with probability p, and matches no cells
      * from the row with probability 1-p.
-     * </pre>
      *
-     * <code>double row_sample_filter = 14;</code>
+     * Generated from protobuf field <code>double row_sample_filter = 14;</code>
+     * @param float $var
+     * @return $this
      */
     public function setRowSampleFilter($var)
     {
         GPBUtil::checkDouble($var);
         $this->writeOneof(14, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells from columns whose families satisfy the given RE2
      * regex. For technical reasons, the regex must not contain the `:`
      * character, even if it is not being used as a literal.
      * Note that, since column families cannot contain the new line character
-     * `&#92;n`, it is sufficient to use `.` as a full wildcard when matching
+     * `\n`, it is sufficient to use `.` as a full wildcard when matching
      * column family names.
-     * </pre>
      *
-     * <code>string family_name_regex_filter = 5;</code>
+     * Generated from protobuf field <code>string family_name_regex_filter = 5;</code>
+     * @return string
      */
     public function getFamilyNameRegexFilter()
     {
@@ -399,34 +404,35 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells from columns whose families satisfy the given RE2
      * regex. For technical reasons, the regex must not contain the `:`
      * character, even if it is not being used as a literal.
      * Note that, since column families cannot contain the new line character
-     * `&#92;n`, it is sufficient to use `.` as a full wildcard when matching
+     * `\n`, it is sufficient to use `.` as a full wildcard when matching
      * column family names.
-     * </pre>
      *
-     * <code>string family_name_regex_filter = 5;</code>
+     * Generated from protobuf field <code>string family_name_regex_filter = 5;</code>
+     * @param string $var
+     * @return $this
      */
     public function setFamilyNameRegexFilter($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(5, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells from columns whose qualifiers satisfy the given RE2
      * regex.
-     * Note that, since column qualifiers can contain arbitrary bytes, the `&#92;C`
+     * Note that, since column qualifiers can contain arbitrary bytes, the `\C`
      * escape sequence must be used if a true wildcard is desired. The `.`
-     * character will not match the new line character `&#92;n`, which may be
+     * character will not match the new line character `\n`, which may be
      * present in a binary qualifier.
-     * </pre>
      *
-     * <code>bytes column_qualifier_regex_filter = 6;</code>
+     * Generated from protobuf field <code>bytes column_qualifier_regex_filter = 6;</code>
+     * @return string
      */
     public function getColumnQualifierRegexFilter()
     {
@@ -434,29 +440,30 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells from columns whose qualifiers satisfy the given RE2
      * regex.
-     * Note that, since column qualifiers can contain arbitrary bytes, the `&#92;C`
+     * Note that, since column qualifiers can contain arbitrary bytes, the `\C`
      * escape sequence must be used if a true wildcard is desired. The `.`
-     * character will not match the new line character `&#92;n`, which may be
+     * character will not match the new line character `\n`, which may be
      * present in a binary qualifier.
-     * </pre>
      *
-     * <code>bytes column_qualifier_regex_filter = 6;</code>
+     * Generated from protobuf field <code>bytes column_qualifier_regex_filter = 6;</code>
+     * @param string $var
+     * @return $this
      */
     public function setColumnQualifierRegexFilter($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells from columns within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
+     * @return \Google\Bigtable\V2\ColumnRange
      */
     public function getColumnRangeFilter()
     {
@@ -464,24 +471,25 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells from columns within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
+     * @param \Google\Bigtable\V2\ColumnRange $var
+     * @return $this
      */
-    public function setColumnRangeFilter(&$var)
+    public function setColumnRangeFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\ColumnRange::class);
         $this->writeOneof(7, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells with timestamps within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
+     * @return \Google\Bigtable\V2\TimestampRange
      */
     public function getTimestampRangeFilter()
     {
@@ -489,28 +497,29 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells with timestamps within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
+     * @param \Google\Bigtable\V2\TimestampRange $var
+     * @return $this
      */
-    public function setTimestampRangeFilter(&$var)
+    public function setTimestampRangeFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\TimestampRange::class);
         $this->writeOneof(8, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells with values that satisfy the given regular expression.
-     * Note that, since cell values can contain arbitrary bytes, the `&#92;C` escape
+     * Note that, since cell values can contain arbitrary bytes, the `\C` escape
      * sequence must be used if a true wildcard is desired. The `.` character
-     * will not match the new line character `&#92;n`, which may be present in a
+     * will not match the new line character `\n`, which may be present in a
      * binary value.
-     * </pre>
      *
-     * <code>bytes value_regex_filter = 9;</code>
+     * Generated from protobuf field <code>bytes value_regex_filter = 9;</code>
+     * @return string
      */
     public function getValueRegexFilter()
     {
@@ -518,28 +527,29 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells with values that satisfy the given regular expression.
-     * Note that, since cell values can contain arbitrary bytes, the `&#92;C` escape
+     * Note that, since cell values can contain arbitrary bytes, the `\C` escape
      * sequence must be used if a true wildcard is desired. The `.` character
-     * will not match the new line character `&#92;n`, which may be present in a
+     * will not match the new line character `\n`, which may be present in a
      * binary value.
-     * </pre>
      *
-     * <code>bytes value_regex_filter = 9;</code>
+     * Generated from protobuf field <code>bytes value_regex_filter = 9;</code>
+     * @param string $var
+     * @return $this
      */
     public function setValueRegexFilter($var)
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(9, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only cells with values that fall within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
+     * @return \Google\Bigtable\V2\ValueRange
      */
     public function getValueRangeFilter()
     {
@@ -547,26 +557,27 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only cells with values that fall within the given range.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
+     * @param \Google\Bigtable\V2\ValueRange $var
+     * @return $this
      */
-    public function setValueRangeFilter(&$var)
+    public function setValueRangeFilter($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\ValueRange::class);
         $this->writeOneof(15, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Skips the first N cells of each row, matching all subsequent cells.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_row_offset_filter = 10;</code>
+     * Generated from protobuf field <code>int32 cells_per_row_offset_filter = 10;</code>
+     * @return int
      */
     public function getCellsPerRowOffsetFilter()
     {
@@ -574,28 +585,29 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Skips the first N cells of each row, matching all subsequent cells.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_row_offset_filter = 10;</code>
+     * Generated from protobuf field <code>int32 cells_per_row_offset_filter = 10;</code>
+     * @param int $var
+     * @return $this
      */
     public function setCellsPerRowOffsetFilter($var)
     {
         GPBUtil::checkInt32($var);
         $this->writeOneof(10, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only the first N cells of each row.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_row_limit_filter = 11;</code>
+     * Generated from protobuf field <code>int32 cells_per_row_limit_filter = 11;</code>
+     * @return int
      */
     public function getCellsPerRowLimitFilter()
     {
@@ -603,31 +615,32 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only the first N cells of each row.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_row_limit_filter = 11;</code>
+     * Generated from protobuf field <code>int32 cells_per_row_limit_filter = 11;</code>
+     * @param int $var
+     * @return $this
      */
     public function setCellsPerRowLimitFilter($var)
     {
         GPBUtil::checkInt32($var);
         $this->writeOneof(11, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Matches only the most recent N cells within each column. For example,
      * if N=2, this filter would match column `foo:bar` at timestamps 10 and 9,
      * skip all earlier cells in `foo:bar`, and then begin matching again in
      * column `foo:bar2`.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_column_limit_filter = 12;</code>
+     * Generated from protobuf field <code>int32 cells_per_column_limit_filter = 12;</code>
+     * @return int
      */
     public function getCellsPerColumnLimitFilter()
     {
@@ -635,29 +648,30 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Matches only the most recent N cells within each column. For example,
      * if N=2, this filter would match column `foo:bar` at timestamps 10 and 9,
      * skip all earlier cells in `foo:bar`, and then begin matching again in
      * column `foo:bar2`.
      * If duplicate cells are present, as is possible when using an Interleave,
      * each copy of the cell is counted separately.
-     * </pre>
      *
-     * <code>int32 cells_per_column_limit_filter = 12;</code>
+     * Generated from protobuf field <code>int32 cells_per_column_limit_filter = 12;</code>
+     * @param int $var
+     * @return $this
      */
     public function setCellsPerColumnLimitFilter($var)
     {
         GPBUtil::checkInt32($var);
         $this->writeOneof(12, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Replaces each cell's value with the empty string.
-     * </pre>
      *
-     * <code>bool strip_value_transformer = 13;</code>
+     * Generated from protobuf field <code>bool strip_value_transformer = 13;</code>
+     * @return bool
      */
     public function getStripValueTransformer()
     {
@@ -665,34 +679,35 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Replaces each cell's value with the empty string.
-     * </pre>
      *
-     * <code>bool strip_value_transformer = 13;</code>
+     * Generated from protobuf field <code>bool strip_value_transformer = 13;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setStripValueTransformer($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(13, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Applies the given label to all cells in the output row. This allows
      * the client to determine which results were produced from which part of
      * the filter.
      * Values must be at most 15 characters in length, and match the RE2
-     * pattern `[a-z0-9&#92;&#92;-]+`
+     * pattern `[a-z0-9\\-]+`
      * Due to a technical limitation, it is not currently possible to apply
      * multiple labels to a cell. As a result, a Chain may have no more than
      * one sub-filter which contains a `apply_label_transformer`. It is okay for
      * an Interleave to contain multiple `apply_label_transformers`, as they
      * will be applied to separate copies of the input. This may be relaxed in
      * the future.
-     * </pre>
      *
-     * <code>string apply_label_transformer = 19;</code>
+     * Generated from protobuf field <code>string apply_label_transformer = 19;</code>
+     * @return string
      */
     public function getApplyLabelTransformer()
     {
@@ -700,28 +715,33 @@ class RowFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Applies the given label to all cells in the output row. This allows
      * the client to determine which results were produced from which part of
      * the filter.
      * Values must be at most 15 characters in length, and match the RE2
-     * pattern `[a-z0-9&#92;&#92;-]+`
+     * pattern `[a-z0-9\\-]+`
      * Due to a technical limitation, it is not currently possible to apply
      * multiple labels to a cell. As a result, a Chain may have no more than
      * one sub-filter which contains a `apply_label_transformer`. It is okay for
      * an Interleave to contain multiple `apply_label_transformers`, as they
      * will be applied to separate copies of the input. This may be relaxed in
      * the future.
-     * </pre>
      *
-     * <code>string apply_label_transformer = 19;</code>
+     * Generated from protobuf field <code>string apply_label_transformer = 19;</code>
+     * @param string $var
+     * @return $this
      */
     public function setApplyLabelTransformer($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(19, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getFilter()
     {
         return $this->whichOneof("filter");

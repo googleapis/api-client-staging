@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specified a contiguous range of microsecond timestamps.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.TimestampRange</code>
+ * Generated from protobuf message <code>google.bigtable.v2.TimestampRange</code>
  */
 class TimestampRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Inclusive lower bound. If left empty, interpreted as 0.
-     * </pre>
      *
-     * <code>int64 start_timestamp_micros = 1;</code>
+     * Generated from protobuf field <code>int64 start_timestamp_micros = 1;</code>
      */
     private $start_timestamp_micros = 0;
     /**
-     * <pre>
      * Exclusive upper bound. If left empty, interpreted as infinity.
-     * </pre>
      *
-     * <code>int64 end_timestamp_micros = 2;</code>
+     * Generated from protobuf field <code>int64 end_timestamp_micros = 2;</code>
      */
     private $end_timestamp_micros = 0;
 
@@ -40,11 +34,10 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Inclusive lower bound. If left empty, interpreted as 0.
-     * </pre>
      *
-     * <code>int64 start_timestamp_micros = 1;</code>
+     * Generated from protobuf field <code>int64 start_timestamp_micros = 1;</code>
+     * @return int|string
      */
     public function getStartTimestampMicros()
     {
@@ -52,24 +45,25 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Inclusive lower bound. If left empty, interpreted as 0.
-     * </pre>
      *
-     * <code>int64 start_timestamp_micros = 1;</code>
+     * Generated from protobuf field <code>int64 start_timestamp_micros = 1;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setStartTimestampMicros($var)
     {
         GPBUtil::checkInt64($var);
         $this->start_timestamp_micros = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Exclusive upper bound. If left empty, interpreted as infinity.
-     * </pre>
      *
-     * <code>int64 end_timestamp_micros = 2;</code>
+     * Generated from protobuf field <code>int64 end_timestamp_micros = 2;</code>
+     * @return int|string
      */
     public function getEndTimestampMicros()
     {
@@ -77,16 +71,18 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Exclusive upper bound. If left empty, interpreted as infinity.
-     * </pre>
      *
-     * <code>int64 end_timestamp_micros = 2;</code>
+     * Generated from protobuf field <code>int64 end_timestamp_micros = 2;</code>
+     * @param int|string $var
+     * @return $this
      */
     public function setEndTimestampMicros($var)
     {
         GPBUtil::checkInt64($var);
         $this->end_timestamp_micros = $var;
+
+        return $this;
     }
 
 }

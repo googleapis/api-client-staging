@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A create, update, or delete of a particular column family.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification</code>
  */
 class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The ID of the column family to be modified.
-     * </pre>
      *
-     * <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1;</code>
      */
     private $id = '';
     protected $mod;
@@ -33,11 +29,10 @@ class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * The ID of the column family to be modified.
-     * </pre>
      *
-     * <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1;</code>
+     * @return string
      */
     public function getId()
     {
@@ -45,25 +40,26 @@ class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * The ID of the column family to be modified.
-     * </pre>
      *
-     * <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setId($var)
     {
         GPBUtil::checkString($var, True);
         $this->id = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Create a new column family with the specified schema, or fail if
      * one already exists with the given ID.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     * @return \Google\Bigtable\Admin\V2\ColumnFamily
      */
     public function getCreate()
     {
@@ -71,26 +67,27 @@ class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * Create a new column family with the specified schema, or fail if
      * one already exists with the given ID.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     * @param \Google\Bigtable\Admin\V2\ColumnFamily $var
+     * @return $this
      */
-    public function setCreate(&$var)
+    public function setCreate($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\ColumnFamily::class);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Update an existing column family to the specified schema, or fail
      * if no column family exists with the given ID.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     * @return \Google\Bigtable\Admin\V2\ColumnFamily
      */
     public function getUpdate()
     {
@@ -98,26 +95,27 @@ class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * Update an existing column family to the specified schema, or fail
      * if no column family exists with the given ID.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     * @param \Google\Bigtable\Admin\V2\ColumnFamily $var
+     * @return $this
      */
-    public function setUpdate(&$var)
+    public function setUpdate($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\ColumnFamily::class);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
-     * <pre>
      * Drop (delete) the column family with the given ID, or fail if no such
      * family exists.
-     * </pre>
      *
-     * <code>bool drop = 4;</code>
+     * Generated from protobuf field <code>bool drop = 4;</code>
+     * @return bool
      */
     public function getDrop()
     {
@@ -125,19 +123,24 @@ class ModifyColumnFamiliesRequest_Modification extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * Drop (delete) the column family with the given ID, or fail if no such
      * family exists.
-     * </pre>
      *
-     * <code>bool drop = 4;</code>
+     * Generated from protobuf field <code>bool drop = 4;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setDrop($var)
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getMod()
     {
         return $this->whichOneof("mod");

@@ -9,43 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request message for
  * [google.bigtable.admin.v2.BigtableTableAdmin.CreateTable][google.bigtable.admin.v2.BigtableTableAdmin.CreateTable]
- * </pre>
  *
- * Protobuf type <code>google.bigtable.admin.v2.CreateTableRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.CreateTableRequest</code>
  */
 class CreateTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`.
-     * </pre>
+     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
      *
-     * <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2;</code>
      */
     private $table_id = '';
     /**
-     * <pre>
      * The Table to create.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
      */
     private $table = null;
     /**
-     * <pre>
      * The optional list of row keys that will be used to initially split the
      * table into several tablets (tablets are similar to HBase regions).
      * Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -55,14 +46,13 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *                `"other", "zz"]`
      * * initial_split_keys := `["apple", "customer_1", "customer_2", "other"]`
      * * Key assignment:
-     *     - Tablet 1 `[, apple)                =&gt; {"a"}.`
-     *     - Tablet 2 `[apple, customer_1)      =&gt; {"apple", "custom"}.`
-     *     - Tablet 3 `[customer_1, customer_2) =&gt; {"customer_1"}.`
-     *     - Tablet 4 `[customer_2, other)      =&gt; {"customer_2"}.`
-     *     - Tablet 5 `[other, )                =&gt; {"other", "zz"}.`
-     * </pre>
+     *     - Tablet 1 `[, apple)                => {"a"}.`
+     *     - Tablet 2 `[apple, customer_1)      => {"apple", "custom"}.`
+     *     - Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
+     *     - Tablet 4 `[customer_2, other)      => {"customer_2"}.`
+     *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
-     * <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
      */
     private $initial_splits;
 
@@ -72,12 +62,11 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -85,26 +74,27 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The unique name of the instance in which to create the table.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
-     * </pre>
+     * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setParent($var)
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`.
-     * </pre>
+     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
      *
-     * <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2;</code>
+     * @return string
      */
     public function getTableId()
     {
@@ -112,25 +102,26 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name by which the new table should be referred to within the parent
-     * instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`.
-     * </pre>
+     * instance, e.g., `foobar` rather than `<parent>/tables/foobar`.
      *
-     * <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setTableId($var)
     {
         GPBUtil::checkString($var, True);
         $this->table_id = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The Table to create.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * @return \Google\Bigtable\Admin\V2\Table
      */
     public function getTable()
     {
@@ -138,20 +129,21 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The Table to create.
-     * </pre>
      *
-     * <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3;</code>
+     * @param \Google\Bigtable\Admin\V2\Table $var
+     * @return $this
      */
-    public function setTable(&$var)
+    public function setTable($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\Admin\V2\Table::class);
         $this->table = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The optional list of row keys that will be used to initially split the
      * table into several tablets (tablets are similar to HBase regions).
      * Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -161,14 +153,14 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *                `"other", "zz"]`
      * * initial_split_keys := `["apple", "customer_1", "customer_2", "other"]`
      * * Key assignment:
-     *     - Tablet 1 `[, apple)                =&gt; {"a"}.`
-     *     - Tablet 2 `[apple, customer_1)      =&gt; {"apple", "custom"}.`
-     *     - Tablet 3 `[customer_1, customer_2) =&gt; {"customer_1"}.`
-     *     - Tablet 4 `[customer_2, other)      =&gt; {"customer_2"}.`
-     *     - Tablet 5 `[other, )                =&gt; {"other", "zz"}.`
-     * </pre>
+     *     - Tablet 1 `[, apple)                => {"a"}.`
+     *     - Tablet 2 `[apple, customer_1)      => {"apple", "custom"}.`
+     *     - Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
+     *     - Tablet 4 `[customer_2, other)      => {"customer_2"}.`
+     *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
-     * <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInitialSplits()
     {
@@ -176,7 +168,6 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The optional list of row keys that will be used to initially split the
      * table into several tablets (tablets are similar to HBase regions).
      * Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -186,19 +177,22 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *                `"other", "zz"]`
      * * initial_split_keys := `["apple", "customer_1", "customer_2", "other"]`
      * * Key assignment:
-     *     - Tablet 1 `[, apple)                =&gt; {"a"}.`
-     *     - Tablet 2 `[apple, customer_1)      =&gt; {"apple", "custom"}.`
-     *     - Tablet 3 `[customer_1, customer_2) =&gt; {"customer_1"}.`
-     *     - Tablet 4 `[customer_2, other)      =&gt; {"customer_2"}.`
-     *     - Tablet 5 `[other, )                =&gt; {"other", "zz"}.`
-     * </pre>
+     *     - Tablet 1 `[, apple)                => {"a"}.`
+     *     - Tablet 2 `[apple, customer_1)      => {"apple", "custom"}.`
+     *     - Tablet 3 `[customer_1, customer_2) => {"customer_1"}.`
+     *     - Tablet 4 `[customer_2, other)      => {"customer_2"}.`
+     *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
-     * <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
+     * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
+     * @param \Google\Bigtable\Admin\V2\CreateTableRequest_Split[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setInitialSplits(&$var)
+    public function setInitialSplits($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Bigtable\Admin\V2\CreateTableRequest_Split::class);
         $this->initial_splits = $arr;
+
+        return $this;
     }
 
 }

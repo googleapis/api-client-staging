@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A Mutation which deletes cells from the specified column, optionally
  * restricting the deletions to a given timestamp range.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.Mutation.DeleteFromColumn</code>
+ * Generated from protobuf message <code>google.bigtable.v2.Mutation.DeleteFromColumn</code>
  */
 class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
      */
     private $family_name = '';
     /**
-     * <pre>
      * The qualifier of the column from which cells should be deleted.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
      */
     private $column_qualifier = '';
     /**
-     * <pre>
      * The range of timestamps within which cells should be deleted.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
      */
     private $time_range = null;
 
@@ -51,12 +43,11 @@ class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @return string
      */
     public function getFamilyName()
     {
@@ -64,26 +55,27 @@ class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the family from which cells should be deleted.
      * Must match `[-_.a-zA-Z0-9]+`
-     * </pre>
      *
-     * <code>string family_name = 1;</code>
+     * Generated from protobuf field <code>string family_name = 1;</code>
+     * @param string $var
+     * @return $this
      */
     public function setFamilyName($var)
     {
         GPBUtil::checkString($var, True);
         $this->family_name = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The qualifier of the column from which cells should be deleted.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
+     * @return string
      */
     public function getColumnQualifier()
     {
@@ -91,25 +83,26 @@ class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The qualifier of the column from which cells should be deleted.
      * Can be any byte string, including the empty string.
-     * </pre>
      *
-     * <code>bytes column_qualifier = 2;</code>
+     * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
+     * @param string $var
+     * @return $this
      */
     public function setColumnQualifier($var)
     {
         GPBUtil::checkString($var, False);
         $this->column_qualifier = $var;
+
+        return $this;
     }
 
     /**
-     * <pre>
      * The range of timestamps within which cells should be deleted.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
+     * @return \Google\Bigtable\V2\TimestampRange
      */
     public function getTimeRange()
     {
@@ -117,16 +110,18 @@ class Mutation_DeleteFromColumn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The range of timestamps within which cells should be deleted.
-     * </pre>
      *
-     * <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
+     * @param \Google\Bigtable\V2\TimestampRange $var
+     * @return $this
      */
-    public function setTimeRange(&$var)
+    public function setTimeRange($var)
     {
         GPBUtil::checkMessage($var, \Google\Bigtable\V2\TimestampRange::class);
         $this->time_range = $var;
+
+        return $this;
     }
 
 }

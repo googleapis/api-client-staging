@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response message for Bigtable.CheckAndMutateRow.
- * </pre>
  *
- * Protobuf type <code>google.bigtable.v2.CheckAndMutateRowResponse</code>
+ * Generated from protobuf message <code>google.bigtable.v2.CheckAndMutateRowResponse</code>
  */
 class CheckAndMutateRowResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Whether or not the request's `predicate_filter` yielded any results for
      * the specified row.
-     * </pre>
      *
-     * <code>bool predicate_matched = 1;</code>
+     * Generated from protobuf field <code>bool predicate_matched = 1;</code>
      */
     private $predicate_matched = false;
 
@@ -33,12 +29,11 @@ class CheckAndMutateRowResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Whether or not the request's `predicate_filter` yielded any results for
      * the specified row.
-     * </pre>
      *
-     * <code>bool predicate_matched = 1;</code>
+     * Generated from protobuf field <code>bool predicate_matched = 1;</code>
+     * @return bool
      */
     public function getPredicateMatched()
     {
@@ -46,17 +41,19 @@ class CheckAndMutateRowResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Whether or not the request's `predicate_filter` yielded any results for
      * the specified row.
-     * </pre>
      *
-     * <code>bool predicate_matched = 1;</code>
+     * Generated from protobuf field <code>bool predicate_matched = 1;</code>
+     * @param bool $var
+     * @return $this
      */
     public function setPredicateMatched($var)
     {
         GPBUtil::checkBool($var);
         $this->predicate_matched = $var;
+
+        return $this;
     }
 
 }
