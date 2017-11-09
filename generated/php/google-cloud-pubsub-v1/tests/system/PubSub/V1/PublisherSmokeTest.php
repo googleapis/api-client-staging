@@ -20,13 +20,26 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Tests\Unit\PubSub\V1;
+namespace Google\Cloud\Tests\System\PubSub\V1;
 
-use Google\GAX\Testing\MockStubTrait;
-use Google\Iam\V1\IAMPolicyGrpcClient;
-use Google\Protobuf\Any;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\GAX\Testing\GeneratedTest;
 
-class MockIAMPolicyImpl extends IAMPolicyGrpcClient
+/**
+ * @group pub_sub
+ * @group grpc
+ */
+class PublisherSmokeTest extends GeneratedTest
 {
-    use MockStubTrait;
+    /**
+     * @test
+     */
+    public function listTopicsTest()
+    {
+        $projectId = getenv('PROJECT_ID');
+
+        $publisherClient = new PublisherClient();
+        $formattedProject = $publisherClient->projectName($projectId);
+        $publisherClient->listTopics($formattedProject);
+    }
 }
