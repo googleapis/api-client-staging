@@ -149,4 +149,48 @@ public interface InspectConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimitOrBuilder getInfoTypeLimitsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType> 
+      getCustomInfoTypesList();
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  com.google.privacy.dlp.v2beta1.CustomInfoType getCustomInfoTypes(int index);
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  int getCustomInfoTypesCount();
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  java.util.List<? extends com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder> 
+      getCustomInfoTypesOrBuilderList();
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder getCustomInfoTypesOrBuilder(
+      int index);
 }

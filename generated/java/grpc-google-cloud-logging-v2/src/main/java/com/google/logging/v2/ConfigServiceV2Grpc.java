@@ -176,8 +176,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      * </pre>
@@ -190,8 +189,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
@@ -387,8 +385,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      * </pre>
@@ -402,8 +399,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
@@ -529,8 +525,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      * </pre>
@@ -543,8 +538,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>
@@ -665,8 +659,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Creates a sink that exports specified log entries to a destination.  The
-     * export of newly-ingested log entries begins immediately, unless the current
-     * time is outside the sink's start and end times or the sink's
+     * export of newly-ingested log entries begins immediately, unless the sink's
      * `writer_identity` is not permitted to write to the destination.  A sink can
      * export log entries only from the resource owning the sink.
      * </pre>
@@ -680,8 +673,7 @@ public final class ConfigServiceV2Grpc {
     /**
      * <pre>
      * Updates a sink.  This method replaces the following fields in the existing
-     * sink with values from the new sink: `destination`, `filter`,
-     * `output_version_format`, `start_time`, and `end_time`.
+     * sink with values from the new sink: `destination`, and `filter`.
      * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      * </pre>

@@ -14,6 +14,9 @@ public interface LogEntryOrBuilder extends
    *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
    *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
    *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+   *  A project number may optionally be used in place of PROJECT_ID. The
+   *  project number is translated to its corresponding PROJECT_ID internally
+   *  and the `log_name` field will contain PROJECT_ID in queries and exports.
    * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
    * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
    * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -36,6 +39,9 @@ public interface LogEntryOrBuilder extends
    *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
    *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
    *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+   *  A project number may optionally be used in place of PROJECT_ID. The
+   *  project number is translated to its corresponding PROJECT_ID internally
+   *  and the `log_name` field will contain PROJECT_ID in queries and exports.
    * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
    * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
    * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -401,6 +407,32 @@ public interface LogEntryOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTraceBytes();
+
+  /**
+   * <pre>
+   * Optional. Id of the span within the trace associated with the log entry.
+   * e.g. "0000000000000042"
+   * For Stackdriver trace spans, this is the same format that the Stackdriver
+   * trace API uses.
+   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+   * </pre>
+   *
+   * <code>string span_id = 27;</code>
+   */
+  java.lang.String getSpanId();
+  /**
+   * <pre>
+   * Optional. Id of the span within the trace associated with the log entry.
+   * e.g. "0000000000000042"
+   * For Stackdriver trace spans, this is the same format that the Stackdriver
+   * trace API uses.
+   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+   * </pre>
+   *
+   * <code>string span_id = 27;</code>
+   */
+  com.google.protobuf.ByteString
+      getSpanIdBytes();
 
   /**
    * <pre>

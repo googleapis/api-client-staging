@@ -27,6 +27,7 @@ public  final class InspectConfig extends
     includeQuote_ = false;
     excludeTypes_ = false;
     infoTypeLimits_ = java.util.Collections.emptyList();
+    customInfoTypes_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -93,6 +94,15 @@ public  final class InspectConfig extends
                 input.readMessage(com.google.privacy.dlp.v2beta1.InspectConfig.InfoTypeLimit.parser(), extensionRegistry));
             break;
           }
+          case 66: {
+            if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+              customInfoTypes_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta1.CustomInfoType>();
+              mutable_bitField0_ |= 0x00000040;
+            }
+            customInfoTypes_.add(
+                input.readMessage(com.google.privacy.dlp.v2beta1.CustomInfoType.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -106,6 +116,9 @@ public  final class InspectConfig extends
       }
       if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
         infoTypeLimits_ = java.util.Collections.unmodifiableList(infoTypeLimits_);
+      }
+      if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+        customInfoTypes_ = java.util.Collections.unmodifiableList(customInfoTypes_);
       }
       makeExtensionsImmutable();
     }
@@ -1076,6 +1089,61 @@ public  final class InspectConfig extends
     return infoTypeLimits_.get(index);
   }
 
+  public static final int CUSTOM_INFO_TYPES_FIELD_NUMBER = 8;
+  private java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType> customInfoTypes_;
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  public java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType> getCustomInfoTypesList() {
+    return customInfoTypes_;
+  }
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  public java.util.List<? extends com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder> 
+      getCustomInfoTypesOrBuilderList() {
+    return customInfoTypes_;
+  }
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  public int getCustomInfoTypesCount() {
+    return customInfoTypes_.size();
+  }
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.CustomInfoType getCustomInfoTypes(int index) {
+    return customInfoTypes_.get(index);
+  }
+  /**
+   * <pre>
+   * Custom info types provided by the user.
+   * </pre>
+   *
+   * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+   */
+  public com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder getCustomInfoTypesOrBuilder(
+      int index) {
+    return customInfoTypes_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -1105,6 +1173,9 @@ public  final class InspectConfig extends
     }
     for (int i = 0; i < infoTypeLimits_.size(); i++) {
       output.writeMessage(7, infoTypeLimits_.get(i));
+    }
+    for (int i = 0; i < customInfoTypes_.size(); i++) {
+      output.writeMessage(8, customInfoTypes_.get(i));
     }
   }
 
@@ -1137,6 +1208,10 @@ public  final class InspectConfig extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, infoTypeLimits_.get(i));
     }
+    for (int i = 0; i < customInfoTypes_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, customInfoTypes_.get(i));
+    }
     memoizedSize = size;
     return size;
   }
@@ -1164,6 +1239,8 @@ public  final class InspectConfig extends
         == other.getExcludeTypes());
     result = result && getInfoTypeLimitsList()
         .equals(other.getInfoTypeLimitsList());
+    result = result && getCustomInfoTypesList()
+        .equals(other.getCustomInfoTypesList());
     return result;
   }
 
@@ -1191,6 +1268,10 @@ public  final class InspectConfig extends
     if (getInfoTypeLimitsCount() > 0) {
       hash = (37 * hash) + INFO_TYPE_LIMITS_FIELD_NUMBER;
       hash = (53 * hash) + getInfoTypeLimitsList().hashCode();
+    }
+    if (getCustomInfoTypesCount() > 0) {
+      hash = (37 * hash) + CUSTOM_INFO_TYPES_FIELD_NUMBER;
+      hash = (53 * hash) + getCustomInfoTypesList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1325,6 +1406,7 @@ public  final class InspectConfig extends
               .alwaysUseFieldBuilders) {
         getInfoTypesFieldBuilder();
         getInfoTypeLimitsFieldBuilder();
+        getCustomInfoTypesFieldBuilder();
       }
     }
     public Builder clear() {
@@ -1348,6 +1430,12 @@ public  final class InspectConfig extends
         bitField0_ = (bitField0_ & ~0x00000020);
       } else {
         infoTypeLimitsBuilder_.clear();
+      }
+      if (customInfoTypesBuilder_ == null) {
+        customInfoTypes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);
+      } else {
+        customInfoTypesBuilder_.clear();
       }
       return this;
     }
@@ -1394,6 +1482,15 @@ public  final class InspectConfig extends
         result.infoTypeLimits_ = infoTypeLimits_;
       } else {
         result.infoTypeLimits_ = infoTypeLimitsBuilder_.build();
+      }
+      if (customInfoTypesBuilder_ == null) {
+        if (((bitField0_ & 0x00000040) == 0x00000040)) {
+          customInfoTypes_ = java.util.Collections.unmodifiableList(customInfoTypes_);
+          bitField0_ = (bitField0_ & ~0x00000040);
+        }
+        result.customInfoTypes_ = customInfoTypes_;
+      } else {
+        result.customInfoTypes_ = customInfoTypesBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -1498,6 +1595,32 @@ public  final class InspectConfig extends
                  getInfoTypeLimitsFieldBuilder() : null;
           } else {
             infoTypeLimitsBuilder_.addAllMessages(other.infoTypeLimits_);
+          }
+        }
+      }
+      if (customInfoTypesBuilder_ == null) {
+        if (!other.customInfoTypes_.isEmpty()) {
+          if (customInfoTypes_.isEmpty()) {
+            customInfoTypes_ = other.customInfoTypes_;
+            bitField0_ = (bitField0_ & ~0x00000040);
+          } else {
+            ensureCustomInfoTypesIsMutable();
+            customInfoTypes_.addAll(other.customInfoTypes_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.customInfoTypes_.isEmpty()) {
+          if (customInfoTypesBuilder_.isEmpty()) {
+            customInfoTypesBuilder_.dispose();
+            customInfoTypesBuilder_ = null;
+            customInfoTypes_ = other.customInfoTypes_;
+            bitField0_ = (bitField0_ & ~0x00000040);
+            customInfoTypesBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getCustomInfoTypesFieldBuilder() : null;
+          } else {
+            customInfoTypesBuilder_.addAllMessages(other.customInfoTypes_);
           }
         }
       }
@@ -2367,6 +2490,318 @@ public  final class InspectConfig extends
         infoTypeLimits_ = null;
       }
       return infoTypeLimitsBuilder_;
+    }
+
+    private java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType> customInfoTypes_ =
+      java.util.Collections.emptyList();
+    private void ensureCustomInfoTypesIsMutable() {
+      if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+        customInfoTypes_ = new java.util.ArrayList<com.google.privacy.dlp.v2beta1.CustomInfoType>(customInfoTypes_);
+        bitField0_ |= 0x00000040;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.CustomInfoType, com.google.privacy.dlp.v2beta1.CustomInfoType.Builder, com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder> customInfoTypesBuilder_;
+
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType> getCustomInfoTypesList() {
+      if (customInfoTypesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(customInfoTypes_);
+      } else {
+        return customInfoTypesBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public int getCustomInfoTypesCount() {
+      if (customInfoTypesBuilder_ == null) {
+        return customInfoTypes_.size();
+      } else {
+        return customInfoTypesBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.CustomInfoType getCustomInfoTypes(int index) {
+      if (customInfoTypesBuilder_ == null) {
+        return customInfoTypes_.get(index);
+      } else {
+        return customInfoTypesBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder setCustomInfoTypes(
+        int index, com.google.privacy.dlp.v2beta1.CustomInfoType value) {
+      if (customInfoTypesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.set(index, value);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder setCustomInfoTypes(
+        int index, com.google.privacy.dlp.v2beta1.CustomInfoType.Builder builderForValue) {
+      if (customInfoTypesBuilder_ == null) {
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder addCustomInfoTypes(com.google.privacy.dlp.v2beta1.CustomInfoType value) {
+      if (customInfoTypesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.add(value);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder addCustomInfoTypes(
+        int index, com.google.privacy.dlp.v2beta1.CustomInfoType value) {
+      if (customInfoTypesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.add(index, value);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder addCustomInfoTypes(
+        com.google.privacy.dlp.v2beta1.CustomInfoType.Builder builderForValue) {
+      if (customInfoTypesBuilder_ == null) {
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.add(builderForValue.build());
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder addCustomInfoTypes(
+        int index, com.google.privacy.dlp.v2beta1.CustomInfoType.Builder builderForValue) {
+      if (customInfoTypesBuilder_ == null) {
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder addAllCustomInfoTypes(
+        java.lang.Iterable<? extends com.google.privacy.dlp.v2beta1.CustomInfoType> values) {
+      if (customInfoTypesBuilder_ == null) {
+        ensureCustomInfoTypesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, customInfoTypes_);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder clearCustomInfoTypes() {
+      if (customInfoTypesBuilder_ == null) {
+        customInfoTypes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000040);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public Builder removeCustomInfoTypes(int index) {
+      if (customInfoTypesBuilder_ == null) {
+        ensureCustomInfoTypesIsMutable();
+        customInfoTypes_.remove(index);
+        onChanged();
+      } else {
+        customInfoTypesBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.CustomInfoType.Builder getCustomInfoTypesBuilder(
+        int index) {
+      return getCustomInfoTypesFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder getCustomInfoTypesOrBuilder(
+        int index) {
+      if (customInfoTypesBuilder_ == null) {
+        return customInfoTypes_.get(index);  } else {
+        return customInfoTypesBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public java.util.List<? extends com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder> 
+         getCustomInfoTypesOrBuilderList() {
+      if (customInfoTypesBuilder_ != null) {
+        return customInfoTypesBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(customInfoTypes_);
+      }
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.CustomInfoType.Builder addCustomInfoTypesBuilder() {
+      return getCustomInfoTypesFieldBuilder().addBuilder(
+          com.google.privacy.dlp.v2beta1.CustomInfoType.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public com.google.privacy.dlp.v2beta1.CustomInfoType.Builder addCustomInfoTypesBuilder(
+        int index) {
+      return getCustomInfoTypesFieldBuilder().addBuilder(
+          index, com.google.privacy.dlp.v2beta1.CustomInfoType.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Custom info types provided by the user.
+     * </pre>
+     *
+     * <code>repeated .google.privacy.dlp.v2beta1.CustomInfoType custom_info_types = 8;</code>
+     */
+    public java.util.List<com.google.privacy.dlp.v2beta1.CustomInfoType.Builder> 
+         getCustomInfoTypesBuilderList() {
+      return getCustomInfoTypesFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.google.privacy.dlp.v2beta1.CustomInfoType, com.google.privacy.dlp.v2beta1.CustomInfoType.Builder, com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder> 
+        getCustomInfoTypesFieldBuilder() {
+      if (customInfoTypesBuilder_ == null) {
+        customInfoTypesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            com.google.privacy.dlp.v2beta1.CustomInfoType, com.google.privacy.dlp.v2beta1.CustomInfoType.Builder, com.google.privacy.dlp.v2beta1.CustomInfoTypeOrBuilder>(
+                customInfoTypes_,
+                ((bitField0_ & 0x00000040) == 0x00000040),
+                getParentForChildren(),
+                isClean());
+        customInfoTypes_ = null;
+      }
+      return customInfoTypesBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

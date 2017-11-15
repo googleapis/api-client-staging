@@ -7,7 +7,7 @@ package com.google.logging.v2;
  * <pre>
  * Describes a logs-based metric.  The value of the metric is the
  * number of log entries that match a logs filter in a given time interval.
- * A logs-based metric can also be used to extract values from logs and create a
+ * Logs-based metric can also be used to extract values from logs and create a
  * a distribution of the values. The distribution records the statistics of the
  * extracted values along with an optional histogram of the values as specified
  * by the bucket options.
@@ -1038,7 +1038,7 @@ public  final class LogMetric extends
    * <pre>
    * Describes a logs-based metric.  The value of the metric is the
    * number of log entries that match a logs filter in a given time interval.
-   * A logs-based metric can also be used to extract values from logs and create a
+   * Logs-based metric can also be used to extract values from logs and create a
    * a distribution of the values. The distribution records the statistics of the
    * extracted values along with an optional histogram of the values as specified
    * by the bucket options.

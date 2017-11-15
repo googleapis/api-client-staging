@@ -108,11 +108,11 @@ public final class LoggingMetricsProto {
       "ric\022\204\001\n\017DeleteLogMetric\022).google.logging" +
       ".v2.DeleteLogMetricRequest\032\026.google.prot" +
       "obuf.Empty\".\202\323\344\223\002(*&/v2/{metric_name=pro" +
-      "jects/*/metrics/*}B\205\001\n\025com.google.loggin" +
+      "jects/*/metrics/*}B\237\001\n\025com.google.loggin" +
       "g.v2B\023LoggingMetricsProtoP\001Z8google.gola" +
       "ng.org/genproto/googleapis/logging/v2;lo" +
-      "gging\370\001\001\252\002\027Google.Cloud.Logging.V2b\006prot" +
-      "o3"
+      "gging\370\001\001\252\002\027Google.Cloud.Logging.V2\312\002\027Goo" +
+      "gle\\Cloud\\Logging\\V2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

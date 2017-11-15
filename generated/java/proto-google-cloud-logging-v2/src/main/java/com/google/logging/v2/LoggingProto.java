@@ -118,7 +118,7 @@ public final class LoggingProto {
       "en\030\002 \001(\t\"H\n\017ListLogsRequest\022\016\n\006parent\030\001 " +
       "\001(\t\022\021\n\tpage_size\030\002 \001(\005\022\022\n\npage_token\030\003 \001" +
       "(\t\">\n\020ListLogsResponse\022\021\n\tlog_names\030\003 \003(" +
-      "\t\022\027\n\017next_page_token\030\002 \001(\t2\334\005\n\020LoggingSe" +
+      "\t\022\027\n\017next_page_token\030\002 \001(\t2\325\005\n\020LoggingSe" +
       "rviceV2\022w\n\tDeleteLog\022#.google.logging.v2" +
       ".DeleteLogRequest\032\026.google.protobuf.Empt" +
       "y\"-\202\323\344\223\002\'*%/v2beta1/{log_name=projects/*" +
@@ -133,14 +133,14 @@ public final class LoggingProto {
       "ogle.logging.v2.ListMonitoredResourceDes" +
       "criptorsRequest\032;.google.logging.v2.List" +
       "MonitoredResourceDescriptorsResponse\"(\202\323",
-      "\344\223\002\"\022 /v2/monitoredResourceDescriptors\022y" +
+      "\344\223\002\"\022 /v2/monitoredResourceDescriptors\022r" +
       "\n\010ListLogs\022\".google.logging.v2.ListLogsR" +
       "equest\032#.google.logging.v2.ListLogsRespo" +
-      "nse\"$\202\323\344\223\002\036\022\034/v2/{parent=projects/*}/log" +
-      "sB~\n\025com.google.logging.v2B\014LoggingProto" +
-      "P\001Z8google.golang.org/genproto/googleapi" +
-      "s/logging/v2;logging\370\001\001\252\002\027Google.Cloud.L" +
-      "ogging.V2b\006proto3"
+      "nse\"\035\202\323\344\223\002\027\022\025/v2/{parent=*/*}/logsB\230\001\n\025c" +
+      "om.google.logging.v2B\014LoggingProtoP\001Z8go" +
+      "ogle.golang.org/genproto/googleapis/logg" +
+      "ing/v2;logging\370\001\001\252\002\027Google.Cloud.Logging" +
+      ".V2\312\002\027Google\\Cloud\\Logging\\V2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

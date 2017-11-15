@@ -70,8 +70,7 @@ public interface LogSinkOrBuilder extends
    * Optional.
    * An [advanced logs filter](/logging/docs/view/advanced_filters).  The only
    * exported log entries are those that are in the resource owning the sink and
-   * that match the filter. The filter must use the log entry format specified
-   * by the `output_version_format` parameter.  For example, in the v2 format:
+   * that match the filter.  For example:
    *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
    * </pre>
    *
@@ -83,8 +82,7 @@ public interface LogSinkOrBuilder extends
    * Optional.
    * An [advanced logs filter](/logging/docs/view/advanced_filters).  The only
    * exported log entries are those that are in the resource owning the sink and
-   * that match the filter. The filter must use the log entry format specified
-   * by the `output_version_format` parameter.  For example, in the v2 format:
+   * that match the filter.  For example:
    *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
    * </pre>
    *
@@ -176,10 +174,7 @@ public interface LogSinkOrBuilder extends
 
   /**
    * <pre>
-   * Optional. The time at which this sink will begin exporting log entries.
-   * Log entries are exported only if their timestamp is not earlier than the
-   * start time.  The default value of this field is the time the sink is
-   * created or updated.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_time = 10;</code>
@@ -187,10 +182,7 @@ public interface LogSinkOrBuilder extends
   boolean hasStartTime();
   /**
    * <pre>
-   * Optional. The time at which this sink will begin exporting log entries.
-   * Log entries are exported only if their timestamp is not earlier than the
-   * start time.  The default value of this field is the time the sink is
-   * created or updated.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_time = 10;</code>
@@ -198,10 +190,7 @@ public interface LogSinkOrBuilder extends
   com.google.protobuf.Timestamp getStartTime();
   /**
    * <pre>
-   * Optional. The time at which this sink will begin exporting log entries.
-   * Log entries are exported only if their timestamp is not earlier than the
-   * start time.  The default value of this field is the time the sink is
-   * created or updated.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp start_time = 10;</code>
@@ -210,11 +199,7 @@ public interface LogSinkOrBuilder extends
 
   /**
    * <pre>
-   * Optional. The time at which this sink will stop exporting log entries.  Log
-   * entries are exported only if their timestamp is earlier than the end time.
-   * If this field is not supplied, there is no end time.  If both a start time
-   * and an end time are provided, then the end time must be later than the
-   * start time.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp end_time = 11;</code>
@@ -222,11 +207,7 @@ public interface LogSinkOrBuilder extends
   boolean hasEndTime();
   /**
    * <pre>
-   * Optional. The time at which this sink will stop exporting log entries.  Log
-   * entries are exported only if their timestamp is earlier than the end time.
-   * If this field is not supplied, there is no end time.  If both a start time
-   * and an end time are provided, then the end time must be later than the
-   * start time.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp end_time = 11;</code>
@@ -234,11 +215,7 @@ public interface LogSinkOrBuilder extends
   com.google.protobuf.Timestamp getEndTime();
   /**
    * <pre>
-   * Optional. The time at which this sink will stop exporting log entries.  Log
-   * entries are exported only if their timestamp is earlier than the end time.
-   * If this field is not supplied, there is no end time.  If both a start time
-   * and an end time are provided, then the end time must be later than the
-   * start time.
+   * Deprecated. This field is ignored when creating or updating sinks.
    * </pre>
    *
    * <code>.google.protobuf.Timestamp end_time = 11;</code>

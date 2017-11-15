@@ -83,4 +83,59 @@ public interface UpdateSinkRequestOrBuilder extends
    * <code>bool unique_writer_identity = 3;</code>
    */
   boolean getUniqueWriterIdentity();
+
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  boolean hasUpdateMask();
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  com.google.protobuf.FieldMask getUpdateMask();
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  com.google.protobuf.FieldMaskOrBuilder getUpdateMaskOrBuilder();
 }

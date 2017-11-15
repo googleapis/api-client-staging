@@ -23,6 +23,7 @@ public  final class LogEntry extends
     severity_ = 0;
     insertId_ = "";
     trace_ = "";
+    spanId_ = "";
   }
 
   @java.lang.Override
@@ -199,6 +200,12 @@ public  final class LogEntry extends
 
             break;
           }
+          case 218: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            spanId_ = s;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -283,6 +290,9 @@ public  final class LogEntry extends
    *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
    *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
    *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+   *  A project number may optionally be used in place of PROJECT_ID. The
+   *  project number is translated to its corresponding PROJECT_ID internally
+   *  and the `log_name` field will contain PROJECT_ID in queries and exports.
    * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
    * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
    * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -316,6 +326,9 @@ public  final class LogEntry extends
    *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
    *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
    *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+   *  A project number may optionally be used in place of PROJECT_ID. The
+   *  project number is translated to its corresponding PROJECT_ID internally
+   *  and the `log_name` field will contain PROJECT_ID in queries and exports.
    * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
    * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
    * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -880,6 +893,56 @@ public  final class LogEntry extends
     }
   }
 
+  public static final int SPAN_ID_FIELD_NUMBER = 27;
+  private volatile java.lang.Object spanId_;
+  /**
+   * <pre>
+   * Optional. Id of the span within the trace associated with the log entry.
+   * e.g. "0000000000000042"
+   * For Stackdriver trace spans, this is the same format that the Stackdriver
+   * trace API uses.
+   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+   * </pre>
+   *
+   * <code>string span_id = 27;</code>
+   */
+  public java.lang.String getSpanId() {
+    java.lang.Object ref = spanId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      spanId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Optional. Id of the span within the trace associated with the log entry.
+   * e.g. "0000000000000042"
+   * For Stackdriver trace spans, this is the same format that the Stackdriver
+   * trace API uses.
+   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+   * </pre>
+   *
+   * <code>string span_id = 27;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSpanIdBytes() {
+    java.lang.Object ref = spanId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      spanId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   public static final int SOURCE_LOCATION_FIELD_NUMBER = 23;
   private com.google.logging.v2.LogEntrySourceLocation sourceLocation_;
   /**
@@ -973,6 +1036,9 @@ public  final class LogEntry extends
     if (receiveTimestamp_ != null) {
       output.writeMessage(24, getReceiveTimestamp());
     }
+    if (!getSpanIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 27, spanId_);
+    }
   }
 
   public int getSerializedSize() {
@@ -1038,6 +1104,9 @@ public  final class LogEntry extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(24, getReceiveTimestamp());
     }
+    if (!getSpanIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(27, spanId_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -1088,6 +1157,8 @@ public  final class LogEntry extends
     }
     result = result && getTrace()
         .equals(other.getTrace());
+    result = result && getSpanId()
+        .equals(other.getSpanId());
     result = result && (hasSourceLocation() == other.hasSourceLocation());
     if (hasSourceLocation()) {
       result = result && getSourceLocation()
@@ -1154,6 +1225,8 @@ public  final class LogEntry extends
     }
     hash = (37 * hash) + TRACE_FIELD_NUMBER;
     hash = (53 * hash) + getTrace().hashCode();
+    hash = (37 * hash) + SPAN_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getSpanId().hashCode();
     if (hasSourceLocation()) {
       hash = (37 * hash) + SOURCE_LOCATION_FIELD_NUMBER;
       hash = (53 * hash) + getSourceLocation().hashCode();
@@ -1368,6 +1441,8 @@ public  final class LogEntry extends
       }
       trace_ = "";
 
+      spanId_ = "";
+
       if (sourceLocationBuilder_ == null) {
         sourceLocation_ = null;
       } else {
@@ -1448,6 +1523,7 @@ public  final class LogEntry extends
         result.operation_ = operationBuilder_.build();
       }
       result.trace_ = trace_;
+      result.spanId_ = spanId_;
       if (sourceLocationBuilder_ == null) {
         result.sourceLocation_ = sourceLocation_;
       } else {
@@ -1528,6 +1604,10 @@ public  final class LogEntry extends
         trace_ = other.trace_;
         onChanged();
       }
+      if (!other.getSpanId().isEmpty()) {
+        spanId_ = other.spanId_;
+        onChanged();
+      }
       if (other.hasSourceLocation()) {
         mergeSourceLocation(other.getSourceLocation());
       }
@@ -1600,6 +1680,9 @@ public  final class LogEntry extends
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *  A project number may optionally be used in place of PROJECT_ID. The
+     *  project number is translated to its corresponding PROJECT_ID internally
+     *  and the `log_name` field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -1633,6 +1716,9 @@ public  final class LogEntry extends
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *  A project number may optionally be used in place of PROJECT_ID. The
+     *  project number is translated to its corresponding PROJECT_ID internally
+     *  and the `log_name` field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -1667,6 +1753,9 @@ public  final class LogEntry extends
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *  A project number may optionally be used in place of PROJECT_ID. The
+     *  project number is translated to its corresponding PROJECT_ID internally
+     *  and the `log_name` field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -1698,6 +1787,9 @@ public  final class LogEntry extends
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *  A project number may optionally be used in place of PROJECT_ID. The
+     *  project number is translated to its corresponding PROJECT_ID internally
+     *  and the `log_name` field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -1725,6 +1817,9 @@ public  final class LogEntry extends
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *  A project number may optionally be used in place of PROJECT_ID. The
+     *  project number is translated to its corresponding PROJECT_ID internally
+     *  and the `log_name` field will contain PROJECT_ID in queries and exports.
      * `[LOG_ID]` must be URL-encoded within `log_name`. Example:
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * `[LOG_ID]` must be less than 512 characters long and can only include the
@@ -3513,6 +3608,115 @@ public  final class LogEntry extends
   checkByteStringIsUtf8(value);
       
       trace_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object spanId_ = "";
+    /**
+     * <pre>
+     * Optional. Id of the span within the trace associated with the log entry.
+     * e.g. "0000000000000042"
+     * For Stackdriver trace spans, this is the same format that the Stackdriver
+     * trace API uses.
+     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * </pre>
+     *
+     * <code>string span_id = 27;</code>
+     */
+    public java.lang.String getSpanId() {
+      java.lang.Object ref = spanId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        spanId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. Id of the span within the trace associated with the log entry.
+     * e.g. "0000000000000042"
+     * For Stackdriver trace spans, this is the same format that the Stackdriver
+     * trace API uses.
+     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * </pre>
+     *
+     * <code>string span_id = 27;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpanIdBytes() {
+      java.lang.Object ref = spanId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        spanId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. Id of the span within the trace associated with the log entry.
+     * e.g. "0000000000000042"
+     * For Stackdriver trace spans, this is the same format that the Stackdriver
+     * trace API uses.
+     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * </pre>
+     *
+     * <code>string span_id = 27;</code>
+     */
+    public Builder setSpanId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spanId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Id of the span within the trace associated with the log entry.
+     * e.g. "0000000000000042"
+     * For Stackdriver trace spans, this is the same format that the Stackdriver
+     * trace API uses.
+     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * </pre>
+     *
+     * <code>string span_id = 27;</code>
+     */
+    public Builder clearSpanId() {
+      
+      spanId_ = getDefaultInstance().getSpanId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Id of the span within the trace associated with the log entry.
+     * e.g. "0000000000000042"
+     * For Stackdriver trace spans, this is the same format that the Stackdriver
+     * trace API uses.
+     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * </pre>
+     *
+     * <code>string span_id = 27;</code>
+     */
+    public Builder setSpanIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spanId_ = value;
       onChanged();
       return this;
     }
