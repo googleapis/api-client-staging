@@ -9,6 +9,28 @@ public interface WebhookRequestOrBuilder extends
 
   /**
    * <pre>
+   * The unique identifier of detectIntent request session.
+   * Can be used to identify end-user inside webhook implementation.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * </pre>
+   *
+   * <code>string session = 4;</code>
+   */
+  java.lang.String getSession();
+  /**
+   * <pre>
+   * The unique identifier of detectIntent request session.
+   * Can be used to identify end-user inside webhook implementation.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * </pre>
+   *
+   * <code>string session = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getSessionBytes();
+
+  /**
+   * <pre>
    * The unique identifier of the response. Contains the same value as
    * `[Streaming]DetectIntentResponse.response_id`.
    * </pre>
@@ -82,24 +104,4 @@ public interface WebhookRequestOrBuilder extends
    * <code>.google.cloud.dialogflow.v2beta1.OriginalDetectIntentRequest original_detect_intent_request = 3;</code>
    */
   com.google.cloud.dialogflow.v2beta1.OriginalDetectIntentRequestOrBuilder getOriginalDetectIntentRequestOrBuilder();
-
-  /**
-   * <pre>
-   * The unique identifier of detectIntent request session.
-   * Can be used to identify end-user inside webhook implementation.
-   * </pre>
-   *
-   * <code>string session_id = 4;</code>
-   */
-  java.lang.String getSessionId();
-  /**
-   * <pre>
-   * The unique identifier of detectIntent request session.
-   * Can be used to identify end-user inside webhook implementation.
-   * </pre>
-   *
-   * <code>string session_id = 4;</code>
-   */
-  com.google.protobuf.ByteString
-      getSessionIdBytes();
 }

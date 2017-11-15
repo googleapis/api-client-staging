@@ -19,8 +19,8 @@ public  final class WebhookRequest extends
     super(builder);
   }
   private WebhookRequest() {
+    session_ = "";
     responseId_ = "";
-    sessionId_ = "";
   }
 
   @java.lang.Override
@@ -83,7 +83,7 @@ public  final class WebhookRequest extends
           case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            sessionId_ = s;
+            session_ = s;
             break;
           }
         }
@@ -107,6 +107,52 @@ public  final class WebhookRequest extends
     return com.google.cloud.dialogflow.v2beta1.WebhookProto.internal_static_google_cloud_dialogflow_v2beta1_WebhookRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             com.google.cloud.dialogflow.v2beta1.WebhookRequest.class, com.google.cloud.dialogflow.v2beta1.WebhookRequest.Builder.class);
+  }
+
+  public static final int SESSION_FIELD_NUMBER = 4;
+  private volatile java.lang.Object session_;
+  /**
+   * <pre>
+   * The unique identifier of detectIntent request session.
+   * Can be used to identify end-user inside webhook implementation.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * </pre>
+   *
+   * <code>string session = 4;</code>
+   */
+  public java.lang.String getSession() {
+    java.lang.Object ref = session_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      session_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * The unique identifier of detectIntent request session.
+   * Can be used to identify end-user inside webhook implementation.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+   * </pre>
+   *
+   * <code>string session = 4;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSessionBytes() {
+    java.lang.Object ref = session_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      session_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int RESPONSE_ID_FIELD_NUMBER = 1;
@@ -225,50 +271,6 @@ public  final class WebhookRequest extends
     return getOriginalDetectIntentRequest();
   }
 
-  public static final int SESSION_ID_FIELD_NUMBER = 4;
-  private volatile java.lang.Object sessionId_;
-  /**
-   * <pre>
-   * The unique identifier of detectIntent request session.
-   * Can be used to identify end-user inside webhook implementation.
-   * </pre>
-   *
-   * <code>string session_id = 4;</code>
-   */
-  public java.lang.String getSessionId() {
-    java.lang.Object ref = sessionId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      sessionId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * The unique identifier of detectIntent request session.
-   * Can be used to identify end-user inside webhook implementation.
-   * </pre>
-   *
-   * <code>string session_id = 4;</code>
-   */
-  public com.google.protobuf.ByteString
-      getSessionIdBytes() {
-    java.lang.Object ref = sessionId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      sessionId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -290,8 +292,8 @@ public  final class WebhookRequest extends
     if (originalDetectIntentRequest_ != null) {
       output.writeMessage(3, getOriginalDetectIntentRequest());
     }
-    if (!getSessionIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, sessionId_);
+    if (!getSessionBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, session_);
     }
   }
 
@@ -311,8 +313,8 @@ public  final class WebhookRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getOriginalDetectIntentRequest());
     }
-    if (!getSessionIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, sessionId_);
+    if (!getSessionBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, session_);
     }
     memoizedSize = size;
     return size;
@@ -330,6 +332,8 @@ public  final class WebhookRequest extends
     com.google.cloud.dialogflow.v2beta1.WebhookRequest other = (com.google.cloud.dialogflow.v2beta1.WebhookRequest) obj;
 
     boolean result = true;
+    result = result && getSession()
+        .equals(other.getSession());
     result = result && getResponseId()
         .equals(other.getResponseId());
     result = result && (hasQueryResult() == other.hasQueryResult());
@@ -342,8 +346,6 @@ public  final class WebhookRequest extends
       result = result && getOriginalDetectIntentRequest()
           .equals(other.getOriginalDetectIntentRequest());
     }
-    result = result && getSessionId()
-        .equals(other.getSessionId());
     return result;
   }
 
@@ -354,6 +356,8 @@ public  final class WebhookRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + SESSION_FIELD_NUMBER;
+    hash = (53 * hash) + getSession().hashCode();
     hash = (37 * hash) + RESPONSE_ID_FIELD_NUMBER;
     hash = (53 * hash) + getResponseId().hashCode();
     if (hasQueryResult()) {
@@ -364,8 +368,6 @@ public  final class WebhookRequest extends
       hash = (37 * hash) + ORIGINAL_DETECT_INTENT_REQUEST_FIELD_NUMBER;
       hash = (53 * hash) + getOriginalDetectIntentRequest().hashCode();
     }
-    hash = (37 * hash) + SESSION_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getSessionId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -499,6 +501,8 @@ public  final class WebhookRequest extends
     }
     public Builder clear() {
       super.clear();
+      session_ = "";
+
       responseId_ = "";
 
       if (queryResultBuilder_ == null) {
@@ -513,8 +517,6 @@ public  final class WebhookRequest extends
         originalDetectIntentRequest_ = null;
         originalDetectIntentRequestBuilder_ = null;
       }
-      sessionId_ = "";
-
       return this;
     }
 
@@ -537,6 +539,7 @@ public  final class WebhookRequest extends
 
     public com.google.cloud.dialogflow.v2beta1.WebhookRequest buildPartial() {
       com.google.cloud.dialogflow.v2beta1.WebhookRequest result = new com.google.cloud.dialogflow.v2beta1.WebhookRequest(this);
+      result.session_ = session_;
       result.responseId_ = responseId_;
       if (queryResultBuilder_ == null) {
         result.queryResult_ = queryResult_;
@@ -548,7 +551,6 @@ public  final class WebhookRequest extends
       } else {
         result.originalDetectIntentRequest_ = originalDetectIntentRequestBuilder_.build();
       }
-      result.sessionId_ = sessionId_;
       onBuilt();
       return result;
     }
@@ -590,6 +592,10 @@ public  final class WebhookRequest extends
 
     public Builder mergeFrom(com.google.cloud.dialogflow.v2beta1.WebhookRequest other) {
       if (other == com.google.cloud.dialogflow.v2beta1.WebhookRequest.getDefaultInstance()) return this;
+      if (!other.getSession().isEmpty()) {
+        session_ = other.session_;
+        onChanged();
+      }
       if (!other.getResponseId().isEmpty()) {
         responseId_ = other.responseId_;
         onChanged();
@@ -599,10 +605,6 @@ public  final class WebhookRequest extends
       }
       if (other.hasOriginalDetectIntentRequest()) {
         mergeOriginalDetectIntentRequest(other.getOriginalDetectIntentRequest());
-      }
-      if (!other.getSessionId().isEmpty()) {
-        sessionId_ = other.sessionId_;
-        onChanged();
       }
       onChanged();
       return this;
@@ -627,6 +629,105 @@ public  final class WebhookRequest extends
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private java.lang.Object session_ = "";
+    /**
+     * <pre>
+     * The unique identifier of detectIntent request session.
+     * Can be used to identify end-user inside webhook implementation.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * </pre>
+     *
+     * <code>string session = 4;</code>
+     */
+    public java.lang.String getSession() {
+      java.lang.Object ref = session_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        session_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The unique identifier of detectIntent request session.
+     * Can be used to identify end-user inside webhook implementation.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * </pre>
+     *
+     * <code>string session = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionBytes() {
+      java.lang.Object ref = session_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        session_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The unique identifier of detectIntent request session.
+     * Can be used to identify end-user inside webhook implementation.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * </pre>
+     *
+     * <code>string session = 4;</code>
+     */
+    public Builder setSession(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      session_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The unique identifier of detectIntent request session.
+     * Can be used to identify end-user inside webhook implementation.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * </pre>
+     *
+     * <code>string session = 4;</code>
+     */
+    public Builder clearSession() {
+      
+      session_ = getDefaultInstance().getSession();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The unique identifier of detectIntent request session.
+     * Can be used to identify end-user inside webhook implementation.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;`.
+     * </pre>
+     *
+     * <code>string session = 4;</code>
+     */
+    public Builder setSessionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      session_ = value;
+      onChanged();
       return this;
     }
 
@@ -1046,100 +1147,6 @@ public  final class WebhookRequest extends
         originalDetectIntentRequest_ = null;
       }
       return originalDetectIntentRequestBuilder_;
-    }
-
-    private java.lang.Object sessionId_ = "";
-    /**
-     * <pre>
-     * The unique identifier of detectIntent request session.
-     * Can be used to identify end-user inside webhook implementation.
-     * </pre>
-     *
-     * <code>string session_id = 4;</code>
-     */
-    public java.lang.String getSessionId() {
-      java.lang.Object ref = sessionId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        sessionId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <pre>
-     * The unique identifier of detectIntent request session.
-     * Can be used to identify end-user inside webhook implementation.
-     * </pre>
-     *
-     * <code>string session_id = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSessionIdBytes() {
-      java.lang.Object ref = sessionId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        sessionId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     * The unique identifier of detectIntent request session.
-     * Can be used to identify end-user inside webhook implementation.
-     * </pre>
-     *
-     * <code>string session_id = 4;</code>
-     */
-    public Builder setSessionId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      sessionId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The unique identifier of detectIntent request session.
-     * Can be used to identify end-user inside webhook implementation.
-     * </pre>
-     *
-     * <code>string session_id = 4;</code>
-     */
-    public Builder clearSessionId() {
-      
-      sessionId_ = getDefaultInstance().getSessionId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * The unique identifier of detectIntent request session.
-     * Can be used to identify end-user inside webhook implementation.
-     * </pre>
-     *
-     * <code>string session_id = 4;</code>
-     */
-    public Builder setSessionIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      sessionId_ = value;
-      onChanged();
-      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
