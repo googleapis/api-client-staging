@@ -1040,7 +1040,7 @@ public  final class RedactContentRequest extends
   }
   /**
    * <pre>
-   * Configuration for determing how redaction of images should occur.
+   * Configuration for determining how redaction of images should occur.
    * </pre>
    *
    * Protobuf type {@code google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig}
@@ -1460,7 +1460,7 @@ public  final class RedactContentRequest extends
     }
     /**
      * <pre>
-     * Configuration for determing how redaction of images should occur.
+     * Configuration for determining how redaction of images should occur.
      * </pre>
      *
      * Protobuf type {@code google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig}

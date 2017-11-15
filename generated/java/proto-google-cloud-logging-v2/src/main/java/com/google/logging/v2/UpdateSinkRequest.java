@@ -72,6 +72,19 @@ public  final class UpdateSinkRequest extends
             uniqueWriterIdentity_ = input.readBool();
             break;
           }
+          case 34: {
+            com.google.protobuf.FieldMask.Builder subBuilder = null;
+            if (updateMask_ != null) {
+              subBuilder = updateMask_.toBuilder();
+            }
+            updateMask_ = input.readMessage(com.google.protobuf.FieldMask.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(updateMask_);
+              updateMask_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -208,6 +221,69 @@ public  final class UpdateSinkRequest extends
     return uniqueWriterIdentity_;
   }
 
+  public static final int UPDATE_MASK_FIELD_NUMBER = 4;
+  private com.google.protobuf.FieldMask updateMask_;
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  public boolean hasUpdateMask() {
+    return updateMask_ != null;
+  }
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  public com.google.protobuf.FieldMask getUpdateMask() {
+    return updateMask_ == null ? com.google.protobuf.FieldMask.getDefaultInstance() : updateMask_;
+  }
+  /**
+   * <pre>
+   * Optional. Field mask that specifies the fields in `sink` that need
+   * an update. A sink field will be overwritten if, and only if, it is
+   * in the update mask.  `name` and output only fields cannot be updated.
+   * An empty updateMask is temporarily treated as using the following mask
+   * for backwards compatibility purposes:
+   *   destination,filter,includeChildren
+   * At some point in the future, behavior will be removed and specifying an
+   * empty updateMask will be an error.
+   * For a detailed `FieldMask` definition, see
+   * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+   * Example: `updateMask=filter`.
+   * </pre>
+   *
+   * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+   */
+  public com.google.protobuf.FieldMaskOrBuilder getUpdateMaskOrBuilder() {
+    return getUpdateMask();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -229,6 +305,9 @@ public  final class UpdateSinkRequest extends
     if (uniqueWriterIdentity_ != false) {
       output.writeBool(3, uniqueWriterIdentity_);
     }
+    if (updateMask_ != null) {
+      output.writeMessage(4, getUpdateMask());
+    }
   }
 
   public int getSerializedSize() {
@@ -246,6 +325,10 @@ public  final class UpdateSinkRequest extends
     if (uniqueWriterIdentity_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, uniqueWriterIdentity_);
+    }
+    if (updateMask_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getUpdateMask());
     }
     memoizedSize = size;
     return size;
@@ -272,6 +355,11 @@ public  final class UpdateSinkRequest extends
     }
     result = result && (getUniqueWriterIdentity()
         == other.getUniqueWriterIdentity());
+    result = result && (hasUpdateMask() == other.hasUpdateMask());
+    if (hasUpdateMask()) {
+      result = result && getUpdateMask()
+          .equals(other.getUpdateMask());
+    }
     return result;
   }
 
@@ -291,6 +379,10 @@ public  final class UpdateSinkRequest extends
     hash = (37 * hash) + UNIQUE_WRITER_IDENTITY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getUniqueWriterIdentity());
+    if (hasUpdateMask()) {
+      hash = (37 * hash) + UPDATE_MASK_FIELD_NUMBER;
+      hash = (53 * hash) + getUpdateMask().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -434,6 +526,12 @@ public  final class UpdateSinkRequest extends
       }
       uniqueWriterIdentity_ = false;
 
+      if (updateMaskBuilder_ == null) {
+        updateMask_ = null;
+      } else {
+        updateMask_ = null;
+        updateMaskBuilder_ = null;
+      }
       return this;
     }
 
@@ -463,6 +561,11 @@ public  final class UpdateSinkRequest extends
         result.sink_ = sinkBuilder_.build();
       }
       result.uniqueWriterIdentity_ = uniqueWriterIdentity_;
+      if (updateMaskBuilder_ == null) {
+        result.updateMask_ = updateMask_;
+      } else {
+        result.updateMask_ = updateMaskBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -513,6 +616,9 @@ public  final class UpdateSinkRequest extends
       }
       if (other.getUniqueWriterIdentity() != false) {
         setUniqueWriterIdentity(other.getUniqueWriterIdentity());
+      }
+      if (other.hasUpdateMask()) {
+        mergeUpdateMask(other.getUpdateMask());
       }
       onChanged();
       return this;
@@ -887,6 +993,249 @@ public  final class UpdateSinkRequest extends
       uniqueWriterIdentity_ = false;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.FieldMask updateMask_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.FieldMask, com.google.protobuf.FieldMask.Builder, com.google.protobuf.FieldMaskOrBuilder> updateMaskBuilder_;
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public boolean hasUpdateMask() {
+      return updateMaskBuilder_ != null || updateMask_ != null;
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public com.google.protobuf.FieldMask getUpdateMask() {
+      if (updateMaskBuilder_ == null) {
+        return updateMask_ == null ? com.google.protobuf.FieldMask.getDefaultInstance() : updateMask_;
+      } else {
+        return updateMaskBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public Builder setUpdateMask(com.google.protobuf.FieldMask value) {
+      if (updateMaskBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        updateMask_ = value;
+        onChanged();
+      } else {
+        updateMaskBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public Builder setUpdateMask(
+        com.google.protobuf.FieldMask.Builder builderForValue) {
+      if (updateMaskBuilder_ == null) {
+        updateMask_ = builderForValue.build();
+        onChanged();
+      } else {
+        updateMaskBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public Builder mergeUpdateMask(com.google.protobuf.FieldMask value) {
+      if (updateMaskBuilder_ == null) {
+        if (updateMask_ != null) {
+          updateMask_ =
+            com.google.protobuf.FieldMask.newBuilder(updateMask_).mergeFrom(value).buildPartial();
+        } else {
+          updateMask_ = value;
+        }
+        onChanged();
+      } else {
+        updateMaskBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public Builder clearUpdateMask() {
+      if (updateMaskBuilder_ == null) {
+        updateMask_ = null;
+        onChanged();
+      } else {
+        updateMask_ = null;
+        updateMaskBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public com.google.protobuf.FieldMask.Builder getUpdateMaskBuilder() {
+      
+      onChanged();
+      return getUpdateMaskFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    public com.google.protobuf.FieldMaskOrBuilder getUpdateMaskOrBuilder() {
+      if (updateMaskBuilder_ != null) {
+        return updateMaskBuilder_.getMessageOrBuilder();
+      } else {
+        return updateMask_ == null ?
+            com.google.protobuf.FieldMask.getDefaultInstance() : updateMask_;
+      }
+    }
+    /**
+     * <pre>
+     * Optional. Field mask that specifies the fields in `sink` that need
+     * an update. A sink field will be overwritten if, and only if, it is
+     * in the update mask.  `name` and output only fields cannot be updated.
+     * An empty updateMask is temporarily treated as using the following mask
+     * for backwards compatibility purposes:
+     *   destination,filter,includeChildren
+     * At some point in the future, behavior will be removed and specifying an
+     * empty updateMask will be an error.
+     * For a detailed `FieldMask` definition, see
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Example: `updateMask=filter`.
+     * </pre>
+     *
+     * <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.FieldMask, com.google.protobuf.FieldMask.Builder, com.google.protobuf.FieldMaskOrBuilder> 
+        getUpdateMaskFieldBuilder() {
+      if (updateMaskBuilder_ == null) {
+        updateMaskBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.FieldMask, com.google.protobuf.FieldMask.Builder, com.google.protobuf.FieldMaskOrBuilder>(
+                getUpdateMask(),
+                getParentForChildren(),
+                isClean());
+        updateMask_ = null;
+      }
+      return updateMaskBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

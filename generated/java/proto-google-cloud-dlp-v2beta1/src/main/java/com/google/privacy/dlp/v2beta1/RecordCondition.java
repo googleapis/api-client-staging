@@ -5,7 +5,7 @@ package com.google.privacy.dlp.v2beta1;
 
 /**
  * <pre>
- * A condition for determing whether a transformation should be applied to
+ * A condition for determining whether a transformation should be applied to
  * a field.
  * </pre>
  *
@@ -2946,7 +2946,7 @@ public  final class RecordCondition extends
   }
   /**
    * <pre>
-   * A condition for determing whether a transformation should be applied to
+   * A condition for determining whether a transformation should be applied to
    * a field.
    * </pre>
    *
