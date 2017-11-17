@@ -191,7 +191,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Creates a subscription to a given topic. If the subscription already exists, returns
-   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. dummy change
    *
    * <p>If the name is not provided in the request, the server will assign a random name for this
    * subscription on the same project as the topic, conforming to the [resource name
@@ -253,7 +253,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Creates a subscription to a given topic. If the subscription already exists, returns
-   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. dummy change
    *
    * <p>If the name is not provided in the request, the server will assign a random name for this
    * subscription on the same project as the topic, conforming to the [resource name
@@ -285,7 +285,7 @@ public class SubscriptionAdminClient implements BackgroundResource {
   // AUTO-GENERATED DOCUMENTATION AND METHOD
   /**
    * Creates a subscription to a given topic. If the subscription already exists, returns
-   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+   * `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. dummy change
    *
    * <p>If the name is not provided in the request, the server will assign a random name for this
    * subscription on the same project as the topic, conforming to the [resource name
