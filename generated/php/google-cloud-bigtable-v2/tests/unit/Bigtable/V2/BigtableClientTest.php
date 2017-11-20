@@ -23,35 +23,18 @@
 namespace Google\Cloud\Tests\Unit\Bigtable\V2;
 
 use Google\Cloud\Bigtable\V2\BigtableClient;
-use Google\Bigtable\V2\BigtableGrpcClient;
-use Google\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Bigtable\V2\CheckAndMutateRowResponse;
-use Google\Bigtable\V2\MutateRowRequest;
 use Google\Bigtable\V2\MutateRowResponse;
-use Google\Bigtable\V2\MutateRowsRequest;
-use Google\Bigtable\V2\MutateRowsRequest_Entry as Entry;
 use Google\Bigtable\V2\MutateRowsResponse;
-use Google\Bigtable\V2\Mutation;
-use Google\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Bigtable\V2\ReadModifyWriteRowResponse;
-use Google\Bigtable\V2\ReadModifyWriteRule;
-use Google\Bigtable\V2\ReadRowsRequest;
 use Google\Bigtable\V2\ReadRowsResponse;
-use Google\Bigtable\V2\SampleRowKeysRequest;
 use Google\Bigtable\V2\SampleRowKeysResponse;
 use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
 use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\ServerStream;
 use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -72,6 +55,7 @@ class BigtableClientTest extends GeneratedTest
             'port' => BigtableClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -86,6 +70,7 @@ class BigtableClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -168,7 +153,7 @@ class BigtableClientTest extends GeneratedTest
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
-        }  catch (ApiException $ex) {
+        } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
@@ -266,7 +251,7 @@ class BigtableClientTest extends GeneratedTest
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
-        }  catch (ApiException $ex) {
+        } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
@@ -430,7 +415,7 @@ class BigtableClientTest extends GeneratedTest
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
-        }  catch (ApiException $ex) {
+        } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
@@ -588,5 +573,4 @@ class BigtableClientTest extends GeneratedTest
         $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
-
 }
