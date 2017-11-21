@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
-use Google\GAX\Testing\MockStubTrait;
+use Google\ApiCore\Testing\MockStubTrait;
+use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 use Google\Protobuf\Any;
-use Google\Spanner\V1\SpannerGrpcClient;
 
 class MockSpannerImpl extends SpannerGrpcClient
 {

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,15 +23,15 @@
 namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorEvent;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupStats;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsResponse;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsResponse;
-use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorEvent;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats;
+use Google\Cloud\ErrorReporting\V1beta1\ListEventsResponse;
+use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsResponse;
+use Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange;
 use Google\Protobuf\Any;
 use Grpc;
 use stdClass;

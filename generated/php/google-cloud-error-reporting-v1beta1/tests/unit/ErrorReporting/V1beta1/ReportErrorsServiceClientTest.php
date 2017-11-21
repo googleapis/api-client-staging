@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,11 @@
 namespace Google\Cloud\Tests\Unit\ErrorReporting\V1beta1;
 
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
+use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 use Google\Protobuf\Any;
 use Grpc;
 use stdClass;

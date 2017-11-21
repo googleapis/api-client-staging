@@ -30,26 +30,25 @@
 
 namespace Google\Cloud\Bigtable\V2\Gapic;
 
-use Google\Bigtable\V2\BigtableGrpcClient;
-use Google\Bigtable\V2\CheckAndMutateRowRequest;
-use Google\Bigtable\V2\MutateRowRequest;
-use Google\Bigtable\V2\MutateRowsRequest;
-use Google\Bigtable\V2\MutateRowsRequest_Entry as Entry;
-use Google\Bigtable\V2\Mutation;
-use Google\Bigtable\V2\ReadModifyWriteRowRequest;
-use Google\Bigtable\V2\ReadModifyWriteRule;
-use Google\Bigtable\V2\ReadRowsRequest;
-use Google\Bigtable\V2\RowFilter;
-use Google\Bigtable\V2\RowSet;
-use Google\Bigtable\V2\SampleRowKeysRequest;
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Bigtable\V2\BigtableGrpcClient;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry as Entry;
+use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\RowFilter;
+use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Version;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 
 /**
  * Service Description: Service for reading from and writing to existing Bigtable tables.
@@ -79,6 +78,7 @@ use Google\GAX\ValidationException;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
+ *
  * @experimental
  */
 class BigtableGapicClient
@@ -130,9 +130,9 @@ class BigtableGapicClient
                 'table' => self::getTableNameTemplate(),
             ];
         }
+
         return self::$pathTemplateMap;
     }
-
 
     private static function getGrpcStreamingDescriptors()
     {
@@ -152,13 +152,14 @@ class BigtableGapicClient
     private static function getGapicVersion()
     {
         if (!self::$gapicVersionLoaded) {
-            if (file_exists(__DIR__ . '/../VERSION')) {
-              self::$gapicVersion = trim(file_get_contents(__DIR__ . '/../VERSION'));
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
             } elseif (class_exists(Version::class)) {
-              self::$gapicVersion = Version::VERSION;
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
+
         return self::$gapicVersion;
     }
 
@@ -169,6 +170,7 @@ class BigtableGapicClient
      * @param string $project
      * @param string $instance
      * @param string $table
+     *
      * @return string The formatted table resource.
      * @experimental
      */
@@ -185,7 +187,7 @@ class BigtableGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - table: projects/{project}/instances/{instance}/tables/{table}
+     * - table: projects/{project}/instances/{instance}/tables/{table}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -193,8 +195,10 @@ class BigtableGapicClient
      * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
-     * @param string $template Optional name of template to match
+     * @param string $template      Optional name of template to match
+     *
      * @return array An associative array from name component IDs to component values.
+     *
      * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
@@ -206,6 +210,7 @@ class BigtableGapicClient
             if (!isset($templateMap[$template])) {
                 throw new ValidationException("Template name $template does not exist");
             }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -219,14 +224,11 @@ class BigtableGapicClient
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
-
-
-
     /**
      * Constructor.
      *
      * @param array $options {
-     *     Optional. Options for configuring the service API wrapper.
+     *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'bigtable.googleapis.com'.
@@ -255,8 +257,8 @@ class BigtableGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -279,10 +281,9 @@ class BigtableGapicClient
             'retryingOverride' => null,
             'libName' => null,
             'libVersion' => null,
-            'clientConfigPath' => __DIR__ . '/../resources/bigtable_client_config.json',
+            'clientConfigPath' => __DIR__.'/../resources/bigtable_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
-
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
@@ -309,9 +310,11 @@ class BigtableGapicClient
         $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.bigtable.v2.Bigtable',
-                                   $clientConfig,
-                                   $options['retryingOverride']);
+                CallSettings::load(
+                    'google.bigtable.v2.Bigtable',
+                    $clientConfig,
+                    $options['retryingOverride']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -352,11 +355,12 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table from which to read.
-     * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $tableName    The unique name of the table from which to read.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RowSet $rows
      *          The row keys and/or ranges to read. If not specified, reads from all rows.
      *     @type RowFilter $filter
@@ -369,9 +373,9 @@ class BigtableGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function readRows($tableName, $optionalArgs = [])
@@ -391,7 +395,7 @@ class BigtableGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
             ];
         }
 
@@ -403,7 +407,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'ReadRows', $mergedSettings, $this->descriptors['readRows']);
+            $this->bigtableStub,
+            'ReadRows',
+            $mergedSettings,
+            $this->descriptors['readRows']
+        );
 
         return $callable(
             $request,
@@ -432,18 +440,19 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table from which to sample row keys.
-     * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $tableName    The unique name of the table from which to sample row keys.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function sampleRowKeys($tableName, $optionalArgs = [])
@@ -454,7 +463,7 @@ class BigtableGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
             ];
         }
 
@@ -466,7 +475,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'SampleRowKeys', $mergedSettings, $this->descriptors['sampleRowKeys']);
+            $this->bigtableStub,
+            'SampleRowKeys',
+            $mergedSettings,
+            $this->descriptors['sampleRowKeys']
+        );
 
         return $callable(
             $request,
@@ -491,25 +504,26 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table to which the mutation should be applied.
-     * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey The key of the row to which the mutation should be applied.
-     * @param Mutation[] $mutations Changes to be atomically applied to the specified row. Entries are applied
-     * in order, meaning that earlier mutations can be masked by later ones.
-     * Must contain at least one entry and at most 100000.
-     * @param array $optionalArgs {
-     *     Optional.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     * @param string     $tableName    The unique name of the table to which the mutation should be applied.
+     *                                 Values are of the form
+     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string     $rowKey       The key of the row to which the mutation should be applied.
+     * @param Mutation[] $mutations    Changes to be atomically applied to the specified row. Entries are applied
+     *                                 in order, meaning that earlier mutations can be masked by later ones.
+     *                                 Must contain at least one entry and at most 100000.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\MutateRowResponse
+     * @return \Google\Cloud\Bigtable\V2\MutateRowResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function mutateRow($tableName, $rowKey, $mutations, $optionalArgs = [])
@@ -527,7 +541,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'MutateRow', $mergedSettings, $this->descriptors['mutateRow']);
+            $this->bigtableStub,
+            'MutateRow',
+            $mergedSettings,
+            $this->descriptors['mutateRow']
+        );
 
         return $callable(
             $request,
@@ -556,21 +574,22 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table to which the mutations should be applied.
-     * @param Entry[] $entries The row keys and corresponding mutations to be applied in bulk.
-     * Each entry is applied as an atomic mutation, but the entries may be
-     * applied in arbitrary order (even between entries for the same row).
-     * At least one entry must be specified, and in total the entries can
-     * contain at most 100000 mutations.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string  $tableName    The unique name of the table to which the mutations should be applied.
+     * @param Entry[] $entries      The row keys and corresponding mutations to be applied in bulk.
+     *                              Each entry is applied as an atomic mutation, but the entries may be
+     *                              applied in arbitrary order (even between entries for the same row).
+     *                              At least one entry must be specified, and in total the entries can
+     *                              contain at most 100000 mutations.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function mutateRows($tableName, $entries, $optionalArgs = [])
@@ -582,7 +601,7 @@ class BigtableGapicClient
         if (array_key_exists('timeoutMillis', $optionalArgs)) {
             $optionalArgs['retrySettings'] = [
                 'retriesEnabled' => false,
-                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis']
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
             ];
         }
 
@@ -594,7 +613,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'MutateRows', $mergedSettings, $this->descriptors['mutateRows']);
+            $this->bigtableStub,
+            'MutateRows',
+            $mergedSettings,
+            $this->descriptors['mutateRows']
+        );
 
         return $callable(
             $request,
@@ -617,13 +640,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table to which the conditional mutation should be
-     * applied.
-     * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey The key of the row to which the conditional mutation should be applied.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $tableName    The unique name of the table to which the conditional mutation should be
+     *                             applied.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string $rowKey       The key of the row to which the conditional mutation should be applied.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
      *     @type RowFilter $predicateFilter
      *          The filter to be applied to the contents of the specified row. Depending
      *          on whether or not any results are yielded, either `true_mutations` or
@@ -641,16 +665,16 @@ class BigtableGapicClient
      *          order, meaning that earlier mutations can be masked by later ones.
      *          Must contain at least one entry if `true_mutations` is empty, and at most
      *          100000.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\CheckAndMutateRowResponse
+     * @return \Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function checkAndMutateRow($tableName, $rowKey, $optionalArgs = [])
@@ -676,7 +700,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'CheckAndMutateRow', $mergedSettings, $this->descriptors['checkAndMutateRow']);
+            $this->bigtableStub,
+            'CheckAndMutateRow',
+            $mergedSettings,
+            $this->descriptors['checkAndMutateRow']
+        );
 
         return $callable(
             $request,
@@ -704,26 +732,27 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName The unique name of the table to which the read/modify/write rules should be
-     * applied.
-     * Values are of the form
-     * `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey The key of the row to which the read/modify/write rules should be applied.
-     * @param ReadModifyWriteRule[] $rules Rules specifying how the specified row's contents are to be transformed
-     * into writes. Entries are applied in order, meaning that earlier rules will
-     * affect the results of later ones.
-     * @param array $optionalArgs {
-     *     Optional.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     * @param string                $tableName    The unique name of the table to which the read/modify/write rules should be
+     *                                            applied.
+     *                                            Values are of the form
+     *                                            `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param string                $rowKey       The key of the row to which the read/modify/write rules should be applied.
+     * @param ReadModifyWriteRule[] $rules        Rules specifying how the specified row's contents are to be transformed
+     *                                            into writes. Entries are applied in order, meaning that earlier rules will
+     *                                            affect the results of later ones.
+     * @param array                 $optionalArgs {
+     *                                            Optional.
+     *
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Bigtable\V2\ReadModifyWriteRowResponse
+     * @return \Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function readModifyWriteRow($tableName, $rowKey, $rules, $optionalArgs = [])
@@ -741,7 +770,11 @@ class BigtableGapicClient
         }
         $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
-            $this->bigtableStub, 'ReadModifyWriteRow', $mergedSettings, $this->descriptors['readModifyWriteRow']);
+            $this->bigtableStub,
+            'ReadModifyWriteRow',
+            $mergedSettings,
+            $this->descriptors['readModifyWriteRow']
+        );
 
         return $callable(
             $request,
@@ -752,6 +785,7 @@ class BigtableGapicClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
      * @experimental
      */
     public function close()

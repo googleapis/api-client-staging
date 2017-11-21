@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,19 @@
 namespace Google\Cloud\Tests\Unit\Spanner\Admin\Database\V1;
 
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\TestIamPermissionsResponse;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\Operation;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\Database;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\Admin\Database\V1\Database;
-use Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
-use Google\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Grpc;
 use stdClass;
 

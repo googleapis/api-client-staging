@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,19 +23,19 @@
 namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\PublisherClient;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
+use Google\Cloud\PubSub\V1\ListTopicsResponse;
+use Google\Cloud\PubSub\V1\PublishResponse;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Pubsub\V1\ListTopicSubscriptionsResponse;
-use Google\Pubsub\V1\ListTopicsResponse;
-use Google\Pubsub\V1\PublishResponse;
-use Google\Pubsub\V1\PubsubMessage;
-use Google\Pubsub\V1\Topic;
 use Grpc;
 use stdClass;
 

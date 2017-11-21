@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,32 +23,31 @@
 namespace Google\Cloud\Tests\Unit\Dlp\V2beta1;
 
 use Google\Cloud\Dlp\V2beta1\DlpServiceClient;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\Operation;
-use Google\Privacy\Dlp\V2beta1\BigQueryTable;
-use Google\Privacy\Dlp\V2beta1\CloudStorageOptions;
-use Google\Privacy\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
-use Google\Privacy\Dlp\V2beta1\ContentItem;
-use Google\Privacy\Dlp\V2beta1\DeidentifyConfig;
-use Google\Privacy\Dlp\V2beta1\DeidentifyContentResponse;
-use Google\Privacy\Dlp\V2beta1\InfoType;
-use Google\Privacy\Dlp\V2beta1\InspectConfig;
-use Google\Privacy\Dlp\V2beta1\InspectContentResponse;
-use Google\Privacy\Dlp\V2beta1\InspectOperationResult;
-use Google\Privacy\Dlp\V2beta1\ListInfoTypesResponse;
-use Google\Privacy\Dlp\V2beta1\ListInspectFindingsResponse;
-use Google\Privacy\Dlp\V2beta1\ListRootCategoriesResponse;
-use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
-use Google\Privacy\Dlp\V2beta1\PrivacyMetric;
-use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
-use Google\Privacy\Dlp\V2beta1\RedactContentResponse;
-use Google\Privacy\Dlp\V2beta1\RiskAnalysisOperationResult;
-use Google\Privacy\Dlp\V2beta1\StorageConfig;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Dlp\V2beta1\BigQueryTable;
+use Google\Cloud\Dlp\V2beta1\CloudStorageOptions;
+use Google\Cloud\Dlp\V2beta1\CloudStorageOptions_FileSet as FileSet;
+use Google\Cloud\Dlp\V2beta1\ContentItem;
+use Google\Cloud\Dlp\V2beta1\DeidentifyConfig;
+use Google\Cloud\Dlp\V2beta1\DeidentifyContentResponse;
+use Google\Cloud\Dlp\V2beta1\InfoType;
+use Google\Cloud\Dlp\V2beta1\InspectConfig;
+use Google\Cloud\Dlp\V2beta1\InspectContentResponse;
+use Google\Cloud\Dlp\V2beta1\InspectOperationResult;
+use Google\Cloud\Dlp\V2beta1\ListInfoTypesResponse;
+use Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse;
+use Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse;
+use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
+use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
+use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
+use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
+use Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationResult;
+use Google\Cloud\Dlp\V2beta1\StorageConfig;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Grpc;
 use stdClass;

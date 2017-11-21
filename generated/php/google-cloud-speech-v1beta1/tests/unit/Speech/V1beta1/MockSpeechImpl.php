@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@
 
 namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
 
+use Google\ApiCore\Testing\MockStubTrait;
 use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
-use Google\GAX\Testing\MockStubTrait;
 use Google\Protobuf\Any;
 
 class MockSpeechImpl extends SpeechGrpcClient

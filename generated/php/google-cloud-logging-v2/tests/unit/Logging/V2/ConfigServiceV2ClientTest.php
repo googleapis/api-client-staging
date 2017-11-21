@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@
 namespace Google\Cloud\Tests\Unit\Logging\V2;
 
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
-use Google\Logging\V2\ListExclusionsResponse;
-use Google\Logging\V2\ListSinksResponse;
-use Google\Logging\V2\LogExclusion;
-use Google\Logging\V2\LogSink;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Logging\V2\ListExclusionsResponse;
+use Google\Cloud\Logging\V2\ListSinksResponse;
+use Google\Cloud\Logging\V2\LogExclusion;
+use Google\Cloud\Logging\V2\LogSink;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;

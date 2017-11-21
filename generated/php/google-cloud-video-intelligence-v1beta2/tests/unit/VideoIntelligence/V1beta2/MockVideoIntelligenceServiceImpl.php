@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@
 
 namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta2;
 
-use Google\Cloud\Videointelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
-use Google\GAX\Testing\MockStubTrait;
+use Google\ApiCore\Testing\MockStubTrait;
+use Google\Cloud\VideoIntelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
 use Google\Protobuf\Any;
 
 class MockVideoIntelligenceServiceImpl extends VideoIntelligenceServiceGrpcClient

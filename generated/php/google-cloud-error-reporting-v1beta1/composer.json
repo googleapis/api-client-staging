@@ -1,7 +1,7 @@
 {
   "name": "errorreporting/errorreporting",
   "version": "0.1.0",
-  "author": "Google Inc.",
+  "author": "Google LLC",
   "url": "https://github.com/googleapis/googleapis",
   "description": "Stackdriver Error Reporting API client for PHP",
   "require": {

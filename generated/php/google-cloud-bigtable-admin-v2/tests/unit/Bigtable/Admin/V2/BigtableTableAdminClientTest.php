@@ -23,29 +23,14 @@
 namespace Google\Cloud\Tests\Unit\Bigtable\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
-use Google\Bigtable\Admin\V2\BigtableTableAdminGrpcClient;
-use Google\Bigtable\Admin\V2\CreateTableRequest;
-use Google\Bigtable\Admin\V2\DeleteTableRequest;
-use Google\Bigtable\Admin\V2\DropRowRangeRequest;
-use Google\Bigtable\Admin\V2\GetTableRequest;
-use Google\Bigtable\Admin\V2\ListTablesRequest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
 use Google\Bigtable\Admin\V2\ListTablesResponse;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
-use Google\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification as Modification;
 use Google\Bigtable\Admin\V2\Table;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;
-use PHPUnit_Framework_TestCase;
 use stdClass;
 
 /**
@@ -71,6 +56,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'port' => BigtableTableAdminClient::DEFAULT_SERVICE_PORT,
             'scopes' => ['unknown-service-scopes'],
         ]);
+
         return $grpcCredentialsHelper->createStub($createGrpcStub);
     }
 
@@ -85,6 +71,7 @@ class BigtableTableAdminClientTest extends GeneratedTest
             },
         ]);
     }
+
     /**
      * @test
      */
@@ -519,5 +506,4 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $grpcStub->popReceivedCalls();
         $this->assertTrue($grpcStub->isExhausted());
     }
-
 }

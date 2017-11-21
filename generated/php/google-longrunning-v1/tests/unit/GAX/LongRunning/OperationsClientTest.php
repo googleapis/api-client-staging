@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -12,7 +12,7 @@
  * copyright notice, this list of conditions and the following disclaimer
  * in the documentation and/or other materials provided with the
  * distribution.
- *     * Neither the name of Google Inc. nor the names of its
+ *     * Neither the name of Google LLC nor the names of its
  * contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
  *
@@ -36,13 +36,12 @@
 
 namespace Google\Tests\Unit\GAX\LongRunning;
 
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Longrunning\ListOperationsResponse;
-use Google\Longrunning\Operation;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\LongRunning\ListOperationsResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;

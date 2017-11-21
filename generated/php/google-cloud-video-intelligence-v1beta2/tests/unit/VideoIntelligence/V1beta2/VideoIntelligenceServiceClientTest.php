@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,13 @@
 namespace Google\Cloud\Tests\Unit\VideoIntelligence\V1beta2;
 
 use Google\Cloud\VideoIntelligence\V1beta2\VideoIntelligenceServiceClient;
-use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoResponse;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\Operation;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Grpc;
 use stdClass;

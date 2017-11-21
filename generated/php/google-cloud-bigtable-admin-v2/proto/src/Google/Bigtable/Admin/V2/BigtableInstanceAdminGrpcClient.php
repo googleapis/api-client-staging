@@ -44,7 +44,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateInstance',
         $argument,
-        ['\Google\Longrunning\Operation', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -114,7 +114,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateCluster',
         $argument,
-        ['\Google\Longrunning\Operation', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -156,7 +156,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateCluster',
         $argument,
-        ['\Google\Longrunning\Operation', 'decode'],
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
