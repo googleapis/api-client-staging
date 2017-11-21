@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,22 +23,21 @@
 namespace Google\Cloud\Tests\Unit\Spanner\Admin\Instance\V1;
 
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\TestIamPermissionsResponse;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\Operation;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\Admin\Instance\V1\InstanceConfig;
-use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
-use Google\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Grpc;
 use stdClass;
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,20 @@
 namespace Google\Cloud\Tests\Unit\Spanner\V1;
 
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ServerStream;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\ListSessionsResponse;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Spanner\V1\CommitResponse;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\ListSessionsResponse;
-use Google\Spanner\V1\PartialResultSet;
-use Google\Spanner\V1\ResultSet;
-use Google\Spanner\V1\Session;
-use Google\Spanner\V1\Transaction;
-use Google\Spanner\V1\TransactionOptions;
 use Grpc;
 use stdClass;
 

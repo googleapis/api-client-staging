@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,35 +30,35 @@
 
 namespace Google\Cloud\Firestore\V1beta1\Gapic;
 
+use Google\ApiCore\AgentHeaderDescriptor;
+use Google\ApiCore\ApiCallable;
+use Google\ApiCore\CallSettings;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\PageStreamingDescriptor;
+use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1beta1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1beta1\CommitRequest;
+use Google\Cloud\Firestore\V1beta1\CreateDocumentRequest;
+use Google\Cloud\Firestore\V1beta1\DeleteDocumentRequest;
+use Google\Cloud\Firestore\V1beta1\Document;
+use Google\Cloud\Firestore\V1beta1\DocumentMask;
+use Google\Cloud\Firestore\V1beta1\FirestoreGrpcClient;
+use Google\Cloud\Firestore\V1beta1\GetDocumentRequest;
+use Google\Cloud\Firestore\V1beta1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1beta1\ListDocumentsRequest;
+use Google\Cloud\Firestore\V1beta1\ListenRequest;
+use Google\Cloud\Firestore\V1beta1\Precondition;
+use Google\Cloud\Firestore\V1beta1\RollbackRequest;
+use Google\Cloud\Firestore\V1beta1\RunQueryRequest;
+use Google\Cloud\Firestore\V1beta1\StructuredQuery;
+use Google\Cloud\Firestore\V1beta1\Target;
+use Google\Cloud\Firestore\V1beta1\TransactionOptions;
+use Google\Cloud\Firestore\V1beta1\UpdateDocumentRequest;
+use Google\Cloud\Firestore\V1beta1\Write;
+use Google\Cloud\Firestore\V1beta1\WriteRequest;
 use Google\Cloud\Version;
-use Google\Firestore\V1beta1\BatchGetDocumentsRequest;
-use Google\Firestore\V1beta1\BeginTransactionRequest;
-use Google\Firestore\V1beta1\CommitRequest;
-use Google\Firestore\V1beta1\CreateDocumentRequest;
-use Google\Firestore\V1beta1\DeleteDocumentRequest;
-use Google\Firestore\V1beta1\Document;
-use Google\Firestore\V1beta1\DocumentMask;
-use Google\Firestore\V1beta1\FirestoreGrpcClient;
-use Google\Firestore\V1beta1\GetDocumentRequest;
-use Google\Firestore\V1beta1\ListCollectionIdsRequest;
-use Google\Firestore\V1beta1\ListDocumentsRequest;
-use Google\Firestore\V1beta1\ListenRequest;
-use Google\Firestore\V1beta1\Precondition;
-use Google\Firestore\V1beta1\RollbackRequest;
-use Google\Firestore\V1beta1\RunQueryRequest;
-use Google\Firestore\V1beta1\StructuredQuery;
-use Google\Firestore\V1beta1\Target;
-use Google\Firestore\V1beta1\TransactionOptions;
-use Google\Firestore\V1beta1\UpdateDocumentRequest;
-use Google\Firestore\V1beta1\Write;
-use Google\Firestore\V1beta1\WriteRequest;
-use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\ApiCallable;
-use Google\GAX\CallSettings;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\PathTemplate;
-use Google\GAX\ValidationException;
 use Google\Protobuf\Timestamp;
 
 /**
@@ -405,8 +405,8 @@ class FirestoreGapicClient
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
-     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
-     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           method can be a {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\ApiCore\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
      *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
      *           settings in $clientConfigPath.
@@ -517,16 +517,16 @@ class FirestoreGapicClient
      *     @type Timestamp $readTime
      *          Reads the version of the document at the given time.
      *          This may not be older than 60 seconds.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Firestore\V1beta1\Document
+     * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function getDocument($name, $optionalArgs = [])
@@ -630,16 +630,16 @@ class FirestoreGapicClient
      *
      *          Requests with `show_missing` may not specify `where` or
      *          `order_by`.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listDocuments($parent, $collectionId, $optionalArgs = [])
@@ -722,16 +722,16 @@ class FirestoreGapicClient
      *
      *          If the document has a field that is not present in this mask, that field
      *          will not be returned in the response.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Firestore\V1beta1\Document
+     * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function createDocument($parent, $collectionId, $documentId, $document, $optionalArgs = [])
@@ -800,16 +800,16 @@ class FirestoreGapicClient
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Firestore\V1beta1\Document
+     * @return \Google\Cloud\Firestore\V1beta1\Document
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function updateDocument($document, $updateMask, $optionalArgs = [])
@@ -866,14 +866,14 @@ class FirestoreGapicClient
      *     @type Precondition $currentDocument
      *          An optional precondition on the document.
      *          The request will fail if this is set and not met by the target document.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function deleteDocument($name, $optionalArgs = [])
@@ -954,9 +954,9 @@ class FirestoreGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function batchGetDocuments($database, $documents, $optionalArgs = [])
@@ -1026,16 +1026,16 @@ class FirestoreGapicClient
      *     @type TransactionOptions $options
      *          The options for the transaction.
      *          Defaults to a read-write transaction.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Firestore\V1beta1\BeginTransactionResponse
+     * @return \Google\Cloud\Firestore\V1beta1\BeginTransactionResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function beginTransaction($database, $optionalArgs = [])
@@ -1091,16 +1091,16 @@ class FirestoreGapicClient
      *
      *     @type string $transaction
      *          If set, applies all writes in this transaction, and commits it.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Firestore\V1beta1\CommitResponse
+     * @return \Google\Cloud\Firestore\V1beta1\CommitResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function commit($database, $writes, $optionalArgs = [])
@@ -1153,14 +1153,14 @@ class FirestoreGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function rollback($database, $transaction, $optionalArgs = [])
@@ -1232,9 +1232,9 @@ class FirestoreGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\ServerStream
+     * @return \Google\ApiCore\ServerStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function runQuery($parent, $optionalArgs = [])
@@ -1329,9 +1329,9 @@ class FirestoreGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStream
+     * @return \Google\ApiCore\BidiStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function write($optionalArgs = [])
@@ -1411,9 +1411,9 @@ class FirestoreGapicClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStream
+     * @return \Google\ApiCore\BidiStream
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listen($optionalArgs = [])
@@ -1487,16 +1487,16 @@ class FirestoreGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *     @type \Google\ApiCore\RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
-     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
      *          of retry settings parameters. See the documentation on
-     *          {@see Google\GAX\RetrySettings} for example usage.
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\GAX\PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws \Google\GAX\ApiException if the remote call fails
+     * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
     public function listCollectionIds($parent, $optionalArgs = [])

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@
 namespace Google\Cloud\Tests\Unit\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
 use Google\Api\MonitoredResource;
-use Google\GAX\ApiException;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
-use Google\Monitoring\V3\Group;
-use Google\Monitoring\V3\ListGroupMembersResponse;
-use Google\Monitoring\V3\ListGroupsResponse;
+use Google\Cloud\Monitoring\V3\Group;
+use Google\Cloud\Monitoring\V3\ListGroupMembersResponse;
+use Google\Cloud\Monitoring\V3\ListGroupsResponse;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;

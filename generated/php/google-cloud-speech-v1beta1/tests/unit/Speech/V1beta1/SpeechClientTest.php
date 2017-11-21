@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,11 @@
 namespace Google\Cloud\Tests\Unit\Speech\V1beta1;
 
 use Google\Cloud\Speech\V1beta1\SpeechClient;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
 use Google\Cloud\Speech\V1beta1\RecognitionAudio;
 use Google\Cloud\Speech\V1beta1\RecognitionConfig;
@@ -30,14 +35,8 @@ use Google\Cloud\Speech\V1beta1\RecognitionConfig_AudioEncoding as AudioEncoding
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse;
 use Google\Cloud\Speech\V1beta1\SyncRecognizeResponse;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\Operation;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Grpc;
 use stdClass;

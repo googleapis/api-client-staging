@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,24 +23,24 @@
 namespace Google\Cloud\Tests\Unit\Firestore\V1beta1;
 
 use Google\Cloud\Firestore\V1beta1\FirestoreClient;
-use Google\Firestore\V1beta1\BatchGetDocumentsResponse;
-use Google\Firestore\V1beta1\BeginTransactionResponse;
-use Google\Firestore\V1beta1\CommitResponse;
-use Google\Firestore\V1beta1\Document;
-use Google\Firestore\V1beta1\DocumentMask;
-use Google\Firestore\V1beta1\ListCollectionIdsResponse;
-use Google\Firestore\V1beta1\ListDocumentsResponse;
-use Google\Firestore\V1beta1\ListenRequest;
-use Google\Firestore\V1beta1\ListenResponse;
-use Google\Firestore\V1beta1\RunQueryResponse;
-use Google\Firestore\V1beta1\Write;
-use Google\Firestore\V1beta1\WriteRequest;
-use Google\Firestore\V1beta1\WriteResponse;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\ServerStream;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Firestore\V1beta1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1beta1\BeginTransactionResponse;
+use Google\Cloud\Firestore\V1beta1\CommitResponse;
+use Google\Cloud\Firestore\V1beta1\Document;
+use Google\Cloud\Firestore\V1beta1\DocumentMask;
+use Google\Cloud\Firestore\V1beta1\ListCollectionIdsResponse;
+use Google\Cloud\Firestore\V1beta1\ListDocumentsResponse;
+use Google\Cloud\Firestore\V1beta1\ListenRequest;
+use Google\Cloud\Firestore\V1beta1\ListenResponse;
+use Google\Cloud\Firestore\V1beta1\RunQueryResponse;
+use Google\Cloud\Firestore\V1beta1\Write;
+use Google\Cloud\Firestore\V1beta1\WriteRequest;
+use Google\Cloud\Firestore\V1beta1\WriteResponse;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Grpc;

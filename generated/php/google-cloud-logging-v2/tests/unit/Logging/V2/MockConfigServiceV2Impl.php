@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@
 
 namespace Google\Cloud\Tests\Unit\Logging\V2;
 
-use Google\GAX\Testing\MockStubTrait;
-use Google\Logging\V2\ConfigServiceV2GrpcClient;
+use Google\ApiCore\Testing\MockStubTrait;
+use Google\Cloud\Logging\V2\ConfigServiceV2GrpcClient;
 use Google\Protobuf\Any;
 
 class MockConfigServiceV2Impl extends ConfigServiceV2GrpcClient

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,25 +23,25 @@
 namespace Google\Cloud\Tests\Unit\PubSub\V1;
 
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\Testing\GeneratedTest;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\TestIamPermissionsResponse;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
+use Google\ApiCore\GrpcCredentialsHelper;
+use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
+use Google\Cloud\PubSub\V1\ListSubscriptionsResponse;
+use Google\Cloud\PubSub\V1\PullResponse;
+use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\ReceivedMessage;
+use Google\Cloud\PubSub\V1\SeekResponse;
+use Google\Cloud\PubSub\V1\Snapshot;
+use Google\Cloud\PubSub\V1\StreamingPullRequest;
+use Google\Cloud\PubSub\V1\StreamingPullResponse;
+use Google\Cloud\PubSub\V1\Subscription;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Pubsub\V1\ListSnapshotsResponse;
-use Google\Pubsub\V1\ListSubscriptionsResponse;
-use Google\Pubsub\V1\PullResponse;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\ReceivedMessage;
-use Google\Pubsub\V1\SeekResponse;
-use Google\Pubsub\V1\Snapshot;
-use Google\Pubsub\V1\StreamingPullRequest;
-use Google\Pubsub\V1\StreamingPullResponse;
-use Google\Pubsub\V1\Subscription;
 use Grpc;
 use stdClass;
 
