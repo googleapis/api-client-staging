@@ -42,7 +42,6 @@ use Google\Cloud\Dlp\V2beta1\ListInspectFindingsResponse;
 use Google\Cloud\Dlp\V2beta1\ListRootCategoriesResponse;
 use Google\Cloud\Dlp\V2beta1\OutputStorageConfig;
 use Google\Cloud\Dlp\V2beta1\PrivacyMetric;
-use Google\Cloud\Dlp\V2beta1\RedactContentRequest_ReplaceConfig as ReplaceConfig;
 use Google\Cloud\Dlp\V2beta1\RedactContentResponse;
 use Google\Cloud\Dlp\V2beta1\RiskAnalysisOperationResult;
 use Google\Cloud\Dlp\V2beta1\StorageConfig;
@@ -210,16 +209,8 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
-        $name2 = 'EMAIL_ADDRESS';
-        $infoType = new InfoType();
-        $infoType->setName($name2);
-        $replaceWith = 'REDACTED';
-        $replaceConfigsElement = new ReplaceConfig();
-        $replaceConfigsElement->setInfoType($infoType);
-        $replaceConfigsElement->setReplaceWith($replaceWith);
-        $replaceConfigs = [$replaceConfigsElement];
 
-        $response = $client->redactContent($inspectConfig, $items, $replaceConfigs);
+        $response = $client->redactContent($inspectConfig, $items);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $grpcStub->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -229,7 +220,6 @@ class DlpServiceClientTest extends GeneratedTest
 
         $this->assertProtobufEquals($inspectConfig, $actualRequestObject->getInspectConfig());
         $this->assertProtobufEquals($items, $actualRequestObject->getItems());
-        $this->assertProtobufEquals($replaceConfigs, $actualRequestObject->getReplaceConfigs());
 
         $this->assertTrue($grpcStub->isExhausted());
     }
@@ -269,17 +259,9 @@ class DlpServiceClientTest extends GeneratedTest
         $itemsElement->setType($type);
         $itemsElement->setValue($value);
         $items = [$itemsElement];
-        $name2 = 'EMAIL_ADDRESS';
-        $infoType = new InfoType();
-        $infoType->setName($name2);
-        $replaceWith = 'REDACTED';
-        $replaceConfigsElement = new ReplaceConfig();
-        $replaceConfigsElement->setInfoType($infoType);
-        $replaceConfigsElement->setReplaceWith($replaceWith);
-        $replaceConfigs = [$replaceConfigsElement];
 
         try {
-            $client->redactContent($inspectConfig, $items, $replaceConfigs);
+            $client->redactContent($inspectConfig, $items);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

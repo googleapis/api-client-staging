@@ -16,6 +16,6 @@ class RecordCondition_Expressions_LogicalOperator
     /**
      * Generated from protobuf enum <code>AND = 1;</code>
      */
-    const PBAND = 1;
+    const AND = 1;
 }
 
