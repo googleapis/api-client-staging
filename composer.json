@@ -9,7 +9,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\": [
-		"generated/php/google-cloud-bigtable-v2/src",
+                "generated/php/google-cloud-bigtable-v2/src",
                 "generated/php/google-cloud-bigtable-admin-v2/src",
                 "generated/php/google-cloud-dlp-v2beta1/src",
                 "generated/php/google-cloud-firestore-v1beta1/src",
@@ -24,7 +24,7 @@
                 "generated/php/google-cloud-spanner-v1/src",
                 "generated/php/google-cloud-spanner-admin-database-v1/src",
                 "generated/php/google-cloud-spanner-admin-instance-v1/src",
-                "generated/php/google-cloud-trace-v1/src",
+                "generated/php/google-cloud-video-intelligence-v1/src",
                 "generated/php/google-cloud-video-intelligence-v1beta1/src",
                 "generated/php/google-cloud-video-intelligence-v1beta2/src",
                 "generated/php/google-cloud-vision-v1/src"
@@ -34,7 +34,7 @@
                 "generated/php/google-longrunning-v1/proto/src"
             ],
             "Google\\Cloud\\Tests\\Unit\\": [
-		"generated/php/google-cloud-bigtable-v2/tests/unit",
+                "generated/php/google-cloud-bigtable-v2/tests/unit",
                 "generated/php/google-cloud-bigtable-admin-v2/tests/unit",
                 "generated/php/google-cloud-dlp-v2beta1/tests/unit",
                 "generated/php/google-cloud-firestore-v1beta1/tests/unit",
@@ -49,7 +49,7 @@
                 "generated/php/google-cloud-spanner-v1/tests/unit",
                 "generated/php/google-cloud-spanner-admin-database-v1/tests/unit",
                 "generated/php/google-cloud-spanner-admin-instance-v1/tests/unit",
-                "generated/php/google-cloud-trace-v1/tests/unit",
+                "generated/php/google-cloud-video-intelligence-v1/tests/unit",
                 "generated/php/google-cloud-video-intelligence-v1beta1/tests/unit",
                 "generated/php/google-cloud-video-intelligence-v1beta2/tests/unit",
                 "generated/php/google-cloud-vision-v1/tests/unit"
@@ -58,7 +58,7 @@
                 "generated/php/google-longrunning-v1/tests/unit"
             ],
             "": [
-		"generated/php/google-cloud-bigtable-v2/proto/src",
+                "generated/php/google-cloud-bigtable-v2/proto/src",
                 "generated/php/google-cloud-bigtable-admin-v2/proto/src",
                 "generated/php/google-cloud-dlp-v2beta1/proto/src",
                 "generated/php/google-cloud-firestore-v1beta1/proto/src",
@@ -73,7 +73,7 @@
                 "generated/php/google-cloud-spanner-v1/proto/src",
                 "generated/php/google-cloud-spanner-admin-database-v1/proto/src",
                 "generated/php/google-cloud-spanner-admin-instance-v1/proto/src",
-                "generated/php/google-cloud-trace-v1/proto/src",
+                "generated/php/google-cloud-video-intelligence-v1/proto/src",
                 "generated/php/google-cloud-video-intelligence-v1beta1/proto/src",
                 "generated/php/google-cloud-video-intelligence-v1beta2/proto/src",
                 "generated/php/google-cloud-vision-v1/proto/src",
