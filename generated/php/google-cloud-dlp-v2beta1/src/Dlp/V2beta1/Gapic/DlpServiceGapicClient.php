@@ -485,27 +485,20 @@ class DlpServiceGapicClient
      *     $itemsElement->setType($type);
      *     $itemsElement->setValue($value);
      *     $items = [$itemsElement];
-     *     $name2 = 'EMAIL_ADDRESS';
-     *     $infoType = new InfoType();
-     *     $infoType->setName($name2);
-     *     $replaceWith = 'REDACTED';
-     *     $replaceConfigsElement = new ReplaceConfig();
-     *     $replaceConfigsElement->setInfoType($infoType);
-     *     $replaceConfigsElement->setReplaceWith($replaceWith);
-     *     $replaceConfigs = [$replaceConfigsElement];
-     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, $replaceConfigs);
+     *     $response = $dlpServiceClient->redactContent($inspectConfig, $items);
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param InspectConfig   $inspectConfig  Configuration for the inspector.
-     * @param ContentItem[]   $items          The list of items to inspect. Up to 100 are allowed per request.
-     * @param ReplaceConfig[] $replaceConfigs The strings to replace findings text findings with. Must specify at least
-     *                                        one of these or one ImageRedactionConfig if redacting images.
-     * @param array           $optionalArgs   {
-     *                                        Optional.
+     * @param InspectConfig $inspectConfig Configuration for the inspector.
+     * @param ContentItem[] $items         The list of items to inspect. Up to 100 are allowed per request.
+     * @param array         $optionalArgs  {
+     *                                     Optional.
      *
+     *     @type ReplaceConfig[] $replaceConfigs
+     *          The strings to replace findings text findings with. Must specify at least
+     *          one of these or one ImageRedactionConfig if redacting images.
      *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type \Google\ApiCore\RetrySettings|array $retrySettings
@@ -520,12 +513,14 @@ class DlpServiceGapicClient
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
      */
-    public function redactContent($inspectConfig, $items, $replaceConfigs, $optionalArgs = [])
+    public function redactContent($inspectConfig, $items, $optionalArgs = [])
     {
         $request = new RedactContentRequest();
         $request->setInspectConfig($inspectConfig);
         $request->setItems($items);
-        $request->setReplaceConfigs($replaceConfigs);
+        if (isset($optionalArgs['replaceConfigs'])) {
+            $request->setReplaceConfigs($optionalArgs['replaceConfigs']);
+        }
         if (isset($optionalArgs['imageRedactionConfigs'])) {
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
         }

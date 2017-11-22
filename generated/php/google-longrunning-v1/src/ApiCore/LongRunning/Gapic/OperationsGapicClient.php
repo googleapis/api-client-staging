@@ -42,7 +42,7 @@
  * @experimental
  */
 
-namespace Google\GAX\LongRunning\Gapic;
+namespace Google\ApiCore\LongRunning\Gapic;
 
 use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;

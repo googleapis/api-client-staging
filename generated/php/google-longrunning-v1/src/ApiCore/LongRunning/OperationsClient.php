@@ -42,9 +42,9 @@
  * @experimental
  */
 
-namespace Google\GAX\LongRunning;
+namespace Google\ApiCore\LongRunning;
 
-use Google\GAX\LongRunning\Gapic\OperationsGapicClient;
+use Google\ApiCore\LongRunning\Gapic\OperationsGapicClient;
 
 /**
  * {@inheritdoc}

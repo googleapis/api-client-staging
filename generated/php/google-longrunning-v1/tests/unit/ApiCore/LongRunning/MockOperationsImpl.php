@@ -34,7 +34,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Tests\Unit\GAX\LongRunning;
+namespace Google\Tests\Unit\ApiCore\LongRunning;
 
 use Google\ApiCore\Testing\MockStubTrait;
 use Google\LongRunning\OperationsGrpcClient;
