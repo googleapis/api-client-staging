@@ -23,7 +23,7 @@
 namespace Google\Cloud\Tests\Unit\Bigtable\Admin\V2;
 
 use Google\ApiCore\Testing\MockStubTrait;
-use Google\Bigtable\Admin\V2\BigtableTableAdminGrpcClient;
+use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminGrpcClient;
 use Google\Protobuf\Any;
 
 class MockBigtableTableAdminImpl extends BigtableTableAdminGrpcClient
