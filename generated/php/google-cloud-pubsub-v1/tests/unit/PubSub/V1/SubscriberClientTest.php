@@ -42,6 +42,7 @@ use Google\Cloud\PubSub\V1\Subscription;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 use Grpc;
 use stdClass;
 
@@ -259,18 +260,23 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $topic = 'topic110546223';
-        $ackDeadlineSeconds = 2135351438;
+        $ackDeadlineSeconds2 = -921632575;
         $retainAckedMessages = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
-        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
+        $ackDeadlineSeconds = 42;
         $subscription = new Subscription();
+        $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $pathsElement = 'ack_deadline_seconds';
+        $paths = [$pathsElement];
         $updateMask = new FieldMask();
+        $updateMask->setPaths($paths);
 
         $response = $client->updateSubscription($subscription, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -309,8 +315,13 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
+        $ackDeadlineSeconds = 42;
         $subscription = new Subscription();
+        $subscription->setAckDeadlineSeconds($ackDeadlineSeconds);
+        $pathsElement = 'ack_deadline_seconds';
+        $paths = [$pathsElement];
         $updateMask = new FieldMask();
+        $updateMask->setPaths($paths);
 
         try {
             $client->updateSubscription($subscription, $updateMask);
@@ -1054,8 +1065,15 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse($expectedResponse);
 
         // Mock request
+        $seconds = 123456;
+        $expireTime = new Timestamp();
+        $expireTime->setSeconds($seconds);
         $snapshot = new Snapshot();
+        $snapshot->setExpireTime($expireTime);
+        $pathsElement = 'expire_time';
+        $paths = [$pathsElement];
         $updateMask = new FieldMask();
+        $updateMask->setPaths($paths);
 
         $response = $client->updateSnapshot($snapshot, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -1094,8 +1112,15 @@ class SubscriberClientTest extends GeneratedTest
         $grpcStub->addResponse(null, $status);
 
         // Mock request
+        $seconds = 123456;
+        $expireTime = new Timestamp();
+        $expireTime->setSeconds($seconds);
         $snapshot = new Snapshot();
+        $snapshot->setExpireTime($expireTime);
+        $pathsElement = 'expire_time';
+        $paths = [$pathsElement];
         $updateMask = new FieldMask();
+        $updateMask->setPaths($paths);
 
         try {
             $client->updateSnapshot($snapshot, $updateMask);
