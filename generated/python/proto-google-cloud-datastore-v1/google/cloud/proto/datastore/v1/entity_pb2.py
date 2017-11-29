@@ -26,7 +26,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n,google/cloud/proto/datastore/v1/entity.proto\x12\x13google.datastore.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18google/type/latlng.proto\"7\n\x0bPartitionId\x12\x12\n\nproject_id\x18\x02 \x01(\t\x12\x14\n\x0cnamespace_id\x18\x04 \x01(\t\"\xb7\x01\n\x03Key\x12\x36\n\x0cpartition_id\x18\x01 \x01(\x0b\x32 .google.datastore.v1.PartitionId\x12\x32\n\x04path\x18\x02 \x03(\x0b\x32$.google.datastore.v1.Key.PathElement\x1a\x44\n\x0bPathElement\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0c\n\x02id\x18\x02 \x01(\x03H\x00\x12\x0e\n\x04name\x18\x03 \x01(\tH\x00\x42\t\n\x07id_type\"8\n\nArrayValue\x12*\n\x06values\x18\x01 \x03(\x0b\x32\x1a.google.datastore.v1.Value\"\xf1\x03\n\x05Value\x12\x30\n\nnull_value\x18\x0b \x01(\x0e\x32\x1a.google.protobuf.NullValueH\x00\x12\x17\n\rboolean_value\x18\x01 \x01(\x08H\x00\x12\x17\n\rinteger_value\x18\x02 \x01(\x03H\x00\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x35\n\x0ftimestamp_value\x18\n \x01(\x0b\x32\x1a.google.protobuf.TimestampH\x00\x12-\n\tkey_value\x18\x05 \x01(\x0b\x32\x18.google.datastore.v1.KeyH\x00\x12\x16\n\x0cstring_value\x18\x11 \x01(\tH\x00\x12\x14\n\nblob_value\x18\x12 \x01(\x0cH\x00\x12.\n\x0fgeo_point_value\x18\x08 \x01(\x0b\x32\x13.google.type.LatLngH\x00\x12\x33\n\x0c\x65ntity_value\x18\x06 \x01(\x0b\x32\x1b.google.datastore.v1.EntityH\x00\x12\x36\n\x0b\x61rray_value\x18\t \x01(\x0b\x32\x1f.google.datastore.v1.ArrayValueH\x00\x12\x0f\n\x07meaning\x18\x0e \x01(\x05\x12\x1c\n\x14\x65xclude_from_indexes\x18\x13 \x01(\x08\x42\x0c\n\nvalue_type\"\xbf\x01\n\x06\x45ntity\x12%\n\x03key\x18\x01 \x01(\x0b\x32\x18.google.datastore.v1.Key\x12?\n\nproperties\x18\x03 \x03(\x0b\x32+.google.datastore.v1.Entity.PropertiesEntry\x1aM\n\x0fPropertiesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12)\n\x05value\x18\x02 \x01(\x0b\x32\x1a.google.datastore.v1.Value:\x02\x38\x01\x42\x82\x01\n\x17\x63om.google.datastore.v1B\x0b\x45ntityProtoP\x01Z<google.golang.org/genproto/googleapis/datastore/v1;datastore\xaa\x02\x19Google.Cloud.Datastore.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_type_dot_latlng__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -435,10 +434,38 @@ DESCRIPTOR.message_types_by_name['Key'] = _KEY
 DESCRIPTOR.message_types_by_name['ArrayValue'] = _ARRAYVALUE
 DESCRIPTOR.message_types_by_name['Value'] = _VALUE
 DESCRIPTOR.message_types_by_name['Entity'] = _ENTITY
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PartitionId = _reflection.GeneratedProtocolMessageType('PartitionId', (_message.Message,), dict(
   DESCRIPTOR = _PARTITIONID,
   __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+  ,
+  __doc__ = """A partition ID identifies a grouping of entities. The grouping is always
+  by project and namespace, however the namespace ID may be empty.
+  
+  A partition ID contains several dimensions: project ID and namespace ID.
+  
+  Partition dimensions:
+  
+  -  May be ``""``.
+  -  Must be valid UTF-8 bytes.
+  -  Must have values that match regex ``[A-Za-z\d\.\-_]{1,100}`` If the
+     value of any dimension matches regex ``__.*__``, the partition is
+     reserved/read-only. A reserved/read-only partition ID is forbidden in
+     certain documented contexts.
+  
+  Foreign partition IDs (in which the project ID does not match the
+  context project ID ) are discouraged. Reads and writes of foreign
+  partition IDs may fail if the project is not in an active state.
+  
+  
+  Attributes:
+      project_id:
+          The ID of the project to which the entities belong.
+      namespace_id:
+          If not empty, the ID of the namespace to which the entities
+          belong.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.PartitionId)
   ))
 _sym_db.RegisterMessage(PartitionId)
@@ -448,11 +475,60 @@ Key = _reflection.GeneratedProtocolMessageType('Key', (_message.Message,), dict(
   PathElement = _reflection.GeneratedProtocolMessageType('PathElement', (_message.Message,), dict(
     DESCRIPTOR = _KEY_PATHELEMENT,
     __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+    ,
+    __doc__ = """A (kind, ID/name) pair used to construct a key path.
+    
+    If either name or ID is set, the element is complete. If neither is set,
+    the element is incomplete.
+    """,
     # @@protoc_insertion_point(class_scope:google.datastore.v1.Key.PathElement)
     ))
   ,
   DESCRIPTOR = _KEY,
   __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+  ,
+  __doc__ = """A unique identifier for an entity. If a key's partition ID or any of its
+  path kinds or names are reserved/read-only, the key is
+  reserved/read-only. A reserved/read-only key is forbidden in certain
+  documented contexts.
+  
+  
+  Attributes:
+      kind:
+          The kind of the entity. A kind matching regex ``__.*__`` is
+          reserved/read-only. A kind must not contain more than 1500
+          bytes when UTF-8 encoded. Cannot be ``""``.
+      id_type:
+          The type of ID.
+      id:
+          The auto-allocated ID of the entity. Never equal to zero.
+          Values less than zero are discouraged and may not be supported
+          in the future.
+      name:
+          The name of the entity. A name matching regex ``__.*__`` is
+          reserved/read-only. A name must not be more than 1500 bytes
+          when UTF-8 encoded. Cannot be ``""``.
+      partition_id:
+          Entities are partitioned into subsets, currently identified by
+          a project ID and namespace ID. Queries are scoped to a single
+          partition.
+      path:
+          The entity path. An entity path consists of one or more
+          elements composed of a kind and a string or numerical
+          identifier, which identify entities. The first element
+          identifies a *root entity*, the second element identifies a
+          *child* of the root entity, the third element identifies a
+          child of the second entity, and so forth. The entities
+          identified by all prefixes of the path are called the
+          element's *ancestors*.  An entity path is always fully
+          complete: *all* of the entity's ancestors are required to be
+          in the path along with the entity identifier itself. The only
+          exception is that in some documented cases, the identifier in
+          the last path element (for the entity) itself may be omitted.
+          For example, the last path element of the key of
+          ``Mutation.insert`` may have no identifier.  A path can never
+          be empty, and a path can have at most 100 elements.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Key)
   ))
 _sym_db.RegisterMessage(Key)
@@ -461,6 +537,16 @@ _sym_db.RegisterMessage(Key.PathElement)
 ArrayValue = _reflection.GeneratedProtocolMessageType('ArrayValue', (_message.Message,), dict(
   DESCRIPTOR = _ARRAYVALUE,
   __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+  ,
+  __doc__ = """An array value.
+  
+  
+  Attributes:
+      values:
+          Values in the array. The order of this array may not be
+          preserved if it contains a mix of indexed and unindexed
+          values.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.ArrayValue)
   ))
 _sym_db.RegisterMessage(ArrayValue)
@@ -468,6 +554,52 @@ _sym_db.RegisterMessage(ArrayValue)
 Value = _reflection.GeneratedProtocolMessageType('Value', (_message.Message,), dict(
   DESCRIPTOR = _VALUE,
   __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+  ,
+  __doc__ = """A message that can hold any of the supported value types and associated
+  metadata.
+  
+  
+  Attributes:
+      value_type:
+          Must have a value set.
+      null_value:
+          A null value.
+      boolean_value:
+          A boolean value.
+      integer_value:
+          An integer value.
+      double_value:
+          A double value.
+      timestamp_value:
+          A timestamp value. When stored in the Datastore, precise only
+          to microseconds; any additional precision is rounded down.
+      key_value:
+          A key value.
+      string_value:
+          A UTF-8 encoded string value. When ``exclude_from_indexes`` is
+          false (it is indexed) , may have at most 1500 bytes.
+          Otherwise, may be set to at least 1,000,000 bytes.
+      blob_value:
+          A blob value. May have at most 1,000,000 bytes. When
+          ``exclude_from_indexes`` is false, may have at most 1500
+          bytes. In JSON requests, must be base64-encoded.
+      geo_point_value:
+          A geo point value representing a point on the surface of
+          Earth.
+      entity_value:
+          An entity value.  -  May have no key. -  May have a key with
+          an incomplete key path. -  May have a reserved/read-only key.
+      array_value:
+          An array value. Cannot contain another array value. A
+          ``Value`` instance that sets field ``array_value`` must not
+          set fields ``meaning`` or ``exclude_from_indexes``.
+      meaning:
+          The ``meaning`` field should only be populated for backwards
+          compatibility.
+      exclude_from_indexes:
+          If the value should be excluded from all indexes including
+          those defined explicitly.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Value)
   ))
 _sym_db.RegisterMessage(Value)
@@ -482,6 +614,27 @@ Entity = _reflection.GeneratedProtocolMessageType('Entity', (_message.Message,),
   ,
   DESCRIPTOR = _ENTITY,
   __module__ = 'google.cloud.proto.datastore.v1.entity_pb2'
+  ,
+  __doc__ = """A Datastore data object.
+  
+  An entity is limited to 1 megabyte when stored. That *roughly*
+  corresponds to a limit of 1 megabyte for the serialized form of this
+  message.
+  
+  
+  Attributes:
+      key:
+          The entity's key.  An entity must have a key, unless otherwise
+          documented (for example, an entity in ``Value.entity_value``
+          may have no key). An entity's kind is its key path's last
+          element's kind, or null if it has no key.
+      properties:
+          The entity's properties. The map's keys are property names. A
+          property name matching regex ``__.*__`` is reserved. A
+          reserved property name is forbidden in certain documented
+          contexts. The name must not contain more than 500 characters.
+          The name cannot be ``""``.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Entity)
   ))
 _sym_db.RegisterMessage(Entity)
@@ -496,10 +649,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

@@ -30,7 +30,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n2google/cloud/proto/vision/v1/image_annotator.proto\x12\x16google.cloud.vision.v1\x1a\x1cgoogle/api/annotations.proto\x1a+google/cloud/proto/vision/v1/geometry.proto\x1a\x32google/cloud/proto/vision/v1/text_annotation.proto\x1a\x30google/cloud/proto/vision/v1/web_detection.proto\x1a\x17google/rpc/status.proto\x1a\x17google/type/color.proto\x1a\x18google/type/latlng.proto\"\xcb\x02\n\x07\x46\x65\x61ture\x12\x32\n\x04type\x18\x01 \x01(\x0e\x32$.google.cloud.vision.v1.Feature.Type\x12\x13\n\x0bmax_results\x18\x02 \x01(\x05\"\xf6\x01\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x46\x41\x43\x45_DETECTION\x10\x01\x12\x16\n\x12LANDMARK_DETECTION\x10\x02\x12\x12\n\x0eLOGO_DETECTION\x10\x03\x12\x13\n\x0fLABEL_DETECTION\x10\x04\x12\x12\n\x0eTEXT_DETECTION\x10\x05\x12\x1b\n\x17\x44OCUMENT_TEXT_DETECTION\x10\x0b\x12\x19\n\x15SAFE_SEARCH_DETECTION\x10\x06\x12\x14\n\x10IMAGE_PROPERTIES\x10\x07\x12\x0e\n\nCROP_HINTS\x10\t\x12\x11\n\rWEB_DETECTION\x10\n\"7\n\x0bImageSource\x12\x15\n\rgcs_image_uri\x18\x01 \x01(\t\x12\x11\n\timage_uri\x18\x02 \x01(\t\"M\n\x05Image\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\x0c\x12\x33\n\x06source\x18\x02 \x01(\x0b\x32#.google.cloud.vision.v1.ImageSource\"\xc7\r\n\x0e\x46\x61\x63\x65\x41nnotation\x12;\n\rbounding_poly\x18\x01 \x01(\x0b\x32$.google.cloud.vision.v1.BoundingPoly\x12>\n\x10\x66\x64_bounding_poly\x18\x02 \x01(\x0b\x32$.google.cloud.vision.v1.BoundingPoly\x12\x42\n\tlandmarks\x18\x03 \x03(\x0b\x32/.google.cloud.vision.v1.FaceAnnotation.Landmark\x12\x12\n\nroll_angle\x18\x04 \x01(\x02\x12\x11\n\tpan_angle\x18\x05 \x01(\x02\x12\x12\n\ntilt_angle\x18\x06 \x01(\x02\x12\x1c\n\x14\x64\x65tection_confidence\x18\x07 \x01(\x02\x12\x1e\n\x16landmarking_confidence\x18\x08 \x01(\x02\x12:\n\x0ejoy_likelihood\x18\t \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12=\n\x11sorrow_likelihood\x18\n \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12<\n\x10\x61nger_likelihood\x18\x0b \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12?\n\x13surprise_likelihood\x18\x0c \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12\x44\n\x18under_exposed_likelihood\x18\r \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12>\n\x12\x62lurred_likelihood\x18\x0e \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12?\n\x13headwear_likelihood\x18\x0f \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x1a\xb9\x07\n\x08Landmark\x12\x42\n\x04type\x18\x03 \x01(\x0e\x32\x34.google.cloud.vision.v1.FaceAnnotation.Landmark.Type\x12\x32\n\x08position\x18\x04 \x01(\x0b\x32 .google.cloud.vision.v1.Position\"\xb4\x06\n\x04Type\x12\x14\n\x10UNKNOWN_LANDMARK\x10\x00\x12\x0c\n\x08LEFT_EYE\x10\x01\x12\r\n\tRIGHT_EYE\x10\x02\x12\x18\n\x14LEFT_OF_LEFT_EYEBROW\x10\x03\x12\x19\n\x15RIGHT_OF_LEFT_EYEBROW\x10\x04\x12\x19\n\x15LEFT_OF_RIGHT_EYEBROW\x10\x05\x12\x1a\n\x16RIGHT_OF_RIGHT_EYEBROW\x10\x06\x12\x19\n\x15MIDPOINT_BETWEEN_EYES\x10\x07\x12\x0c\n\x08NOSE_TIP\x10\x08\x12\r\n\tUPPER_LIP\x10\t\x12\r\n\tLOWER_LIP\x10\n\x12\x0e\n\nMOUTH_LEFT\x10\x0b\x12\x0f\n\x0bMOUTH_RIGHT\x10\x0c\x12\x10\n\x0cMOUTH_CENTER\x10\r\x12\x15\n\x11NOSE_BOTTOM_RIGHT\x10\x0e\x12\x14\n\x10NOSE_BOTTOM_LEFT\x10\x0f\x12\x16\n\x12NOSE_BOTTOM_CENTER\x10\x10\x12\x19\n\x15LEFT_EYE_TOP_BOUNDARY\x10\x11\x12\x19\n\x15LEFT_EYE_RIGHT_CORNER\x10\x12\x12\x1c\n\x18LEFT_EYE_BOTTOM_BOUNDARY\x10\x13\x12\x18\n\x14LEFT_EYE_LEFT_CORNER\x10\x14\x12\x1a\n\x16RIGHT_EYE_TOP_BOUNDARY\x10\x15\x12\x1a\n\x16RIGHT_EYE_RIGHT_CORNER\x10\x16\x12\x1d\n\x19RIGHT_EYE_BOTTOM_BOUNDARY\x10\x17\x12\x19\n\x15RIGHT_EYE_LEFT_CORNER\x10\x18\x12\x1f\n\x1bLEFT_EYEBROW_UPPER_MIDPOINT\x10\x19\x12 \n\x1cRIGHT_EYEBROW_UPPER_MIDPOINT\x10\x1a\x12\x14\n\x10LEFT_EAR_TRAGION\x10\x1b\x12\x15\n\x11RIGHT_EAR_TRAGION\x10\x1c\x12\x12\n\x0eLEFT_EYE_PUPIL\x10\x1d\x12\x13\n\x0fRIGHT_EYE_PUPIL\x10\x1e\x12\x15\n\x11\x46OREHEAD_GLABELLA\x10\x1f\x12\x11\n\rCHIN_GNATHION\x10 \x12\x14\n\x10\x43HIN_LEFT_GONION\x10!\x12\x15\n\x11\x43HIN_RIGHT_GONION\x10\"\"4\n\x0cLocationInfo\x12$\n\x07lat_lng\x18\x01 \x01(\x0b\x32\x13.google.type.LatLng\"\'\n\x08Property\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\xa7\x02\n\x10\x45ntityAnnotation\x12\x0b\n\x03mid\x18\x01 \x01(\t\x12\x0e\n\x06locale\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05score\x18\x04 \x01(\x02\x12\x12\n\nconfidence\x18\x05 \x01(\x02\x12\x12\n\ntopicality\x18\x06 \x01(\x02\x12;\n\rbounding_poly\x18\x07 \x01(\x0b\x32$.google.cloud.vision.v1.BoundingPoly\x12\x37\n\tlocations\x18\x08 \x03(\x0b\x32$.google.cloud.vision.v1.LocationInfo\x12\x34\n\nproperties\x18\t \x03(\x0b\x32 .google.cloud.vision.v1.Property\"\xe7\x01\n\x14SafeSearchAnnotation\x12\x31\n\x05\x61\x64ult\x18\x01 \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12\x31\n\x05spoof\x18\x02 \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12\x33\n\x07medical\x18\x03 \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\x12\x34\n\x08violence\x18\x04 \x01(\x0e\x32\".google.cloud.vision.v1.Likelihood\"a\n\x0bLatLongRect\x12(\n\x0bmin_lat_lng\x18\x01 \x01(\x0b\x32\x13.google.type.LatLng\x12(\n\x0bmax_lat_lng\x18\x02 \x01(\x0b\x32\x13.google.type.LatLng\"U\n\tColorInfo\x12!\n\x05\x63olor\x18\x01 \x01(\x0b\x32\x12.google.type.Color\x12\r\n\x05score\x18\x02 \x01(\x02\x12\x16\n\x0epixel_fraction\x18\x03 \x01(\x02\"M\n\x18\x44ominantColorsAnnotation\x12\x31\n\x06\x63olors\x18\x01 \x03(\x0b\x32!.google.cloud.vision.v1.ColorInfo\"\\\n\x0fImageProperties\x12I\n\x0f\x64ominant_colors\x18\x01 \x01(\x0b\x32\x30.google.cloud.vision.v1.DominantColorsAnnotation\"x\n\x08\x43ropHint\x12;\n\rbounding_poly\x18\x01 \x01(\x0b\x32$.google.cloud.vision.v1.BoundingPoly\x12\x12\n\nconfidence\x18\x02 \x01(\x02\x12\x1b\n\x13importance_fraction\x18\x03 \x01(\x02\"K\n\x13\x43ropHintsAnnotation\x12\x34\n\ncrop_hints\x18\x01 \x03(\x0b\x32 .google.cloud.vision.v1.CropHint\"(\n\x0f\x43ropHintsParams\x12\x15\n\raspect_ratios\x18\x01 \x03(\x02\"\xa6\x01\n\x0cImageContext\x12:\n\rlat_long_rect\x18\x01 \x01(\x0b\x32#.google.cloud.vision.v1.LatLongRect\x12\x16\n\x0elanguage_hints\x18\x02 \x03(\t\x12\x42\n\x11\x63rop_hints_params\x18\x04 \x01(\x0b\x32\'.google.cloud.vision.v1.CropHintsParams\"\xb4\x01\n\x14\x41nnotateImageRequest\x12,\n\x05image\x18\x01 \x01(\x0b\x32\x1d.google.cloud.vision.v1.Image\x12\x31\n\x08\x66\x65\x61tures\x18\x02 \x03(\x0b\x32\x1f.google.cloud.vision.v1.Feature\x12;\n\rimage_context\x18\x03 \x01(\x0b\x32$.google.cloud.vision.v1.ImageContext\"\xfc\x05\n\x15\x41nnotateImageResponse\x12@\n\x10\x66\x61\x63\x65_annotations\x18\x01 \x03(\x0b\x32&.google.cloud.vision.v1.FaceAnnotation\x12\x46\n\x14landmark_annotations\x18\x02 \x03(\x0b\x32(.google.cloud.vision.v1.EntityAnnotation\x12\x42\n\x10logo_annotations\x18\x03 \x03(\x0b\x32(.google.cloud.vision.v1.EntityAnnotation\x12\x43\n\x11label_annotations\x18\x04 \x03(\x0b\x32(.google.cloud.vision.v1.EntityAnnotation\x12\x42\n\x10text_annotations\x18\x05 \x03(\x0b\x32(.google.cloud.vision.v1.EntityAnnotation\x12\x44\n\x14\x66ull_text_annotation\x18\x0c \x01(\x0b\x32&.google.cloud.vision.v1.TextAnnotation\x12L\n\x16safe_search_annotation\x18\x06 \x01(\x0b\x32,.google.cloud.vision.v1.SafeSearchAnnotation\x12L\n\x1bimage_properties_annotation\x18\x08 \x01(\x0b\x32\'.google.cloud.vision.v1.ImageProperties\x12J\n\x15\x63rop_hints_annotation\x18\x0b \x01(\x0b\x32+.google.cloud.vision.v1.CropHintsAnnotation\x12;\n\rweb_detection\x18\r \x01(\x0b\x32$.google.cloud.vision.v1.WebDetection\x12!\n\x05\x65rror\x18\t \x01(\x0b\x32\x12.google.rpc.Status\"\\\n\x1a\x42\x61tchAnnotateImagesRequest\x12>\n\x08requests\x18\x01 \x03(\x0b\x32,.google.cloud.vision.v1.AnnotateImageRequest\"_\n\x1b\x42\x61tchAnnotateImagesResponse\x12@\n\tresponses\x18\x01 \x03(\x0b\x32-.google.cloud.vision.v1.AnnotateImageResponse*e\n\nLikelihood\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x11\n\rVERY_UNLIKELY\x10\x01\x12\x0c\n\x08UNLIKELY\x10\x02\x12\x0c\n\x08POSSIBLE\x10\x03\x12\n\n\x06LIKELY\x10\x04\x12\x0f\n\x0bVERY_LIKELY\x10\x05\x32\xb1\x01\n\x0eImageAnnotator\x12\x9e\x01\n\x13\x42\x61tchAnnotateImages\x12\x32.google.cloud.vision.v1.BatchAnnotateImagesRequest\x1a\x33.google.cloud.vision.v1.BatchAnnotateImagesResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/v1/images:annotate:\x01*Bt\n\x1a\x63om.google.cloud.vision.v1B\x13ImageAnnotatorProtoP\x01Z<google.golang.org/genproto/googleapis/cloud/vision/v1;vision\xf8\x01\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_geometry__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_text__annotation__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_vision_dot_v1_dot_web__detection__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,google_dot_type_dot_color__pb2.DESCRIPTOR,google_dot_type_dot_latlng__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _LIKELIHOOD = _descriptor.EnumDescriptor(
   name='Likelihood',
@@ -1357,10 +1356,24 @@ DESCRIPTOR.message_types_by_name['AnnotateImageResponse'] = _ANNOTATEIMAGERESPON
 DESCRIPTOR.message_types_by_name['BatchAnnotateImagesRequest'] = _BATCHANNOTATEIMAGESREQUEST
 DESCRIPTOR.message_types_by_name['BatchAnnotateImagesResponse'] = _BATCHANNOTATEIMAGESRESPONSE
 DESCRIPTOR.enum_types_by_name['Likelihood'] = _LIKELIHOOD
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Feature = _reflection.GeneratedProtocolMessageType('Feature', (_message.Message,), dict(
   DESCRIPTOR = _FEATURE,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Users describe the type of Google Cloud Vision API tasks to perform over
+  images by using *Feature*\ s. Each Feature indicates a type of image
+  detection task to perform. Features encode the Cloud Vision API vertical
+  to operate on and the number of top-scoring results to return.
+  
+  
+  Attributes:
+      type:
+          The feature type.
+      max_results:
+          Maximum number of results of this type.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.Feature)
   ))
 _sym_db.RegisterMessage(Feature)
@@ -1368,6 +1381,30 @@ _sym_db.RegisterMessage(Feature)
 ImageSource = _reflection.GeneratedProtocolMessageType('ImageSource', (_message.Message,), dict(
   DESCRIPTOR = _IMAGESOURCE,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """External image source (Google Cloud Storage image location).
+  
+  
+  Attributes:
+      gcs_image_uri:
+          NOTE: For new code ``image_uri`` below is preferred. Google
+          Cloud Storage image URI, which must be in the following form:
+          ``gs://bucket_name/object_name`` (for details, see `Google
+          Cloud Storage Request URIs
+          <https://cloud.google.com/storage/docs/reference-uris>`__).
+          NOTE: Cloud Storage object versioning is not supported.
+      image_uri:
+          Image URI which supports: 1) Google Cloud Storage image URI,
+          which must be in the following form:
+          ``gs://bucket_name/object_name`` (for details, see `Google
+          Cloud Storage Request URIs
+          <https://cloud.google.com/storage/docs/reference-uris>`__).
+          NOTE: Cloud Storage object versioning is not supported. 2)
+          Publicly accessible image HTTP/HTTPS URL. This is preferred
+          over the legacy ``gcs_image_uri`` above. When both
+          ``gcs_image_uri`` and ``image_uri`` are specified,
+          ``image_uri`` takes precedence.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.ImageSource)
   ))
 _sym_db.RegisterMessage(ImageSource)
@@ -1375,6 +1412,21 @@ _sym_db.RegisterMessage(ImageSource)
 Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), dict(
   DESCRIPTOR = _IMAGE,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Client image to perform Google Cloud Vision API tasks over.
+  
+  
+  Attributes:
+      content:
+          Image content, represented as a stream of bytes. Note: as with
+          all ``bytes`` fields, protobuffers use a pure binary
+          representation, whereas JSON representations use base64.
+      source:
+          Google Cloud Storage image location. If both ``content`` and
+          ``source`` are provided for an image, ``content`` takes
+          precedence and is used to perform the image annotation
+          request.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.Image)
   ))
 _sym_db.RegisterMessage(Image)
@@ -1384,11 +1436,75 @@ FaceAnnotation = _reflection.GeneratedProtocolMessageType('FaceAnnotation', (_me
   Landmark = _reflection.GeneratedProtocolMessageType('Landmark', (_message.Message,), dict(
     DESCRIPTOR = _FACEANNOTATION_LANDMARK,
     __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+    ,
+    __doc__ = """A face-specific landmark (for example, a face feature). Landmark
+    positions may fall outside the bounds of the image if the face is near
+    one or more edges of the image. Therefore it is NOT guaranteed that
+    ``0 <= x < width`` or ``0 <= y < height``.
+    """,
     # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.FaceAnnotation.Landmark)
     ))
   ,
   DESCRIPTOR = _FACEANNOTATION,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """A face annotation object contains the results of face detection.
+  
+  
+  Attributes:
+      type:
+          Face landmark type.
+      position:
+          Face landmark position.
+      bounding_poly:
+          The bounding polygon around the face. The coordinates of the
+          bounding box are in the original image's scale, as returned in
+          ``ImageParams``. The bounding box is computed to "frame" the
+          face in accordance with human expectations. It is based on the
+          landmarker results. Note that one or more x and/or y
+          coordinates may not be generated in the ``BoundingPoly`` (the
+          polygon will be unbounded) if only a partial face appears in
+          the image to be annotated.
+      fd_bounding_poly:
+          The ``fd_bounding_poly`` bounding polygon is tighter than the
+          ``boundingPoly``, and encloses only the skin part of the face.
+          Typically, it is used to eliminate the face from any image
+          analysis that detects the "amount of skin" visible in an
+          image. It is not based on the landmarker results, only on the
+          initial face detection, hence the fd (face detection) prefix.
+      landmarks:
+          Detected face landmarks.
+      roll_angle:
+          Roll angle, which indicates the amount of clockwise/anti-
+          clockwise rotation of the face relative to the image vertical
+          about the axis perpendicular to the face. Range [-180,180].
+      pan_angle:
+          Yaw angle, which indicates the leftward/rightward angle that
+          the face is pointing relative to the vertical plane
+          perpendicular to the image. Range [-180,180].
+      tilt_angle:
+          Pitch angle, which indicates the upwards/downwards angle that
+          the face is pointing relative to the image's horizontal plane.
+          Range [-180,180].
+      detection_confidence:
+          Detection confidence. Range [0, 1].
+      landmarking_confidence:
+          Face landmarking confidence. Range [0, 1].
+      joy_likelihood:
+          Joy likelihood.
+      sorrow_likelihood:
+          Sorrow likelihood.
+      anger_likelihood:
+          Anger likelihood.
+      surprise_likelihood:
+          Surprise likelihood.
+      under_exposed_likelihood:
+          Under-exposed likelihood.
+      blurred_likelihood:
+          Blurred likelihood.
+      headwear_likelihood:
+          Headwear likelihood.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.FaceAnnotation)
   ))
 _sym_db.RegisterMessage(FaceAnnotation)
@@ -1397,6 +1513,14 @@ _sym_db.RegisterMessage(FaceAnnotation.Landmark)
 LocationInfo = _reflection.GeneratedProtocolMessageType('LocationInfo', (_message.Message,), dict(
   DESCRIPTOR = _LOCATIONINFO,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Detected entity location information.
+  
+  
+  Attributes:
+      lat_lng:
+          lat/long location coordinates.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.LocationInfo)
   ))
 _sym_db.RegisterMessage(LocationInfo)
@@ -1404,6 +1528,16 @@ _sym_db.RegisterMessage(LocationInfo)
 Property = _reflection.GeneratedProtocolMessageType('Property', (_message.Message,), dict(
   DESCRIPTOR = _PROPERTY,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """A ``Property`` consists of a user-supplied name/value pair.
+  
+  
+  Attributes:
+      name:
+          Name of the property.
+      value:
+          Value of the property.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.Property)
   ))
 _sym_db.RegisterMessage(Property)
@@ -1411,6 +1545,53 @@ _sym_db.RegisterMessage(Property)
 EntityAnnotation = _reflection.GeneratedProtocolMessageType('EntityAnnotation', (_message.Message,), dict(
   DESCRIPTOR = _ENTITYANNOTATION,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Set of detected entity features.
+  
+  
+  Attributes:
+      mid:
+          Opaque entity ID. Some IDs may be available in `Google
+          Knowledge Graph Search API
+          <https://developers.google.com/knowledge-graph/>`__.
+      locale:
+          The language code for the locale in which the entity textual
+          ``description`` is expressed.
+      description:
+          Entity textual description, expressed in its ``locale``
+          language.
+      score:
+          Overall score of the result. Range [0, 1].
+      confidence:
+          The accuracy of the entity detection in an image. For example,
+          for an image in which the "Eiffel Tower" entity is detected,
+          this field represents the confidence that there is a tower in
+          the query image. Range [0, 1].
+      topicality:
+          The relevancy of the ICA (Image Content Annotation) label to
+          the image. For example, the relevancy of "tower" is likely
+          higher to an image containing the detected "Eiffel Tower" than
+          to an image containing a detected distant towering building,
+          even though the confidence that there is a tower in each image
+          may be the same. Range [0, 1].
+      bounding_poly:
+          Image region to which this entity belongs. Currently not
+          produced for ``LABEL_DETECTION`` features. For
+          ``TEXT_DETECTION`` (OCR), ``boundingPoly``\ s are produced for
+          the entire text detected in an image region, followed by
+          ``boundingPoly``\ s for each word within the detected text.
+      locations:
+          The location information for the detected entity. Multiple
+          ``LocationInfo`` elements can be present because one location
+          may indicate the location of the scene in the image, and
+          another location may indicate the location of the place where
+          the image was taken. Location information is usually present
+          for landmarks.
+      properties:
+          Some entities may have optional user-supplied ``Property``
+          (name/value) fields, such a score or string that qualifies the
+          entity.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.EntityAnnotation)
   ))
 _sym_db.RegisterMessage(EntityAnnotation)
@@ -1418,6 +1599,24 @@ _sym_db.RegisterMessage(EntityAnnotation)
 SafeSearchAnnotation = _reflection.GeneratedProtocolMessageType('SafeSearchAnnotation', (_message.Message,), dict(
   DESCRIPTOR = _SAFESEARCHANNOTATION,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Set of features pertaining to the image, computed by computer vision
+  methods over safe-search verticals (for example, adult, spoof, medical,
+  violence).
+  
+  
+  Attributes:
+      adult:
+          Represents the adult content likelihood for the image.
+      spoof:
+          Spoof likelihood. The likelihood that an modification was made
+          to the image's canonical version to make it appear funny or
+          offensive.
+      medical:
+          Likelihood that this is a medical image.
+      violence:
+          Violence likelihood.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.SafeSearchAnnotation)
   ))
 _sym_db.RegisterMessage(SafeSearchAnnotation)
@@ -1425,6 +1624,16 @@ _sym_db.RegisterMessage(SafeSearchAnnotation)
 LatLongRect = _reflection.GeneratedProtocolMessageType('LatLongRect', (_message.Message,), dict(
   DESCRIPTOR = _LATLONGRECT,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Rectangle determined by min and max ``LatLng`` pairs.
+  
+  
+  Attributes:
+      min_lat_lng:
+          Min lat/long pair.
+      max_lat_lng:
+          Max lat/long pair.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.LatLongRect)
   ))
 _sym_db.RegisterMessage(LatLongRect)
@@ -1432,6 +1641,20 @@ _sym_db.RegisterMessage(LatLongRect)
 ColorInfo = _reflection.GeneratedProtocolMessageType('ColorInfo', (_message.Message,), dict(
   DESCRIPTOR = _COLORINFO,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Color information consists of RGB channels, score, and the fraction of
+  the image that the color occupies in the image.
+  
+  
+  Attributes:
+      color:
+          RGB components of the color.
+      score:
+          Image-specific score for this color. Value in range [0, 1].
+      pixel_fraction:
+          The fraction of pixels the color occupies in the image. Value
+          in range [0, 1].
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.ColorInfo)
   ))
 _sym_db.RegisterMessage(ColorInfo)
@@ -1439,6 +1662,14 @@ _sym_db.RegisterMessage(ColorInfo)
 DominantColorsAnnotation = _reflection.GeneratedProtocolMessageType('DominantColorsAnnotation', (_message.Message,), dict(
   DESCRIPTOR = _DOMINANTCOLORSANNOTATION,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Set of dominant colors and their corresponding scores.
+  
+  
+  Attributes:
+      colors:
+          RGB color values with their score and pixel fraction.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.DominantColorsAnnotation)
   ))
 _sym_db.RegisterMessage(DominantColorsAnnotation)
@@ -1446,6 +1677,14 @@ _sym_db.RegisterMessage(DominantColorsAnnotation)
 ImageProperties = _reflection.GeneratedProtocolMessageType('ImageProperties', (_message.Message,), dict(
   DESCRIPTOR = _IMAGEPROPERTIES,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Stores image properties, such as dominant colors.
+  
+  
+  Attributes:
+      dominant_colors:
+          If present, dominant colors completed successfully.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.ImageProperties)
   ))
 _sym_db.RegisterMessage(ImageProperties)
@@ -1453,6 +1692,22 @@ _sym_db.RegisterMessage(ImageProperties)
 CropHint = _reflection.GeneratedProtocolMessageType('CropHint', (_message.Message,), dict(
   DESCRIPTOR = _CROPHINT,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Single crop hint that is used to generate a new crop when serving an
+  image.
+  
+  
+  Attributes:
+      bounding_poly:
+          The bounding polygon for the crop region. The coordinates of
+          the bounding box are in the original image's scale, as
+          returned in ``ImageParams``.
+      confidence:
+          Confidence of this being a salient region. Range [0, 1].
+      importance_fraction:
+          Fraction of importance of this salient region with respect to
+          the original image.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.CropHint)
   ))
 _sym_db.RegisterMessage(CropHint)
@@ -1460,6 +1715,10 @@ _sym_db.RegisterMessage(CropHint)
 CropHintsAnnotation = _reflection.GeneratedProtocolMessageType('CropHintsAnnotation', (_message.Message,), dict(
   DESCRIPTOR = _CROPHINTSANNOTATION,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Set of crop hints that are used to generate new crops when serving
+  images.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.CropHintsAnnotation)
   ))
 _sym_db.RegisterMessage(CropHintsAnnotation)
@@ -1467,6 +1726,19 @@ _sym_db.RegisterMessage(CropHintsAnnotation)
 CropHintsParams = _reflection.GeneratedProtocolMessageType('CropHintsParams', (_message.Message,), dict(
   DESCRIPTOR = _CROPHINTSPARAMS,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Parameters for crop hints annotation request.
+  
+  
+  Attributes:
+      aspect_ratios:
+          Aspect ratios in floats, representing the ratio of the width
+          to the height of the image. For example, if the desired aspect
+          ratio is 4/3, the corresponding float value should be 1.33333.
+          If not specified, the best possible crop is returned. The
+          number of provided aspect ratios is limited to a maximum of
+          16; any aspect ratios provided after the 16th are ignored.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.CropHintsParams)
   ))
 _sym_db.RegisterMessage(CropHintsParams)
@@ -1474,6 +1746,27 @@ _sym_db.RegisterMessage(CropHintsParams)
 ImageContext = _reflection.GeneratedProtocolMessageType('ImageContext', (_message.Message,), dict(
   DESCRIPTOR = _IMAGECONTEXT,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Image context and/or feature-specific parameters.
+  
+  
+  Attributes:
+      lat_long_rect:
+          lat/long rectangle that specifies the location of the image.
+      language_hints:
+          List of languages to use for TEXT\_DETECTION. In most cases,
+          an empty value yields the best results since it enables
+          automatic language detection. For languages based on the Latin
+          alphabet, setting ``language_hints`` is not needed. In rare
+          cases, when the language of the text in the image is known,
+          setting a hint will help get better results (although it will
+          be a significant hindrance if the hint is wrong). Text
+          detection returns an error if one or more of the specified
+          languages is not one of the `supported languages
+          </vision/docs/languages>`__.
+      crop_hints_params:
+          Parameters for crop hints annotation request.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.ImageContext)
   ))
 _sym_db.RegisterMessage(ImageContext)
@@ -1481,6 +1774,19 @@ _sym_db.RegisterMessage(ImageContext)
 AnnotateImageRequest = _reflection.GeneratedProtocolMessageType('AnnotateImageRequest', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEIMAGEREQUEST,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Request for performing Google Cloud Vision API tasks over a
+  user-provided image, with user-requested features.
+  
+  
+  Attributes:
+      image:
+          The image to be processed.
+      features:
+          Requested features.
+      image_context:
+          Additional context that may accompany the image.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.AnnotateImageRequest)
   ))
 _sym_db.RegisterMessage(AnnotateImageRequest)
@@ -1488,6 +1794,39 @@ _sym_db.RegisterMessage(AnnotateImageRequest)
 AnnotateImageResponse = _reflection.GeneratedProtocolMessageType('AnnotateImageResponse', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEIMAGERESPONSE,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Response to an image annotation request.
+  
+  
+  Attributes:
+      face_annotations:
+          If present, face detection has completed successfully.
+      landmark_annotations:
+          If present, landmark detection has completed successfully.
+      logo_annotations:
+          If present, logo detection has completed successfully.
+      label_annotations:
+          If present, label detection has completed successfully.
+      text_annotations:
+          If present, text (OCR) detection or document (OCR) text
+          detection has completed successfully.
+      full_text_annotation:
+          If present, text (OCR) detection or document (OCR) text
+          detection has completed successfully. This annotation provides
+          the structural hierarchy for the OCR detected text.
+      safe_search_annotation:
+          If present, safe-search annotation has completed successfully.
+      image_properties_annotation:
+          If present, image properties were extracted successfully.
+      crop_hints_annotation:
+          If present, crop hints have completed successfully.
+      web_detection:
+          If present, web detection has completed successfully.
+      error:
+          If set, represents the error message for the operation. Note
+          that filled-in image annotations are guaranteed to be correct,
+          even when ``error`` is set.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.AnnotateImageResponse)
   ))
 _sym_db.RegisterMessage(AnnotateImageResponse)
@@ -1495,6 +1834,15 @@ _sym_db.RegisterMessage(AnnotateImageResponse)
 BatchAnnotateImagesRequest = _reflection.GeneratedProtocolMessageType('BatchAnnotateImagesRequest', (_message.Message,), dict(
   DESCRIPTOR = _BATCHANNOTATEIMAGESREQUEST,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Multiple image annotation requests are batched into a single service
+  call.
+  
+  
+  Attributes:
+      requests:
+          Individual image annotation requests for this batch.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.BatchAnnotateImagesRequest)
   ))
 _sym_db.RegisterMessage(BatchAnnotateImagesRequest)
@@ -1502,6 +1850,15 @@ _sym_db.RegisterMessage(BatchAnnotateImagesRequest)
 BatchAnnotateImagesResponse = _reflection.GeneratedProtocolMessageType('BatchAnnotateImagesResponse', (_message.Message,), dict(
   DESCRIPTOR = _BATCHANNOTATEIMAGESRESPONSE,
   __module__ = 'google.cloud.proto.vision.v1.image_annotator_pb2'
+  ,
+  __doc__ = """Response to a batch image annotation request.
+  
+  
+  Attributes:
+      responses:
+          Individual responses to image annotation requests within the
+          batch.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.BatchAnnotateImagesResponse)
   ))
 _sym_db.RegisterMessage(BatchAnnotateImagesResponse)
@@ -1513,10 +1870,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class ImageAnnotatorStub(object):

@@ -24,7 +24,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n(google/cloud/proto/spanner/v1/type.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\"\x9a\x01\n\x04Type\x12)\n\x04\x63ode\x18\x01 \x01(\x0e\x32\x1b.google.spanner.v1.TypeCode\x12\x33\n\x12\x61rray_element_type\x18\x02 \x01(\x0b\x32\x17.google.spanner.v1.Type\x12\x32\n\x0bstruct_type\x18\x03 \x01(\x0b\x32\x1d.google.spanner.v1.StructType\"\x7f\n\nStructType\x12\x33\n\x06\x66ields\x18\x01 \x03(\x0b\x32#.google.spanner.v1.StructType.Field\x1a<\n\x05\x46ield\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04type\x18\x02 \x01(\x0b\x32\x17.google.spanner.v1.Type*\x8e\x01\n\x08TypeCode\x12\x19\n\x15TYPE_CODE_UNSPECIFIED\x10\x00\x12\x08\n\x04\x42OOL\x10\x01\x12\t\n\x05INT64\x10\x02\x12\x0b\n\x07\x46LOAT64\x10\x03\x12\r\n\tTIMESTAMP\x10\x04\x12\x08\n\x04\x44\x41TE\x10\x05\x12\n\n\x06STRING\x10\x06\x12\t\n\x05\x42YTES\x10\x07\x12\t\n\x05\x41RRAY\x10\x08\x12\n\n\x06STRUCT\x10\tBx\n\x15\x63om.google.spanner.v1B\tTypeProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _TYPECODE = _descriptor.EnumDescriptor(
   name='TypeCode',
@@ -215,10 +214,30 @@ _STRUCTTYPE.fields_by_name['fields'].message_type = _STRUCTTYPE_FIELD
 DESCRIPTOR.message_types_by_name['Type'] = _TYPE
 DESCRIPTOR.message_types_by_name['StructType'] = _STRUCTTYPE
 DESCRIPTOR.enum_types_by_name['TypeCode'] = _TYPECODE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Type = _reflection.GeneratedProtocolMessageType('Type', (_message.Message,), dict(
   DESCRIPTOR = _TYPE,
   __module__ = 'google.cloud.proto.spanner.v1.type_pb2'
+  ,
+  __doc__ = """``Type`` indicates the type of a Cloud Spanner value, as might be stored
+  in a table cell or returned from an SQL query.
+  
+  
+  Attributes:
+      code:
+          Required. The [TypeCode][google.spanner.v1.TypeCode] for this
+          type.
+      array_element_type:
+          If [code][google.spanner.v1.Type.code] ==
+          [ARRAY][google.spanner.v1.TypeCode.ARRAY], then
+          ``array_element_type`` is the type of the array elements.
+      struct_type:
+          If [code][google.spanner.v1.Type.code] ==
+          [STRUCT][google.spanner.v1.TypeCode.STRUCT], then
+          ``struct_type`` provides type information for the struct's
+          fields.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.Type)
   ))
 _sym_db.RegisterMessage(Type)
@@ -228,11 +247,39 @@ StructType = _reflection.GeneratedProtocolMessageType('StructType', (_message.Me
   Field = _reflection.GeneratedProtocolMessageType('Field', (_message.Message,), dict(
     DESCRIPTOR = _STRUCTTYPE_FIELD,
     __module__ = 'google.cloud.proto.spanner.v1.type_pb2'
+    ,
+    __doc__ = """Message representing a single field of a struct.
+    """,
     # @@protoc_insertion_point(class_scope:google.spanner.v1.StructType.Field)
     ))
   ,
   DESCRIPTOR = _STRUCTTYPE,
   __module__ = 'google.cloud.proto.spanner.v1.type_pb2'
+  ,
+  __doc__ = """``StructType`` defines the fields of a
+  [STRUCT][google.spanner.v1.TypeCode.STRUCT] type.
+  
+  
+  Attributes:
+      name:
+          The name of the field. For reads, this is the column name. For
+          SQL queries, it is the column alias (e.g., ``"Word"`` in the
+          query ``"SELECT 'hello' AS Word"``), or the column name (e.g.,
+          ``"ColName"`` in the query ``"SELECT ColName FROM Table"``).
+          Some columns might have an empty name (e.g., !"SELECT
+          UPPER(ColName)"\`). Note that a query result can contain
+          multiple fields with the same name.
+      type:
+          The type of the field.
+      fields:
+          The list of fields that make up this struct. Order is
+          significant, because values of this struct type are
+          represented as lists, where the order of field values matches
+          the order of fields in the
+          [StructType][google.spanner.v1.StructType]. In turn, the order
+          of fields matches the order of columns in a read request, or
+          the order of fields in the ``SELECT`` clause of a query.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.StructType)
   ))
 _sym_db.RegisterMessage(StructType)
@@ -245,10 +292,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

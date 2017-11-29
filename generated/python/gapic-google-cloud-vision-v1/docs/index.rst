@@ -12,7 +12,7 @@ easy-to-use client library for the `Google Cloud Vision API`_ (v1) defined in th
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/vision/v1
-.. _`Google Cloud Vision API`: https://developers.google.com/apis-explorer/?hl=en_US#p/vision/v1
+.. _`Google Cloud Vision API`: https://developers.google.com/apis-explorer/?hl=en_US#p/vision/v1/
 
 
 APIs
@@ -20,7 +20,7 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.vision.v1.image_annotator_client
+   google.cloud.vision_v1.gapic.image_annotator_client
 
 
 Contents

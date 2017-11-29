@@ -23,7 +23,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n0google/cloud/proto/vision/v1/web_detection.proto\x12\x16google.cloud.vision.v1\x1a\x1cgoogle/api/annotations.proto\"\xd6\x03\n\x0cWebDetection\x12\x44\n\x0cweb_entities\x18\x01 \x03(\x0b\x32..google.cloud.vision.v1.WebDetection.WebEntity\x12K\n\x14\x66ull_matching_images\x18\x02 \x03(\x0b\x32-.google.cloud.vision.v1.WebDetection.WebImage\x12N\n\x17partial_matching_images\x18\x03 \x03(\x0b\x32-.google.cloud.vision.v1.WebDetection.WebImage\x12P\n\x1apages_with_matching_images\x18\x04 \x03(\x0b\x32,.google.cloud.vision.v1.WebDetection.WebPage\x1a\x42\n\tWebEntity\x12\x11\n\tentity_id\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x1a&\n\x08WebImage\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\x1a%\n\x07WebPage\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\x42r\n\x1a\x63om.google.cloud.vision.v1B\x11WebDetectionProtoP\x01Z<google.golang.org/genproto/googleapis/cloud/vision/v1;vision\xf8\x01\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -205,12 +204,16 @@ _WEBDETECTION.fields_by_name['full_matching_images'].message_type = _WEBDETECTIO
 _WEBDETECTION.fields_by_name['partial_matching_images'].message_type = _WEBDETECTION_WEBIMAGE
 _WEBDETECTION.fields_by_name['pages_with_matching_images'].message_type = _WEBDETECTION_WEBPAGE
 DESCRIPTOR.message_types_by_name['WebDetection'] = _WEBDETECTION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 WebDetection = _reflection.GeneratedProtocolMessageType('WebDetection', (_message.Message,), dict(
 
   WebEntity = _reflection.GeneratedProtocolMessageType('WebEntity', (_message.Message,), dict(
     DESCRIPTOR = _WEBDETECTION_WEBENTITY,
     __module__ = 'google.cloud.proto.vision.v1.web_detection_pb2'
+    ,
+    __doc__ = """Entity deduced from similar images on the Internet.
+    """,
     # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.WebDetection.WebEntity)
     ))
   ,
@@ -218,6 +221,9 @@ WebDetection = _reflection.GeneratedProtocolMessageType('WebDetection', (_messag
   WebImage = _reflection.GeneratedProtocolMessageType('WebImage', (_message.Message,), dict(
     DESCRIPTOR = _WEBDETECTION_WEBIMAGE,
     __module__ = 'google.cloud.proto.vision.v1.web_detection_pb2'
+    ,
+    __doc__ = """Metadata for online images.
+    """,
     # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.WebDetection.WebImage)
     ))
   ,
@@ -225,11 +231,42 @@ WebDetection = _reflection.GeneratedProtocolMessageType('WebDetection', (_messag
   WebPage = _reflection.GeneratedProtocolMessageType('WebPage', (_message.Message,), dict(
     DESCRIPTOR = _WEBDETECTION_WEBPAGE,
     __module__ = 'google.cloud.proto.vision.v1.web_detection_pb2'
+    ,
+    __doc__ = """Metadata for web pages.
+    """,
     # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.WebDetection.WebPage)
     ))
   ,
   DESCRIPTOR = _WEBDETECTION,
   __module__ = 'google.cloud.proto.vision.v1.web_detection_pb2'
+  ,
+  __doc__ = """Relevant information for the image from the Internet.
+  
+  
+  Attributes:
+      entity_id:
+          Opaque entity ID.
+      score:
+          Overall relevancy score for the web page. Not normalized and
+          not comparable across different image queries.
+      description:
+          Canonical description of the entity, in English.
+      url:
+          The result web page URL.
+      web_entities:
+          Deduced entities from similar images on the Internet.
+      full_matching_images:
+          Fully matching images from the Internet. They're definite
+          neardups and most often a copy of the query image with merely
+          a size change.
+      partial_matching_images:
+          Partial matching images from the Internet. Those images are
+          similar enough to share some key-point features. For example
+          an original image will likely have partial matching for its
+          crops.
+      pages_with_matching_images:
+          Web pages containing the matching images from the Internet.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.WebDetection)
   ))
 _sym_db.RegisterMessage(WebDetection)
@@ -244,10 +281,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

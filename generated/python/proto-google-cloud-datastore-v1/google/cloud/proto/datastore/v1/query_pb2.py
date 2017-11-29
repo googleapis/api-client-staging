@@ -26,7 +26,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n+google/cloud/proto/datastore/v1/query.proto\x12\x13google.datastore.v1\x1a\x1cgoogle/api/annotations.proto\x1a,google/cloud/proto/datastore/v1/entity.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x18google/type/latlng.proto\"\xaf\x01\n\x0c\x45ntityResult\x12+\n\x06\x65ntity\x18\x01 \x01(\x0b\x32\x1b.google.datastore.v1.Entity\x12\x0f\n\x07version\x18\x04 \x01(\x03\x12\x0e\n\x06\x63ursor\x18\x03 \x01(\x0c\"Q\n\nResultType\x12\x1b\n\x17RESULT_TYPE_UNSPECIFIED\x10\x00\x12\x08\n\x04\x46ULL\x10\x01\x12\x0e\n\nPROJECTION\x10\x02\x12\x0c\n\x08KEY_ONLY\x10\x03\"\xf2\x02\n\x05Query\x12\x33\n\nprojection\x18\x02 \x03(\x0b\x32\x1f.google.datastore.v1.Projection\x12\x31\n\x04kind\x18\x03 \x03(\x0b\x32#.google.datastore.v1.KindExpression\x12+\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\x1b.google.datastore.v1.Filter\x12\x31\n\x05order\x18\x05 \x03(\x0b\x32\".google.datastore.v1.PropertyOrder\x12;\n\x0b\x64istinct_on\x18\x06 \x03(\x0b\x32&.google.datastore.v1.PropertyReference\x12\x14\n\x0cstart_cursor\x18\x07 \x01(\x0c\x12\x12\n\nend_cursor\x18\x08 \x01(\x0c\x12\x0e\n\x06offset\x18\n \x01(\x05\x12*\n\x05limit\x18\x0c \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"\x1e\n\x0eKindExpression\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x11PropertyReference\x12\x0c\n\x04name\x18\x02 \x01(\t\"F\n\nProjection\x12\x38\n\x08property\x18\x01 \x01(\x0b\x32&.google.datastore.v1.PropertyReference\"\xd1\x01\n\rPropertyOrder\x12\x38\n\x08property\x18\x01 \x01(\x0b\x32&.google.datastore.v1.PropertyReference\x12?\n\tdirection\x18\x02 \x01(\x0e\x32,.google.datastore.v1.PropertyOrder.Direction\"E\n\tDirection\x12\x19\n\x15\x44IRECTION_UNSPECIFIED\x10\x00\x12\r\n\tASCENDING\x10\x01\x12\x0e\n\nDESCENDING\x10\x02\"\x99\x01\n\x06\x46ilter\x12@\n\x10\x63omposite_filter\x18\x01 \x01(\x0b\x32$.google.datastore.v1.CompositeFilterH\x00\x12>\n\x0fproperty_filter\x18\x02 \x01(\x0b\x32#.google.datastore.v1.PropertyFilterH\x00\x42\r\n\x0b\x66ilter_type\"\xa9\x01\n\x0f\x43ompositeFilter\x12\x39\n\x02op\x18\x01 \x01(\x0e\x32-.google.datastore.v1.CompositeFilter.Operator\x12,\n\x07\x66ilters\x18\x02 \x03(\x0b\x32\x1b.google.datastore.v1.Filter\"-\n\x08Operator\x12\x18\n\x14OPERATOR_UNSPECIFIED\x10\x00\x12\x07\n\x03\x41ND\x10\x01\"\xc7\x02\n\x0ePropertyFilter\x12\x38\n\x08property\x18\x01 \x01(\x0b\x32&.google.datastore.v1.PropertyReference\x12\x38\n\x02op\x18\x02 \x01(\x0e\x32,.google.datastore.v1.PropertyFilter.Operator\x12)\n\x05value\x18\x03 \x01(\x0b\x32\x1a.google.datastore.v1.Value\"\x95\x01\n\x08Operator\x12\x18\n\x14OPERATOR_UNSPECIFIED\x10\x00\x12\r\n\tLESS_THAN\x10\x01\x12\x16\n\x12LESS_THAN_OR_EQUAL\x10\x02\x12\x10\n\x0cGREATER_THAN\x10\x03\x12\x19\n\x15GREATER_THAN_OR_EQUAL\x10\x04\x12\t\n\x05\x45QUAL\x10\x05\x12\x10\n\x0cHAS_ANCESTOR\x10\x0b\"\xa5\x02\n\x08GqlQuery\x12\x14\n\x0cquery_string\x18\x01 \x01(\t\x12\x16\n\x0e\x61llow_literals\x18\x02 \x01(\x08\x12H\n\x0enamed_bindings\x18\x05 \x03(\x0b\x32\x30.google.datastore.v1.GqlQuery.NamedBindingsEntry\x12\x43\n\x13positional_bindings\x18\x04 \x03(\x0b\x32&.google.datastore.v1.GqlQueryParameter\x1a\\\n\x12NamedBindingsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.google.datastore.v1.GqlQueryParameter:\x02\x38\x01\"d\n\x11GqlQueryParameter\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1a.google.datastore.v1.ValueH\x00\x12\x10\n\x06\x63ursor\x18\x03 \x01(\x0cH\x00\x42\x10\n\x0eparameter_type\"\xde\x03\n\x10QueryResultBatch\x12\x17\n\x0fskipped_results\x18\x06 \x01(\x05\x12\x16\n\x0eskipped_cursor\x18\x03 \x01(\x0c\x12H\n\x12\x65ntity_result_type\x18\x01 \x01(\x0e\x32,.google.datastore.v1.EntityResult.ResultType\x12\x39\n\x0e\x65ntity_results\x18\x02 \x03(\x0b\x32!.google.datastore.v1.EntityResult\x12\x12\n\nend_cursor\x18\x04 \x01(\x0c\x12K\n\x0cmore_results\x18\x05 \x01(\x0e\x32\x35.google.datastore.v1.QueryResultBatch.MoreResultsType\x12\x18\n\x10snapshot_version\x18\x07 \x01(\x03\"\x98\x01\n\x0fMoreResultsType\x12!\n\x1dMORE_RESULTS_TYPE_UNSPECIFIED\x10\x00\x12\x10\n\x0cNOT_FINISHED\x10\x01\x12\x1c\n\x18MORE_RESULTS_AFTER_LIMIT\x10\x02\x12\x1d\n\x19MORE_RESULTS_AFTER_CURSOR\x10\x04\x12\x13\n\x0fNO_MORE_RESULTS\x10\x03\x42\x81\x01\n\x17\x63om.google.datastore.v1B\nQueryProtoP\x01Z<google.golang.org/genproto/googleapis/datastore/v1;datastore\xaa\x02\x19Google.Cloud.Datastore.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_datastore_dot_v1_dot_entity__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_type_dot_latlng__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -833,10 +832,33 @@ DESCRIPTOR.message_types_by_name['PropertyFilter'] = _PROPERTYFILTER
 DESCRIPTOR.message_types_by_name['GqlQuery'] = _GQLQUERY
 DESCRIPTOR.message_types_by_name['GqlQueryParameter'] = _GQLQUERYPARAMETER
 DESCRIPTOR.message_types_by_name['QueryResultBatch'] = _QUERYRESULTBATCH
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 EntityResult = _reflection.GeneratedProtocolMessageType('EntityResult', (_message.Message,), dict(
   DESCRIPTOR = _ENTITYRESULT,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """The result of fetching an entity from Datastore.
+  
+  
+  Attributes:
+      entity:
+          The resulting entity.
+      version:
+          The version of the entity, a strictly positive number that
+          monotonically increases with changes to the entity.  This
+          field is set for
+          [``FULL``][google.datastore.v1.EntityResult.ResultType.FULL]
+          entity results.  For
+          [missing][google.datastore.v1.LookupResponse.missing] entities
+          in ``LookupResponse``, this is the version of the snapshot
+          that was used to look up the entity, and it is always set
+          except for eventually consistent reads.
+      cursor:
+          A cursor that points to the position after the result entity.
+          Set only when the ``EntityResult`` is part of a
+          ``QueryResultBatch`` message.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.EntityResult)
   ))
 _sym_db.RegisterMessage(EntityResult)
@@ -844,6 +866,45 @@ _sym_db.RegisterMessage(EntityResult)
 Query = _reflection.GeneratedProtocolMessageType('Query', (_message.Message,), dict(
   DESCRIPTOR = _QUERY,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A query for entities.
+  
+  
+  Attributes:
+      projection:
+          The projection to return. Defaults to returning all
+          properties.
+      kind:
+          The kinds to query (if empty, returns entities of all kinds).
+          Currently at most 1 kind may be specified.
+      filter:
+          The filter to apply.
+      order:
+          The order to apply to the query results (if empty, order is
+          unspecified).
+      distinct_on:
+          The properties to make distinct. The query results will
+          contain the first result for each distinct combination of
+          values for the given properties (if empty, all results are
+          returned).
+      start_cursor:
+          A starting point for the query results. Query cursors are
+          returned in query result batches and `can only be used to
+          continue the same query <https://cloud.google.com/datastore/do
+          cs/concepts/queries#cursors_limits_and_offsets>`__.
+      end_cursor:
+          An ending point for the query results. Query cursors are
+          returned in query result batches and `can only be used to
+          limit the same query <https://cloud.google.com/datastore/docs/
+          concepts/queries#cursors_limits_and_offsets>`__.
+      offset:
+          The number of results to skip. Applies before limit, but after
+          all other constraints. Optional. Must be >= 0 if specified.
+      limit:
+          The maximum number of results to return. Applies after all
+          other constraints. Optional. Unspecified is interpreted as no
+          limit. Must be >= 0 if specified.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Query)
   ))
 _sym_db.RegisterMessage(Query)
@@ -851,6 +912,14 @@ _sym_db.RegisterMessage(Query)
 KindExpression = _reflection.GeneratedProtocolMessageType('KindExpression', (_message.Message,), dict(
   DESCRIPTOR = _KINDEXPRESSION,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A representation of a kind.
+  
+  
+  Attributes:
+      name:
+          The name of the kind.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.KindExpression)
   ))
 _sym_db.RegisterMessage(KindExpression)
@@ -858,6 +927,15 @@ _sym_db.RegisterMessage(KindExpression)
 PropertyReference = _reflection.GeneratedProtocolMessageType('PropertyReference', (_message.Message,), dict(
   DESCRIPTOR = _PROPERTYREFERENCE,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A reference to a property relative to the kind expressions.
+  
+  
+  Attributes:
+      name:
+          The name of the property. If name includes "."s, it may be
+          interpreted as a property name path.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.PropertyReference)
   ))
 _sym_db.RegisterMessage(PropertyReference)
@@ -865,6 +943,14 @@ _sym_db.RegisterMessage(PropertyReference)
 Projection = _reflection.GeneratedProtocolMessageType('Projection', (_message.Message,), dict(
   DESCRIPTOR = _PROJECTION,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A representation of a property in a projection.
+  
+  
+  Attributes:
+      property:
+          The property to project.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Projection)
   ))
 _sym_db.RegisterMessage(Projection)
@@ -872,6 +958,16 @@ _sym_db.RegisterMessage(Projection)
 PropertyOrder = _reflection.GeneratedProtocolMessageType('PropertyOrder', (_message.Message,), dict(
   DESCRIPTOR = _PROPERTYORDER,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """The desired order for a specific property.
+  
+  
+  Attributes:
+      property:
+          The property to order by.
+      direction:
+          The direction to order by. Defaults to ``ASCENDING``.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.PropertyOrder)
   ))
 _sym_db.RegisterMessage(PropertyOrder)
@@ -879,6 +975,18 @@ _sym_db.RegisterMessage(PropertyOrder)
 Filter = _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,), dict(
   DESCRIPTOR = _FILTER,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A holder for any type of filter.
+  
+  
+  Attributes:
+      filter_type:
+          The type of filter.
+      composite_filter:
+          A composite filter.
+      property_filter:
+          A filter on a property.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.Filter)
   ))
 _sym_db.RegisterMessage(Filter)
@@ -886,6 +994,17 @@ _sym_db.RegisterMessage(Filter)
 CompositeFilter = _reflection.GeneratedProtocolMessageType('CompositeFilter', (_message.Message,), dict(
   DESCRIPTOR = _COMPOSITEFILTER,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A filter that merges multiple other filters using the given operator.
+  
+  
+  Attributes:
+      op:
+          The operator for combining multiple filters.
+      filters:
+          The list of filters to combine. Must contain at least one
+          filter.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.CompositeFilter)
   ))
 _sym_db.RegisterMessage(CompositeFilter)
@@ -893,6 +1012,18 @@ _sym_db.RegisterMessage(CompositeFilter)
 PropertyFilter = _reflection.GeneratedProtocolMessageType('PropertyFilter', (_message.Message,), dict(
   DESCRIPTOR = _PROPERTYFILTER,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A filter on a specific property.
+  
+  
+  Attributes:
+      property:
+          The property to filter by.
+      op:
+          The operator to filter by.
+      value:
+          The value to compare the property to.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.PropertyFilter)
   ))
 _sym_db.RegisterMessage(PropertyFilter)
@@ -907,6 +1038,33 @@ GqlQuery = _reflection.GeneratedProtocolMessageType('GqlQuery', (_message.Messag
   ,
   DESCRIPTOR = _GQLQUERY,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A `GQL
+  query <https://cloud.google.com/datastore/docs/apis/gql/gql_reference>`__.
+  
+  
+  Attributes:
+      query_string:
+          A string of the format described `here <https://cloud.google.c
+          om/datastore/docs/apis/gql/gql_reference>`__.
+      allow_literals:
+          When false, the query string must not contain any literals and
+          instead must bind all values. For example, ``SELECT * FROM
+          Kind WHERE a = 'string literal'`` is not allowed, while
+          ``SELECT * FROM Kind WHERE a = @value`` is.
+      named_bindings:
+          For each non-reserved named binding site in the query string,
+          there must be a named parameter with that name, but not
+          necessarily the inverse.  Key must match regex ``[A-Za-
+          z_$][A-Za-z_$0-9]*``, must not match regex ``__.*__``, and
+          must not be ``""``.
+      positional_bindings:
+          Numbered binding site @1 references the first numbered
+          parameter, effectively using 1-based indexing, rather than the
+          usual 0.  For each binding site numbered i in
+          ``query_string``, there must be an i-th numbered parameter.
+          The inverse must also be true.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.GqlQuery)
   ))
 _sym_db.RegisterMessage(GqlQuery)
@@ -915,6 +1073,19 @@ _sym_db.RegisterMessage(GqlQuery.NamedBindingsEntry)
 GqlQueryParameter = _reflection.GeneratedProtocolMessageType('GqlQueryParameter', (_message.Message,), dict(
   DESCRIPTOR = _GQLQUERYPARAMETER,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A binding parameter for a GQL query.
+  
+  
+  Attributes:
+      parameter_type:
+          The type of parameter.
+      value:
+          A value parameter.
+      cursor:
+          A query cursor. Query cursors are returned in query result
+          batches.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.GqlQueryParameter)
   ))
 _sym_db.RegisterMessage(GqlQueryParameter)
@@ -922,6 +1093,36 @@ _sym_db.RegisterMessage(GqlQueryParameter)
 QueryResultBatch = _reflection.GeneratedProtocolMessageType('QueryResultBatch', (_message.Message,), dict(
   DESCRIPTOR = _QUERYRESULTBATCH,
   __module__ = 'google.cloud.proto.datastore.v1.query_pb2'
+  ,
+  __doc__ = """A batch of results produced by a query.
+  
+  
+  Attributes:
+      skipped_results:
+          The number of results skipped, typically because of an offset.
+      skipped_cursor:
+          A cursor that points to the position after the last skipped
+          result. Will be set when ``skipped_results`` != 0.
+      entity_result_type:
+          The result type for every entity in ``entity_results``.
+      entity_results:
+          The results for this batch.
+      end_cursor:
+          A cursor that points to the position after the last result in
+          the batch.
+      more_results:
+          The state of the query after the current batch.
+      snapshot_version:
+          The version number of the snapshot this batch was returned
+          from. This applies to the range of results from the query's
+          ``start_cursor`` (or the beginning of the query if no cursor
+          was given) to this batch's ``end_cursor`` (not the query's
+          ``end_cursor``).  In a single transaction, subsequent query
+          result batches for the same query can have a greater snapshot
+          version number. Each batch's snapshot version is valid for all
+          preceding batches. The value will be zero for eventually
+          consistent queries.
+  """,
   # @@protoc_insertion_point(class_scope:google.datastore.v1.QueryResultBatch)
   ))
 _sym_db.RegisterMessage(QueryResultBatch)
@@ -935,10 +1136,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

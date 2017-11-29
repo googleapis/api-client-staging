@@ -27,7 +27,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n4google/cloud/proto/monitoring/v3/group_service.proto\x12\x14google.monitoring.v3\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a-google/cloud/proto/monitoring/v3/common.proto\x1a,google/cloud/proto/monitoring/v3/group.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xad\x01\n\x11ListGroupsRequest\x12\x0c\n\x04name\x18\x07 \x01(\t\x12\x1b\n\x11\x63hildren_of_group\x18\x02 \x01(\tH\x00\x12\x1c\n\x12\x61ncestors_of_group\x18\x03 \x01(\tH\x00\x12\x1e\n\x14\x64\x65scendants_of_group\x18\x04 \x01(\tH\x00\x12\x11\n\tpage_size\x18\x05 \x01(\x05\x12\x12\n\npage_token\x18\x06 \x01(\tB\x08\n\x06\x66ilter\"Y\n\x12ListGroupsResponse\x12*\n\x05group\x18\x01 \x03(\x0b\x32\x1b.google.monitoring.v3.Group\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\"\x1f\n\x0fGetGroupRequest\x12\x0c\n\x04name\x18\x03 \x01(\t\"e\n\x12\x43reateGroupRequest\x12\x0c\n\x04name\x18\x04 \x01(\t\x12*\n\x05group\x18\x02 \x01(\x0b\x32\x1b.google.monitoring.v3.Group\x12\x15\n\rvalidate_only\x18\x03 \x01(\x08\"W\n\x12UpdateGroupRequest\x12*\n\x05group\x18\x02 \x01(\x0b\x32\x1b.google.monitoring.v3.Group\x12\x15\n\rvalidate_only\x18\x03 \x01(\x08\"\"\n\x12\x44\x65leteGroupRequest\x12\x0c\n\x04name\x18\x03 \x01(\t\"\x94\x01\n\x17ListGroupMembersRequest\x12\x0c\n\x04name\x18\x07 \x01(\t\x12\x11\n\tpage_size\x18\x03 \x01(\x05\x12\x12\n\npage_token\x18\x04 \x01(\t\x12\x0e\n\x06\x66ilter\x18\x05 \x01(\t\x12\x34\n\x08interval\x18\x06 \x01(\x0b\x32\".google.monitoring.v3.TimeInterval\"w\n\x18ListGroupMembersResponse\x12.\n\x07members\x18\x01 \x03(\x0b\x32\x1d.google.api.MonitoredResource\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x12\n\ntotal_size\x18\x03 \x01(\x05\x32\xbb\x06\n\x0cGroupService\x12\x85\x01\n\nListGroups\x12\'.google.monitoring.v3.ListGroupsRequest\x1a(.google.monitoring.v3.ListGroupsResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v3/{name=projects/*}/groups\x12v\n\x08GetGroup\x12%.google.monitoring.v3.GetGroupRequest\x1a\x1b.google.monitoring.v3.Group\"&\x82\xd3\xe4\x93\x02 \x12\x1e/v3/{name=projects/*/groups/*}\x12\x81\x01\n\x0b\x43reateGroup\x12(.google.monitoring.v3.CreateGroupRequest\x1a\x1b.google.monitoring.v3.Group\"+\x82\xd3\xe4\x93\x02%\"\x1c/v3/{name=projects/*}/groups:\x05group\x12\x89\x01\n\x0bUpdateGroup\x12(.google.monitoring.v3.UpdateGroupRequest\x1a\x1b.google.monitoring.v3.Group\"3\x82\xd3\xe4\x93\x02-\x1a$/v3/{group.name=projects/*/groups/*}:\x05group\x12w\n\x0b\x44\x65leteGroup\x12(.google.monitoring.v3.DeleteGroupRequest\x1a\x16.google.protobuf.Empty\"&\x82\xd3\xe4\x93\x02 *\x1e/v3/{name=projects/*/groups/*}\x12\xa1\x01\n\x10ListGroupMembers\x12-.google.monitoring.v3.ListGroupMembersRequest\x1a..google.monitoring.v3.ListGroupMembersResponse\".\x82\xd3\xe4\x93\x02(\x12&/v3/{name=projects/*/groups/*}/membersB\x8c\x01\n\x18\x63om.google.monitoring.v3B\x11GroupServiceProtoP\x01Z>google.golang.org/genproto/googleapis/monitoring/v3;monitoring\xaa\x02\x1aGoogle.Cloud.Monitoring.V3b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_monitored__resource__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_common__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_monitoring_dot_v3_dot_group__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -409,10 +408,52 @@ DESCRIPTOR.message_types_by_name['UpdateGroupRequest'] = _UPDATEGROUPREQUEST
 DESCRIPTOR.message_types_by_name['DeleteGroupRequest'] = _DELETEGROUPREQUEST
 DESCRIPTOR.message_types_by_name['ListGroupMembersRequest'] = _LISTGROUPMEMBERSREQUEST
 DESCRIPTOR.message_types_by_name['ListGroupMembersResponse'] = _LISTGROUPMEMBERSRESPONSE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ListGroupsRequest = _reflection.GeneratedProtocolMessageType('ListGroupsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPSREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``ListGroup`` request.
+  
+  
+  Attributes:
+      name:
+          The project whose groups are to be listed. The format is
+          ``"projects/{project_id_or_number}"``.
+      filter:
+          An optional filter consisting of a single group name. The
+          filters limit the groups returned based on their parent-child
+          relationship with the specified group. If no filter is
+          specified, all groups are returned.
+      children_of_group:
+          A group name:
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+          Returns groups whose ``parentName`` field contains the group
+          name. If no groups have this parent, the results are empty.
+      ancestors_of_group:
+          A group name:
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+          Returns groups that are ancestors of the specified group. The
+          groups are returned in order, starting with the immediate
+          parent and ending with the most distant ancestor. If the
+          specified group has no immediate parent, the results are
+          empty.
+      descendants_of_group:
+          A group name:
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+          Returns the descendants of the specified group. This is a
+          superset of the results returned by the ``childrenOfGroup``
+          filter, and includes children-of-children, and so forth.
+      page_size:
+          A positive number that is the maximum number of results to
+          return.
+      page_token:
+          If this field is not empty then it must contain the
+          ``nextPageToken`` value returned by a previous call to this
+          method. Using this field causes the method to return
+          additional results from the previous method call.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.ListGroupsRequest)
   ))
 _sym_db.RegisterMessage(ListGroupsRequest)
@@ -420,6 +461,19 @@ _sym_db.RegisterMessage(ListGroupsRequest)
 ListGroupsResponse = _reflection.GeneratedProtocolMessageType('ListGroupsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPSRESPONSE,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``ListGroups`` response.
+  
+  
+  Attributes:
+      group:
+          The groups that match the specified filters.
+      next_page_token:
+          If there are more results than have been returned, then this
+          field is set to a non-empty value. To see the additional
+          results, use that value as ``pageToken`` in the next call to
+          this method.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.ListGroupsResponse)
   ))
 _sym_db.RegisterMessage(ListGroupsResponse)
@@ -427,6 +481,15 @@ _sym_db.RegisterMessage(ListGroupsResponse)
 GetGroupRequest = _reflection.GeneratedProtocolMessageType('GetGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETGROUPREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``GetGroup`` request.
+  
+  
+  Attributes:
+      name:
+          The group to retrieve. The format is
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.GetGroupRequest)
   ))
 _sym_db.RegisterMessage(GetGroupRequest)
@@ -434,6 +497,20 @@ _sym_db.RegisterMessage(GetGroupRequest)
 CreateGroupRequest = _reflection.GeneratedProtocolMessageType('CreateGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _CREATEGROUPREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``CreateGroup`` request.
+  
+  
+  Attributes:
+      name:
+          The project in which to create the group. The format is
+          ``"projects/{project_id_or_number}"``.
+      group:
+          A group definition. It is an error to define the ``name``
+          field because the system assigns the name.
+      validate_only:
+          If true, validate this request but do not create the group.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.CreateGroupRequest)
   ))
 _sym_db.RegisterMessage(CreateGroupRequest)
@@ -441,6 +518,19 @@ _sym_db.RegisterMessage(CreateGroupRequest)
 UpdateGroupRequest = _reflection.GeneratedProtocolMessageType('UpdateGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _UPDATEGROUPREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``UpdateGroup`` request.
+  
+  
+  Attributes:
+      group:
+          The new definition of the group. All fields of the existing
+          group, excepting ``name``, are replaced with the corresponding
+          fields of this group.
+      validate_only:
+          If true, validate this request but do not update the existing
+          group.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.UpdateGroupRequest)
   ))
 _sym_db.RegisterMessage(UpdateGroupRequest)
@@ -448,6 +538,16 @@ _sym_db.RegisterMessage(UpdateGroupRequest)
 DeleteGroupRequest = _reflection.GeneratedProtocolMessageType('DeleteGroupRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEGROUPREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``DeleteGroup`` request. You can only delete a group if it has no
+  children.
+  
+  
+  Attributes:
+      name:
+          The group to delete. The format is
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.DeleteGroupRequest)
   ))
 _sym_db.RegisterMessage(DeleteGroupRequest)
@@ -455,6 +555,37 @@ _sym_db.RegisterMessage(DeleteGroupRequest)
 ListGroupMembersRequest = _reflection.GeneratedProtocolMessageType('ListGroupMembersRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPMEMBERSREQUEST,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``ListGroupMembers`` request.
+  
+  
+  Attributes:
+      name:
+          The group whose members are listed. The format is
+          ``"projects/{project_id_or_number}/groups/{group_id}"``.
+      page_size:
+          A positive number that is the maximum number of results to
+          return.
+      page_token:
+          If this field is not empty then it must contain the
+          ``nextPageToken`` value returned by a previous call to this
+          method. Using this field causes the method to return
+          additional results from the previous method call.
+      filter:
+          An optional `list filter
+          </monitoring/api/learn_more#filtering>`__ describing the
+          members to be returned. The filter may reference the type,
+          labels, and metadata of monitored resources that comprise the
+          group. For example, to return only resources representing
+          Compute Engine VM instances, use this filter:  ::
+          resource.type = "gce_instance"
+      interval:
+          An optional time interval for which results should be
+          returned. Only members that were part of the group during the
+          specified interval are included in the response. If no
+          interval is provided then the group membership over the last
+          minute is returned.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.ListGroupMembersRequest)
   ))
 _sym_db.RegisterMessage(ListGroupMembersRequest)
@@ -462,6 +593,21 @@ _sym_db.RegisterMessage(ListGroupMembersRequest)
 ListGroupMembersResponse = _reflection.GeneratedProtocolMessageType('ListGroupMembersResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTGROUPMEMBERSRESPONSE,
   __module__ = 'google.cloud.proto.monitoring.v3.group_service_pb2'
+  ,
+  __doc__ = """The ``ListGroupMembers`` response.
+  
+  
+  Attributes:
+      members:
+          A set of monitored resources in the group.
+      next_page_token:
+          If there are more results than have been returned, then this
+          field is set to a non-empty value. To see the additional
+          results, use that value as ``pageToken`` in the next call to
+          this method.
+      total_size:
+          The total number of elements matching this request.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.ListGroupMembersResponse)
   ))
 _sym_db.RegisterMessage(ListGroupMembersResponse)
@@ -473,10 +619,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class GroupServiceStub(object):

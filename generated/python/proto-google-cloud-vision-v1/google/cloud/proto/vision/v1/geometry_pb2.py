@@ -21,7 +21,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_pb=_b('\n+google/cloud/proto/vision/v1/geometry.proto\x12\x16google.cloud.vision.v1\"\x1e\n\x06Vertex\x12\t\n\x01x\x18\x01 \x01(\x05\x12\t\n\x01y\x18\x02 \x01(\x05\"@\n\x0c\x42oundingPoly\x12\x30\n\x08vertices\x18\x01 \x03(\x0b\x32\x1e.google.cloud.vision.v1.Vertex\"+\n\x08Position\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x42n\n\x1a\x63om.google.cloud.vision.v1B\rGeometryProtoP\x01Z<google.golang.org/genproto/googleapis/cloud/vision/v1;vision\xf8\x01\x01\x62\x06proto3')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -143,10 +142,19 @@ _BOUNDINGPOLY.fields_by_name['vertices'].message_type = _VERTEX
 DESCRIPTOR.message_types_by_name['Vertex'] = _VERTEX
 DESCRIPTOR.message_types_by_name['BoundingPoly'] = _BOUNDINGPOLY
 DESCRIPTOR.message_types_by_name['Position'] = _POSITION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Vertex = _reflection.GeneratedProtocolMessageType('Vertex', (_message.Message,), dict(
   DESCRIPTOR = _VERTEX,
   __module__ = 'google.cloud.proto.vision.v1.geometry_pb2'
+  ,
+  __doc__ = """X coordinate.
+  
+  
+  Attributes:
+      y:
+          Y coordinate.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.Vertex)
   ))
 _sym_db.RegisterMessage(Vertex)
@@ -154,6 +162,14 @@ _sym_db.RegisterMessage(Vertex)
 BoundingPoly = _reflection.GeneratedProtocolMessageType('BoundingPoly', (_message.Message,), dict(
   DESCRIPTOR = _BOUNDINGPOLY,
   __module__ = 'google.cloud.proto.vision.v1.geometry_pb2'
+  ,
+  __doc__ = """A bounding polygon for the detected image annotation.
+  
+  
+  Attributes:
+      vertices:
+          The bounding polygon vertices.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.BoundingPoly)
   ))
 _sym_db.RegisterMessage(BoundingPoly)
@@ -161,6 +177,20 @@ _sym_db.RegisterMessage(BoundingPoly)
 Position = _reflection.GeneratedProtocolMessageType('Position', (_message.Message,), dict(
   DESCRIPTOR = _POSITION,
   __module__ = 'google.cloud.proto.vision.v1.geometry_pb2'
+  ,
+  __doc__ = """A 3D position in the image, used primarily for Face detection landmarks.
+  A valid Position must have both x and y coordinates. The position
+  coordinates are in the same scale as the original image.
+  
+  
+  Attributes:
+      x:
+          X coordinate.
+      y:
+          Y coordinate.
+      z:
+          Z coordinate (or depth).
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.vision.v1.Position)
   ))
 _sym_db.RegisterMessage(Position)
@@ -172,10 +202,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

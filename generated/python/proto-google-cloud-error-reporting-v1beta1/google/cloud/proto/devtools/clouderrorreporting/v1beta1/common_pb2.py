@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\nDgoogle/cloud/proto/devtools/clouderrorreporting/v1beta1/common.proto\x12+google.devtools.clouderrorreporting.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a#google/api/monitored_resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x81\x01\n\nErrorGroup\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12S\n\x0ftracking_issues\x18\x03 \x03(\x0b\x32:.google.devtools.clouderrorreporting.v1beta1.TrackingIssue\"\x1c\n\rTrackingIssue\x12\x0b\n\x03url\x18\x01 \x01(\t\"\xef\x01\n\nErrorEvent\x12.\n\nevent_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12T\n\x0fservice_context\x18\x02 \x01(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.ServiceContext\x12\x0f\n\x07message\x18\x03 \x01(\t\x12J\n\x07\x63ontext\x18\x05 \x01(\x0b\x32\x39.google.devtools.clouderrorreporting.v1beta1.ErrorContext\"I\n\x0eServiceContext\x12\x0f\n\x07service\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x15\n\rresource_type\x18\x04 \x01(\t\"\xc9\x01\n\x0c\x45rrorContext\x12U\n\x0chttp_request\x18\x01 \x01(\x0b\x32?.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext\x12\x0c\n\x04user\x18\x02 \x01(\t\x12T\n\x0freport_location\x18\x03 \x01(\x0b\x32;.google.devtools.clouderrorreporting.v1beta1.SourceLocation\"\x88\x01\n\x12HttpRequestContext\x12\x0e\n\x06method\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\x12\n\nuser_agent\x18\x03 \x01(\t\x12\x10\n\x08referrer\x18\x04 \x01(\t\x12\x1c\n\x14response_status_code\x18\x05 \x01(\x05\x12\x11\n\tremote_ip\x18\x06 \x01(\t\"O\n\x0eSourceLocation\x12\x11\n\tfile_path\x18\x01 \x01(\t\x12\x13\n\x0bline_number\x18\x02 \x01(\x05\x12\x15\n\rfunction_name\x18\x04 \x01(\tB\xc6\x01\n/com.google.devtools.clouderrorreporting.v1beta1B\x0b\x43ommonProtoP\x01Z^google.golang.org/genproto/googleapis/devtools/clouderrorreporting/v1beta1;clouderrorreporting\xaa\x02#Google.Cloud.ErrorReporting.V1Beta1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_api_dot_monitored__resource__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -371,10 +370,26 @@ DESCRIPTOR.message_types_by_name['ServiceContext'] = _SERVICECONTEXT
 DESCRIPTOR.message_types_by_name['ErrorContext'] = _ERRORCONTEXT
 DESCRIPTOR.message_types_by_name['HttpRequestContext'] = _HTTPREQUESTCONTEXT
 DESCRIPTOR.message_types_by_name['SourceLocation'] = _SOURCELOCATION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ErrorGroup = _reflection.GeneratedProtocolMessageType('ErrorGroup', (_message.Message,), dict(
   DESCRIPTOR = _ERRORGROUP,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """Description of a group of similar error events.
+  
+  
+  Attributes:
+      name:
+          The group resource name. Example: projects/my-
+          project-123/groups/my-groupid
+      group_id:
+          Group IDs are unique for a given project. If the same kind of
+          error occurs in different service contexts, it will receive
+          the same group ID.
+      tracking_issues:
+          Associated tracking issues.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ErrorGroup)
   ))
 _sym_db.RegisterMessage(ErrorGroup)
@@ -382,6 +397,15 @@ _sym_db.RegisterMessage(ErrorGroup)
 TrackingIssue = _reflection.GeneratedProtocolMessageType('TrackingIssue', (_message.Message,), dict(
   DESCRIPTOR = _TRACKINGISSUE,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """Information related to tracking the progress on resolving the error.
+  
+  
+  Attributes:
+      url:
+          A URL pointing to a related entry in an issue tracking system.
+          Example: https://github.com/user/project/issues/4
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.TrackingIssue)
   ))
 _sym_db.RegisterMessage(TrackingIssue)
@@ -389,6 +413,22 @@ _sym_db.RegisterMessage(TrackingIssue)
 ErrorEvent = _reflection.GeneratedProtocolMessageType('ErrorEvent', (_message.Message,), dict(
   DESCRIPTOR = _ERROREVENT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """An error event which is returned by the Error Reporting system.
+  
+  
+  Attributes:
+      event_time:
+          Time when the event occurred as provided in the error report.
+          If the report did not contain a timestamp, the time the error
+          was received by the Error Reporting system is used.
+      service_context:
+          The ``ServiceContext`` for which this error was reported.
+      message:
+          The stack trace that was reported or logged by the service.
+      context:
+          Data about the context in which the error occurred.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ErrorEvent)
   ))
 _sym_db.RegisterMessage(ErrorEvent)
@@ -396,6 +436,30 @@ _sym_db.RegisterMessage(ErrorEvent)
 ServiceContext = _reflection.GeneratedProtocolMessageType('ServiceContext', (_message.Message,), dict(
   DESCRIPTOR = _SERVICECONTEXT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """Describes a running service that sends errors. Its version changes over
+  time and multiple versions can run in parallel.
+  
+  
+  Attributes:
+      service:
+          An identifier of the service, such as the name of the
+          executable, job, or Google App Engine service name. This field
+          is expected to have a low number of values that are relatively
+          stable over time, as opposed to ``version``, which can be
+          changed whenever new code is deployed.  Contains the service
+          name for error reports extracted from Google App Engine logs
+          or ``default`` if the App Engine default service is used.
+      version:
+          Represents the source code version that the developer
+          provided, which could represent a version label or a Git SHA-1
+          hash, for example.
+      resource_type:
+          Type of the MonitoredResource. List of possible values:
+          https://cloud.google.com/monitoring/api/resources  Value is
+          set automatically for incoming errors and must not be set when
+          reporting errors.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ServiceContext)
   ))
 _sym_db.RegisterMessage(ServiceContext)
@@ -403,6 +467,34 @@ _sym_db.RegisterMessage(ServiceContext)
 ErrorContext = _reflection.GeneratedProtocolMessageType('ErrorContext', (_message.Message,), dict(
   DESCRIPTOR = _ERRORCONTEXT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """A description of the context in which an error occurred. This data
+  should be provided by the application when reporting an error, unless
+  the error report has been generated automatically from Google App Engine
+  logs.
+  
+  
+  Attributes:
+      http_request:
+          The HTTP request which was processed when the error was
+          triggered.
+      user:
+          The user who caused or was affected by the crash. This can be
+          a user ID, an email address, or an arbitrary token that
+          uniquely identifies the user. When sending an error report,
+          leave this field empty if the user was not logged in. In this
+          case the Error Reporting system will use other data, such as
+          remote IP address, to distinguish affected users. See
+          ``affected_users_count`` in ``ErrorGroupStats``.
+      report_location:
+          The location in the source code where the decision was made to
+          report the error, usually the place where it was logged. For a
+          logged exception this would be the source line where the
+          exception is logged, usually close to the place where it was
+          caught. This value is in contrast to
+          ``Exception.cause_location``, which describes the source line
+          where the exception was thrown.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.ErrorContext)
   ))
 _sym_db.RegisterMessage(ErrorContext)
@@ -410,6 +502,29 @@ _sym_db.RegisterMessage(ErrorContext)
 HttpRequestContext = _reflection.GeneratedProtocolMessageType('HttpRequestContext', (_message.Message,), dict(
   DESCRIPTOR = _HTTPREQUESTCONTEXT,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """HTTP request data that is related to a reported error. This data should
+  be provided by the application when reporting an error, unless the error
+  report has been generated automatically from Google App Engine logs.
+  
+  
+  Attributes:
+      method:
+          The type of HTTP request, such as ``GET``, ``POST``, etc.
+      url:
+          The URL of the request.
+      user_agent:
+          The user agent information that is provided with the request.
+      referrer:
+          The referrer information that is provided with the request.
+      response_status_code:
+          The HTTP response status code for the request.
+      remote_ip:
+          The IP address from which the request originated. This can be
+          IPv4, IPv6, or a token which is derived from the IP address,
+          depending on the data that has been provided in the error
+          report.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.HttpRequestContext)
   ))
 _sym_db.RegisterMessage(HttpRequestContext)
@@ -417,6 +532,24 @@ _sym_db.RegisterMessage(HttpRequestContext)
 SourceLocation = _reflection.GeneratedProtocolMessageType('SourceLocation', (_message.Message,), dict(
   DESCRIPTOR = _SOURCELOCATION,
   __module__ = 'google.cloud.proto.devtools.clouderrorreporting.v1beta1.common_pb2'
+  ,
+  __doc__ = """Indicates a location in the source code of the service for which errors
+  are reported. This data should be provided by the application when
+  reporting an error, unless the error report has been generated
+  automatically from Google App Engine logs. All fields are optional.
+  
+  
+  Attributes:
+      file_path:
+          The source code filename, which can include a truncated
+          relative path, or a full path from a production machine.
+      line_number:
+          1-based. 0 indicates that the line number is unknown.
+      function_name:
+          Human-readable name of a function or method. The value can
+          include optional context like the class or package name. For
+          example, ``my.package.MyClass.method`` in case of Java.
+  """,
   # @@protoc_insertion_point(class_scope:google.devtools.clouderrorreporting.v1beta1.SourceLocation)
   ))
 _sym_db.RegisterMessage(SourceLocation)
@@ -428,10 +561,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

@@ -1,43 +1,28 @@
-GAPIC library for the Google Cloud Natural Language API
-================================================================================
+Python Client for Google Cloud Natural Language API (`Alpha`_)
+==================================================================================================
 
-gapic-google-cloud-language-v1beta2 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Google Cloud Natural Language API`_ (v1beta2) defined in the googleapis_ git repository
+`Google Cloud Natural Language API`_: Google Cloud Natural Language API provides natural language understanding technologies to developers. Examples include sentiment analysis, entity recognition, and text annotations.
 
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/cloud/language/v1beta2
-.. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Google Cloud Natural Language API`: https://developers.google.com/apis-explorer/?hl=en_US#p/language/v1beta2
+.. _Alpha: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Google Cloud Natural Language API: https://cloud.google.com/language
+.. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/language-usage
+.. _Product Documentation:  https://cloud.google.com/language
 
-Getting started
----------------
+Quick Start
+-----------
 
-gapic-google-cloud-language-v1beta2 will allow you to connect to the
-Google Cloud Natural Language API and access all its methods. In order to do this, you need
-to set up authentication as well as install the library locally.
+In order to use this library, you first need to go through the following steps:
 
+1. `Select or create a Cloud Platform project.`_
+2. `Enable the Google Cloud Natural Language API.`_
+3. `Setup Authentication.`_
 
-Setup Authentication
-~~~~~~~~~~~~~~~~~~~~
-
-To authenticate all your API calls, first install and setup the `Google Cloud SDK`_.
-Once done, you can then run the following command in your terminal:
-
-.. code-block:: console
-
-    $ gcloud beta auth application-default login
-
-or
-
-.. code-block:: console
-
-    $ gcloud auth login
-
-Please see `gcloud beta auth application-default login`_ document for the difference between these commands.
-
-.. _Google Cloud SDK: https://cloud.google.com/sdk/
-.. _gcloud beta auth application-default login: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable the Google Cloud Natural Language API.:  https://cloud.google.com/language
+.. _Setup Authentication.: https://googlecloudplatform.github.io/google-cloud-python/stable/google-cloud-auth
 
 Installation
 ~~~~~~~~~~~~
@@ -54,7 +39,7 @@ dependencies.
 
 
 Mac/Linux
-~~~~~~~~~~
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -65,7 +50,7 @@ Mac/Linux
 
 
 Windows
-~~~~~~~
+^^^^^^^
 
 .. code-block:: console
 
@@ -74,5 +59,28 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install gapic-google-cloud-language-v1beta2
 
+Preview
+~~~~~~~
 
-At this point you are all set to continue.
+LanguageServiceClient
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: py
+
+  from google.cloud import language_v1beta2
+  client = language_v1beta2.LanguageServiceClient()
+  document = {}
+  response = client.analyze_sentiment(document)
+
+Next Steps
+~~~~~~~~~~
+
+-  Read the `Client Library Documentation`_ for Google Cloud Natural Language API
+   API to see other available methods on the client.
+-  Read the `Google Cloud Natural Language API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `repository’s main README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Google Cloud Natural Language API Product documentation:  https://cloud.google.com/language
+.. _repository’s main README: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst

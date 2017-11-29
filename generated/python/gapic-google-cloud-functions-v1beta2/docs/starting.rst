@@ -3,7 +3,7 @@ Getting started
 
 gapic-google-cloud-functions-v1beta2 will allow you to connect to the `Google Cloud Functions API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Google Cloud Functions API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudfunctions/v1beta2
+.. _`Google Cloud Functions API`: https://developers.google.com/apis-explorer/?hl=en_US#p/cloudfunctions/v1beta2/
 
 
 Installation

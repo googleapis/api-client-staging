@@ -24,7 +24,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n5google/cloud/proto/language/v1/language_service.proto\x12\x18google.cloud.language.v1\x1a\x1cgoogle/api/annotations.proto\"\xc3\x01\n\x08\x44ocument\x12\x35\n\x04type\x18\x01 \x01(\x0e\x32\'.google.cloud.language.v1.Document.Type\x12\x11\n\x07\x63ontent\x18\x02 \x01(\tH\x00\x12\x19\n\x0fgcs_content_uri\x18\x03 \x01(\tH\x00\x12\x10\n\x08language\x18\x04 \x01(\t\"6\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0e\n\nPLAIN_TEXT\x10\x01\x12\x08\n\x04HTML\x10\x02\x42\x08\n\x06source\"t\n\x08Sentence\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.TextSpan\x12\x36\n\tsentiment\x18\x02 \x01(\x0b\x32#.google.cloud.language.v1.Sentiment\"\x86\x03\n\x06\x45ntity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x33\n\x04type\x18\x02 \x01(\x0e\x32%.google.cloud.language.v1.Entity.Type\x12@\n\x08metadata\x18\x03 \x03(\x0b\x32..google.cloud.language.v1.Entity.MetadataEntry\x12\x10\n\x08salience\x18\x04 \x01(\x02\x12\x39\n\x08mentions\x18\x05 \x03(\x0b\x32\'.google.cloud.language.v1.EntityMention\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"y\n\x04Type\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06PERSON\x10\x01\x12\x0c\n\x08LOCATION\x10\x02\x12\x10\n\x0cORGANIZATION\x10\x03\x12\t\n\x05\x45VENT\x10\x04\x12\x0f\n\x0bWORK_OF_ART\x10\x05\x12\x11\n\rCONSUMER_GOOD\x10\x06\x12\t\n\x05OTHER\x10\x07\"\xcb\x01\n\x05Token\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.TextSpan\x12>\n\x0epart_of_speech\x18\x02 \x01(\x0b\x32&.google.cloud.language.v1.PartOfSpeech\x12\x41\n\x0f\x64\x65pendency_edge\x18\x03 \x01(\x0b\x32(.google.cloud.language.v1.DependencyEdge\x12\r\n\x05lemma\x18\x04 \x01(\t\"-\n\tSentiment\x12\x11\n\tmagnitude\x18\x02 \x01(\x02\x12\r\n\x05score\x18\x03 \x01(\x02\"\xa3\x10\n\x0cPartOfSpeech\x12\x37\n\x03tag\x18\x01 \x01(\x0e\x32*.google.cloud.language.v1.PartOfSpeech.Tag\x12=\n\x06\x61spect\x18\x02 \x01(\x0e\x32-.google.cloud.language.v1.PartOfSpeech.Aspect\x12\x39\n\x04\x63\x61se\x18\x03 \x01(\x0e\x32+.google.cloud.language.v1.PartOfSpeech.Case\x12\x39\n\x04\x66orm\x18\x04 \x01(\x0e\x32+.google.cloud.language.v1.PartOfSpeech.Form\x12=\n\x06gender\x18\x05 \x01(\x0e\x32-.google.cloud.language.v1.PartOfSpeech.Gender\x12\x39\n\x04mood\x18\x06 \x01(\x0e\x32+.google.cloud.language.v1.PartOfSpeech.Mood\x12=\n\x06number\x18\x07 \x01(\x0e\x32-.google.cloud.language.v1.PartOfSpeech.Number\x12=\n\x06person\x18\x08 \x01(\x0e\x32-.google.cloud.language.v1.PartOfSpeech.Person\x12=\n\x06proper\x18\t \x01(\x0e\x32-.google.cloud.language.v1.PartOfSpeech.Proper\x12G\n\x0breciprocity\x18\n \x01(\x0e\x32\x32.google.cloud.language.v1.PartOfSpeech.Reciprocity\x12;\n\x05tense\x18\x0b \x01(\x0e\x32,.google.cloud.language.v1.PartOfSpeech.Tense\x12;\n\x05voice\x18\x0c \x01(\x0e\x32,.google.cloud.language.v1.PartOfSpeech.Voice\"\x8d\x01\n\x03Tag\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x07\n\x03\x41\x44J\x10\x01\x12\x07\n\x03\x41\x44P\x10\x02\x12\x07\n\x03\x41\x44V\x10\x03\x12\x08\n\x04\x43ONJ\x10\x04\x12\x07\n\x03\x44\x45T\x10\x05\x12\x08\n\x04NOUN\x10\x06\x12\x07\n\x03NUM\x10\x07\x12\x08\n\x04PRON\x10\x08\x12\x07\n\x03PRT\x10\t\x12\t\n\x05PUNCT\x10\n\x12\x08\n\x04VERB\x10\x0b\x12\x05\n\x01X\x10\x0c\x12\t\n\x05\x41\x46\x46IX\x10\r\"O\n\x06\x41spect\x12\x12\n\x0e\x41SPECT_UNKNOWN\x10\x00\x12\x0e\n\nPERFECTIVE\x10\x01\x12\x10\n\x0cIMPERFECTIVE\x10\x02\x12\x0f\n\x0bPROGRESSIVE\x10\x03\"\xf8\x01\n\x04\x43\x61se\x12\x10\n\x0c\x43\x41SE_UNKNOWN\x10\x00\x12\x0e\n\nACCUSATIVE\x10\x01\x12\r\n\tADVERBIAL\x10\x02\x12\x11\n\rCOMPLEMENTIVE\x10\x03\x12\n\n\x06\x44\x41TIVE\x10\x04\x12\x0c\n\x08GENITIVE\x10\x05\x12\x10\n\x0cINSTRUMENTAL\x10\x06\x12\x0c\n\x08LOCATIVE\x10\x07\x12\x0e\n\nNOMINATIVE\x10\x08\x12\x0b\n\x07OBLIQUE\x10\t\x12\r\n\tPARTITIVE\x10\n\x12\x11\n\rPREPOSITIONAL\x10\x0b\x12\x12\n\x0eREFLEXIVE_CASE\x10\x0c\x12\x11\n\rRELATIVE_CASE\x10\r\x12\x0c\n\x08VOCATIVE\x10\x0e\"\xaf\x01\n\x04\x46orm\x12\x10\n\x0c\x46ORM_UNKNOWN\x10\x00\x12\x0c\n\x08\x41\x44NOMIAL\x10\x01\x12\r\n\tAUXILIARY\x10\x02\x12\x12\n\x0e\x43OMPLEMENTIZER\x10\x03\x12\x10\n\x0c\x46INAL_ENDING\x10\x04\x12\n\n\x06GERUND\x10\x05\x12\n\n\x06REALIS\x10\x06\x12\x0c\n\x08IRREALIS\x10\x07\x12\t\n\x05SHORT\x10\x08\x12\x08\n\x04LONG\x10\t\x12\t\n\x05ORDER\x10\n\x12\x0c\n\x08SPECIFIC\x10\x0b\"E\n\x06Gender\x12\x12\n\x0eGENDER_UNKNOWN\x10\x00\x12\x0c\n\x08\x46\x45MININE\x10\x01\x12\r\n\tMASCULINE\x10\x02\x12\n\n\x06NEUTER\x10\x03\"\x7f\n\x04Mood\x12\x10\n\x0cMOOD_UNKNOWN\x10\x00\x12\x14\n\x10\x43ONDITIONAL_MOOD\x10\x01\x12\x0e\n\nIMPERATIVE\x10\x02\x12\x0e\n\nINDICATIVE\x10\x03\x12\x11\n\rINTERROGATIVE\x10\x04\x12\x0b\n\x07JUSSIVE\x10\x05\x12\x0f\n\x0bSUBJUNCTIVE\x10\x06\"@\n\x06Number\x12\x12\n\x0eNUMBER_UNKNOWN\x10\x00\x12\x0c\n\x08SINGULAR\x10\x01\x12\n\n\x06PLURAL\x10\x02\x12\x08\n\x04\x44UAL\x10\x03\"T\n\x06Person\x12\x12\n\x0ePERSON_UNKNOWN\x10\x00\x12\t\n\x05\x46IRST\x10\x01\x12\n\n\x06SECOND\x10\x02\x12\t\n\x05THIRD\x10\x03\x12\x14\n\x10REFLEXIVE_PERSON\x10\x04\"8\n\x06Proper\x12\x12\n\x0ePROPER_UNKNOWN\x10\x00\x12\n\n\x06PROPER\x10\x01\x12\x0e\n\nNOT_PROPER\x10\x02\"J\n\x0bReciprocity\x12\x17\n\x13RECIPROCITY_UNKNOWN\x10\x00\x12\x0e\n\nRECIPROCAL\x10\x01\x12\x12\n\x0eNON_RECIPROCAL\x10\x02\"s\n\x05Tense\x12\x11\n\rTENSE_UNKNOWN\x10\x00\x12\x15\n\x11\x43ONDITIONAL_TENSE\x10\x01\x12\n\n\x06\x46UTURE\x10\x02\x12\x08\n\x04PAST\x10\x03\x12\x0b\n\x07PRESENT\x10\x04\x12\r\n\tIMPERFECT\x10\x05\x12\x0e\n\nPLUPERFECT\x10\x06\"B\n\x05Voice\x12\x11\n\rVOICE_UNKNOWN\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\r\n\tCAUSATIVE\x10\x02\x12\x0b\n\x07PASSIVE\x10\x03\"\xd8\x07\n\x0e\x44\x65pendencyEdge\x12\x18\n\x10head_token_index\x18\x01 \x01(\x05\x12=\n\x05label\x18\x02 \x01(\x0e\x32..google.cloud.language.v1.DependencyEdge.Label\"\xec\x06\n\x05Label\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06\x41\x42\x42REV\x10\x01\x12\t\n\x05\x41\x43OMP\x10\x02\x12\t\n\x05\x41\x44VCL\x10\x03\x12\n\n\x06\x41\x44VMOD\x10\x04\x12\x08\n\x04\x41MOD\x10\x05\x12\t\n\x05\x41PPOS\x10\x06\x12\x08\n\x04\x41TTR\x10\x07\x12\x07\n\x03\x41UX\x10\x08\x12\x0b\n\x07\x41UXPASS\x10\t\x12\x06\n\x02\x43\x43\x10\n\x12\t\n\x05\x43\x43OMP\x10\x0b\x12\x08\n\x04\x43ONJ\x10\x0c\x12\t\n\x05\x43SUBJ\x10\r\x12\r\n\tCSUBJPASS\x10\x0e\x12\x07\n\x03\x44\x45P\x10\x0f\x12\x07\n\x03\x44\x45T\x10\x10\x12\r\n\tDISCOURSE\x10\x11\x12\x08\n\x04\x44OBJ\x10\x12\x12\x08\n\x04\x45XPL\x10\x13\x12\x0c\n\x08GOESWITH\x10\x14\x12\x08\n\x04IOBJ\x10\x15\x12\x08\n\x04MARK\x10\x16\x12\x07\n\x03MWE\x10\x17\x12\x07\n\x03MWV\x10\x18\x12\x07\n\x03NEG\x10\x19\x12\x06\n\x02NN\x10\x1a\x12\x0c\n\x08NPADVMOD\x10\x1b\x12\t\n\x05NSUBJ\x10\x1c\x12\r\n\tNSUBJPASS\x10\x1d\x12\x07\n\x03NUM\x10\x1e\x12\n\n\x06NUMBER\x10\x1f\x12\x05\n\x01P\x10 \x12\r\n\tPARATAXIS\x10!\x12\x0b\n\x07PARTMOD\x10\"\x12\t\n\x05PCOMP\x10#\x12\x08\n\x04POBJ\x10$\x12\x08\n\x04POSS\x10%\x12\x0b\n\x07POSTNEG\x10&\x12\x0b\n\x07PRECOMP\x10\'\x12\x0b\n\x07PRECONJ\x10(\x12\n\n\x06PREDET\x10)\x12\x08\n\x04PREF\x10*\x12\x08\n\x04PREP\x10+\x12\t\n\x05PRONL\x10,\x12\x07\n\x03PRT\x10-\x12\x06\n\x02PS\x10.\x12\x0c\n\x08QUANTMOD\x10/\x12\t\n\x05RCMOD\x10\x30\x12\x0c\n\x08RCMODREL\x10\x31\x12\t\n\x05RDROP\x10\x32\x12\x07\n\x03REF\x10\x33\x12\x0b\n\x07REMNANT\x10\x34\x12\x0e\n\nREPARANDUM\x10\x35\x12\x08\n\x04ROOT\x10\x36\x12\x08\n\x04SNUM\x10\x37\x12\x08\n\x04SUFF\x10\x38\x12\x08\n\x04TMOD\x10\x39\x12\t\n\x05TOPIC\x10:\x12\x08\n\x04VMOD\x10;\x12\x0c\n\x08VOCATIVE\x10<\x12\t\n\x05XCOMP\x10=\x12\n\n\x06SUFFIX\x10>\x12\t\n\x05TITLE\x10?\x12\x0c\n\x08\x41\x44VPHMOD\x10@\x12\x0b\n\x07\x41UXCAUS\x10\x41\x12\t\n\x05\x41UXVV\x10\x42\x12\t\n\x05\x44TMOD\x10\x43\x12\x0b\n\x07\x46OREIGN\x10\x44\x12\x06\n\x02KW\x10\x45\x12\x08\n\x04LIST\x10\x46\x12\x08\n\x04NOMC\x10G\x12\x0c\n\x08NOMCSUBJ\x10H\x12\x10\n\x0cNOMCSUBJPASS\x10I\x12\x08\n\x04NUMC\x10J\x12\x07\n\x03\x43OP\x10K\x12\x0e\n\nDISLOCATED\x10L\"\xaf\x01\n\rEntityMention\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.TextSpan\x12:\n\x04type\x18\x02 \x01(\x0e\x32,.google.cloud.language.v1.EntityMention.Type\"0\n\x04Type\x12\x10\n\x0cTYPE_UNKNOWN\x10\x00\x12\n\n\x06PROPER\x10\x01\x12\n\n\x06\x43OMMON\x10\x02\"1\n\x08TextSpan\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\x12\x14\n\x0c\x62\x65gin_offset\x18\x02 \x01(\x05\"\x8e\x01\n\x17\x41nalyzeSentimentRequest\x12\x34\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.Document\x12=\n\rencoding_type\x18\x02 \x01(\x0e\x32&.google.cloud.language.v1.EncodingType\"\xa4\x01\n\x18\x41nalyzeSentimentResponse\x12?\n\x12\x64ocument_sentiment\x18\x01 \x01(\x0b\x32#.google.cloud.language.v1.Sentiment\x12\x10\n\x08language\x18\x02 \x01(\t\x12\x35\n\tsentences\x18\x03 \x03(\x0b\x32\".google.cloud.language.v1.Sentence\"\x8d\x01\n\x16\x41nalyzeEntitiesRequest\x12\x34\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.Document\x12=\n\rencoding_type\x18\x02 \x01(\x0e\x32&.google.cloud.language.v1.EncodingType\"_\n\x17\x41nalyzeEntitiesResponse\x12\x32\n\x08\x65ntities\x18\x01 \x03(\x0b\x32 .google.cloud.language.v1.Entity\x12\x10\n\x08language\x18\x02 \x01(\t\"\x8b\x01\n\x14\x41nalyzeSyntaxRequest\x12\x34\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.Document\x12=\n\rencoding_type\x18\x02 \x01(\x0e\x32&.google.cloud.language.v1.EncodingType\"\x91\x01\n\x15\x41nalyzeSyntaxResponse\x12\x35\n\tsentences\x18\x01 \x03(\x0b\x32\".google.cloud.language.v1.Sentence\x12/\n\x06tokens\x18\x02 \x03(\x0b\x32\x1f.google.cloud.language.v1.Token\x12\x10\n\x08language\x18\x03 \x01(\t\"\xb6\x02\n\x13\x41nnotateTextRequest\x12\x34\n\x08\x64ocument\x18\x01 \x01(\x0b\x32\".google.cloud.language.v1.Document\x12H\n\x08\x66\x65\x61tures\x18\x02 \x01(\x0b\x32\x36.google.cloud.language.v1.AnnotateTextRequest.Features\x12=\n\rencoding_type\x18\x03 \x01(\x0e\x32&.google.cloud.language.v1.EncodingType\x1a`\n\x08\x46\x65\x61tures\x12\x16\n\x0e\x65xtract_syntax\x18\x01 \x01(\x08\x12\x18\n\x10\x65xtract_entities\x18\x02 \x01(\x08\x12\"\n\x1a\x65xtract_document_sentiment\x18\x03 \x01(\x08\"\x85\x02\n\x14\x41nnotateTextResponse\x12\x35\n\tsentences\x18\x01 \x03(\x0b\x32\".google.cloud.language.v1.Sentence\x12/\n\x06tokens\x18\x02 \x03(\x0b\x32\x1f.google.cloud.language.v1.Token\x12\x32\n\x08\x65ntities\x18\x03 \x03(\x0b\x32 .google.cloud.language.v1.Entity\x12?\n\x12\x64ocument_sentiment\x18\x04 \x01(\x0b\x32#.google.cloud.language.v1.Sentiment\x12\x10\n\x08language\x18\x05 \x01(\t*8\n\x0c\x45ncodingType\x12\x08\n\x04NONE\x10\x00\x12\x08\n\x04UTF8\x10\x01\x12\t\n\x05UTF16\x10\x02\x12\t\n\x05UTF32\x10\x03\x32\x8d\x05\n\x0fLanguageService\x12\xa4\x01\n\x10\x41nalyzeSentiment\x12\x31.google.cloud.language.v1.AnalyzeSentimentRequest\x1a\x32.google.cloud.language.v1.AnalyzeSentimentResponse\")\x82\xd3\xe4\x93\x02#\"\x1e/v1/documents:analyzeSentiment:\x01*\x12\xa0\x01\n\x0f\x41nalyzeEntities\x12\x30.google.cloud.language.v1.AnalyzeEntitiesRequest\x1a\x31.google.cloud.language.v1.AnalyzeEntitiesResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1/documents:analyzeEntities:\x01*\x12\x98\x01\n\rAnalyzeSyntax\x12..google.cloud.language.v1.AnalyzeSyntaxRequest\x1a/.google.cloud.language.v1.AnalyzeSyntaxResponse\"&\x82\xd3\xe4\x93\x02 \"\x1b/v1/documents:analyzeSyntax:\x01*\x12\x94\x01\n\x0c\x41nnotateText\x12-.google.cloud.language.v1.AnnotateTextRequest\x1a..google.cloud.language.v1.AnnotateTextResponse\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/v1/documents:annotateText:\x01*Bx\n\x1c\x63om.google.cloud.language.v1B\x14LanguageServiceProtoP\x01Z@google.golang.org/genproto/googleapis/cloud/language/v1;languageb\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _ENCODINGTYPE = _descriptor.EnumDescriptor(
   name='EncodingType',
@@ -1970,10 +1969,40 @@ DESCRIPTOR.message_types_by_name['AnalyzeSyntaxResponse'] = _ANALYZESYNTAXRESPON
 DESCRIPTOR.message_types_by_name['AnnotateTextRequest'] = _ANNOTATETEXTREQUEST
 DESCRIPTOR.message_types_by_name['AnnotateTextResponse'] = _ANNOTATETEXTRESPONSE
 DESCRIPTOR.enum_types_by_name['EncodingType'] = _ENCODINGTYPE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Document = _reflection.GeneratedProtocolMessageType('Document', (_message.Message,), dict(
   DESCRIPTOR = _DOCUMENT,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents the input to API methods.
+  
+  
+  Attributes:
+      type:
+          Required. If the type is not set or is ``TYPE_UNSPECIFIED``,
+          returns an ``INVALID_ARGUMENT`` error.
+      source:
+          The source of the document: a string containing the content or
+          a Google Cloud Storage URI.
+      content:
+          The content of the input in string format.
+      gcs_content_uri:
+          The Google Cloud Storage URI where the file content is
+          located. This URI must be of the form:
+          gs://bucket\_name/object\_name. For more details, see
+          https://cloud.google.com/storage/docs/reference-uris. NOTE:
+          Cloud Storage object versioning is not supported.
+      language:
+          The language of the document (if not specified, the language
+          is automatically detected). Both ISO and BCP-47 language codes
+          are accepted. `Language Support
+          <https://cloud.google.com/natural-language/docs/languages>`__
+          lists currently supported languages for each API method. If
+          the language (either specified by the caller or automatically
+          detected) is not supported by the called API method, an
+          ``INVALID_ARGUMENT`` error is returned.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.Document)
   ))
 _sym_db.RegisterMessage(Document)
@@ -1981,6 +2010,20 @@ _sym_db.RegisterMessage(Document)
 Sentence = _reflection.GeneratedProtocolMessageType('Sentence', (_message.Message,), dict(
   DESCRIPTOR = _SENTENCE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents a sentence in the input document.
+  
+  
+  Attributes:
+      text:
+          The sentence text.
+      sentiment:
+          For calls to [AnalyzeSentiment][] or if [AnnotateTextRequest.F
+          eatures.extract\_document\_sentiment][google.cloud.language.v1
+          .AnnotateTextRequest.Features.extract\_document\_sentiment] is
+          set to true, this field will contain the sentiment for the
+          sentence.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.Sentence)
   ))
 _sym_db.RegisterMessage(Sentence)
@@ -1995,6 +2038,31 @@ Entity = _reflection.GeneratedProtocolMessageType('Entity', (_message.Message,),
   ,
   DESCRIPTOR = _ENTITY,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents a phrase in the text that is a known entity, such as a
+  person, an organization, or location. The API associates information,
+  such as salience and mentions, with entities.
+  
+  
+  Attributes:
+      name:
+          The representative name for the entity.
+      type:
+          The entity type.
+      metadata:
+          Metadata associated with the entity.  Currently, Wikipedia
+          URLs and Knowledge Graph MIDs are provided, if available. The
+          associated keys are "wikipedia\_url" and "mid", respectively.
+      salience:
+          The salience score associated with the entity in the [0, 1.0]
+          range.  The salience score for an entity provides information
+          about the importance or centrality of that entity to the
+          entire document text. Scores closer to 0 are less salient,
+          while scores closer to 1.0 are highly salient.
+      mentions:
+          The mentions of this entity in the input document. The API
+          currently supports proper noun mentions.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.Entity)
   ))
 _sym_db.RegisterMessage(Entity)
@@ -2003,6 +2071,22 @@ _sym_db.RegisterMessage(Entity.MetadataEntry)
 Token = _reflection.GeneratedProtocolMessageType('Token', (_message.Message,), dict(
   DESCRIPTOR = _TOKEN,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents the smallest syntactic building block of the text.
+  
+  
+  Attributes:
+      text:
+          The token text.
+      part_of_speech:
+          Parts of speech tag for this token.
+      dependency_edge:
+          Dependency tree parse for this token.
+      lemma:
+          `Lemma
+          <https://en.wikipedia.org/wiki/Lemma_%28morphology%29>`__ of
+          the token.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.Token)
   ))
 _sym_db.RegisterMessage(Token)
@@ -2010,6 +2094,20 @@ _sym_db.RegisterMessage(Token)
 Sentiment = _reflection.GeneratedProtocolMessageType('Sentiment', (_message.Message,), dict(
   DESCRIPTOR = _SENTIMENT,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents the feeling associated with the entire text or entities in
+  the text.
+  
+  
+  Attributes:
+      magnitude:
+          A non-negative number in the [0, +inf) range, which represents
+          the absolute magnitude of sentiment regardless of score
+          (positive or negative).
+      score:
+          Sentiment score between -1.0 (negative sentiment) and 1.0
+          (positive sentiment).
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.Sentiment)
   ))
 _sym_db.RegisterMessage(Sentiment)
@@ -2017,6 +2115,38 @@ _sym_db.RegisterMessage(Sentiment)
 PartOfSpeech = _reflection.GeneratedProtocolMessageType('PartOfSpeech', (_message.Message,), dict(
   DESCRIPTOR = _PARTOFSPEECH,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents part of speech information for a token. Parts of speech are
+  as defined in
+  http://www.lrec-conf.org/proceedings/lrec2012/pdf/274\_Paper.pdf
+  
+  
+  Attributes:
+      tag:
+          The part of speech tag.
+      aspect:
+          The grammatical aspect.
+      case:
+          The grammatical case.
+      form:
+          The grammatical form.
+      gender:
+          The grammatical gender.
+      mood:
+          The grammatical mood.
+      number:
+          The grammatical number.
+      person:
+          The grammatical person.
+      proper:
+          The grammatical properness.
+      reciprocity:
+          The grammatical reciprocity.
+      tense:
+          The grammatical tense.
+      voice:
+          The grammatical voice.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.PartOfSpeech)
   ))
 _sym_db.RegisterMessage(PartOfSpeech)
@@ -2024,6 +2154,22 @@ _sym_db.RegisterMessage(PartOfSpeech)
 DependencyEdge = _reflection.GeneratedProtocolMessageType('DependencyEdge', (_message.Message,), dict(
   DESCRIPTOR = _DEPENDENCYEDGE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents dependency parse tree information for a token. (For more
+  information on dependency labels, see
+  http://www.aclweb.org/anthology/P13-2017
+  
+  
+  Attributes:
+      head_token_index:
+          Represents the head of this token in the dependency tree. This
+          is the index of the token which has an arc going to this
+          token. The index is the position of the token in the array of
+          tokens returned by the API method. If this token is a root
+          token, then the ``head_token_index`` is its own index.
+      label:
+          The parse label for the token.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.DependencyEdge)
   ))
 _sym_db.RegisterMessage(DependencyEdge)
@@ -2031,6 +2177,17 @@ _sym_db.RegisterMessage(DependencyEdge)
 EntityMention = _reflection.GeneratedProtocolMessageType('EntityMention', (_message.Message,), dict(
   DESCRIPTOR = _ENTITYMENTION,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents a mention for an entity in the text. Currently, proper noun
+  mentions are supported.
+  
+  
+  Attributes:
+      text:
+          The mention text.
+      type:
+          The type of the entity mention.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.EntityMention)
   ))
 _sym_db.RegisterMessage(EntityMention)
@@ -2038,6 +2195,19 @@ _sym_db.RegisterMessage(EntityMention)
 TextSpan = _reflection.GeneratedProtocolMessageType('TextSpan', (_message.Message,), dict(
   DESCRIPTOR = _TEXTSPAN,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """Represents an output piece of text.
+  
+  
+  Attributes:
+      content:
+          The content of the output text.
+      begin_offset:
+          The API calculates the beginning offset of the content in the
+          original document according to the
+          [EncodingType][google.cloud.language.v1.EncodingType]
+          specified in the API request.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.TextSpan)
   ))
 _sym_db.RegisterMessage(TextSpan)
@@ -2045,6 +2215,17 @@ _sym_db.RegisterMessage(TextSpan)
 AnalyzeSentimentRequest = _reflection.GeneratedProtocolMessageType('AnalyzeSentimentRequest', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZESENTIMENTREQUEST,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The sentiment analysis request message.
+  
+  
+  Attributes:
+      document:
+          Input document.
+      encoding_type:
+          The encoding type used by the API to calculate sentence
+          offsets.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeSentimentRequest)
   ))
 _sym_db.RegisterMessage(AnalyzeSentimentRequest)
@@ -2052,6 +2233,21 @@ _sym_db.RegisterMessage(AnalyzeSentimentRequest)
 AnalyzeSentimentResponse = _reflection.GeneratedProtocolMessageType('AnalyzeSentimentResponse', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZESENTIMENTRESPONSE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The sentiment analysis response message.
+  
+  
+  Attributes:
+      document_sentiment:
+          The overall sentiment of the input document.
+      language:
+          The language of the text, which will be the same as the
+          language specified in the request or, if not specified, the
+          automatically-detected language. See [Document.language][googl
+          e.cloud.language.v1.Document.language] field for more details.
+      sentences:
+          The sentiment for all the sentences in the document.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeSentimentResponse)
   ))
 _sym_db.RegisterMessage(AnalyzeSentimentResponse)
@@ -2059,6 +2255,16 @@ _sym_db.RegisterMessage(AnalyzeSentimentResponse)
 AnalyzeEntitiesRequest = _reflection.GeneratedProtocolMessageType('AnalyzeEntitiesRequest', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZEENTITIESREQUEST,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The entity analysis request message.
+  
+  
+  Attributes:
+      document:
+          Input document.
+      encoding_type:
+          The encoding type used by the API to calculate offsets.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeEntitiesRequest)
   ))
 _sym_db.RegisterMessage(AnalyzeEntitiesRequest)
@@ -2066,6 +2272,19 @@ _sym_db.RegisterMessage(AnalyzeEntitiesRequest)
 AnalyzeEntitiesResponse = _reflection.GeneratedProtocolMessageType('AnalyzeEntitiesResponse', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZEENTITIESRESPONSE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The entity analysis response message.
+  
+  
+  Attributes:
+      entities:
+          The recognized entities in the input document.
+      language:
+          The language of the text, which will be the same as the
+          language specified in the request or, if not specified, the
+          automatically-detected language. See [Document.language][googl
+          e.cloud.language.v1.Document.language] field for more details.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeEntitiesResponse)
   ))
 _sym_db.RegisterMessage(AnalyzeEntitiesResponse)
@@ -2073,6 +2292,16 @@ _sym_db.RegisterMessage(AnalyzeEntitiesResponse)
 AnalyzeSyntaxRequest = _reflection.GeneratedProtocolMessageType('AnalyzeSyntaxRequest', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZESYNTAXREQUEST,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The syntax analysis request message.
+  
+  
+  Attributes:
+      document:
+          Input document.
+      encoding_type:
+          The encoding type used by the API to calculate offsets.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeSyntaxRequest)
   ))
 _sym_db.RegisterMessage(AnalyzeSyntaxRequest)
@@ -2080,6 +2309,22 @@ _sym_db.RegisterMessage(AnalyzeSyntaxRequest)
 AnalyzeSyntaxResponse = _reflection.GeneratedProtocolMessageType('AnalyzeSyntaxResponse', (_message.Message,), dict(
   DESCRIPTOR = _ANALYZESYNTAXRESPONSE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The syntax analysis response message.
+  
+  
+  Attributes:
+      sentences:
+          Sentences in the input document.
+      tokens:
+          Tokens, along with their syntactic information, in the input
+          document.
+      language:
+          The language of the text, which will be the same as the
+          language specified in the request or, if not specified, the
+          automatically-detected language. See [Document.language][googl
+          e.cloud.language.v1.Document.language] field for more details.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnalyzeSyntaxResponse)
   ))
 _sym_db.RegisterMessage(AnalyzeSyntaxResponse)
@@ -2089,11 +2334,35 @@ AnnotateTextRequest = _reflection.GeneratedProtocolMessageType('AnnotateTextRequ
   Features = _reflection.GeneratedProtocolMessageType('Features', (_message.Message,), dict(
     DESCRIPTOR = _ANNOTATETEXTREQUEST_FEATURES,
     __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+    ,
+    __doc__ = """All available features for sentiment, syntax, and semantic analysis.
+    Setting each one to true will enable that specific analysis for the
+    input.
+    """,
     # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnnotateTextRequest.Features)
     ))
   ,
   DESCRIPTOR = _ANNOTATETEXTREQUEST,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The request message for the text annotation API, which can perform
+  multiple analysis types (sentiment, entities, and syntax) in one call.
+  
+  
+  Attributes:
+      extract_syntax:
+          Extract syntax information.
+      extract_entities:
+          Extract entities.
+      extract_document_sentiment:
+          Extract document-level sentiment.
+      document:
+          Input document.
+      features:
+          The enabled features.
+      encoding_type:
+          The encoding type used by the API to calculate offsets.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnnotateTextRequest)
   ))
 _sym_db.RegisterMessage(AnnotateTextRequest)
@@ -2102,6 +2371,36 @@ _sym_db.RegisterMessage(AnnotateTextRequest.Features)
 AnnotateTextResponse = _reflection.GeneratedProtocolMessageType('AnnotateTextResponse', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATETEXTRESPONSE,
   __module__ = 'google.cloud.proto.language.v1.language_service_pb2'
+  ,
+  __doc__ = """The text annotations response message.
+  
+  
+  Attributes:
+      sentences:
+          Sentences in the input document. Populated if the user enables
+          [AnnotateTextRequest.Features.extract\_syntax][google.cloud.la
+          nguage.v1.AnnotateTextRequest.Features.extract\_syntax].
+      tokens:
+          Tokens, along with their syntactic information, in the input
+          document. Populated if the user enables [AnnotateTextRequest.F
+          eatures.extract\_syntax][google.cloud.language.v1.AnnotateText
+          Request.Features.extract\_syntax].
+      entities:
+          Entities, along with their semantic information, in the input
+          document. Populated if the user enables [AnnotateTextRequest.F
+          eatures.extract\_entities][google.cloud.language.v1.AnnotateTe
+          xtRequest.Features.extract\_entities].
+      document_sentiment:
+          The overall sentiment for the document. Populated if the user
+          enables [AnnotateTextRequest.Features.extract\_document\_senti
+          ment][google.cloud.language.v1.AnnotateTextRequest.Features.ex
+          tract\_document\_sentiment].
+      language:
+          The language of the text, which will be the same as the
+          language specified in the request or, if not specified, the
+          automatically-detected language. See [Document.language][googl
+          e.cloud.language.v1.Document.language] field for more details.
+  """,
   # @@protoc_insertion_point(class_scope:google.cloud.language.v1.AnnotateTextResponse)
   ))
 _sym_db.RegisterMessage(AnnotateTextResponse)
@@ -2115,10 +2414,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 
 
   class LanguageServiceStub(object):

@@ -27,7 +27,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n.google/cloud/proto/spanner/v1/result_set.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a.google/cloud/proto/spanner/v1/query_plan.proto\x1a/google/cloud/proto/spanner/v1/transaction.proto\x1a(google/cloud/proto/spanner/v1/type.proto\"\x9f\x01\n\tResultSet\x12\x36\n\x08metadata\x18\x01 \x01(\x0b\x32$.google.spanner.v1.ResultSetMetadata\x12(\n\x04rows\x18\x02 \x03(\x0b\x32\x1a.google.protobuf.ListValue\x12\x30\n\x05stats\x18\x03 \x01(\x0b\x32!.google.spanner.v1.ResultSetStats\"\xd1\x01\n\x10PartialResultSet\x12\x36\n\x08metadata\x18\x01 \x01(\x0b\x32$.google.spanner.v1.ResultSetMetadata\x12&\n\x06values\x18\x02 \x03(\x0b\x32\x16.google.protobuf.Value\x12\x15\n\rchunked_value\x18\x03 \x01(\x08\x12\x14\n\x0cresume_token\x18\x04 \x01(\x0c\x12\x30\n\x05stats\x18\x05 \x01(\x0b\x32!.google.spanner.v1.ResultSetStats\"y\n\x11ResultSetMetadata\x12/\n\x08row_type\x18\x01 \x01(\x0b\x32\x1d.google.spanner.v1.StructType\x12\x33\n\x0btransaction\x18\x02 \x01(\x0b\x32\x1e.google.spanner.v1.Transaction\"p\n\x0eResultSetStats\x12\x30\n\nquery_plan\x18\x01 \x01(\x0b\x32\x1c.google.spanner.v1.QueryPlan\x12,\n\x0bquery_stats\x18\x02 \x01(\x0b\x32\x17.google.protobuf.StructB}\n\x15\x63om.google.spanner.v1B\x0eResultSetProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_struct__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_query__plan__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_transaction__pb2.DESCRIPTOR,google_dot_cloud_dot_proto_dot_spanner_dot_v1_dot_type__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -225,10 +224,32 @@ DESCRIPTOR.message_types_by_name['ResultSet'] = _RESULTSET
 DESCRIPTOR.message_types_by_name['PartialResultSet'] = _PARTIALRESULTSET
 DESCRIPTOR.message_types_by_name['ResultSetMetadata'] = _RESULTSETMETADATA
 DESCRIPTOR.message_types_by_name['ResultSetStats'] = _RESULTSETSTATS
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ResultSet = _reflection.GeneratedProtocolMessageType('ResultSet', (_message.Message,), dict(
   DESCRIPTOR = _RESULTSET,
   __module__ = 'google.cloud.proto.spanner.v1.result_set_pb2'
+  ,
+  __doc__ = """Results from [Read][google.spanner.v1.Spanner.Read] or
+  [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
+  
+  
+  Attributes:
+      metadata:
+          Metadata about the result set, such as row type information.
+      rows:
+          Each element in ``rows`` is a row whose format is defined by [
+          metadata.row\_type][google.spanner.v1.ResultSetMetadata.row\_t
+          ype]. The ith element in each row matches the ith field in [me
+          tadata.row\_type][google.spanner.v1.ResultSetMetadata.row\_typ
+          e]. Elements are encoded based on type as described
+          [here][google.spanner.v1.TypeCode].
+      stats:
+          Query plan and execution statistics for the query that
+          produced this result set. These can be requested by setting [E
+          xecuteSqlRequest.query\_mode][google.spanner.v1.ExecuteSqlRequ
+          est.query\_mode].
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.ResultSet)
   ))
 _sym_db.RegisterMessage(ResultSet)
@@ -236,6 +257,81 @@ _sym_db.RegisterMessage(ResultSet)
 PartialResultSet = _reflection.GeneratedProtocolMessageType('PartialResultSet', (_message.Message,), dict(
   DESCRIPTOR = _PARTIALRESULTSET,
   __module__ = 'google.cloud.proto.spanner.v1.result_set_pb2'
+  ,
+  __doc__ = """Partial results from a streaming read or SQL query. Streaming reads and
+  SQL queries better tolerate large result sets, large rows, and large
+  values, but are a little trickier to consume.
+  
+  
+  Attributes:
+      metadata:
+          Metadata about the result set, such as row type information.
+          Only present in the first response.
+      values:
+          A streamed result set consists of a stream of values, which
+          might be split into many ``PartialResultSet`` messages to
+          accommodate large rows and/or large values. Every N complete
+          values defines a row, where N is equal to the number of
+          entries in [metadata.row\_type.fields][google.spanner.v1.Struc
+          tType.fields].  Most values are encoded based on type as
+          described [here][google.spanner.v1.TypeCode].  It is possible
+          that the last value in values is "chunked", meaning that the
+          rest of the value is sent in subsequent ``PartialResultSet``\
+          (s). This is denoted by the [chunked\_value][google.spanner.v1
+          .PartialResultSet.chunked\_value] field. Two or more chunked
+          values can be merged to form a complete value as follows:  -
+          ``bool/number/null``: cannot be chunked -  ``string``:
+          concatenate the strings -  ``list``: concatenate the lists. If
+          the last element in a list is a    ``string``, ``list``, or
+          ``object``, merge it with the first element    in the next
+          list by applying these rules recursively. -  ``object``:
+          concatenate the (field name, field value) pairs. If a    field
+          name is duplicated, then apply these rules recursively to
+          merge    the field values.  Some examples of merging:  ::
+          # Strings are concatenated.     "foo", "bar" => "foobar"
+          # Lists of non-strings are concatenated.     [2, 3], [4] =>
+          [2, 3, 4]      # Lists are concatenated, but the last and
+          first elements are merged     # because they are strings.
+          ["a", "b"], ["c", "d"] => ["a", "bc", "d"]      # Lists are
+          concatenated, but the last and first elements are merged     #
+          because they are lists. Recursively, the last and first
+          elements     # of the inner lists are merged because they are
+          strings.     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b",
+          "cd"], "e"]      # Non-overlapping object fields are combined.
+          {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}      #
+          Overlapping object fields are merged.     {"a": "1"}, {"a":
+          "2"} => {"a": "12"}      # Examples of merging objects
+          containing lists of strings.     {"a": ["1"]}, {"a": ["2"]} =>
+          {"a": ["12"]}  For a more complete example, suppose a
+          streaming SQL query is yielding a result set whose rows
+          contain a single string field. The following
+          ``PartialResultSet``\ s might be yielded:  ::      {
+          "metadata": { ... }       "values": ["Hello", "W"]
+          "chunked_value": true       "resume_token": "Af65..."     }
+          {       "values": ["orl"]       "chunked_value": true
+          "resume_token": "Bqp2..."     }     {       "values": ["d"]
+          "resume_token": "Zx1B..."     }  This sequence of
+          ``PartialResultSet``\ s encodes two rows, one containing the
+          field value ``"Hello"``, and a second containing the field
+          value ``"World" = "W" + "orl" + "d"``.
+      chunked_value:
+          If true, then the final value in
+          [values][google.spanner.v1.PartialResultSet.values] is
+          chunked, and must be combined with more values from subsequent
+          ``PartialResultSet``\ s to obtain a complete field value.
+      resume_token:
+          Streaming calls might be interrupted for a variety of reasons,
+          such as TCP connection loss. If this occurs, the stream of
+          results can be resumed by re-sending the original request and
+          including ``resume_token``. Note that executing any other
+          transaction in the same session invalidates the token.
+      stats:
+          Query plan and execution statistics for the query that
+          produced this streaming result set. These can be requested by
+          setting [ExecuteSqlRequest.query\_mode][google.spanner.v1.Exec
+          uteSqlRequest.query\_mode] and are sent only once with the
+          last response in the stream.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.PartialResultSet)
   ))
 _sym_db.RegisterMessage(PartialResultSet)
@@ -243,6 +339,23 @@ _sym_db.RegisterMessage(PartialResultSet)
 ResultSetMetadata = _reflection.GeneratedProtocolMessageType('ResultSetMetadata', (_message.Message,), dict(
   DESCRIPTOR = _RESULTSETMETADATA,
   __module__ = 'google.cloud.proto.spanner.v1.result_set_pb2'
+  ,
+  __doc__ = """Metadata about a [ResultSet][google.spanner.v1.ResultSet] or
+  [PartialResultSet][google.spanner.v1.PartialResultSet].
+  
+  
+  Attributes:
+      row_type:
+          Indicates the field names and types for the rows in the result
+          set. For example, a SQL query like ``"SELECT UserId, UserName
+          FROM Users"`` could return a ``row_type`` value like:  ::
+          "fields": [       { "name": "UserId", "type": { "code":
+          "INT64" } },       { "name": "UserName", "type": { "code":
+          "STRING" } },     ]
+      transaction:
+          If the read or SQL query began a transaction as a side-effect,
+          the information about the new transaction is yielded here.
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.ResultSetMetadata)
   ))
 _sym_db.RegisterMessage(ResultSetMetadata)
@@ -250,6 +363,22 @@ _sym_db.RegisterMessage(ResultSetMetadata)
 ResultSetStats = _reflection.GeneratedProtocolMessageType('ResultSetStats', (_message.Message,), dict(
   DESCRIPTOR = _RESULTSETSTATS,
   __module__ = 'google.cloud.proto.spanner.v1.result_set_pb2'
+  ,
+  __doc__ = """Additional statistics about a [ResultSet][google.spanner.v1.ResultSet]
+  or [PartialResultSet][google.spanner.v1.PartialResultSet].
+  
+  
+  Attributes:
+      query_plan:
+          [QueryPlan][google.spanner.v1.QueryPlan] for the query
+          associated with this result.
+      query_stats:
+          Aggregated statistics from the execution of the query. Only
+          present when the query is profiled. For example, a query could
+          return the statistics as follows:  ::      {
+          "rows_returned": "3",       "elapsed_time": "1.22 secs",
+          "cpu_time": "1.19 secs"     }
+  """,
   # @@protoc_insertion_point(class_scope:google.spanner.v1.ResultSetStats)
   ))
 _sym_db.RegisterMessage(ResultSetStats)
@@ -261,10 +390,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

@@ -25,7 +25,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   serialized_pb=_b('\n-google/cloud/proto/monitoring/v3/common.proto\x12\x14google.monitoring.v3\x1a\x1dgoogle/api/distribution.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xaa\x01\n\nTypedValue\x12\x14\n\nbool_value\x18\x01 \x01(\x08H\x00\x12\x15\n\x0bint64_value\x18\x02 \x01(\x03H\x00\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x16\n\x0cstring_value\x18\x04 \x01(\tH\x00\x12\x36\n\x12\x64istribution_value\x18\x05 \x01(\x0b\x32\x18.google.api.DistributionH\x00\x42\x07\n\x05value\"l\n\x0cTimeInterval\x12,\n\x08\x65nd_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nstart_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xe4\x06\n\x0b\x41ggregation\x12\x33\n\x10\x61lignment_period\x18\x01 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x45\n\x12per_series_aligner\x18\x02 \x01(\x0e\x32).google.monitoring.v3.Aggregation.Aligner\x12G\n\x14\x63ross_series_reducer\x18\x04 \x01(\x0e\x32).google.monitoring.v3.Aggregation.Reducer\x12\x17\n\x0fgroup_by_fields\x18\x05 \x03(\t\"\xda\x02\n\x07\x41ligner\x12\x0e\n\nALIGN_NONE\x10\x00\x12\x0f\n\x0b\x41LIGN_DELTA\x10\x01\x12\x0e\n\nALIGN_RATE\x10\x02\x12\x15\n\x11\x41LIGN_INTERPOLATE\x10\x03\x12\x14\n\x10\x41LIGN_NEXT_OLDER\x10\x04\x12\r\n\tALIGN_MIN\x10\n\x12\r\n\tALIGN_MAX\x10\x0b\x12\x0e\n\nALIGN_MEAN\x10\x0c\x12\x0f\n\x0b\x41LIGN_COUNT\x10\r\x12\r\n\tALIGN_SUM\x10\x0e\x12\x10\n\x0c\x41LIGN_STDDEV\x10\x0f\x12\x14\n\x10\x41LIGN_COUNT_TRUE\x10\x10\x12\x17\n\x13\x41LIGN_FRACTION_TRUE\x10\x11\x12\x17\n\x13\x41LIGN_PERCENTILE_99\x10\x12\x12\x17\n\x13\x41LIGN_PERCENTILE_95\x10\x13\x12\x17\n\x13\x41LIGN_PERCENTILE_50\x10\x14\x12\x17\n\x13\x41LIGN_PERCENTILE_05\x10\x15\"\x99\x02\n\x07Reducer\x12\x0f\n\x0bREDUCE_NONE\x10\x00\x12\x0f\n\x0bREDUCE_MEAN\x10\x01\x12\x0e\n\nREDUCE_MIN\x10\x02\x12\x0e\n\nREDUCE_MAX\x10\x03\x12\x0e\n\nREDUCE_SUM\x10\x04\x12\x11\n\rREDUCE_STDDEV\x10\x05\x12\x10\n\x0cREDUCE_COUNT\x10\x06\x12\x15\n\x11REDUCE_COUNT_TRUE\x10\x07\x12\x18\n\x14REDUCE_FRACTION_TRUE\x10\x08\x12\x18\n\x14REDUCE_PERCENTILE_99\x10\t\x12\x18\n\x14REDUCE_PERCENTILE_95\x10\n\x12\x18\n\x14REDUCE_PERCENTILE_50\x10\x0b\x12\x18\n\x14REDUCE_PERCENTILE_05\x10\x0c\x42\x86\x01\n\x18\x63om.google.monitoring.v3B\x0b\x43ommonProtoP\x01Z>google.golang.org/genproto/googleapis/monitoring/v3;monitoring\xaa\x02\x1aGoogle.Cloud.Monitoring.V3b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_distribution__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -357,10 +356,31 @@ _AGGREGATION_REDUCER.containing_type = _AGGREGATION
 DESCRIPTOR.message_types_by_name['TypedValue'] = _TYPEDVALUE
 DESCRIPTOR.message_types_by_name['TimeInterval'] = _TIMEINTERVAL
 DESCRIPTOR.message_types_by_name['Aggregation'] = _AGGREGATION
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 TypedValue = _reflection.GeneratedProtocolMessageType('TypedValue', (_message.Message,), dict(
   DESCRIPTOR = _TYPEDVALUE,
   __module__ = 'google.cloud.proto.monitoring.v3.common_pb2'
+  ,
+  __doc__ = """A single strongly-typed value.
+  
+  
+  Attributes:
+      value:
+          The typed value field.
+      bool_value:
+          A Boolean value: ``true`` or ``false``.
+      int64_value:
+          A 64-bit integer. Its range is approximately ±9.2x1018.
+      double_value:
+          A 64-bit double-precision floating-point number. Its magnitude
+          is approximately ±10±300 and it has 16 significant digits of
+          precision.
+      string_value:
+          A variable-length string value.
+      distribution_value:
+          A distribution value.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.TypedValue)
   ))
 _sym_db.RegisterMessage(TypedValue)
@@ -368,6 +388,20 @@ _sym_db.RegisterMessage(TypedValue)
 TimeInterval = _reflection.GeneratedProtocolMessageType('TimeInterval', (_message.Message,), dict(
   DESCRIPTOR = _TIMEINTERVAL,
   __module__ = 'google.cloud.proto.monitoring.v3.common_pb2'
+  ,
+  __doc__ = """A time interval extending just after a start time through an end time.
+  If the start time is the same as the end time, then the interval
+  represents a single point in time.
+  
+  
+  Attributes:
+      end_time:
+          Required. The end of the time interval.
+      start_time:
+          Optional. The beginning of the time interval. The default
+          value for the start time is the end time. The start time must
+          not be later than the end time.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.TimeInterval)
   ))
 _sym_db.RegisterMessage(TimeInterval)
@@ -375,6 +409,64 @@ _sym_db.RegisterMessage(TimeInterval)
 Aggregation = _reflection.GeneratedProtocolMessageType('Aggregation', (_message.Message,), dict(
   DESCRIPTOR = _AGGREGATION,
   __module__ = 'google.cloud.proto.monitoring.v3.common_pb2'
+  ,
+  __doc__ = """Describes how to combine multiple time series to provide different views
+  of the data. Aggregation consists of an alignment step on individual
+  time series (``per_series_aligner``) followed by an optional reduction
+  of the data across different time series (``cross_series_reducer``). For
+  more details, see
+  `Aggregation </monitoring/api/learn_more#aggregation>`__.
+  
+  
+  Attributes:
+      alignment_period:
+          The alignment period for per-[time
+          series][google.monitoring.v3.TimeSeries] alignment. If
+          present, ``alignmentPeriod`` must be at least 60 seconds.
+          After per-time series alignment, each time series will contain
+          data points only on the period boundaries. If
+          ``perSeriesAligner`` is not specified or equals
+          ``ALIGN_NONE``, then this field is ignored. If
+          ``perSeriesAligner`` is specified and does not equal
+          ``ALIGN_NONE``, then this field must be defined; otherwise an
+          error is returned.
+      per_series_aligner:
+          The approach to be used to align individual time series. Not
+          all alignment functions may be applied to all time series,
+          depending on the metric type and value type of the original
+          time series. Alignment may change the metric type or the value
+          type of the time series.  Time series data must be aligned in
+          order to perform cross-time series reduction. If
+          ``crossSeriesReducer`` is specified, then ``perSeriesAligner``
+          must be specified and not equal ``ALIGN_NONE`` and
+          ``alignmentPeriod`` must be specified; otherwise, an error is
+          returned.
+      cross_series_reducer:
+          The approach to be used to combine time series. Not all
+          reducer functions may be applied to all time series, depending
+          on the metric type and the value type of the original time
+          series. Reduction may change the metric type of value type of
+          the time series.  Time series data must be aligned in order to
+          perform cross-time series reduction. If ``crossSeriesReducer``
+          is specified, then ``perSeriesAligner`` must be specified and
+          not equal ``ALIGN_NONE`` and ``alignmentPeriod`` must be
+          specified; otherwise, an error is returned.
+      group_by_fields:
+          The set of fields to preserve when ``crossSeriesReducer`` is
+          specified. The ``groupByFields`` determine how the time series
+          are partitioned into subsets prior to applying the aggregation
+          function. Each subset contains time series that have the same
+          value for each of the grouping fields. Each individual time
+          series is a member of exactly one subset. The
+          ``crossSeriesReducer`` is applied to each subset of time
+          series. It is not possible to reduce across different resource
+          types, so this field implicitly contains ``resource.type``.
+          Fields not specified in ``groupByFields`` are aggregated away.
+          If ``groupByFields`` is not specified and all the time series
+          have the same resource type, then the time series are
+          aggregated into a single output time series. If
+          ``crossSeriesReducer`` is not defined, this field is ignored.
+  """,
   # @@protoc_insertion_point(class_scope:google.monitoring.v3.Aggregation)
   ))
 _sym_db.RegisterMessage(Aggregation)
@@ -386,10 +478,10 @@ try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
   import grpc
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
   from grpc.beta import implementations as beta_implementations
   from grpc.beta import interfaces as beta_interfaces
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
 except ImportError:
   pass
 # @@protoc_insertion_point(module_scope)

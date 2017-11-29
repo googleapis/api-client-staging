@@ -12,7 +12,7 @@ easy-to-use client library for the `Stackdriver Error Reporting API`_ (v1beta1) 
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/devtools/clouderrorreporting/v1beta1
-.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
+.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1/
 
 
 APIs
@@ -20,9 +20,9 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.errorreporting.v1beta1.error_group_service_client
-   google.cloud.gapic.errorreporting.v1beta1.error_stats_service_client
-   google.cloud.gapic.errorreporting.v1beta1.report_errors_service_client
+   google.cloud.errorreporting_v1beta1.gapic.error_group_service_client
+   google.cloud.errorreporting_v1beta1.gapic.error_stats_service_client
+   google.cloud.errorreporting_v1beta1.gapic.report_errors_service_client
 
 
 Contents

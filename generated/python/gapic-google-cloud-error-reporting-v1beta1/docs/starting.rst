@@ -3,7 +3,7 @@ Getting started
 
 gapic-google-cloud-error-reporting-v1beta1 will allow you to connect to the `Stackdriver Error Reporting API`_ and access all its methods. In order to achieve this, you need to set up authentication as well as install the library locally.
 
-.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1
+.. _`Stackdriver Error Reporting API`: https://developers.google.com/apis-explorer/?hl=en_US#p/clouderrorreporting/v1beta1/
 
 
 Installation

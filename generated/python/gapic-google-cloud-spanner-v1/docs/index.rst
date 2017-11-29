@@ -12,7 +12,7 @@ easy-to-use client library for the `Cloud Spanner API`_ (v1) defined in the goog
 
 .. _`google-gax`: https://github.com/googleapis/gax-python
 .. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/spanner/v1
-.. _`Cloud Spanner API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1
+.. _`Cloud Spanner API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1/
 
 
 APIs
@@ -20,7 +20,7 @@ APIs
 
 .. autosummary::
 
-   google.cloud.gapic.spanner.v1.spanner_client
+   google.cloud.spanner_v1.gapic.spanner_client
 
 
 Contents

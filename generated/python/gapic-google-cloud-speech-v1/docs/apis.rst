@@ -7,7 +7,7 @@ APIs
 .. autosummary::
    :toctree:
 
-   google.cloud.gapic.speech.v1.speech_client
+   google.cloud.speech_v1.gapic.speech_client
 
 
 API types
@@ -16,4 +16,6 @@ API types
 .. autosummary::
    :toctree:
 
-   google.cloud.gapic.speech.v1.enums
+   google.cloud.speech_v1.__init__
+   google.cloud.speech_v1.gapic.enums
+   google.cloud.speech_v1.types

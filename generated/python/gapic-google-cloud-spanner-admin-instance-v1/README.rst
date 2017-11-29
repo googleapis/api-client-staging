@@ -1,43 +1,28 @@
-GAPIC library for the Cloud Spanner Instance Admin API
-================================================================================
+Python Client for Cloud Spanner Instance Admin API (`Alpha`_)
+==================================================================================================
 
-gapic-google-cloud-spanner-admin-instance-v1 uses google-gax_ (Google API extensions) to provide an
-easy-to-use client library for the `Cloud Spanner Instance Admin API`_ (v1) defined in the googleapis_ git repository
+`Cloud Spanner Instance Admin API`_:
 
+- `Client Library Documentation`_
+- `Product Documentation`_
 
-.. _`googleapis`: https://github.com/googleapis/googleapis/tree/master/google/spanner/admin/instance/v1
-.. _`google-gax`: https://github.com/googleapis/gax-python
-.. _`Cloud Spanner Instance Admin API`: https://developers.google.com/apis-explorer/?hl=en_US#p/spanner/v1
+.. _Alpha: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst
+.. _Cloud Spanner Instance Admin API: https://cloud.google.com/spanner-admin-instance
+.. _Client Library Documentation: https://googlecloudplatform.github.io/google-cloud-python/stable/spanner-admin-instance-usage
+.. _Product Documentation:  https://cloud.google.com/spanner-admin-instance
 
-Getting started
----------------
+Quick Start
+-----------
 
-gapic-google-cloud-spanner-admin-instance-v1 will allow you to connect to the
-Cloud Spanner Instance Admin API and access all its methods. In order to do this, you need
-to set up authentication as well as install the library locally.
+In order to use this library, you first need to go through the following steps:
 
+1. `Select or create a Cloud Platform project.`_
+2. `Enable the Cloud Spanner Instance Admin API.`_
+3. `Setup Authentication.`_
 
-Setup Authentication
-~~~~~~~~~~~~~~~~~~~~
-
-To authenticate all your API calls, first install and setup the `Google Cloud SDK`_.
-Once done, you can then run the following command in your terminal:
-
-.. code-block:: console
-
-    $ gcloud beta auth application-default login
-
-or
-
-.. code-block:: console
-
-    $ gcloud auth login
-
-Please see `gcloud beta auth application-default login`_ document for the difference between these commands.
-
-.. _Google Cloud SDK: https://cloud.google.com/sdk/
-.. _gcloud beta auth application-default login: https://cloud.google.com/sdk/gcloud/reference/beta/auth/application-default/login
-
+.. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
+.. _Enable the Cloud Spanner Instance Admin API.:  https://cloud.google.com/spanner-admin-instance
+.. _Setup Authentication.: https://googlecloudplatform.github.io/google-cloud-python/stable/google-cloud-auth
 
 Installation
 ~~~~~~~~~~~~
@@ -54,7 +39,7 @@ dependencies.
 
 
 Mac/Linux
-~~~~~~~~~~
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -65,7 +50,7 @@ Mac/Linux
 
 
 Windows
-~~~~~~~
+^^^^^^^
 
 .. code-block:: console
 
@@ -74,5 +59,15 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install gapic-google-cloud-spanner-admin-instance-v1
 
+Next Steps
+~~~~~~~~~~
 
-At this point you are all set to continue.
+-  Read the `Client Library Documentation`_ for Cloud Spanner Instance Admin API
+   API to see other available methods on the client.
+-  Read the `Cloud Spanner Instance Admin API Product documentation`_ to learn
+   more about the product and see How-to Guides.
+-  View this `repository’s main README`_ to see the full list of Cloud
+   APIs that we cover.
+
+.. _Cloud Spanner Instance Admin API Product documentation:  https://cloud.google.com/spanner-admin-instance
+.. _repository’s main README: https://github.com/GoogleCloudPlatform/google-cloud-python/blob/master/README.rst

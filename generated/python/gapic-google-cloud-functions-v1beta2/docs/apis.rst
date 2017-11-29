@@ -7,7 +7,7 @@ APIs
 .. autosummary::
    :toctree:
 
-   google.cloud.functions.v1beta2.cloud_functions_service_client
+   google.cloud.functions_v1beta2.gapic.cloud_functions_service_client
 
 
 API types
@@ -16,4 +16,6 @@ API types
 .. autosummary::
    :toctree:
 
-   google.cloud.functions.v1beta2.enums
+   google.cloud.functions_v1beta2.__init__
+   google.cloud.functions_v1beta2.gapic.enums
+   google.cloud.functions_v1beta2.types
