@@ -10,7 +10,7 @@ apply plugin: 'maven'
 
 description = 'Sample client library for google-cloud-container-v1'
 group = "com.google.api"
-version = "0.1.26"
+version = "0.1.25"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
