@@ -75,6 +75,15 @@ public interface GetDocumentRequestOrBuilder extends
    *
    * <code>.google.protobuf.Timestamp read_time = 5;</code>
    */
+  boolean hasReadTime();
+  /**
+   * <pre>
+   * Reads the version of the document at the given time.
+   * This may not be older than 60 seconds.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 5;</code>
+   */
   com.google.protobuf.Timestamp getReadTime();
   /**
    * <pre>

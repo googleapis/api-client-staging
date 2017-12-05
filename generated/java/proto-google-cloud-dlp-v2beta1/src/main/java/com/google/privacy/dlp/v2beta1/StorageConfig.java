@@ -14,6 +14,7 @@ public  final class StorageConfig extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta1.StorageConfig)
     StorageConfigOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use StorageConfig.newBuilder() to construct.
   private StorageConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class StorageConfig extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private StorageConfig(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class StorageConfig extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class StorageConfig extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -96,6 +100,7 @@ public  final class StorageConfig extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -159,6 +164,16 @@ public  final class StorageConfig extends
    *
    * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
+  public boolean hasDatastoreOptions() {
+    return typeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * Google Cloud Datastore options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   */
   public com.google.privacy.dlp.v2beta1.DatastoreOptions getDatastoreOptions() {
     if (typeCase_ == 2) {
        return (com.google.privacy.dlp.v2beta1.DatastoreOptions) type_;
@@ -187,6 +202,16 @@ public  final class StorageConfig extends
    *
    * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
+  public boolean hasCloudStorageOptions() {
+    return typeCase_ == 3;
+  }
+  /**
+   * <pre>
+   * Google Cloud Storage options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   */
   public com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions() {
     if (typeCase_ == 3) {
        return (com.google.privacy.dlp.v2beta1.CloudStorageOptions) type_;
@@ -208,6 +233,16 @@ public  final class StorageConfig extends
   }
 
   public static final int BIG_QUERY_OPTIONS_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  public boolean hasBigQueryOptions() {
+    return typeCase_ == 4;
+  }
   /**
    * <pre>
    * BigQuery options specification.
@@ -256,6 +291,7 @@ public  final class StorageConfig extends
     if (typeCase_ == 4) {
       output.writeMessage(4, (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -275,11 +311,11 @@ public  final class StorageConfig extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (com.google.privacy.dlp.v2beta1.BigQueryOptions) type_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -310,6 +346,7 @@ public  final class StorageConfig extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -524,7 +561,7 @@ public  final class StorageConfig extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -537,12 +574,12 @@ public  final class StorageConfig extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -573,6 +610,7 @@ public  final class StorageConfig extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -616,6 +654,16 @@ public  final class StorageConfig extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.DatastoreOptions, com.google.privacy.dlp.v2beta1.DatastoreOptions.Builder, com.google.privacy.dlp.v2beta1.DatastoreOptionsOrBuilder> datastoreOptionsBuilder_;
+    /**
+     * <pre>
+     * Google Cloud Datastore options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+     */
+    public boolean hasDatastoreOptions() {
+      return typeCase_ == 2;
+    }
     /**
      * <pre>
      * Google Cloud Datastore options specification.
@@ -785,6 +833,16 @@ public  final class StorageConfig extends
      *
      * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
      */
+    public boolean hasCloudStorageOptions() {
+      return typeCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Google Cloud Storage options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+     */
     public com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions() {
       if (cloudStorageOptionsBuilder_ == null) {
         if (typeCase_ == 3) {
@@ -947,6 +1005,16 @@ public  final class StorageConfig extends
      *
      * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
      */
+    public boolean hasBigQueryOptions() {
+      return typeCase_ == 4;
+    }
+    /**
+     * <pre>
+     * BigQuery options specification.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+     */
     public com.google.privacy.dlp.v2beta1.BigQueryOptions getBigQueryOptions() {
       if (bigQueryOptionsBuilder_ == null) {
         if (typeCase_ == 4) {
@@ -1101,12 +1169,12 @@ public  final class StorageConfig extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

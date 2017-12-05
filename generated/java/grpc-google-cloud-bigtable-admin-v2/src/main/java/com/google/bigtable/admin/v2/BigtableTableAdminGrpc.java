@@ -42,6 +42,15 @@ public final class BigtableTableAdminGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.CreateTableRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.Table.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest,
+      com.google.longrunning.Operation> METHOD_CREATE_TABLE_FROM_SNAPSHOT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "CreateTableFromSnapshot"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.ListTablesRequest,
       com.google.bigtable.admin.v2.ListTablesResponse> METHOD_LIST_TABLES =
       io.grpc.MethodDescriptor.create(
@@ -86,6 +95,60 @@ public final class BigtableTableAdminGrpc {
               "google.bigtable.admin.v2.BigtableTableAdmin", "DropRowRange"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.DropRowRangeRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest,
+      com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse> METHOD_GENERATE_CONSISTENCY_TOKEN =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "GenerateConsistencyToken"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.CheckConsistencyRequest,
+      com.google.bigtable.admin.v2.CheckConsistencyResponse> METHOD_CHECK_CONSISTENCY =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "CheckConsistency"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.CheckConsistencyRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.CheckConsistencyResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.SnapshotTableRequest,
+      com.google.longrunning.Operation> METHOD_SNAPSHOT_TABLE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "SnapshotTable"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.SnapshotTableRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.GetSnapshotRequest,
+      com.google.bigtable.admin.v2.Snapshot> METHOD_GET_SNAPSHOT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "GetSnapshot"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.GetSnapshotRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.Snapshot.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.ListSnapshotsRequest,
+      com.google.bigtable.admin.v2.ListSnapshotsResponse> METHOD_LIST_SNAPSHOTS =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "ListSnapshots"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.ListSnapshotsRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.ListSnapshotsResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.DeleteSnapshotRequest,
+      com.google.protobuf.Empty> METHOD_DELETE_SNAPSHOT =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableTableAdmin", "DeleteSnapshot"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.DeleteSnapshotRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -129,6 +192,21 @@ public final class BigtableTableAdminGrpc {
     public void createTable(com.google.bigtable.admin.v2.CreateTableRequest request,
         io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Table> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_CREATE_TABLE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new table from the specified snapshot. The target table must
+     * not exist. The snapshot and the table must be in the same instance.
+     * </pre>
+     */
+    public void createTableFromSnapshot(com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CREATE_TABLE_FROM_SNAPSHOT, responseObserver);
     }
 
     /**
@@ -186,6 +264,96 @@ public final class BigtableTableAdminGrpc {
       asyncUnimplementedUnaryCall(METHOD_DROP_ROW_RANGE, responseObserver);
     }
 
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Generates a consistency token for a Table, which can be used in
+     * CheckConsistency to check whether mutations to the table that finished
+     * before this call started have been replicated. The tokens will be available
+     * for 90 days.
+     * </pre>
+     */
+    public void generateConsistencyToken(com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GENERATE_CONSISTENCY_TOKEN, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Checks replication consistency based on a consistency token, that is, if
+     * replication has caught up based on the conditions specified in the token
+     * and the check request.
+     * </pre>
+     */
+    public void checkConsistency(com.google.bigtable.admin.v2.CheckConsistencyRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.CheckConsistencyResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CHECK_CONSISTENCY, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new snapshot in the specified cluster from the specified
+     * source table. The cluster and the table must be in the same instance.
+     * </pre>
+     */
+    public void snapshotTable(com.google.bigtable.admin.v2.SnapshotTableRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_SNAPSHOT_TABLE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets metadata information about the specified snapshot.
+     * </pre>
+     */
+    public void getSnapshot(com.google.bigtable.admin.v2.GetSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Snapshot> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_SNAPSHOT, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists all snapshots associated with the specified cluster.
+     * </pre>
+     */
+    public void listSnapshots(com.google.bigtable.admin.v2.ListSnapshotsRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListSnapshotsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LIST_SNAPSHOTS, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Permanently deletes the specified snapshot.
+     * </pre>
+     */
+    public void deleteSnapshot(com.google.bigtable.admin.v2.DeleteSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_DELETE_SNAPSHOT, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -195,6 +363,13 @@ public final class BigtableTableAdminGrpc {
                 com.google.bigtable.admin.v2.CreateTableRequest,
                 com.google.bigtable.admin.v2.Table>(
                   this, METHODID_CREATE_TABLE)))
+          .addMethod(
+            METHOD_CREATE_TABLE_FROM_SNAPSHOT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest,
+                com.google.longrunning.Operation>(
+                  this, METHODID_CREATE_TABLE_FROM_SNAPSHOT)))
           .addMethod(
             METHOD_LIST_TABLES,
             asyncUnaryCall(
@@ -230,6 +405,48 @@ public final class BigtableTableAdminGrpc {
                 com.google.bigtable.admin.v2.DropRowRangeRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DROP_ROW_RANGE)))
+          .addMethod(
+            METHOD_GENERATE_CONSISTENCY_TOKEN,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest,
+                com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse>(
+                  this, METHODID_GENERATE_CONSISTENCY_TOKEN)))
+          .addMethod(
+            METHOD_CHECK_CONSISTENCY,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.CheckConsistencyRequest,
+                com.google.bigtable.admin.v2.CheckConsistencyResponse>(
+                  this, METHODID_CHECK_CONSISTENCY)))
+          .addMethod(
+            METHOD_SNAPSHOT_TABLE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.SnapshotTableRequest,
+                com.google.longrunning.Operation>(
+                  this, METHODID_SNAPSHOT_TABLE)))
+          .addMethod(
+            METHOD_GET_SNAPSHOT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.GetSnapshotRequest,
+                com.google.bigtable.admin.v2.Snapshot>(
+                  this, METHODID_GET_SNAPSHOT)))
+          .addMethod(
+            METHOD_LIST_SNAPSHOTS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.ListSnapshotsRequest,
+                com.google.bigtable.admin.v2.ListSnapshotsResponse>(
+                  this, METHODID_LIST_SNAPSHOTS)))
+          .addMethod(
+            METHOD_DELETE_SNAPSHOT,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.DeleteSnapshotRequest,
+                com.google.protobuf.Empty>(
+                  this, METHODID_DELETE_SNAPSHOT)))
           .build();
     }
   }
@@ -268,6 +485,22 @@ public final class BigtableTableAdminGrpc {
         io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Table> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_CREATE_TABLE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new table from the specified snapshot. The target table must
+     * not exist. The snapshot and the table must be in the same instance.
+     * </pre>
+     */
+    public void createTableFromSnapshot(com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CREATE_TABLE_FROM_SNAPSHOT, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -329,6 +562,102 @@ public final class BigtableTableAdminGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_DROP_ROW_RANGE, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Generates a consistency token for a Table, which can be used in
+     * CheckConsistency to check whether mutations to the table that finished
+     * before this call started have been replicated. The tokens will be available
+     * for 90 days.
+     * </pre>
+     */
+    public void generateConsistencyToken(com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GENERATE_CONSISTENCY_TOKEN, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Checks replication consistency based on a consistency token, that is, if
+     * replication has caught up based on the conditions specified in the token
+     * and the check request.
+     * </pre>
+     */
+    public void checkConsistency(com.google.bigtable.admin.v2.CheckConsistencyRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.CheckConsistencyResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CHECK_CONSISTENCY, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new snapshot in the specified cluster from the specified
+     * source table. The cluster and the table must be in the same instance.
+     * </pre>
+     */
+    public void snapshotTable(com.google.bigtable.admin.v2.SnapshotTableRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_SNAPSHOT_TABLE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets metadata information about the specified snapshot.
+     * </pre>
+     */
+    public void getSnapshot(com.google.bigtable.admin.v2.GetSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Snapshot> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_SNAPSHOT, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists all snapshots associated with the specified cluster.
+     * </pre>
+     */
+    public void listSnapshots(com.google.bigtable.admin.v2.ListSnapshotsRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListSnapshotsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LIST_SNAPSHOTS, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Permanently deletes the specified snapshot.
+     * </pre>
+     */
+    public void deleteSnapshot(com.google.bigtable.admin.v2.DeleteSnapshotRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_DELETE_SNAPSHOT, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -364,6 +693,21 @@ public final class BigtableTableAdminGrpc {
     public com.google.bigtable.admin.v2.Table createTable(com.google.bigtable.admin.v2.CreateTableRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_CREATE_TABLE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new table from the specified snapshot. The target table must
+     * not exist. The snapshot and the table must be in the same instance.
+     * </pre>
+     */
+    public com.google.longrunning.Operation createTableFromSnapshot(com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CREATE_TABLE_FROM_SNAPSHOT, getCallOptions(), request);
     }
 
     /**
@@ -420,6 +764,96 @@ public final class BigtableTableAdminGrpc {
       return blockingUnaryCall(
           getChannel(), METHOD_DROP_ROW_RANGE, getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Generates a consistency token for a Table, which can be used in
+     * CheckConsistency to check whether mutations to the table that finished
+     * before this call started have been replicated. The tokens will be available
+     * for 90 days.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse generateConsistencyToken(com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GENERATE_CONSISTENCY_TOKEN, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Checks replication consistency based on a consistency token, that is, if
+     * replication has caught up based on the conditions specified in the token
+     * and the check request.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.CheckConsistencyResponse checkConsistency(com.google.bigtable.admin.v2.CheckConsistencyRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CHECK_CONSISTENCY, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new snapshot in the specified cluster from the specified
+     * source table. The cluster and the table must be in the same instance.
+     * </pre>
+     */
+    public com.google.longrunning.Operation snapshotTable(com.google.bigtable.admin.v2.SnapshotTableRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_SNAPSHOT_TABLE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets metadata information about the specified snapshot.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.Snapshot getSnapshot(com.google.bigtable.admin.v2.GetSnapshotRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_SNAPSHOT, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists all snapshots associated with the specified cluster.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.ListSnapshotsResponse listSnapshots(com.google.bigtable.admin.v2.ListSnapshotsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LIST_SNAPSHOTS, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Permanently deletes the specified snapshot.
+     * </pre>
+     */
+    public com.google.protobuf.Empty deleteSnapshot(com.google.bigtable.admin.v2.DeleteSnapshotRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_DELETE_SNAPSHOT, getCallOptions(), request);
+    }
   }
 
   /**
@@ -456,6 +890,22 @@ public final class BigtableTableAdminGrpc {
         com.google.bigtable.admin.v2.CreateTableRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_CREATE_TABLE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new table from the specified snapshot. The target table must
+     * not exist. The snapshot and the table must be in the same instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> createTableFromSnapshot(
+        com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CREATE_TABLE_FROM_SNAPSHOT, getCallOptions()), request);
     }
 
     /**
@@ -517,14 +967,117 @@ public final class BigtableTableAdminGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_DROP_ROW_RANGE, getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Generates a consistency token for a Table, which can be used in
+     * CheckConsistency to check whether mutations to the table that finished
+     * before this call started have been replicated. The tokens will be available
+     * for 90 days.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse> generateConsistencyToken(
+        com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GENERATE_CONSISTENCY_TOKEN, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Checks replication consistency based on a consistency token, that is, if
+     * replication has caught up based on the conditions specified in the token
+     * and the check request.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.CheckConsistencyResponse> checkConsistency(
+        com.google.bigtable.admin.v2.CheckConsistencyRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CHECK_CONSISTENCY, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates a new snapshot in the specified cluster from the specified
+     * source table. The cluster and the table must be in the same instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> snapshotTable(
+        com.google.bigtable.admin.v2.SnapshotTableRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_SNAPSHOT_TABLE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets metadata information about the specified snapshot.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.Snapshot> getSnapshot(
+        com.google.bigtable.admin.v2.GetSnapshotRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_SNAPSHOT, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists all snapshots associated with the specified cluster.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.ListSnapshotsResponse> listSnapshots(
+        com.google.bigtable.admin.v2.ListSnapshotsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LIST_SNAPSHOTS, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable snapshots. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Permanently deletes the specified snapshot.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteSnapshot(
+        com.google.bigtable.admin.v2.DeleteSnapshotRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_DELETE_SNAPSHOT, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_TABLE = 0;
-  private static final int METHODID_LIST_TABLES = 1;
-  private static final int METHODID_GET_TABLE = 2;
-  private static final int METHODID_DELETE_TABLE = 3;
-  private static final int METHODID_MODIFY_COLUMN_FAMILIES = 4;
-  private static final int METHODID_DROP_ROW_RANGE = 5;
+  private static final int METHODID_CREATE_TABLE_FROM_SNAPSHOT = 1;
+  private static final int METHODID_LIST_TABLES = 2;
+  private static final int METHODID_GET_TABLE = 3;
+  private static final int METHODID_DELETE_TABLE = 4;
+  private static final int METHODID_MODIFY_COLUMN_FAMILIES = 5;
+  private static final int METHODID_DROP_ROW_RANGE = 6;
+  private static final int METHODID_GENERATE_CONSISTENCY_TOKEN = 7;
+  private static final int METHODID_CHECK_CONSISTENCY = 8;
+  private static final int METHODID_SNAPSHOT_TABLE = 9;
+  private static final int METHODID_GET_SNAPSHOT = 10;
+  private static final int METHODID_LIST_SNAPSHOTS = 11;
+  private static final int METHODID_DELETE_SNAPSHOT = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -547,6 +1100,10 @@ public final class BigtableTableAdminGrpc {
           serviceImpl.createTable((com.google.bigtable.admin.v2.CreateTableRequest) request,
               (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Table>) responseObserver);
           break;
+        case METHODID_CREATE_TABLE_FROM_SNAPSHOT:
+          serviceImpl.createTableFromSnapshot((com.google.bigtable.admin.v2.CreateTableFromSnapshotRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
+          break;
         case METHODID_LIST_TABLES:
           serviceImpl.listTables((com.google.bigtable.admin.v2.ListTablesRequest) request,
               (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListTablesResponse>) responseObserver);
@@ -565,6 +1122,30 @@ public final class BigtableTableAdminGrpc {
           break;
         case METHODID_DROP_ROW_RANGE:
           serviceImpl.dropRowRange((com.google.bigtable.admin.v2.DropRowRangeRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_GENERATE_CONSISTENCY_TOKEN:
+          serviceImpl.generateConsistencyToken((com.google.bigtable.admin.v2.GenerateConsistencyTokenRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.GenerateConsistencyTokenResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_CONSISTENCY:
+          serviceImpl.checkConsistency((com.google.bigtable.admin.v2.CheckConsistencyRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.CheckConsistencyResponse>) responseObserver);
+          break;
+        case METHODID_SNAPSHOT_TABLE:
+          serviceImpl.snapshotTable((com.google.bigtable.admin.v2.SnapshotTableRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
+          break;
+        case METHODID_GET_SNAPSHOT:
+          serviceImpl.getSnapshot((com.google.bigtable.admin.v2.GetSnapshotRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Snapshot>) responseObserver);
+          break;
+        case METHODID_LIST_SNAPSHOTS:
+          serviceImpl.listSnapshots((com.google.bigtable.admin.v2.ListSnapshotsRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListSnapshotsResponse>) responseObserver);
+          break;
+        case METHODID_DELETE_SNAPSHOT:
+          serviceImpl.deleteSnapshot((com.google.bigtable.admin.v2.DeleteSnapshotRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -601,11 +1182,18 @@ public final class BigtableTableAdminGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new BigtableTableAdminDescriptorSupplier())
               .addMethod(METHOD_CREATE_TABLE)
+              .addMethod(METHOD_CREATE_TABLE_FROM_SNAPSHOT)
               .addMethod(METHOD_LIST_TABLES)
               .addMethod(METHOD_GET_TABLE)
               .addMethod(METHOD_DELETE_TABLE)
               .addMethod(METHOD_MODIFY_COLUMN_FAMILIES)
               .addMethod(METHOD_DROP_ROW_RANGE)
+              .addMethod(METHOD_GENERATE_CONSISTENCY_TOKEN)
+              .addMethod(METHOD_CHECK_CONSISTENCY)
+              .addMethod(METHOD_SNAPSHOT_TABLE)
+              .addMethod(METHOD_GET_SNAPSHOT)
+              .addMethod(METHOD_LIST_SNAPSHOTS)
+              .addMethod(METHOD_DELETE_SNAPSHOT)
               .build();
         }
       }

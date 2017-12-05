@@ -42,6 +42,14 @@ public interface RunQueryRequestOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
    */
+  boolean hasStructuredQuery();
+  /**
+   * <pre>
+   * A structured query.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+   */
   com.google.firestore.v1beta1.StructuredQuery getStructuredQuery();
   /**
    * <pre>
@@ -71,6 +79,17 @@ public interface RunQueryRequestOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
    */
+  boolean hasNewTransaction();
+  /**
+   * <pre>
+   * Starts a new transaction and reads the documents.
+   * Defaults to a read-only transaction.
+   * The new transaction ID will be returned as the first response in the
+   * stream.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
+   */
   com.google.firestore.v1beta1.TransactionOptions getNewTransaction();
   /**
    * <pre>
@@ -84,6 +103,15 @@ public interface RunQueryRequestOrBuilder extends
    */
   com.google.firestore.v1beta1.TransactionOptionsOrBuilder getNewTransactionOrBuilder();
 
+  /**
+   * <pre>
+   * Reads documents as they were at the given time.
+   * This may not be older than 60 seconds.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 7;</code>
+   */
+  boolean hasReadTime();
   /**
    * <pre>
    * Reads documents as they were at the given time.

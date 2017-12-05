@@ -9,8 +9,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
 
   /**
    * <pre>
-   * Required. Name of the project where the spans belong. The format is
-   * `projects/PROJECT_ID`.
+   * Required. The name of the project where the spans belong. The format is
+   * `projects/[PROJECT_ID]`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -18,8 +18,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Required. Name of the project where the spans belong. The format is
-   * `projects/PROJECT_ID`.
+   * Required. The name of the project where the spans belong. The format is
+   * `projects/[PROJECT_ID]`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -29,7 +29,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
 
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -38,7 +39,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
       getSpansList();
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -46,7 +48,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
   com.google.devtools.cloudtrace.v2.Span getSpans(int index);
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -54,7 +57,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
   int getSpansCount();
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -63,7 +67,8 @@ public interface BatchWriteSpansRequestOrBuilder extends
       getSpansOrBuilderList();
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>

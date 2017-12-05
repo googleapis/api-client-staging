@@ -14,6 +14,14 @@ public interface TargetOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
    */
+  boolean hasQuery();
+  /**
+   * <pre>
+   * A target specified by a query.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
+   */
   com.google.firestore.v1beta1.Target.QueryTarget getQuery();
   /**
    * <pre>
@@ -24,6 +32,14 @@ public interface TargetOrBuilder extends
    */
   com.google.firestore.v1beta1.Target.QueryTargetOrBuilder getQueryOrBuilder();
 
+  /**
+   * <pre>
+   * A target specified by a set of document names.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Target.DocumentsTarget documents = 3;</code>
+   */
+  boolean hasDocuments();
   /**
    * <pre>
    * A target specified by a set of document names.
@@ -51,6 +67,15 @@ public interface TargetOrBuilder extends
    */
   com.google.protobuf.ByteString getResumeToken();
 
+  /**
+   * <pre>
+   * Start listening after a specific `read_time`.
+   * The client must know the state of matching documents at this time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 11;</code>
+   */
+  boolean hasReadTime();
   /**
    * <pre>
    * Start listening after a specific `read_time`.

@@ -60,12 +60,13 @@ public final class ReportErrorsServiceProto {
       "t\032E.google.devtools.clouderrorreporting.",
       "v1beta1.ReportErrorEventResponse\"?\202\323\344\223\0029" +
       "\"0/v1beta1/{project_name=projects/*}/eve" +
-      "nts:report:\005eventB\323\001\n/com.google.devtool" +
+      "nts:report:\005eventB\371\001\n/com.google.devtool" +
       "s.clouderrorreporting.v1beta1B\030ReportErr" +
       "orsServiceProtoP\001Z^google.golang.org/gen" +
       "proto/googleapis/devtools/clouderrorrepo" +
       "rting/v1beta1;clouderrorreporting\252\002#Goog" +
-      "le.Cloud.ErrorReporting.V1Beta1b\006proto3"
+      "le.Cloud.ErrorReporting.V1Beta1\312\002#Google" +
+      "\\Cloud\\ErrorReporting\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

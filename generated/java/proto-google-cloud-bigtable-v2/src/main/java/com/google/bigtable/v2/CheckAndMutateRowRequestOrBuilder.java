@@ -33,6 +33,34 @@ public interface CheckAndMutateRowRequestOrBuilder extends
 
   /**
    * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 7;</code>
+   */
+  java.lang.String getAppProfileId();
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 7;</code>
+   */
+  com.google.protobuf.ByteString
+      getAppProfileIdBytes();
+
+  /**
+   * <pre>
    * The key of the row to which the conditional mutation should be applied.
    * </pre>
    *

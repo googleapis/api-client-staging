@@ -17,6 +17,17 @@ public interface TransactionOptionsOrBuilder extends
    *
    * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
    */
+  boolean hasReadWrite();
+  /**
+   * <pre>
+   * Transaction may write.
+   * Authorization to begin a read-write transaction requires
+   * `spanner.databases.beginOrRollbackReadWriteTransaction` permission
+   * on the `session` resource.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+   */
   com.google.spanner.v1.TransactionOptions.ReadWrite getReadWrite();
   /**
    * <pre>
@@ -30,6 +41,17 @@ public interface TransactionOptionsOrBuilder extends
    */
   com.google.spanner.v1.TransactionOptions.ReadWriteOrBuilder getReadWriteOrBuilder();
 
+  /**
+   * <pre>
+   * Transaction will not write.
+   * Authorization to begin a read-only transaction requires
+   * `spanner.databases.beginReadOnlyTransaction` permission
+   * on the `session` resource.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+   */
+  boolean hasReadOnly();
   /**
    * <pre>
    * Transaction will not write.

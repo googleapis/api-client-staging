@@ -16,6 +16,7 @@ public  final class Cluster extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.Cluster)
     ClusterOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Cluster.newBuilder() to construct.
   private Cluster(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -31,7 +32,7 @@ public  final class Cluster extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Cluster(
       com.google.protobuf.CodedInputStream input,
@@ -39,6 +40,8 @@ public  final class Cluster extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -48,7 +51,8 @@ public  final class Cluster extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -90,6 +94,7 @@ public  final class Cluster extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -340,9 +345,9 @@ public  final class Cluster extends
    * <pre>
    * (`CreationOnly`)
    * The location where this cluster's nodes and storage reside. For best
-   * performance, clients should be located as close as possible to this cluster.
-   * Currently only zones are supported, so values should be of the form
-   * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+   * performance, clients should be located as close as possible to this
+   * cluster. Currently only zones are supported, so values should be of the
+   * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
    * </pre>
    *
    * <code>string location = 2;</code>
@@ -363,9 +368,9 @@ public  final class Cluster extends
    * <pre>
    * (`CreationOnly`)
    * The location where this cluster's nodes and storage reside. For best
-   * performance, clients should be located as close as possible to this cluster.
-   * Currently only zones are supported, so values should be of the form
-   * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+   * performance, clients should be located as close as possible to this
+   * cluster. Currently only zones are supported, so values should be of the
+   * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
    * </pre>
    *
    * <code>string location = 2;</code>
@@ -479,6 +484,7 @@ public  final class Cluster extends
     if (defaultStorageType_ != com.google.bigtable.admin.v2.StorageType.STORAGE_TYPE_UNSPECIFIED.getNumber()) {
       output.writeEnum(5, defaultStorageType_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -504,11 +510,11 @@ public  final class Cluster extends
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(5, defaultStorageType_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -528,6 +534,7 @@ public  final class Cluster extends
     result = result && (getServeNodes()
         == other.getServeNodes());
     result = result && defaultStorageType_ == other.defaultStorageType_;
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -729,7 +736,7 @@ public  final class Cluster extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -742,12 +749,12 @@ public  final class Cluster extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -778,6 +785,7 @@ public  final class Cluster extends
       if (other.defaultStorageType_ != 0) {
         setDefaultStorageTypeValue(other.getDefaultStorageTypeValue());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -908,9 +916,9 @@ public  final class Cluster extends
      * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this cluster.
-     * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * performance, clients should be located as close as possible to this
+     * cluster. Currently only zones are supported, so values should be of the
+     * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      * </pre>
      *
      * <code>string location = 2;</code>
@@ -931,9 +939,9 @@ public  final class Cluster extends
      * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this cluster.
-     * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * performance, clients should be located as close as possible to this
+     * cluster. Currently only zones are supported, so values should be of the
+     * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      * </pre>
      *
      * <code>string location = 2;</code>
@@ -955,9 +963,9 @@ public  final class Cluster extends
      * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this cluster.
-     * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * performance, clients should be located as close as possible to this
+     * cluster. Currently only zones are supported, so values should be of the
+     * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      * </pre>
      *
      * <code>string location = 2;</code>
@@ -976,9 +984,9 @@ public  final class Cluster extends
      * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this cluster.
-     * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * performance, clients should be located as close as possible to this
+     * cluster. Currently only zones are supported, so values should be of the
+     * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      * </pre>
      *
      * <code>string location = 2;</code>
@@ -993,9 +1001,9 @@ public  final class Cluster extends
      * <pre>
      * (`CreationOnly`)
      * The location where this cluster's nodes and storage reside. For best
-     * performance, clients should be located as close as possible to this cluster.
-     * Currently only zones are supported, so values should be of the form
-     * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * performance, clients should be located as close as possible to this
+     * cluster. Currently only zones are supported, so values should be of the
+     * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      * </pre>
      *
      * <code>string location = 2;</code>
@@ -1197,12 +1205,12 @@ public  final class Cluster extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

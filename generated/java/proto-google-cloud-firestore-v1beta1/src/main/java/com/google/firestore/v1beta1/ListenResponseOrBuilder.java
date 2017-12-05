@@ -14,6 +14,14 @@ public interface ListenResponseOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.TargetChange target_change = 2;</code>
    */
+  boolean hasTargetChange();
+  /**
+   * <pre>
+   * Targets have changed.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TargetChange target_change = 2;</code>
+   */
   com.google.firestore.v1beta1.TargetChange getTargetChange();
   /**
    * <pre>
@@ -31,6 +39,14 @@ public interface ListenResponseOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
    */
+  boolean hasDocumentChange();
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has changed.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
+   */
   com.google.firestore.v1beta1.DocumentChange getDocumentChange();
   /**
    * <pre>
@@ -41,6 +57,14 @@ public interface ListenResponseOrBuilder extends
    */
   com.google.firestore.v1beta1.DocumentChangeOrBuilder getDocumentChangeOrBuilder();
 
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has been deleted.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentDelete document_delete = 4;</code>
+   */
+  boolean hasDocumentDelete();
   /**
    * <pre>
    * A [Document][google.firestore.v1beta1.Document] has been deleted.
@@ -66,6 +90,15 @@ public interface ListenResponseOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
    */
+  boolean hasDocumentRemove();
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has been removed from a target (because it is no longer
+   * relevant to that target).
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
+   */
   com.google.firestore.v1beta1.DocumentRemove getDocumentRemove();
   /**
    * <pre>
@@ -77,6 +110,17 @@ public interface ListenResponseOrBuilder extends
    */
   com.google.firestore.v1beta1.DocumentRemoveOrBuilder getDocumentRemoveOrBuilder();
 
+  /**
+   * <pre>
+   * A filter to apply to the set of documents previously returned for the
+   * given target.
+   * Returned when documents may have been removed from the given target, but
+   * the exact documents are unknown.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.ExistenceFilter filter = 5;</code>
+   */
+  boolean hasFilter();
   /**
    * <pre>
    * A filter to apply to the set of documents previously returned for the

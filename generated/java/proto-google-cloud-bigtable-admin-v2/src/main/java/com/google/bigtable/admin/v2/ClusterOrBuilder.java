@@ -33,9 +33,9 @@ public interface ClusterOrBuilder extends
    * <pre>
    * (`CreationOnly`)
    * The location where this cluster's nodes and storage reside. For best
-   * performance, clients should be located as close as possible to this cluster.
-   * Currently only zones are supported, so values should be of the form
-   * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+   * performance, clients should be located as close as possible to this
+   * cluster. Currently only zones are supported, so values should be of the
+   * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
    * </pre>
    *
    * <code>string location = 2;</code>
@@ -45,9 +45,9 @@ public interface ClusterOrBuilder extends
    * <pre>
    * (`CreationOnly`)
    * The location where this cluster's nodes and storage reside. For best
-   * performance, clients should be located as close as possible to this cluster.
-   * Currently only zones are supported, so values should be of the form
-   * `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+   * performance, clients should be located as close as possible to this
+   * cluster. Currently only zones are supported, so values should be of the
+   * form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
    * </pre>
    *
    * <code>string location = 2;</code>

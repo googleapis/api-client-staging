@@ -177,11 +177,11 @@ public final class BigtableGrpc {
 
     /**
      * <pre>
-     * Modifies a row atomically. The method reads the latest existing timestamp
-     * and value from the specified columns and writes a new entry based on
-     * pre-defined read/modify/write rules. The new value for the timestamp is the
-     * greater of the existing timestamp or the current server time. The method
-     * returns the new contents of all modified cells.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      * </pre>
      */
     public void readModifyWriteRow(com.google.bigtable.v2.ReadModifyWriteRowRequest request,
@@ -325,11 +325,11 @@ public final class BigtableGrpc {
 
     /**
      * <pre>
-     * Modifies a row atomically. The method reads the latest existing timestamp
-     * and value from the specified columns and writes a new entry based on
-     * pre-defined read/modify/write rules. The new value for the timestamp is the
-     * greater of the existing timestamp or the current server time. The method
-     * returns the new contents of all modified cells.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      * </pre>
      */
     public void readModifyWriteRow(com.google.bigtable.v2.ReadModifyWriteRowRequest request,
@@ -425,11 +425,11 @@ public final class BigtableGrpc {
 
     /**
      * <pre>
-     * Modifies a row atomically. The method reads the latest existing timestamp
-     * and value from the specified columns and writes a new entry based on
-     * pre-defined read/modify/write rules. The new value for the timestamp is the
-     * greater of the existing timestamp or the current server time. The method
-     * returns the new contents of all modified cells.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      * </pre>
      */
     public com.google.bigtable.v2.ReadModifyWriteRowResponse readModifyWriteRow(com.google.bigtable.v2.ReadModifyWriteRowRequest request) {
@@ -484,11 +484,11 @@ public final class BigtableGrpc {
 
     /**
      * <pre>
-     * Modifies a row atomically. The method reads the latest existing timestamp
-     * and value from the specified columns and writes a new entry based on
-     * pre-defined read/modify/write rules. The new value for the timestamp is the
-     * greater of the existing timestamp or the current server time. The method
-     * returns the new contents of all modified cells.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.v2.ReadModifyWriteRowResponse> readModifyWriteRow(

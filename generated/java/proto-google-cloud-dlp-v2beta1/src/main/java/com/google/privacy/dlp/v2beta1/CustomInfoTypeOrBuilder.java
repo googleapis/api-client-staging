@@ -42,6 +42,14 @@ public interface CustomInfoTypeOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta1.CustomInfoType.Dictionary dictionary = 2;</code>
    */
+  boolean hasDictionary();
+  /**
+   * <pre>
+   * Dictionary-based custom info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.CustomInfoType.Dictionary dictionary = 2;</code>
+   */
   com.google.privacy.dlp.v2beta1.CustomInfoType.Dictionary getDictionary();
   /**
    * <pre>

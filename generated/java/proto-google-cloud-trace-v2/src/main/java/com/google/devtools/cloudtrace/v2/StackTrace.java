@@ -14,6 +14,7 @@ public  final class StackTrace extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.StackTrace)
     StackTraceOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use StackTrace.newBuilder() to construct.
   private StackTrace(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -25,7 +26,7 @@ public  final class StackTrace extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private StackTrace(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +34,8 @@ public  final class StackTrace extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +45,8 @@ public  final class StackTrace extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -73,6 +77,7 @@ public  final class StackTrace extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -259,6 +264,7 @@ public  final class StackTrace extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.StackTrace.StackFrame)
       StackFrameOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use StackFrame.newBuilder() to construct.
     private StackFrame(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -271,7 +277,7 @@ public  final class StackTrace extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private StackFrame(
         com.google.protobuf.CodedInputStream input,
@@ -279,6 +285,8 @@ public  final class StackTrace extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -288,7 +296,8 @@ public  final class StackTrace extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -376,6 +385,7 @@ public  final class StackTrace extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -628,6 +638,7 @@ public  final class StackTrace extends
       if (sourceVersion_ != null) {
         output.writeMessage(7, getSourceVersion());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -663,11 +674,11 @@ public  final class StackTrace extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getSourceVersion());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -708,6 +719,7 @@ public  final class StackTrace extends
         result = result && getSourceVersion()
             .equals(other.getSourceVersion());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -969,7 +981,7 @@ public  final class StackTrace extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -982,12 +994,12 @@ public  final class StackTrace extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1022,6 +1034,7 @@ public  final class StackTrace extends
         if (other.hasSourceVersion()) {
           mergeSourceVersion(other.getSourceVersion());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1929,12 +1942,12 @@ public  final class StackTrace extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2046,6 +2059,7 @@ public  final class StackTrace extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.StackTrace.StackFrames)
       StackFramesOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use StackFrames.newBuilder() to construct.
     private StackFrames(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -2058,7 +2072,7 @@ public  final class StackTrace extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private StackFrames(
         com.google.protobuf.CodedInputStream input,
@@ -2066,6 +2080,8 @@ public  final class StackTrace extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -2075,7 +2091,8 @@ public  final class StackTrace extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -2105,6 +2122,7 @@ public  final class StackTrace extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           frame_ = java.util.Collections.unmodifiableList(frame_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2209,6 +2227,7 @@ public  final class StackTrace extends
       if (droppedFramesCount_ != 0) {
         output.writeInt32(2, droppedFramesCount_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2224,11 +2243,11 @@ public  final class StackTrace extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, droppedFramesCount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -2244,6 +2263,7 @@ public  final class StackTrace extends
           .equals(other.getFrameList());
       result = result && (getDroppedFramesCount()
           == other.getDroppedFramesCount());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2446,7 +2466,7 @@ public  final class StackTrace extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2459,12 +2479,12 @@ public  final class StackTrace extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2507,6 +2527,7 @@ public  final class StackTrace extends
         if (other.getDroppedFramesCount() != 0) {
           setDroppedFramesCount(other.getDroppedFramesCount());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2891,12 +2912,12 @@ public  final class StackTrace extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -3008,6 +3029,7 @@ public  final class StackTrace extends
     if (stackTraceHashId_ != 0L) {
       output.writeInt64(2, stackTraceHashId_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -3023,11 +3045,11 @@ public  final class StackTrace extends
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(2, stackTraceHashId_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -3046,6 +3068,7 @@ public  final class StackTrace extends
     }
     result = result && (getStackTraceHashId()
         == other.getStackTraceHashId());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -3241,7 +3264,7 @@ public  final class StackTrace extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -3254,12 +3277,12 @@ public  final class StackTrace extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3279,6 +3302,7 @@ public  final class StackTrace extends
       if (other.getStackTraceHashId() != 0L) {
         setStackTraceHashId(other.getStackTraceHashId());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3515,12 +3539,12 @@ public  final class StackTrace extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

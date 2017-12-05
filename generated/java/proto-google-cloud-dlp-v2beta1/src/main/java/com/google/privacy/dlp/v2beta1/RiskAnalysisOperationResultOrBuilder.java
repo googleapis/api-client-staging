@@ -10,12 +10,20 @@ public interface RiskAnalysisOperationResultOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.NumericalStatsResult numerical_stats_result = 3;</code>
    */
+  boolean hasNumericalStatsResult();
+  /**
+   * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.NumericalStatsResult numerical_stats_result = 3;</code>
+   */
   com.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.NumericalStatsResult getNumericalStatsResult();
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.NumericalStatsResult numerical_stats_result = 3;</code>
    */
   com.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.NumericalStatsResultOrBuilder getNumericalStatsResultOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.CategoricalStatsResult categorical_stats_result = 4;</code>
+   */
+  boolean hasCategoricalStatsResult();
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.CategoricalStatsResult categorical_stats_result = 4;</code>
    */
@@ -28,12 +36,20 @@ public interface RiskAnalysisOperationResultOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.KAnonymityResult k_anonymity_result = 5;</code>
    */
+  boolean hasKAnonymityResult();
+  /**
+   * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.KAnonymityResult k_anonymity_result = 5;</code>
+   */
   com.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.KAnonymityResult getKAnonymityResult();
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.KAnonymityResult k_anonymity_result = 5;</code>
    */
   com.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.KAnonymityResultOrBuilder getKAnonymityResultOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.LDiversityResult l_diversity_result = 6;</code>
+   */
+  boolean hasLDiversityResult();
   /**
    * <code>.google.privacy.dlp.v2beta1.RiskAnalysisOperationResult.LDiversityResult l_diversity_result = 6;</code>
    */

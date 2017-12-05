@@ -14,6 +14,7 @@ public  final class TransactionOptions extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.TransactionOptions)
     TransactionOptionsOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use TransactionOptions.newBuilder() to construct.
   private TransactionOptions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class TransactionOptions extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private TransactionOptions(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class TransactionOptions extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class TransactionOptions extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -82,6 +86,7 @@ public  final class TransactionOptions extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -121,6 +126,7 @@ public  final class TransactionOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.TransactionOptions.ReadWrite)
       ReadWriteOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use ReadWrite.newBuilder() to construct.
     private ReadWrite(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -132,7 +138,7 @@ public  final class TransactionOptions extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private ReadWrite(
         com.google.protobuf.CodedInputStream input,
@@ -140,6 +146,8 @@ public  final class TransactionOptions extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -149,7 +157,8 @@ public  final class TransactionOptions extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -167,6 +176,7 @@ public  final class TransactionOptions extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -210,6 +220,7 @@ public  final class TransactionOptions extends
       if (!retryTransaction_.isEmpty()) {
         output.writeBytes(1, retryTransaction_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -221,11 +232,11 @@ public  final class TransactionOptions extends
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, retryTransaction_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -239,6 +250,7 @@ public  final class TransactionOptions extends
       boolean result = true;
       result = result && getRetryTransaction()
           .equals(other.getRetryTransaction());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -418,7 +430,7 @@ public  final class TransactionOptions extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -431,12 +443,12 @@ public  final class TransactionOptions extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -453,6 +465,7 @@ public  final class TransactionOptions extends
         if (other.getRetryTransaction() != com.google.protobuf.ByteString.EMPTY) {
           setRetryTransaction(other.getRetryTransaction());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -521,12 +534,12 @@ public  final class TransactionOptions extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -580,6 +593,15 @@ public  final class TransactionOptions extends
      *
      * <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
+    boolean hasReadTime();
+    /**
+     * <pre>
+     * Reads documents at the given time.
+     * This may not be older than 60 seconds.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp read_time = 2;</code>
+     */
     com.google.protobuf.Timestamp getReadTime();
     /**
      * <pre>
@@ -604,6 +626,7 @@ public  final class TransactionOptions extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.TransactionOptions.ReadOnly)
       ReadOnlyOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use ReadOnly.newBuilder() to construct.
     private ReadOnly(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -614,7 +637,7 @@ public  final class TransactionOptions extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private ReadOnly(
         com.google.protobuf.CodedInputStream input,
@@ -622,6 +645,8 @@ public  final class TransactionOptions extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -631,7 +656,8 @@ public  final class TransactionOptions extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -658,6 +684,7 @@ public  final class TransactionOptions extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -718,6 +745,17 @@ public  final class TransactionOptions extends
      *
      * <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
+    public boolean hasReadTime() {
+      return consistencySelectorCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Reads documents at the given time.
+     * This may not be older than 60 seconds.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp read_time = 2;</code>
+     */
     public com.google.protobuf.Timestamp getReadTime() {
       if (consistencySelectorCase_ == 2) {
          return (com.google.protobuf.Timestamp) consistencySelector_;
@@ -754,6 +792,7 @@ public  final class TransactionOptions extends
       if (consistencySelectorCase_ == 2) {
         output.writeMessage(2, (com.google.protobuf.Timestamp) consistencySelector_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -765,11 +804,11 @@ public  final class TransactionOptions extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (com.google.protobuf.Timestamp) consistencySelector_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -792,6 +831,7 @@ public  final class TransactionOptions extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -984,7 +1024,7 @@ public  final class TransactionOptions extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -997,12 +1037,12 @@ public  final class TransactionOptions extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1025,6 +1065,7 @@ public  final class TransactionOptions extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1068,6 +1109,17 @@ public  final class TransactionOptions extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> readTimeBuilder_;
+      /**
+       * <pre>
+       * Reads documents at the given time.
+       * This may not be older than 60 seconds.
+       * </pre>
+       *
+       * <code>.google.protobuf.Timestamp read_time = 2;</code>
+       */
+      public boolean hasReadTime() {
+        return consistencySelectorCase_ == 2;
+      }
       /**
        * <pre>
        * Reads documents at the given time.
@@ -1237,12 +1289,12 @@ public  final class TransactionOptions extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1330,6 +1382,16 @@ public  final class TransactionOptions extends
    *
    * <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
+  public boolean hasReadOnly() {
+    return modeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * The transaction can only be used for read operations.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
+   */
   public com.google.firestore.v1beta1.TransactionOptions.ReadOnly getReadOnly() {
     if (modeCase_ == 2) {
        return (com.google.firestore.v1beta1.TransactionOptions.ReadOnly) mode_;
@@ -1351,6 +1413,16 @@ public  final class TransactionOptions extends
   }
 
   public static final int READ_WRITE_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * The transaction can be used for both read and write operations.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
+   */
+  public boolean hasReadWrite() {
+    return modeCase_ == 3;
+  }
   /**
    * <pre>
    * The transaction can be used for both read and write operations.
@@ -1396,6 +1468,7 @@ public  final class TransactionOptions extends
     if (modeCase_ == 3) {
       output.writeMessage(3, (com.google.firestore.v1beta1.TransactionOptions.ReadWrite) mode_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1411,11 +1484,11 @@ public  final class TransactionOptions extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (com.google.firestore.v1beta1.TransactionOptions.ReadWrite) mode_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -1442,6 +1515,7 @@ public  final class TransactionOptions extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1645,7 +1719,7 @@ public  final class TransactionOptions extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1658,12 +1732,12 @@ public  final class TransactionOptions extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1690,6 +1764,7 @@ public  final class TransactionOptions extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1733,6 +1808,16 @@ public  final class TransactionOptions extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.TransactionOptions.ReadOnly, com.google.firestore.v1beta1.TransactionOptions.ReadOnly.Builder, com.google.firestore.v1beta1.TransactionOptions.ReadOnlyOrBuilder> readOnlyBuilder_;
+    /**
+     * <pre>
+     * The transaction can only be used for read operations.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
+     */
+    public boolean hasReadOnly() {
+      return modeCase_ == 2;
+    }
     /**
      * <pre>
      * The transaction can only be used for read operations.
@@ -1902,6 +1987,16 @@ public  final class TransactionOptions extends
      *
      * <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
      */
+    public boolean hasReadWrite() {
+      return modeCase_ == 3;
+    }
+    /**
+     * <pre>
+     * The transaction can be used for both read and write operations.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
+     */
     public com.google.firestore.v1beta1.TransactionOptions.ReadWrite getReadWrite() {
       if (readWriteBuilder_ == null) {
         if (modeCase_ == 3) {
@@ -2056,12 +2151,12 @@ public  final class TransactionOptions extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

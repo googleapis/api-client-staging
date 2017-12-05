@@ -63,11 +63,11 @@ public final class ResultSetProto {
       "\001(\0132\036.google.spanner.v1.Transaction\"p\n\016R" +
       "esultSetStats\0220\n\nquery_plan\030\001 \001(\0132\034.goog" +
       "le.spanner.v1.QueryPlan\022,\n\013query_stats\030\002",
-      " \001(\0132\027.google.protobuf.StructB\200\001\n\025com.go" +
+      " \001(\0132\027.google.protobuf.StructB\232\001\n\025com.go" +
       "ogle.spanner.v1B\016ResultSetProtoP\001Z8googl" +
       "e.golang.org/genproto/googleapis/spanner" +
       "/v1;spanner\370\001\001\252\002\027Google.Cloud.Spanner.V1" +
-      "b\006proto3"
+      "\312\002\027Google\\Cloud\\Spanner\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

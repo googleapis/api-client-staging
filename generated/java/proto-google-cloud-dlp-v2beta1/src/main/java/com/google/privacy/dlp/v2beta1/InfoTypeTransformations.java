@@ -17,6 +17,7 @@ public  final class InfoTypeTransformations extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta1.InfoTypeTransformations)
     InfoTypeTransformationsOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use InfoTypeTransformations.newBuilder() to construct.
   private InfoTypeTransformations(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -28,7 +29,7 @@ public  final class InfoTypeTransformations extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private InfoTypeTransformations(
       com.google.protobuf.CodedInputStream input,
@@ -36,6 +37,8 @@ public  final class InfoTypeTransformations extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -45,7 +48,8 @@ public  final class InfoTypeTransformations extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -70,6 +74,7 @@ public  final class InfoTypeTransformations extends
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         transformations_ = java.util.Collections.unmodifiableList(transformations_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -175,6 +180,7 @@ public  final class InfoTypeTransformations extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta1.InfoTypeTransformations.InfoTypeTransformation)
       InfoTypeTransformationOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use InfoTypeTransformation.newBuilder() to construct.
     private InfoTypeTransformation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -186,7 +192,7 @@ public  final class InfoTypeTransformations extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private InfoTypeTransformation(
         com.google.protobuf.CodedInputStream input,
@@ -194,6 +200,8 @@ public  final class InfoTypeTransformations extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -203,7 +211,8 @@ public  final class InfoTypeTransformations extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -241,6 +250,7 @@ public  final class InfoTypeTransformations extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           infoTypes_ = java.util.Collections.unmodifiableList(infoTypes_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -368,6 +378,7 @@ public  final class InfoTypeTransformations extends
       if (primitiveTransformation_ != null) {
         output.writeMessage(2, getPrimitiveTransformation());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -383,11 +394,11 @@ public  final class InfoTypeTransformations extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPrimitiveTransformation());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -406,6 +417,7 @@ public  final class InfoTypeTransformations extends
         result = result && getPrimitiveTransformation()
             .equals(other.getPrimitiveTransformation());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -619,7 +631,7 @@ public  final class InfoTypeTransformations extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -632,12 +644,12 @@ public  final class InfoTypeTransformations extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -680,6 +692,7 @@ public  final class InfoTypeTransformations extends
         if (other.hasPrimitiveTransformation()) {
           mergePrimitiveTransformation(other.getPrimitiveTransformation());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1191,12 +1204,12 @@ public  final class InfoTypeTransformations extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1313,6 +1326,7 @@ public  final class InfoTypeTransformations extends
     for (int i = 0; i < transformations_.size(); i++) {
       output.writeMessage(1, transformations_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1324,11 +1338,11 @@ public  final class InfoTypeTransformations extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, transformations_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -1342,6 +1356,7 @@ public  final class InfoTypeTransformations extends
     boolean result = true;
     result = result && getTransformationsList()
         .equals(other.getTransformationsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1540,7 +1555,7 @@ public  final class InfoTypeTransformations extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1553,12 +1568,12 @@ public  final class InfoTypeTransformations extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1598,6 +1613,7 @@ public  final class InfoTypeTransformations extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1956,12 +1972,12 @@ public  final class InfoTypeTransformations extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

@@ -14,6 +14,7 @@ public  final class TruncatableString extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.TruncatableString)
     TruncatableStringOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use TruncatableString.newBuilder() to construct.
   private TruncatableString(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,7 +27,7 @@ public  final class TruncatableString extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private TruncatableString(
       com.google.protobuf.CodedInputStream input,
@@ -34,6 +35,8 @@ public  final class TruncatableString extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,7 +46,8 @@ public  final class TruncatableString extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -67,6 +71,7 @@ public  final class TruncatableString extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -86,12 +91,12 @@ public  final class TruncatableString extends
   private volatile java.lang.Object value_;
   /**
    * <pre>
-   * The shortened string. For example, if the original string was 500
-   * bytes long and the limit of the string was 128 bytes, then this
-   * value contains the first 128 bytes of the 500-byte string. Note that
-   * truncation always happens on the character boundary, to ensure that
-   * truncated string is still valid UTF8. In case of multi-byte characters,
-   * size of truncated string can be less than truncation limit.
+   * The shortened string. For example, if the original string is 500
+   * bytes long and the limit of the string is 128 bytes, then
+   * `value` contains the first 128 bytes of the 500-byte string.
+   * Truncation always happens on a UTF8 character boundary. If there
+   * are multi-byte characters in the string, then the length of the
+   * shortened string might be less than the size limit.
    * </pre>
    *
    * <code>string value = 1;</code>
@@ -110,12 +115,12 @@ public  final class TruncatableString extends
   }
   /**
    * <pre>
-   * The shortened string. For example, if the original string was 500
-   * bytes long and the limit of the string was 128 bytes, then this
-   * value contains the first 128 bytes of the 500-byte string. Note that
-   * truncation always happens on the character boundary, to ensure that
-   * truncated string is still valid UTF8. In case of multi-byte characters,
-   * size of truncated string can be less than truncation limit.
+   * The shortened string. For example, if the original string is 500
+   * bytes long and the limit of the string is 128 bytes, then
+   * `value` contains the first 128 bytes of the 500-byte string.
+   * Truncation always happens on a UTF8 character boundary. If there
+   * are multi-byte characters in the string, then the length of the
+   * shortened string might be less than the size limit.
    * </pre>
    *
    * <code>string value = 1;</code>
@@ -166,6 +171,7 @@ public  final class TruncatableString extends
     if (truncatedByteCount_ != 0) {
       output.writeInt32(2, truncatedByteCount_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -180,11 +186,11 @@ public  final class TruncatableString extends
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, truncatedByteCount_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -200,6 +206,7 @@ public  final class TruncatableString extends
         .equals(other.getValue());
     result = result && (getTruncatedByteCount()
         == other.getTruncatedByteCount());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -384,7 +391,7 @@ public  final class TruncatableString extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -397,12 +404,12 @@ public  final class TruncatableString extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -423,6 +430,7 @@ public  final class TruncatableString extends
       if (other.getTruncatedByteCount() != 0) {
         setTruncatedByteCount(other.getTruncatedByteCount());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -452,12 +460,12 @@ public  final class TruncatableString extends
     private java.lang.Object value_ = "";
     /**
      * <pre>
-     * The shortened string. For example, if the original string was 500
-     * bytes long and the limit of the string was 128 bytes, then this
-     * value contains the first 128 bytes of the 500-byte string. Note that
-     * truncation always happens on the character boundary, to ensure that
-     * truncated string is still valid UTF8. In case of multi-byte characters,
-     * size of truncated string can be less than truncation limit.
+     * The shortened string. For example, if the original string is 500
+     * bytes long and the limit of the string is 128 bytes, then
+     * `value` contains the first 128 bytes of the 500-byte string.
+     * Truncation always happens on a UTF8 character boundary. If there
+     * are multi-byte characters in the string, then the length of the
+     * shortened string might be less than the size limit.
      * </pre>
      *
      * <code>string value = 1;</code>
@@ -476,12 +484,12 @@ public  final class TruncatableString extends
     }
     /**
      * <pre>
-     * The shortened string. For example, if the original string was 500
-     * bytes long and the limit of the string was 128 bytes, then this
-     * value contains the first 128 bytes of the 500-byte string. Note that
-     * truncation always happens on the character boundary, to ensure that
-     * truncated string is still valid UTF8. In case of multi-byte characters,
-     * size of truncated string can be less than truncation limit.
+     * The shortened string. For example, if the original string is 500
+     * bytes long and the limit of the string is 128 bytes, then
+     * `value` contains the first 128 bytes of the 500-byte string.
+     * Truncation always happens on a UTF8 character boundary. If there
+     * are multi-byte characters in the string, then the length of the
+     * shortened string might be less than the size limit.
      * </pre>
      *
      * <code>string value = 1;</code>
@@ -501,12 +509,12 @@ public  final class TruncatableString extends
     }
     /**
      * <pre>
-     * The shortened string. For example, if the original string was 500
-     * bytes long and the limit of the string was 128 bytes, then this
-     * value contains the first 128 bytes of the 500-byte string. Note that
-     * truncation always happens on the character boundary, to ensure that
-     * truncated string is still valid UTF8. In case of multi-byte characters,
-     * size of truncated string can be less than truncation limit.
+     * The shortened string. For example, if the original string is 500
+     * bytes long and the limit of the string is 128 bytes, then
+     * `value` contains the first 128 bytes of the 500-byte string.
+     * Truncation always happens on a UTF8 character boundary. If there
+     * are multi-byte characters in the string, then the length of the
+     * shortened string might be less than the size limit.
      * </pre>
      *
      * <code>string value = 1;</code>
@@ -523,12 +531,12 @@ public  final class TruncatableString extends
     }
     /**
      * <pre>
-     * The shortened string. For example, if the original string was 500
-     * bytes long and the limit of the string was 128 bytes, then this
-     * value contains the first 128 bytes of the 500-byte string. Note that
-     * truncation always happens on the character boundary, to ensure that
-     * truncated string is still valid UTF8. In case of multi-byte characters,
-     * size of truncated string can be less than truncation limit.
+     * The shortened string. For example, if the original string is 500
+     * bytes long and the limit of the string is 128 bytes, then
+     * `value` contains the first 128 bytes of the 500-byte string.
+     * Truncation always happens on a UTF8 character boundary. If there
+     * are multi-byte characters in the string, then the length of the
+     * shortened string might be less than the size limit.
      * </pre>
      *
      * <code>string value = 1;</code>
@@ -541,12 +549,12 @@ public  final class TruncatableString extends
     }
     /**
      * <pre>
-     * The shortened string. For example, if the original string was 500
-     * bytes long and the limit of the string was 128 bytes, then this
-     * value contains the first 128 bytes of the 500-byte string. Note that
-     * truncation always happens on the character boundary, to ensure that
-     * truncated string is still valid UTF8. In case of multi-byte characters,
-     * size of truncated string can be less than truncation limit.
+     * The shortened string. For example, if the original string is 500
+     * bytes long and the limit of the string is 128 bytes, then
+     * `value` contains the first 128 bytes of the 500-byte string.
+     * Truncation always happens on a UTF8 character boundary. If there
+     * are multi-byte characters in the string, then the length of the
+     * shortened string might be less than the size limit.
      * </pre>
      *
      * <code>string value = 1;</code>
@@ -605,12 +613,12 @@ public  final class TruncatableString extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

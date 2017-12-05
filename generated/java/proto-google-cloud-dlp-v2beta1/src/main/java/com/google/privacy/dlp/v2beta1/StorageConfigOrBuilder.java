@@ -14,6 +14,14 @@ public interface StorageConfigOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
    */
+  boolean hasDatastoreOptions();
+  /**
+   * <pre>
+   * Google Cloud Datastore options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.DatastoreOptions datastore_options = 2;</code>
+   */
   com.google.privacy.dlp.v2beta1.DatastoreOptions getDatastoreOptions();
   /**
    * <pre>
@@ -31,6 +39,14 @@ public interface StorageConfigOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
    */
+  boolean hasCloudStorageOptions();
+  /**
+   * <pre>
+   * Google Cloud Storage options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.CloudStorageOptions cloud_storage_options = 3;</code>
+   */
   com.google.privacy.dlp.v2beta1.CloudStorageOptions getCloudStorageOptions();
   /**
    * <pre>
@@ -41,6 +57,14 @@ public interface StorageConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta1.CloudStorageOptionsOrBuilder getCloudStorageOptionsOrBuilder();
 
+  /**
+   * <pre>
+   * BigQuery options specification.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryOptions big_query_options = 4;</code>
+   */
+  boolean hasBigQueryOptions();
   /**
    * <pre>
    * BigQuery options specification.

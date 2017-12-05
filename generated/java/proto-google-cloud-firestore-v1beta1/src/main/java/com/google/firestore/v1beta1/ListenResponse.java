@@ -14,6 +14,7 @@ public  final class ListenResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.ListenResponse)
     ListenResponseOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use ListenResponse.newBuilder() to construct.
   private ListenResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class ListenResponse extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private ListenResponse(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class ListenResponse extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class ListenResponse extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -124,6 +128,7 @@ public  final class ListenResponse extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -191,6 +196,16 @@ public  final class ListenResponse extends
    *
    * <code>.google.firestore.v1beta1.TargetChange target_change = 2;</code>
    */
+  public boolean hasTargetChange() {
+    return responseTypeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * Targets have changed.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TargetChange target_change = 2;</code>
+   */
   public com.google.firestore.v1beta1.TargetChange getTargetChange() {
     if (responseTypeCase_ == 2) {
        return (com.google.firestore.v1beta1.TargetChange) responseType_;
@@ -219,6 +234,16 @@ public  final class ListenResponse extends
    *
    * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
    */
+  public boolean hasDocumentChange() {
+    return responseTypeCase_ == 3;
+  }
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has changed.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
+   */
   public com.google.firestore.v1beta1.DocumentChange getDocumentChange() {
     if (responseTypeCase_ == 3) {
        return (com.google.firestore.v1beta1.DocumentChange) responseType_;
@@ -240,6 +265,16 @@ public  final class ListenResponse extends
   }
 
   public static final int DOCUMENT_DELETE_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has been deleted.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentDelete document_delete = 4;</code>
+   */
+  public boolean hasDocumentDelete() {
+    return responseTypeCase_ == 4;
+  }
   /**
    * <pre>
    * A [Document][google.firestore.v1beta1.Document] has been deleted.
@@ -276,6 +311,17 @@ public  final class ListenResponse extends
    *
    * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
    */
+  public boolean hasDocumentRemove() {
+    return responseTypeCase_ == 6;
+  }
+  /**
+   * <pre>
+   * A [Document][google.firestore.v1beta1.Document] has been removed from a target (because it is no longer
+   * relevant to that target).
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
+   */
   public com.google.firestore.v1beta1.DocumentRemove getDocumentRemove() {
     if (responseTypeCase_ == 6) {
        return (com.google.firestore.v1beta1.DocumentRemove) responseType_;
@@ -298,6 +344,19 @@ public  final class ListenResponse extends
   }
 
   public static final int FILTER_FIELD_NUMBER = 5;
+  /**
+   * <pre>
+   * A filter to apply to the set of documents previously returned for the
+   * given target.
+   * Returned when documents may have been removed from the given target, but
+   * the exact documents are unknown.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.ExistenceFilter filter = 5;</code>
+   */
+  public boolean hasFilter() {
+    return responseTypeCase_ == 5;
+  }
   /**
    * <pre>
    * A filter to apply to the set of documents previously returned for the
@@ -358,6 +417,7 @@ public  final class ListenResponse extends
     if (responseTypeCase_ == 6) {
       output.writeMessage(6, (com.google.firestore.v1beta1.DocumentRemove) responseType_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -385,11 +445,11 @@ public  final class ListenResponse extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, (com.google.firestore.v1beta1.DocumentRemove) responseType_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -428,6 +488,7 @@ public  final class ListenResponse extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -664,7 +725,7 @@ public  final class ListenResponse extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -677,12 +738,12 @@ public  final class ListenResponse extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -721,6 +782,7 @@ public  final class ListenResponse extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -764,6 +826,16 @@ public  final class ListenResponse extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.TargetChange, com.google.firestore.v1beta1.TargetChange.Builder, com.google.firestore.v1beta1.TargetChangeOrBuilder> targetChangeBuilder_;
+    /**
+     * <pre>
+     * Targets have changed.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.TargetChange target_change = 2;</code>
+     */
+    public boolean hasTargetChange() {
+      return responseTypeCase_ == 2;
+    }
     /**
      * <pre>
      * Targets have changed.
@@ -933,6 +1005,16 @@ public  final class ListenResponse extends
      *
      * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
      */
+    public boolean hasDocumentChange() {
+      return responseTypeCase_ == 3;
+    }
+    /**
+     * <pre>
+     * A [Document][google.firestore.v1beta1.Document] has changed.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.DocumentChange document_change = 3;</code>
+     */
     public com.google.firestore.v1beta1.DocumentChange getDocumentChange() {
       if (documentChangeBuilder_ == null) {
         if (responseTypeCase_ == 3) {
@@ -1088,6 +1170,16 @@ public  final class ListenResponse extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.DocumentDelete, com.google.firestore.v1beta1.DocumentDelete.Builder, com.google.firestore.v1beta1.DocumentDeleteOrBuilder> documentDeleteBuilder_;
+    /**
+     * <pre>
+     * A [Document][google.firestore.v1beta1.Document] has been deleted.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.DocumentDelete document_delete = 4;</code>
+     */
+    public boolean hasDocumentDelete() {
+      return responseTypeCase_ == 4;
+    }
     /**
      * <pre>
      * A [Document][google.firestore.v1beta1.Document] has been deleted.
@@ -1258,6 +1350,17 @@ public  final class ListenResponse extends
      *
      * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
      */
+    public boolean hasDocumentRemove() {
+      return responseTypeCase_ == 6;
+    }
+    /**
+     * <pre>
+     * A [Document][google.firestore.v1beta1.Document] has been removed from a target (because it is no longer
+     * relevant to that target).
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.DocumentRemove document_remove = 6;</code>
+     */
     public com.google.firestore.v1beta1.DocumentRemove getDocumentRemove() {
       if (documentRemoveBuilder_ == null) {
         if (responseTypeCase_ == 6) {
@@ -1420,6 +1523,19 @@ public  final class ListenResponse extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.ExistenceFilter, com.google.firestore.v1beta1.ExistenceFilter.Builder, com.google.firestore.v1beta1.ExistenceFilterOrBuilder> filterBuilder_;
+    /**
+     * <pre>
+     * A filter to apply to the set of documents previously returned for the
+     * given target.
+     * Returned when documents may have been removed from the given target, but
+     * the exact documents are unknown.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.ExistenceFilter filter = 5;</code>
+     */
+    public boolean hasFilter() {
+      return responseTypeCase_ == 5;
+    }
     /**
      * <pre>
      * A filter to apply to the set of documents previously returned for the
@@ -1605,12 +1721,12 @@ public  final class ListenResponse extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

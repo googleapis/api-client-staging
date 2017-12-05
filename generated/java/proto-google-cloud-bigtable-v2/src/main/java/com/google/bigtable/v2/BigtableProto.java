@@ -102,76 +102,81 @@ public final class BigtableProto {
       "gle.bigtable.v2\032\034google/api/annotations." +
       "proto\032\035google/bigtable/v2/data.proto\032\036go" +
       "ogle/protobuf/wrappers.proto\032\027google/rpc" +
-      "/status.proto\"\222\001\n\017ReadRowsRequest\022\022\n\ntab" +
-      "le_name\030\001 \001(\t\022(\n\004rows\030\002 \001(\0132\032.google.big" +
-      "table.v2.RowSet\022-\n\006filter\030\003 \001(\0132\035.google" +
-      ".bigtable.v2.RowFilter\022\022\n\nrows_limit\030\004 \001" +
-      "(\003\"\370\002\n\020ReadRowsResponse\022>\n\006chunks\030\001 \003(\0132" +
-      "..google.bigtable.v2.ReadRowsResponse.Ce",
-      "llChunk\022\034\n\024last_scanned_row_key\030\002 \001(\014\032\205\002" +
-      "\n\tCellChunk\022\017\n\007row_key\030\001 \001(\014\0221\n\013family_n" +
-      "ame\030\002 \001(\0132\034.google.protobuf.StringValue\022" +
-      ".\n\tqualifier\030\003 \001(\0132\033.google.protobuf.Byt" +
-      "esValue\022\030\n\020timestamp_micros\030\004 \001(\003\022\016\n\006lab" +
-      "els\030\005 \003(\t\022\r\n\005value\030\006 \001(\014\022\022\n\nvalue_size\030\007" +
-      " \001(\005\022\023\n\treset_row\030\010 \001(\010H\000\022\024\n\ncommit_row\030" +
-      "\t \001(\010H\000B\014\n\nrow_status\"*\n\024SampleRowKeysRe" +
-      "quest\022\022\n\ntable_name\030\001 \001(\t\">\n\025SampleRowKe" +
-      "ysResponse\022\017\n\007row_key\030\001 \001(\014\022\024\n\014offset_by",
-      "tes\030\002 \001(\003\"h\n\020MutateRowRequest\022\022\n\ntable_n" +
-      "ame\030\001 \001(\t\022\017\n\007row_key\030\002 \001(\014\022/\n\tmutations\030" +
-      "\003 \003(\0132\034.google.bigtable.v2.Mutation\"\023\n\021M" +
-      "utateRowResponse\"\260\001\n\021MutateRowsRequest\022\022" +
-      "\n\ntable_name\030\001 \001(\t\022<\n\007entries\030\002 \003(\0132+.go" +
-      "ogle.bigtable.v2.MutateRowsRequest.Entry" +
-      "\032I\n\005Entry\022\017\n\007row_key\030\001 \001(\014\022/\n\tmutations\030" +
-      "\002 \003(\0132\034.google.bigtable.v2.Mutation\"\217\001\n\022" +
-      "MutateRowsResponse\022=\n\007entries\030\001 \003(\0132,.go" +
-      "ogle.bigtable.v2.MutateRowsResponse.Entr",
-      "y\032:\n\005Entry\022\r\n\005index\030\001 \001(\003\022\"\n\006status\030\002 \001(" +
-      "\0132\022.google.rpc.Status\"\345\001\n\030CheckAndMutate" +
-      "RowRequest\022\022\n\ntable_name\030\001 \001(\t\022\017\n\007row_ke" +
-      "y\030\002 \001(\014\0227\n\020predicate_filter\030\006 \001(\0132\035.goog" +
-      "le.bigtable.v2.RowFilter\0224\n\016true_mutatio" +
-      "ns\030\004 \003(\0132\034.google.bigtable.v2.Mutation\0225" +
-      "\n\017false_mutations\030\005 \003(\0132\034.google.bigtabl" +
-      "e.v2.Mutation\"6\n\031CheckAndMutateRowRespon" +
-      "se\022\031\n\021predicate_matched\030\001 \001(\010\"x\n\031ReadMod" +
-      "ifyWriteRowRequest\022\022\n\ntable_name\030\001 \001(\t\022\017",
-      "\n\007row_key\030\002 \001(\014\0226\n\005rules\030\003 \003(\0132\'.google." +
-      "bigtable.v2.ReadModifyWriteRule\"B\n\032ReadM" +
-      "odifyWriteRowResponse\022$\n\003row\030\001 \001(\0132\027.goo" +
-      "gle.bigtable.v2.Row2\255\010\n\010Bigtable\022\235\001\n\010Rea" +
-      "dRows\022#.google.bigtable.v2.ReadRowsReque" +
-      "st\032$.google.bigtable.v2.ReadRowsResponse" +
-      "\"D\202\323\344\223\002>\"9/v2/{table_name=projects/*/ins" +
-      "tances/*/tables/*}:readRows:\001*0\001\022\256\001\n\rSam" +
-      "pleRowKeys\022(.google.bigtable.v2.SampleRo" +
-      "wKeysRequest\032).google.bigtable.v2.Sample",
-      "RowKeysResponse\"F\202\323\344\223\002@\022>/v2/{table_name" +
-      "=projects/*/instances/*/tables/*}:sample" +
-      "RowKeys0\001\022\237\001\n\tMutateRow\022$.google.bigtabl" +
-      "e.v2.MutateRowRequest\032%.google.bigtable." +
-      "v2.MutateRowResponse\"E\202\323\344\223\002?\":/v2/{table" +
-      "_name=projects/*/instances/*/tables/*}:m" +
-      "utateRow:\001*\022\245\001\n\nMutateRows\022%.google.bigt" +
-      "able.v2.MutateRowsRequest\032&.google.bigta" +
-      "ble.v2.MutateRowsResponse\"F\202\323\344\223\002@\";/v2/{" +
-      "table_name=projects/*/instances/*/tables",
-      "/*}:mutateRows:\001*0\001\022\277\001\n\021CheckAndMutateRo" +
-      "w\022,.google.bigtable.v2.CheckAndMutateRow" +
-      "Request\032-.google.bigtable.v2.CheckAndMut" +
-      "ateRowResponse\"M\202\323\344\223\002G\"B/v2/{table_name=" +
-      "projects/*/instances/*/tables/*}:checkAn" +
-      "dMutateRow:\001*\022\303\001\n\022ReadModifyWriteRow\022-.g" +
-      "oogle.bigtable.v2.ReadModifyWriteRowRequ" +
-      "est\032..google.bigtable.v2.ReadModifyWrite" +
-      "RowResponse\"N\202\323\344\223\002H\"C/v2/{table_name=pro" +
-      "jects/*/instances/*/tables/*}:readModify",
-      "WriteRow:\001*B\200\001\n\026com.google.bigtable.v2B\r" +
-      "BigtableProtoP\001Z:google.golang.org/genpr" +
-      "oto/googleapis/bigtable/v2;bigtable\252\002\030Go" +
-      "ogle.Cloud.Bigtable.V2b\006proto3"
+      "/status.proto\"\252\001\n\017ReadRowsRequest\022\022\n\ntab" +
+      "le_name\030\001 \001(\t\022\026\n\016app_profile_id\030\005 \001(\t\022(\n" +
+      "\004rows\030\002 \001(\0132\032.google.bigtable.v2.RowSet\022" +
+      "-\n\006filter\030\003 \001(\0132\035.google.bigtable.v2.Row" +
+      "Filter\022\022\n\nrows_limit\030\004 \001(\003\"\370\002\n\020ReadRowsR" +
+      "esponse\022>\n\006chunks\030\001 \003(\0132..google.bigtabl",
+      "e.v2.ReadRowsResponse.CellChunk\022\034\n\024last_" +
+      "scanned_row_key\030\002 \001(\014\032\205\002\n\tCellChunk\022\017\n\007r" +
+      "ow_key\030\001 \001(\014\0221\n\013family_name\030\002 \001(\0132\034.goog" +
+      "le.protobuf.StringValue\022.\n\tqualifier\030\003 \001" +
+      "(\0132\033.google.protobuf.BytesValue\022\030\n\020times" +
+      "tamp_micros\030\004 \001(\003\022\016\n\006labels\030\005 \003(\t\022\r\n\005val" +
+      "ue\030\006 \001(\014\022\022\n\nvalue_size\030\007 \001(\005\022\023\n\treset_ro" +
+      "w\030\010 \001(\010H\000\022\024\n\ncommit_row\030\t \001(\010H\000B\014\n\nrow_s" +
+      "tatus\"B\n\024SampleRowKeysRequest\022\022\n\ntable_n" +
+      "ame\030\001 \001(\t\022\026\n\016app_profile_id\030\002 \001(\t\">\n\025Sam",
+      "pleRowKeysResponse\022\017\n\007row_key\030\001 \001(\014\022\024\n\014o" +
+      "ffset_bytes\030\002 \001(\003\"\200\001\n\020MutateRowRequest\022\022" +
+      "\n\ntable_name\030\001 \001(\t\022\026\n\016app_profile_id\030\004 \001" +
+      "(\t\022\017\n\007row_key\030\002 \001(\014\022/\n\tmutations\030\003 \003(\0132\034" +
+      ".google.bigtable.v2.Mutation\"\023\n\021MutateRo" +
+      "wResponse\"\310\001\n\021MutateRowsRequest\022\022\n\ntable" +
+      "_name\030\001 \001(\t\022\026\n\016app_profile_id\030\003 \001(\t\022<\n\007e" +
+      "ntries\030\002 \003(\0132+.google.bigtable.v2.Mutate" +
+      "RowsRequest.Entry\032I\n\005Entry\022\017\n\007row_key\030\001 " +
+      "\001(\014\022/\n\tmutations\030\002 \003(\0132\034.google.bigtable",
+      ".v2.Mutation\"\217\001\n\022MutateRowsResponse\022=\n\007e" +
+      "ntries\030\001 \003(\0132,.google.bigtable.v2.Mutate" +
+      "RowsResponse.Entry\032:\n\005Entry\022\r\n\005index\030\001 \001" +
+      "(\003\022\"\n\006status\030\002 \001(\0132\022.google.rpc.Status\"\375" +
+      "\001\n\030CheckAndMutateRowRequest\022\022\n\ntable_nam" +
+      "e\030\001 \001(\t\022\026\n\016app_profile_id\030\007 \001(\t\022\017\n\007row_k" +
+      "ey\030\002 \001(\014\0227\n\020predicate_filter\030\006 \001(\0132\035.goo" +
+      "gle.bigtable.v2.RowFilter\0224\n\016true_mutati" +
+      "ons\030\004 \003(\0132\034.google.bigtable.v2.Mutation\022" +
+      "5\n\017false_mutations\030\005 \003(\0132\034.google.bigtab",
+      "le.v2.Mutation\"6\n\031CheckAndMutateRowRespo" +
+      "nse\022\031\n\021predicate_matched\030\001 \001(\010\"\220\001\n\031ReadM" +
+      "odifyWriteRowRequest\022\022\n\ntable_name\030\001 \001(\t" +
+      "\022\026\n\016app_profile_id\030\004 \001(\t\022\017\n\007row_key\030\002 \001(" +
+      "\014\0226\n\005rules\030\003 \003(\0132\'.google.bigtable.v2.Re" +
+      "adModifyWriteRule\"B\n\032ReadModifyWriteRowR" +
+      "esponse\022$\n\003row\030\001 \001(\0132\027.google.bigtable.v" +
+      "2.Row2\255\010\n\010Bigtable\022\235\001\n\010ReadRows\022#.google" +
+      ".bigtable.v2.ReadRowsRequest\032$.google.bi" +
+      "gtable.v2.ReadRowsResponse\"D\202\323\344\223\002>\"9/v2/",
+      "{table_name=projects/*/instances/*/table" +
+      "s/*}:readRows:\001*0\001\022\256\001\n\rSampleRowKeys\022(.g" +
+      "oogle.bigtable.v2.SampleRowKeysRequest\032)" +
+      ".google.bigtable.v2.SampleRowKeysRespons" +
+      "e\"F\202\323\344\223\002@\022>/v2/{table_name=projects/*/in" +
+      "stances/*/tables/*}:sampleRowKeys0\001\022\237\001\n\t" +
+      "MutateRow\022$.google.bigtable.v2.MutateRow" +
+      "Request\032%.google.bigtable.v2.MutateRowRe" +
+      "sponse\"E\202\323\344\223\002?\":/v2/{table_name=projects" +
+      "/*/instances/*/tables/*}:mutateRow:\001*\022\245\001",
+      "\n\nMutateRows\022%.google.bigtable.v2.Mutate" +
+      "RowsRequest\032&.google.bigtable.v2.MutateR" +
+      "owsResponse\"F\202\323\344\223\002@\";/v2/{table_name=pro" +
+      "jects/*/instances/*/tables/*}:mutateRows" +
+      ":\001*0\001\022\277\001\n\021CheckAndMutateRow\022,.google.big" +
+      "table.v2.CheckAndMutateRowRequest\032-.goog" +
+      "le.bigtable.v2.CheckAndMutateRowResponse" +
+      "\"M\202\323\344\223\002G\"B/v2/{table_name=projects/*/ins" +
+      "tances/*/tables/*}:checkAndMutateRow:\001*\022" +
+      "\303\001\n\022ReadModifyWriteRow\022-.google.bigtable",
+      ".v2.ReadModifyWriteRowRequest\032..google.b" +
+      "igtable.v2.ReadModifyWriteRowResponse\"N\202" +
+      "\323\344\223\002H\"C/v2/{table_name=projects/*/instan" +
+      "ces/*/tables/*}:readModifyWriteRow:\001*B\233\001" +
+      "\n\026com.google.bigtable.v2B\rBigtableProtoP" +
+      "\001Z:google.golang.org/genproto/googleapis" +
+      "/bigtable/v2;bigtable\252\002\030Google.Cloud.Big" +
+      "table.V2\312\002\030Google\\Cloud\\Bigtable\\V2b\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -194,7 +199,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_ReadRowsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_ReadRowsRequest_descriptor,
-        new java.lang.String[] { "TableName", "Rows", "Filter", "RowsLimit", });
+        new java.lang.String[] { "TableName", "AppProfileId", "Rows", "Filter", "RowsLimit", });
     internal_static_google_bigtable_v2_ReadRowsResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_google_bigtable_v2_ReadRowsResponse_fieldAccessorTable = new
@@ -212,7 +217,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_SampleRowKeysRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_SampleRowKeysRequest_descriptor,
-        new java.lang.String[] { "TableName", });
+        new java.lang.String[] { "TableName", "AppProfileId", });
     internal_static_google_bigtable_v2_SampleRowKeysResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_google_bigtable_v2_SampleRowKeysResponse_fieldAccessorTable = new
@@ -224,7 +229,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_MutateRowRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_MutateRowRequest_descriptor,
-        new java.lang.String[] { "TableName", "RowKey", "Mutations", });
+        new java.lang.String[] { "TableName", "AppProfileId", "RowKey", "Mutations", });
     internal_static_google_bigtable_v2_MutateRowResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_google_bigtable_v2_MutateRowResponse_fieldAccessorTable = new
@@ -236,7 +241,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_MutateRowsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_MutateRowsRequest_descriptor,
-        new java.lang.String[] { "TableName", "Entries", });
+        new java.lang.String[] { "TableName", "AppProfileId", "Entries", });
     internal_static_google_bigtable_v2_MutateRowsRequest_Entry_descriptor =
       internal_static_google_bigtable_v2_MutateRowsRequest_descriptor.getNestedTypes().get(0);
     internal_static_google_bigtable_v2_MutateRowsRequest_Entry_fieldAccessorTable = new
@@ -260,7 +265,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_CheckAndMutateRowRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_CheckAndMutateRowRequest_descriptor,
-        new java.lang.String[] { "TableName", "RowKey", "PredicateFilter", "TrueMutations", "FalseMutations", });
+        new java.lang.String[] { "TableName", "AppProfileId", "RowKey", "PredicateFilter", "TrueMutations", "FalseMutations", });
     internal_static_google_bigtable_v2_CheckAndMutateRowResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_google_bigtable_v2_CheckAndMutateRowResponse_fieldAccessorTable = new
@@ -272,7 +277,7 @@ public final class BigtableProto {
     internal_static_google_bigtable_v2_ReadModifyWriteRowRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_google_bigtable_v2_ReadModifyWriteRowRequest_descriptor,
-        new java.lang.String[] { "TableName", "RowKey", "Rules", });
+        new java.lang.String[] { "TableName", "AppProfileId", "RowKey", "Rules", });
     internal_static_google_bigtable_v2_ReadModifyWriteRowResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_google_bigtable_v2_ReadModifyWriteRowResponse_fieldAccessorTable = new

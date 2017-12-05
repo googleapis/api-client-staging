@@ -16,6 +16,7 @@ public  final class AsyncRecognizeMetadata extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.speech.v1beta1.AsyncRecognizeMetadata)
     AsyncRecognizeMetadataOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use AsyncRecognizeMetadata.newBuilder() to construct.
   private AsyncRecognizeMetadata(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +28,7 @@ public  final class AsyncRecognizeMetadata extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private AsyncRecognizeMetadata(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +36,8 @@ public  final class AsyncRecognizeMetadata extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +47,8 @@ public  final class AsyncRecognizeMetadata extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -88,6 +92,7 @@ public  final class AsyncRecognizeMetadata extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -204,6 +209,7 @@ public  final class AsyncRecognizeMetadata extends
     if (lastUpdateTime_ != null) {
       output.writeMessage(3, getLastUpdateTime());
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -223,11 +229,11 @@ public  final class AsyncRecognizeMetadata extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getLastUpdateTime());
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -251,6 +257,7 @@ public  final class AsyncRecognizeMetadata extends
       result = result && getLastUpdateTime()
           .equals(other.getLastUpdateTime());
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -462,7 +469,7 @@ public  final class AsyncRecognizeMetadata extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -475,12 +482,12 @@ public  final class AsyncRecognizeMetadata extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -503,6 +510,7 @@ public  final class AsyncRecognizeMetadata extends
       if (other.hasLastUpdateTime()) {
         mergeLastUpdateTime(other.getLastUpdateTime());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -877,12 +885,12 @@ public  final class AsyncRecognizeMetadata extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

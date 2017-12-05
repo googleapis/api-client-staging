@@ -33,6 +33,105 @@ public interface TableOrBuilder extends
 
   /**
    * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * (`OutputOnly`)
+   * Map from cluster ID to per-cluster table state.
+   * If it could not be determined whether or not the table has data in a
+   * particular cluster (for example, if its zone is unavailable), then
+   * there will be an entry for the cluster with UNKNOWN `replication_status`.
+   * Views: `FULL`
+   * </pre>
+   *
+   * <code>map&lt;string, .google.bigtable.admin.v2.Table.ClusterState&gt; cluster_states = 2;</code>
+   */
+  int getClusterStatesCount();
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * (`OutputOnly`)
+   * Map from cluster ID to per-cluster table state.
+   * If it could not be determined whether or not the table has data in a
+   * particular cluster (for example, if its zone is unavailable), then
+   * there will be an entry for the cluster with UNKNOWN `replication_status`.
+   * Views: `FULL`
+   * </pre>
+   *
+   * <code>map&lt;string, .google.bigtable.admin.v2.Table.ClusterState&gt; cluster_states = 2;</code>
+   */
+  boolean containsClusterStates(
+      java.lang.String key);
+  /**
+   * Use {@link #getClusterStatesMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, com.google.bigtable.admin.v2.Table.ClusterState>
+  getClusterStates();
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * (`OutputOnly`)
+   * Map from cluster ID to per-cluster table state.
+   * If it could not be determined whether or not the table has data in a
+   * particular cluster (for example, if its zone is unavailable), then
+   * there will be an entry for the cluster with UNKNOWN `replication_status`.
+   * Views: `FULL`
+   * </pre>
+   *
+   * <code>map&lt;string, .google.bigtable.admin.v2.Table.ClusterState&gt; cluster_states = 2;</code>
+   */
+  java.util.Map<java.lang.String, com.google.bigtable.admin.v2.Table.ClusterState>
+  getClusterStatesMap();
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * (`OutputOnly`)
+   * Map from cluster ID to per-cluster table state.
+   * If it could not be determined whether or not the table has data in a
+   * particular cluster (for example, if its zone is unavailable), then
+   * there will be an entry for the cluster with UNKNOWN `replication_status`.
+   * Views: `FULL`
+   * </pre>
+   *
+   * <code>map&lt;string, .google.bigtable.admin.v2.Table.ClusterState&gt; cluster_states = 2;</code>
+   */
+
+  com.google.bigtable.admin.v2.Table.ClusterState getClusterStatesOrDefault(
+      java.lang.String key,
+      com.google.bigtable.admin.v2.Table.ClusterState defaultValue);
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * (`OutputOnly`)
+   * Map from cluster ID to per-cluster table state.
+   * If it could not be determined whether or not the table has data in a
+   * particular cluster (for example, if its zone is unavailable), then
+   * there will be an entry for the cluster with UNKNOWN `replication_status`.
+   * Views: `FULL`
+   * </pre>
+   *
+   * <code>map&lt;string, .google.bigtable.admin.v2.Table.ClusterState&gt; cluster_states = 2;</code>
+   */
+
+  com.google.bigtable.admin.v2.Table.ClusterState getClusterStatesOrThrow(
+      java.lang.String key);
+
+  /**
+   * <pre>
    * (`CreationOnly`)
    * The column families configured for this table, mapped by column family ID.
    * Views: `SCHEMA_VIEW`, `FULL`

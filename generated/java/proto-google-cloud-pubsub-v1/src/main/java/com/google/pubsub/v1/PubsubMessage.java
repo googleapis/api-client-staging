@@ -15,6 +15,7 @@ public  final class PubsubMessage extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.pubsub.v1.PubsubMessage)
     PubsubMessageOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use PubsubMessage.newBuilder() to construct.
   private PubsubMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +28,7 @@ public  final class PubsubMessage extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private PubsubMessage(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +36,8 @@ public  final class PubsubMessage extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +47,8 @@ public  final class PubsubMessage extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -94,6 +98,7 @@ public  final class PubsubMessage extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -340,6 +345,7 @@ public  final class PubsubMessage extends
     if (publishTime_ != null) {
       output.writeMessage(4, getPublishTime());
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -368,11 +374,11 @@ public  final class PubsubMessage extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getPublishTime());
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -395,6 +401,7 @@ public  final class PubsubMessage extends
       result = result && getPublishTime()
           .equals(other.getPublishTime());
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -627,7 +634,7 @@ public  final class PubsubMessage extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -640,12 +647,12 @@ public  final class PubsubMessage extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -671,6 +678,7 @@ public  final class PubsubMessage extends
       if (other.hasPublishTime()) {
         mergePublishTime(other.getPublishTime());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1166,12 +1174,12 @@ public  final class PubsubMessage extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

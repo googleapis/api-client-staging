@@ -157,12 +157,13 @@ public final class ErrorStatsServiceProto {
       "entsRequest\032A.google.devtools.clouderror" +
       "reporting.v1beta1.DeleteEventsResponse\"1" +
       "\202\323\344\223\002+*)/v1beta1/{project_name=projects/" +
-      "*}/eventsB\321\001\n/com.google.devtools.cloude" +
+      "*}/eventsB\367\001\n/com.google.devtools.cloude" +
       "rrorreporting.v1beta1B\026ErrorStatsService" +
       "ProtoP\001Z^google.golang.org/genproto/goog" +
       "leapis/devtools/clouderrorreporting/v1be" +
       "ta1;clouderrorreporting\252\002#Google.Cloud.E" +
-      "rrorReporting.V1Beta1b\006proto3"
+      "rrorReporting.V1Beta1\312\002#Google\\Cloud\\Err",
+      "orReporting\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

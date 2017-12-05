@@ -34,6 +34,14 @@ public interface ListenRequestOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.Target add_target = 2;</code>
    */
+  boolean hasAddTarget();
+  /**
+   * <pre>
+   * A target to add to this stream.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Target add_target = 2;</code>
+   */
   com.google.firestore.v1beta1.Target getAddTarget();
   /**
    * <pre>

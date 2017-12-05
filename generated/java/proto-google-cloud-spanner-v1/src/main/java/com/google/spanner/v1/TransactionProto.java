@@ -70,10 +70,11 @@ public final class TransactionProto {
       "google.spanner.v1.TransactionOptionsH\000\022\014",
       "\n\002id\030\002 \001(\014H\000\0226\n\005begin\030\003 \001(\0132%.google.spa" +
       "nner.v1.TransactionOptionsH\000B\n\n\010selector" +
-      "B\177\n\025com.google.spanner.v1B\020TransactionPr" +
-      "otoP\001Z8google.golang.org/genproto/google" +
-      "apis/spanner/v1;spanner\252\002\027Google.Cloud.S" +
-      "panner.V1b\006proto3"
+      "B\231\001\n\025com.google.spanner.v1B\020TransactionP" +
+      "rotoP\001Z8google.golang.org/genproto/googl" +
+      "eapis/spanner/v1;spanner\252\002\027Google.Cloud." +
+      "Spanner.V1\312\002\027Google\\Cloud\\Spanner\\V1b\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -159,11 +159,11 @@ public final class MetricServiceProto {
       "\022\206\001\n\020CreateTimeSeries\022-.google.monitorin" +
       "g.v3.CreateTimeSeriesRequest\032\026.google.pr" +
       "otobuf.Empty\"+\202\323\344\223\002%\" /v3/{name=projects" +
-      "/*}/timeSeries:\001*B\215\001\n\030com.google.monitor" +
+      "/*}/timeSeries:\001*B\252\001\n\030com.google.monitor" +
       "ing.v3B\022MetricServiceProtoP\001Z>google.gol" +
       "ang.org/genproto/googleapis/monitoring/v" +
       "3;monitoring\252\002\032Google.Cloud.Monitoring.V",
-      "3b\006proto3"
+      "3\312\002\032Google\\Cloud\\Monitoring\\V3b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

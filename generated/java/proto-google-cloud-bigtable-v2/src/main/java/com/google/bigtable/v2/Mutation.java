@@ -14,6 +14,7 @@ public  final class Mutation extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.v2.Mutation)
     MutationOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Mutation.newBuilder() to construct.
   private Mutation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class Mutation extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Mutation(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class Mutation extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class Mutation extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -110,6 +114,7 @@ public  final class Mutation extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -192,6 +197,7 @@ public  final class Mutation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.v2.Mutation.SetCell)
       SetCellOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use SetCell.newBuilder() to construct.
     private SetCell(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -206,7 +212,7 @@ public  final class Mutation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private SetCell(
         com.google.protobuf.CodedInputStream input,
@@ -214,6 +220,8 @@ public  final class Mutation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -223,7 +231,8 @@ public  final class Mutation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -257,6 +266,7 @@ public  final class Mutation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -384,6 +394,7 @@ public  final class Mutation extends
       if (!value_.isEmpty()) {
         output.writeBytes(4, value_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -406,11 +417,11 @@ public  final class Mutation extends
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, value_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -430,6 +441,7 @@ public  final class Mutation extends
           == other.getTimestampMicros());
       result = result && getValue()
           .equals(other.getValue());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -625,7 +637,7 @@ public  final class Mutation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -638,12 +650,12 @@ public  final class Mutation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -670,6 +682,7 @@ public  final class Mutation extends
         if (other.getValue() != com.google.protobuf.ByteString.EMPTY) {
           setValue(other.getValue());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -926,12 +939,12 @@ public  final class Mutation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1044,6 +1057,7 @@ public  final class Mutation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.v2.Mutation.DeleteFromColumn)
       DeleteFromColumnOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DeleteFromColumn.newBuilder() to construct.
     private DeleteFromColumn(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1056,7 +1070,7 @@ public  final class Mutation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DeleteFromColumn(
         com.google.protobuf.CodedInputStream input,
@@ -1064,6 +1078,8 @@ public  final class Mutation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1073,7 +1089,8 @@ public  final class Mutation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1110,6 +1127,7 @@ public  final class Mutation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1237,6 +1255,7 @@ public  final class Mutation extends
       if (timeRange_ != null) {
         output.writeMessage(3, getTimeRange());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1255,11 +1274,11 @@ public  final class Mutation extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getTimeRange());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1280,6 +1299,7 @@ public  final class Mutation extends
         result = result && getTimeRange()
             .equals(other.getTimeRange());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1480,7 +1500,7 @@ public  final class Mutation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1493,12 +1513,12 @@ public  final class Mutation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1522,6 +1542,7 @@ public  final class Mutation extends
         if (other.hasTimeRange()) {
           mergeTimeRange(other.getTimeRange());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1840,12 +1861,12 @@ public  final class Mutation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1922,6 +1943,7 @@ public  final class Mutation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.v2.Mutation.DeleteFromFamily)
       DeleteFromFamilyOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DeleteFromFamily.newBuilder() to construct.
     private DeleteFromFamily(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1933,7 +1955,7 @@ public  final class Mutation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DeleteFromFamily(
         com.google.protobuf.CodedInputStream input,
@@ -1941,6 +1963,8 @@ public  final class Mutation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1950,7 +1974,8 @@ public  final class Mutation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1969,6 +1994,7 @@ public  final class Mutation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2043,6 +2069,7 @@ public  final class Mutation extends
       if (!getFamilyNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, familyName_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2053,11 +2080,11 @@ public  final class Mutation extends
       if (!getFamilyNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, familyName_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -2071,6 +2098,7 @@ public  final class Mutation extends
       boolean result = true;
       result = result && getFamilyName()
           .equals(other.getFamilyName());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2250,7 +2278,7 @@ public  final class Mutation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2263,12 +2291,12 @@ public  final class Mutation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2286,6 +2314,7 @@ public  final class Mutation extends
           familyName_ = other.familyName_;
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2407,12 +2436,12 @@ public  final class Mutation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2469,6 +2498,7 @@ public  final class Mutation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.v2.Mutation.DeleteFromRow)
       DeleteFromRowOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DeleteFromRow.newBuilder() to construct.
     private DeleteFromRow(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -2479,13 +2509,15 @@ public  final class Mutation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DeleteFromRow(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -2495,7 +2527,8 @@ public  final class Mutation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -2508,6 +2541,7 @@ public  final class Mutation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2535,6 +2569,7 @@ public  final class Mutation extends
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2542,11 +2577,11 @@ public  final class Mutation extends
       if (size != -1) return size;
 
       size = 0;
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -2558,6 +2593,7 @@ public  final class Mutation extends
       com.google.bigtable.v2.Mutation.DeleteFromRow other = (com.google.bigtable.v2.Mutation.DeleteFromRow) obj;
 
       boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2732,7 +2768,7 @@ public  final class Mutation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2745,12 +2781,12 @@ public  final class Mutation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2764,6 +2800,7 @@ public  final class Mutation extends
 
       public Builder mergeFrom(com.google.bigtable.v2.Mutation.DeleteFromRow other) {
         if (other == com.google.bigtable.v2.Mutation.DeleteFromRow.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2791,12 +2828,12 @@ public  final class Mutation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2888,6 +2925,16 @@ public  final class Mutation extends
    *
    * <code>.google.bigtable.v2.Mutation.SetCell set_cell = 1;</code>
    */
+  public boolean hasSetCell() {
+    return mutationCase_ == 1;
+  }
+  /**
+   * <pre>
+   * Set a cell's value.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.Mutation.SetCell set_cell = 1;</code>
+   */
   public com.google.bigtable.v2.Mutation.SetCell getSetCell() {
     if (mutationCase_ == 1) {
        return (com.google.bigtable.v2.Mutation.SetCell) mutation_;
@@ -2909,6 +2956,16 @@ public  final class Mutation extends
   }
 
   public static final int DELETE_FROM_COLUMN_FIELD_NUMBER = 2;
+  /**
+   * <pre>
+   * Deletes cells from a column.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.Mutation.DeleteFromColumn delete_from_column = 2;</code>
+   */
+  public boolean hasDeleteFromColumn() {
+    return mutationCase_ == 2;
+  }
   /**
    * <pre>
    * Deletes cells from a column.
@@ -2944,6 +3001,16 @@ public  final class Mutation extends
    *
    * <code>.google.bigtable.v2.Mutation.DeleteFromFamily delete_from_family = 3;</code>
    */
+  public boolean hasDeleteFromFamily() {
+    return mutationCase_ == 3;
+  }
+  /**
+   * <pre>
+   * Deletes cells from a column family.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.Mutation.DeleteFromFamily delete_from_family = 3;</code>
+   */
   public com.google.bigtable.v2.Mutation.DeleteFromFamily getDeleteFromFamily() {
     if (mutationCase_ == 3) {
        return (com.google.bigtable.v2.Mutation.DeleteFromFamily) mutation_;
@@ -2965,6 +3032,16 @@ public  final class Mutation extends
   }
 
   public static final int DELETE_FROM_ROW_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Deletes cells from the entire row.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.Mutation.DeleteFromRow delete_from_row = 4;</code>
+   */
+  public boolean hasDeleteFromRow() {
+    return mutationCase_ == 4;
+  }
   /**
    * <pre>
    * Deletes cells from the entire row.
@@ -3016,6 +3093,7 @@ public  final class Mutation extends
     if (mutationCase_ == 4) {
       output.writeMessage(4, (com.google.bigtable.v2.Mutation.DeleteFromRow) mutation_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -3039,11 +3117,11 @@ public  final class Mutation extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (com.google.bigtable.v2.Mutation.DeleteFromRow) mutation_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -3078,6 +3156,7 @@ public  final class Mutation extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -3303,7 +3382,7 @@ public  final class Mutation extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -3316,12 +3395,12 @@ public  final class Mutation extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3356,6 +3435,7 @@ public  final class Mutation extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3399,6 +3479,16 @@ public  final class Mutation extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.bigtable.v2.Mutation.SetCell, com.google.bigtable.v2.Mutation.SetCell.Builder, com.google.bigtable.v2.Mutation.SetCellOrBuilder> setCellBuilder_;
+    /**
+     * <pre>
+     * Set a cell's value.
+     * </pre>
+     *
+     * <code>.google.bigtable.v2.Mutation.SetCell set_cell = 1;</code>
+     */
+    public boolean hasSetCell() {
+      return mutationCase_ == 1;
+    }
     /**
      * <pre>
      * Set a cell's value.
@@ -3568,6 +3658,16 @@ public  final class Mutation extends
      *
      * <code>.google.bigtable.v2.Mutation.DeleteFromColumn delete_from_column = 2;</code>
      */
+    public boolean hasDeleteFromColumn() {
+      return mutationCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Deletes cells from a column.
+     * </pre>
+     *
+     * <code>.google.bigtable.v2.Mutation.DeleteFromColumn delete_from_column = 2;</code>
+     */
     public com.google.bigtable.v2.Mutation.DeleteFromColumn getDeleteFromColumn() {
       if (deleteFromColumnBuilder_ == null) {
         if (mutationCase_ == 2) {
@@ -3723,6 +3823,16 @@ public  final class Mutation extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.bigtable.v2.Mutation.DeleteFromFamily, com.google.bigtable.v2.Mutation.DeleteFromFamily.Builder, com.google.bigtable.v2.Mutation.DeleteFromFamilyOrBuilder> deleteFromFamilyBuilder_;
+    /**
+     * <pre>
+     * Deletes cells from a column family.
+     * </pre>
+     *
+     * <code>.google.bigtable.v2.Mutation.DeleteFromFamily delete_from_family = 3;</code>
+     */
+    public boolean hasDeleteFromFamily() {
+      return mutationCase_ == 3;
+    }
     /**
      * <pre>
      * Deletes cells from a column family.
@@ -3892,6 +4002,16 @@ public  final class Mutation extends
      *
      * <code>.google.bigtable.v2.Mutation.DeleteFromRow delete_from_row = 4;</code>
      */
+    public boolean hasDeleteFromRow() {
+      return mutationCase_ == 4;
+    }
+    /**
+     * <pre>
+     * Deletes cells from the entire row.
+     * </pre>
+     *
+     * <code>.google.bigtable.v2.Mutation.DeleteFromRow delete_from_row = 4;</code>
+     */
     public com.google.bigtable.v2.Mutation.DeleteFromRow getDeleteFromRow() {
       if (deleteFromRowBuilder_ == null) {
         if (mutationCase_ == 4) {
@@ -4046,12 +4166,12 @@ public  final class Mutation extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

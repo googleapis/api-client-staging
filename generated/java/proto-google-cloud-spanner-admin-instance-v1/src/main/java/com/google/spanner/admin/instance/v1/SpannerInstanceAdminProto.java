@@ -183,12 +183,13 @@ public final class SpannerInstanceAdminProto {
       "rmissionsRequest\032).google.iam.v1.TestIam" +
       "PermissionsResponse\"C\202\323\344\223\002=\"8/v1/{resour" +
       "ce=projects/*/instances/*}:testIamPermis",
-      "sions:\001*B\266\001\n$com.google.spanner.admin.in" +
+      "sions:\001*B\337\001\n$com.google.spanner.admin.in" +
       "stance.v1B\031SpannerInstanceAdminProtoP\001ZH" +
       "google.golang.org/genproto/googleapis/sp" +
       "anner/admin/instance/v1;instance\252\002&Googl" +
-      "e.Cloud.Spanner.Admin.Instance.V1b\006proto" +
-      "3"
+      "e.Cloud.Spanner.Admin.Instance.V1\312\002&Goog" +
+      "le\\Cloud\\Spanner\\Admin\\Instance\\V1b\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

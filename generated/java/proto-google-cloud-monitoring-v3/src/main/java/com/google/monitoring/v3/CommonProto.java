@@ -70,11 +70,12 @@ public final class CommonProto {
       "DUCE_COUNT_TRUE\020\007\022\030\n\024REDUCE_FRACTION_TRU",
       "E\020\010\022\030\n\024REDUCE_PERCENTILE_99\020\t\022\030\n\024REDUCE_" +
       "PERCENTILE_95\020\n\022\030\n\024REDUCE_PERCENTILE_50\020" +
-      "\013\022\030\n\024REDUCE_PERCENTILE_05\020\014B\206\001\n\030com.goog" +
+      "\013\022\030\n\024REDUCE_PERCENTILE_05\020\014B\243\001\n\030com.goog" +
       "le.monitoring.v3B\013CommonProtoP\001Z>google." +
       "golang.org/genproto/googleapis/monitorin" +
       "g/v3;monitoring\252\002\032Google.Cloud.Monitorin" +
-      "g.V3b\006proto3"
+      "g.V3\312\002\032Google\\Cloud\\Monitoring\\V3b\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

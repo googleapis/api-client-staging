@@ -14,6 +14,14 @@ public interface AttributeValueOrBuilder extends
    *
    * <code>.google.devtools.cloudtrace.v2.TruncatableString string_value = 1;</code>
    */
+  boolean hasStringValue();
+  /**
+   * <pre>
+   * A string up to 256 bytes long.
+   * </pre>
+   *
+   * <code>.google.devtools.cloudtrace.v2.TruncatableString string_value = 1;</code>
+   */
   com.google.devtools.cloudtrace.v2.TruncatableString getStringValue();
   /**
    * <pre>

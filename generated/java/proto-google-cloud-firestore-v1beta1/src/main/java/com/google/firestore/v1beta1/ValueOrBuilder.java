@@ -60,6 +60,16 @@ public interface ValueOrBuilder extends
    *
    * <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
    */
+  boolean hasTimestampValue();
+  /**
+   * <pre>
+   * A timestamp value.
+   * Precise only to microseconds. When stored, any additional precision is
+   * rounded down.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
+   */
   com.google.protobuf.Timestamp getTimestampValue();
   /**
    * <pre>
@@ -134,6 +144,14 @@ public interface ValueOrBuilder extends
    *
    * <code>.google.type.LatLng geo_point_value = 8;</code>
    */
+  boolean hasGeoPointValue();
+  /**
+   * <pre>
+   * A geo point value representing a point on the surface of Earth.
+   * </pre>
+   *
+   * <code>.google.type.LatLng geo_point_value = 8;</code>
+   */
   com.google.type.LatLng getGeoPointValue();
   /**
    * <pre>
@@ -144,6 +162,15 @@ public interface ValueOrBuilder extends
    */
   com.google.type.LatLngOrBuilder getGeoPointValueOrBuilder();
 
+  /**
+   * <pre>
+   * An array value.
+   * Cannot contain another array value.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.ArrayValue array_value = 9;</code>
+   */
+  boolean hasArrayValue();
   /**
    * <pre>
    * An array value.
@@ -163,6 +190,14 @@ public interface ValueOrBuilder extends
    */
   com.google.firestore.v1beta1.ArrayValueOrBuilder getArrayValueOrBuilder();
 
+  /**
+   * <pre>
+   * A map value.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.MapValue map_value = 6;</code>
+   */
+  boolean hasMapValue();
   /**
    * <pre>
    * A map value.

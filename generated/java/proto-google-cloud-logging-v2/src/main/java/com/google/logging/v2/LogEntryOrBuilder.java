@@ -102,6 +102,16 @@ public interface LogEntryOrBuilder extends
    *
    * <code>.google.protobuf.Any proto_payload = 2;</code>
    */
+  boolean hasProtoPayload();
+  /**
+   * <pre>
+   * The log entry payload, represented as a protocol buffer.  Some
+   * Google Cloud Platform services use this field for their log
+   * entry payloads.
+   * </pre>
+   *
+   * <code>.google.protobuf.Any proto_payload = 2;</code>
+   */
   com.google.protobuf.Any getProtoPayload();
   /**
    * <pre>
@@ -132,6 +142,15 @@ public interface LogEntryOrBuilder extends
   com.google.protobuf.ByteString
       getTextPayloadBytes();
 
+  /**
+   * <pre>
+   * The log entry payload, represented as a structure that is
+   * expressed as a JSON object.
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct json_payload = 6;</code>
+   */
+  boolean hasJsonPayload();
   /**
    * <pre>
    * The log entry payload, represented as a structure that is

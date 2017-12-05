@@ -25,6 +25,16 @@ public interface GcRuleOrBuilder extends
    *
    * <code>.google.protobuf.Duration max_age = 2;</code>
    */
+  boolean hasMaxAge();
+  /**
+   * <pre>
+   * Delete cells in a column older than the given age.
+   * Values must be at least one millisecond, and will be truncated to
+   * microsecond granularity.
+   * </pre>
+   *
+   * <code>.google.protobuf.Duration max_age = 2;</code>
+   */
   com.google.protobuf.Duration getMaxAge();
   /**
    * <pre>
@@ -44,6 +54,14 @@ public interface GcRuleOrBuilder extends
    *
    * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
    */
+  boolean hasIntersection();
+  /**
+   * <pre>
+   * Delete cells that would be deleted by every nested rule.
+   * </pre>
+   *
+   * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
+   */
   com.google.bigtable.admin.v2.GcRule.Intersection getIntersection();
   /**
    * <pre>
@@ -54,6 +72,14 @@ public interface GcRuleOrBuilder extends
    */
   com.google.bigtable.admin.v2.GcRule.IntersectionOrBuilder getIntersectionOrBuilder();
 
+  /**
+   * <pre>
+   * Delete cells that would be deleted by any nested rule.
+   * </pre>
+   *
+   * <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
+   */
+  boolean hasUnion();
   /**
    * <pre>
    * Delete cells that would be deleted by any nested rule.

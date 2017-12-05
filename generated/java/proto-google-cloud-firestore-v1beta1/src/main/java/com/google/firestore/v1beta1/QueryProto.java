@@ -128,11 +128,11 @@ public final class QueryProto {
       "ON_UNSPECIFIED\020\000\022\r\n\tASCENDING\020\001\022\016\n\nDESCE" +
       "NDING\020\002\"I\n\006Cursor\022/\n\006values\030\001 \003(\0132\037.goog" +
       "le.firestore.v1beta1.Value\022\016\n\006before\030\002 \001" +
-      "(\010B\227\001\n\034com.google.firestore.v1beta1B\nQue" +
+      "(\010B\270\001\n\034com.google.firestore.v1beta1B\nQue" +
       "ryProtoP\001ZAgoogle.golang.org/genproto/go" +
       "ogleapis/firestore/v1beta1;firestore\242\002\004G" +
-      "CFS\252\002\036Google.Cloud.Firestore.V1Beta1b\006pr" +
-      "oto3"
+      "CFS\252\002\036Google.Cloud.Firestore.V1Beta1\312\002\036G" +
+      "oogle\\Cloud\\Firestore\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

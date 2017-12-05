@@ -14,6 +14,14 @@ public interface WriteOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.Document update = 1;</code>
    */
+  boolean hasUpdate();
+  /**
+   * <pre>
+   * A document to write.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Document update = 1;</code>
+   */
   com.google.firestore.v1beta1.Document getUpdate();
   /**
    * <pre>
@@ -44,6 +52,17 @@ public interface WriteOrBuilder extends
   com.google.protobuf.ByteString
       getDeleteBytes();
 
+  /**
+   * <pre>
+   * Applies a tranformation to a document.
+   * At most one `transform` per document is allowed in a given request.
+   * An `update` cannot follow a `transform` on the same document in a given
+   * request.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentTransform transform = 6;</code>
+   */
+  boolean hasTransform();
   /**
    * <pre>
    * Applies a tranformation to a document.
