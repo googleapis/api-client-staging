@@ -17,9 +17,8 @@ repositories {
 }
 
 dependencies {
-  compile project(":proto-google-longrunning-v1")
+  compile project(":proto-google-common-protos")
   compile libraries.gax, libraries.gaxGrpc
-  testCompile project(":grpc-google-longrunning-v1")
 }
 
 sourceSets {
