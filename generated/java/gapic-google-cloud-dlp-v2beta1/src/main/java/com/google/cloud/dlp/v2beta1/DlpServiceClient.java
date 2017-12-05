@@ -44,6 +44,7 @@ import com.google.privacy.dlp.v2beta1.ListRootCategoriesResponse;
 import com.google.privacy.dlp.v2beta1.OutputStorageConfig;
 import com.google.privacy.dlp.v2beta1.PrivacyMetric;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest;
+import com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentResponse;
 import com.google.privacy.dlp.v2beta1.ResultName;
@@ -68,10 +69,22 @@ import javax.annotation.Generated;
  * <pre>
  * <code>
  * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
- *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
- *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
- *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
- *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(deidentifyConfig, inspectConfig, items);
+ *   String name = "EMAIL_ADDRESS";
+ *   InfoType infoTypesElement = InfoType.newBuilder()
+ *     .setName(name)
+ *     .build();
+ *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+ *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+ *     .addAllInfoTypes(infoTypes)
+ *     .build();
+ *   String type = "text/plain";
+ *   String value = "My email is example{@literal @}example.com.";
+ *   ContentItem itemsElement = ContentItem.newBuilder()
+ *     .setType(type)
+ *     .setValue(value)
+ *     .build();
+ *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+ *   InspectContentResponse response = dlpServiceClient.inspectContent(inspectConfig, items);
  * }
  * </code>
  * </pre>
@@ -187,206 +200,6 @@ public class DlpServiceClient implements BackgroundResource {
    */
   public final OperationsClient getOperationsClient() {
     return operationsClient;
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * De-identifies potentially sensitive info from a list of strings. This method has limits on
-   * input size and output size.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(deidentifyConfig, inspectConfig, items);
-   * }
-   * </code></pre>
-   *
-   * @param deidentifyConfig Configuration for the de-identification of the list of content items.
-   * @param inspectConfig Configuration for the inspector.
-   * @param items The list of items to inspect. Up to 100 are allowed per request. All items will be
-   *     treated as text/&#42;.
-   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
-   */
-  public final DeidentifyContentResponse deidentifyContent(
-      DeidentifyConfig deidentifyConfig, InspectConfig inspectConfig, List<ContentItem> items) {
-
-    DeidentifyContentRequest request =
-        DeidentifyContentRequest.newBuilder()
-            .setDeidentifyConfig(deidentifyConfig)
-            .setInspectConfig(inspectConfig)
-            .addAllItems(items)
-            .build();
-    return deidentifyContent(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * De-identifies potentially sensitive info from a list of strings. This method has limits on
-   * input size and output size.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
-   *     .setDeidentifyConfig(deidentifyConfig)
-   *     .setInspectConfig(inspectConfig)
-   *     .addAllItems(items)
-   *     .build();
-   *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(request);
-   * }
-   * </code></pre>
-   *
-   * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
-   */
-  public final DeidentifyContentResponse deidentifyContent(DeidentifyContentRequest request) {
-    return deidentifyContentCallable().call(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * De-identifies potentially sensitive info from a list of strings. This method has limits on
-   * input size and output size.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
-   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
-   *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
-   *     .setDeidentifyConfig(deidentifyConfig)
-   *     .setInspectConfig(inspectConfig)
-   *     .addAllItems(items)
-   *     .build();
-   *   ApiFuture&lt;DeidentifyContentResponse&gt; future = dlpServiceClient.deidentifyContentCallable().futureCall(request);
-   *   // Do something
-   *   DeidentifyContentResponse response = future.get();
-   * }
-   * </code></pre>
-   */
-  public final UnaryCallable<DeidentifyContentRequest, DeidentifyContentResponse>
-      deidentifyContentCallable() {
-    return stub.deidentifyContentCallable();
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
-   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
-   *   RiskAnalysisOperationResult response = dlpServiceClient.analyzeDataSourceRiskAsync(privacyMetric, sourceTable).get();
-   * }
-   * </code></pre>
-   *
-   * @param privacyMetric Privacy metric to compute.
-   * @param sourceTable Input dataset to compute metrics over.
-   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
-   */
-  public final OperationFuture<RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
-      analyzeDataSourceRiskAsync(PrivacyMetric privacyMetric, BigQueryTable sourceTable) {
-
-    AnalyzeDataSourceRiskRequest request =
-        AnalyzeDataSourceRiskRequest.newBuilder()
-            .setPrivacyMetric(privacyMetric)
-            .setSourceTable(sourceTable)
-            .build();
-    return analyzeDataSourceRiskAsync(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
-   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
-   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
-   *     .setPrivacyMetric(privacyMetric)
-   *     .setSourceTable(sourceTable)
-   *     .build();
-   *   RiskAnalysisOperationResult response = dlpServiceClient.analyzeDataSourceRiskAsync(request).get();
-   * }
-   * </code></pre>
-   *
-   * @param request The request object containing all of the parameters for the API call.
-   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
-   */
-  public final OperationFuture<RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
-      analyzeDataSourceRiskAsync(AnalyzeDataSourceRiskRequest request) {
-    return analyzeDataSourceRiskOperationCallable().futureCall(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
-   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
-   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
-   *     .setPrivacyMetric(privacyMetric)
-   *     .setSourceTable(sourceTable)
-   *     .build();
-   *   OperationFuture&lt;Operation&gt; future = dlpServiceClient.analyzeDataSourceRiskOperationCallable().futureCall(request);
-   *   // Do something
-   *   RiskAnalysisOperationResult response = future.get();
-   * }
-   * </code></pre>
-   */
-  public final OperationCallable<
-          AnalyzeDataSourceRiskRequest, RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
-      analyzeDataSourceRiskOperationCallable() {
-    return stub.analyzeDataSourceRiskOperationCallable();
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
-   * repository.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
-   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
-   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
-   *     .setPrivacyMetric(privacyMetric)
-   *     .setSourceTable(sourceTable)
-   *     .build();
-   *   ApiFuture&lt;Operation&gt; future = dlpServiceClient.analyzeDataSourceRiskCallable().futureCall(request);
-   *   // Do something
-   *   Operation response = future.get();
-   * }
-   * </code></pre>
-   */
-  public final UnaryCallable<AnalyzeDataSourceRiskRequest, Operation>
-      analyzeDataSourceRiskCallable() {
-    return stub.analyzeDataSourceRiskCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
@@ -593,20 +406,58 @@ public class DlpServiceClient implements BackgroundResource {
    *     .setValue(value)
    *     .build();
    *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
-   *   String name2 = "EMAIL_ADDRESS";
-   *   InfoType infoType = InfoType.newBuilder()
-   *     .setName(name2)
+   *   List&lt;RedactContentRequest.ImageRedactionConfig&gt; imageRedactionConfigs = new ArrayList&lt;&gt;();
+   *   RedactContentResponse response = dlpServiceClient.redactContent(inspectConfig, items, imageRedactionConfigs);
+   * }
+   * </code></pre>
+   *
+   * @param inspectConfig Configuration for the inspector.
+   * @param items The list of items to inspect. Up to 100 are allowed per request.
+   * @param imageRedactionConfigs The configuration for specifying what content to redact from
+   *     images.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final RedactContentResponse redactContent(
+      InspectConfig inspectConfig,
+      List<ContentItem> items,
+      List<RedactContentRequest.ImageRedactionConfig> imageRedactionConfigs) {
+
+    RedactContentRequest request =
+        RedactContentRequest.newBuilder()
+            .setInspectConfig(inspectConfig)
+            .addAllItems(items)
+            .addAllImageRedactionConfigs(imageRedactionConfigs)
+            .build();
+    return redactContent(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Redacts potentially sensitive info from a list of strings. This method has limits on input
+   * size, processing time, and output size.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   String name = "EMAIL_ADDRESS";
+   *   InfoType infoTypesElement = InfoType.newBuilder()
+   *     .setName(name)
    *     .build();
-   *   String replaceWith = "REDACTED";
-   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
-   *     .setInfoType(infoType)
-   *     .setReplaceWith(replaceWith)
+   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
+   *     .addAllInfoTypes(infoTypes)
    *     .build();
-   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
+   *   String type = "text/plain";
+   *   String value = "My email is example{@literal @}example.com.";
+   *   ContentItem itemsElement = ContentItem.newBuilder()
+   *     .setType(type)
+   *     .setValue(value)
+   *     .build();
+   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
-   *     .addAllReplaceConfigs(replaceConfigs)
    *     .build();
    *   RedactContentResponse response = dlpServiceClient.redactContent(request);
    * }
@@ -643,20 +494,9 @@ public class DlpServiceClient implements BackgroundResource {
    *     .setValue(value)
    *     .build();
    *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
-   *   String name2 = "EMAIL_ADDRESS";
-   *   InfoType infoType = InfoType.newBuilder()
-   *     .setName(name2)
-   *     .build();
-   *   String replaceWith = "REDACTED";
-   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
-   *     .setInfoType(infoType)
-   *     .setReplaceWith(replaceWith)
-   *     .build();
-   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
-   *     .addAllReplaceConfigs(replaceConfigs)
    *     .build();
    *   ApiFuture&lt;RedactContentResponse&gt; future = dlpServiceClient.redactContentCallable().futureCall(request);
    *   // Do something
@@ -666,6 +506,206 @@ public class DlpServiceClient implements BackgroundResource {
    */
   public final UnaryCallable<RedactContentRequest, RedactContentResponse> redactContentCallable() {
     return stub.redactContentCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * De-identifies potentially sensitive info from a list of strings. This method has limits on
+   * input size and output size.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
+   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(deidentifyConfig, inspectConfig, items);
+   * }
+   * </code></pre>
+   *
+   * @param deidentifyConfig Configuration for the de-identification of the list of content items.
+   * @param inspectConfig Configuration for the inspector.
+   * @param items The list of items to inspect. Up to 100 are allowed per request. All items will be
+   *     treated as text/&#42;.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final DeidentifyContentResponse deidentifyContent(
+      DeidentifyConfig deidentifyConfig, InspectConfig inspectConfig, List<ContentItem> items) {
+
+    DeidentifyContentRequest request =
+        DeidentifyContentRequest.newBuilder()
+            .setDeidentifyConfig(deidentifyConfig)
+            .setInspectConfig(inspectConfig)
+            .addAllItems(items)
+            .build();
+    return deidentifyContent(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * De-identifies potentially sensitive info from a list of strings. This method has limits on
+   * input size and output size.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
+   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
+   *     .setDeidentifyConfig(deidentifyConfig)
+   *     .setInspectConfig(inspectConfig)
+   *     .addAllItems(items)
+   *     .build();
+   *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(request);
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final DeidentifyContentResponse deidentifyContent(DeidentifyContentRequest request) {
+    return deidentifyContentCallable().call(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * De-identifies potentially sensitive info from a list of strings. This method has limits on
+   * input size and output size.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   DeidentifyConfig deidentifyConfig = DeidentifyConfig.newBuilder().build();
+   *   InspectConfig inspectConfig = InspectConfig.newBuilder().build();
+   *   List&lt;ContentItem&gt; items = new ArrayList&lt;&gt;();
+   *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
+   *     .setDeidentifyConfig(deidentifyConfig)
+   *     .setInspectConfig(inspectConfig)
+   *     .addAllItems(items)
+   *     .build();
+   *   ApiFuture&lt;DeidentifyContentResponse&gt; future = dlpServiceClient.deidentifyContentCallable().futureCall(request);
+   *   // Do something
+   *   DeidentifyContentResponse response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<DeidentifyContentRequest, DeidentifyContentResponse>
+      deidentifyContentCallable() {
+    return stub.deidentifyContentCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
+   * repository.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
+   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
+   *   RiskAnalysisOperationResult response = dlpServiceClient.analyzeDataSourceRiskAsync(privacyMetric, sourceTable).get();
+   * }
+   * </code></pre>
+   *
+   * @param privacyMetric Privacy metric to compute.
+   * @param sourceTable Input dataset to compute metrics over.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final OperationFuture<RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
+      analyzeDataSourceRiskAsync(PrivacyMetric privacyMetric, BigQueryTable sourceTable) {
+
+    AnalyzeDataSourceRiskRequest request =
+        AnalyzeDataSourceRiskRequest.newBuilder()
+            .setPrivacyMetric(privacyMetric)
+            .setSourceTable(sourceTable)
+            .build();
+    return analyzeDataSourceRiskAsync(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
+   * repository.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
+   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
+   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
+   *     .setPrivacyMetric(privacyMetric)
+   *     .setSourceTable(sourceTable)
+   *     .build();
+   *   RiskAnalysisOperationResult response = dlpServiceClient.analyzeDataSourceRiskAsync(request).get();
+   * }
+   * </code></pre>
+   *
+   * @param request The request object containing all of the parameters for the API call.
+   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
+   */
+  public final OperationFuture<RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
+      analyzeDataSourceRiskAsync(AnalyzeDataSourceRiskRequest request) {
+    return analyzeDataSourceRiskOperationCallable().futureCall(request);
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
+   * repository.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
+   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
+   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
+   *     .setPrivacyMetric(privacyMetric)
+   *     .setSourceTable(sourceTable)
+   *     .build();
+   *   OperationFuture&lt;Operation&gt; future = dlpServiceClient.analyzeDataSourceRiskOperationCallable().futureCall(request);
+   *   // Do something
+   *   RiskAnalysisOperationResult response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final OperationCallable<
+          AnalyzeDataSourceRiskRequest, RiskAnalysisOperationResult, RiskAnalysisOperationMetadata>
+      analyzeDataSourceRiskOperationCallable() {
+    return stub.analyzeDataSourceRiskOperationCallable();
+  }
+
+  // AUTO-GENERATED DOCUMENTATION AND METHOD
+  /**
+   * Schedules a job to compute risk analysis metrics over content in a Google Cloud Platform
+   * repository.
+   *
+   * <p>Sample code:
+   *
+   * <pre><code>
+   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
+   *   PrivacyMetric privacyMetric = PrivacyMetric.newBuilder().build();
+   *   BigQueryTable sourceTable = BigQueryTable.newBuilder().build();
+   *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
+   *     .setPrivacyMetric(privacyMetric)
+   *     .setSourceTable(sourceTable)
+   *     .build();
+   *   ApiFuture&lt;Operation&gt; future = dlpServiceClient.analyzeDataSourceRiskCallable().futureCall(request);
+   *   // Do something
+   *   Operation response = future.get();
+   * }
+   * </code></pre>
+   */
+  public final UnaryCallable<AnalyzeDataSourceRiskRequest, Operation>
+      analyzeDataSourceRiskCallable() {
+    return stub.analyzeDataSourceRiskCallable();
   }
 
   // AUTO-GENERATED DOCUMENTATION AND METHOD
