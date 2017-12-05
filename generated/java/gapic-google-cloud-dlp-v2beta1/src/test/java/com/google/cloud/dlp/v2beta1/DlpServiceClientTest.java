@@ -44,7 +44,6 @@ import com.google.privacy.dlp.v2beta1.ListRootCategoriesResponse;
 import com.google.privacy.dlp.v2beta1.OutputStorageConfig;
 import com.google.privacy.dlp.v2beta1.PrivacyMetric;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest;
-import com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentResponse;
 import com.google.privacy.dlp.v2beta1.ResultName;
@@ -214,59 +213,6 @@ public class DlpServiceClientTest {
           Arrays.asList(replaceConfigsElement);
 
       client.redactContent(inspectConfig, items, replaceConfigs);
-      Assert.fail("No exception raised");
-    } catch (InvalidArgumentException e) {
-      // Expected exception
-    }
-  }
-
-  @Test
-  @SuppressWarnings("all")
-  public void redactContentTest2() {
-    RedactContentResponse expectedResponse = RedactContentResponse.newBuilder().build();
-    mockDlpService.addResponse(expectedResponse);
-
-    String name = "EMAIL_ADDRESS";
-    InfoType infoTypesElement = InfoType.newBuilder().setName(name).build();
-    List<InfoType> infoTypes = Arrays.asList(infoTypesElement);
-    InspectConfig inspectConfig = InspectConfig.newBuilder().addAllInfoTypes(infoTypes).build();
-    String type = "text/plain";
-    String value = "My email is example@example.com.";
-    ContentItem itemsElement = ContentItem.newBuilder().setType(type).setValue(value).build();
-    List<ContentItem> items = Arrays.asList(itemsElement);
-    List<RedactContentRequest.ImageRedactionConfig> imageRedactionConfigs = new ArrayList<>();
-
-    RedactContentResponse actualResponse =
-        client.redactContent(inspectConfig, items, imageRedactionConfigs);
-    Assert.assertEquals(expectedResponse, actualResponse);
-
-    List<GeneratedMessageV3> actualRequests = mockDlpService.getRequests();
-    Assert.assertEquals(1, actualRequests.size());
-    RedactContentRequest actualRequest = (RedactContentRequest) actualRequests.get(0);
-
-    Assert.assertEquals(inspectConfig, actualRequest.getInspectConfig());
-    Assert.assertEquals(items, actualRequest.getItemsList());
-    Assert.assertEquals(imageRedactionConfigs, actualRequest.getImageRedactionConfigsList());
-  }
-
-  @Test
-  @SuppressWarnings("all")
-  public void redactContentExceptionTest2() throws Exception {
-    StatusRuntimeException exception = new StatusRuntimeException(Status.INVALID_ARGUMENT);
-    mockDlpService.addException(exception);
-
-    try {
-      String name = "EMAIL_ADDRESS";
-      InfoType infoTypesElement = InfoType.newBuilder().setName(name).build();
-      List<InfoType> infoTypes = Arrays.asList(infoTypesElement);
-      InspectConfig inspectConfig = InspectConfig.newBuilder().addAllInfoTypes(infoTypes).build();
-      String type = "text/plain";
-      String value = "My email is example@example.com.";
-      ContentItem itemsElement = ContentItem.newBuilder().setType(type).setValue(value).build();
-      List<ContentItem> items = Arrays.asList(itemsElement);
-      List<RedactContentRequest.ImageRedactionConfig> imageRedactionConfigs = new ArrayList<>();
-
-      client.redactContent(inspectConfig, items, imageRedactionConfigs);
       Assert.fail("No exception raised");
     } catch (InvalidArgumentException e) {
       // Expected exception

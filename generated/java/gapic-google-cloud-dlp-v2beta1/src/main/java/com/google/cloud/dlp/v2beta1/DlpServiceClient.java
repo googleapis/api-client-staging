@@ -44,7 +44,6 @@ import com.google.privacy.dlp.v2beta1.ListRootCategoriesResponse;
 import com.google.privacy.dlp.v2beta1.OutputStorageConfig;
 import com.google.privacy.dlp.v2beta1.PrivacyMetric;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest;
-import com.google.privacy.dlp.v2beta1.RedactContentRequest.ImageRedactionConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentRequest.ReplaceConfig;
 import com.google.privacy.dlp.v2beta1.RedactContentResponse;
 import com.google.privacy.dlp.v2beta1.ResultName;
@@ -378,55 +377,6 @@ public class DlpServiceClient implements BackgroundResource {
             .setInspectConfig(inspectConfig)
             .addAllItems(items)
             .addAllReplaceConfigs(replaceConfigs)
-            .build();
-    return redactContent(request);
-  }
-
-  // AUTO-GENERATED DOCUMENTATION AND METHOD
-  /**
-   * Redacts potentially sensitive info from a list of strings. This method has limits on input
-   * size, processing time, and output size.
-   *
-   * <p>Sample code:
-   *
-   * <pre><code>
-   * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
-   *   String name = "EMAIL_ADDRESS";
-   *   InfoType infoTypesElement = InfoType.newBuilder()
-   *     .setName(name)
-   *     .build();
-   *   List&lt;InfoType&gt; infoTypes = Arrays.asList(infoTypesElement);
-   *   InspectConfig inspectConfig = InspectConfig.newBuilder()
-   *     .addAllInfoTypes(infoTypes)
-   *     .build();
-   *   String type = "text/plain";
-   *   String value = "My email is example{@literal @}example.com.";
-   *   ContentItem itemsElement = ContentItem.newBuilder()
-   *     .setType(type)
-   *     .setValue(value)
-   *     .build();
-   *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
-   *   List&lt;RedactContentRequest.ImageRedactionConfig&gt; imageRedactionConfigs = new ArrayList&lt;&gt;();
-   *   RedactContentResponse response = dlpServiceClient.redactContent(inspectConfig, items, imageRedactionConfigs);
-   * }
-   * </code></pre>
-   *
-   * @param inspectConfig Configuration for the inspector.
-   * @param items The list of items to inspect. Up to 100 are allowed per request.
-   * @param imageRedactionConfigs The configuration for specifying what content to redact from
-   *     images.
-   * @throws com.google.api.gax.rpc.ApiException if the remote call fails
-   */
-  public final RedactContentResponse redactContent(
-      InspectConfig inspectConfig,
-      List<ContentItem> items,
-      List<RedactContentRequest.ImageRedactionConfig> imageRedactionConfigs) {
-
-    RedactContentRequest request =
-        RedactContentRequest.newBuilder()
-            .setInspectConfig(inspectConfig)
-            .addAllItems(items)
-            .addAllImageRedactionConfigs(imageRedactionConfigs)
             .build();
     return redactContent(request);
   }
