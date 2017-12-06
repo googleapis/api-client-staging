@@ -14,18 +14,20 @@ public  final class SampleRowKeysRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.v2.SampleRowKeysRequest)
     SampleRowKeysRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use SampleRowKeysRequest.newBuilder() to construct.
   private SampleRowKeysRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
   private SampleRowKeysRequest() {
     tableName_ = "";
+    appProfileId_ = "";
   }
 
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private SampleRowKeysRequest(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +35,8 @@ public  final class SampleRowKeysRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +46,8 @@ public  final class SampleRowKeysRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -53,6 +58,12 @@ public  final class SampleRowKeysRequest extends
             tableName_ = s;
             break;
           }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            appProfileId_ = s;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -61,6 +72,7 @@ public  final class SampleRowKeysRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -122,6 +134,58 @@ public  final class SampleRowKeysRequest extends
     }
   }
 
+  public static final int APP_PROFILE_ID_FIELD_NUMBER = 2;
+  private volatile java.lang.Object appProfileId_;
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 2;</code>
+   */
+  public java.lang.String getAppProfileId() {
+    java.lang.Object ref = appProfileId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      appProfileId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getAppProfileIdBytes() {
+    java.lang.Object ref = appProfileId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      appProfileId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -137,6 +201,10 @@ public  final class SampleRowKeysRequest extends
     if (!getTableNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tableName_);
     }
+    if (!getAppProfileIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, appProfileId_);
+    }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -147,11 +215,14 @@ public  final class SampleRowKeysRequest extends
     if (!getTableNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tableName_);
     }
+    if (!getAppProfileIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, appProfileId_);
+    }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -165,6 +236,9 @@ public  final class SampleRowKeysRequest extends
     boolean result = true;
     result = result && getTableName()
         .equals(other.getTableName());
+    result = result && getAppProfileId()
+        .equals(other.getAppProfileId());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -177,6 +251,8 @@ public  final class SampleRowKeysRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TABLE_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getTableName().hashCode();
+    hash = (37 * hash) + APP_PROFILE_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getAppProfileId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -312,6 +388,8 @@ public  final class SampleRowKeysRequest extends
       super.clear();
       tableName_ = "";
 
+      appProfileId_ = "";
+
       return this;
     }
 
@@ -335,6 +413,7 @@ public  final class SampleRowKeysRequest extends
     public com.google.bigtable.v2.SampleRowKeysRequest buildPartial() {
       com.google.bigtable.v2.SampleRowKeysRequest result = new com.google.bigtable.v2.SampleRowKeysRequest(this);
       result.tableName_ = tableName_;
+      result.appProfileId_ = appProfileId_;
       onBuilt();
       return result;
     }
@@ -344,7 +423,7 @@ public  final class SampleRowKeysRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -357,12 +436,12 @@ public  final class SampleRowKeysRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -380,6 +459,11 @@ public  final class SampleRowKeysRequest extends
         tableName_ = other.tableName_;
         onChanged();
       }
+      if (!other.getAppProfileId().isEmpty()) {
+        appProfileId_ = other.appProfileId_;
+        onChanged();
+      }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -504,14 +588,128 @@ public  final class SampleRowKeysRequest extends
       onChanged();
       return this;
     }
+
+    private java.lang.Object appProfileId_ = "";
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 2;</code>
+     */
+    public java.lang.String getAppProfileId() {
+      java.lang.Object ref = appProfileId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        appProfileId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAppProfileIdBytes() {
+      java.lang.Object ref = appProfileId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        appProfileId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 2;</code>
+     */
+    public Builder setAppProfileId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      appProfileId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 2;</code>
+     */
+    public Builder clearAppProfileId() {
+      
+      appProfileId_ = getDefaultInstance().getAppProfileId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 2;</code>
+     */
+    public Builder setAppProfileIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      appProfileId_ = value;
+      onChanged();
+      return this;
+    }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

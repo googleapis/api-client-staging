@@ -35,19 +35,19 @@ public final class TracingProto {
       "otobuf/empty.proto\032\037google/protobuf/time" +
       "stamp.proto\"Z\n\026BatchWriteSpansRequest\022\014\n" +
       "\004name\030\001 \001(\t\0222\n\005spans\030\002 \003(\0132#.google.devt" +
-      "ools.cloudtrace.v2.Span2\261\002\n\014TraceService" +
+      "ools.cloudtrace.v2.Span2\257\002\n\014TraceService" +
       "\022\224\001\n\017BatchWriteSpans\0225.google.devtools.c" +
       "loudtrace.v2.BatchWriteSpansRequest\032\026.go",
       "ogle.protobuf.Empty\"2\202\323\344\223\002,\"\'/v2/{name=p" +
-      "rojects/*}/traces:batchWrite:\001*\022\211\001\n\nCrea" +
+      "rojects/*}/traces:batchWrite:\001*\022\207\001\n\nCrea" +
       "teSpan\022#.google.devtools.cloudtrace.v2.S" +
       "pan\032#.google.devtools.cloudtrace.v2.Span" +
-      "\"1\202\323\344\223\002+\032&/v2/{name=projects/*/traces/*/" +
-      "spans/*}:\001*B\224\001\n!com.google.devtools.clou" +
-      "dtrace.v2B\014TracingProtoP\001ZGgoogle.golang" +
-      ".org/genproto/googleapis/devtools/cloudt" +
-      "race/v2;cloudtrace\252\002\025Google.Cloud.Trace." +
-      "V2b\006proto3"
+      "\"/\202\323\344\223\002)\"$/v2/{name=projects/*/traces/*}" +
+      "/spans:\001*B\254\001\n!com.google.devtools.cloudt" +
+      "race.v2B\014TracingProtoP\001ZGgoogle.golang.o" +
+      "rg/genproto/googleapis/devtools/cloudtra" +
+      "ce/v2;cloudtrace\252\002\025Google.Cloud.Trace.V2" +
+      "\312\002\025Google\\Cloud\\Trace\\V2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -16,6 +16,16 @@ public interface StreamingRecognizeRequestOrBuilder extends
    *
    * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
    */
+  boolean hasStreamingConfig();
+  /**
+   * <pre>
+   * Provides information to the recognizer that specifies how to process the
+   * request. The first `StreamingRecognizeRequest` message must contain a
+   * `streaming_config`  message.
+   * </pre>
+   *
+   * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+   */
   com.google.cloud.speech.v1beta1.StreamingRecognitionConfig getStreamingConfig();
   /**
    * <pre>

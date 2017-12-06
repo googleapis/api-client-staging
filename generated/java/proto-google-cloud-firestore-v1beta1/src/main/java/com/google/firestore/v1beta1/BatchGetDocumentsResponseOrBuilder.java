@@ -14,6 +14,14 @@ public interface BatchGetDocumentsResponseOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.Document found = 1;</code>
    */
+  boolean hasFound();
+  /**
+   * <pre>
+   * A document that was requested.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Document found = 1;</code>
+   */
   com.google.firestore.v1beta1.Document getFound();
   /**
    * <pre>

@@ -29,6 +29,7 @@ public interface DocumentTransformOrBuilder extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -39,6 +40,7 @@ public interface DocumentTransformOrBuilder extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -48,6 +50,7 @@ public interface DocumentTransformOrBuilder extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -57,6 +60,7 @@ public interface DocumentTransformOrBuilder extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -67,6 +71,7 @@ public interface DocumentTransformOrBuilder extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>

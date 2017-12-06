@@ -61,6 +61,14 @@ public interface TypedValueOrBuilder extends
    *
    * <code>.google.api.Distribution distribution_value = 5;</code>
    */
+  boolean hasDistributionValue();
+  /**
+   * <pre>
+   * A distribution value.
+   * </pre>
+   *
+   * <code>.google.api.Distribution distribution_value = 5;</code>
+   */
   com.google.api.Distribution getDistributionValue();
   /**
    * <pre>

@@ -97,11 +97,11 @@ public final class WriteProto {
       "emoved_target_ids\030\002 \003(\005\022-\n\tread_time\030\004 \001" +
       "(\0132\032.google.protobuf.Timestamp\"3\n\017Existe" +
       "nceFilter\022\021\n\ttarget_id\030\001 \001(\005\022\r\n\005count\030\002 " +
-      "\001(\005B\227\001\n\034com.google.firestore.v1beta1B\nWr" +
+      "\001(\005B\270\001\n\034com.google.firestore.v1beta1B\nWr" +
       "iteProtoP\001ZAgoogle.golang.org/genproto/g" +
       "oogleapis/firestore/v1beta1;firestore\242\002\004" +
-      "GCFS\252\002\036Google.Cloud.Firestore.V1Beta1b\006p" +
-      "roto3"
+      "GCFS\252\002\036Google.Cloud.Firestore.V1Beta1\312\002\036" +
+      "Google\\Cloud\\Firestore\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -185,10 +185,11 @@ public final class DlpStorage {
       "ueryTable\022\022\n\nproject_id\030\001 \001(\t\022\022\n\ndataset",
       "_id\030\002 \001(\t\022\020\n\010table_id\030\003 \001(\t\">\n\010EntityId\022" +
       "2\n\005field\030\001 \001(\0132#.google.privacy.dlp.v2be" +
-      "ta1.FieldIdB\210\001\n\036com.google.privacy.dlp.v" +
+      "ta1.FieldIdB\243\001\n\036com.google.privacy.dlp.v" +
       "2beta1B\nDlpStorageP\001Z=google.golang.org/" +
       "genproto/googleapis/privacy/dlp/v2beta1;" +
-      "dlp\252\002\030Google.Cloud.Dlp.V2Beta1b\006proto3"
+      "dlp\252\002\030Google.Cloud.Dlp.V2Beta1\312\002\030Google\\" +
+      "Cloud\\Dlp\\V2beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

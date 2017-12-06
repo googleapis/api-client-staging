@@ -9,12 +9,12 @@ public interface TruncatableStringOrBuilder extends
 
   /**
    * <pre>
-   * The shortened string. For example, if the original string was 500
-   * bytes long and the limit of the string was 128 bytes, then this
-   * value contains the first 128 bytes of the 500-byte string. Note that
-   * truncation always happens on the character boundary, to ensure that
-   * truncated string is still valid UTF8. In case of multi-byte characters,
-   * size of truncated string can be less than truncation limit.
+   * The shortened string. For example, if the original string is 500
+   * bytes long and the limit of the string is 128 bytes, then
+   * `value` contains the first 128 bytes of the 500-byte string.
+   * Truncation always happens on a UTF8 character boundary. If there
+   * are multi-byte characters in the string, then the length of the
+   * shortened string might be less than the size limit.
    * </pre>
    *
    * <code>string value = 1;</code>
@@ -22,12 +22,12 @@ public interface TruncatableStringOrBuilder extends
   java.lang.String getValue();
   /**
    * <pre>
-   * The shortened string. For example, if the original string was 500
-   * bytes long and the limit of the string was 128 bytes, then this
-   * value contains the first 128 bytes of the 500-byte string. Note that
-   * truncation always happens on the character boundary, to ensure that
-   * truncated string is still valid UTF8. In case of multi-byte characters,
-   * size of truncated string can be less than truncation limit.
+   * The shortened string. For example, if the original string is 500
+   * bytes long and the limit of the string is 128 bytes, then
+   * `value` contains the first 128 bytes of the 500-byte string.
+   * Truncation always happens on a UTF8 character boundary. If there
+   * are multi-byte characters in the string, then the length of the
+   * shortened string might be less than the size limit.
    * </pre>
    *
    * <code>string value = 1;</code>

@@ -177,11 +177,12 @@ public final class TraceProto {
       "v2.TruncatableString\022B\n\010build_id\030\002 \001(\01320" +
       ".google.devtools.cloudtrace.v2.Truncatab" +
       "leString\"@\n\021TruncatableString\022\r\n\005value\030\001" +
-      " \001(\t\022\034\n\024truncated_byte_count\030\002 \001(\005B\222\001\n!c",
+      " \001(\t\022\034\n\024truncated_byte_count\030\002 \001(\005B\252\001\n!c",
       "om.google.devtools.cloudtrace.v2B\nTraceP" +
       "rotoP\001ZGgoogle.golang.org/genproto/googl" +
       "eapis/devtools/cloudtrace/v2;cloudtrace\252" +
-      "\002\025Google.Cloud.Trace.V2b\006proto3"
+      "\002\025Google.Cloud.Trace.V2\312\002\025Google\\Cloud\\T" +
+      "race\\V2b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

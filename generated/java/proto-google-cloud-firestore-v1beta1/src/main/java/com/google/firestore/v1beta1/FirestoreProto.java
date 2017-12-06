@@ -336,11 +336,12 @@ public final class FirestoreProto {
       "nIdsRequest\0323.google.firestore.v1beta1.L" +
       "istCollectionIdsResponse\"O\202\323\344\223\002I\"D/v1bet" +
       "a1/{parent=projects/*/databases/*/docume" +
-      "nts}:listCollectionIds:\001*B\233\001\n\034com.google" +
+      "nts}:listCollectionIds:\001*B\274\001\n\034com.google" +
       ".firestore.v1beta1B\016FirestoreProtoP\001ZAgo",
       "ogle.golang.org/genproto/googleapis/fire" +
       "store/v1beta1;firestore\242\002\004GCFS\252\002\036Google." +
-      "Cloud.Firestore.V1Beta1b\006proto3"
+      "Cloud.Firestore.V1Beta1\312\002\036Google\\Cloud\\F" +
+      "irestore\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

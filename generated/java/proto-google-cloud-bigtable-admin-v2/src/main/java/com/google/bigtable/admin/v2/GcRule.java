@@ -14,6 +14,7 @@ public  final class GcRule extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.GcRule)
     GcRuleOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use GcRule.newBuilder() to construct.
   private GcRule(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class GcRule extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private GcRule(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class GcRule extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class GcRule extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -101,6 +105,7 @@ public  final class GcRule extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -175,6 +180,7 @@ public  final class GcRule extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.GcRule.Intersection)
       IntersectionOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Intersection.newBuilder() to construct.
     private Intersection(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -186,7 +192,7 @@ public  final class GcRule extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Intersection(
         com.google.protobuf.CodedInputStream input,
@@ -194,6 +200,8 @@ public  final class GcRule extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -203,7 +211,8 @@ public  final class GcRule extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -228,6 +237,7 @@ public  final class GcRule extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           rules_ = java.util.Collections.unmodifiableList(rules_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -313,6 +323,7 @@ public  final class GcRule extends
       for (int i = 0; i < rules_.size(); i++) {
         output.writeMessage(1, rules_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -324,11 +335,11 @@ public  final class GcRule extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, rules_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -342,6 +353,7 @@ public  final class GcRule extends
       boolean result = true;
       result = result && getRulesList()
           .equals(other.getRulesList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -537,7 +549,7 @@ public  final class GcRule extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -550,12 +562,12 @@ public  final class GcRule extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -595,6 +607,7 @@ public  final class GcRule extends
             }
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -935,12 +948,12 @@ public  final class GcRule extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1041,6 +1054,7 @@ public  final class GcRule extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.GcRule.Union)
       UnionOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Union.newBuilder() to construct.
     private Union(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1052,7 +1066,7 @@ public  final class GcRule extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Union(
         com.google.protobuf.CodedInputStream input,
@@ -1060,6 +1074,8 @@ public  final class GcRule extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1069,7 +1085,8 @@ public  final class GcRule extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1094,6 +1111,7 @@ public  final class GcRule extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           rules_ = java.util.Collections.unmodifiableList(rules_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1179,6 +1197,7 @@ public  final class GcRule extends
       for (int i = 0; i < rules_.size(); i++) {
         output.writeMessage(1, rules_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1190,11 +1209,11 @@ public  final class GcRule extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, rules_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1208,6 +1227,7 @@ public  final class GcRule extends
       boolean result = true;
       result = result && getRulesList()
           .equals(other.getRulesList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1403,7 +1423,7 @@ public  final class GcRule extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1416,12 +1436,12 @@ public  final class GcRule extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1461,6 +1481,7 @@ public  final class GcRule extends
             }
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1801,12 +1822,12 @@ public  final class GcRule extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1915,6 +1936,18 @@ public  final class GcRule extends
    *
    * <code>.google.protobuf.Duration max_age = 2;</code>
    */
+  public boolean hasMaxAge() {
+    return ruleCase_ == 2;
+  }
+  /**
+   * <pre>
+   * Delete cells in a column older than the given age.
+   * Values must be at least one millisecond, and will be truncated to
+   * microsecond granularity.
+   * </pre>
+   *
+   * <code>.google.protobuf.Duration max_age = 2;</code>
+   */
   public com.google.protobuf.Duration getMaxAge() {
     if (ruleCase_ == 2) {
        return (com.google.protobuf.Duration) rule_;
@@ -1945,6 +1978,16 @@ public  final class GcRule extends
    *
    * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
    */
+  public boolean hasIntersection() {
+    return ruleCase_ == 3;
+  }
+  /**
+   * <pre>
+   * Delete cells that would be deleted by every nested rule.
+   * </pre>
+   *
+   * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
+   */
   public com.google.bigtable.admin.v2.GcRule.Intersection getIntersection() {
     if (ruleCase_ == 3) {
        return (com.google.bigtable.admin.v2.GcRule.Intersection) rule_;
@@ -1966,6 +2009,16 @@ public  final class GcRule extends
   }
 
   public static final int UNION_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Delete cells that would be deleted by any nested rule.
+   * </pre>
+   *
+   * <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
+   */
+  public boolean hasUnion() {
+    return ruleCase_ == 4;
+  }
   /**
    * <pre>
    * Delete cells that would be deleted by any nested rule.
@@ -2018,6 +2071,7 @@ public  final class GcRule extends
     if (ruleCase_ == 4) {
       output.writeMessage(4, (com.google.bigtable.admin.v2.GcRule.Union) rule_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2042,11 +2096,11 @@ public  final class GcRule extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (com.google.bigtable.admin.v2.GcRule.Union) rule_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2081,6 +2135,7 @@ public  final class GcRule extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2302,7 +2357,7 @@ public  final class GcRule extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -2315,12 +2370,12 @@ public  final class GcRule extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2355,6 +2410,7 @@ public  final class GcRule extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2440,6 +2496,18 @@ public  final class GcRule extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> maxAgeBuilder_;
+    /**
+     * <pre>
+     * Delete cells in a column older than the given age.
+     * Values must be at least one millisecond, and will be truncated to
+     * microsecond granularity.
+     * </pre>
+     *
+     * <code>.google.protobuf.Duration max_age = 2;</code>
+     */
+    public boolean hasMaxAge() {
+      return ruleCase_ == 2;
+    }
     /**
      * <pre>
      * Delete cells in a column older than the given age.
@@ -2625,6 +2693,16 @@ public  final class GcRule extends
      *
      * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
      */
+    public boolean hasIntersection() {
+      return ruleCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Delete cells that would be deleted by every nested rule.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
+     */
     public com.google.bigtable.admin.v2.GcRule.Intersection getIntersection() {
       if (intersectionBuilder_ == null) {
         if (ruleCase_ == 3) {
@@ -2787,6 +2865,16 @@ public  final class GcRule extends
      *
      * <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
      */
+    public boolean hasUnion() {
+      return ruleCase_ == 4;
+    }
+    /**
+     * <pre>
+     * Delete cells that would be deleted by any nested rule.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
+     */
     public com.google.bigtable.admin.v2.GcRule.Union getUnion() {
       if (unionBuilder_ == null) {
         if (ruleCase_ == 4) {
@@ -2941,12 +3029,12 @@ public  final class GcRule extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

@@ -14,6 +14,7 @@ public  final class RunQueryRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.RunQueryRequest)
     RunQueryRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use RunQueryRequest.newBuilder() to construct.
   private RunQueryRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -25,7 +26,7 @@ public  final class RunQueryRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private RunQueryRequest(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +34,8 @@ public  final class RunQueryRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +45,8 @@ public  final class RunQueryRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -108,6 +112,7 @@ public  final class RunQueryRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -259,6 +264,16 @@ public  final class RunQueryRequest extends
    *
    * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
    */
+  public boolean hasStructuredQuery() {
+    return queryTypeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * A structured query.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+   */
   public com.google.firestore.v1beta1.StructuredQuery getStructuredQuery() {
     if (queryTypeCase_ == 2) {
        return (com.google.firestore.v1beta1.StructuredQuery) queryType_;
@@ -305,6 +320,19 @@ public  final class RunQueryRequest extends
    *
    * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
    */
+  public boolean hasNewTransaction() {
+    return consistencySelectorCase_ == 6;
+  }
+  /**
+   * <pre>
+   * Starts a new transaction and reads the documents.
+   * Defaults to a read-only transaction.
+   * The new transaction ID will be returned as the first response in the
+   * stream.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
+   */
   public com.google.firestore.v1beta1.TransactionOptions getNewTransaction() {
     if (consistencySelectorCase_ == 6) {
        return (com.google.firestore.v1beta1.TransactionOptions) consistencySelector_;
@@ -329,6 +357,17 @@ public  final class RunQueryRequest extends
   }
 
   public static final int READ_TIME_FIELD_NUMBER = 7;
+  /**
+   * <pre>
+   * Reads documents as they were at the given time.
+   * This may not be older than 60 seconds.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 7;</code>
+   */
+  public boolean hasReadTime() {
+    return consistencySelectorCase_ == 7;
+  }
   /**
    * <pre>
    * Reads documents as they were at the given time.
@@ -386,6 +425,7 @@ public  final class RunQueryRequest extends
     if (consistencySelectorCase_ == 7) {
       output.writeMessage(7, (com.google.protobuf.Timestamp) consistencySelector_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -413,11 +453,11 @@ public  final class RunQueryRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, (com.google.protobuf.Timestamp) consistencySelector_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -461,6 +501,7 @@ public  final class RunQueryRequest extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -694,7 +735,7 @@ public  final class RunQueryRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -707,12 +748,12 @@ public  final class RunQueryRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -756,6 +797,7 @@ public  final class RunQueryRequest extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -928,6 +970,16 @@ public  final class RunQueryRequest extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.StructuredQuery, com.google.firestore.v1beta1.StructuredQuery.Builder, com.google.firestore.v1beta1.StructuredQueryOrBuilder> structuredQueryBuilder_;
+    /**
+     * <pre>
+     * A structured query.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+     */
+    public boolean hasStructuredQuery() {
+      return queryTypeCase_ == 2;
+    }
     /**
      * <pre>
      * A structured query.
@@ -1145,6 +1197,19 @@ public  final class RunQueryRequest extends
      *
      * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
      */
+    public boolean hasNewTransaction() {
+      return consistencySelectorCase_ == 6;
+    }
+    /**
+     * <pre>
+     * Starts a new transaction and reads the documents.
+     * Defaults to a read-only transaction.
+     * The new transaction ID will be returned as the first response in the
+     * stream.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 6;</code>
+     */
     public com.google.firestore.v1beta1.TransactionOptions getNewTransaction() {
       if (newTransactionBuilder_ == null) {
         if (consistencySelectorCase_ == 6) {
@@ -1329,6 +1394,17 @@ public  final class RunQueryRequest extends
      *
      * <code>.google.protobuf.Timestamp read_time = 7;</code>
      */
+    public boolean hasReadTime() {
+      return consistencySelectorCase_ == 7;
+    }
+    /**
+     * <pre>
+     * Reads documents as they were at the given time.
+     * This may not be older than 60 seconds.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp read_time = 7;</code>
+     */
     public com.google.protobuf.Timestamp getReadTime() {
       if (readTimeBuilder_ == null) {
         if (consistencySelectorCase_ == 7) {
@@ -1490,12 +1566,12 @@ public  final class RunQueryRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

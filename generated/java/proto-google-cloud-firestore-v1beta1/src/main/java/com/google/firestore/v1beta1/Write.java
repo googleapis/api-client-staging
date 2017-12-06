@@ -14,6 +14,7 @@ public  final class Write extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.Write)
     WriteOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Write.newBuilder() to construct.
   private Write(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class Write extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Write(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class Write extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class Write extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -114,6 +118,7 @@ public  final class Write extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -170,6 +175,16 @@ public  final class Write extends
   }
 
   public static final int UPDATE_FIELD_NUMBER = 1;
+  /**
+   * <pre>
+   * A document to write.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Document update = 1;</code>
+   */
+  public boolean hasUpdate() {
+    return operationCase_ == 1;
+  }
   /**
    * <pre>
    * A document to write.
@@ -251,6 +266,19 @@ public  final class Write extends
   }
 
   public static final int TRANSFORM_FIELD_NUMBER = 6;
+  /**
+   * <pre>
+   * Applies a tranformation to a document.
+   * At most one `transform` per document is allowed in a given request.
+   * An `update` cannot follow a `transform` on the same document in a given
+   * request.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.DocumentTransform transform = 6;</code>
+   */
+  public boolean hasTransform() {
+    return operationCase_ == 6;
+  }
   /**
    * <pre>
    * Applies a tranformation to a document.
@@ -401,6 +429,7 @@ public  final class Write extends
     if (operationCase_ == 6) {
       output.writeMessage(6, (com.google.firestore.v1beta1.DocumentTransform) operation_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -427,11 +456,11 @@ public  final class Write extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, (com.google.firestore.v1beta1.DocumentTransform) operation_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -472,6 +501,7 @@ public  final class Write extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -712,7 +742,7 @@ public  final class Write extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -725,12 +755,12 @@ public  final class Write extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -769,6 +799,7 @@ public  final class Write extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -812,6 +843,16 @@ public  final class Write extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.Document, com.google.firestore.v1beta1.Document.Builder, com.google.firestore.v1beta1.DocumentOrBuilder> updateBuilder_;
+    /**
+     * <pre>
+     * A document to write.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.Document update = 1;</code>
+     */
+    public boolean hasUpdate() {
+      return operationCase_ == 1;
+    }
     /**
      * <pre>
      * A document to write.
@@ -1079,6 +1120,19 @@ public  final class Write extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.DocumentTransform, com.google.firestore.v1beta1.DocumentTransform.Builder, com.google.firestore.v1beta1.DocumentTransformOrBuilder> transformBuilder_;
+    /**
+     * <pre>
+     * Applies a tranformation to a document.
+     * At most one `transform` per document is allowed in a given request.
+     * An `update` cannot follow a `transform` on the same document in a given
+     * request.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.DocumentTransform transform = 6;</code>
+     */
+    public boolean hasTransform() {
+      return operationCase_ == 6;
+    }
     /**
      * <pre>
      * Applies a tranformation to a document.
@@ -1642,12 +1696,12 @@ public  final class Write extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

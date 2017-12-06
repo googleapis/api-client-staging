@@ -68,10 +68,11 @@ public final class QueryPlanProto {
       "ue\030\002 \001(\005:\0028\001\"8\n\004Kind\022\024\n\020KIND_UNSPECIFIED" +
       "\020\000\022\016\n\nRELATIONAL\020\001\022\n\n\006SCALAR\020\002\"<\n\tQueryP" +
       "lan\022/\n\nplan_nodes\030\001 \003(\0132\033.google.spanner",
-      ".v1.PlanNodeB}\n\025com.google.spanner.v1B\016Q" +
-      "ueryPlanProtoP\001Z8google.golang.org/genpr" +
-      "oto/googleapis/spanner/v1;spanner\252\002\027Goog" +
-      "le.Cloud.Spanner.V1b\006proto3"
+      ".v1.PlanNodeB\227\001\n\025com.google.spanner.v1B\016" +
+      "QueryPlanProtoP\001Z8google.golang.org/genp" +
+      "roto/googleapis/spanner/v1;spanner\252\002\027Goo" +
+      "gle.Cloud.Spanner.V1\312\002\027Google\\Cloud\\Span" +
+      "ner\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

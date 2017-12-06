@@ -89,11 +89,8 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Sends new spans to Stackdriver Trace or updates existing traces. If the
-     * name of a trace that you send matches that of an existing trace, new spans
-     * are added to the existing trace. Attempt to update existing spans results
-     * undefined behavior. If the name does not match, a new trace is created
-     * with given set of spans.
+     * Sends new spans to new or existing traces. You cannot update
+     * existing spans.
      * </pre>
      */
     public void batchWriteSpans(com.google.devtools.cloudtrace.v2.BatchWriteSpansRequest request,
@@ -103,7 +100,7 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new Span.
+     * Creates a new span.
      * </pre>
      */
     public void createSpan(com.google.devtools.cloudtrace.v2.Span request,
@@ -158,11 +155,8 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Sends new spans to Stackdriver Trace or updates existing traces. If the
-     * name of a trace that you send matches that of an existing trace, new spans
-     * are added to the existing trace. Attempt to update existing spans results
-     * undefined behavior. If the name does not match, a new trace is created
-     * with given set of spans.
+     * Sends new spans to new or existing traces. You cannot update
+     * existing spans.
      * </pre>
      */
     public void batchWriteSpans(com.google.devtools.cloudtrace.v2.BatchWriteSpansRequest request,
@@ -173,7 +167,7 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new Span.
+     * Creates a new span.
      * </pre>
      */
     public void createSpan(com.google.devtools.cloudtrace.v2.Span request,
@@ -210,11 +204,8 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Sends new spans to Stackdriver Trace or updates existing traces. If the
-     * name of a trace that you send matches that of an existing trace, new spans
-     * are added to the existing trace. Attempt to update existing spans results
-     * undefined behavior. If the name does not match, a new trace is created
-     * with given set of spans.
+     * Sends new spans to new or existing traces. You cannot update
+     * existing spans.
      * </pre>
      */
     public com.google.protobuf.Empty batchWriteSpans(com.google.devtools.cloudtrace.v2.BatchWriteSpansRequest request) {
@@ -224,7 +215,7 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new Span.
+     * Creates a new span.
      * </pre>
      */
     public com.google.devtools.cloudtrace.v2.Span createSpan(com.google.devtools.cloudtrace.v2.Span request) {
@@ -260,11 +251,8 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Sends new spans to Stackdriver Trace or updates existing traces. If the
-     * name of a trace that you send matches that of an existing trace, new spans
-     * are added to the existing trace. Attempt to update existing spans results
-     * undefined behavior. If the name does not match, a new trace is created
-     * with given set of spans.
+     * Sends new spans to new or existing traces. You cannot update
+     * existing spans.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> batchWriteSpans(
@@ -275,7 +263,7 @@ public final class TraceServiceGrpc {
 
     /**
      * <pre>
-     * Creates a new Span.
+     * Creates a new span.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.devtools.cloudtrace.v2.Span> createSpan(

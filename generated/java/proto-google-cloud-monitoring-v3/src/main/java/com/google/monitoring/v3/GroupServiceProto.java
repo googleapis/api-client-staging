@@ -109,11 +109,11 @@ public final class GroupServiceProto {
       "oogle.monitoring.v3.ListGroupMembersRequ" +
       "est\032..google.monitoring.v3.ListGroupMemb" +
       "ersResponse\".\202\323\344\223\002(\022&/v3/{name=projects/" +
-      "*/groups/*}/membersB\214\001\n\030com.google.monit" +
+      "*/groups/*}/membersB\251\001\n\030com.google.monit" +
       "oring.v3B\021GroupServiceProtoP\001Z>google.go" +
       "lang.org/genproto/googleapis/monitoring/" +
       "v3;monitoring\252\002\032Google.Cloud.Monitoring.",
-      "V3b\006proto3"
+      "V3\312\002\032Google\\Cloud\\Monitoring\\V3b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

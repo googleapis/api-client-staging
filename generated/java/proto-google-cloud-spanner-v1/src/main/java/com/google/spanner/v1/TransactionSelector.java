@@ -17,6 +17,7 @@ public  final class TransactionSelector extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.spanner.v1.TransactionSelector)
     TransactionSelectorOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use TransactionSelector.newBuilder() to construct.
   private TransactionSelector(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +28,7 @@ public  final class TransactionSelector extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private TransactionSelector(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +36,8 @@ public  final class TransactionSelector extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +47,8 @@ public  final class TransactionSelector extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -90,6 +94,7 @@ public  final class TransactionSelector extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -155,6 +160,18 @@ public  final class TransactionSelector extends
    *
    * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
    */
+  public boolean hasSingleUse() {
+    return selectorCase_ == 1;
+  }
+  /**
+   * <pre>
+   * Execute the read or SQL query in a temporary transaction.
+   * This is the most efficient way to execute a transaction that
+   * consists of a single SQL query.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+   */
   public com.google.spanner.v1.TransactionOptions getSingleUse() {
     if (selectorCase_ == 1) {
        return (com.google.spanner.v1.TransactionOptions) selector_;
@@ -193,6 +210,18 @@ public  final class TransactionSelector extends
   }
 
   public static final int BEGIN_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * Begin a new transaction and execute this read or SQL query in
+   * it. The transaction ID of the new transaction is returned in
+   * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+   * </pre>
+   *
+   * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+   */
+  public boolean hasBegin() {
+    return selectorCase_ == 3;
+  }
   /**
    * <pre>
    * Begin a new transaction and execute this read or SQL query in
@@ -246,6 +275,7 @@ public  final class TransactionSelector extends
     if (selectorCase_ == 3) {
       output.writeMessage(3, (com.google.spanner.v1.TransactionOptions) selector_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -266,11 +296,11 @@ public  final class TransactionSelector extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (com.google.spanner.v1.TransactionOptions) selector_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -301,6 +331,7 @@ public  final class TransactionSelector extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -514,7 +545,7 @@ public  final class TransactionSelector extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -527,12 +558,12 @@ public  final class TransactionSelector extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -563,6 +594,7 @@ public  final class TransactionSelector extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -606,6 +638,18 @@ public  final class TransactionSelector extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.spanner.v1.TransactionOptions, com.google.spanner.v1.TransactionOptions.Builder, com.google.spanner.v1.TransactionOptionsOrBuilder> singleUseBuilder_;
+    /**
+     * <pre>
+     * Execute the read or SQL query in a temporary transaction.
+     * This is the most efficient way to execute a transaction that
+     * consists of a single SQL query.
+     * </pre>
+     *
+     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+     */
+    public boolean hasSingleUse() {
+      return selectorCase_ == 1;
+    }
     /**
      * <pre>
      * Execute the read or SQL query in a temporary transaction.
@@ -838,6 +882,18 @@ public  final class TransactionSelector extends
      *
      * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      */
+    public boolean hasBegin() {
+      return selectorCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Begin a new transaction and execute this read or SQL query in
+     * it. The transaction ID of the new transaction is returned in
+     * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+     * </pre>
+     *
+     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+     */
     public com.google.spanner.v1.TransactionOptions getBegin() {
       if (beginBuilder_ == null) {
         if (selectorCase_ == 3) {
@@ -1006,12 +1062,12 @@ public  final class TransactionSelector extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

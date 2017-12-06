@@ -19,6 +19,7 @@ public  final class Span extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span)
     SpanOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Span.newBuilder() to construct.
   private Span(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -32,7 +33,7 @@ public  final class Span extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Span(
       com.google.protobuf.CodedInputStream input,
@@ -40,6 +41,8 @@ public  final class Span extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -49,7 +52,8 @@ public  final class Span extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -210,6 +214,7 @@ public  final class Span extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -335,6 +340,7 @@ public  final class Span extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.Attributes)
       AttributesOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Attributes.newBuilder() to construct.
     private Attributes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -346,7 +352,7 @@ public  final class Span extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Attributes(
         com.google.protobuf.CodedInputStream input,
@@ -354,6 +360,8 @@ public  final class Span extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -363,7 +371,8 @@ public  final class Span extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -394,6 +403,7 @@ public  final class Span extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -573,6 +583,7 @@ public  final class Span extends
       if (droppedAttributesCount_ != 0) {
         output.writeInt32(2, droppedAttributesCount_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -594,11 +605,11 @@ public  final class Span extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, droppedAttributesCount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -614,6 +625,7 @@ public  final class Span extends
           other.internalGetAttributeMap());
       result = result && (getDroppedAttributesCount()
           == other.getDroppedAttributesCount());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -825,7 +837,7 @@ public  final class Span extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -838,12 +850,12 @@ public  final class Span extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -862,6 +874,7 @@ public  final class Span extends
         if (other.getDroppedAttributesCount() != 0) {
           setDroppedAttributesCount(other.getDroppedAttributesCount());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1127,12 +1140,12 @@ public  final class Span extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1210,6 +1223,14 @@ public  final class Span extends
      *
      * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
      */
+    boolean hasAnnotation();
+    /**
+     * <pre>
+     * Text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
     com.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation getAnnotation();
     /**
      * <pre>
@@ -1220,6 +1241,14 @@ public  final class Span extends
      */
     com.google.devtools.cloudtrace.v2.Span.TimeEvent.AnnotationOrBuilder getAnnotationOrBuilder();
 
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    boolean hasMessageEvent();
     /**
      * <pre>
      * An event describing a message sent/received between Spans.
@@ -1250,6 +1279,7 @@ public  final class Span extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.TimeEvent)
       TimeEventOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use TimeEvent.newBuilder() to construct.
     private TimeEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1260,7 +1290,7 @@ public  final class Span extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private TimeEvent(
         com.google.protobuf.CodedInputStream input,
@@ -1268,6 +1298,8 @@ public  final class Span extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1277,7 +1309,8 @@ public  final class Span extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1331,6 +1364,7 @@ public  final class Span extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1380,7 +1414,7 @@ public  final class Span extends
 
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1389,7 +1423,7 @@ public  final class Span extends
       boolean hasAttributes();
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1398,7 +1432,7 @@ public  final class Span extends
       com.google.devtools.cloudtrace.v2.Span.Attributes getAttributes();
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1417,6 +1451,7 @@ public  final class Span extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation)
         AnnotationOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Annotation.newBuilder() to construct.
       private Annotation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -1427,7 +1462,7 @@ public  final class Span extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Annotation(
           com.google.protobuf.CodedInputStream input,
@@ -1435,6 +1470,8 @@ public  final class Span extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -1444,7 +1481,8 @@ public  final class Span extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -1483,6 +1521,7 @@ public  final class Span extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -1538,7 +1577,7 @@ public  final class Span extends
       private com.google.devtools.cloudtrace.v2.Span.Attributes attributes_;
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1549,7 +1588,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1560,7 +1599,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the annotation. There is a limit of 4 attributes
+       * A set of attributes on the annotation. You can have up to 4 attributes
        * per Annotation.
        * </pre>
        *
@@ -1588,6 +1627,7 @@ public  final class Span extends
         if (attributes_ != null) {
           output.writeMessage(2, getAttributes());
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -1603,11 +1643,11 @@ public  final class Span extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, getAttributes());
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -1629,6 +1669,7 @@ public  final class Span extends
           result = result && getAttributes()
               .equals(other.getAttributes());
         }
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -1833,7 +1874,7 @@ public  final class Span extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -1846,12 +1887,12 @@ public  final class Span extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1871,6 +1912,7 @@ public  final class Span extends
           if (other.hasAttributes()) {
             mergeAttributes(other.getAttributes());
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -2064,7 +2106,7 @@ public  final class Span extends
             com.google.devtools.cloudtrace.v2.Span.Attributes, com.google.devtools.cloudtrace.v2.Span.Attributes.Builder, com.google.devtools.cloudtrace.v2.Span.AttributesOrBuilder> attributesBuilder_;
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2075,7 +2117,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2090,7 +2132,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2111,7 +2153,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2130,7 +2172,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2153,7 +2195,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2172,7 +2214,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2185,7 +2227,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2201,7 +2243,7 @@ public  final class Span extends
         }
         /**
          * <pre>
-         * A set of attributes on the annotation. There is a limit of 4 attributes
+         * A set of attributes on the annotation. You can have up to 4 attributes
          * per Annotation.
          * </pre>
          *
@@ -2222,12 +2264,12 @@ public  final class Span extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -2333,6 +2375,7 @@ public  final class Span extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent)
         MessageEventOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use MessageEvent.newBuilder() to construct.
       private MessageEvent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -2347,7 +2390,7 @@ public  final class Span extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private MessageEvent(
           com.google.protobuf.CodedInputStream input,
@@ -2355,6 +2398,8 @@ public  final class Span extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -2364,7 +2409,8 @@ public  final class Span extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -2398,6 +2444,7 @@ public  final class Span extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -2640,6 +2687,7 @@ public  final class Span extends
         if (compressedSizeBytes_ != 0L) {
           output.writeInt64(4, compressedSizeBytes_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -2663,11 +2711,11 @@ public  final class Span extends
           size += com.google.protobuf.CodedOutputStream
             .computeInt64Size(4, compressedSizeBytes_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -2686,6 +2734,7 @@ public  final class Span extends
             == other.getUncompressedSizeBytes());
         result = result && (getCompressedSizeBytes()
             == other.getCompressedSizeBytes());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -2883,7 +2932,7 @@ public  final class Span extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -2896,12 +2945,12 @@ public  final class Span extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2927,6 +2976,7 @@ public  final class Span extends
           if (other.getCompressedSizeBytes() != 0L) {
             setCompressedSizeBytes(other.getCompressedSizeBytes());
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -3146,12 +3196,12 @@ public  final class Span extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -3272,6 +3322,16 @@ public  final class Span extends
      *
      * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
      */
+    public boolean hasAnnotation() {
+      return valueCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Text annotation with a set of attributes.
+     * </pre>
+     *
+     * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
+     */
     public com.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation getAnnotation() {
       if (valueCase_ == 2) {
          return (com.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation) value_;
@@ -3293,6 +3353,16 @@ public  final class Span extends
     }
 
     public static final int MESSAGE_EVENT_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * An event describing a message sent/received between Spans.
+     * </pre>
+     *
+     * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent message_event = 3;</code>
+     */
+    public boolean hasMessageEvent() {
+      return valueCase_ == 3;
+    }
     /**
      * <pre>
      * An event describing a message sent/received between Spans.
@@ -3341,6 +3411,7 @@ public  final class Span extends
       if (valueCase_ == 3) {
         output.writeMessage(3, (com.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent) value_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -3360,11 +3431,11 @@ public  final class Span extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (com.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent) value_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -3396,6 +3467,7 @@ public  final class Span extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -3614,7 +3686,7 @@ public  final class Span extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -3627,12 +3699,12 @@ public  final class Span extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3662,6 +3734,7 @@ public  final class Span extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -3865,6 +3938,16 @@ public  final class Span extends
        *
        * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
        */
+      public boolean hasAnnotation() {
+        return valueCase_ == 2;
+      }
+      /**
+       * <pre>
+       * Text annotation with a set of attributes.
+       * </pre>
+       *
+       * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
+       */
       public com.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation getAnnotation() {
         if (annotationBuilder_ == null) {
           if (valueCase_ == 2) {
@@ -4027,6 +4110,16 @@ public  final class Span extends
        *
        * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent message_event = 3;</code>
        */
+      public boolean hasMessageEvent() {
+        return valueCase_ == 3;
+      }
+      /**
+       * <pre>
+       * An event describing a message sent/received between Spans.
+       * </pre>
+       *
+       * <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent message_event = 3;</code>
+       */
       public com.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent getMessageEvent() {
         if (messageEventBuilder_ == null) {
           if (valueCase_ == 3) {
@@ -4181,12 +4274,12 @@ public  final class Span extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -4309,6 +4402,7 @@ public  final class Span extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.TimeEvents)
       TimeEventsOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use TimeEvents.newBuilder() to construct.
     private TimeEvents(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -4322,7 +4416,7 @@ public  final class Span extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private TimeEvents(
         com.google.protobuf.CodedInputStream input,
@@ -4330,6 +4424,8 @@ public  final class Span extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4339,7 +4435,8 @@ public  final class Span extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -4374,6 +4471,7 @@ public  final class Span extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           timeEvent_ = java.util.Collections.unmodifiableList(timeEvent_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -4494,6 +4592,7 @@ public  final class Span extends
       if (droppedMessageEventsCount_ != 0) {
         output.writeInt32(3, droppedMessageEventsCount_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -4513,11 +4612,11 @@ public  final class Span extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, droppedMessageEventsCount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -4535,6 +4634,7 @@ public  final class Span extends
           == other.getDroppedAnnotationsCount());
       result = result && (getDroppedMessageEventsCount()
           == other.getDroppedMessageEventsCount());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -4744,7 +4844,7 @@ public  final class Span extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -4757,12 +4857,12 @@ public  final class Span extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4808,6 +4908,7 @@ public  final class Span extends
         if (other.getDroppedMessageEventsCount() != 0) {
           setDroppedMessageEventsCount(other.getDroppedMessageEventsCount());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -5230,12 +5331,12 @@ public  final class Span extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -5283,7 +5384,7 @@ public  final class Span extends
 
     /**
      * <pre>
-     * `TRACE_ID` identifies a trace within a project.
+     * The [TRACE_ID] for a trace within a project.
      * </pre>
      *
      * <code>string trace_id = 1;</code>
@@ -5291,7 +5392,7 @@ public  final class Span extends
     java.lang.String getTraceId();
     /**
      * <pre>
-     * `TRACE_ID` identifies a trace within a project.
+     * The [TRACE_ID] for a trace within a project.
      * </pre>
      *
      * <code>string trace_id = 1;</code>
@@ -5301,7 +5402,7 @@ public  final class Span extends
 
     /**
      * <pre>
-     * `SPAN_ID` identifies a span within a trace.
+     * The [SPAN_ID] for a span within a trace.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -5309,7 +5410,7 @@ public  final class Span extends
     java.lang.String getSpanId();
     /**
      * <pre>
-     * `SPAN_ID` identifies a span within a trace.
+     * The [SPAN_ID] for a span within a trace.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -5336,7 +5437,7 @@ public  final class Span extends
 
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5345,7 +5446,7 @@ public  final class Span extends
     boolean hasAttributes();
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5354,7 +5455,7 @@ public  final class Span extends
     com.google.devtools.cloudtrace.v2.Span.Attributes getAttributes();
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5376,6 +5477,7 @@ public  final class Span extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.Link)
       LinkOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Link.newBuilder() to construct.
     private Link(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -5389,7 +5491,7 @@ public  final class Span extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Link(
         com.google.protobuf.CodedInputStream input,
@@ -5397,6 +5499,8 @@ public  final class Span extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5406,7 +5510,8 @@ public  final class Span extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -5450,6 +5555,7 @@ public  final class Span extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5605,7 +5711,7 @@ public  final class Span extends
     private volatile java.lang.Object traceId_;
     /**
      * <pre>
-     * `TRACE_ID` identifies a trace within a project.
+     * The [TRACE_ID] for a trace within a project.
      * </pre>
      *
      * <code>string trace_id = 1;</code>
@@ -5624,7 +5730,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * `TRACE_ID` identifies a trace within a project.
+     * The [TRACE_ID] for a trace within a project.
      * </pre>
      *
      * <code>string trace_id = 1;</code>
@@ -5647,7 +5753,7 @@ public  final class Span extends
     private volatile java.lang.Object spanId_;
     /**
      * <pre>
-     * `SPAN_ID` identifies a span within a trace.
+     * The [SPAN_ID] for a span within a trace.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -5666,7 +5772,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * `SPAN_ID` identifies a span within a trace.
+     * The [SPAN_ID] for a span within a trace.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -5713,7 +5819,7 @@ public  final class Span extends
     private com.google.devtools.cloudtrace.v2.Span.Attributes attributes_;
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5724,7 +5830,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5735,7 +5841,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the link. There is a limit of 32 attributes per
+     * A set of attributes on the link. You have have up to  32 attributes per
      * link.
      * </pre>
      *
@@ -5769,6 +5875,7 @@ public  final class Span extends
       if (attributes_ != null) {
         output.writeMessage(4, getAttributes());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -5790,11 +5897,11 @@ public  final class Span extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getAttributes());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -5816,6 +5923,7 @@ public  final class Span extends
         result = result && getAttributes()
             .equals(other.getAttributes());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -6023,7 +6131,7 @@ public  final class Span extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -6036,12 +6144,12 @@ public  final class Span extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6069,6 +6177,7 @@ public  final class Span extends
         if (other.hasAttributes()) {
           mergeAttributes(other.getAttributes());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -6098,7 +6207,7 @@ public  final class Span extends
       private java.lang.Object traceId_ = "";
       /**
        * <pre>
-       * `TRACE_ID` identifies a trace within a project.
+       * The [TRACE_ID] for a trace within a project.
        * </pre>
        *
        * <code>string trace_id = 1;</code>
@@ -6117,7 +6226,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `TRACE_ID` identifies a trace within a project.
+       * The [TRACE_ID] for a trace within a project.
        * </pre>
        *
        * <code>string trace_id = 1;</code>
@@ -6137,7 +6246,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `TRACE_ID` identifies a trace within a project.
+       * The [TRACE_ID] for a trace within a project.
        * </pre>
        *
        * <code>string trace_id = 1;</code>
@@ -6154,7 +6263,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `TRACE_ID` identifies a trace within a project.
+       * The [TRACE_ID] for a trace within a project.
        * </pre>
        *
        * <code>string trace_id = 1;</code>
@@ -6167,7 +6276,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `TRACE_ID` identifies a trace within a project.
+       * The [TRACE_ID] for a trace within a project.
        * </pre>
        *
        * <code>string trace_id = 1;</code>
@@ -6187,7 +6296,7 @@ public  final class Span extends
       private java.lang.Object spanId_ = "";
       /**
        * <pre>
-       * `SPAN_ID` identifies a span within a trace.
+       * The [SPAN_ID] for a span within a trace.
        * </pre>
        *
        * <code>string span_id = 2;</code>
@@ -6206,7 +6315,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `SPAN_ID` identifies a span within a trace.
+       * The [SPAN_ID] for a span within a trace.
        * </pre>
        *
        * <code>string span_id = 2;</code>
@@ -6226,7 +6335,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `SPAN_ID` identifies a span within a trace.
+       * The [SPAN_ID] for a span within a trace.
        * </pre>
        *
        * <code>string span_id = 2;</code>
@@ -6243,7 +6352,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `SPAN_ID` identifies a span within a trace.
+       * The [SPAN_ID] for a span within a trace.
        * </pre>
        *
        * <code>string span_id = 2;</code>
@@ -6256,7 +6365,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * `SPAN_ID` identifies a span within a trace.
+       * The [SPAN_ID] for a span within a trace.
        * </pre>
        *
        * <code>string span_id = 2;</code>
@@ -6342,7 +6451,7 @@ public  final class Span extends
           com.google.devtools.cloudtrace.v2.Span.Attributes, com.google.devtools.cloudtrace.v2.Span.Attributes.Builder, com.google.devtools.cloudtrace.v2.Span.AttributesOrBuilder> attributesBuilder_;
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6353,7 +6462,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6368,7 +6477,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6389,7 +6498,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6408,7 +6517,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6431,7 +6540,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6450,7 +6559,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6463,7 +6572,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6479,7 +6588,7 @@ public  final class Span extends
       }
       /**
        * <pre>
-       * A set of attributes on the link. There is a limit of 32 attributes per
+       * A set of attributes on the link. You have have up to  32 attributes per
        * link.
        * </pre>
        *
@@ -6500,12 +6609,12 @@ public  final class Span extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -6617,6 +6726,7 @@ public  final class Span extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.Span.Links)
       LinksOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Links.newBuilder() to construct.
     private Links(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -6629,7 +6739,7 @@ public  final class Span extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Links(
         com.google.protobuf.CodedInputStream input,
@@ -6637,6 +6747,8 @@ public  final class Span extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6646,7 +6758,8 @@ public  final class Span extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -6676,6 +6789,7 @@ public  final class Span extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           link_ = java.util.Collections.unmodifiableList(link_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -6779,6 +6893,7 @@ public  final class Span extends
       if (droppedLinksCount_ != 0) {
         output.writeInt32(2, droppedLinksCount_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -6794,11 +6909,11 @@ public  final class Span extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, droppedLinksCount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -6814,6 +6929,7 @@ public  final class Span extends
           .equals(other.getLinkList());
       result = result && (getDroppedLinksCount()
           == other.getDroppedLinksCount());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -7017,7 +7133,7 @@ public  final class Span extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -7030,12 +7146,12 @@ public  final class Span extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7078,6 +7194,7 @@ public  final class Span extends
         if (other.getDroppedLinksCount() != 0) {
           setDroppedLinksCount(other.getDroppedLinksCount());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -7459,12 +7576,12 @@ public  final class Span extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -7512,9 +7629,10 @@ public  final class Span extends
    * <pre>
    * The resource name of the span in the following format:
    *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-   * [TRACE_ID] is a unique identifier for a trace within a project.
-   * [SPAN_ID] is a unique identifier for a span within a trace,
-   * assigned when the span is created.
+   * [TRACE_ID] is a unique identifier for a trace within a project;
+   * it is a 32-character hexadecimal encoding of a 16-byte array.
+   * [SPAN_ID] is a unique identifier for a span within a trace; it
+   * is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -7535,9 +7653,10 @@ public  final class Span extends
    * <pre>
    * The resource name of the span in the following format:
    *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-   * [TRACE_ID] is a unique identifier for a trace within a project.
-   * [SPAN_ID] is a unique identifier for a span within a trace,
-   * assigned when the span is created.
+   * [TRACE_ID] is a unique identifier for a trace within a project;
+   * it is a 32-character hexadecimal encoding of a 16-byte array.
+   * [SPAN_ID] is a unique identifier for a span within a trace; it
+   * is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -7561,7 +7680,6 @@ public  final class Span extends
   /**
    * <pre>
    * The [SPAN_ID] portion of the span's resource name.
-   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string span_id = 2;</code>
@@ -7581,7 +7699,6 @@ public  final class Span extends
   /**
    * <pre>
    * The [SPAN_ID] portion of the span's resource name.
-   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string span_id = 2;</code>
@@ -7777,7 +7894,7 @@ public  final class Span extends
   private com.google.devtools.cloudtrace.v2.Span.Attributes attributes_;
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -7788,7 +7905,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -7799,7 +7916,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -7846,7 +7963,7 @@ public  final class Span extends
   private com.google.devtools.cloudtrace.v2.Span.TimeEvents timeEvents_;
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -7857,7 +7974,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -7868,7 +7985,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -7882,7 +7999,7 @@ public  final class Span extends
   private com.google.devtools.cloudtrace.v2.Span.Links links_;
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -7892,7 +8009,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -7902,7 +8019,7 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -7948,9 +8065,10 @@ public  final class Span extends
   private com.google.protobuf.BoolValue sameProcessAsParentSpan_;
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -7960,9 +8078,10 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -7972,9 +8091,10 @@ public  final class Span extends
   }
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -8070,6 +8190,7 @@ public  final class Span extends
     if (childSpanCount_ != null) {
       output.writeMessage(13, getChildSpanCount());
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -8126,11 +8247,11 @@ public  final class Span extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(13, getChildSpanCount());
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -8198,6 +8319,7 @@ public  final class Span extends
       result = result && getChildSpanCount()
           .equals(other.getChildSpanCount());
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -8542,7 +8664,7 @@ public  final class Span extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -8555,12 +8677,12 @@ public  final class Span extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8616,6 +8738,7 @@ public  final class Span extends
       if (other.hasChildSpanCount()) {
         mergeChildSpanCount(other.getChildSpanCount());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -8647,9 +8770,10 @@ public  final class Span extends
      * <pre>
      * The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project.
-     * [SPAN_ID] is a unique identifier for a span within a trace,
-     * assigned when the span is created.
+     * [TRACE_ID] is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array.
+     * [SPAN_ID] is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -8670,9 +8794,10 @@ public  final class Span extends
      * <pre>
      * The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project.
-     * [SPAN_ID] is a unique identifier for a span within a trace,
-     * assigned when the span is created.
+     * [TRACE_ID] is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array.
+     * [SPAN_ID] is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -8694,9 +8819,10 @@ public  final class Span extends
      * <pre>
      * The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project.
-     * [SPAN_ID] is a unique identifier for a span within a trace,
-     * assigned when the span is created.
+     * [TRACE_ID] is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array.
+     * [SPAN_ID] is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -8715,9 +8841,10 @@ public  final class Span extends
      * <pre>
      * The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project.
-     * [SPAN_ID] is a unique identifier for a span within a trace,
-     * assigned when the span is created.
+     * [TRACE_ID] is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array.
+     * [SPAN_ID] is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -8732,9 +8859,10 @@ public  final class Span extends
      * <pre>
      * The resource name of the span in the following format:
      *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-     * [TRACE_ID] is a unique identifier for a trace within a project.
-     * [SPAN_ID] is a unique identifier for a span within a trace,
-     * assigned when the span is created.
+     * [TRACE_ID] is a unique identifier for a trace within a project;
+     * it is a 32-character hexadecimal encoding of a 16-byte array.
+     * [SPAN_ID] is a unique identifier for a span within a trace; it
+     * is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -8755,7 +8883,6 @@ public  final class Span extends
     /**
      * <pre>
      * The [SPAN_ID] portion of the span's resource name.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -8775,7 +8902,6 @@ public  final class Span extends
     /**
      * <pre>
      * The [SPAN_ID] portion of the span's resource name.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -8796,7 +8922,6 @@ public  final class Span extends
     /**
      * <pre>
      * The [SPAN_ID] portion of the span's resource name.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -8814,7 +8939,6 @@ public  final class Span extends
     /**
      * <pre>
      * The [SPAN_ID] portion of the span's resource name.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -8828,7 +8952,6 @@ public  final class Span extends
     /**
      * <pre>
      * The [SPAN_ID] portion of the span's resource name.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
      * </pre>
      *
      * <code>string span_id = 2;</code>
@@ -9493,7 +9616,7 @@ public  final class Span extends
         com.google.devtools.cloudtrace.v2.Span.Attributes, com.google.devtools.cloudtrace.v2.Span.Attributes.Builder, com.google.devtools.cloudtrace.v2.Span.AttributesOrBuilder> attributesBuilder_;
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9504,7 +9627,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9519,7 +9642,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9540,7 +9663,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9559,7 +9682,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9582,7 +9705,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9601,7 +9724,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9614,7 +9737,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9630,7 +9753,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A set of attributes on the span. There is a limit of 32 attributes per
+     * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      * </pre>
      *
@@ -9808,7 +9931,7 @@ public  final class Span extends
         com.google.devtools.cloudtrace.v2.Span.TimeEvents, com.google.devtools.cloudtrace.v2.Span.TimeEvents.Builder, com.google.devtools.cloudtrace.v2.Span.TimeEventsOrBuilder> timeEventsBuilder_;
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9819,7 +9942,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9834,7 +9957,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9855,7 +9978,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9874,7 +9997,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9897,7 +10020,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9916,7 +10039,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9929,7 +10052,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9945,7 +10068,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * The included time events. There can be up to 32 annotations and 128 message
+     * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      * </pre>
      *
@@ -9970,7 +10093,7 @@ public  final class Span extends
         com.google.devtools.cloudtrace.v2.Span.Links, com.google.devtools.cloudtrace.v2.Span.Links.Builder, com.google.devtools.cloudtrace.v2.Span.LinksOrBuilder> linksBuilder_;
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -9980,7 +10103,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -9994,7 +10117,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10014,7 +10137,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10032,7 +10155,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10054,7 +10177,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10072,7 +10195,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10084,7 +10207,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10099,7 +10222,7 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A maximum of 128 links are allowed per Span.
+     * Links associated with the span. You can have up to 128 links per Span.
      * </pre>
      *
      * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -10276,9 +10399,10 @@ public  final class Span extends
         com.google.protobuf.BoolValue, com.google.protobuf.BoolValue.Builder, com.google.protobuf.BoolValueOrBuilder> sameProcessAsParentSpanBuilder_;
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10288,9 +10412,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10304,9 +10429,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10326,9 +10452,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10346,9 +10473,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10370,9 +10498,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10390,9 +10519,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10404,9 +10534,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10421,9 +10552,10 @@ public  final class Span extends
     }
     /**
      * <pre>
-     * A highly recommended but not required flag that identifies when a trace
-     * crosses a process boundary. True when the parent_span belongs to the
-     * same process as the current span.
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
      * </pre>
      *
      * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -10605,12 +10737,12 @@ public  final class Span extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

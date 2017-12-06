@@ -15,6 +15,15 @@ public interface RowFilterOrBuilder extends
    *
    * <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
    */
+  boolean hasChain();
+  /**
+   * <pre>
+   * Applies several RowFilters to the data in sequence, progressively
+   * narrowing the results.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
+   */
   com.google.bigtable.v2.RowFilter.Chain getChain();
   /**
    * <pre>
@@ -34,6 +43,15 @@ public interface RowFilterOrBuilder extends
    *
    * <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
    */
+  boolean hasInterleave();
+  /**
+   * <pre>
+   * Applies several RowFilters to the data in parallel and combines the
+   * results.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
+   */
   com.google.bigtable.v2.RowFilter.Interleave getInterleave();
   /**
    * <pre>
@@ -45,6 +63,15 @@ public interface RowFilterOrBuilder extends
    */
   com.google.bigtable.v2.RowFilter.InterleaveOrBuilder getInterleaveOrBuilder();
 
+  /**
+   * <pre>
+   * Applies one of two possible RowFilters to the data based on the output of
+   * a predicate RowFilter.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
+   */
+  boolean hasCondition();
   /**
    * <pre>
    * Applies one of two possible RowFilters to the data based on the output of
@@ -220,6 +247,14 @@ public interface RowFilterOrBuilder extends
    *
    * <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
    */
+  boolean hasColumnRangeFilter();
+  /**
+   * <pre>
+   * Matches only cells from columns within the given range.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
+   */
   com.google.bigtable.v2.ColumnRange getColumnRangeFilter();
   /**
    * <pre>
@@ -230,6 +265,14 @@ public interface RowFilterOrBuilder extends
    */
   com.google.bigtable.v2.ColumnRangeOrBuilder getColumnRangeFilterOrBuilder();
 
+  /**
+   * <pre>
+   * Matches only cells with timestamps within the given range.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
+   */
+  boolean hasTimestampRangeFilter();
   /**
    * <pre>
    * Matches only cells with timestamps within the given range.
@@ -260,6 +303,14 @@ public interface RowFilterOrBuilder extends
    */
   com.google.protobuf.ByteString getValueRegexFilter();
 
+  /**
+   * <pre>
+   * Matches only cells with values that fall within the given range.
+   * </pre>
+   *
+   * <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
+   */
+  boolean hasValueRangeFilter();
   /**
    * <pre>
    * Matches only cells with values that fall within the given range.

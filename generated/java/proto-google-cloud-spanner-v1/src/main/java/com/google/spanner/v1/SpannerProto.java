@@ -189,10 +189,10 @@ public final class SpannerProto {
       "RollbackRequest\032\026.google.protobuf.Empty\"" +
       "O\202\323\344\223\002I\"D/v1/{session=projects/*/instanc" +
       "es/*/databases/*/sessions/*}:rollback:\001*" +
-      "B{\n\025com.google.spanner.v1B\014SpannerProtoP" +
-      "\001Z8google.golang.org/genproto/googleapis" +
-      "/spanner/v1;spanner\252\002\027Google.Cloud.Spann" +
-      "er.V1b\006proto3"
+      "B\225\001\n\025com.google.spanner.v1B\014SpannerProto" +
+      "P\001Z8google.golang.org/genproto/googleapi" +
+      "s/spanner/v1;spanner\252\002\027Google.Cloud.Span" +
+      "ner.V1\312\002\027Google\\Cloud\\Spanner\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

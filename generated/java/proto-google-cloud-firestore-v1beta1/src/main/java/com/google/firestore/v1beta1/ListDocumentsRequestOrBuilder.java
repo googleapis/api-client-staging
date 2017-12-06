@@ -148,6 +148,15 @@ public interface ListDocumentsRequestOrBuilder extends
    *
    * <code>.google.protobuf.Timestamp read_time = 10;</code>
    */
+  boolean hasReadTime();
+  /**
+   * <pre>
+   * Reads documents as they were at the given time.
+   * This may not be older than 60 seconds.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 10;</code>
+   */
   com.google.protobuf.Timestamp getReadTime();
   /**
    * <pre>

@@ -145,12 +145,13 @@ public final class SpannerDatabaseAdminProto {
       "rmissionsRequest\032).google.iam.v1.TestIam" +
       "PermissionsResponse\"O\202\323\344\223\002I\"D/v1/{resour" +
       "ce=projects/*/instances/*/databases/*}:t" +
-      "estIamPermissions:\001*B\266\001\n$com.google.span" +
+      "estIamPermissions:\001*B\337\001\n$com.google.span" +
       "ner.admin.database.v1B\031SpannerDatabaseAd" +
       "minProtoP\001ZHgoogle.golang.org/genproto/g",
       "oogleapis/spanner/admin/database/v1;data" +
       "base\252\002&Google.Cloud.Spanner.Admin.Databa" +
-      "se.V1b\006proto3"
+      "se.V1\312\002&Google\\Cloud\\Spanner\\Admin\\Datab" +
+      "ase\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -124,6 +124,17 @@ public interface BatchGetDocumentsRequestOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 5;</code>
    */
+  boolean hasNewTransaction();
+  /**
+   * <pre>
+   * Starts a new transaction and reads the documents.
+   * Defaults to a read-only transaction.
+   * The new transaction ID will be returned as the first response in the
+   * stream.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions new_transaction = 5;</code>
+   */
   com.google.firestore.v1beta1.TransactionOptions getNewTransaction();
   /**
    * <pre>
@@ -137,6 +148,15 @@ public interface BatchGetDocumentsRequestOrBuilder extends
    */
   com.google.firestore.v1beta1.TransactionOptionsOrBuilder getNewTransactionOrBuilder();
 
+  /**
+   * <pre>
+   * Reads documents as they were at the given time.
+   * This may not be older than 60 seconds.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 7;</code>
+   */
+  boolean hasReadTime();
   /**
    * <pre>
    * Reads documents as they were at the given time.

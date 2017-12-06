@@ -14,6 +14,7 @@ public  final class Target extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.Target)
     TargetOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Target.newBuilder() to construct.
   private Target(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,7 +27,7 @@ public  final class Target extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Target(
       com.google.protobuf.CodedInputStream input,
@@ -34,6 +35,8 @@ public  final class Target extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,7 +46,8 @@ public  final class Target extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -113,6 +117,7 @@ public  final class Target extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -190,6 +195,7 @@ public  final class Target extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.Target.DocumentsTarget)
       DocumentsTargetOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DocumentsTarget.newBuilder() to construct.
     private DocumentsTarget(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -201,7 +207,7 @@ public  final class Target extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DocumentsTarget(
         com.google.protobuf.CodedInputStream input,
@@ -209,6 +215,8 @@ public  final class Target extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -218,7 +226,8 @@ public  final class Target extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -243,6 +252,7 @@ public  final class Target extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           documents_ = documents_.getUnmodifiableView();
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -330,6 +340,7 @@ public  final class Target extends
       for (int i = 0; i < documents_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, documents_.getRaw(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -345,11 +356,11 @@ public  final class Target extends
         size += dataSize;
         size += 1 * getDocumentsList().size();
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -363,6 +374,7 @@ public  final class Target extends
       boolean result = true;
       result = result && getDocumentsList()
           .equals(other.getDocumentsList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -549,7 +561,7 @@ public  final class Target extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -562,12 +574,12 @@ public  final class Target extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -591,6 +603,7 @@ public  final class Target extends
           }
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -776,12 +789,12 @@ public  final class Target extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -862,6 +875,14 @@ public  final class Target extends
      *
      * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
      */
+    boolean hasStructuredQuery();
+    /**
+     * <pre>
+     * A structured query.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+     */
     com.google.firestore.v1beta1.StructuredQuery getStructuredQuery();
     /**
      * <pre>
@@ -885,6 +906,7 @@ public  final class Target extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.Target.QueryTarget)
       QueryTargetOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use QueryTarget.newBuilder() to construct.
     private QueryTarget(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -896,7 +918,7 @@ public  final class Target extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private QueryTarget(
         com.google.protobuf.CodedInputStream input,
@@ -904,6 +926,8 @@ public  final class Target extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -913,7 +937,8 @@ public  final class Target extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -946,6 +971,7 @@ public  final class Target extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1057,6 +1083,16 @@ public  final class Target extends
      *
      * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
      */
+    public boolean hasStructuredQuery() {
+      return queryTypeCase_ == 2;
+    }
+    /**
+     * <pre>
+     * A structured query.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+     */
     public com.google.firestore.v1beta1.StructuredQuery getStructuredQuery() {
       if (queryTypeCase_ == 2) {
          return (com.google.firestore.v1beta1.StructuredQuery) queryType_;
@@ -1095,6 +1131,7 @@ public  final class Target extends
       if (queryTypeCase_ == 2) {
         output.writeMessage(2, (com.google.firestore.v1beta1.StructuredQuery) queryType_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1109,11 +1146,11 @@ public  final class Target extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (com.google.firestore.v1beta1.StructuredQuery) queryType_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1138,6 +1175,7 @@ public  final class Target extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1335,7 +1373,7 @@ public  final class Target extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1348,12 +1386,12 @@ public  final class Target extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1380,6 +1418,7 @@ public  final class Target extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1544,6 +1583,16 @@ public  final class Target extends
        *
        * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
        */
+      public boolean hasStructuredQuery() {
+        return queryTypeCase_ == 2;
+      }
+      /**
+       * <pre>
+       * A structured query.
+       * </pre>
+       *
+       * <code>.google.firestore.v1beta1.StructuredQuery structured_query = 2;</code>
+       */
       public com.google.firestore.v1beta1.StructuredQuery getStructuredQuery() {
         if (structuredQueryBuilder_ == null) {
           if (queryTypeCase_ == 2) {
@@ -1698,12 +1747,12 @@ public  final class Target extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1829,6 +1878,16 @@ public  final class Target extends
    *
    * <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
    */
+  public boolean hasQuery() {
+    return targetTypeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * A target specified by a query.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
+   */
   public com.google.firestore.v1beta1.Target.QueryTarget getQuery() {
     if (targetTypeCase_ == 2) {
        return (com.google.firestore.v1beta1.Target.QueryTarget) targetType_;
@@ -1850,6 +1909,16 @@ public  final class Target extends
   }
 
   public static final int DOCUMENTS_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * A target specified by a set of document names.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.Target.DocumentsTarget documents = 3;</code>
+   */
+  public boolean hasDocuments() {
+    return targetTypeCase_ == 3;
+  }
   /**
    * <pre>
    * A target specified by a set of document names.
@@ -1894,6 +1963,17 @@ public  final class Target extends
   }
 
   public static final int READ_TIME_FIELD_NUMBER = 11;
+  /**
+   * <pre>
+   * Start listening after a specific `read_time`.
+   * The client must know the state of matching documents at this time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp read_time = 11;</code>
+   */
+  public boolean hasReadTime() {
+    return resumeTypeCase_ == 11;
+  }
   /**
    * <pre>
    * Start listening after a specific `read_time`.
@@ -1985,6 +2065,7 @@ public  final class Target extends
     if (resumeTypeCase_ == 11) {
       output.writeMessage(11, (com.google.protobuf.Timestamp) resumeType_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2017,11 +2098,11 @@ public  final class Target extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, (com.google.protobuf.Timestamp) resumeType_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2067,6 +2148,7 @@ public  final class Target extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2306,7 +2388,7 @@ public  final class Target extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -2319,12 +2401,12 @@ public  final class Target extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2370,6 +2452,7 @@ public  final class Target extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2428,6 +2511,16 @@ public  final class Target extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.Target.QueryTarget, com.google.firestore.v1beta1.Target.QueryTarget.Builder, com.google.firestore.v1beta1.Target.QueryTargetOrBuilder> queryBuilder_;
+    /**
+     * <pre>
+     * A target specified by a query.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.Target.QueryTarget query = 2;</code>
+     */
+    public boolean hasQuery() {
+      return targetTypeCase_ == 2;
+    }
     /**
      * <pre>
      * A target specified by a query.
@@ -2590,6 +2683,16 @@ public  final class Target extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.Target.DocumentsTarget, com.google.firestore.v1beta1.Target.DocumentsTarget.Builder, com.google.firestore.v1beta1.Target.DocumentsTargetOrBuilder> documentsBuilder_;
+    /**
+     * <pre>
+     * A target specified by a set of document names.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.Target.DocumentsTarget documents = 3;</code>
+     */
+    public boolean hasDocuments() {
+      return targetTypeCase_ == 3;
+    }
     /**
      * <pre>
      * A target specified by a set of document names.
@@ -2800,6 +2903,17 @@ public  final class Target extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> readTimeBuilder_;
+    /**
+     * <pre>
+     * Start listening after a specific `read_time`.
+     * The client must know the state of matching documents at this time.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp read_time = 11;</code>
+     */
+    public boolean hasReadTime() {
+      return resumeTypeCase_ == 11;
+    }
     /**
      * <pre>
      * Start listening after a specific `read_time`.
@@ -3060,12 +3174,12 @@ public  final class Target extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

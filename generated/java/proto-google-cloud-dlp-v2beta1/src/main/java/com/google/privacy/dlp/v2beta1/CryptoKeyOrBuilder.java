@@ -10,6 +10,10 @@ public interface CryptoKeyOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta1.TransientCryptoKey transient = 1;</code>
    */
+  boolean hasTransient();
+  /**
+   * <code>.google.privacy.dlp.v2beta1.TransientCryptoKey transient = 1;</code>
+   */
   com.google.privacy.dlp.v2beta1.TransientCryptoKey getTransient();
   /**
    * <code>.google.privacy.dlp.v2beta1.TransientCryptoKey transient = 1;</code>
@@ -19,12 +23,20 @@ public interface CryptoKeyOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta1.UnwrappedCryptoKey unwrapped = 2;</code>
    */
+  boolean hasUnwrapped();
+  /**
+   * <code>.google.privacy.dlp.v2beta1.UnwrappedCryptoKey unwrapped = 2;</code>
+   */
   com.google.privacy.dlp.v2beta1.UnwrappedCryptoKey getUnwrapped();
   /**
    * <code>.google.privacy.dlp.v2beta1.UnwrappedCryptoKey unwrapped = 2;</code>
    */
   com.google.privacy.dlp.v2beta1.UnwrappedCryptoKeyOrBuilder getUnwrappedOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta1.KmsWrappedCryptoKey kms_wrapped = 3;</code>
+   */
+  boolean hasKmsWrapped();
   /**
    * <code>.google.privacy.dlp.v2beta1.KmsWrappedCryptoKey kms_wrapped = 3;</code>
    */

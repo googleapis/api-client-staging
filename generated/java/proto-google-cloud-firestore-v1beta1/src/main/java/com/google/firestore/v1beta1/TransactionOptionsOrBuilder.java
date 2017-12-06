@@ -14,6 +14,14 @@ public interface TransactionOptionsOrBuilder extends
    *
    * <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
    */
+  boolean hasReadOnly();
+  /**
+   * <pre>
+   * The transaction can only be used for read operations.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions.ReadOnly read_only = 2;</code>
+   */
   com.google.firestore.v1beta1.TransactionOptions.ReadOnly getReadOnly();
   /**
    * <pre>
@@ -24,6 +32,14 @@ public interface TransactionOptionsOrBuilder extends
    */
   com.google.firestore.v1beta1.TransactionOptions.ReadOnlyOrBuilder getReadOnlyOrBuilder();
 
+  /**
+   * <pre>
+   * The transaction can be used for both read and write operations.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.TransactionOptions.ReadWrite read_write = 3;</code>
+   */
+  boolean hasReadWrite();
   /**
    * <pre>
    * The transaction can be used for both read and write operations.

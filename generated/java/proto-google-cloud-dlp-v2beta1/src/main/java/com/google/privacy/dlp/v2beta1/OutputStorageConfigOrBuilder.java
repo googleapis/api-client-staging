@@ -14,6 +14,14 @@ public interface OutputStorageConfigOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
    */
+  boolean hasTable();
+  /**
+   * <pre>
+   * Store findings in a new table in the dataset.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.BigQueryTable table = 1;</code>
+   */
   com.google.privacy.dlp.v2beta1.BigQueryTable getTable();
   /**
    * <pre>
@@ -24,6 +32,44 @@ public interface OutputStorageConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta1.BigQueryTableOrBuilder getTableOrBuilder();
 
+  /**
+   * <pre>
+   * The path to a Google Cloud Storage location to store output.
+   * The bucket must already exist and
+   * the Google APIs service account for DLP must have write permission to
+   * write to the given bucket.
+   * Results are split over multiple csv files with each file name matching
+   * the pattern "[operation_id]_[count].csv", for example
+   * `3094877188788974909_1.csv`. The `operation_id` matches the
+   * identifier for the Operation, and the `count` is a counter used for
+   * tracking the number of files written.
+   * The CSV file(s) contain the following columns regardless of storage type
+   * scanned:
+   * - id
+   * - info_type
+   * - likelihood
+   * - byte size of finding
+   * - quote
+   * - timestamp
+   * For Cloud Storage the next columns are:
+   * - file_path
+   * - start_offset
+   * For Cloud Datastore the next columns are:
+   * - project_id
+   * - namespace_id
+   * - path
+   * - column_name
+   * - offset
+   * For BigQuery the next columns are:
+   * - row_number
+   * - project_id
+   * - dataset_id
+   * - table_id
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.CloudStoragePath storage_path = 2;</code>
+   */
+  boolean hasStoragePath();
   /**
    * <pre>
    * The path to a Google Cloud Storage location to store output.

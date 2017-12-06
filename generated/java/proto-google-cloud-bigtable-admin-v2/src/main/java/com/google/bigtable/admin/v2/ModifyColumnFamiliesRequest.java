@@ -15,6 +15,7 @@ public  final class ModifyColumnFamiliesRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.ModifyColumnFamiliesRequest)
     ModifyColumnFamiliesRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use ModifyColumnFamiliesRequest.newBuilder() to construct.
   private ModifyColumnFamiliesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +28,7 @@ public  final class ModifyColumnFamiliesRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private ModifyColumnFamiliesRequest(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +36,8 @@ public  final class ModifyColumnFamiliesRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +47,8 @@ public  final class ModifyColumnFamiliesRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -75,6 +79,7 @@ public  final class ModifyColumnFamiliesRequest extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         modifications_ = java.util.Collections.unmodifiableList(modifications_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -120,6 +125,15 @@ public  final class ModifyColumnFamiliesRequest extends
      *
      * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
      */
+    boolean hasCreate();
+    /**
+     * <pre>
+     * Create a new column family with the specified schema, or fail if
+     * one already exists with the given ID.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     */
     com.google.bigtable.admin.v2.ColumnFamily getCreate();
     /**
      * <pre>
@@ -131,6 +145,15 @@ public  final class ModifyColumnFamiliesRequest extends
      */
     com.google.bigtable.admin.v2.ColumnFamilyOrBuilder getCreateOrBuilder();
 
+    /**
+     * <pre>
+     * Update an existing column family to the specified schema, or fail
+     * if no column family exists with the given ID.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     */
+    boolean hasUpdate();
     /**
      * <pre>
      * Update an existing column family to the specified schema, or fail
@@ -173,6 +196,7 @@ public  final class ModifyColumnFamiliesRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification)
       ModificationOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Modification.newBuilder() to construct.
     private Modification(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -184,7 +208,7 @@ public  final class ModifyColumnFamiliesRequest extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Modification(
         com.google.protobuf.CodedInputStream input,
@@ -192,6 +216,8 @@ public  final class ModifyColumnFamiliesRequest extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -201,7 +227,8 @@ public  final class ModifyColumnFamiliesRequest extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -253,6 +280,7 @@ public  final class ModifyColumnFamiliesRequest extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -359,6 +387,17 @@ public  final class ModifyColumnFamiliesRequest extends
      *
      * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
      */
+    public boolean hasCreate() {
+      return modCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Create a new column family with the specified schema, or fail if
+     * one already exists with the given ID.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+     */
     public com.google.bigtable.admin.v2.ColumnFamily getCreate() {
       if (modCase_ == 2) {
          return (com.google.bigtable.admin.v2.ColumnFamily) mod_;
@@ -381,6 +420,17 @@ public  final class ModifyColumnFamiliesRequest extends
     }
 
     public static final int UPDATE_FIELD_NUMBER = 3;
+    /**
+     * <pre>
+     * Update an existing column family to the specified schema, or fail
+     * if no column family exists with the given ID.
+     * </pre>
+     *
+     * <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+     */
+    public boolean hasUpdate() {
+      return modCase_ == 3;
+    }
     /**
      * <pre>
      * Update an existing column family to the specified schema, or fail
@@ -451,6 +501,7 @@ public  final class ModifyColumnFamiliesRequest extends
         output.writeBool(
             4, (boolean)((java.lang.Boolean) mod_));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -474,11 +525,11 @@ public  final class ModifyColumnFamiliesRequest extends
           .computeBoolSize(
               4, (boolean)((java.lang.Boolean) mod_));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -511,6 +562,7 @@ public  final class ModifyColumnFamiliesRequest extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -727,7 +779,7 @@ public  final class ModifyColumnFamiliesRequest extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -740,12 +792,12 @@ public  final class ModifyColumnFamiliesRequest extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -780,6 +832,7 @@ public  final class ModifyColumnFamiliesRequest extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -912,6 +965,17 @@ public  final class ModifyColumnFamiliesRequest extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.bigtable.admin.v2.ColumnFamily, com.google.bigtable.admin.v2.ColumnFamily.Builder, com.google.bigtable.admin.v2.ColumnFamilyOrBuilder> createBuilder_;
+      /**
+       * <pre>
+       * Create a new column family with the specified schema, or fail if
+       * one already exists with the given ID.
+       * </pre>
+       *
+       * <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
+       */
+      public boolean hasCreate() {
+        return modCase_ == 2;
+      }
       /**
        * <pre>
        * Create a new column family with the specified schema, or fail if
@@ -1082,6 +1146,17 @@ public  final class ModifyColumnFamiliesRequest extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.bigtable.admin.v2.ColumnFamily, com.google.bigtable.admin.v2.ColumnFamily.Builder, com.google.bigtable.admin.v2.ColumnFamilyOrBuilder> updateBuilder_;
+      /**
+       * <pre>
+       * Update an existing column family to the specified schema, or fail
+       * if no column family exists with the given ID.
+       * </pre>
+       *
+       * <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
+       */
+      public boolean hasUpdate() {
+        return modCase_ == 3;
+      }
       /**
        * <pre>
        * Update an existing column family to the specified schema, or fail
@@ -1296,12 +1371,12 @@ public  final class ModifyColumnFamiliesRequest extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1478,6 +1553,7 @@ public  final class ModifyColumnFamiliesRequest extends
     for (int i = 0; i < modifications_.size(); i++) {
       output.writeMessage(2, modifications_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1492,11 +1568,11 @@ public  final class ModifyColumnFamiliesRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, modifications_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -1512,6 +1588,7 @@ public  final class ModifyColumnFamiliesRequest extends
         .equals(other.getName());
     result = result && getModificationsList()
         .equals(other.getModificationsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1715,7 +1792,7 @@ public  final class ModifyColumnFamiliesRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1728,12 +1805,12 @@ public  final class ModifyColumnFamiliesRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1777,6 +1854,7 @@ public  final class ModifyColumnFamiliesRequest extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2270,12 +2348,12 @@ public  final class ModifyColumnFamiliesRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

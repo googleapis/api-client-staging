@@ -14,6 +14,7 @@ public  final class Value extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.Value)
     ValueOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Value.newBuilder() to construct.
   private Value(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class Value extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Value(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class Value extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class Value extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -148,6 +152,7 @@ public  final class Value extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -295,6 +300,18 @@ public  final class Value extends
   }
 
   public static final int TIMESTAMP_VALUE_FIELD_NUMBER = 10;
+  /**
+   * <pre>
+   * A timestamp value.
+   * Precise only to microseconds. When stored, any additional precision is
+   * rounded down.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
+   */
+  public boolean hasTimestampValue() {
+    return valueTypeCase_ == 10;
+  }
   /**
    * <pre>
    * A timestamp value.
@@ -461,6 +478,16 @@ public  final class Value extends
    *
    * <code>.google.type.LatLng geo_point_value = 8;</code>
    */
+  public boolean hasGeoPointValue() {
+    return valueTypeCase_ == 8;
+  }
+  /**
+   * <pre>
+   * A geo point value representing a point on the surface of Earth.
+   * </pre>
+   *
+   * <code>.google.type.LatLng geo_point_value = 8;</code>
+   */
   public com.google.type.LatLng getGeoPointValue() {
     if (valueTypeCase_ == 8) {
        return (com.google.type.LatLng) valueType_;
@@ -482,6 +509,17 @@ public  final class Value extends
   }
 
   public static final int ARRAY_VALUE_FIELD_NUMBER = 9;
+  /**
+   * <pre>
+   * An array value.
+   * Cannot contain another array value.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.ArrayValue array_value = 9;</code>
+   */
+  public boolean hasArrayValue() {
+    return valueTypeCase_ == 9;
+  }
   /**
    * <pre>
    * An array value.
@@ -512,6 +550,16 @@ public  final class Value extends
   }
 
   public static final int MAP_VALUE_FIELD_NUMBER = 6;
+  /**
+   * <pre>
+   * A map value.
+   * </pre>
+   *
+   * <code>.google.firestore.v1beta1.MapValue map_value = 6;</code>
+   */
+  public boolean hasMapValue() {
+    return valueTypeCase_ == 6;
+  }
   /**
    * <pre>
    * A map value.
@@ -588,6 +636,7 @@ public  final class Value extends
       output.writeBytes(
           18, (com.google.protobuf.ByteString) valueType_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -641,11 +690,11 @@ public  final class Value extends
         .computeBytesSize(
             18, (com.google.protobuf.ByteString) valueType_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -710,6 +759,7 @@ public  final class Value extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -987,7 +1037,7 @@ public  final class Value extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1000,12 +1050,12 @@ public  final class Value extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1072,6 +1122,7 @@ public  final class Value extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1314,6 +1365,18 @@ public  final class Value extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampValueBuilder_;
+    /**
+     * <pre>
+     * A timestamp value.
+     * Precise only to microseconds. When stored, any additional precision is
+     * rounded down.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
+     */
+    public boolean hasTimestampValue() {
+      return valueTypeCase_ == 10;
+    }
     /**
      * <pre>
      * A timestamp value.
@@ -1770,6 +1833,16 @@ public  final class Value extends
      *
      * <code>.google.type.LatLng geo_point_value = 8;</code>
      */
+    public boolean hasGeoPointValue() {
+      return valueTypeCase_ == 8;
+    }
+    /**
+     * <pre>
+     * A geo point value representing a point on the surface of Earth.
+     * </pre>
+     *
+     * <code>.google.type.LatLng geo_point_value = 8;</code>
+     */
     public com.google.type.LatLng getGeoPointValue() {
       if (geoPointValueBuilder_ == null) {
         if (valueTypeCase_ == 8) {
@@ -1925,6 +1998,17 @@ public  final class Value extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.firestore.v1beta1.ArrayValue, com.google.firestore.v1beta1.ArrayValue.Builder, com.google.firestore.v1beta1.ArrayValueOrBuilder> arrayValueBuilder_;
+    /**
+     * <pre>
+     * An array value.
+     * Cannot contain another array value.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.ArrayValue array_value = 9;</code>
+     */
+    public boolean hasArrayValue() {
+      return valueTypeCase_ == 9;
+    }
     /**
      * <pre>
      * An array value.
@@ -2102,6 +2186,16 @@ public  final class Value extends
      *
      * <code>.google.firestore.v1beta1.MapValue map_value = 6;</code>
      */
+    public boolean hasMapValue() {
+      return valueTypeCase_ == 6;
+    }
+    /**
+     * <pre>
+     * A map value.
+     * </pre>
+     *
+     * <code>.google.firestore.v1beta1.MapValue map_value = 6;</code>
+     */
     public com.google.firestore.v1beta1.MapValue getMapValue() {
       if (mapValueBuilder_ == null) {
         if (valueTypeCase_ == 6) {
@@ -2256,12 +2350,12 @@ public  final class Value extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

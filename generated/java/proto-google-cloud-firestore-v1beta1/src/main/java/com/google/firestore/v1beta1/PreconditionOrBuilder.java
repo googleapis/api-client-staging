@@ -25,6 +25,15 @@ public interface PreconditionOrBuilder extends
    *
    * <code>.google.protobuf.Timestamp update_time = 2;</code>
    */
+  boolean hasUpdateTime();
+  /**
+   * <pre>
+   * When set, the target document must exist and have been last updated at
+   * that time.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp update_time = 2;</code>
+   */
   com.google.protobuf.Timestamp getUpdateTime();
   /**
    * <pre>

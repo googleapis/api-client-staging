@@ -14,12 +14,14 @@ public  final class MutateRowRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.bigtable.v2.MutateRowRequest)
     MutateRowRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use MutateRowRequest.newBuilder() to construct.
   private MutateRowRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
   private MutateRowRequest() {
     tableName_ = "";
+    appProfileId_ = "";
     rowKey_ = com.google.protobuf.ByteString.EMPTY;
     mutations_ = java.util.Collections.emptyList();
   }
@@ -27,7 +29,7 @@ public  final class MutateRowRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private MutateRowRequest(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +37,8 @@ public  final class MutateRowRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +48,8 @@ public  final class MutateRowRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -61,12 +66,18 @@ public  final class MutateRowRequest extends
             break;
           }
           case 26: {
-            if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
               mutations_ = new java.util.ArrayList<com.google.bigtable.v2.Mutation>();
-              mutable_bitField0_ |= 0x00000004;
+              mutable_bitField0_ |= 0x00000008;
             }
             mutations_.add(
                 input.readMessage(com.google.bigtable.v2.Mutation.parser(), extensionRegistry));
+            break;
+          }
+          case 34: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            appProfileId_ = s;
             break;
           }
         }
@@ -77,9 +88,10 @@ public  final class MutateRowRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
         mutations_ = java.util.Collections.unmodifiableList(mutations_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -136,6 +148,58 @@ public  final class MutateRowRequest extends
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       tableName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int APP_PROFILE_ID_FIELD_NUMBER = 4;
+  private volatile java.lang.Object appProfileId_;
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 4;</code>
+   */
+  public java.lang.String getAppProfileId() {
+    java.lang.Object ref = appProfileId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      appProfileId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * This is a private alpha release of Cloud Bigtable replication. This feature
+   * is not currently available to most Cloud Bigtable customers. This feature
+   * might be changed in backward-incompatible ways and is not recommended for
+   * production use. It is not subject to any SLA or deprecation policy.
+   * This value specifies routing for replication. If not specified, the
+   * "default" application profile will be used.
+   * </pre>
+   *
+   * <code>string app_profile_id = 4;</code>
+   */
+  public com.google.protobuf.ByteString
+      getAppProfileIdBytes() {
+    java.lang.Object ref = appProfileId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      appProfileId_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -241,6 +305,10 @@ public  final class MutateRowRequest extends
     for (int i = 0; i < mutations_.size(); i++) {
       output.writeMessage(3, mutations_.get(i));
     }
+    if (!getAppProfileIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, appProfileId_);
+    }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -259,11 +327,14 @@ public  final class MutateRowRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, mutations_.get(i));
     }
+    if (!getAppProfileIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, appProfileId_);
+    }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -277,10 +348,13 @@ public  final class MutateRowRequest extends
     boolean result = true;
     result = result && getTableName()
         .equals(other.getTableName());
+    result = result && getAppProfileId()
+        .equals(other.getAppProfileId());
     result = result && getRowKey()
         .equals(other.getRowKey());
     result = result && getMutationsList()
         .equals(other.getMutationsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -293,6 +367,8 @@ public  final class MutateRowRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TABLE_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getTableName().hashCode();
+    hash = (37 * hash) + APP_PROFILE_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getAppProfileId().hashCode();
     hash = (37 * hash) + ROW_KEY_FIELD_NUMBER;
     hash = (53 * hash) + getRowKey().hashCode();
     if (getMutationsCount() > 0) {
@@ -435,11 +511,13 @@ public  final class MutateRowRequest extends
       super.clear();
       tableName_ = "";
 
+      appProfileId_ = "";
+
       rowKey_ = com.google.protobuf.ByteString.EMPTY;
 
       if (mutationsBuilder_ == null) {
         mutations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
       } else {
         mutationsBuilder_.clear();
       }
@@ -468,11 +546,12 @@ public  final class MutateRowRequest extends
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       result.tableName_ = tableName_;
+      result.appProfileId_ = appProfileId_;
       result.rowKey_ = rowKey_;
       if (mutationsBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
           mutations_ = java.util.Collections.unmodifiableList(mutations_);
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.mutations_ = mutations_;
       } else {
@@ -488,7 +567,7 @@ public  final class MutateRowRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -501,12 +580,12 @@ public  final class MutateRowRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -524,6 +603,10 @@ public  final class MutateRowRequest extends
         tableName_ = other.tableName_;
         onChanged();
       }
+      if (!other.getAppProfileId().isEmpty()) {
+        appProfileId_ = other.appProfileId_;
+        onChanged();
+      }
       if (other.getRowKey() != com.google.protobuf.ByteString.EMPTY) {
         setRowKey(other.getRowKey());
       }
@@ -531,7 +614,7 @@ public  final class MutateRowRequest extends
         if (!other.mutations_.isEmpty()) {
           if (mutations_.isEmpty()) {
             mutations_ = other.mutations_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureMutationsIsMutable();
             mutations_.addAll(other.mutations_);
@@ -544,7 +627,7 @@ public  final class MutateRowRequest extends
             mutationsBuilder_.dispose();
             mutationsBuilder_ = null;
             mutations_ = other.mutations_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
             mutationsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getMutationsFieldBuilder() : null;
@@ -553,6 +636,7 @@ public  final class MutateRowRequest extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -679,6 +763,120 @@ public  final class MutateRowRequest extends
       return this;
     }
 
+    private java.lang.Object appProfileId_ = "";
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 4;</code>
+     */
+    public java.lang.String getAppProfileId() {
+      java.lang.Object ref = appProfileId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        appProfileId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAppProfileIdBytes() {
+      java.lang.Object ref = appProfileId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        appProfileId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 4;</code>
+     */
+    public Builder setAppProfileId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      appProfileId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 4;</code>
+     */
+    public Builder clearAppProfileId() {
+      
+      appProfileId_ = getDefaultInstance().getAppProfileId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * This value specifies routing for replication. If not specified, the
+     * "default" application profile will be used.
+     * </pre>
+     *
+     * <code>string app_profile_id = 4;</code>
+     */
+    public Builder setAppProfileIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      appProfileId_ = value;
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.ByteString rowKey_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
@@ -723,9 +921,9 @@ public  final class MutateRowRequest extends
     private java.util.List<com.google.bigtable.v2.Mutation> mutations_ =
       java.util.Collections.emptyList();
     private void ensureMutationsIsMutable() {
-      if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
         mutations_ = new java.util.ArrayList<com.google.bigtable.v2.Mutation>(mutations_);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
        }
     }
 
@@ -941,7 +1139,7 @@ public  final class MutateRowRequest extends
     public Builder clearMutations() {
       if (mutationsBuilder_ == null) {
         mutations_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
       } else {
         mutationsBuilder_.clear();
@@ -1060,7 +1258,7 @@ public  final class MutateRowRequest extends
         mutationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.google.bigtable.v2.Mutation, com.google.bigtable.v2.Mutation.Builder, com.google.bigtable.v2.MutationOrBuilder>(
                 mutations_,
-                ((bitField0_ & 0x00000004) == 0x00000004),
+                ((bitField0_ & 0x00000008) == 0x00000008),
                 getParentForChildren(),
                 isClean());
         mutations_ = null;
@@ -1069,12 +1267,12 @@ public  final class MutateRowRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

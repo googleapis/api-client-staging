@@ -31,11 +31,12 @@ public final class GroupProto {
       "\n google/monitoring/v3/group.proto\022\024goog" +
       "le.monitoring.v3\"d\n\005Group\022\014\n\004name\030\001 \001(\t\022" +
       "\024\n\014display_name\030\002 \001(\t\022\023\n\013parent_name\030\003 \001" +
-      "(\t\022\016\n\006filter\030\005 \001(\t\022\022\n\nis_cluster\030\006 \001(\010B\205" +
+      "(\t\022\016\n\006filter\030\005 \001(\t\022\022\n\nis_cluster\030\006 \001(\010B\242" +
       "\001\n\030com.google.monitoring.v3B\nGroupProtoP" +
       "\001Z>google.golang.org/genproto/googleapis" +
       "/monitoring/v3;monitoring\252\002\032Google.Cloud" +
-      ".Monitoring.V3b\006proto3"
+      ".Monitoring.V3\312\002\032Google\\Cloud\\Monitoring" +
+      "\\V3b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

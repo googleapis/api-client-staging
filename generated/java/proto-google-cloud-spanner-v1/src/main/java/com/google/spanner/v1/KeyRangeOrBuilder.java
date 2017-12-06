@@ -15,6 +15,15 @@ public interface KeyRangeOrBuilder extends
    *
    * <code>.google.protobuf.ListValue start_closed = 1;</code>
    */
+  boolean hasStartClosed();
+  /**
+   * <pre>
+   * If the start is closed, then the range includes all rows whose
+   * first `len(start_closed)` key columns exactly match `start_closed`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   */
   com.google.protobuf.ListValue getStartClosed();
   /**
    * <pre>
@@ -26,6 +35,15 @@ public interface KeyRangeOrBuilder extends
    */
   com.google.protobuf.ListValueOrBuilder getStartClosedOrBuilder();
 
+  /**
+   * <pre>
+   * If the start is open, then the range excludes rows whose first
+   * `len(start_open)` key columns exactly match `start_open`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   */
+  boolean hasStartOpen();
   /**
    * <pre>
    * If the start is open, then the range excludes rows whose first
@@ -53,6 +71,15 @@ public interface KeyRangeOrBuilder extends
    *
    * <code>.google.protobuf.ListValue end_closed = 3;</code>
    */
+  boolean hasEndClosed();
+  /**
+   * <pre>
+   * If the end is closed, then the range includes all rows whose
+   * first `len(end_closed)` key columns exactly match `end_closed`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   */
   com.google.protobuf.ListValue getEndClosed();
   /**
    * <pre>
@@ -64,6 +91,15 @@ public interface KeyRangeOrBuilder extends
    */
   com.google.protobuf.ListValueOrBuilder getEndClosedOrBuilder();
 
+  /**
+   * <pre>
+   * If the end is open, then the range excludes rows whose first
+   * `len(end_open)` key columns exactly match `end_open`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   */
+  boolean hasEndOpen();
   /**
    * <pre>
    * If the end is open, then the range excludes rows whose first

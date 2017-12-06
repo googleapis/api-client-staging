@@ -108,11 +108,12 @@ public final class TraceProto {
       "ces/{trace_id}\022\212\001\n\013PatchTraces\0221.google." +
       "devtools.cloudtrace.v1.PatchTracesReques" +
       "t\032\026.google.protobuf.Empty\"0\202\323\344\223\002*2 /v1/p" +
-      "rojects/{project_id}/traces:\006tracesB\222\001\n!" +
+      "rojects/{project_id}/traces:\006tracesB\252\001\n!" +
       "com.google.devtools.cloudtrace.v1B\nTrace" +
       "ProtoP\001ZGgoogle.golang.org/genproto/goog" +
       "leapis/devtools/cloudtrace/v1;cloudtrace" +
-      "\252\002\025Google.Cloud.Trace.V1b\006proto3"
+      "\252\002\025Google.Cloud.Trace.V1\312\002\025Google\\Cloud\\",
+      "Trace\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

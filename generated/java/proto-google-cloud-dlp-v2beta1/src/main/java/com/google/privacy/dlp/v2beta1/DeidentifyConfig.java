@@ -14,6 +14,7 @@ public  final class DeidentifyConfig extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta1.DeidentifyConfig)
     DeidentifyConfigOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use DeidentifyConfig.newBuilder() to construct.
   private DeidentifyConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class DeidentifyConfig extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private DeidentifyConfig(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class DeidentifyConfig extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class DeidentifyConfig extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -82,6 +86,7 @@ public  final class DeidentifyConfig extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -144,6 +149,17 @@ public  final class DeidentifyConfig extends
    *
    * <code>.google.privacy.dlp.v2beta1.InfoTypeTransformations info_type_transformations = 1;</code>
    */
+  public boolean hasInfoTypeTransformations() {
+    return transformationCase_ == 1;
+  }
+  /**
+   * <pre>
+   * Treat the dataset as free-form text and apply the same free text
+   * transformation everywhere.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.InfoTypeTransformations info_type_transformations = 1;</code>
+   */
   public com.google.privacy.dlp.v2beta1.InfoTypeTransformations getInfoTypeTransformations() {
     if (transformationCase_ == 1) {
        return (com.google.privacy.dlp.v2beta1.InfoTypeTransformations) transformation_;
@@ -166,6 +182,18 @@ public  final class DeidentifyConfig extends
   }
 
   public static final int RECORD_TRANSFORMATIONS_FIELD_NUMBER = 2;
+  /**
+   * <pre>
+   * Treat the dataset as structured. Transformations can be applied to
+   * specific locations within structured datasets, such as transforming
+   * a column within a table.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta1.RecordTransformations record_transformations = 2;</code>
+   */
+  public boolean hasRecordTransformations() {
+    return transformationCase_ == 2;
+  }
   /**
    * <pre>
    * Treat the dataset as structured. Transformations can be applied to
@@ -215,6 +243,7 @@ public  final class DeidentifyConfig extends
     if (transformationCase_ == 2) {
       output.writeMessage(2, (com.google.privacy.dlp.v2beta1.RecordTransformations) transformation_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -230,11 +259,11 @@ public  final class DeidentifyConfig extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (com.google.privacy.dlp.v2beta1.RecordTransformations) transformation_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -261,6 +290,7 @@ public  final class DeidentifyConfig extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -464,7 +494,7 @@ public  final class DeidentifyConfig extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -477,12 +507,12 @@ public  final class DeidentifyConfig extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -509,6 +539,7 @@ public  final class DeidentifyConfig extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -552,6 +583,17 @@ public  final class DeidentifyConfig extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta1.InfoTypeTransformations, com.google.privacy.dlp.v2beta1.InfoTypeTransformations.Builder, com.google.privacy.dlp.v2beta1.InfoTypeTransformationsOrBuilder> infoTypeTransformationsBuilder_;
+    /**
+     * <pre>
+     * Treat the dataset as free-form text and apply the same free text
+     * transformation everywhere.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.InfoTypeTransformations info_type_transformations = 1;</code>
+     */
+    public boolean hasInfoTypeTransformations() {
+      return transformationCase_ == 1;
+    }
     /**
      * <pre>
      * Treat the dataset as free-form text and apply the same free text
@@ -731,6 +773,18 @@ public  final class DeidentifyConfig extends
      *
      * <code>.google.privacy.dlp.v2beta1.RecordTransformations record_transformations = 2;</code>
      */
+    public boolean hasRecordTransformations() {
+      return transformationCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Treat the dataset as structured. Transformations can be applied to
+     * specific locations within structured datasets, such as transforming
+     * a column within a table.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta1.RecordTransformations record_transformations = 2;</code>
+     */
     public com.google.privacy.dlp.v2beta1.RecordTransformations getRecordTransformations() {
       if (recordTransformationsBuilder_ == null) {
         if (transformationCase_ == 2) {
@@ -899,12 +953,12 @@ public  final class DeidentifyConfig extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

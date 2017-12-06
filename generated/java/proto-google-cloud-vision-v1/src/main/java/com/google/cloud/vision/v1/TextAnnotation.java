@@ -20,6 +20,7 @@ public  final class TextAnnotation extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.TextAnnotation)
     TextAnnotationOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use TextAnnotation.newBuilder() to construct.
   private TextAnnotation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -32,7 +33,7 @@ public  final class TextAnnotation extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private TextAnnotation(
       com.google.protobuf.CodedInputStream input,
@@ -40,6 +41,8 @@ public  final class TextAnnotation extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -49,7 +52,8 @@ public  final class TextAnnotation extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -80,6 +84,7 @@ public  final class TextAnnotation extends
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         pages_ = java.util.Collections.unmodifiableList(pages_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -141,6 +146,7 @@ public  final class TextAnnotation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.TextAnnotation.DetectedLanguage)
       DetectedLanguageOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DetectedLanguage.newBuilder() to construct.
     private DetectedLanguage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -153,7 +159,7 @@ public  final class TextAnnotation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DetectedLanguage(
         com.google.protobuf.CodedInputStream input,
@@ -161,6 +167,8 @@ public  final class TextAnnotation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -170,7 +178,8 @@ public  final class TextAnnotation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -194,6 +203,7 @@ public  final class TextAnnotation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -286,6 +296,7 @@ public  final class TextAnnotation extends
       if (confidence_ != 0F) {
         output.writeFloat(2, confidence_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -300,11 +311,11 @@ public  final class TextAnnotation extends
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, confidence_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -322,6 +333,7 @@ public  final class TextAnnotation extends
           java.lang.Float.floatToIntBits(getConfidence())
           == java.lang.Float.floatToIntBits(
               other.getConfidence()));
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -507,7 +519,7 @@ public  final class TextAnnotation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -520,12 +532,12 @@ public  final class TextAnnotation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -546,6 +558,7 @@ public  final class TextAnnotation extends
         if (other.getConfidence() != 0F) {
           setConfidence(other.getConfidence());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -710,12 +723,12 @@ public  final class TextAnnotation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -790,6 +803,7 @@ public  final class TextAnnotation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.TextAnnotation.DetectedBreak)
       DetectedBreakOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use DetectedBreak.newBuilder() to construct.
     private DetectedBreak(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -802,7 +816,7 @@ public  final class TextAnnotation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private DetectedBreak(
         com.google.protobuf.CodedInputStream input,
@@ -810,6 +824,8 @@ public  final class TextAnnotation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -819,7 +835,8 @@ public  final class TextAnnotation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -843,6 +860,7 @@ public  final class TextAnnotation extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1095,6 +1113,7 @@ public  final class TextAnnotation extends
       if (isPrefix_ != false) {
         output.writeBool(2, isPrefix_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1110,11 +1129,11 @@ public  final class TextAnnotation extends
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, isPrefix_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1129,6 +1148,7 @@ public  final class TextAnnotation extends
       result = result && type_ == other.type_;
       result = result && (getIsPrefix()
           == other.getIsPrefix());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1314,7 +1334,7 @@ public  final class TextAnnotation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1327,12 +1347,12 @@ public  final class TextAnnotation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1352,6 +1372,7 @@ public  final class TextAnnotation extends
         if (other.getIsPrefix() != false) {
           setIsPrefix(other.getIsPrefix());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1461,12 +1482,12 @@ public  final class TextAnnotation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1592,6 +1613,7 @@ public  final class TextAnnotation extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.TextAnnotation.TextProperty)
       TextPropertyOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use TextProperty.newBuilder() to construct.
     private TextProperty(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1603,7 +1625,7 @@ public  final class TextAnnotation extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private TextProperty(
         com.google.protobuf.CodedInputStream input,
@@ -1611,6 +1633,8 @@ public  final class TextAnnotation extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1620,7 +1644,8 @@ public  final class TextAnnotation extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1658,6 +1683,7 @@ public  final class TextAnnotation extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           detectedLanguages_ = java.util.Collections.unmodifiableList(detectedLanguages_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1780,6 +1806,7 @@ public  final class TextAnnotation extends
       if (detectedBreak_ != null) {
         output.writeMessage(2, getDetectedBreak());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1795,11 +1822,11 @@ public  final class TextAnnotation extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getDetectedBreak());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1818,6 +1845,7 @@ public  final class TextAnnotation extends
         result = result && getDetectedBreak()
             .equals(other.getDetectedBreak());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2030,7 +2058,7 @@ public  final class TextAnnotation extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2043,12 +2071,12 @@ public  final class TextAnnotation extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2091,6 +2119,7 @@ public  final class TextAnnotation extends
         if (other.hasDetectedBreak()) {
           mergeDetectedBreak(other.getDetectedBreak());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2584,12 +2613,12 @@ public  final class TextAnnotation extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2747,6 +2776,7 @@ public  final class TextAnnotation extends
     if (!getTextBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, text_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2761,11 +2791,11 @@ public  final class TextAnnotation extends
     if (!getTextBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, text_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2781,6 +2811,7 @@ public  final class TextAnnotation extends
         .equals(other.getPagesList());
     result = result && getText()
         .equals(other.getText());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2989,7 +3020,7 @@ public  final class TextAnnotation extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -3002,12 +3033,12 @@ public  final class TextAnnotation extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3051,6 +3082,7 @@ public  final class TextAnnotation extends
         text_ = other.text_;
         onChanged();
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3480,12 +3512,12 @@ public  final class TextAnnotation extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

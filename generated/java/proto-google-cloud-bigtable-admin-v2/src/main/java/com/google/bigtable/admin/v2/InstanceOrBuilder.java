@@ -86,4 +86,103 @@ public interface InstanceOrBuilder extends
    * <code>.google.bigtable.admin.v2.Instance.Type type = 4;</code>
    */
   com.google.bigtable.admin.v2.Instance.Type getType();
+
+  /**
+   * <pre>
+   * Labels are a flexible and lightweight mechanism for organizing cloud
+   * resources into groups that reflect a customer's organizational needs and
+   * deployment strategies. They can be used to filter resources and aggregate
+   * metrics.
+   * * Label keys must be between 1 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}][&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,62}`.
+   * * Label values must be between 0 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,63}`.
+   * * No more than 64 labels can be associated with a given resource.
+   * * Keys and values must both be under 128 bytes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 5;</code>
+   */
+  int getLabelsCount();
+  /**
+   * <pre>
+   * Labels are a flexible and lightweight mechanism for organizing cloud
+   * resources into groups that reflect a customer's organizational needs and
+   * deployment strategies. They can be used to filter resources and aggregate
+   * metrics.
+   * * Label keys must be between 1 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}][&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,62}`.
+   * * Label values must be between 0 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,63}`.
+   * * No more than 64 labels can be associated with a given resource.
+   * * Keys and values must both be under 128 bytes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 5;</code>
+   */
+  boolean containsLabels(
+      java.lang.String key);
+  /**
+   * Use {@link #getLabelsMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabels();
+  /**
+   * <pre>
+   * Labels are a flexible and lightweight mechanism for organizing cloud
+   * resources into groups that reflect a customer's organizational needs and
+   * deployment strategies. They can be used to filter resources and aggregate
+   * metrics.
+   * * Label keys must be between 1 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}][&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,62}`.
+   * * Label values must be between 0 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,63}`.
+   * * No more than 64 labels can be associated with a given resource.
+   * * Keys and values must both be under 128 bytes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 5;</code>
+   */
+  java.util.Map<java.lang.String, java.lang.String>
+  getLabelsMap();
+  /**
+   * <pre>
+   * Labels are a flexible and lightweight mechanism for organizing cloud
+   * resources into groups that reflect a customer's organizational needs and
+   * deployment strategies. They can be used to filter resources and aggregate
+   * metrics.
+   * * Label keys must be between 1 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}][&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,62}`.
+   * * Label values must be between 0 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,63}`.
+   * * No more than 64 labels can be associated with a given resource.
+   * * Keys and values must both be under 128 bytes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 5;</code>
+   */
+
+  java.lang.String getLabelsOrDefault(
+      java.lang.String key,
+      java.lang.String defaultValue);
+  /**
+   * <pre>
+   * Labels are a flexible and lightweight mechanism for organizing cloud
+   * resources into groups that reflect a customer's organizational needs and
+   * deployment strategies. They can be used to filter resources and aggregate
+   * metrics.
+   * * Label keys must be between 1 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}][&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,62}`.
+   * * Label values must be between 0 and 63 characters long and must conform to
+   *   the regular expression: `[&#92;p{Ll}&#92;p{Lo}&#92;p{N}_-]{0,63}`.
+   * * No more than 64 labels can be associated with a given resource.
+   * * Keys and values must both be under 128 bytes.
+   * </pre>
+   *
+   * <code>map&lt;string, string&gt; labels = 5;</code>
+   */
+
+  java.lang.String getLabelsOrThrow(
+      java.lang.String key);
 }

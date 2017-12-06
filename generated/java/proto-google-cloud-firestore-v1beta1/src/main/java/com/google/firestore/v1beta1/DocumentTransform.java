@@ -14,6 +14,7 @@ public  final class DocumentTransform extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.DocumentTransform)
     DocumentTransformOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use DocumentTransform.newBuilder() to construct.
   private DocumentTransform(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,7 +27,7 @@ public  final class DocumentTransform extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private DocumentTransform(
       com.google.protobuf.CodedInputStream input,
@@ -34,6 +35,8 @@ public  final class DocumentTransform extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,7 +46,8 @@ public  final class DocumentTransform extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -74,6 +78,7 @@ public  final class DocumentTransform extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         fieldTransforms_ = java.util.Collections.unmodifiableList(fieldTransforms_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -143,6 +148,7 @@ public  final class DocumentTransform extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.firestore.v1beta1.DocumentTransform.FieldTransform)
       FieldTransformOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use FieldTransform.newBuilder() to construct.
     private FieldTransform(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -154,7 +160,7 @@ public  final class DocumentTransform extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private FieldTransform(
         com.google.protobuf.CodedInputStream input,
@@ -162,6 +168,8 @@ public  final class DocumentTransform extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -171,7 +179,8 @@ public  final class DocumentTransform extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -196,6 +205,7 @@ public  final class DocumentTransform extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -230,7 +240,8 @@ public  final class DocumentTransform extends
       SERVER_VALUE_UNSPECIFIED(0),
       /**
        * <pre>
-       * The time at which the server processed the request.
+       * The time at which the server processed the request, with millisecond
+       * precision.
        * </pre>
        *
        * <code>REQUEST_TIME = 1;</code>
@@ -249,7 +260,8 @@ public  final class DocumentTransform extends
       public static final int SERVER_VALUE_UNSPECIFIED_VALUE = 0;
       /**
        * <pre>
-       * The time at which the server processed the request.
+       * The time at which the server processed the request, with millisecond
+       * precision.
        * </pre>
        *
        * <code>REQUEST_TIME = 1;</code>
@@ -457,6 +469,7 @@ public  final class DocumentTransform extends
       if (transformTypeCase_ == 2) {
         output.writeEnum(2, ((java.lang.Integer) transformType_));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -471,11 +484,11 @@ public  final class DocumentTransform extends
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, ((java.lang.Integer) transformType_));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -500,6 +513,7 @@ public  final class DocumentTransform extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -693,7 +707,7 @@ public  final class DocumentTransform extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -706,12 +720,12 @@ public  final class DocumentTransform extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -738,6 +752,7 @@ public  final class DocumentTransform extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -947,12 +962,12 @@ public  final class DocumentTransform extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1043,6 +1058,7 @@ public  final class DocumentTransform extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1054,6 +1070,7 @@ public  final class DocumentTransform extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1066,6 +1083,7 @@ public  final class DocumentTransform extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1077,6 +1095,7 @@ public  final class DocumentTransform extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1088,6 +1107,7 @@ public  final class DocumentTransform extends
    * <pre>
    * The list of transformations to apply to the fields of the document, in
    * order.
+   * This must not be empty.
    * </pre>
    *
    * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1115,6 +1135,7 @@ public  final class DocumentTransform extends
     for (int i = 0; i < fieldTransforms_.size(); i++) {
       output.writeMessage(2, fieldTransforms_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1129,11 +1150,11 @@ public  final class DocumentTransform extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, fieldTransforms_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -1149,6 +1170,7 @@ public  final class DocumentTransform extends
         .equals(other.getDocument());
     result = result && getFieldTransformsList()
         .equals(other.getFieldTransformsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1351,7 +1373,7 @@ public  final class DocumentTransform extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1364,12 +1386,12 @@ public  final class DocumentTransform extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1413,6 +1435,7 @@ public  final class DocumentTransform extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1545,6 +1568,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1560,6 +1584,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1575,6 +1600,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1590,6 +1616,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1612,6 +1639,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1631,6 +1659,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1652,6 +1681,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1674,6 +1704,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1693,6 +1724,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1712,6 +1744,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1732,6 +1765,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1750,6 +1784,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1768,6 +1803,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1780,6 +1816,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1795,6 +1832,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1811,6 +1849,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1823,6 +1862,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1836,6 +1876,7 @@ public  final class DocumentTransform extends
      * <pre>
      * The list of transformations to apply to the fields of the document, in
      * order.
+     * This must not be empty.
      * </pre>
      *
      * <code>repeated .google.firestore.v1beta1.DocumentTransform.FieldTransform field_transforms = 2;</code>
@@ -1860,12 +1901,12 @@ public  final class DocumentTransform extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

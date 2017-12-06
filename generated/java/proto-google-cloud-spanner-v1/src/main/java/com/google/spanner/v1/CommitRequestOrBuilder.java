@@ -49,6 +49,22 @@ public interface CommitRequestOrBuilder extends
    *
    * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
    */
+  boolean hasSingleUseTransaction();
+  /**
+   * <pre>
+   * Execute mutations in a temporary transaction. Note that unlike
+   * commit of a previously-started transaction, commit with a
+   * temporary transaction is non-idempotent. That is, if the
+   * `CommitRequest` is sent to Cloud Spanner more than once (for
+   * instance, due to retries in the application, or in the
+   * transport library), it is possible that the mutations are
+   * executed more than once. If this is undesirable, use
+   * [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
+   * [Commit][google.spanner.v1.Spanner.Commit] instead.
+   * </pre>
+   *
+   * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+   */
   com.google.spanner.v1.TransactionOptions getSingleUseTransaction();
   /**
    * <pre>

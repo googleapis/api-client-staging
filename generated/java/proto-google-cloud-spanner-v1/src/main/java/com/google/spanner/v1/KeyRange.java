@@ -73,6 +73,7 @@ public  final class KeyRange extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.spanner.v1.KeyRange)
     KeyRangeOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use KeyRange.newBuilder() to construct.
   private KeyRange(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -83,7 +84,7 @@ public  final class KeyRange extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private KeyRange(
       com.google.protobuf.CodedInputStream input,
@@ -91,6 +92,8 @@ public  final class KeyRange extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -100,7 +103,8 @@ public  final class KeyRange extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -169,6 +173,7 @@ public  final class KeyRange extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -269,6 +274,17 @@ public  final class KeyRange extends
    *
    * <code>.google.protobuf.ListValue start_closed = 1;</code>
    */
+  public boolean hasStartClosed() {
+    return startKeyTypeCase_ == 1;
+  }
+  /**
+   * <pre>
+   * If the start is closed, then the range includes all rows whose
+   * first `len(start_closed)` key columns exactly match `start_closed`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue start_closed = 1;</code>
+   */
   public com.google.protobuf.ListValue getStartClosed() {
     if (startKeyTypeCase_ == 1) {
        return (com.google.protobuf.ListValue) startKeyType_;
@@ -291,6 +307,17 @@ public  final class KeyRange extends
   }
 
   public static final int START_OPEN_FIELD_NUMBER = 2;
+  /**
+   * <pre>
+   * If the start is open, then the range excludes rows whose first
+   * `len(start_open)` key columns exactly match `start_open`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue start_open = 2;</code>
+   */
+  public boolean hasStartOpen() {
+    return startKeyTypeCase_ == 2;
+  }
   /**
    * <pre>
    * If the start is open, then the range excludes rows whose first
@@ -329,6 +356,17 @@ public  final class KeyRange extends
    *
    * <code>.google.protobuf.ListValue end_closed = 3;</code>
    */
+  public boolean hasEndClosed() {
+    return endKeyTypeCase_ == 3;
+  }
+  /**
+   * <pre>
+   * If the end is closed, then the range includes all rows whose
+   * first `len(end_closed)` key columns exactly match `end_closed`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue end_closed = 3;</code>
+   */
   public com.google.protobuf.ListValue getEndClosed() {
     if (endKeyTypeCase_ == 3) {
        return (com.google.protobuf.ListValue) endKeyType_;
@@ -351,6 +389,17 @@ public  final class KeyRange extends
   }
 
   public static final int END_OPEN_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * If the end is open, then the range excludes rows whose first
+   * `len(end_open)` key columns exactly match `end_open`.
+   * </pre>
+   *
+   * <code>.google.protobuf.ListValue end_open = 4;</code>
+   */
+  public boolean hasEndOpen() {
+    return endKeyTypeCase_ == 4;
+  }
   /**
    * <pre>
    * If the end is open, then the range excludes rows whose first
@@ -404,6 +453,7 @@ public  final class KeyRange extends
     if (endKeyTypeCase_ == 4) {
       output.writeMessage(4, (com.google.protobuf.ListValue) endKeyType_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -427,11 +477,11 @@ public  final class KeyRange extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (com.google.protobuf.ListValue) endKeyType_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -473,6 +523,7 @@ public  final class KeyRange extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -764,7 +815,7 @@ public  final class KeyRange extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -777,12 +828,12 @@ public  final class KeyRange extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -822,6 +873,7 @@ public  final class KeyRange extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -880,6 +932,17 @@ public  final class KeyRange extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> startClosedBuilder_;
+    /**
+     * <pre>
+     * If the start is closed, then the range includes all rows whose
+     * first `len(start_closed)` key columns exactly match `start_closed`.
+     * </pre>
+     *
+     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     */
+    public boolean hasStartClosed() {
+      return startKeyTypeCase_ == 1;
+    }
     /**
      * <pre>
      * If the start is closed, then the range includes all rows whose
@@ -1058,6 +1121,17 @@ public  final class KeyRange extends
      *
      * <code>.google.protobuf.ListValue start_open = 2;</code>
      */
+    public boolean hasStartOpen() {
+      return startKeyTypeCase_ == 2;
+    }
+    /**
+     * <pre>
+     * If the start is open, then the range excludes rows whose first
+     * `len(start_open)` key columns exactly match `start_open`.
+     * </pre>
+     *
+     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     */
     public com.google.protobuf.ListValue getStartOpen() {
       if (startOpenBuilder_ == null) {
         if (startKeyTypeCase_ == 2) {
@@ -1220,6 +1294,17 @@ public  final class KeyRange extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.ListValue, com.google.protobuf.ListValue.Builder, com.google.protobuf.ListValueOrBuilder> endClosedBuilder_;
+    /**
+     * <pre>
+     * If the end is closed, then the range includes all rows whose
+     * first `len(end_closed)` key columns exactly match `end_closed`.
+     * </pre>
+     *
+     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     */
+    public boolean hasEndClosed() {
+      return endKeyTypeCase_ == 3;
+    }
     /**
      * <pre>
      * If the end is closed, then the range includes all rows whose
@@ -1398,6 +1483,17 @@ public  final class KeyRange extends
      *
      * <code>.google.protobuf.ListValue end_open = 4;</code>
      */
+    public boolean hasEndOpen() {
+      return endKeyTypeCase_ == 4;
+    }
+    /**
+     * <pre>
+     * If the end is open, then the range excludes rows whose first
+     * `len(end_open)` key columns exactly match `end_open`.
+     * </pre>
+     *
+     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     */
     public com.google.protobuf.ListValue getEndOpen() {
       if (endOpenBuilder_ == null) {
         if (endKeyTypeCase_ == 4) {
@@ -1559,12 +1655,12 @@ public  final class KeyRange extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

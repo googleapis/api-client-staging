@@ -11,9 +11,10 @@ public interface SpanOrBuilder extends
    * <pre>
    * The resource name of the span in the following format:
    *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-   * [TRACE_ID] is a unique identifier for a trace within a project.
-   * [SPAN_ID] is a unique identifier for a span within a trace,
-   * assigned when the span is created.
+   * [TRACE_ID] is a unique identifier for a trace within a project;
+   * it is a 32-character hexadecimal encoding of a 16-byte array.
+   * [SPAN_ID] is a unique identifier for a span within a trace; it
+   * is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -23,9 +24,10 @@ public interface SpanOrBuilder extends
    * <pre>
    * The resource name of the span in the following format:
    *     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
-   * [TRACE_ID] is a unique identifier for a trace within a project.
-   * [SPAN_ID] is a unique identifier for a span within a trace,
-   * assigned when the span is created.
+   * [TRACE_ID] is a unique identifier for a trace within a project;
+   * it is a 32-character hexadecimal encoding of a 16-byte array.
+   * [SPAN_ID] is a unique identifier for a span within a trace; it
+   * is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -36,7 +38,6 @@ public interface SpanOrBuilder extends
   /**
    * <pre>
    * The [SPAN_ID] portion of the span's resource name.
-   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string span_id = 2;</code>
@@ -45,7 +46,6 @@ public interface SpanOrBuilder extends
   /**
    * <pre>
    * The [SPAN_ID] portion of the span's resource name.
-   * The ID is a 16-character hexadecimal encoding of an 8-byte array.
    * </pre>
    *
    * <code>string span_id = 2;</code>
@@ -180,7 +180,7 @@ public interface SpanOrBuilder extends
 
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -189,7 +189,7 @@ public interface SpanOrBuilder extends
   boolean hasAttributes();
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -198,7 +198,7 @@ public interface SpanOrBuilder extends
   com.google.devtools.cloudtrace.v2.Span.Attributes getAttributes();
   /**
    * <pre>
-   * A set of attributes on the span. There is a limit of 32 attributes per
+   * A set of attributes on the span. You can have up to 32 attributes per
    * span.
    * </pre>
    *
@@ -233,7 +233,7 @@ public interface SpanOrBuilder extends
 
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -242,7 +242,7 @@ public interface SpanOrBuilder extends
   boolean hasTimeEvents();
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -251,7 +251,7 @@ public interface SpanOrBuilder extends
   com.google.devtools.cloudtrace.v2.Span.TimeEvents getTimeEvents();
   /**
    * <pre>
-   * The included time events. There can be up to 32 annotations and 128 message
+   * A set of time events. You can have up to 32 annotations and 128 message
    * events per span.
    * </pre>
    *
@@ -261,7 +261,7 @@ public interface SpanOrBuilder extends
 
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -269,7 +269,7 @@ public interface SpanOrBuilder extends
   boolean hasLinks();
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -277,7 +277,7 @@ public interface SpanOrBuilder extends
   com.google.devtools.cloudtrace.v2.Span.Links getLinks();
   /**
    * <pre>
-   * A maximum of 128 links are allowed per Span.
+   * Links associated with the span. You can have up to 128 links per Span.
    * </pre>
    *
    * <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
@@ -311,9 +311,10 @@ public interface SpanOrBuilder extends
 
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -321,9 +322,10 @@ public interface SpanOrBuilder extends
   boolean hasSameProcessAsParentSpan();
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
@@ -331,9 +333,10 @@ public interface SpanOrBuilder extends
   com.google.protobuf.BoolValue getSameProcessAsParentSpan();
   /**
    * <pre>
-   * A highly recommended but not required flag that identifies when a trace
-   * crosses a process boundary. True when the parent_span belongs to the
-   * same process as the current span.
+   * (Optional) Set this parameter to indicate whether this span is in
+   * the same process as its parent. If you do not set this parameter,
+   * Stackdriver Trace is unable to take advantage of this helpful
+   * information.
    * </pre>
    *
    * <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>

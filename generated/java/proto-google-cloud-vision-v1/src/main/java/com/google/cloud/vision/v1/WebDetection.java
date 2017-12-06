@@ -14,6 +14,7 @@ public  final class WebDetection extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.WebDetection)
     WebDetectionOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use WebDetection.newBuilder() to construct.
   private WebDetection(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -28,7 +29,7 @@ public  final class WebDetection extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private WebDetection(
       com.google.protobuf.CodedInputStream input,
@@ -36,6 +37,8 @@ public  final class WebDetection extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -45,7 +48,8 @@ public  final class WebDetection extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -106,6 +110,7 @@ public  final class WebDetection extends
       if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
         pagesWithMatchingImages_ = java.util.Collections.unmodifiableList(pagesWithMatchingImages_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -182,6 +187,7 @@ public  final class WebDetection extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.WebDetection.WebEntity)
       WebEntityOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use WebEntity.newBuilder() to construct.
     private WebEntity(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -195,7 +201,7 @@ public  final class WebDetection extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private WebEntity(
         com.google.protobuf.CodedInputStream input,
@@ -203,6 +209,8 @@ public  final class WebDetection extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -212,7 +220,8 @@ public  final class WebDetection extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -242,6 +251,7 @@ public  final class WebDetection extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -376,6 +386,7 @@ public  final class WebDetection extends
       if (!getDescriptionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, description_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -393,11 +404,11 @@ public  final class WebDetection extends
       if (!getDescriptionBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, description_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -417,6 +428,7 @@ public  final class WebDetection extends
               other.getScore()));
       result = result && getDescription()
           .equals(other.getDescription());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -607,7 +619,7 @@ public  final class WebDetection extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -620,12 +632,12 @@ public  final class WebDetection extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -650,6 +662,7 @@ public  final class WebDetection extends
           description_ = other.description_;
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -896,12 +909,12 @@ public  final class WebDetection extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -986,6 +999,7 @@ public  final class WebDetection extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.WebDetection.WebImage)
       WebImageOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use WebImage.newBuilder() to construct.
     private WebImage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -998,7 +1012,7 @@ public  final class WebDetection extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private WebImage(
         com.google.protobuf.CodedInputStream input,
@@ -1006,6 +1020,8 @@ public  final class WebDetection extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1015,7 +1031,8 @@ public  final class WebDetection extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1039,6 +1056,7 @@ public  final class WebDetection extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1128,6 +1146,7 @@ public  final class WebDetection extends
       if (score_ != 0F) {
         output.writeFloat(2, score_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1142,11 +1161,11 @@ public  final class WebDetection extends
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, score_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1164,6 +1183,7 @@ public  final class WebDetection extends
           java.lang.Float.floatToIntBits(getScore())
           == java.lang.Float.floatToIntBits(
               other.getScore()));
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1349,7 +1369,7 @@ public  final class WebDetection extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1362,12 +1382,12 @@ public  final class WebDetection extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1388,6 +1408,7 @@ public  final class WebDetection extends
         if (other.getScore() != 0F) {
           setScore(other.getScore());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1545,12 +1566,12 @@ public  final class WebDetection extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1635,6 +1656,7 @@ public  final class WebDetection extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.vision.v1.WebDetection.WebPage)
       WebPageOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use WebPage.newBuilder() to construct.
     private WebPage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1647,7 +1669,7 @@ public  final class WebDetection extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private WebPage(
         com.google.protobuf.CodedInputStream input,
@@ -1655,6 +1677,8 @@ public  final class WebDetection extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1664,7 +1688,8 @@ public  final class WebDetection extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1688,6 +1713,7 @@ public  final class WebDetection extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1777,6 +1803,7 @@ public  final class WebDetection extends
       if (score_ != 0F) {
         output.writeFloat(2, score_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1791,11 +1818,11 @@ public  final class WebDetection extends
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, score_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1813,6 +1840,7 @@ public  final class WebDetection extends
           java.lang.Float.floatToIntBits(getScore())
           == java.lang.Float.floatToIntBits(
               other.getScore()));
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1998,7 +2026,7 @@ public  final class WebDetection extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2011,12 +2039,12 @@ public  final class WebDetection extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2037,6 +2065,7 @@ public  final class WebDetection extends
         if (other.getScore() != 0F) {
           setScore(other.getScore());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2194,12 +2223,12 @@ public  final class WebDetection extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2505,6 +2534,7 @@ public  final class WebDetection extends
     for (int i = 0; i < pagesWithMatchingImages_.size(); i++) {
       output.writeMessage(4, pagesWithMatchingImages_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2528,11 +2558,11 @@ public  final class WebDetection extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, pagesWithMatchingImages_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2552,6 +2582,7 @@ public  final class WebDetection extends
         .equals(other.getPartialMatchingImagesList());
     result = result && getPagesWithMatchingImagesList()
         .equals(other.getPagesWithMatchingImagesList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2807,7 +2838,7 @@ public  final class WebDetection extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -2820,12 +2851,12 @@ public  final class WebDetection extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2943,6 +2974,7 @@ public  final class WebDetection extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -4291,12 +4323,12 @@ public  final class WebDetection extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

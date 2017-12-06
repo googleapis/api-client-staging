@@ -85,12 +85,13 @@ public final class CommonProto {
       "\n\010referrer\030\004 \001(\t\022\034\n\024response_status_code" +
       "\030\005 \001(\005\022\021\n\tremote_ip\030\006 \001(\t\"O\n\016SourceLocat" +
       "ion\022\021\n\tfile_path\030\001 \001(\t\022\023\n\013line_number\030\002 " +
-      "\001(\005\022\025\n\rfunction_name\030\004 \001(\tB\306\001\n/com.googl" +
+      "\001(\005\022\025\n\rfunction_name\030\004 \001(\tB\354\001\n/com.googl" +
       "e.devtools.clouderrorreporting.v1beta1B\013" +
       "CommonProtoP\001Z^google.golang.org/genprot",
       "o/googleapis/devtools/clouderrorreportin" +
       "g/v1beta1;clouderrorreporting\252\002#Google.C" +
-      "loud.ErrorReporting.V1Beta1b\006proto3"
+      "loud.ErrorReporting.V1Beta1\312\002#Google\\Clo" +
+      "ud\\ErrorReporting\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

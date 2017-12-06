@@ -385,10 +385,10 @@ public final class PubsubProto {
       "s\022t\n\013DeleteTopic\022$.google.pubsub.v1.Dele" +
       "teTopicRequest\032\026.google.protobuf.Empty\"\'" +
       "\202\323\344\223\002!*\037/v1/{topic=projects/*/topics/*}B" +
-      "y\n\024com.google.pubsub.v1B\013PubsubProtoP\001Z6" +
-      "google.golang.org/genproto/googleapis/pu" +
-      "bsub/v1;pubsub\370\001\001\252\002\026Google.Cloud.PubSub.",
-      "V1b\006proto3"
+      "\222\001\n\024com.google.pubsub.v1B\013PubsubProtoP\001Z" +
+      "6google.golang.org/genproto/googleapis/p" +
+      "ubsub/v1;pubsub\370\001\001\252\002\026Google.Cloud.PubSub",
+      ".V1\312\002\026Google\\Cloud\\PubSub\\V1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

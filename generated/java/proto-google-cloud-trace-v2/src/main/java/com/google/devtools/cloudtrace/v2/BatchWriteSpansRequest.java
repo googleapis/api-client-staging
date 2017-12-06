@@ -14,6 +14,7 @@ public  final class BatchWriteSpansRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.devtools.cloudtrace.v2.BatchWriteSpansRequest)
     BatchWriteSpansRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use BatchWriteSpansRequest.newBuilder() to construct.
   private BatchWriteSpansRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,7 +27,7 @@ public  final class BatchWriteSpansRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private BatchWriteSpansRequest(
       com.google.protobuf.CodedInputStream input,
@@ -34,6 +35,8 @@ public  final class BatchWriteSpansRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -43,7 +46,8 @@ public  final class BatchWriteSpansRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -74,6 +78,7 @@ public  final class BatchWriteSpansRequest extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         spans_ = java.util.Collections.unmodifiableList(spans_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -94,8 +99,8 @@ public  final class BatchWriteSpansRequest extends
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * Required. Name of the project where the spans belong. The format is
-   * `projects/PROJECT_ID`.
+   * Required. The name of the project where the spans belong. The format is
+   * `projects/[PROJECT_ID]`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -114,8 +119,8 @@ public  final class BatchWriteSpansRequest extends
   }
   /**
    * <pre>
-   * Required. Name of the project where the spans belong. The format is
-   * `projects/PROJECT_ID`.
+   * Required. The name of the project where the spans belong. The format is
+   * `projects/[PROJECT_ID]`.
    * </pre>
    *
    * <code>string name = 1;</code>
@@ -138,7 +143,8 @@ public  final class BatchWriteSpansRequest extends
   private java.util.List<com.google.devtools.cloudtrace.v2.Span> spans_;
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -148,7 +154,8 @@ public  final class BatchWriteSpansRequest extends
   }
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -159,7 +166,8 @@ public  final class BatchWriteSpansRequest extends
   }
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -169,7 +177,8 @@ public  final class BatchWriteSpansRequest extends
   }
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -179,7 +188,8 @@ public  final class BatchWriteSpansRequest extends
   }
   /**
    * <pre>
-   * A collection of spans.
+   * A list of new spans. The span names must not match existing
+   * spans, or the results are undefined.
    * </pre>
    *
    * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -207,6 +217,7 @@ public  final class BatchWriteSpansRequest extends
     for (int i = 0; i < spans_.size(); i++) {
       output.writeMessage(2, spans_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -221,11 +232,11 @@ public  final class BatchWriteSpansRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, spans_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -241,6 +252,7 @@ public  final class BatchWriteSpansRequest extends
         .equals(other.getName());
     result = result && getSpansList()
         .equals(other.getSpansList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -443,7 +455,7 @@ public  final class BatchWriteSpansRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -456,12 +468,12 @@ public  final class BatchWriteSpansRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -505,6 +517,7 @@ public  final class BatchWriteSpansRequest extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -535,8 +548,8 @@ public  final class BatchWriteSpansRequest extends
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * Required. Name of the project where the spans belong. The format is
-     * `projects/PROJECT_ID`.
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -555,8 +568,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * Required. Name of the project where the spans belong. The format is
-     * `projects/PROJECT_ID`.
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -576,8 +589,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * Required. Name of the project where the spans belong. The format is
-     * `projects/PROJECT_ID`.
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -594,8 +607,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * Required. Name of the project where the spans belong. The format is
-     * `projects/PROJECT_ID`.
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -608,8 +621,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * Required. Name of the project where the spans belong. The format is
-     * `projects/PROJECT_ID`.
+     * Required. The name of the project where the spans belong. The format is
+     * `projects/[PROJECT_ID]`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -640,7 +653,8 @@ public  final class BatchWriteSpansRequest extends
 
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -654,7 +668,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -668,7 +683,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -682,7 +698,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -703,7 +720,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -721,7 +739,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -741,7 +760,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -762,7 +782,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -780,7 +801,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -798,7 +820,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -817,7 +840,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -834,7 +858,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -851,7 +876,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -862,7 +888,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -876,7 +903,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -891,7 +919,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -902,7 +931,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -914,7 +944,8 @@ public  final class BatchWriteSpansRequest extends
     }
     /**
      * <pre>
-     * A collection of spans.
+     * A list of new spans. The span names must not match existing
+     * spans, or the results are undefined.
      * </pre>
      *
      * <code>repeated .google.devtools.cloudtrace.v2.Span spans = 2;</code>
@@ -939,12 +970,12 @@ public  final class BatchWriteSpansRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

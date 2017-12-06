@@ -51,12 +51,13 @@ public final class ErrorGroupServiceProto {
       "eta1.UpdateGroupRequest\0327.google.devtool" +
       "s.clouderrorreporting.v1beta1.ErrorGroup" +
       "\"8\202\323\344\223\0022\032)/v1beta1/{group.name=projects/" +
-      "*/groups/*}:\005groupB\321\001\n/com.google.devtoo" +
+      "*/groups/*}:\005groupB\367\001\n/com.google.devtoo" +
       "ls.clouderrorreporting.v1beta1B\026ErrorGro",
       "upServiceProtoP\001Z^google.golang.org/genp" +
       "roto/googleapis/devtools/clouderrorrepor" +
       "ting/v1beta1;clouderrorreporting\252\002#Googl" +
-      "e.Cloud.ErrorReporting.V1Beta1b\006proto3"
+      "e.Cloud.ErrorReporting.V1Beta1\312\002#Google\\" +
+      "Cloud\\ErrorReporting\\V1beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

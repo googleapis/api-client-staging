@@ -835,11 +835,11 @@ public final class DlpProto {
       ".google.privacy.dlp.v2beta1.ListRootCate",
       "goriesRequest\0326.google.privacy.dlp.v2bet" +
       "a1.ListRootCategoriesResponse\"\037\202\323\344\223\002\031\022\027/" +
-      "v2beta1/rootCategoriesB\206\001\n\036com.google.pr" +
+      "v2beta1/rootCategoriesB\241\001\n\036com.google.pr" +
       "ivacy.dlp.v2beta1B\010DlpProtoP\001Z=google.go" +
       "lang.org/genproto/googleapis/privacy/dlp" +
-      "/v2beta1;dlp\252\002\030Google.Cloud.Dlp.V2Beta1b" +
-      "\006proto3"
+      "/v2beta1;dlp\252\002\030Google.Cloud.Dlp.V2Beta1\312" +
+      "\002\030Google\\Cloud\\Dlp\\V2beta1b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -46,10 +46,11 @@ public final class MetricProto {
       ".MetricDescriptor.MetricKind\022:\n\nvalue_ty" +
       "pe\030\004 \001(\0162&.google.api.MetricDescriptor.V" +
       "alueType\022+\n\006points\030\005 \003(\0132\033.google.monito" +
-      "ring.v3.PointB\206\001\n\030com.google.monitoring." +
+      "ring.v3.PointB\243\001\n\030com.google.monitoring." +
       "v3B\013MetricProtoP\001Z>google.golang.org/gen" +
       "proto/googleapis/monitoring/v3;monitorin" +
-      "g\252\002\032Google.Cloud.Monitoring.V3b\006proto3"
+      "g\252\002\032Google.Cloud.Monitoring.V3\312\002\032Google\\" +
+      "Cloud\\Monitoring\\V3b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

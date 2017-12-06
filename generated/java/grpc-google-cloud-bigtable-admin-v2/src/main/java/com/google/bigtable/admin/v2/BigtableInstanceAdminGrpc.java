@@ -69,6 +69,15 @@ public final class BigtableInstanceAdminGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.Instance.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.Instance.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.PartialUpdateInstanceRequest,
+      com.google.longrunning.Operation> METHOD_PARTIAL_UPDATE_INSTANCE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "PartialUpdateInstance"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.PartialUpdateInstanceRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.DeleteInstanceRequest,
       com.google.protobuf.Empty> METHOD_DELETE_INSTANCE =
       io.grpc.MethodDescriptor.create(
@@ -122,6 +131,78 @@ public final class BigtableInstanceAdminGrpc {
               "google.bigtable.admin.v2.BigtableInstanceAdmin", "DeleteCluster"),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.DeleteClusterRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.CreateAppProfileRequest,
+      com.google.bigtable.admin.v2.AppProfile> METHOD_CREATE_APP_PROFILE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "CreateAppProfile"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.CreateAppProfileRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.AppProfile.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.GetAppProfileRequest,
+      com.google.bigtable.admin.v2.AppProfile> METHOD_GET_APP_PROFILE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "GetAppProfile"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.GetAppProfileRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.AppProfile.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.ListAppProfilesRequest,
+      com.google.bigtable.admin.v2.ListAppProfilesResponse> METHOD_LIST_APP_PROFILES =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "ListAppProfiles"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.ListAppProfilesRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.ListAppProfilesResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.UpdateAppProfileRequest,
+      com.google.longrunning.Operation> METHOD_UPDATE_APP_PROFILE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "UpdateAppProfile"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.UpdateAppProfileRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.longrunning.Operation.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.bigtable.admin.v2.DeleteAppProfileRequest,
+      com.google.protobuf.Empty> METHOD_DELETE_APP_PROFILE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "DeleteAppProfile"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.bigtable.admin.v2.DeleteAppProfileRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.protobuf.Empty.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.iam.v1.GetIamPolicyRequest,
+      com.google.iam.v1.Policy> METHOD_GET_IAM_POLICY =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "GetIamPolicy"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.GetIamPolicyRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.Policy.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.iam.v1.SetIamPolicyRequest,
+      com.google.iam.v1.Policy> METHOD_SET_IAM_POLICY =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "SetIamPolicy"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.SetIamPolicyRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.Policy.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.iam.v1.TestIamPermissionsRequest,
+      com.google.iam.v1.TestIamPermissionsResponse> METHOD_TEST_IAM_PERMISSIONS =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "google.bigtable.admin.v2.BigtableInstanceAdmin", "TestIamPermissions"),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.TestIamPermissionsRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(com.google.iam.v1.TestIamPermissionsResponse.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -197,6 +278,16 @@ public final class BigtableInstanceAdminGrpc {
 
     /**
      * <pre>
+     * Partially updates an instance within a project.
+     * </pre>
+     */
+    public void partialUpdateInstance(com.google.bigtable.admin.v2.PartialUpdateInstanceRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_PARTIAL_UPDATE_INSTANCE, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Delete an instance from a project.
      * </pre>
      */
@@ -255,6 +346,123 @@ public final class BigtableInstanceAdminGrpc {
       asyncUnimplementedUnaryCall(METHOD_DELETE_CLUSTER, responseObserver);
     }
 
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates an app profile within an instance.
+     * </pre>
+     */
+    public void createAppProfile(com.google.bigtable.admin.v2.CreateAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CREATE_APP_PROFILE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets information about an app profile.
+     * </pre>
+     */
+    public void getAppProfile(com.google.bigtable.admin.v2.GetAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_APP_PROFILE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists information about app profiles in an instance.
+     * </pre>
+     */
+    public void listAppProfiles(com.google.bigtable.admin.v2.ListAppProfilesRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListAppProfilesResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LIST_APP_PROFILES, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Updates an app profile within an instance.
+     * </pre>
+     */
+    public void updateAppProfile(com.google.bigtable.admin.v2.UpdateAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_UPDATE_APP_PROFILE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Deletes an app profile from an instance.
+     * </pre>
+     */
+    public void deleteAppProfile(com.google.bigtable.admin.v2.DeleteAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_DELETE_APP_PROFILE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an instance exists but does not have a policy set.
+     * </pre>
+     */
+    public void getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_IAM_POLICY, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Sets the access control policy on an instance resource. Replaces any
+     * existing policy.
+     * </pre>
+     */
+    public void setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_SET_IAM_POLICY, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Returns permissions that the caller has on the specified instance resource.
+     * </pre>
+     */
+    public void testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.TestIamPermissionsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_TEST_IAM_PERMISSIONS, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -285,6 +493,13 @@ public final class BigtableInstanceAdminGrpc {
                 com.google.bigtable.admin.v2.Instance,
                 com.google.bigtable.admin.v2.Instance>(
                   this, METHODID_UPDATE_INSTANCE)))
+          .addMethod(
+            METHOD_PARTIAL_UPDATE_INSTANCE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.PartialUpdateInstanceRequest,
+                com.google.longrunning.Operation>(
+                  this, METHODID_PARTIAL_UPDATE_INSTANCE)))
           .addMethod(
             METHOD_DELETE_INSTANCE,
             asyncUnaryCall(
@@ -327,6 +542,62 @@ public final class BigtableInstanceAdminGrpc {
                 com.google.bigtable.admin.v2.DeleteClusterRequest,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_CLUSTER)))
+          .addMethod(
+            METHOD_CREATE_APP_PROFILE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.CreateAppProfileRequest,
+                com.google.bigtable.admin.v2.AppProfile>(
+                  this, METHODID_CREATE_APP_PROFILE)))
+          .addMethod(
+            METHOD_GET_APP_PROFILE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.GetAppProfileRequest,
+                com.google.bigtable.admin.v2.AppProfile>(
+                  this, METHODID_GET_APP_PROFILE)))
+          .addMethod(
+            METHOD_LIST_APP_PROFILES,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.ListAppProfilesRequest,
+                com.google.bigtable.admin.v2.ListAppProfilesResponse>(
+                  this, METHODID_LIST_APP_PROFILES)))
+          .addMethod(
+            METHOD_UPDATE_APP_PROFILE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.UpdateAppProfileRequest,
+                com.google.longrunning.Operation>(
+                  this, METHODID_UPDATE_APP_PROFILE)))
+          .addMethod(
+            METHOD_DELETE_APP_PROFILE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.bigtable.admin.v2.DeleteAppProfileRequest,
+                com.google.protobuf.Empty>(
+                  this, METHODID_DELETE_APP_PROFILE)))
+          .addMethod(
+            METHOD_GET_IAM_POLICY,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.iam.v1.GetIamPolicyRequest,
+                com.google.iam.v1.Policy>(
+                  this, METHODID_GET_IAM_POLICY)))
+          .addMethod(
+            METHOD_SET_IAM_POLICY,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.iam.v1.SetIamPolicyRequest,
+                com.google.iam.v1.Policy>(
+                  this, METHODID_SET_IAM_POLICY)))
+          .addMethod(
+            METHOD_TEST_IAM_PERMISSIONS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.iam.v1.TestIamPermissionsRequest,
+                com.google.iam.v1.TestIamPermissionsResponse>(
+                  this, METHODID_TEST_IAM_PERMISSIONS)))
           .build();
     }
   }
@@ -400,6 +671,17 @@ public final class BigtableInstanceAdminGrpc {
 
     /**
      * <pre>
+     * Partially updates an instance within a project.
+     * </pre>
+     */
+    public void partialUpdateInstance(com.google.bigtable.admin.v2.PartialUpdateInstanceRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_PARTIAL_UPDATE_INSTANCE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Delete an instance from a project.
      * </pre>
      */
@@ -462,6 +744,131 @@ public final class BigtableInstanceAdminGrpc {
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates an app profile within an instance.
+     * </pre>
+     */
+    public void createAppProfile(com.google.bigtable.admin.v2.CreateAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CREATE_APP_PROFILE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets information about an app profile.
+     * </pre>
+     */
+    public void getAppProfile(com.google.bigtable.admin.v2.GetAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_APP_PROFILE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists information about app profiles in an instance.
+     * </pre>
+     */
+    public void listAppProfiles(com.google.bigtable.admin.v2.ListAppProfilesRequest request,
+        io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListAppProfilesResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_LIST_APP_PROFILES, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Updates an app profile within an instance.
+     * </pre>
+     */
+    public void updateAppProfile(com.google.bigtable.admin.v2.UpdateAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.longrunning.Operation> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_APP_PROFILE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Deletes an app profile from an instance.
+     * </pre>
+     */
+    public void deleteAppProfile(com.google.bigtable.admin.v2.DeleteAppProfileRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_DELETE_APP_PROFILE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an instance exists but does not have a policy set.
+     * </pre>
+     */
+    public void getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_IAM_POLICY, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Sets the access control policy on an instance resource. Replaces any
+     * existing policy.
+     * </pre>
+     */
+    public void setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.Policy> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_SET_IAM_POLICY, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Returns permissions that the caller has on the specified instance resource.
+     * </pre>
+     */
+    public void testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request,
+        io.grpc.stub.StreamObserver<com.google.iam.v1.TestIamPermissionsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_TEST_IAM_PERMISSIONS, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -530,6 +937,16 @@ public final class BigtableInstanceAdminGrpc {
 
     /**
      * <pre>
+     * Partially updates an instance within a project.
+     * </pre>
+     */
+    public com.google.longrunning.Operation partialUpdateInstance(com.google.bigtable.admin.v2.PartialUpdateInstanceRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_PARTIAL_UPDATE_INSTANCE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Delete an instance from a project.
      * </pre>
      */
@@ -586,6 +1003,123 @@ public final class BigtableInstanceAdminGrpc {
     public com.google.protobuf.Empty deleteCluster(com.google.bigtable.admin.v2.DeleteClusterRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_DELETE_CLUSTER, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates an app profile within an instance.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.AppProfile createAppProfile(com.google.bigtable.admin.v2.CreateAppProfileRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CREATE_APP_PROFILE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets information about an app profile.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.AppProfile getAppProfile(com.google.bigtable.admin.v2.GetAppProfileRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_APP_PROFILE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists information about app profiles in an instance.
+     * </pre>
+     */
+    public com.google.bigtable.admin.v2.ListAppProfilesResponse listAppProfiles(com.google.bigtable.admin.v2.ListAppProfilesRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_LIST_APP_PROFILES, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Updates an app profile within an instance.
+     * </pre>
+     */
+    public com.google.longrunning.Operation updateAppProfile(com.google.bigtable.admin.v2.UpdateAppProfileRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_UPDATE_APP_PROFILE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Deletes an app profile from an instance.
+     * </pre>
+     */
+    public com.google.protobuf.Empty deleteAppProfile(com.google.bigtable.admin.v2.DeleteAppProfileRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_DELETE_APP_PROFILE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an instance exists but does not have a policy set.
+     * </pre>
+     */
+    public com.google.iam.v1.Policy getIamPolicy(com.google.iam.v1.GetIamPolicyRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_IAM_POLICY, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Sets the access control policy on an instance resource. Replaces any
+     * existing policy.
+     * </pre>
+     */
+    public com.google.iam.v1.Policy setIamPolicy(com.google.iam.v1.SetIamPolicyRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_SET_IAM_POLICY, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Returns permissions that the caller has on the specified instance resource.
+     * </pre>
+     */
+    public com.google.iam.v1.TestIamPermissionsResponse testIamPermissions(com.google.iam.v1.TestIamPermissionsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_TEST_IAM_PERMISSIONS, getCallOptions(), request);
     }
   }
 
@@ -658,6 +1192,17 @@ public final class BigtableInstanceAdminGrpc {
 
     /**
      * <pre>
+     * Partially updates an instance within a project.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> partialUpdateInstance(
+        com.google.bigtable.admin.v2.PartialUpdateInstanceRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_PARTIAL_UPDATE_INSTANCE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Delete an instance from a project.
      * </pre>
      */
@@ -721,18 +1266,152 @@ public final class BigtableInstanceAdminGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_DELETE_CLUSTER, getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Creates an app profile within an instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.AppProfile> createAppProfile(
+        com.google.bigtable.admin.v2.CreateAppProfileRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CREATE_APP_PROFILE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Gets information about an app profile.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.AppProfile> getAppProfile(
+        com.google.bigtable.admin.v2.GetAppProfileRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_APP_PROFILE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Lists information about app profiles in an instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.bigtable.admin.v2.ListAppProfilesResponse> listAppProfiles(
+        com.google.bigtable.admin.v2.ListAppProfilesRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_LIST_APP_PROFILES, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Updates an app profile within an instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> updateAppProfile(
+        com.google.bigtable.admin.v2.UpdateAppProfileRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_UPDATE_APP_PROFILE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable replication. This feature
+     * is not currently available to most Cloud Bigtable customers. This feature
+     * might be changed in backward-incompatible ways and is not recommended for
+     * production use. It is not subject to any SLA or deprecation policy.
+     * Deletes an app profile from an instance.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteAppProfile(
+        com.google.bigtable.admin.v2.DeleteAppProfileRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_DELETE_APP_PROFILE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an instance exists but does not have a policy set.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.Policy> getIamPolicy(
+        com.google.iam.v1.GetIamPolicyRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_IAM_POLICY, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Sets the access control policy on an instance resource. Replaces any
+     * existing policy.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.Policy> setIamPolicy(
+        com.google.iam.v1.SetIamPolicyRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_SET_IAM_POLICY, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * This is a private alpha release of Cloud Bigtable instance level
+     * permissions. This feature is not currently available to most Cloud Bigtable
+     * customers. This feature might be changed in backward-incompatible ways and
+     * is not recommended for production use. It is not subject to any SLA or
+     * deprecation policy.
+     * Returns permissions that the caller has on the specified instance resource.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.iam.v1.TestIamPermissionsResponse> testIamPermissions(
+        com.google.iam.v1.TestIamPermissionsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_TEST_IAM_PERMISSIONS, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_INSTANCE = 0;
   private static final int METHODID_GET_INSTANCE = 1;
   private static final int METHODID_LIST_INSTANCES = 2;
   private static final int METHODID_UPDATE_INSTANCE = 3;
-  private static final int METHODID_DELETE_INSTANCE = 4;
-  private static final int METHODID_CREATE_CLUSTER = 5;
-  private static final int METHODID_GET_CLUSTER = 6;
-  private static final int METHODID_LIST_CLUSTERS = 7;
-  private static final int METHODID_UPDATE_CLUSTER = 8;
-  private static final int METHODID_DELETE_CLUSTER = 9;
+  private static final int METHODID_PARTIAL_UPDATE_INSTANCE = 4;
+  private static final int METHODID_DELETE_INSTANCE = 5;
+  private static final int METHODID_CREATE_CLUSTER = 6;
+  private static final int METHODID_GET_CLUSTER = 7;
+  private static final int METHODID_LIST_CLUSTERS = 8;
+  private static final int METHODID_UPDATE_CLUSTER = 9;
+  private static final int METHODID_DELETE_CLUSTER = 10;
+  private static final int METHODID_CREATE_APP_PROFILE = 11;
+  private static final int METHODID_GET_APP_PROFILE = 12;
+  private static final int METHODID_LIST_APP_PROFILES = 13;
+  private static final int METHODID_UPDATE_APP_PROFILE = 14;
+  private static final int METHODID_DELETE_APP_PROFILE = 15;
+  private static final int METHODID_GET_IAM_POLICY = 16;
+  private static final int METHODID_SET_IAM_POLICY = 17;
+  private static final int METHODID_TEST_IAM_PERMISSIONS = 18;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -767,6 +1446,10 @@ public final class BigtableInstanceAdminGrpc {
           serviceImpl.updateInstance((com.google.bigtable.admin.v2.Instance) request,
               (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.Instance>) responseObserver);
           break;
+        case METHODID_PARTIAL_UPDATE_INSTANCE:
+          serviceImpl.partialUpdateInstance((com.google.bigtable.admin.v2.PartialUpdateInstanceRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
+          break;
         case METHODID_DELETE_INSTANCE:
           serviceImpl.deleteInstance((com.google.bigtable.admin.v2.DeleteInstanceRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
@@ -790,6 +1473,38 @@ public final class BigtableInstanceAdminGrpc {
         case METHODID_DELETE_CLUSTER:
           serviceImpl.deleteCluster((com.google.bigtable.admin.v2.DeleteClusterRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_CREATE_APP_PROFILE:
+          serviceImpl.createAppProfile((com.google.bigtable.admin.v2.CreateAppProfileRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile>) responseObserver);
+          break;
+        case METHODID_GET_APP_PROFILE:
+          serviceImpl.getAppProfile((com.google.bigtable.admin.v2.GetAppProfileRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.AppProfile>) responseObserver);
+          break;
+        case METHODID_LIST_APP_PROFILES:
+          serviceImpl.listAppProfiles((com.google.bigtable.admin.v2.ListAppProfilesRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.bigtable.admin.v2.ListAppProfilesResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_APP_PROFILE:
+          serviceImpl.updateAppProfile((com.google.bigtable.admin.v2.UpdateAppProfileRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.longrunning.Operation>) responseObserver);
+          break;
+        case METHODID_DELETE_APP_PROFILE:
+          serviceImpl.deleteAppProfile((com.google.bigtable.admin.v2.DeleteAppProfileRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_GET_IAM_POLICY:
+          serviceImpl.getIamPolicy((com.google.iam.v1.GetIamPolicyRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.iam.v1.Policy>) responseObserver);
+          break;
+        case METHODID_SET_IAM_POLICY:
+          serviceImpl.setIamPolicy((com.google.iam.v1.SetIamPolicyRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.iam.v1.Policy>) responseObserver);
+          break;
+        case METHODID_TEST_IAM_PERMISSIONS:
+          serviceImpl.testIamPermissions((com.google.iam.v1.TestIamPermissionsRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.iam.v1.TestIamPermissionsResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -828,12 +1543,21 @@ public final class BigtableInstanceAdminGrpc {
               .addMethod(METHOD_GET_INSTANCE)
               .addMethod(METHOD_LIST_INSTANCES)
               .addMethod(METHOD_UPDATE_INSTANCE)
+              .addMethod(METHOD_PARTIAL_UPDATE_INSTANCE)
               .addMethod(METHOD_DELETE_INSTANCE)
               .addMethod(METHOD_CREATE_CLUSTER)
               .addMethod(METHOD_GET_CLUSTER)
               .addMethod(METHOD_LIST_CLUSTERS)
               .addMethod(METHOD_UPDATE_CLUSTER)
               .addMethod(METHOD_DELETE_CLUSTER)
+              .addMethod(METHOD_CREATE_APP_PROFILE)
+              .addMethod(METHOD_GET_APP_PROFILE)
+              .addMethod(METHOD_LIST_APP_PROFILES)
+              .addMethod(METHOD_UPDATE_APP_PROFILE)
+              .addMethod(METHOD_DELETE_APP_PROFILE)
+              .addMethod(METHOD_GET_IAM_POLICY)
+              .addMethod(METHOD_SET_IAM_POLICY)
+              .addMethod(METHOD_TEST_IAM_PERMISSIONS)
               .build();
         }
       }
