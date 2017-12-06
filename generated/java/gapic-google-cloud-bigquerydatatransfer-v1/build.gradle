@@ -10,7 +10,7 @@ apply plugin: 'maven'
 
 description = 'Sample client library for google-cloud-bigquerydatatransfer-v1'
 group = "com.google.api"
-version = "0.1.25"
+version = "0.1.26"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
