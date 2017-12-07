@@ -6,7 +6,7 @@ buildscript {
 
 apply plugin: 'java'
 
-description = 'GAPIC library for google-cloud-container-v1'
+description = 'GAPIC library for google-cloud-vision-v1p1beta1'
 group = "com.google.api"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -17,9 +17,9 @@ repositories {
 }
 
 dependencies {
-  compile project(":proto-google-cloud-container-v1")
+  compile project(":proto-google-cloud-vision-v1p1beta1")
   compile libraries.gax, libraries.gaxGrpc
-  testCompile project(":grpc-google-cloud-container-v1")
+  testCompile project(":grpc-google-cloud-vision-v1p1beta1")
 }
 
 sourceSets {
