@@ -23,7 +23,7 @@ dependencies {
   compile "com.google.protobuf:protobuf-java:3.4.0"
   compile "com.google.api:api-common:1.1.0"
   compile project(":proto-google-common-protos")
-  compile project(":proto-google-iam-v1")
+compile project(":proto-google-iam-v1")
 }
 
 ext {
