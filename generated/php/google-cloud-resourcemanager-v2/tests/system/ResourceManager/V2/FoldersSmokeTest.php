@@ -38,6 +38,6 @@ class FoldersSmokeTest extends GeneratedTest
     {
         $foldersClient = new FoldersClient();
         $query = '';
-        $foldersClient->searchFolders($query);
+        $foldersClient->searchFolders(['query' => $query]);
     }
 }

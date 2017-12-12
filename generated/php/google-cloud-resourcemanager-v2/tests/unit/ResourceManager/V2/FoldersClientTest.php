@@ -167,10 +167,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setFolders($folders);
         $grpcStub->addResponse($expectedResponse);
 
-        // Mock request
-        $query = 'query107944136';
-
-        $response = $client->searchFolders($query);
+        $response = $client->searchFolders();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -182,7 +179,6 @@ class FoldersClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v2.Folders/SearchFolders', $actualFuncCall);
 
-        $this->assertProtobufEquals($query, $actualRequestObject->getQuery());
         $this->assertTrue($grpcStub->isExhausted());
     }
 
@@ -208,11 +204,8 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $grpcStub->addResponse(null, $status);
 
-        // Mock request
-        $query = 'query107944136';
-
         try {
-            $client->searchFolders($query);
+            $client->searchFolders();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
