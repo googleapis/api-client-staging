@@ -37,8 +37,12 @@ class TraceServiceSmokeTest extends GeneratedTest
      */
     public function listTracesTest()
     {
+        $projectId = getenv('PROJECT_ID');
+        if ($projectId === false) {
+            $this->fail('Environment variable PROJECT_ID must be set for smoke test');
+        }
         $traceServiceClient = new TraceServiceClient();
-        $projectId2 = projectId;
+        $projectId2 = $projectId;
         $traceServiceClient->listTraces($projectId2);
     }
 }
