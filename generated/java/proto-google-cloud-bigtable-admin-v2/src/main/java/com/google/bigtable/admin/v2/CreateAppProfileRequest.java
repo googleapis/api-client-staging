@@ -1016,9 +1016,30 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    public final Builder setParentWithInstanceName(com.google.bigtable.admin.v2.InstanceName value) {
+      if (value == null) {
+        return setParent("");
+      }
+      return setParent(value.toString());
+    }
+    
+    public final com.google.bigtable.admin.v2.InstanceName getParentAsInstanceName() {
+      java.lang.String str = getParent();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.bigtable.admin.v2.InstanceName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.CreateAppProfileRequest)
   }
 
+  public final com.google.bigtable.admin.v2.InstanceName getParentAsInstanceName() {
+    java.lang.String str = getParent();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.bigtable.admin.v2.InstanceName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.CreateAppProfileRequest)
   private static final com.google.bigtable.admin.v2.CreateAppProfileRequest DEFAULT_INSTANCE;
   static {
