@@ -19,21 +19,21 @@
  *
  * <p>The interfaces provided are listed below, along with usage samples.
  *
- * <p>============== BigtableClient ==============
+ * <p>====================== BaseBigtableDataClient ======================
  *
  * <p>Service Description: Service for reading from and writing to existing Bigtable tables.
  *
- * <p>Sample for BigtableClient:
+ * <p>Sample for BaseBigtableDataClient:
  *
  * <pre>
  * <code>
- * try (BigtableClient bigtableClient = BigtableClient.create()) {
+ * try (BaseBigtableDataClient baseBigtableDataClient = BaseBigtableDataClient.create()) {
  *   TableName tableName = TableName.of("[PROJECT]", "[INSTANCE]", "[TABLE]");
  *   ByteString rowKey = ByteString.copyFromUtf8("");
  *   List&lt;Mutation&gt; mutations = new ArrayList&lt;&gt;();
- *   MutateRowResponse response = bigtableClient.mutateRow(tableName, rowKey, mutations);
+ *   MutateRowResponse response = baseBigtableDataClient.mutateRow(tableName, rowKey, mutations);
  * }
  * </code>
  * </pre>
  */
-package com.google.cloud.bigtable.v2;
+package com.google.cloud.bigtable.data.v2;

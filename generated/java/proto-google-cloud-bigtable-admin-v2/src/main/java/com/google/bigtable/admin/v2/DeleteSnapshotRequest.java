@@ -533,9 +533,30 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    public final Builder setNameWithSnapshotName(com.google.bigtable.admin.v2.SnapshotName value) {
+      if (value == null) {
+        return setName("");
+      }
+      return setName(value.toString());
+    }
+    
+    public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
+      java.lang.String str = getName();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.bigtable.admin.v2.SnapshotName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.DeleteSnapshotRequest)
   }
 
+  public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
+    java.lang.String str = getName();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.bigtable.admin.v2.SnapshotName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.DeleteSnapshotRequest)
   private static final com.google.bigtable.admin.v2.DeleteSnapshotRequest DEFAULT_INSTANCE;
   static {

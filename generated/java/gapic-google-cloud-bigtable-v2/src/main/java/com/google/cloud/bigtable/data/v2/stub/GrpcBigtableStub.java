@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.cloud.bigtable.v2.stub;
+package com.google.cloud.bigtable.data.v2.stub;
 
 import com.google.api.core.BetaApi;
 import com.google.api.gax.core.BackgroundResource;
@@ -35,7 +35,7 @@ import com.google.bigtable.v2.ReadRowsRequest;
 import com.google.bigtable.v2.ReadRowsResponse;
 import com.google.bigtable.v2.SampleRowKeysRequest;
 import com.google.bigtable.v2.SampleRowKeysResponse;
-import com.google.cloud.bigtable.v2.BigtableSettings;
+import com.google.cloud.bigtable.data.v2.BaseBigtableDataSettings;
 import io.grpc.MethodDescriptor;
 import io.grpc.protobuf.ProtoUtils;
 import java.io.IOException;
@@ -119,19 +119,20 @@ public class GrpcBigtableStub extends BigtableStub {
   private final UnaryCallable<ReadModifyWriteRowRequest, ReadModifyWriteRowResponse>
       readModifyWriteRowCallable;
 
-  public static final GrpcBigtableStub create(BigtableSettings settings) throws IOException {
+  public static final GrpcBigtableStub create(BaseBigtableDataSettings settings)
+      throws IOException {
     return new GrpcBigtableStub(settings, ClientContext.create(settings));
   }
 
   public static final GrpcBigtableStub create(ClientContext clientContext) throws IOException {
-    return new GrpcBigtableStub(BigtableSettings.newBuilder().build(), clientContext);
+    return new GrpcBigtableStub(BaseBigtableDataSettings.newBuilder().build(), clientContext);
   }
 
   /**
    * Constructs an instance of GrpcBigtableStub, using the given settings. This is protected so that
    * it is easy to make a subclass, but otherwise, the static factory methods should be preferred.
    */
-  protected GrpcBigtableStub(BigtableSettings settings, ClientContext clientContext)
+  protected GrpcBigtableStub(BaseBigtableDataSettings settings, ClientContext clientContext)
       throws IOException {
 
     GrpcCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsTransportSettings =
