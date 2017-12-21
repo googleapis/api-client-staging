@@ -88,12 +88,12 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * The list of POSIX accounts associated with the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oslogin.common.PosixAccount posix_accounts = 2;</code>
-     * @param \Google\Cloud\Oslogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPosixAccounts($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Oslogin\Common\PosixAccount::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsLogin\Common\PosixAccount::class);
         $this->posix_accounts = $arr;
 
         return $this;
@@ -119,7 +119,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      */
     public function setSshPublicKeys($var)
     {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Oslogin\Common\SshPublicKey::class);
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsLogin\Common\SshPublicKey::class);
         $this->ssh_public_keys = $arr;
 
         return $this;
