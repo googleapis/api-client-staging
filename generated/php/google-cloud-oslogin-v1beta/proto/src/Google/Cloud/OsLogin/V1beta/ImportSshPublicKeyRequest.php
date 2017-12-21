@@ -69,7 +69,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
-     * @return \Google\Cloud\Oslogin\Common\SshPublicKey
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      */
     public function getSshPublicKey()
     {
@@ -80,12 +80,12 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
-     * @param \Google\Cloud\Oslogin\Common\SshPublicKey $var
+     * @param \Google\Cloud\OsLogin\Common\SshPublicKey $var
      * @return $this
      */
     public function setSshPublicKey($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Oslogin\Common\SshPublicKey::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\OsLogin\Common\SshPublicKey::class);
         $this->ssh_public_key = $var;
 
         return $this;
