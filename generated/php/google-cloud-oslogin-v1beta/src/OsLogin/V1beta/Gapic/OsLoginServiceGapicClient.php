@@ -36,6 +36,7 @@ use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\OsLogin\Common\SshPublicKey;
 use Google\Cloud\OsLogin\V1beta\DeletePosixAccountRequest;
 use Google\Cloud\OsLogin\V1beta\DeleteSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\GetLoginProfileRequest;
@@ -43,7 +44,6 @@ use Google\Cloud\OsLogin\V1beta\GetSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\ImportSshPublicKeyRequest;
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceGrpcClient;
 use Google\Cloud\OsLogin\V1beta\UpdateSshPublicKeyRequest;
-use Google\Cloud\Oslogin\Common\SshPublicKey;
 use Google\Cloud\Version;
 use Google\Protobuf\FieldMask;
 
@@ -557,7 +557,7 @@ class OsLoginServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Oslogin\Common\SshPublicKey
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -684,7 +684,7 @@ class OsLoginServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Oslogin\Common\SshPublicKey
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
