@@ -28,6 +28,7 @@ jobs:
   node4:
     docker:
       - image: node:4
+        user: node
     steps:
       - checkout
       - run:
@@ -42,11 +43,12 @@ jobs:
 
             # Needed to find the right packages when installed from the top.
             ./runtests.sh
-    working_directory: /var/code/googleapis/
+    working_directory: /home/node/code/googleapis/
 
   node6:
     docker:
       - image: node:6
+        user: node
     steps:
       - checkout
       - run:
@@ -61,11 +63,12 @@ jobs:
 
             # Needed to find the right packages when installed from the top.
             ./runtests.sh
-    working_directory: /var/code/googleapis/
+    working_directory: /home/node/code/googleapis/
 
   node7:
     docker:
       - image: node:7
+        user: node
     steps:
       - checkout
       - run:
@@ -80,11 +83,12 @@ jobs:
 
             # Needed to find the right packages when installed from the top.
             ./runtests.sh
-    working_directory: /var/code/googleapis/
+    working_directory: /home/node/code/googleapis/
 
   node8:
     docker:
       - image: node:8
+        user: node
     steps:
       - checkout
       - run:
@@ -98,7 +102,7 @@ jobs:
             cd generated/nodejs/
             # Needed to find the right packages when installed from the top.
             ./runtests.sh
-    working_directory: /var/code/googleapis/
+    working_directory: /home/node/code/googleapis/
 
   openjdk7:
     docker:
