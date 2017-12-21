@@ -88,7 +88,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1beta.OsLoginService/GetSshPublicKey',
         $argument,
-        ['\Google\Cloud\Oslogin\Common\SshPublicKey', 'decode'],
+        ['\Google\Cloud\OsLogin\Common\SshPublicKey', 'decode'],
         $metadata, $options);
     }
 
@@ -119,7 +119,7 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1beta.OsLoginService/UpdateSshPublicKey',
         $argument,
-        ['\Google\Cloud\Oslogin\Common\SshPublicKey', 'decode'],
+        ['\Google\Cloud\OsLogin\Common\SshPublicKey', 'decode'],
         $metadata, $options);
     }
 

@@ -16,7 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Oslogin\V1alpha;
+namespace Google\Cloud\OsLogin\V1alpha;
 
 /**
  * Cloud OS Login API
@@ -37,11 +37,11 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes a POSIX account.
-     * @param \Google\Cloud\Oslogin\V1alpha\DeletePosixAccountRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\DeletePosixAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function DeletePosixAccount(\Google\Cloud\Oslogin\V1alpha\DeletePosixAccountRequest $argument,
+    public function DeletePosixAccount(\Google\Cloud\OsLogin\V1alpha\DeletePosixAccountRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/DeletePosixAccount',
         $argument,
@@ -51,11 +51,11 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes an SSH public key.
-     * @param \Google\Cloud\Oslogin\V1alpha\DeleteSshPublicKeyRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\DeleteSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function DeleteSshPublicKey(\Google\Cloud\Oslogin\V1alpha\DeleteSshPublicKeyRequest $argument,
+    public function DeleteSshPublicKey(\Google\Cloud\OsLogin\V1alpha\DeleteSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/DeleteSshPublicKey',
         $argument,
@@ -66,29 +66,29 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Retrieves the profile information used for logging in to a virtual machine
      * on Google Compute Engine.
-     * @param \Google\Cloud\Oslogin\V1alpha\GetLoginProfileRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\GetLoginProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function GetLoginProfile(\Google\Cloud\Oslogin\V1alpha\GetLoginProfileRequest $argument,
+    public function GetLoginProfile(\Google\Cloud\OsLogin\V1alpha\GetLoginProfileRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/GetLoginProfile',
         $argument,
-        ['\Google\Cloud\Oslogin\V1alpha\LoginProfile', 'decode'],
+        ['\Google\Cloud\OsLogin\V1alpha\LoginProfile', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Retrieves an SSH public key.
-     * @param \Google\Cloud\Oslogin\V1alpha\GetSshPublicKeyRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\GetSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function GetSshPublicKey(\Google\Cloud\Oslogin\V1alpha\GetSshPublicKeyRequest $argument,
+    public function GetSshPublicKey(\Google\Cloud\OsLogin\V1alpha\GetSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/GetSshPublicKey',
         $argument,
-        ['\Google\Cloud\Oslogin\Common\SshPublicKey', 'decode'],
+        ['\Google\Cloud\OsLogin\Common\SshPublicKey', 'decode'],
         $metadata, $options);
     }
 
@@ -96,30 +96,30 @@ class OsLoginServiceGrpcClient extends \Grpc\BaseStub {
      * Adds an SSH public key and returns the profile information. Default POSIX
      * account information is set when no username and UID exist as part of the
      * login profile.
-     * @param \Google\Cloud\Oslogin\V1alpha\ImportSshPublicKeyRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\ImportSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ImportSshPublicKey(\Google\Cloud\Oslogin\V1alpha\ImportSshPublicKeyRequest $argument,
+    public function ImportSshPublicKey(\Google\Cloud\OsLogin\V1alpha\ImportSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/ImportSshPublicKey',
         $argument,
-        ['\Google\Cloud\Oslogin\V1alpha\ImportSshPublicKeyResponse', 'decode'],
+        ['\Google\Cloud\OsLogin\V1alpha\ImportSshPublicKeyResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Updates an SSH public key and returns the profile information. This method
      * supports patch semantics.
-     * @param \Google\Cloud\Oslogin\V1alpha\UpdateSshPublicKeyRequest $argument input argument
+     * @param \Google\Cloud\OsLogin\V1alpha\UpdateSshPublicKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function UpdateSshPublicKey(\Google\Cloud\Oslogin\V1alpha\UpdateSshPublicKeyRequest $argument,
+    public function UpdateSshPublicKey(\Google\Cloud\OsLogin\V1alpha\UpdateSshPublicKeyRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.oslogin.v1alpha.OsLoginService/UpdateSshPublicKey',
         $argument,
-        ['\Google\Cloud\Oslogin\Common\SshPublicKey', 'decode'],
+        ['\Google\Cloud\OsLogin\Common\SshPublicKey', 'decode'],
         $metadata, $options);
     }
 
