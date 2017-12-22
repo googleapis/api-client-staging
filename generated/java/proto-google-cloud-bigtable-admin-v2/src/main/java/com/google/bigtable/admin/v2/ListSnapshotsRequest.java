@@ -776,9 +776,30 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    public final Builder setParentWithClusterName(com.google.bigtable.admin.v2.ClusterName value) {
+      if (value == null) {
+        return setParent("");
+      }
+      return setParent(value.toString());
+    }
+    
+    public final com.google.bigtable.admin.v2.ClusterName getParentAsClusterName() {
+      java.lang.String str = getParent();
+      if (str.isEmpty()) {
+        return null;
+      }
+      return com.google.bigtable.admin.v2.ClusterName.parse(str);
+    }
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.ListSnapshotsRequest)
   }
 
+  public final com.google.bigtable.admin.v2.ClusterName getParentAsClusterName() {
+    java.lang.String str = getParent();
+    if (str.isEmpty()) {
+      return null;
+    }
+    return com.google.bigtable.admin.v2.ClusterName.parse(str);
+  }
   // @@protoc_insertion_point(class_scope:google.bigtable.admin.v2.ListSnapshotsRequest)
   private static final com.google.bigtable.admin.v2.ListSnapshotsRequest DEFAULT_INSTANCE;
   static {

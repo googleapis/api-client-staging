@@ -29,9 +29,12 @@ public interface BatchUpdateEntityTypesRequestOrBuilder extends
 
   /**
    * <pre>
-   * The URI to a file containing entity types to update or create. The file
-   * format can be either a serialized proto (of EntityBatch type) or a JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing entity types from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing entity types to update
+   * or create. The file format can either be a serialized proto (of
+   * EntityBatch type) or a JSON object. Note: The URI must start with
+   * "gs://".
    * </pre>
    *
    * <code>string entity_type_batch_uri = 2;</code>
@@ -39,9 +42,12 @@ public interface BatchUpdateEntityTypesRequestOrBuilder extends
   java.lang.String getEntityTypeBatchUri();
   /**
    * <pre>
-   * The URI to a file containing entity types to update or create. The file
-   * format can be either a serialized proto (of EntityBatch type) or a JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing entity types from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing entity types to update
+   * or create. The file format can either be a serialized proto (of
+   * EntityBatch type) or a JSON object. Note: The URI must start with
+   * "gs://".
    * </pre>
    *
    * <code>string entity_type_batch_uri = 2;</code>
@@ -49,6 +55,14 @@ public interface BatchUpdateEntityTypesRequestOrBuilder extends
   com.google.protobuf.ByteString
       getEntityTypeBatchUriBytes();
 
+  /**
+   * <pre>
+   * The collection of entity type to update or create.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.EntityTypeBatch entity_type_batch_inline = 3;</code>
+   */
+  boolean hasEntityTypeBatchInline();
   /**
    * <pre>
    * The collection of entity type to update or create.

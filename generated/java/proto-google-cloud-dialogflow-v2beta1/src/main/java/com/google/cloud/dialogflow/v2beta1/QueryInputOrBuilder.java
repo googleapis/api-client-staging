@@ -14,6 +14,14 @@ public interface QueryInputOrBuilder extends
    *
    * <code>.google.cloud.dialogflow.v2beta1.InputAudioConfig audio_config = 1;</code>
    */
+  boolean hasAudioConfig();
+  /**
+   * <pre>
+   * Instructs the speech recognizer how to process the speech audio.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.InputAudioConfig audio_config = 1;</code>
+   */
   com.google.cloud.dialogflow.v2beta1.InputAudioConfig getAudioConfig();
   /**
    * <pre>
@@ -31,6 +39,14 @@ public interface QueryInputOrBuilder extends
    *
    * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
    */
+  boolean hasText();
+  /**
+   * <pre>
+   * The natural language text to be processed.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
+   */
   com.google.cloud.dialogflow.v2beta1.TextInput getText();
   /**
    * <pre>
@@ -41,6 +57,14 @@ public interface QueryInputOrBuilder extends
    */
   com.google.cloud.dialogflow.v2beta1.TextInputOrBuilder getTextOrBuilder();
 
+  /**
+   * <pre>
+   * The event to be processed.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.EventInput event = 3;</code>
+   */
+  boolean hasEvent();
   /**
    * <pre>
    * The event to be processed.

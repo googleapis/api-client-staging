@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The response message for [Intents.BatchUpdateIntents].
+ * The response message for
+ * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse}
@@ -14,6 +15,7 @@ public  final class BatchUpdateIntentsResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse)
     BatchUpdateIntentsResponseOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use BatchUpdateIntentsResponse.newBuilder() to construct.
   private BatchUpdateIntentsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -25,7 +27,7 @@ public  final class BatchUpdateIntentsResponse extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private BatchUpdateIntentsResponse(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +35,8 @@ public  final class BatchUpdateIntentsResponse extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +46,8 @@ public  final class BatchUpdateIntentsResponse extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -67,6 +72,7 @@ public  final class BatchUpdateIntentsResponse extends
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         intents_ = java.util.Collections.unmodifiableList(intents_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -152,6 +158,7 @@ public  final class BatchUpdateIntentsResponse extends
     for (int i = 0; i < intents_.size(); i++) {
       output.writeMessage(1, intents_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -163,11 +170,11 @@ public  final class BatchUpdateIntentsResponse extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, intents_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -181,6 +188,7 @@ public  final class BatchUpdateIntentsResponse extends
     boolean result = true;
     result = result && getIntentsList()
         .equals(other.getIntentsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -290,7 +298,8 @@ public  final class BatchUpdateIntentsResponse extends
   }
   /**
    * <pre>
-   * The response message for [Intents.BatchUpdateIntents].
+   * The response message for
+   * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse}
@@ -376,7 +385,7 @@ public  final class BatchUpdateIntentsResponse extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -389,12 +398,12 @@ public  final class BatchUpdateIntentsResponse extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -434,6 +443,7 @@ public  final class BatchUpdateIntentsResponse extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -774,12 +784,12 @@ public  final class BatchUpdateIntentsResponse extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

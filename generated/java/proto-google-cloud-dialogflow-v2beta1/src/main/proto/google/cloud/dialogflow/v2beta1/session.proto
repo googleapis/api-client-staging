@@ -32,24 +32,26 @@ option java_outer_classname = "SessionProto";
 option java_package = "com.google.cloud.dialogflow.v2beta1";
 option objc_class_prefix = "DF";
 
-
 // Manages user sessions.
 //
-//
-// Custom methods.
+// #
 service Sessions {
   // Processes a natural language query and returns structured, actionable data
   // as a result. This method is not idempotent, because it may cause contexts
   // and session entity types to be updated, which in turn might affect
   // results of future queries.
   rpc DetectIntent(DetectIntentRequest) returns (DetectIntentResponse) {
-    option (google.api.http) = { post: "/v2beta1/{session=projects/*/agent/sessions/*}:detectIntent" body: "*" };
+    option (google.api.http) = {
+      post: "/v2beta1/{session=projects/*/agent/sessions/*}:detectIntent"
+      body: "*"
+    };
   }
 
   // Processes a natural language query in audio format in a streaming fashion
   // and returns structured, actionable data as a result. This method is only
   // available via the gRPC API (not REST).
-  rpc StreamingDetectIntent(stream StreamingDetectIntentRequest) returns (stream StreamingDetectIntentResponse);
+  rpc StreamingDetectIntent(stream StreamingDetectIntentRequest)
+      returns (stream StreamingDetectIntentResponse);
 }
 
 // The request to detect user's intent.
@@ -125,12 +127,12 @@ message QueryParameters {
 
 // Represents the query input. It can contain either:
 //
-// 1.  an audio config which
-//     instructs the speech recognizer how to process the speech audio,
+// 1.  An audio config which
+//     instructs the speech recognizer how to process the speech audio.
 //
-// 2.  a conversational query in the form of text, or
+// 2.  A conversational query in the form of text,.
 //
-// 3.  an event that specifies which intent to trigger.
+// 3.  An event that specifies which intent to trigger.
 message QueryInput {
   // Required. The input specification.
   oneof input {
@@ -221,7 +223,8 @@ message QueryResult {
 // Multiple request messages should be sent in order:
 //
 // 1.  The first message must contain `session`, `query_input` plus optionally
-//     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
+//     `query_params` and/or `single_utterance`. The message must not contain
+//     `input_audio`.
 //
 // 2.  If `query_input` was set to a streaming input audio config,
 //     all subsequent messages must contain only `input_audio`.

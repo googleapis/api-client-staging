@@ -10,7 +10,7 @@ public interface ExportAgentResponseOrBuilder extends
   /**
    * <pre>
    * The URI to a file containing the exported agent. This field is populated
-   * only if `agent_uri`
+   * only if `agent_uri` is specified in `ExportAgentRequest`.
    * </pre>
    *
    * <code>string agent_uri = 1;</code>
@@ -19,7 +19,7 @@ public interface ExportAgentResponseOrBuilder extends
   /**
    * <pre>
    * The URI to a file containing the exported agent. This field is populated
-   * only if `agent_uri`
+   * only if `agent_uri` is specified in `ExportAgentRequest`.
    * </pre>
    *
    * <code>string agent_uri = 1;</code>

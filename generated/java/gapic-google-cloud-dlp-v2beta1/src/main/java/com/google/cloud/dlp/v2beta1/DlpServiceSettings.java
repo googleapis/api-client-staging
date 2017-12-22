@@ -1,11 +1,11 @@
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,10 +17,10 @@ package com.google.cloud.dlp.v2beta1;
 
 import com.google.api.core.ApiFunction;
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.GaxProperties;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
-import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.grpc.GrpcExtraHeaderData;
+import com.google.api.gax.grpc.GaxGrpcProperties;
 import com.google.api.gax.grpc.GrpcTransportChannel;
 import com.google.api.gax.grpc.InstantiatingGrpcChannelProvider;
 import com.google.api.gax.grpc.ProtoOperationTransformers;
@@ -96,14 +96,6 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
   /** The default scopes of the service. */
   private static final ImmutableList<String> DEFAULT_SERVICE_SCOPES =
       ImmutableList.<String>builder().add("https://www.googleapis.com/auth/cloud-platform").build();
-
-  private static final String DEFAULT_GAPIC_NAME = "gapic";
-  private static final String DEFAULT_GAPIC_VERSION = "";
-
-  private static final String PROPERTIES_FILE = "/com/google/cloud/dlp/project.properties";
-  private static final String META_VERSION_KEY = "artifact.version";
-
-  private static String gapicVersion;
 
   private final UnaryCallSettings<InspectContentRequest, InspectContentResponse>
       inspectContentSettings;
@@ -231,19 +223,9 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
   @BetaApi("The surface for customizing headers is not stable yet and may change in the future.")
   public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
     return ApiClientHeaderProvider.newBuilder()
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
-        .setApiClientHeaderLineKey("x-goog-api-client")
-        .addApiClientHeaderLineData(GrpcExtraHeaderData.getXGoogApiClientData());
-  }
-
-  private static String getGapicVersion() {
-    if (gapicVersion == null) {
-      gapicVersion =
-          PropertiesProvider.loadProperty(
-              DlpServiceSettings.class, PROPERTIES_FILE, META_VERSION_KEY);
-      gapicVersion = gapicVersion == null ? DEFAULT_GAPIC_VERSION : gapicVersion;
-    }
-    return gapicVersion;
+        .setGeneratedLibToken("gapic", GaxProperties.getLibraryVersion(DlpServiceSettings.class))
+        .setTransportToken(
+            GaxGrpcProperties.getGrpcTokenName(), GaxGrpcProperties.getGrpcVersion());
   }
 
   /** Returns a new builder for this class. */
@@ -261,7 +243,7 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
     return new Builder(this);
   }
 
-  private DlpServiceSettings(Builder settingsBuilder) throws IOException {
+  protected DlpServiceSettings(Builder settingsBuilder) throws IOException {
     super(settingsBuilder);
 
     inspectContentSettings = settingsBuilder.inspectContentSettings().build();
@@ -340,11 +322,11 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }
 
-    private Builder() {
+    protected Builder() {
       this((ClientContext) null);
     }
 
-    private Builder(ClientContext clientContext) {
+    protected Builder(ClientContext clientContext) {
       super(clientContext);
 
       inspectContentSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
@@ -385,7 +367,7 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
       Builder builder = new Builder((ClientContext) null);
       builder.setTransportChannelProvider(defaultTransportChannelProvider());
       builder.setCredentialsProvider(defaultCredentialsProviderBuilder().build());
-      builder.setHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
+      builder.setInternalHeaderProvider(defaultApiClientHeaderProviderBuilder().build());
       builder.setEndpoint(getDefaultEndpoint());
       return initDefaults(builder);
     }
@@ -483,7 +465,7 @@ public class DlpServiceSettings extends ClientSettings<DlpServiceSettings> {
       return builder;
     }
 
-    private Builder(DlpServiceSettings settings) {
+    protected Builder(DlpServiceSettings settings) {
       super(settings);
 
       inspectContentSettings = settings.inspectContentSettings.toBuilder();

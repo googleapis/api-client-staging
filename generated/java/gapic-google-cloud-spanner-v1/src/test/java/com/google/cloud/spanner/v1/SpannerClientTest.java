@@ -1,11 +1,11 @@
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,9 +18,12 @@ package com.google.cloud.spanner.v1;
 import static com.google.cloud.spanner.v1.PagedResponseWrappers.ListSessionsPagedResponse;
 
 import com.google.api.gax.core.NoCredentialsProvider;
+import com.google.api.gax.grpc.GaxGrpcProperties;
+import com.google.api.gax.grpc.testing.LocalChannelProvider;
 import com.google.api.gax.grpc.testing.MockGrpcService;
 import com.google.api.gax.grpc.testing.MockServiceHelper;
 import com.google.api.gax.grpc.testing.MockStreamObserver;
+import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.InvalidArgumentException;
 import com.google.api.gax.rpc.ServerStreamingCallable;
 import com.google.common.collect.Lists;
@@ -65,6 +68,7 @@ public class SpannerClientTest {
   private static MockSpanner mockSpanner;
   private static MockServiceHelper serviceHelper;
   private SpannerClient client;
+  private LocalChannelProvider channelProvider;
 
   @BeforeClass
   public static void startStaticServer() {
@@ -82,9 +86,10 @@ public class SpannerClientTest {
   @Before
   public void setUp() throws IOException {
     serviceHelper.reset();
+    channelProvider = serviceHelper.createChannelProvider();
     SpannerSettings settings =
         SpannerSettings.newBuilder()
-            .setTransportChannelProvider(serviceHelper.createChannelProvider())
+            .setTransportChannelProvider(channelProvider)
             .setCredentialsProvider(NoCredentialsProvider.create())
             .build();
     client = SpannerClient.create(settings);
@@ -112,6 +117,10 @@ public class SpannerClientTest {
     CreateSessionRequest actualRequest = (CreateSessionRequest) actualRequests.get(0);
 
     Assert.assertEquals(database, actualRequest.getDatabaseAsDatabaseName());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -147,6 +156,10 @@ public class SpannerClientTest {
     GetSessionRequest actualRequest = (GetSessionRequest) actualRequests.get(0);
 
     Assert.assertEquals(name, actualRequest.getNameAsSessionName());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -191,6 +204,10 @@ public class SpannerClientTest {
     ListSessionsRequest actualRequest = (ListSessionsRequest) actualRequests.get(0);
 
     Assert.assertEquals(formattedDatabase, actualRequest.getDatabase());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -225,6 +242,10 @@ public class SpannerClientTest {
     DeleteSessionRequest actualRequest = (DeleteSessionRequest) actualRequests.get(0);
 
     Assert.assertEquals(name, actualRequest.getNameAsSessionName());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -382,6 +403,10 @@ public class SpannerClientTest {
 
     Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
     Assert.assertEquals(options, actualRequest.getOptions());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -421,6 +446,10 @@ public class SpannerClientTest {
     Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
     Assert.assertEquals(transactionId, actualRequest.getTransactionId());
     Assert.assertEquals(mutations, actualRequest.getMutationsList());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -461,6 +490,10 @@ public class SpannerClientTest {
     Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
     Assert.assertEquals(singleUseTransaction, actualRequest.getSingleUseTransaction());
     Assert.assertEquals(mutations, actualRequest.getMutationsList());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test
@@ -498,6 +531,10 @@ public class SpannerClientTest {
 
     Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
     Assert.assertEquals(transactionId, actualRequest.getTransactionId());
+    Assert.assertTrue(
+        channelProvider.isHeaderSent(
+            ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
+            GaxGrpcProperties.getDefaultApiClientHeaderPattern()));
   }
 
   @Test

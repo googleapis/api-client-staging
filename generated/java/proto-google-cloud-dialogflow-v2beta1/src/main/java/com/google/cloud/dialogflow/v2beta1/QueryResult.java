@@ -14,6 +14,7 @@ public  final class QueryResult extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.QueryResult)
     QueryResultOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use QueryResult.newBuilder() to construct.
   private QueryResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -34,7 +35,7 @@ public  final class QueryResult extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private QueryResult(
       com.google.protobuf.CodedInputStream input,
@@ -42,6 +43,8 @@ public  final class QueryResult extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -51,7 +54,8 @@ public  final class QueryResult extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -185,6 +189,7 @@ public  final class QueryResult extends
       if (((mutable_bitField0_ & 0x00000400) == 0x00000400)) {
         outputContexts_ = java.util.Collections.unmodifiableList(outputContexts_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -800,6 +805,7 @@ public  final class QueryResult extends
     if (!getLanguageCodeBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 15, languageCode_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -858,11 +864,11 @@ public  final class QueryResult extends
     if (!getLanguageCodeBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(15, languageCode_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -918,6 +924,7 @@ public  final class QueryResult extends
       result = result && getDiagnosticInfo()
           .equals(other.getDiagnosticInfo());
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -1238,7 +1245,7 @@ public  final class QueryResult extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -1251,12 +1258,12 @@ public  final class QueryResult extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1363,6 +1370,7 @@ public  final class QueryResult extends
       if (other.hasDiagnosticInfo()) {
         mergeDiagnosticInfo(other.getDiagnosticInfo());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3348,12 +3356,12 @@ public  final class QueryResult extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

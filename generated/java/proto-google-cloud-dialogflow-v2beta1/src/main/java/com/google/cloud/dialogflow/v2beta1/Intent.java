@@ -16,6 +16,7 @@ public  final class Intent extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent)
     IntentOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Intent.newBuilder() to construct.
   private Intent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -44,7 +45,7 @@ public  final class Intent extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Intent(
       com.google.protobuf.CodedInputStream input,
@@ -52,6 +53,8 @@ public  final class Intent extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -61,7 +64,8 @@ public  final class Intent extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -240,6 +244,7 @@ public  final class Intent extends
       if (((mutable_bitField0_ & 0x00020000) == 0x00020000)) {
         followupIntentInfo_ = java.util.Collections.unmodifiableList(followupIntentInfo_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -507,6 +512,7 @@ public  final class Intent extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase)
       TrainingPhraseOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use TrainingPhrase.newBuilder() to construct.
     private TrainingPhrase(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -521,7 +527,7 @@ public  final class Intent extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private TrainingPhrase(
         com.google.protobuf.CodedInputStream input,
@@ -529,6 +535,8 @@ public  final class Intent extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -538,7 +546,8 @@ public  final class Intent extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -580,6 +589,7 @@ public  final class Intent extends
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           parts_ = java.util.Collections.unmodifiableList(parts_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -823,6 +833,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.TrainingPhrase.Part)
         PartOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Part.newBuilder() to construct.
       private Part(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -837,7 +848,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Part(
           com.google.protobuf.CodedInputStream input,
@@ -845,6 +856,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -854,7 +867,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -890,6 +904,7 @@ public  final class Intent extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -1079,6 +1094,7 @@ public  final class Intent extends
         if (userDefined_ != false) {
           output.writeBool(4, userDefined_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -1099,11 +1115,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeBoolSize(4, userDefined_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -1123,6 +1139,7 @@ public  final class Intent extends
             .equals(other.getAlias());
         result = result && (getUserDefined()
             == other.getUserDefined());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -1318,7 +1335,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -1331,12 +1348,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1365,6 +1382,7 @@ public  final class Intent extends
           if (other.getUserDefined() != false) {
             setUserDefined(other.getUserDefined());
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -1725,12 +1743,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -1943,6 +1961,7 @@ public  final class Intent extends
       if (timesAddedCount_ != 0) {
         output.writeInt32(4, timesAddedCount_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1965,11 +1984,11 @@ public  final class Intent extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, timesAddedCount_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1988,6 +2007,7 @@ public  final class Intent extends
           .equals(other.getPartsList());
       result = result && (getTimesAddedCount()
           == other.getTimesAddedCount());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2200,7 +2220,7 @@ public  final class Intent extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2213,12 +2233,12 @@ public  final class Intent extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2268,6 +2288,7 @@ public  final class Intent extends
         if (other.getTimesAddedCount() != 0) {
           setTimesAddedCount(other.getTimesAddedCount());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2841,12 +2862,12 @@ public  final class Intent extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -3072,6 +3093,7 @@ public  final class Intent extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Parameter)
       ParameterOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Parameter.newBuilder() to construct.
     private Parameter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -3090,7 +3112,7 @@ public  final class Intent extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Parameter(
         com.google.protobuf.CodedInputStream input,
@@ -3098,6 +3120,8 @@ public  final class Intent extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -3107,7 +3131,8 @@ public  final class Intent extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -3172,6 +3197,7 @@ public  final class Intent extends
         if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
           prompts_ = prompts_.getUnmodifiableView();
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -3531,6 +3557,7 @@ public  final class Intent extends
       if (isList_ != false) {
         output.writeBool(8, isList_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -3569,11 +3596,11 @@ public  final class Intent extends
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, isList_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -3601,6 +3628,7 @@ public  final class Intent extends
           .equals(other.getPromptsList());
       result = result && (getIsList()
           == other.getIsList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -3826,7 +3854,7 @@ public  final class Intent extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -3839,12 +3867,12 @@ public  final class Intent extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3894,6 +3922,7 @@ public  final class Intent extends
         if (other.getIsList() != false) {
           setIsList(other.getIsList());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -4638,12 +4667,12 @@ public  final class Intent extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -4696,6 +4725,14 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
      */
+    boolean hasText();
+    /**
+     * <pre>
+     * The text response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
+     */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.Text getText();
     /**
      * <pre>
@@ -4706,6 +4743,14 @@ public  final class Intent extends
      */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.TextOrBuilder getTextOrBuilder();
 
+    /**
+     * <pre>
+     * The image response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
+     */
+    boolean hasImage();
     /**
      * <pre>
      * The image response.
@@ -4730,6 +4775,14 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
      */
+    boolean hasQuickReplies();
+    /**
+     * <pre>
+     * The quick replies response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
+     */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies getQuickReplies();
     /**
      * <pre>
@@ -4740,6 +4793,14 @@ public  final class Intent extends
      */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickRepliesOrBuilder getQuickRepliesOrBuilder();
 
+    /**
+     * <pre>
+     * The card response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
+     */
+    boolean hasCard();
     /**
      * <pre>
      * The card response.
@@ -4764,6 +4825,14 @@ public  final class Intent extends
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
      */
+    boolean hasPayload();
+    /**
+     * <pre>
+     * The response containing a custom payload.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct payload = 5;</code>
+     */
     com.google.protobuf.Struct getPayload();
     /**
      * <pre>
@@ -4774,6 +4843,14 @@ public  final class Intent extends
      */
     com.google.protobuf.StructOrBuilder getPayloadOrBuilder();
 
+    /**
+     * <pre>
+     * The voice and text-only responses for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
+     */
+    boolean hasSimpleResponses();
     /**
      * <pre>
      * The voice and text-only responses for Actions on Google.
@@ -4798,6 +4875,14 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
      */
+    boolean hasBasicCard();
+    /**
+     * <pre>
+     * The basic card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
+     */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard getBasicCard();
     /**
      * <pre>
@@ -4808,6 +4893,14 @@ public  final class Intent extends
      */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCardOrBuilder getBasicCardOrBuilder();
 
+    /**
+     * <pre>
+     * The suggestion chips for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
+     */
+    boolean hasSuggestions();
     /**
      * <pre>
      * The suggestion chips for Actions on Google.
@@ -4832,6 +4925,14 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
      */
+    boolean hasLinkOutSuggestion();
+    /**
+     * <pre>
+     * The link out suggestion chip for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
+     */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion getLinkOutSuggestion();
     /**
      * <pre>
@@ -4849,6 +4950,14 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
      */
+    boolean hasListSelect();
+    /**
+     * <pre>
+     * The list card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
+     */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect getListSelect();
     /**
      * <pre>
@@ -4859,6 +4968,14 @@ public  final class Intent extends
      */
     com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelectOrBuilder getListSelectOrBuilder();
 
+    /**
+     * <pre>
+     * The carousel card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
+     */
+    boolean hasCarouselSelect();
     /**
      * <pre>
      * The carousel card response for Actions on Google.
@@ -4906,6 +5023,7 @@ public  final class Intent extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message)
       MessageOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Message.newBuilder() to construct.
     private Message(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -4917,7 +5035,7 @@ public  final class Intent extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Message(
         com.google.protobuf.CodedInputStream input,
@@ -4925,6 +5043,8 @@ public  final class Intent extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4934,7 +5054,8 @@ public  final class Intent extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -5107,6 +5228,7 @@ public  final class Intent extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5409,6 +5531,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Text)
         TextOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Text.newBuilder() to construct.
       private Text(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -5420,7 +5543,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Text(
           com.google.protobuf.CodedInputStream input,
@@ -5428,6 +5551,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -5437,7 +5562,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -5462,6 +5588,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             text_ = text_.getUnmodifiableView();
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -5537,6 +5664,7 @@ public  final class Intent extends
         for (int i = 0; i < text_.size(); i++) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_.getRaw(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -5552,11 +5680,11 @@ public  final class Intent extends
           size += dataSize;
           size += 1 * getTextList().size();
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -5570,6 +5698,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getTextList()
             .equals(other.getTextList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -5756,7 +5885,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -5769,12 +5898,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5798,6 +5927,7 @@ public  final class Intent extends
             }
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -5956,12 +6086,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -6036,6 +6166,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Image)
         ImageOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Image.newBuilder() to construct.
       private Image(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -6047,7 +6178,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Image(
           com.google.protobuf.CodedInputStream input,
@@ -6055,6 +6186,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -6064,7 +6197,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -6083,6 +6217,7 @@ public  final class Intent extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -6155,6 +6290,7 @@ public  final class Intent extends
         if (!getImageUriBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, imageUri_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -6165,11 +6301,11 @@ public  final class Intent extends
         if (!getImageUriBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, imageUri_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -6183,6 +6319,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getImageUri()
             .equals(other.getImageUri());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -6362,7 +6499,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -6375,12 +6512,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6398,6 +6535,7 @@ public  final class Intent extends
             imageUri_ = other.imageUri_;
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -6514,12 +6652,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -6629,6 +6767,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies)
         QuickRepliesOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use QuickReplies.newBuilder() to construct.
       private QuickReplies(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -6641,7 +6780,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private QuickReplies(
           com.google.protobuf.CodedInputStream input,
@@ -6649,6 +6788,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -6658,7 +6799,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -6689,6 +6831,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
             quickReplies_ = quickReplies_.getUnmodifiableView();
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -6810,6 +6953,7 @@ public  final class Intent extends
         for (int i = 0; i < quickReplies_.size(); i++) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 2, quickReplies_.getRaw(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -6828,11 +6972,11 @@ public  final class Intent extends
           size += dataSize;
           size += 1 * getQuickRepliesList().size();
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -6848,6 +6992,7 @@ public  final class Intent extends
             .equals(other.getTitle());
         result = result && getQuickRepliesList()
             .equals(other.getQuickRepliesList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -7041,7 +7186,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -7054,12 +7199,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7087,6 +7232,7 @@ public  final class Intent extends
             }
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -7334,12 +7480,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -7494,6 +7640,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Card)
         CardOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Card.newBuilder() to construct.
       private Card(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -7508,7 +7655,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Card(
           com.google.protobuf.CodedInputStream input,
@@ -7516,6 +7663,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -7525,7 +7674,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -7568,6 +7718,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
             buttons_ = java.util.Collections.unmodifiableList(buttons_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -7636,6 +7787,7 @@ public  final class Intent extends
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Card.Button)
           ButtonOrBuilder {
+      private static final long serialVersionUID = 0L;
         // Use Button.newBuilder() to construct.
         private Button(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
           super(builder);
@@ -7648,7 +7800,7 @@ public  final class Intent extends
         @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
-          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+          return this.unknownFields;
         }
         private Button(
             com.google.protobuf.CodedInputStream input,
@@ -7656,6 +7808,8 @@ public  final class Intent extends
             throws com.google.protobuf.InvalidProtocolBufferException {
           this();
           int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
           try {
             boolean done = false;
             while (!done) {
@@ -7665,7 +7819,8 @@ public  final class Intent extends
                   done = true;
                   break;
                 default: {
-                  if (!input.skipField(tag)) {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
                     done = true;
                   }
                   break;
@@ -7690,6 +7845,7 @@ public  final class Intent extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
         }
@@ -7809,6 +7965,7 @@ public  final class Intent extends
           if (!getPostbackBytes().isEmpty()) {
             com.google.protobuf.GeneratedMessageV3.writeString(output, 2, postback_);
           }
+          unknownFields.writeTo(output);
         }
 
         public int getSerializedSize() {
@@ -7822,11 +7979,11 @@ public  final class Intent extends
           if (!getPostbackBytes().isEmpty()) {
             size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, postback_);
           }
+          size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
         }
 
-        private static final long serialVersionUID = 0L;
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
           if (obj == this) {
@@ -7842,6 +7999,7 @@ public  final class Intent extends
               .equals(other.getText());
           result = result && getPostback()
               .equals(other.getPostback());
+          result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
 
@@ -8026,7 +8184,7 @@ public  final class Intent extends
           }
           public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.setField(field, value);
           }
           public Builder clearField(
@@ -8039,12 +8197,12 @@ public  final class Intent extends
           }
           public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
+              int index, java.lang.Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
           }
           public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.addRepeatedField(field, value);
           }
           public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8066,6 +8224,7 @@ public  final class Intent extends
               postback_ = other.postback_;
               onChanged();
             }
+            this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
           }
@@ -8276,12 +8435,12 @@ public  final class Intent extends
           }
           public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.setUnknownFieldsProto3(unknownFields);
           }
 
           public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.mergeUnknownFields(unknownFields);
           }
 
 
@@ -8529,6 +8688,7 @@ public  final class Intent extends
         for (int i = 0; i < buttons_.size(); i++) {
           output.writeMessage(4, buttons_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -8549,11 +8709,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(4, buttons_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -8573,6 +8733,7 @@ public  final class Intent extends
             .equals(other.getImageUri());
         result = result && getButtonsList()
             .equals(other.getButtonsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -8785,7 +8946,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -8798,12 +8959,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8855,6 +9016,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -9462,12 +9624,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -9584,6 +9746,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponse)
         SimpleResponseOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use SimpleResponse.newBuilder() to construct.
       private SimpleResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -9597,7 +9760,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private SimpleResponse(
           com.google.protobuf.CodedInputStream input,
@@ -9605,6 +9768,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -9614,7 +9779,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -9645,6 +9811,7 @@ public  final class Intent extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -9813,6 +9980,7 @@ public  final class Intent extends
         if (!getDisplayTextBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 3, displayText_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -9829,11 +9997,11 @@ public  final class Intent extends
         if (!getDisplayTextBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, displayText_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -9851,6 +10019,7 @@ public  final class Intent extends
             .equals(other.getSsml());
         result = result && getDisplayText()
             .equals(other.getDisplayText());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -10040,7 +10209,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -10053,12 +10222,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10084,6 +10253,7 @@ public  final class Intent extends
             displayText_ = other.displayText_;
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -10393,12 +10563,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -10491,6 +10661,9 @@ public  final class Intent extends
     /**
      * <pre>
      * The collection of simple response candidates.
+     * This message in `QueryResult.fulfillment_messages` and
+     * `WebhookResponse.fulfillment_messages` should contain only one
+     * `SimpleResponse`.
      * </pre>
      *
      * Protobuf type {@code google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses}
@@ -10499,6 +10672,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses)
         SimpleResponsesOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use SimpleResponses.newBuilder() to construct.
       private SimpleResponses(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -10510,7 +10684,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private SimpleResponses(
           com.google.protobuf.CodedInputStream input,
@@ -10518,6 +10692,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -10527,7 +10703,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -10552,6 +10729,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             simpleResponses_ = java.util.Collections.unmodifiableList(simpleResponses_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -10637,6 +10815,7 @@ public  final class Intent extends
         for (int i = 0; i < simpleResponses_.size(); i++) {
           output.writeMessage(1, simpleResponses_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -10648,11 +10827,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, simpleResponses_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -10666,6 +10845,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getSimpleResponsesList()
             .equals(other.getSimpleResponsesList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -10776,6 +10956,9 @@ public  final class Intent extends
       /**
        * <pre>
        * The collection of simple response candidates.
+       * This message in `QueryResult.fulfillment_messages` and
+       * `WebhookResponse.fulfillment_messages` should contain only one
+       * `SimpleResponse`.
        * </pre>
        *
        * Protobuf type {@code google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses}
@@ -10861,7 +11044,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -10874,12 +11057,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10919,6 +11102,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -11259,12 +11443,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -11444,6 +11628,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard)
         BasicCardOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use BasicCard.newBuilder() to construct.
       private BasicCard(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -11458,7 +11643,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private BasicCard(
           com.google.protobuf.CodedInputStream input,
@@ -11466,6 +11651,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -11475,7 +11662,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -11531,6 +11719,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
             buttons_ = java.util.Collections.unmodifiableList(buttons_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -11604,6 +11793,7 @@ public  final class Intent extends
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button)
           ButtonOrBuilder {
+      private static final long serialVersionUID = 0L;
         // Use Button.newBuilder() to construct.
         private Button(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
           super(builder);
@@ -11615,7 +11805,7 @@ public  final class Intent extends
         @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
-          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+          return this.unknownFields;
         }
         private Button(
             com.google.protobuf.CodedInputStream input,
@@ -11623,6 +11813,8 @@ public  final class Intent extends
             throws com.google.protobuf.InvalidProtocolBufferException {
           this();
           int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
           try {
             boolean done = false;
             while (!done) {
@@ -11632,7 +11824,8 @@ public  final class Intent extends
                   done = true;
                   break;
                 default: {
-                  if (!input.skipField(tag)) {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
                     done = true;
                   }
                   break;
@@ -11664,6 +11857,7 @@ public  final class Intent extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
         }
@@ -11712,6 +11906,7 @@ public  final class Intent extends
             com.google.protobuf.GeneratedMessageV3 implements
             // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Button.OpenUriAction)
             OpenUriActionOrBuilder {
+        private static final long serialVersionUID = 0L;
           // Use OpenUriAction.newBuilder() to construct.
           private OpenUriAction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
             super(builder);
@@ -11723,7 +11918,7 @@ public  final class Intent extends
           @java.lang.Override
           public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
-            return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+            return this.unknownFields;
           }
           private OpenUriAction(
               com.google.protobuf.CodedInputStream input,
@@ -11731,6 +11926,8 @@ public  final class Intent extends
               throws com.google.protobuf.InvalidProtocolBufferException {
             this();
             int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
             try {
               boolean done = false;
               while (!done) {
@@ -11740,7 +11937,8 @@ public  final class Intent extends
                     done = true;
                     break;
                   default: {
-                    if (!input.skipField(tag)) {
+                    if (!parseUnknownFieldProto3(
+                        input, unknownFields, extensionRegistry, tag)) {
                       done = true;
                     }
                     break;
@@ -11759,6 +11957,7 @@ public  final class Intent extends
               throw new com.google.protobuf.InvalidProtocolBufferException(
                   e).setUnfinishedMessage(this);
             } finally {
+              this.unknownFields = unknownFields.build();
               makeExtensionsImmutable();
             }
           }
@@ -11831,6 +12030,7 @@ public  final class Intent extends
             if (!getUriBytes().isEmpty()) {
               com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uri_);
             }
+            unknownFields.writeTo(output);
           }
 
           public int getSerializedSize() {
@@ -11841,11 +12041,11 @@ public  final class Intent extends
             if (!getUriBytes().isEmpty()) {
               size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uri_);
             }
+            size += unknownFields.getSerializedSize();
             memoizedSize = size;
             return size;
           }
 
-          private static final long serialVersionUID = 0L;
           @java.lang.Override
           public boolean equals(final java.lang.Object obj) {
             if (obj == this) {
@@ -11859,6 +12059,7 @@ public  final class Intent extends
             boolean result = true;
             result = result && getUri()
                 .equals(other.getUri());
+            result = result && unknownFields.equals(other.unknownFields);
             return result;
           }
 
@@ -12038,7 +12239,7 @@ public  final class Intent extends
             }
             public Builder setField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
-                Object value) {
+                java.lang.Object value) {
               return (Builder) super.setField(field, value);
             }
             public Builder clearField(
@@ -12051,12 +12252,12 @@ public  final class Intent extends
             }
             public Builder setRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, Object value) {
+                int index, java.lang.Object value) {
               return (Builder) super.setRepeatedField(field, index, value);
             }
             public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
-                Object value) {
+                java.lang.Object value) {
               return (Builder) super.addRepeatedField(field, value);
             }
             public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -12074,6 +12275,7 @@ public  final class Intent extends
                 uri_ = other.uri_;
                 onChanged();
               }
+              this.mergeUnknownFields(other.unknownFields);
               onChanged();
               return this;
             }
@@ -12190,12 +12392,12 @@ public  final class Intent extends
             }
             public final Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-              return this;
+              return super.setUnknownFieldsProto3(unknownFields);
             }
 
             public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-              return this;
+              return super.mergeUnknownFields(unknownFields);
             }
 
 
@@ -12330,6 +12532,7 @@ public  final class Intent extends
           if (openUriAction_ != null) {
             output.writeMessage(2, getOpenUriAction());
           }
+          unknownFields.writeTo(output);
         }
 
         public int getSerializedSize() {
@@ -12344,11 +12547,11 @@ public  final class Intent extends
             size += com.google.protobuf.CodedOutputStream
               .computeMessageSize(2, getOpenUriAction());
           }
+          size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
         }
 
-        private static final long serialVersionUID = 0L;
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
           if (obj == this) {
@@ -12367,6 +12570,7 @@ public  final class Intent extends
             result = result && getOpenUriAction()
                 .equals(other.getOpenUriAction());
           }
+          result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
 
@@ -12561,7 +12765,7 @@ public  final class Intent extends
           }
           public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.setField(field, value);
           }
           public Builder clearField(
@@ -12574,12 +12778,12 @@ public  final class Intent extends
           }
           public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
+              int index, java.lang.Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
           }
           public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.addRepeatedField(field, value);
           }
           public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -12600,6 +12804,7 @@ public  final class Intent extends
             if (other.hasOpenUriAction()) {
               mergeOpenUriAction(other.getOpenUriAction());
             }
+            this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
           }
@@ -12869,12 +13074,12 @@ public  final class Intent extends
           }
           public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.setUnknownFieldsProto3(unknownFields);
           }
 
           public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.mergeUnknownFields(unknownFields);
           }
 
 
@@ -13158,6 +13363,7 @@ public  final class Intent extends
         for (int i = 0; i < buttons_.size(); i++) {
           output.writeMessage(5, buttons_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -13182,11 +13388,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(5, buttons_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -13211,6 +13417,7 @@ public  final class Intent extends
         }
         result = result && getButtonsList()
             .equals(other.getButtonsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -13438,7 +13645,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -13451,12 +13658,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -13511,6 +13718,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -14271,12 +14479,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -14352,6 +14560,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Suggestion)
         SuggestionOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Suggestion.newBuilder() to construct.
       private Suggestion(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -14363,7 +14572,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Suggestion(
           com.google.protobuf.CodedInputStream input,
@@ -14371,6 +14580,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -14380,7 +14591,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -14399,6 +14611,7 @@ public  final class Intent extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -14471,6 +14684,7 @@ public  final class Intent extends
         if (!getTitleBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -14481,11 +14695,11 @@ public  final class Intent extends
         if (!getTitleBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -14499,6 +14713,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getTitle()
             .equals(other.getTitle());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -14679,7 +14894,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -14692,12 +14907,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -14715,6 +14930,7 @@ public  final class Intent extends
             title_ = other.title_;
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -14831,12 +15047,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -14937,6 +15153,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions)
         SuggestionsOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use Suggestions.newBuilder() to construct.
       private Suggestions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -14948,7 +15165,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private Suggestions(
           com.google.protobuf.CodedInputStream input,
@@ -14956,6 +15173,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -14965,7 +15184,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -14990,6 +15210,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             suggestions_ = java.util.Collections.unmodifiableList(suggestions_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -15075,6 +15296,7 @@ public  final class Intent extends
         for (int i = 0; i < suggestions_.size(); i++) {
           output.writeMessage(1, suggestions_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -15086,11 +15308,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, suggestions_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -15104,6 +15326,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getSuggestionsList()
             .equals(other.getSuggestionsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -15299,7 +15522,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -15312,12 +15535,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -15357,6 +15580,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -15697,12 +15921,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -15798,6 +16022,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion)
         LinkOutSuggestionOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use LinkOutSuggestion.newBuilder() to construct.
       private LinkOutSuggestion(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -15810,7 +16035,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private LinkOutSuggestion(
           com.google.protobuf.CodedInputStream input,
@@ -15818,6 +16043,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -15827,7 +16054,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -15852,6 +16080,7 @@ public  final class Intent extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -15971,6 +16200,7 @@ public  final class Intent extends
         if (!getUriBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uri_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -15984,11 +16214,11 @@ public  final class Intent extends
         if (!getUriBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uri_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -16004,6 +16234,7 @@ public  final class Intent extends
             .equals(other.getDestinationName());
         result = result && getUri()
             .equals(other.getUri());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -16189,7 +16420,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -16202,12 +16433,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -16229,6 +16460,7 @@ public  final class Intent extends
             uri_ = other.uri_;
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -16439,12 +16671,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -16563,6 +16795,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect)
         ListSelectOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use ListSelect.newBuilder() to construct.
       private ListSelect(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -16575,7 +16808,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private ListSelect(
           com.google.protobuf.CodedInputStream input,
@@ -16583,6 +16816,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -16592,7 +16827,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -16623,6 +16859,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
             items_ = java.util.Collections.unmodifiableList(items_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -16739,6 +16976,7 @@ public  final class Intent extends
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect.Item)
           ItemOrBuilder {
+      private static final long serialVersionUID = 0L;
         // Use Item.newBuilder() to construct.
         private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
           super(builder);
@@ -16751,7 +16989,7 @@ public  final class Intent extends
         @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
-          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+          return this.unknownFields;
         }
         private Item(
             com.google.protobuf.CodedInputStream input,
@@ -16759,6 +16997,8 @@ public  final class Intent extends
             throws com.google.protobuf.InvalidProtocolBufferException {
           this();
           int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
           try {
             boolean done = false;
             while (!done) {
@@ -16768,7 +17008,8 @@ public  final class Intent extends
                   done = true;
                   break;
                 default: {
-                  if (!input.skipField(tag)) {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
                     done = true;
                   }
                   break;
@@ -16819,6 +17060,7 @@ public  final class Intent extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
         }
@@ -17008,6 +17250,7 @@ public  final class Intent extends
           if (image_ != null) {
             output.writeMessage(4, getImage());
           }
+          unknownFields.writeTo(output);
         }
 
         public int getSerializedSize() {
@@ -17029,11 +17272,11 @@ public  final class Intent extends
             size += com.google.protobuf.CodedOutputStream
               .computeMessageSize(4, getImage());
           }
+          size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
         }
 
-        private static final long serialVersionUID = 0L;
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
           if (obj == this) {
@@ -17059,6 +17302,7 @@ public  final class Intent extends
             result = result && getImage()
                 .equals(other.getImage());
           }
+          result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
 
@@ -17273,7 +17517,7 @@ public  final class Intent extends
           }
           public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.setField(field, value);
           }
           public Builder clearField(
@@ -17286,12 +17530,12 @@ public  final class Intent extends
           }
           public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
+              int index, java.lang.Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
           }
           public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.addRepeatedField(field, value);
           }
           public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -17319,6 +17563,7 @@ public  final class Intent extends
             if (other.hasImage()) {
               mergeImage(other.getImage());
             }
+            this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
           }
@@ -17830,12 +18075,12 @@ public  final class Intent extends
           }
           public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.setUnknownFieldsProto3(unknownFields);
           }
 
           public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.mergeUnknownFields(unknownFields);
           }
 
 
@@ -17993,6 +18238,7 @@ public  final class Intent extends
         for (int i = 0; i < items_.size(); i++) {
           output.writeMessage(2, items_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -18007,11 +18253,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, items_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -18027,6 +18273,7 @@ public  final class Intent extends
             .equals(other.getTitle());
         result = result && getItemsList()
             .equals(other.getItemsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -18229,7 +18476,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -18242,12 +18489,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -18291,6 +18538,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -18720,12 +18968,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -18826,6 +19074,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect)
         CarouselSelectOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use CarouselSelect.newBuilder() to construct.
       private CarouselSelect(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -18837,7 +19086,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private CarouselSelect(
           com.google.protobuf.CodedInputStream input,
@@ -18845,6 +19094,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -18854,7 +19105,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -18879,6 +19131,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             items_ = java.util.Collections.unmodifiableList(items_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -18995,6 +19248,7 @@ public  final class Intent extends
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect.Item)
           ItemOrBuilder {
+      private static final long serialVersionUID = 0L;
         // Use Item.newBuilder() to construct.
         private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
           super(builder);
@@ -19007,7 +19261,7 @@ public  final class Intent extends
         @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
-          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+          return this.unknownFields;
         }
         private Item(
             com.google.protobuf.CodedInputStream input,
@@ -19015,6 +19269,8 @@ public  final class Intent extends
             throws com.google.protobuf.InvalidProtocolBufferException {
           this();
           int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
           try {
             boolean done = false;
             while (!done) {
@@ -19024,7 +19280,8 @@ public  final class Intent extends
                   done = true;
                   break;
                 default: {
-                  if (!input.skipField(tag)) {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
                     done = true;
                   }
                   break;
@@ -19075,6 +19332,7 @@ public  final class Intent extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
         }
@@ -19264,6 +19522,7 @@ public  final class Intent extends
           if (image_ != null) {
             output.writeMessage(4, getImage());
           }
+          unknownFields.writeTo(output);
         }
 
         public int getSerializedSize() {
@@ -19285,11 +19544,11 @@ public  final class Intent extends
             size += com.google.protobuf.CodedOutputStream
               .computeMessageSize(4, getImage());
           }
+          size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
         }
 
-        private static final long serialVersionUID = 0L;
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
           if (obj == this) {
@@ -19315,6 +19574,7 @@ public  final class Intent extends
             result = result && getImage()
                 .equals(other.getImage());
           }
+          result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
 
@@ -19529,7 +19789,7 @@ public  final class Intent extends
           }
           public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.setField(field, value);
           }
           public Builder clearField(
@@ -19542,12 +19802,12 @@ public  final class Intent extends
           }
           public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
+              int index, java.lang.Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
           }
           public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.addRepeatedField(field, value);
           }
           public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -19575,6 +19835,7 @@ public  final class Intent extends
             if (other.hasImage()) {
               mergeImage(other.getImage());
             }
+            this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
           }
@@ -20086,12 +20347,12 @@ public  final class Intent extends
           }
           public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.setUnknownFieldsProto3(unknownFields);
           }
 
           public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.mergeUnknownFields(unknownFields);
           }
 
 
@@ -20203,6 +20464,7 @@ public  final class Intent extends
         for (int i = 0; i < items_.size(); i++) {
           output.writeMessage(1, items_.get(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -20214,11 +20476,11 @@ public  final class Intent extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, items_.get(i));
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -20232,6 +20494,7 @@ public  final class Intent extends
         boolean result = true;
         result = result && getItemsList()
             .equals(other.getItemsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -20427,7 +20690,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -20440,12 +20703,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -20485,6 +20748,7 @@ public  final class Intent extends
               }
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -20825,12 +21089,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -20947,6 +21211,7 @@ public  final class Intent extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.Message.SelectItemInfo)
         SelectItemInfoOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use SelectItemInfo.newBuilder() to construct.
       private SelectItemInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -20959,7 +21224,7 @@ public  final class Intent extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private SelectItemInfo(
           com.google.protobuf.CodedInputStream input,
@@ -20967,6 +21232,8 @@ public  final class Intent extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -20976,7 +21243,8 @@ public  final class Intent extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -21007,6 +21275,7 @@ public  final class Intent extends
           if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
             synonyms_ = synonyms_.getUnmodifiableView();
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -21134,6 +21403,7 @@ public  final class Intent extends
         for (int i = 0; i < synonyms_.size(); i++) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 2, synonyms_.getRaw(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -21152,11 +21422,11 @@ public  final class Intent extends
           size += dataSize;
           size += 1 * getSynonymsList().size();
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -21172,6 +21442,7 @@ public  final class Intent extends
             .equals(other.getKey());
         result = result && getSynonymsList()
             .equals(other.getSynonymsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -21366,7 +21637,7 @@ public  final class Intent extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -21379,12 +21650,12 @@ public  final class Intent extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -21412,6 +21683,7 @@ public  final class Intent extends
             }
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -21673,12 +21945,12 @@ public  final class Intent extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -21784,6 +22056,16 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
      */
+    public boolean hasText() {
+      return messageCase_ == 1;
+    }
+    /**
+     * <pre>
+     * The text response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.Intent.Message.Text getText() {
       if (messageCase_ == 1) {
          return (com.google.cloud.dialogflow.v2beta1.Intent.Message.Text) message_;
@@ -21805,6 +22087,16 @@ public  final class Intent extends
     }
 
     public static final int IMAGE_FIELD_NUMBER = 2;
+    /**
+     * <pre>
+     * The image response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
+     */
+    public boolean hasImage() {
+      return messageCase_ == 2;
+    }
     /**
      * <pre>
      * The image response.
@@ -21840,6 +22132,16 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
      */
+    public boolean hasQuickReplies() {
+      return messageCase_ == 3;
+    }
+    /**
+     * <pre>
+     * The quick replies response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies getQuickReplies() {
       if (messageCase_ == 3) {
          return (com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies) message_;
@@ -21861,6 +22163,16 @@ public  final class Intent extends
     }
 
     public static final int CARD_FIELD_NUMBER = 4;
+    /**
+     * <pre>
+     * The card response.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
+     */
+    public boolean hasCard() {
+      return messageCase_ == 4;
+    }
     /**
      * <pre>
      * The card response.
@@ -21896,6 +22208,16 @@ public  final class Intent extends
      *
      * <code>.google.protobuf.Struct payload = 5;</code>
      */
+    public boolean hasPayload() {
+      return messageCase_ == 5;
+    }
+    /**
+     * <pre>
+     * The response containing a custom payload.
+     * </pre>
+     *
+     * <code>.google.protobuf.Struct payload = 5;</code>
+     */
     public com.google.protobuf.Struct getPayload() {
       if (messageCase_ == 5) {
          return (com.google.protobuf.Struct) message_;
@@ -21917,6 +22239,16 @@ public  final class Intent extends
     }
 
     public static final int SIMPLE_RESPONSES_FIELD_NUMBER = 7;
+    /**
+     * <pre>
+     * The voice and text-only responses for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
+     */
+    public boolean hasSimpleResponses() {
+      return messageCase_ == 7;
+    }
     /**
      * <pre>
      * The voice and text-only responses for Actions on Google.
@@ -21952,6 +22284,16 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
      */
+    public boolean hasBasicCard() {
+      return messageCase_ == 8;
+    }
+    /**
+     * <pre>
+     * The basic card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard getBasicCard() {
       if (messageCase_ == 8) {
          return (com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard) message_;
@@ -21973,6 +22315,16 @@ public  final class Intent extends
     }
 
     public static final int SUGGESTIONS_FIELD_NUMBER = 9;
+    /**
+     * <pre>
+     * The suggestion chips for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
+     */
+    public boolean hasSuggestions() {
+      return messageCase_ == 9;
+    }
     /**
      * <pre>
      * The suggestion chips for Actions on Google.
@@ -22008,6 +22360,16 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
      */
+    public boolean hasLinkOutSuggestion() {
+      return messageCase_ == 10;
+    }
+    /**
+     * <pre>
+     * The link out suggestion chip for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion getLinkOutSuggestion() {
       if (messageCase_ == 10) {
          return (com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion) message_;
@@ -22036,6 +22398,16 @@ public  final class Intent extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
      */
+    public boolean hasListSelect() {
+      return messageCase_ == 11;
+    }
+    /**
+     * <pre>
+     * The list card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect getListSelect() {
       if (messageCase_ == 11) {
          return (com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect) message_;
@@ -22057,6 +22429,16 @@ public  final class Intent extends
     }
 
     public static final int CAROUSEL_SELECT_FIELD_NUMBER = 12;
+    /**
+     * <pre>
+     * The carousel card response for Actions on Google.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
+     */
+    public boolean hasCarouselSelect() {
+      return messageCase_ == 12;
+    }
     /**
      * <pre>
      * The carousel card response for Actions on Google.
@@ -22156,6 +22538,7 @@ public  final class Intent extends
       if (messageCase_ == 12) {
         output.writeMessage(12, (com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect) message_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -22211,11 +22594,11 @@ public  final class Intent extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, (com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect) message_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -22279,6 +22662,7 @@ public  final class Intent extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -22586,7 +22970,7 @@ public  final class Intent extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -22599,12 +22983,12 @@ public  final class Intent extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -22670,6 +23054,7 @@ public  final class Intent extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -22713,6 +23098,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.dialogflow.v2beta1.Intent.Message.Text, com.google.cloud.dialogflow.v2beta1.Intent.Message.Text.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.TextOrBuilder> textBuilder_;
+      /**
+       * <pre>
+       * The text response.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Text text = 1;</code>
+       */
+      public boolean hasText() {
+        return messageCase_ == 1;
+      }
       /**
        * <pre>
        * The text response.
@@ -22882,6 +23277,16 @@ public  final class Intent extends
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
        */
+      public boolean hasImage() {
+        return messageCase_ == 2;
+      }
+      /**
+       * <pre>
+       * The image response.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Image image = 2;</code>
+       */
       public com.google.cloud.dialogflow.v2beta1.Intent.Message.Image getImage() {
         if (imageBuilder_ == null) {
           if (messageCase_ == 2) {
@@ -23037,6 +23442,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies, com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.QuickRepliesOrBuilder> quickRepliesBuilder_;
+      /**
+       * <pre>
+       * The quick replies response.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.QuickReplies quick_replies = 3;</code>
+       */
+      public boolean hasQuickReplies() {
+        return messageCase_ == 3;
+      }
       /**
        * <pre>
        * The quick replies response.
@@ -23206,6 +23621,16 @@ public  final class Intent extends
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
        */
+      public boolean hasCard() {
+        return messageCase_ == 4;
+      }
+      /**
+       * <pre>
+       * The card response.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Card card = 4;</code>
+       */
       public com.google.cloud.dialogflow.v2beta1.Intent.Message.Card getCard() {
         if (cardBuilder_ == null) {
           if (messageCase_ == 4) {
@@ -23361,6 +23786,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Struct, com.google.protobuf.Struct.Builder, com.google.protobuf.StructOrBuilder> payloadBuilder_;
+      /**
+       * <pre>
+       * The response containing a custom payload.
+       * </pre>
+       *
+       * <code>.google.protobuf.Struct payload = 5;</code>
+       */
+      public boolean hasPayload() {
+        return messageCase_ == 5;
+      }
       /**
        * <pre>
        * The response containing a custom payload.
@@ -23530,6 +23965,16 @@ public  final class Intent extends
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
        */
+      public boolean hasSimpleResponses() {
+        return messageCase_ == 7;
+      }
+      /**
+       * <pre>
+       * The voice and text-only responses for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses simple_responses = 7;</code>
+       */
       public com.google.cloud.dialogflow.v2beta1.Intent.Message.SimpleResponses getSimpleResponses() {
         if (simpleResponsesBuilder_ == null) {
           if (messageCase_ == 7) {
@@ -23685,6 +24130,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard, com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCardOrBuilder> basicCardBuilder_;
+      /**
+       * <pre>
+       * The basic card response for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.BasicCard basic_card = 8;</code>
+       */
+      public boolean hasBasicCard() {
+        return messageCase_ == 8;
+      }
       /**
        * <pre>
        * The basic card response for Actions on Google.
@@ -23854,6 +24309,16 @@ public  final class Intent extends
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
        */
+      public boolean hasSuggestions() {
+        return messageCase_ == 9;
+      }
+      /**
+       * <pre>
+       * The suggestion chips for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions suggestions = 9;</code>
+       */
       public com.google.cloud.dialogflow.v2beta1.Intent.Message.Suggestions getSuggestions() {
         if (suggestionsBuilder_ == null) {
           if (messageCase_ == 9) {
@@ -24009,6 +24474,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion, com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestionOrBuilder> linkOutSuggestionBuilder_;
+      /**
+       * <pre>
+       * The link out suggestion chip for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
+       */
+      public boolean hasLinkOutSuggestion() {
+        return messageCase_ == 10;
+      }
       /**
        * <pre>
        * The link out suggestion chip for Actions on Google.
@@ -24178,6 +24653,16 @@ public  final class Intent extends
        *
        * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
        */
+      public boolean hasListSelect() {
+        return messageCase_ == 11;
+      }
+      /**
+       * <pre>
+       * The list card response for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect list_select = 11;</code>
+       */
       public com.google.cloud.dialogflow.v2beta1.Intent.Message.ListSelect getListSelect() {
         if (listSelectBuilder_ == null) {
           if (messageCase_ == 11) {
@@ -24333,6 +24818,16 @@ public  final class Intent extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect, com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect.Builder, com.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelectOrBuilder> carouselSelectBuilder_;
+      /**
+       * <pre>
+       * The carousel card response for Actions on Google.
+       * </pre>
+       *
+       * <code>.google.cloud.dialogflow.v2beta1.Intent.Message.CarouselSelect carousel_select = 12;</code>
+       */
+      public boolean hasCarouselSelect() {
+        return messageCase_ == 12;
+      }
       /**
        * <pre>
        * The carousel card response for Actions on Google.
@@ -24558,12 +25053,12 @@ public  final class Intent extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -24660,6 +25155,7 @@ public  final class Intent extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.Intent.FollowupIntentInfo)
       FollowupIntentInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use FollowupIntentInfo.newBuilder() to construct.
     private FollowupIntentInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -24672,7 +25168,7 @@ public  final class Intent extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private FollowupIntentInfo(
         com.google.protobuf.CodedInputStream input,
@@ -24680,6 +25176,8 @@ public  final class Intent extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -24689,7 +25187,8 @@ public  final class Intent extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -24714,6 +25213,7 @@ public  final class Intent extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -24835,6 +25335,7 @@ public  final class Intent extends
       if (!getParentFollowupIntentNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, parentFollowupIntentName_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -24848,11 +25349,11 @@ public  final class Intent extends
       if (!getParentFollowupIntentNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, parentFollowupIntentName_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -24868,6 +25369,7 @@ public  final class Intent extends
           .equals(other.getFollowupIntentName());
       result = result && getParentFollowupIntentName()
           .equals(other.getParentFollowupIntentName());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -25052,7 +25554,7 @@ public  final class Intent extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -25065,12 +25567,12 @@ public  final class Intent extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -25092,6 +25594,7 @@ public  final class Intent extends
           parentFollowupIntentName_ = other.parentFollowupIntentName_;
           onChanged();
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -25307,12 +25810,12 @@ public  final class Intent extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -25359,7 +25862,9 @@ public  final class Intent extends
   private volatile java.lang.Object name_;
   /**
    * <pre>
-   * Required. The unique identifier of this intent.
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of this intent.
    * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
    * </pre>
    *
@@ -25379,7 +25884,9 @@ public  final class Intent extends
   }
   /**
    * <pre>
-   * Required. The unique identifier of this intent.
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of this intent.
    * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
    * </pre>
    *
@@ -25497,6 +26004,9 @@ public  final class Intent extends
   /**
    * <pre>
    * Optional. Indicates whether Machine Learning is enabled for the intent.
+   * Note: If `ml_enabled` setting is set to false, then this intent is not
+   * taken into account during inference in `ML ONLY` match mode. Also,
+   * auto-markup in the UI is turned off.
    * </pre>
    *
    * <code>bool ml_enabled = 5;</code>
@@ -25511,6 +26021,7 @@ public  final class Intent extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -25523,6 +26034,7 @@ public  final class Intent extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -25534,6 +26046,7 @@ public  final class Intent extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -25545,6 +26058,7 @@ public  final class Intent extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -26208,6 +26722,7 @@ public  final class Intent extends
     for (int i = 0; i < followupIntentInfo_.size(); i++) {
       output.writeMessage(18, followupIntentInfo_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -26298,11 +26813,11 @@ public  final class Intent extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(18, followupIntentInfo_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -26348,6 +26863,7 @@ public  final class Intent extends
         .equals(other.getParentFollowupIntentName());
     result = result && getFollowupIntentInfoList()
         .equals(other.getFollowupIntentInfoList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -26713,7 +27229,7 @@ public  final class Intent extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -26726,12 +27242,12 @@ public  final class Intent extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -26940,6 +27456,7 @@ public  final class Intent extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -26970,7 +27487,9 @@ public  final class Intent extends
     private java.lang.Object name_ = "";
     /**
      * <pre>
-     * Required. The unique identifier of this intent.
+     * Required for all methods except `create` (`create` populates the name
+     * automatically.
+     * The unique identifier of this intent.
      * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      * </pre>
      *
@@ -26990,7 +27509,9 @@ public  final class Intent extends
     }
     /**
      * <pre>
-     * Required. The unique identifier of this intent.
+     * Required for all methods except `create` (`create` populates the name
+     * automatically.
+     * The unique identifier of this intent.
      * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      * </pre>
      *
@@ -27011,7 +27532,9 @@ public  final class Intent extends
     }
     /**
      * <pre>
-     * Required. The unique identifier of this intent.
+     * Required for all methods except `create` (`create` populates the name
+     * automatically.
+     * The unique identifier of this intent.
      * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      * </pre>
      *
@@ -27029,7 +27552,9 @@ public  final class Intent extends
     }
     /**
      * <pre>
-     * Required. The unique identifier of this intent.
+     * Required for all methods except `create` (`create` populates the name
+     * automatically.
+     * The unique identifier of this intent.
      * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      * </pre>
      *
@@ -27043,7 +27568,9 @@ public  final class Intent extends
     }
     /**
      * <pre>
-     * Required. The unique identifier of this intent.
+     * Required for all methods except `create` (`create` populates the name
+     * automatically.
+     * The unique identifier of this intent.
      * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      * </pre>
      *
@@ -27297,6 +27824,9 @@ public  final class Intent extends
     /**
      * <pre>
      * Optional. Indicates whether Machine Learning is enabled for the intent.
+     * Note: If `ml_enabled` setting is set to false, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -27307,6 +27837,9 @@ public  final class Intent extends
     /**
      * <pre>
      * Optional. Indicates whether Machine Learning is enabled for the intent.
+     * Note: If `ml_enabled` setting is set to false, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -27320,6 +27853,9 @@ public  final class Intent extends
     /**
      * <pre>
      * Optional. Indicates whether Machine Learning is enabled for the intent.
+     * Note: If `ml_enabled` setting is set to false, then this intent is not
+     * taken into account during inference in `ML ONLY` match mode. Also,
+     * auto-markup in the UI is turned off.
      * </pre>
      *
      * <code>bool ml_enabled = 5;</code>
@@ -27342,6 +27878,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27354,6 +27891,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27365,6 +27903,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27376,6 +27915,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27388,6 +27928,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27406,6 +27947,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27424,6 +27966,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27440,6 +27983,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -27454,6 +27998,7 @@ public  final class Intent extends
      * <pre>
      * Optional. The list of context names required for this intent to be
      * triggered.
+     * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
      * </pre>
      *
      * <code>repeated string input_context_names = 7;</code>
@@ -29816,12 +30361,12 @@ public  final class Intent extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

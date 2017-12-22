@@ -18,9 +18,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 /**
  * <pre>
  * Manages agent intents.
- * Refer to [documentation](https://dialogflow.com/docs/intents) for more
- * # details about agent intents.
- * Standard methods.
+ * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+ * for more details about agent intents.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -123,9 +123,9 @@ public final class IntentsGrpc {
   /**
    * <pre>
    * Manages agent intents.
-   * Refer to [documentation](https://dialogflow.com/docs/intents) for more
-   * # details about agent intents.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static abstract class IntentsImplBase implements io.grpc.BindableService {
@@ -183,7 +183,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation&lt;response: BatchUpdateIntentsResponse&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public void batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request,
@@ -194,7 +195,7 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Deletes intents in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public void batchDeleteIntents(com.google.cloud.dialogflow.v2beta1.BatchDeleteIntentsRequest request,
@@ -260,9 +261,9 @@ public final class IntentsGrpc {
   /**
    * <pre>
    * Manages agent intents.
-   * Refer to [documentation](https://dialogflow.com/docs/intents) for more
-   * # details about agent intents.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsStub extends io.grpc.stub.AbstractStub<IntentsStub> {
@@ -339,7 +340,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation&lt;response: BatchUpdateIntentsResponse&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public void batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request,
@@ -351,7 +353,7 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Deletes intents in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public void batchDeleteIntents(com.google.cloud.dialogflow.v2beta1.BatchDeleteIntentsRequest request,
@@ -364,9 +366,9 @@ public final class IntentsGrpc {
   /**
    * <pre>
    * Manages agent intents.
-   * Refer to [documentation](https://dialogflow.com/docs/intents) for more
-   * # details about agent intents.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsBlockingStub extends io.grpc.stub.AbstractStub<IntentsBlockingStub> {
@@ -438,7 +440,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation&lt;response: BatchUpdateIntentsResponse&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchUpdateIntents(com.google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest request) {
@@ -449,7 +452,7 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Deletes intents in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchDeleteIntents(com.google.cloud.dialogflow.v2beta1.BatchDeleteIntentsRequest request) {
@@ -461,9 +464,9 @@ public final class IntentsGrpc {
   /**
    * <pre>
    * Manages agent intents.
-   * Refer to [documentation](https://dialogflow.com/docs/intents) for more
-   * # details about agent intents.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/intents)
+   * for more details about agent intents.
+   * #
    * </pre>
    */
   public static final class IntentsFutureStub extends io.grpc.stub.AbstractStub<IntentsFutureStub> {
@@ -540,7 +543,8 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Updates/Creates multiple intents in the specified agent.
-     * Operation&lt;response: BatchUpdateIntentsResponse&gt;
+     * Operation &lt;response:
+     * [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2beta1.BatchUpdateIntentsResponse]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchUpdateIntents(
@@ -552,7 +556,7 @@ public final class IntentsGrpc {
     /**
      * <pre>
      * Deletes intents in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchDeleteIntents(

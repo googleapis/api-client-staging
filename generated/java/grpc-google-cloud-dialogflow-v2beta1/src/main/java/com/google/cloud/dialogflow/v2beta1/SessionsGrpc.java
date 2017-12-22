@@ -18,7 +18,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 /**
  * <pre>
  * Manages user sessions.
- * Custom methods.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -76,7 +76,7 @@ public final class SessionsGrpc {
   /**
    * <pre>
    * Manages user sessions.
-   * Custom methods.
+   * #
    * </pre>
    */
   public static abstract class SessionsImplBase implements io.grpc.BindableService {
@@ -129,7 +129,7 @@ public final class SessionsGrpc {
   /**
    * <pre>
    * Manages user sessions.
-   * Custom methods.
+   * #
    * </pre>
    */
   public static final class SessionsStub extends io.grpc.stub.AbstractStub<SessionsStub> {
@@ -179,7 +179,7 @@ public final class SessionsGrpc {
   /**
    * <pre>
    * Manages user sessions.
-   * Custom methods.
+   * #
    * </pre>
    */
   public static final class SessionsBlockingStub extends io.grpc.stub.AbstractStub<SessionsBlockingStub> {
@@ -215,7 +215,7 @@ public final class SessionsGrpc {
   /**
    * <pre>
    * Manages user sessions.
-   * Custom methods.
+   * #
    * </pre>
    */
   public static final class SessionsFutureStub extends io.grpc.stub.AbstractStub<SessionsFutureStub> {

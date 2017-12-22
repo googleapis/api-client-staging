@@ -9,7 +9,9 @@ public interface IntentOrBuilder extends
 
   /**
    * <pre>
-   * Required. The unique identifier of this intent.
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of this intent.
    * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
    * </pre>
    *
@@ -18,7 +20,9 @@ public interface IntentOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Required. The unique identifier of this intent.
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of this intent.
    * Format: `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
    * </pre>
    *
@@ -84,6 +88,9 @@ public interface IntentOrBuilder extends
   /**
    * <pre>
    * Optional. Indicates whether Machine Learning is enabled for the intent.
+   * Note: If `ml_enabled` setting is set to false, then this intent is not
+   * taken into account during inference in `ML ONLY` match mode. Also,
+   * auto-markup in the UI is turned off.
    * </pre>
    *
    * <code>bool ml_enabled = 5;</code>
@@ -94,6 +101,7 @@ public interface IntentOrBuilder extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -104,6 +112,7 @@ public interface IntentOrBuilder extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -113,6 +122,7 @@ public interface IntentOrBuilder extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
@@ -122,6 +132,7 @@ public interface IntentOrBuilder extends
    * <pre>
    * Optional. The list of context names required for this intent to be
    * triggered.
+   * Format: `projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;`.
    * </pre>
    *
    * <code>repeated string input_context_names = 7;</code>
