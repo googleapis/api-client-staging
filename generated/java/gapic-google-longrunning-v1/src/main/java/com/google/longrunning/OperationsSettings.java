@@ -1,5 +1,5 @@
 /*
- * Copyright 2017, Google LLC All rights reserved.
+ * Copyright 2017 Google LLC
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -34,10 +34,10 @@ import static com.google.longrunning.PagedResponseWrappers.ListOperationsPagedRe
 import com.google.api.core.ApiFunction;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.BetaApi;
+import com.google.api.gax.core.GaxProperties;
 import com.google.api.gax.core.GoogleCredentialsProvider;
 import com.google.api.gax.core.InstantiatingExecutorProvider;
-import com.google.api.gax.core.PropertiesProvider;
-import com.google.api.gax.grpc.GrpcExtraHeaderData;
+import com.google.api.gax.grpc.GaxGrpcProperties;
 import com.google.api.gax.grpc.GrpcTransportChannel;
 import com.google.api.gax.retrying.RetrySettings;
 import com.google.api.gax.rpc.ApiCallContext;
@@ -67,14 +67,6 @@ import org.threeten.bp.Duration;
 @Generated("by GAPIC v0.0.5")
 @BetaApi
 public class OperationsSettings extends ClientSettings<OperationsSettings> {
-
-  private static final String DEFAULT_GAPIC_NAME = "gapic";
-  private static final String DEFAULT_GAPIC_VERSION = "";
-
-  private static final String PROPERTIES_FILE = "/com/google/longrunning/project.properties";
-  private static final String META_VERSION_KEY = "artifact.version";
-
-  private static String gapicVersion;
 
   private final UnaryCallSettings<GetOperationRequest, Operation> getOperationSettings;
   private final PagedCallSettings<
@@ -130,19 +122,9 @@ public class OperationsSettings extends ClientSettings<OperationsSettings> {
   @BetaApi("The surface for customizing headers is not stable yet and may change in the future.")
   public static ApiClientHeaderProvider.Builder defaultApiClientHeaderProviderBuilder() {
     return ApiClientHeaderProvider.newBuilder()
-        .setGeneratorHeader(DEFAULT_GAPIC_NAME, getGapicVersion())
-        .setApiClientHeaderLineKey("x-goog-api-client")
-        .addApiClientHeaderLineData(GrpcExtraHeaderData.getXGoogApiClientData());
-  }
-
-  private static String getGapicVersion() {
-    if (gapicVersion == null) {
-      gapicVersion =
-          PropertiesProvider.loadProperty(
-              OperationsSettings.class, PROPERTIES_FILE, META_VERSION_KEY);
-      gapicVersion = gapicVersion == null ? DEFAULT_GAPIC_VERSION : gapicVersion;
-    }
-    return gapicVersion;
+        .setGeneratedLibToken("gapic", GaxProperties.getLibraryVersion(OperationsSettings.class))
+        .setTransportToken(
+            GaxGrpcProperties.getGrpcTokenName(), GaxGrpcProperties.getGrpcVersion());
   }
 
   /** Returns a new builder for this class. */
@@ -160,7 +142,7 @@ public class OperationsSettings extends ClientSettings<OperationsSettings> {
     return new Builder(this);
   }
 
-  private OperationsSettings(Builder settingsBuilder) throws IOException {
+  protected OperationsSettings(Builder settingsBuilder) throws IOException {
     super(settingsBuilder);
 
     getOperationSettings = settingsBuilder.getOperationSettings().build();
@@ -266,11 +248,11 @@ public class OperationsSettings extends ClientSettings<OperationsSettings> {
       RETRY_PARAM_DEFINITIONS = definitions.build();
     }
 
-    private Builder() {
+    protected Builder() {
       this((ClientContext) null);
     }
 
-    private Builder(ClientContext clientContext) {
+    protected Builder(ClientContext clientContext) {
       super(clientContext);
 
       getOperationSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
@@ -321,7 +303,7 @@ public class OperationsSettings extends ClientSettings<OperationsSettings> {
       return builder;
     }
 
-    private Builder(OperationsSettings settings) {
+    protected Builder(OperationsSettings settings) {
       super(settings);
 
       getOperationSettings = settings.getOperationSettings.toBuilder();

@@ -20,7 +20,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
  * Manages session entity types.
  * Session entity types can be redefined on a session level, allowing for
  * specific concepts, like a user's playlists.
- * Standard methods.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -107,7 +107,7 @@ public final class SessionEntityTypesGrpc {
    * Manages session entity types.
    * Session entity types can be redefined on a session level, allowing for
    * specific concepts, like a user's playlists.
-   * Standard methods.
+   * #
    * </pre>
    */
   public static abstract class SessionEntityTypesImplBase implements io.grpc.BindableService {
@@ -208,7 +208,7 @@ public final class SessionEntityTypesGrpc {
    * Manages session entity types.
    * Session entity types can be redefined on a session level, allowing for
    * specific concepts, like a user's playlists.
-   * Standard methods.
+   * #
    * </pre>
    */
   public static final class SessionEntityTypesStub extends io.grpc.stub.AbstractStub<SessionEntityTypesStub> {
@@ -288,7 +288,7 @@ public final class SessionEntityTypesGrpc {
    * Manages session entity types.
    * Session entity types can be redefined on a session level, allowing for
    * specific concepts, like a user's playlists.
-   * Standard methods.
+   * #
    * </pre>
    */
   public static final class SessionEntityTypesBlockingStub extends io.grpc.stub.AbstractStub<SessionEntityTypesBlockingStub> {
@@ -363,7 +363,7 @@ public final class SessionEntityTypesGrpc {
    * Manages session entity types.
    * Session entity types can be redefined on a session level, allowing for
    * specific concepts, like a user's playlists.
-   * Standard methods.
+   * #
    * </pre>
    */
   public static final class SessionEntityTypesFutureStub extends io.grpc.stub.AbstractStub<SessionEntityTypesFutureStub> {

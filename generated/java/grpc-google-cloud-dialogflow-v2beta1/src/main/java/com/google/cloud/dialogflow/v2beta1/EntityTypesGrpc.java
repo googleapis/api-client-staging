@@ -18,9 +18,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 /**
  * <pre>
  * Manages agent entity types.
- * Refer to [documentation](https://dialogflow.com/docs/entities) for more
- * # details about entity types.
- * Standard methods.
+ * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
+ * for more details about entity types.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -150,9 +150,9 @@ public final class EntityTypesGrpc {
   /**
    * <pre>
    * Manages agent entity types.
-   * Refer to [documentation](https://dialogflow.com/docs/entities) for more
-   * # details about entity types.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
+   * for more details about entity types.
+   * #
    * </pre>
    */
   public static abstract class EntityTypesImplBase implements io.grpc.BindableService {
@@ -210,8 +210,9 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation&lt;response: BatchUpdateEntityTypesResponse,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response:
+     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchUpdateEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest request,
@@ -222,8 +223,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entity types in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchDeleteEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntityTypesRequest request,
@@ -235,7 +236,7 @@ public final class EntityTypesGrpc {
      * <pre>
      * Creates multiple new entities in the specified entity type (extends the
      * existing collection of entries).
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public void batchCreateEntities(com.google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest request,
@@ -247,8 +248,8 @@ public final class EntityTypesGrpc {
      * <pre>
      * Updates entities in the specified entity type (replaces the existing
      * collection of entries).
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchUpdateEntities(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntitiesRequest request,
@@ -259,8 +260,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entities in the specified entity type.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchDeleteEntities(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntitiesRequest request,
@@ -347,9 +348,9 @@ public final class EntityTypesGrpc {
   /**
    * <pre>
    * Manages agent entity types.
-   * Refer to [documentation](https://dialogflow.com/docs/entities) for more
-   * # details about entity types.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
+   * for more details about entity types.
+   * #
    * </pre>
    */
   public static final class EntityTypesStub extends io.grpc.stub.AbstractStub<EntityTypesStub> {
@@ -426,8 +427,9 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation&lt;response: BatchUpdateEntityTypesResponse,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response:
+     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchUpdateEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest request,
@@ -439,8 +441,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entity types in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchDeleteEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntityTypesRequest request,
@@ -453,7 +455,7 @@ public final class EntityTypesGrpc {
      * <pre>
      * Creates multiple new entities in the specified entity type (extends the
      * existing collection of entries).
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public void batchCreateEntities(com.google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest request,
@@ -466,8 +468,8 @@ public final class EntityTypesGrpc {
      * <pre>
      * Updates entities in the specified entity type (replaces the existing
      * collection of entries).
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchUpdateEntities(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntitiesRequest request,
@@ -479,8 +481,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entities in the specified entity type.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public void batchDeleteEntities(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntitiesRequest request,
@@ -493,9 +495,9 @@ public final class EntityTypesGrpc {
   /**
    * <pre>
    * Manages agent entity types.
-   * Refer to [documentation](https://dialogflow.com/docs/entities) for more
-   * # details about entity types.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
+   * for more details about entity types.
+   * #
    * </pre>
    */
   public static final class EntityTypesBlockingStub extends io.grpc.stub.AbstractStub<EntityTypesBlockingStub> {
@@ -567,8 +569,9 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation&lt;response: BatchUpdateEntityTypesResponse,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response:
+     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchUpdateEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest request) {
@@ -579,8 +582,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entity types in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchDeleteEntityTypes(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntityTypesRequest request) {
@@ -592,7 +595,7 @@ public final class EntityTypesGrpc {
      * <pre>
      * Creates multiple new entities in the specified entity type (extends the
      * existing collection of entries).
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchCreateEntities(com.google.cloud.dialogflow.v2beta1.BatchCreateEntitiesRequest request) {
@@ -604,8 +607,8 @@ public final class EntityTypesGrpc {
      * <pre>
      * Updates entities in the specified entity type (replaces the existing
      * collection of entries).
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchUpdateEntities(com.google.cloud.dialogflow.v2beta1.BatchUpdateEntitiesRequest request) {
@@ -616,8 +619,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entities in the specified entity type.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.longrunning.Operation batchDeleteEntities(com.google.cloud.dialogflow.v2beta1.BatchDeleteEntitiesRequest request) {
@@ -629,9 +632,9 @@ public final class EntityTypesGrpc {
   /**
    * <pre>
    * Manages agent entity types.
-   * Refer to [documentation](https://dialogflow.com/docs/entities) for more
-   * # details about entity types.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/entities)
+   * for more details about entity types.
+   * #
    * </pre>
    */
   public static final class EntityTypesFutureStub extends io.grpc.stub.AbstractStub<EntityTypesFutureStub> {
@@ -708,8 +711,9 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Updates/Creates multiple entity types in the specified agent.
-     * Operation&lt;response: BatchUpdateEntityTypesResponse,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response:
+     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesResponse],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchUpdateEntityTypes(
@@ -721,8 +725,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entity types in the specified agent.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchDeleteEntityTypes(
@@ -735,7 +739,7 @@ public final class EntityTypesGrpc {
      * <pre>
      * Creates multiple new entities in the specified entity type (extends the
      * existing collection of entries).
-     * Operation&lt;response: google.protobuf.Empty&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchCreateEntities(
@@ -748,8 +752,8 @@ public final class EntityTypesGrpc {
      * <pre>
      * Updates entities in the specified entity type (replaces the existing
      * collection of entries).
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchUpdateEntities(
@@ -761,8 +765,8 @@ public final class EntityTypesGrpc {
     /**
      * <pre>
      * Deletes entities in the specified entity type.
-     * Operation&lt;response: google.protobuf.Empty,
-     *           metadata: google.protobuf.Struct&gt;
+     * Operation &lt;response: [google.protobuf.Empty][google.protobuf.Empty],
+     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]&gt;
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.longrunning.Operation> batchDeleteEntities(

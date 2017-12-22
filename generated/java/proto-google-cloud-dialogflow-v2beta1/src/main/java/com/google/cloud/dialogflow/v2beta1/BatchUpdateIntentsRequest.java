@@ -5,7 +5,8 @@ package com.google.cloud.dialogflow.v2beta1;
 
 /**
  * <pre>
- * The request message for [Intents.BatchUpdateIntents].
+ * The request message for
+ * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest}
@@ -14,6 +15,7 @@ public  final class BatchUpdateIntentsRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest)
     BatchUpdateIntentsRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use BatchUpdateIntentsRequest.newBuilder() to construct.
   private BatchUpdateIntentsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +29,7 @@ public  final class BatchUpdateIntentsRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private BatchUpdateIntentsRequest(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +37,8 @@ public  final class BatchUpdateIntentsRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +48,8 @@ public  final class BatchUpdateIntentsRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -108,6 +113,7 @@ public  final class BatchUpdateIntentsRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -208,9 +214,11 @@ public  final class BatchUpdateIntentsRequest extends
   public static final int INTENT_BATCH_URI_FIELD_NUMBER = 2;
   /**
    * <pre>
-   * The URI to a file containing intents to update or create. The file
-   * format can be either a serialized proto (of IntentBatch type) or JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing intents from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing intents to update or
+   * create. The file format can either be a serialized proto (of IntentBatch
+   * type) or JSON object. Note: The URI must start with "gs://".
    * </pre>
    *
    * <code>string intent_batch_uri = 2;</code>
@@ -234,9 +242,11 @@ public  final class BatchUpdateIntentsRequest extends
   }
   /**
    * <pre>
-   * The URI to a file containing intents to update or create. The file
-   * format can be either a serialized proto (of IntentBatch type) or JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing intents from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing intents to update or
+   * create. The file format can either be a serialized proto (of IntentBatch
+   * type) or JSON object. Note: The URI must start with "gs://".
    * </pre>
    *
    * <code>string intent_batch_uri = 2;</code>
@@ -261,6 +271,16 @@ public  final class BatchUpdateIntentsRequest extends
   }
 
   public static final int INTENT_BATCH_INLINE_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * The collection of intents to update or create.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.IntentBatch intent_batch_inline = 3;</code>
+   */
+  public boolean hasIntentBatchInline() {
+    return intentBatchCase_ == 3;
+  }
   /**
    * <pre>
    * The collection of intents to update or create.
@@ -425,6 +445,7 @@ public  final class BatchUpdateIntentsRequest extends
     if (intentView_ != com.google.cloud.dialogflow.v2beta1.IntentView.INTENT_VIEW_UNSPECIFIED.getNumber()) {
       output.writeEnum(6, intentView_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -453,11 +474,11 @@ public  final class BatchUpdateIntentsRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(6, intentView_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -494,6 +515,7 @@ public  final class BatchUpdateIntentsRequest extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -621,7 +643,8 @@ public  final class BatchUpdateIntentsRequest extends
   }
   /**
    * <pre>
-   * The request message for [Intents.BatchUpdateIntents].
+   * The request message for
+   * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2beta1.Intents.BatchUpdateIntents].
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.BatchUpdateIntentsRequest}
@@ -723,7 +746,7 @@ public  final class BatchUpdateIntentsRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -736,12 +759,12 @@ public  final class BatchUpdateIntentsRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -784,6 +807,7 @@ public  final class BatchUpdateIntentsRequest extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -921,9 +945,11 @@ public  final class BatchUpdateIntentsRequest extends
 
     /**
      * <pre>
-     * The URI to a file containing intents to update or create. The file
-     * format can be either a serialized proto (of IntentBatch type) or JSON
-     * object. Note: The URI must start with "gs://".
+     * Warning: Importing intents from a URI is not implemented yet.
+     * This feature is coming soon.
+     * The URI to a Google Cloud Storage file containing intents to update or
+     * create. The file format can either be a serialized proto (of IntentBatch
+     * type) or JSON object. Note: The URI must start with "gs://".
      * </pre>
      *
      * <code>string intent_batch_uri = 2;</code>
@@ -947,9 +973,11 @@ public  final class BatchUpdateIntentsRequest extends
     }
     /**
      * <pre>
-     * The URI to a file containing intents to update or create. The file
-     * format can be either a serialized proto (of IntentBatch type) or JSON
-     * object. Note: The URI must start with "gs://".
+     * Warning: Importing intents from a URI is not implemented yet.
+     * This feature is coming soon.
+     * The URI to a Google Cloud Storage file containing intents to update or
+     * create. The file format can either be a serialized proto (of IntentBatch
+     * type) or JSON object. Note: The URI must start with "gs://".
      * </pre>
      *
      * <code>string intent_batch_uri = 2;</code>
@@ -974,9 +1002,11 @@ public  final class BatchUpdateIntentsRequest extends
     }
     /**
      * <pre>
-     * The URI to a file containing intents to update or create. The file
-     * format can be either a serialized proto (of IntentBatch type) or JSON
-     * object. Note: The URI must start with "gs://".
+     * Warning: Importing intents from a URI is not implemented yet.
+     * This feature is coming soon.
+     * The URI to a Google Cloud Storage file containing intents to update or
+     * create. The file format can either be a serialized proto (of IntentBatch
+     * type) or JSON object. Note: The URI must start with "gs://".
      * </pre>
      *
      * <code>string intent_batch_uri = 2;</code>
@@ -993,9 +1023,11 @@ public  final class BatchUpdateIntentsRequest extends
     }
     /**
      * <pre>
-     * The URI to a file containing intents to update or create. The file
-     * format can be either a serialized proto (of IntentBatch type) or JSON
-     * object. Note: The URI must start with "gs://".
+     * Warning: Importing intents from a URI is not implemented yet.
+     * This feature is coming soon.
+     * The URI to a Google Cloud Storage file containing intents to update or
+     * create. The file format can either be a serialized proto (of IntentBatch
+     * type) or JSON object. Note: The URI must start with "gs://".
      * </pre>
      *
      * <code>string intent_batch_uri = 2;</code>
@@ -1010,9 +1042,11 @@ public  final class BatchUpdateIntentsRequest extends
     }
     /**
      * <pre>
-     * The URI to a file containing intents to update or create. The file
-     * format can be either a serialized proto (of IntentBatch type) or JSON
-     * object. Note: The URI must start with "gs://".
+     * Warning: Importing intents from a URI is not implemented yet.
+     * This feature is coming soon.
+     * The URI to a Google Cloud Storage file containing intents to update or
+     * create. The file format can either be a serialized proto (of IntentBatch
+     * type) or JSON object. Note: The URI must start with "gs://".
      * </pre>
      *
      * <code>string intent_batch_uri = 2;</code>
@@ -1031,6 +1065,16 @@ public  final class BatchUpdateIntentsRequest extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.dialogflow.v2beta1.IntentBatch, com.google.cloud.dialogflow.v2beta1.IntentBatch.Builder, com.google.cloud.dialogflow.v2beta1.IntentBatchOrBuilder> intentBatchInlineBuilder_;
+    /**
+     * <pre>
+     * The collection of intents to update or create.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.IntentBatch intent_batch_inline = 3;</code>
+     */
+    public boolean hasIntentBatchInline() {
+      return intentBatchCase_ == 3;
+    }
     /**
      * <pre>
      * The collection of intents to update or create.
@@ -1518,12 +1562,12 @@ public  final class BatchUpdateIntentsRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

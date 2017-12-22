@@ -18,9 +18,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 /**
  * <pre>
  * Manages contexts.
- * Refer to [documentation](https://dialogflow.com/docs/contexts) for more
- * # details about contexts.
- * Standard methods.
+ * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
+ * for more details about contexts.
+ * #
  * </pre>
  */
 @javax.annotation.Generated(
@@ -114,9 +114,9 @@ public final class ContextsGrpc {
   /**
    * <pre>
    * Manages contexts.
-   * Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-   * # details about contexts.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
+   * for more details about contexts.
+   * #
    * </pre>
    */
   public static abstract class ContextsImplBase implements io.grpc.BindableService {
@@ -232,9 +232,9 @@ public final class ContextsGrpc {
   /**
    * <pre>
    * Manages contexts.
-   * Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-   * # details about contexts.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
+   * for more details about contexts.
+   * #
    * </pre>
    */
   public static final class ContextsStub extends io.grpc.stub.AbstractStub<ContextsStub> {
@@ -323,9 +323,9 @@ public final class ContextsGrpc {
   /**
    * <pre>
    * Manages contexts.
-   * Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-   * # details about contexts.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
+   * for more details about contexts.
+   * #
    * </pre>
    */
   public static final class ContextsBlockingStub extends io.grpc.stub.AbstractStub<ContextsBlockingStub> {
@@ -408,9 +408,9 @@ public final class ContextsGrpc {
   /**
    * <pre>
    * Manages contexts.
-   * Refer to [documentation](https://dialogflow.com/docs/contexts) for more
-   * # details about contexts.
-   * Standard methods.
+   * Refer to the [Dialogflow documentation](https://dialogflow.com/docs/contexts)
+   * for more details about contexts.
+   * #
    * </pre>
    */
   public static final class ContextsFutureStub extends io.grpc.stub.AbstractStub<ContextsFutureStub> {

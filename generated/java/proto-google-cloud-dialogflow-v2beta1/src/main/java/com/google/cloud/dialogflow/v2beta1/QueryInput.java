@@ -6,10 +6,10 @@ package com.google.cloud.dialogflow.v2beta1;
 /**
  * <pre>
  * Represents the query input. It can contain either:
- * 1.  an audio config which
- *     instructs the speech recognizer how to process the speech audio,
- * 2.  a conversational query in the form of text, or
- * 3.  an event that specifies which intent to trigger.
+ * 1.  An audio config which
+ *     instructs the speech recognizer how to process the speech audio.
+ * 2.  A conversational query in the form of text,.
+ * 3.  An event that specifies which intent to trigger.
  * </pre>
  *
  * Protobuf type {@code google.cloud.dialogflow.v2beta1.QueryInput}
@@ -18,6 +18,7 @@ public  final class QueryInput extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.QueryInput)
     QueryInputOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use QueryInput.newBuilder() to construct.
   private QueryInput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -28,7 +29,7 @@ public  final class QueryInput extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private QueryInput(
       com.google.protobuf.CodedInputStream input,
@@ -36,6 +37,8 @@ public  final class QueryInput extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -45,7 +48,8 @@ public  final class QueryInput extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -100,6 +104,7 @@ public  final class QueryInput extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -163,6 +168,16 @@ public  final class QueryInput extends
    *
    * <code>.google.cloud.dialogflow.v2beta1.InputAudioConfig audio_config = 1;</code>
    */
+  public boolean hasAudioConfig() {
+    return inputCase_ == 1;
+  }
+  /**
+   * <pre>
+   * Instructs the speech recognizer how to process the speech audio.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.InputAudioConfig audio_config = 1;</code>
+   */
   public com.google.cloud.dialogflow.v2beta1.InputAudioConfig getAudioConfig() {
     if (inputCase_ == 1) {
        return (com.google.cloud.dialogflow.v2beta1.InputAudioConfig) input_;
@@ -191,6 +206,16 @@ public  final class QueryInput extends
    *
    * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
    */
+  public boolean hasText() {
+    return inputCase_ == 2;
+  }
+  /**
+   * <pre>
+   * The natural language text to be processed.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
+   */
   public com.google.cloud.dialogflow.v2beta1.TextInput getText() {
     if (inputCase_ == 2) {
        return (com.google.cloud.dialogflow.v2beta1.TextInput) input_;
@@ -212,6 +237,16 @@ public  final class QueryInput extends
   }
 
   public static final int EVENT_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * The event to be processed.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.EventInput event = 3;</code>
+   */
+  public boolean hasEvent() {
+    return inputCase_ == 3;
+  }
   /**
    * <pre>
    * The event to be processed.
@@ -260,6 +295,7 @@ public  final class QueryInput extends
     if (inputCase_ == 3) {
       output.writeMessage(3, (com.google.cloud.dialogflow.v2beta1.EventInput) input_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -279,11 +315,11 @@ public  final class QueryInput extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (com.google.cloud.dialogflow.v2beta1.EventInput) input_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -314,6 +350,7 @@ public  final class QueryInput extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -436,10 +473,10 @@ public  final class QueryInput extends
   /**
    * <pre>
    * Represents the query input. It can contain either:
-   * 1.  an audio config which
-   *     instructs the speech recognizer how to process the speech audio,
-   * 2.  a conversational query in the form of text, or
-   * 3.  an event that specifies which intent to trigger.
+   * 1.  An audio config which
+   *     instructs the speech recognizer how to process the speech audio.
+   * 2.  A conversational query in the form of text,.
+   * 3.  An event that specifies which intent to trigger.
    * </pre>
    *
    * Protobuf type {@code google.cloud.dialogflow.v2beta1.QueryInput}
@@ -532,7 +569,7 @@ public  final class QueryInput extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -545,12 +582,12 @@ public  final class QueryInput extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -581,6 +618,7 @@ public  final class QueryInput extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -624,6 +662,16 @@ public  final class QueryInput extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.cloud.dialogflow.v2beta1.InputAudioConfig, com.google.cloud.dialogflow.v2beta1.InputAudioConfig.Builder, com.google.cloud.dialogflow.v2beta1.InputAudioConfigOrBuilder> audioConfigBuilder_;
+    /**
+     * <pre>
+     * Instructs the speech recognizer how to process the speech audio.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.InputAudioConfig audio_config = 1;</code>
+     */
+    public boolean hasAudioConfig() {
+      return inputCase_ == 1;
+    }
     /**
      * <pre>
      * Instructs the speech recognizer how to process the speech audio.
@@ -793,6 +841,16 @@ public  final class QueryInput extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
      */
+    public boolean hasText() {
+      return inputCase_ == 2;
+    }
+    /**
+     * <pre>
+     * The natural language text to be processed.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.TextInput text = 2;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.TextInput getText() {
       if (textBuilder_ == null) {
         if (inputCase_ == 2) {
@@ -955,6 +1013,16 @@ public  final class QueryInput extends
      *
      * <code>.google.cloud.dialogflow.v2beta1.EventInput event = 3;</code>
      */
+    public boolean hasEvent() {
+      return inputCase_ == 3;
+    }
+    /**
+     * <pre>
+     * The event to be processed.
+     * </pre>
+     *
+     * <code>.google.cloud.dialogflow.v2beta1.EventInput event = 3;</code>
+     */
     public com.google.cloud.dialogflow.v2beta1.EventInput getEvent() {
       if (eventBuilder_ == null) {
         if (inputCase_ == 3) {
@@ -1109,12 +1177,12 @@ public  final class QueryInput extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

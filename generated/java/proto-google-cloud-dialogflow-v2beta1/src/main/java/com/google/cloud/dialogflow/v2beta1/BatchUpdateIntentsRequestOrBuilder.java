@@ -29,9 +29,11 @@ public interface BatchUpdateIntentsRequestOrBuilder extends
 
   /**
    * <pre>
-   * The URI to a file containing intents to update or create. The file
-   * format can be either a serialized proto (of IntentBatch type) or JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing intents from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing intents to update or
+   * create. The file format can either be a serialized proto (of IntentBatch
+   * type) or JSON object. Note: The URI must start with "gs://".
    * </pre>
    *
    * <code>string intent_batch_uri = 2;</code>
@@ -39,9 +41,11 @@ public interface BatchUpdateIntentsRequestOrBuilder extends
   java.lang.String getIntentBatchUri();
   /**
    * <pre>
-   * The URI to a file containing intents to update or create. The file
-   * format can be either a serialized proto (of IntentBatch type) or JSON
-   * object. Note: The URI must start with "gs://".
+   * Warning: Importing intents from a URI is not implemented yet.
+   * This feature is coming soon.
+   * The URI to a Google Cloud Storage file containing intents to update or
+   * create. The file format can either be a serialized proto (of IntentBatch
+   * type) or JSON object. Note: The URI must start with "gs://".
    * </pre>
    *
    * <code>string intent_batch_uri = 2;</code>
@@ -49,6 +53,14 @@ public interface BatchUpdateIntentsRequestOrBuilder extends
   com.google.protobuf.ByteString
       getIntentBatchUriBytes();
 
+  /**
+   * <pre>
+   * The collection of intents to update or create.
+   * </pre>
+   *
+   * <code>.google.cloud.dialogflow.v2beta1.IntentBatch intent_batch_inline = 3;</code>
+   */
+  boolean hasIntentBatchInline();
   /**
    * <pre>
    * The collection of intents to update or create.

@@ -9,7 +9,9 @@ public interface EntityTypeOrBuilder extends
 
   /**
    * <pre>
-   * Required. The unique identifier of the entity type. Format:
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of the entity type. Format:
    * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
    * </pre>
    *
@@ -18,7 +20,9 @@ public interface EntityTypeOrBuilder extends
   java.lang.String getName();
   /**
    * <pre>
-   * Required. The unique identifier of the entity type. Format:
+   * Required for all methods except `create` (`create` populates the name
+   * automatically.
+   * The unique identifier of the entity type. Format:
    * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
    * </pre>
    *

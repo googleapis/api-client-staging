@@ -9,7 +9,8 @@ package com.google.cloud.dialogflow.v2beta1;
  * `StreamingDetectIntent` method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain `session`, `query_input` plus optionally
- *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
+ *     `query_params` and/or `single_utterance`. The message must not contain
+ *     `input_audio`.
  * 2.  If `query_input` was set to a streaming input audio config,
  *     all subsequent messages must contain only `input_audio`.
  *     Otherwise, finish the request stream.
@@ -21,6 +22,7 @@ public  final class StreamingDetectIntentRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.cloud.dialogflow.v2beta1.StreamingDetectIntentRequest)
     StreamingDetectIntentRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use StreamingDetectIntentRequest.newBuilder() to construct.
   private StreamingDetectIntentRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -34,7 +36,7 @@ public  final class StreamingDetectIntentRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private StreamingDetectIntentRequest(
       com.google.protobuf.CodedInputStream input,
@@ -42,6 +44,8 @@ public  final class StreamingDetectIntentRequest extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -51,7 +55,8 @@ public  final class StreamingDetectIntentRequest extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -106,6 +111,7 @@ public  final class StreamingDetectIntentRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -309,6 +315,7 @@ public  final class StreamingDetectIntentRequest extends
     if (!inputAudio_.isEmpty()) {
       output.writeBytes(6, inputAudio_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -335,11 +342,11 @@ public  final class StreamingDetectIntentRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(6, inputAudio_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -367,6 +374,7 @@ public  final class StreamingDetectIntentRequest extends
         == other.getSingleUtterance());
     result = result && getInputAudio()
         .equals(other.getInputAudio());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -491,7 +499,8 @@ public  final class StreamingDetectIntentRequest extends
    * `StreamingDetectIntent` method.
    * Multiple request messages should be sent in order:
    * 1.  The first message must contain `session`, `query_input` plus optionally
-   *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
+   *     `query_params` and/or `single_utterance`. The message must not contain
+   *     `input_audio`.
    * 2.  If `query_input` was set to a streaming input audio config,
    *     all subsequent messages must contain only `input_audio`.
    *     Otherwise, finish the request stream.
@@ -594,7 +603,7 @@ public  final class StreamingDetectIntentRequest extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -607,12 +616,12 @@ public  final class StreamingDetectIntentRequest extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -642,6 +651,7 @@ public  final class StreamingDetectIntentRequest extends
       if (other.getInputAudio() != com.google.protobuf.ByteString.EMPTY) {
         setInputAudio(other.getInputAudio());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1219,12 +1229,12 @@ public  final class StreamingDetectIntentRequest extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
