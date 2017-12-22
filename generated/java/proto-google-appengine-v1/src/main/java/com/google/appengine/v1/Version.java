@@ -15,6 +15,7 @@ public  final class Version extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.appengine.v1.Version)
     VersionOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Version.newBuilder() to construct.
   private Version(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -41,7 +42,7 @@ public  final class Version extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private Version(
       com.google.protobuf.CodedInputStream input,
@@ -49,6 +50,8 @@ public  final class Version extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -58,7 +61,8 @@ public  final class Version extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -361,6 +365,7 @@ public  final class Version extends
       if (((mutable_bitField0_ & 0x00100000) == 0x00100000)) {
         libraries_ = java.util.Collections.unmodifiableList(libraries_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -531,6 +536,17 @@ public  final class Version extends
    *
    * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
    */
+  public boolean hasAutomaticScaling() {
+    return scalingCase_ == 3;
+  }
+  /**
+   * <pre>
+   * Automatic scaling is based on request rate, response latencies, and other
+   * application metrics.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
+   */
   public com.google.appengine.v1.AutomaticScaling getAutomaticScaling() {
     if (scalingCase_ == 3) {
        return (com.google.appengine.v1.AutomaticScaling) scaling_;
@@ -553,6 +569,19 @@ public  final class Version extends
   }
 
   public static final int BASIC_SCALING_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * A service with basic scaling will create an instance when the application
+   * receives a request. The instance will be turned down when the app becomes
+   * idle. Basic scaling is ideal for work that is intermittent or driven by
+   * user activity.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.BasicScaling basic_scaling = 4;</code>
+   */
+  public boolean hasBasicScaling() {
+    return scalingCase_ == 4;
+  }
   /**
    * <pre>
    * A service with basic scaling will create an instance when the application
@@ -587,6 +616,17 @@ public  final class Version extends
   }
 
   public static final int MANUAL_SCALING_FIELD_NUMBER = 5;
+  /**
+   * <pre>
+   * A service with manual scaling runs continuously, allowing you to perform
+   * complex initialization and rely on the state of its memory over time.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ManualScaling manual_scaling = 5;</code>
+   */
+  public boolean hasManualScaling() {
+    return scalingCase_ == 5;
+  }
   /**
    * <pre>
    * A service with manual scaling runs continuously, allowing you to perform
@@ -1785,6 +1825,7 @@ public  final class Version extends
     if (!getVersionUrlBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 109, versionUrl_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -1916,11 +1957,11 @@ public  final class Version extends
     if (!getVersionUrlBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(109, versionUrl_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2020,6 +2061,7 @@ public  final class Version extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2517,7 +2559,7 @@ public  final class Version extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -2530,12 +2572,12 @@ public  final class Version extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2723,6 +2765,7 @@ public  final class Version extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2973,6 +3016,17 @@ public  final class Version extends
      *
      * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
      */
+    public boolean hasAutomaticScaling() {
+      return scalingCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Automatic scaling is based on request rate, response latencies, and other
+     * application metrics.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
+     */
     public com.google.appengine.v1.AutomaticScaling getAutomaticScaling() {
       if (automaticScalingBuilder_ == null) {
         if (scalingCase_ == 3) {
@@ -3135,6 +3189,19 @@ public  final class Version extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.appengine.v1.BasicScaling, com.google.appengine.v1.BasicScaling.Builder, com.google.appengine.v1.BasicScalingOrBuilder> basicScalingBuilder_;
+    /**
+     * <pre>
+     * A service with basic scaling will create an instance when the application
+     * receives a request. The instance will be turned down when the app becomes
+     * idle. Basic scaling is ideal for work that is intermittent or driven by
+     * user activity.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.BasicScaling basic_scaling = 4;</code>
+     */
+    public boolean hasBasicScaling() {
+      return scalingCase_ == 4;
+    }
     /**
      * <pre>
      * A service with basic scaling will create an instance when the application
@@ -3321,6 +3388,17 @@ public  final class Version extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.appengine.v1.ManualScaling, com.google.appengine.v1.ManualScaling.Builder, com.google.appengine.v1.ManualScalingOrBuilder> manualScalingBuilder_;
+    /**
+     * <pre>
+     * A service with manual scaling runs continuously, allowing you to perform
+     * complex initialization and rely on the state of its memory over time.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.ManualScaling manual_scaling = 5;</code>
+     */
+    public boolean hasManualScaling() {
+      return scalingCase_ == 5;
+    }
     /**
      * <pre>
      * A service with manual scaling runs continuously, allowing you to perform
@@ -6976,12 +7054,12 @@ public  final class Version extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

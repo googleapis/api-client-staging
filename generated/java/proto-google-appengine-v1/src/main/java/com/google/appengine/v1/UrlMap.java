@@ -16,6 +16,7 @@ public  final class UrlMap extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.appengine.v1.UrlMap)
     UrlMapOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use UrlMap.newBuilder() to construct.
   private UrlMap(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -31,7 +32,7 @@ public  final class UrlMap extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private UrlMap(
       com.google.protobuf.CodedInputStream input,
@@ -39,6 +40,8 @@ public  final class UrlMap extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -48,7 +51,8 @@ public  final class UrlMap extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -133,6 +137,7 @@ public  final class UrlMap extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -413,6 +418,16 @@ public  final class UrlMap extends
    *
    * <code>.google.appengine.v1.StaticFilesHandler static_files = 2;</code>
    */
+  public boolean hasStaticFiles() {
+    return handlerTypeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * Returns the contents of a file, such as an image, as the response.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.StaticFilesHandler static_files = 2;</code>
+   */
   public com.google.appengine.v1.StaticFilesHandler getStaticFiles() {
     if (handlerTypeCase_ == 2) {
        return (com.google.appengine.v1.StaticFilesHandler) handlerType_;
@@ -434,6 +449,17 @@ public  final class UrlMap extends
   }
 
   public static final int SCRIPT_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * Executes a script to handle the request that matches this URL
+   * pattern.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ScriptHandler script = 3;</code>
+   */
+  public boolean hasScript() {
+    return handlerTypeCase_ == 3;
+  }
   /**
    * <pre>
    * Executes a script to handle the request that matches this URL
@@ -464,6 +490,16 @@ public  final class UrlMap extends
   }
 
   public static final int API_ENDPOINT_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Uses API Endpoints to handle requests.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ApiEndpointHandler api_endpoint = 4;</code>
+   */
+  public boolean hasApiEndpoint() {
+    return handlerTypeCase_ == 4;
+  }
   /**
    * <pre>
    * Uses API Endpoints to handle requests.
@@ -627,6 +663,7 @@ public  final class UrlMap extends
     if (redirectHttpResponseCode_ != com.google.appengine.v1.UrlMap.RedirectHttpResponseCode.REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED.getNumber()) {
       output.writeEnum(8, redirectHttpResponseCode_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -665,11 +702,11 @@ public  final class UrlMap extends
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(8, redirectHttpResponseCode_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -706,6 +743,7 @@ public  final class UrlMap extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -947,7 +985,7 @@ public  final class UrlMap extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -960,12 +998,12 @@ public  final class UrlMap extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1012,6 +1050,7 @@ public  final class UrlMap extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1159,6 +1198,16 @@ public  final class UrlMap extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.appengine.v1.StaticFilesHandler, com.google.appengine.v1.StaticFilesHandler.Builder, com.google.appengine.v1.StaticFilesHandlerOrBuilder> staticFilesBuilder_;
+    /**
+     * <pre>
+     * Returns the contents of a file, such as an image, as the response.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.StaticFilesHandler static_files = 2;</code>
+     */
+    public boolean hasStaticFiles() {
+      return handlerTypeCase_ == 2;
+    }
     /**
      * <pre>
      * Returns the contents of a file, such as an image, as the response.
@@ -1329,6 +1378,17 @@ public  final class UrlMap extends
      *
      * <code>.google.appengine.v1.ScriptHandler script = 3;</code>
      */
+    public boolean hasScript() {
+      return handlerTypeCase_ == 3;
+    }
+    /**
+     * <pre>
+     * Executes a script to handle the request that matches this URL
+     * pattern.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.ScriptHandler script = 3;</code>
+     */
     public com.google.appengine.v1.ScriptHandler getScript() {
       if (scriptBuilder_ == null) {
         if (handlerTypeCase_ == 3) {
@@ -1491,6 +1551,16 @@ public  final class UrlMap extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.appengine.v1.ApiEndpointHandler, com.google.appengine.v1.ApiEndpointHandler.Builder, com.google.appengine.v1.ApiEndpointHandlerOrBuilder> apiEndpointBuilder_;
+    /**
+     * <pre>
+     * Uses API Endpoints to handle requests.
+     * </pre>
+     *
+     * <code>.google.appengine.v1.ApiEndpointHandler api_endpoint = 4;</code>
+     */
+    public boolean hasApiEndpoint() {
+      return handlerTypeCase_ == 4;
+    }
     /**
      * <pre>
      * Uses API Endpoints to handle requests.
@@ -1918,12 +1988,12 @@ public  final class UrlMap extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

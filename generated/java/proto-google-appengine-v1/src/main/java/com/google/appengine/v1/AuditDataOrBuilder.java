@@ -14,6 +14,14 @@ public interface AuditDataOrBuilder extends
    *
    * <code>.google.appengine.v1.UpdateServiceMethod update_service = 1;</code>
    */
+  boolean hasUpdateService();
+  /**
+   * <pre>
+   * Detailed information about UpdateService call.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.UpdateServiceMethod update_service = 1;</code>
+   */
   com.google.appengine.v1.UpdateServiceMethod getUpdateService();
   /**
    * <pre>
@@ -24,6 +32,14 @@ public interface AuditDataOrBuilder extends
    */
   com.google.appengine.v1.UpdateServiceMethodOrBuilder getUpdateServiceOrBuilder();
 
+  /**
+   * <pre>
+   * Detailed information about CreateVersion call.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.CreateVersionMethod create_version = 2;</code>
+   */
+  boolean hasCreateVersion();
   /**
    * <pre>
    * Detailed information about CreateVersion call.
