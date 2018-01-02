@@ -38,6 +38,14 @@ public interface UrlMapOrBuilder extends
    *
    * <code>.google.appengine.v1.StaticFilesHandler static_files = 2;</code>
    */
+  boolean hasStaticFiles();
+  /**
+   * <pre>
+   * Returns the contents of a file, such as an image, as the response.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.StaticFilesHandler static_files = 2;</code>
+   */
   com.google.appengine.v1.StaticFilesHandler getStaticFiles();
   /**
    * <pre>
@@ -48,6 +56,15 @@ public interface UrlMapOrBuilder extends
    */
   com.google.appengine.v1.StaticFilesHandlerOrBuilder getStaticFilesOrBuilder();
 
+  /**
+   * <pre>
+   * Executes a script to handle the request that matches this URL
+   * pattern.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ScriptHandler script = 3;</code>
+   */
+  boolean hasScript();
   /**
    * <pre>
    * Executes a script to handle the request that matches this URL
@@ -67,6 +84,14 @@ public interface UrlMapOrBuilder extends
    */
   com.google.appengine.v1.ScriptHandlerOrBuilder getScriptOrBuilder();
 
+  /**
+   * <pre>
+   * Uses API Endpoints to handle requests.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ApiEndpointHandler api_endpoint = 4;</code>
+   */
+  boolean hasApiEndpoint();
   /**
    * <pre>
    * Uses API Endpoints to handle requests.

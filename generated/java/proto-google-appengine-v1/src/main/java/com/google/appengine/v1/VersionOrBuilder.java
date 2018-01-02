@@ -59,6 +59,15 @@ public interface VersionOrBuilder extends
    *
    * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
    */
+  boolean hasAutomaticScaling();
+  /**
+   * <pre>
+   * Automatic scaling is based on request rate, response latencies, and other
+   * application metrics.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.AutomaticScaling automatic_scaling = 3;</code>
+   */
   com.google.appengine.v1.AutomaticScaling getAutomaticScaling();
   /**
    * <pre>
@@ -70,6 +79,17 @@ public interface VersionOrBuilder extends
    */
   com.google.appengine.v1.AutomaticScalingOrBuilder getAutomaticScalingOrBuilder();
 
+  /**
+   * <pre>
+   * A service with basic scaling will create an instance when the application
+   * receives a request. The instance will be turned down when the app becomes
+   * idle. Basic scaling is ideal for work that is intermittent or driven by
+   * user activity.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.BasicScaling basic_scaling = 4;</code>
+   */
+  boolean hasBasicScaling();
   /**
    * <pre>
    * A service with basic scaling will create an instance when the application
@@ -93,6 +113,15 @@ public interface VersionOrBuilder extends
    */
   com.google.appengine.v1.BasicScalingOrBuilder getBasicScalingOrBuilder();
 
+  /**
+   * <pre>
+   * A service with manual scaling runs continuously, allowing you to perform
+   * complex initialization and rely on the state of its memory over time.
+   * </pre>
+   *
+   * <code>.google.appengine.v1.ManualScaling manual_scaling = 5;</code>
+   */
+  boolean hasManualScaling();
   /**
    * <pre>
    * A service with manual scaling runs continuously, allowing you to perform
