@@ -14,14 +14,6 @@ public interface OutputStorageConfigOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
    */
-  boolean hasTable();
-  /**
-   * <pre>
-   * Store findings in a new table in an existing dataset.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.BigQueryTable table = 1;</code>
-   */
   com.google.privacy.dlp.v2beta2.BigQueryTable getTable();
   /**
    * <pre>

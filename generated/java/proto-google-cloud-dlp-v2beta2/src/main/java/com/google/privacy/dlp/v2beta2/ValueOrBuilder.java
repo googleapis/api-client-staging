@@ -35,10 +35,6 @@ public interface ValueOrBuilder extends
   /**
    * <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
    */
-  boolean hasTimestampValue();
-  /**
-   * <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
-   */
   com.google.protobuf.Timestamp getTimestampValue();
   /**
    * <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
@@ -48,20 +44,12 @@ public interface ValueOrBuilder extends
   /**
    * <code>.google.type.TimeOfDay time_value = 6;</code>
    */
-  boolean hasTimeValue();
-  /**
-   * <code>.google.type.TimeOfDay time_value = 6;</code>
-   */
   com.google.type.TimeOfDay getTimeValue();
   /**
    * <code>.google.type.TimeOfDay time_value = 6;</code>
    */
   com.google.type.TimeOfDayOrBuilder getTimeValueOrBuilder();
 
-  /**
-   * <code>.google.type.Date date_value = 7;</code>
-   */
-  boolean hasDateValue();
   /**
    * <code>.google.type.Date date_value = 7;</code>
    */

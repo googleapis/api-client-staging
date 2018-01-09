@@ -18,7 +18,6 @@ public  final class CryptoKey extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.CryptoKey)
     CryptoKeyOrBuilder {
-private static final long serialVersionUID = 0L;
   // Use CryptoKey.newBuilder() to construct.
   private CryptoKey(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -29,7 +28,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return this.unknownFields;
+    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private CryptoKey(
       com.google.protobuf.CodedInputStream input,
@@ -37,8 +36,6 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -48,8 +45,7 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
+            if (!input.skipField(tag)) {
               done = true;
             }
             break;
@@ -104,7 +100,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -164,12 +159,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>.google.privacy.dlp.v2beta2.TransientCryptoKey transient = 1;</code>
    */
-  public boolean hasTransient() {
-    return sourceCase_ == 1;
-  }
-  /**
-   * <code>.google.privacy.dlp.v2beta2.TransientCryptoKey transient = 1;</code>
-   */
   public com.google.privacy.dlp.v2beta2.TransientCryptoKey getTransient() {
     if (sourceCase_ == 1) {
        return (com.google.privacy.dlp.v2beta2.TransientCryptoKey) source_;
@@ -190,12 +179,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>.google.privacy.dlp.v2beta2.UnwrappedCryptoKey unwrapped = 2;</code>
    */
-  public boolean hasUnwrapped() {
-    return sourceCase_ == 2;
-  }
-  /**
-   * <code>.google.privacy.dlp.v2beta2.UnwrappedCryptoKey unwrapped = 2;</code>
-   */
   public com.google.privacy.dlp.v2beta2.UnwrappedCryptoKey getUnwrapped() {
     if (sourceCase_ == 2) {
        return (com.google.privacy.dlp.v2beta2.UnwrappedCryptoKey) source_;
@@ -213,12 +196,6 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int KMS_WRAPPED_FIELD_NUMBER = 3;
-  /**
-   * <code>.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
-   */
-  public boolean hasKmsWrapped() {
-    return sourceCase_ == 3;
-  }
   /**
    * <code>.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
    */
@@ -259,7 +236,6 @@ private static final long serialVersionUID = 0L;
     if (sourceCase_ == 3) {
       output.writeMessage(3, (com.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey) source_);
     }
-    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -279,11 +255,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, (com.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey) source_);
     }
-    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
+  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -314,7 +290,6 @@ private static final long serialVersionUID = 0L;
       case 0:
       default:
     }
-    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -533,7 +508,7 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -546,12 +521,12 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
+        int index, Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -582,7 +557,6 @@ private static final long serialVersionUID = 0L;
           break;
         }
       }
-      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -626,12 +600,6 @@ private static final long serialVersionUID = 0L;
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta2.TransientCryptoKey, com.google.privacy.dlp.v2beta2.TransientCryptoKey.Builder, com.google.privacy.dlp.v2beta2.TransientCryptoKeyOrBuilder> transientBuilder_;
-    /**
-     * <code>.google.privacy.dlp.v2beta2.TransientCryptoKey transient = 1;</code>
-     */
-    public boolean hasTransient() {
-      return sourceCase_ == 1;
-    }
     /**
      * <code>.google.privacy.dlp.v2beta2.TransientCryptoKey transient = 1;</code>
      */
@@ -765,12 +733,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.google.privacy.dlp.v2beta2.UnwrappedCryptoKey unwrapped = 2;</code>
      */
-    public boolean hasUnwrapped() {
-      return sourceCase_ == 2;
-    }
-    /**
-     * <code>.google.privacy.dlp.v2beta2.UnwrappedCryptoKey unwrapped = 2;</code>
-     */
     public com.google.privacy.dlp.v2beta2.UnwrappedCryptoKey getUnwrapped() {
       if (unwrappedBuilder_ == null) {
         if (sourceCase_ == 2) {
@@ -901,12 +863,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
      */
-    public boolean hasKmsWrapped() {
-      return sourceCase_ == 3;
-    }
-    /**
-     * <code>.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
-     */
     public com.google.privacy.dlp.v2beta2.KmsWrappedCryptoKey getKmsWrapped() {
       if (kmsWrappedBuilder_ == null) {
         if (sourceCase_ == 3) {
@@ -1033,12 +989,12 @@ private static final long serialVersionUID = 0L;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return this;
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+      return this;
     }
 
 

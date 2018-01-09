@@ -101,14 +101,6 @@ public interface FieldTransformationOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.PrimitiveTransformation primitive_transformation = 4;</code>
    */
-  boolean hasPrimitiveTransformation();
-  /**
-   * <pre>
-   * Apply the transformation to the entire field.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.PrimitiveTransformation primitive_transformation = 4;</code>
-   */
   com.google.privacy.dlp.v2beta2.PrimitiveTransformation getPrimitiveTransformation();
   /**
    * <pre>
@@ -119,15 +111,6 @@ public interface FieldTransformationOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.PrimitiveTransformationOrBuilder getPrimitiveTransformationOrBuilder();
 
-  /**
-   * <pre>
-   * Treat the contents of the field as free text, and selectively
-   * transform content that matches an `InfoType`.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.InfoTypeTransformations info_type_transformations = 5;</code>
-   */
-  boolean hasInfoTypeTransformations();
   /**
    * <pre>
    * Treat the contents of the field as free text, and selectively

@@ -42,14 +42,6 @@ public interface CustomInfoTypeOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
    */
-  boolean hasDictionary();
-  /**
-   * <pre>
-   * Dictionary-based custom info type.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
-   */
   com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary getDictionary();
   /**
    * <pre>
@@ -60,14 +52,6 @@ public interface CustomInfoTypeOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.CustomInfoType.DictionaryOrBuilder getDictionaryOrBuilder();
 
-  /**
-   * <pre>
-   * Surrogate info type.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
-   */
-  boolean hasSurrogateType();
   /**
    * <pre>
    * Surrogate info type.

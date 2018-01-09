@@ -10,20 +10,12 @@ public interface PrimitiveTransformationOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.ReplaceValueConfig replace_config = 1;</code>
    */
-  boolean hasReplaceConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.ReplaceValueConfig replace_config = 1;</code>
-   */
   com.google.privacy.dlp.v2beta2.ReplaceValueConfig getReplaceConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.ReplaceValueConfig replace_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta2.ReplaceValueConfigOrBuilder getReplaceConfigOrBuilder();
 
-  /**
-   * <code>.google.privacy.dlp.v2beta2.RedactConfig redact_config = 2;</code>
-   */
-  boolean hasRedactConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.RedactConfig redact_config = 2;</code>
    */
@@ -36,20 +28,12 @@ public interface PrimitiveTransformationOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.CharacterMaskConfig character_mask_config = 3;</code>
    */
-  boolean hasCharacterMaskConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.CharacterMaskConfig character_mask_config = 3;</code>
-   */
   com.google.privacy.dlp.v2beta2.CharacterMaskConfig getCharacterMaskConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.CharacterMaskConfig character_mask_config = 3;</code>
    */
   com.google.privacy.dlp.v2beta2.CharacterMaskConfigOrBuilder getCharacterMaskConfigOrBuilder();
 
-  /**
-   * <code>.google.privacy.dlp.v2beta2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
-   */
-  boolean hasCryptoReplaceFfxFpeConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
    */
@@ -62,20 +46,12 @@ public interface PrimitiveTransformationOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
    */
-  boolean hasFixedSizeBucketingConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
-   */
   com.google.privacy.dlp.v2beta2.FixedSizeBucketingConfig getFixedSizeBucketingConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
    */
   com.google.privacy.dlp.v2beta2.FixedSizeBucketingConfigOrBuilder getFixedSizeBucketingConfigOrBuilder();
 
-  /**
-   * <code>.google.privacy.dlp.v2beta2.BucketingConfig bucketing_config = 6;</code>
-   */
-  boolean hasBucketingConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.BucketingConfig bucketing_config = 6;</code>
    */
@@ -88,10 +64,6 @@ public interface PrimitiveTransformationOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
    */
-  boolean hasReplaceWithInfoTypeConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
-   */
   com.google.privacy.dlp.v2beta2.ReplaceWithInfoTypeConfig getReplaceWithInfoTypeConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
@@ -101,20 +73,12 @@ public interface PrimitiveTransformationOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.TimePartConfig time_part_config = 8;</code>
    */
-  boolean hasTimePartConfig();
-  /**
-   * <code>.google.privacy.dlp.v2beta2.TimePartConfig time_part_config = 8;</code>
-   */
   com.google.privacy.dlp.v2beta2.TimePartConfig getTimePartConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.TimePartConfig time_part_config = 8;</code>
    */
   com.google.privacy.dlp.v2beta2.TimePartConfigOrBuilder getTimePartConfigOrBuilder();
 
-  /**
-   * <code>.google.privacy.dlp.v2beta2.CryptoHashConfig crypto_hash_config = 9;</code>
-   */
-  boolean hasCryptoHashConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.CryptoHashConfig crypto_hash_config = 9;</code>
    */

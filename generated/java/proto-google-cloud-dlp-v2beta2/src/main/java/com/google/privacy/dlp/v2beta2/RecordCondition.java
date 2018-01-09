@@ -15,7 +15,6 @@ public  final class RecordCondition extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition)
     RecordConditionOrBuilder {
-private static final long serialVersionUID = 0L;
   // Use RecordCondition.newBuilder() to construct.
   private RecordCondition(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -26,7 +25,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return this.unknownFields;
+    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
   }
   private RecordCondition(
       com.google.protobuf.CodedInputStream input,
@@ -34,8 +33,6 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -45,8 +42,7 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
+            if (!input.skipField(tag)) {
               done = true;
             }
             break;
@@ -72,7 +68,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -184,7 +179,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Condition)
       ConditionOrBuilder {
-  private static final long serialVersionUID = 0L;
     // Use Condition.newBuilder() to construct.
     private Condition(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -196,7 +190,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Condition(
         com.google.protobuf.CodedInputStream input,
@@ -204,8 +198,6 @@ private static final long serialVersionUID = 0L;
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -215,8 +207,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
@@ -261,7 +252,6 @@ private static final long serialVersionUID = 0L;
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -388,7 +378,6 @@ private static final long serialVersionUID = 0L;
       if (value_ != null) {
         output.writeMessage(4, getValue());
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -408,11 +397,11 @@ private static final long serialVersionUID = 0L;
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getValue());
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -435,7 +424,6 @@ private static final long serialVersionUID = 0L;
         result = result && getValue()
             .equals(other.getValue());
       }
-      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -659,7 +647,7 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -672,12 +660,12 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -700,7 +688,6 @@ private static final long serialVersionUID = 0L;
         if (other.hasValue()) {
           mergeValue(other.getValue());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1098,12 +1085,12 @@ private static final long serialVersionUID = 0L;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -1184,7 +1171,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Conditions)
       ConditionsOrBuilder {
-  private static final long serialVersionUID = 0L;
     // Use Conditions.newBuilder() to construct.
     private Conditions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1196,7 +1182,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Conditions(
         com.google.protobuf.CodedInputStream input,
@@ -1204,8 +1190,6 @@ private static final long serialVersionUID = 0L;
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1215,8 +1199,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
@@ -1241,7 +1224,6 @@ private static final long serialVersionUID = 0L;
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           conditions_ = java.util.Collections.unmodifiableList(conditions_);
         }
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1307,7 +1289,6 @@ private static final long serialVersionUID = 0L;
       for (int i = 0; i < conditions_.size(); i++) {
         output.writeMessage(1, conditions_.get(i));
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1319,11 +1300,11 @@ private static final long serialVersionUID = 0L;
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, conditions_.get(i));
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1337,7 +1318,6 @@ private static final long serialVersionUID = 0L;
       boolean result = true;
       result = result && getConditionsList()
           .equals(other.getConditionsList());
-      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1533,7 +1513,7 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1546,12 +1526,12 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1591,7 +1571,6 @@ private static final long serialVersionUID = 0L;
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1860,12 +1839,12 @@ private static final long serialVersionUID = 0L;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -1933,10 +1912,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
      */
-    boolean hasConditions();
-    /**
-     * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
-     */
     com.google.privacy.dlp.v2beta2.RecordCondition.Conditions getConditions();
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
@@ -1956,7 +1931,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Expressions)
       ExpressionsOrBuilder {
-  private static final long serialVersionUID = 0L;
     // Use Expressions.newBuilder() to construct.
     private Expressions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1968,7 +1942,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Expressions(
         com.google.protobuf.CodedInputStream input,
@@ -1976,8 +1950,6 @@ private static final long serialVersionUID = 0L;
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1987,8 +1959,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
@@ -2021,7 +1992,6 @@ private static final long serialVersionUID = 0L;
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2201,12 +2171,6 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
      */
-    public boolean hasConditions() {
-      return typeCase_ == 3;
-    }
-    /**
-     * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
-     */
     public com.google.privacy.dlp.v2beta2.RecordCondition.Conditions getConditions() {
       if (typeCase_ == 3) {
          return (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_;
@@ -2241,7 +2205,6 @@ private static final long serialVersionUID = 0L;
       if (typeCase_ == 3) {
         output.writeMessage(3, (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2257,11 +2220,11 @@ private static final long serialVersionUID = 0L;
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -2285,7 +2248,6 @@ private static final long serialVersionUID = 0L;
         case 0:
         default:
       }
-      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2483,7 +2445,7 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2496,12 +2458,12 @@ private static final long serialVersionUID = 0L;
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2527,7 +2489,6 @@ private static final long serialVersionUID = 0L;
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2640,12 +2601,6 @@ private static final long serialVersionUID = 0L;
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta2.RecordCondition.Conditions, com.google.privacy.dlp.v2beta2.RecordCondition.Conditions.Builder, com.google.privacy.dlp.v2beta2.RecordCondition.ConditionsOrBuilder> conditionsBuilder_;
-      /**
-       * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
-       */
-      public boolean hasConditions() {
-        return typeCase_ == 3;
-      }
       /**
        * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
        */
@@ -2775,12 +2730,12 @@ private static final long serialVersionUID = 0L;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -2870,7 +2825,6 @@ private static final long serialVersionUID = 0L;
     if (expressions_ != null) {
       output.writeMessage(3, getExpressions());
     }
-    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2882,11 +2836,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getExpressions());
     }
-    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
+  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2903,7 +2857,6 @@ private static final long serialVersionUID = 0L;
       result = result && getExpressions()
           .equals(other.getExpressions());
     }
-    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -3094,7 +3047,7 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -3107,12 +3060,12 @@ private static final long serialVersionUID = 0L;
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
+        int index, Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3129,7 +3082,6 @@ private static final long serialVersionUID = 0L;
       if (other.hasExpressions()) {
         mergeExpressions(other.getExpressions());
       }
-      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3310,12 +3262,12 @@ private static final long serialVersionUID = 0L;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return this;
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+      return this;
     }
 
 

@@ -66,14 +66,6 @@ public interface DlpJobOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskDetails risk_details = 4;</code>
    */
-  boolean hasRiskDetails();
-  /**
-   * <pre>
-   * Results from analyzing risk of a data source.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskDetails risk_details = 4;</code>
-   */
   com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskDetails getRiskDetails();
   /**
    * <pre>
@@ -84,14 +76,6 @@ public interface DlpJobOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.AnalyzeDataSourceRiskDetailsOrBuilder getRiskDetailsOrBuilder();
 
-  /**
-   * <pre>
-   * Results from inspecting a data source.
-   * </pre>
-   *
-   * <code>.google.privacy.dlp.v2beta2.InspectDataSourceDetails inspect_details = 5;</code>
-   */
-  boolean hasInspectDetails();
   /**
    * <pre>
    * Results from inspecting a data source.
