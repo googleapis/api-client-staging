@@ -23,7 +23,7 @@
 namespace Google\Cloud\Tests\Unit\Debugger\V2;
 
 use Google\ApiCore\Testing\MockStubTrait;
-use Google\Devtools\Clouddebugger\V2\Controller2GrpcClient;
+use Google\Cloud\Debugger\V2\Controller2GrpcClient;
 use Google\Protobuf\Any;
 
 class MockController2Impl extends Controller2GrpcClient
