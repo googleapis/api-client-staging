@@ -34,13 +34,13 @@ use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
+use Google\Cloud\Debugger\V2\Breakpoint;
+use Google\Cloud\Debugger\V2\Controller2GrpcClient;
+use Google\Cloud\Debugger\V2\Debuggee;
+use Google\Cloud\Debugger\V2\ListActiveBreakpointsRequest;
+use Google\Cloud\Debugger\V2\RegisterDebuggeeRequest;
+use Google\Cloud\Debugger\V2\UpdateActiveBreakpointRequest;
 use Google\Cloud\Version;
-use Google\Devtools\Clouddebugger\V2\Breakpoint;
-use Google\Devtools\Clouddebugger\V2\Controller2GrpcClient;
-use Google\Devtools\Clouddebugger\V2\Debuggee;
-use Google\Devtools\Clouddebugger\V2\ListActiveBreakpointsRequest;
-use Google\Devtools\Clouddebugger\V2\RegisterDebuggeeRequest;
-use Google\Devtools\Clouddebugger\V2\UpdateActiveBreakpointRequest;
 
 /**
  * Service Description: The Controller service provides the API for orchestrating a collection of
@@ -262,7 +262,7 @@ class Controller2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\RegisterDebuggeeResponse
+     * @return \Google\Cloud\Debugger\V2\RegisterDebuggeeResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -341,7 +341,7 @@ class Controller2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\ListActiveBreakpointsResponse
+     * @return \Google\Cloud\Debugger\V2\ListActiveBreakpointsResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -413,7 +413,7 @@ class Controller2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\UpdateActiveBreakpointResponse
+     * @return \Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental

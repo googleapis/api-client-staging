@@ -34,15 +34,15 @@ use Google\ApiCore\AgentHeaderDescriptor;
 use Google\ApiCore\ApiCallable;
 use Google\ApiCore\CallSettings;
 use Google\ApiCore\GrpcCredentialsHelper;
+use Google\Cloud\Debugger\V2\Breakpoint;
+use Google\Cloud\Debugger\V2\Debugger2GrpcClient;
+use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
+use Google\Cloud\Debugger\V2\GetBreakpointRequest;
+use Google\Cloud\Debugger\V2\ListBreakpointsRequest;
+use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue as BreakpointActionValue;
+use Google\Cloud\Debugger\V2\ListDebuggeesRequest;
+use Google\Cloud\Debugger\V2\SetBreakpointRequest;
 use Google\Cloud\Version;
-use Google\Devtools\Clouddebugger\V2\Breakpoint;
-use Google\Devtools\Clouddebugger\V2\Debugger2GrpcClient;
-use Google\Devtools\Clouddebugger\V2\DeleteBreakpointRequest;
-use Google\Devtools\Clouddebugger\V2\GetBreakpointRequest;
-use Google\Devtools\Clouddebugger\V2\ListBreakpointsRequest;
-use Google\Devtools\Clouddebugger\V2\ListBreakpointsRequest_BreakpointActionValue as BreakpointActionValue;
-use Google\Devtools\Clouddebugger\V2\ListDebuggeesRequest;
-use Google\Devtools\Clouddebugger\V2\SetBreakpointRequest;
 
 /**
  * Service Description: The Debugger service provides the API that allows users to collect run-time
@@ -255,7 +255,7 @@ class Debugger2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\SetBreakpointResponse
+     * @return \Google\Cloud\Debugger\V2\SetBreakpointResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -317,7 +317,7 @@ class Debugger2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\GetBreakpointResponse
+     * @return \Google\Cloud\Debugger\V2\GetBreakpointResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -454,7 +454,7 @@ class Debugger2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\ListBreakpointsResponse
+     * @return \Google\Cloud\Debugger\V2\ListBreakpointsResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
@@ -531,7 +531,7 @@ class Debugger2GapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Devtools\Clouddebugger\V2\ListDebuggeesResponse
+     * @return \Google\Cloud\Debugger\V2\ListDebuggeesResponse
      *
      * @throws \Google\ApiCore\ApiException if the remote call fails
      * @experimental
