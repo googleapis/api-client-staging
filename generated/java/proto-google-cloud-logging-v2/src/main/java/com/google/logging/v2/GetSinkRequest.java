@@ -544,6 +544,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setSinkName(sinkNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setSinkNameWithSinkNameOneof(com.google.logging.v2.SinkNameOneof value) {
       if (value == null) {
         return setSinkName("");
@@ -551,6 +558,13 @@ private static final long serialVersionUID = 0L;
       return setSinkName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SinkNameOneof.parse(protoBuilder.getSinkName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.logging.v2.SinkNameOneof getSinkNameAsSinkNameOneof() {
       java.lang.String str = getSinkName();
       if (str.isEmpty()) {
@@ -561,6 +575,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.logging.v2.GetSinkRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SinkNameOneof.parse(protoObject.getSinkName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.logging.v2.SinkNameOneof getSinkNameAsSinkNameOneof() {
     java.lang.String str = getSinkName();
     if (str.isEmpty()) {

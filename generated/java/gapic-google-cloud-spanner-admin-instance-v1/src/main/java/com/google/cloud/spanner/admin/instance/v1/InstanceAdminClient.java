@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -222,7 +222,7 @@ public class InstanceAdminClient implements BackgroundResource {
    */
   public final ListInstanceConfigsPagedResponse listInstanceConfigs(ProjectName parent) {
     ListInstanceConfigsRequest request =
-        ListInstanceConfigsRequest.newBuilder().setParentWithProjectName(parent).build();
+        ListInstanceConfigsRequest.newBuilder().setParent(parent.toString()).build();
     return listInstanceConfigs(request);
   }
 
@@ -236,7 +236,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstanceConfigsRequest request = ListInstanceConfigsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (InstanceConfig element : instanceAdminClient.listInstanceConfigs(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -262,7 +262,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstanceConfigsRequest request = ListInstanceConfigsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListInstanceConfigsPagedResponse&gt; future = instanceAdminClient.listInstanceConfigsPagedCallable().futureCall(request);
    *   // Do something
@@ -287,7 +287,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstanceConfigsRequest request = ListInstanceConfigsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListInstanceConfigsResponse response = instanceAdminClient.listInstanceConfigsCallable().call(request);
@@ -329,7 +329,7 @@ public class InstanceAdminClient implements BackgroundResource {
   public final InstanceConfig getInstanceConfig(InstanceConfigName name) {
 
     GetInstanceConfigRequest request =
-        GetInstanceConfigRequest.newBuilder().setNameWithInstanceConfigName(name).build();
+        GetInstanceConfigRequest.newBuilder().setName(name.toString()).build();
     return getInstanceConfig(request);
   }
 
@@ -343,7 +343,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
    *   GetInstanceConfigRequest request = GetInstanceConfigRequest.newBuilder()
-   *     .setNameWithInstanceConfigName(name)
+   *     .setName(name.toString())
    *     .build();
    *   InstanceConfig response = instanceAdminClient.getInstanceConfig(request);
    * }
@@ -366,7 +366,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceConfigName name = InstanceConfigName.of("[PROJECT]", "[INSTANCE_CONFIG]");
    *   GetInstanceConfigRequest request = GetInstanceConfigRequest.newBuilder()
-   *     .setNameWithInstanceConfigName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;InstanceConfig&gt; future = instanceAdminClient.getInstanceConfigCallable().futureCall(request);
    *   // Do something
@@ -399,7 +399,7 @@ public class InstanceAdminClient implements BackgroundResource {
    */
   public final ListInstancesPagedResponse listInstances(ProjectName parent) {
     ListInstancesRequest request =
-        ListInstancesRequest.newBuilder().setParentWithProjectName(parent).build();
+        ListInstancesRequest.newBuilder().setParent(parent.toString()).build();
     return listInstances(request);
   }
 
@@ -413,7 +413,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstancesRequest request = ListInstancesRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (Instance element : instanceAdminClient.listInstances(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -438,7 +438,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstancesRequest request = ListInstancesRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListInstancesPagedResponse&gt; future = instanceAdminClient.listInstancesPagedCallable().futureCall(request);
    *   // Do something
@@ -463,7 +463,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListInstancesRequest request = ListInstancesRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListInstancesResponse response = instanceAdminClient.listInstancesCallable().call(request);
@@ -503,8 +503,7 @@ public class InstanceAdminClient implements BackgroundResource {
    */
   public final Instance getInstance(InstanceName name) {
 
-    GetInstanceRequest request =
-        GetInstanceRequest.newBuilder().setNameWithInstanceName(name).build();
+    GetInstanceRequest request = GetInstanceRequest.newBuilder().setName(name.toString()).build();
     return getInstance(request);
   }
 
@@ -518,7 +517,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   GetInstanceRequest request = GetInstanceRequest.newBuilder()
-   *     .setNameWithInstanceName(name)
+   *     .setName(name.toString())
    *     .build();
    *   Instance response = instanceAdminClient.getInstance(request);
    * }
@@ -541,7 +540,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   GetInstanceRequest request = GetInstanceRequest.newBuilder()
-   *     .setNameWithInstanceName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Instance&gt; future = instanceAdminClient.getInstanceCallable().futureCall(request);
    *   // Do something
@@ -609,8 +608,8 @@ public class InstanceAdminClient implements BackgroundResource {
 
     CreateInstanceRequest request =
         CreateInstanceRequest.newBuilder()
-            .setParentWithProjectName(parent)
-            .setInstanceIdWithInstanceName(instanceId)
+            .setParent(parent.toString())
+            .setInstanceId(instanceId.toString())
             .setInstance(instance)
             .build();
     return createInstanceAsync(request);
@@ -656,8 +655,8 @@ public class InstanceAdminClient implements BackgroundResource {
    *   InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   Instance instance = Instance.newBuilder().build();
    *   CreateInstanceRequest request = CreateInstanceRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
-   *     .setInstanceIdWithInstanceName(instanceId)
+   *     .setParent(parent.toString())
+   *     .setInstanceId(instanceId.toString())
    *     .setInstance(instance)
    *     .build();
    *   Instance response = instanceAdminClient.createInstanceAsync(request).get();
@@ -712,8 +711,8 @@ public class InstanceAdminClient implements BackgroundResource {
    *   InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   Instance instance = Instance.newBuilder().build();
    *   CreateInstanceRequest request = CreateInstanceRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
-   *     .setInstanceIdWithInstanceName(instanceId)
+   *     .setParent(parent.toString())
+   *     .setInstanceId(instanceId.toString())
    *     .setInstance(instance)
    *     .build();
    *   OperationFuture&lt;Operation&gt; future = instanceAdminClient.createInstanceOperationCallable().futureCall(request);
@@ -767,8 +766,8 @@ public class InstanceAdminClient implements BackgroundResource {
    *   InstanceName instanceId = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   Instance instance = Instance.newBuilder().build();
    *   CreateInstanceRequest request = CreateInstanceRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
-   *     .setInstanceIdWithInstanceName(instanceId)
+   *     .setParent(parent.toString())
+   *     .setInstanceId(instanceId.toString())
    *     .setInstance(instance)
    *     .build();
    *   ApiFuture&lt;Operation&gt; future = instanceAdminClient.createInstanceCallable().futureCall(request);
@@ -1045,7 +1044,7 @@ public class InstanceAdminClient implements BackgroundResource {
   public final void deleteInstance(InstanceName name) {
 
     DeleteInstanceRequest request =
-        DeleteInstanceRequest.newBuilder().setNameWithInstanceName(name).build();
+        DeleteInstanceRequest.newBuilder().setName(name.toString()).build();
     deleteInstance(request);
   }
 
@@ -1068,7 +1067,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   DeleteInstanceRequest request = DeleteInstanceRequest.newBuilder()
-   *     .setNameWithInstanceName(name)
+   *     .setName(name.toString())
    *     .build();
    *   instanceAdminClient.deleteInstance(request);
    * }
@@ -1100,7 +1099,7 @@ public class InstanceAdminClient implements BackgroundResource {
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
    *   InstanceName name = InstanceName.of("[PROJECT]", "[INSTANCE]");
    *   DeleteInstanceRequest request = DeleteInstanceRequest.newBuilder()
-   *     .setNameWithInstanceName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = instanceAdminClient.deleteInstanceCallable().futureCall(request);
    *   // Do something
@@ -1123,7 +1122,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   Policy policy = Policy.newBuilder().build();
    *   Policy response = instanceAdminClient.setIamPolicy(formattedResource, policy);
    * }
@@ -1155,7 +1154,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   Policy policy = Policy.newBuilder().build();
    *   SetIamPolicyRequest request = SetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
@@ -1183,7 +1182,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   Policy policy = Policy.newBuilder().build();
    *   SetIamPolicyRequest request = SetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
@@ -1211,7 +1210,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   Policy response = instanceAdminClient.getIamPolicy(formattedResource);
    * }
    * </code></pre>
@@ -1239,7 +1238,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
    *     .build();
@@ -1266,7 +1265,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   GetIamPolicyRequest request = GetIamPolicyRequest.newBuilder()
    *     .setResource(formattedResource)
    *     .build();
@@ -1292,7 +1291,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsResponse response = instanceAdminClient.testIamPermissions(formattedResource, permissions);
    * }
@@ -1329,7 +1328,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsRequest request = TestIamPermissionsRequest.newBuilder()
    *     .setResource(formattedResource)
@@ -1358,7 +1357,7 @@ public class InstanceAdminClient implements BackgroundResource {
    *
    * <pre><code>
    * try (InstanceAdminClient instanceAdminClient = InstanceAdminClient.create()) {
-   *   String formattedResource = InstanceName.of("[PROJECT]", "[INSTANCE]").toString();
+   *   String formattedResource = InstanceName.format("[PROJECT]", "[INSTANCE]");
    *   List&lt;String&gt; permissions = new ArrayList&lt;&gt;();
    *   TestIamPermissionsRequest request = TestIamPermissionsRequest.newBuilder()
    *     .setResource(formattedResource)

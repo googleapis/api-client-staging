@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class DatabaseRootName implements ResourceName {
     return of(project, database);
   }
 
+  public static String format(String project, String database) {
+    return newBuilder()
+      .setProject(project)
+      .setDatabase(database)
+      .build()
+      .toString();
+  }
+
   public static DatabaseRootName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "DatabaseRootName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("database"));
+  }
+
+  public static List<DatabaseRootName> parseList(List<String> formattedStrings) {
+    List<DatabaseRootName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<DatabaseRootName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (DatabaseRootName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

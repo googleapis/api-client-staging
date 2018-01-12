@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -74,10 +76,42 @@ public class LocationTransferConfigName implements ResourceName {
     return of(project, location, transferConfig);
   }
 
+  public static String format(String project, String location, String transferConfig) {
+    return newBuilder()
+      .setProject(project)
+      .setLocation(location)
+      .setTransferConfig(transferConfig)
+      .build()
+      .toString();
+  }
+
   public static LocationTransferConfigName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "LocationTransferConfigName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("location"), matchMap.get("transfer_config"));
+  }
+
+  public static List<LocationTransferConfigName> parseList(List<String> formattedStrings) {
+    List<LocationTransferConfigName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<LocationTransferConfigName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (LocationTransferConfigName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

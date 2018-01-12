@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteLogRequest actualRequest = (DeleteLogRequest) actualRequests.get(0);
 
-    Assert.assertEquals(logName, actualRequest.getLogNameAsLogNameOneof());
+    Assert.assertEquals(logName, LogNameOneof.parse(actualRequest.getLogName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -156,7 +156,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     WriteLogEntriesRequest actualRequest = (WriteLogEntriesRequest) actualRequests.get(0);
 
-    Assert.assertEquals(logName, actualRequest.getLogNameAsLogNameOneof());
+    Assert.assertEquals(logName, LogNameOneof.parse(actualRequest.getLogName()));
     Assert.assertEquals(resource, actualRequest.getResource());
     Assert.assertEquals(labels, actualRequest.getLabelsMap());
     Assert.assertEquals(entries, actualRequest.getEntriesList());
@@ -265,7 +265,7 @@ public class LoggingClientTest {
     Assert.assertEquals(1, actualRequests.size());
     ListLogsRequest actualRequest = (ListLogsRequest) actualRequests.get(0);
 
-    Assert.assertEquals(parent, actualRequest.getParentAsParentNameOneof());
+    Assert.assertEquals(parent, ParentNameOneof.parse(actualRequest.getParent()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),

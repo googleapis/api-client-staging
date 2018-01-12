@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -181,7 +181,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
 
     ReportErrorEventRequest request =
         ReportErrorEventRequest.newBuilder()
-            .setProjectNameWithProjectName(projectName)
+            .setProjectName(projectName.toString())
             .setEvent(event)
             .build();
     return reportErrorEvent(request);
@@ -205,7 +205,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
    *   ReportErrorEventRequest request = ReportErrorEventRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setEvent(event)
    *     .build();
    *   ReportErrorEventResponse response = reportErrorsServiceClient.reportErrorEvent(request);
@@ -237,7 +237,7 @@ public class ReportErrorsServiceClient implements BackgroundResource {
    *   ProjectName projectName = ProjectName.of("[PROJECT]");
    *   ReportedErrorEvent event = ReportedErrorEvent.newBuilder().build();
    *   ReportErrorEventRequest request = ReportErrorEventRequest.newBuilder()
-   *     .setProjectNameWithProjectName(projectName)
+   *     .setProjectName(projectName.toString())
    *     .setEvent(event)
    *     .build();
    *   ApiFuture&lt;ReportErrorEventResponse&gt; future = reportErrorsServiceClient.reportErrorEventCallable().futureCall(request);

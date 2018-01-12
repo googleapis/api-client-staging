@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class GroupName implements ResourceName {
     return of(project, group);
   }
 
+  public static String format(String project, String group) {
+    return newBuilder()
+      .setProject(project)
+      .setGroup(group)
+      .build()
+      .toString();
+  }
+
   public static GroupName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "GroupName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("group"));
+  }
+
+  public static List<GroupName> parseList(List<String> formattedStrings) {
+    List<GroupName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<GroupName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (GroupName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

@@ -533,6 +533,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(snapshotName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithSnapshotName(com.google.bigtable.admin.v2.SnapshotName value) {
       if (value == null) {
         return setName("");
@@ -540,6 +547,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SnapshotName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -550,6 +564,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.bigtable.admin.v2.DeleteSnapshotRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SnapshotName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.bigtable.admin.v2.SnapshotName getNameAsSnapshotName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -172,7 +172,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
   public final ErrorGroup getGroup(GroupName groupName) {
 
     GetGroupRequest request =
-        GetGroupRequest.newBuilder().setGroupNameWithGroupName(groupName).build();
+        GetGroupRequest.newBuilder().setGroupName(groupName.toString()).build();
     return getGroup(request);
   }
 
@@ -186,7 +186,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
    *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
-   *     .setGroupNameWithGroupName(groupName)
+   *     .setGroupName(groupName.toString())
    *     .build();
    *   ErrorGroup response = errorGroupServiceClient.getGroup(request);
    * }
@@ -209,7 +209,7 @@ public class ErrorGroupServiceClient implements BackgroundResource {
    * try (ErrorGroupServiceClient errorGroupServiceClient = ErrorGroupServiceClient.create()) {
    *   GroupName groupName = GroupName.of("[PROJECT]", "[GROUP]");
    *   GetGroupRequest request = GetGroupRequest.newBuilder()
-   *     .setGroupNameWithGroupName(groupName)
+   *     .setGroupName(groupName.toString())
    *     .build();
    *   ApiFuture&lt;ErrorGroup&gt; future = errorGroupServiceClient.getGroupCallable().futureCall(request);
    *   // Do something

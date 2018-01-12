@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,7 +112,7 @@ public class SessionsClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DetectIntentRequest actualRequest = (DetectIntentRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(queryInput, actualRequest.getQueryInput());
     Assert.assertTrue(
         channelProvider.isHeaderSent(

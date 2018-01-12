@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ public class SpannerClientTest {
   @SuppressWarnings("all")
   public void createSessionTest() {
     SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-    Session expectedResponse = Session.newBuilder().setNameWithSessionName(name).build();
+    Session expectedResponse = Session.newBuilder().setName(name.toString()).build();
     mockSpanner.addResponse(expectedResponse);
 
     DatabaseName database = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]");
@@ -116,7 +116,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CreateSessionRequest actualRequest = (CreateSessionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(database, actualRequest.getDatabaseAsDatabaseName());
+    Assert.assertEquals(database, DatabaseName.parse(actualRequest.getDatabase()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -143,7 +143,7 @@ public class SpannerClientTest {
   @SuppressWarnings("all")
   public void getSessionTest() {
     SessionName name2 = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-    Session expectedResponse = Session.newBuilder().setNameWithSessionName(name2).build();
+    Session expectedResponse = Session.newBuilder().setName(name2.toString()).build();
     mockSpanner.addResponse(expectedResponse);
 
     SessionName name = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
@@ -155,7 +155,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     GetSessionRequest actualRequest = (GetSessionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsSessionName());
+    Assert.assertEquals(name, SessionName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -191,7 +191,7 @@ public class SpannerClientTest {
             .build();
     mockSpanner.addResponse(expectedResponse);
 
-    String formattedDatabase = DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+    String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
     ListSessionsPagedResponse pagedListResponse = client.listSessions(formattedDatabase);
 
@@ -217,8 +217,7 @@ public class SpannerClientTest {
     mockSpanner.addException(exception);
 
     try {
-      String formattedDatabase =
-          DatabaseName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]").toString();
+      String formattedDatabase = DatabaseName.format("[PROJECT]", "[INSTANCE]", "[DATABASE]");
 
       client.listSessions(formattedDatabase);
       Assert.fail("No exception raised");
@@ -241,7 +240,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     DeleteSessionRequest actualRequest = (DeleteSessionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(name, actualRequest.getNameAsSessionName());
+    Assert.assertEquals(name, SessionName.parse(actualRequest.getName()));
     Assert.assertTrue(
         channelProvider.isHeaderSent(
             ApiClientHeaderProvider.getDefaultApiClientHeaderKey(),
@@ -278,7 +277,7 @@ public class SpannerClientTest {
     SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String sql = "sql114126";
     ExecuteSqlRequest request =
-        ExecuteSqlRequest.newBuilder().setSessionWithSessionName(session).setSql(sql).build();
+        ExecuteSqlRequest.newBuilder().setSession(session.toString()).setSql(sql).build();
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
@@ -299,7 +298,7 @@ public class SpannerClientTest {
     SessionName session = SessionName.of("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
     String sql = "sql114126";
     ExecuteSqlRequest request =
-        ExecuteSqlRequest.newBuilder().setSessionWithSessionName(session).setSql(sql).build();
+        ExecuteSqlRequest.newBuilder().setSession(session.toString()).setSql(sql).build();
 
     MockStreamObserver<PartialResultSet> responseObserver = new MockStreamObserver<>();
 
@@ -334,7 +333,7 @@ public class SpannerClientTest {
     KeySet keySet = KeySet.newBuilder().build();
     ReadRequest request =
         ReadRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setTable(table)
             .addAllColumns(columns)
             .setKeySet(keySet)
@@ -362,7 +361,7 @@ public class SpannerClientTest {
     KeySet keySet = KeySet.newBuilder().build();
     ReadRequest request =
         ReadRequest.newBuilder()
-            .setSessionWithSessionName(session)
+            .setSession(session.toString())
             .setTable(table)
             .addAllColumns(columns)
             .setKeySet(keySet)
@@ -401,7 +400,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     BeginTransactionRequest actualRequest = (BeginTransactionRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(options, actualRequest.getOptions());
     Assert.assertTrue(
         channelProvider.isHeaderSent(
@@ -443,7 +442,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CommitRequest actualRequest = (CommitRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(transactionId, actualRequest.getTransactionId());
     Assert.assertEquals(mutations, actualRequest.getMutationsList());
     Assert.assertTrue(
@@ -487,7 +486,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     CommitRequest actualRequest = (CommitRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(singleUseTransaction, actualRequest.getSingleUseTransaction());
     Assert.assertEquals(mutations, actualRequest.getMutationsList());
     Assert.assertTrue(
@@ -529,7 +528,7 @@ public class SpannerClientTest {
     Assert.assertEquals(1, actualRequests.size());
     RollbackRequest actualRequest = (RollbackRequest) actualRequests.get(0);
 
-    Assert.assertEquals(session, actualRequest.getSessionAsSessionName());
+    Assert.assertEquals(session, SessionName.parse(actualRequest.getSession()));
     Assert.assertEquals(transactionId, actualRequest.getTransactionId());
     Assert.assertTrue(
         channelProvider.isHeaderSent(

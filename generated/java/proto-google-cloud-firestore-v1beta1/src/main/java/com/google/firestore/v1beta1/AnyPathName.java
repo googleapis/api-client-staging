@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -81,10 +83,43 @@ public class AnyPathName implements ResourceName {
     return of(project, database, document, anyPath);
   }
 
+  public static String format(String project, String database, String document, String anyPath) {
+    return newBuilder()
+      .setProject(project)
+      .setDatabase(database)
+      .setDocument(document)
+      .setAnyPath(anyPath)
+      .build()
+      .toString();
+  }
+
   public static AnyPathName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "AnyPathName.parse: formattedString not in valid format");
     return of(matchMap.get("project"), matchMap.get("database"), matchMap.get("document"), matchMap.get("any_path"));
+  }
+
+  public static List<AnyPathName> parseList(List<String> formattedStrings) {
+    List<AnyPathName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<AnyPathName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (AnyPathName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {
