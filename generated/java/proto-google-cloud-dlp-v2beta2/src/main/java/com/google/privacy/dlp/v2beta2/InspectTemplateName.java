@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class InspectTemplateName implements ResourceName {
     return of(organization, inspectTemplate);
   }
 
+  public static String format(String organization, String inspectTemplate) {
+    return newBuilder()
+      .setOrganization(organization)
+      .setInspectTemplate(inspectTemplate)
+      .build()
+      .toString();
+  }
+
   public static InspectTemplateName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "InspectTemplateName.parse: formattedString not in valid format");
     return of(matchMap.get("organization"), matchMap.get("inspect_template"));
+  }
+
+  public static List<InspectTemplateName> parseList(List<String> formattedStrings) {
+    List<InspectTemplateName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<InspectTemplateName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (InspectTemplateName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {
