@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -212,7 +212,13 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
-   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
+   *   String inputUri = "gs://demomaker/cat.mp4";
+   *   Feature featuresElement = Feature.LABEL_DETECTION;
+   *   List&lt;Feature&gt; features = Arrays.asList(featuresElement);
+   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder()
+   *     .setInputUri(inputUri)
+   *     .addAllFeatures(features)
+   *     .build();
    *   AnnotateVideoResponse response = videoIntelligenceServiceClient.annotateVideoAsync(request).get();
    * }
    * </code></pre>
@@ -236,7 +242,13 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
-   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
+   *   String inputUri = "gs://demomaker/cat.mp4";
+   *   Feature featuresElement = Feature.LABEL_DETECTION;
+   *   List&lt;Feature&gt; features = Arrays.asList(featuresElement);
+   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder()
+   *     .setInputUri(inputUri)
+   *     .addAllFeatures(features)
+   *     .build();
    *   OperationFuture&lt;Operation&gt; future = videoIntelligenceServiceClient.annotateVideoOperationCallable().futureCall(request);
    *   // Do something
    *   AnnotateVideoResponse response = future.get();
@@ -259,7 +271,13 @@ public class VideoIntelligenceServiceClient implements BackgroundResource {
    *
    * <pre><code>
    * try (VideoIntelligenceServiceClient videoIntelligenceServiceClient = VideoIntelligenceServiceClient.create()) {
-   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder().build();
+   *   String inputUri = "gs://demomaker/cat.mp4";
+   *   Feature featuresElement = Feature.LABEL_DETECTION;
+   *   List&lt;Feature&gt; features = Arrays.asList(featuresElement);
+   *   AnnotateVideoRequest request = AnnotateVideoRequest.newBuilder()
+   *     .setInputUri(inputUri)
+   *     .addAllFeatures(features)
+   *     .build();
    *   ApiFuture&lt;Operation&gt; future = videoIntelligenceServiceClient.annotateVideoCallable().futureCall(request);
    *   // Do something
    *   Operation response = future.get();

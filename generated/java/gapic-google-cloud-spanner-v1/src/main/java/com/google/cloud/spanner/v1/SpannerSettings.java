@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ import com.google.api.gax.rpc.PageContext;
 import com.google.api.gax.rpc.PagedCallSettings;
 import com.google.api.gax.rpc.PagedListDescriptor;
 import com.google.api.gax.rpc.PagedListResponseFactory;
+import com.google.api.gax.rpc.ServerStreamingCallSettings;
 import com.google.api.gax.rpc.StatusCode;
-import com.google.api.gax.rpc.StreamingCallSettings;
 import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
 import com.google.api.gax.rpc.UnaryCallable;
@@ -110,10 +110,10 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
       listSessionsSettings;
   private final UnaryCallSettings<DeleteSessionRequest, Empty> deleteSessionSettings;
   private final UnaryCallSettings<ExecuteSqlRequest, ResultSet> executeSqlSettings;
-  private final StreamingCallSettings<ExecuteSqlRequest, PartialResultSet>
+  private final ServerStreamingCallSettings<ExecuteSqlRequest, PartialResultSet>
       executeStreamingSqlSettings;
   private final UnaryCallSettings<ReadRequest, ResultSet> readSettings;
-  private final StreamingCallSettings<ReadRequest, PartialResultSet> streamingReadSettings;
+  private final ServerStreamingCallSettings<ReadRequest, PartialResultSet> streamingReadSettings;
   private final UnaryCallSettings<BeginTransactionRequest, Transaction> beginTransactionSettings;
   private final UnaryCallSettings<CommitRequest, CommitResponse> commitSettings;
   private final UnaryCallSettings<RollbackRequest, Empty> rollbackSettings;
@@ -145,7 +145,8 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
   }
 
   /** Returns the object with the settings used for calls to executeStreamingSql. */
-  public StreamingCallSettings<ExecuteSqlRequest, PartialResultSet> executeStreamingSqlSettings() {
+  public ServerStreamingCallSettings<ExecuteSqlRequest, PartialResultSet>
+      executeStreamingSqlSettings() {
     return executeStreamingSqlSettings;
   }
 
@@ -155,7 +156,7 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
   }
 
   /** Returns the object with the settings used for calls to streamingRead. */
-  public StreamingCallSettings<ReadRequest, PartialResultSet> streamingReadSettings() {
+  public ServerStreamingCallSettings<ReadRequest, PartialResultSet> streamingReadSettings() {
     return streamingReadSettings;
   }
 
@@ -316,10 +317,10 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
         listSessionsSettings;
     private final UnaryCallSettings.Builder<DeleteSessionRequest, Empty> deleteSessionSettings;
     private final UnaryCallSettings.Builder<ExecuteSqlRequest, ResultSet> executeSqlSettings;
-    private final StreamingCallSettings.Builder<ExecuteSqlRequest, PartialResultSet>
+    private final ServerStreamingCallSettings.Builder<ExecuteSqlRequest, PartialResultSet>
         executeStreamingSqlSettings;
     private final UnaryCallSettings.Builder<ReadRequest, ResultSet> readSettings;
-    private final StreamingCallSettings.Builder<ReadRequest, PartialResultSet>
+    private final ServerStreamingCallSettings.Builder<ReadRequest, PartialResultSet>
         streamingReadSettings;
     private final UnaryCallSettings.Builder<BeginTransactionRequest, Transaction>
         beginTransactionSettings;
@@ -391,11 +392,11 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
 
       executeSqlSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      executeStreamingSqlSettings = StreamingCallSettings.newBuilder();
+      executeStreamingSqlSettings = ServerStreamingCallSettings.newBuilder();
 
       readSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      streamingReadSettings = StreamingCallSettings.newBuilder();
+      streamingReadSettings = ServerStreamingCallSettings.newBuilder();
 
       beginTransactionSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
@@ -544,7 +545,7 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
     }
 
     /** Returns the builder for the settings used for calls to executeStreamingSql. */
-    public StreamingCallSettings.Builder<ExecuteSqlRequest, PartialResultSet>
+    public ServerStreamingCallSettings.Builder<ExecuteSqlRequest, PartialResultSet>
         executeStreamingSqlSettings() {
       return executeStreamingSqlSettings;
     }
@@ -555,7 +556,8 @@ public class SpannerSettings extends ClientSettings<SpannerSettings> {
     }
 
     /** Returns the builder for the settings used for calls to streamingRead. */
-    public StreamingCallSettings.Builder<ReadRequest, PartialResultSet> streamingReadSettings() {
+    public ServerStreamingCallSettings.Builder<ReadRequest, PartialResultSet>
+        streamingReadSettings() {
       return streamingReadSettings;
     }
 

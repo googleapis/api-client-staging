@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -346,9 +346,20 @@ public class DlpServiceClient implements BackgroundResource {
    *     .setValue(value)
    *     .build();
    *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+   *   String name2 = "EMAIL_ADDRESS";
+   *   InfoType infoType = InfoType.newBuilder()
+   *     .setName(name2)
+   *     .build();
+   *   String replaceWith = "REDACTED";
+   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
+   *     .setInfoType(infoType)
+   *     .setReplaceWith(replaceWith)
+   *     .build();
+   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
+   *     .addAllReplaceConfigs(replaceConfigs)
    *     .build();
    *   RedactContentResponse response = dlpServiceClient.redactContent(request);
    * }
@@ -385,9 +396,20 @@ public class DlpServiceClient implements BackgroundResource {
    *     .setValue(value)
    *     .build();
    *   List&lt;ContentItem&gt; items = Arrays.asList(itemsElement);
+   *   String name2 = "EMAIL_ADDRESS";
+   *   InfoType infoType = InfoType.newBuilder()
+   *     .setName(name2)
+   *     .build();
+   *   String replaceWith = "REDACTED";
+   *   RedactContentRequest.ReplaceConfig replaceConfigsElement = RedactContentRequest.ReplaceConfig.newBuilder()
+   *     .setInfoType(infoType)
+   *     .setReplaceWith(replaceWith)
+   *     .build();
+   *   List&lt;RedactContentRequest.ReplaceConfig&gt; replaceConfigs = Arrays.asList(replaceConfigsElement);
    *   RedactContentRequest request = RedactContentRequest.newBuilder()
    *     .setInspectConfig(inspectConfig)
    *     .addAllItems(items)
+   *     .addAllReplaceConfigs(replaceConfigs)
    *     .build();
    *   ApiFuture&lt;RedactContentResponse&gt; future = dlpServiceClient.redactContentCallable().futureCall(request);
    *   // Do something
