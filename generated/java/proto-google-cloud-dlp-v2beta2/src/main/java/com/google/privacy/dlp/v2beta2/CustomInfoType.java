@@ -15,6 +15,7 @@ public  final class CustomInfoType extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.CustomInfoType)
     CustomInfoTypeOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use CustomInfoType.newBuilder() to construct.
   private CustomInfoType(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -25,7 +26,7 @@ public  final class CustomInfoType extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private CustomInfoType(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +34,8 @@ public  final class CustomInfoType extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +45,8 @@ public  final class CustomInfoType extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -96,6 +100,7 @@ public  final class CustomInfoType extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -115,6 +120,14 @@ public  final class CustomInfoType extends
       // @@protoc_insertion_point(interface_extends:google.privacy.dlp.v2beta2.CustomInfoType.Dictionary)
       com.google.protobuf.MessageOrBuilder {
 
+    /**
+     * <pre>
+     * List of words or phrases to search for.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
+     */
+    boolean hasWordList();
     /**
      * <pre>
      * List of words or phrases to search for.
@@ -161,6 +174,7 @@ public  final class CustomInfoType extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.CustomInfoType.Dictionary)
       DictionaryOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Dictionary.newBuilder() to construct.
     private Dictionary(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -171,7 +185,7 @@ public  final class CustomInfoType extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Dictionary(
         com.google.protobuf.CodedInputStream input,
@@ -179,6 +193,8 @@ public  final class CustomInfoType extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -188,7 +204,8 @@ public  final class CustomInfoType extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -215,6 +232,7 @@ public  final class CustomInfoType extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -288,6 +306,7 @@ public  final class CustomInfoType extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList)
         WordListOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use WordList.newBuilder() to construct.
       private WordList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -299,7 +318,7 @@ public  final class CustomInfoType extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private WordList(
           com.google.protobuf.CodedInputStream input,
@@ -307,6 +326,8 @@ public  final class CustomInfoType extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -316,7 +337,8 @@ public  final class CustomInfoType extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -341,6 +363,7 @@ public  final class CustomInfoType extends
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             words_ = words_.getUnmodifiableView();
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -424,6 +447,7 @@ public  final class CustomInfoType extends
         for (int i = 0; i < words_.size(); i++) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, words_.getRaw(i));
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -439,11 +463,11 @@ public  final class CustomInfoType extends
           size += dataSize;
           size += 1 * getWordsList().size();
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -457,6 +481,7 @@ public  final class CustomInfoType extends
         boolean result = true;
         result = result && getWordsList()
             .equals(other.getWordsList());
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -643,7 +668,7 @@ public  final class CustomInfoType extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -656,12 +681,12 @@ public  final class CustomInfoType extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -685,6 +710,7 @@ public  final class CustomInfoType extends
             }
             onChanged();
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -861,12 +887,12 @@ public  final class CustomInfoType extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -952,6 +978,16 @@ public  final class CustomInfoType extends
      *
      * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
      */
+    public boolean hasWordList() {
+      return sourceCase_ == 1;
+    }
+    /**
+     * <pre>
+     * List of words or phrases to search for.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
+     */
     public com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList getWordList() {
       if (sourceCase_ == 1) {
          return (com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList) source_;
@@ -987,6 +1023,7 @@ public  final class CustomInfoType extends
       if (sourceCase_ == 1) {
         output.writeMessage(1, (com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList) source_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -998,11 +1035,11 @@ public  final class CustomInfoType extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, (com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList) source_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1025,6 +1062,7 @@ public  final class CustomInfoType extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1233,7 +1271,7 @@ public  final class CustomInfoType extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1246,12 +1284,12 @@ public  final class CustomInfoType extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1274,6 +1312,7 @@ public  final class CustomInfoType extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1317,6 +1356,16 @@ public  final class CustomInfoType extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList, com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList.Builder, com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordListOrBuilder> wordListBuilder_;
+      /**
+       * <pre>
+       * List of words or phrases to search for.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
+       */
+      public boolean hasWordList() {
+        return sourceCase_ == 1;
+      }
       /**
        * <pre>
        * List of words or phrases to search for.
@@ -1478,12 +1527,12 @@ public  final class CustomInfoType extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1547,6 +1596,7 @@ public  final class CustomInfoType extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType)
       SurrogateTypeOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use SurrogateType.newBuilder() to construct.
     private SurrogateType(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1557,13 +1607,15 @@ public  final class CustomInfoType extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private SurrogateType(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1573,7 +1625,8 @@ public  final class CustomInfoType extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1586,6 +1639,7 @@ public  final class CustomInfoType extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1613,6 +1667,7 @@ public  final class CustomInfoType extends
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1620,11 +1675,11 @@ public  final class CustomInfoType extends
       if (size != -1) return size;
 
       size = 0;
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1636,6 +1691,7 @@ public  final class CustomInfoType extends
       com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType other = (com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType) obj;
 
       boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1817,7 +1873,7 @@ public  final class CustomInfoType extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1830,12 +1886,12 @@ public  final class CustomInfoType extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1849,6 +1905,7 @@ public  final class CustomInfoType extends
 
       public Builder mergeFrom(com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType other) {
         if (other == com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1876,12 +1933,12 @@ public  final class CustomInfoType extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2005,6 +2062,16 @@ public  final class CustomInfoType extends
    *
    * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
    */
+  public boolean hasDictionary() {
+    return typeCase_ == 2;
+  }
+  /**
+   * <pre>
+   * Dictionary-based custom info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
+   */
   public com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary getDictionary() {
     if (typeCase_ == 2) {
        return (com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary) type_;
@@ -2026,6 +2093,16 @@ public  final class CustomInfoType extends
   }
 
   public static final int SURROGATE_TYPE_FIELD_NUMBER = 4;
+  /**
+   * <pre>
+   * Surrogate info type.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
+   */
+  public boolean hasSurrogateType() {
+    return typeCase_ == 4;
+  }
   /**
    * <pre>
    * Surrogate info type.
@@ -2074,6 +2151,7 @@ public  final class CustomInfoType extends
     if (typeCase_ == 4) {
       output.writeMessage(4, (com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType) type_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2093,11 +2171,11 @@ public  final class CustomInfoType extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType) type_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2129,6 +2207,7 @@ public  final class CustomInfoType extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -2348,7 +2427,7 @@ public  final class CustomInfoType extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -2361,12 +2440,12 @@ public  final class CustomInfoType extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2396,6 +2475,7 @@ public  final class CustomInfoType extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -2608,6 +2688,16 @@ public  final class CustomInfoType extends
      *
      * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
      */
+    public boolean hasDictionary() {
+      return typeCase_ == 2;
+    }
+    /**
+     * <pre>
+     * Dictionary-based custom info type.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary dictionary = 2;</code>
+     */
     public com.google.privacy.dlp.v2beta2.CustomInfoType.Dictionary getDictionary() {
       if (dictionaryBuilder_ == null) {
         if (typeCase_ == 2) {
@@ -2770,6 +2860,16 @@ public  final class CustomInfoType extends
      *
      * <code>.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
      */
+    public boolean hasSurrogateType() {
+      return typeCase_ == 4;
+    }
+    /**
+     * <pre>
+     * Surrogate info type.
+     * </pre>
+     *
+     * <code>.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
+     */
     public com.google.privacy.dlp.v2beta2.CustomInfoType.SurrogateType getSurrogateType() {
       if (surrogateTypeBuilder_ == null) {
         if (typeCase_ == 4) {
@@ -2924,12 +3024,12 @@ public  final class CustomInfoType extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

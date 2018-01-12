@@ -15,6 +15,7 @@ public  final class RecordCondition extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition)
     RecordConditionOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use RecordCondition.newBuilder() to construct.
   private RecordCondition(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -25,7 +26,7 @@ public  final class RecordCondition extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private RecordCondition(
       com.google.protobuf.CodedInputStream input,
@@ -33,6 +34,8 @@ public  final class RecordCondition extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -42,7 +45,8 @@ public  final class RecordCondition extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -68,6 +72,7 @@ public  final class RecordCondition extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -179,6 +184,7 @@ public  final class RecordCondition extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Condition)
       ConditionOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Condition.newBuilder() to construct.
     private Condition(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -190,7 +196,7 @@ public  final class RecordCondition extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Condition(
         com.google.protobuf.CodedInputStream input,
@@ -198,6 +204,8 @@ public  final class RecordCondition extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -207,7 +215,8 @@ public  final class RecordCondition extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -252,6 +261,7 @@ public  final class RecordCondition extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -378,6 +388,7 @@ public  final class RecordCondition extends
       if (value_ != null) {
         output.writeMessage(4, getValue());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -397,11 +408,11 @@ public  final class RecordCondition extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getValue());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -424,6 +435,7 @@ public  final class RecordCondition extends
         result = result && getValue()
             .equals(other.getValue());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -647,7 +659,7 @@ public  final class RecordCondition extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -660,12 +672,12 @@ public  final class RecordCondition extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -688,6 +700,7 @@ public  final class RecordCondition extends
         if (other.hasValue()) {
           mergeValue(other.getValue());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1085,12 +1098,12 @@ public  final class RecordCondition extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1171,6 +1184,7 @@ public  final class RecordCondition extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Conditions)
       ConditionsOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Conditions.newBuilder() to construct.
     private Conditions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1182,7 +1196,7 @@ public  final class RecordCondition extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Conditions(
         com.google.protobuf.CodedInputStream input,
@@ -1190,6 +1204,8 @@ public  final class RecordCondition extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1199,7 +1215,8 @@ public  final class RecordCondition extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1224,6 +1241,7 @@ public  final class RecordCondition extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           conditions_ = java.util.Collections.unmodifiableList(conditions_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1289,6 +1307,7 @@ public  final class RecordCondition extends
       for (int i = 0; i < conditions_.size(); i++) {
         output.writeMessage(1, conditions_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1300,11 +1319,11 @@ public  final class RecordCondition extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, conditions_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1318,6 +1337,7 @@ public  final class RecordCondition extends
       boolean result = true;
       result = result && getConditionsList()
           .equals(other.getConditionsList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1513,7 +1533,7 @@ public  final class RecordCondition extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1526,12 +1546,12 @@ public  final class RecordCondition extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1571,6 +1591,7 @@ public  final class RecordCondition extends
             }
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1839,12 +1860,12 @@ public  final class RecordCondition extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1912,6 +1933,10 @@ public  final class RecordCondition extends
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
      */
+    boolean hasConditions();
+    /**
+     * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
+     */
     com.google.privacy.dlp.v2beta2.RecordCondition.Conditions getConditions();
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
@@ -1931,6 +1956,7 @@ public  final class RecordCondition extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordCondition.Expressions)
       ExpressionsOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use Expressions.newBuilder() to construct.
     private Expressions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1942,7 +1968,7 @@ public  final class RecordCondition extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private Expressions(
         com.google.protobuf.CodedInputStream input,
@@ -1950,6 +1976,8 @@ public  final class RecordCondition extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1959,7 +1987,8 @@ public  final class RecordCondition extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1992,6 +2021,7 @@ public  final class RecordCondition extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -2171,6 +2201,12 @@ public  final class RecordCondition extends
     /**
      * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
      */
+    public boolean hasConditions() {
+      return typeCase_ == 3;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
+     */
     public com.google.privacy.dlp.v2beta2.RecordCondition.Conditions getConditions() {
       if (typeCase_ == 3) {
          return (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_;
@@ -2205,6 +2241,7 @@ public  final class RecordCondition extends
       if (typeCase_ == 3) {
         output.writeMessage(3, (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_);
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -2220,11 +2257,11 @@ public  final class RecordCondition extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (com.google.privacy.dlp.v2beta2.RecordCondition.Conditions) type_);
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -2248,6 +2285,7 @@ public  final class RecordCondition extends
         case 0:
         default:
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2445,7 +2483,7 @@ public  final class RecordCondition extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2458,12 +2496,12 @@ public  final class RecordCondition extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2489,6 +2527,7 @@ public  final class RecordCondition extends
             break;
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2601,6 +2640,12 @@ public  final class RecordCondition extends
 
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.privacy.dlp.v2beta2.RecordCondition.Conditions, com.google.privacy.dlp.v2beta2.RecordCondition.Conditions.Builder, com.google.privacy.dlp.v2beta2.RecordCondition.ConditionsOrBuilder> conditionsBuilder_;
+      /**
+       * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
+       */
+      public boolean hasConditions() {
+        return typeCase_ == 3;
+      }
       /**
        * <code>.google.privacy.dlp.v2beta2.RecordCondition.Conditions conditions = 3;</code>
        */
@@ -2730,12 +2775,12 @@ public  final class RecordCondition extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2825,6 +2870,7 @@ public  final class RecordCondition extends
     if (expressions_ != null) {
       output.writeMessage(3, getExpressions());
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -2836,11 +2882,11 @@ public  final class RecordCondition extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getExpressions());
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -2857,6 +2903,7 @@ public  final class RecordCondition extends
       result = result && getExpressions()
           .equals(other.getExpressions());
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -3047,7 +3094,7 @@ public  final class RecordCondition extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -3060,12 +3107,12 @@ public  final class RecordCondition extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3082,6 +3129,7 @@ public  final class RecordCondition extends
       if (other.hasExpressions()) {
         mergeExpressions(other.getExpressions());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -3262,12 +3310,12 @@ public  final class RecordCondition extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

@@ -10,12 +10,20 @@ public interface PrivacyMetricOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
    */
+  boolean hasNumericalStatsConfig();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
+   */
   com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig getNumericalStatsConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
    */
   com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfigOrBuilder getNumericalStatsConfigOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
+   */
+  boolean hasCategoricalStatsConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
    */
@@ -28,6 +36,10 @@ public interface PrivacyMetricOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
    */
+  boolean hasKAnonymityConfig();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
+   */
   com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig getKAnonymityConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
@@ -37,12 +49,20 @@ public interface PrivacyMetricOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
    */
+  boolean hasLDiversityConfig();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
+   */
   com.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig getLDiversityConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
    */
   com.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfigOrBuilder getLDiversityConfigOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
+   */
+  boolean hasKMapEstimationConfig();
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
    */

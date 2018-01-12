@@ -14,6 +14,7 @@ public  final class PrivacyMetric extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric)
     PrivacyMetricOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use PrivacyMetric.newBuilder() to construct.
   private PrivacyMetric(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -24,7 +25,7 @@ public  final class PrivacyMetric extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private PrivacyMetric(
       com.google.protobuf.CodedInputStream input,
@@ -32,6 +33,8 @@ public  final class PrivacyMetric extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -41,7 +44,8 @@ public  final class PrivacyMetric extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -124,6 +128,7 @@ public  final class PrivacyMetric extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -183,6 +188,7 @@ public  final class PrivacyMetric extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig)
       NumericalStatsConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use NumericalStatsConfig.newBuilder() to construct.
     private NumericalStatsConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -193,7 +199,7 @@ public  final class PrivacyMetric extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private NumericalStatsConfig(
         com.google.protobuf.CodedInputStream input,
@@ -201,6 +207,8 @@ public  final class PrivacyMetric extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -210,7 +218,8 @@ public  final class PrivacyMetric extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -236,6 +245,7 @@ public  final class PrivacyMetric extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -302,6 +312,7 @@ public  final class PrivacyMetric extends
       if (field_ != null) {
         output.writeMessage(1, getField());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -313,11 +324,11 @@ public  final class PrivacyMetric extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getField());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -334,6 +345,7 @@ public  final class PrivacyMetric extends
         result = result && getField()
             .equals(other.getField());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -524,7 +536,7 @@ public  final class PrivacyMetric extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -537,12 +549,12 @@ public  final class PrivacyMetric extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -559,6 +571,7 @@ public  final class PrivacyMetric extends
         if (other.hasField()) {
           mergeField(other.getField());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -748,12 +761,12 @@ public  final class PrivacyMetric extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -845,6 +858,7 @@ public  final class PrivacyMetric extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig)
       CategoricalStatsConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use CategoricalStatsConfig.newBuilder() to construct.
     private CategoricalStatsConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -855,7 +869,7 @@ public  final class PrivacyMetric extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private CategoricalStatsConfig(
         com.google.protobuf.CodedInputStream input,
@@ -863,6 +877,8 @@ public  final class PrivacyMetric extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -872,7 +888,8 @@ public  final class PrivacyMetric extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -898,6 +915,7 @@ public  final class PrivacyMetric extends
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -970,6 +988,7 @@ public  final class PrivacyMetric extends
       if (field_ != null) {
         output.writeMessage(1, getField());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -981,11 +1000,11 @@ public  final class PrivacyMetric extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getField());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1002,6 +1021,7 @@ public  final class PrivacyMetric extends
         result = result && getField()
             .equals(other.getField());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1192,7 +1212,7 @@ public  final class PrivacyMetric extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1205,12 +1225,12 @@ public  final class PrivacyMetric extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1227,6 +1247,7 @@ public  final class PrivacyMetric extends
         if (other.hasField()) {
           mergeField(other.getField());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -1434,12 +1455,12 @@ public  final class PrivacyMetric extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -1612,6 +1633,7 @@ public  final class PrivacyMetric extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig)
       KAnonymityConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use KAnonymityConfig.newBuilder() to construct.
     private KAnonymityConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1623,7 +1645,7 @@ public  final class PrivacyMetric extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private KAnonymityConfig(
         com.google.protobuf.CodedInputStream input,
@@ -1631,6 +1653,8 @@ public  final class PrivacyMetric extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1640,7 +1664,8 @@ public  final class PrivacyMetric extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1678,6 +1703,7 @@ public  final class PrivacyMetric extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           quasiIds_ = java.util.Collections.unmodifiableList(quasiIds_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -1847,6 +1873,7 @@ public  final class PrivacyMetric extends
       if (entityId_ != null) {
         output.writeMessage(2, getEntityId());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1862,11 +1889,11 @@ public  final class PrivacyMetric extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getEntityId());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -1885,6 +1912,7 @@ public  final class PrivacyMetric extends
         result = result && getEntityId()
             .equals(other.getEntityId());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -2097,7 +2125,7 @@ public  final class PrivacyMetric extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2110,12 +2138,12 @@ public  final class PrivacyMetric extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2158,6 +2186,7 @@ public  final class PrivacyMetric extends
         if (other.hasEntityId()) {
           mergeEntityId(other.getEntityId());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -2804,12 +2833,12 @@ public  final class PrivacyMetric extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -2945,6 +2974,7 @@ public  final class PrivacyMetric extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig)
       LDiversityConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use LDiversityConfig.newBuilder() to construct.
     private LDiversityConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -2956,7 +2986,7 @@ public  final class PrivacyMetric extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private LDiversityConfig(
         com.google.protobuf.CodedInputStream input,
@@ -2964,6 +2994,8 @@ public  final class PrivacyMetric extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -2973,7 +3005,8 @@ public  final class PrivacyMetric extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -3011,6 +3044,7 @@ public  final class PrivacyMetric extends
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           quasiIds_ = java.util.Collections.unmodifiableList(quasiIds_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -3143,6 +3177,7 @@ public  final class PrivacyMetric extends
       if (sensitiveAttribute_ != null) {
         output.writeMessage(2, getSensitiveAttribute());
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -3158,11 +3193,11 @@ public  final class PrivacyMetric extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getSensitiveAttribute());
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -3181,6 +3216,7 @@ public  final class PrivacyMetric extends
         result = result && getSensitiveAttribute()
             .equals(other.getSensitiveAttribute());
       }
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -3393,7 +3429,7 @@ public  final class PrivacyMetric extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -3406,12 +3442,12 @@ public  final class PrivacyMetric extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3454,6 +3490,7 @@ public  final class PrivacyMetric extends
         if (other.hasSensitiveAttribute()) {
           mergeSensitiveAttribute(other.getSensitiveAttribute());
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -3983,12 +4020,12 @@ public  final class PrivacyMetric extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -4175,6 +4212,7 @@ public  final class PrivacyMetric extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig)
       KMapEstimationConfigOrBuilder {
+  private static final long serialVersionUID = 0L;
     // Use KMapEstimationConfig.newBuilder() to construct.
     private KMapEstimationConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -4188,7 +4226,7 @@ public  final class PrivacyMetric extends
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      return this.unknownFields;
     }
     private KMapEstimationConfig(
         com.google.protobuf.CodedInputStream input,
@@ -4196,6 +4234,8 @@ public  final class PrivacyMetric extends
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4205,7 +4245,8 @@ public  final class PrivacyMetric extends
               done = true;
               break;
             default: {
-              if (!input.skipField(tag)) {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -4248,6 +4289,7 @@ public  final class PrivacyMetric extends
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           auxiliaryTables_ = java.util.Collections.unmodifiableList(auxiliaryTables_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -4301,6 +4343,16 @@ public  final class PrivacyMetric extends
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
        */
+      boolean hasInfoType();
+      /**
+       * <pre>
+       * A column can be tagged with a InfoType to use the relevant public
+       * dataset as a statistical model of population, if available. We
+       * currently support US ZIP codes, region codes, ages and genders.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
+       */
       com.google.privacy.dlp.v2beta2.InfoType getInfoType();
       /**
        * <pre>
@@ -4343,6 +4395,15 @@ public  final class PrivacyMetric extends
        *
        * <code>.google.protobuf.Empty inferred = 4;</code>
        */
+      boolean hasInferred();
+      /**
+       * <pre>
+       * If no semantic tag is indicated, we infer the statistical model from
+       * the distribution of values in the input data
+       * </pre>
+       *
+       * <code>.google.protobuf.Empty inferred = 4;</code>
+       */
       com.google.protobuf.Empty getInferred();
       /**
        * <pre>
@@ -4367,6 +4428,7 @@ public  final class PrivacyMetric extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig.TaggedField)
         TaggedFieldOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use TaggedField.newBuilder() to construct.
       private TaggedField(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -4377,7 +4439,7 @@ public  final class PrivacyMetric extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private TaggedField(
           com.google.protobuf.CodedInputStream input,
@@ -4385,6 +4447,8 @@ public  final class PrivacyMetric extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -4394,7 +4458,8 @@ public  final class PrivacyMetric extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -4454,6 +4519,7 @@ public  final class PrivacyMetric extends
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e).setUnfinishedMessage(this);
         } finally {
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -4552,6 +4618,18 @@ public  final class PrivacyMetric extends
        *
        * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
        */
+      public boolean hasInfoType() {
+        return tagCase_ == 2;
+      }
+      /**
+       * <pre>
+       * A column can be tagged with a InfoType to use the relevant public
+       * dataset as a statistical model of population, if available. We
+       * currently support US ZIP codes, region codes, ages and genders.
+       * </pre>
+       *
+       * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
+       */
       public com.google.privacy.dlp.v2beta2.InfoType getInfoType() {
         if (tagCase_ == 2) {
            return (com.google.privacy.dlp.v2beta2.InfoType) tag_;
@@ -4638,6 +4716,17 @@ public  final class PrivacyMetric extends
        *
        * <code>.google.protobuf.Empty inferred = 4;</code>
        */
+      public boolean hasInferred() {
+        return tagCase_ == 4;
+      }
+      /**
+       * <pre>
+       * If no semantic tag is indicated, we infer the statistical model from
+       * the distribution of values in the input data
+       * </pre>
+       *
+       * <code>.google.protobuf.Empty inferred = 4;</code>
+       */
       public com.google.protobuf.Empty getInferred() {
         if (tagCase_ == 4) {
            return (com.google.protobuf.Empty) tag_;
@@ -4683,6 +4772,7 @@ public  final class PrivacyMetric extends
         if (tagCase_ == 4) {
           output.writeMessage(4, (com.google.protobuf.Empty) tag_);
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -4705,11 +4795,11 @@ public  final class PrivacyMetric extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(4, (com.google.protobuf.Empty) tag_);
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -4745,6 +4835,7 @@ public  final class PrivacyMetric extends
           case 0:
           default:
         }
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -4970,7 +5061,7 @@ public  final class PrivacyMetric extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -4983,12 +5074,12 @@ public  final class PrivacyMetric extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5024,6 +5115,7 @@ public  final class PrivacyMetric extends
               break;
             }
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -5220,6 +5312,18 @@ public  final class PrivacyMetric extends
 
         private com.google.protobuf.SingleFieldBuilderV3<
             com.google.privacy.dlp.v2beta2.InfoType, com.google.privacy.dlp.v2beta2.InfoType.Builder, com.google.privacy.dlp.v2beta2.InfoTypeOrBuilder> infoTypeBuilder_;
+        /**
+         * <pre>
+         * A column can be tagged with a InfoType to use the relevant public
+         * dataset as a statistical model of population, if available. We
+         * currently support US ZIP codes, region codes, ages and genders.
+         * </pre>
+         *
+         * <code>.google.privacy.dlp.v2beta2.InfoType info_type = 2;</code>
+         */
+        public boolean hasInfoType() {
+          return tagCase_ == 2;
+        }
         /**
          * <pre>
          * A column can be tagged with a InfoType to use the relevant public
@@ -5516,6 +5620,17 @@ public  final class PrivacyMetric extends
          *
          * <code>.google.protobuf.Empty inferred = 4;</code>
          */
+        public boolean hasInferred() {
+          return tagCase_ == 4;
+        }
+        /**
+         * <pre>
+         * If no semantic tag is indicated, we infer the statistical model from
+         * the distribution of values in the input data
+         * </pre>
+         *
+         * <code>.google.protobuf.Empty inferred = 4;</code>
+         */
         public com.google.protobuf.Empty getInferred() {
           if (inferredBuilder_ == null) {
             if (tagCase_ == 4) {
@@ -5677,12 +5792,12 @@ public  final class PrivacyMetric extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -5845,6 +5960,7 @@ public  final class PrivacyMetric extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable)
         AuxiliaryTableOrBuilder {
+    private static final long serialVersionUID = 0L;
       // Use AuxiliaryTable.newBuilder() to construct.
       private AuxiliaryTable(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -5856,7 +5972,7 @@ public  final class PrivacyMetric extends
       @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        return this.unknownFields;
       }
       private AuxiliaryTable(
           com.google.protobuf.CodedInputStream input,
@@ -5864,6 +5980,8 @@ public  final class PrivacyMetric extends
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
           boolean done = false;
           while (!done) {
@@ -5873,7 +5991,8 @@ public  final class PrivacyMetric extends
                 done = true;
                 break;
               default: {
-                if (!input.skipField(tag)) {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
                 break;
@@ -5924,6 +6043,7 @@ public  final class PrivacyMetric extends
           if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
             quasiIds_ = java.util.Collections.unmodifiableList(quasiIds_);
           }
+          this.unknownFields = unknownFields.build();
           makeExtensionsImmutable();
         }
       }
@@ -5978,6 +6098,7 @@ public  final class PrivacyMetric extends
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable.QuasiIdField)
           QuasiIdFieldOrBuilder {
+      private static final long serialVersionUID = 0L;
         // Use QuasiIdField.newBuilder() to construct.
         private QuasiIdField(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
           super(builder);
@@ -5989,7 +6110,7 @@ public  final class PrivacyMetric extends
         @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
-          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+          return this.unknownFields;
         }
         private QuasiIdField(
             com.google.protobuf.CodedInputStream input,
@@ -5997,6 +6118,8 @@ public  final class PrivacyMetric extends
             throws com.google.protobuf.InvalidProtocolBufferException {
           this();
           int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
           try {
             boolean done = false;
             while (!done) {
@@ -6006,7 +6129,8 @@ public  final class PrivacyMetric extends
                   done = true;
                   break;
                 default: {
-                  if (!input.skipField(tag)) {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
                     done = true;
                   }
                   break;
@@ -6038,6 +6162,7 @@ public  final class PrivacyMetric extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                 e).setUnfinishedMessage(this);
           } finally {
+            this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
           }
         }
@@ -6126,6 +6251,7 @@ public  final class PrivacyMetric extends
           if (!getCustomTagBytes().isEmpty()) {
             com.google.protobuf.GeneratedMessageV3.writeString(output, 2, customTag_);
           }
+          unknownFields.writeTo(output);
         }
 
         public int getSerializedSize() {
@@ -6140,11 +6266,11 @@ public  final class PrivacyMetric extends
           if (!getCustomTagBytes().isEmpty()) {
             size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, customTag_);
           }
+          size += unknownFields.getSerializedSize();
           memoizedSize = size;
           return size;
         }
 
-        private static final long serialVersionUID = 0L;
         @java.lang.Override
         public boolean equals(final java.lang.Object obj) {
           if (obj == this) {
@@ -6163,6 +6289,7 @@ public  final class PrivacyMetric extends
           }
           result = result && getCustomTag()
               .equals(other.getCustomTag());
+          result = result && unknownFields.equals(other.unknownFields);
           return result;
         }
 
@@ -6358,7 +6485,7 @@ public  final class PrivacyMetric extends
           }
           public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.setField(field, value);
           }
           public Builder clearField(
@@ -6371,12 +6498,12 @@ public  final class PrivacyMetric extends
           }
           public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
+              int index, java.lang.Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
           }
           public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
+              java.lang.Object value) {
             return (Builder) super.addRepeatedField(field, value);
           }
           public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6397,6 +6524,7 @@ public  final class PrivacyMetric extends
               customTag_ = other.customTag_;
               onChanged();
             }
+            this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
           }
@@ -6610,12 +6738,12 @@ public  final class PrivacyMetric extends
           }
           public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.setUnknownFieldsProto3(unknownFields);
           }
 
           public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return this;
+            return super.mergeUnknownFields(unknownFields);
           }
 
 
@@ -6806,6 +6934,7 @@ public  final class PrivacyMetric extends
         if (table_ != null) {
           output.writeMessage(3, getTable());
         }
+        unknownFields.writeTo(output);
       }
 
       public int getSerializedSize() {
@@ -6825,11 +6954,11 @@ public  final class PrivacyMetric extends
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(3, getTable());
         }
+        size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
       }
 
-      private static final long serialVersionUID = 0L;
       @java.lang.Override
       public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
@@ -6853,6 +6982,7 @@ public  final class PrivacyMetric extends
           result = result && getRelativeFrequency()
               .equals(other.getRelativeFrequency());
         }
+        result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
 
@@ -7086,7 +7216,7 @@ public  final class PrivacyMetric extends
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.setField(field, value);
         }
         public Builder clearField(
@@ -7099,12 +7229,12 @@ public  final class PrivacyMetric extends
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+            int index, java.lang.Object value) {
           return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+            java.lang.Object value) {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7150,6 +7280,7 @@ public  final class PrivacyMetric extends
           if (other.hasRelativeFrequency()) {
             mergeRelativeFrequency(other.getRelativeFrequency());
           }
+          this.mergeUnknownFields(other.unknownFields);
           onChanged();
           return this;
         }
@@ -7814,12 +7945,12 @@ public  final class PrivacyMetric extends
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.setUnknownFieldsProto3(unknownFields);
         }
 
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
+          return super.mergeUnknownFields(unknownFields);
         }
 
 
@@ -8054,6 +8185,7 @@ public  final class PrivacyMetric extends
       for (int i = 0; i < auxiliaryTables_.size(); i++) {
         output.writeMessage(3, auxiliaryTables_.get(i));
       }
+      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -8072,11 +8204,11 @@ public  final class PrivacyMetric extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, auxiliaryTables_.get(i));
       }
+      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
@@ -8094,6 +8226,7 @@ public  final class PrivacyMetric extends
           .equals(other.getRegionCode());
       result = result && getAuxiliaryTablesList()
           .equals(other.getAuxiliaryTablesList());
+      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -8321,7 +8454,7 @@ public  final class PrivacyMetric extends
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -8334,12 +8467,12 @@ public  final class PrivacyMetric extends
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8409,6 +8542,7 @@ public  final class PrivacyMetric extends
             }
           }
         }
+        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -9214,12 +9348,12 @@ public  final class PrivacyMetric extends
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
+        return super.mergeUnknownFields(unknownFields);
       }
 
 
@@ -9309,6 +9443,12 @@ public  final class PrivacyMetric extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
    */
+  public boolean hasNumericalStatsConfig() {
+    return typeCase_ == 1;
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
+   */
   public com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig getNumericalStatsConfig() {
     if (typeCase_ == 1) {
        return (com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig) type_;
@@ -9326,6 +9466,12 @@ public  final class PrivacyMetric extends
   }
 
   public static final int CATEGORICAL_STATS_CONFIG_FIELD_NUMBER = 2;
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
+   */
+  public boolean hasCategoricalStatsConfig() {
+    return typeCase_ == 2;
+  }
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
    */
@@ -9349,6 +9495,12 @@ public  final class PrivacyMetric extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
    */
+  public boolean hasKAnonymityConfig() {
+    return typeCase_ == 3;
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
+   */
   public com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig getKAnonymityConfig() {
     if (typeCase_ == 3) {
        return (com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig) type_;
@@ -9369,6 +9521,12 @@ public  final class PrivacyMetric extends
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
    */
+  public boolean hasLDiversityConfig() {
+    return typeCase_ == 4;
+  }
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
+   */
   public com.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig getLDiversityConfig() {
     if (typeCase_ == 4) {
        return (com.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig) type_;
@@ -9386,6 +9544,12 @@ public  final class PrivacyMetric extends
   }
 
   public static final int K_MAP_ESTIMATION_CONFIG_FIELD_NUMBER = 5;
+  /**
+   * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
+   */
+  public boolean hasKMapEstimationConfig() {
+    return typeCase_ == 5;
+  }
   /**
    * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
    */
@@ -9432,6 +9596,7 @@ public  final class PrivacyMetric extends
     if (typeCase_ == 5) {
       output.writeMessage(5, (com.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig) type_);
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -9459,11 +9624,11 @@ public  final class PrivacyMetric extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, (com.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig) type_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -9502,6 +9667,7 @@ public  final class PrivacyMetric extends
       case 0:
       default:
     }
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -9738,7 +9904,7 @@ public  final class PrivacyMetric extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -9751,12 +9917,12 @@ public  final class PrivacyMetric extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -9795,6 +9961,7 @@ public  final class PrivacyMetric extends
           break;
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -9838,6 +10005,12 @@ public  final class PrivacyMetric extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig, com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig.Builder, com.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfigOrBuilder> numericalStatsConfigBuilder_;
+    /**
+     * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
+     */
+    public boolean hasNumericalStatsConfig() {
+      return typeCase_ == 1;
+    }
     /**
      * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
      */
@@ -9971,6 +10144,12 @@ public  final class PrivacyMetric extends
     /**
      * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
      */
+    public boolean hasCategoricalStatsConfig() {
+      return typeCase_ == 2;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
+     */
     public com.google.privacy.dlp.v2beta2.PrivacyMetric.CategoricalStatsConfig getCategoricalStatsConfig() {
       if (categoricalStatsConfigBuilder_ == null) {
         if (typeCase_ == 2) {
@@ -10098,6 +10277,12 @@ public  final class PrivacyMetric extends
 
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig, com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig.Builder, com.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfigOrBuilder> kAnonymityConfigBuilder_;
+    /**
+     * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
+     */
+    public boolean hasKAnonymityConfig() {
+      return typeCase_ == 3;
+    }
     /**
      * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
      */
@@ -10231,6 +10416,12 @@ public  final class PrivacyMetric extends
     /**
      * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
      */
+    public boolean hasLDiversityConfig() {
+      return typeCase_ == 4;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
+     */
     public com.google.privacy.dlp.v2beta2.PrivacyMetric.LDiversityConfig getLDiversityConfig() {
       if (lDiversityConfigBuilder_ == null) {
         if (typeCase_ == 4) {
@@ -10361,6 +10552,12 @@ public  final class PrivacyMetric extends
     /**
      * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
      */
+    public boolean hasKMapEstimationConfig() {
+      return typeCase_ == 5;
+    }
+    /**
+     * <code>.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
+     */
     public com.google.privacy.dlp.v2beta2.PrivacyMetric.KMapEstimationConfig getKMapEstimationConfig() {
       if (kMapEstimationConfigBuilder_ == null) {
         if (typeCase_ == 5) {
@@ -10487,12 +10684,12 @@ public  final class PrivacyMetric extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

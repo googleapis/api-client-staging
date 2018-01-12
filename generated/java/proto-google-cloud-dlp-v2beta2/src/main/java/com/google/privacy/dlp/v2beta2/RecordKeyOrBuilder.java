@@ -10,12 +10,20 @@ public interface RecordKeyOrBuilder extends
   /**
    * <code>.google.privacy.dlp.v2beta2.CloudStorageKey cloud_storage_key = 1;</code>
    */
+  boolean hasCloudStorageKey();
+  /**
+   * <code>.google.privacy.dlp.v2beta2.CloudStorageKey cloud_storage_key = 1;</code>
+   */
   com.google.privacy.dlp.v2beta2.CloudStorageKey getCloudStorageKey();
   /**
    * <code>.google.privacy.dlp.v2beta2.CloudStorageKey cloud_storage_key = 1;</code>
    */
   com.google.privacy.dlp.v2beta2.CloudStorageKeyOrBuilder getCloudStorageKeyOrBuilder();
 
+  /**
+   * <code>.google.privacy.dlp.v2beta2.DatastoreKey datastore_key = 2;</code>
+   */
+  boolean hasDatastoreKey();
   /**
    * <code>.google.privacy.dlp.v2beta2.DatastoreKey datastore_key = 2;</code>
    */

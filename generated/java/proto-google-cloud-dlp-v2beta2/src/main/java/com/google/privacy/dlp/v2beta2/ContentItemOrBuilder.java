@@ -63,6 +63,14 @@ public interface ContentItemOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.Table table = 4;</code>
    */
+  boolean hasTable();
+  /**
+   * <pre>
+   * Structured content for inspection.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.Table table = 4;</code>
+   */
   com.google.privacy.dlp.v2beta2.Table getTable();
   /**
    * <pre>

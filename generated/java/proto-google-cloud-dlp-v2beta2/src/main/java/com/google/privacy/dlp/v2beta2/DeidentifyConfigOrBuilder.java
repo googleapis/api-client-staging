@@ -15,6 +15,15 @@ public interface DeidentifyConfigOrBuilder extends
    *
    * <code>.google.privacy.dlp.v2beta2.InfoTypeTransformations info_type_transformations = 1;</code>
    */
+  boolean hasInfoTypeTransformations();
+  /**
+   * <pre>
+   * Treat the dataset as free-form text and apply the same free text
+   * transformation everywhere.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.InfoTypeTransformations info_type_transformations = 1;</code>
+   */
   com.google.privacy.dlp.v2beta2.InfoTypeTransformations getInfoTypeTransformations();
   /**
    * <pre>
@@ -26,6 +35,16 @@ public interface DeidentifyConfigOrBuilder extends
    */
   com.google.privacy.dlp.v2beta2.InfoTypeTransformationsOrBuilder getInfoTypeTransformationsOrBuilder();
 
+  /**
+   * <pre>
+   * Treat the dataset as structured. Transformations can be applied to
+   * specific locations within structured datasets, such as transforming
+   * a column within a table.
+   * </pre>
+   *
+   * <code>.google.privacy.dlp.v2beta2.RecordTransformations record_transformations = 2;</code>
+   */
+  boolean hasRecordTransformations();
   /**
    * <pre>
    * Treat the dataset as structured. Transformations can be applied to

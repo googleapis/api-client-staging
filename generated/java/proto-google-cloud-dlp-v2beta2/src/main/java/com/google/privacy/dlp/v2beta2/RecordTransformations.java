@@ -15,6 +15,7 @@ public  final class RecordTransformations extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:google.privacy.dlp.v2beta2.RecordTransformations)
     RecordTransformationsOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use RecordTransformations.newBuilder() to construct.
   private RecordTransformations(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -27,7 +28,7 @@ public  final class RecordTransformations extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private RecordTransformations(
       com.google.protobuf.CodedInputStream input,
@@ -35,6 +36,8 @@ public  final class RecordTransformations extends
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -44,7 +47,8 @@ public  final class RecordTransformations extends
             done = true;
             break;
           default: {
-            if (!input.skipField(tag)) {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -81,6 +85,7 @@ public  final class RecordTransformations extends
       if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
         recordSuppressions_ = java.util.Collections.unmodifiableList(recordSuppressions_);
       }
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -229,6 +234,7 @@ public  final class RecordTransformations extends
     for (int i = 0; i < recordSuppressions_.size(); i++) {
       output.writeMessage(2, recordSuppressions_.get(i));
     }
+    unknownFields.writeTo(output);
   }
 
   public int getSerializedSize() {
@@ -244,11 +250,11 @@ public  final class RecordTransformations extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, recordSuppressions_.get(i));
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -264,6 +270,7 @@ public  final class RecordTransformations extends
         .equals(other.getFieldTransformationsList());
     result = result && getRecordSuppressionsList()
         .equals(other.getRecordSuppressionsList());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -480,7 +487,7 @@ public  final class RecordTransformations extends
     }
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
     public Builder clearField(
@@ -493,12 +500,12 @@ public  final class RecordTransformations extends
     }
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -564,6 +571,7 @@ public  final class RecordTransformations extends
           }
         }
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
@@ -1234,12 +1242,12 @@ public  final class RecordTransformations extends
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
