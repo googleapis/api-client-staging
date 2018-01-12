@@ -33,7 +33,7 @@
  * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
  *   ProjectName parent = ProjectName.of("[PROJECT]");
  *   InspectContentRequest request = InspectContentRequest.newBuilder()
- *     .setParentWithProjectName(parent)
+ *     .setParent(parent.toString())
  *     .build();
  *   InspectContentResponse response = dlpServiceClient.inspectContent(request);
  * }

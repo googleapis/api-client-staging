@@ -1095,6 +1095,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(runNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setParentWithRunNameOneof(com.google.cloud.bigquery.datatransfer.v1.RunNameOneof value) {
       if (value == null) {
         return setParent("");
@@ -1102,6 +1109,13 @@ private static final long serialVersionUID = 0L;
       return setParent(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * RunNameOneof.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.bigquery.datatransfer.v1.RunNameOneof getParentAsRunNameOneof() {
       java.lang.String str = getParent();
       if (str.isEmpty()) {
@@ -1112,6 +1126,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.bigquery.datatransfer.v1.ListTransferLogsRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * RunNameOneof.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.bigquery.datatransfer.v1.RunNameOneof getParentAsRunNameOneof() {
     java.lang.String str = getParent();
     if (str.isEmpty()) {

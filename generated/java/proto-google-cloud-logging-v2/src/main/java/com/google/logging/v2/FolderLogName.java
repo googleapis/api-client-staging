@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class FolderLogName implements ResourceName {
     return of(folder, log);
   }
 
+  public static String format(String folder, String log) {
+    return newBuilder()
+      .setFolder(folder)
+      .setLog(log)
+      .build()
+      .toString();
+  }
+
   public static FolderLogName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "FolderLogName.parse: formattedString not in valid format");
     return of(matchMap.get("folder"), matchMap.get("log"));
+  }
+
+  public static List<FolderLogName> parseList(List<String> formattedStrings) {
+    List<FolderLogName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<FolderLogName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (FolderLogName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {

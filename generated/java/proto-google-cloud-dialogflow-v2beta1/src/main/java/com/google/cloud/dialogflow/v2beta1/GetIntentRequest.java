@@ -812,6 +812,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(intentName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithIntentName(com.google.cloud.dialogflow.v2beta1.IntentName value) {
       if (value == null) {
         return setName("");
@@ -819,6 +826,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * IntentName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.dialogflow.v2beta1.IntentName getNameAsIntentName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -829,6 +843,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.GetIntentRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * IntentName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.dialogflow.v2beta1.IntentName getNameAsIntentName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

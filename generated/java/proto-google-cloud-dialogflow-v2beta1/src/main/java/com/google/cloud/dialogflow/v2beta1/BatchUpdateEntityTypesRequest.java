@@ -1467,6 +1467,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setParent(projectAgentName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setParentWithProjectAgentName(com.google.cloud.dialogflow.v2beta1.ProjectAgentName value) {
       if (value == null) {
         return setParent("");
@@ -1474,6 +1481,13 @@ private static final long serialVersionUID = 0L;
       return setParent(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * ProjectAgentName.parse(protoBuilder.getParent());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.dialogflow.v2beta1.ProjectAgentName getParentAsProjectAgentName() {
       java.lang.String str = getParent();
       if (str.isEmpty()) {
@@ -1484,6 +1498,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.dialogflow.v2beta1.BatchUpdateEntityTypesRequest)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * ProjectAgentName.parse(protoObject.getParent());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.dialogflow.v2beta1.ProjectAgentName getParentAsProjectAgentName() {
     java.lang.String str = getParent();
     if (str.isEmpty()) {

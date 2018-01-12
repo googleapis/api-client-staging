@@ -10746,6 +10746,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(spanName.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithSpanName(com.google.devtools.cloudtrace.v2.SpanName value) {
       if (value == null) {
         return setName("");
@@ -10753,6 +10760,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * SpanName.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.devtools.cloudtrace.v2.SpanName getNameAsSpanName() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -10763,6 +10777,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.devtools.cloudtrace.v2.Span)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * SpanName.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.devtools.cloudtrace.v2.SpanName getNameAsSpanName() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

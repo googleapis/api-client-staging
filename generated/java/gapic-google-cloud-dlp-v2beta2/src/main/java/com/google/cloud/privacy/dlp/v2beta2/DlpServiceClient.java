@@ -75,7 +75,7 @@ import javax.annotation.Generated;
  * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
  *   ProjectName parent = ProjectName.of("[PROJECT]");
  *   InspectContentRequest request = InspectContentRequest.newBuilder()
- *     .setParentWithProjectName(parent)
+ *     .setParent(parent.toString())
  *     .build();
  *   InspectContentResponse response = dlpServiceClient.inspectContent(request);
  * }
@@ -196,7 +196,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   InspectContentRequest request = InspectContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   InspectContentResponse response = dlpServiceClient.inspectContent(request);
    * }
@@ -221,7 +221,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   InspectContentRequest request = InspectContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;InspectContentResponse&gt; future = dlpServiceClient.inspectContentCallable().futureCall(request);
    *   // Do something
@@ -245,7 +245,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   RedactImageRequest request = RedactImageRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   RedactImageResponse response = dlpServiceClient.redactImage(request);
    * }
@@ -269,7 +269,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   RedactImageRequest request = RedactImageRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;RedactImageResponse&gt; future = dlpServiceClient.redactImageCallable().futureCall(request);
    *   // Do something
@@ -292,7 +292,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   DeidentifyContentResponse response = dlpServiceClient.deidentifyContent(request);
    * }
@@ -316,7 +316,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   DeidentifyContentRequest request = DeidentifyContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;DeidentifyContentResponse&gt; future = dlpServiceClient.deidentifyContentCallable().futureCall(request);
    *   // Do something
@@ -339,7 +339,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ReidentifyContentRequest request = ReidentifyContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ReidentifyContentResponse response = dlpServiceClient.reidentifyContent(request);
    * }
@@ -362,7 +362,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ReidentifyContentRequest request = ReidentifyContentRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ReidentifyContentResponse&gt; future = dlpServiceClient.reidentifyContentCallable().futureCall(request);
    *   // Do something
@@ -386,7 +386,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   InspectDataSourceRequest request = InspectDataSourceRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   DlpJob response = dlpServiceClient.inspectDataSource(request);
    * }
@@ -410,7 +410,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   InspectDataSourceRequest request = InspectDataSourceRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;DlpJob&gt; future = dlpServiceClient.inspectDataSourceCallable().futureCall(request);
    *   // Do something
@@ -433,7 +433,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   DlpJob response = dlpServiceClient.analyzeDataSourceRisk(request);
    * }
@@ -457,7 +457,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   AnalyzeDataSourceRiskRequest request = AnalyzeDataSourceRiskRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;DlpJob&gt; future = dlpServiceClient.analyzeDataSourceRiskCallable().futureCall(request);
    *   // Do something
@@ -519,7 +519,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   CreateInspectTemplateRequest request = CreateInspectTemplateRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   InspectTemplate response = dlpServiceClient.createInspectTemplate(request);
    * }
@@ -543,7 +543,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   CreateInspectTemplateRequest request = CreateInspectTemplateRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;InspectTemplate&gt; future = dlpServiceClient.createInspectTemplateCallable().futureCall(request);
    *   // Do something
@@ -566,7 +566,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
-   *     .setNameWithInspectTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   InspectTemplate response = dlpServiceClient.updateInspectTemplate(request);
    * }
@@ -589,7 +589,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   UpdateInspectTemplateRequest request = UpdateInspectTemplateRequest.newBuilder()
-   *     .setNameWithInspectTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;InspectTemplate&gt; future = dlpServiceClient.updateInspectTemplateCallable().futureCall(request);
    *   // Do something
@@ -652,7 +652,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListInspectTemplatesRequest request = ListInspectTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (InspectTemplate element : dlpServiceClient.listInspectTemplates(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -678,7 +678,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListInspectTemplatesRequest request = ListInspectTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListInspectTemplatesPagedResponse&gt; future = dlpServiceClient.listInspectTemplatesPagedCallable().futureCall(request);
    *   // Do something
@@ -703,7 +703,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListInspectTemplatesRequest request = ListInspectTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListInspectTemplatesResponse response = dlpServiceClient.listInspectTemplatesCallable().call(request);
@@ -735,7 +735,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
-   *     .setNameWithInspectTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   dlpServiceClient.deleteInspectTemplate(request);
    * }
@@ -758,7 +758,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   InspectTemplateNameOneof name = InspectTemplateNameOneof.from(InspectTemplateName.of("[ORGANIZATION]", "[INSPECT_TEMPLATE]"));
    *   DeleteInspectTemplateRequest request = DeleteInspectTemplateRequest.newBuilder()
-   *     .setNameWithInspectTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = dlpServiceClient.deleteInspectTemplateCallable().futureCall(request);
    *   // Do something
@@ -781,7 +781,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   CreateDeidentifyTemplateRequest request = CreateDeidentifyTemplateRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   DeidentifyTemplate response = dlpServiceClient.createDeidentifyTemplate(request);
    * }
@@ -806,7 +806,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   CreateDeidentifyTemplateRequest request = CreateDeidentifyTemplateRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;DeidentifyTemplate&gt; future = dlpServiceClient.createDeidentifyTemplateCallable().futureCall(request);
    *   // Do something
@@ -829,7 +829,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   DeidentifyTemplate response = dlpServiceClient.updateDeidentifyTemplate(request);
    * }
@@ -853,7 +853,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   UpdateDeidentifyTemplateRequest request = UpdateDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;DeidentifyTemplate&gt; future = dlpServiceClient.updateDeidentifyTemplateCallable().futureCall(request);
    *   // Do something
@@ -876,7 +876,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   DeidentifyTemplate response = dlpServiceClient.getDeidentifyTemplate(request);
    * }
@@ -899,7 +899,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   GetDeidentifyTemplateRequest request = GetDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;DeidentifyTemplate&gt; future = dlpServiceClient.getDeidentifyTemplateCallable().futureCall(request);
    *   // Do something
@@ -922,7 +922,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListDeidentifyTemplatesRequest request = ListDeidentifyTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (DeidentifyTemplate element : dlpServiceClient.listDeidentifyTemplates(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -948,7 +948,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListDeidentifyTemplatesRequest request = ListDeidentifyTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListDeidentifyTemplatesPagedResponse&gt; future = dlpServiceClient.listDeidentifyTemplatesPagedCallable().futureCall(request);
    *   // Do something
@@ -973,7 +973,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   OrganizationName parent = OrganizationName.of("[ORGANIZATION]");
    *   ListDeidentifyTemplatesRequest request = ListDeidentifyTemplatesRequest.newBuilder()
-   *     .setParentWithOrganizationName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListDeidentifyTemplatesResponse response = dlpServiceClient.listDeidentifyTemplatesCallable().call(request);
@@ -1005,7 +1005,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   dlpServiceClient.deleteDeidentifyTemplate(request);
    * }
@@ -1028,7 +1028,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DeidentifyTemplateNameOneof name = DeidentifyTemplateNameOneof.from(DeidentifyTemplateName.of("[ORGANIZATION]", "[DEIDENTIFY_TEMPLATE]"));
    *   DeleteDeidentifyTemplateRequest request = DeleteDeidentifyTemplateRequest.newBuilder()
-   *     .setNameWithDeidentifyTemplateNameOneof(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = dlpServiceClient.deleteDeidentifyTemplateCallable().futureCall(request);
    *   // Do something
@@ -1051,7 +1051,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListDlpJobsRequest request = ListDlpJobsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   for (DlpJob element : dlpServiceClient.listDlpJobs(request).iterateAll()) {
    *     // doThingsWith(element);
@@ -1076,7 +1076,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListDlpJobsRequest request = ListDlpJobsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   ApiFuture&lt;ListDlpJobsPagedResponse&gt; future = dlpServiceClient.listDlpJobsPagedCallable().futureCall(request);
    *   // Do something
@@ -1101,7 +1101,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   ProjectName parent = ProjectName.of("[PROJECT]");
    *   ListDlpJobsRequest request = ListDlpJobsRequest.newBuilder()
-   *     .setParentWithProjectName(parent)
+   *     .setParent(parent.toString())
    *     .build();
    *   while (true) {
    *     ListDlpJobsResponse response = dlpServiceClient.listDlpJobsCallable().call(request);
@@ -1132,7 +1132,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   GetDlpJobRequest request = GetDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   DlpJob response = dlpServiceClient.getDlpJob(request);
    * }
@@ -1155,7 +1155,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   GetDlpJobRequest request = GetDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;DlpJob&gt; future = dlpServiceClient.getDlpJobCallable().futureCall(request);
    *   // Do something
@@ -1178,7 +1178,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   DeleteDlpJobRequest request = DeleteDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   dlpServiceClient.deleteDlpJob(request);
    * }
@@ -1202,7 +1202,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   DeleteDlpJobRequest request = DeleteDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = dlpServiceClient.deleteDlpJobCallable().futureCall(request);
    *   // Do something
@@ -1225,7 +1225,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   CancelDlpJobRequest request = CancelDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   dlpServiceClient.cancelDlpJob(request);
    * }
@@ -1249,7 +1249,7 @@ public class DlpServiceClient implements BackgroundResource {
    * try (DlpServiceClient dlpServiceClient = DlpServiceClient.create()) {
    *   DlpJobName name = DlpJobName.of("[PROJECT]", "[DLP_JOB]");
    *   CancelDlpJobRequest request = CancelDlpJobRequest.newBuilder()
-   *     .setNameWithDlpJobName(name)
+   *     .setName(name.toString())
    *     .build();
    *   ApiFuture&lt;Void&gt; future = dlpServiceClient.cancelDlpJobCallable().futureCall(request);
    *   // Do something

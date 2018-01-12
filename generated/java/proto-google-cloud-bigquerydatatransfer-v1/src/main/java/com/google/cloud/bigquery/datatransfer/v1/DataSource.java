@@ -3453,6 +3453,13 @@ private static final long serialVersionUID = 0L;
     }
 
 
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * protoBuilder.setName(dataSourceNameOneof.toString());
+     * </code></pre>
+     */
+    @Deprecated
     public final Builder setNameWithDataSourceNameOneof(com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof value) {
       if (value == null) {
         return setName("");
@@ -3460,6 +3467,13 @@ private static final long serialVersionUID = 0L;
       return setName(value.toString());
     }
     
+    /**
+     * @deprecated Use the following instead:
+     * <pre><code>
+     * DataSourceNameOneof.parse(protoBuilder.getName());
+     * </code></pre>
+     */
+    @Deprecated
     public final com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof getNameAsDataSourceNameOneof() {
       java.lang.String str = getName();
       if (str.isEmpty()) {
@@ -3470,6 +3484,13 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(builder_scope:google.cloud.bigquery.datatransfer.v1.DataSource)
   }
 
+  /**
+   * @deprecated Use the following instead:
+   * <pre><code>
+   * DataSourceNameOneof.parse(protoObject.getName());
+   * </code></pre>
+   */
+  @Deprecated
   public final com.google.cloud.bigquery.datatransfer.v1.DataSourceNameOneof getNameAsDataSourceNameOneof() {
     java.lang.String str = getName();
     if (str.isEmpty()) {

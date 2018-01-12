@@ -20,6 +20,8 @@ import com.google.api.resourcenames.ResourceName;
 import com.google.api.resourcenames.ResourceNameType;
 import java.io.IOException;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 // AUTO-GENERATED DOCUMENTATION AND CLASS
 @javax.annotation.Generated("by GAPIC protoc plugin")
@@ -67,10 +69,41 @@ public class BillingLogName implements ResourceName {
     return of(billingAccount, log);
   }
 
+  public static String format(String billingAccount, String log) {
+    return newBuilder()
+      .setBillingAccount(billingAccount)
+      .setLog(log)
+      .build()
+      .toString();
+  }
+
   public static BillingLogName parse(String formattedString) {
+    if (formattedString.isEmpty()) {
+      return null;
+    }
     Map<String, String> matchMap =
         PATH_TEMPLATE.validatedMatch(formattedString, "BillingLogName.parse: formattedString not in valid format");
     return of(matchMap.get("billing_account"), matchMap.get("log"));
+  }
+
+  public static List<BillingLogName> parseList(List<String> formattedStrings) {
+    List<BillingLogName> list = new ArrayList<>(formattedStrings.size());
+    for (String formattedString : formattedStrings) {
+      list.add(parse(formattedString));
+    }
+    return list;
+  }
+
+  public static List<String> toStringList(List<BillingLogName> values) {
+    List<String> list = new ArrayList<String>(values.size());
+    for (BillingLogName value : values) {
+      if (value == null) {
+        list.add("");
+      } else {
+        list.add(value.toString());
+      }
+    }
+    return list;
   }
 
   public static boolean isParsableFrom(String formattedString) {
