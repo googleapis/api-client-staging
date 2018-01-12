@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ import com.google.api.gax.retrying.RetrySettings;
 import com.google.api.gax.rpc.ApiClientHeaderProvider;
 import com.google.api.gax.rpc.ClientContext;
 import com.google.api.gax.rpc.ClientSettings;
+import com.google.api.gax.rpc.ServerStreamingCallSettings;
 import com.google.api.gax.rpc.StatusCode;
-import com.google.api.gax.rpc.StreamingCallSettings;
 import com.google.api.gax.rpc.TransportChannelProvider;
 import com.google.api.gax.rpc.UnaryCallSettings;
 import com.google.bigtable.v2.CheckAndMutateRowRequest;
@@ -94,23 +94,24 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
           .add("https://www.googleapis.com/auth/cloud-platform.read-only")
           .build();
 
-  private final StreamingCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsSettings;
-  private final StreamingCallSettings<SampleRowKeysRequest, SampleRowKeysResponse>
+  private final ServerStreamingCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsSettings;
+  private final ServerStreamingCallSettings<SampleRowKeysRequest, SampleRowKeysResponse>
       sampleRowKeysSettings;
   private final UnaryCallSettings<MutateRowRequest, MutateRowResponse> mutateRowSettings;
-  private final StreamingCallSettings<MutateRowsRequest, MutateRowsResponse> mutateRowsSettings;
+  private final ServerStreamingCallSettings<MutateRowsRequest, MutateRowsResponse>
+      mutateRowsSettings;
   private final UnaryCallSettings<CheckAndMutateRowRequest, CheckAndMutateRowResponse>
       checkAndMutateRowSettings;
   private final UnaryCallSettings<ReadModifyWriteRowRequest, ReadModifyWriteRowResponse>
       readModifyWriteRowSettings;
 
   /** Returns the object with the settings used for calls to readRows. */
-  public StreamingCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsSettings() {
+  public ServerStreamingCallSettings<ReadRowsRequest, ReadRowsResponse> readRowsSettings() {
     return readRowsSettings;
   }
 
   /** Returns the object with the settings used for calls to sampleRowKeys. */
-  public StreamingCallSettings<SampleRowKeysRequest, SampleRowKeysResponse>
+  public ServerStreamingCallSettings<SampleRowKeysRequest, SampleRowKeysResponse>
       sampleRowKeysSettings() {
     return sampleRowKeysSettings;
   }
@@ -121,7 +122,7 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
   }
 
   /** Returns the object with the settings used for calls to mutateRows. */
-  public StreamingCallSettings<MutateRowsRequest, MutateRowsResponse> mutateRowsSettings() {
+  public ServerStreamingCallSettings<MutateRowsRequest, MutateRowsResponse> mutateRowsSettings() {
     return mutateRowsSettings;
   }
 
@@ -217,11 +218,12 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
   public static class Builder extends ClientSettings.Builder<BaseBigtableDataSettings, Builder> {
     private final ImmutableList<UnaryCallSettings.Builder<?, ?>> unaryMethodSettingsBuilders;
 
-    private final StreamingCallSettings.Builder<ReadRowsRequest, ReadRowsResponse> readRowsSettings;
-    private final StreamingCallSettings.Builder<SampleRowKeysRequest, SampleRowKeysResponse>
+    private final ServerStreamingCallSettings.Builder<ReadRowsRequest, ReadRowsResponse>
+        readRowsSettings;
+    private final ServerStreamingCallSettings.Builder<SampleRowKeysRequest, SampleRowKeysResponse>
         sampleRowKeysSettings;
     private final UnaryCallSettings.Builder<MutateRowRequest, MutateRowResponse> mutateRowSettings;
-    private final StreamingCallSettings.Builder<MutateRowsRequest, MutateRowsResponse>
+    private final ServerStreamingCallSettings.Builder<MutateRowsRequest, MutateRowsResponse>
         mutateRowsSettings;
     private final UnaryCallSettings.Builder<CheckAndMutateRowRequest, CheckAndMutateRowResponse>
         checkAndMutateRowSettings;
@@ -269,13 +271,13 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
     protected Builder(ClientContext clientContext) {
       super(clientContext);
 
-      readRowsSettings = StreamingCallSettings.newBuilder();
+      readRowsSettings = ServerStreamingCallSettings.newBuilder();
 
-      sampleRowKeysSettings = StreamingCallSettings.newBuilder();
+      sampleRowKeysSettings = ServerStreamingCallSettings.newBuilder();
 
       mutateRowSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
-      mutateRowsSettings = StreamingCallSettings.newBuilder();
+      mutateRowsSettings = ServerStreamingCallSettings.newBuilder();
 
       checkAndMutateRowSettings = UnaryCallSettings.newUnaryCallSettingsBuilder();
 
@@ -344,12 +346,13 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
     }
 
     /** Returns the builder for the settings used for calls to readRows. */
-    public StreamingCallSettings.Builder<ReadRowsRequest, ReadRowsResponse> readRowsSettings() {
+    public ServerStreamingCallSettings.Builder<ReadRowsRequest, ReadRowsResponse>
+        readRowsSettings() {
       return readRowsSettings;
     }
 
     /** Returns the builder for the settings used for calls to sampleRowKeys. */
-    public StreamingCallSettings.Builder<SampleRowKeysRequest, SampleRowKeysResponse>
+    public ServerStreamingCallSettings.Builder<SampleRowKeysRequest, SampleRowKeysResponse>
         sampleRowKeysSettings() {
       return sampleRowKeysSettings;
     }
@@ -360,7 +363,7 @@ public class BaseBigtableDataSettings extends ClientSettings<BaseBigtableDataSet
     }
 
     /** Returns the builder for the settings used for calls to mutateRows. */
-    public StreamingCallSettings.Builder<MutateRowsRequest, MutateRowsResponse>
+    public ServerStreamingCallSettings.Builder<MutateRowsRequest, MutateRowsResponse>
         mutateRowsSettings() {
       return mutateRowsSettings;
     }
